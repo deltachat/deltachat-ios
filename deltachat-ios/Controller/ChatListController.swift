@@ -9,9 +9,9 @@ class ChatListController: UITableViewController {
     private let deadDropCellReuseIdentifier = "deaddrop_cell"
     private let contactCellReuseIdentifier = "contact_cell"
 
-    private var msgChangedObserver: Any?
-    private var msgsNoticedObserver: Any?
-    private var incomingMsgObserver: Any?
+    private var msgChangedObserver: NSObjectProtocol?
+    private var msgsNoticedObserver: NSObjectProtocol?
+    private var incomingMsgObserver: NSObjectProtocol?
 
     private weak var timer: Timer?
 

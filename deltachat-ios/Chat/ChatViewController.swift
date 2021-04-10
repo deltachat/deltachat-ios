@@ -14,9 +14,9 @@ class ChatViewController: UITableViewController {
     let chatId: Int
     var messageIds: [Int] = []
 
-    var msgChangedObserver: Any?
-    var incomingMsgObserver: Any?
-    var ephemeralTimerModifiedObserver: Any?
+    var msgChangedObserver: NSObjectProtocol?
+    var incomingMsgObserver: NSObjectProtocol?
+    var ephemeralTimerModifiedObserver: NSObjectProtocol?
     // isDismissing indicates whether the ViewController is/was about to dismissed.
     // The VC can be dismissed by pressing back '<' or by a swipe-to-dismiss gesture.
     // The latter is cancelable and leads to viewWillAppear is called in case the gesture is cancelled
@@ -24,8 +24,6 @@ class ChatViewController: UITableViewController {
     var isDismissing = false
     var isInitial = true
     var ignoreInputBarChange = false
-    var foregroundObserver: Any?
-    var backgroundObserver: Any?
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -408,15 +406,15 @@ class ChatViewController: UITableViewController {
             self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
         }
 
-        foregroundObserver = nc.addObserver(self,
-                                            selector: #selector(applicationDidBecomeActive(_:)),
-                                            name: UIApplication.didBecomeActiveNotification,
-                                            object: nil)
+        nc.addObserver(self,
+                       selector: #selector(applicationDidBecomeActive(_:)),
+                       name: UIApplication.didBecomeActiveNotification,
+                       object: nil)
 
-        backgroundObserver = nc.addObserver(self,
-                                            selector: #selector(applicationWillResignActive(_:)),
-                                            name: UIApplication.willResignActiveNotification,
-                                            object: nil)
+        nc.addObserver(self,
+                       selector: #selector(applicationWillResignActive(_:)),
+                       name: UIApplication.willResignActiveNotification,
+                       object: nil)
 
         // things that do not affect the chatview
         // and are delayed after the view is displayed
@@ -453,12 +451,8 @@ class ChatViewController: UITableViewController {
         if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
             nc.removeObserver(ephemeralTimerModifiedObserver)
         }
-        if let foregroundObserver = self.foregroundObserver {
-            nc.removeObserver(foregroundObserver)
-        }
-        if let backgroundObserver = self.backgroundObserver {
-            nc.removeObserver(backgroundObserver)
-        }
+        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         audioController.stopAnyOngoingPlaying()
 
     }

@@ -3,7 +3,7 @@ import DcCore
 
 protocol ProgressAlertHandler: UIViewController {
     var progressAlert: UIAlertController? { get set }   // needs to be implemented as weak
-    var progressObserver: Any? { get set } // set to nil in viewDidDisappear
+    var progressObserver: NSObjectProtocol? { get set } // set to nil in viewDidDisappear
     func showProgressAlert(title: String, dcContext: DcContext)
     func updateProgressAlertValue(value: Int?)
     func updateProgressAlert(error: String?)

@@ -4,7 +4,7 @@ import DcCore
 class QrPageController: UIPageViewController, ProgressAlertHandler {
     private let dcContext: DcContext
     weak var progressAlert: UIAlertController?
-    var progressObserver: Any?
+    var progressObserver: NSObjectProtocol?
     var qrCodeReaderController: QrCodeReaderController?
 
     private var selectedIndex: Int = 0

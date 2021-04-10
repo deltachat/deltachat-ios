@@ -11,8 +11,6 @@ class ChatListController: UITableViewController {
     let viewModel: ChatListViewModel
     let contactCellReuseIdentifier = "contactCellReuseIdentifier"
     weak var chatListDelegate: ChatListDelegate?
-    var keyboardAppearedObserver: Any?
-    var keyboardDisappearedObserver: Any?
 
     /// MARK - search
 
@@ -53,14 +51,14 @@ class ChatListController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.hidesSearchBarWhenScrolling = true
         let nc = NotificationCenter.default
-        keyboardAppearedObserver = nc.addObserver(self,
-                                                  selector: #selector(keyboardWillShow(_:)),
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        keyboardDisappearedObserver = nc.addObserver(self,
-                                                     selector: #selector(keyboardWillHide(_:)),
-                                                     name: UIResponder.keyboardWillHideNotification,
-                                                     object: nil)
+        nc.addObserver(self,
+                       selector: #selector(keyboardWillShow(_:)),
+                       name: UIResponder.keyboardWillShowNotification,
+                       object: nil)
+        nc.addObserver(self,
+                       selector: #selector(keyboardWillHide(_:)),
+                       name: UIResponder.keyboardWillHideNotification,
+                       object: nil)
     }
 
     override func viewDidLoad() {
@@ -71,12 +69,8 @@ class ChatListController: UITableViewController {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        if let keyboardAppearedObserver = keyboardAppearedObserver {
-            NotificationCenter.default.removeObserver(keyboardAppearedObserver)
-        }
-        if let keyboardDisappearedObserver = keyboardDisappearedObserver {
-            NotificationCenter.default.removeObserver(keyboardDisappearedObserver)
-        }
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {

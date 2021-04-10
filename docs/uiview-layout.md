@@ -140,6 +140,18 @@ a tricky part (see eg. [3]) seems to be to hold the correct type of rerences to 
 tl;dr: post from main thread and also add/remove observers from main thread.
 on receiving, assume, things will block.
 
+## notification system: adding and removing observers
+
+- for the `addObserver()` variant returning an object
+  (overview at https://developer.apple.com/documentation/foundation/notificationcenter )
+  always save the object as `NSObjectProtocol` not as `Any?` -
+  otherwise you risk to mix addObserver() functions as also
+  the non-return variant can be saved as `Any?`
+  (Swift allows saving "no return type" as `Any?`)
+
+- call `removeObserver(self)` only in deinit,
+  otherwise use `removeObserver(self, name, obj)` or `removeObserver(obj)`
+
 
 ## some sources
 

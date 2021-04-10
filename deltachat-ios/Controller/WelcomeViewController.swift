@@ -3,7 +3,7 @@ import DcCore
 
 class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private let dcContext: DcContext
-    var progressObserver: Any?
+    var progressObserver: NSObjectProtocol?
     var onProgressSuccess: VoidFunction?
 
     private lazy var scrollView: UIScrollView = {
