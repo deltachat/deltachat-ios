@@ -152,7 +152,8 @@ class ChatListController: UITableViewController {
             nc.removeObserver(msgsNoticedObserver)
         }
         // remove non-block observers
-        nc.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     // MARK: - setup
