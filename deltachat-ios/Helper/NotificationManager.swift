@@ -5,8 +5,8 @@ import UIKit
 
 public class NotificationManager {
     
-    var incomingMsgObserver: Any?
-    var msgsNoticedObserver: Any?
+    var incomingMsgObserver: NSObjectProtocol?
+    var msgsNoticedObserver: NSObjectProtocol?
 
     init() {
         initIncomingMsgsObserver()

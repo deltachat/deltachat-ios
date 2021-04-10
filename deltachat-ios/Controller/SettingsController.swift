@@ -32,7 +32,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     let documentInteractionController = UIDocumentInteractionController()
     weak var progressAlert: UIAlertController?
-    var progressObserver: Any?
+    var progressObserver: NSObjectProtocol?
 
     // MARK: - cells
 

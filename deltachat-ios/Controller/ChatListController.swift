@@ -9,12 +9,9 @@ class ChatListController: UITableViewController {
     private let deadDropCellReuseIdentifier = "deaddrop_cell"
     private let contactCellReuseIdentifier = "contact_cell"
 
-    private var msgChangedObserver: Any?
-    private var msgsNoticedObserver: Any?
-    private var incomingMsgObserver: Any?
-    private var viewChatObserver: Any?
-    private var foregroundObserver: Any?
-    private var backgroundObserver: Any?
+    private var msgChangedObserver: NSObjectProtocol?
+    private var msgsNoticedObserver: NSObjectProtocol?
+    private var incomingMsgObserver: NSObjectProtocol?
 
     private weak var timer: Timer?
 
@@ -127,14 +124,16 @@ class ChatListController: UITableViewController {
             queue: nil) { [weak self] _ in
                 self?.viewModel.refreshData()
         }
-        foregroundObserver = nc.addObserver(self,
-                                            selector: #selector(applicationDidBecomeActive(_:)),
-                                            name: UIApplication.didBecomeActiveNotification,
-                                            object: nil)
-        backgroundObserver = nc.addObserver(self,
-                                            selector: #selector(applicationWillResignActive(_:)),
-                                            name: UIApplication.willResignActiveNotification,
-                                            object: nil)
+        nc.addObserver(
+            self,
+            selector: #selector(applicationDidBecomeActive(_:)),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
+        nc.addObserver(
+            self,
+            selector: #selector(applicationWillResignActive(_:)),
+            name: UIApplication.willResignActiveNotification,
+            object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -142,6 +141,7 @@ class ChatListController: UITableViewController {
         stopTimer()
 
         let nc = NotificationCenter.default
+        // remove observers with a block
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
         }
@@ -151,12 +151,9 @@ class ChatListController: UITableViewController {
         if let msgsNoticedObserver = self.msgsNoticedObserver {
             nc.removeObserver(msgsNoticedObserver)
         }
-        if let foregroundObserver = self.foregroundObserver {
-            nc.removeObserver(foregroundObserver)
-        }
-        if let backgroundObserver = self.backgroundObserver {
-            nc.removeObserver(backgroundObserver)
-        }
+        // remove non-block observers
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     // MARK: - setup

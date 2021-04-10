@@ -5,12 +5,12 @@ import DcCore
 class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private let dcContext: DcContext
     private var skipOauth = false
-    private var backupProgressObserver: Any?
-    var progressObserver: Any?
+    private var backupProgressObserver: NSObjectProtocol?
+    var progressObserver: NSObjectProtocol?
     var onProgressSuccess: VoidFunction? // not needed here
     var onLoginSuccess: (() -> Void)?
 
-    private var oauth2Observer: Any?
+    private var oauth2Observer: NSObjectProtocol?
 
     private let tagEmailCell = 0
     private let tagPasswordCell = 1
