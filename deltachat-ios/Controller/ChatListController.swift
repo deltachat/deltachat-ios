@@ -108,22 +108,20 @@ class ChatListController: UITableViewController {
             forName: dcNotificationChanged,
             object: nil,
             queue: nil) { [weak self] _ in
-                self?.viewModel.refreshData()
-
-        }
+                self?.refreshInBg()
+            }
         msgsNoticedObserver = nc.addObserver(
             forName: dcMsgsNoticed,
             object: nil,
             queue: nil) { [weak self] _ in
-                self?.viewModel.refreshData()
-
-        }
+                self?.refreshInBg()
+            }
         incomingMsgObserver = nc.addObserver(
             forName: dcNotificationIncoming,
             object: nil,
             queue: nil) { [weak self] _ in
-                self?.viewModel.refreshData()
-        }
+                self?.refreshInBg()
+            }
         nc.addObserver(
             self,
             selector: #selector(applicationDidBecomeActive(_:)),
@@ -173,8 +171,31 @@ class ChatListController: UITableViewController {
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
             startTimer()
+            refreshInBg()
+        }
+    }
+
+    private var inBgRefresh = false
+    private var needsAnotherBgRefresh = false
+    private func refreshInBg() {
+        if inBgRefresh {
+            needsAnotherBgRefresh = true
+        } else {
+            inBgRefresh = true
             DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                // do at least one refresh, without inital delay
+                // (refreshData() calls handleChatListUpdate() on main thread when done)
+                self?.needsAnotherBgRefresh = false
                 self?.viewModel.refreshData()
+
+                // do subsequent refreshes with a delay of 500ms
+                while self?.needsAnotherBgRefresh != false {
+                    usleep(500000)
+                    self?.needsAnotherBgRefresh = false
+                    self?.viewModel.refreshData()
+                }
+
+                self?.inBgRefresh = false
             }
         }
     }
@@ -193,8 +214,8 @@ class ChatListController: UITableViewController {
     @objc func cancelButtonPressed() {
         // cancel forwarding
         RelayHelper.sharedInstance.cancel()
-        viewModel.refreshData()
         updateTitle()
+        refreshInBg()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -355,9 +376,7 @@ class ChatListController: UITableViewController {
         // check if the timer is not yet started
         if !(timer?.isValid ?? false) {
             timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-                DispatchQueue.main.async { [weak self] in
-                    self?.viewModel.refreshData()
-                }
+                self?.refreshInBg()
             }
         }
     }
@@ -428,7 +447,7 @@ class ChatListController: UITableViewController {
     private func deleteChat(chatId: Int, animated: Bool) {
         if !animated {
             _ = viewModel.deleteChat(chatId: chatId)
-            viewModel.refreshData()
+            refreshInBg()
             return
         }
 
