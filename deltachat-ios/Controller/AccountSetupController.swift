@@ -740,7 +740,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                     title: String.localized("import_backup_title"),
                     message: String.localizedStringWithFormat(
                         String.localized("import_backup_no_backup_found"),
-                        "iTunes / <Your Device> / File Sharing / Delta Chat"), // TOOD: maybe better use an iOS-specific string here
+                        "➔ Mac-Finder or iTunes ➔ iPhone ➔ " + String.localized("files") + " ➔ Delta Chat"), // iTunes was used up to Maverick 10.4
                     preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
                 present(alert, animated: true)
