@@ -280,7 +280,7 @@
 "send_failed" = "无法发送消息";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "您无法编写消息，因为您不在此群组中。要加入，请询问其他成员。";
-"messaging_disabled_device_chat" = "此聊天包含本地生成的消息。因此您不能编写任何消息。";
+"messaging_disabled_device_chat" = "此聊天包含本地生成的消息。您不能在这里编写消息。";
 "messaging_disabled_deaddrop" = "点击消息来接受或拒绝联系人请求";
 "cannot_display_unsuported_file_type" = "无法显示此类文件：%1$@";
 "attachment_failed_to_load" = "加载附件失败";
@@ -713,8 +713,8 @@
 "me_desktop" = "我";
 "in_this_group_desktop" = "群组成员";
 "not_in_this_group_desktop" = "潜在的群组成员（不在群组中）";
-"message_detail_sent_desktop" = "已发送";
-"message_detail_received_desktop" = "已接收";
+"message_detail_sent_desktop" = "发送于";
+"message_detail_received_desktop" = "接收于";
 "message_detail_from_desktop" = "从";
 "message_detail_to_desktop" = "到";
 "menu.view.developer.open.log.folder" = "打开日志文件夹";

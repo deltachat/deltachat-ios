@@ -149,7 +149,7 @@
 "menu_message_details" = "Nachrichtendetails";
 "menu_copy_to_clipboard" = "In Zwischenablage kopieren";
 "menu_copy_selection_to_clipboard" = "Auswahl kopieren";
-"menu_copy_link_to_clipboard" = "Verweis kopieren";
+"menu_copy_link_to_clipboard" = "Link kopieren";
 "paste_from_clipboard" = "Von der Zwischenablage einfügen";
 "menu_forward" = "Nachricht weiterleiten";
 "menu_resend" = "Nachricht erneut versenden";
@@ -243,7 +243,7 @@
 "ask_delete_value" = "%1$@ löschen?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ aus der Gruppe löschen?";
-"open_url_confirmation" = "Diesen Verweis öffnen?";
+"open_url_confirmation" = "Diesen Link öffnen?";
 
 
 // contact list
@@ -320,7 +320,7 @@
 "tab_members" = "Mitglieder";
 "tab_gallery" = "Galerie";
 "tab_docs" = "Dokumente";
-"tab_links" = "Verweise";
+"tab_links" = "Links";
 "tab_map" = "Karte";
 "tab_gallery_empty_hint" = "In diesem Chat geteilte Bilder und Videos werden hier angezeigt.";
 "tab_docs_empty_hint" = "In diesem Chat geteilte Dokumente, Musik und Dateien werden hier angezeigt.";
