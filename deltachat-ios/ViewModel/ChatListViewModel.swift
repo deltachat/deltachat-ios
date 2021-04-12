@@ -34,6 +34,9 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     var onChatListUpdate: VoidFunction?
 
+    private var inBgSearch = false
+    private var needsAnotherBgSearch = false
+
     enum ChatListSectionType {
         case chats
         case contacts
@@ -264,7 +267,7 @@ private extension ChatListViewModel {
     }
 
     // MARK: - search
-    func updateSearchResultSections() {
+    private func updateSearchResultSections() {
         var sections: [ChatListSectionType] = []
         if let chatList = searchResultChatList, chatList.length > 0 {
             sections.append(searchResultsChatsSection)
@@ -278,46 +281,97 @@ private extension ChatListViewModel {
         searchResultSections = sections
     }
 
-    func resetSearch() {
+    private func resetSearch() {
         searchResultChatList = nil
         searchResultContactIds = []
         searchResultMessageIds = []
         updateSearchResultSections()
     }
 
-    func filterContentForSearchText(_ searchText: String) {
-           if !searchText.isEmpty {
-               filterAndUpdateList(searchText: searchText)
-           } else {
-               // when search input field empty we show default chatList
-               resetSearch()
-           }
-           onChatListUpdate?()
-       }
+    private func filterContentForSearchText(_ searchText: String) {
+        if !searchText.isEmpty {
+            filterAndUpdateList(searchText: searchText)
+        } else {
+            // when search input field empty we show default chatList
+            resetSearch()
+        }
+        if let onChatListUpdate = onChatListUpdate {
+            if Thread.isMainThread {
+                onChatListUpdate()
+            } else {
+                DispatchQueue.main.async {
+                    onChatListUpdate()
+                }
+            }
+        }
+    }
 
     func filterAndUpdateList(searchText: String) {
+        var overallCnt = 0
 
-           // #1 chats with searchPattern in title bar
-           var flags: Int32 = 0
-           flags |= DC_GCL_NO_SPECIALS
-           searchResultChatList = dcContext.getChatlist(flags: flags, queryString: searchText, queryId: 0)
+        // #1 chats with searchPattern in title bar
+        searchResultChatList = dcContext.getChatlist(flags: DC_GCL_NO_SPECIALS, queryString: searchText, queryId: 0)
+        if let chatlist = searchResultChatList {
+            overallCnt += chatlist.length
+        }
 
-           // #2 contacts with searchPattern in name or in email
-           searchResultContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
+        // #2 contacts with searchPattern in name or in email
+        if searchText != self.searchText && overallCnt > 0 {
+            logger.info("... skipping getContacts and searchMessages, more recent search pending")
+            searchResultContactIds = []
+            searchResultMessageIds = []
+            updateSearchResultSections()
+            return
+        }
 
-           // #3 messages with searchPattern (filtered by dc_core)
-           searchResultMessageIds = dcContext.searchMessages(searchText: searchText)
-           updateSearchResultSections()
-       }
+        searchResultContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
+        overallCnt += searchResultContactIds.count
+
+        // #3 messages with searchPattern (filtered by dc_core)
+        if searchText != self.searchText && overallCnt > 0 {
+            logger.info("... skipping searchMessages, more recent search pending")
+            searchResultMessageIds = []
+            updateSearchResultSections()
+            return
+        }
+
+        if searchText.count <= 1 {
+            logger.info("... skipping searchMessages, string too short")
+            searchResultMessageIds = []
+            updateSearchResultSections()
+            return
+        }
+
+        searchResultMessageIds = dcContext.searchMessages(searchText: searchText)
+        updateSearchResultSections()
+    }
 }
 
 // MARK: UISearchResultUpdating
 extension ChatListViewModel: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+
         self.searchText = searchController.searchBar.text ?? ""
-        if let searchText = searchController.searchBar.text {
-            filterContentForSearchText(searchText)
-            return
+
+        if inBgSearch {
+            needsAnotherBgSearch = true
+            logger.info("... search call debounced")
+        } else {
+            inBgSearch = true
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                usleep(100000)
+                self?.needsAnotherBgSearch = false
+                self?.filterContentForSearchText(self?.searchText ?? "")
+
+                while self?.needsAnotherBgSearch != false {
+                    usleep(100000)
+                    self?.needsAnotherBgSearch = false
+                    logger.info("... executing debounced search call")
+                    self?.filterContentForSearchText(self?.searchText ?? "")
+                }
+
+                self?.inBgSearch = false
+            }
         }
     }
 }
