@@ -27,6 +27,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private let tagCertCheckCell = 12
     private let tagDeleteAccountCell = 13
     private let tagRestoreCell = 14
+    private let tagViewLogCell = 15
 
     private let tagTextFieldEmail = 100
     private let tagTextFieldPassword = 200
@@ -60,7 +61,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         smtpPasswordCell,
         smtpServerCell,
         smtpPortCell,
-        certCheckCell
+        certCheckCell,
+        viewLogCell
     ]
     private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
     private lazy var dangerCells: [UITableViewCell] = [deleteAccountCell]
@@ -263,6 +265,14 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.tag = tagCertCheckCell
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
+        return cell
+    }()
+
+    lazy var viewLogCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("pref_view_log")
+        cell.tag = tagViewLogCell
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
@@ -490,6 +500,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             showSmptpSecurityOptions()
         case tagCertCheckCell:
             showCertCheckOptions()
+        case tagViewLogCell:
+            tableView.deselectRow(at: indexPath, animated: true)
+            SettingsViewController.showDebugToolkit(dcContext: dcContext)
         default:
             break
         }
