@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>n_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d minuta</string>
+			<key>few</key>
+			<string>%d minuty</string>
+			<key>many</key>
+			<string>%d minut</string>
+			<key>other</key>
+			<string>%d minut</string>
+		</dict>
+	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d hodina</string>
+			<key>few</key>
+			<string>%d hodiny</string>
+			<key>many</key>
+			<string>%d hodin</string>
+			<key>other</key>
+			<string>%d hodin</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d hovor</string>
+			<key>few</key>
+			<string>%d hovory</string>
+			<key>many</key>
+			<string>%d hovorů</string>
+			<key>other</key>
+			<string>%d hovorů</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d kontakt</string>
+			<key>few</key>
+			<string>%d kontakty</string>
+			<key>many</key>
+			<string>%d kontaktů</string>
+			<key>other</key>
+			<string>%d kontaktů</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d zpráva</string>
+			<key>few</key>
+			<string>%d zprávy</string>
+			<key>many</key>
+			<string>%d zpráv</string>
+			<key>other</key>
+			<string>%d zpráv</string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d člen</string>
+			<key>few</key>
+			<string>%d členové</string>
+			<key>many</key>
+			<string>%d členů</string>
+			<key>other</key>
+			<string>%d členů</string>
+		</dict>
+	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Pošli následující soubor na %s?</string>
+			<key>few</key>
+			<string>Pošli následující %d soubory na %s?</string>
+			<key>many</key>
+			<string>Pošli následujících %d souborů na %s?</string>
+			<key>other</key>
+			<string>Pošli následujících %d souborů na %s?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Vymazat %d hovor? Pak už jej neuvidíte v seznamu hovorů, ale jeho zprávy zůstanou na serveru.</string>
+			<key>few</key>
+			<string>Vymazat %d hovory? Pak už je neuvidíte v seznamu hovorů, ale jejich zprávy zůstanou na serveru.</string>
+			<key>many</key>
+			<string>Vymazat %d hovorů? Pak už je neuvidíte v seznamu hovorů, ale jejich zprávy zůstanou na serveru.</string>
+			<key>other</key>
+			<string>Vymazat %d hovorů? Pak už je neuvidíte v seznamu hovorů, ale jejich zprávy zůstanou na serveru.</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Vymaž %d zprávu zde i ze serveru?</string>
+			<key>few</key>
+			<string>Vymaž %d zprávy zde i ze serveru?</string>
+			<key>many</key>
+			<string>Vymaž %d zpráv zde i ze serveru?</string>
+			<key>other</key>
+			<string>Vymaž %d zpráv zde i ze serveru?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d hovor archivován</string>
+			<key>few</key>
+			<string>%d hovory archivovány</string>
+			<key>many</key>
+			<string>%d hovorů archivováno</string>
+			<key>other</key>
+			<string>%d hovorů archivováno</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d hovor rozbalen</string>
+			<key>few</key>
+			<string>%d hovory rozbaleny</string>
+			<key>many</key>
+			<string>%d hovorů rozbaleno</string>
+			<key>other</key>
+			<string>%d hovorů rozbaleno</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d nová zpráva</string>
+			<key>few</key>
+			<string>%d nové zprávy</string>
+			<key>many</key>
+			<string>%d nových zpráv</string>
+			<key>other</key>
+			<string>%d nových zpráv</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

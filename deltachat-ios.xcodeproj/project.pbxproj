@@ -458,6 +458,9 @@
 		B2A429E925E05FA100113B0D /* sc */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sc; path = sc.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B2A429EA25E05FA100113B0D /* sc */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sc; path = sc.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2A429EB25E05FA100113B0D /* sc */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = sc; path = sc.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		B2B9BC1026245F2200F35832 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B2B9BC1126245F2200F35832 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B2B9BC1226245F2200F35832 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = cs; path = cs.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E13946A7FC0AB662737BDFF5 /* Pods-deltachat-ios-DcShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios-DcShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-ios-DcShare/Pods-deltachat-ios-DcShare.release.xcconfig"; sourceTree = "<group>"; };
 		FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1007,6 +1010,7 @@
 				ar,
 				sc,
 				ckb,
+				cs,
 			);
 			mainGroup = 7A9FB1371FB061E2001FEA36;
 			productRefGroup = 7A9FB1411FB061E2001FEA36 /* Products */;
@@ -1411,6 +1415,7 @@
 				B2A429D925E0557100113B0D /* ar */,
 				B2A429E925E05FA100113B0D /* sc */,
 				B2537DD625E2F92F0010D739 /* ckb */,
+				B2B9BC1026245F2200F35832 /* cs */,
 			);
 			name = InfoPlist.strings;
 			path = "deltachat-ios";
@@ -1457,6 +1462,7 @@
 				B2A429DA25E0557100113B0D /* ar */,
 				B2A429EA25E05FA100113B0D /* sc */,
 				B2537DD725E2F92F0010D739 /* ckb */,
+				B2B9BC1126245F2200F35832 /* cs */,
 			);
 			name = Localizable.strings;
 			path = "deltachat-ios";
@@ -1503,6 +1509,7 @@
 				B2A429DB25E0557100113B0D /* ar */,
 				B2A429EB25E05FA100113B0D /* sc */,
 				B2537DD825E2F92F0010D739 /* ckb */,
+				B2B9BC1226245F2200F35832 /* cs */,
 			);
 			name = Localizable.stringsdict;
 			path = "deltachat-ios";
