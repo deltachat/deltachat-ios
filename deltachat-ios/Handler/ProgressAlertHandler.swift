@@ -41,10 +41,15 @@ extension ProgressAlertHandler {
 
     func updateProgressAlert(error message: String?) {
         DispatchQueue.main.async(execute: {
-            self.progressAlert?.dismiss(animated: false)
-            let errorAlert = UIAlertController(title: String.localized("error"), message: message, preferredStyle: .alert)
-            errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            self.present(errorAlert, animated: true, completion: nil)
+            // CAVE: show the new alert in the dismiss-done-handler of the previous one -
+            // otherwise we get the error "Attempt to present <UIAlertController: ...> while a presentation is in progress."
+            // and the error won't be shown.
+            // (when animated is true, that works also sequentially, however better not rely on that, also we do not want an animation here)
+            self.progressAlert?.dismiss(animated: false) {
+                let errorAlert = UIAlertController(title: String.localized("error"), message: message, preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+            }
         })
     }
 
