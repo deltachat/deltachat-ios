@@ -408,7 +408,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         }))
 
         let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [weak self] _ in
-            self?.showDebugToolkit()
+            guard let self = self else { return }
+            SettingsViewController.showDebugToolkit(dcContext: self.dcContext)
         })
         alert.addAction(logAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -471,7 +472,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         navigationController?.pushViewController(HelpViewController(), animated: true)
     }
 
-    private func showDebugToolkit() {
+    public static func showDebugToolkit(dcContext: DcContext) {
         var info = ""
 
         for name in ["notify-remote-launch", "notify-remote-receive", "notify-local-wakeup"] {
