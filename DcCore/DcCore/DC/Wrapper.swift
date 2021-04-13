@@ -53,7 +53,10 @@ public class DcContext {
     }
 
     public func getContacts(flags: Int32, queryString: String? = nil) -> [Int] {
+        let start = CFAbsoluteTimeGetCurrent()
         let cContacts = dc_get_contacts(contextPointer, UInt32(flags), queryString)
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger?.info("⏰ getContacts: \(diff) s")
         return DcUtils.copyAndFreeArray(inputArray: cContacts)
     }
 
@@ -426,10 +429,13 @@ public class DcContext {
     }
 
     public func searchMessages(chatId: Int = 0, searchText: String) -> [Int] {
+        let start = CFAbsoluteTimeGetCurrent()
         guard let arrayPointer = dc_search_msgs(contextPointer, UInt32(chatId), searchText) else {
             return []
         }
         let messageIds = DcUtils.copyAndFreeArray(inputArray: arrayPointer)
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger?.info("⏰ searchMessages: \(diff) s")
         return messageIds
     }
 
