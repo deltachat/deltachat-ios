@@ -1,5 +1,21 @@
 # Delta Chat iOS Changelog
 
+## 1.19.0
+2021-04
+
+* show answers to generic support-addresses as info@company.com in context
+* allow different sender for answers to support-addresses as info@company.com
+* show multiple notifications
+* group notifications by chats
+* speed up chatlist update and global search
+* improve detection of quotes
+* improve background fetching
+* ignore classical mails from spam-folder
+* make log accessible on configure at "Log in to your Server / Advanced"
+* fix showing configure errors
+* add Czech translation, update other translations
+
+
 ## 1.17.1
 2021-03
 
