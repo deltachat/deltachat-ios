@@ -207,7 +207,6 @@ class ChatViewController: UITableViewController {
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
     private var disableWriting: Bool
-    private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
     var highlightedMsg: Int?
 
@@ -228,7 +227,6 @@ class ChatViewController: UITableViewController {
         self.dcContext = dcContext
         self.chatId = chatId
         self.disableWriting = !dcChat.canSend
-        self.showNamesAboveMessage = dcChat.isGroup
         self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
@@ -538,11 +536,18 @@ class ChatViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
 
+        var showAvatar = isGroupChat && !message.isFromCurrentSender
+        var showName = isGroupChat
+        if message.overrideSenderName != nil {
+            showAvatar = !message.isFromCurrentSender
+            showName = true
+        }
+
         cell.baseDelegate = self
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
-                    isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath),
-                    isGroup: isGroupChat)
+                    showAvatar: showAvatar,
+                    showName: showName)
 
         return cell
     }
@@ -642,10 +647,6 @@ class ChatViewController: UITableViewController {
             showMediaGalleryFor(message: message)
         }
         _ = handleUIMenu()
-    }
-
-    func configureAvatarVisibility(for message: DcMsg, at indexPath: IndexPath) -> Bool {
-        return isGroupChat && !message.isFromCurrentSender
     }
 
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {

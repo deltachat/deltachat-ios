@@ -270,7 +270,7 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
+    func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
             topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor : DcColors.defaultTextColor
@@ -282,12 +282,12 @@ public class BaseMessageCell: UITableViewCell {
 
         } else {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") :
-                isGroup ? msg.getSenderName(msg.fromContact, markOverride: true) : nil
+                showName ? msg.getSenderName(msg.fromContact, markOverride: true) : nil
             topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor :
-                isGroup ? msg.fromContact.color : DcColors.defaultTextColor
+                showName ? msg.fromContact.color : DcColors.defaultTextColor
             leadingConstraintCurrentSender?.isActive = false
             trailingConstraintCurrentSender?.isActive = false
-            if isGroup {
+            if showName {
                 leadingConstraint?.isActive = false
                 leadingConstraintGroup?.isActive = true
             } else {
@@ -297,7 +297,7 @@ public class BaseMessageCell: UITableViewCell {
             trailingConstraint?.isActive = true
         }
 
-        if isAvatarVisible {
+        if showAvatar {
             avatarView.isHidden = false
             avatarView.setName(msg.getSenderName(msg.fromContact))
             avatarView.setColor(msg.fromContact.color)
