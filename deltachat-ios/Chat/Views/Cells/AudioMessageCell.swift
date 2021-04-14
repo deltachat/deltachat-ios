@@ -37,7 +37,7 @@ public class AudioMessageCell: BaseMessageCell {
         delegate?.playButtonTapped(cell: self, messageId: messageId)
     }
 
-    override func update(msg: DcMsg, messageStyle: UIRectCorner, isAvatarVisible: Bool, isGroup: Bool) {
+    override func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
         //audioPlayerView.reset()
         messageId = msg.id
         if let text = msg.text {
@@ -52,7 +52,7 @@ public class AudioMessageCell: BaseMessageCell {
             accessibilityLabel = String.localized("audio")
         }
 
-        super.update(msg: msg, messageStyle: messageStyle, isAvatarVisible: isAvatarVisible, isGroup: isGroup)
+        super.update(msg: msg, messageStyle: messageStyle, showAvatar: showAvatar, showName: showName)
     }
 
     public override func prepareForReuse() {

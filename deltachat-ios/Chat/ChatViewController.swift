@@ -207,7 +207,6 @@ class ChatViewController: UITableViewController {
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
     private var disableWriting: Bool
-    private var showNamesAboveMessage: Bool
     var showCustomNavBar = true
     var highlightedMsg: Int?
 
@@ -228,7 +227,6 @@ class ChatViewController: UITableViewController {
         self.dcContext = dcContext
         self.chatId = chatId
         self.disableWriting = !dcChat.canSend
-        self.showNamesAboveMessage = dcChat.isGroup
         self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
@@ -548,8 +546,8 @@ class ChatViewController: UITableViewController {
         cell.baseDelegate = self
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
-                    isAvatarVisible: showAvatar,
-                    isGroup: showName)
+                    showAvatar: showAvatar,
+                    showName: showName)
 
         return cell
     }
