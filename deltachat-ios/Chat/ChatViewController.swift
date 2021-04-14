@@ -538,11 +538,18 @@ class ChatViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
 
+        var showAvatar = isGroupChat && !message.isFromCurrentSender
+        var showName = isGroupChat
+        if message.overrideSenderName != nil {
+            showAvatar = !message.isFromCurrentSender
+            showName = true
+        }
+
         cell.baseDelegate = self
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
-                    isAvatarVisible: configureAvatarVisibility(for: message, at: indexPath),
-                    isGroup: isGroupChat)
+                    isAvatarVisible: showAvatar,
+                    isGroup: showName)
 
         return cell
     }
@@ -642,10 +649,6 @@ class ChatViewController: UITableViewController {
             showMediaGalleryFor(message: message)
         }
         _ = handleUIMenu()
-    }
-
-    func configureAvatarVisibility(for message: DcMsg, at indexPath: IndexPath) -> Bool {
-        return isGroupChat && !message.isFromCurrentSender
     }
 
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
