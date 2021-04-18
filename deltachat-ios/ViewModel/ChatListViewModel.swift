@@ -119,10 +119,20 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
             switch searchResultSections[section] {
             case .chats:
                 return makeChatCellViewModel(index: row, searchText: searchText)
+
             case .contacts:
-                return ContactCellViewModel.make(contactId: searchResultContactIds[row], searchText: searchText, dcContext: dcContext)
+                if row >= 0 && row < searchResultContactIds.count {
+                    return ContactCellViewModel.make(contactId: searchResultContactIds[row], searchText: searchText, dcContext: dcContext)
+                } else {
+                    logger.warning("search: requested contact index \(row) not in range 0..\(searchResultContactIds.count)")
+                }
+
             case .messages:
-                return makeMessageCellViewModel(msgId: searchResultMessageIds[row])
+                if row >= 0 && row < searchResultMessageIds.count {
+                    return makeMessageCellViewModel(msgId: searchResultMessageIds[row])
+                } else {
+                    logger.warning("search: requested message index \(row) not in range 0..\(searchResultMessageIds.count)")
+                }
             }
         }
         return makeChatCellViewModel(index: row, searchText: "")
