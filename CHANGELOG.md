@@ -1,6 +1,13 @@
 # Delta Chat iOS Changelog
 
-## 1.19.0
+## 1.19.1 Testflight
+2021-04
+
+* speed improvements
+* fix a rare crash in chatlist
+
+
+## 1.19.0 Testflight
 2021-04
 
 * show answers to generic support-addresses as info@company.com in context
@@ -16,7 +23,7 @@
 * add Czech translation, update other translations
 
 
-## 1.17.1
+## 1.17.1 Testflight
 2021-03
 
 * new mailinglist and better bot support
