@@ -475,6 +475,13 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     public static func showDebugToolkit(dcContext: DcContext) {
         var info = ""
 
+        let notifyEnabled = !UserDefaults.standard.bool(forKey: "notifications_disabled")
+        info += "notify-enabled=\(notifyEnabled)\n"
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            info += "notify-token=\(appDelegate.notifyToken ?? "<unset>")\n"
+        }
+
         for name in ["notify-remote-launch", "notify-remote-receive", "notify-local-wakeup"] {
             let cnt = UserDefaults.standard.integer(forKey: name + "-count")
 
@@ -487,9 +494,13 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             info += "\(name)=\(cnt)x\(startStr)\(timestampStr)\n"
         }
 
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            info += "notify-token=\(appDelegate.notifyToken ?? "<unset>")\n"
+        var val = "?"
+        switch UIApplication.shared.backgroundRefreshStatus {
+        case .restricted: val = "restricted"
+        case .available: val = "available"
+        case .denied: val = "denied"
         }
+        info += "backgroundRefreshStatus=\(val)\n"
 
         #if DEBUG
         info += "DEBUG=1\n"
