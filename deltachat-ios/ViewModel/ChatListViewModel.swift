@@ -140,16 +140,21 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     func titleForHeaderIn(section: Int) -> String? {
         if showSearchResults {
-            let title: String
             switch searchResultSections[section] {
             case .chats:
-                title = "n_chats"
+                return String.localized(stringID: "n_chats", count: numberOfRowsIn(section: section))
             case .contacts:
-                title = "n_contacts"
+                return String.localized(stringID: "n_contacts", count: numberOfRowsIn(section: section))
             case .messages:
-                title = "n_messages"
+                let count = numberOfRowsIn(section: section)
+                var ret = String.localized(stringID: "n_messages", count: count)
+                if count==1000 {
+                    // a count of 1000 results may be limited, see documentation of dc_search_msgs()
+                    // (formatting may be "1.000" or "1,000", so just skip the first digit)
+                    ret = ret.replacingOccurrences(of: "000", with: "000+")
+                }
+                return ret
             }
-            return String.localized(stringID: title, count: numberOfRowsIn(section: section))
         }
         return nil
     }
