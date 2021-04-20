@@ -475,6 +475,9 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     public static func showDebugToolkit(dcContext: DcContext) {
         var info = ""
 
+        let systemVersion = UIDevice.current.systemVersion
+        info += "iosVersion=\(systemVersion)\n"
+
         let notifyEnabled = !UserDefaults.standard.bool(forKey: "notifications_disabled")
         info += "notify-enabled=\(notifyEnabled)\n"
 
