@@ -272,8 +272,6 @@
 "messaging_disabled_deaddrop" = "برای رد یا قبول درخواست تماس روی یک پیام کلیک کنید";
 "cannot_display_unsuported_file_type" = "امکان نمایش این نوع فایل وجود ندارد: %1$@";
 "attachment_failed_to_load" = "ناموفق در بارگیری ضمیمه";
-
-
 // map
 "filter_map_on_time" = "نمایش موقعیت‌های مکانی در چارچوب زمان";
 "show_location_traces" = "نمایش ردپاها";

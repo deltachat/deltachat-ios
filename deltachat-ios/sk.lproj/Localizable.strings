@@ -284,8 +284,6 @@
 "messaging_disabled_deaddrop" = "Kliknutím na správu prijmete alebo odmietnete žiadosť o kontakt";
 "cannot_display_unsuported_file_type" = "Nie je možné zobraziť tento typ súboru: %1$@";
 "attachment_failed_to_load" = "Prílohu sa nepodarilo načítať";
-
-
 // mailing lists
 "mailing_list" = "Zoznam adries";
 "ask_show_mailing_list" = "Zobraziť zoznam adries%1$@?";

@@ -284,8 +284,6 @@
 "messaging_disabled_deaddrop" = "Cliquez sur un message pour accepter ou rejeter la demande de contact.";
 "cannot_display_unsuported_file_type" = "Impossible d\'afficher ce type de fichier : %1$@";
 "attachment_failed_to_load" = "Échec du chargement de la pièce jointe";
-
-
 // mailing lists
 "mailing_list" = "Liste de diffusion";
 "ask_show_mailing_list" = "Montrer la liste de diffusion « %1$@ » ?";
