@@ -224,8 +224,8 @@
 "videochat_tap_to_open" = "Öffnen";
 "videochat_instance" = "Videochat-Instanz";
 "videochat_instance_placeholder" = "Videochat-Instanz";
-"videochat_instance_explain" = "Wenn eine Videochat-Instanz definiert ist, können SIe einen Videochat von jedem Direktchat aus starten. Videochats erfordern beidseitig eine kompatible App oder einen kompatiblen Browser.\n\nBeispiele: https://meet.jit.si/$ROOM or basicwebrtc:https://your-server";
-"videochat_instance_from_qr" = "\"%1$@\" verwenden, um andere zu Videochats einzuladen?\n\nWenn Sie diese Einstellung vornehmen, können Sie von jedem Direktchat aus einen Videochat starten. Dies überschreibt, falls vorhanden, die bisherige Einstellung zu Videochats.";
+"videochat_instance_explain" = "Wenn eine Videochat-Instanz definiert ist, können Sie einen Videochat von jedem Chat aus starten. Videochats erfordern beidseitig eine kompatible App oder einen kompatiblen Browser.\n\nBeispiele: https://meet.jit.si/$ROOM oder basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "\"%1$@\" verwenden, um andere zu Videochats einzuladen?\n\nWenn Sie diese Einstellung vornehmen, können Sie von jedem Chat aus einen Videochat starten. Dies überschreibt, falls vorhanden, die bisherige Einstellung zu Videochats.";
 "videochat_invitation" = "Videochat-Einladung";
 "videochat_invitation_body" = "Sie sind zu einem Videochat eingeladen, klicken Sie auf %1$@ , um teilzunehmen.";
 
@@ -284,7 +284,8 @@
 "messaging_disabled_deaddrop" = "Klicken Sie auf eine Nachricht, um eine Kontaktanfrage zu akzeptieren oder abzulehnen.";
 "cannot_display_unsuported_file_type" = "Kann diesen Dateityp nicht anzeigen: %1$@";
 "attachment_failed_to_load" = "Kann Anhang nicht laden";
-
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Aufnahme arretieren";
 
 // mailing lists
 "mailing_list" = "Mailingliste";

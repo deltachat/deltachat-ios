@@ -224,8 +224,8 @@
 "videochat_tap_to_open" = "点击来打开";
 "videochat_instance" = "视频聊天实例";
 "videochat_instance_placeholder" = "您的视频聊天实例";
-"videochat_instance_explain" = "定义了视频聊天实例之后，您可以从一对一聊天中启动视频聊天。视频聊天的两端都需要有兼容的应用或兼容的浏览器。\n\n示例: https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
-"videochat_instance_from_qr" = "使用“%1$@”邀请其他人加入视频聊天吗？\n\n设置好后，您可以从每个一对一聊天中开始视频聊天。 这会取代之前的视频聊天设置（如果有的话）。";
+"videochat_instance_explain" = "定义了视频聊天实例之后，您可以在聊天里发起视频聊天。视频聊天的两端都需要有兼容的应用或兼容的浏览器。\n\n示例: https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "使用“%1$@”邀请其他人加入视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置（如果有的话）。";
 "videochat_invitation" = "视频聊天邀请";
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
 
@@ -284,7 +284,8 @@
 "messaging_disabled_deaddrop" = "点击消息来接受或拒绝联系人请求";
 "cannot_display_unsuported_file_type" = "无法显示此类文件：%1$@";
 "attachment_failed_to_load" = "加载附件失败";
-
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "锁定录音";
 
 // mailing lists
 "mailing_list" = "邮件列表";

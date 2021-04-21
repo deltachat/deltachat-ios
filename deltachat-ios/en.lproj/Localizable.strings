@@ -224,8 +224,8 @@
 "videochat_tap_to_open" = "Tap to open";
 "videochat_instance" = "Video chat instance";
 "videochat_instance_placeholder" = "Your video chat instance";
-"videochat_instance_explain" = "If a video chat instance is defined, you can start a video chat from each one-to-one chat. Video chats require a compatible app or a compatible browser on both ends.\n\nExamples: https://meet.jit.si/$ROOM or basicwebrtc:https://your-server";
-"videochat_instance_from_qr" = "Use \"%1$@\" to invite others to video chats?\n\nOnce set, you can start a video chat from each one-to-one chat. This will replace the previous setting for video chats, if any.";
+"videochat_instance_explain" = "If a video chat instance is defined, you can start a video chat from each chat. Video chats require a compatible app or a compatible browser on both ends.\n\nExamples: https://meet.jit.si/$ROOM or basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "Use \"%1$@\" to invite others to video chats?\n\nOnce set, you can start a video chat from each chat. This will replace the previous setting for video chats, if any.";
 "videochat_invitation" = "Video chat invitation";
 "videochat_invitation_body" = "You are invited to a video chat, click %1$@ to join.";
 
@@ -284,7 +284,8 @@
 "messaging_disabled_deaddrop" = "Click on a message to accept or deny the contact request";
 "cannot_display_unsuported_file_type" = "Cannot display this file type: %1$@";
 "attachment_failed_to_load" = "Failed to load attachment";
-
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Lock recording";
 
 // mailing lists
 "mailing_list" = "Mailing list";

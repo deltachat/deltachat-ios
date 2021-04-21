@@ -22,10 +22,12 @@ class HelpViewController: WebViewViewController {
     private func loadHtmlContent(completionHandler: ((URL) -> Void)?) {
         // execute in background thread because file loading would blockui for a few milliseconds
         DispatchQueue.global(qos: .background).async {
-            let lang = Utils.getDeviceLanguage() ?? "en" // en is backup
+            let langAndRegion = Locale.preferredLanguages.first ?? "en"
+            let langOnly = String(langAndRegion.split(separator: "-").first ?? Substring("ErrLang"))
             var fileURL: URL?
 
-            fileURL = Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/\(lang)") ??
+            fileURL = Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/\(langAndRegion)") ??
+                Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/\(langOnly)") ??
                 Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/en")
 
             guard let url = fileURL else {

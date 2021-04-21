@@ -284,7 +284,8 @@
 "messaging_disabled_deaddrop" = "Druk op een bericht om het contactpersoonverzoek goed te keuren of af te wijzen";
 "cannot_display_unsuported_file_type" = "Het volgende bestandstype kan niet worden getoond: %1$@";
 "attachment_failed_to_load" = "De bijlage kan niet worden geladen";
-
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Opname vergrendelen";
 
 // mailing lists
 "mailing_list" = "Mailinglijst";
@@ -410,7 +411,7 @@
 "pref_change_secret_explain" = "Wijzig je pincode/patroon/vingerafdruk via de systeeminstellingen";
 "pref_screen_security" = "Schermbeveiliging";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
-"pref_screen_security_explain" = "Geen schermafdrukken tonen in de \'recent\'-lijst en binnen de app";
+"pref_screen_security_explain" = "Geen schermfoto\'s tonen op de \'recent\'-lijst en binnen de app";
 "pref_screen_security_please_restart_hint" = "Herstart de app om de wijzigingen toe te passen.";
 "pref_notifications" = "Meldingen";
 "pref_notifications_show" = "Tonen";

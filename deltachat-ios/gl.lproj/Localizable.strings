@@ -284,7 +284,8 @@
 "messaging_disabled_deaddrop" = "Preme nunha mensaxe para aceptar ou denegar a solicitude de contacto";
 "cannot_display_unsuported_file_type" = "Non se pode motrar este tipo de ficheiro: %1$@";
 "attachment_failed_to_load" = "Erro ao cargar o anexo";
-
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Gravación continua";
 
 // mailing lists
 "mailing_list" = "Lista de correo";

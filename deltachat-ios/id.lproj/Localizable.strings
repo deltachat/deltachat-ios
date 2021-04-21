@@ -260,8 +260,6 @@
 "send_failed" = "Tak bisa mengirim pesan";
 "cannot_display_unsuported_file_type" = "Tidak dapat menampilkan tipe berkas ini: %1$@";
 "attachment_failed_to_load" = "Gagal memuat lampiran";
-
-
 // map
 "filter_map_on_time" = "Tunjukkan lokasi dalam jangka waktu";
 "show_location_traces" = "Tunjukkan jejak";

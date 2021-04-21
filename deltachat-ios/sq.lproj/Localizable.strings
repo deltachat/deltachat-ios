@@ -283,8 +283,6 @@
 "messaging_disabled_deaddrop" = "Që të pranoni apo hidhni tej një kërkesë kontakti, klikoni mbi një mesazh";
 "cannot_display_unsuported_file_type" = "S’mund të shfaqet ky lloj kartelash: %1$@";
 "attachment_failed_to_load" = "S’u arrit të ngarkohet bashkëngjitje";
-
-
 // mailing lists
 "mailing_list" = "Listë postimesh";
 "ask_show_mailing_list" = "Të shfaqet lista e postimeve \"%1$@\"?";

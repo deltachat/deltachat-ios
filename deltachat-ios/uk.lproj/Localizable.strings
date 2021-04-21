@@ -284,8 +284,6 @@
 "messaging_disabled_deaddrop" = "Клацніть на повідомлення, щоб прийняти або відхилити запит на контакт";
 "cannot_display_unsuported_file_type" = "Неможливо відобразити цей тип файлів: %1$@";
 "attachment_failed_to_load" = "Не вдалося завантажити вкладення";
-
-
 // mailing lists
 "mailing_list" = "Список адресатів";
 "ask_show_mailing_list" = "Показати список адресатів \"%1$@\"?";

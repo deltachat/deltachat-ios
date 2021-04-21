@@ -224,8 +224,8 @@
 "videochat_tap_to_open" = "Açmak için dokunun";
 "videochat_instance" = "Video sohbeti örneği";
 "videochat_instance_placeholder" = "Video sohbeti örneğiniz";
-"videochat_instance_explain" = "Bir video sohbeti örneği tanımlanırsa, her bire bir sohbetten video sohbeti başlatabilirsiniz. Video sohbetleri, her iki uçta da uyumlu bir uygulama ya da uyumlu bir tarayıcı gerektirir.\n\nÖrnekler: https://meet.jit.si/$ROOM ya da basicwebrtc:https://your-server";
-"videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetine davet etmek için kullanılsın mı?\n\nBir kez ayarlandığında, her bire bir sohbetten video sohbeti başlatabilirsiniz. Varsa bu, video sohbetleri için önceki ayarla değiştirilir.";
+"videochat_instance_explain" = "Bir video sohbeti örneği tanımlanırsa, her sohbetten video sohbeti başlatabilirsiniz. Video sohbetleri, her iki uçta da uyumlu bir uygulama ya da uyumlu bir tarayıcı gerektirir.\n\nÖrnekler: https://meet.jit.si/$ROOM ya da basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetine davet etmek için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Varsa bu, video sohbetleri için önceki ayarla değiştirilir.";
 "videochat_invitation" = "Video sohbeti daveti";
 "videochat_invitation_body" = "Bir video sohbetine davet edildiniz, katılmak için %1$@ öğesini tıklayın.";
 
@@ -284,7 +284,8 @@
 "messaging_disabled_deaddrop" = "İletişim isteğini kabul etmek ya da reddetmek için bir iletinin üzerine tıklayın";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
-
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Kaydı kilitle";
 
 // mailing lists
 "mailing_list" = "Posta listesi";

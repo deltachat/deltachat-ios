@@ -276,8 +276,6 @@
 "messaging_disabled_deaddrop" = "لەسەر پەیامێک کرتە بکە بۆ قەبووڵکردن یان ڕەتکردنەوەی داخوازی بەردەنگبوون.";
 "cannot_display_unsuported_file_type" = "ئەم چەشنە پەڕگەیە پیشان نادرێت: %1$@";
 "attachment_failed_to_load" = "پێوەلکاوەکە دانەگیرا";
-
-
 // mailing lists
 "mailing_list" = "لیستەی ئیمەیلەکان";
 "ask_show_mailing_list" = "لیستەی ئیمەیلەکانی \"%1$@\" پیشان بدرێت؟";

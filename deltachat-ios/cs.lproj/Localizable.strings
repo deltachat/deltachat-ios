@@ -284,8 +284,6 @@
 "messaging_disabled_deaddrop" = "K povolení nebo zamítnutí kontaktu stiskni jeho zprávu";
 "cannot_display_unsuported_file_type" = "Nelze zobrazit tento typ souboru: %1$@";
 "attachment_failed_to_load" = "Nezdařilo se načíst přílohu";
-
-
 // mailing lists
 "mailing_list" = "Hromadná zpráva";
 "ask_show_mailing_list" = "Zobraz seznam hromadné zprávy \"%1$@\"?";

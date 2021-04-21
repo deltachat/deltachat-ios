@@ -284,8 +284,6 @@
 "messaging_disabled_deaddrop" = "Tryck på ett meddelande för att acceptera, eller neka en kontaktförfrågan";
 "cannot_display_unsuported_file_type" = "Denna filtyp kan inte visas: %1$@";
 "attachment_failed_to_load" = "Bilagan kunde inte visas";
-
-
 // mailing lists
 "mailing_list" = "Mejllista";
 "ask_show_mailing_list" = "Visa mejllistan \"%1$@\"?";
@@ -463,7 +461,7 @@
 "pref_auto_folder_moves" = "Flyttas automatiskt till DeltaChat-mappen";
 "pref_auto_folder_moves_explain" = "Chattkonversationer flyttas automatiskt för att undvika att inkorgen belamras";
 "pref_show_emails" = "Visa vanliga e-postmeddelanden";
-"pref_show_emails_no" = "Nej, bara cattar";
+"pref_show_emails_no" = "Nej, bara chattar";
 "pref_show_emails_accepted_contacts" = "För godkända kontakter";
 "pref_show_emails_all" = "Alla";
 "pref_experimental_features" = "Experimentella funktioner";
