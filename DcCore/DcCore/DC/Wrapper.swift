@@ -28,8 +28,10 @@ public class DcContext {
     }
 
     public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
-		let cMessageIds = getChatMessages(chatId: chatId)
-
+        let start = CFAbsoluteTimeGetCurrent()
+        let cMessageIds = getChatMessages(chatId: chatId)
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger?.info("⏰ getMessageIds: \(diff) s")
 
         let ids: [Int]
         if let from = from {
@@ -253,7 +255,7 @@ public class DcContext {
         }
     }
 
-    public func getChatMessages(chatId: Int) -> OpaquePointer {
+    private func getChatMessages(chatId: Int) -> OpaquePointer {
         return dc_get_chat_msgs(contextPointer, UInt32(chatId), 0, 0)
     }
     
