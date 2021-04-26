@@ -21,7 +21,7 @@ class HelpViewController: WebViewViewController {
 
     private func loadHtmlContent(completionHandler: ((URL) -> Void)?) {
         // execute in background thread because file loading would blockui for a few milliseconds
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInitiated).async {
             let langAndRegion = Locale.preferredLanguages.first ?? "en"
             let langOnly = String(langAndRegion.split(separator: "-").first ?? Substring("ErrLang"))
             var fileURL: URL?

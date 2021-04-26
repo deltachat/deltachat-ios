@@ -411,12 +411,12 @@ class ChatListController: UITableViewController {
             self.showChat(chatId: chat.id)
         }))
         alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global(qos: .userInitiated).async {
                 self.dcContext.decideOnContactRequest(msgId, DC_DECISION_NOT_NOW)
             }
         }))
         alert.addAction(UIAlertAction(title: blockButton, style: .destructive, handler: { _ in
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global(qos: .userInitiated).async {
                 self.dcContext.decideOnContactRequest(msgId, DC_DECISION_BLOCK)
             }
         }))
