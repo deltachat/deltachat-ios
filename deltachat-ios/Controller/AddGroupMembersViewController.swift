@@ -157,4 +157,10 @@ class AddGroupMembersViewController: GroupMembersViewController {
         }
         navigationController?.pushViewController(newContactController, animated: true)
     }
+    
+    // MARK: - search
+    override open func filterContactIds(flags: Int32, queryString: String) -> [Int] {
+        let flags = self.isVerifiedGroup ? DC_GCL_VERIFIED_ONLY : DC_GCL_ADD_SELF
+        return dcContext.getContacts(flags: flags, queryString: queryString)
+    }
 }
