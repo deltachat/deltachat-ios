@@ -23,6 +23,12 @@ public class DateUtils {
         formatter.locale = .current
         return formatter
     }
+    
+    public static func getDateString(date: Date) -> String {
+        let formatter = getLocalDateFormatter()
+        formatter.dateStyle = .full
+        return formatter.string(from: date)
+    }
 
     public static func getExtendedRelativeTimeSpanString(timeStamp: Double) -> String {
         let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)

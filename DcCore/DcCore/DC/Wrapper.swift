@@ -27,9 +27,9 @@ public class DcContext {
         return .dcContext
     }
 
-    public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
+    public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil, flags: Int32 = 0) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
-        let cMessageIds = getChatMessages(chatId: chatId)
+        let cMessageIds = getChatMessages(chatId: chatId, flags: flags)
         let diff = CFAbsoluteTimeGetCurrent() - start
         logger?.info("⏰ getMessageIds: \(diff) s")
 
@@ -255,8 +255,8 @@ public class DcContext {
         }
     }
 
-    private func getChatMessages(chatId: Int) -> OpaquePointer {
-        return dc_get_chat_msgs(contextPointer, UInt32(chatId), 0, 0)
+    private func getChatMessages(chatId: Int, flags: Int32) -> OpaquePointer {
+        return dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(flags), 0)
     }
     
     public func getMsgInfo(msgId: Int) -> String {

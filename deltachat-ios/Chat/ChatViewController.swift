@@ -509,11 +509,18 @@ class ChatViewController: UITableViewController {
         _ = handleUIMenu()
 
         let id = messageIds[indexPath.row]
+        if id == DC_MSG_ID_DAYMARKER, messageIds.count > indexPath.row + 1 {
+            let nextMessageId = messageIds[indexPath.row + 1]
+            let nextMessage = DcMsg(id: nextMessageId)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
+            cell.update(text: DateUtils.getDateString(date: nextMessage.sentDate))
+            return cell
+        }
+        
         let message = DcMsg(id: id)
-
         if message.isInfo {
             let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
-            cell.update(msg: message)
+            cell.update(text: message.text)
             return cell
         }
 
@@ -791,7 +798,7 @@ class ChatViewController: UITableViewController {
     }
     
     private func getMessageIds() -> [Int] {
-        return dcContext.getMessageIds(chatId: chatId)
+        return dcContext.getMessageIds(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
     }
 
     @objc private func saveDraft() {
