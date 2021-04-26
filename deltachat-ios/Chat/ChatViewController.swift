@@ -798,7 +798,7 @@ class ChatViewController: UITableViewController {
     }
     
     private func getMessageIds() -> [Int] {
-        return dcContext.getMessageIds(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
+        return dcContext.getMessageIds(chatId: chatId)
     }
 
     @objc private func saveDraft() {
