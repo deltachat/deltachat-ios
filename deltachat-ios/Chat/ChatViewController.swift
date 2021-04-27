@@ -509,11 +509,15 @@ class ChatViewController: UITableViewController {
         _ = handleUIMenu()
 
         let id = messageIds[indexPath.row]
-        if id == DC_MSG_ID_DAYMARKER, messageIds.count > indexPath.row + 1 {
-            let nextMessageId = messageIds[indexPath.row + 1]
-            let nextMessage = DcMsg(id: nextMessageId)
+        if id == DC_MSG_ID_DAYMARKER {
             let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
-            cell.update(text: DateUtils.getDateString(date: nextMessage.sentDate))
+            if messageIds.count > indexPath.row + 1 {
+                let nextMessageId = messageIds[indexPath.row + 1]
+                let nextMessage = DcMsg(id: nextMessageId)
+                cell.update(text: DateUtils.getDateString(date: nextMessage.sentDate))
+            } else {
+                cell.update(text: "ErrDaymarker")
+            }
             return cell
         }
         
