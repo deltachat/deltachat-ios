@@ -7,6 +7,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     let locationManager: CLLocationManager
     let dcContext: DcContext
     var lastLocation: CLLocation?
+    var chatIdLocationRequest: Int?
+    var durationLocationRequest: Int?
 
     init(context: DcContext) {
         dcContext = context
@@ -22,10 +24,28 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func shareLocation(chatId: Int, duration: Int) {
-        dcContext.sendLocationsToChat(chatId: chatId, seconds: duration)
         if duration > 0 {
-            locationManager.requestAlwaysAuthorization()
+            var authStatus: CLAuthorizationStatus
+            if #available(iOS 14.0, *) {
+                authStatus = locationManager.authorizationStatus
+            } else {
+                authStatus = CLLocationManager.authorizationStatus()
+            }
+            switch authStatus {
+            case .notDetermined:
+                // keep chatId and duration for user's authorization decision
+                chatIdLocationRequest = chatId
+                durationLocationRequest = duration
+                locationManager.requestAlwaysAuthorization()
+            case .authorizedAlways, .authorizedWhenInUse:
+                dcContext.sendLocationsToChat(chatId: chatId, seconds: duration)
+                locationManager.startUpdatingLocation()
+            default:
+                // TODO: show an alert to inform the user why nothing works :)
+                logger.info("Location permission was rejected.")
+            }
         } else {
+            dcContext.sendLocationsToChat(chatId: chatId, seconds: duration)
             if !dcContext.isSendingLocationsToChat(chatId: 0) {
                 locationManager.stopUpdatingLocation()
             }
@@ -68,14 +88,25 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         switch status {
         case .denied, .restricted:
             disableLocationStreamingInAllChats()
-        case .authorizedWhenInUse:
-            logger.warning("Location streaming will only work as long as the app is in foreground.")
-            locationManager.startUpdatingLocation()
-        case .authorizedAlways:
-            locationManager.startUpdatingLocation()
+        case .authorizedWhenInUse, .authorizedAlways:
+            if let chatId = chatIdLocationRequest,
+               let duration = durationLocationRequest {
+                dcContext.sendLocationsToChat(chatId: chatId, seconds: duration)
+            }
+            if dcContext.isSendingLocationsToChat(chatId: 0) {
+                locationManager.startUpdatingLocation()
+            }
+        case .notDetermined:
+            // we cannot request again for authorization, because
+            // that would create an infinite loop, let's just disable location streaming instead
+            if dcContext.isSendingLocationsToChat(chatId: 0) {
+                disableLocationStreamingInAllChats()
+            }
         default:
             break
         }
+        chatIdLocationRequest = nil
+        durationLocationRequest = nil
     }
 
     func disableLocationStreamingInAllChats() {
