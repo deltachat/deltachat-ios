@@ -132,7 +132,7 @@ class FullMessageViewController: WebViewViewController {
     }
 
     private func loadHtml() {
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             let html = self.dcContext.getMsgHtml(msgId: self.messageId)
             DispatchQueue.main.async {
