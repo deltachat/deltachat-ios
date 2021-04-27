@@ -256,7 +256,7 @@ public class DcContext {
     }
 
     private func getChatMessages(chatId: Int) -> OpaquePointer {
-        return dc_get_chat_msgs(contextPointer, UInt32(chatId), 0, 0)
+        return dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(DC_GCM_ADDDAYMARKER), 0)
     }
     
     public func getMsgInfo(msgId: Int) -> String {

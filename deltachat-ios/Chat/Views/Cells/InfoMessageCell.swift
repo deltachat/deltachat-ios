@@ -51,8 +51,8 @@ class InfoMessageCell: UITableViewCell {
         selectionStyle = .none
     }
 
-    func update(msg: DcMsg) {
-        messageLabel.text = msg.text
+    func update(text: String?) {
+        messageLabel.text = text
         var corners: UIRectCorner = []
         corners.formUnion(.topLeft)
         corners.formUnion(.bottomLeft)
