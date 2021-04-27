@@ -287,7 +287,12 @@ class ChatListController: UITableViewController {
         switch cellData.type {
         case .deaddrop(let deaddropData):
             safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
-            showDeaddropRequestAlert(msgId: deaddropData.msgId)
+            if dcContext.showEmails == DC_SHOW_EMAILS_ALL {
+                let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
+                navigationController?.pushViewController(deaddropViewController, animated: true)
+            } else {
+                showDeaddropRequestAlert(msgId: deaddropData.msgId)
+            }
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
