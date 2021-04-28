@@ -458,8 +458,9 @@ class ChatListController: UITableViewController {
             return
         }
 
-        let row = viewModel.deleteChat(chatId: chatId)
-        tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
+        if let row = viewModel.deleteChat(chatId: chatId) {
+            tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
+        }
     }
 
     // MARK: - coordinator
