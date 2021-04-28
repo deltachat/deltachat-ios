@@ -639,12 +639,21 @@ class ChatViewController: UITableViewController {
     }
 
     func markSeenMessagesInVisibleArea() {
-        if let indexPaths = tableView.indexPathsForVisibleRows {
-            let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
-            if !visibleMessagesIds.isEmpty {
-                DispatchQueue.global(qos: .background).async { [weak self] in
-                    self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
+        if isVisibleToUser,
+           let indexPaths = tableView.indexPathsForVisibleRows {
+                let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
+                if !visibleMessagesIds.isEmpty {
+                    DispatchQueue.global(qos: .background).async { [weak self] in
+                        self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
+                    }
                 }
+        }
+    }
+    
+    func markSeenMessage(id: Int) {
+        if isVisibleToUser {
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                self?.dcContext.markSeenMessages(messageIds: [UInt32(id)])
             }
         }
     }
@@ -1097,11 +1106,7 @@ class ChatViewController: UITableViewController {
 
     func updateMessage(_ messageId: Int) {
         if messageIds.firstIndex(where: { $0 == messageId }) != nil {
-            if isVisibleToUser {
-                DispatchQueue.global(qos: .background).async { [weak self] in
-                    self?.dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
-                }
-            }
+            markSeenMessage(id: messageId)
             let wasLastSectionVisible = self.isLastRowVisible()
             reloadData()
             if wasLastSectionVisible {
@@ -1116,15 +1121,7 @@ class ChatViewController: UITableViewController {
     }
 
     func insertMessage(_ message: DcMsg) {
-        if isVisibleToUser {
-            logger.debug("markseen messages - message is visible to user")
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                self?.dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
-            }
-        } else {
-            logger.debug("NO markseen messages - message is NOT visible to user")
-        }
-
+        markSeenMessage(id: message.id)
         let wasLastSectionVisible = isLastRowVisible()
         messageIds.append(message.id)
         emptyStateView.isHidden = true

@@ -250,7 +250,6 @@ public class DcContext {
     }
 
     public func markSeenMessages(messageIds: [UInt32]) {
-        logger?.debug("markseen messages: \(messageIds)")
         messageIds.withUnsafeBufferPointer { ptr in
             dc_markseen_msgs(contextPointer, ptr.baseAddress, Int32(ptr.count))
         }
