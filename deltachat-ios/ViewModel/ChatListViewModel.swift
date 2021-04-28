@@ -22,8 +22,7 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func titleForHeaderIn(section: Int) -> String? // only visible on search results
     var emptySearchText: String? { get }
 
-    /// returns ROW of table
-    func deleteChat(chatId: Int) -> Int?
+    func deleteChat(chatId: Int)
     func archiveChatToggle(chatId: Int)
     func pinChatToggle(chatId: Int)
     func refreshData()
@@ -201,18 +200,8 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return nil
     }
 
-    func deleteChat(chatId: Int) -> Int? {
-        // find index of chatId
-        let indexToDelete = Array(0..<chatList.length).filter { chatList.getChatId(index: $0) == chatId }.first
-        let chat = dcContext.getChat(chatId: chatId)
+    func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
-        updateChatList(notifyListener: false)
-        safe_assert(indexToDelete != nil)
-        // Do not return the index of the tableview cell for the selfTalk chat:
-        // Immediately after deleting the chat, a message to the device talk chat gets added.
-        // If the device talk chat was not existing it would be created and added to the table data source.
-        // That case invalidates the index.
-        return chat.isSelfTalk ? nil : indexToDelete
     }
 
     func archiveChatToggle(chatId: Int) {
