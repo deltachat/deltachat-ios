@@ -976,6 +976,7 @@ class ChatViewController: UITableViewController {
         let chat = dcContext.getChat(chatId: self.chatId)
         if chat.isSelfTalk {
             RelayHelper.sharedInstance.forward(to: self.chatId)
+            refreshMessages()
         } else {
             confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
                               actionTitle: String.localized("menu_forward"),
