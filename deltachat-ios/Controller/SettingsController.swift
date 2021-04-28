@@ -396,6 +396,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let title = locationStreaming ?
             "Disable on-demand location streaming" : String.localized("pref_on_demand_location_streaming")
         alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
             UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
             if !locationStreaming {
                 let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Location streaming\"",
@@ -403,7 +404,12 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                                                 + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                self?.navigationController?.present(alert, animated: true, completion: nil)
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            } else if (self.dcContext.isSendingLocationsToChat(chatId: 0)) {
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                    return
+                }
+                appDelegate.locationManager.disableLocationStreamingInAllChats()
             }
         }))
 
