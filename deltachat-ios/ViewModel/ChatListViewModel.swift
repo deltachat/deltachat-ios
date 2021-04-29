@@ -22,8 +22,7 @@ protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
     func titleForHeaderIn(section: Int) -> String? // only visible on search results
     var emptySearchText: String? { get }
 
-    /// returns ROW of table
-    func deleteChat(chatId: Int) -> Int
+    func deleteChat(chatId: Int)
     func archiveChatToggle(chatId: Int)
     func pinChatToggle(chatId: Int)
     func refreshData()
@@ -201,13 +200,8 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return nil
     }
 
-    func deleteChat(chatId: Int) -> Int {
-        // find index of chatId
-        let indexToDelete = Array(0..<chatList.length).filter { chatList.getChatId(index: $0) == chatId }.first
+    func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
-        updateChatList(notifyListener: false)
-        safe_assert(indexToDelete != nil)
-        return indexToDelete ?? -1
     }
 
     func archiveChatToggle(chatId: Int) {
