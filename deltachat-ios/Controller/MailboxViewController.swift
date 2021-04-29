@@ -22,10 +22,7 @@ class MailboxViewController: ChatViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         askToChat(messageId: messageIds[indexPath.row])
     }
-
-    override func phoneNumberTapped(number: String, indexPath: IndexPath) {}
-    override func commandTapped(command: String, indexPath: IndexPath) {}
-    override func urlTapped(url: URL, indexPath: IndexPath) {}
+    
     override func imageTapped(indexPath: IndexPath) {
         askToChat(messageId: messageIds[indexPath.row])
     }
