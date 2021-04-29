@@ -4,7 +4,7 @@ import DcCore
 import SDWebImage
 
 class ImageTextCell: BaseMessageCell {
-
+    let minImageWidth: CGFloat = 175
     var imageHeightConstraint: NSLayoutConstraint?
     var imageWidthConstraint: NSLayoutConstraint?
 
@@ -112,9 +112,9 @@ class ImageTextCell: BaseMessageCell {
         self.imageWidthConstraint?.isActive = false
         
         // check if image has the allowed minimal width
-        if width < 175 {
-            height = (height / width) * 175
-            width = 175
+        if width < minImageWidth {
+            height = (height / width) * minImageWidth
+            width = minImageWidth
         }
         
         if  height > width {
@@ -138,7 +138,11 @@ class ImageTextCell: BaseMessageCell {
                 self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualTo: self.contentImageView.heightAnchor,
                                                                                          multiplier: width/height)
             } else {
-                self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+                if width == minImageWidth {
+                    self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(equalToConstant: width)
+                } else {
+                    self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+                }
                 self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
                     lessThanOrEqualTo: self.contentImageView.widthAnchor,
                     multiplier: height / width
