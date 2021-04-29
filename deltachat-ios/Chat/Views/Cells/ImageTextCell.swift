@@ -104,10 +104,19 @@ class ImageTextCell: BaseMessageCell {
         if height == 0 || width == 0 {
             return
         }
+        var width = width
+        var height = height
 
         let orientation = UIApplication.shared.statusBarOrientation
         self.imageHeightConstraint?.isActive = false
         self.imageWidthConstraint?.isActive = false
+        
+        // check if image has the allowed minimal width
+        if width < 175 {
+            height = (height / width) * 175
+            width = 175
+        }
+        
         if  height > width {
             // show square image for portrait images
             // restrict width to half of the screen in device landscape and to 5 / 6 in portrait
