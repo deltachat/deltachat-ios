@@ -139,8 +139,10 @@ class ImageTextCell: BaseMessageCell {
                                                                                          multiplier: width/height)
             } else {
                 if width == minImageWidth {
+                    // very small width images should be forced to not be scaled down further
                     self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(equalToConstant: width)
                 } else {
+                    // large width images might scale down until the max allowed text width
                     self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
                 }
                 self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
