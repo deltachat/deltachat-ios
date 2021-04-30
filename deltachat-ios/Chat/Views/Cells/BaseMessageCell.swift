@@ -200,7 +200,7 @@ public class BaseMessageCell: UITableViewCell {
             fullMessageButton.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 12),
             bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
             bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
-            bottomLabel.constraintToBottomOf(fullMessageButton, priority: .defaultHigh),
+            bottomLabel.constraintToBottomOf(fullMessageButton, paddingTop: 8, priority: .defaultHigh),
             bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6)
         ])
 
@@ -380,7 +380,6 @@ public class BaseMessageCell: UITableViewCell {
 
         var paragraphStyle = NSParagraphStyle()
         if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
-            style.minimumLineHeight = 22
             paragraphStyle = style
         }
 
@@ -394,7 +393,6 @@ public class BaseMessageCell: UITableViewCell {
         if message.fromContactId == Int(DC_CONTACT_ID_SELF) {
             if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
                 style.alignment = .right
-                style.minimumLineHeight = 22
                 timestampAttributes[.paragraphStyle] = style
                 if !bottomCompactView {
                     timestampAttributes[.foregroundColor] = DcColors.checkmarkGreen
@@ -420,12 +418,12 @@ public class BaseMessageCell: UITableViewCell {
     private func attachPadlock(to text: NSMutableAttributedString, color: UIColor? = nil) {
         let imageAttachment = NSTextAttachment()
         if let color = color {
-            imageAttachment.image = UIImage(named: "ic_lock")?.maskWithColor(color: color)
+            imageAttachment.image = UIImage(named: "ic_lock")?.maskWithColor(color: color)?.scaleDownImage(toMax: 15)
         } else {
-            imageAttachment.image = UIImage(named: "ic_lock")
+            imageAttachment.image = UIImage(named: "ic_lock")?.scaleDownImage(toMax: 15)
         }
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
-        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1], range: NSRange(location: 0, length: 1))
+        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -0.5], range: NSRange(location: 0, length: 1))
         text.append(NSAttributedString(string: " "))
         text.append(imageString)
     }
@@ -447,20 +445,20 @@ public class BaseMessageCell: UITableViewCell {
 
     private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
         let imageAttachment = NSTextAttachment()
-        var offset = -2
+        var offset: CGFloat = -2
 
         switch Int32(state) {
         case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
             imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 14)?.maskWithColor(color: DcColors.grayDateColor)
         case DC_STATE_OUT_DELIVERED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 18)
-            offset = -3
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))
+            offset = -3.5
         case DC_STATE_OUT_MDN_RCVD:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 18)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))
             text.append(NSAttributedString(string: " "))
-            offset = -3
+            offset = -3.5
         case DC_STATE_OUT_FAILED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 17)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 14)
         default:
             imageAttachment.image = nil
         }
