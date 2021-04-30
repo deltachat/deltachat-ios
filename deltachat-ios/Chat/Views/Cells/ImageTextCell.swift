@@ -117,14 +117,15 @@ class ImageTextCell: BaseMessageCell {
             width = minImageWidth
         }
         
+        // in some cases we show images in square sizes
+        // restrict width to half of the screen in device landscape and to 5 / 6 in portrait
+        // it results in a good balance between message text width and image size
+        let factor: CGFloat = orientation.isLandscape ? 1 / 2 : 5 / 6
+        var squareSize  = UIScreen.main.bounds.width * factor
+        
         if  height > width {
             // show square image for portrait images
-            // restrict width to half of the screen in device landscape and to 5 / 6 in portrait
-            // it results in a good balance between message text width and image size
-            let factor: CGFloat = orientation.isLandscape ? 1 / 2 : 5 / 6
-            var squareSize  = UIScreen.main.bounds.width * factor
-
-            //reduce the image square size if there's no message text so that it fits best in the viewable area
+            // reduce the image square size if there's no message text so that it fits best in the viewable area
             if squareSize > UIScreen.main.bounds.height * 5 / 8 && (messageLabel.text?.isEmpty ?? true) {
                 squareSize = UIScreen.main.bounds.height * 5 / 8
             }
@@ -138,7 +139,7 @@ class ImageTextCell: BaseMessageCell {
                 self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualTo: self.contentImageView.heightAnchor,
                                                                                          multiplier: width/height)
             } else {
-                if width == minImageWidth {
+                if width < squareSize {
                     // very small width images should be forced to not be scaled down further
                     self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: width)
                 } else {
