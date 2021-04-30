@@ -4,7 +4,7 @@ import DcCore
 import SDWebImage
 
 class ImageTextCell: BaseMessageCell {
-
+    let minImageWidth: CGFloat = 175
     var imageHeightConstraint: NSLayoutConstraint?
     var imageWidthConstraint: NSLayoutConstraint?
 
@@ -104,10 +104,19 @@ class ImageTextCell: BaseMessageCell {
         if height == 0 || width == 0 {
             return
         }
+        var width = width
+        var height = height
 
         let orientation = UIApplication.shared.statusBarOrientation
         self.imageHeightConstraint?.isActive = false
         self.imageWidthConstraint?.isActive = false
+        
+        // check if image has the allowed minimal width
+        if width < minImageWidth {
+            height = (height / width) * minImageWidth
+            width = minImageWidth
+        }
+        
         if  height > width {
             // show square image for portrait images
             // restrict width to half of the screen in device landscape and to 5 / 6 in portrait
@@ -129,7 +138,13 @@ class ImageTextCell: BaseMessageCell {
                 self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualTo: self.contentImageView.heightAnchor,
                                                                                          multiplier: width/height)
             } else {
-                self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+                if width == minImageWidth {
+                    // very small width images should be forced to not be scaled down further
+                    self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(equalToConstant: width)
+                } else {
+                    // large width images might scale down until the max allowed text width
+                    self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+                }
                 self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
                     lessThanOrEqualTo: self.contentImageView.widthAnchor,
                     multiplier: height / width
