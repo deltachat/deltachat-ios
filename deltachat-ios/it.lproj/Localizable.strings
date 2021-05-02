@@ -214,7 +214,7 @@
 
 "file_saved_to" = "File salvato su \"%1$@\".";
 
-"videochat" = "Chat video";
+"videochat" = "Video chat";
 "videochat_invite_user_to_videochat" = "Invito %1$@ a una chat video?";
 "videochat_invite_user_hint" = "Questo richiede un\'app compatibile o un browser compatibile da entrambe le parti.";
 "videochat_contact_invited_hint" = "%1$@ ti ha invitato a una chat video.";

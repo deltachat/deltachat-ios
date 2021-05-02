@@ -87,6 +87,8 @@
 "audio" = "Audio";
 "voice_message" = "Mensaje de voz";
 "forwarded_message" = "Mensaje reenviado";
+// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+"forwarded_by" = "Reenviado por %1$@";
 "video" = "Video";
 "documents" = "Documentos";
 "contact" = "Contacto";
@@ -159,6 +161,8 @@
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Mostrar en el chat";
 "menu_share" = "Compartir";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Bloquear";
 "menu_block_contact" = "Bloquear contacto";
 "menu_unblock_contact" = "Desbloquear contacto";
 "menu_play" = "Reproducir";
@@ -280,6 +284,14 @@
 "messaging_disabled_deaddrop" = "Click en el mensaje para aceptar o denegar el pedido del contacto";
 "cannot_display_unsuported_file_type" = "No se puede mostrar este tipo de archivo: %1$@";
 "attachment_failed_to_load" = "No se puede cargar el adjunto";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Bloquear grabación";
+
+// mailing lists
+"mailing_list" = "Listado de correos";
+"ask_show_mailing_list" = "¿Mostrar listado de mails \"%1$@\"?";
+
+
 // map
 "filter_map_on_time" = "Mostrar ubicaciones en el marco de tiempo";
 "show_location_traces" = "Mostrar trazas";
@@ -506,10 +518,13 @@
 "autodel_at_once" = "Inmediatamente";
 "after_30_seconds" = "Luego de 30 segundos";
 "after_1_minute" = "Luego de 1 minuto";
+"after_5_minutes" = "Luego de 5 minutos";
+"after_30_minutes" = "Luego de 30 minutos";
 "autodel_after_1_hour" = "Luego de 1 hora";
 "autodel_after_1_day" = "Luego de 1 día";
 "autodel_after_1_week" = "Luego de 1 semana";
 "autodel_after_4_weeks" = "Luego de 4 semanas";
+"after_5_weeks" = "Luego de 5 semanas";
 "autodel_after_1_year" = "Luego de 1 año";
 
 // autocrypt
@@ -555,6 +570,11 @@
 "systemmsg_ephemeral_timer_day" = "Temporizador de borrado de mensaje dispuesto en 1 día";
 "systemmsg_ephemeral_timer_week" = "Temporizador de borrado de mensaje dispuesto en 1 semana";
 "systemmsg_ephemeral_timer_four_weeks" = "Temporizador de borrado de mensaje dispuesto en 4 semanas";
+"systemmsg_ephemeral_timer_minutes" = "Timer de mensajes borrados dispuesto en %1$@ minutos.";
+"systemmsg_ephemeral_timer_hours" = "Timer de mensajes borrados dispuesto a %1$@ horas.";
+"systemmsg_ephemeral_timer_days" = "Timer de mensajes borrados dispuestos en %1$@ días.";
+"systemmsg_ephemeral_timer_weeks" = "Timer de mensajes borrados dispuestos para %1$@ semanas.";
+
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Protección de chat desactivada";
 "systemmsg_chat_protection_enabled" = "Protección de chat activa";

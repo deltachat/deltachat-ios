@@ -10,10 +10,14 @@
 "def" = "標準";
 "default_value" = "初期値（%1$@）";
 "default_value_as_above" = "初期値（同上）";
+"custom" = "カスタム";
 "none" = "無し";
 "automatic" = "自動";
+"strict" = "厳重";
 "open" = "開く";
 "open_attachment" = "添付ファイルを開く";
+"join" = "参加";
+"rejoin" = "参加";
 "delete" = "削除";
 "info" = "情報";
 "update" = "アップデート";
@@ -26,12 +30,17 @@
 "unarchive" = "元に戻す";
 "mute" = "ミュート";
 "ephemeral_messages" = "消えるメッセージ";
+"ephemeral_messages_hint" = "この設定は、Delta Chatの利用する参加者に適用されます。ただし、参加者はメッセージをコピーしたり、保存したり、転送したり、他のアプリを利用したりすることができます。";
 "save" = "保存";
 "chat" = "チャット";
 "media" = "メディア";
 "profile" = "プロファイル";
 "main_menu" = "メインメニュー";
 "start_chat" = "チャットを開始する";
+"show_full_message" = "メッセージ全体を表示";
+"load_remote_content" = "リモート画像を読み込む";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "リモート画像で追跡ができる。\n\nこの設定はフォントや他のコンテツを読み込むことも許可する。無効にしても埋め込まれた画像やキャッシュされた画像を表示されます。\n\nリモート画像を読み込む？";
 "always" = "常に";
 "once" = "一回のみ";
 "show_password" = "パスワードを表示する";
@@ -41,18 +50,24 @@
 "one_moment" = "お待ち下さい…";
 "done" = "完了";
 "undo" = "元に戻す";
+"offline" = "オフライン";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
 "next" = "次へ";
 "error" = "エラー";
 "error_x" = "エラー：%1$@";
 "error_no_network" = "通信不能";
+"no_app_to_handle_data" = "この種類のファイルを開くためのアプリが見つかりません。";
 "no_browser_installed" = "ブラウザーが見つかりません";
 "file_not_found" = "%1$@を見付けられません";
 "copied_to_clipboard" = "クリップボードにコピーしました";
 "contacts_headline" = "連絡先";
 "email_address" = "メールアドレス";
+"bad_email_address" = "メールアドレスが不正です。";
 "password" = "パスワード";
+"existing_password" = "既存のパスワード";
 "now" = "現在";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "危険";
 "today" = "今日";
 "yesterday" = "昨日";
 "this_week" = "今週";
@@ -73,14 +88,15 @@
 "voice_message" = "音声メッセージ";
 "forwarded_message" = "転送されたメッセージ";
 // %1$s will be replaced by the name or the email-address of the person who has forwarded the message
-"forwarded_by" = "%1$@は転送しました";
+"forwarded_by" = "%1$@が転送しました";
 "video" = "動画";
 "documents" = "文章";
 "contact" = "連絡先";
-"verified_contact" = "確認した連絡先";
+"verified_contact" = "確認済みの連絡先";
 "camera" = "カメラ";
 "location" = "場所";
 "gallery" = "画像";
+"images_and_videos" = "画像・映像";
 "file" = "ファイル";
 "files" = "ファイル";
 "unknown" = "不明";
@@ -112,7 +128,9 @@
 "menu_new_contact" = "新規連絡先";
 "menu_new_chat" = "新規チャット";
 "menu_new_group" = "新規グループ";
+"menu_new_verified_group" = "新しい検証済みグループ";
 "menu_send" = "送信";
+"menu_toggle_keyboard" = "絵文字キーボードを呼び出す";
 "menu_edit_group" = "グループを編集";
 "menu_group_name_and_image" = "グループ名と画像";
 "menu_show_map" = "地図を見る";
@@ -130,14 +148,18 @@
 "menu_delete_location" = "この位置情報を削除しますか";
 "menu_message_details" = "メッセージの詳細";
 "menu_copy_to_clipboard" = "クリップボードにコピー";
+"menu_copy_selection_to_clipboard" = "コピー";
 "menu_copy_link_to_clipboard" = "リンクをコピー";
 "paste_from_clipboard" = "クリップボードのデータを貼り付ける";
 "menu_forward" = "メッセージを転送";
 "menu_resend" = "メッセージを再送信";
 "menu_reply" = "メッセージに返答";
 "menu_mute" = "通知しない";
+"menu_unmute" = "ミュート解除";
 "menu_export_attachment" = "添付ファイルのエクスポート";
 "menu_all_media" = "全ての写真･動画･音楽";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "チャットに表示";
 "menu_share" = "共有";
 // this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
 "block" = "ブロック";
@@ -149,14 +171,21 @@
 "menu_scroll_to_top" = "一番上までスクロールする";
 "menu_help" = "ヘルプ";
 "menu_select_all" = "全選択";
+"select_more" = "さらに選択";
+"menu_expand" = "広げる";
 "menu_edit_name" = "名前の編集";
 "menu_settings" = "設定";
 "menu_advanced" = "追加設定";
 "menu_deaddrop" = "連絡先追加";
+"menu_deaddrop_subtitle" = "メッセージを押してチャットを開始します";
 "menu_view_profile" = "詳細を確認";
 "menu_zoom_in" = "拡大";
 "menu_zoom_out" = "縮小";
+"menu_save_log" = "ログ保存";
 "title_share_location" = "現在地を全員に公開する";
+"device_talk" = "デバイスのメッセージ";
+"device_talk_subtitle" = "ローカルで生成されたメッセージ";
+"device_talk_explain" = "このチャットのメッセージはアプリで生成されます。アプリ開発者はアップデートや問題点をお知らせするために使用しています。";
 "edit_contact" = "連絡先を編集";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "チャットをピン留め";
@@ -166,6 +195,9 @@
 "pin" = "ピン留め";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "ピン留めを解除";
+"ConversationFragment_quoted_message_not_found" = "メッセージが見つかりません";
+"reply_privately" = "個別に返信する";
+
 "mute_for_one_hour" = "1時間停止する";
 "mute_for_two_hours" = "2時間停止する";
 "mute_for_one_day" = "24時間停止する";
@@ -183,10 +215,16 @@
 
 "videochat" = "ビデオ通話";
 "videochat_invite_user_to_videochat" = "%1$@をビデオ通話に招待しますか？";
+"videochat_invite_user_hint" = "互換性のあるブラウザ又はアプリが必要です。";
 "videochat_contact_invited_hint" = "%1$@をビデオ通話に招待しました。";
+"videochat_you_invited_hint" = "ビデオ通話に招待しました。";
+"videochat_will_open_in_your_browser" = "ビデオ通話はブラウザで開きます。";
 "videochat_tap_to_join" = "タップして参加";
+"videochat_tap_to_open" = "タップして開く";
 "videochat_instance" = "ビデオ通話サーバー";
 "videochat_instance_placeholder" = "選んだビデオ通話サーバー";
+"videochat_instance_explain" = "ビデオ通話サーバーが入力されたらチャットでビデオ通話を開始することができます。互換性のあるブラウザ又はアプリが必要です。\n\n例えば　https://meet.jit.si/$ROOM 或いは basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "%1$@で他人をビデオ通話に招待しますか？設定次第に各チャットからビデオ通話を開始することができます。以前の設定も置き換えます。";
 "videochat_invitation" = "ビデオ通話に招待";
 "videochat_invitation_body" = "ビデオ通話に招待されて、%1$@で参加";
 
@@ -194,25 +232,69 @@
 "ask_leave_group" = "本当に退室しますか";
 "ask_forward" = "%1$@にメッセージを転送しますか？";
 "ask_forward_multiple" = "%1$dチャットにメッセージを転送しますか？";
+"ask_export_attachment" = "添付ファイルをエクスポートしますか？添付ファイルをエクスポートすると、他のアプリからもアクセスできるようになります。\n\nよろしいですか？";
 "ask_block_contact" = "この連絡先を拒否しますか";
 "ask_unblock_contact" = "この連絡先の拒否設定を解除しますか";
+"ask_delete_contacts" = "連絡先を削除しますか？\n\nチャット中の連絡先やシステムのアドレス帳の連絡先は削除できません。";
+"ask_delete_contact" = "%1$@件の連絡先を削除しますか？\n\nチャット中の連絡先やシステムのアドレス帳の連絡先は削除できません。";
+"cannot_delete_contacts_in_use" = "チャット中の連絡先は削除できません。";
 "ask_start_chat_with" = "%1$@とチャットしますか";
 "ask_delete_value" = "%1$@を削除しますか？";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@をグループから排除しますか";
+"open_url_confirmation" = "このリンクを開きますか？";
+
+
 // contact list
 "contacts_title" = "連絡先一覧";
 "contacts_enter_name_or_email" = "名前かメールアドレスを入力";
+"contacts_type_email_above" = "上にメールアドレスを入力してください。";
 "contacts_empty_hint" = "連絡先無し";
 
 
+// chatlist and chat view
 "chat_archived_chats_title" = "アーカイブしたチャット";
+"chat_please_enter_message" = "メッセージを入力してください。";
+"chat_camera_unavailable" = "カメラは利用できません。";
+"chat_unable_to_record_audio" = "録音できません。";
+"chat_no_messages_hint" = "%1$@にメッセージを送ります\n\n･%2$@がDelta Chatを使わなくても構いません\n\n･最初のメッセージの配信は時間がかかり、暗号化されていない場合もあります。";
+"chat_new_group_hint" = "最初のメッセージを送ってから他人が返信できるようになります。\n\n･Delta Chatを使わなくても構いません\n\n･最初のメッセージの配信は時間がかかる場合もあります。";
 "chat_record_slide_to_cancel" = "スライドしてキャンセル";
+"chat_record_explain" = "長押しして録音して、離すと送ります。";
+"chat_no_chats_yet_title" = "受信箱が空です。\n＋でチャットを開始します。";
 "chat_no_chats_yet_hint" = "あなたはDelta Chat利用者や普通のメールアドレスとチャットを出来ます｡";
+"chat_all_archived" = "すべてのチャットがアーカイブされました。\n＋でチャットを開始します。";
 "chat_share_with_title" = "共有";
 "chat_input_placeholder" = "メッセージ";
 "chat_archived_label" = "アーカイブ済み";
 "chat_no_messages" = "メッセージ無し";
+"chat_self_talk_subtitle" = "自分に送ったメッセージ";
+"saved_messages" = "保存したメッセージ";
+"saved_messages_explain" = "ここにメッセージを転送しておけば、簡単にアクセスできます。メモやボイスメモも保存できます。メディアを添付して保存します。";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "保存しました";
+"chat_contact_request" = "連絡先リクエスト";
+"chat_no_contact_requests" = "連絡先リクエストがありません。\n\nすべてのメールをここに表示する場合は、アプリの決定を変化してください。";
+"retry_send" = "メッセージの配信を再試行します";
+"send_failed" = "メッセージを送信できませんでした";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "このグループに参加していないので書き込めません。参加するには、他のメンバーに知らせてください。";
+"messaging_disabled_device_chat" = "このチャットにはローカルで生成されたメッセージがありますので、メッセージを書き込めません。";
+"messaging_disabled_deaddrop" = "メッセージを押して連絡先リクエストを承認・拒否します";
+"cannot_display_unsuported_file_type" = "%1$@形式のファイルは表示できません";
+"attachment_failed_to_load" = "添付ファイルの読み込みに失敗しました";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "ずっと録音";
+
+// mailing lists
+"mailing_list" = "メーリングリスト";
+"ask_show_mailing_list" = "%1$@のメーリングリストを表示しますか？";
+
+
+"show_location_traces" = "トレースを表示する";
+"add_poi" = "指定位置を送る";
+
+
 // search
 "search" = "検索";
 "search_explain" = "チャット･メッセージ･連絡先を検索";
@@ -221,11 +303,16 @@
 
 // create/edit groups, contact/group profile
 "group_name" = "グループ名";
+"group_avatar" = "グループ画像";
+"remove_group_image" = "アイコン画像の削除";
+"change_group_image" = "グループ画像の編集";
 "group_create_button" = "グループ作成";
 "group_please_enter_group_name" = "グループ名を入力して下さい";
 "group_add_members" = "メンバーを追加";
 "group_hello_draft" = "只今､グループ｢%1$@｣を作成しました｡ご利用下さい｡";
+"group_self_not_in_group" = "グループのメンバーしかが実行されないアクションです。";
 "profile_encryption" = "暗号化";
+"profile_shared_chats" = "共有チャット";
 "tab_contact" = "連絡先";
 "tab_group" = "グループ";
 "tab_members" = "メンバー";
@@ -233,9 +320,17 @@
 "tab_docs" = "文章";
 "tab_links" = "リンク";
 "tab_map" = "地図";
+"tab_gallery_empty_hint" = "このチャットで共有された画像や映像はここに表示されます。";
+"tab_docs_empty_hint" = "このチャットで共有されたドキュメントや音楽などがここに表示されます。";
 "media_preview" = "メディアのプレビュー";
+"send_message" = "送る";
+
+
+// welcome and login
+"welcome_intro1_message" = "世界で最も大衆的なメッセンジャーです。自由に使えて独立している。";
 "login_title" = "ログイン";
 "login_header" = "自分のメールサーバーにログインする";
+"login_explain" = "既存のメールアカウントにログインする";
 "login_subheader" = "主なメールサーバーは自動で設定されます｡一般にIMAPはサーバー側で有効に設定する必要が有ります｡サーバー提供者や詳しい人に確認しましょう｡";
 "login_no_servers_hint" = "Delta Chatには専用サーバーが有りません｡つまりあなたのデータ･個人情報はこの端末内に保存されています｡";
 "login_inbox" = "受信";
@@ -249,32 +344,77 @@
 "login_smtp_server" = "SMTPサーバー";
 "login_smtp_port" = "SMTPポート";
 "login_smtp_security" = "SMTP暗号方式";
+"login_auth_method" = "認証方法";
+// Translators: %1$s will be replaced by an email address
+"login_oauth2_checking_addr" = "%1$@が確認中";
+"login_info_oauth2_title" = "簡単セットアップを使用しましょうか？";
+"login_info_oauth2_text" = "入力されたメールアドレスは、簡易セットアップ（OAuth 2.0）に対応しています。次に「メールでチャット」を許可してください。Delta Chatにはサーバーがなく、テーダはデバイスにあります。";
+"login_certificate_checks" = "有効な証明書です";
+"login_error_mail" = "有効なメールアドレスを入力してください";
+"login_error_server" = "有効なサーバー或いはIPアドレスを入力してください";
+"login_error_port" = "有効なポート（１〜６５５３５）を入力してください";
+"login_error_required_fields" = "有効なメールアドレスとパスワードを入力してください";
 "import_backup_title" = "バックアップをインポート";
+"import_backup_ask" = "%1$@でバックアップがあります。\n\nすべての設定やデータを取り込んで使用しましょうか？";
+"import_backup_no_backup_found" = "バックアップが見つかりません。\n\n%1$@にバックアップをコピーして、再試行してください。又は、「メッセージの開始」を押して通常のセットアップを続行します。";
+// Translators: %1$s will be replaced by the email address
+"login_error_cannot_login" = "%1$@としてログインできません。メールアドレスとパスワードを確認してください。";
+// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
+"login_error_server_response" = "%1$@から：%2$@\n\nプロバイダーによって問題に関して情報をメールで貰える可能性があります。メールアプリ又はブラウザでメールを確認してください。";
+// TLS certificate checks
+"accept_invalid_certificates" = "無効な証明書を受け入れます";
+"used_settings" = "使用した設定：";
 "switch_account" = "アカウントを切り替え";
 "add_account" = "アカウントを追加";
 "delete_account" = "アカウントを削除";
+"delete_account_ask" = "本当にアカウントデータを削除しますか？";
+"delete_account_explain_with_name" = "暗号鍵・連絡先・チャット・メッセージを含めて%1$@のアカウントデータを端末から削除します。元に戻すことはできません。";
 "switching_account" = "アカウントを切り替える";
+"try_connect_now" = "今直ぐ接続します";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "設定失敗。エラー：%1$@";
+
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "転送";
+"share_multiple_attachments" = "%1$dをチャットに送りますか。\n\nファイルは圧縮されずに送られます。";
+"share_multiple_attachments_multiple_chats" = "%1$dつのファイルを%2$d個のチャットに送りますか。\n\nファイルは圧縮されずに送られます。";
+"share_text_multiple_chats" = "%2$@を%1$d個のチャットに送りますか。";
+"share_abort" = "権限エラー：共有が一時中断されました。";
+
+
+// preferences
+"pref_using_custom" = "カスタムを使う：%1$@";
+"pref_using_default" = "デフォルトを使う：%1$@";
 "pref_profile_info_headline" = "ユーザープロファイル";
 "pref_profile_photo" = "アイコン画像";
 "pref_blocked_contacts" = "ブロックされた人";
+"blocked_empty_hint" = "ブロックされた連絡先がここに表示されます。";
 "pref_profile_photo_remove_ask" = "アイコン画像を削除しますか？";
 "pref_password_and_account_settings" = "パスワードとアカウント";
+"pref_who_can_see_profile_explain" = "アイコン画像や名前は他のユーザーに連絡するとメッセージとともに表示されます。既に送信された情報を削除することができます。";
 "pref_your_name" = "あなたの名前";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "署名";
 // Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
 "pref_enter_sends" = "エンターキーで送信";
 "pref_enter_sends_explain" = "エンターキーを押すとテキストメッセージが送信されます";
+"pref_outgoing_media_quality" = "送信する画像や映像の画質";
+"pref_outgoing_balanced" = "普通";
+"pref_outgoing_worse" = "低画質・サイズが小さい";
 "pref_vibrate" = "振動";
+"pref_change_secret" = "秘密の変更";
+"pref_change_secret_explain" = "PIN・パターン・指紋はシステム設定で変更できます";
 "pref_screen_security" = "画面セキュリティ";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "アプリ内や「最近使ったアプリ」でスクリーンショットを禁止する";
+"pref_screen_security_please_restart_hint" = "画面のセキュリティ設定を適用してアプリを再起動してください。";
 "pref_notifications" = "通知";
 "pref_notifications_show" = "表示";
 "pref_notifications_priority" = "優先度";
+"pref_notifications_explain" = "新着メッセージ通知を有効にします";
+"pref_show_notification_content" = "通知にメッセージの内容を表示します";
+"pref_show_notification_content_explain" = "通知には、送信者と最初の単語を表示します";
 "pref_led_color" = "LED色";
 "pref_sound" = "通知音";
 "pref_silent" = "無音";
@@ -300,22 +440,40 @@
 "pref_chats" = "チャット";
 "pref_in_chat_sounds" = "着信音";
 "pref_message_text_size" = "文字の大きさ";
+"pref_view_log" = "ログの表示";
+"pref_saved_log" = "ログはダウンロードフォルダに保存されました。";
+"pref_save_log_failed" = "ログの保存に失敗しました";
+"pref_log_header" = "ログ";
 "pref_other" = "その他";
 "pref_backup" = "バックアップ";
+"pref_backup_explain" = "外部記憶装置へチャットをバックアップする";
 "pref_backup_export_start_button" = "バックアップを開始する";
+"pref_backup_written_to_x" = "バックアップは%1$@に正常に完了しました。";
 "pref_managekeys_menu_title" = "暗号鍵の管理";
 "pref_managekeys_export_secret_keys" = "秘密鍵のエクスポート";
 "pref_managekeys_export_explain" = "%1$@に秘密鍵をエクスポートしますか？";
 "pref_managekeys_import_secret_keys" = "秘密鍵のインポート";
+"pref_managekeys_secret_keys_exported_to_x" = "暗号鍵は%1$@に正常に書き込まれました。";
+"pref_managekeys_secret_keys_imported_from_x" = "暗号鍵は%1$@からインポートされました。";
 "pref_background" = "背景";
+"pref_background_btn_default" = "デフォルトの画像を使う";
+"pref_background_btn_gallery" = "ギャラリーから選ぶ";
+"pref_watch_inbox_folder" = "受信トレイを監視する";
+"pref_watch_sent_folder" = "送信トレイを監視する";
+"pref_watch_mvbox_folder" = "DeltaChatフォルダを監視する";
+"pref_send_copy_to_self" = "自分にコピーを送る";
+"pref_auto_folder_moves" = "DeltaChatフォルダに自動で移動する";
+"pref_auto_folder_moves_explain" = "チャットは受信箱の邪魔にならないように移動されます。";
 "pref_show_emails" = "一般的なメールを表示する";
 "pref_show_emails_no" = "いいえ、チャットのみ";
 "pref_show_emails_accepted_contacts" = "許可されたユーザーのみ";
 "pref_show_emails_all" = "全部";
-"pref_background_default" = "初期設定";
+"pref_experimental_features" = "実験的な機能";
+"pref_background_default" = "デフォルトの壁紙";
 "pref_background_default_color" = "デフォルト色";
 "pref_background_custom_image" = "画像";
 "pref_background_custom_color" = "色";
+"export_aborted" = "エクスポートを停止しました。";
 "profile_image_select" = "アイコン画像を選択する";
 "select_your_new_profile_image" = "新しいアイコン画像を選択してください";
 "profile_image_delete" = "アイコン画像を削除する";
@@ -323,8 +481,26 @@
 
 // Emoji picker and categories
 "emoji_search_results" = "検索結果";
+"emoji_not_found" = "絵文字がみつかりません";
+"emoji_recent" = "履歴";
+"emoji_people" = "人と体";
+"emoji_nature" = "自然と動物";
+"emoji_foods" = "食べ物と飲み物";
+"emoji_activity" = "活動";
+"emoji_places" = "旅行・場所";
+"emoji_objects" = "物";
+"emoji_symbols" = "シンボル";
+"emoji_flags" = "フラッグ";
+
+
+// automatically delete message
+"delete_old_messages" = "古いメッセージの削除";
+// devs: autodel_title is deprecated, use delete_old_messages instead
+"autodel_title" = "メッセージの自動削除";
 "autodel_device_title" = "端末からメッセージを削除する";
 "autodel_server_title" = "サーバーからメッセージを削除する";
+"autodel_confirm" = "分かりました。メッセージを削除していいです。";
+"autodel_at_once" = "すぐに";
 "after_30_seconds" = "30秒";
 "after_1_minute" = "1分";
 "after_5_minutes" = "5分";
@@ -333,33 +509,82 @@
 "autodel_after_1_day" = "1日後";
 "autodel_after_1_week" = "1週間後";
 "autodel_after_4_weeks" = "4週間後";
-"after_5_weeks" = "5週間";
+"after_5_weeks" = "5週間後";
 "autodel_after_1_year" = "1年後";
 
 // autocrypt
 "autocrypt" = "自動暗号化";
 "autocrypt_explain" = "自動暗号化機能は新しくて開けた仕様での一対一のﾒｰﾙ暗号化を行います｡\n \n この一対一暗号化は自動暗号化設定用ﾒｯｾｰｼﾞを転送して設定します｡";
 "autocrypt_send_asm_title" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
-"autocrypt_send_asm_explain_before" = "｢自動暗号化設定用ﾒｯｾｰｼﾞ｣は安全に一対一暗号化設定を対応するｱﾌﾟﾘｹｰｼｮﾝとの間に設定します｡\n \n 受信側は設定時に表示されるﾊﾟｽｺｰﾄﾞを入力する必要が有ります｡";
+"autocrypt_send_asm_explain_before" = "｢自動暗号化設定用メッセージ｣は安全に一対一暗号化設定を対応するアプリケーションとの間に設定します｡\n \n 受信側は設定時に表示されるパスコードを入力する必要が有ります｡";
 "autocrypt_send_asm_button" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
 "autocrypt_prefer_e2ee" = "エンドツーエンド暗号化を好む";
 "autocrypt_asm_subject" = "自動暗号化設定用ﾒｯｾｰｼﾞ";
 "autocrypt_continue_transfer_title" = "自動暗号化設定用ﾒｯｾｰｼﾞ";
+"autocrypt_continue_transfer_retry" = "再試行";
+// system messages
+"systemmsg_group_name_changed" = "グループ名を%1$@から%2$@に変更しました。";
+"systemmsg_group_image_changed" = "グループ画像が変わりました。";
+"systemmsg_group_image_deleted" = "グループ画像を削除しました。";
+"systemmsg_member_added" = "%1$@が追加されました。";
+"systemmsg_member_removed" = "%1$@が退会されました。";
+"systemmsg_group_left" = "グループを退会しました。";
+"systemmsg_read_receipt_subject" = "既読";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+"systemmsg_action_by_me" = "自分から%1$@";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+"systemmsg_action_by_user" = "%2$@から%1$@";
+"systemmsg_subject_for_new_contact" = "%1$@さんからのメッセージ";
+"systemmsg_failed_sending_to" = "%1$@さんへのメッセージ送信に失敗しました。";
+
+"systemmsg_ephemeral_timer_disabled" = "消えるメッセージを無効にしました。";
+"systemmsg_ephemeral_timer_enabled" = "消えるメッセージを%1$@秒にしました。";
+"systemmsg_ephemeral_timer_minute" = "消えるメッセージを1分にしました。";
+"systemmsg_ephemeral_timer_hour" = "消えるメッセージを1時間にしました。";
+"systemmsg_ephemeral_timer_day" = "消えるメッセージを1日にしました。";
+"systemmsg_ephemeral_timer_week" = "消えるメッセージを1週間にしました。";
+"systemmsg_ephemeral_timer_four_weeks" = "消えるメッセージを4週間にしました。";
+"systemmsg_ephemeral_timer_minutes" = "消えるメッセージを%1$@分にしました。";
+"systemmsg_ephemeral_timer_hours" = "消えるメッセージを%1$@時間にしました。";
+"systemmsg_ephemeral_timer_days" = "消えるメッセージを%1$@日にしました。";
+"systemmsg_ephemeral_timer_weeks" = "消えるメッセージを%1$@週間にしました。";
+
+// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+"systemmsg_chat_protection_disabled" = "保護が無効です。";
+"systemmsg_chat_protection_enabled" = "保護が有効です。";
+
 // screen lock
 "screenlock_title" = "画面ロック";
-"screenlock_explain" = "Delta Chatを画面ロックや指紋認証でロックする";
+"screenlock_explain" = "Delta Chatを画面ロックや指紋認証でロックする。以前のコンテンツを表示しないように、「画面のセキュリティ」も有効にしてください。";
+"screenlock_authentication_failed" = "認証に失敗しました。";
 "screenlock_unlock_title" = "Delta Chatを解錠する";
+"screenlock_inactivity_timeout" = "無操作によるロック";
+"screenlock_inactivity_timeout_explain" = "一定時間操作がなかったら自動でDelta Chatをロックする";
+// qr code stuff
+"qr_code" = "QRコード";
+"load_qr_code_as_image" = "QRコードを画像として読み込む";
 "qrscan_title" = "QRｺｰﾄﾞを読み取る";
 "qrscan_hint" = "QRコードを読み取って下さい";
+"qrscan_failed" = "QRコードを読み取りできなかった";
+"qrscan_ask_join_group" = "%1$@グループに参加しますか";
 "qrscan_contains_text" = "読み取り結果は以下:\n\n%1$@";
 "qrscan_contains_url" = "読み取り結果は以下:\n\n:\n\n%1$@";
+"qrscan_x_verified_introduce_myself" = "%1$@を確認しました。紹介中です。";
 "qrshow_title" = "自分のQRｺｰﾄﾞ";
 "qrshow_x_joining" = "%1$@が参加しました";
 "qrshow_x_verified" = "%1$@を確認しました。";
+"qrshow_x_has_joined_group" = "%1$@が参加しました";
 "qrshow_join_group_title" = "自分のQRｺｰﾄﾞ";
+"qrshow_join_group_hint" = "スキャンして%1$@に参加します";
 "qrshow_join_contact_title" = "自分のQRｺｰﾄﾞ";
+"qrshow_join_contact_hint" = "スキャンして%1$@に連絡します。";
+"qrshow_join_contact_no_connection_toast" = "インターネットに接続されていないので、QRコードの設定ができません。";
 "contact_verified" = "%1$@を確認しました。";
 "contact_not_verified" = "%1$@を確認できません。";
+// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+"contact_setup_changed" = "設定が%1$@に変わりました。";
+// notifications 
+"notify_n_messages_in_m_chats" = "%2$d個のチャットに%1$dの新着メッセージ";
 "notify_mark_read" = "閲覧済";
 "notify_reply_button" = "返信";
 "notify_new_message" = "新規メッセージ";
@@ -373,6 +598,9 @@
 // permissions
 "perm_required_title" = "アクセス許可が必要です";
 "perm_continue" = "続行";
+// dc_str_* resources
+"encrypted_message" = "暗号化されたメッセージ";
+
 "welcome_desktop" = "Delta Chatにようこそ";
 "login_known_accounts_title_desktop" = "知り合い";
 "global_menu_preferences_language_desktop" = "言語を選択して下さい";
@@ -389,24 +617,56 @@
 "global_menu_view_developer_desktop" = "開発者";
 "global_menu_view_developer_tools_desktop" = "開発者ツール";
 "global_menu_help_desktop" = "ヘルプ";
+"global_menu_help_learn_desktop" = "DeltaChatについて詳しく知る";
 "global_menu_help_contribute_desktop" = "GitHubで貢献する";
 "global_menu_help_report_desktop" = "問題を報告する";
+"global_menu_help_about_desktop" = "Delta Chatについて";
 "write_message_desktop" = "メッセージを送信";
+"encryption_info_title_desktop" = "暗号化情報";
 "contact_detail_title_desktop" = "連絡先の詳細";
+"contact_request_title_desktop" = "連絡先リクエスト";
+"delete_message_desktop" = "メッセージを削除する";
+"more_info_desktop" = "もっと詳しく";
+"logout_desktop" = "ログアウト";
 "timestamp_format_m_desktop" = "MMM D";
-"verified_desktop" = "確認";
+"encryption_info_desktop" = "暗号化情報の表示";
+"verified_desktop" = "確認済み";
 "remove_desktop" = "削除";
+"save_desktop" = "保存";
 "add_contact_desktop" = "連絡先を追加";
 "login_required_desktop" = "必須";
 "name_desktop" = "名前";
+"autocrypt_key_transfer_desktop" = "自動暗号化設定の転送";
+"initiate_key_transfer_desktop" = "｢自動暗号化設定用メッセージ｣は安全に一対一暗号化設定を対応するアプリケーションとの間に設定します｡　受信側は設定時に表示されるパスコードを入力する必要が有ります｡";
 "reply_to_message_desktop" = "メッセージに返答";
+"select_group_image_desktop" = "グループ画像を選択する";
 "imex_progress_title_desktop" = "バックアップの進行状況";
+"download_attachment_desktop" = "添付ファイルのダウンロード";
 "export_backup_desktop" = "バックアップをエクスポート";
+"transfer_key_desktop" = "暗号鍵のを転送する";
+"new_message_from_desktop" = "さんからのメッセージ";
+"unblock_contacts_desktop" = "拒否を解除";
+"none_blocked_desktop" = "ブロックされた人がいない";
+"autocrypt_correct_desktop" = "自動暗号化設定が転送されました";
+"ask_delete_chat_desktop" = "チャットを削除しますか";
 "email_validation_failed_desktop" = "メールアドレスが必要です";
+"account_info_hover_tooltip_desktop" = "メール：%1$@\nサイズ：%2$@\nPath：%3$@";
 "me_desktop" = "自分";
 "in_this_group_desktop" = "グループメンバー";
 "message_detail_sent_desktop" = "送信済み";
+"message_detail_received_desktop" = "届きました";
 "message_detail_from_desktop" = "差出人";
 "message_detail_to_desktop" = "宛先";
+"menu.view.developer.open.log.folder" = "ログフォルダを開く";
 "user_location_permission_explanation" = "Delta Chatは位置情報を共有出来る様にする為権限が必要です";
+
+// accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
+"a11y_delivery_status_error" = "送信状態：エラー";
+"a11y_delivery_status_sending" = "送信状態：送信中";
+"a11y_delivery_status_draft" = "送信状態：下書き";
+"a11y_delivery_status_delivered" = "送信状態：送信済み";
+"a11y_delivery_status_read" = "送信状態：既読";
+"a11y_delivery_status_invalid" = "不明な送信状態";
+"a11y_disappearing_messages_activated" = "消えるメッセージを有効にしました。";
+
 

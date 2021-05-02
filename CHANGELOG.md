@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## UNRELEASED
+
+* add Indonesian, Polish, Ukrainian local help, update other translations
+
+
 ## 1.19.1 Testflight
 2021-04
 
