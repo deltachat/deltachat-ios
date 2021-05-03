@@ -556,7 +556,6 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Gambar di mana saja untuk diburamkan";
-
 // dc_str_* resources
 "encrypted_message" = "Pesan terenkripsi";
 

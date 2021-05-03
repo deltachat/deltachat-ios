@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "Gerai";
 "cancel" = "Atsisakyti";
+"clear_search" = "Išvalyti paiešką";
 "yes" = "Taip";
 "no" = "Ne";
 "on" = "Įjungta";
@@ -85,6 +86,7 @@
 "contact" = "Adresatas";
 "verified_contact" = "Patvirtintas adresatas";
 "camera" = "Kamera";
+"switch_camera" = "Perjungti kamerą";
 "location" = "Vieta";
 "gallery" = "Galerija";
 "images_and_videos" = "Paveikslai ir vaizdo įrašai";

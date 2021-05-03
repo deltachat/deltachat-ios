@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "Tamam";
 "cancel" = "Vazgeç";
+"clear_search" = "Aramayı temizle";
 "yes" = "Evet";
 "no" = "Hayır";
 "select" = "Seç";
@@ -94,6 +95,9 @@
 "contact" = "Kişi";
 "verified_contact" = "Doğrulanan kişi";
 "camera" = "Kamera";
+"capture" = "Yakala";
+"switch_camera" = "Kamerayı değiştir";
+"toggle_fullscreen" = "Tam ekran kipine geç";
 "location" = "Konum";
 "gallery" = "Galeri";
 "images_and_videos" = "Görseller ve videolar";
@@ -649,6 +653,13 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Bulanıklaştırmak için herhangi bir yere çizin";
+"ImageEditorHud_add_text" = "Metin ekle";
+"ImageEditorHud_blur" = "Bulanıklaştır";
+"ImageEditorHud_brush_marker" = "İşaret fırçası";
+"ImageEditorHud_brush_highlight" = "Fırçayı vurgula";
+"ImageEditorHud_crop" = "Kırp";
+"ImageEditorHud_flip" = "Çevir";
+"ImageEditorHud_rotate" = "Döndür";
 
 // dc_str_* resources
 "encrypted_message" = "Şifrelenen ileti";

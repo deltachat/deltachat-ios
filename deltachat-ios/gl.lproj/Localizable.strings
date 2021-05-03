@@ -649,7 +649,6 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Debuxa para esborranchar";
-
 // dc_str_* resources
 "encrypted_message" = "Mensaxe cifrada";
 

@@ -2,9 +2,10 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Annulla";
+"clear_search" = "Cancella ricerca";
 "yes" = "Si";
 "no" = "No";
-"select" = "Selezionare";
+"select" = "Seleziona";
 "on" = "On";
 "off" = "Off";
 "def" = "Predefinito";
@@ -94,6 +95,9 @@
 "contact" = "Contatto";
 "verified_contact" = "Contatto verificato";
 "camera" = "Camera";
+"capture" = "Cattura";
+"switch_camera" = "Cambia fotocamera";
+"toggle_fullscreen" = "Attiva/disattiva la modalità a schermo intero";
 "location" = "Posizione";
 "gallery" = "Galleria";
 "images_and_videos" = "Immagini e video";
@@ -215,19 +219,19 @@
 "file_saved_to" = "File salvato su \"%1$@\".";
 
 "videochat" = "Video chat";
-"videochat_invite_user_to_videochat" = "Invito %1$@ a una chat video?";
+"videochat_invite_user_to_videochat" = "Invito %1$@ a una video chat?";
 "videochat_invite_user_hint" = "Questo richiede un\'app compatibile o un browser compatibile da entrambe le parti.";
-"videochat_contact_invited_hint" = "%1$@ ti ha invitato a una chat video.";
-"videochat_you_invited_hint" = "Hai invitato a una chat video.";
+"videochat_contact_invited_hint" = "%1$@ ti ha invitato a una video chat.";
+"videochat_you_invited_hint" = "Hai invitato a una video chat.";
 "videochat_will_open_in_your_browser" = "Questa video chat si aprirà nel tuo browser.";
 "videochat_tap_to_join" = "Tocca per partecipare";
 "videochat_tap_to_open" = "Tocca per aprire";
-"videochat_instance" = "Istanza chat video";
-"videochat_instance_placeholder" = "La tua istanza chat video";
-"videochat_instance_explain" = "Se viene definita un\'istanza chat video, è possibile avviare una chat video da ciascuna chat uno a uno. Le chat video richiedono un\'app compatibile o un browser compatibile da entrambe le parti.\n\nEsempi: https://meet.jit.si/$ROOM o basicwebrtc: https://your-server";
-"videochat_instance_from_qr" = "Utilizzare \"%1$@\" per invitare altri alla chat video?\n\nUna volta impostato, è possibile avviare una chat video da ogni chat uno a uno. Ciò sostituirà l\'eventuale impostazione precedente per le chat video.";
-"videochat_invitation" = "Invito alla chat video";
-"videochat_invitation_body" = "Sei invitato a una chat video, fai clic %1$@ per partecipare.";
+"videochat_instance" = "Istanza video chat";
+"videochat_instance_placeholder" = "La tua istanza video chat";
+"videochat_instance_explain" = "Se viene definita un\'istanza video chat, è possibile avviare una video chat da ciascuna chat uno a uno. Le video chat richiedono un\'app compatibile o un browser compatibile da entrambe le parti.\n\nEsempi: https://meet.jit.si/$ROOM o basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "Utilizzare \"%1$@\" per invitare altri alla video chat?\n\nUna volta impostato, è possibile avviare una video chat da ogni chat uno a uno. Ciò sostituirà l\'eventuale impostazione precedente per le video chat.";
+"videochat_invitation" = "Invito alla video chat";
+"videochat_invitation_body" = "Sei invitato a una video chat, fai clic %1$@ per partecipare.";
 
 // get confirmations
 "ask_leave_group" = "Sei sicuro di voler abbandonare il gruppo?";
@@ -649,6 +653,13 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Disegna ovunque per sfocare";
+"ImageEditorHud_add_text" = "Aggiungi testo";
+"ImageEditorHud_blur" = "Sfocatura";
+"ImageEditorHud_brush_marker" = "Pennello marcatore";
+"ImageEditorHud_brush_highlight" = "Pennello evidenziatore";
+"ImageEditorHud_crop" = "Ritaglia";
+"ImageEditorHud_flip" = "Capovolgi";
+"ImageEditorHud_rotate" = "Ruota";
 
 // dc_str_* resources
 "encrypted_message" = "Messaggio cifrato";

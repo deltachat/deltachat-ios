@@ -597,7 +597,6 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Rita var som helst för att smeta ut";
-
 // dc_str_* resources
 "encrypted_message" = "Krypterat meddelande";
 

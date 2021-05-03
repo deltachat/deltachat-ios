@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Скасувати";
+"clear_search" = "Очистити пошук";
 "yes" = "Так";
 "no" = "Ні";
 "select" = "Обрати";
@@ -94,6 +95,9 @@
 "contact" = "Контакт";
 "verified_contact" = "Перевірений контакт";
 "camera" = "Камера";
+"capture" = "Захопити";
+"switch_camera" = "Перемкнути камеру";
+"toggle_fullscreen" = "Перейти в повноекранний режим";
 "location" = "Розташування";
 "gallery" = "Галерея";
 "images_and_videos" = "Зображення та відео";
@@ -649,6 +653,13 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Малюйте де завгодно для розмиття";
+"ImageEditorHud_add_text" = "Додати текст";
+"ImageEditorHud_blur" = "Розмити";
+"ImageEditorHud_brush_marker" = "Маркер";
+"ImageEditorHud_brush_highlight" = "Виділення";
+"ImageEditorHud_crop" = "Обрізати";
+"ImageEditorHud_flip" = "Обернути";
+"ImageEditorHud_rotate" = "Обертати";
 
 // dc_str_* resources
 "encrypted_message" = "Зашифроване повідомлення";

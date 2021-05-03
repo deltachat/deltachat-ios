@@ -649,7 +649,6 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Рисуйте, чтобы размывать";
-
 // dc_str_* resources
 "encrypted_message" = "Зашифрованное сообщение";
 

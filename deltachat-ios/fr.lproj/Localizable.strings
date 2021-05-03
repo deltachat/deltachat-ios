@@ -646,7 +646,6 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Dessinez n\'importe où pour flouter";
-
 // dc_str_* resources
 "encrypted_message" = "Message chiffré";
 

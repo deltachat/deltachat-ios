@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Anuloje";
+"clear_search" = "Spastroje kërkimin";
 "yes" = "Po";
 "no" = "Jo";
 "select" = "Përzgjidhni";
@@ -94,6 +95,8 @@
 "contact" = "Kontakt";
 "verified_contact" = "Kontakt i verifikuar";
 "camera" = "Kamerë";
+"switch_camera" = "Ndërro kamera";
+"toggle_fullscreen" = "Kalo në / Dil nga mënyra sa krejt ekrani";
 "location" = "Vendndodhje";
 "gallery" = "Galeri";
 "images_and_videos" = "Figura dhe video";
@@ -283,6 +286,9 @@
 "messaging_disabled_deaddrop" = "Që të pranoni apo hidhni tej një kërkesë kontakti, klikoni mbi një mesazh";
 "cannot_display_unsuported_file_type" = "S’mund të shfaqet ky lloj kartelash: %1$@";
 "attachment_failed_to_load" = "S’u arrit të ngarkohet bashkëngjitje";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Kyçe incizimin";
+
 // mailing lists
 "mailing_list" = "Listë postimesh";
 "ask_show_mailing_list" = "Të shfaqet lista e postimeve \"%1$@\"?";
@@ -644,6 +650,11 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Që të turbullohet, vizatoni kudo qoftë";
+"ImageEditorHud_add_text" = "Shtoni tekst";
+"ImageEditorHud_blur" = "Turbulloje";
+"ImageEditorHud_crop" = "Qethe";
+"ImageEditorHud_flip" = "Ktheje në anë tjetër";
+"ImageEditorHud_rotate" = "Rrotulloje";
 
 // dc_str_* resources
 "encrypted_message" = "Mesazh i fshehtëzuar";

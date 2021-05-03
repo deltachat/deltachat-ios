@@ -622,7 +622,6 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Desenhe em qualquer lugar para desfocar";
-
 // dc_str_* resources
 "encrypted_message" = "Mensagem criptografada";
 

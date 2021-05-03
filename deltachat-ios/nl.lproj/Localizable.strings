@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "Oké";
 "cancel" = "Annuleren";
+"clear_search" = "Zoekopdracht wissen";
 "yes" = "Ja";
 "no" = "Nee";
 "select" = "Selecteren";
@@ -94,6 +95,9 @@
 "contact" = "Contactpersoon";
 "verified_contact" = "Goedgekeurd contactpersoon";
 "camera" = "Camera";
+"capture" = "Vastleggen";
+"switch_camera" = "Andere camera";
+"toggle_fullscreen" = "Beeldvullende modus aan/uit";
 "location" = "Locatie";
 "gallery" = "Galerij";
 "images_and_videos" = "Foto\'s en video\'s";
@@ -649,6 +653,13 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Teken met je vinger om vervaging toe te passen";
+"ImageEditorHud_add_text" = "Tekst toevoegen";
+"ImageEditorHud_blur" = "Vervagen";
+"ImageEditorHud_brush_marker" = "Stift";
+"ImageEditorHud_brush_highlight" = "Markeerstift";
+"ImageEditorHud_crop" = "Bijsnijden";
+"ImageEditorHud_flip" = "Spiegelen";
+"ImageEditorHud_rotate" = "Draaien";
 
 // dc_str_* resources
 "encrypted_message" = "Versleuteld bericht";

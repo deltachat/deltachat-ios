@@ -2,19 +2,27 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancel·la";
+"clear_search" = "Neteja la cerca";
 "yes" = "Si";
 "no" = "No";
+"select" = "Trieu";
 "on" = "Activat";
 "off" = "Desactivat";
 "def" = "Per defecte";
+"default_value" = "Per defecte (%1$@)";
+"default_value_as_above" = "Per defecte (igual que a dalt)";
 "custom" = "Personalitzat";
 "none" = "Cap";
 "automatic" = "Automàtic";
 "strict" = "Estricte";
 "open" = "Obre";
+"open_attachment" = "Obre l\'adjunt";
+"join" = "Uneix-te";
+"rejoin" = "Torna a unir-te";
 "delete" = "Esborra";
 "info" = "Info";
 "update" = "Actualitza";
+"emoji" = "Emoticona";
 "attachment" = "Adjunt";
 "back" = "Enrere";
 "close" = "Tanca";
@@ -23,10 +31,16 @@
 "unarchive" = "Treu de l\'arxiu";
 "mute" = "Emmudeix";
 "ephemeral_messages" = "Missatges efímers";
+"ephemeral_messages_hint" = "Aquestes opcions són d\'aplicació per tots els integrants que usin Delta Chat. Tot i això, poden copiar, guardar o reenviar missatges o usar altres clients de correu.";
 "save" = "Guarda";
 "chat" = "Xat";
+"profile" = "Perfil";
 "main_menu" = "Menú principal";
 "start_chat" = "Inicia un xat";
+"show_full_message" = "Mostra el missatge sencer...";
+"load_remote_content" = "Carrega les imatges remotes";
+"always" = "Sempre";
+"once" = "Una vegada";
 "show_password" = "Mostra la contrasenya";
 "hide_password" = "Amaga la contrasenya";
 "not_now" = "Ara no";
@@ -63,19 +77,27 @@
 "self" = "Jo";
 "draft" = "Esborrany";
 "image" = "Imatge";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Respon";
 "gif" = "Gif";
 "images" = "Imatges";
 "audio" = "Àudio";
 "voice_message" = "Missatge de veu";
 "forwarded_message" = "Missatge reenviat";
+// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+"forwarded_by" = "Reenviat per %1$@";
 "video" = "Vídeo";
 "documents" = "Documents";
 "contact" = "Contacte";
 "verified_contact" = "Contacte verificat";
 "camera" = "Càmera";
+"capture" = "Captura";
+"switch_camera" = "Canvia la càmera";
 "location" = "Ubicació";
 "gallery" = "Galeria";
+"images_and_videos" = "Imatges i vídeos";
 "file" = "Fitxer";
+"files" = "Fitxers";
 "unknown" = "Desconegut";
 
 "green" = "Verd";
@@ -87,6 +109,8 @@
 "magenta" = "Magenta";
 "white" = "Blanc";
 
+"zoom" = "Zoom";
+"extra_small" = "Més petit";
 "small" = "Petit";
 "normal" = "Normal";
 "large" = "Gran";
@@ -115,12 +139,17 @@
 "menu_add_attachment" = "Afegeix un adjunt";
 "menu_leave_group" = "Deixa el grup";
 "menu_delete_chat" = "Esborra el xat";
+"ask_delete_named_chat" = "Segur que voleu esborrar \"%1$@\"?";
 "menu_delete_messages" = "Esborra els missatges";
 "menu_delete_image" = "Esborra la imatge";
+"delete_contact" = "Esborra el contacte";
 "menu_delete_locations" = "Voleu esborrar totes les ubicacions?";
 "menu_delete_location" = "Voleu esborrar aquesta ubicació?";
 "menu_message_details" = "Detalls del missatge";
 "menu_copy_to_clipboard" = "Copia al porta-retalls";
+"menu_copy_selection_to_clipboard" = "Copia el seleccionat";
+"menu_copy_link_to_clipboard" = "Enllaç de còpia";
+"paste_from_clipboard" = "Enganxa des del porta-retalls";
 "menu_forward" = "Reenvia el missatge";
 "menu_resend" = "Torna a enviar el missatge";
 "menu_reply" = "Respon el missatge";
@@ -128,7 +157,11 @@
 "menu_unmute" = "Activa el so";
 "menu_export_attachment" = "Exporta l\'adjunt";
 "menu_all_media" = "Tots els multimèdia";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Mostra al xat";
 "menu_share" = "Comparteix";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Bloqueja";
 "menu_block_contact" = "Bloca el contacte";
 "menu_unblock_contact" = "Desbloca el contacte";
 "menu_play" = "Reprodueix";

@@ -635,7 +635,6 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Tegn hvor som helst for at sløre";
-
 // dc_str_* resources
 "encrypted_message" = "Krypteret besked";
 

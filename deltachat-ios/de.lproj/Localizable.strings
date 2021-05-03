@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Abbruch";
+"clear_search" = "Suche löschen";
 "yes" = "Ja";
 "no" = "Nein";
 "select" = "Auswählen";
@@ -94,6 +95,9 @@
 "contact" = "Kontakt";
 "verified_contact" = "Verifizierter Kontakt";
 "camera" = "Kamera";
+"capture" = "Aufnehmen";
+"switch_camera" = "Kamera wechseln";
+"toggle_fullscreen" = "Vollbildmodus umschalten";
 "location" = "Ort";
 "gallery" = "Galerie";
 "images_and_videos" = "Bilder und Videos";
@@ -649,6 +653,13 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Zeichne zum Verwischen in beliebige Bereiche";
+"ImageEditorHud_add_text" = "Text hinzufügen";
+"ImageEditorHud_blur" = "Verwischen";
+"ImageEditorHud_brush_marker" = "Markieren";
+"ImageEditorHud_brush_highlight" = "Hervorheben";
+"ImageEditorHud_crop" = "Zuschneiden";
+"ImageEditorHud_flip" = "Spiegeln";
+"ImageEditorHud_rotate" = "Drehen";
 
 // dc_str_* resources
 "encrypted_message" = "Verschlüsselte Nachricht";
