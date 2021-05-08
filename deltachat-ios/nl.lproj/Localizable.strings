@@ -48,7 +48,7 @@
 "hide_password" = "Wachtwoord verbergen";
 "not_now" = "Niet nu";
 "never" = "Nooit";
-"one_moment" = "Even geduld...";
+"one_moment" = "Even geduld…";
 "done" = "Klaar";
 "undo" = "Ongedaan maken";
 "offline" = "Offline";
@@ -174,6 +174,7 @@
 "menu_scroll_to_bottom" = "Ga naar het einde";
 "menu_scroll_to_top" = "Ga naar het begin";
 "menu_help" = "Hulp";
+"privacy_policy" = "Privacybeleid";
 "menu_select_all" = "Alles selecteren";
 "select_more" = "Meer selecteren";
 "menu_expand" = "Uitvouwen";
@@ -383,7 +384,7 @@
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
-"forward_to" = "Doorsturen naar...";
+"forward_to" = "Doorsturen naar…";
 "share_multiple_attachments" = "Wil je %1$d bestanden delen in het gekozen gesprek?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
 "share_multiple_attachments_multiple_chats" = "Wil je %1$d bestand(en) delen in %2$d gesprekken?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
 "share_text_multiple_chats" = "Wil je deze tekst versturen naar %1$d gesprekken?\n\n\"%2$@\"";
@@ -606,7 +607,7 @@
 "qrscan_contains_text" = "Gescande QR-codetekst:\n\n %1$@";
 "qrscan_contains_url" = "Gescande QR-code-url:\n\n %1$@";
 "qrscan_fingerprint_label" = "Vingerafdruk";
-"qrscan_x_verified_introduce_myself" = "%1$@ goedgekeurd; vertel iets over jezelf...";
+"qrscan_x_verified_introduce_myself" = "%1$@ is goedgekeurd - vertel iets over jezelf…";
 "qrshow_title" = "QR-uitnodigingscode";
 "qrshow_x_joining" = "%1$@ heeft deelgenomen.";
 "qrshow_x_verified" = "%1$@ is goedgekeurd.";
@@ -669,7 +670,7 @@
 "about_licensed_under_desktop" = "Deze software is vrijgegeven onder de GNU GPL versie 3 en de broncode is beschikbaar op GitHub.";
 "welcome_desktop" = "Welkom bij Delta Chat";
 "login_known_accounts_title_desktop" = "Bekende accounts";
-"global_menu_preferences_language_desktop" = "Kies een taal...";
+"global_menu_preferences_language_desktop" = "Taal";
 "global_menu_file_desktop" = "Bestand";
 "global_menu_file_quit_desktop" = "Afsluiten";
 "global_menu_edit_desktop" = "Bewerken";
@@ -758,5 +759,5 @@
 "pref_reliable_service_explain" = "Vereist een permanente melding";
 "perm_enable_bg_reminder_title" = "Druk hier om berichten te ontvangen als Delta Chat niet geopend is.";
 "perm_enable_bg_already_done" = "Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.";
-"update_1_14_android" = "Enkele hoogtepunten van de 1.14-update:\n\n🧹 Veeg om te beantwoorden: veeg het bericht waarop je wilt antwoorden naar rechts om een citaat in te voegen en te antwoorden (maar niet hier, want dan krijg je geen antwoord terug 😛).\n\n🔥 Verdwijnende berichten - eindelijk! 😀. In elk gesprek kun je nu verzonden en ontvangen berichten na een bepaalde tijd verwijderen met de optie \'Verdwijnende berichten\' in het gespreksmenu (ook hier geldt: niet in dit gesprek)\n\n👆 Gesprekken scrollen voortaan naar het eerste ongelezen bericht\n\n💾 Stuur items door naar \'Opgeslagen berichten\' (dit kan wél hier: houd dit bericht ingedrukt en druk op de pijl rechtsboven)\n\n🎃 Verder hebben we veel fouten angst aangejaagd - die zien we nooit meer terug!";
+"update_1_20" = "Verbeterde e-mailcompatibiliteit in versie 1.20:\n\n📫 Lees mailinglijsten\n📭 Lees html-e-mails\n📪 Betere afhandeling van ondersteuningsadressen\n📫 Vele grotere en kleinere problemen opgelost\n\nLees ons nieuwste blogartikel over deze eerste stappen naar e-mail en meer (Engels):";
 

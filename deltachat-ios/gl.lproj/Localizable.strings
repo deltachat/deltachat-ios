@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancelar";
+"clear_search" = "Eliminar busca";
 "yes" = "Si";
 "no" = "Non";
 "select" = "Seleccionar";
@@ -94,6 +95,9 @@
 "contact" = "Contacto";
 "verified_contact" = "Contacto verificado";
 "camera" = "Cámara";
+"capture" = "Capturar";
+"switch_camera" = "Cambiar de cámara";
+"toggle_fullscreen" = "Activar modo de pantalla completa";
 "location" = "Localización";
 "gallery" = "Galería";
 "images_and_videos" = "Imaxes e vídeos";
@@ -170,6 +174,7 @@
 "menu_scroll_to_bottom" = "Moverse abaixo";
 "menu_scroll_to_top" = "Moverse arriba";
 "menu_help" = "Axuda";
+"privacy_policy" = "Política de Privacidade";
 "menu_select_all" = "Escoller todo";
 "select_more" = "Elexir máis";
 "menu_expand" = "Despregar";
@@ -649,6 +654,14 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Debuxa para esborranchar";
+"ImageEditorHud_add_text" = "Engadir texto";
+"ImageEditorHud_blur" = "Esborranchar";
+"ImageEditorHud_brush_marker" = "Pincel marcador";
+"ImageEditorHud_brush_highlight" = "Pincel resaltar";
+"ImageEditorHud_crop" = "Recortar";
+"ImageEditorHud_flip" = "Voltear";
+"ImageEditorHud_rotate" = "Rotar";
+
 // dc_str_* resources
 "encrypted_message" = "Mensaxe cifrada";
 
@@ -746,5 +759,5 @@
 "pref_reliable_service_explain" = "Require unha notificación permanente";
 "perm_enable_bg_reminder_title" = "Toca aquí para recibir mensaxes mentras Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Xa permitiches que Delta Chat reciba mensaxes en segundo plano\n\nSe aínda así non recibes as mensaxes, por favor comproba os axustes do sistema.";
-"update_1_14_android" = "Destacados da actualización 1.14:\n\n🧹 Despraza para responder: para responder a unha mensaxe concreta, despraza hacia á dereita (non aquí! non podes responder aquí 😛) Verás a cita na parte superior da caixa de texto e poderás escribir como sempre.\n\n🔥 Mensaxes efémeras - chegou a hora 😀. Calquera conversa pódese configurar para eliminar as mensaxes enviadas e recibidas após un tempo. Elixe \"Mensaxes efémeras\" desde o menú da conversa (non aquí!)\n\n👆 Abrir conversa na primeira mensaxe non lida\n\n💾 Enviar cousas a \"Mensaxes gardadas\" directamente e máis rápido (esto pódelo probar aquí: mantén presa esta mensaxe e despois toca a flecha arriba-a-dereita)\n\n🎃 Para rematar, arranxamos moitos fallos! Moitos eran arrepiantes, non volverán.";
+"update_1_20" = "Na versión 1.20 melloramos a compatibilidade co email:\n\n📫 Ler listaxes de correo\n📭 Ler emails HTML\n📪 Mellor xestión dos enderezo de axuda\n📫 Arranxamos problemas e problemiños molestos\n\nLe o artigo no blog acerca destas melloras e máis:";
 

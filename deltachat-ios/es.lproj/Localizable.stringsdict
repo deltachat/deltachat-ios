@@ -111,7 +111,7 @@
 			<key>one</key>
 			<string>¿Enviar el  archivo a %s?</string>
 			<key>other</key>
-			<string>Enviar el siguiente %d archivo a %s?</string>
+			<string>¿Enviar los siguientes %d archivos a %s?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

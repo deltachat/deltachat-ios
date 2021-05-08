@@ -35,6 +35,8 @@
 "profile" = "Profil";
 "main_menu" = "Menu główne";
 "start_chat" = "Rozpocznij czat";
+"always" = "Zawsze";
+"once" = "Jeden raz";
 "show_password" = "Pokaż hasło";
 "hide_password" = "Ukryj hasło";
 "not_now" = "Nie teraz";
@@ -102,10 +104,10 @@
 
 "zoom" = "Powiększenie";
 "extra_small" = "Bardzo małe";
-"small" = "Mały";
-"normal" = "Normalny";
-"large" = "Duży";
-"extra_large" = "Bardzo duży";
+"small" = "Małe";
+"normal" = "Normalne";
+"large" = "Duże";
+"extra_large" = "Bardzo duże";
 
 "fast" = "Szybkie";
 "slow" = "Wolne";
@@ -158,6 +160,7 @@
 "menu_scroll_to_bottom" = "Przewiń na dołu";
 "menu_scroll_to_top" = "Przewiń na górę";
 "menu_help" = "Pomoc";
+"privacy_policy" = "Polityka prywatności";
 "menu_select_all" = "Zaznacz wszystko";
 "menu_expand" = "Rozwiń";
 "menu_edit_name" = "Edytuj nazwę";
@@ -351,6 +354,7 @@
 "add_account" = "Dodaj konto";
 "delete_account" = "Usuń konto";
 "delete_account_ask" = "Czy na pewno chcesz usunąć dane swojego konta?";
+"delete_account_explain_with_name" = "Wszystkie dane konta „%1$@” na tym urządzeniu zostaną usunięte, w tym konfiguracja szyfrowania end-to-end, kontakty, czaty, wiadomości i multimedia. Tej operacji nie można cofnąć.";
 "switching_account" = "Przełączam konto…";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
@@ -441,7 +445,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Jeśli wyłączysz tę opcję, upewnij się, że twój serwer i inni klienci są odpowiednio skonfigurowani.\n\nW przeciwnym razie wszystko może w ogóle nie działać.";
 "pref_watch_inbox_folder" = "Oglądaj katalog Skrzynka odbiorcza";
 "pref_watch_sent_folder" = "Oglądaj katalog Wysłane";
-"pref_watch_mvbox_folder" = "Oglądaj katalog DeltaChat";
+"pref_watch_mvbox_folder" = "Oglądaj folder DeltaChat";
 "pref_send_copy_to_self" = "Wyślij kopię do siebie";
 "pref_auto_folder_moves" = "Automatyczne przenoszenie do folderu DeltaChat";
 "pref_auto_folder_moves_explain" = "Rozmowy na czacie są przenoszone, aby nie zaśmiecać folderu Skrzynka odbiorcza";
@@ -461,6 +465,8 @@
 "profile_image_delete" = "Usuń zdjęcie profilowe";
 
 
+// Emoji picker and categories
+"emoji_search_results" = "Wyniki wyszukiwania";
 "emoji_not_found" = "Nie znaleziono emoji";
 "emoji_recent" = "Ostatnio używane";
 "emoji_people" = "Ludzie i Ciało";
@@ -481,6 +487,10 @@
 "autodel_server_title" = "Usuwanie wiadomości z serwera";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n• Obejmuje to wszystkie multimedia\n\n• Wiadomości zostaną usunięte niezależnie od tego, czy były widoczne, czy nie\n\n• „Zapisane wiadomości” zostaną pominięte podczas lokalnego usuwania";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n⚠️ Obejmuje to e-maile, multimedia i „Zapisane wiadomości” we wszystkich folderach na serwerze.\n\n⚠️ Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze\n\n⚠️ Nie używaj tej funkcji, jeśli używasz innych klientów poczty e-mail oprócz Delta Chat";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Obejmuje to e-maile, multimedia i „Zapisane wiadomości” we wszystkich folderach na serwerze. Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze lub jeśli używasz innych klientów poczty e-mail oprócz Delta Chat.";
 "autodel_confirm" = "Rozumiem, usuń te wszystkie wiadomości";
 "autodel_at_once" = "Od razu";
 "after_30_seconds" = "Po 30 sekundach";
@@ -607,6 +617,13 @@
 "perm_explain_access_to_storage_denied" = "Delta Chat wymaga uprawnienia do przechowywania, aby dołączyć lub wyeksportować zdjęcia, filmy lub dźwięk, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Pamięć”.";
 "perm_explain_access_to_location_denied" = "Delta Chat wymaga zezwolenia na lokalizację, aby dołączyć lokalizację, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Lokalizacja”.";
 
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Rysuj gdziekolwiek, aby rozmyć";
+"ImageEditorHud_add_text" = "Dodaj tekst";
+"ImageEditorHud_blur" = "Rozmycie";
+"ImageEditorHud_crop" = "Przytnij";
+"ImageEditorHud_rotate" = "Obróć";
+
 // dc_str_* resources
 "encrypted_message" = "Zaszyfrowana wiadomość";
 
@@ -617,7 +634,7 @@
 "login_known_accounts_title_desktop" = "Znane konta";
 "global_menu_preferences_language_desktop" = "Wybierz język";
 "global_menu_file_desktop" = "Plik";
-"global_menu_file_quit_desktop" = "Wyjdź";
+"global_menu_file_quit_desktop" = "Zamknij";
 "global_menu_edit_desktop" = "Edycja";
 "global_menu_edit_undo_desktop" = "Cofnij";
 "global_menu_edit_redo_desktop" = "Przywróć";
