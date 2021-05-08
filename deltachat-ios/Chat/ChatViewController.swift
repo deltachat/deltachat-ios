@@ -757,7 +757,10 @@ class ChatViewController: UITableViewController {
         if !messageIds.isEmpty {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.tableView.scrollToRow(at: IndexPath(row: self.messageIds.count - 1, section: 0), at: .bottom, animated: animated)
+                let numberOfRows = self.tableView.numberOfRows(inSection: 0)
+                if numberOfRows > 0 {
+                    self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: animated)
+                }
             }
         }
     }
