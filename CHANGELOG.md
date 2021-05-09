@@ -1,8 +1,21 @@
 # Delta Chat iOS Changelog
 
-## UNRELEASED
+## 1.20.0
+2021-05
 
-* add Indonesian, Polish, Ukrainian local help, update other translations
+* opening the contact request chat marks all contact requests as noticed
+  and removes the sticky hint from the chatlist
+* if "Show classic mails" is enabled,
+  the contact request hint in the corresponding chat
+* speed up global search
+* improve display of small images
+* fix: filter contact list for adding members to verified groups
+* fix: re-add headlines for every day
+* fix: register for notifications also after qr-code account scanning
+* fix a rare crash on chat deletion
+* fix: update chat on forwarding to saved-messages
+* fix: make links and default user actions work in contact requests
+* add Chinese, French, Indonesian, Polish and Ukrainian local help, update other translations
 
 
 ## 1.19.1 Testflight
@@ -36,6 +49,7 @@
 * tapping notification opens the corresponding chat
 * more information and images shown in notifications
 * add option to view original-/html-mails
+* check all imap folders for new messages from time to time
 * allow dialing on tapping a phone number
 * use more colors for user avatars
 * improve e-mail compatibility
