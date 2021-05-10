@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "了承";
 "cancel" = "取消";
+"clear_search" = "検索履歴を消す";
 "yes" = "はい";
 "no" = "いいえ";
 "select" = "選択";
@@ -94,6 +95,8 @@
 "contact" = "連絡先";
 "verified_contact" = "確認済みの連絡先";
 "camera" = "カメラ";
+"switch_camera" = "カメラを切り替える";
+"toggle_fullscreen" = "フルスクリーン";
 "location" = "場所";
 "gallery" = "画像";
 "images_and_videos" = "画像・映像";
@@ -170,6 +173,7 @@
 "menu_scroll_to_bottom" = "一番下までスクロールする";
 "menu_scroll_to_top" = "一番上までスクロールする";
 "menu_help" = "ヘルプ";
+"privacy_policy" = "プライバシーについて";
 "menu_select_all" = "全選択";
 "select_more" = "さらに選択";
 "menu_expand" = "広げる";
@@ -579,6 +583,7 @@
 "qrshow_join_contact_title" = "自分のQRｺｰﾄﾞ";
 "qrshow_join_contact_hint" = "スキャンして%1$@に連絡します。";
 "qrshow_join_contact_no_connection_toast" = "インターネットに接続されていないので、QRコードの設定ができません。";
+"qraccount_ask_create_and_login" = "%1$@に新しいメールアドレスを作ってログしますか。";
 "contact_verified" = "%1$@を確認しました。";
 "contact_not_verified" = "%1$@を確認できません。";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
@@ -598,6 +603,12 @@
 // permissions
 "perm_required_title" = "アクセス許可が必要です";
 "perm_continue" = "続行";
+"ImageEditorHud_add_text" = "テキストを作成";
+"ImageEditorHud_blur" = "ぼかし";
+"ImageEditorHud_crop" = "切り抜き";
+"ImageEditorHud_flip" = "反転";
+"ImageEditorHud_rotate" = "回転";
+
 // dc_str_* resources
 "encrypted_message" = "暗号化されたメッセージ";
 

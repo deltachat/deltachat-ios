@@ -87,6 +87,7 @@
 "images" = "Bilder";
 "audio" = "Audio";
 "voice_message" = "Sprachnachricht";
+"forwarded" = "Weitergeleitet";
 "forwarded_message" = "Weitergeleitete Nachricht";
 // %1$s will be replaced by the name or the email-address of the person who has forwarded the message
 "forwarded_by" = "Weitergeleitet von %1$@";
