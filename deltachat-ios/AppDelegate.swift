@@ -202,6 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
                 self.dcContext.stopIo()
+                self.dcContext.closeDatabase()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), done")
                     self.unregisterBackgroundTask()
@@ -387,6 +388,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
             if !self.appIsInForeground() {
                 self.dcContext.stopIo()
+                self.dcContext.closeDatabase()
             }
             completionHandler(.newData)
         }

@@ -12,6 +12,7 @@ public class DcContext {
     public var lastErrorString: String?
     public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
+    private var dbFile: String?
 
     private init() {
     }
@@ -207,12 +208,18 @@ public class DcContext {
     }
 
     public func openDatabase(dbFile: String) {
-        var version = ""
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            version += " " + appVersion
-        }
+        self.dbFile = dbFile
+        openDatabase()
+    }
 
-        contextPointer = dc_context_new("iOS" + version, dbFile, nil)
+    private func openDatabase() {
+        if let dbFile = dbFile {
+            var version = ""
+            if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                version += " " + appVersion
+            }
+            contextPointer = dc_context_new("iOS" + version, dbFile, nil)
+        }
     }
 
     public func closeDatabase() {
@@ -221,6 +228,9 @@ public class DcContext {
     }
 
     public func maybeStartIo() {
+        if contextPointer == nil {
+            openDatabase()
+        }
         if isConfigured() {
             dc_start_io(contextPointer)
         }
