@@ -85,6 +85,32 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             cell.audioPlayerView.setDuration(duration: player.currentTime)
         }
     }
+    
+    public func getAudioDuration(messageId: Int, successHandler: @escaping (Int, Double) -> Void) {
+        let message = DcMsg(id: messageId)
+        if playingMessage?.id == messageId {
+            // irgnore messages that are currently playing or recently paused
+            return
+        }
+        
+        if let fileURL = message.fileURL {
+            let audioAsset = AVURLAsset.init(url: fileURL, options: nil)
+
+            audioAsset.loadValuesAsynchronously(forKeys: ["duration"]) {
+                var error: NSError?
+                let status = audioAsset.statusOfValue(forKey: "duration", error: &error)
+                switch status {
+                case .loaded:
+                    let duration = audioAsset.duration
+                    let durationInSeconds = CMTimeGetSeconds(duration)
+                    DispatchQueue.main.async {
+                        successHandler(messageId, Double(durationInSeconds))
+                    }
+                default: break
+                }
+            }
+        }
+    }
 
     public func playButtonTapped(cell: AudioMessageCell, messageId: Int) {
             let message = DcMsg(id: messageId)

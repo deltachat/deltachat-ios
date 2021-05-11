@@ -5,6 +5,8 @@ import DcCore
 // do not confuse with BaseMessageCellDelegate that is for sending events to ChatViewControllerNew.
 public protocol AudioMessageCellDelegate: AnyObject {
     func playButtonTapped(cell: AudioMessageCell, messageId: Int)
+    func getAudioDuration(messageId: Int, successHandler: @escaping (Int, Double) -> Void)
+
 }
 
 public class AudioMessageCell: BaseMessageCell {
@@ -38,7 +40,6 @@ public class AudioMessageCell: BaseMessageCell {
     }
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
-        //audioPlayerView.reset()
         messageId = msg.id
         if let text = msg.text {
             mainContentView.spacing = text.isEmpty ? 0 : 8
@@ -51,6 +52,14 @@ public class AudioMessageCell: BaseMessageCell {
         } else {
             accessibilityLabel = String.localized("audio")
         }
+        
+        delegate?.getAudioDuration(messageId: messageId, successHandler: { [weak self] (messageId, duration) -> Void in
+            if let self = self,
+               messageId == self.messageId {
+                self.audioPlayerView.setDuration(duration: duration)
+            }
+        })
+        
 
         super.update(msg: msg, messageStyle: messageStyle, showAvatar: showAvatar, showName: showName)
     }
