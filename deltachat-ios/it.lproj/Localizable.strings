@@ -87,6 +87,7 @@
 "images" = "Immagine";
 "audio" = "Audio";
 "voice_message" = "Messaggio vocale";
+"forwarded" = "Inoltrato";
 "forwarded_message" = "Messaggio inoltrato";
 // %1$s will be replaced by the name or the email-address of the person who has forwarded the message
 "forwarded_by" = "Inoltrato da %1$@";

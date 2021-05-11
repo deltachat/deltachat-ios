@@ -87,6 +87,7 @@
 "images" = "Görseller";
 "audio" = "Ses";
 "voice_message" = "Sesli ileti";
+"forwarded" = "İletildi";
 "forwarded_message" = "İletilen ileti";
 // %1$s will be replaced by the name or the email-address of the person who has forwarded the message
 "forwarded_by" = "%1$@ tarafından iletildi";

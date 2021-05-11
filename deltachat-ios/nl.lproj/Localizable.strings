@@ -87,6 +87,7 @@
 "images" = "Afbeeldingen";
 "audio" = "Audio";
 "voice_message" = "Spraakbericht";
+"forwarded" = "Doorgestuurd";
 "forwarded_message" = "Bericht doorgestuurd";
 // %1$s will be replaced by the name or the email-address of the person who has forwarded the message
 "forwarded_by" = "Doorgestuurd door %1$@";
