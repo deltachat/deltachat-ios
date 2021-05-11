@@ -1,35 +1,9 @@
 import UIKit
 import DcCore
 
-// MARK: - ChatListViewModelProtocol
-protocol ChatListViewModelProtocol: class, UISearchResultsUpdating {
-
-    var onChatListUpdate: VoidFunction? { get set }
-
-    var isArchive: Bool { get }
-
-    var numberOfSections: Int { get }
-    func numberOfRowsIn(section: Int) -> Int
-    func cellDataFor(section: Int, row: Int) -> AvatarCellViewModel
-
-    func msgIdFor(row: Int) -> Int?
-    func chatIdFor(section: Int, row: Int) -> Int? // needed to differentiate betweeen deaddrop / archive / default
-
-    // search related
-    var searchActive: Bool { get }
-    func beginSearch()
-    func endSearch()
-    func titleForHeaderIn(section: Int) -> String? // only visible on search results
-    var emptySearchText: String? { get }
-
-    func deleteChat(chatId: Int)
-    func archiveChatToggle(chatId: Int)
-    func pinChatToggle(chatId: Int)
-    func refreshData()
-}
 
 // MARK: - ChatListViewModel
-class ChatListViewModel: NSObject, ChatListViewModelProtocol {
+class ChatListViewModel: NSObject {
 
     var onChatListUpdate: VoidFunction?
 
@@ -42,10 +16,10 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         case messages
     }
 
-    var isArchive: Bool
+    private(set) public var isArchive: Bool
     private let dcContext: DcContext
 
-    var searchActive: Bool = false
+    private(set) public var searchActive: Bool = false
 
     // if searchfield is empty we show default chat list
     private var showSearchResults: Bool {
@@ -137,6 +111,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return makeChatCellViewModel(index: row, searchText: "")
     }
 
+    // only visible on search results
     func titleForHeaderIn(section: Int) -> String? {
         if showSearchResults {
             switch searchResultSections[section] {
@@ -158,6 +133,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
         return nil
     }
 
+    // needed to differentiate betweeen deaddrop / archive / default
     func chatIdFor(section: Int, row: Int) -> Int? {
         let cellData = cellDataFor(section: section, row: row)
         switch cellData.type {

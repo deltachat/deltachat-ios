@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 class ChatListController: UITableViewController {
-    let viewModel: ChatListViewModelProtocol
+    let viewModel: ChatListViewModel
     let dcContext: DcContext
 
     private let chatCellReuseIdentifier = "chat_cell"
@@ -46,7 +46,7 @@ class ChatListController: UITableViewController {
         return label
     }()
 
-    init(dcContext: DcContext, viewModel: ChatListViewModelProtocol) {
+    init(dcContext: DcContext, viewModel: ChatListViewModel) {
         self.viewModel = viewModel
         self.dcContext = dcContext
         if viewModel.isArchive {
