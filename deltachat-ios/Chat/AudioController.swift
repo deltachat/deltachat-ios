@@ -106,6 +106,8 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                     DispatchQueue.main.async {
                         successHandler(messageId, Double(durationInSeconds))
                     }
+                case .failed:
+                    logger.warning("loading audio message \(messageId) failed: \(String(describing: error?.localizedDescription))")
                 default: break
                 }
             }
