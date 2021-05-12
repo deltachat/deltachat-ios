@@ -1,5 +1,21 @@
 # Delta Chat iOS Changelog
 
+## 1.20.2
+2021-05
+
+* show total playback time of audio files before starting playback
+* show location icon beside messages containing locations
+* improve layout of delivery information inside bubbles
+* fix: do not start location manager when location streaming is disabled
+* fix: do not send read receipts when the screen is off
+* fix: delete notifications if the corresponding chat is deleted
+* fix: target backround issues
+* fix crash when receiving some special messages                                
+* fix downloading some messages multiple times                                  
+* fix formatting of read receipt texts  
+* update translations
+
+
 ## 1.20.0
 2021-05
 
