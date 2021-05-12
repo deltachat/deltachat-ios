@@ -85,6 +85,41 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             cell.audioPlayerView.setDuration(duration: player.currentTime)
         }
     }
+    
+    public func getAudioDuration(messageId: Int, successHandler: @escaping (Int, Double) -> Void) {
+        let message = DcMsg(id: messageId)
+        if playingMessage?.id == messageId {
+            // irgnore messages that are currently playing or recently paused
+            return
+        }
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let duration = message.duration
+            if duration > 0 {
+                DispatchQueue.main.async {
+                    successHandler(messageId, Double(duration) / 1000)
+                }
+            } else if let fileURL = message.fileURL {
+                let audioAsset = AVURLAsset.init(url: fileURL, options: nil)
+                audioAsset.loadValuesAsynchronously(forKeys: ["duration"]) {
+                    var error: NSError?
+                    let status = audioAsset.statusOfValue(forKey: "duration", error: &error)
+                    switch status {
+                    case .loaded:
+                        let duration = audioAsset.duration
+                        let durationInSeconds = CMTimeGetSeconds(duration)
+                        message.setLateFilingMediaSize(width: 0, height: 0, duration: Int(1000 * durationInSeconds))
+                        DispatchQueue.main.async {
+                            successHandler(messageId, Double(durationInSeconds))
+                        }
+                    case .failed:
+                        logger.warning("loading audio message \(messageId) failed: \(String(describing: error?.localizedDescription))")
+                    default: break
+                    }
+                }
+            }
+        }
+    }
 
     public func playButtonTapped(cell: AudioMessageCell, messageId: Int) {
             let message = DcMsg(id: messageId)
