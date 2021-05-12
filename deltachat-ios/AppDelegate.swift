@@ -370,13 +370,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         // we're in background, run IO for a little time
         dcContext.maybeStartIo()
-
-        // maybeNetwork() shall not be called in ui thread;
-        // even if we're in backround now, app may be starting just now and maybeNetwork() will block in that case
-        // (series of performFetchWithCompletionHandler/applicationWillEnterForeground are not rare)
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            self?.dcContext.maybeNetwork()
-        }
+        dcContext.maybeNetwork()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
             logger.info("⬅️ finishing fetch")
