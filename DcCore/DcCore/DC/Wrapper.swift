@@ -1044,6 +1044,10 @@ public class DcMsg {
     public var hasHtml: Bool {
         return dc_msg_has_html(messagePointer) == 1
     }
+    
+    public var hasLocation: Bool {
+        return dc_msg_has_location(messagePointer) == 1
+    }
 
     public var setupCodeBegin: String {
         guard let cString = dc_msg_get_setupcodebegin(messagePointer) else { return "" }
