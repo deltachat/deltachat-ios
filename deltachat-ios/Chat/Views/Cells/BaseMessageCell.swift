@@ -403,6 +403,10 @@ public class BaseMessageCell: UITableViewCell {
             if message.showPadlock() {
                 attachPadlock(to: text, color: bottomCompactView ? nil : DcColors.checkmarkGreen)
             }
+            
+            if message.hasLocation {
+                attachLocation(to: text, color: bottomCompactView ? nil : DcColors.checkmarkGreen)
+            }
 
             attachSendingState(message.state, to: text)
             return text
@@ -412,9 +416,29 @@ public class BaseMessageCell: UITableViewCell {
         if message.showPadlock() {
             attachPadlock(to: text)
         }
+        
+        if message.hasLocation {
+            attachLocation(to: text)
+        }
+        
         return text
     }
 
+    private func attachLocation(to text: NSMutableAttributedString, color: UIColor? = nil) {
+        let imageAttachment = NSTextAttachment()
+        
+        if let color = color {
+            imageAttachment.image = UIImage(named: "ic_location")?.maskWithColor(color: color)?.scaleDownImage(toMax: 12)
+        } else {
+            imageAttachment.image = UIImage(named: "ic_location")?.maskWithColor(color: DcColors.grayDateColor)?.scaleDownImage(toMax: 12)
+        }
+        
+        let imageString = NSMutableAttributedString(attachment: imageAttachment)
+        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -0.5], range: NSRange(location: 0, length: 1))
+        text.append(NSAttributedString(string: "\u{202F}"))
+        text.append(imageString)
+    }
+    
     private func attachPadlock(to text: NSMutableAttributedString, color: UIColor? = nil) {
         let imageAttachment = NSTextAttachment()
         if let color = color {
@@ -455,7 +479,7 @@ public class BaseMessageCell: UITableViewCell {
             offset = -3.5
         case DC_STATE_OUT_MDN_RCVD:
             imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))
-            text.append(NSAttributedString(string: " "))
+            text.append(NSAttributedString(string: "\u{202F}"))
             offset = -3.5
         case DC_STATE_OUT_FAILED:
             imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 14)
