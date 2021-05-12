@@ -1100,7 +1100,6 @@ class ChatViewController: UITableViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        self.dcContext.sendLocationsToChat(chatId: self.chatId, seconds: seconds)
         appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds)
     }
 
