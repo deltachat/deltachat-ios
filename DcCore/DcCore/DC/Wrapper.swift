@@ -969,8 +969,8 @@ public class DcMsg {
         return CGFloat(dc_msg_get_width(messagePointer))
     }
     
-    public var duration: Double {
-        return Double(dc_msg_get_duration(messagePointer))
+    public var duration: Int {
+        return Int(dc_msg_get_duration(messagePointer))
     }
 
     public func setLateFilingMediaSize(width: CGFloat, height: CGFloat, duration: Int) {

@@ -97,7 +97,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             let duration = message.duration
             if duration > 0 {
                 DispatchQueue.main.async {
-                    successHandler(messageId, Double(duration / 1000))
+                    successHandler(messageId, Double(duration) / 1000)
                 }
             } else if let fileURL = message.fileURL {
                 let audioAsset = AVURLAsset.init(url: fileURL, options: nil)
@@ -107,10 +107,10 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                     switch status {
                     case .loaded:
                         let duration = audioAsset.duration
-                        let durationInSeconds = Double(CMTimeGetSeconds(duration))
-                        message.setDuration(1000 * durationInSeconds)
+                        let durationInSeconds = CMTimeGetSeconds(duration)
+                        message.setLateFilingMediaSize(width: 0, height: 0, duration: Int(1000 * durationInSeconds))
                         DispatchQueue.main.async {
-                            successHandler(messageId, durationInSeconds)
+                            successHandler(messageId, Double(durationInSeconds))
                         }
                     case .failed:
                         logger.warning("loading audio message \(messageId) failed: \(String(describing: error?.localizedDescription))")
