@@ -20,7 +20,7 @@
   - manage a stack of `UIViewController` and a navigation bar (atop)
   - performs horizontal view transitions for pushed and popped views
     (via `pushViewController()`, `popViewController()`)
-  - typically subclasses, says apple
+  - typically subclassed, says apple
   
 - "delegate"
   - a "delegate" is a set of functions, defined by a protocol, to receive events as `didSelect()` [2]
@@ -73,7 +73,7 @@
 
 ## holding references
 
-a tricky part (see eg. [3]) seems to be to hold the correct type of rerences to the UIViewControllers.
+a tricky part (see eg. [3]) seems to be to hold the correct type of references to the UIViewControllers.
 
 - at least one "strong" (normal) reference is needed somewhere.
 
