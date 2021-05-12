@@ -24,6 +24,7 @@ class ChatViewController: UITableViewController {
     var isDismissing = false
     var isInitial = true
     var ignoreInputBarChange = false
+    private var isVisibleToUser: Bool = false
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -420,8 +421,8 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             self.dcContext.marknoticedChat(chatId: self.chatId)
         }
-        startTimer()
-        markSeenMessagesInVisibleArea()
+        
+        handleUserVisibility(isVisible: true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -437,8 +438,8 @@ class ChatViewController: UITableViewController {
         isDismissing = false
         ignoreInputBarChange = true
         AppStateRestorer.shared.resetLastActiveChat()
-        draft.save(context: dcContext)
-        stopTimer()
+        handleUserVisibility(isVisible: false)
+        
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -484,12 +485,23 @@ class ChatViewController: UITableViewController {
 
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
-            startTimer()
+            handleUserVisibility(isVisible: true)
         }
     }
 
     @objc func applicationWillResignActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
+            handleUserVisibility(isVisible: false)
+        }
+    }
+    
+    func handleUserVisibility(isVisible: Bool) {
+        if isVisible {
+            isVisibleToUser = true
+            startTimer()
+            markSeenMessagesInVisibleArea()
+        } else {
+            isVisibleToUser = false
             stopTimer()
             draft.save(context: dcContext)
         }
@@ -627,12 +639,21 @@ class ChatViewController: UITableViewController {
     }
 
     func markSeenMessagesInVisibleArea() {
-        if let indexPaths = tableView.indexPathsForVisibleRows {
-            let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
-            if !visibleMessagesIds.isEmpty {
-                DispatchQueue.global(qos: .background).async { [weak self] in
-                    self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
+        if isVisibleToUser,
+           let indexPaths = tableView.indexPathsForVisibleRows {
+                let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
+                if !visibleMessagesIds.isEmpty {
+                    DispatchQueue.global(qos: .background).async { [weak self] in
+                        self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
+                    }
                 }
+        }
+    }
+    
+    func markSeenMessage(id: Int) {
+        if isVisibleToUser {
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                self?.dcContext.markSeenMessages(messageIds: [UInt32(id)])
             }
         }
     }
@@ -1085,9 +1106,7 @@ class ChatViewController: UITableViewController {
 
     func updateMessage(_ messageId: Int) {
         if messageIds.firstIndex(where: { $0 == messageId }) != nil {
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                self?.dcContext.markSeenMessages(messageIds: [UInt32(messageId)])
-            }
+            markSeenMessage(id: messageId)
             let wasLastSectionVisible = self.isLastRowVisible()
             reloadData()
             if wasLastSectionVisible {
@@ -1102,10 +1121,7 @@ class ChatViewController: UITableViewController {
     }
 
     func insertMessage(_ message: DcMsg) {
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            self?.dcContext.markSeenMessages(messageIds: [UInt32(message.id)])
-        }
-
+        markSeenMessage(id: message.id)
         let wasLastSectionVisible = isLastRowVisible()
         messageIds.append(message.id)
         emptyStateView.isHidden = true
