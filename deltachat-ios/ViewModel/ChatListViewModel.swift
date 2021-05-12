@@ -133,7 +133,6 @@ class ChatListViewModel: NSObject {
         return nil
     }
 
-    // needed to differentiate betweeen deaddrop / archive / default
     func chatIdFor(section: Int, row: Int) -> Int? {
         let cellData = cellDataFor(section: section, row: row)
         switch cellData.type {
