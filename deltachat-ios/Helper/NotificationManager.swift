@@ -100,15 +100,10 @@ public class NotificationManager {
             forName: dcMsgsNoticed,
             object: nil, queue: OperationQueue.main
         ) { notification in
-            DispatchQueue.global(qos: .background).async {
-                if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-                    NotificationManager.updateApplicationIconBadge(reset: false)
-                    if let ui = notification.userInfo,
-                       let chatId = ui["chat_id"] as? Int {
-                        NotificationManager.removePendingNotificationsFor(chatId: chatId)
-                        NotificationManager.removeDeliveredNotificationsFor(chatId: chatId)
-                    }
-                }
+            if !UserDefaults.standard.bool(forKey: "notifications_disabled"),
+               let ui = notification.userInfo,
+               let chatId = ui["chat_id"] as? Int {
+                NotificationManager.removeNotificationsForChat(chatId: chatId)
             }
         }
     }
