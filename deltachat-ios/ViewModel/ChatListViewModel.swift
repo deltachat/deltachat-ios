@@ -202,6 +202,7 @@ class ChatListViewModel: NSObject, ChatListViewModelProtocol {
 
     func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
+        NotificationManager.removeNotificationsForChat(chatId: chatId)
     }
 
     func archiveChatToggle(chatId: Int) {

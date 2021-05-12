@@ -29,6 +29,14 @@ public class NotificationManager {
         nc.removeAllDeliveredNotifications()
         nc.removeAllPendingNotificationRequests()
     }
+    
+    public static func removeNotificationsForChat(chatId: Int) {
+        DispatchQueue.global(qos: .background).async {
+            NotificationManager.removePendingNotificationsFor(chatId: chatId)
+            NotificationManager.removeDeliveredNotificationsFor(chatId: chatId)
+            NotificationManager.updateApplicationIconBadge(reset: false)
+        }
+    }
 
     private func initIncomingMsgsObserver() {
         incomingMsgObserver = NotificationCenter.default.addObserver(
@@ -92,20 +100,15 @@ public class NotificationManager {
             forName: dcMsgsNoticed,
             object: nil, queue: OperationQueue.main
         ) { notification in
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-                    NotificationManager.updateApplicationIconBadge(reset: false)
-                    if let ui = notification.userInfo,
-                       let chatId = ui["chat_id"] as? Int {
-                        self?.removePendingNotificationsFor(chatId: chatId)
-                        self?.removeDeliveredNotificationsFor(chatId: chatId)
-                    }
-                }
+            if !UserDefaults.standard.bool(forKey: "notifications_disabled"),
+               let ui = notification.userInfo,
+               let chatId = ui["chat_id"] as? Int {
+                NotificationManager.removeNotificationsForChat(chatId: chatId)
             }
         }
     }
 
-    private func removeDeliveredNotificationsFor(chatId: Int) {
+    private static func removeDeliveredNotificationsFor(chatId: Int) {
         var identifiers = [String]()
         let nc = UNUserNotificationCenter.current()
         nc.getDeliveredNotifications { notifications in
@@ -119,7 +122,7 @@ public class NotificationManager {
         }
     }
 
-    private func removePendingNotificationsFor(chatId: Int) {
+    private static func removePendingNotificationsFor(chatId: Int) {
         var identifiers = [String]()
         let nc = UNUserNotificationCenter.current()
         nc.getPendingNotificationRequests { notificationRequests in
