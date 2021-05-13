@@ -11,7 +11,6 @@ PODS:
   - SwiftFormat/CLI (0.40.9)
   - SwiftLint (0.43.1)
   - SwiftyBeaver (1.9.4)
-  - UICircularProgressRing (6.2.0)
 
 DEPENDENCIES:
   - DBDebugToolkit
@@ -22,7 +21,6 @@ DEPENDENCIES:
   - SwiftFormat/CLI
   - SwiftLint
   - SwiftyBeaver
-  - UICircularProgressRing
 
 SPEC REPOS:
   trunk:
@@ -34,7 +32,6 @@ SPEC REPOS:
     - SwiftFormat
     - SwiftLint
     - SwiftyBeaver
-    - UICircularProgressRing
 
 SPEC CHECKSUMS:
   DBDebugToolkit: 03eb3483da4daf03b853b83ade5a8da9c8b7aff4
@@ -45,8 +42,7 @@ SPEC CHECKSUMS:
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   SwiftyBeaver: 576177b2c5c94b3aedd5993914e91271a0524e88
-  UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
 
-PODFILE CHECKSUM: 4e863566de36638ebd4957b31a34096ea6d924ff
+PODFILE CHECKSUM: aaa44e7abceaef2d4ae15d9cb45fc87e03f85e0f
 
 COCOAPODS: 1.10.1
