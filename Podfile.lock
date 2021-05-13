@@ -10,7 +10,7 @@ PODS:
   - SDWebImage/Core (5.9.1)
   - SwiftFormat/CLI (0.40.9)
   - SwiftLint (0.32.0)
-  - SwiftyBeaver (1.7.0)
+  - SwiftyBeaver (1.9.4)
   - UICircularProgressRing (6.2.0)
 
 DEPENDENCIES:
@@ -44,7 +44,7 @@ SPEC CHECKSUMS:
   SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
-  SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
+  SwiftyBeaver: 576177b2c5c94b3aedd5993914e91271a0524e88
   UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
 
 PODFILE CHECKSUM: 2588d4e56923eb871c0395db08c2ee0058acfefa
