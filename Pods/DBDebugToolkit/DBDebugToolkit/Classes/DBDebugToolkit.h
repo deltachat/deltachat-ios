@@ -86,9 +86,19 @@
 + (void)clearCookies;
 
 /**
+ Returns the menu view controller.
+ */
++ (UIViewController*)menuViewController;
+
+/**
  Shows the menu.
  */
 + (void)showMenu;
+
+/**
+ Closes the menu.
+ */
++ (void)closeMenu;
 
 /**
  Shows the performance widget.

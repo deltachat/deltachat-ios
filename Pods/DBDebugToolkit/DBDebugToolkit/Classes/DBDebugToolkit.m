@@ -369,6 +369,13 @@ static NSString *const DBDebugToolkitObserverPresentationControllerPropertyKeyPa
     }
 }
 
++ (void)closeMenu {
+    DBDebugToolkit *toolkit = [DBDebugToolkit sharedInstance];
+    if (toolkit.showsMenu) {
+        [toolkit closeMenu];
+    }
+}
+
 + (void)showPerformanceWidget {
     DBDebugToolkit *toolkit = [DBDebugToolkit sharedInstance];
     DBPerformanceToolkit *performanceToolkit = toolkit.performanceToolkit;
@@ -381,6 +388,10 @@ static NSString *const DBDebugToolkitObserverPresentationControllerPropertyKeyPa
     if (userInterfaceToolkit.isDebuggingInformationOverlayAvailable) {
         [userInterfaceToolkit showDebuggingInformationOverlay];
     }
+}
+
++ (UIViewController *)menuViewController {
+    return [DBDebugToolkit sharedInstance].menuViewController;
 }
 
 #pragma mark - Showing menu
@@ -398,6 +409,13 @@ static NSString *const DBDebugToolkitObserverPresentationControllerPropertyKeyPa
                                                       forKeyPath:DBDebugToolkitObserverPresentationControllerPropertyKeyPath
                                                          options:0
                                                          context:nil];
+    }];
+}
+
+- (void)closeMenu {
+    UIViewController *presentingViewController = self.menuViewController.navigationController.presentingViewController;
+    [presentingViewController dismissViewControllerAnimated:YES completion:^{
+        self.showsMenu = NO;
     }];
 }
 
@@ -468,10 +486,7 @@ static NSString *const DBDebugToolkitObserverPresentationControllerPropertyKeyPa
 #pragma mark - DBMenuTableViewControllerDelegate
 
 - (void)menuTableViewControllerDidTapClose:(DBMenuTableViewController *)menuTableViewController {
-    UIViewController *presentingViewController = self.menuViewController.navigationController.presentingViewController;
-    [presentingViewController dismissViewControllerAnimated:YES completion:^{
-        self.showsMenu = NO;
-    }];
+    [self closeMenu];
 }
 
 #pragma mark - DBPerformanceWidgetViewDelegate 
