@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_deltachat_ios_DcShareVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_deltachat_ios_DcShareVersionString[];
+FOUNDATION_EXPORT double Pods_DcShareVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_DcShareVersionString[];
 
