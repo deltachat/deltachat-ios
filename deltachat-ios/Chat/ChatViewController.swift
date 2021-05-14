@@ -283,9 +283,11 @@ class ChatViewController: UITableViewController {
             timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
                 //reload table
                 DispatchQueue.main.async {
-                    guard let self = self else { return }
-                    self.messageIds = self.getMessageIds()
-                    self.reloadData()
+                    guard let self = self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    if appDelegate.appIsInForeground() {
+                        self.messageIds = self.getMessageIds()
+                        self.reloadData()
+                    }
                 }
             }
         }

@@ -202,6 +202,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
                 self.dcContext.stopIo()
+
+                // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
+                // we increase the probabilty that this happens by waiting a moment before calling unregisterBackgroundTask()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), done")
                     self.unregisterBackgroundTask()
@@ -382,7 +385,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if !self.appIsInForeground() {
                 self.dcContext.stopIo()
             }
-            completionHandler(.newData)
+
+            // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
+            // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                logger.info("⬅️ fetch done")
+                completionHandler(.newData)
+            }
         }
     }
 
@@ -508,7 +517,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_FORWARDED, localizationKey: "forwarded")
     }
 
-    private func appIsInForeground() -> Bool {
+    func appIsInForeground() -> Bool {
         switch UIApplication.shared.applicationState {
         case .background, .inactive:
             return false
