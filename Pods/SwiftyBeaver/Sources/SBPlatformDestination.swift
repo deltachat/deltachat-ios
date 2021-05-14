@@ -9,6 +9,10 @@
 
 import Foundation
 
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
 // platform-dependent import frameworks to get device details
 // valid values for os(): OSX, iOS, watchOS, tvOS, Linux
 // in Swift 3 the following were added: FreeBSD, Windows, Android
@@ -305,10 +309,14 @@ public class SBPlatformDestination: BaseDestination {
 
             // POST parameters
             let params = ["payload": payload]
-            do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
-            } catch {
-                toNSLog("Error! Could not create JSON for server payload.")
+            if(JSONSerialization.isValidJSONObject(params)){
+                do {
+                    request.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
+                } catch {
+                    toNSLog("Error! Could not create JSON for server payload.")
+                    return complete(false, 0)
+                }
+            }else{
                 return complete(false, 0)
             }
             toNSLog("sending params: \(params)")
@@ -406,7 +414,7 @@ public class SBPlatformDestination: BaseDestination {
     }
 
     /// returns optional array of log dicts from a file which has 1 json string per line
-    func logsFromFile(_ url: URL) -> [[String:Any]]? {
+    func logsFromFile(_ url: URL) -> [[String: Any]]? {
         var lines = 0
         do {
             // try to read file, decode every JSON line and put dict from each line in array
@@ -420,7 +428,7 @@ public class SBPlatformDestination: BaseDestination {
                     if let data = lineJSON.data(using: .utf8) {
                         do {
                             if let dict = try JSONSerialization.jsonObject(with: data,
-                                options: .mutableContainers) as? [String:Any] {
+                                options: .mutableContainers) as? [String: Any] {
                                 if !dict.isEmpty {
                                     dicts.append(dict)
                                 }
@@ -470,10 +478,9 @@ public class SBPlatformDestination: BaseDestination {
         osVersionStr += "." + String(osVersion.minorVersion)
         osVersionStr += "." + String(osVersion.patchVersion)
         details["osVersion"] = osVersionStr
-        details["hostName"] = ProcessInfo.processInfo.hostName
         details["deviceName"] = ""
         details["deviceModel"] = ""
-
+        details["hostName"] = ""
         if DEVICE_NAME != "" {
             details["deviceName"] = DEVICE_NAME
         }
@@ -484,7 +491,7 @@ public class SBPlatformDestination: BaseDestination {
     }
 
     /// returns (updated) analytics dict, optionally loaded from file.
-    func analytics(_ url: URL, update: Bool = false) -> [String:Any] {
+    func analytics(_ url: URL, update: Bool = false) -> [String: Any] {
 
         var dict = [String: Any]()
         let now = NSDate().timeIntervalSince1970
@@ -560,12 +567,12 @@ public class SBPlatformDestination: BaseDestination {
     }
 
     /// returns optional dict from a json encoded file
-    func dictFromFile(_ url: URL) -> [String:Any]? {
+    func dictFromFile(_ url: URL) -> [String: Any]? {
         do {
             let fileContent = try String(contentsOfFile: url.path, encoding: .utf8)
             if let data = fileContent.data(using: .utf8) {
                 return try JSONSerialization.jsonObject(with: data,
-                                    options: .mutableContainers) as? [String:Any]
+                                    options: .mutableContainers) as? [String: Any]
             }
         } catch {
             toNSLog("SwiftyBeaver Platform Destination could not read file \(url)")

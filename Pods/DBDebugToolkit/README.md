@@ -5,7 +5,6 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/DBDebugToolkit.svg?style=flat)](http://cocoapods.org/pods/DBDebugToolkit)
 [![Platform](https://img.shields.io/cocoapods/p/DBDebugToolkit.svg?style=flat)](http://cocoapods.org/pods/DBDebugToolkit)
-[![Twitter: @darekbukowski](https://img.shields.io/badge/contact-@darekbukowski-blue.svg?style=flat)](https://twitter.com/darekbukowski)
 
 DBDebugToolkit is a debugging library written in Objective-C. It is meant to provide as many easily accessible tools as possible while keeping the integration process seamless.
 
@@ -191,13 +190,15 @@ The setup with a separate target for App Store releases will help you prevent se
 
 To integrate DBDebugToolkit into your Xcode project using Carthage, specify it in your Cartfile:
 ```ruby
-github "dbukowski/DBDebugToolkit" ~> 0.5.0
+github "dbukowski/DBDebugToolkit" ~> 0.6.0
 ```
 Run carthage update to build the framework and drag the built DBDebugToolkit.framework into your Xcode project.
 
 ## Author
 
-Dariusz Bukowski, dariusz.m.bukowski@gmail.com
+Maintained by Marian Sobczyk, marian.sobczyk@gmail.com
+
+Created by Dariusz Bukowski, dariusz.m.bukowski@gmail.com
 
 ## License
 

@@ -1,17 +1,16 @@
 PODS:
-  - DBDebugToolkit (0.5.0)
+  - DBDebugToolkit (0.6.0)
   - InputBarAccessoryView (4.3.1):
     - InputBarAccessoryView/Core (= 4.3.1)
   - InputBarAccessoryView/Core (4.3.1)
   - ReachabilitySwift (4.3.1)
   - SCSiriWaveformView (1.1.1)
-  - SDWebImage (5.9.1):
-    - SDWebImage/Core (= 5.9.1)
-  - SDWebImage/Core (5.9.1)
+  - SDWebImage (5.9.5):
+    - SDWebImage/Core (= 5.9.5)
+  - SDWebImage/Core (5.9.5)
   - SwiftFormat/CLI (0.40.9)
-  - SwiftLint (0.32.0)
-  - SwiftyBeaver (1.7.0)
-  - UICircularProgressRing (6.2.0)
+  - SwiftLint (0.43.1)
+  - SwiftyBeaver (1.9.4)
 
 DEPENDENCIES:
   - DBDebugToolkit
@@ -22,7 +21,6 @@ DEPENDENCIES:
   - SwiftFormat/CLI
   - SwiftLint
   - SwiftyBeaver
-  - UICircularProgressRing
 
 SPEC REPOS:
   trunk:
@@ -34,19 +32,17 @@ SPEC REPOS:
     - SwiftFormat
     - SwiftLint
     - SwiftyBeaver
-    - UICircularProgressRing
 
 SPEC CHECKSUMS:
-  DBDebugToolkit: c04bb6f618051d3de447a4b4323f37826116cfed
+  DBDebugToolkit: 03eb3483da4daf03b853b83ade5a8da9c8b7aff4
   InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
-  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
+  SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
-  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
-  SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
-  UICircularProgressRing: 0ff679b05a17f15ad6301a7886686837b8c301a9
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  SwiftyBeaver: 576177b2c5c94b3aedd5993914e91271a0524e88
 
-PODFILE CHECKSUM: 2588d4e56923eb871c0395db08c2ee0058acfefa
+PODFILE CHECKSUM: aaa44e7abceaef2d4ae15d9cb45fc87e03f85e0f
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
