@@ -442,13 +442,13 @@ class ChatListController: UITableViewController {
 
     private func deleteChat(chatId: Int, animated: Bool) {
         if !animated {
-            _ = viewModel.deleteChat(chatId: chatId)
+            viewModel.deleteChat(chatId: chatId)
             refreshInBg()
             return
         }
 
         if viewModel.searchActive {
-            _ = viewModel.deleteChat(chatId: chatId)
+            viewModel.deleteChat(chatId: chatId)
             viewModel.refreshData()
             viewModel.updateSearchResults(for: searchController)
             return
