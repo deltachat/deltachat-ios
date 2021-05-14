@@ -372,7 +372,11 @@ class ChatListController: UITableViewController {
         // check if the timer is not yet started
         stopTimer()
         timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-            guard let self = self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            
+            guard let self = self,
+                  let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            else { return }
+            
             if appDelegate.appIsInForeground() {
                 self.refreshInBg()
             } else {
