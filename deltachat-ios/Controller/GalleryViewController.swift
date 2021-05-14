@@ -305,17 +305,17 @@ private extension GalleryViewController {
         let msgId = mediaMessageIds[indexPath.row]
 
         guard
-            let chatViewController = navigationController?.viewControllers.filter ({ $0 is ChatViewController}).first as? ChatViewController,
+            let chatViewController = navigationController?.viewControllers.filter({ $0 is ChatViewController}).first as? ChatViewController,
             let chatListController = navigationController?.viewControllers.filter({ $0 is ChatListController}).first as? ChatListController
         else {
-            safe_fatalError("failt to retrieve chatViewController, chatListController in navigation stack")
+            safe_fatalError("failed to retrieve chatViewController, chatListController in navigation stack")
             return
         }
         self.navigationController?.viewControllers.remove(at: 1)
 
+        chatViewController.highlightedMsg = msgId
         self.navigationController?.pushViewController(chatViewController, animated: true)
         self.navigationController?.setViewControllers([chatListController, chatViewController], animated: false)
-        chatViewController.scrollToMessage(msgId: msgId)
     }
 }
 
