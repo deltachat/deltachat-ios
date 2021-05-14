@@ -295,9 +295,7 @@ class ChatViewController: UITableViewController {
 
     private func stopTimer() {
         if let timer = timer {
-            if timer.isValid {
-                timer.invalidate()
-            }
+            timer.invalidate()
         }
         timer = nil
     }
