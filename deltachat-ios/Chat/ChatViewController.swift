@@ -286,6 +286,8 @@ class ChatViewController: UITableViewController {
                 if appDelegate.appIsInForeground() {
                     self.messageIds = self.getMessageIds()
                     self.reloadData()
+                } else {
+                    logger.warning("startTimer() must not be executed in background")
                 }
             }
         }
