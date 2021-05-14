@@ -43,8 +43,8 @@ function_parameter_count:
   error: 8
 
 file_length:
-  warning: 1000
-  error: 1500
+  warning: 2000
+  error: 3000
   ignore_comment_only_lines: true
 
 cyclomatic_complexity:
