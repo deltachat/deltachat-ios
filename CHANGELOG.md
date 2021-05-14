@@ -1,5 +1,14 @@
 # Delta Chat iOS Changelog
 
+## 1.20.3
+2021-05
+
+* fix "show in chat" function in profile's gallery and document views
+* fix: less 0xdead10cc exceptions in background
+* update dependecies
+* update translations
+
+
 ## 1.20.2
 2021-05
 
