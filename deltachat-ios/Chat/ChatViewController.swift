@@ -279,7 +279,7 @@ class ChatViewController: UITableViewController {
 
     private func startTimer() {
         stopTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
             // reload table
             DispatchQueue.main.async { [weak self] in
                 guard let self = self,
