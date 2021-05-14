@@ -669,6 +669,7 @@
 "message_detail_from_desktop" = "差出人";
 "message_detail_to_desktop" = "宛先";
 "menu.view.developer.open.log.folder" = "ログフォルダを開く";
+"menu.view.developer.open.current.log.file" = "現在のログファイルを開く";
 "user_location_permission_explanation" = "Delta Chatは位置情報を共有出来る様にする為権限が必要です";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
