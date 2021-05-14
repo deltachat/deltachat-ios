@@ -748,7 +748,7 @@ class ChatViewController: UITableViewController {
         self.showEmptyStateView(self.messageIds.isEmpty)
     }
 
-    func reloadData() {
+    private func reloadData() {
         let selectredRows = tableView.indexPathsForSelectedRows
         tableView.reloadData()
         // There's an iOS bug, filling up the console output but which can be ignored: https://developer.apple.com/forums/thread/668295
@@ -767,14 +767,14 @@ class ChatViewController: UITableViewController {
         self.reloadData()
     }
 
-    func isLastRowVisible() -> Bool {
+    private func isLastRowVisible() -> Bool {
         guard !messageIds.isEmpty else { return false }
 
         let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
         return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
     }
 
-    func scrollToBottom(animated: Bool) {
+    private func scrollToBottom(animated: Bool) {
         if !messageIds.isEmpty {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -786,7 +786,7 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    func scrollToMessage(msgId: Int, animated: Bool = true) {
+    private func scrollToMessage(msgId: Int, animated: Bool = true) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             guard let index = self.messageIds.firstIndex(of: msgId) else {
@@ -855,7 +855,7 @@ class ChatViewController: UITableViewController {
         configureInputBarItems()
     }
 
-    func evaluateInputBar(draft: DraftModel) {
+    private func evaluateInputBar(draft: DraftModel) {
         messageInputBar.sendButton.isEnabled = draft.canSend()
     }
 
