@@ -517,7 +517,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_FORWARDED, localizationKey: "forwarded")
     }
 
-    private func appIsInForeground() -> Bool {
+    func appIsInForeground() -> Bool {
         switch UIApplication.shared.applicationState {
         case .background, .inactive:
             return false
