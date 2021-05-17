@@ -330,6 +330,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func deleteChat() {
         dcContext.deleteChat(chatId: chatId)
+        NotificationManager.removeNotificationsForChat(chatId: chatId)
 
         // just pop to viewControllers - we've in chatlist or archive then
         // (no not use `navigationController?` here: popping self will make the reference becoming nil)

@@ -420,6 +420,7 @@ class ContactDetailViewController: UITableViewController {
             return
         }
         viewModel.context.deleteChat(chatId: viewModel.chatId)
+        NotificationManager.removeNotificationsForChat(chatId: viewModel.chatId)
 
         // just pop to viewControllers - we've in chatlist or archive then
         // (no not use `navigationController?` here: popping self will make the reference becoming nil)
