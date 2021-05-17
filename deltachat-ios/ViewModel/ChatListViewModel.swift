@@ -196,7 +196,7 @@ class ChatListViewModel: NSObject {
 
 private extension ChatListViewModel {
 
-    /// MARK: - avatarCellViewModel factory
+    // MARK: - avatarCellViewModel factory
     func makeChatCellViewModel(index: Int, searchText: String) -> AvatarCellViewModel {
 
         let list: DcChatlist = searchResultChatList ?? chatList
