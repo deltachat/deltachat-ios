@@ -255,6 +255,9 @@ class GroupChatDetailViewController: UIViewController {
 
     private func toggleArchiveChat() {
         let archivedBefore = chat.isArchived
+        if (!archivedBefore) {
+            NotificationManager.removeNotificationsForChat(chatId: chatId)
+        }
         dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
         if archivedBefore {
             archiveChatCell.actionTitle = String.localized("menu_archive_chat")

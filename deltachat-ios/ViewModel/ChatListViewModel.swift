@@ -182,7 +182,11 @@ class ChatListViewModel: NSObject {
 
     func archiveChatToggle(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
-        dcContext.archiveChat(chatId: chatId, archive: !chat.isArchived)
+        let isArchivedBefore = chat.isArchived
+        if (!isArchivedBefore) {
+            NotificationManager.removeNotificationsForChat(chatId: chatId)
+        }
+        dcContext.archiveChat(chatId: chatId, archive: !isArchivedBefore)
         updateChatList(notifyListener: false)
     }
 

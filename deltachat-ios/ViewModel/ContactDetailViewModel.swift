@@ -164,7 +164,11 @@ class ContactDetailViewModel {
             safe_fatalError("there is no chatId - you are probably are calling this from ContactDetail - this should be only called from ChatDetail")
             return false
         }
-        context.archiveChat(chatId: chatId, archive: !chatIsArchived)
+        let isArchivedBefore = chatIsArchived
+        if !isArchivedBefore {
+            NotificationManager.removeNotificationsForChat(chatId: chatId)
+        }
+        context.archiveChat(chatId: chatId, archive: !isArchivedBefore)
         return chatIsArchived
     }
 }
