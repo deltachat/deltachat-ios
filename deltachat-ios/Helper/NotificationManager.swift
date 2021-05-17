@@ -7,6 +7,8 @@ public class NotificationManager {
     
     var incomingMsgObserver: NSObjectProtocol?
     var msgsNoticedObserver: NSObjectProtocol?
+    private var notificationBackgroundTasks = [Int: UIBackgroundTaskIdentifier]()
+
 
     init() {
         initIncomingMsgsObserver()
@@ -37,13 +39,31 @@ public class NotificationManager {
             NotificationManager.updateApplicationIconBadge(reset: false)
         }
     }
+    
+    private func unregisterNotificationBackgroundTask(msgId: Int) {
+        let backgroundTask = notificationBackgroundTasks[msgId]
+        if let backgroundTask = backgroundTask, backgroundTask != .invalid {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            notificationBackgroundTasks.removeValue(forKey: msgId)
+            logger.info("⬅️ notification background task ended and removed: \(msgId)")
+        }
+    }
+    
+    private func registerNotificationBackgroundTask(msgId: Int) {
+        logger.info("⬅️ notification notification background task: \(msgId)")
+        let backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            logger.info("⬅️ notification background expirationHandler called")
+            self?.unregisterNotificationBackgroundTask(msgId: msgId)
+        }
+        notificationBackgroundTasks[msgId] = backgroundTask
+    }
 
     private func initIncomingMsgsObserver() {
         incomingMsgObserver = NotificationCenter.default.addObserver(
             forName: dcNotificationIncoming,
             object: nil, queue: OperationQueue.main
         ) { notification in
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global(qos: .background).async { [weak self] in
                 if let ui = notification.userInfo,
                    let chatId = ui["chat_id"] as? Int,
                    let messageId = ui["message_id"] as? Int,
@@ -55,7 +75,8 @@ public class NotificationManager {
                     if chat.isMuted {
                         return
                     }
-
+                    
+                    self?.registerNotificationBackgroundTask(msgId: messageId)
                     let content = UNMutableNotificationContent()
                     let msg = DcMsg(id: messageId)
                     content.title = chat.isGroup ? chat.name : msg.getSenderName(msg.fromContact)
@@ -90,6 +111,7 @@ public class NotificationManager {
                                                         trigger: trigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                     logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
+                    self?.unregisterNotificationBackgroundTask(msgId: messageId)
                 }
             }
         }
