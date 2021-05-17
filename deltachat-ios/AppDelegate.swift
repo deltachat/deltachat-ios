@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    private var fetchBackgroundTasks = [Double: UIBackgroundTaskIdentifier]()
     var reachability = Reachability()!
     var window: UIWindow?
     var notifyToken: String?
@@ -345,6 +346,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         increaseDebugCounter("notify-local-wakeup")
         performFetch(completionHandler: completionHandler)
     }
+    
+    private func unregisterFetchBackgroundTask(timestamp: Double) {
+        let backgroundTask = fetchBackgroundTasks[timestamp]
+        if let backgroundTask = backgroundTask, backgroundTask != .invalid {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            fetchBackgroundTasks.removeValue(forKey: timestamp)
+            logger.info("⬅️ fetch background task ended and removed: \(timestamp)")
+        }
+    }
+    
+    private func registerFetchBackgroundTask(timestamp: Double) {
+        logger.info("⬅️ registering fetch background task: \(timestamp)")
+        let backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            logger.info("⬅️ fetch background expirationHandler called")
+            self?.unregisterFetchBackgroundTask(timestamp: timestamp)
+        }
+        fetchBackgroundTasks[timestamp] = backgroundTask
+    }
 
     private func performFetch(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
@@ -370,6 +389,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         bgIoTimestamp = nowTimestamp
+        registerFetchBackgroundTask(timestamp: nowTimestamp)
 
         // we're in background, run IO for a little time
         dcContext.maybeStartIo()
@@ -388,8 +408,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
                 logger.info("⬅️ fetch done")
+                self?.unregisterFetchBackgroundTask(timestamp: nowTimestamp)
                 completionHandler(.newData)
             }
         }
