@@ -453,70 +453,66 @@ public class DcContext {
     // and makes grep harder as these names are typically named following different guidelines.
 
     public var displayname: String? {
-        set { setConfig("displayname", newValue) }
         get { return getConfig("displayname") }
+        set { setConfig("displayname", newValue) }
     }
 
     public var selfstatus: String? {
-        set { setConfig("selfstatus", newValue) }
         get { return getConfig("selfstatus") }
+        set { setConfig("selfstatus", newValue) }
     }
 
     public var selfavatar: String? {
-        set { setConfig("selfavatar", newValue) }
         get { return getConfig("selfavatar") }
+        set { setConfig("selfavatar", newValue) }
     }
 
     public var addr: String? {
-        set { setConfig("addr", newValue) }
         get { return getConfig("addr") }
+        set { setConfig("addr", newValue) }
     }
 
     public var mailServer: String? {
-        set { setConfig("mail_server", newValue) }
         get { return getConfig("mail_server") }
+        set { setConfig("mail_server", newValue) }
     }
 
     public var mailUser: String? {
-        set { setConfig("mail_user", newValue) }
         get { return getConfig("mail_user") }
+        set { setConfig("mail_user", newValue) }
     }
 
     public var mailPw: String? {
-        set { setConfig("mail_pw", newValue) }
         get { return getConfig("mail_pw") }
+        set { setConfig("mail_pw", newValue) }
     }
 
     public var mailPort: String? {
-        set { setConfig("mail_port", newValue) }
         get { return getConfig("mail_port") }
+        set { setConfig("mail_port", newValue) }
     }
 
     public var sendServer: String? {
-        set { setConfig("send_server", newValue) }
         get { return getConfig("send_server") }
+        set { setConfig("send_server", newValue) }
     }
 
     public var sendUser: String? {
-        set { setConfig("send_user", newValue) }
         get { return getConfig("send_user") }
+        set { setConfig("send_user", newValue) }
     }
 
     public var sendPw: String? {
-        set { setConfig("send_pw", newValue) }
         get { return getConfig("send_pw") }
+        set { setConfig("send_pw", newValue) }
     }
 
     public var sendPort: String? {
-        set { setConfig("send_port", newValue) }
         get { return getConfig("send_port") }
+        set { setConfig("send_port", newValue) }
     }
 
     public var certificateChecks: Int {
-        set {
-            setConfig("smtp_certificate_checks", "\(newValue)")
-            setConfig("imap_certificate_checks", "\(newValue)")
-        }
         get {
             if let str = getConfig("imap_certificate_checks") {
                 return Int(str) ?? 0
@@ -524,19 +520,23 @@ public class DcContext {
                 return 0
             }
         }
+        set {
+            setConfig("smtp_certificate_checks", "\(newValue)")
+            setConfig("imap_certificate_checks", "\(newValue)")
+        }
     }
 
     private var serverFlags: Int {
         // IMAP-/SMTP-flags as a combination of DC_LP flags
-        set {
-            setConfig("server_flags", "\(newValue)")
-        }
         get {
             if let str = getConfig("server_flags") {
                 return Int(str) ?? 0
             } else {
                 return 0
             }
+        }
+        set {
+            setConfig("server_flags", "\(newValue)")
         }
     }
 
@@ -554,19 +554,19 @@ public class DcContext {
     }
 
     public var e2eeEnabled: Bool {
-        set { setConfigBool("e2ee_enabled", newValue) }
         get { return getConfigBool("e2ee_enabled") }
+        set { setConfigBool("e2ee_enabled", newValue) }
     }
 
     public var mdnsEnabled: Bool {
-        set { setConfigBool("mdns_enabled", newValue) }
         get { return getConfigBool("mdns_enabled") }
+        set { setConfigBool("mdns_enabled", newValue) }
     }
 
     public var showEmails: Int {
         // one of DC_SHOW_EMAILS_*
-        set { setConfigInt("show_emails", newValue) }
         get { return getConfigInt("show_emails") }
+        set { setConfigInt("show_emails", newValue) }
     }
 
     // do not use. use DcContext::isConfigured() instead
@@ -868,18 +868,18 @@ public class DcMsg {
     }
 
     public var text: String? {
+        get {
+            guard let cString = dc_msg_get_text(messagePointer) else { return nil }
+            let swiftString = String(cString: cString)
+            dc_str_unref(cString)
+            return swiftString
+        }
         set {
             if let newValue = newValue {
                 dc_msg_set_text(messagePointer, newValue.cString(using: .utf8))
             } else {
                 dc_msg_set_text(messagePointer, nil)
             }
-        }
-        get {
-            guard let cString = dc_msg_get_text(messagePointer) else { return nil }
-            let swiftString = String(cString: cString)
-            dc_str_unref(cString)
-            return swiftString
         }
     }
 
