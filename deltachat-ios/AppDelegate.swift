@@ -372,38 +372,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         bgIoTimestamp = nowTimestamp
 
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
+        let fetchSemaphore = DispatchSemaphore(value: 0)
         let backgroundTask = UIApplication.shared.beginBackgroundTask {
-            // TODO: currently, this should be okay, we are not using too much background time,
-            // so that handler should never be called.
-            // the plan is to listen to an event as DC_EVENT_ENTER_IDLE and stop fetch from there.
-            // if we have such an event, we could imprive this handler and fire the event.
-            logger.info("fetch background task will end soon")
+            // we do not call `endBackgroundTask` here, even if that results in a warning:
+            // if we would do, we would risk a 0xdead10cc exception as things are still running;
+            // therefore we just signal the task below to exit gracefully and call `endBackgroundTask` from there.
+            // in practise, this handler should not be called anyway as we take care to stay below the 30 seconds.
+            logger.info("⬅️ background task handler called, finishing fetch")
+            fetchSemaphore.signal()
         }
 
         // we're in background, run IO for a little time
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
-            logger.info("⬅️ finishing fetch")
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            logger.info("➡️ fetching")
+            _ = fetchSemaphore.wait(timeout: .now() + 1000)
 
-            guard let self = self else {
-                completionHandler(.failed)
-                return
-            }
-            if !self.appIsInForeground() {
-                self.dcContext.stopIo()
-            }
+            DispatchQueue.main.async { [weak self] in
+                logger.info("⬅️ finishing fetch")
+                guard let self = self else {
+                    completionHandler(.failed)
+                    return
+                }
+                if !self.appIsInForeground() {
+                    self.dcContext.stopIo()
+                }
 
-            // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
-            // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                logger.info("⬅️ fetch done")
-                completionHandler(.newData)
+                // stopIo() may result in events spanning their own backgroundTask.
+                // a gap between these tasks and this one may result in 0xdead10cc exceptions;
+                // therefore, we wait a little moment.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    logger.info("⬅️ fetch done")
+                    completionHandler(.newData)
 
-                // this line should always be reached after a background task is started
-                // and balances the call to `beginBackgroundTask` above.
-                UIApplication.shared.endBackgroundTask(backgroundTask)
+                    // this line should always be reached after a background task is started
+                    // and balances the call to `beginBackgroundTask` above.
+                    UIApplication.shared.endBackgroundTask(backgroundTask)
+                }
             }
         }
     }
