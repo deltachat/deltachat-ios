@@ -255,6 +255,9 @@ class GroupChatDetailViewController: UIViewController {
 
     private func toggleArchiveChat() {
         let archivedBefore = chat.isArchived
+        if (!archivedBefore) {
+            NotificationManager.removeNotificationsForChat(chatId: chatId)
+        }
         dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
         if archivedBefore {
             archiveChatCell.actionTitle = String.localized("menu_archive_chat")
@@ -327,6 +330,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func deleteChat() {
         dcContext.deleteChat(chatId: chatId)
+        NotificationManager.removeNotificationsForChat(chatId: chatId)
 
         // just pop to viewControllers - we've in chatlist or archive then
         // (no not use `navigationController?` here: popping self will make the reference becoming nil)
