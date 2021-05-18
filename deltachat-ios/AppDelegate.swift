@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    private var fetchBackgroundTask: UIBackgroundTaskIdentifier = .invalid
+    private var fetchBackgroundTaskEnding = false
     var reachability = Reachability()!
     var window: UIWindow?
     var notifyToken: String?
@@ -360,6 +362,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //
         // therefore, if last fetch is less than a minute ago, we skip this call;
         // this also lets the completionHandler being called earlier so that we maybe get awakened when it makes more sense.
+        // moreover, this ensures every competionHandler belongs to one backgroundTask.
         //
         // nb: calling the completion handler with .noData results in less calls overall.
         // if at some point we do per-message-push-notifications, we need to tweak this gate.
@@ -372,12 +375,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         bgIoTimestamp = nowTimestamp
 
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
-        let backgroundTask = UIApplication.shared.beginBackgroundTask {
-            // TODO: currently, this should be okay, we are not using too much background time,
-            // so that handler should never be called.
-            // the plan is to listen to an event as DC_EVENT_ENTER_IDLE and stop fetch from there.
-            // if we have such an event, we could imprive this handler and fire the event.
-            logger.info("fetch background task will end soon")
+        fetchBackgroundTaskEnding = false
+        unregisterFetchBackgroundTask()
+        fetchBackgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            logger.info("⬅️ background task handler called, finishing fetch")
+            self?.endFetch(completionHandler: completionHandler)
         }
 
         // we're in background, run IO for a little time
@@ -386,25 +388,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
             logger.info("⬅️ finishing fetch")
+            self?.endFetch(completionHandler: completionHandler)
+        }
+    }
 
+    private func endFetch(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if fetchBackgroundTaskEnding {
+            logger.info("⬅️ fetch already ending")
+            return
+        }
+        fetchBackgroundTaskEnding = true
+
+        if !self.appIsInForeground() {
+            self.dcContext.stopIo()
+        }
+
+        // stopIo() may result in events spanning their own backgroundTask.
+        // a gap between these tasks and this one may result in 0xdead10cc exceptions;
+        // therefore, we wait a little moment.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
             guard let self = self else {
+                logger.info("⬅️ fetch done, self lost")
                 completionHandler(.failed)
                 return
             }
-            if !self.appIsInForeground() {
-                self.dcContext.stopIo()
-            }
 
-            // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
-            // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                logger.info("⬅️ fetch done")
-                completionHandler(.newData)
+            logger.info("⬅️ fetch done")
+            completionHandler(.newData)
+            self.unregisterFetchBackgroundTask()
+        }
+    }
 
-                // this line should always be reached after a background task is started
-                // and balances the call to `beginBackgroundTask` above.
-                UIApplication.shared.endBackgroundTask(backgroundTask)
-            }
+    private func unregisterFetchBackgroundTask() {
+        if fetchBackgroundTask != .invalid {
+            UIApplication.shared.endBackgroundTask(fetchBackgroundTask)
+            fetchBackgroundTask = .invalid
         }
     }
 
