@@ -178,6 +178,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func registerBackgroundTask() {
         logger.info("⬅️ registering background task")
         bgIoTimestamp = Double(Date().timeIntervalSince1970)
+        unregisterBackgroundTask()
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, the background thread is finished before in maybeStop()
             logger.info("⬅️ background expirationHandler called")
