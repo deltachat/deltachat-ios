@@ -371,6 +371,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         bgIoTimestamp = nowTimestamp
 
+        // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
+        let backgroundTask = UIApplication.shared.beginBackgroundTask {
+            // TODO: currently, this should be okay, we are not using too much background time,
+            // so that handler should never be called.
+            // the plan is to listen to an event as DC_EVENT_ENTER_IDLE and stop fetch from there.
+            // if we have such an event, we could imprive this handler and fire the event.
+            logger.info("fetch background task will end soon")
+        }
+
         // we're in background, run IO for a little time
         dcContext.maybeStartIo()
         dcContext.maybeNetwork()
@@ -388,9 +397,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 logger.info("⬅️ fetch done")
                 completionHandler(.newData)
+
+                // this line should always be reached after a background task is started
+                // and balances the call to `beginBackgroundTask` above.
+                UIApplication.shared.endBackgroundTask(backgroundTask)
             }
         }
     }
