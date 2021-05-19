@@ -49,7 +49,8 @@ class QrCodeReaderController: UIViewController {
                 if granted {
                     self.setupQRCodeScanner()
                 } else {
-                    self.setInfoWarning(text: "You need to give Delta Chat the camera permission in order to use the QR-Code scanner")
+                    self.setInfoWarning()
+                    self.showPermissionAlert()
                 }
             })
         }
@@ -81,7 +82,7 @@ class QrCodeReaderController: UIViewController {
             deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
             mediaType: .video,
             position: .back).devices.first else {
-            self.setInfoWarning(text: "Failed to get the camera device. It might be occupied by another app.")
+            self.setInfoWarning()
             return
         }
         do {
@@ -95,7 +96,7 @@ class QrCodeReaderController: UIViewController {
             captureMetadataOutput.metadataObjectTypes = self.supportedCodeTypes
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
-            self.setInfoWarning(text: "failed to setup QR Code Scanner: \(error)")
+            self.setInfoWarning()
             return
         }
         view.layer.addSublayer(videoPreviewLayer)
@@ -113,14 +114,29 @@ class QrCodeReaderController: UIViewController {
         view.bringSubviewToFront(infoLabel)
     }
     
-    private func setInfoWarning(text: String) {
+    private func setInfoWarning() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            let text = String.localized("chat_camera_unavailable")
             logger.error(text)
             self.infoLabel.textColor = DcColors.defaultTextColor
             self.infoLabel.text = text
             self.infoLabelBottomConstraint?.isActive = false
             self.infoLabelCenterConstraint?.isActive = true
+        }
+    }
+    
+    private func showPermissionAlert() {
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: String.localized("perm_required_title"),
+                                          message: String.localized("perm_ios_explain_access_to_camera_denied"),
+                                          preferredStyle: .alert)
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default, handler: { _ in
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)}))
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil))
+            }
+            self?.present(alert, animated: true, completion: nil)
         }
     }
     
