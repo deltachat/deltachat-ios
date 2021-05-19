@@ -49,7 +49,7 @@ class QrCodeReaderController: UIViewController {
                 if granted {
                     self.setupQRCodeScanner()
                 } else {
-                    self.setInfoWarning()
+                    self.showCameraWarning()
                     self.showPermissionAlert()
                 }
             })
@@ -82,7 +82,7 @@ class QrCodeReaderController: UIViewController {
             deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
             mediaType: .video,
             position: .back).devices.first else {
-            self.setInfoWarning()
+            self.showCameraWarning()
             return
         }
         do {
@@ -96,7 +96,7 @@ class QrCodeReaderController: UIViewController {
             captureMetadataOutput.metadataObjectTypes = self.supportedCodeTypes
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
-            self.setInfoWarning()
+            self.showCameraWarning()
             return
         }
         view.layer.addSublayer(videoPreviewLayer)
@@ -114,7 +114,7 @@ class QrCodeReaderController: UIViewController {
         view.bringSubviewToFront(infoLabel)
     }
     
-    private func setInfoWarning() {
+    private func showCameraWarning() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             let text = String.localized("chat_camera_unavailable")
