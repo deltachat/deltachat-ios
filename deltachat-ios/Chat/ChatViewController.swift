@@ -21,9 +21,9 @@ class ChatViewController: UITableViewController {
     // The VC can be dismissed by pressing back '<' or by a swipe-to-dismiss gesture.
     // The latter is cancelable and leads to viewWillAppear is called in case the gesture is cancelled
     // We need the flag to handle that special case correctly in viewWillAppear
-    var isDismissing = false
-    var isInitial = true
-    var ignoreInputBarChange = false
+    private var isDismissing = false
+    private var isInitial = true
+    private var ignoreInputBarChange = false
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
 
