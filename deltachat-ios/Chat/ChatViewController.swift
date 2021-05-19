@@ -1050,7 +1050,32 @@ class ChatViewController: UITableViewController {
     }
 
     private func showCameraViewController() {
-        mediaPicker?.showCamera()
+        if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
+            self.mediaPicker?.showCamera()
+        } else {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: {  [weak self] (granted: Bool) in
+                guard let self = self else { return }
+                if granted {
+                    self.mediaPicker?.showCamera()
+                } else {
+                    self.showCameraPermissionAlert()
+                }
+            })
+        }
+    }
+    
+    private func showCameraPermissionAlert() {
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: String.localized("perm_required_title"),
+                                          message: String.localized("perm_ios_explain_access_to_camera_denied"),
+                                          preferredStyle: .alert)
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default, handler: { _ in
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)}))
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil))
+            }
+            self?.present(alert, animated: true, completion: nil)
+        }
     }
 
     private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
