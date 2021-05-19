@@ -912,12 +912,11 @@ class ChatViewController: UITableViewController {
             .onEnabled { item in
                 UIView.animate(withDuration: 0.3, animations: {
                     item.backgroundColor = DcColors.primary
-                })
-        }.onDisabled { item in
-            UIView.animate(withDuration: 0.3, animations: {
-                item.backgroundColor = DcColors.colorDisabled
-            })
-        }
+                })}
+            .onDisabled { item in
+                UIView.animate(withDuration: 0.3, animations: {
+                    item.backgroundColor = DcColors.colorDisabled
+                })}
     }
 
     @objc private func chatProfilePressed() {
