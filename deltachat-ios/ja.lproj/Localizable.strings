@@ -451,6 +451,7 @@
 "pref_other" = "その他";
 "pref_backup" = "バックアップ";
 "pref_backup_explain" = "外部記憶装置へチャットをバックアップする";
+"pref_backup_export_explain" = "バックアップは、本デバイスまたは別のデバイスに新たにインストールする際に役立ちます。\n\nこのバックアップには、すべてのメッセージ、連絡先、チャット、およびエンドツーエンドの自動暗号化設定が含まれます。バックアップファイルは安全な場所に保管するか、できるだけ早く削除してください。";
 "pref_backup_export_start_button" = "バックアップを開始する";
 "pref_backup_written_to_x" = "バックアップは%1$@に正常に完了しました。";
 "pref_managekeys_menu_title" = "暗号鍵の管理";
@@ -473,6 +474,7 @@
 "pref_show_emails_accepted_contacts" = "許可されたユーザーのみ";
 "pref_show_emails_all" = "全部";
 "pref_experimental_features" = "実験的な機能";
+"pref_on_demand_location_streaming" = "オンデマンドの位置情報配信";
 "pref_background_default" = "デフォルトの壁紙";
 "pref_background_default_color" = "デフォルト色";
 "pref_background_custom_image" = "画像";

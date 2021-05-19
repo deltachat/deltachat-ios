@@ -87,6 +87,7 @@
 "verified_contact" = "Patvirtintas adresatas";
 "camera" = "Kamera";
 "switch_camera" = "Perjungti kamerą";
+"toggle_fullscreen" = "Perjungti viso ekrano veikseną";
 "location" = "Vieta";
 "gallery" = "Galerija";
 "images_and_videos" = "Paveikslai ir vaizdo įrašai";
@@ -163,6 +164,7 @@
 "menu_scroll_to_bottom" = "Slinkti į apačią";
 "menu_scroll_to_top" = "Slinkti į viršų";
 "menu_help" = "Žinynas";
+"privacy_policy" = "Privatumo politika";
 "menu_select_all" = "Žymėti viską";
 "menu_expand" = "Išplėsti";
 "menu_edit_name" = "Taisyti vardą";
@@ -418,6 +420,7 @@
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
 "export_aborted" = "Eksportavimas nutrauktas.";
+"emoji_recent" = "Paskiausi";
 "emoji_people" = "Žmonės ir kūnas";
 "emoji_nature" = "Gyvūnai ir gamta";
 "emoji_foods" = "Maistas ir gėrimai";
@@ -511,6 +514,7 @@
 "qrscan_contains_url" = "Nuskenuoto QR kodo URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Kontrolinis kodas";
 "qrshow_title" = "QR pakvietimo kodas";
+"qrshow_x_verified" = "%1$@ patvirtintas.";
 "qrshow_x_has_joined_group" = "%1$@ prisijungė prie grupės.";
 "qrshow_join_group_title" = "QR pakvietimo kodas";
 "qrshow_join_group_hint" = "Nuskenuokite tai, norėdami prisijungti prie \"%1$@\" grupės.";
@@ -519,6 +523,7 @@
 "qrshow_join_contact_no_connection_hint" = "QR kodo sąranka reikalauja interneto ryšio. Prieš tęsdami, prisijunkite prie tinklo.";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
 "qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
+"contact_verified" = "%1$@ patvirtintas.";
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Pakeista sąranka, skirta %1$@.";
