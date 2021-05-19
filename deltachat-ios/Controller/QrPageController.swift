@@ -89,7 +89,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
         } else {
             let qrCodeReaderController = makeQRReader()
             self.qrCodeReaderController = qrCodeReaderController
-            setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
+            setViewControllers([qrCodeReaderController], direction: .forward, animated: false, completion: nil)
         }
     }
 
