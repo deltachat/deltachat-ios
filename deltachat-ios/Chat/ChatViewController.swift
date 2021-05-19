@@ -620,6 +620,7 @@ class ChatViewController: UITableViewController {
 
         let action = UIContextualAction(style: .normal, title: nil,
                                         handler: { [weak self] (_, _, completionHandler) in
+                                            self?.keepKeyboard = true
                                             self?.replyToMessage(at: indexPath)
                                             completionHandler(true)
                                         })
