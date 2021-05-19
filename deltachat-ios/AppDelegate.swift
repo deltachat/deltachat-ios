@@ -373,12 +373,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         bgIoTimestamp = nowTimestamp
 
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
-        let backgroundTask = UIApplication.shared.beginBackgroundTask {
-            // TODO: currently, this should be okay, we are not using too much background time,
-            // so that handler should never be called.
-            // the plan is to listen to an event as DC_EVENT_ENTER_IDLE and stop fetch from there.
-            // if we have such an event, we could imprive this handler and fire the event.
-            logger.info("fetch background task will end soon")
+        var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            // usually, this handler is not used as we are taking care of timings below.
+            logger.info("⬅️ finishing fetch by system urgency requests")
+            self?.dcContext.stopIo()
+            completionHandler(.newData)
+            if backgroundTask != .invalid {
+                UIApplication.shared.endBackgroundTask(backgroundTask)
+                backgroundTask = .invalid
+            }
         }
 
         // we're in background, run IO for a little time
@@ -402,9 +406,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 logger.info("⬅️ fetch done")
                 completionHandler(.newData)
 
-                // this line should always be reached after a background task is started
-                // and balances the call to `beginBackgroundTask` above.
-                UIApplication.shared.endBackgroundTask(backgroundTask)
+                if backgroundTask != .invalid {
+                    UIApplication.shared.endBackgroundTask(backgroundTask)
+                    backgroundTask = .invalid
+                }
             }
         }
     }
