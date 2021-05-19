@@ -1,5 +1,13 @@
 # Delta Chat iOS Changelog
 
+## 1.20.4
+2021-05
+
+* fix: remove notifications if the corresponding chat is archived
+* fix: less 0xdead10cc exceptions, mark background threads as such
+* update translations
+
+
 ## 1.20.3
 2021-05
 
