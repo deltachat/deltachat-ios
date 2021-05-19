@@ -1563,6 +1563,7 @@ extension ChatViewController: QLPreviewControllerDelegate {
     }
 }
 
+// MARK: - AudioControllerDelegate
 extension ChatViewController: AudioControllerDelegate {
     func onAudioPlayFailed() {
         let alert = UIAlertController(title: String.localized("error"),
