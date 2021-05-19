@@ -101,6 +101,7 @@ class QrCodeReaderController: UIViewController {
         }
         view.layer.addSublayer(videoPreviewLayer)
         videoPreviewLayer.frame = view.layer.bounds
+        view.bringSubviewToFront(infoLabel)
     }
     
     private func setupInfoLabel() {
@@ -111,7 +112,6 @@ class QrCodeReaderController: UIViewController {
         infoLabelBottomConstraint?.isActive = true
         infoLabel.constraintAlignLeadingTo(view, paddingLeading: 5).isActive = true
         infoLabel.constraintAlignTrailingTo(view, paddingTrailing: 5).isActive = true
-        view.bringSubviewToFront(infoLabel)
     }
     
     private func showCameraWarning() {
