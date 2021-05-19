@@ -388,7 +388,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         DispatchQueue.global(qos: .background).async { [weak self] in
             logger.info("➡️ fetching")
-            _ = fetchSemaphore.wait(timeout: .now() + 1000)
+            _ = fetchSemaphore.wait(timeout: .now() + 10)
 
             DispatchQueue.main.async { [weak self] in
                 logger.info("⬅️ finishing fetch")
