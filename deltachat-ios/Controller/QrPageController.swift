@@ -119,7 +119,7 @@ class QrPageController: UIPageViewController, ProgressAlertHandler {
 
     private func showChat(chatId: Int) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)
+            appDelegate.appCoordinator.showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
         }
     }
 }
