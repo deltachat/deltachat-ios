@@ -1150,12 +1150,14 @@ class ChatViewController: UITableViewController {
     }
 
     private func stageDocument(url: NSURL) {
+        keepKeyboard = true
         self.draft.setAttachment(viewType: DC_MSG_FILE, path: url.relativePath)
         self.configureDraftArea(draft: self.draft)
         self.messageInputBar.inputTextView.becomeFirstResponder()
     }
 
     private func stageVideo(url: NSURL) {
+        keepKeyboard = true
         DispatchQueue.main.async {
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
@@ -1164,6 +1166,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func stageImage(url: NSURL) {
+        keepKeyboard = true
         if url.pathExtension == "gif" {
             stageAnimatedImage(url: url)
         } else if let data = try? Data(contentsOf: url as URL),
@@ -1585,7 +1588,6 @@ extension ChatViewController: UITextViewDelegate {
             keepKeyboard = false
             return false
         }
-        
         return true
     }
 }
