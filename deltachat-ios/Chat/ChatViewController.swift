@@ -1112,12 +1112,7 @@ class ChatViewController: UITableViewController {
 
     func updateMessage(_ messageId: Int) {
         if messageIds.firstIndex(where: { $0 == messageId }) != nil {
-            markSeenMessage(id: messageId)
-            let wasLastSectionVisible = self.isLastRowVisible()
             reloadData()
-            if wasLastSectionVisible {
-                self.scrollToBottom(animated: true)
-            }
         } else {
             let msg = DcMsg(id: messageId)
             if msg.chatId == chatId {
