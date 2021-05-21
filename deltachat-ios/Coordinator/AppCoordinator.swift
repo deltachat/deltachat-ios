@@ -85,9 +85,12 @@ class AppCoordinator {
         tabBarController.selectedIndex = index
     }
 
-    func showChat(chatId: Int, msgId: Int? = nil, animated: Bool = true) {
+    func showChat(chatId: Int, msgId: Int? = nil, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
         if let rootController = self.chatsNavController.viewControllers.first as? ChatListController {
+            if clearViewControllerStack {
+                self.chatsNavController.popToRootViewController(animated: false)
+            }
             rootController.showChat(chatId: chatId, highlightedMsg: msgId, animated: animated)
         }
     }

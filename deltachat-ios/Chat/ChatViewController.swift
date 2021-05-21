@@ -1036,8 +1036,7 @@ class ChatViewController: UITableViewController {
 
     func showChat(chatId: Int) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            navigationController?.popToRootViewController(animated: false)
-            appDelegate.appCoordinator.showChat(chatId: chatId)
+            appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)
         }
     }
 
