@@ -21,10 +21,11 @@ class ChatViewController: UITableViewController {
     // The VC can be dismissed by pressing back '<' or by a swipe-to-dismiss gesture.
     // The latter is cancelable and leads to viewWillAppear is called in case the gesture is cancelled
     // We need the flag to handle that special case correctly in viewWillAppear
-    var isDismissing = false
-    var isInitial = true
-    var ignoreInputBarChange = false
+    private var isDismissing = false
+    private var isInitial = true
+    private var ignoreInputBarChange = false
     private var isVisibleToUser: Bool = false
+    private var keepKeyboard: Bool = false
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -619,6 +620,7 @@ class ChatViewController: UITableViewController {
 
         let action = UIContextualAction(style: .normal, title: nil,
                                         handler: { [weak self] (_, _, completionHandler) in
+                                            self?.keepKeyboard = true
                                             self?.replyToMessage(at: indexPath)
                                             completionHandler(true)
                                         })
@@ -858,6 +860,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.inputTextView.layer.masksToBounds = true
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
+        messageInputBar.inputTextView.delegate = self
     }
 
     private func evaluateInputBar(draft: DraftModel) {
@@ -910,12 +913,11 @@ class ChatViewController: UITableViewController {
             .onEnabled { item in
                 UIView.animate(withDuration: 0.3, animations: {
                     item.backgroundColor = DcColors.primary
-                })
-        }.onDisabled { item in
-            UIView.animate(withDuration: 0.3, animations: {
-                item.backgroundColor = DcColors.colorDisabled
-            })
-        }
+                })}
+            .onDisabled { item in
+                UIView.animate(withDuration: 0.3, animations: {
+                    item.backgroundColor = DcColors.colorDisabled
+                })}
     }
 
     @objc private func chatProfilePressed() {
@@ -1453,6 +1455,7 @@ extension ChatViewController: MediaPickerDelegate {
 // MARK: - MessageInputBarDelegate
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        keepKeyboard = true
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if let filePath = draft.attachment, let viewType = draft.viewType {
@@ -1561,6 +1564,7 @@ extension ChatViewController: QLPreviewControllerDelegate {
     }
 }
 
+// MARK: - AudioControllerDelegate
 extension ChatViewController: AudioControllerDelegate {
     func onAudioPlayFailed() {
         let alert = UIAlertController(title: String.localized("error"),
@@ -1568,5 +1572,20 @@ extension ChatViewController: AudioControllerDelegate {
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension ChatViewController: UITextViewDelegate {
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        if keepKeyboard {
+            DispatchQueue.main.async { [weak self] in
+                self?.messageInputBar.inputTextView.becomeFirstResponder()
+            }
+            keepKeyboard = false
+            return false
+        }
+        
+        return true
     }
 }
