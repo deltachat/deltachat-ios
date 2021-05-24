@@ -88,10 +88,8 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var statusCell: MultilineTextFieldCell = {
-        let cell = MultilineTextFieldCell(description: "",
-                                          multilineText: "",
-                                          placeholder: "")
+    private lazy var statusCell: MultilineLabelCell = {
+        let cell = MultilineLabelCell()
         return cell
     }()
 
