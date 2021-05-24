@@ -770,3 +770,5 @@
 "login_error_no_internet_connection" = "No internet connection, can\'t log in to your server.";
 "share_account_not_configured" = "Account is not configured.";
 "cannot_play_unsupported_file_type" = "The audio file cannot be played.";
+"perm_ios_explain_access_to_camera_denied" = "To take photos, capture videos or use the QR-Code scanner, open the system settings and enable \"Camera\".";
+"open_settings" = "Open Settings";

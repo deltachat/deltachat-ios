@@ -1,11 +1,15 @@
 import AVFoundation
 import UIKit
+import DcCore
 
 class QrCodeReaderController: UIViewController {
 
     weak var delegate: QrCodeReaderDelegate?
 
     private let captureSession = AVCaptureSession()
+    
+    private var infoLabelBottomConstraint: NSLayoutConstraint?
+    private var infoLabelCenterConstraint: NSLayoutConstraint?
 
     private lazy var videoPreviewLayer: AVCaptureVideoPreviewLayer = {
         let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -36,34 +40,24 @@ class QrCodeReaderController: UIViewController {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
         title = String.localized("qrscan_title")
-
-        guard let captureDevice = AVCaptureDevice.DiscoverySession.init(
-            deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
-            mediaType: .video,
-            position: .back).devices.first else {
-            print("Failed to get the camera device")
-            return
+        self.setupInfoLabel()
+        if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
+            self.setupQRCodeScanner()
+        } else {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: {  [weak self] (granted: Bool) in
+                guard let self = self else { return }
+                if granted {
+                    self.setupQRCodeScanner()
+                } else {
+                    self.showCameraWarning()
+                    self.showPermissionAlert()
+                }
+            })
         }
-
-        do {
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            captureSession.addInput(input)
-
-            let captureMetadataOutput = AVCaptureMetadataOutput()
-            captureSession.addOutput(captureMetadataOutput)
-
-            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
-        } catch {
-            // If any error occurs, simply print it out and don't continue any more.
-            logger.error("failed to setup QR Code Scanner: \(error)")
-            return
-        }
-
-        setupSubviews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         startSession()
     }
 
@@ -82,18 +76,70 @@ class QrCodeReaderController: UIViewController {
     }
 
     // MARK: - setup
-    private func setupSubviews() {
+    
+    private func setupQRCodeScanner() {
+        guard let captureDevice = AVCaptureDevice.DiscoverySession.init(
+            deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera],
+            mediaType: .video,
+            position: .back).devices.first else {
+            self.showCameraWarning()
+            return
+        }
+        do {
+            let input = try AVCaptureDeviceInput(device: captureDevice)
+            self.captureSession.addInput(input)
+
+            let captureMetadataOutput = AVCaptureMetadataOutput()
+            self.captureSession.addOutput(captureMetadataOutput)
+
+            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            captureMetadataOutput.metadataObjectTypes = self.supportedCodeTypes
+        } catch {
+            // If any error occurs, simply print it out and don't continue any more.
+            self.showCameraWarning()
+            return
+        }
         view.layer.addSublayer(videoPreviewLayer)
         videoPreviewLayer.frame = view.layer.bounds
-        view.addSubview(infoLabel)
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        infoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-        infoLabel.constraintAlignLeadingTo(view, paddingLeading: 5).isActive = true
-        infoLabel.constraintAlignTrailingTo(view, paddingTrailing: 5).isActive = true
         view.bringSubviewToFront(infoLabel)
     }
-
+    
+    private func setupInfoLabel() {
+        view.addSubview(infoLabel)
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoLabelBottomConstraint = infoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        infoLabelCenterConstraint = infoLabel.constraintCenterYTo(view)
+        infoLabelBottomConstraint?.isActive = true
+        infoLabel.constraintAlignLeadingTo(view, paddingLeading: 5).isActive = true
+        infoLabel.constraintAlignTrailingTo(view, paddingTrailing: 5).isActive = true
+    }
+    
+    private func showCameraWarning() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let text = String.localized("chat_camera_unavailable")
+            logger.error(text)
+            self.infoLabel.textColor = DcColors.defaultTextColor
+            self.infoLabel.text = text
+            self.infoLabelBottomConstraint?.isActive = false
+            self.infoLabelCenterConstraint?.isActive = true
+        }
+    }
+    
+    private func showPermissionAlert() {
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: String.localized("perm_required_title"),
+                                          message: String.localized("perm_ios_explain_access_to_camera_denied"),
+                                          preferredStyle: .alert)
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default, handler: { _ in
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)}))
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil))
+            }
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     private func updateVideoOrientation() {
 
         guard let connection = videoPreviewLayer.connection else {
