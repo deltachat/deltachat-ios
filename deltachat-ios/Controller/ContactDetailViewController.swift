@@ -88,6 +88,12 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var statusCell: MultilineTextFieldCell = {
+        let cell = MultilineTextFieldCell(description: "",
+                                          multilineText: "",
+                                          placeholder: "")
+        return cell
+    }()
 
     init(dcContext: DcContext, contactId: Int) {
         self.viewModel = ContactDetailViewModel(dcContext: dcContext, contactId: contactId)
@@ -162,6 +168,8 @@ class ContactDetailViewController: UITableViewController {
             case .startChat:
                 return startChatCell
             }
+        case .statusArea:
+            return statusCell
         case .chatActions:
             switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
@@ -188,6 +196,8 @@ class ContactDetailViewController: UITableViewController {
         switch type {
         case .chatOptions:
             handleChatOption(for: indexPath.row)
+        case .statusArea:
+            break
         case .chatActions:
             handleChatAction(for: indexPath.row)
         case .sharedChats:
@@ -238,6 +248,7 @@ class ContactDetailViewController: UITableViewController {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
         galleryCell.detailTextLabel?.text = String.numberOrNone(viewModel.galleryItemMessageIds.count)
         documentsCell.detailTextLabel?.text = String.numberOrNone(viewModel.documentItemMessageIds.count)
+        statusCell.setText(text: viewModel.contact.status)
     }
 
     // MARK: - actions
