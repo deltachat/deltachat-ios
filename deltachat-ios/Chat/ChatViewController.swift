@@ -13,6 +13,7 @@ class ChatViewController: UITableViewController {
     let loadCount = 30
     let chatId: Int
     var messageIds: [Int] = []
+    var freshMessageIndex: IndexPath?
 
     var msgChangedObserver: NSObjectProtocol?
     var incomingMsgObserver: NSObjectProtocol?
@@ -572,11 +573,17 @@ class ChatViewController: UITableViewController {
             showName = true
         }
 
+        var showFreshMessageIndicator = false
+        if let freshMessages = self.freshMessageIndex, freshMessages.row == indexPath.row {
+            showFreshMessageIndicator = true
+        }
+
         cell.baseDelegate = self
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
-                    showName: showName)
+                    showName: showName,
+                    showFreshMessageSeparator: showFreshMessageIndicator)
 
         return cell
     }
@@ -769,6 +776,14 @@ class ChatViewController: UITableViewController {
 
         // update message ids
         self.messageIds = self.getMessageIds()
+        let freshMessageCounter = dcContext.getFreshMessagesCount(chatId: self.chatId)
+        if !messageIds.isEmpty && freshMessageCounter > 0 {
+            let index = messageIds.count - freshMessageCounter
+            freshMessageIndex = IndexPath(row: index, section: 0)
+        } else {
+            freshMessageIndex = nil
+        }
+
         self.showEmptyStateView(self.messageIds.isEmpty)
 
         self.reloadData()
@@ -1015,6 +1030,7 @@ class ChatViewController: UITableViewController {
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
                             self.dcContext.deleteMessages(msgIds: ids)
+                            self.freshMessageIndex = nil
                             if self.tableView.isEditing {
                                 self.setEditing(isEditing: false)
                             }

@@ -15,6 +15,7 @@ public class BaseMessageCell: UITableViewCell {
     private var mainContentViewLeadingConstraint: NSLayoutConstraint?
     private var mainContentViewTrailingConstraint: NSLayoutConstraint?
     private var fullMessageZeroHeightConstraint: NSLayoutConstraint?
+    private var freshMessageSeparatorHeightConstraint: NSLayoutConstraint?
 
     public var mainContentViewHorizontalPadding: CGFloat {
         get {
@@ -67,6 +68,14 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     public weak var baseDelegate: BaseMessageCellDelegate?
+
+    public lazy var freshMessageSeparator: UIView = {
+        let view = UIView()
+        view.backgroundColor = DcColors.colorDisabled
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isAccessibilityElement = false
+        return view
+    }()
 
     public lazy var quoteView: QuoteView = {
         let view = QuoteView()
@@ -179,6 +188,7 @@ public class BaseMessageCell: UITableViewCell {
 
     func setupSubviews() {
         selectedBackgroundView = UIView()
+        contentView.addSubview(freshMessageSeparator)
         contentView.addSubview(messageBackgroundContainer)
         messageBackgroundContainer.addSubview(mainContentView)
         messageBackgroundContainer.addSubview(topLabel)
@@ -187,6 +197,9 @@ public class BaseMessageCell: UITableViewCell {
         contentView.addSubview(avatarView)
 
         contentView.addConstraints([
+            freshMessageSeparator.constraintAlignLeadingTo(contentView),
+            freshMessageSeparator.constraintAlignTrailingTo(contentView),
+            freshMessageSeparator.constraintAlignTopTo(contentView),
             avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 2),
             avatarView.constraintAlignBottomTo(contentView),
             avatarView.constraintWidthTo(28, priority: .defaultHigh),
@@ -194,7 +207,7 @@ public class BaseMessageCell: UITableViewCell {
             topLabel.constraintAlignTopTo(messageBackgroundContainer, paddingTop: 6),
             topLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
             topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
-            messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
+            messageBackgroundContainer.constraintToBottomOf(freshMessageSeparator, paddingTop: 3),
             messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3),
             fullMessageButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
             fullMessageButton.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 12),
@@ -203,6 +216,9 @@ public class BaseMessageCell: UITableViewCell {
             bottomLabel.constraintToBottomOf(fullMessageButton, paddingTop: 8, priority: .defaultHigh),
             bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6)
         ])
+
+        freshMessageSeparatorHeightConstraint = freshMessageSeparator.constraintHeightTo(0)
+        freshMessageSeparatorHeightConstraint?.isActive = true
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
         leadingConstraintGroup = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: 2)
@@ -270,7 +286,7 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+    func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showFreshMessageSeparator: Bool) {
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
             topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor : DcColors.defaultTextColor
@@ -307,6 +323,8 @@ public class BaseMessageCell: UITableViewCell {
         } else {
             avatarView.isHidden = true
         }
+
+        freshMessageSeparatorHeightConstraint?.constant = showFreshMessageSeparator ? 1 : 0
 
         isFullMessageButtonHidden = !msg.hasHtml
 
