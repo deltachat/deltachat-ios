@@ -11,9 +11,9 @@ class TextMessageCell: BaseMessageCell {
         messageLabel.paddingTrailing = 12
     }
 
-    override func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showFreshMessageSeparator: Bool) {
+    override func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showSeparator: Bool) {
         messageLabel.text = msg.text
-        super.update(msg: msg, messageStyle: messageStyle, showAvatar: showAvatar, showName: showName, showFreshMessageSeparator: showFreshMessageSeparator)
+        super.update(msg: msg, messageStyle: messageStyle, showAvatar: showAvatar, showName: showName, showSeparator: showSeparator)
     }
 
     override func prepareForReuse() {

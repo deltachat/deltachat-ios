@@ -573,9 +573,9 @@ class ChatViewController: UITableViewController {
             showName = true
         }
 
-        var showFreshMessageIndicator = false
-        if let freshMessages = self.freshMessageIndex, freshMessages.row == indexPath.row {
-            showFreshMessageIndicator = true
+        var showFreshMessageSeparator = false
+        if let firstFreshMessage = self.freshMessageIndex, firstFreshMessage.row == indexPath.row {
+            showFreshMessageSeparator = true
         }
 
         cell.baseDelegate = self
@@ -583,7 +583,7 @@ class ChatViewController: UITableViewController {
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
                     showName: showName,
-                    showFreshMessageSeparator: showFreshMessageIndicator)
+                    showSeparator: showFreshMessageSeparator)
 
         return cell
     }

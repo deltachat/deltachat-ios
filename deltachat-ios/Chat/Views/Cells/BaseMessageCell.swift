@@ -286,7 +286,7 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showFreshMessageSeparator: Bool) {
+    func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showSeparator: Bool) {
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
             topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor : DcColors.defaultTextColor
@@ -324,7 +324,7 @@ public class BaseMessageCell: UITableViewCell {
             avatarView.isHidden = true
         }
 
-        freshMessageSeparatorHeightConstraint?.constant = showFreshMessageSeparator ? 1 : 0
+        freshMessageSeparatorHeightConstraint?.constant = showSeparator ? 1 : 0
 
         isFullMessageButtonHidden = !msg.hasHtml
 
