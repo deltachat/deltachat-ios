@@ -27,6 +27,7 @@ public class DcContext {
         return .dcContext
     }
 
+    // TODO: remove count and from parameters if we don't use it
     public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
         let cMessageIds = getChatMessages(chatId: chatId)
@@ -247,6 +248,10 @@ public class DcContext {
 
     public func getFreshMessages() -> DcArray {
         return DcArray(arrayPointer: dc_get_fresh_msgs(contextPointer))
+    }
+
+    public func getFreshMessagesCount(chatId: Int) -> Int {
+        return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
     }
 
     public func markSeenMessages(messageIds: [UInt32]) {

@@ -338,7 +338,7 @@ class ChatViewController: UITableViewController {
                 UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
                     guard let self = self else { return }
                     if self.isInitial {
-                        self.scrollToBottom(animated: false)
+                        self.scrollToLastUnseenMessage()
                     }
                 }, completion: { [weak self] finished in
                     if finished {
@@ -788,6 +788,24 @@ class ChatViewController: UITableViewController {
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
                     self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: animated)
+                }
+            }
+        }
+    }
+
+    private func scrollToLastUnseenMessage() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let freshMsgsCount = self.dcContext.getFreshMessagesCount(chatId: self.chatId)
+            if self.messageIds.count >= freshMsgsCount {
+                let index = self.messageIds.count - freshMsgsCount - 1
+                let indexPath = IndexPath(row: index, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            } else {
+                // scroll to bottom
+                let numberOfRows = self.tableView.numberOfRows(inSection: 0)
+                if numberOfRows > 0 {
+                    self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: false)
                 }
             }
         }
