@@ -452,6 +452,18 @@ extension ContactDetailViewController: MultilineLabelCellDelegate {
     func urlTapped(url: URL) {
         if Utils.isEmail(url: url) {
             let email = Utils.getEmailFrom(url)
+            let contactId = viewModel.context.createContact(name: "", email: email)
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
+                                          message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                let chatId = self.viewModel.context.createChatByContactId(contactId: contactId)
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
         } else {
             UIApplication.shared.open(url)
         }
