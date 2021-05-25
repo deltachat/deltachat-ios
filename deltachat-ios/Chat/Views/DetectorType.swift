@@ -57,7 +57,7 @@ public enum DetectorType: Hashable {
         }
     }
 
-    ///The hashValue of the `DetectorType` so we can conform to `Hashable` and be sorted.
+    /// The hashValue of the `DetectorType` so we can conform to `Hashable` and be sorted.
     public func hash(into: inout Hasher) {
         into.combine(toInt())
     }

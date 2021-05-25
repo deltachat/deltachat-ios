@@ -31,12 +31,12 @@ public class InitialsBadge: UIView {
     }()
 
     public var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
         set {
             layer.cornerRadius = newValue
             imageView.layer.cornerRadius = newValue
-        }
-        get {
-            return layer.cornerRadius
         }
     }
 

@@ -13,7 +13,7 @@ class MediaQualityController: UITableViewController {
             cell.selectionStyle = .none
             return cell
         })
-    } ()
+    }()
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext

@@ -10,14 +10,14 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     weak var delegate: AudioRecorderControllerDelegate?
 
-    //Recording...
+    // Recording...
     var meterUpdateDisplayLink: CADisplayLink?
     var isRecordingPaused: Bool = false
 
     // maximumRecordDuration > 0 -> restrict max time period for one take
     var maximumRecordDuration = 0.0
 
-    //Private variables
+    // Private variables
     var oldSessionCategory: AVAudioSession.Category?
     var wasIdleTimerDisabled: Bool = false
 
@@ -125,7 +125,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.toolbar.isTranslucent = true
 
-        //Define the recorder setting
+        // Define the recorder setting
         let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC,
                               AVSampleRateKey: 44100.0,
                               AVNumberOfChannelsKey: 1] as [String: Any]

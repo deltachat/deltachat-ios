@@ -405,7 +405,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
                 self.navigationController?.present(alert, animated: true, completion: nil)
-            } else if (self.dcContext.isSendingLocationsToChat(chatId: 0)) {
+            } else if self.dcContext.isSendingLocationsToChat(chatId: 0) {
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                     return
                 }

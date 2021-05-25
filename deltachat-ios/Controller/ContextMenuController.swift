@@ -144,7 +144,7 @@ class ContextMenuProvider {
         var children: [UIMenuElement] = []
 
         for item in menu {
-            //we only support 1 submenu layer for now
+            // we only support 1 submenu layer for now
             if let subMenus = item.children {
                 var submenuChildren: [UIMenuElement] = []
                 for submenuItem in subMenus {

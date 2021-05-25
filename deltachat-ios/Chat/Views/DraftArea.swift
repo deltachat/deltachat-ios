@@ -11,13 +11,13 @@ public class DraftArea: UIView, InputItem {
     public func keyboardEditingBeginsAction() {}
 
     var delegate: DraftPreviewDelegate? {
+        get {
+            return quotePreview.delegate
+        }
         set {
             quotePreview.delegate = newValue
             mediaPreview.delegate = newValue
             documentPreview.delegate = newValue
-        }
-        get {
-            return quotePreview.delegate
         }
     }
 
@@ -80,7 +80,7 @@ public class DraftArea: UIView, InputItem {
     /// reload cleans caches containing the drafted attachment so that the UI will update correctly
     public func reload(draft: DraftModel) {
         mediaPreview.reload(draft: draft)
-        ///TODO: add document reloading when document editing was added
+        // TODO: add document reloading when document editing was added
     }
 
     public func cancel() {

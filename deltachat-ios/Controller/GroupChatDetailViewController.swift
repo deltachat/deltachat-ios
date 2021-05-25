@@ -207,7 +207,7 @@ class GroupChatDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //update chat object, maybe chat name was edited
+        // update chat object, maybe chat name was edited
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
@@ -255,7 +255,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func toggleArchiveChat() {
         let archivedBefore = chat.isArchived
-        if (!archivedBefore) {
+        if !archivedBefore {
             NotificationManager.removeNotificationsForChat(chatId: chatId)
         }
         dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
