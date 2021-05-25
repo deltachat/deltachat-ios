@@ -90,6 +90,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var statusCell: MultilineLabelCell = {
         let cell = MultilineLabelCell()
+        cell.multilineDelegate = self
         return cell
     }()
 
@@ -436,6 +437,23 @@ class ContactDetailViewController: UITableViewController {
         if let navigationController = navigationController {
             navigationController.popViewController(animated: false)
             navigationController.popViewController(animated: true)
+        }
+    }
+}
+
+extension ContactDetailViewController: MultilineLabelCellDelegate {
+    func phoneNumberTapped(number: String) {
+        let sanitizedNumber = number.filter("0123456789".contains)
+        if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {
+            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+        }
+    }
+
+    func urlTapped(url: URL) {
+        if Utils.isEmail(url: url) {
+            let email = Utils.getEmailFrom(url)
+        } else {
+            UIApplication.shared.open(url)
         }
     }
 }

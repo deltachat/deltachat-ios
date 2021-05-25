@@ -3,6 +3,7 @@ import UIKit
 import DcCore
 
 class MultilineLabelCell: UITableViewCell {
+    public weak var multilineDelegate: MultilineLabelCellDelegate?
 
     lazy var label: MessageLabel = {
         let label = MessageLabel()
@@ -40,10 +41,24 @@ class MultilineLabelCell: UITableViewCell {
         label.alignTrailingToAnchor(margins.trailingAnchor)
         label.alignTopToAnchor(margins.topAnchor)
         label.alignBottomToAnchor(margins.bottomAnchor)
+
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        gestureRecognizer.numberOfTapsRequired = 1
+        label.addGestureRecognizer(gestureRecognizer)
     }
 
     func setText(text: String?) {
         label.text = text
+    }
+
+    @objc
+    open func handleTapGesture(_ gesture: UIGestureRecognizer) {
+        guard gesture.state == .ended else { return }
+        let touchLocation = gesture.location(in: label)
+        let isHandled = label.handleGesture(touchLocation)
+        if !isHandled {
+            logger.info("status: tapped outside urls or phone numbers")
+        }
     }
 }
 
@@ -53,11 +68,11 @@ extension MultilineLabelCell: MessageLabelDelegate {
     public func didSelectDate(_ date: Date) {}
 
     public func didSelectPhoneNumber(_ phoneNumber: String) {
-        logger.info("status phone number tapped")
+        multilineDelegate?.phoneNumberTapped(number: phoneNumber)
     }
 
     public func didSelectURL(_ url: URL) {
-        logger.info("status URL tapped")
+        multilineDelegate?.urlTapped(url: url)
     }
 
     public func didSelectTransitInformation(_ transitInformation: [String: String]) {}
@@ -67,4 +82,9 @@ extension MultilineLabelCell: MessageLabelDelegate {
     public func didSelectHashtag(_ hashtag: String) {}
 
     public func didSelectCustom(_ pattern: String, match: String?) {}
+}
+
+public protocol MultilineLabelCellDelegate: class {
+    func phoneNumberTapped(number: String)
+    func urlTapped(url: URL)
 }
