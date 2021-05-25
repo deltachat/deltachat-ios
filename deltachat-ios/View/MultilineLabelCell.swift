@@ -3,22 +3,13 @@ import UIKit
 
 class MultilineLabelCell: UITableViewCell {
 
-    private lazy var textFieldHeightConstraint: NSLayoutConstraint = {
-        return textField.constraintHeightTo(fourLinesHeight)
-    }()
-
-    private var fourLinesHeight: CGFloat {
-        return UIFont.preferredFont(forTextStyle: .body).pointSize * 4
-    }
-
-    lazy var textField: UITextView = {
-        let textField = UITextView()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.adjustsFontForContentSizeCategory = true
-        textField.font = .preferredFont(forTextStyle: .body)
-        textField.backgroundColor = .none
-        textField.isEditable = false
-        return textField
+    lazy var label: MessageLabel = {
+        let label = MessageLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.isUserInteractionEnabled = true
+        return label
     }()
 
     init() {
@@ -32,17 +23,16 @@ class MultilineLabelCell: UITableViewCell {
     }
 
     func setupViews() {
-        contentView.addSubview(textField)
-        let margins = contentView.layoutMarginsGuide
+        contentView.addSubview(label)
 
-        textField.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: -5)
-        textField.alignTrailingToAnchor(margins.trailingAnchor)
-        contentView.addConstraint(textFieldHeightConstraint)
-        textField.alignTopToAnchor(margins.topAnchor)
-        textField.alignBottomToAnchor(margins.bottomAnchor)
+        let margins = contentView.layoutMarginsGuide
+        label.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: 0)
+        label.alignTrailingToAnchor(margins.trailingAnchor)
+        label.alignTopToAnchor(margins.topAnchor)
+        label.alignBottomToAnchor(margins.bottomAnchor)
     }
 
     func setText(text: String?) {
-        textField.text = text
+        label.text = text
     }
 }
