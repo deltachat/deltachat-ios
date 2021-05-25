@@ -812,8 +812,8 @@ class ChatViewController: UITableViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             let freshMsgsCount = self.dcContext.getFreshMessagesCount(chatId: self.chatId)
-            if self.messageIds.count >= freshMsgsCount {
-                let index = self.messageIds.count - freshMsgsCount - 1
+            if freshMsgsCount > 0 && self.messageIds.count >= freshMsgsCount {
+                let index = self.messageIds.count - freshMsgsCount
                 let indexPath = IndexPath(row: index, section: 0)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             } else {
