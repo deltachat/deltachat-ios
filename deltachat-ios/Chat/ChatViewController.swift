@@ -776,9 +776,9 @@ class ChatViewController: UITableViewController {
 
         // update message ids
         self.messageIds = self.getMessageIds()
-        let freshMessageCounter = dcContext.getFreshMessagesCount(chatId: self.chatId)
-        if !messageIds.isEmpty && freshMessageCounter > 0 {
-            let index = messageIds.count - freshMessageCounter
+        let freshMsgsCount = self.dcContext.getFreshMessagesCount(chatId: self.chatId)
+        if freshMsgsCount > 0 && self.messageIds.count >= freshMsgsCount {
+            let index = messageIds.count - freshMsgsCount
             freshMessageIndex = IndexPath(row: index, section: 0)
         } else {
             freshMessageIndex = nil
