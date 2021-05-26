@@ -809,10 +809,8 @@ class ChatViewController: UITableViewController {
     private func scrollToLastUnseenMessage() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
-            if freshMsgsCount > 0 && self.messageIds.count >= freshMsgsCount {
-                let index = self.messageIds.count - freshMsgsCount
-                let indexPath = IndexPath(row: index, section: 0)
+            if let markerMessageIndex = self.messageIds.index(of: Int(DC_MSG_ID_MARKER1)) {
+                let indexPath = IndexPath(row: markerMessageIndex, section: 0)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             } else {
                 // scroll to bottom
