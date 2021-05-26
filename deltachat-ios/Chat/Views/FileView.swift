@@ -6,6 +6,9 @@ public class FileView: UIView {
     private var imageHeightConstraint: NSLayoutConstraint?
 
     public var horizontalLayout: Bool {
+        get {
+            return fileStackView.axis == .horizontal
+        }
         set {
             if newValue {
                 fileStackView.axis = .horizontal
@@ -18,9 +21,6 @@ public class FileView: UIView {
                 imageHeightConstraint?.isActive = false
                 fileStackView.alignment = .leading
             }
-        }
-        get {
-            return fileStackView.axis == .horizontal
         }
     }
 

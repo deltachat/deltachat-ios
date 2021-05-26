@@ -12,7 +12,7 @@ class ChatListController: UITableViewController {
     let contactCellReuseIdentifier = "contactCellReuseIdentifier"
     weak var chatListDelegate: ChatListDelegate?
 
-    /// MARK - search
+    // MARK: - search
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)

@@ -234,7 +234,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         let section = indexPath.section
         let row = indexPath.row
 
-        //swipe by delete
+        // swipe by delete
         if section == sectionGroupMembers, groupContactIds[row] != DC_CONTACT_ID_SELF {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
                 guard let self = self else { return }

@@ -11,12 +11,12 @@ public extension UIImage {
         let maxRatio: Float = maxWidth / maxHeight
         if actualHeight > maxHeight || actualWidth > maxWidth {
             if imgRatio < maxRatio {
-                //adjust width according to maxHeight
+                // adjust width according to maxHeight
                 imgRatio = maxHeight / actualHeight
                 actualWidth = imgRatio * actualWidth
                 actualHeight = maxHeight
             } else if imgRatio > maxRatio {
-                //adjust height according to maxWidth
+                // adjust height according to maxWidth
                 imgRatio = maxWidth / actualWidth
                 actualHeight = imgRatio * actualHeight
                 actualWidth = maxWidth

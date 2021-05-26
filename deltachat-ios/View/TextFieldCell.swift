@@ -7,12 +7,12 @@ class TextFieldCell: UITableViewCell {
 
     private var placeholderVal: String
     var placeholder: String? {
+        get {
+            return placeholderVal
+        }
         set {
             placeholderVal = newValue ?? ""
             configureTextFieldPlaceholder()
-        }
-        get {
-            return placeholderVal
         }
     }
 
@@ -21,12 +21,12 @@ class TextFieldCell: UITableViewCell {
     }
 
     private var preferValue: Bool {
+        get {
+            textField.contentCompressionResistancePriority(for: .horizontal) == .defaultHigh
+        }
         set {
             textField.setContentCompressionResistancePriority( newValue ? .defaultHigh : .defaultLow, for: .horizontal)
             title.setContentCompressionResistancePriority( newValue ? .defaultLow : .defaultHigh, for: .horizontal)
-        }
-        get {
-            textField.contentCompressionResistancePriority(for: .horizontal) == .defaultHigh
         }
     }
 

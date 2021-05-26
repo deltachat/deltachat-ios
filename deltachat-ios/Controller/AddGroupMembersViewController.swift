@@ -56,7 +56,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         return button
     }()
 
-    //add members of new group, no chat object yet
+    // add members of new group, no chat object yet
     init(preselected: Set<Int>, isVerified: Bool) {
         super.init()
         isVerifiedGroup = isVerified
@@ -64,7 +64,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         selectedContactIds = preselected
     }
 
-    //add members of existing group
+    // add members of existing group
     init(chatId: Int) {
         self.chatId = chatId
         super.init()

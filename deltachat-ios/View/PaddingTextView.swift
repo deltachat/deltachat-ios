@@ -40,38 +40,38 @@ public class PaddingTextView: UIView {
     }()
 
     public var text: String? {
-        set { label.text = newValue }
         get { return label.text }
+        set { label.text = newValue }
     }
 
     public var attributedText: NSAttributedString? {
-        set { label.attributedText = newValue }
         get { return label.attributedText }
+        set { label.attributedText = newValue }
     }
 
     public var numberOfLines: Int {
-        set { label.numberOfLines = newValue }
         get { return label.numberOfLines }
+        set { label.numberOfLines = newValue }
     }
 
     public var font: UIFont {
-        set { label.font = newValue }
         get { return label.font }
+        set { label.font = newValue }
     }
 
     public var textColor: UIColor {
-        set { label.textColor = newValue }
         get { return label.textColor }
+        set { label.textColor = newValue }
     }
 
     public var enabledDetectors: [DetectorType] {
-        set { label.enabledDetectors = newValue }
         get { return label.enabledDetectors }
+        set { label.enabledDetectors = newValue }
     }
 
     public var delegate: MessageLabelDelegate? {
-        set { label.delegate = newValue }
         get { return label.delegate }
+        set { label.delegate = newValue }
     }
 
     init() {

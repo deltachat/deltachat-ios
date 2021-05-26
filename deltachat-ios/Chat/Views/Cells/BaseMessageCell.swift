@@ -17,17 +17,20 @@ public class BaseMessageCell: UITableViewCell {
     private var fullMessageZeroHeightConstraint: NSLayoutConstraint?
 
     public var mainContentViewHorizontalPadding: CGFloat {
+        get {
+            return mainContentViewLeadingConstraint?.constant ?? 0
+        }
         set {
             mainContentViewLeadingConstraint?.constant = newValue
             mainContentViewTrailingConstraint?.constant = -newValue
-        }
-        get {
-            return mainContentViewLeadingConstraint?.constant ?? 0
         }
     }
 
     // if set to true topLabel overlaps the main content
     public var topCompactView: Bool {
+        get {
+            return mainContentUnderTopLabelConstraint?.isActive ?? false
+        }
         set {
             mainContentBelowTopLabelConstraint?.isActive = !newValue
             mainContentUnderTopLabelConstraint?.isActive = newValue
@@ -35,13 +38,13 @@ public class BaseMessageCell: UITableViewCell {
                 UIColor(alpha: 200, red: 20, green: 20, blue: 20) :
                 UIColor(alpha: 0, red: 0, green: 0, blue: 0)
         }
-        get {
-            return mainContentUnderTopLabelConstraint?.isActive ?? false
-        }
     }
 
     // if set to true bottomLabel overlaps the main content
     public var bottomCompactView: Bool {
+        get {
+            return mainContentUnderBottomLabelConstraint?.isActive ?? false
+        }
         set {
             mainContentAboveFullMessageBtnConstraint?.isActive = !newValue
             mainContentUnderBottomLabelConstraint?.isActive = newValue
@@ -49,20 +52,17 @@ public class BaseMessageCell: UITableViewCell {
                 UIColor(alpha: 200, red: 50, green: 50, blue: 50) :
                 UIColor(alpha: 0, red: 0, green: 0, blue: 0)
         }
-        get {
-            return mainContentUnderBottomLabelConstraint?.isActive ?? false
-        }
     }
 
     public var isFullMessageButtonHidden: Bool {
+        get {
+            return fullMessageButton.isHidden
+        }
         set {
             mainContentAboveFullMessageBtnConstraint?.constant = newValue ? -2 : 8
             fullMessageButton.setTitle(newValue ? "" : String.localized("show_full_message"), for: .normal)
             fullMessageZeroHeightConstraint?.isActive = newValue
             fullMessageButton.isHidden = newValue
-        }
-        get {
-            return fullMessageButton.isHidden
         }
     }
 

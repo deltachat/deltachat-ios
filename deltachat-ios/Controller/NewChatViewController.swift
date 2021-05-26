@@ -301,7 +301,7 @@ class NewChatViewController: UITableViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //ensure the empty search state message can be fully read
+        // ensure the empty search state message can be fully read
         if searchController.isActive && filteredContactIds.isEmpty {
             tableView.scrollRectToVisible(emptySearchStateLabel.frame, animated: false)
         }

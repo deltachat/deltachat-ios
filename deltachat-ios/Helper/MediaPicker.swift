@@ -48,7 +48,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
     func showVoiceRecorder() {
         let audioRecorderController = AudioRecorderController()
         audioRecorderController.delegate = self
-        //audioRecorderController.maximumRecordDuration = 1200
+        // audioRecorderController.maximumRecordDuration = 1200
         let audioRecorderNavController = UINavigationController(rootViewController: audioRecorderController)
 
         navigationController?.present(audioRecorderNavController, animated: true, completion: nil)
@@ -57,8 +57,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
     func showPhotoVideoLibrary() {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
             PHPhotoLibrary.requestAuthorization { status in
-                DispatchQueue.main.async {
-                    [weak self] in
+                DispatchQueue.main.async { [weak self] in
                     switch status {
                     case  .denied, .notDetermined, .restricted:
                         print("denied")
@@ -158,10 +157,10 @@ extension MediaPicker: UIImagePickerControllerDelegate {
                     //  selected from camera and edtied
                     self.delegate?.onImageSelected(image: image)
                 } else if let imageURL = info[.imageURL] as? NSURL {
-                    //selected from gallery
+                    // selected from gallery
                     self.delegate?.onImageSelected(url: imageURL)
                 } else if let image = info[.originalImage] as? UIImage {
-                    //selected from camera
+                    // selected from camera
                     self.delegate?.onImageSelected(image: image)
                 }
             }

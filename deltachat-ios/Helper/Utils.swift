@@ -53,7 +53,7 @@ struct Utils {
     }
 
     static func hasAudioSuffix(url: URL) -> Bool {
-        ///TODO: add more file suffixes
+        // TODO: add more file suffixes
         return url.absoluteString.hasSuffix("wav")
     }
 }
