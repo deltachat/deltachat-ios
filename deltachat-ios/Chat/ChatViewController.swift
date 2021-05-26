@@ -13,7 +13,6 @@ class ChatViewController: UITableViewController {
     let loadCount = 30
     let chatId: Int
     var messageIds: [Int] = []
-    var freshMessageIndex: IndexPath?
 
     var msgChangedObserver: NSObjectProtocol?
     var incomingMsgObserver: NSObjectProtocol?
@@ -538,6 +537,12 @@ class ChatViewController: UITableViewController {
                 cell.update(text: "ErrDaymarker")
             }
             return cell
+        } else if id == DC_MSG_ID_MARKER1 {
+            // unread messages marker
+            let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
+            let freshMsgsCount = self.messageIds.count - (indexPath.row + 1)
+            cell.update(text: String.localized(stringID: "chat_n_new_messages", count: freshMsgsCount))
+            return cell
         }
         
         let message = DcMsg(id: id)
@@ -573,17 +578,11 @@ class ChatViewController: UITableViewController {
             showName = true
         }
 
-        var showFreshMessageSeparator = false
-        if let firstFreshMessage = self.freshMessageIndex, firstFreshMessage.row == indexPath.row {
-            showFreshMessageSeparator = true
-        }
-
         cell.baseDelegate = self
         cell.update(msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
-                    showName: showName,
-                    showSeparator: showFreshMessageSeparator)
+                    showName: showName)
 
         return cell
     }
@@ -775,14 +774,13 @@ class ChatViewController: UITableViewController {
     private func loadMessages() {
 
         // update message ids
-        self.messageIds = self.getMessageIds()
+        var msgIds = self.getMessageIds()
         let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
-        if freshMsgsCount > 0 && self.messageIds.count >= freshMsgsCount {
-            let index = messageIds.count - freshMsgsCount
-            freshMessageIndex = IndexPath(row: index, section: 0)
-        } else {
-            freshMessageIndex = nil
+        if freshMsgsCount > 0 && msgIds.count >= freshMsgsCount {
+            let index = msgIds.count - freshMsgsCount
+            msgIds.insert(Int(DC_MSG_ID_MARKER1), at: index)
         }
+        self.messageIds = msgIds
 
         self.showEmptyStateView(self.messageIds.isEmpty)
 
@@ -1030,7 +1028,6 @@ class ChatViewController: UITableViewController {
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
                             self.dcContext.deleteMessages(msgIds: ids)
-                            self.freshMessageIndex = nil
                             if self.tableView.isEditing {
                                 self.setEditing(isEditing: false)
                             }
