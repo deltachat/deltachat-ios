@@ -1154,6 +1154,13 @@ public class DcContact {
         return swiftString
     }
 
+    public var status: String {
+        guard let cString = dc_contact_get_status(contactPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public var isVerified: Bool {
         return dc_contact_is_verified(contactPointer) > 0
     }

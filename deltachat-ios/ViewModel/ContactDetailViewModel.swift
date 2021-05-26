@@ -7,6 +7,7 @@ class ContactDetailViewModel {
 
     enum ProfileSections {
         case chatOptions
+        case statusArea
         case sharedChats
         case chatActions
     }
@@ -28,6 +29,7 @@ class ContactDetailViewModel {
 
     var contactId: Int
 
+    // TODO: check if that is too inefficient (each bit read from contact, results in a database-query)
     var contact: DcContact {
         return DcContact(id: contactId)
     }
@@ -54,6 +56,12 @@ class ContactDetailViewModel {
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.chatOptions)
+
+        let dcContact = DcContact(id: contactId)
+        if !dcContact.status.isEmpty {
+            sections.append(.statusArea)
+        }
+
         if sharedChats.length > 0 && !isSavedMessages && !isDeviceTalk {
             sections.append(.sharedChats)
         }
@@ -132,6 +140,7 @@ class ContactDetailViewModel {
     func numberOfRowsInSection(_ section: Int) -> Int {
         switch sections[section] {
         case .chatOptions: return chatOptions.count
+        case .statusArea: return 1
         case .sharedChats: return sharedChats.length
         case .chatActions: return chatActions.count
         }
@@ -152,10 +161,12 @@ class ContactDetailViewModel {
     }
 
     func titleFor(section: Int) -> String? {
-        if sections[section] == .sharedChats {
-            return String.localized("profile_shared_chats")
+        switch sections[section] {
+        case .chatOptions: return nil
+        case .statusArea: return String.localized("pref_default_status_label")
+        case .sharedChats: return String.localized("profile_shared_chats")
+        case .chatActions: return nil
         }
-        return nil
     }
 
     // returns true if chat is archived after action

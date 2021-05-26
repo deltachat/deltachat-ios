@@ -88,6 +88,11 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var statusCell: MultilineLabelCell = {
+        let cell = MultilineLabelCell()
+        cell.multilineDelegate = self
+        return cell
+    }()
 
     init(dcContext: DcContext, contactId: Int) {
         self.viewModel = ContactDetailViewModel(dcContext: dcContext, contactId: contactId)
@@ -162,6 +167,8 @@ class ContactDetailViewController: UITableViewController {
             case .startChat:
                 return startChatCell
             }
+        case .statusArea:
+            return statusCell
         case .chatActions:
             switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
@@ -188,6 +195,8 @@ class ContactDetailViewController: UITableViewController {
         switch type {
         case .chatOptions:
             handleChatOption(for: indexPath.row)
+        case .statusArea:
+            break
         case .chatActions:
             handleChatAction(for: indexPath.row)
         case .sharedChats:
@@ -238,6 +247,7 @@ class ContactDetailViewController: UITableViewController {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
         galleryCell.detailTextLabel?.text = String.numberOrNone(viewModel.galleryItemMessageIds.count)
         documentsCell.detailTextLabel?.text = String.numberOrNone(viewModel.documentItemMessageIds.count)
+        statusCell.setText(text: viewModel.contact.status)
     }
 
     // MARK: - actions
@@ -427,6 +437,35 @@ class ContactDetailViewController: UITableViewController {
         if let navigationController = navigationController {
             navigationController.popViewController(animated: false)
             navigationController.popViewController(animated: true)
+        }
+    }
+}
+
+extension ContactDetailViewController: MultilineLabelCellDelegate {
+    func phoneNumberTapped(number: String) {
+        let sanitizedNumber = number.filter("0123456789".contains)
+        if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {
+            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+        }
+    }
+
+    func urlTapped(url: URL) {
+        if Utils.isEmail(url: url) {
+            let email = Utils.getEmailFrom(url)
+            let contactId = viewModel.context.createContact(name: "", email: email)
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
+                                          message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                let chatId = self.viewModel.context.createChatByContactId(contactId: contactId)
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            UIApplication.shared.open(url)
         }
     }
 }
