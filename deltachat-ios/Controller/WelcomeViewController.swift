@@ -123,7 +123,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     private func handleLoginSuccess() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             appDelegate.registerForNotifications()
         }
