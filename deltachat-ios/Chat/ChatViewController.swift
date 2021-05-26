@@ -776,7 +776,7 @@ class ChatViewController: UITableViewController {
 
         // update message ids
         self.messageIds = self.getMessageIds()
-        let freshMsgsCount = self.dcContext.getFreshMessagesCount(chatId: self.chatId)
+        let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
         if freshMsgsCount > 0 && self.messageIds.count >= freshMsgsCount {
             let index = messageIds.count - freshMsgsCount
             freshMessageIndex = IndexPath(row: index, section: 0)
@@ -811,7 +811,7 @@ class ChatViewController: UITableViewController {
     private func scrollToLastUnseenMessage() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            let freshMsgsCount = self.dcContext.getFreshMessagesCount(chatId: self.chatId)
+            let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
             if freshMsgsCount > 0 && self.messageIds.count >= freshMsgsCount {
                 let index = self.messageIds.count - freshMsgsCount
                 let indexPath = IndexPath(row: index, section: 0)
