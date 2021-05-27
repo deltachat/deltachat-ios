@@ -43,17 +43,21 @@ class GalleryItem: ContextMenuItem {
         }
         switch viewtype {
         case .image:
-            thumbnailImage = msg.image
+            if url.pathExtension == "webp" {
+                loadAsyncImageThumbnail(from: url)
+            } else {
+                thumbnailImage = msg.image
+            }
         case .video:
             loadVideoThumbnail(from: url)
         case .gif:
-            loadGifThumbnail(from: url)
+            loadAsyncImageThumbnail(from: url)
         default:
             safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
         }
     }
 
-    private func loadGifThumbnail(from url: URL) {
+    private func loadAsyncImageThumbnail(from url: URL) {
         DispatchQueue.global(qos: .userInteractive).async {
             guard let imageData = try? Data(contentsOf: url) else {
                 return
