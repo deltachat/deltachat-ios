@@ -338,7 +338,7 @@ class ChatViewController: UITableViewController {
                 UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
                     guard let self = self else { return }
                     if self.isInitial {
-                        self.scrollToBottom(animated: false)
+                        self.scrollToLastUnseenMessage()
                     }
                 }, completion: { [weak self] finished in
                     if finished {
@@ -536,6 +536,12 @@ class ChatViewController: UITableViewController {
             } else {
                 cell.update(text: "ErrDaymarker")
             }
+            return cell
+        } else if id == DC_MSG_ID_MARKER1 {
+            // unread messages marker
+            let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
+            let freshMsgsCount = self.messageIds.count - (indexPath.row + 1)
+            cell.update(text: String.localized(stringID: "chat_n_new_messages", count: freshMsgsCount))
             return cell
         }
         
@@ -768,7 +774,14 @@ class ChatViewController: UITableViewController {
     private func loadMessages() {
 
         // update message ids
-        self.messageIds = self.getMessageIds()
+        var msgIds = self.getMessageIds()
+        let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
+        if freshMsgsCount > 0 && msgIds.count >= freshMsgsCount {
+            let index = msgIds.count - freshMsgsCount
+            msgIds.insert(Int(DC_MSG_ID_MARKER1), at: index)
+        }
+        self.messageIds = msgIds
+
         self.showEmptyStateView(self.messageIds.isEmpty)
 
         self.reloadData()
@@ -788,6 +801,22 @@ class ChatViewController: UITableViewController {
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
                     self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: animated)
+                }
+            }
+        }
+    }
+
+    private func scrollToLastUnseenMessage() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if let markerMessageIndex = self.messageIds.index(of: Int(DC_MSG_ID_MARKER1)) {
+                let indexPath = IndexPath(row: markerMessageIndex, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            } else {
+                // scroll to bottom
+                let numberOfRows = self.tableView.numberOfRows(inSection: 0)
+                if numberOfRows > 0 {
+                    self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: false)
                 }
             }
         }
@@ -1138,8 +1167,12 @@ class ChatViewController: UITableViewController {
         if messageIds.firstIndex(where: { $0 == messageId }) != nil {
             reloadData()
         } else {
+            // new outgoing message
             let msg = DcMsg(id: messageId)
             if msg.chatId == chatId {
+                if let newMsgMarkerIndex = messageIds.index(of: Int(DC_MSG_ID_MARKER1)) {
+                    messageIds.remove(at: newMsgMarkerIndex)
+                }
                 insertMessage(msg)
             }
         }

@@ -27,6 +27,7 @@ public class DcContext {
         return .dcContext
     }
 
+    // TODO: remove count and from parameters if we don't use it
     public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
         let cMessageIds = getChatMessages(chatId: chatId)
