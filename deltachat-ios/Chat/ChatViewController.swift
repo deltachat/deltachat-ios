@@ -1167,8 +1167,12 @@ class ChatViewController: UITableViewController {
         if messageIds.firstIndex(where: { $0 == messageId }) != nil {
             reloadData()
         } else {
+            // new outgoing message
             let msg = DcMsg(id: messageId)
             if msg.chatId == chatId {
+                if let newMsgMarkerIndex = messageIds.index(of: Int(DC_MSG_ID_MARKER1)) {
+                    messageIds.remove(at: newMsgMarkerIndex)
+                }
                 insertMessage(msg)
             }
         }
