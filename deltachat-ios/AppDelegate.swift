@@ -5,6 +5,7 @@ import UIKit
 import UserNotifications
 import DcCore
 import DBDebugToolkit
+import SDWebImageWebPCoder
 
 let logger = SwiftyBeaver.self
 
@@ -104,6 +105,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
         }
+
+        let webPCoder = SDImageWebPCoder.shared
+        SDImageCodersManager.shared.addCoder(webPCoder)
 
         return true
     }
