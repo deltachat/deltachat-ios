@@ -37,10 +37,10 @@ class MultilineLabelCell: UITableViewCell {
         contentView.addSubview(label)
 
         let margins = contentView.layoutMarginsGuide
-        label.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: 0)
+        label.alignLeadingToAnchor(margins.leadingAnchor)
         label.alignTrailingToAnchor(margins.trailingAnchor)
-        label.alignTopToAnchor(margins.topAnchor)
-        label.alignBottomToAnchor(margins.bottomAnchor)
+        label.alignTopToAnchor(margins.topAnchor, paddingTop: 10)
+        label.alignBottomToAnchor(margins.bottomAnchor, paddingBottom: 10)
 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         gestureRecognizer.numberOfTapsRequired = 1
