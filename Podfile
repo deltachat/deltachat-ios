@@ -15,6 +15,7 @@ target 'deltachat-ios' do
   pod 'InputBarAccessoryView'
   pod 'SCSiriWaveformView'
   pod 'SDWebImage', '~> 5.9.1'
+  pod 'SDWebImageWebPCoder'
   target 'deltachat-iosTests' do
     inherit! :search_paths
     # Pods for testing
@@ -30,4 +31,5 @@ target 'DcShare' do
   inhibit_all_warnings!
 
   pod 'SDWebImage', '~> 5.9.1'
+  pod 'SDWebImageWebPCoder'
 end

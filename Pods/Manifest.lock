@@ -3,11 +3,23 @@ PODS:
   - InputBarAccessoryView (4.3.1):
     - InputBarAccessoryView/Core (= 4.3.1)
   - InputBarAccessoryView/Core (4.3.1)
+  - libwebp (1.2.0):
+    - libwebp/demux (= 1.2.0)
+    - libwebp/mux (= 1.2.0)
+    - libwebp/webp (= 1.2.0)
+  - libwebp/demux (1.2.0):
+    - libwebp/webp
+  - libwebp/mux (1.2.0):
+    - libwebp/demux
+  - libwebp/webp (1.2.0)
   - ReachabilitySwift (4.3.1)
   - SCSiriWaveformView (1.1.1)
   - SDWebImage (5.9.5):
     - SDWebImage/Core (= 5.9.5)
   - SDWebImage/Core (5.9.5)
+  - SDWebImageWebPCoder (0.6.1):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.7)
   - SwiftFormat/CLI (0.40.9)
   - SwiftLint (0.43.1)
   - SwiftyBeaver (1.9.4)
@@ -18,6 +30,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SCSiriWaveformView
   - SDWebImage (~> 5.9.1)
+  - SDWebImageWebPCoder
   - SwiftFormat/CLI
   - SwiftLint
   - SwiftyBeaver
@@ -26,9 +39,11 @@ SPEC REPOS:
   trunk:
     - DBDebugToolkit
     - InputBarAccessoryView
+    - libwebp
     - ReachabilitySwift
     - SCSiriWaveformView
     - SDWebImage
+    - SDWebImageWebPCoder
     - SwiftFormat
     - SwiftLint
     - SwiftyBeaver
@@ -36,13 +51,15 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   DBDebugToolkit: 03eb3483da4daf03b853b83ade5a8da9c8b7aff4
   InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
+  libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
   SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
+  SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   SwiftyBeaver: 576177b2c5c94b3aedd5993914e91271a0524e88
 
-PODFILE CHECKSUM: aaa44e7abceaef2d4ae15d9cb45fc87e03f85e0f
+PODFILE CHECKSUM: bda1eaa52c3523837e45c30f0792783dc02e1de9
 
 COCOAPODS: 1.10.1
