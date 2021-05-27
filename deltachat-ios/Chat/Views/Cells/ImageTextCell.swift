@@ -60,7 +60,7 @@ class ImageTextCell: BaseMessageCell {
                                                                                        blue: 255),
                                                                    size: CGSize(width: 500, height: 500)))
             playButtonView.isHidden = true
-            accessibilityLabel = String.localized("gif")
+            accessibilityLabel = msg.type == DC_MSG_GIF ? String.localized("gif") : String.localized("image")
             setAspectRatioFor(message: msg)
         } else if msg.type == DC_MSG_IMAGE, let image = msg.image {
             contentImageView.image = image
