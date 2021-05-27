@@ -60,6 +60,13 @@ class MultilineLabelCell: UITableViewCell {
             logger.info("status: tapped outside urls or phone numbers")
         }
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            label.font = UIFont.preferredFont(for: .body, weight: .regular)
+        }
+    }
 }
 
 extension MultilineLabelCell: MessageLabelDelegate {
