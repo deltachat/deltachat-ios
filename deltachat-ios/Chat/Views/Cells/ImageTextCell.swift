@@ -50,7 +50,8 @@ class ImageTextCell: BaseMessageCell {
         tag = msg.id
 
         if let url = msg.fileURL,
-           ((msg.type == DC_MSG_GIF) ||
+           ((msg.type == DC_MSG_IMAGE) ||
+            (msg.type == DC_MSG_GIF) ||
                 msg.type == DC_MSG_STICKER ||
                 (msg.type == DC_MSG_IMAGE && url.pathExtension == "webp")) {
             contentImageView.sd_setImage(with: url,
@@ -61,11 +62,6 @@ class ImageTextCell: BaseMessageCell {
                                                                    size: CGSize(width: 500, height: 500)))
             playButtonView.isHidden = true
             accessibilityLabel = msg.type == DC_MSG_GIF ? String.localized("gif") : String.localized("image")
-            setAspectRatioFor(message: msg)
-        } else if msg.type == DC_MSG_IMAGE, let image = msg.image {
-            contentImageView.image = image
-            accessibilityLabel = String.localized("image")
-            playButtonView.isHidden = true
             setAspectRatioFor(message: msg)
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
