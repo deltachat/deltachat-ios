@@ -54,7 +54,6 @@ class SettingsAutodelSetController: UITableViewController {
         return autodelOptions.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = String.localized($0.descr)
-            cell.selectionStyle = .none
             cell.accessoryType = $0.value==currVal ? .checkmark : .none
             return cell
         })
@@ -112,6 +111,8 @@ class SettingsAutodelSetController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+
         let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: self.valToIndex(val: self.currVal), section: 0))
         let newSelectedCell = tableView.cellForRow(at: IndexPath.init(row: indexPath.row, section: 0))
         let newVal = self.autodelOptions[indexPath.row].value
