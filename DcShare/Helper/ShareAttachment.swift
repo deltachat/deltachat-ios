@@ -85,7 +85,7 @@ class ShareAttachment {
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
-                    self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
+                    self.imageThumbnail = result
                     self.delegate?.onThumbnailChanged()
                 }
                 if let error = error {
@@ -97,26 +97,34 @@ class ShareAttachment {
 
     private func createImageMsg(_ item: NSItemProvider) {
         item.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil) { data, error in
-            let result: UIImage?
+            var result: UIImage?
             switch data {
             case let image as UIImage:
                 result = image
             case let data as Data:
-                result = UIImage(data: data)
+                result = SDAnimatedImage(data: data)
             case let url as URL:
-                result = UIImage(contentsOfFile: url.path)
+                result = SDAnimatedImage(contentsOfFile: url.path)
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
                 result = nil
             }
             if let result = result {
-                let path = DcUtils.saveImage(image: result)
+                var path: String?
+                if result.sd_isAnimated,
+                   let animatedImage = result as? SDAnimatedImage,
+                   let animatedImageData = animatedImage.animatedImageData {
+                    path = DcUtils.saveImage(data: animatedImageData, suffix: "webp")
+                } else {
+                    path = DcUtils.saveImage(image: result)
+                }
+
                 let msg = DcMsg(viewType: DC_MSG_IMAGE)
                 msg.setFile(filepath: path)
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
-                    self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
+                    self.imageThumbnail = result
                     self.delegate?.onThumbnailChanged()
                 }
             }
@@ -134,7 +142,7 @@ class ShareAttachment {
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     DispatchQueue.global(qos: .background).async {
-                        self.imageThumbnail = DcUtils.generateThumbnailFromVideo(url: url)?.scaleDownImage(toMax: self.thumbnailSize)
+                        self.imageThumbnail = DcUtils.generateThumbnailFromVideo(url: url)
                         DispatchQueue.main.async {
                             self.delegate?.onThumbnailChanged()
                         }
