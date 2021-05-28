@@ -108,7 +108,6 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
-        cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
