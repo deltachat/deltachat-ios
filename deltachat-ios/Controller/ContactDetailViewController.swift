@@ -14,7 +14,6 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.actionColor = SystemColor.blue.uiColor
         cell.actionTitle = String.localized("send_message")
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -30,7 +29,6 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.actionTitle = String.localized("encryption_info_title_desktop")
         cell.actionColor = SystemColor.blue.uiColor
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -38,7 +36,6 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
         cell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -46,7 +43,6 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.actionTitle = viewModel.chatIsMuted ? String.localized("menu_unmute") :  String.localized("menu_mute")
         cell.actionColor = SystemColor.blue.uiColor
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -54,7 +50,6 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.actionTitle = viewModel.chatIsArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
         cell.actionColor = SystemColor.blue.uiColor
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -62,7 +57,6 @@ class ContactDetailViewController: UITableViewController {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_delete_chat")
         cell.actionColor = UIColor.red
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -194,11 +188,11 @@ class ContactDetailViewController: UITableViewController {
         let type = viewModel.typeFor(section: indexPath.section)
         switch type {
         case .chatOptions:
-            handleChatOption(for: indexPath.row)
+            handleChatOption(indexPath: indexPath)
         case .statusArea:
             break
         case .chatActions:
-            handleChatAction(for: indexPath.row)
+            handleChatAction(indexPath: indexPath)
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             showChat(chatId: chatId)
@@ -251,22 +245,26 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: - actions
-    private func handleChatAction(for index: Int) {
-        let action = viewModel.chatActionFor(row: index)
+    private func handleChatAction(indexPath: IndexPath) {
+        let action = viewModel.chatActionFor(row: indexPath.row)
         switch action {
         case .archiveChat:
+            tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
             toggleArchiveChat()
         case .showEncrInfo:
+            tableView.deselectRow(at: indexPath, animated: false)
             showEncrInfoAlert()
         case .blockContact:
+            tableView.deselectRow(at: indexPath, animated: false)
             toggleBlockContact()
         case .deleteChat:
+            tableView.deselectRow(at: indexPath, animated: false)
             showDeleteChatConfirmationAlert()
         }
     }
 
-    private func handleChatOption(for index: Int) {
-        let action = viewModel.chatOptionFor(row: index)
+    private func handleChatOption(indexPath: IndexPath) {
+        let action = viewModel.chatOptionFor(row: indexPath.row)
         switch action {
         case .documents:
             showDocuments()
@@ -275,6 +273,7 @@ class ContactDetailViewController: UITableViewController {
         case .ephemeralMessages:
             showEphemeralMessagesController()
         case .muteChat:
+            tableView.deselectRow(at: indexPath, animated: false)
             if viewModel.chatIsMuted {
                 self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
                 muteChatCell.actionTitle = String.localized("menu_mute")
@@ -283,6 +282,7 @@ class ContactDetailViewController: UITableViewController {
                 showMuteAlert()
             }
         case .startChat:
+            tableView.deselectRow(at: indexPath, animated: false)
             let contactId = viewModel.contactId
             chatWith(contactId: contactId)
         }

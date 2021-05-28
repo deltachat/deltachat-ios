@@ -491,6 +491,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             tableView.reloadData() // otherwise the disclosureIndicator may stay selected
             restoreBackup()
         case tagDeleteAccountCell:
+            tableView.deselectRow(at: indexPath, animated: false)
             deleteAccount()
         case tagAdvancedCell:
             toggleAdvancedSection()
@@ -501,7 +502,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         case tagCertCheckCell:
             showCertCheckOptions()
         case tagViewLogCell:
-            tableView.deselectRow(at: indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: false)
             SettingsViewController.showDebugToolkit(dcContext: dcContext)
         default:
             break

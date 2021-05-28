@@ -117,7 +117,6 @@ class GroupChatDetailViewController: UIViewController {
         let cell = ActionCell()
         cell.actionTitle = self.chat.isMuted ? String.localized("menu_unmute") :  String.localized("menu_mute")
         cell.actionColor = SystemColor.blue.uiColor
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -126,7 +125,6 @@ class GroupChatDetailViewController: UIViewController {
         let cell = ActionCell()
         cell.actionTitle = chat.isArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
         cell.actionColor = UIColor.systemBlue
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -142,7 +140,6 @@ class GroupChatDetailViewController: UIViewController {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_delete_chat")
         cell.actionColor = UIColor.red
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -449,6 +446,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             case .ephemeralMessages:
                 showEphemeralMessagesController()
             case .muteChat:
+                tableView.deselectRow(at: indexPath, animated: false)
                 if chat.isMuted {
                     dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
                     muteChatCell.actionTitle = String.localized("menu_mute")
@@ -465,7 +463,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             } else {
                 let memberId = getGroupMemberIdFor(row)
                 if memberId == DC_CONTACT_ID_SELF {
-                    tableView.deselectRow(at: indexPath, animated: true)
+                    tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
                 } else {
                     showContactDetail(of: memberId)
                 }
@@ -473,10 +471,13 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         case .chatActions:
             switch chatActions[row] {
             case .archiveChat:
+                tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
                 toggleArchiveChat()
             case .leaveGroup:
+                tableView.deselectRow(at: indexPath, animated: false)
                 showLeaveGroupConfirmationAlert()
             case .deleteChat:
+                tableView.deselectRow(at: indexPath, animated: false)
                 showDeleteChatConfirmationAlert()
             }
         }

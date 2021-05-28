@@ -219,6 +219,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         let section = indexPath.section
         let row = indexPath.row
         if section == sectionInvite {
+            tableView.deselectRow(at: indexPath, animated: false)
             if row == sectionInviteRowAddMembers {
                 var contactsWithoutSelf = contactIdsForGroup
                 contactsWithoutSelf.remove(Int(DC_CONTACT_ID_SELF))

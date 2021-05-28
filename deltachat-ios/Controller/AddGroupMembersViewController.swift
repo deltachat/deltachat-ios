@@ -42,7 +42,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         let cell = ActionCell()
         cell.actionColor = SystemColor.blue.uiColor
         cell.actionTitle = String.localized("menu_new_contact")
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -129,7 +128,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         let sectionType = sections[indexPath.section]
         switch sectionType {
         case .newContact:
-            tableView.deselectRow(at: indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: false)
             showNewContactController()
         case .memberList:
             didSelectContactCell(at: indexPath)
