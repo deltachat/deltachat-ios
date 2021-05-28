@@ -498,7 +498,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         case tagImapSecurityCell:
             showImapSecurityOptions()
         case tagSmtpSecurityCell:
-            showSmptpSecurityOptions()
+            showSmtpSecurityOptions()
         case tagCertCheckCell:
             showCertCheckOptions()
         case tagViewLogCell:
@@ -858,9 +858,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
-    private func showSmptpSecurityOptions() {
+    private func showSmtpSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
-                                                                    title: String.localized("login_imap_security"),
+                                                                    title: String.localized("login_smtp_security"),
                                                                     type: SecurityType.SMTPSecurity)
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
