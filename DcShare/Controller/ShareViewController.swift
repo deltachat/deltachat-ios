@@ -3,6 +3,8 @@ import Social
 import DcCore
 import MobileCoreServices
 import Intents
+import SDWebImageWebPCoder
+import SDWebImage
 
 
 class ShareViewController: SLComposeServiceViewController {
@@ -37,11 +39,14 @@ class ShareViewController: SLComposeServiceViewController {
     var shareAttachment: ShareAttachment?
     var isAccountConfigured: Bool = true
 
-    lazy var preview: UIImageView? = {
-        let imageView = UIImageView(frame: .zero)
+    lazy var preview: SDAnimatedImageView? = {
+        let imageView = SDAnimatedImageView(frame: .zero)
         imageView.clipsToBounds = true
         imageView.shouldGroupAccessibilityChildren = true
         imageView.isAccessibilityElement = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.constraintHeightTo(96).isActive = true
+        imageView.constraintWidthTo(96).isActive = true
         return imageView
     }()
 
@@ -57,6 +62,8 @@ class ShareViewController: SLComposeServiceViewController {
             }
         }
         placeholder = String.localized("chat_input_placeholder")
+        let webPCoder = SDImageWebPCoder.shared
+        SDImageCodersManager.shared.addCoder(webPCoder)
 
     }
 
