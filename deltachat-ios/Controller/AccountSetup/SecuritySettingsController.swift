@@ -24,7 +24,6 @@ class SecuritySettingsController: UITableViewController {
         return options.map {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = SecurityConverter.getSocketName(value: $0)
-            cell.selectionStyle = .none
             return cell
         }
     }
@@ -73,11 +72,10 @@ class SecuritySettingsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // uselect old
+        tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
         if let cell = tableView.cellForRow(at: IndexPath(item: selectedIndex, section: 0)) {
             cell.accessoryType = .none
         }
-        // select new
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }

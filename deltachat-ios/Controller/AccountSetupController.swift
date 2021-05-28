@@ -187,7 +187,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_imap_security")
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
         cell.tag = tagImapSecurityCell
         return cell
     }()
@@ -253,7 +252,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textLabel?.text = String.localized("login_smtp_security")
         cell.tag = tagSmtpSecurityCell
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -264,7 +262,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.detailTextLabel?.text = certCheckType
         cell.tag = tagCertCheckCell
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
         return cell
     }()
 
