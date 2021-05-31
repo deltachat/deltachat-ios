@@ -1317,7 +1317,9 @@ class ChatViewController: UITableViewController {
     func showMediaGalleryFor(indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let message = DcMsg(id: messageId)
-        showMediaGalleryFor(message: message)
+        if message.type != DC_MSG_STICKER {
+            showMediaGalleryFor(message: message)
+        }
     }
 
     func showMediaGalleryFor(message: DcMsg) {
