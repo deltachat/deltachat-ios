@@ -553,7 +553,7 @@ class ChatViewController: UITableViewController {
         }
 
         let cell: BaseMessageCell
-        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO {
+        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO || message.type == DC_MSG_STICKER {
             cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? ImageTextCell ?? ImageTextCell()
         } else if message.type == DC_MSG_FILE {
             if message.isSetupMessage {
