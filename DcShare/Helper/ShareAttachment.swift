@@ -110,16 +110,17 @@ class ShareAttachment {
                 result = nil
             }
             if let result = result {
+                var msg: DcMsg
                 var path: String?
-                if result.sd_isAnimated,
-                   let animatedImage = result as? SDAnimatedImage,
-                   let animatedImageData = animatedImage.animatedImageData {
-                    path = DcUtils.saveImage(data: animatedImageData, suffix: "webp")
+                if result.sd_imageFormat == .webP,
+                   let imageData = result.sd_imageData() {
+                    path = DcUtils.saveImage(data: imageData, suffix: "webp")
+                    msg = DcMsg(viewType: DC_MSG_STICKER)
                 } else {
                     path = DcUtils.saveImage(image: result)
+                    msg = DcMsg(viewType: DC_MSG_IMAGE)
                 }
 
-                let msg = DcMsg(viewType: DC_MSG_IMAGE)
                 msg.setFile(filepath: path)
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
