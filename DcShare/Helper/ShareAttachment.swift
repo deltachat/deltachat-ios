@@ -43,12 +43,12 @@ class ShareAttachment {
         guard let items = inputItems as? [NSExtensionItem] else { return }
         for item in items {
             if let attachments = item.attachments {
-                createMessageFromDataRepresentaion(attachments)
+                createMessageFromDataRepresentation(attachments)
             }
         }
     }
 
-    private func createMessageFromDataRepresentaion(_ attachments: [NSItemProvider]) {
+    private func createMessageFromDataRepresentation(_ attachments: [NSItemProvider]) {
         for attachment in attachments {
             if attachment.hasItemConformingToTypeIdentifier(kUTTypeGIF as String) {
                 createAnimatedImageMsg(attachment)
