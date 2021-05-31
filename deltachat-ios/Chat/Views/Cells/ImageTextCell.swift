@@ -44,16 +44,17 @@ class ImageTextCell: BaseMessageCell {
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
         messageLabel.text = msg.text
-        bottomCompactView = msg.text?.isEmpty ?? true
+        bottomCompactView = msg.type != DC_MSG_STICKER && msg.text?.isEmpty ?? true
         mainContentView.spacing = msg.text?.isEmpty ?? false ? 0 : 6
         topCompactView = msg.quoteText == nil ? true : false
+        isTransparent = msg.type == DC_MSG_STICKER
+        topLabel.isHidden = msg.type == DC_MSG_STICKER
         tag = msg.id
 
         if let url = msg.fileURL,
-           ((msg.type == DC_MSG_IMAGE) ||
-            (msg.type == DC_MSG_GIF) ||
-                msg.type == DC_MSG_STICKER ||
-                (msg.type == DC_MSG_IMAGE && url.pathExtension == "webp")) {
+           (msg.type == DC_MSG_IMAGE ||
+            msg.type == DC_MSG_GIF ||
+                msg.type == DC_MSG_STICKER) {
             contentImageView.sd_setImage(with: url,
                                          placeholderImage: UIImage(color: UIColor.init(alpha: 0,
                                                                                        red: 255,

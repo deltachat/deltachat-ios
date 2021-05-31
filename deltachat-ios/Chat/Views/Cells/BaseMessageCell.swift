@@ -66,6 +66,8 @@ public class BaseMessageCell: UITableViewCell {
         }
     }
 
+    public var isTransparent: Bool = false
+
     public weak var baseDelegate: BaseMessageCellDelegate?
 
     public lazy var quoteView: QuoteView = {
@@ -311,7 +313,7 @@ public class BaseMessageCell: UITableViewCell {
         isFullMessageButtonHidden = !msg.hasHtml
 
         messageBackgroundContainer.update(rectCorners: messageStyle,
-                                          color: msg.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor)
+                                          color: getBackgroundColor(message: msg))
 
         if !msg.isInfo {
             bottomLabel.attributedText = getFormattedBottomLine(message: msg)
@@ -369,6 +371,18 @@ public class BaseMessageCell: UITableViewCell {
             "\(getFormattedBottomLineAccessibilityString(message: message))"
     }
 
+    func getBackgroundColor(message: DcMsg) -> UIColor {
+        var backgroundColor: UIColor
+        if isTransparent {
+            backgroundColor = UIColor.init(alpha: 0, red: 0, green: 0, blue: 0)
+        } else if message.isFromCurrentSender {
+            backgroundColor =  DcColors.messagePrimaryColor
+        } else {
+            backgroundColor = DcColors.messageSecondaryColor
+        }
+        return backgroundColor
+    }
+
     func getFormattedBottomLineAccessibilityString(message: DcMsg) -> String {
         let padlock =  message.showPadlock() ? "\(String.localized("encrypted_message")), " : ""
         let date = "\(message.formattedSentDate()), "
@@ -391,21 +405,22 @@ public class BaseMessageCell: UITableViewCell {
 
         let text = NSMutableAttributedString()
         if message.fromContactId == Int(DC_CONTACT_ID_SELF) {
+            let tintColor: UIColor? = !(bottomCompactView || isTransparent) ? DcColors.checkmarkGreen : nil
             if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
                 style.alignment = .right
                 timestampAttributes[.paragraphStyle] = style
-                if !bottomCompactView {
-                    timestampAttributes[.foregroundColor] = DcColors.checkmarkGreen
+                if let tintColor = tintColor {
+                    timestampAttributes[.foregroundColor] = tintColor
                 }
             }
 
             text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
             if message.showPadlock() {
-                attachPadlock(to: text, color: bottomCompactView ? nil : DcColors.checkmarkGreen)
+                attachPadlock(to: text, color: tintColor)
             }
             
             if message.hasLocation {
-                attachLocation(to: text, color: bottomCompactView ? nil : DcColors.checkmarkGreen)
+                attachLocation(to: text, color: tintColor)
             }
 
             attachSendingState(message.state, to: text)
