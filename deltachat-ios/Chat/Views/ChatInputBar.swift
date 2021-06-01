@@ -24,6 +24,17 @@ public class ChatInputBar: InputBarAccessoryView {
         backgroundColor = DcColors.chatBackgroundColor
     }
 
+    override open func setup() {
+        replaceInputBar()
+        super.setup()
+    }
+
+    func replaceInputBar() {
+        inputTextView = ChatInputTextView()
+        inputTextView.translatesAutoresizingMaskIntoConstraints = false
+        inputTextView.inputBarAccessoryView = self
+    }
+
     func setupKeyboardObserver() {
         NotificationCenter.default.addObserver(
             self,

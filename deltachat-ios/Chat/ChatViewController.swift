@@ -553,7 +553,7 @@ class ChatViewController: UITableViewController {
         }
 
         let cell: BaseMessageCell
-        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO {
+        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO || message.type == DC_MSG_STICKER {
             cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? ImageTextCell ?? ImageTextCell()
         } else if message.type == DC_MSG_FILE {
             if message.isSetupMessage {
@@ -890,6 +890,9 @@ class ChatViewController: UITableViewController {
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
         messageInputBar.inputTextView.delegate = self
+        if let inputTextView = messageInputBar.inputTextView as? ChatInputTextView {
+            inputTextView.imagePasteDelegate = self
+        }
     }
 
     private func evaluateInputBar(draft: DraftModel) {
@@ -1262,6 +1265,14 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    private func sendSticker(_ image: UIImage) {
+        DispatchQueue.global().async {
+            if let path = DcUtils.saveImage(image: image) {
+                self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
+            }
+        }
+    }
+
     private func sendAttachmentMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
         let msg = DcMsg(viewType: viewType)
         msg.setFile(filepath: filePath)
@@ -1317,7 +1328,9 @@ class ChatViewController: UITableViewController {
     func showMediaGalleryFor(indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let message = DcMsg(id: messageId)
-        showMediaGalleryFor(message: message)
+        if message.type != DC_MSG_STICKER {
+            showMediaGalleryFor(message: message)
+        }
     }
 
     func showMediaGalleryFor(message: DcMsg) {
@@ -1641,5 +1654,12 @@ extension ChatViewController: UITextViewDelegate {
             return false
         }
         return true
+    }
+}
+
+// MARK: - ChatInputTextViewPasteDelegate
+extension ChatViewController: ChatInputTextViewPasteDelegate {
+    func onImagePasted(image: UIImage) {
+        sendSticker(image)
     }
 }

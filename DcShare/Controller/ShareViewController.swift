@@ -3,6 +3,8 @@ import Social
 import DcCore
 import MobileCoreServices
 import Intents
+import SDWebImageWebPCoder
+import SDWebImage
 
 
 class ShareViewController: SLComposeServiceViewController {
@@ -37,11 +39,19 @@ class ShareViewController: SLComposeServiceViewController {
     var shareAttachment: ShareAttachment?
     var isAccountConfigured: Bool = true
 
-    lazy var preview: UIImageView? = {
-        let imageView = UIImageView(frame: .zero)
+    var previewImageHeightConstraint: NSLayoutConstraint?
+    var previewImageWidthConstraint: NSLayoutConstraint?
+
+    lazy var preview: SDAnimatedImageView? = {
+        let imageView = SDAnimatedImageView(frame: .zero)
         imageView.clipsToBounds = true
         imageView.shouldGroupAccessibilityChildren = true
         imageView.isAccessibilityElement = false
+        imageView.contentMode = .scaleAspectFit
+        previewImageHeightConstraint = imageView.constraintHeightTo(96)
+        previewImageWidthConstraint = imageView.constraintWidthTo(96)
+        previewImageHeightConstraint?.isActive = true
+        previewImageWidthConstraint?.isActive = true
         return imageView
     }()
 
@@ -57,6 +67,8 @@ class ShareViewController: SLComposeServiceViewController {
             }
         }
         placeholder = String.localized("chat_input_placeholder")
+        let webPCoder = SDImageWebPCoder.shared
+        SDImageCodersManager.shared.addCoder(webPCoder)
 
     }
 
@@ -201,9 +213,20 @@ extension ShareViewController: ShareAttachmentDelegate {
     }
 
     func onThumbnailChanged() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             if let preview = self.preview {
                 preview.image = self.shareAttachment?.thumbnail ?? nil
+
+                if let image = preview.image, image.sd_imageFormat == .webP {
+                    self.previewImageWidthConstraint?.isActive = false
+                    self.previewImageHeightConstraint?.isActive = false
+                    preview.centerInSuperview()
+                    self.textView.text = nil
+                    self.textView.attributedText = nil
+                    self.placeholder = nil
+                    self.textView.isHidden = true
+                }
             }
         }
     }

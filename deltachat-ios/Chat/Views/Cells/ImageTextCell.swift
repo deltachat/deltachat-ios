@@ -44,16 +44,17 @@ class ImageTextCell: BaseMessageCell {
 
     override func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
         messageLabel.text = msg.text
-        bottomCompactView = msg.text?.isEmpty ?? true
+        bottomCompactView = msg.type != DC_MSG_STICKER && msg.text?.isEmpty ?? true
         mainContentView.spacing = msg.text?.isEmpty ?? false ? 0 : 6
         topCompactView = msg.quoteText == nil ? true : false
+        isTransparent = msg.type == DC_MSG_STICKER
+        topLabel.isHidden = msg.type == DC_MSG_STICKER
         tag = msg.id
-        if msg.type == DC_MSG_IMAGE, let image = msg.image {
-            contentImageView.image = image
-            accessibilityLabel = String.localized("image")
-            playButtonView.isHidden = true
-            setAspectRatioFor(message: msg)
-        } else if msg.type == DC_MSG_GIF, let url = msg.fileURL {
+
+        if let url = msg.fileURL,
+           (msg.type == DC_MSG_IMAGE ||
+            msg.type == DC_MSG_GIF ||
+                msg.type == DC_MSG_STICKER) {
             contentImageView.sd_setImage(with: url,
                                          placeholderImage: UIImage(color: UIColor.init(alpha: 0,
                                                                                        red: 255,
@@ -61,7 +62,7 @@ class ImageTextCell: BaseMessageCell {
                                                                                        blue: 255),
                                                                    size: CGSize(width: 500, height: 500)))
             playButtonView.isHidden = true
-            accessibilityLabel = String.localized("gif")
+            accessibilityLabel = msg.type == DC_MSG_GIF ? String.localized("gif") : String.localized("image")
             setAspectRatioFor(message: msg)
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
@@ -98,6 +99,39 @@ class ImageTextCell: BaseMessageCell {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             baseDelegate?.imageTapped(indexPath: indexPath)
         }
+    }
+
+    private func setStickerAspectRatio(width: CGFloat, height: CGFloat) {
+        if height == 0 || width == 0 {
+            return
+        }
+        var width = width
+        var height = height
+
+        self.imageHeightConstraint?.isActive = false
+        self.imageWidthConstraint?.isActive = false
+
+        // check if sticker has the allowed minimal width
+        if width < minImageWidth {
+            height = (height / width) * minImageWidth
+            width = minImageWidth
+        }
+
+        // check if sticker has the allowed maximal width
+        let maxWidth  = min(UIScreen.main.bounds.height, UIScreen.main.bounds.width) / 2
+        if width > maxWidth {
+            height = (height / width) * maxWidth
+            width = maxWidth
+        }
+
+        self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+        self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
+            lessThanOrEqualTo: self.contentImageView.widthAnchor,
+            multiplier: height / width
+        )
+
+        self.imageHeightConstraint?.isActive = true
+        self.imageWidthConstraint?.isActive = true
     }
 
     private func setAspectRatio(width: CGFloat, height: CGFloat) {
@@ -165,8 +199,13 @@ class ImageTextCell: BaseMessageCell {
             height = image.size.height
             message.setLateFilingMediaSize(width: width, height: height, duration: 0)
         }
-        setAspectRatio(width: width, height: height)
+        if message.type == DC_MSG_STICKER {
+            setStickerAspectRatio(width: width, height: height)
+        } else {
+            setAspectRatio(width: width, height: height)
+        }
     }
+
 
     private func setAspectRatioFor(message: DcMsg, with image: UIImage?, isPlaceholder: Bool) {
         var width = message.messageWidth
