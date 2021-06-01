@@ -10,7 +10,6 @@ class SettingsClassicViewController: UITableViewController {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = SettingsClassicViewController.getValString(val: $0)
-            cell.selectionStyle = .none
             return cell
         })
     }
@@ -55,6 +54,8 @@ class SettingsClassicViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
+
         let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: dcContext.showEmails, section: 0))
         oldSelectedCell?.accessoryType = .none
 

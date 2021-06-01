@@ -32,7 +32,6 @@ class ActionCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubviews()
-        selectionStyle = .none
     }
 
     required init?(coder _: NSCoder) {
