@@ -44,27 +44,36 @@ class GalleryItem: ContextMenuItem {
         switch viewtype {
         case .image:
             if url.pathExtension == "webp" {
-                loadAsyncImageThumbnail(from: url)
+                loadAsyncSDImageThumbnail(from: url)
             } else {
-                thumbnailImage = msg.image
+                loadAsyncUIImageThumbnail(from: url)
             }
         case .video:
             loadVideoThumbnail(from: url)
         case .gif:
-            loadAsyncImageThumbnail(from: url)
+            loadAsyncSDImageThumbnail(from: url)
         default:
             safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
         }
     }
 
-    private func loadAsyncImageThumbnail(from url: URL) {
+    private func loadAsyncUIImageThumbnail(from url: URL) {
         DispatchQueue.global(qos: .userInteractive).async {
             guard let imageData = try? Data(contentsOf: url) else {
                 return
             }
-            let thumbnailImage = SDAnimatedImage(data: imageData)
+            let image = UIImage(data: imageData)
             DispatchQueue.main.async { [weak self] in
-                self?.thumbnailImage = thumbnailImage
+                    self?.thumbnailImage = image
+            }
+        }
+    }
+
+    private func loadAsyncSDImageThumbnail(from url: URL) {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            let image = SDAnimatedImage(contentsOfFile: url.path)
+            DispatchQueue.main.async { [weak self] in
+                    self?.thumbnailImage = image
             }
         }
     }
