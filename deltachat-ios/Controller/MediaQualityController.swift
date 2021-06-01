@@ -10,7 +10,6 @@ class MediaQualityController: UITableViewController {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = MediaQualityController.getValString(val: $0)
-            cell.selectionStyle = .none
             return cell
         })
     }()
@@ -53,6 +52,8 @@ class MediaQualityController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
+
         let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: dcContext.getConfigInt("media_quality"), section: 0))
         oldSelectedCell?.accessoryType = .none
 

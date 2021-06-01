@@ -187,7 +187,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_imap_security")
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
         cell.tag = tagImapSecurityCell
         return cell
     }()
@@ -253,7 +252,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textLabel?.text = String.localized("login_smtp_security")
         cell.tag = tagSmtpSecurityCell
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -264,7 +262,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.detailTextLabel?.text = certCheckType
         cell.tag = tagCertCheckCell
         cell.accessoryType = .disclosureIndicator
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -491,17 +488,18 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             tableView.reloadData() // otherwise the disclosureIndicator may stay selected
             restoreBackup()
         case tagDeleteAccountCell:
+            tableView.deselectRow(at: indexPath, animated: false)
             deleteAccount()
         case tagAdvancedCell:
             toggleAdvancedSection()
         case tagImapSecurityCell:
             showImapSecurityOptions()
         case tagSmtpSecurityCell:
-            showSmptpSecurityOptions()
+            showSmtpSecurityOptions()
         case tagCertCheckCell:
             showCertCheckOptions()
         case tagViewLogCell:
-            tableView.deselectRow(at: indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: false)
             SettingsViewController.showDebugToolkit(dcContext: dcContext)
         default:
             break
@@ -857,9 +855,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
-    private func showSmptpSecurityOptions() {
+    private func showSmtpSecurityOptions() {
         let securitySettingsController = SecuritySettingsController(dcContext: dcContext,
-                                                                    title: String.localized("login_imap_security"),
+                                                                    title: String.localized("login_smtp_security"),
                                                                     type: SecurityType.SMTPSecurity)
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }

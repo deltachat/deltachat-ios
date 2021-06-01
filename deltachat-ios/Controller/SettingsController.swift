@@ -150,7 +150,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let cell = ActionCell()
         cell.tag = CellTags.sendAutocryptMessage.rawValue
         cell.actionTitle = String.localized("autocrypt_send_asm_title")
-        cell.selectionStyle = .default
         return cell
     }()
 
@@ -158,7 +157,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let cell = ActionCell()
         cell.tag = CellTags.exportBackup.rawValue
         cell.actionTitle = String.localized("export_backup_desktop")
-        cell.selectionStyle = .default
         return cell
     }()
 
@@ -166,7 +164,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let cell = ActionCell()
         cell.tag = CellTags.advanced.rawValue
         cell.actionTitle = String.localized("menu_advanced")
-        cell.selectionStyle = .default
         return cell
     }()
 
@@ -174,7 +171,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let cell = ActionCell()
         cell.tag = CellTags.help.rawValue
         cell.actionTitle = String.localized("menu_help")
-        cell.selectionStyle = .default
         return cell
     }()
 
@@ -278,7 +274,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             safe_fatalError()
             return
         }
-        tableView.deselectRow(at: indexPath, animated: false) // to achieve highlight effect
+        tableView.deselectRow(at: indexPath, animated: false)
 
         switch cellTag {
         case .profile: showEditSettingsController()

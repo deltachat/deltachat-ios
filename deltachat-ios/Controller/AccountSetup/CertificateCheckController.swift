@@ -25,7 +25,6 @@ class CertificateCheckController: UITableViewController {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text =  ValueConverter.convertHexToString(value: $0)
-            cell.selectionStyle = .none
             return cell
         })
     }
@@ -62,6 +61,7 @@ class CertificateCheckController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
         if indexPath.section == 0 {
             let row = indexPath.row
             selectItem(at: row)
@@ -80,15 +80,11 @@ class CertificateCheckController: UITableViewController {
     }
 
     private func selectItem(at index: Int? ) {
-        // unselect old cell
-        // select new cell
-        // update value
         if let oldIndex = selectedIndex {
             let cell = tableView.cellForRow(at: IndexPath.init(row: oldIndex, section: 0))
             cell?.accessoryType = .none
         }
         if let newIndex = index {
-            // activate accesoryType on selected cell
             let cell = tableView.cellForRow(at: IndexPath.init(row: newIndex, section: 0))
             cell?.accessoryType = .checkmark
             currentValue = options[newIndex]

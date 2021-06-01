@@ -116,7 +116,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         if cell.tag == tagAccountSettingsCell {
-            tableView.deselectRow(at: indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: false)
             guard let nc = navigationController else { return }
             let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
             nc.pushViewController(accountSetupVC, animated: true)

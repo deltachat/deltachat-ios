@@ -99,7 +99,7 @@ class SettingsAutodelOverviewController: UITableViewController {
             safe_fatalError()
             return
         }
-        tableView.deselectRow(at: indexPath, animated: false) // to achieve highlight effect
+        tableView.deselectRow(at: indexPath, animated: false)
 
         switch cellTag {
         case .autodelDevice:
