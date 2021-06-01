@@ -890,6 +890,9 @@ class ChatViewController: UITableViewController {
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
         messageInputBar.inputTextView.delegate = self
+        if let inputTextView = messageInputBar.inputTextView as? ChatInputTextView {
+            inputTextView.imagePasteDelegate = self
+        }
     }
 
     private func evaluateInputBar(draft: DraftModel) {
@@ -1258,6 +1261,14 @@ class ChatViewController: UITableViewController {
         DispatchQueue.global().async {
             if let path = DcUtils.saveImage(image: image) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
+            }
+        }
+    }
+
+    private func sendSticker(_ image: UIImage) {
+        DispatchQueue.global().async {
+            if let path = DcUtils.saveImage(image: image) {
+                self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
             }
         }
     }
@@ -1643,5 +1654,12 @@ extension ChatViewController: UITextViewDelegate {
             return false
         }
         return true
+    }
+}
+
+// MARK: - InputBarImagePasteDelegate
+extension ChatViewController: ChatInputTextViewPasteDelegate {
+    func onImagePasted(image: UIImage) {
+        sendSticker(image)
     }
 }
