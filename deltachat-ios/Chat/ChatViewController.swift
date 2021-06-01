@@ -1657,7 +1657,7 @@ extension ChatViewController: UITextViewDelegate {
     }
 }
 
-// MARK: - InputBarImagePasteDelegate
+// MARK: - ChatInputTextViewPasteDelegate
 extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
         sendSticker(image)
