@@ -108,7 +108,6 @@ class ImageTextCell: BaseMessageCell {
         var width = width
         var height = height
 
-        let orientation = UIApplication.shared.statusBarOrientation
         self.imageHeightConstraint?.isActive = false
         self.imageWidthConstraint?.isActive = false
 
@@ -119,8 +118,7 @@ class ImageTextCell: BaseMessageCell {
         }
 
         // check if sticker has the allowed maximal width
-        let factor: CGFloat = orientation.isLandscape ? 3 / 8 : 1 / 2
-        let maxWidth  = UIScreen.main.bounds.width * factor
+        let maxWidth  = min(UIScreen.main.bounds.height, UIScreen.main.bounds.width) / 2
         if width > maxWidth {
             height = (height / width) * maxWidth
             width = maxWidth
