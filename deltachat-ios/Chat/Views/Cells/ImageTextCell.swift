@@ -101,6 +101,41 @@ class ImageTextCell: BaseMessageCell {
         }
     }
 
+    private func setStickerAspectRatio(width: CGFloat, height: CGFloat) {
+        if height == 0 || width == 0 {
+            return
+        }
+        var width = width
+        var height = height
+
+        let orientation = UIApplication.shared.statusBarOrientation
+        self.imageHeightConstraint?.isActive = false
+        self.imageWidthConstraint?.isActive = false
+
+        // check if sticker has the allowed minimal width
+        if width < minImageWidth {
+            height = (height / width) * minImageWidth
+            width = minImageWidth
+        }
+
+        // check if sticker has the allowed maximal width
+        let factor: CGFloat = orientation.isLandscape ? 3 / 8 : 1 / 2
+        let maxWidth  = UIScreen.main.bounds.width * factor
+        if width > maxWidth {
+            height = (height / width) * maxWidth
+            width = maxWidth
+        }
+
+        self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+        self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
+            lessThanOrEqualTo: self.contentImageView.widthAnchor,
+            multiplier: height / width
+        )
+
+        self.imageHeightConstraint?.isActive = true
+        self.imageWidthConstraint?.isActive = true
+    }
+
     private func setAspectRatio(width: CGFloat, height: CGFloat) {
         if height == 0 || width == 0 {
             return
@@ -166,8 +201,13 @@ class ImageTextCell: BaseMessageCell {
             height = image.size.height
             message.setLateFilingMediaSize(width: width, height: height, duration: 0)
         }
-        setAspectRatio(width: width, height: height)
+        if message.type == DC_MSG_STICKER {
+            setStickerAspectRatio(width: width, height: height)
+        } else {
+            setAspectRatio(width: width, height: height)
+        }
     }
+
 
     private func setAspectRatioFor(message: DcMsg, with image: UIImage?, isPlaceholder: Bool) {
         var width = message.messageWidth
