@@ -203,6 +203,7 @@ extension ShareViewController: ShareAttachmentDelegate {
             } else {
                 self.textView.text = "\(url.absoluteString)"
             }
+            self.validateContent()
         }
     }
 
