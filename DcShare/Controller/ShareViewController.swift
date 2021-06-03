@@ -90,7 +90,7 @@ class ShareViewController: SLComposeServiceViewController {
                 if let chatId = selectedChatId {
                     selectedChat = dcContext.getChat(chatId: chatId)
                 }
-                DispatchQueue.global(qos: .background).async {
+                DispatchQueue.global(qos: .userInitiated).async {
                     self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
                 }
             }
