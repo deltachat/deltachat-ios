@@ -22,8 +22,7 @@ extension ImageFormat {
 
             if let dataString = String(data: subdata, encoding: .ascii),
                 dataString.hasPrefix("RIFF"),
-                dataString.hasSuffix("WEBP")
-            {
+                dataString.hasSuffix("WEBP") {
                 return .webp
             }
 
@@ -31,14 +30,12 @@ extension ImageFormat {
             let subdata = data[8...11]
 
             if let dataString = String(data: subdata, encoding: .ascii),
-                Set(["heic", "heix", "hevc", "hevx"]).contains(dataString)
-            {
+                Set(["heic", "heix", "hevc", "hevx"]).contains(dataString) {
                 return .heic
             }
 
         case 0x42 where data.count >= 2 :
-            let secondByte = data[1]
-            if secondByte == 0x4D {
+            if data[1] == 0x4D {
                 return .bmp
             }
 
@@ -46,10 +43,6 @@ extension ImageFormat {
             break
         }
         return .unknown
-    }
-
-    var contentType: String {
-        return "image/\(rawValue)"
     }
 
     static func loadImageFrom(data: Data) -> UIImage? {
