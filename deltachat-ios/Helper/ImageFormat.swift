@@ -7,6 +7,8 @@ enum ImageFormat: String {
 }
 
 extension ImageFormat {
+
+    // magic bytes can be found here: https://en.wikipedia.org/wiki/List_of_file_signatures
     static func get(from data: Data) -> ImageFormat {
         switch data[0] {
         case 0x89:
@@ -45,6 +47,10 @@ extension ImageFormat {
         return .unknown
     }
 
+
+    // Theoretically, SDAnimatedImage should be able to read data of all kinds of images.
+    // In practive, JPG files haven't been read correctly, for now we're using SDAnimatedImage
+    // only for file formats that support animated content.
     static func loadImageFrom(data: Data) -> UIImage? {
         switch ImageFormat.get(from: data) {
         case .gif, .png, .webp, .heic:
