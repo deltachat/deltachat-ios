@@ -102,9 +102,9 @@ class ShareAttachment {
             case let image as UIImage:
                 result = image
             case let data as Data:
-                result = SDAnimatedImage(data: data)
+                result = ImageFormat.loadImageFrom(data: data)
             case let url as URL:
-                result = SDAnimatedImage(contentsOfFile: url.path)
+                result = ImageFormat.loadImageFrom(url: url)
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
                 result = nil

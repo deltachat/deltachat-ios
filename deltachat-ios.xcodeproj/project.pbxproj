@@ -58,6 +58,8 @@
 		306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
 		30653081254358B10093E196 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30653080254358B10093E196 /* QuoteView.swift */; };
 		3067AA4C2666310E00525036 /* ChatInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067AA4B2666310E00525036 /* ChatInputTextView.swift */; };
+		3067AAC62667F3FE00525036 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067AAC52667F3FE00525036 /* ImageFormat.swift */; };
+		3067AAC72667F3FE00525036 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067AAC52667F3FE00525036 /* ImageFormat.swift */; };
 		306C32322445CDE9001D89F3 /* DcLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C32312445CDE9001D89F3 /* DcLogger.swift */; };
 		30734326249A280B00BF9AD1 /* MediaQualityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30734325249A280B00BF9AD1 /* MediaQualityController.swift */; };
 		307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A82CB25B8D26700748B57 /* ChatEditingBar.swift */; };
@@ -302,6 +304,7 @@
 		306011C922E5E83500C1CE6F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		30653080254358B10093E196 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		3067AA4B2666310E00525036 /* ChatInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputTextView.swift; sourceTree = "<group>"; };
+		3067AAC52667F3FE00525036 /* ImageFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFormat.swift; sourceTree = "<group>"; };
 		306C32312445CDE9001D89F3 /* DcLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcLogger.swift; sourceTree = "<group>"; };
 		30734325249A280B00BF9AD1 /* MediaQualityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaQualityController.swift; sourceTree = "<group>"; };
 		307A82CB25B8D26700748B57 /* ChatEditingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEditingBar.swift; sourceTree = "<group>"; };
@@ -814,6 +817,7 @@
 		AE851AC2227C695000ED86F0 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				3067AAC52667F3FE00525036 /* ImageFormat.swift */,
 				305702A024C6453700D84EFC /* TypeAlias.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
 				AEACE2E41FB32E1900DCDD78 /* Utils.swift */,
@@ -1229,6 +1233,7 @@
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
 				30152C9A25A5D92200377714 /* DetectorType.swift in Sources */,
 				30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */,
+				3067AAC72667F3FE00525036 /* ImageFormat.swift in Sources */,
 				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,
 				3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */,
 				30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */,
@@ -1301,6 +1306,7 @@
 				AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
 				30653081254358B10093E196 /* QuoteView.swift in Sources */,
+				3067AAC62667F3FE00525036 /* ImageFormat.swift in Sources */,
 				30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */,
 				30EF7308252F6A3300E2C54A /* PaddingTextView.swift in Sources */,
 				30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */,
