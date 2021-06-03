@@ -78,8 +78,8 @@ class ShareAttachment {
             default:
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
             }
-            if let result = result, let animatedImageData = result.animatedImageData {
-                let path = DcUtils.saveImage(data: animatedImageData, suffix: "gif")
+            if let result = result {
+                let path = ImageFormat.saveImage(image: result)
                 let msg = DcMsg(viewType: DC_MSG_GIF)
                 msg.setFile(filepath: path)
                 self.messages.append(msg)
@@ -110,14 +110,11 @@ class ShareAttachment {
                 result = nil
             }
             if let result = result {
+                let path: String? = ImageFormat.saveImage(image: result)
                 var msg: DcMsg
-                var path: String?
-                if result.sd_imageFormat == .webP,
-                   let imageData = result.sd_imageData() {
-                    path = DcUtils.saveImage(data: imageData, suffix: "webp")
+                if result.sd_imageFormat == .webP {
                     msg = DcMsg(viewType: DC_MSG_STICKER)
                 } else {
-                    path = DcUtils.saveImage(image: result)
                     msg = DcMsg(viewType: DC_MSG_IMAGE)
                 }
 

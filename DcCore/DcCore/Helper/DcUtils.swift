@@ -91,31 +91,6 @@ public struct DcUtils {
         return acc
     }
 
-    public static func saveImage(image: UIImage) -> String? {
-        let suffix = image.isTransparent() ? "png" : "jpg"
-        guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {
-            return nil
-        }
-
-        return saveImage(data: data, suffix: suffix)
-    }
-
-    public static func saveImage(data: Data, suffix: String) -> String? {
-        let timestamp = Double(Date().timeIntervalSince1970)
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
-                                                           appropriateFor: nil, create: false) as NSURL,
-            let path = directory.appendingPathComponent("\(timestamp).\(suffix)")
-            else { return nil }
-
-        do {
-            try data.write(to: path)
-            return path.relativePath
-        } catch {
-            DcContext.shared.logger?.info(error.localizedDescription)
-            return nil
-        }
-    }
-
     public static func getMimeTypeForPath(path: String) -> String {
         let url = NSURL(fileURLWithPath: path)
         let pathExtension = url.pathExtension

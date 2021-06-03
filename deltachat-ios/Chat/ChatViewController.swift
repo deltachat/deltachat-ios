@@ -1222,34 +1222,22 @@ class ChatViewController: UITableViewController {
 
     private func stageImage(url: NSURL) {
         keepKeyboard = true
-        if url.pathExtension == "gif" {
-            stageAnimatedImage(url: url)
-        } else if let data = try? Data(contentsOf: url as URL),
-                  let image = UIImage(data: data) {
-            stageImage(image)
-        }
-    }
-
-    private func stageAnimatedImage(url: NSURL) {
-        DispatchQueue.global().async {
-            if let path = url.path,
-               let result = SDAnimatedImage(contentsOfFile: path),
-               let animatedImageData = result.animatedImageData,
-               let pathInDocDir = DcUtils.saveImage(data: animatedImageData, suffix: "gif") {
-                DispatchQueue.main.async {
-                    self.draft.setAttachment(viewType: DC_MSG_GIF, path: pathInDocDir)
-                    self.configureDraftArea(draft: self.draft)
-                    self.messageInputBar.inputTextView.becomeFirstResponder()
-                }
+        DispatchQueue.global().async { [weak self] in
+            if let image = ImageFormat.loadImageFrom(url: url as URL) {
+                self?.stageImage(image)
             }
         }
     }
 
     private func stageImage(_ image: UIImage) {
         DispatchQueue.global().async {
-            if let pathInDocDir = DcUtils.saveImage(image: image) {
+            if let pathInDocDir = ImageFormat.saveImage(image: image) {
                 DispatchQueue.main.async {
-                    self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInDocDir)
+                    if pathInDocDir.suffix(4).contains(".gif") {
+                        self.draft.setAttachment(viewType: DC_MSG_GIF, path: pathInDocDir)
+                    } else {
+                        self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInDocDir)
+                    }
                     self.configureDraftArea(draft: self.draft)
                     self.messageInputBar.inputTextView.becomeFirstResponder()
                 }
@@ -1259,7 +1247,7 @@ class ChatViewController: UITableViewController {
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
-            if let path = DcUtils.saveImage(image: image) {
+            if let path = ImageFormat.saveImage(image: image) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
             }
         }
@@ -1267,7 +1255,7 @@ class ChatViewController: UITableViewController {
 
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async {
-            if let path = DcUtils.saveImage(image: image) {
+            if let path = ImageFormat.saveImage(image: image) {
                 self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
             }
         }
