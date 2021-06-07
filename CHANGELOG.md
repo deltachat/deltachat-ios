@@ -1,5 +1,25 @@
 # Delta Chat iOS Changelog
 
+## 1.20.5
+2021-06
+
+* show status/footer messages in contact profiles
+* show stickers as such
+* send memojis as stickers
+* fix downscaling images
+* fix outgoing messages popping up in "Saved messages" for some providers
+* fix: do not allow deleting contacts with ongoing chats
+* fix: ignore drafts folder when scanning
+* fix: scan folders also when inbox is not watched
+* fix scrolling issues
+* fix: not not stack chats on tapping notifications
+* fix: show warning if camera access is denied
+* fix: do not hide keyboard after sending a message
+* fix: hide keyboard when tapping on a search result
+* improve error handling and logging
+* update translations, local help and provider database
+
+
 ## 1.20.4
 2021-05
 
