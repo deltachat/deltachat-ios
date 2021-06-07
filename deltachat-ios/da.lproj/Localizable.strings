@@ -283,7 +283,6 @@
 "show_location_traces" = "Vis spor";
 "add_poi" = "Send interessepunkt";
 
-
 // search
 "search" = "Søg";
 "search_explain" = "Søg efter samtaler, kontakter og beskeder";
@@ -393,8 +392,6 @@
 "pref_outgoing_balanced" = "Balanceret";
 "pref_outgoing_worse" = "Dårligere kvalitet mindre størrelse";
 "pref_vibrate" = "Vibrere";
-"pref_change_secret" = "Ændre hemmelighed";
-"pref_change_secret_explain" = "Ændre PIN / mønster / fingeraftryk via system opsætning";
 "pref_screen_security" = "Skærmsikkerhed";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Forespørgsel om at blokere skærmbilleder i seneste liste og i programmet";
@@ -472,8 +469,6 @@
 "profile_image_select" = "Vælg profilbillede";
 "select_your_new_profile_image" = "Vælg dit nye profilbillede";
 "profile_image_delete" = "Slet profilbillede";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "Søg i resultater";
 "emoji_not_found" = "Ingen emoji fundet";
@@ -565,17 +560,6 @@
 "systemmsg_chat_protection_disabled" = "Chat-beskyttelse slået fra.";
 "systemmsg_chat_protection_enabled" = "Chat-beskyttelse sluttet til.";
 
-// screen lock
-"screenlock_title" = "Skærmlås";
-"screenlock_explain" = "Låse adgang med Android skærmlås eller fingeraftryk; for at undgå at vise det forrige indhold, skal \"Skærm sikkerhed\" også aktiveres.";
-"screenlock_authentication_failed" = "Godkendelse mislykket.";
-"screenlock_unlock_title" = "Lås Delta Chat op";
-"screenlock_unlock_description" = "Indtast system bestemt hemmelighed for at låse Delta Chat op.";
-"screenlock_inactivity_timeout" = "Inaktivitet tidsudløb lås";
-"screenlock_inactivity_timeout_explain" = "Autolås Delta Chat efter angiven tidsinterval med inaktivitet";
-"screenlock_inactivity_timeout_interval" = "Inaktivitet tidsudløb interval";
-
-
 // qr code stuff
 "qr_code" = "QR-kode";
 "load_qr_code_as_image" = "Indlæs QR-kode som billede";
@@ -610,8 +594,6 @@
 "contact_setup_changed" = "Ændret opsætning for %1$@";
 "verified_group_explain" = "Bekræftede grupper (eksperimentel) giver sikkerhed mod aktive angreb. Medlemmer bliver bekræftet med en anden faktor af andre medlemmer og beskederne bliver altid end-to-end krypteret.";
 "copy_qr_data_success" = "Kopieret QR url til udklipsholder";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nye beskeder i %2$d samtaler";
 "notify_mark_read" = "Markér som læst";
@@ -706,7 +688,6 @@
 "menu.view.developer.open.log.folder" = "Åbn log mappe";
 "menu.view.developer.open.current.log.file" = "Åbn nuværende log fil";
 "user_location_permission_explanation" = "Delta Chat behøver placering tilladelse for at vise og dele placering.";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Leveringsstatus: Fejl";
 "a11y_encryption_padlock" = "Krypteringslås";

@@ -202,7 +202,6 @@
 "show_location_traces" = "İzləri göstərmək";
 "add_poi" = "Maraq nöqtəsini göndərin";
 
-
 // search
 "search" = "Axtarış";
 "search_explain" = "Çatlar, kontaktlar və mesajlar axtar";
@@ -284,8 +283,6 @@
 "pref_outgoing_balanced" = "Balanslıdır";
 "pref_outgoing_worse" = "Daha pis keyfiyyət, kiçik ölçülü";
 "pref_vibrate" = "Vibrasiya";
-"pref_change_secret" = "Kodu dəyişdir";
-"pref_change_secret_explain" = "Sistem tənzimləmələri ilə pin-kod / model / barmaq izinizi dəyişdir";
 "pref_screen_security" = "Ekran təhlükəsizliyi";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Son proqramlar siyahısında və proqramın daxilində ekran çəkməyi qadağan etmə";
@@ -382,17 +379,6 @@
 "systemmsg_action_by_me" = "%1$@ məndən. ";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ ilə %2$@.";
-// screen lock
-"screenlock_title" = "Ekran kilidi";
-"screenlock_explain" = "Android ekran kilidi və ya barmaq izi ilə daxil olmaq; əvvəlki məzmunun görünməməsi üçün \"Ekran təhlükəsizliyi\"";
-"screenlock_authentication_failed" = "Daxilolma uğursuz oldu.";
-"screenlock_unlock_title" = "Delta Chat-ın kilidini aç";
-"screenlock_unlock_description" = "Delta Chat-ı blokdan açmaq üçün sistem parolunu daxil edin. ";
-"screenlock_inactivity_timeout" = "Ğeyri aktiv olan zaman blok vaxtı";
-"screenlock_inactivity_timeout_explain" = "Delta Chat-ın avtomatik olaraq işləməməsi müəyyən bir vaxt aralığından sonra";
-"screenlock_inactivity_timeout_interval" = "Ğeyri aktiv gözləmə intervalı. ";
-
-
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";
 "qrscan_ask_join_group" = "\"%1$@\" qrupa qoşulmaq istəyirsinizmi?";
@@ -501,5 +487,4 @@
 "menu.view.developer.open.log.folder" = "Loq mələfini açın";
 "menu.view.developer.open.current.log.file" = "Loq-faylı açın";
 "user_location_permission_explanation" = "Delta Chat yerinizi göstərmək və bölüşmək üçün yer icazəsinə ehtiyac duyur.";
-
 "perm_enable_bg_reminder_title" = "Delta Chat arxa fonda mesajları almaq üçün bura toxunun.";

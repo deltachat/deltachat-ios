@@ -203,10 +203,6 @@
 "pref_background" = "الخلفية";
 "pref_show_emails_all" = "كلها";
 "autocrypt_continue_transfer_retry" = "أعد المحاولة";
-// screen lock
-"screenlock_title" = "قفل الشاشة";
-"screenlock_authentication_failed" = "فشلت المصادقة.";
-"screenlock_inactivity_timeout" = "نفاذ مهلة قفل الشاشة";
 "qrscan_fingerprint_label" = "البصمة";
 "notify_mark_read" = "اعتبره كمقروء";
 "notify_reply_button" = "رد";

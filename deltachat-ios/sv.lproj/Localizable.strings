@@ -287,13 +287,10 @@
 // mailing lists
 "mailing_list" = "Mejllista";
 "ask_show_mailing_list" = "Visa mejllistan \"%1$@\"?";
-
-
 // map
 "filter_map_on_time" = "Visa platser inom tidsramen";
 "show_location_traces" = "Visa spår";
 "add_poi" = "Skicka intressant plats";
-
 
 // search
 "search" = "Sök";
@@ -398,8 +395,6 @@
 "pref_outgoing_balanced" = "Balanserad";
 "pref_outgoing_worse" = "Sämre kvalitet, mindre storlek";
 "pref_vibrate" = "Vibrera";
-"pref_change_secret" = "Ändra hemlighet";
-"pref_change_secret_explain" = "Ändra ditt PIN/mönster/fingeravtryck via systeminställningarna";
 "pref_screen_security" = "Skärmsäkerhet";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Blockera skärmklipp i tidigare-listan samt inuti programmet";
@@ -532,17 +527,6 @@
 "systemmsg_ephemeral_timer_day" = "Tiduret för meddelandeborttagning är satt till 1 dag.";
 "systemmsg_ephemeral_timer_week" = "Tiduret för meddelandeborttagning är satt till 1 vecka.";
 "systemmsg_ephemeral_timer_four_weeks" = "Tiduret för meddelandeborttagning är satt till 4 veckor.";
-// screen lock
-"screenlock_title" = "Skärmlås";
-"screenlock_explain" = "Lås åtkomsten med Androids skärmlås eller fingeravtryck. Aktivera även \"Skärmsäkerhet\", för att undvika att visa tidigare innehåll.";
-"screenlock_authentication_failed" = "Autentisering misslyckades.";
-"screenlock_unlock_title" = "Lås upp Delta Chat";
-"screenlock_unlock_description" = "Ange din systemdefinierade säkerhet för att låsa upp Delta Chat";
-"screenlock_inactivity_timeout" = "Tidslås för inaktivitet";
-"screenlock_inactivity_timeout_explain" = "Lås Delta Chat automatiskt efter en specificerad tidsperiod av inaktivitet";
-"screenlock_inactivity_timeout_interval" = "Tid att fortsätta vara aktiv";
-
-
 // qr code stuff
 "qr_code" = "QR-kod";
 "qrscan_title" = "Skanna QR-kod";
@@ -664,7 +648,6 @@
 "menu.view.developer.open.log.folder" = "Öppna loggmappen";
 "menu.view.developer.open.current.log.file" = "Öppna aktuell loggfil";
 "user_location_permission_explanation" = "Delta Chat behöver platsbehörighet, för att kunna visa och dela din plats.";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Leveransstatus: Fel";
 "a11y_encryption_padlock" = "Hänglås för kryptering";

@@ -277,7 +277,6 @@
 "show_location_traces" = "نمایش ردپاها";
 "add_poi" = "ارسال نقطه توجه";
 
-
 // search
 "search" = "جستجو";
 "search_explain" = "جستجو برای گفتگوها، مخاطبین و پیام‌ها";
@@ -387,8 +386,6 @@
 "pref_outgoing_balanced" = "متعادل";
 "pref_outgoing_worse" = "بدترین‌ کیفیت، حجم کم";
 "pref_vibrate" = "لرزش";
-"pref_change_secret" = "تغییر رمز";
-"pref_change_secret_explain" = "تغییر پین/ الگو/ اثرانگشت از طریق تنظیمات سیستم";
 "pref_screen_security" = "امنیت صفحه";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "درخواست مسدود کردن عکس گرفتن از صفحه در لیست اخیر و درون نرم‌افزار";
@@ -466,8 +463,6 @@
 "profile_image_select" = "انتخاب تصویر پروفایل";
 "select_your_new_profile_image" = "انتخاب تصویر پروفایل جدید";
 "profile_image_delete" = "حذف تصویر پروفایل";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "نتایج جستجو";
 "emoji_not_found" = "شکلکی پیدا نشد";
@@ -551,17 +546,6 @@
 "systemmsg_chat_protection_disabled" = "محافظت از گفنگو غیرفعال شد.";
 "systemmsg_chat_protection_enabled" = "محافظت از گفتگو فعال شد.";
 
-// screen lock
-"screenlock_title" = "قفل صفحه";
-"screenlock_explain" = "قفل کردن صفحه با قفل صفحه اندروید یا اثر انگشت، برای اینکه محتوای قبلی نشان داده نشود لطفا \"امنیت صفحه\" را هم فعال کنید.";
-"screenlock_authentication_failed" = "احراز هویت ناموفق بود";
-"screenlock_unlock_title" = "قفل دلتا چت را باز کنید";
-"screenlock_unlock_description" = "رمز تعیین شده توسط دستگاهتان را وارد کنید تا قفل دلتاچت باز شود. ";
-"screenlock_inactivity_timeout" = "قفل بر اساس زمان غیر فعال ماندن";
-"screenlock_inactivity_timeout_explain" = "دلتاچت را به صورت خودکار و پس از یک زمان مشخص غیرفعال بودن قفل می‌شود";
-"screenlock_inactivity_timeout_interval" = "زمان فعال بودن";
-
-
 // qr code stuff
 "qr_code" = "کد QR";
 "load_qr_code_as_image" = "بارگیری کدQR به صورت تصویر";
@@ -596,8 +580,6 @@
 "contact_setup_changed" = "تنظیمات برای %1$@ تغییر کرد. ";
 "verified_group_explain" = "گرو‌ه های تایید شده(آزمایشی) در برابر حمله‌های فعال امنیت دارند. اعضا با یک روش ثانویه هم از طریق دیگر اعضا احراز هویت می‌شوند و پیام‌ها هم همیشه به صورت رمزگذاری شده به صورت گیرنده به گیرنده می‌باشد. ";
 "copy_qr_data_success" = "آدرس QR در حافظه ذخیر شد";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d پیام جدید در %2$d چت";
 "notify_mark_read" = "خوانده شده";
@@ -692,7 +674,6 @@
 "menu.view.developer.open.log.folder" = "پوشه گزارش را باز کن";
 "menu.view.developer.open.current.log.file" = "فایل گزارش فعلی را باز کن";
 "user_location_permission_explanation" = "دلتاچت برای نمایش موقعیت مکانی شما باید مجوز دسترسی به موقعیت مکانی را داشته باشد. ";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "وضعیت ارسال: خطا";
 "a11y_encryption_padlock" = "قفل رمزگذاری";

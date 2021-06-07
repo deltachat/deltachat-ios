@@ -96,6 +96,7 @@
 "contact" = "Contacto";
 "verified_contact" = "Contacto verificado";
 "camera" = "Cámara";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Capturar";
 "switch_camera" = "Cambiar cámara";
 "toggle_fullscreen" = "Alternar modo pantalla completa";
@@ -296,13 +297,10 @@
 // mailing lists
 "mailing_list" = "Lista de correo";
 "ask_show_mailing_list" = "¿Mostrar lista de correo \"%1$@\"?";
-
-
 // map
 "filter_map_on_time" = "Mostrar ubicaciones en el marco de tiempo";
 "show_location_traces" = "Mostrar trazas";
 "add_poi" = "Enviar punto de interés";
-
 
 // search
 "search" = "Buscar";
@@ -413,8 +411,6 @@
 "pref_outgoing_balanced" = "Balanceada";
 "pref_outgoing_worse" = "Peor calidad, tamaño pequeño";
 "pref_vibrate" = "Vibrar";
-"pref_change_secret" = "Cambiar secreto";
-"pref_change_secret_explain" = "Cambie su pin / patrón / huella a través de la configuración del sistema";
 "pref_screen_security" = "Seguridad de la pantalla";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Solicitar bloqueo de capturas de pantalla en la lista de recientes y dentro de la aplicación";
@@ -492,8 +488,6 @@
 "profile_image_select" = "Seleccionar imagen de perfil";
 "select_your_new_profile_image" = "Seleccionar tu nueva imagen de perfil";
 "profile_image_delete" = "Borrar imagen de perfil";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "Resultados de la búsqueda";
 "emoji_not_found" = "No se encontraron emojis";
@@ -585,17 +579,6 @@
 "systemmsg_chat_protection_disabled" = "Protección de chat desactivada.";
 "systemmsg_chat_protection_enabled" = "Protección de chat activada.";
 
-// screen lock
-"screenlock_title" = "Bloqueo de pantalla";
-"screenlock_explain" = "Bloquea el acceso con el bloqueo de pantalla de Android o huella; para evitar que aparezca el contenido anterior, habilite también \"Seguridad de pantalla\"";
-"screenlock_authentication_failed" = "La autenticación falló.";
-"screenlock_unlock_title" = "Desbloquear Delta Chat";
-"screenlock_unlock_description" = "Por favor, ingrese la clave definida en su sistema para desbloquear Delta Chat.";
-"screenlock_inactivity_timeout" = "Bloquear en inactividad";
-"screenlock_inactivity_timeout_explain" = "Bloquear Delta Chat automáticamente después de un intervalo de inactividad";
-"screenlock_inactivity_timeout_interval" = "Tiempo de espera antes de bloquear por inactividad";
-
-
 // qr code stuff
 "qr_code" = "Código QR";
 "load_qr_code_as_image" = "Cargar código QR como imagen";
@@ -630,8 +613,6 @@
 "contact_setup_changed" = "Configuración cambiada para %1$@.";
 "verified_group_explain" = "Los grupos verificados (experimentales) brindan seguridad contra ataques activos. Los miembros son verificados con un segundo factor por otros miembros y los mensajes siempre están encriptados de extremo a extremo.";
 "copy_qr_data_success" = "URL del código QR copiado al portapapeles";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nuevos mensajes en %2$d chats";
 "notify_mark_read" = "Marcar como leído";
@@ -734,7 +715,6 @@
 "menu.view.developer.open.log.folder" = "Abrir Carpeta de Logs";
 "menu.view.developer.open.current.log.file" = "Abrir Archivo de Logs Actual";
 "user_location_permission_explanation" = "Delta Chat necesita el permiso de ubicación para mostrar y compartir tu ubicación.";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Estado de envío: Error";
 "a11y_encryption_padlock" = "Candado de cifrado";

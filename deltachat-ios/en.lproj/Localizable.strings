@@ -39,6 +39,11 @@
 "main_menu" = "Main menu";
 "start_chat" = "Start chat";
 "show_full_message" = "Show full message…";
+"show_full_message_in_browser" = "Show full message in browser…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Loading…";
+"hide" = "Hide";
+"activate" = "Activate";
 "load_remote_content" = "Load remote images";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Remote images can be used to track you.\n\nThe setting also allows loading fonts and other content. Even if it is disabled, you may still see embedded or cached images.\n\nLoad remote images?";
@@ -96,6 +101,7 @@
 "contact" = "Contact";
 "verified_contact" = "Verified contact";
 "camera" = "Camera";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Capture";
 "switch_camera" = "Switch camera";
 "toggle_fullscreen" = "Toggle full screen mode";
@@ -155,6 +161,8 @@
 "menu_copy_to_clipboard" = "Copy to clipboard";
 "menu_copy_selection_to_clipboard" = "Copy selection";
 "menu_copy_link_to_clipboard" = "Copy link";
+"menu_copy_text_to_clipboard" = "Copy text";
+"menu_copy_image_to_clipboard" = "Copy image";
 "paste_from_clipboard" = "Paste from clipboard";
 "menu_forward" = "Forward message";
 "menu_resend" = "Resend message";
@@ -188,6 +196,12 @@
 "menu_zoom_in" = "Zoom in";
 "menu_zoom_out" = "Zoom out";
 "menu_save_log" = "Save log";
+"menu_more_options" = "More options";
+"menu_learn_spelling" = "Learn spelling";
+"menu_chat_audit_log" = "Chat Audit Log";
+"jump_to_message" = "Jump to message";
+"copy_json" = "Copy JSON";
+"replace_draft" = "Replace draft";
 "title_share_location" = "Share location with all group members";
 "device_talk" = "Device messages";
 "device_talk_subtitle" = "Locally generated messages";
@@ -237,6 +251,7 @@
 
 // get confirmations
 "ask_leave_group" = "Are you sure you want to leave this group?";
+"ask_delete_message" = "Are you sure you want to delete this message?";
 "ask_forward" = "Forward messages to %1$@?";
 "ask_forward_multiple" = "Forward messages to %1$d chats?";
 "ask_export_attachment" = "Export attachment? Exporting attachments will allow any other apps on your device to access them.\n\nContinue?";
@@ -288,6 +303,7 @@
 "messaging_disabled_not_in_group" = "You cannot write because you are not in this group. To join, ask another member.";
 "messaging_disabled_device_chat" = "This chat contains locally generated messages. Therefore you cannot write any messages.";
 "messaging_disabled_deaddrop" = "Click on a message to accept or deny the contact request";
+"messaging_disabled_mailing_list" = "Sending messages in mailing lists is not supported yet";
 "cannot_display_unsuported_file_type" = "Cannot display this file type: %1$@";
 "attachment_failed_to_load" = "Failed to load attachment";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -296,13 +312,26 @@
 // mailing lists
 "mailing_list" = "Mailing list";
 "ask_show_mailing_list" = "Show mailing list \"%1$@\"?";
-
+"mailing_list_profile_info" = "Changes on mailing list name and image apply to this device only.";
 
 // map
 "filter_map_on_time" = "Show locations in time frame";
 "show_location_traces" = "Show traces";
 "add_poi" = "Send point of interest";
 
+// chat audit log
+"chat_audit_log_empty_message" = "System messages of this chat would appear here";
+"chat_audit_log_title" = "Chat Audit Log for %1$@";
+"chat_audit_log_description" = "This view shows only system and info messages. Useful for finding the last chat actions without scrolling through many normal messages.";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Don\'t ask again for %1$@";
+"puny_code_warning_header" = "Suspicious link detected";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Are you sure you want to visit %1$@?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "You followed a link which could be misrepresenting characters by using similarly looking ones from different alphabets. Following the link labelled %1$@ will lead to %2$@ which is normal for non-Latin characters. If you did not expect such characters this link could be harmful";
 
 // search
 "search" = "Search";
@@ -413,8 +442,6 @@
 "pref_outgoing_balanced" = "Balanced";
 "pref_outgoing_worse" = "Worse quality, small size";
 "pref_vibrate" = "Vibrate";
-"pref_change_secret" = "Change secret";
-"pref_change_secret_explain" = "Change your PIN / pattern / fingerprint via system settings";
 "pref_screen_security" = "Screen security";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Request to block screenshots in the recents list and inside the app";
@@ -492,7 +519,8 @@
 "profile_image_select" = "Select profile image";
 "select_your_new_profile_image" = "Select your new profile image";
 "profile_image_delete" = "Delete profile image";
-
+"pref_show_tray_icon" = "Show tray icon";
+"pref_edit_profile" = "Edit profile";
 
 // Emoji picker and categories
 "emoji_search_results" = "Search results";
@@ -585,16 +613,8 @@
 "systemmsg_chat_protection_disabled" = "Chat protection disabled.";
 "systemmsg_chat_protection_enabled" = "Chat protection enabled.";
 
-// screen lock
-"screenlock_title" = "Screen lock";
-"screenlock_explain" = "Lock access with Android screen lock or fingerprint; to avoid showing the prior content, please also enable \"Screen security\".";
-"screenlock_authentication_failed" = "Authentication failed.";
-"screenlock_unlock_title" = "Unlock Delta Chat";
-"screenlock_unlock_description" = "Please enter your system defined secret to unlock Delta Chat.";
-"screenlock_inactivity_timeout" = "Inactivity timeout lock";
-"screenlock_inactivity_timeout_explain" = "Auto-lock Delta Chat after a specified time period of inactivity";
-"screenlock_inactivity_timeout_interval" = "Time to remain active";
-
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Please enter your system defined secret to continue.";
 
 // qr code stuff
 "qr_code" = "QR code";
@@ -630,7 +650,10 @@
 "contact_setup_changed" = "Changed setup for %1$@.";
 "verified_group_explain" = "Verified groups (experimental) provide safety against active attacks. Members are verified with a second factor by other members and messages are always end-to-end-encrypted.";
 "copy_qr_data_success" = "Copied QR url to clipboard";
-
+"mailto_dialog_header_select_chat" = "Select chat to send the message to";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@ already has a draft message, do you want to replace it?";
+"mailto_link_could_not_be_decoded" = "mailto link could not be decoded: %1$@";
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d new messages in %2$d chats";
@@ -689,6 +712,8 @@
 "global_menu_help_contribute_desktop" = "Contribute on GitHub";
 "global_menu_help_report_desktop" = "Report an issue";
 "global_menu_help_about_desktop" = "About Delta Chat";
+"global_menu_file_open_desktop" = "Open Delta Chat";
+"global_menu_minimize_to_tray" = "Minimize";
 "no_chat_selected_suggestion_desktop" = "Select a chat or create a new chat";
 "write_message_desktop" = "Write a message";
 "encryption_info_title_desktop" = "Encryption info";
@@ -734,6 +759,9 @@
 "menu.view.developer.open.log.folder" = "Open the log folder";
 "menu.view.developer.open.current.log.file" = "Open current logfile";
 "user_location_permission_explanation" = "Delta Chat needs the location permission in order to show and share your location.";
+"explain_desktop_minimized_disabled_tray_pref" = "Tray icon cannot be disabled as Delta Chat was started with the --minimized option.";
+"no_spellcheck_suggestions_found" = "No spelling suggestions found.";
+"show_window" = "Show Window";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Delivery status: Error";
@@ -770,5 +798,6 @@
 "login_error_no_internet_connection" = "No internet connection, can\'t log in to your server.";
 "share_account_not_configured" = "Account is not configured.";
 "cannot_play_unsupported_file_type" = "The audio file cannot be played.";
+
 "perm_ios_explain_access_to_camera_denied" = "To take photos, capture videos or use the QR-Code scanner, open the system settings and enable \"Camera\".";
 "open_settings" = "Open Settings";

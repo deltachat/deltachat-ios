@@ -254,8 +254,6 @@
 "systemmsg_member_added" = "%1$@ hozzáadva a csoporthoz.";
 "systemmsg_member_removed" = "%1$@ eltávolítva a csoportból.";
 "systemmsg_group_left" = "Kiléptél a csoportból.";
-// screen lock
-"screenlock_title" = "Képernyőzár";
 // qr code stuff
 "qr_code" = "QR-kód";
 "qrscan_title" = "QR-kód olvasása";

@@ -266,7 +266,6 @@
 "show_location_traces" = "Tunjukkan jejak";
 "add_poi" = "Kirim titik menarik";
 
-
 // search
 "search" = "Cari";
 "search_explain" = "Mencari obrolan, kontak dan pesan";
@@ -371,8 +370,6 @@
 "pref_outgoing_balanced" = "Seimbang";
 "pref_outgoing_worse" = "Kualitas rendah, ukuran kecil";
 "pref_vibrate" = "Bergetar";
-"pref_change_secret" = "Ubah rahasia";
-"pref_change_secret_explain" = "Ubah PIN / pola / sidik jari melalui setelan sistem";
 "pref_screen_security" = "Keamanan layar";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Permintaan untuk memblok screenshot di daftar terbaru dan di dalam aplikasi";
@@ -436,8 +433,6 @@
 "profile_image_select" = "Pilih gambar profil";
 "select_your_new_profile_image" = "Pilih gambar profil baru";
 "profile_image_delete" = "Hapus gambar profil";
-
-
 "emoji_not_found" = "Emoji tidak ditemukan";
 "emoji_recent" = "Terakhir digunakan";
 "emoji_nature" = "Hewan & Alam";
@@ -495,13 +490,6 @@
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
 "systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
 
-// screen lock
-"screenlock_title" = "Kunci Layar";
-"screenlock_explain" = "Kunci akses dengan kunci layar Android atau sidik jari; kalau tidak mau menampilkan konten sebelumnya, mohon aktifkan pula \"Keamanan Layar\".";
-"screenlock_authentication_failed" = "Autentikasi gagal.";
-"screenlock_unlock_title" = "Buka kunci Delta Chat";
-"screenlock_unlock_description" = "Silakan tekan sistem rahasia yang sudah Anda tetapkan untuk membuka kunci Delta Chat.";
-"screenlock_inactivity_timeout_explain" = "Setelah tak aktif selama kurun waktu tertentu Delta Chat terkunci secara otomatis";
 // qr code stuff
 "qr_code" = "Kode QR";
 "qrscan_title" = "Pindah kode QR";
@@ -532,8 +520,6 @@
 "contact_setup_changed" = "Ubah pengaturan untuk %1$@.";
 "verified_group_explain" = "Kelompok yang sudah diverifikasi (eksperimental) menjaga keamanan dari serangan aktif. Anggota diverifikasi dengan faktor kedua oleh anggota lain dan selalu dengan pesan yang terinkripsi ujung ke ujung.";
 "copy_qr_data_success" = "Salin QR url ke papan klip";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$dpesan baru di%2$d obrolan";
 "notify_mark_read" = "Tandai telah dibaca";
@@ -624,7 +610,6 @@
 "menu.view.developer.open.log.folder" = "Buka folder log";
 "menu.view.developer.open.current.log.file" = "Buka log berkas saat ini";
 "user_location_permission_explanation" = "Delta Chat memerlukan izin lokasi untuk menunjukkan dan membagikan lokasi Anda.";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Status pengiriman: Kesalahan";
 "a11y_encryption_padlock" = "Enkripsi padlock";

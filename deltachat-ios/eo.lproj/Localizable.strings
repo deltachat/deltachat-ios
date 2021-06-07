@@ -213,7 +213,6 @@
 "show_location_traces" = "Montri spurojn";
 "add_poi" = "Sendi punkton de intereso";
 
-
 // search
 "search" = "Serĉi";
 "search_explain" = "Serĉi babilojn, kontaktojn, kaj mesaĝojn";
@@ -283,7 +282,6 @@
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";
 "pref_enter_sends_explain" = "Premado de la Eniga klavo sendos mesaĝojn";
 "pref_vibrate" = "Vibrado";
-"pref_change_secret" = "Ŝanĝi sekreton";
 "pref_screen_security" = "Ekrana sekureco";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Neebligi ekrankopiojn en la listo de ĵus uzitaj aplikaĵoj kaj ene de la aplikaĵo mem";
@@ -338,11 +336,6 @@
 "pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";
 "autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
-// screen lock
-"screenlock_title" = "Ekranŝloso";
-"screenlock_explain" = "Lock Delta Chat access with Android screen lock or fingerprint";
-"screenlock_unlock_title" = "Malŝlosi Delta Chat-on";
-"screenlock_inactivity_timeout_explain" = "Aŭtomate ŝlosi Signal-on post specifa templimo de neaktiveco";
 "notify_mark_read" = "Marki legita";
 "notify_reply_button" = "Respondi";
 "notify_new_message" = "Nova mesaĝo";

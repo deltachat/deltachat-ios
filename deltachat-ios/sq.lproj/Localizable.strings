@@ -39,6 +39,11 @@
 "main_menu" = "Menuja kryesore";
 "start_chat" = "Nisni fjalosje";
 "show_full_message" = "Shfaq mesazhin e plotë…";
+"show_full_message_in_browser" = "Shfaq mesazh të plotë në shfletues…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Po ngarkohet…";
+"hide" = "Fshihe";
+"activate" = "Aktivizoje";
 "load_remote_content" = "Ngarko figura të largëta";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Figurat e largëta mund të përdoren për t’ju ndjekur.\n\nRregullimi lejon gjithashtu të ngarkohen shkronja dhe lëndë tjetër. Edhe nëse është e çaktivizuar, prapë mund të shihni figura të trupëzuara ose të ruajtura në fshehtinë.\n\nTë ngarkohen figura të largëta?";
@@ -87,6 +92,7 @@
 "images" = "Figura";
 "audio" = "Audio";
 "voice_message" = "Mesazh zanor";
+"forwarded" = "Përcjellë";
 "forwarded_message" = "Mesazhi u përcoll";
 // %1$s will be replaced by the name or the email-address of the person who has forwarded the message
 "forwarded_by" = "Përcjellë nga %1$@";
@@ -152,6 +158,8 @@
 "menu_copy_to_clipboard" = "Kopjoje në të papastër";
 "menu_copy_selection_to_clipboard" = "Kopjoje përzgjedhjen";
 "menu_copy_link_to_clipboard" = "Kopjoje lidhjen";
+"menu_copy_text_to_clipboard" = "Kopjo tekstin";
+"menu_copy_image_to_clipboard" = "Kopjo figurën";
 "paste_from_clipboard" = "Ngjite prej të papastre";
 "menu_forward" = "Përcille mesazhin";
 "menu_resend" = "Ridërgoje mesazhin";
@@ -185,6 +193,12 @@
 "menu_zoom_in" = "Zmadhim";
 "menu_zoom_out" = "Zvogëlim";
 "menu_save_log" = "Ruaje regjistrin";
+"menu_more_options" = "Më tepër mundësi";
+"menu_learn_spelling" = "Mëso drejtshkrim";
+"menu_chat_audit_log" = "Regjistër Auditimi Fjalosjeje";
+"jump_to_message" = "Hidhu te mesazh";
+"copy_json" = "Kopjo JSON";
+"replace_draft" = "Zëvendëso skicë";
 "title_share_location" = "Jepua vendndodhjen krejt anëtarëve të grupit";
 "device_talk" = "Mesazhe Pajisjeje";
 "device_talk_subtitle" = "Mesazhe të prodhuar lokalisht";
@@ -234,6 +248,7 @@
 
 // get confirmations
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
+"ask_delete_message" = "Jeni i sigurt se doni të fshihet ky mesazh?";
 "ask_forward" = "Të përcillen mesazhet te %1$@?";
 "ask_forward_multiple" = "Të përcillen mesazhet te %1$d fjalosje?";
 "ask_export_attachment" = "Të eksportohet bashkëngjitja? Eksportimi i bashkëngjitjeve do t\’i lejojë çfarëdo aplikacioni tjetër në pajisjen tuaj t\’i përdorë ato.\n\nTë vazhdohet?";
@@ -285,6 +300,7 @@
 "messaging_disabled_not_in_group" = "S’mund të shkruani, ngaqë s’jeni në këtë grup. Për t’u bërë pjesë, kërkojani një anëtari tjetër.";
 "messaging_disabled_device_chat" = "Kjo fjalosje përmban mesazhe të prodhuar lokalisht. Ndaj s’mund të shkruani ndonjë mesazh.";
 "messaging_disabled_deaddrop" = "Që të pranoni apo hidhni tej një kërkesë kontakti, klikoni mbi një mesazh";
+"messaging_disabled_mailing_list" = "Dërgimi i mesazheve në lista postimesh nuk mbulohet ende";
 "cannot_display_unsuported_file_type" = "S’mund të shfaqet ky lloj kartelash: %1$@";
 "attachment_failed_to_load" = "S’u arrit të ngarkohet bashkëngjitje";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -293,13 +309,26 @@
 // mailing lists
 "mailing_list" = "Listë postimesh";
 "ask_show_mailing_list" = "Të shfaqet lista e postimeve \"%1$@\"?";
-
+"mailing_list_profile_info" = "Ndryshime në emër dhe figurë liste postimesh aplikohen vetëm në këtë pajisje.";
 
 // map
 "filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
 "show_location_traces" = "Shfaq gjurmë";
 "add_poi" = "Dërgo pikë interesi";
 
+// chat audit log
+"chat_audit_log_empty_message" = "Mesazhet e sistemit në këtë fjalosje do të shfaqen këtu";
+"chat_audit_log_title" = "Regjistër Auditimi Fjalosjeje %1$@";
+"chat_audit_log_description" = "Kjo pamje ju shfaq vetëm mesazhe sistemi dhe informacionesh. E dobishme për gjetjen e veprimeve të fundit pa u dashur të parakalohet nëpër mjaft mesazhe normale.";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Mos pyet sërish për %1$@";
+"puny_code_warning_header" = "U pikas lidhje e dyshimtë";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Jeni i sigurt se doni të vizitohet %1$@?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Ndoqët një lidhje e cila mund të jetë duke shfaqur keq shenja, duke përdorur të ngjashme prej alfabetesh të tjerë. Ndjekja e lidhjes së  quajtur %1$@ do të shpjerë te %2$@, çka është normale për shenja alfabetesh jo latinë. Nëse s’prisnit shenja të tilla, kjo lidhje mund të jetë e dëmshme";
 
 // search
 "search" = "Kërko";
@@ -410,8 +439,6 @@
 "pref_outgoing_balanced" = "E baraspeshuar";
 "pref_outgoing_worse" = "Cilësia më e ulët, madhësi e vogël";
 "pref_vibrate" = "Dridhu";
-"pref_change_secret" = "Ndryshoni të fshehtën";
-"pref_change_secret_explain" = "Ndryshojeni pin-in / rregullsinë / shenjat tuaja të gishtave përmes rregullimeve të sistemit";
 "pref_screen_security" = "Siguri ekrani";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Kërko të bllokohen foto ekrani në lista të freskëta dhe brenda aplikacionit";
@@ -488,7 +515,8 @@
 "profile_image_select" = "Përzgjidhni figurë profili";
 "select_your_new_profile_image" = "Përzgjidhni figurën tuaj të re të profilit";
 "profile_image_delete" = "Fshini figurën e profilit";
-
+"pref_show_tray_icon" = "Shfaq ikonë paneli";
+"pref_edit_profile" = "Përpunoni profil";
 
 // Emoji picker and categories
 "emoji_search_results" = "Përfundime kërkimi";
@@ -581,16 +609,8 @@
 "systemmsg_chat_protection_disabled" = "Mbrojtja e fjalosjes u çaktivizua.";
 "systemmsg_chat_protection_enabled" = "Mbrojtja e fjalosjes u aktivizua.";
 
-// screen lock
-"screenlock_title" = "Kyçje ekrani";
-"screenlock_explain" = "Kyçni hyrjen me kyçje ekrani apo shenja gishtas Android; për të shmangur shfaqje të lëndës së mëparshme, ju lutemi, aktivizoni edhe \"Siguri ekrani\"";
-"screenlock_authentication_failed" = "Mirëfilltësimi dështoi.";
-"screenlock_unlock_title" = "Shkyçe Delta Chat-in";
-"screenlock_unlock_description" = "Që të shkyçet Delta Chat-i, ju lutemi, jepni të fshehtën e përcaktuar nga sistemi juaj.";
-"screenlock_inactivity_timeout" = "Kyçje pas afati mosveprimtarie";
-"screenlock_inactivity_timeout_explain" = "Vetëkyçje Delta Chat-i pas një intervali të caktuar kohe mosveprimtarie";
-"screenlock_inactivity_timeout_interval" = "Interval afati mosveprimtarie";
-
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Që të vazhdohet, ju lutemi, jepni të fshehtën tuaj të përcaktuar nga sistemi.";
 
 // qr code stuff
 "qr_code" = "Kod QR";
@@ -626,7 +646,10 @@
 "contact_setup_changed" = "U ndryshua rregullimi për %1$@";
 "verified_group_explain" = "Grupet e verifikuara (eksperimentale) furnizojnë siguri kundër sulmesh aktive. Anëtarët janë të verifikuar me një faktor të dytë nga anëtarë të tjerë dhe mesazhet janë përherë të fshehtëzuara skaj më skaj.";
 "copy_qr_data_success" = "URL-ja QR u kopjua në të papastër";
-
+"mailto_dialog_header_select_chat" = "Përzgjidhni fjalosje ku të dërgohet mesazhi";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@ ka tashmë një mesazh skicë, doni të zëvendësohet?";
+"mailto_link_could_not_be_decoded" = "s’u shkodua dot lidhje mailto: %1$@";
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mesazhe të rinj në %2$d fjalosje";
@@ -683,6 +706,8 @@
 "global_menu_help_contribute_desktop" = "Jepni ndihmesë në GitHub";
 "global_menu_help_report_desktop" = "Njoftoni një Problem";
 "global_menu_help_about_desktop" = "Rreth Delta Chat-it";
+"global_menu_file_open_desktop" = "Hap Fjalosje Delta";
+"global_menu_minimize_to_tray" = "Minimizoje";
 "no_chat_selected_suggestion_desktop" = "Përzgjidhni një fjalosje ose krijoni një të tillë të re";
 "write_message_desktop" = "Shkruani një mesazh";
 "encryption_info_title_desktop" = "Të dhëna fshehtëzimi";
@@ -728,6 +753,9 @@
 "menu.view.developer.open.log.folder" = "Hap Dosje Regjistrash";
 "menu.view.developer.open.current.log.file" = "Hap Kartelën Regjistër të Tanishme";
 "user_location_permission_explanation" = "Që të mund të shfaqë dhe ndajë me të tjerët vendndodhjen tuaj, Delta Chat lyp lejen vendore.";
+"explain_desktop_minimized_disabled_tray_pref" = "Ikona e panelit s’mund të çaktivizohet, ngaqë Delta Chat qe nisur me mundësinë --minimized.";
+"no_spellcheck_suggestions_found" = "S’u gjetën sugjerimi drejtshkrimi.";
+"show_window" = "Shfaq Dritare";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Gjendje dërgimi: Gabim";

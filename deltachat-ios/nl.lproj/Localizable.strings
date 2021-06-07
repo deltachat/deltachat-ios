@@ -39,6 +39,11 @@
 "main_menu" = "Hoofdmenu";
 "start_chat" = "Gesprek beginnen";
 "show_full_message" = "Volledige bericht tonen…";
+"show_full_message_in_browser" = "Volledige bericht in browser tonen…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Bezig met laden…";
+"hide" = "Verbergen";
+"activate" = "Inschakelen";
 "load_remote_content" = "Externe afbeeldingen laden";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Externe afbeeldingen kunnen worden gebruikt om je gedrag te volgen.\n\nDeze instelling staat tevens toe om andere externe inhoud, zoals lettertypen, te laden, en zelfs na uitschakeling kunnen er ingesloten of gecachte afbeeldingen worden getoond.\n\nWeet je het zeker?";
@@ -96,6 +101,7 @@
 "contact" = "Contactpersoon";
 "verified_contact" = "Goedgekeurd contactpersoon";
 "camera" = "Camera";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Vastleggen";
 "switch_camera" = "Andere camera";
 "toggle_fullscreen" = "Beeldvullende modus aan/uit";
@@ -155,6 +161,8 @@
 "menu_copy_to_clipboard" = "Kopiëren naar klembord";
 "menu_copy_selection_to_clipboard" = "Selectie kopiëren";
 "menu_copy_link_to_clipboard" = "Link kopiëren";
+"menu_copy_text_to_clipboard" = "Tekst kopiëren";
+"menu_copy_image_to_clipboard" = "Afbeelding kopiëren";
 "paste_from_clipboard" = "Plakken van klembord";
 "menu_forward" = "Bericht doorsturen";
 "menu_resend" = "Bericht opnieuw versturen";
@@ -188,6 +196,12 @@
 "menu_zoom_in" = "Inzoomen";
 "menu_zoom_out" = "Uitzoomen";
 "menu_save_log" = "Logboek opslaan";
+"menu_more_options" = "Meer opties";
+"menu_learn_spelling" = "Spelling leren";
+"menu_chat_audit_log" = "Gesprekslog";
+"jump_to_message" = "Ga na bericht";
+"copy_json" = "JSON-gegevens kopiëren";
+"replace_draft" = "Concept vervangen";
 "title_share_location" = "Locatie delen met alle groepsleden";
 "device_talk" = "Berichten op apparaat";
 "device_talk_subtitle" = "Lokaal gegenereerde berichten";
@@ -237,6 +251,7 @@
 
 // get confirmations
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
+"ask_delete_message" = "Weet je zeker dat je dit bericht wilt verwijderen?";
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
 "ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";
@@ -288,6 +303,7 @@
 "messaging_disabled_not_in_group" = "Alleen leden kunnen berichten versturen aan deze groep. Vraag aan een lid om lid te worden.";
 "messaging_disabled_device_chat" = "Je kunt geen berichten versturen omdat dit gesprek alleen lokaal gegenereerde berichten bevat.";
 "messaging_disabled_deaddrop" = "Druk op een bericht om het contactpersoonverzoek goed te keuren of af te wijzen";
+"messaging_disabled_mailing_list" = "Het versturen van berichten naar mailinglijsten wordt nog niet ondersteund";
 "cannot_display_unsuported_file_type" = "Het volgende bestandstype kan niet worden getoond: %1$@";
 "attachment_failed_to_load" = "De bijlage kan niet worden geladen";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -296,13 +312,26 @@
 // mailing lists
 "mailing_list" = "Mailinglijst";
 "ask_show_mailing_list" = "Wil je de mailinglijst \'%1$@\' tonen?";
-
+"mailing_list_profile_info" = "Wijzigingen aan de mailinglijstnaam en -afbeelding worden alleen op dit apparaat getoond.";
 
 // map
 "filter_map_on_time" = "Locaties tonen in tijdsbeeld";
 "show_location_traces" = "Sporen tonen";
 "add_poi" = "Afspraaklocatie versturen";
 
+// chat audit log
+"chat_audit_log_empty_message" = "Systeemberichten uit dit gesprek worden hier getoond";
+"chat_audit_log_title" = "Gesprekslog van %1$@";
+"chat_audit_log_description" = "In deze weergave zie je alleen systeem- en informatieberichten - zo kun je in één oogopslag zien welke gespreksacties je hebt uitgevoerd.";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Niet meer vragen bij %1$@";
+"puny_code_warning_header" = "Verdachte link aangetroffen";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Weet je zeker dat je %1$@ wilt openen?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Je hebt op een link gedrukt welke niet-overeenkomende tekens bevat uit andere talen. Door %1$@ te openen kom je op %2$@ terecht, welke niet-Latijnse tekens bevat. Als je deze tekens niet verwachtte, dan is de site mogelijk niet te vertrouwen.";
 
 // search
 "search" = "Zoeken";
@@ -413,8 +442,6 @@
 "pref_outgoing_balanced" = "Normaal";
 "pref_outgoing_worse" = "Lagere kwaliteit, kleinere bestanden";
 "pref_vibrate" = "Trillen";
-"pref_change_secret" = "Toegangsmethode beheren";
-"pref_change_secret_explain" = "Wijzig je pincode/patroon/vingerafdruk via de systeeminstellingen";
 "pref_screen_security" = "Schermbeveiliging";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Geen schermfoto\'s tonen op de \'recent\'-lijst en binnen de app";
@@ -492,7 +519,8 @@
 "profile_image_select" = "Profielfoto kiezen";
 "select_your_new_profile_image" = "Kies een nieuwe profielfoto";
 "profile_image_delete" = "Profielfoto verwijderen";
-
+"pref_show_tray_icon" = "Systeemvakpictogram tonen";
+"pref_edit_profile" = "Profiel bewerken";
 
 // Emoji picker and categories
 "emoji_search_results" = "Zoekresultaten";
@@ -585,16 +613,8 @@
 "systemmsg_chat_protection_disabled" = "Gespreksbeveiliging is uitgeschakeld.";
 "systemmsg_chat_protection_enabled" = "Gespreksbeveiliging is ingeschakeld.";
 
-// screen lock
-"screenlock_title" = "Schermvergrendeling";
-"screenlock_explain" = "Vergendel de toegang middels het Android-vergrendelscherm of je vingerafdruk. Schakel daarnaast ook \"Schermbeveiliging\" in.";
-"screenlock_authentication_failed" = "Authenticatie mislukt.";
-"screenlock_unlock_title" = "Delta Chat ontgrendelen";
-"screenlock_unlock_description" = "Voer je op het systeem opgegeven toegangscode in om Delta Chat te ontgrendelen.";
-"screenlock_inactivity_timeout" = "Vergrendeling na inactiviteit";
-"screenlock_inactivity_timeout_explain" = "Delta Chat automatisch vergrendelen na een opgegeven periode van inactiviteit";
-"screenlock_inactivity_timeout_interval" = "Periode van inactiviteit";
-
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Voer je op het systeem opgegeven toegangscode in om verder te gaan.";
 
 // qr code stuff
 "qr_code" = "QR-code";
@@ -630,7 +650,10 @@
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_group_explain" = "Goedgekeurde groepen (experimenteel) zijn extra beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd eind-tot-eind versleuteld.";
 "copy_qr_data_success" = "De qr-url is gekopieerd naar het klembord";
-
+"mailto_dialog_header_select_chat" = "Kies in welk gesprek je dit bericht wilt delen";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@ bevat al een concept. Wil je dit vervangen?";
+"mailto_link_could_not_be_decoded" = "De mailto-link kan niet worden ontcijferd: %1$@";
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nieuwe berichten in %2$d gesprekken";
@@ -689,6 +712,8 @@
 "global_menu_help_contribute_desktop" = "Draag bij op GitHub";
 "global_menu_help_report_desktop" = "Meld een probleem";
 "global_menu_help_about_desktop" = "Over Delta Chat";
+"global_menu_file_open_desktop" = "Delta Chat openen";
+"global_menu_minimize_to_tray" = "Minimaliseren";
 "no_chat_selected_suggestion_desktop" = "Kies een gesprek of begin een gesprek";
 "write_message_desktop" = "Schrijf een bericht";
 "encryption_info_title_desktop" = "Versleutelingsinformatie";
@@ -734,6 +759,9 @@
 "menu.view.developer.open.log.folder" = "Map met logbestanden openen";
 "menu.view.developer.open.current.log.file" = "Huidig logbestand openen";
 "user_location_permission_explanation" = "Delta Chat heeft het locatietoegangsrecht nodig om je locatie te tonen en delen.";
+"explain_desktop_minimized_disabled_tray_pref" = "Het systeemvakpictogram is uitgeschakeld omdat Delta Chat is gestart met de optie --minimized";
+"no_spellcheck_suggestions_found" = "Geen suggesties gevonden.";
+"show_window" = "Venster tonen";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Bezorgstatus: afleveren mislukt";

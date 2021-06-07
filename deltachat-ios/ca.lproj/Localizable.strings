@@ -91,6 +91,7 @@
 "contact" = "Contacte";
 "verified_contact" = "Contacte verificat";
 "camera" = "Càmera";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Captura";
 "switch_camera" = "Canvia la càmera";
 "location" = "Ubicació";
@@ -304,8 +305,6 @@
 "pref_enter_sends" = "La tecla \"Intro\" envia";
 "pref_enter_sends_explain" = "Els missatges s\'enviaran prement la tecla \"Intro\"";
 "pref_vibrate" = "Vibració";
-"pref_change_secret" = "Canvieu el secret";
-"pref_change_secret_explain" = "Canvieu el vostre pin / patró / empremta digital via preferències del sistema";
 "pref_screen_security" = "Seguretat de la pantalla";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Demana de bloquejar les captures de pantalla al llistat de recents i dins de l\'app ";
@@ -398,17 +397,6 @@
 "systemmsg_action_by_me" = "%1$@ per mi.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ per %2$@.";
-// screen lock
-"screenlock_title" = "Bloqueja la pantalla";
-"screenlock_explain" = "Bloqueja l’accés amb el bloqueig de la pantalla d’Android o amb l’empremta digital; per evitar que aparegui el contingut anterior, habiliteu també \"Seguretat de pantalla\"";
-"screenlock_authentication_failed" = "L\'autenticació ha fallat.";
-"screenlock_unlock_title" = "Desbloqueja Delta Chat";
-"screenlock_unlock_description" = "Introduïu el sistema secret definit per desbloquejar el Delta Chat.";
-"screenlock_inactivity_timeout" = "Bloqueig per temps d\'inactivitat";
-"screenlock_inactivity_timeout_explain" = "Bloqueja automàticament Delta Chat després d\'un període específic d\'inactivitat";
-"screenlock_inactivity_timeout_interval" = "Interval de temps d\'inactivitat ";
-
-
 "qrscan_title" = "Escaneja codi QR";
 "qrscan_hint" = "Poseu la càmera davant del codi QR";
 "qrscan_ask_join_group" = "Voleu unir-vos al grup \"%1$@\"?";
@@ -515,5 +503,4 @@
 "menu.view.developer.open.log.folder" = "Obre la carpeta de registre";
 "menu.view.developer.open.current.log.file" = "Obre el fitxer de registre actual";
 "user_location_permission_explanation" = "Delta Chat necessita permís per accedir a la ubicació per poder-la mostrar i compartir.";
-
 "perm_enable_bg_reminder_title" = "Prem aquí per rebre missatges mentre Delta Chat és en segon pla.";

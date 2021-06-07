@@ -288,13 +288,10 @@
 // mailing lists
 "mailing_list" = "Liste de diffusion";
 "ask_show_mailing_list" = "Montrer la liste de diffusion « %1$@ » ?";
-
-
 // map
 "filter_map_on_time" = "Afficher les positions dans le temps";
 "show_location_traces" = "Afficher les traces";
 "add_poi" = "Afficher les points d\'intérêt";
-
 
 // search
 "search" = "Chercher";
@@ -405,8 +402,6 @@
 "pref_outgoing_balanced" = "Équilibré";
 "pref_outgoing_worse" = "Pire qualité, taille réduite";
 "pref_vibrate" = "Vibrer";
-"pref_change_secret" = "Modifier le secret";
-"pref_change_secret_explain" = "Modifiez votre code PIN / modèle / empreinte digitale via les paramètres du système";
 "pref_screen_security" = "Écran de sécurité";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Demande de blocage des captures d\'écran dans la liste des captures récentes et à l\'intérieur de l\'application";
@@ -484,8 +479,6 @@
 "profile_image_select" = "Sélectionnez l\'image de profil";
 "select_your_new_profile_image" = "Sélectionnez votre nouvelle image de profil";
 "profile_image_delete" = "Effacer l\'image de profil";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "Résultats de la recherche";
 "emoji_not_found" = "Pas d\'emoji trouvé";
@@ -577,17 +570,6 @@
 "systemmsg_chat_protection_disabled" = "Protection de la discussion désactivée.";
 "systemmsg_chat_protection_enabled" = "Protection de la discussion activée.";
 
-// screen lock
-"screenlock_title" = "Verrouillage de l\'écran";
-"screenlock_explain" = "Verrouiller l’accès avec le verrouillage d’écran Android ou l’empreinte digitale ; pour éviter d’afficher le contenu précédent, veuillez également activer « Sécurité écran »";
-"screenlock_authentication_failed" = "L\'authentification a échoué.";
-"screenlock_unlock_title" = "Déverrouiller DeltaChat";
-"screenlock_unlock_description" = "Veuillez entrer votre secret défini par le système pour déverrouiller DeltaChat.";
-"screenlock_inactivity_timeout" = "Verrouillage du délai d\'inactivité";
-"screenlock_inactivity_timeout_explain" = "Auto-verrouillage de Delta Chat après un intervalle de temps d\'inactivité spécifié";
-"screenlock_inactivity_timeout_interval" = "Temps pour rester actif";
-
-
 // qr code stuff
 "qr_code" = "Code QR";
 "load_qr_code_as_image" = "Charger le code QR comme une image";
@@ -622,8 +604,6 @@
 "contact_setup_changed" = "Configuration modifiée pour %1$@";
 "verified_group_explain" = "Les groupes vérifiés (fonction expérimentale) offrent une sécurité contre les attaques actives. Les membres sont vérifiés avec un second facteur par d\'autres membres et les messages sont toujours chiffrés de bout en bout.";
 "copy_qr_data_success" = "L\'URL du code QR a été copié dans le presse-papiers";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nouveaux messages dans %2$d tchats";
 "notify_mark_read" = "Marquer comme lu";
@@ -718,7 +698,6 @@
 "menu.view.developer.open.log.folder" = "Ouvrir le dossier Journal";
 "menu.view.developer.open.current.log.file" = "Ouvrir le fichier Journal courant";
 "user_location_permission_explanation" = "DeltaChat a besoin de l\'autorisation de votre position pour l\'afficher et la partager.";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "État de la livraison : Erreur";
 "a11y_encryption_padlock" = "Cadenas de chiffrement";

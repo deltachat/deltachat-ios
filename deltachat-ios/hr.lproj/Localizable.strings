@@ -203,11 +203,6 @@
 "systemmsg_member_removed" = "Član %1$@ uklonjen.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ od %2$@.";
-// screen lock
-"screenlock_title" = "Zaključavanje zaslona";
-"screenlock_explain" = "Zaključi pristup Delta Chat-u putem zaključavanjem ekrana Androida ili otiska prsta.";
-"screenlock_unlock_title" = "Otključaj Delta Chat";
-"screenlock_inactivity_timeout_explain" = "Automatski zaključaj Delta Chat nakon određenog vremenskog intervala neaktivnosti";
 // qr code stuff
 "qr_code" = "QR kod";
 "qrscan_fingerprint_label" = "Otisak prsta";

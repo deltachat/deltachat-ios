@@ -39,6 +39,11 @@
 "main_menu" = "Головне меню";
 "start_chat" = "Почати розмову";
 "show_full_message" = "Показати повне повідомлення...";
+"show_full_message_in_browser" = "Показати повне повідомлення у браузері...";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Завантаження...";
+"hide" = "Приховати";
+"activate" = "Активувати";
 "load_remote_content" = "Завантажувати віддалені зображення";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Віддалені зображення можна використовувати для слідкування за вами.\n\nЦе налаштування також дозволяє завантажувати шрифти та інший вміст. Навіть якщо воно вимкнене, ви можете побачити вбудовані або кешовані зображення.\n\nЗавантажувати віддалені зображення?";
@@ -96,6 +101,7 @@
 "contact" = "Контакт";
 "verified_contact" = "Перевірений контакт";
 "camera" = "Камера";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Захопити";
 "switch_camera" = "Перемкнути камеру";
 "toggle_fullscreen" = "Перейти в повноекранний режим";
@@ -155,6 +161,8 @@
 "menu_copy_to_clipboard" = "Копіювати в буфер обміну";
 "menu_copy_selection_to_clipboard" = "Скопіювати позначене";
 "menu_copy_link_to_clipboard" = "Скопіювати посилання";
+"menu_copy_text_to_clipboard" = "Копіювати текст";
+"menu_copy_image_to_clipboard" = "Копіювати зображення";
 "paste_from_clipboard" = "Вставити із буферу обміну";
 "menu_forward" = "Переслати повідомлення";
 "menu_resend" = "Повторно надіслати повідомлення";
@@ -188,6 +196,12 @@
 "menu_zoom_in" = "Наблизити";
 "menu_zoom_out" = "Віддалити";
 "menu_save_log" = "Зберегти лог";
+"menu_more_options" = "Більше опцій";
+"menu_learn_spelling" = "Вчити правопис";
+"menu_chat_audit_log" = "Журнал аудиту чату";
+"jump_to_message" = "Перейти до повідомлення";
+"copy_json" = "Копіювати JSON";
+"replace_draft" = "Замінити чернетку";
 "title_share_location" = "Ділитися геоданими з усіма членами групи";
 "device_talk" = "Повідомлення пристрою";
 "device_talk_subtitle" = "Локально згенеровані повідомлення";
@@ -237,6 +251,7 @@
 
 // get confirmations
 "ask_leave_group" = "Ви впевнені, що хочете залишити цю групу?";
+"ask_delete_message" = "Ви впевнені, що хочете видалити це повідомлення?";
 "ask_forward" = "Переслати повідомлення %1$@?";
 "ask_forward_multiple" = "Пересилати повідомлення у %1$d?";
 "ask_export_attachment" = "Експортувати вкладення? Експорт вкладень дозволить будь-якому іншому додатку на Вашому пристрої отримати до них доступ.\n\nПродовжити?";
@@ -288,6 +303,7 @@
 "messaging_disabled_not_in_group" = "Ви не можете тут писати, бо ви не в цій групі. Запитайте іншого члена групи про приєднання.";
 "messaging_disabled_device_chat" = "Цей чат містить повідомлення, створені локально. Тому ви не можете писати жодних повідомлень";
 "messaging_disabled_deaddrop" = "Клацніть на повідомлення, щоб прийняти або відхилити запит на контакт";
+"messaging_disabled_mailing_list" = "Надсилання повідомлень у списках розсилки поки не підтримується";
 "cannot_display_unsuported_file_type" = "Неможливо відобразити цей тип файлів: %1$@";
 "attachment_failed_to_load" = "Не вдалося завантажити вкладення";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -296,13 +312,26 @@
 // mailing lists
 "mailing_list" = "Список адресатів";
 "ask_show_mailing_list" = "Показати список адресатів \"%1$@\"?";
-
+"mailing_list_profile_info" = "Зміни в назві списку розсилки та зображенні стосуються лише цього пристрою.";
 
 // map
 "filter_map_on_time" = "Показати місця у часовому проміжку";
 "show_location_traces" = "Показати треки";
 "add_poi" = "Надіслати точку інтересу";
 
+// chat audit log
+"chat_audit_log_empty_message" = "Тут відображатимуться системні повідомлення цього чату";
+"chat_audit_log_title" = "Журнал аудиту чату для %1$@";
+"chat_audit_log_description" = " На цьому екрані відображаються лише системні та інформаційні повідомлення. Корисно для пошуку останніх дій чату без прокрутки багатьох звичайних повідомлень.";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Не запитувати знову для %1$@";
+"puny_code_warning_header" = "Виявлено підозріле посилання";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Ви впевнені, що хочете відвідати %1$@?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Ви перейшли за посиланням, яке може спотворювати символи, використовуючи подібні до них символи з різних алфавітів. Перехід за посиланням %1$@ приведе до %2$@, що є нормальним для нелатинських символів. Якщо ви не очікували таких символів, це посилання може бути шкідливим";
 
 // search
 "search" = "Пошук";
@@ -413,8 +442,6 @@
 "pref_outgoing_balanced" = "Збалансовано";
 "pref_outgoing_worse" = "Гірша якість, менший розмір";
 "pref_vibrate" = "Вібрує";
-"pref_change_secret" = "Змінити захисний код";
-"pref_change_secret_explain" = "Змініть Ваш PIN-код / графічний ключ / відбиток пальця за допомогою системних налаштувань";
 "pref_screen_security" = "Безпека екрану";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Запит на блокування скріншотів у списку останніх і всередині програми";
@@ -492,7 +519,8 @@
 "profile_image_select" = "Вибрати зображення профілю";
 "select_your_new_profile_image" = "Вибрати ваше нове зображення профілю";
 "profile_image_delete" = "Видалити зображення профілю";
-
+"pref_show_tray_icon" = "Показати іконку в треї";
+"pref_edit_profile" = "Редагувати профіль";
 
 // Emoji picker and categories
 "emoji_search_results" = "Результати пошуку";
@@ -585,17 +613,6 @@
 "systemmsg_chat_protection_disabled" = "Захист чату вимкнено.";
 "systemmsg_chat_protection_enabled" = "Захист чату увімкнено.";
 
-// screen lock
-"screenlock_title" = "Блокування екрану";
-"screenlock_explain" = "Блокування доступу за допомогою блокування екрану Android або відбитків пальців; щоб уникнути появи попереднього вмісту, будь ласка, увімкнить «Безпека екрану».";
-"screenlock_authentication_failed" = "Не вдалося здійснити аутентифікацію.";
-"screenlock_unlock_title" = "Розблокувати Delta Chat";
-"screenlock_unlock_description" = "Введіть захисний код, щоб розблокувати Delta Chat.";
-"screenlock_inactivity_timeout" = "Блокування за бездіяльності";
-"screenlock_inactivity_timeout_explain" = "Заблокувати додаток через певний період бездіяльності";
-"screenlock_inactivity_timeout_interval" = "Час бездіяльності";
-
-
 // qr code stuff
 "qr_code" = "QR-код";
 "load_qr_code_as_image" = "Завантажити зображення QR-коду";
@@ -630,7 +647,10 @@
 "contact_setup_changed" = "Змінені параметри для %1$@";
 "verified_group_explain" = "Перевірені групи (експеримент) надають захист від активних атак. Члени таких груп перевірені через другий фактор іншими членами групи, а повідомлення завжди наскрізно зашифровані.";
 "copy_qr_data_success" = "URL з QR-коду скопійовано в буфер";
-
+"mailto_dialog_header_select_chat" = "Виберіть чат, якому потрібно надіслати повідомлення";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@ вже містить чернетку повідомлення, бажаєте його замінити?";
+"mailto_link_could_not_be_decoded" = "неможливо декодувати посилання mailto: %1$@";
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d нових повідомлень з %2$d чатів";
@@ -689,6 +709,8 @@
 "global_menu_help_contribute_desktop" = "Приєднатися до розробки на GitHub";
 "global_menu_help_report_desktop" = "Повідомити про проблему";
 "global_menu_help_about_desktop" = "Про Delta Chat";
+"global_menu_file_open_desktop" = "Відкрити Delta Chat";
+"global_menu_minimize_to_tray" = "Згорнути";
 "no_chat_selected_suggestion_desktop" = "Виберіть чат або створіть новий";
 "write_message_desktop" = "Напишіть повідомлення";
 "encryption_info_title_desktop" = "Інформація про шифрування";
@@ -734,6 +756,9 @@
 "menu.view.developer.open.log.folder" = "Відкрити папку журналів";
 "menu.view.developer.open.current.log.file" = "Відкрити поточний файл журналу";
 "user_location_permission_explanation" = "Delta Chat потребує дозволу на доступ до геоданих щоб ділитися вашим місцезнаходженням.";
+"explain_desktop_minimized_disabled_tray_pref" = "Іконку в треї не можна вимкнути, оскільки Delta Chat було запущено за допомогою параметра --minimized.";
+"no_spellcheck_suggestions_found" = "Пропозицій щодо написання не знайдено.";
+"show_window" = "Показати вікно";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Статус доставки: Помилка";

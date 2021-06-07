@@ -279,8 +279,6 @@
 // mailing lists
 "mailing_list" = "لیستەی ئیمەیلەکان";
 "ask_show_mailing_list" = "لیستەی ئیمەیلەکانی \"%1$@\" پیشان بدرێت؟";
-
-
 // map
 "filter_map_on_time" = "شوێنەکان لە نێو چوارچێوەی کاتدا پیشان بدرێت؟";
 "show_location_traces" = "پیشاندانی شوێنپێ";
@@ -375,8 +373,6 @@
 "pref_outgoing_balanced" = "وەکوو خۆی";
 "pref_outgoing_worse" = "نزمترین چۆنێتی، قەبارەی بچووک";
 "pref_vibrate" = "لەرزینەوە";
-"pref_change_secret" = "گۆڕینی نهێنی";
-"pref_change_secret_explain" = "لەڕێگای ڕێکخستنەکانی سیستەمەوە، شفرە/نەخشاندن/پەنجەمۆر بگۆڕە  ";
 "pref_screen_security" = "پاراستنی شاشە";
 "pref_notifications" = "ئاگادارییەکان";
 "pref_notifications_show" = "پیشاندان";
@@ -442,8 +438,6 @@
 "profile_image_select" = "هەڵبژاردنی وێنەی لادیمەن";
 "select_your_new_profile_image" = "وێنەی لادیمەنە نوێکەت هەڵبژێرە";
 "profile_image_delete" = "سڕینەوەی وێنەی لادیمەن";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "ئەنجامی گەڕان";
 "emoji_not_found" = "هیچ وێنۆچکەیەک نەدۆزرایەوە";
@@ -517,11 +511,6 @@
 "systemmsg_chat_protection_disabled" = "پاراستنی وتووێژ ناچالاک کرا.";
 "systemmsg_chat_protection_enabled" = "پاراستنی وتووێژ چالاک کرا.";
 
-// screen lock
-"screenlock_title" = "قفڵی سەر شاشە";
-"screenlock_explain" = "بۆ بەرگری لە پیشاندرانی بابەتەکان، بە قفڵی شاشەی ئەندرۆید یان پەنجەمۆر، هاتنەژوورەوە قفڵ بکە.";
-"screenlock_authentication_failed" = "پشتڕاست کردنەوە سەرنەکەوت";
-"screenlock_unlock_title" = "کردنەوەی قفڵی دێڵتا چات";
 // qr code stuff
 "qr_code" = "کۆدی QR";
 "load_qr_code_as_image" = "کۆدی QR وەکوو وێنەیەک بار بکە.";
@@ -549,8 +538,6 @@
 "contact_setup_changed" = "ڕێکخستن بۆ %1$@ گۆڕا.";
 "verified_group_explain" = "کۆڕی پشتڕاستکراوە (لە قۆناخی تاقیکردنەوەدایە) پارێزراودەبێت بەرانبەر هێرشەکان. ئەندامان لەلایەن ئەندامانی دیکەوە پشتڕاست دەکرێنەوە و پەیامەکان هەمیشە شفرەکراوی ئەمسەر-ئەوسەر دەبن.";
 "copy_qr_data_success" = "ناونیشانی وێبی QRەکە ڕوونووس کرا.";
-
-
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d پەیامی نوێ لە %2$d وتووێژدا";
 "notify_mark_read" = "نیشانەی خوێندنەوە";

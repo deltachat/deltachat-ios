@@ -39,6 +39,11 @@
 "main_menu" = "Hauptmenü";
 "start_chat" = "Chat starten";
 "show_full_message" = "Ganze Nachricht anzeigen…";
+"show_full_message_in_browser" = "Ganze Nachricht in Browser anzeigen…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Wird geladen…";
+"hide" = "Verstecken";
+"activate" = "Einschalten";
 "load_remote_content" = "Bilder nachladen";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Das Nachladen von Bildern kann dazu verwendet werden, Sie zu tracken.\n\nDie Option erlaubt auch das Laden von Schriftarten und anderen Inhalten; wenn sie deaktiviert ist, werden eingebettete oder zwischengespeicherte Bilder dennoch angezeigt.\n\nBilder nachladen?";
@@ -96,6 +101,7 @@
 "contact" = "Kontakt";
 "verified_contact" = "Verifizierter Kontakt";
 "camera" = "Kamera";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Aufnehmen";
 "switch_camera" = "Kamera wechseln";
 "toggle_fullscreen" = "Vollbildmodus umschalten";
@@ -155,6 +161,8 @@
 "menu_copy_to_clipboard" = "In Zwischenablage kopieren";
 "menu_copy_selection_to_clipboard" = "Auswahl kopieren";
 "menu_copy_link_to_clipboard" = "Link kopieren";
+"menu_copy_text_to_clipboard" = "Text kopieren";
+"menu_copy_image_to_clipboard" = "Bild kopieren";
 "paste_from_clipboard" = "Von der Zwischenablage einfügen";
 "menu_forward" = "Nachricht weiterleiten";
 "menu_resend" = "Nachricht erneut versenden";
@@ -188,6 +196,12 @@
 "menu_zoom_in" = "Ansicht vergrößern";
 "menu_zoom_out" = "Ansicht verkleinern";
 "menu_save_log" = "Logdatei sichern";
+"menu_more_options" = "Mehr Optionen";
+"menu_learn_spelling" = "Rechtschreibung lernen";
+"menu_chat_audit_log" = "Chat-Überwachungsprotokoll";
+"jump_to_message" = "Zur Nachricht springen";
+"copy_json" = "JSON kopieren";
+"replace_draft" = "Entwurf ersetzen";
 "title_share_location" = "Standort mit allen Gruppenmitgliedern teilen";
 "device_talk" = "Systemnachrichten";
 "device_talk_subtitle" = "Lokal erzeugte Nachrichten";
@@ -237,6 +251,7 @@
 
 // get confirmations
 "ask_leave_group" = "Diese Gruppe verlassen?";
+"ask_delete_message" = "Möchten Sie diese Nachricht wirklich löschen?";
 "ask_forward" = "Nachricht weiterleiten an %1$@?";
 "ask_forward_multiple" = "Nachrichten an %1$d Chats weiterleiten?";
 "ask_export_attachment" = "Anlage exportieren? Das Exportieren von Anhängen ermöglicht es allen anderen Anwendungen auf Ihrem Gerät, auf diese zuzugreifen.\n\nFortfahren? ";
@@ -288,6 +303,7 @@
 "messaging_disabled_not_in_group" = "Sie können nicht schreiben, da Sie kein Mitglied dieser Gruppe sind. Bitten Sie ein anderes Mitglied, Sie hinzuzufügen.";
 "messaging_disabled_device_chat" = "Dieser Chat entält lokal generierte Nachrichten. Sie können hier keine Nachrichten schreiben.";
 "messaging_disabled_deaddrop" = "Klicken Sie auf eine Nachricht, um eine Kontaktanfrage zu akzeptieren oder abzulehnen.";
+"messaging_disabled_mailing_list" = "Das Senden von Nachrichten in Mailinglisten wird noch nicht unterstützt.";
 "cannot_display_unsuported_file_type" = "Kann diesen Dateityp nicht anzeigen: %1$@";
 "attachment_failed_to_load" = "Kann Anhang nicht laden";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -296,13 +312,26 @@
 // mailing lists
 "mailing_list" = "Mailingliste";
 "ask_show_mailing_list" = "Mailingliste \"%1$@\" anzeigen?";
-
+"mailing_list_profile_info" = "Änderungen an Name und Bild der Mailingliste gelten nur für dieses Gerät.";
 
 // map
 "filter_map_on_time" = "Standorte im Zeitrahmen anzeigen";
 "show_location_traces" = "Spuren anzeigen";
 "add_poi" = "Sende eine Ortsmarkierung. ";
 
+// chat audit log
+"chat_audit_log_empty_message" = "Systemmeldungen dieses Chats werden hier angezeigt.";
+"chat_audit_log_title" = "Chat-Überwachungsprotokoll für %1$@";
+"chat_audit_log_description" = "Diese Ansicht zeigt nur System- und Infomeldungen. Nützlich, um die letzten Chat-Aktionen zu finden, ohne durch viele normale Nachrichten zu scrollen.";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Nicht noch einmal nach %1$@ fragen";
+"puny_code_warning_header" = "Verdächtiger Link erkannt";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Sind Sie sicher, dass Sie %1$@ besuchen möchten?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Sie sind einem Link gefolgt, der durch die Verwendung ähnlich aussehender Zeichen aus verschiedenen Alphabeten zu einer falschen Darstellung führen könnte. Wenn Sie dem Link mit der Bezeichnung %1$@ folgen, gelangen Sie zu %2$@, was für nicht-lateinische Zeichen normal ist. Wenn Sie solche Zeichen nicht erwartet haben, könnte dieser Link schädlich sein.";
 
 // search
 "search" = "Suchen";
@@ -413,8 +442,6 @@
 "pref_outgoing_balanced" = "Ausgewogen";
 "pref_outgoing_worse" = "Schlechte Qualität, kleine Dateien";
 "pref_vibrate" = "Vibrieren";
-"pref_change_secret" = "Sicherheitseinstellungen ändern";
-"pref_change_secret_explain" = "Ändern von PIN / Muster / Fingerabdruck über die Systemeinstellungen";
 "pref_screen_security" = "Bildschirmsicherheit";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Aufforderung zum Sperren von Screenshots in der Kürzlich erstellten Liste und in der App";
@@ -492,7 +519,8 @@
 "profile_image_select" = "Profilbild auswählen";
 "select_your_new_profile_image" = "Wählen Sie Ihr Profilbild aus";
 "profile_image_delete" = "Profilbild löschen";
-
+"pref_show_tray_icon" = "Benachrichtigungssymbol anzeigen";
+"pref_edit_profile" = "Profil bearbeiten";
 
 // Emoji picker and categories
 "emoji_search_results" = "Suchergebnisse";
@@ -585,16 +613,8 @@
 "systemmsg_chat_protection_disabled" = "Chat-Absicherung ausgeschaltet.";
 "systemmsg_chat_protection_enabled" = "Chat-Absicherung eingeschaltet.";
 
-// screen lock
-"screenlock_title" = "Bildschirmsperre";
-"screenlock_explain" = "Zugriff sichern mittels Android-Bildschirmsperre oder Fingerabdruck. Um vorherige Inhalte zu verbergen, bitte außerdem \"Bildschirmsicherheit\" aktivieren.";
-"screenlock_authentication_failed" = "Die Authentifizierung ist fehlgeschlagen.";
-"screenlock_unlock_title" = "Delta Chat entsperren";
-"screenlock_unlock_description" = "Den System-Entsperrcode eingeben, um Delta Chat freizuschalten.";
-"screenlock_inactivity_timeout" = "Sperre bei Überschreitung der Inaktivitätzeit";
-"screenlock_inactivity_timeout_explain" = "Automatisches Sperren von Delta Chat nach einer bestimmten Inaktivitätszeit";
-"screenlock_inactivity_timeout_interval" = "Inaktivitäts Zeitüberschreitung";
-
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Bitte geben Sie den System-Entsperrcode ein, um fortzufahren.";
 
 // qr code stuff
 "qr_code" = "QR-Code";
@@ -630,7 +650,10 @@
 "contact_setup_changed" = "Geändertes Setup für %1$@";
 "verified_group_explain" = "Verifizierte Gruppen (experimentell) bieten Schutz gegen aktive Angriffe mittels Zwei-Faktor-Authentifizierung aller Mitglieder und immer aktiver Ende-zu-Ende-Verschlüsselung.";
 "copy_qr_data_success" = "QR-Code auf die Zwischenablage kopiert";
-
+"mailto_dialog_header_select_chat" = "Wählen Sie den Chat, an den die Nachricht gesendet werden soll";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@ hat bereits einen Nachrichtenentwurf, möchten Sie ihn ersetzen?";
+"mailto_link_could_not_be_decoded" = "Mailto-Link konnte nicht dekodiert werden: %1$@";
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d neue Nachrichten in %2$d Chats";
@@ -689,6 +712,8 @@
 "global_menu_help_contribute_desktop" = "Auf GitHub mitwirken";
 "global_menu_help_report_desktop" = "Ein Problem melden";
 "global_menu_help_about_desktop" = "Über Delta Chat";
+"global_menu_file_open_desktop" = "Delta Chat öffnen";
+"global_menu_minimize_to_tray" = "Minimieren";
 "no_chat_selected_suggestion_desktop" = "Chat auswählen oder neuen Chat erstellen.";
 "write_message_desktop" = "Nachricht schreiben";
 "encryption_info_title_desktop" = "Verschlüsselungsinformationen";
@@ -734,6 +759,9 @@
 "menu.view.developer.open.log.folder" = "Logdatei öffnen";
 "menu.view.developer.open.current.log.file" = "Aktuelle Logdatei öffnen";
 "user_location_permission_explanation" = "Delta Chat benötigt die Standortberechtigung, um Ihren Standort anzuzeigen und zu teilen.";
+"explain_desktop_minimized_disabled_tray_pref" = "Benachrichtigungssymbol kann nicht deaktiviert werden, da Delta Chat mit der Option --minimized gestartet wurde.";
+"no_spellcheck_suggestions_found" = "Keine Rechtschreibvorschläge gefunden.";
+"show_window" = "Fenster anzeigen";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Übertragungsstatus: Fehler";

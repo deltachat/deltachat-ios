@@ -39,6 +39,11 @@
 "main_menu" = "Ana menü";
 "start_chat" = "Sohbete başla";
 "show_full_message" = "Tam iletiyi göster…";
+"show_full_message_in_browser" = "Tam iletiyi tarayıcıda göster…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Yükleniyor…";
+"hide" = "Gizle";
+"activate" = "Etkinleştir";
 "load_remote_content" = "Uzak görselleri yükle";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Uzak görseller sizi izlemek için kullanılabilir.\n\nAyar, yazı tiplerinin ve diğer içeriğin de yüklenmesine izin verir. Etkisizleştirildiyse bile katıştırılan ya da önbelleklenen görselleri hâlâ görebilirsiniz.\n\nUzak görseller yüklensin mi?";
@@ -96,6 +101,7 @@
 "contact" = "Kişi";
 "verified_contact" = "Doğrulanan kişi";
 "camera" = "Kamera";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Yakala";
 "switch_camera" = "Kamerayı değiştir";
 "toggle_fullscreen" = "Tam ekran kipine geç";
@@ -155,6 +161,8 @@
 "menu_copy_to_clipboard" = "Panoya kopyala";
 "menu_copy_selection_to_clipboard" = "Seçimi kopyala";
 "menu_copy_link_to_clipboard" = "Bağlantıyı kopyala";
+"menu_copy_text_to_clipboard" = "Metni kopyala";
+"menu_copy_image_to_clipboard" = "Görseli kopyala";
 "paste_from_clipboard" = "Panodan yapıştır";
 "menu_forward" = "İletiyi ilet";
 "menu_resend" = "İletiyi yeniden gönder";
@@ -188,6 +196,12 @@
 "menu_zoom_in" = "Yakınlaştır";
 "menu_zoom_out" = "Uzaklaştır";
 "menu_save_log" = "Günlüğü kaydet";
+"menu_more_options" = "Daha fazla seçenek";
+"menu_learn_spelling" = "Yazımı öğrenin";
+"menu_chat_audit_log" = "Sohbet Denetim Günlüğü";
+"jump_to_message" = "İletiye atla";
+"copy_json" = "JSON kopyala";
+"replace_draft" = "Taslağı değiştir";
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt iletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
@@ -233,10 +247,11 @@
 "videochat_instance_explain" = "Bir video sohbeti örneği tanımlanırsa, her sohbetten video sohbeti başlatabilirsiniz. Video sohbetleri, her iki uçta da uyumlu bir uygulama ya da uyumlu bir tarayıcı gerektirir.\n\nÖrnekler: https://meet.jit.si/$ROOM ya da basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetine davet etmek için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Varsa bu, video sohbetleri için önceki ayarla değiştirilir.";
 "videochat_invitation" = "Video sohbeti daveti";
-"videochat_invitation_body" = "Bir video sohbetine davet edildiniz, katılmak için %1$@ öğesini tıklayın.";
+"videochat_invitation_body" = "Bir video sohbetine davet edildiniz; katılmak için %1$@ öğesini tıklayın.";
 
 // get confirmations
 "ask_leave_group" = "Bu gruptan ayrılmak istediğinizden emin misiniz?";
+"ask_delete_message" = "Bu iletiyi silmek istediğinizden emin misiniz?";
 "ask_forward" = "İletiler %1$@ alıcısına iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişik dışa aktarılsın mı? İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
@@ -288,6 +303,7 @@
 "messaging_disabled_not_in_group" = "Yazamazsınız çünkü bu grupta değilsiniz. Katılmak için başka bir üyeye sorun.";
 "messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir. Bu nedenle herhangi bir ileti yazamazsınız.";
 "messaging_disabled_deaddrop" = "İletişim isteğini kabul etmek ya da reddetmek için bir iletinin üzerine tıklayın";
+"messaging_disabled_mailing_list" = "Posta listelerinden gönderilen iletiler henüz desteklenmiyor";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -296,14 +312,24 @@
 // mailing lists
 "mailing_list" = "Posta listesi";
 "ask_show_mailing_list" = "\"%1$@\" posta listesi gösterilsin mi?";
-
+"mailing_list_profile_info" = "Posta listesi adındaki ve görselindeki değişiklikler yalnızca bu aygıta uygulanır.";
 
 // map
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
 "show_location_traces" = "İzleri göster";
 "add_poi" = "İlgi çekici noktayı gönder";
 
+// chat audit log
+"chat_audit_log_empty_message" = "Bu sohbetin sistem iletileri burada görünecek";
+"chat_audit_log_title" = "%1$@ için Sohbet Denetim Günlüğü";
+"chat_audit_log_description" = "Bu görünüm, yalnızca sistem ve bilgi iletilerini gösterir. Birçok normal ileti arasında kaydırmadan son sohbetteki eylemleri bulmak için kullanışlıdır.";
 
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "%1$@ için yeniden sorma";
+"puny_code_warning_header" = "Şüpheli bağlantı algılandı";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "%1$@ bağlantısını ziyaret etmek istediğinizden emin misiniz?";
 // search
 "search" = "Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
@@ -413,8 +439,6 @@
 "pref_outgoing_balanced" = "Dengeli";
 "pref_outgoing_worse" = "Daha kötü kalite, küçük boyut";
 "pref_vibrate" = "Titret";
-"pref_change_secret" = "Sırrı değiştir";
-"pref_change_secret_explain" = "PIN / desen / parmak izinizi sistem ayarları üzerinden değiştirin";
 "pref_screen_security" = "Ekran güvenliği";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Yeni listesinde ve uygulamanın içinde ekran görüntülerinin engellenmesini iste";
@@ -492,7 +516,8 @@
 "profile_image_select" = "Profil görseli seç";
 "select_your_new_profile_image" = "Yeni profil görselinizi seçin";
 "profile_image_delete" = "Profil görselini sil";
-
+"pref_show_tray_icon" = "Tepsi simgesi göster";
+"pref_edit_profile" = "Profili düzenle";
 
 // Emoji picker and categories
 "emoji_search_results" = "Arama sonuçları";
@@ -585,17 +610,6 @@
 "systemmsg_chat_protection_disabled" = "Sohbet koruması etkisizleştirildi.";
 "systemmsg_chat_protection_enabled" = "Sohbet koruması etkinleştirildi.";
 
-// screen lock
-"screenlock_title" = "Ekran kilidi";
-"screenlock_explain" = "Android ekran kilidi ya da parmak iziyle erişimi kilitleyin; önceki içeriğin görünmesini önlemek için lütfen \"Ekran güvenliği\"ni de etkinleştirin.";
-"screenlock_authentication_failed" = "Kimlik doğrulama başarısız.";
-"screenlock_unlock_title" = "Delta Chat kilidini aç";
-"screenlock_unlock_description" = "Delta Chat kilidini açmak için lütfen sistem tanımlı sırrınızı girin.";
-"screenlock_inactivity_timeout" = "Etkisizlik zaman aşımı kilidi";
-"screenlock_inactivity_timeout_explain" = "Belirtilen bir etkisizlik zaman diliminden sonra Delta Chat\'i otomatik kilitle";
-"screenlock_inactivity_timeout_interval" = "Etkin kalma zamanı";
-
-
 // qr code stuff
 "qr_code" = "QR kod";
 "load_qr_code_as_image" = "QR kodu görsel olarak yükle";
@@ -630,7 +644,10 @@
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
 "verified_group_explain" = "Doğrulanan gruplar (deneysel), etkin saldırılar karşısında güvenlik sağlar. Üyeler, diğer üyeler tarafından ikinci bir etkenle doğrulanır ve iletiler her zaman uçtan uca şifrelenir.";
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
-
+"mailto_dialog_header_select_chat" = "İletinin gönderileceği sohbeti seçin";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@ zaten taslak bir ileti; onu değiştirmek istiyor musunuz?";
+"mailto_link_could_not_be_decoded" = "mailto bağlantısının kodu çözülemedi: %1$@";
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d sohbette %1$d yeni ileti";
@@ -689,6 +706,8 @@
 "global_menu_help_contribute_desktop" = "GitHub\'da katkıda bulunun";
 "global_menu_help_report_desktop" = "Bir sorun raporla";
 "global_menu_help_about_desktop" = "Delta Chat hakkında";
+"global_menu_file_open_desktop" = "Delta Chat\'i Aç";
+"global_menu_minimize_to_tray" = "Küçült";
 "no_chat_selected_suggestion_desktop" = "Bir sohbet seçin ya da yeni bir sohbet oluşturun";
 "write_message_desktop" = "Bir ileti yazın";
 "encryption_info_title_desktop" = "Şifreleme bilgisi";
@@ -734,6 +753,9 @@
 "menu.view.developer.open.log.folder" = "Günlük klasörünü aç";
 "menu.view.developer.open.current.log.file" = "Geçerli günlük dosyasını aç";
 "user_location_permission_explanation" = "Delta Chat\'in konumunuzu göstermesi ya da paylaşması için konum izni gerekir.";
+"explain_desktop_minimized_disabled_tray_pref" = "Delta Chat --minimized seçeneğiyle başlatıldığından tepsi simgesi etkisizleştirilemez.";
+"no_spellcheck_suggestions_found" = "Yazım önerileri bulunamadı.";
+"show_window" = "Pencereyi Göster";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Teslimat durumu: Hata";

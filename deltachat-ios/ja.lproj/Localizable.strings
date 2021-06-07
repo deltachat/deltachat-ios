@@ -95,6 +95,8 @@
 "contact" = "連絡先";
 "verified_contact" = "確認済みの連絡先";
 "camera" = "カメラ";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+"capture" = "撮影";
 "switch_camera" = "カメラを切り替える";
 "toggle_fullscreen" = "フルスクリーン";
 "location" = "場所";
@@ -293,11 +295,8 @@
 // mailing lists
 "mailing_list" = "メーリングリスト";
 "ask_show_mailing_list" = "%1$@のメーリングリストを表示しますか？";
-
-
 "show_location_traces" = "トレースを表示する";
 "add_poi" = "指定位置を送る";
-
 
 // search
 "search" = "検索";
@@ -407,8 +406,6 @@
 "pref_outgoing_balanced" = "普通";
 "pref_outgoing_worse" = "低画質・サイズが小さい";
 "pref_vibrate" = "振動";
-"pref_change_secret" = "秘密の変更";
-"pref_change_secret_explain" = "PIN・パターン・指紋はシステム設定で変更できます";
 "pref_screen_security" = "画面セキュリティ";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "アプリ内や「最近使ったアプリ」でスクリーンショットを禁止する";
@@ -483,8 +480,6 @@
 "profile_image_select" = "アイコン画像を選択する";
 "select_your_new_profile_image" = "新しいアイコン画像を選択してください";
 "profile_image_delete" = "アイコン画像を削除する";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "検索結果";
 "emoji_not_found" = "絵文字がみつかりません";
@@ -559,13 +554,6 @@
 "systemmsg_chat_protection_disabled" = "保護が無効です。";
 "systemmsg_chat_protection_enabled" = "保護が有効です。";
 
-// screen lock
-"screenlock_title" = "画面ロック";
-"screenlock_explain" = "Delta Chatを画面ロックや指紋認証でロックする。以前のコンテンツを表示しないように、「画面のセキュリティ」も有効にしてください。";
-"screenlock_authentication_failed" = "認証に失敗しました。";
-"screenlock_unlock_title" = "Delta Chatを解錠する";
-"screenlock_inactivity_timeout" = "無操作によるロック";
-"screenlock_inactivity_timeout_explain" = "一定時間操作がなかったら自動でDelta Chatをロックする";
 // qr code stuff
 "qr_code" = "QRコード";
 "load_qr_code_as_image" = "QRコードを画像として読み込む";
@@ -673,7 +661,6 @@
 "menu.view.developer.open.log.folder" = "ログフォルダを開く";
 "menu.view.developer.open.current.log.file" = "現在のログファイルを開く";
 "user_location_permission_explanation" = "Delta Chatは位置情報を共有出来る様にする為権限が必要です";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "送信状態：エラー";
 "a11y_delivery_status_sending" = "送信状態：送信中";

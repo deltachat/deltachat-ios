@@ -139,7 +139,7 @@
 			<key>many</key>
 			<string>Отправить следующие %d файлов %s?</string>
 			<key>other</key>
-			<string>Отправить следующие %d файлов %s?</string>
+			<string>Отправить следующие %d файлы %s?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

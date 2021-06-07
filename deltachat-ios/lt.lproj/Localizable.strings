@@ -33,7 +33,14 @@
 "main_menu" = "Pagrindinis meniu";
 "start_chat" = "Pradėti pokalbį";
 "show_full_message" = "Rodyti visą žinutę…";
+"show_full_message_in_browser" = "Rodyti visą žinutę naršyklėje…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Įkeliama…";
+"hide" = "Slėpti";
+"activate" = "Aktyvuoti";
 "load_remote_content" = "Įkelti nuotolinius paveikslus";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Nuotoliniai paveikslai gali būti naudojami, kad būtumėte sekami.\n\nŠis nustatymas taip pat leidžia šriftų įkėlimą ir kitą turinį. Netgi, jeigu jis yra išjungtas, gali būti, kad vis tiek matysite įterptus paveikslus ar paveikslus iš podėlio.\n\nĮkelti nuotolinius paveikslus?";
 "always" = "Visada";
 "once" = "Vieną kartą";
 "show_password" = "Rodyti slaptažodį";
@@ -144,6 +151,8 @@
 "menu_copy_to_clipboard" = "Kopijuoti į iškarpinę";
 "menu_copy_selection_to_clipboard" = "Kopijuoti žymėjimą";
 "menu_copy_link_to_clipboard" = "Kopijuoti nuorodą";
+"menu_copy_text_to_clipboard" = "Kopijuoti tekstą";
+"menu_copy_image_to_clipboard" = "Kopijuoti paveikslą";
 "paste_from_clipboard" = "Įdėti iš iškarpinės";
 "menu_forward" = "Persiųsti žinutę";
 "menu_resend" = "Siųsti žinutę iš naujo";
@@ -176,6 +185,9 @@
 "menu_zoom_in" = "Didinti";
 "menu_zoom_out" = "Mažinti";
 "menu_save_log" = "Įrašyti žurnalą";
+"menu_more_options" = "Daugiau parinkčių";
+"copy_json" = "Kopijuoti JSON";
+"replace_draft" = "Pakeisti juodraštį";
 "title_share_location" = "Bendrinti savo vietą su visais grupės dalyviais";
 "device_talk" = "Įrenginio žinutės";
 "edit_contact" = "Taisyti adresatą";
@@ -215,6 +227,7 @@
 "videochat_instance_placeholder" = "Jūsų vaizdo pokalbio egzempliorius";
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
+"ask_delete_message" = "Ar tikrai norite ištrinti šią žinutę?";
 "ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";
@@ -254,6 +267,7 @@
 "chat_contact_request" = "Adresato užklausa";
 "send_failed" = "Nepavyko išsiųsti žinutės";
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";
+"puny_code_warning_header" = "Aptikta įtartina nuoroda";
 // search
 "search" = "Ieškoti";
 "search_explain" = "Ieškokite pokalbių, adresatų ir žinučių";
@@ -326,6 +340,7 @@
 "add_account" = "Pridėti paskyrą";
 "delete_account" = "Ištrinti paskyrą";
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
+"delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";
 "switching_account" = "Perjungiama paskyra…";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfigūracija patyrė nesėkmę. Klaida: %1$@";
@@ -354,8 +369,6 @@
 "pref_outgoing_balanced" = "Subalansuota";
 "pref_outgoing_worse" = "Blogesnė kokybė, mažas dydis";
 "pref_vibrate" = "Vibruoti";
-"pref_change_secret" = "Pakeisti paslaptį";
-"pref_change_secret_explain" = "Pakeisti savo pin / šabloną / piršto atspaudą per sistemos nustatymus";
 "pref_screen_security" = "Ekrano saugumas";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Prašyti blokuoti ekrano kopijas paskiausiųjų sąraše ir programėlės viduje";
@@ -420,6 +433,10 @@
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
 "export_aborted" = "Eksportavimas nutrauktas.";
+"profile_image_delete" = "Ištrinti profilio paveikslą";
+"pref_show_tray_icon" = "Rodyti dėklo piktogramą";
+"pref_edit_profile" = "Taisyti profilį";
+
 "emoji_recent" = "Paskiausi";
 "emoji_people" = "Žmonės ir kūnas";
 "emoji_nature" = "Gyvūnai ir gamta";
@@ -493,16 +510,6 @@
 "systemmsg_chat_protection_disabled" = "Pokalbio apsauga išjungta.";
 "systemmsg_chat_protection_enabled" = "Pokalbio apsauga įjungta.";
 
-// screen lock
-"screenlock_title" = "Ekrano užraktas";
-"screenlock_authentication_failed" = "Tapatybės nustatymas nepavyko.";
-"screenlock_unlock_title" = "Atrakinti Delta Chat";
-"screenlock_unlock_description" = "Norėdami atrakinti Delta Chat, įveskite savo sistemos apibrėžtą paslaptį.";
-"screenlock_inactivity_timeout" = "Užraktas esant neveiklumui";
-"screenlock_inactivity_timeout_explain" = "Automatiškai užrakinti Delta Chat po nurodyto neveiklumo intervalo";
-"screenlock_inactivity_timeout_interval" = "Neveiklumui skirtas laiko intervalas";
-
-
 // qr code stuff
 "qr_code" = "QR kodas";
 "load_qr_code_as_image" = "Įkelti QR kodą kaip paveikslą";
@@ -523,10 +530,13 @@
 "qrshow_join_contact_no_connection_hint" = "QR kodo sąranka reikalauja interneto ryšio. Prieš tęsdami, prisijunkite prie tinklo.";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
 "qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
+"qraccount_success_enter_name" = "Prisijungimas sėkmingas — jūsų el. pašto adresas yra %1$@\n\nJei norite, dabar galite įvesti vardą ir pridėti profilio paveikslą, kuris bus rodomas žmonėms, kuriems rašysite.";
 "contact_verified" = "%1$@ patvirtintas.";
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Pakeista sąranka, skirta %1$@.";
+"mailto_link_could_not_be_decoded" = "nepavyko dekoduoti mailto nuorodos: %1$@";
+
 "notify_mark_read" = "Žymėti kaip skaitytą";
 "notify_reply_button" = "Atsakyti";
 "notify_new_message" = "Nauja žinutė";
@@ -541,6 +551,14 @@
 // permissions
 "perm_required_title" = "Reikalingas leidimas";
 "perm_continue" = "Tęsti";
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Pieškite ten, kur norite sulieti";
+"ImageEditorHud_add_text" = "Pridėti tekstą";
+"ImageEditorHud_blur" = "Sulieti";
+"ImageEditorHud_crop" = "Apkirpti";
+"ImageEditorHud_flip" = "Apversti";
+"ImageEditorHud_rotate" = "Pasukti";
+
 // dc_str_* resources
 "encrypted_message" = "Šifruota žinutė";
 
@@ -564,6 +582,8 @@
 "global_menu_help_contribute_desktop" = "Talkinti Github svetainėje";
 "global_menu_help_report_desktop" = "Pranešti apie klaidą";
 "global_menu_help_about_desktop" = "Apie Delta Chat";
+"global_menu_file_open_desktop" = "Atverti Delta Chat";
+"global_menu_minimize_to_tray" = "Suskleisti";
 "no_chat_selected_suggestion_desktop" = "Pasirinkite arba sukurkite naują pokalbį";
 "write_message_desktop" = "Rašykite žinutę";
 "encryption_info_title_desktop" = "Šifravimo informacija";
@@ -606,6 +626,9 @@
 "message_detail_to_desktop" = "kam";
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
 "menu.view.developer.open.current.log.file" = "Atverti dabartinio žurnalo failą";
+"no_spellcheck_suggestions_found" = "Nerasta jokių rašybos pasiūlymų.";
+"show_window" = "Rodyti langą";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Pristatymo būsena: Klaida";
 "a11y_encryption_padlock" = "Šifravimo spyna";

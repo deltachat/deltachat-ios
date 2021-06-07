@@ -39,6 +39,11 @@
 "main_menu" = "主菜单";
 "start_chat" = "开始聊天";
 "show_full_message" = "显示完整消息… ";
+"show_full_message_in_browser" = "在浏览器中显示完整消息…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "加载中…";
+"hide" = "隐藏";
+"activate" = "激活";
 "load_remote_content" = "加载远程图片";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "远程图像可被用来跟踪您。\n\n该设置还允许加载字体和其他内容。即使禁用，您仍可能看到嵌入或缓存的图像。\n\n要加载远程图像吗？";
@@ -87,7 +92,7 @@
 "images" = "图像";
 "audio" = "录音";
 "voice_message" = "语音消息";
-"forwarded" = "已转发";
+"forwarded" = "转发了";
 "forwarded_message" = "转发的消息";
 // %1$s will be replaced by the name or the email-address of the person who has forwarded the message
 "forwarded_by" = "转发人 %1$@";
@@ -96,6 +101,7 @@
 "contact" = "联系人";
 "verified_contact" = "已验证联系人";
 "camera" = "相机";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "捕获";
 "switch_camera" = "切换摄像头";
 "toggle_fullscreen" = "切换全屏模式";
@@ -155,6 +161,8 @@
 "menu_copy_to_clipboard" = "复制到剪贴板";
 "menu_copy_selection_to_clipboard" = "复制所选内容";
 "menu_copy_link_to_clipboard" = "复制链接";
+"menu_copy_text_to_clipboard" = "复制文本";
+"menu_copy_image_to_clipboard" = "复制图像";
 "paste_from_clipboard" = "从剪贴板粘贴";
 "menu_forward" = "转发消息";
 "menu_resend" = "重发消息";
@@ -188,6 +196,12 @@
 "menu_zoom_in" = "放大";
 "menu_zoom_out" = "缩小";
 "menu_save_log" = "保存日志";
+"menu_more_options" = "更多选项";
+"menu_learn_spelling" = "学习拼写";
+"menu_chat_audit_log" = "聊天审计日志";
+"jump_to_message" = "跳转到消息";
+"copy_json" = "复制 JSON";
+"replace_draft" = "替换草稿";
 "title_share_location" = "与所有群组成员共享位置";
 "device_talk" = "设备消息";
 "device_talk_subtitle" = "本地生成的消息";
@@ -237,6 +251,7 @@
 
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
+"ask_delete_message" = "您确定要删除这条消息吗？";
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
 "ask_export_attachment" = "导出附件？导出附件将允许您设备上的任意应用程序访问它们。\n\n继续？";
@@ -288,6 +303,7 @@
 "messaging_disabled_not_in_group" = "您无法编写消息，因为您不在此群组中。要加入，请询问其他成员。";
 "messaging_disabled_device_chat" = "此聊天包含本地生成的消息。您不能在这里编写消息。";
 "messaging_disabled_deaddrop" = "点击消息来接受或拒绝联系人请求";
+"messaging_disabled_mailing_list" = "尚不支持在邮件列表中发送消息";
 "cannot_display_unsuported_file_type" = "无法显示此类文件：%1$@";
 "attachment_failed_to_load" = "加载附件失败";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -296,13 +312,26 @@
 // mailing lists
 "mailing_list" = "邮件列表";
 "ask_show_mailing_list" = "显示邮件列表 \"%1$@\"吗？";
-
+"mailing_list_profile_info" = "邮件列表名称和图像的更改仅适用于此设备。 ";
 
 // map
 "filter_map_on_time" = "显示在时间范围内的位置";
 "show_location_traces" = "显示轨迹";
 "add_poi" = "发送兴趣点";
 
+// chat audit log
+"chat_audit_log_empty_message" = "此聊天的系统消息会出现在这里";
+"chat_audit_log_title" = "%1$@ 的聊天审计日志";
+"chat_audit_log_description" = "这个视图只显示系统和信息消息。可用于查找最后聊天操作而无需滚动许多普通消息";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "不再询问 %1$@";
+"puny_code_warning_header" = "检测到可疑链接";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "你确定你想访问 %1$@ 吗？";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "你将被转到一个链接，该链接可能通过使用来自不同字母表的相似字符来错误地表示字符。打开标记为 %1$@ 的链接将把你带到以 ascii 码编码的 %2$@。如果这样的字符出乎你的意料，那么这个链接可能是有害的";
 
 // search
 "search" = "搜索";
@@ -413,8 +442,6 @@
 "pref_outgoing_balanced" = "平衡";
 "pref_outgoing_worse" = "体积小，但质量更差";
 "pref_vibrate" = "振动";
-"pref_change_secret" = "更改密码";
-"pref_change_secret_explain" = "通过系统设置来更改您的 PIN 码 / 图案 / 指纹";
 "pref_screen_security" = "屏幕安全";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "请求系统在近期任务列表和本应用内阻止截屏";
@@ -492,7 +519,8 @@
 "profile_image_select" = "选择个人资料图片";
 "select_your_new_profile_image" = "选择新的个人资料图片";
 "profile_image_delete" = "删除个人资料图片";
-
+"pref_show_tray_icon" = "显示托盘图标";
+"pref_edit_profile" = "编辑概要";
 
 // Emoji picker and categories
 "emoji_search_results" = "搜索结果";
@@ -515,9 +543,9 @@
 "autodel_device_title" = "从设备删除消息";
 "autodel_server_title" = "从服务器删除消息";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_device_ask" = "您是否要立即删除 %1$d 条消息，并在之后于消息收到“%2$@”删除它们？\n\n• 这包括所有媒体文件\n\n• 无论消息是否被浏览过，它们都将会被删除\n\n• 在本地删除中，“保存的消息”将被跳过";
+"autodel_device_ask" = "您是否要立即删除 %1$d 条消息，并在之后于消息收到 %2$@ 删除它们？\n\n• 这包括所有媒体文件\n\n• 无论消息是否被浏览过，它们都将被删除\n\n• 在本地删除中，“保存的消息”将被跳过";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "您是否要立即删除 %1$d 条消息，并在之后于消息收到“%2$@”删除它们？\n\n⚠️ 这包括所有服务器文件夹中的电子邮件、媒体和“保存的消息”\n\n⚠️ 如果您想在服务器上保存数据，请不要使用此功能\n\n⚠️ 如果您正在使用 Delta Chat 之外的其他电子邮件客户端，请不要使用此功能";
+"autodel_server_ask" = "您是否要立即删除 %1$d 条消息，并在之后于消息收到 %2$@ 删除它们？\n\n⚠️ 这包括服务器所有文件夹中的电子邮件、媒体和“保存的消息”\n\n⚠️ 如果您想在服务器上保留数据，请不要使用此功能\n\n⚠️ 如果您正在使用 Delta Chat 之外的电子邮件客户端，请不要使用此功能";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "这包括所有服务器文件夹中的电子邮件、媒体和\"保存的消息\"。如果您想在服务器上保存数据，或者您正在使用除 Delta Chat 之外的其他电子邮件客户端，请不要使用此功能。";
 "autodel_confirm" = "我了解，将这些消息全部删除";
@@ -585,22 +613,14 @@
 "systemmsg_chat_protection_disabled" = "已禁用聊天保护";
 "systemmsg_chat_protection_enabled" = "已启用聊天保护";
 
-// screen lock
-"screenlock_title" = "屏幕锁定";
-"screenlock_explain" = "使用 Android 屏幕锁定或指纹锁定访问权限;要避免出现之前的内容，请同时启用“屏幕安全”。";
-"screenlock_authentication_failed" = "认证失败。";
-"screenlock_unlock_title" = "解锁 Delta Chat";
-"screenlock_unlock_description" = "请输入您的系统密码以解锁 Delta Chat。";
-"screenlock_inactivity_timeout" = "闲置超时锁定";
-"screenlock_inactivity_timeout_explain" = "在指定的闲置时间间隔后自动锁定 Delta Chat";
-"screenlock_inactivity_timeout_interval" = "保持活跃的时长";
-
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "请输入你系统定义的 secret 以继续";
 
 // qr code stuff
 "qr_code" = "二维码";
 "load_qr_code_as_image" = "从图像加载二维码";
 "qrscan_title" = "扫描二维码";
-"qrscan_hint" = "将相机对准二维码。";
+"qrscan_hint" = "将摄像头对准二维码。";
 "qrscan_failed" = "二维码无法被解码";
 "qrscan_ask_join_group" = "您要加入群组“%1$@”吗？";
 "qrscan_fingerprint_mismatch" = "扫描到的指纹与上次见到的 %1$@ 的指纹不匹配。";
@@ -630,7 +650,10 @@
 "contact_setup_changed" = "已更改 %1$@ 的加密设置";
 "verified_group_explain" = "已验证群组（实验性）可提供针对主动攻击的安全性。其中的成员被其他成员用第二个因素进行了验证，并且消息始终是端到端加密的。";
 "copy_qr_data_success" = "已复制二维码链接到剪贴板";
-
+"mailto_dialog_header_select_chat" = "选择要发送消息的聊天";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@ 已经有一条草稿信息，你想替换它吗？";
+"mailto_link_could_not_be_decoded" = "无法解码 mailto 链接：%1$@";
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d 个聊天中有 %1$d 条新消息";
@@ -689,6 +712,8 @@
 "global_menu_help_contribute_desktop" = "在 GitHub 上做贡献";
 "global_menu_help_report_desktop" = "报告一个问题";
 "global_menu_help_about_desktop" = "关于 Delta Chat";
+"global_menu_file_open_desktop" = "打开 Delta Chat";
+"global_menu_minimize_to_tray" = "最小化";
 "no_chat_selected_suggestion_desktop" = "选择一个聊天或创建新聊天";
 "write_message_desktop" = "写消息";
 "encryption_info_title_desktop" = "加密信息";
@@ -734,6 +759,9 @@
 "menu.view.developer.open.log.folder" = "打开日志文件夹";
 "menu.view.developer.open.current.log.file" = "打开当前日志文件";
 "user_location_permission_explanation" = "Delta Chat 需要位置权限来显示和分享您的位置。";
+"explain_desktop_minimized_disabled_tray_pref" = "托盘图标不能被禁用，因为Delta Chat 启动时带 --minimized 参数";
+"no_spellcheck_suggestions_found" = "未找到拼写建议";
+"show_window" = "显示窗口";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "发送状态：错误";
