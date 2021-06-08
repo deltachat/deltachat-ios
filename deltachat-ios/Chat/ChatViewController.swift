@@ -1558,11 +1558,13 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 // MARK: - DraftPreviewDelegate
 extension ChatViewController: DraftPreviewDelegate {
     func onCancelQuote() {
+        keepKeyboard = true
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
     }
 
     func onCancelAttachment() {
+        keepKeyboard = true
         draft.setAttachment(viewType: nil, path: nil, mimetype: nil)
         configureDraftArea(draft: draft)
         evaluateInputBar(draft: draft)
