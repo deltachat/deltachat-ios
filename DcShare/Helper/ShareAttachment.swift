@@ -9,6 +9,7 @@ protocol ShareAttachmentDelegate: class {
     func onAttachmentChanged()
     func onThumbnailChanged()
     func onUrlShared(url: URL)
+    func onLoadingFinished()
 }
 
 class ShareAttachment {
@@ -46,6 +47,7 @@ class ShareAttachment {
                 createMessageFromDataRepresentation(attachments)
             }
         }
+        delegate?.onLoadingFinished()
     }
 
     private func createMessageFromDataRepresentation(_ attachments: [NSItemProvider]) {

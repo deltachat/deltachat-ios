@@ -38,6 +38,7 @@ class ShareViewController: SLComposeServiceViewController {
     let dbHelper = DatabaseHelper()
     var shareAttachment: ShareAttachment?
     var isAccountConfigured: Bool = true
+    var isLoading: Bool = true
 
     var previewImageHeightConstraint: NSLayoutConstraint?
     var previewImageWidthConstraint: NSLayoutConstraint?
@@ -107,7 +108,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return  isAccountConfigured && (!(contentText?.isEmpty ?? true) || !(self.shareAttachment?.isEmpty ?? true))
+        return  isAccountConfigured && !isLoading && (!(contentText?.isEmpty ?? true) || !(self.shareAttachment?.isEmpty ?? true))
     }
 
     private func setupNavigationBar() {
@@ -230,5 +231,9 @@ extension ShareViewController: ShareAttachmentDelegate {
                 }
             }
         }
+    }
+
+    func onLoadingFinished() {
+        isLoading = false
     }
 }
