@@ -110,6 +110,7 @@ class ImageTextCell: BaseMessageCell {
 
         self.imageHeightConstraint?.isActive = false
         self.imageWidthConstraint?.isActive = false
+        self.contentImageView.contentMode = .scaleAspectFit
 
         // check if sticker has the allowed minimal width
         if width < minImageWidth {
