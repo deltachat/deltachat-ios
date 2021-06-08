@@ -13,8 +13,25 @@ class GalleryItem: ContextMenuItem {
     }
 
     var thumbnailImage: UIImage? {
-        willSet {
-            onImageLoaded?(newValue)
+        get {
+            if let fileUrl = self.fileUrl {
+                if let image = ThumbnailCache.shared.restoreImage(key: fileUrl.absoluteString) {
+                    return image
+                } else {
+                    loadThumbnail()
+                }
+            }
+            return nil
+        }
+        set {
+            if let fileUrl = self.fileUrl {
+                if let image = newValue {
+                    ThumbnailCache.shared.storeImage(image: image, key: fileUrl.absoluteString)
+                    onImageLoaded?(newValue)
+                } else {
+                    ThumbnailCache.shared.deleteImage(key: fileUrl.absoluteString)
+                }
+            }
         }
     }
 
@@ -29,7 +46,6 @@ class GalleryItem: ContextMenuItem {
 
     init(msgId: Int) {
         self.msg = DcMsg(id: msgId)
-
         if let key = msg.fileURL?.absoluteString, let image = ThumbnailCache.shared.restoreImage(key: key) {
             self.thumbnailImage = image
         } else {
@@ -53,20 +69,19 @@ class GalleryItem: ContextMenuItem {
 
     private func loadImageThumbnail(from url: URL) {
         DispatchQueue.global(qos: .userInteractive).async {
-            let image = ImageFormat.loadImageFrom(url: url)
-            DispatchQueue.main.async { [weak self] in
-                    self?.thumbnailImage = image
+            if let image = ImageFormat.loadImageFrom(url: url) {
+                DispatchQueue.main.async { [weak self] in
+                        self?.thumbnailImage = image
+                }
             }
         }
     }
 
     private func loadVideoThumbnail(from url: URL) {
         DispatchQueue.global(qos: .userInteractive).async {
-            let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
-            DispatchQueue.main.async { [weak self] in
-                self?.thumbnailImage = thumbnailImage
-                if let image = thumbnailImage {
-                    ThumbnailCache.shared.storeImage(image: image, key: url.absoluteString)
+            if let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url) {
+                DispatchQueue.main.async { [weak self] in
+                    self?.thumbnailImage = thumbnailImage
                 }
             }
         }
