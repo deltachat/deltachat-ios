@@ -145,7 +145,8 @@ class ImageTextCell: BaseMessageCell {
         let orientation = UIApplication.shared.statusBarOrientation
         self.imageHeightConstraint?.isActive = false
         self.imageWidthConstraint?.isActive = false
-        
+        var scaleType = ContentMode.scaleAspectFill
+
         // check if image has the allowed minimal width
         if width < minImageWidth {
             height = (height / width) * minImageWidth
@@ -177,16 +178,19 @@ class ImageTextCell: BaseMessageCell {
                 if width < squareSize {
                     // very small width images should be forced to not be scaled down further
                     self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: width)
+                    self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(equalToConstant: height)
+                    scaleType = ContentMode.scaleAspectFit
                 } else {
                     // large width images might scale down until the max allowed text width
                     self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
+                    self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
+                        lessThanOrEqualTo: self.contentImageView.widthAnchor,
+                        multiplier: height / width
+                    )
                 }
-                self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
-                    lessThanOrEqualTo: self.contentImageView.widthAnchor,
-                    multiplier: height / width
-                )
             }
         }
+        self.contentImageView.contentMode = scaleType
         self.imageHeightConstraint?.isActive = true
         self.imageWidthConstraint?.isActive = true
     }
