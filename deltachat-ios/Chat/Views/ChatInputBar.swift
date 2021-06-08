@@ -83,6 +83,9 @@ public class ChatInputBar: InputBarAccessoryView {
     @objc func keyboardChanged(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
+            if (keyboardRectangle.height - intrinsicContentSize.height) == keyboardHeight {
+                return
+            }
             invalidateIntrinsicContentSize()
             keyboardHeight = keyboardRectangle.height - intrinsicContentSize.height
             updateTextViewHeight()
