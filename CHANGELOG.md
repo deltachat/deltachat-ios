@@ -6,6 +6,7 @@
 * show status/footer messages in contact profiles
 * show stickers as such
 * send memojis as stickers
+* open chat at the first unread message
 * fix downscaling images
 * fix outgoing messages popping up in "Saved messages" for some providers
 * fix: do not allow deleting contacts with ongoing chats
