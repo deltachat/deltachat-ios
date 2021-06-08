@@ -1066,9 +1066,9 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    func showChat(chatId: Int) {
+    func showChat(chatId: Int, messageId: Int? = nil, animated: Bool = true) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)
+            appDelegate.appCoordinator.showChat(chatId: chatId, msgId: messageId, animated: animated, clearViewControllerStack: true)
         }
     }
 
@@ -1424,7 +1424,11 @@ extension ChatViewController: BaseMessageCellDelegate {
         _ = handleUIMenu()
         let msg = DcMsg(id: messageIds[indexPath.row])
         if let quoteMsg = msg.quoteMessage {
-            scrollToMessage(msgId: quoteMsg.id)
+            if self.chatId == quoteMsg.chatId {
+                scrollToMessage(msgId: quoteMsg.id)
+            } else {
+                showChat(chatId: quoteMsg.chatId, messageId: quoteMsg.id, animated: false)
+            }
         }
     }
 
