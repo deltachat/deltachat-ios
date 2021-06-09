@@ -57,9 +57,11 @@ class ContactDetailViewModel {
 
         sections.append(.chatOptions)
 
-        let dcContact = DcContact(id: contactId)
-        if !dcContact.status.isEmpty {
-            sections.append(.statusArea)
+        if !self.isSavedMessages {
+            let dcContact = DcContact(id: contactId)
+            if !dcContact.status.isEmpty {
+                sections.append(.statusArea)
+            }
         }
 
         if sharedChats.length > 0 && !isSavedMessages && !isDeviceTalk {
