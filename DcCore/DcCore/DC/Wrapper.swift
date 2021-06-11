@@ -799,6 +799,7 @@ public class DcChat {
                 let image = UIImage(data: data)
                 return image
             } catch {
+                print("failed to load image: \(filename), \(error)")
                 return nil
             }
         }
@@ -1123,60 +1124,52 @@ public class DcContact {
     }
 
     public var displayName: String {
-        guard let contactPointer = contactPointer,
-              let cString = dc_contact_get_display_name(contactPointer) else { return "" }
+        guard let cString = dc_contact_get_display_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var nameNAddr: String {
-        guard let contactPointer = contactPointer,
-              let cString = dc_contact_get_name_n_addr(contactPointer) else { return "" }
+        guard let cString = dc_contact_get_name_n_addr(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var editedName: String {
-        guard let contactPointer = contactPointer,
-              let cString = dc_contact_get_name(contactPointer) else { return "" }
+        guard let cString = dc_contact_get_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var authName: String {
-        guard let contactPointer = contactPointer,
-              let cString = dc_contact_get_auth_name(contactPointer) else { return "" }
+        guard let cString = dc_contact_get_auth_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var email: String {
-        guard let contactPointer = contactPointer,
-              let cString = dc_contact_get_addr(contactPointer) else { return "" }
+        guard let cString = dc_contact_get_addr(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var status: String {
-        guard let contactPointer = contactPointer,
-              let cString = dc_contact_get_status(contactPointer) else { return "" }
+        guard let cString = dc_contact_get_status(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
-    public var isVerified: Bool? {
-        guard let contactPointer = contactPointer else { return  nil }
+    public var isVerified: Bool {
         return dc_contact_is_verified(contactPointer) > 0
     }
 
-    public var isBlocked: Bool? {
-    guard let contactPointer = contactPointer else { return  nil }
+    public var isBlocked: Bool {
         return dc_contact_is_blocked(contactPointer) == 1
     }
 

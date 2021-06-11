@@ -297,8 +297,8 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func updateBlockContactCell() {
-        blockContactCell.actionTitle = (viewModel.contact.isBlocked ?? false) ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        blockContactCell.actionColor = (viewModel.contact.isBlocked ?? false) ? SystemColor.blue.uiColor : UIColor.red
+        blockContactCell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
+        blockContactCell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
     }
 
 
@@ -360,7 +360,7 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func toggleBlockContact() {
-        if viewModel.contact.isBlocked ?? false {
+        if viewModel.contact.isBlocked {
             let alert = UIAlertController(title: String.localized("ask_unblock_contact"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
                 self.viewModel.unblockContact()

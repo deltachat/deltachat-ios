@@ -206,8 +206,8 @@ class ContactCell: UITableViewCell {
         ])
     }
 
-    func setVerified(isVerified: Bool?) {
-        avatar.setVerified(isVerified ?? false)
+    func setVerified(isVerified: Bool) {
+        avatar.setVerified(isVerified)
     }
 
     func setImage(_ img: UIImage) {
