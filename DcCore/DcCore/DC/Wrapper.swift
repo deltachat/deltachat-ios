@@ -985,6 +985,7 @@ public class DcMsg {
                     let image = UIImage(data: data)
                     return image
                 } catch {
+                    print("failed to load image: \(path), \(error)")
                     return nil
                 }
             }
