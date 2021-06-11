@@ -93,10 +93,6 @@ public class DcContext {
         dc_block_contact(contextPointer, UInt32(id), 0)
     }
 
-    public func isFromCurrentSender(message: DcMsg) -> Bool {
-        return message.fromContactId == getContact(id: Int(DC_CONTACT_ID_SELF)).id
-    }
-
     public func getBlockedContacts() -> [Int] {
         let cBlockedContacts = dc_get_blocked_contacts(contextPointer)
         return DcUtils.copyAndFreeArray(inputArray: cBlockedContacts)
@@ -875,6 +871,10 @@ public class DcMsg {
 
     public var fromContactId: Int {
         return Int(dc_msg_get_from_id(messagePointer))
+    }
+
+    public var isFromCurrentSender: Bool {
+        return fromContactId == DC_CONTACT_ID_SELF
     }
 
     public var chatId: Int {

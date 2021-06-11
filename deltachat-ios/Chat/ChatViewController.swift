@@ -571,11 +571,10 @@ class ChatViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
 
-        let isFromCurrentSender = dcContext.isFromCurrentSender(message: message)
-        var showAvatar = isGroupChat && !isFromCurrentSender
+        var showAvatar = isGroupChat && !message.isFromCurrentSender
         var showName = isGroupChat
         if message.overrideSenderName != nil {
-            showAvatar = !isFromCurrentSender
+            showAvatar = !message.isFromCurrentSender
             showName = true
         }
 
@@ -700,7 +699,7 @@ class ChatViewController: UITableViewController {
 
         var corners: UIRectCorner = []
 
-        if dcContext.isFromCurrentSender(message: message) {
+        if message.isFromCurrentSender {
             corners.formUnion(.topLeft)
             corners.formUnion(.bottomLeft)
             corners.formUnion(.topRight)
@@ -714,7 +713,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func getBackgroundColor(for currentMessage: DcMsg) -> UIColor {
-        return dcContext.isFromCurrentSender(message: currentMessage) ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor
+        return currentMessage.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor
     }
 
     private func updateTitle(chat: DcChat) {
@@ -1190,7 +1189,7 @@ class ChatViewController: UITableViewController {
         emptyStateView.isHidden = true
 
         reloadData()
-        if wasLastSectionVisible || dcContext.isFromCurrentSender(message: message) {
+        if wasLastSectionVisible || message.isFromCurrentSender {
             scrollToBottom(animated: true)
         }
     }

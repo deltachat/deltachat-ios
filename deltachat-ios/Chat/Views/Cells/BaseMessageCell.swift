@@ -274,7 +274,7 @@ public class BaseMessageCell: UITableViewCell {
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
-        if dcContext.isFromCurrentSender(message: msg) {
+        if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
             topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor : DcColors.defaultTextColor
             leadingConstraint?.isActive = false
@@ -375,7 +375,7 @@ public class BaseMessageCell: UITableViewCell {
         var backgroundColor: UIColor
         if isTransparent {
             backgroundColor = UIColor.init(alpha: 0, red: 0, green: 0, blue: 0)
-        } else if dcContext.isFromCurrentSender(message:message) {
+        } else if message.isFromCurrentSender {
             backgroundColor =  DcColors.messagePrimaryColor
         } else {
             backgroundColor = DcColors.messageSecondaryColor
