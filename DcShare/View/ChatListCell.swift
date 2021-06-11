@@ -84,7 +84,7 @@ class ChatListCell: UITableViewCell {
         avatar.setName("")
     }
 
-    private func setBackupImage(name: String, color: UIColor) {
+    private func setBackupImage(name: String, color: UIColor?) {
         avatar.setColor(color)
         avatar.setName(name)
     }
@@ -98,7 +98,7 @@ class ChatListCell: UITableViewCell {
         // subtitle
         switch cellViewModel.type {
         case .chat(let chatData):
-            let chat = DcContext.shared.getChat(chatId: chatData.chatId)
+            let chat = cellViewModel.dcContext.getChat(chatId: chatData.chatId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             if let img = chat.profileImage {
                 resetBackupImage()
@@ -109,12 +109,11 @@ class ChatListCell: UITableViewCell {
             subtitleLabel.attributedText = nil
 
         case .contact(let contactData):
-            let contact = DcContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            if let profileImage = contact.profileImage {
+            if let profileImage = contactData.contact.profileImage {
                 avatar.setImage(profileImage)
             } else {
-                setBackupImage(name: cellViewModel.title, color: contact.color)
+                setBackupImage(name: cellViewModel.title, color: contactData.contact.color)
             }
             subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes,
                                                                          fontSize: subtitleLabel.font.pointSize)

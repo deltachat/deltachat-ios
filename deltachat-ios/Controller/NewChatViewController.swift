@@ -52,7 +52,7 @@ class NewChatViewController: UITableViewController {
     }
 
     lazy var deviceContactHandler: DeviceContactsHandler = {
-        let handler = DeviceContactsHandler(dcContext: DcContext.shared)
+        let handler = DeviceContactsHandler(dcContext: dcContext)
         handler.contactListDelegate = self
         return handler
     }()
@@ -367,7 +367,7 @@ extension NewChatViewController: ContactListDelegate {
 // MARK: - alerts
 extension NewChatViewController {
     private func askToDeleteContact(contactId: Int, indexPath: IndexPath) {
-        let contact = DcContact(id: contactId)
+        let contact = dcContext.getContact(id: contactId)
         let alert = UIAlertController(
             title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.nameNAddr),
             message: nil,
@@ -388,7 +388,7 @@ extension NewChatViewController {
             self.dismiss(animated: true, completion: nil)
             self.showNewChat(contactId: contactId)
         } else {
-            let dcContact = DcContact(id: contactId)
+            let dcContact = dcContext.getContact(id: contactId)
             let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
                                           message: nil,
                                           preferredStyle: .safeActionSheet)

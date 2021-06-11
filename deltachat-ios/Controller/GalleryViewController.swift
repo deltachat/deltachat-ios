@@ -127,7 +127,7 @@ class GalleryViewController: UIViewController {
     private func updateFloatingTimeLabel() {
         if let indexPath = grid.indexPathsForVisibleItems.min() {
             let msgId = mediaMessageIds[indexPath.row]
-            let msg = DcMsg(id: msgId)
+            let msg = dcContext.getMessage(id: msgId)
             timeLabel.update(date: msg.sentDate)
         }
     }
@@ -155,7 +155,8 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { if items[$0.row] == nil {
-            let item = GalleryItem(msgId: mediaMessageIds[$0.row])
+            let message = dcContext.getMessage(id: mediaMessageIds[$0.row])
+            let item = GalleryItem(msg: message)
             items[$0.row] = item
         }}
     }
@@ -183,12 +184,14 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         var item: GalleryItem
         if let galleryItem = items[indexPath.row] {
             item = galleryItem
+            galleryCell.update(item: item)
         } else {
-            let galleryItem = GalleryItem(msgId: msgId)
+            let message = dcContext.getMessage(id: msgId)
+            let galleryItem = GalleryItem(msg: message)
             items[indexPath.row] = galleryItem
             item = galleryItem
+            galleryCell.update(item: item)
         }
-        galleryCell.update(item: item)
         UIMenuController.shared.setMenuVisible(false, animated: true)
         return galleryCell
     }
@@ -296,7 +299,7 @@ private extension GalleryViewController {
             return
         }
 
-        let previewController = PreviewController(type: .multi(mediaMessageIds, index))
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(mediaMessageIds, index))
         previewController.delegate = self
         present(previewController, animated: true, completion: nil)
     }

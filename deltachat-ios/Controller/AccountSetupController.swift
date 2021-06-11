@@ -673,7 +673,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.reachability.connection == .none {
                         errorMessage = String.localized("login_error_no_internet_connection")
                     } else {
-                        errorMessage = "\(errorMessage ?? "no message")\n\n(warning=\(DcContext.shared.lastWarningString) (progress=\(DcContext.shared.maxConfigureProgress))"
+                        errorMessage = "\(errorMessage ?? "no message")\n\n(warning=\(self.dcContext.lastWarningString) (progress=\(self.dcContext.maxConfigureProgress))"
                     }
                     self.updateProgressAlert(error: errorMessage)
                 } else if ui["done"] as! Bool {
@@ -774,7 +774,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
             self.dcContext.stopIo()
             appDelegate.closeDatabase()
-            DatabaseHelper().clearAccountData()
+            DatabaseHelper(dcContext: self.dcContext).clearAccountData()
             appDelegate.openDatabase()
             appDelegate.installEventHandler()
             self.dcContext.maybeStartIo()

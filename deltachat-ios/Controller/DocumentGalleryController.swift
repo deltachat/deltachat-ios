@@ -118,7 +118,7 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
                 as? DocumentGalleryFileCell else {
             return UITableViewCell()
         }
-        let msg = DcMsg(id: fileMessageIds[indexPath.row])
+        let msg = dcContext.getMessage(id: fileMessageIds[indexPath.row])
         cell.update(msg: msg)
         return cell
     }
@@ -163,7 +163,7 @@ extension DocumentGalleryController {
         guard let index = fileMessageIds.index(of: msgId) else {
             return
         }
-        let previewController = PreviewController(type: .multi(fileMessageIds, index))
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(fileMessageIds, index))
         present(previewController, animated: true, completion: nil)
     }
 

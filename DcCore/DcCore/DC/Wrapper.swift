@@ -6,16 +6,16 @@ public class DcContext {
 
     /// TODO: THIS global instance should be replaced in the future, for example for a multi-account scenario,
     /// where we want to have more than one DcContext.
-    static let dcContext: DcContext = DcContext()
+    //static let dcContext: DcContext = DcContext()
     public var logger: Logger?
     var contextPointer: OpaquePointer?
     public var lastErrorString: String?
     public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
 
-    private init() {
+    public init() {
     }
-
+    
     deinit {
         if contextPointer == nil { return } // avoid a warning about a "careless call"
         dc_context_unref(contextPointer)
@@ -23,8 +23,22 @@ public class DcContext {
     }
 
     /// Injection of DcContext is preferred over the usage of the shared variable
-    public static var shared: DcContext {
+/*    public static var shared: DcContext {
         return .dcContext
+    }*/
+
+    public func newMessage(viewType: Int32) -> DcMsg {
+        let messagePointer = dc_msg_new(contextPointer, viewType)
+        return DcMsg(pointer: messagePointer)
+    }
+
+    public func getMessage(id: Int) -> DcMsg {
+        let messagePointer = dc_get_msg(contextPointer, UInt32(id))
+        return DcMsg(pointer: messagePointer)
+    }
+
+    public func sendMessage(chatId: Int, message: DcMsg) {
+        dc_send_msg(contextPointer, UInt32(chatId), message.messagePointer)
     }
 
     // TODO: remove count and from parameters if we don't use it
@@ -61,6 +75,27 @@ public class DcContext {
         let diff = CFAbsoluteTimeGetCurrent() - start
         logger?.info("⏰ getContacts: \(diff) s")
         return DcUtils.copyAndFreeArray(inputArray: cContacts)
+    }
+
+    public func getContact(id: Int) -> DcContact {
+        let contactPointer = dc_get_contact(contextPointer, UInt32(id))
+        return DcContact(contactPointer: contactPointer)
+    }
+
+    public func blockContact(id: Int) {
+        dc_block_contact(contextPointer, UInt32(id), 1)
+    }
+
+    public func unblockContact(id: Int) {
+        dc_block_contact(contextPointer, UInt32(id), 0)
+    }
+
+/*    public func getFromContact(messageId: Int): DcContact? {
+        DcContact(id: fromContactId)
+    }() */
+
+    public func isFromCurrentSender(message: DcMsg) -> Bool {
+        return message.fromContactId == getContact(id: Int(DC_CONTACT_ID_SELF)).id
     }
 
     public func getBlockedContacts() -> [Int] {
@@ -406,6 +441,32 @@ public class DcContext {
         return DcProvider(dcProviderPointer)
     }
 
+    public func previousMediaURLs(messageId: Int, messageType: Int) -> [URL] {
+            var urls: [URL] = []
+            var prev: Int = Int(dc_get_next_media(contextPointer, UInt32(messageId), -1, Int32(messageType), 0, 0))
+            while prev != 0 {
+                let prevMessage = getMessage(id: prev)
+                if let url = prevMessage.fileURL {
+                    urls.insert(url, at: 0)
+                }
+                prev = Int(dc_get_next_media(contextPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
+            }
+            return urls
+        }
+
+        public func nextMediaURLs(messageId: Int, messageType: Int) -> [URL] {
+            var urls: [URL] = []
+            var next: Int = Int(dc_get_next_media(contextPointer, UInt32(messageId), 1, Int32(messageType), 0, 0))
+            while next != 0 {
+                let nextMessage = getMessage(id: next)
+                if let url = nextMessage.fileURL {
+                    urls.append(url)
+                }
+                next = Int(dc_get_next_media(contextPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
+            }
+            return urls
+        }
+
     public func imex(what: Int32, directory: String) {
         dc_imex(contextPointer, what, directory, nil)
     }
@@ -728,8 +789,8 @@ public class DcChat {
         return dc_chat_is_muted(chatPointer) != 0
     }
 
-    public var contactIds: [Int] {
-        return DcUtils.copyAndFreeArray(inputArray: dc_get_chat_contacts(DcContext.shared.contextPointer, UInt32(id)))
+    public func getContactIds(_ dcContext: DcContext) -> [Int] {
+        return DcUtils.copyAndFreeArray(inputArray: dc_get_chat_contacts(dcContext.contextPointer, UInt32(id)))
     }
 
     public lazy var profileImage: UIImage? = { [weak self] in
@@ -743,7 +804,7 @@ public class DcChat {
                 let image = UIImage(data: data)
                 return image
             } catch {
-                DcContext.shared.logger?.warning("failed to load image: \(filename), \(error)")
+                //DcContext.shared.logger?.warning("failed to load image: \(filename), \(error)")
                 return nil
             }
         }
@@ -793,15 +854,15 @@ public class DcMsg {
             DC_MSG_VIDEO,
             DC_MSG_FILE
      */
-    public init(viewType: Int32) {
+    /*public init(viewType: Int32) {
         messagePointer = dc_msg_new(DcContext.shared.contextPointer, viewType)
     }
 
     public init(id: Int) {
         messagePointer = dc_get_msg(DcContext.shared.contextPointer, UInt32(id))
-    }
+    }*/
 
-    init(pointer: OpaquePointer) {
+    init(pointer: OpaquePointer?) {
         messagePointer = pointer
     }
 
@@ -837,13 +898,13 @@ public class DcMsg {
         return Int(dc_msg_get_from_id(messagePointer))
     }
 
-    public lazy var fromContact: DcContact = {
+/*    public lazy var fromContact: DcContact = {
         DcContact(id: fromContactId)
     }()
 
     public var isFromCurrentSender: Bool {
         return fromContact.id == DcContact(id: Int(DC_CONTACT_ID_SELF)).id
-    }
+    } */
 
     public var chatId: Int {
         return Int(dc_msg_get_chat_id(messagePointer))
@@ -952,7 +1013,7 @@ public class DcMsg {
                     let image = UIImage(data: data)
                     return image
                 } catch {
-                    DcContext.shared.logger?.warning("failed to load image: \(path), \(error)")
+                    //DcContext.shared.logger?.warning("failed to load image: \(path), \(error)")
                     return nil
                 }
             }
@@ -1078,11 +1139,11 @@ public class DcMsg {
         return dc_msg_get_showpadlock(messagePointer) == 1
     }
 
-    public func sendInChat(id: Int) {
-        dc_send_msg(DcContext.shared.contextPointer, UInt32(id), messagePointer)
-    }
+/*    public func sendInChat(_ dcContext: DcContext, id: Int) {
+        dc_send_msg(dcContext.contextPointer, UInt32(id), messagePointer)
+    } */
 
-    public func previousMediaURLs() -> [URL] {
+/*    public func previousMediaURLs() -> [URL] {
         var urls: [URL] = []
         var prev: Int = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(id), -1, Int32(type), 0, 0))
         while prev != 0 {
@@ -1106,14 +1167,18 @@ public class DcMsg {
             next = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
         }
         return urls
-    }
+    }*/
 }
 
 public class DcContact {
     private var contactPointer: OpaquePointer?
 
-    public init(id: Int) {
+    /*public init(id: Int) {
         contactPointer = dc_get_contact(DcContext.shared.contextPointer, UInt32(id))
+    }*/
+
+    public init(contactPointer: OpaquePointer?) {
+        self.contactPointer = contactPointer
     }
 
     deinit {
@@ -1121,52 +1186,60 @@ public class DcContact {
     }
 
     public var displayName: String {
-        guard let cString = dc_contact_get_display_name(contactPointer) else { return "" }
+        guard let contactPointer = contactPointer,
+              let cString = dc_contact_get_display_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var nameNAddr: String {
-        guard let cString = dc_contact_get_name_n_addr(contactPointer) else { return "" }
+        guard let contactPointer = contactPointer,
+              let cString = dc_contact_get_name_n_addr(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var editedName: String {
-        guard let cString = dc_contact_get_name(contactPointer) else { return "" }
+        guard let contactPointer = contactPointer,
+              let cString = dc_contact_get_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var authName: String {
-        guard let cString = dc_contact_get_auth_name(contactPointer) else { return "" }
+        guard let contactPointer = contactPointer,
+              let cString = dc_contact_get_auth_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var email: String {
-        guard let cString = dc_contact_get_addr(contactPointer) else { return "" }
+        guard let contactPointer = contactPointer,
+              let cString = dc_contact_get_addr(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
     public var status: String {
-        guard let cString = dc_contact_get_status(contactPointer) else { return "" }
+        guard let contactPointer = contactPointer,
+              let cString = dc_contact_get_status(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
     }
 
-    public var isVerified: Bool {
+    public var isVerified: Bool? {
+        guard let contactPointer = contactPointer else { return  nil }
         return dc_contact_is_verified(contactPointer) > 0
     }
 
-    public var isBlocked: Bool {
+    public var isBlocked: Bool? {
+    guard let contactPointer = contactPointer else { return  nil }
         return dc_contact_is_blocked(contactPointer) == 1
     }
 
@@ -1180,7 +1253,7 @@ public class DcContact {
                 let data = try Data(contentsOf: path)
                 return UIImage(data: data)
             } catch {
-                DcContext.shared.logger?.warning("failed to load image: \(filename), \(error)")
+                print("failed to load image: \(filename), \(error)")
                 return nil
             }
         }
@@ -1200,14 +1273,6 @@ public class DcContact {
 
     public var id: Int {
         return Int(dc_contact_get_id(contactPointer))
-    }
-
-    public func block() {
-        dc_block_contact(DcContext.shared.contextPointer, UInt32(id), 1)
-    }
-
-    public func unblock() {
-        dc_block_contact(DcContext.shared.contextPointer, UInt32(id), 0)
     }
 }
 

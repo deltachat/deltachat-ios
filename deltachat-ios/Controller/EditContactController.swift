@@ -10,7 +10,7 @@ class EditContactController: NewContactController {
         super.init(dcContext: dcContext)
         title = String.localized("edit_contact")
 
-        let contact = DcContact(id: contactIdForUpdate)
+        let contact = dcContext.getContact(id: contactIdForUpdate)
 
         nameCell.textField.text = contact.editedName
         if !contact.authName.isEmpty { // else show string "Name" as set by super.init()

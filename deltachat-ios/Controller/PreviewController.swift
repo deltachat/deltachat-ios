@@ -11,14 +11,16 @@ class PreviewController: QLPreviewController {
     let previewType: PreviewType
 
     var customTitle: String?
+    var dcContext: DcContext
 
     private lazy var doneButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(title: String.localized("done"), style: .done, target: self, action: #selector(doneButtonPressed(_:)))
         return button
     }()
 
-    init(type: PreviewType) {
+    init(dcContext: DcContext, type: PreviewType) {
         self.previewType = type
+        self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
         dataSource = self
         switch type {
@@ -64,7 +66,7 @@ extension PreviewController: QLPreviewControllerDataSource {
         case .single(let url):
             return PreviewItem(url: url, title: self.customTitle)
         case .multi(let msgIds, _):
-            let msg = DcMsg(id: msgIds[index])
+            let msg = dcContext.getMessage(id: msgIds[index])
             return PreviewItem(url: msg.fileURL, title: self.customTitle)
         }
     }

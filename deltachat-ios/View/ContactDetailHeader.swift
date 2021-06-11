@@ -86,7 +86,7 @@ class ContactDetailHeader: UIView {
         avatar.setName("")
     }
 
-    func setBackupImage(name: String, color: UIColor) {
+    func setBackupImage(name: String, color: UIColor?) {
         avatar.setColor(color)
         avatar.setName(name)
     }

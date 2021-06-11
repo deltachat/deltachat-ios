@@ -11,7 +11,7 @@ let logger = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    private let dcContext = DcContext.shared
+    private let dcContext = DcContext()
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
         locationManager = LocationManager(context: dcContext)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        notificationManager = NotificationManager()
+        notificationManager = NotificationManager(dcContext: dcContext)
         dcContext.maybeStartIo()
         setStockTranslations()
 
@@ -446,7 +446,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - misc.
 
     func openDatabase() {
-        guard let databaseLocation = DatabaseHelper().updateDatabaseLocation() else {
+        guard let databaseLocation = DatabaseHelper(dcContext: dcContext).updateDatabaseLocation() else {
             fatalError("Database could not be opened")
         }
         logger.info("open: \(databaseLocation)")
@@ -458,11 +458,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func installEventHandler() {
-        DispatchQueue.global(qos: .background).async {
+
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            let eventHandler = DcEventHandler(dcContext: self.dcContext)
             let eventEmitter = self.dcContext.getEventEmitter()
             while true {
                 guard let event = eventEmitter.getNextEvent() else { break }
-                handleEvent(event: event)
+                eventHandler.handleEvent(event: event)
             }
             logger.info("⬅️ event emitter finished")
         }

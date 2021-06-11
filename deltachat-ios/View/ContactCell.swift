@@ -206,8 +206,8 @@ class ContactCell: UITableViewCell {
         ])
     }
 
-    func setVerified(isVerified: Bool) {
-        avatar.setVerified(isVerified)
+    func setVerified(isVerified: Bool?) {
+        avatar.setVerified(isVerified ?? false)
     }
 
     func setImage(_ img: UIImage) {
@@ -219,7 +219,7 @@ class ContactCell: UITableViewCell {
         avatar.setName("")
     }
 
-    func setBackupImage(name: String, color: UIColor) {
+    func setBackupImage(name: String, color: UIColor?) {
         avatar.setColor(color)
         avatar.setName(name)
     }
@@ -296,7 +296,7 @@ class ContactCell: UITableViewCell {
         case .deaddrop(let deaddropData):
             safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
             backgroundColor = DcColors.deaddropBackground
-            let contact = DcContact(id: DcMsg(id: deaddropData.msgId).fromContactId)
+            let contact = deaddropData.deaddropContact //DcContact(id: DcMsg(id: deaddropData.msgId).fromContactId)
             if let img = contact.profileImage {
                 resetBackupImage()
                 setImage(img)
@@ -307,7 +307,7 @@ class ContactCell: UITableViewCell {
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
 
         case .chat(let chatData):
-            let chat = DcContext.shared.getChat(chatId: chatData.chatId)
+            let chat = cellViewModel.dcContext.getChat(chatId: chatData.chatId)
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {
@@ -335,22 +335,21 @@ class ContactCell: UITableViewCell {
                                 isMuted: chat.isMuted)
 
         case .contact(let contactData):
-            let contact = DcContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            if let profileImage = contact.profileImage {
+            if let profileImage = contactData.contact.profileImage {
                 avatar.setImage(profileImage)
             } else {
                 avatar.setName(cellViewModel.title)
-                avatar.setColor(contact.color)
+                avatar.setColor(contactData.contact.color)
             }
-            setVerified(isVerified: contact.isVerified)
+            setVerified(isVerified: contactData.contact.isVerified)
             setStatusIndicators(unreadCount: 0,
                                 status: 0,
                                 visibility: 0,
                                 isLocationStreaming: false,
                                 isMuted: false)
         case .profile:
-            let contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+            let contact = cellViewModel.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
             titleLabel.text = cellViewModel.title
             subtitleLabel.text = cellViewModel.subtitle
             if let profileImage = contact.profileImage {

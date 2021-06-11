@@ -232,7 +232,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addProgressAlertListener(progressName: dcNotificationImexProgress) { [weak self] in
+        addProgressAlertListener(dcContext: dcContext, progressName: dcNotificationImexProgress) { [weak self] in
             guard let self = self else { return }
             self.progressAlert?.dismiss(animated: true, completion: nil)
         }
@@ -323,7 +323,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             NotificationManager.removeAllNotifications()
         }
         UserDefaults.standard.synchronize()
-        NotificationManager.updateApplicationIconBadge(reset: !sender.isOn)
+        NotificationManager.updateApplicationIconBadge(dcContext: dcContext, reset: !sender.isOn)
     }
 
     @objc private func handleReceiptConfirmationToggle(_ sender: UISwitch) {
@@ -456,7 +456,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private func showBlockedContacts() {
-        let blockedContactsController = BlockedContactsViewController()
+        let blockedContactsController = BlockedContactsViewController(dcContext: dcContext)
         navigationController?.pushViewController(blockedContactsController, animated: true)
     }
 

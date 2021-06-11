@@ -4,6 +4,7 @@ import DcCore
 
 public class DraftModel {
     var quoteMessage: DcMsg?
+    var dcContext: DcContext
     var quoteText: String?
     var text: String?
     var attachment: String?
@@ -12,8 +13,9 @@ public class DraftModel {
     let chatId: Int
     var isEditing: Bool = false
 
-    public init(chatId: Int) {
+    public init(dcContext: DcContext, chatId: Int) {
         self.chatId = chatId
+        self.dcContext = dcContext
     }
 
     public func parse(draftMsg: DcMsg?) {
@@ -30,7 +32,7 @@ public class DraftModel {
     public func setQuote(quotedMsg: DcMsg?) {
         if let quotedMsg = quotedMsg {
             // create a temporary draft to get the correct quoteText
-            let draftMessage = DcMsg(viewType: DC_MSG_TEXT)
+            let draftMessage = dcContext.newMessage(viewType: DC_MSG_TEXT)
             draftMessage.quoteMessage = quotedMsg
             self.quoteText = draftMessage.quoteText
             self.quoteMessage = quotedMsg
@@ -52,7 +54,7 @@ public class DraftModel {
             return
         }
 
-        let draftMessage = DcMsg(viewType: viewType ?? DC_MSG_TEXT)
+        let draftMessage = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
         draftMessage.text = text
         if quoteMessage != nil {
             draftMessage.quoteMessage = quoteMessage

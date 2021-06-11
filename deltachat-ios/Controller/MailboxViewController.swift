@@ -41,7 +41,7 @@ class MailboxViewController: ChatViewController {
             let question = String.localizedStringWithFormat(String.localized("ask_show_mailing_list"), chat.name)
             return (question, String.localized("yes"), String.localized("block"))
         } else {
-            let contact = msg.fromContact
+            let contact = context.getContact(id: msg.fromContactId)
             let question = String.localizedStringWithFormat(String.localized("ask_start_chat_with"), contact.nameNAddr)
             return (question, String.localized("start_chat"), String.localized("menu_block_contact"))
         }
@@ -49,7 +49,7 @@ class MailboxViewController: ChatViewController {
 
     func askToChat(messageId: Int) {
         if handleUIMenu() { return }
-        let message = DcMsg(id: messageId)
+        let message = dcContext.getMessage(id: messageId)
         if message.isInfo {
             return
         }
