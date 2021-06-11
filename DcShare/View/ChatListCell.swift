@@ -84,7 +84,7 @@ class ChatListCell: UITableViewCell {
         avatar.setName("")
     }
 
-    private func setBackupImage(name: String, color: UIColor?) {
+    private func setBackupImage(name: String, color: UIColor) {
         avatar.setColor(color)
         avatar.setName(name)
     }

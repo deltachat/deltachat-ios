@@ -86,6 +86,7 @@ public struct DcUtils {
         }
 
         dc_array_unref(inputArray)
+        print("got: \(from) \(length) \(lenArray) - \(acc)")
 
         return acc
     }

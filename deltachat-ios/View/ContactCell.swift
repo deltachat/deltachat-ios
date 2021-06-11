@@ -219,7 +219,7 @@ class ContactCell: UITableViewCell {
         avatar.setName("")
     }
 
-    func setBackupImage(name: String, color: UIColor?) {
+    func setBackupImage(name: String, color: UIColor) {
         avatar.setColor(color)
         avatar.setName(name)
     }
@@ -296,7 +296,7 @@ class ContactCell: UITableViewCell {
         case .deaddrop(let deaddropData):
             safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
             backgroundColor = DcColors.deaddropBackground
-            let contact = deaddropData.deaddropContact //DcContact(id: DcMsg(id: deaddropData.msgId).fromContactId)
+            let contact = deaddropData.deaddropContact
             if let img = contact.profileImage {
                 resetBackupImage()
                 setImage(img)

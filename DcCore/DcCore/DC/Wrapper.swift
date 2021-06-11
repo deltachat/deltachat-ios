@@ -4,9 +4,6 @@ import AVFoundation
 
 public class DcContext {
 
-    /// TODO: THIS global instance should be replaced in the future, for example for a multi-account scenario,
-    /// where we want to have more than one DcContext.
-    //static let dcContext: DcContext = DcContext()
     public var logger: Logger?
     var contextPointer: OpaquePointer?
     public var lastErrorString: String?
@@ -22,11 +19,17 @@ public class DcContext {
         contextPointer = nil
     }
 
-    /// Injection of DcContext is preferred over the usage of the shared variable
-/*    public static var shared: DcContext {
-        return .dcContext
-    }*/
-
+    /**
+        viewType: one of
+            DC_MSG_TEXT,
+            DC_MSG_IMAGE,
+            DC_MSG_GIF,
+            DC_MSG_STICKER,
+            DC_MSG_AUDIO,
+            DC_MSG_VOICE,
+            DC_MSG_VIDEO,
+            DC_MSG_FILE
+     */
     public func newMessage(viewType: Int32) -> DcMsg {
         let messagePointer = dc_msg_new(contextPointer, viewType)
         return DcMsg(pointer: messagePointer)
@@ -89,10 +92,6 @@ public class DcContext {
     public func unblockContact(id: Int) {
         dc_block_contact(contextPointer, UInt32(id), 0)
     }
-
-/*    public func getFromContact(messageId: Int): DcContact? {
-        DcContact(id: fromContactId)
-    }() */
 
     public func isFromCurrentSender(message: DcMsg) -> Bool {
         return message.fromContactId == getContact(id: Int(DC_CONTACT_ID_SELF)).id
@@ -804,7 +803,6 @@ public class DcChat {
                 let image = UIImage(data: data)
                 return image
             } catch {
-                //DcContext.shared.logger?.warning("failed to load image: \(filename), \(error)")
                 return nil
             }
         }
@@ -843,25 +841,6 @@ public class DcArray {
 public class DcMsg {
     var messagePointer: OpaquePointer?
 
-    /**
-        viewType: one of
-            DC_MSG_TEXT,
-            DC_MSG_IMAGE,
-            DC_MSG_GIF,
-            DC_MSG_STICKER,
-            DC_MSG_AUDIO,
-            DC_MSG_VOICE,
-            DC_MSG_VIDEO,
-            DC_MSG_FILE
-     */
-    /*public init(viewType: Int32) {
-        messagePointer = dc_msg_new(DcContext.shared.contextPointer, viewType)
-    }
-
-    public init(id: Int) {
-        messagePointer = dc_get_msg(DcContext.shared.contextPointer, UInt32(id))
-    }*/
-
     init(pointer: OpaquePointer?) {
         messagePointer = pointer
     }
@@ -897,14 +876,6 @@ public class DcMsg {
     public var fromContactId: Int {
         return Int(dc_msg_get_from_id(messagePointer))
     }
-
-/*    public lazy var fromContact: DcContact = {
-        DcContact(id: fromContactId)
-    }()
-
-    public var isFromCurrentSender: Bool {
-        return fromContact.id == DcContact(id: Int(DC_CONTACT_ID_SELF)).id
-    } */
 
     public var chatId: Int {
         return Int(dc_msg_get_chat_id(messagePointer))
@@ -1013,7 +984,6 @@ public class DcMsg {
                     let image = UIImage(data: data)
                     return image
                 } catch {
-                    //DcContext.shared.logger?.warning("failed to load image: \(path), \(error)")
                     return nil
                 }
             }
@@ -1139,43 +1109,10 @@ public class DcMsg {
         return dc_msg_get_showpadlock(messagePointer) == 1
     }
 
-/*    public func sendInChat(_ dcContext: DcContext, id: Int) {
-        dc_send_msg(dcContext.contextPointer, UInt32(id), messagePointer)
-    } */
-
-/*    public func previousMediaURLs() -> [URL] {
-        var urls: [URL] = []
-        var prev: Int = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(id), -1, Int32(type), 0, 0))
-        while prev != 0 {
-            let prevMessage = DcMsg(id: prev)
-            if let url = prevMessage.fileURL {
-                urls.insert(url, at: 0)
-            }
-            prev = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
-        }
-        return urls
-    }
-
-    public func nextMediaURLs() -> [URL] {
-        var urls: [URL] = []
-        var next: Int = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(id), 1, Int32(type), 0, 0))
-        while next != 0 {
-            let nextMessage = DcMsg(id: next)
-            if let url = nextMessage.fileURL {
-                urls.append(url)
-            }
-            next = Int(dc_get_next_media(DcContext.shared.contextPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
-        }
-        return urls
-    }*/
 }
 
 public class DcContact {
     private var contactPointer: OpaquePointer?
-
-    /*public init(id: Int) {
-        contactPointer = dc_get_contact(DcContext.shared.contextPointer, UInt32(id))
-    }*/
 
     public init(contactPointer: OpaquePointer?) {
         self.contactPointer = contactPointer

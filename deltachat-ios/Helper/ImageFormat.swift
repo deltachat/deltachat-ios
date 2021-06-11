@@ -95,7 +95,7 @@ extension ImageFormat {
             try data.write(to: path)
             return path.relativePath
         } catch {
-            //DcContext.shared.logger?.info(error.localizedDescription)
+            print(error.localizedDescription)
             return nil
         }
     }

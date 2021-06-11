@@ -81,19 +81,19 @@ class ShareAttachment {
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
             }
             if let result = result {
-                let msg = self.dcContext.newMessage(viewType: DC_MSG_GIF)
                 let path = ImageFormat.saveImage(image: result)
-                    msg.setFile(filepath: path)
-                    self.messages.append(msg)
-                    self.delegate?.onAttachmentChanged()
-                    if self.imageThumbnail == nil {
-                        self.imageThumbnail = result
-                        self.delegate?.onThumbnailChanged()
-                    }
-                    if let error = error {
-                        self.dcContext.logger?.error("Could not load share item as image: \(error.localizedDescription)")
-                    }
+                let msg = self.dcContext.newMessage(viewType: DC_MSG_GIF)
+                msg.setFile(filepath: path)
+                self.messages.append(msg)
+                self.delegate?.onAttachmentChanged()
+                if self.imageThumbnail == nil {
+                    self.imageThumbnail = result
+                    self.delegate?.onThumbnailChanged()
                 }
+                if let error = error {
+                    self.dcContext.logger?.error("Could not load share item as image: \(error.localizedDescription)")
+                }
+            }
         }
     }
 
@@ -113,20 +113,18 @@ class ShareAttachment {
             }
             if let result = result {
                 let path: String? = ImageFormat.saveImage(image: result)
-                var msg: DcMsg?
+                var msg: DcMsg
                 if result.sd_imageFormat == .webP {
                     msg = self.dcContext.newMessage(viewType: DC_MSG_STICKER)
                 } else {
                     msg = self.dcContext.newMessage(viewType: DC_MSG_IMAGE)
                 }
-                if let msg = msg {
-                    msg.setFile(filepath: path)
-                    self.messages.append(msg)
-                    self.delegate?.onAttachmentChanged()
-                    if self.imageThumbnail == nil {
-                        self.imageThumbnail = result
-                        self.delegate?.onThumbnailChanged()
-                    }
+                msg.setFile(filepath: path)
+                self.messages.append(msg)
+                self.delegate?.onAttachmentChanged()
+                if self.imageThumbnail == nil {
+                    self.imageThumbnail = result
+                    self.delegate?.onThumbnailChanged()
                 }
             }
             if let error = error {
