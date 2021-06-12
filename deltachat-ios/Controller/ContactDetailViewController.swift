@@ -231,7 +231,7 @@ class ContactDetailViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
             }
-            headerCell.setVerified(isVerified: (viewModel.contact.isVerified ?? false))
+            headerCell.setVerified(isVerified: viewModel.contact.isVerified)
         }
         headerCell.onAvatarTap = showContactAvatarIfNeeded
     }
