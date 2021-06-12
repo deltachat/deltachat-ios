@@ -33,8 +33,8 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var blockContactCell: ActionCell = {
         let cell = ActionCell()
-        cell.actionTitle = (viewModel.contact.isBlocked ?? false) ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        cell.actionColor = (viewModel.contact.isBlocked ?? false) ? SystemColor.blue.uiColor : UIColor.red
+        cell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
+        cell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
         return cell
     }()
 
