@@ -436,32 +436,6 @@ public class DcContext {
         return DcProvider(dcProviderPointer)
     }
 
-    public func previousMediaURLs(messageId: Int, messageType: Int) -> [URL] {
-            var urls: [URL] = []
-            var prev: Int = Int(dc_get_next_media(contextPointer, UInt32(messageId), -1, Int32(messageType), 0, 0))
-            while prev != 0 {
-                let prevMessage = getMessage(id: prev)
-                if let url = prevMessage.fileURL {
-                    urls.insert(url, at: 0)
-                }
-                prev = Int(dc_get_next_media(contextPointer, UInt32(prevMessage.id), -1, Int32(prevMessage.type), 0, 0))
-            }
-            return urls
-        }
-
-        public func nextMediaURLs(messageId: Int, messageType: Int) -> [URL] {
-            var urls: [URL] = []
-            var next: Int = Int(dc_get_next_media(contextPointer, UInt32(messageId), 1, Int32(messageType), 0, 0))
-            while next != 0 {
-                let nextMessage = getMessage(id: next)
-                if let url = nextMessage.fileURL {
-                    urls.append(url)
-                }
-                next = Int(dc_get_next_media(contextPointer, UInt32(nextMessage.id), 1, Int32(nextMessage.type), 0, 0))
-            }
-            return urls
-        }
-
     public func imex(what: Int32, directory: String) {
         dc_imex(contextPointer, what, directory, nil)
     }
