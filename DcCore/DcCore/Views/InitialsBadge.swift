@@ -112,7 +112,7 @@ public class InitialsBadge: UIView {
         return !label.isHidden
     }
 
-    public func setColor(_ color: UIColor?) {
+    public func setColor(_ color: UIColor) {
         backgroundColor = color
     }
 
