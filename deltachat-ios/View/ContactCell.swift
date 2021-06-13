@@ -296,7 +296,8 @@ class ContactCell: UITableViewCell {
         case .deaddrop(let deaddropData):
             safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
             backgroundColor = DcColors.deaddropBackground
-            let contact = deaddropData.deaddropContact
+            let msg = cellViewModel.dcContext.getMessage(id: deaddropData.msgId)
+            let contact = cellViewModel.dcContext.getContact(id: msg.fromContactId)
             if let img = contact.profileImage {
                 resetBackupImage()
                 setImage(img)

@@ -33,7 +33,6 @@ struct DeaddropCellData {
     let chatId: Int
     let msgId: Int
     let summary: DcLot
-    let deaddropContact: DcContact
 }
 
 class ContactCellViewModel: AvatarCellViewModel {

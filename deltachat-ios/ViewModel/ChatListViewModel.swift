@@ -207,14 +207,8 @@ private extension ChatListViewModel {
         let chatId = list.getChatId(index: index)
         let summary = list.getSummary(index: index)
 
-        if let msgId = msgIdFor(row: index),
-           chatId == DC_CHAT_ID_DEADDROP {
-            let message = dcContext.getMessage(id: msgId)
-            return ChatCellViewModel(dcContext: dcContext,
-                                     deaddropCellData: DeaddropCellData(chatId: chatId,
-                                                                        msgId: msgId,
-                                                                        summary: summary,
-                                                                        deaddropContact: dcContext.getContact(id: message.fromContactId)))
+        if let msgId = msgIdFor(row: index), chatId == DC_CHAT_ID_DEADDROP {
+            return ChatCellViewModel(dcContext: dcContext, deaddropCellData: DeaddropCellData(chatId: chatId, msgId: msgId, summary: summary))
         }
 
         let chat = dcContext.getChat(chatId: chatId)
