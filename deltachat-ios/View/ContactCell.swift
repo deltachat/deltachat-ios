@@ -335,14 +335,15 @@ class ContactCell: UITableViewCell {
                                 isMuted: chat.isMuted)
 
         case .contact(let contactData):
+            let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            if let profileImage = contactData.contact.profileImage {
+            if let profileImage = contact.profileImage {
                 avatar.setImage(profileImage)
             } else {
                 avatar.setName(cellViewModel.title)
-                avatar.setColor(contactData.contact.color)
+                avatar.setColor(contact.color)
             }
-            setVerified(isVerified: contactData.contact.isVerified)
+            setVerified(isVerified: contact.isVerified)
             setStatusIndicators(unreadCount: 0,
                                 status: 0,
                                 visibility: 0,

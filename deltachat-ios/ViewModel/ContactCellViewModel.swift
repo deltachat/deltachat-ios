@@ -18,7 +18,7 @@ enum CellModel {
 }
 
 struct ContactCellData {
-    let contact: DcContact
+    let contactId: Int
     let chatId: Int?
 }
 
@@ -60,7 +60,7 @@ class ContactCellViewModel: AvatarCellViewModel {
         type = CellModel.contact(contactData)
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
-        self.contact = contactData.contact
+        self.contact = dcContext.getContact(id: contactData.contactId)
         self.dcContext = dcContext
     }
 }
@@ -150,7 +150,7 @@ extension ContactCellViewModel {
         let viewModel = ContactCellViewModel(
             dcContext: dcContext,
             contactData: ContactCellData(
-                contact: contact,
+                contactId: contactId,
                 chatId: chatId
             ),
             titleHighlightIndexes: nameIndexes,

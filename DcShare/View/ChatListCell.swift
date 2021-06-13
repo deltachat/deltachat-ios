@@ -109,11 +109,12 @@ class ChatListCell: UITableViewCell {
             subtitleLabel.attributedText = nil
 
         case .contact(let contactData):
+            let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            if let profileImage = contactData.contact.profileImage {
+            if let profileImage = contact.profileImage {
                 avatar.setImage(profileImage)
             } else {
-                setBackupImage(name: cellViewModel.title, color: contactData.contact.color)
+                setBackupImage(name: cellViewModel.title, color: contact.color)
             }
             subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes,
                                                                          fontSize: subtitleLabel.font.pointSize)

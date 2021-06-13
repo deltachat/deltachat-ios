@@ -410,9 +410,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 break
             }
             let contactId: Int = getGroupMemberIdFor(row)
-            let contact = dcContext.getContact(id: contactId)
             let cellData = ContactCellData(
-                contact: contact,
+                contactId: contactId,
                 chatId: dcContext.getChatIdByContactIdOld(contactId)
             )
             let cellViewModel = ContactCellViewModel(dcContext: dcContext, contactData: cellData)

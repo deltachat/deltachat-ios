@@ -292,7 +292,7 @@ class ChatListController: UITableViewController {
                 showChat(chatId: chatId, highlightedMsg: chatData.highlightMsgId)
             }
         case .contact(let contactData):
-            let contactId = contactData.contact.id
+            let contactId = contactData.contactId
             if let chatId = contactData.chatId {
                 showChat(chatId: chatId)
             } else {

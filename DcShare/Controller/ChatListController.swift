@@ -128,8 +128,7 @@ class ChatListController: UITableViewController {
              if let chatId = data.chatId {
                 chatListDelegate?.onChatSelected(chatId: chatId)
             } else {
-                let contact = data.contact
-                let chatId = dcContext.createChatByContactId(contactId: contact.id)
+                let chatId = dcContext.createChatByContactId(contactId: data.contactId)
                 chatListDelegate?.onChatSelected(chatId: chatId)
             }
         default:
