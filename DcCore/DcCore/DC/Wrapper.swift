@@ -19,17 +19,7 @@ public class DcContext {
         contextPointer = nil
     }
 
-    /**
-        viewType: one of
-            DC_MSG_TEXT,
-            DC_MSG_IMAGE,
-            DC_MSG_GIF,
-            DC_MSG_STICKER,
-            DC_MSG_AUDIO,
-            DC_MSG_VOICE,
-            DC_MSG_VIDEO,
-            DC_MSG_FILE
-     */
+    // viewType: one of DC_MSG_*
     public func newMessage(viewType: Int32) -> DcMsg {
         let messagePointer = dc_msg_new(contextPointer, viewType)
         return DcMsg(pointer: messagePointer)
