@@ -2,6 +2,36 @@ import Foundation
 import UIKit
 import AVFoundation
 
+public class DcAccounts {
+
+    /// The application group identifier defines a group of apps or extensions that have access to a shared container.
+    /// The ID is created in the apple developer portal and can be changed there.
+    let applicationGroupIdentifier = "group.chat.delta.ios"
+    var accountsPointer: OpaquePointer?
+
+    public init() {
+        var version = ""
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            version += " " + appVersion
+        }
+
+        if let sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
+            accountsPointer = dc_accounts_new("iOS\(version)", sharedDbLocation.path)
+        }
+    }
+
+    deinit {
+        if accountsPointer == nil { return }
+        dc_accounts_unref(accountsPointer)
+        accountsPointer = nil
+    }
+
+    public func migrateAccount(dbLocation: String) -> Int {
+        return Int(dc_accounts_migrate_account(accountsPointer, dbLocation))
+    }
+
+}
+
 public class DcContext {
 
     public var logger: Logger?
