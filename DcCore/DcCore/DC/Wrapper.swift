@@ -30,10 +30,56 @@ public class DcAccounts {
         return Int(dc_accounts_migrate_account(accountsPointer, dbLocation))
     }
 
+    public func addAccount() -> Int {
+        return Int(dc_accounts_add_account(accountsPointer))
+    }
+
+    public func getAccount(id: Int) -> DcContext {
+        let contextPointer = dc_accounts_get_account(accountsPointer, UInt32(id))
+        return DcContext(contextPointer: contextPointer)
+    }
+
     public func getAll() -> [Int] {
         let cAccounts = dc_accounts_get_all(accountsPointer)
         return DcUtils.copyAndFreeArray(inputArray: cAccounts)
     }
+
+    public func maybeNetwork() {
+        dc_accounts_maybe_network(accountsPointer)
+    }
+
+    public func maybeStartIO() {
+        if getSelectedAccount().isConfigured() {
+            dc_accounts_start_io(accountsPointer)
+        }
+    }
+
+    public func stopIO() {
+        dc_accounts_stop_io(accountsPointer)
+    }
+
+    public func selectAccount(id: Int) -> Bool {
+        return dc_accounts_select_account(accountsPointer, UInt32(id)) == 1
+    }
+
+    public func getSelectedAccount() -> DcContext {
+        let cPtr = dc_accounts_get_selected_account(accountsPointer)
+        return DcContext(contextPointer: cPtr)
+    }
+
+    public func removeAccount(id: Int) -> Bool {
+        return dc_accounts_remove_account(accountsPointer, UInt32(id)) == 1
+    }
+
+    public func importAccount(filePath: String) -> Int {
+        return Int(dc_accounts_import_account(accountsPointer, filePath))
+    }
+
+    public func getEventEmitter() -> DcAccountsEventEmitter {
+        let eventEmitterPointer = dc_accounts_get_event_emitter(accountsPointer)
+        return DcAccountsEventEmitter(eventEmitterPointer: eventEmitterPointer)
+    }
+
 }
 
 public class DcContext {
@@ -45,6 +91,10 @@ public class DcContext {
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
 
     public init() {
+    }
+
+    public init(contextPointer: OpaquePointer?) {
+        self.contextPointer = contextPointer
     }
     
     deinit {
@@ -627,6 +677,25 @@ public class DcContext {
     // do not use. use DcContext::isConfigured() instead
     public var configured: Bool {
         return getConfigBool("configured")
+    }
+}
+
+
+public class DcAccountsEventEmitter {
+    private var eventEmitterPointer: OpaquePointer?
+
+    // takes ownership of specified pointer
+    public init(eventEmitterPointer: OpaquePointer?) {
+        self.eventEmitterPointer = eventEmitterPointer
+    }
+
+    public func getNextEvent() -> DcEvent? {
+        guard let eventPointer = dc_accounts_get_next_event(eventEmitterPointer) else { return nil }
+        return DcEvent(eventPointer: eventPointer)
+    }
+
+    deinit {
+        dc_accounts_event_emitter_unref(eventEmitterPointer)
     }
 }
 
