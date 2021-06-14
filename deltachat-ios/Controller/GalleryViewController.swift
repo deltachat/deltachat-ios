@@ -184,14 +184,13 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         var item: GalleryItem
         if let galleryItem = items[indexPath.row] {
             item = galleryItem
-            galleryCell.update(item: item)
         } else {
             let message = dcContext.getMessage(id: msgId)
             let galleryItem = GalleryItem(msg: message)
             items[indexPath.row] = galleryItem
             item = galleryItem
-            galleryCell.update(item: item)
         }
+        galleryCell.update(item: item)
         UIMenuController.shared.setMenuVisible(false, animated: true)
         return galleryCell
     }
