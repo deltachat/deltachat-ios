@@ -74,8 +74,8 @@ class GroupMembersViewController: UITableViewController {
         return emptySearchStateLabel.widthAnchor.constraint(equalTo: tableView.widthAnchor)
     }()
 
-    init() {
-        self.dcContext = DcContext.shared
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }

@@ -163,7 +163,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
-                let contact = DcContact(id: groupContactIds[row])
+                let contact = dcContext.getContact(id: groupContactIds[row])
                 let displayName = contact.displayName
                 contactCell.titleLabel.text = displayName
                 contactCell.subtitleLabel.text = contact.email
@@ -240,7 +240,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
                 guard let self = self else { return }
                 if self.groupChatId != 0,
-                    self.dcContext.getChat(chatId: self.groupChatId).contactIds.contains(self.groupContactIds[row]) {
+                   self.dcContext.getChat(chatId: self.groupChatId).getContactIds(self.dcContext).contains(self.groupContactIds[row]) {
                     let success = self.dcContext.removeContactFromChat(chatId: self.groupChatId, contactId: self.groupContactIds[row])
                     if success {
                         self.removeGroupContactFromList(at: indexPath)
@@ -297,7 +297,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     func updateGroupContactIdsOnQRCodeInvite() {
-        for contactId in dcContext.getChat(chatId: groupChatId).contactIds {
+        for contactId in dcContext.getChat(chatId: groupChatId).getContactIds(dcContext) {
             contactIdsForGroup.insert(contactId)
         }
         groupContactIds = Array(contactIdsForGroup)
@@ -307,7 +307,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     func updateGroupContactIdsOnListSelection(_ members: Set<Int>) {
         if groupChatId != 0 {
             var members = members
-            for contactId in dcContext.getChat(chatId: groupChatId).contactIds {
+            for contactId in dcContext.getChat(chatId: groupChatId).getContactIds(dcContext) {
                 members.insert(contactId)
             }
         }
@@ -353,8 +353,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
-        let newGroupController = AddGroupMembersViewController(preselected: preselectedMembers,
-                                                                  isVerified: isVerified)
+        let newGroupController = AddGroupMembersViewController(dcContext: dcContext,
+                                                               preselected: preselectedMembers,
+                                                               isVerified: isVerified)
         newGroupController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
             guard let self = self else { return }
             self.updateGroupContactIdsOnListSelection(memberIds)

@@ -39,10 +39,11 @@ public class QuotePreview: DraftPreview {
                     quoteView.senderTitle.textColor = DcColors.grayDateColor
                     quoteView.citeBar.backgroundColor = DcColors.grayDateColor
                 } else {
-                    let contact = quoteMessage.fromContact
+                    let contact = draft.dcContext.getContact(id: quoteMessage.fromContactId)
                     quoteView.senderTitle.text = quoteMessage.getSenderName(contact, markOverride: true)
                     quoteView.senderTitle.textColor = contact.color
                     quoteView.citeBar.backgroundColor = contact.color
+
                 }
             }
             accessibilityLabel = quoteView.configureAccessibilityLabel()

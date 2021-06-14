@@ -32,7 +32,7 @@ class ChatViewController: UITableViewController {
     }()
 
     lazy var draft: DraftModel = {
-        let draft = DraftModel(chatId: chatId)
+        let draft = DraftModel(dcContext: dcContext, chatId: chatId)
         return draft
     }()
 
@@ -116,7 +116,7 @@ class ChatViewController: UITableViewController {
         onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
                 let id = self.messageIds[indexPath.row]
-                let msg = DcMsg(id: id)
+                let msg = self.dcContext.getMessage(id: id)
 
                 let pasteboard = UIPasteboard.general
                 if msg.type == DC_MSG_TEXT {
@@ -133,7 +133,7 @@ class ChatViewController: UITableViewController {
             action: #selector(BaseMessageCell.messageInfo),
             onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
-                let msg = DcMsg(id: self.messageIds[indexPath.row])
+                let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
                 let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
                 if let ctrl = self.navigationController {
                     ctrl.pushViewController(msgViewController, animated: true)
@@ -150,7 +150,7 @@ class ChatViewController: UITableViewController {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.tableView.becomeFirstResponder()
-                    let msg = DcMsg(id: self.messageIds[indexPath.row])
+                    let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
                     self.askToDeleteMessage(id: msg.id)
                 }
             }
@@ -162,7 +162,7 @@ class ChatViewController: UITableViewController {
             action: #selector(BaseMessageCell.messageForward),
             onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
-                let msg = DcMsg(id: self.messageIds[indexPath.row])
+                let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
                 RelayHelper.sharedInstance.setForwardMessage(messageId: msg.id)
                 self.navigationController?.popViewController(animated: true)
             }
@@ -396,7 +396,7 @@ class ChatViewController: UITableViewController {
                 if self.chatId == ui["chat_id"] as? Int {
                     if let id = ui["message_id"] as? Int {
                         if id > 0 {
-                            self.insertMessage(DcMsg(id: id))
+                            self.insertMessage(self.dcContext.getMessage(id: id))
                         }
                     }
                 }
@@ -531,7 +531,7 @@ class ChatViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
             if messageIds.count > indexPath.row + 1 {
                 let nextMessageId = messageIds[indexPath.row + 1]
-                let nextMessage = DcMsg(id: nextMessageId)
+                let nextMessage = dcContext.getMessage(id: nextMessageId)
                 cell.update(text: DateUtils.getDateString(date: nextMessage.sentDate))
             } else {
                 cell.update(text: "ErrDaymarker")
@@ -545,7 +545,7 @@ class ChatViewController: UITableViewController {
             return cell
         }
         
-        let message = DcMsg(id: id)
+        let message = dcContext.getMessage(id: id)
         if message.isInfo {
             let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
             cell.update(text: message.text)
@@ -579,7 +579,8 @@ class ChatViewController: UITableViewController {
         }
 
         cell.baseDelegate = self
-        cell.update(msg: message,
+        cell.update(dcContext: dcContext,
+                    msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
                     showName: showName)
@@ -620,7 +621,7 @@ class ChatViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if disableWriting || DcMsg(id: messageIds[indexPath.row]).isInfo {
+        if disableWriting || dcContext.getMessage(id: messageIds[indexPath.row]).isInfo {
             return nil
         }
 
@@ -645,7 +646,7 @@ class ChatViewController: UITableViewController {
     }
 
     func replyToMessage(at indexPath: IndexPath) {
-        let message = DcMsg(id: self.messageIds[indexPath.row])
+        let message = dcContext.getMessage(id: self.messageIds[indexPath.row])
         self.draft.setQuote(quotedMsg: message)
         self.configureDraftArea(draft: self.draft)
         self.messageInputBar.inputTextView.becomeFirstResponder()
@@ -683,7 +684,7 @@ class ChatViewController: UITableViewController {
             return
         }
         let messageId = messageIds[indexPath.row]
-        let message = DcMsg(id: messageId)
+        let message = dcContext.getMessage(id: messageId)
         if message.isSetupMessage {
             didTapAsm(msg: message, orgText: "")
         } else if message.type == DC_MSG_FILE ||
@@ -719,7 +720,7 @@ class ChatViewController: UITableViewController {
         let titleView =  ChatTitleView()
 
         var subtitle = "ErrSubtitle"
-        let chatContactIds = chat.contactIds
+        let chatContactIds = chat.getContactIds(dcContext)
         if chat.isMailinglist {
             subtitle = String.localized("mailing_list")
         } else if chat.isGroup {
@@ -729,7 +730,7 @@ class ChatViewController: UITableViewController {
         } else if chat.isSelfTalk {
             subtitle = String.localized("chat_self_talk_subtitle")
         } else if chatContactIds.count >= 1 {
-            subtitle = DcContact(id: chatContactIds[0]).email
+            subtitle = dcContext.getContact(id: chatContactIds[0]).email
         }
 
         titleView.updateTitleView(title: chat.name, subtitle: subtitle)
@@ -1056,7 +1057,7 @@ class ChatViewController: UITableViewController {
     private func showChatDetail(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
         if !chat.isGroup {
-            if let contactId = chat.contactIds.first {
+            if let contactId = chat.getContactIds(dcContext).first {
                 let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
                 navigationController?.pushViewController(contactDetailController, animated: true)
             }
@@ -1114,7 +1115,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func showMediaGallery(currentIndex: Int, msgIds: [Int]) {
-        let betterPreviewController = PreviewController(type: .multi(msgIds, currentIndex))
+        let betterPreviewController = PreviewController(dcContext: dcContext, type: .multi(msgIds, currentIndex))
         let nav = UINavigationController(rootViewController: betterPreviewController)
         nav.modalPresentationStyle = .fullScreen
         navigationController?.present(nav, animated: true)
@@ -1171,7 +1172,7 @@ class ChatViewController: UITableViewController {
             reloadData()
         } else {
             // new outgoing message
-            let msg = DcMsg(id: messageId)
+            let msg = dcContext.getMessage(id: messageId)
             if msg.chatId == chatId {
                 if let newMsgMarkerIndex = messageIds.index(of: Int(DC_MSG_ID_MARKER1)) {
                     messageIds.remove(at: newMsgMarkerIndex)
@@ -1195,12 +1196,12 @@ class ChatViewController: UITableViewController {
 
     private func sendTextMessage(text: String, quoteMessage: DcMsg?) {
         DispatchQueue.global().async {
-            let message = DcMsg(viewType: DC_MSG_TEXT)
+            let message = self.dcContext.newMessage(viewType: DC_MSG_TEXT)
             message.text = text
             if let quoteMessage = quoteMessage {
                 message.quoteMessage = quoteMessage
             }
-            message.sendInChat(id: self.chatId)
+            self.dcContext.sendMessage(chatId: self.chatId, message: message)
         }
     }
 
@@ -1262,20 +1263,20 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendAttachmentMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
-        let msg = DcMsg(viewType: viewType)
+        let msg = dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: filePath)
         msg.text = (message ?? "").isEmpty ? nil : message
         if quoteMessage != nil {
             msg.quoteMessage = quoteMessage
         }
-        msg.sendInChat(id: self.chatId)
+        dcContext.sendMessage(chatId: self.chatId, message: msg)
     }
 
     private func sendVoiceMessage(url: NSURL) {
         DispatchQueue.global().async {
-            let msg = DcMsg(viewType: DC_MSG_VOICE)
+            let msg = self.dcContext.newMessage(viewType: DC_MSG_VOICE)
             msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
-            msg.sendInChat(id: self.chatId)
+            self.dcContext.sendMessage(chatId: self.chatId, message: msg)
         }
     }
 
@@ -1286,7 +1287,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        return !DcMsg(id: messageIds[indexPath.row]).isInfo 
+        return !dcContext.getMessage(id: messageIds[indexPath.row]).isInfo
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
@@ -1315,7 +1316,7 @@ class ChatViewController: UITableViewController {
 
     func showMediaGalleryFor(indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
-        let message = DcMsg(id: messageId)
+        let message = dcContext.getMessage(id: messageId)
         if message.type != DC_MSG_STICKER {
             showMediaGalleryFor(message: message)
         }
@@ -1414,7 +1415,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
-        let msg = DcMsg(id: messageIds[indexPath.row])
+        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
         let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id)
         navigationController?.pushViewController(fullMessageViewController, animated: true)
     }
@@ -1422,7 +1423,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func quoteTapped(indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
         _ = handleUIMenu()
-        let msg = DcMsg(id: messageIds[indexPath.row])
+        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
         if let quoteMsg = msg.quoteMessage {
             if self.chatId == quoteMsg.chatId {
                 scrollToMessage(msgId: quoteMsg.id)
@@ -1437,7 +1438,7 @@ extension ChatViewController: BaseMessageCellDelegate {
             return
         }
 
-        let message = DcMsg(id: messageIds[indexPath.row])
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
         if message.isSetupMessage {
             didTapAsm(msg: message, orgText: "")
         }
@@ -1482,7 +1483,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func avatarTapped(indexPath: IndexPath) {
-        let message = DcMsg(id: messageIds[indexPath.row])
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
         let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: message.fromContactId)
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
@@ -1577,7 +1578,7 @@ extension ChatViewController: DraftPreviewDelegate {
     func onAttachmentTapped() {
         if let attachmentPath = draft.attachment {
             let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
-            let previewController = PreviewController(type: .single(attachmentURL))
+            let previewController = PreviewController(dcContext: dcContext, type: .single(attachmentURL))
             if #available(iOS 13.0, *), draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
                 previewController.setEditing(true, animated: true)
                 previewController.delegate = self

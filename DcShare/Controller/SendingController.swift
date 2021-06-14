@@ -68,13 +68,14 @@ class SendingController: UIViewController {
     }
 
     private func sendMessage() {
-        DispatchQueue.global(qos: .utility).async {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
             for dcMsg in self.dcMsgs {
                 self.dcContext.sendMsgSync(chatId: self.chatId, msg: dcMsg)
             }
 
             if !self.dcContext.getChat(chatId: self.chatId).isSelfTalk {
-                DcUtils.donateSendMessageIntent(chatId: self.chatId)
+                DcUtils.donateSendMessageIntent(context: self.dcContext, chatId: self.chatId)
             }
             self.delegate?.onSendingAttemptFinished()
         }

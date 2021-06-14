@@ -98,7 +98,7 @@ class ChatListCell: UITableViewCell {
         // subtitle
         switch cellViewModel.type {
         case .chat(let chatData):
-            let chat = DcContext.shared.getChat(chatId: chatData.chatId)
+            let chat = cellViewModel.dcContext.getChat(chatId: chatData.chatId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             if let img = chat.profileImage {
                 resetBackupImage()
@@ -109,7 +109,7 @@ class ChatListCell: UITableViewCell {
             subtitleLabel.attributedText = nil
 
         case .contact(let contactData):
-            let contact = DcContact(id: contactData.contactId)
+            let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             if let profileImage = contact.profileImage {
                 avatar.setImage(profileImage)

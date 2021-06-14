@@ -296,7 +296,8 @@ class ContactCell: UITableViewCell {
         case .deaddrop(let deaddropData):
             safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
             backgroundColor = DcColors.deaddropBackground
-            let contact = DcContact(id: DcMsg(id: deaddropData.msgId).fromContactId)
+            let msg = cellViewModel.dcContext.getMessage(id: deaddropData.msgId)
+            let contact = cellViewModel.dcContext.getContact(id: msg.fromContactId)
             if let img = contact.profileImage {
                 resetBackupImage()
                 setImage(img)
@@ -307,7 +308,7 @@ class ContactCell: UITableViewCell {
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
 
         case .chat(let chatData):
-            let chat = DcContext.shared.getChat(chatId: chatData.chatId)
+            let chat = cellViewModel.dcContext.getChat(chatId: chatData.chatId)
 
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {
@@ -335,7 +336,7 @@ class ContactCell: UITableViewCell {
                                 isMuted: chat.isMuted)
 
         case .contact(let contactData):
-            let contact = DcContact(id: contactData.contactId)
+            let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             if let profileImage = contact.profileImage {
                 avatar.setImage(profileImage)
@@ -350,7 +351,7 @@ class ContactCell: UITableViewCell {
                                 isLocationStreaming: false,
                                 isMuted: false)
         case .profile:
-            let contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+            let contact = cellViewModel.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
             titleLabel.text = cellViewModel.title
             subtitleLabel.text = cellViewModel.subtitle
             if let profileImage = contact.profileImage {

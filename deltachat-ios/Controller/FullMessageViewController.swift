@@ -43,7 +43,7 @@ class FullMessageViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var title = DcMsg(id: messageId).subject
+        var title = dcContext.getMessage(id: messageId).subject
         if title.isEmpty {
             title = String.localized("chat_input_placeholder")
         }

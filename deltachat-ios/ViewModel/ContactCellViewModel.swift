@@ -2,6 +2,7 @@ import Foundation
 import DcCore
 
 protocol AvatarCellViewModel {
+    var dcContext: DcContext { get }
     var type: CellModel { get }
     var title: String { get }
     var titleHighlightIndexes: [Int] { get }
@@ -37,6 +38,7 @@ struct DeaddropCellData {
 class ContactCellViewModel: AvatarCellViewModel {
 
     private let contact: DcContact
+    let dcContext: DcContext
 
     var type: CellModel
     var title: String {
@@ -53,15 +55,18 @@ class ContactCellViewModel: AvatarCellViewModel {
     var titleHighlightIndexes: [Int]
     var subtitleHighlightIndexes: [Int]
 
-    init(contactData: ContactCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
+    init(dcContext: DcContext, contactData: ContactCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
         type = CellModel.contact(contactData)
         self.titleHighlightIndexes = titleHighlightIndexes
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
-        self.contact = DcContact(id: contactData.contactId)
+        self.contact = dcContext.getContact(id: contactData.contactId)
+        self.dcContext = dcContext
     }
 }
 
 class ProfileViewModel: AvatarCellViewModel {
+
+    let dcContext: DcContext
     var type: CellModel {
         return CellModel.profile
     }
@@ -81,7 +86,8 @@ class ProfileViewModel: AvatarCellViewModel {
     }
 
     init(context: DcContext) {
-        contact = DcContact(id: Int(DC_CONTACT_ID_SELF))
+        self.dcContext = context
+        contact = context.getContact(id: Int(DC_CONTACT_ID_SELF))
         title = context.displayname ?? String.localized("pref_your_name")
         subtitle = context.addr ?? ""
     }
@@ -90,6 +96,7 @@ class ProfileViewModel: AvatarCellViewModel {
 class ChatCellViewModel: AvatarCellViewModel {
 
     private let chat: DcChat
+    let dcContext: DcContext
 
     private var summary: DcLot
 
@@ -119,6 +126,7 @@ class ChatCellViewModel: AvatarCellViewModel {
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
         self.summary = chatData.summary
         self.chat = dcContext.getChat(chatId: chatData.chatId)
+        self.dcContext = dcContext
     }
 
     init(dcContext: DcContext, deaddropCellData cellData: DeaddropCellData) {
@@ -127,19 +135,21 @@ class ChatCellViewModel: AvatarCellViewModel {
         self.subtitleHighlightIndexes = []
         self.chat = dcContext.getChat(chatId: cellData.chatId)
         self.summary = cellData.summary
+        self.dcContext = dcContext
     }
 }
 
 extension ContactCellViewModel {
     static func make(contactId: Int, searchText: String?, dcContext: DcContext) -> ContactCellViewModel {
-        let contact = DcContact(id: contactId)
+        let contact = dcContext.getContact(id: contactId)
         let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
         let emailIndexes = contact.email.containsExact(subSequence: searchText)
         let chatId: Int? = dcContext.getChatIdByContactIdOld(contactId)
             // contact contains searchText
         let viewModel = ContactCellViewModel(
+            dcContext: dcContext,
             contactData: ContactCellData(
-                contactId: contact.id,
+                contactId: contactId,
                 chatId: chatId
             ),
             titleHighlightIndexes: nameIndexes,

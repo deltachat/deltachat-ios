@@ -160,7 +160,7 @@ extension QrPageController: QrCodeReaderDelegate {
         let state = Int32(qrParsed.state)
         switch state {
         case DC_QR_ASK_VERIFYCONTACT:
-            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+            let nameAndAddress = dcContext.getContact(id: qrParsed.id).nameNAddr
             joinSecureJoin(alertMessage: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), nameAndAddress), code: code)
 
         case DC_QR_ASK_VERIFYGROUP:
@@ -175,14 +175,14 @@ extension QrPageController: QrCodeReaderDelegate {
             present(alert, animated: true, completion: nil)
 
         case DC_QR_FPR_MISMATCH:
-            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+            let nameAndAddress = dcContext.getContact(id: qrParsed.id).nameNAddr
             let msg = String.localizedStringWithFormat(String.localized("qrscan_fingerprint_mismatch"), nameAndAddress)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
         case DC_QR_ADDR, DC_QR_FPR_OK:
-            let nameAndAddress = DcContact(id: qrParsed.id).nameNAddr
+            let nameAndAddress = dcContext.getContact(id: qrParsed.id).nameNAddr
             let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), nameAndAddress)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
@@ -277,7 +277,7 @@ extension QrPageController: QrCodeReaderDelegate {
                 let contactId = ui["contact_id"] as? Int {
                 self.progressAlert?.message = String.localizedStringWithFormat(
                     String.localized("qrscan_x_verified_introduce_myself"),
-                    DcContact(id: contactId).nameNAddr
+                    self.dcContext.getContact(id: contactId).nameNAddr
                 )
             }
         }

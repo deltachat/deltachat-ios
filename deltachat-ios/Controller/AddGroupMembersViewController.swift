@@ -24,7 +24,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     private lazy var chatMemberIds: [Int] = {
         if let chat = chat {
-            return chat.contactIds
+            return chat.getContactIds(dcContext)
         }
         return []
     }()
@@ -56,20 +56,20 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     // add members of new group, no chat object yet
-    init(preselected: Set<Int>, isVerified: Bool) {
-        super.init()
+    init(dcContext: DcContext, preselected: Set<Int>, isVerified: Bool) {
+        super.init(dcContext: dcContext)
         isVerifiedGroup = isVerified
         numberOfSections = sections.count
         selectedContactIds = preselected
     }
 
     // add members of existing group
-    init(chatId: Int) {
+    init(dcContext: DcContext, chatId: Int) {
         self.chatId = chatId
-        super.init()
+        super.init(dcContext: dcContext)
         isVerifiedGroup = chat?.isProtected ?? false
         numberOfSections = sections.count
-        selectedContactIds = Set(dcContext.getChat(chatId: chatId).contactIds)
+        selectedContactIds = Set(dcContext.getChat(chatId: chatId).getContactIds(dcContext))
     }
 
     required init?(coder _: NSCoder) {

@@ -272,7 +272,8 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+        let fromContact = dcContext.getContact(id: msg.fromContactId)
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
             topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor : DcColors.defaultTextColor
@@ -281,12 +282,11 @@ public class BaseMessageCell: UITableViewCell {
             trailingConstraint?.isActive = false
             leadingConstraintCurrentSender?.isActive = true
             trailingConstraintCurrentSender?.isActive = true
-
         } else {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") :
-                showName ? msg.getSenderName(msg.fromContact, markOverride: true) : nil
+                showName ? msg.getSenderName(fromContact, markOverride: true) : nil
             topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor :
-                showName ? msg.fromContact.color : DcColors.defaultTextColor
+                showName ? fromContact.color : DcColors.defaultTextColor
             leadingConstraintCurrentSender?.isActive = false
             trailingConstraintCurrentSender?.isActive = false
             if showName {
@@ -301,9 +301,9 @@ public class BaseMessageCell: UITableViewCell {
 
         if showAvatar {
             avatarView.isHidden = false
-            avatarView.setName(msg.getSenderName(msg.fromContact))
-            avatarView.setColor(msg.fromContact.color)
-            if let profileImage = msg.fromContact.profileImage {
+            avatarView.setName(msg.getSenderName(fromContact))
+            avatarView.setColor(fromContact.color)
+            if let profileImage = fromContact.profileImage {
                 avatarView.setImage(profileImage)
             }
         } else {
@@ -313,7 +313,7 @@ public class BaseMessageCell: UITableViewCell {
         isFullMessageButtonHidden = !msg.hasHtml
 
         messageBackgroundContainer.update(rectCorners: messageStyle,
-                                          color: getBackgroundColor(message: msg))
+                                          color: getBackgroundColor(dcContext: dcContext, message: msg))
 
         if !msg.isInfo {
             bottomLabel.attributedText = getFormattedBottomLine(message: msg)
@@ -330,7 +330,7 @@ public class BaseMessageCell: UITableViewCell {
                     quoteView.senderTitle.textColor = DcColors.grayDateColor
                     quoteView.citeBar.backgroundColor = DcColors.grayDateColor
                 } else {
-                    let contact = quoteMsg.fromContact
+                    let contact = dcContext.getContact(id: quoteMsg.fromContactId)
                     quoteView.senderTitle.text = quoteMsg.getSenderName(contact, markOverride: true)
                     quoteView.senderTitle.textColor = contact.color
                     quoteView.citeBar.backgroundColor = contact.color
@@ -371,7 +371,7 @@ public class BaseMessageCell: UITableViewCell {
             "\(getFormattedBottomLineAccessibilityString(message: message))"
     }
 
-    func getBackgroundColor(message: DcMsg) -> UIColor {
+    func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {
         var backgroundColor: UIColor
         if isTransparent {
             backgroundColor = UIColor.init(alpha: 0, red: 0, green: 0, blue: 0)

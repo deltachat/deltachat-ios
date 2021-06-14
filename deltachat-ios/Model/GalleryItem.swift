@@ -44,8 +44,8 @@ class GalleryItem: ContextMenuItem {
         }
     }
 
-    init(msgId: Int) {
-        self.msg = DcMsg(id: msgId)
+    init(msg: DcMsg) {
+        self.msg = msg
         if let key = msg.fileURL?.absoluteString, let image = ThumbnailCache.shared.restoreImage(key: key) {
             self.thumbnailImage = image
         } else {

@@ -49,8 +49,10 @@ public class DatabaseHelper {
         return sharedDbBlobsDir
     }
 
-    public init() {
+    var dcContext: DcContext
 
+    public init(dcContext: DcContext) {
+        self.dcContext = dcContext
     }
 
     func clearDbBlobsDir(at path: String) {
@@ -65,7 +67,7 @@ public class DatabaseHelper {
                 try fileManager.removeItem(atPath: path)
             }
         } catch {
-            DcContext.shared.logger?.error("Could not clean shared blobs dir, it might be it didn't exist")
+            dcContext.logger?.error("Could not clean shared blobs dir, it might be it didn't exist")
         }
     }
 
@@ -75,7 +77,7 @@ public class DatabaseHelper {
             do {
                 try filemanager.removeItem(atPath: path)
             } catch {
-                DcContext.shared.logger?.error("Failed to delete db: \(error)")
+                dcContext.logger?.error("Failed to delete db: \(error)")
             }
         }
     }
@@ -92,7 +94,7 @@ public class DatabaseHelper {
                 clearDbBlobsDir(at: sharedDbBlobsDir)
                 try filemanager.moveItem(at: URL(fileURLWithPath: localDbBlobsDir), to: URL(fileURLWithPath: sharedDbBlobsDir))
             } catch let error {
-                DcContext.shared.logger?.error("Could not move db blobs directory to shared space: \(error.localizedDescription)")
+                dcContext.logger?.error("Could not move db blobs directory to shared space: \(error.localizedDescription)")
             }
         }
     }
@@ -105,7 +107,7 @@ public class DatabaseHelper {
               try filemanager.moveItem(at: URL(fileURLWithPath: localDbFile), to: URL(fileURLWithPath: sharedDbFile))
               moveBlobsFolder()
           } catch let error {
-              DcContext.shared.logger?.error("Could not update DB location. Share extension will probably not work. \n\(error.localizedDescription)")
+              dcContext.logger?.error("Could not update DB location. Share extension will probably not work. \n\(error.localizedDescription)")
               return localDbFile
           }
       }

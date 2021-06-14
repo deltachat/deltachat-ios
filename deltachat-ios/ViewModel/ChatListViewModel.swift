@@ -177,14 +177,14 @@ class ChatListViewModel: NSObject {
 
     func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
-        NotificationManager.removeNotificationsForChat(chatId: chatId)
+        NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
     }
 
     func archiveChatToggle(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
         let isArchivedBefore = chat.isArchived
         if !isArchivedBefore {
-            NotificationManager.removeNotificationsForChat(chatId: chatId)
+            NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         }
         dcContext.archiveChat(chatId: chatId, archive: !isArchivedBefore)
         updateChatList(notifyListener: false)
@@ -206,7 +206,6 @@ private extension ChatListViewModel {
         let list: DcChatlist = searchResultChatList ?? chatList
         let chatId = list.getChatId(index: index)
         let summary = list.getSummary(index: index)
-
 
         if let msgId = msgIdFor(row: index), chatId == DC_CHAT_ID_DEADDROP {
             return ChatCellViewModel(dcContext: dcContext, deaddropCellData: DeaddropCellData(chatId: chatId, msgId: msgId, summary: summary))
@@ -235,7 +234,7 @@ private extension ChatListViewModel {
     }
 
     func makeMessageCellViewModel(msgId: Int) -> AvatarCellViewModel {
-        let msg: DcMsg = DcMsg(id: msgId)
+        let msg: DcMsg = dcContext.getMessage(id: msgId)
         let chatId: Int = msg.chatId
         let chat: DcChat = dcContext.getChat(chatId: chatId)
         let summary: DcLot = msg.summary(chat: chat)

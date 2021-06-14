@@ -14,9 +14,9 @@ public struct DcUtils {
         }
     }
 
-    public static func donateSendMessageIntent(chatId: Int) {
+    public static func donateSendMessageIntent(context: DcContext, chatId: Int) {
         if #available(iOS 13.0, *) {
-            let chat = DcContext.shared.getChat(chatId: chatId)
+            let chat = context.getChat(chatId: chatId)
             let groupName = INSpeakableString(spokenPhrase: chat.name)
 
             let sendMessageIntent = INSendMessageIntent(recipients: nil,
@@ -36,7 +36,7 @@ public struct DcUtils {
             let interaction = INInteraction(intent: sendMessageIntent, response: nil)
             interaction.donate(completion: { error in
                 if error != nil {
-                    DcContext.shared.logger?.error(error.debugDescription)
+                    context.logger?.error(error.debugDescription)
                 }
             })
         }
@@ -86,7 +86,7 @@ public struct DcUtils {
         }
 
         dc_array_unref(inputArray)
-        DcContext.shared.logger?.info("got: \(from) \(length) \(lenArray) - \(acc)")
+        print("got: \(from) \(length) \(lenArray) - \(acc)")
 
         return acc
     }

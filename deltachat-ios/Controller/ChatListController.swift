@@ -77,7 +77,7 @@ class ChatListController: UITableViewController {
 
         // update messages - for new messages, do not reuse or modify strings but create new ones.
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
-        let msg = DcMsg(viewType: DC_MSG_TEXT)
+        let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         msg.text = String.localized("update_1_20") + " https://delta.chat/en/2021-05-05-email-compat"
         dcContext.addDeviceMessage(label: "update_1_20b_ios", msg: msg)
 
@@ -408,7 +408,7 @@ class ChatListController: UITableViewController {
     }
 
     private func showDeaddropRequestAlert(msgId: Int) {
-        let dcMsg = DcMsg(id: msgId)
+        let dcMsg = dcContext.getMessage(id: msgId)
         let (title, startButton, blockButton) = MailboxViewController.deaddropQuestion(context: dcContext, msg: dcMsg)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: startButton, style: .default, handler: { _ in
@@ -430,7 +430,7 @@ class ChatListController: UITableViewController {
     }
 
     private func askToChatWith(contactId: Int) {
-        let dcContact = DcContact(id: contactId)
+        let dcContact = dcContext.getContact(id: contactId)
         let alert = UIAlertController(
             title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
             message: nil,

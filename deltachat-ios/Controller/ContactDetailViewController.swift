@@ -363,7 +363,7 @@ class ContactDetailViewController: UITableViewController {
         if viewModel.contact.isBlocked {
             let alert = UIAlertController(title: String.localized("ask_unblock_contact"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
-                self.viewModel.contact.unblock()
+                self.viewModel.unblockContact()
                 self.updateBlockContactCell()
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -371,7 +371,7 @@ class ContactDetailViewController: UITableViewController {
         } else {
             let alert = UIAlertController(title: String.localized("ask_block_contact"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { _ in
-                self.viewModel.contact.block()
+                self.viewModel.blockContact()
                 self.updateBlockContactCell()
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -413,12 +413,12 @@ class ContactDetailViewController: UITableViewController {
         if viewModel.isSavedMessages {
             let chat = viewModel.context.getChat(chatId: viewModel.chatId)
             if let url = chat.profileImageURL {
-                let previewController = PreviewController(type: .single(url))
+                let previewController = PreviewController(dcContext: viewModel.context, type: .single(url))
                 previewController.customTitle = chat.name
                 present(previewController, animated: true, completion: nil)
             }
         } else if let url = viewModel.contact.profileImageURL {
-            let previewController = PreviewController(type: .single(url))
+            let previewController = PreviewController(dcContext: viewModel.context, type: .single(url))
             previewController.customTitle = viewModel.contact.displayName
             present(previewController, animated: true, completion: nil)
         }
@@ -429,7 +429,7 @@ class ContactDetailViewController: UITableViewController {
             return
         }
         viewModel.context.deleteChat(chatId: viewModel.chatId)
-        NotificationManager.removeNotificationsForChat(chatId: viewModel.chatId)
+        NotificationManager.removeNotificationsForChat(dcContext: viewModel.context, chatId: viewModel.chatId)
 
         // just pop to viewControllers - we've in chatlist or archive then
         // (no not use `navigationController?` here: popping self will make the reference becoming nil)

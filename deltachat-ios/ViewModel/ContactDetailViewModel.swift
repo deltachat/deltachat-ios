@@ -31,7 +31,7 @@ class ContactDetailViewModel {
 
     // TODO: check if that is too inefficient (each bit read from contact, results in a database-query)
     var contact: DcContact {
-        return DcContact(id: contactId)
+        return context.getContact(id: contactId)
     }
 
     let chatId: Int
@@ -58,7 +58,7 @@ class ContactDetailViewModel {
         sections.append(.chatOptions)
 
         if !self.isSavedMessages {
-            let dcContact = DcContact(id: contactId)
+            let dcContact = context.getContact(id: contactId)
             if !dcContact.status.isEmpty {
                 sections.append(.statusArea)
             }
@@ -179,9 +179,17 @@ class ContactDetailViewModel {
         }
         let isArchivedBefore = chatIsArchived
         if !isArchivedBefore {
-            NotificationManager.removeNotificationsForChat(chatId: chatId)
+            NotificationManager.removeNotificationsForChat(dcContext: context, chatId: chatId)
         }
         context.archiveChat(chatId: chatId, archive: !isArchivedBefore)
         return chatIsArchived
+    }
+
+    public func blockContact() {
+        context.blockContact(id: contact.id)
+    }
+
+    public func unblockContact() {
+        context.unblockContact(id: contact.id)
     }
 }

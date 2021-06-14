@@ -87,7 +87,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     }
     
     public func getAudioDuration(messageId: Int, successHandler: @escaping (Int, Double) -> Void) {
-        let message = DcMsg(id: messageId)
+        let message = dcContext.getMessage(id: messageId)
         if playingMessage?.id == messageId {
             // irgnore messages that are currently playing or recently paused
             return
@@ -122,7 +122,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     }
 
     public func playButtonTapped(cell: AudioMessageCell, messageId: Int) {
-            let message = DcMsg(id: messageId)
+            let message = dcContext.getMessage(id: messageId)
             guard state != .stopped else {
                 // There is no audio sound playing - prepare to start playing for given audio message
                 playSound(for: message, in: cell)

@@ -31,11 +31,14 @@ class ShareViewController: SLComposeServiceViewController {
         }
     }
 
+    lazy var dbHelper: DatabaseHelper = {
+       return DatabaseHelper(dcContext: dcContext)
+    }()
+
     let logger = SimpleLogger()
-    let dcContext = DcContext.shared
+    let dcContext: DcContext = DcContext()
     var selectedChatId: Int?
     var selectedChat: DcChat?
-    let dbHelper = DatabaseHelper()
     var shareAttachment: ShareAttachment?
     var isAccountConfigured: Bool = true
     var isLoading: Bool = true
@@ -130,7 +133,7 @@ class ShareViewController: SLComposeServiceViewController {
                 if messages.count == 1 {
                     messages[0].text?.append(self.contentText)
                 } else {
-                    let message = DcMsg(viewType: DC_MSG_TEXT)
+                    let message = dcContext.newMessage(viewType: DC_MSG_TEXT)
                     message.text = self.contentText
                     messages.insert(message, at: 0)
                 }

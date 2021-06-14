@@ -82,7 +82,7 @@ class ShareAttachment {
             }
             if let result = result {
                 let path = ImageFormat.saveImage(image: result)
-                let msg = DcMsg(viewType: DC_MSG_GIF)
+                let msg = self.dcContext.newMessage(viewType: DC_MSG_GIF)
                 msg.setFile(filepath: path)
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
@@ -115,11 +115,10 @@ class ShareAttachment {
                 let path: String? = ImageFormat.saveImage(image: result)
                 var msg: DcMsg
                 if result.sd_imageFormat == .webP {
-                    msg = DcMsg(viewType: DC_MSG_STICKER)
+                    msg = self.dcContext.newMessage(viewType: DC_MSG_STICKER)
                 } else {
-                    msg = DcMsg(viewType: DC_MSG_IMAGE)
+                    msg = self.dcContext.newMessage(viewType: DC_MSG_IMAGE)
                 }
-
                 msg.setFile(filepath: path)
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
@@ -185,7 +184,7 @@ class ShareAttachment {
     }
 
     private func addDcMsg(url: URL, viewType: Int32) {
-        let msg = DcMsg(viewType: viewType)
+        let msg = dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: url.relativePath)
         self.messages.append(msg)
     }

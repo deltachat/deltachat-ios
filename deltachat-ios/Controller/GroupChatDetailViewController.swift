@@ -35,11 +35,11 @@ class GroupChatDetailViewController: UIViewController {
     private let sections: [ProfileSections]
 
     private var currentUser: DcContact? {
-        let myId = groupMemberIds.filter { DcContact(id: $0).email == dcContext.addr }.first
+        let myId = groupMemberIds.filter { dcContext.getContact(id: $0).email == dcContext.addr }.first
         guard let currentUserId = myId else {
             return nil
         }
-        return DcContact(id: currentUserId)
+        return dcContext.getContact(id: currentUserId)
     }
 
     private var chatId: Int
@@ -93,7 +93,7 @@ class GroupChatDetailViewController: UIViewController {
         let header = ContactDetailHeader()
         header.updateDetails(
             title: chat.name,
-            subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
+            subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.getContactIds(dcContext).count)
         )
         if let img = chat.profileImage {
             header.setImage(img)
@@ -220,7 +220,7 @@ class GroupChatDetailViewController: UIViewController {
 
     // MARK: - update
     private func updateGroupMembers() {
-        groupMemberIds = chat.contactIds
+        groupMemberIds = chat.getContactIds(dcContext)
         tableView.reloadData()
     }
 
@@ -228,7 +228,7 @@ class GroupChatDetailViewController: UIViewController {
         groupHeader.updateDetails(
             title: chat.name,
             subtitle: chat.isMailinglist ?
-                nil : String.localizedStringWithFormat(String.localized("n_members"), chat.contactIds.count)
+                nil : String.localizedStringWithFormat(String.localized("n_members"), chat.getContactIds(dcContext).count)
         )
         if let img = chat.profileImage {
             groupHeader.setImage(img)
@@ -252,7 +252,7 @@ class GroupChatDetailViewController: UIViewController {
     private func toggleArchiveChat() {
         let archivedBefore = chat.isArchived
         if !archivedBefore {
-            NotificationManager.removeNotificationsForChat(chatId: chatId)
+            NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         }
         dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
         if archivedBefore {
@@ -277,11 +277,11 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showAddGroupMember(chatId: Int) {
-        let groupMemberViewController = AddGroupMembersViewController(chatId: chatId)
+        let groupMemberViewController = AddGroupMembersViewController(dcContext: dcContext, chatId: chatId)
         groupMemberViewController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
             guard let self = self else { return }
             let chat = self.dcContext.getChat(chatId: chatId)
-            var chatMembersToRemove = chat.contactIds
+            var chatMembersToRemove = chat.getContactIds(self.dcContext)
             chatMembersToRemove.removeAll(where: { memberIds.contains($0)})
             for contactId in chatMembersToRemove {
                 _ = self.dcContext.removeContactFromChat(chatId: chatId, contactId: contactId)
@@ -326,7 +326,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func deleteChat() {
         dcContext.deleteChat(chatId: chatId)
-        NotificationManager.removeNotificationsForChat(chatId: chatId)
+        NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
 
         // just pop to viewControllers - we've in chatlist or archive then
         // (no not use `navigationController?` here: popping self will make the reference becoming nil)
@@ -338,7 +338,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func showGroupAvatarIfNeeded() {
         if let url = chat.profileImageURL {
-            let previewController = PreviewController(type: .single(url))
+            let previewController = PreviewController(dcContext: dcContext, type: .single(url))
             previewController.customTitle = self.title
             present(previewController, animated: true, completion: nil)
         }
@@ -414,7 +414,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 contactId: contactId,
                 chatId: dcContext.getChatIdByContactIdOld(contactId)
             )
-            let cellViewModel = ContactCellViewModel(contactData: cellData)
+            let cellViewModel = ContactCellViewModel(dcContext: dcContext, contactData: cellData)
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
         case .chatActions:
@@ -534,7 +534,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     private func getGroupMember(at row: Int) -> DcContact {
-        return DcContact(id: getGroupMemberIdFor(row))
+        return dcContext.getContact(id: getGroupMemberIdFor(row))
     }
 
     private func removeGroupMemberFromTableAt(_ indexPath: IndexPath) {

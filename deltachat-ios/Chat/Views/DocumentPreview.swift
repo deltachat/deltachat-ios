@@ -38,7 +38,7 @@ public class DocumentPreview: DraftPreview {
         if !draft.isEditing,
            draft.viewType == DC_MSG_FILE,
            let path = draft.attachment {
-            let tmpMsg = DcMsg(viewType: DC_MSG_FILE)
+            let tmpMsg = draft.dcContext.newMessage(viewType: DC_MSG_FILE)
             tmpMsg.setFile(filepath: path)
             tmpMsg.text = draft.text
             fileView.configure(message: tmpMsg)

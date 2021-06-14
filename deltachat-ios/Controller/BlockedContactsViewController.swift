@@ -9,8 +9,8 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
         return view
     }()
 
-    override init() {
-        super.init()
+    override init(dcContext: DcContext) {
+        super.init(dcContext: dcContext)
         enableCheckmarks = false
     }
 
@@ -42,12 +42,11 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
     // MARK: - actions + updates
     func selected(contactId: Int, selected: Bool) {
         if !selected {
-            let dcContact = DcContact(id: contactId)
+            let dcContact = dcContext.getContact(id: contactId)
             let title = dcContact.displayName
             let alert = UIAlertController(title: title, message: String.localized("ask_unblock_contact"), preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
-                let contact = DcContact(id: contactId)
-                contact.unblock()
+                self.dcContext.unblockContact(id: contactId)
                 self.contactIds = self.dcContext.getBlockedContacts()
                 self.selectedContactIds = Set(self.contactIds)
                 self.tableView.reloadData()
