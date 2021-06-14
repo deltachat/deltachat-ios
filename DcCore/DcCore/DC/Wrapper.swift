@@ -30,6 +30,10 @@ public class DcAccounts {
         return Int(dc_accounts_migrate_account(accountsPointer, dbLocation))
     }
 
+    public func getAll() -> [Int] {
+        let cAccounts = dc_accounts_get_all(accountsPointer)
+        return DcUtils.copyAndFreeArray(inputArray: cAccounts)
+    }
 }
 
 public class DcContext {
