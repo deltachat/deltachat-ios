@@ -41,7 +41,7 @@ class ShareViewController: SLComposeServiceViewController {
     var selectedChat: DcChat?
     var shareAttachment: ShareAttachment?
     var isAccountConfigured: Bool = true
-    var isLoading: Bool = true
+    var isLoading: Bool = false
 
     var previewImageHeightConstraint: NSLayoutConstraint?
     var previewImageWidthConstraint: NSLayoutConstraint?
@@ -94,7 +94,8 @@ class ShareViewController: SLComposeServiceViewController {
                 if let chatId = selectedChatId {
                     selectedChat = dcContext.getChat(chatId: chatId)
                 }
-                DispatchQueue.global(qos: .userInitiated).async {
+                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                    guard let self = self else { return }
                     self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
                 }
             }
@@ -236,7 +237,12 @@ extension ShareViewController: ShareAttachmentDelegate {
         }
     }
 
+    func onLoadingStarted() {
+        isLoading = true
+    }
+
     func onLoadingFinished() {
         isLoading = false
+        self.validateContent()
     }
 }
