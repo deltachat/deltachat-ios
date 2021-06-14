@@ -613,6 +613,9 @@
 "systemmsg_chat_protection_disabled" = "Захист чату вимкнено.";
 "systemmsg_chat_protection_enabled" = "Захист чату увімкнено.";
 
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Введіть захисний код, щоб продовжити.";
+
 // qr code stuff
 "qr_code" = "QR-код";
 "load_qr_code_as_image" = "Завантажити зображення QR-коду";

@@ -330,6 +330,9 @@
 "puny_code_warning_header" = "Şüpheli bağlantı algılandı";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "%1$@ bağlantısını ziyaret etmek istediğinizden emin misiniz?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Farklı alfabelerden benzer görünen karakterleri kullanarak karakterleri yanlış temsil edebilecek bir bağlantı izlediniz. %1$@ etiketli bağlantıyı takip etmek, Latin olmayan karakterler için normal olan %2$@ dönüşümüne yol açacaktır. Bu tür karakterleri beklemiyorsanız, bu bağlantı zararlı olabilir";
+
 // search
 "search" = "Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
@@ -609,6 +612,9 @@
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Sohbet koruması etkisizleştirildi.";
 "systemmsg_chat_protection_enabled" = "Sohbet koruması etkinleştirildi.";
+
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Sürdürmek için lütfen sistem tanımlı sırrınızı girin.";
 
 // qr code stuff
 "qr_code" = "QR kod";

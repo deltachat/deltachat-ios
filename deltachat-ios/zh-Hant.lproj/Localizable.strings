@@ -52,7 +52,7 @@
 "show_password" = "显示密码";
 "hide_password" = "隐藏密码";
 "not_now" = "现在不";
-"never" = "永不";
+"never" = "从不";
 "one_moment" = "稍等片刻…";
 "done" = "已完成";
 "undo" = "撤销";
@@ -90,7 +90,7 @@
 "reply_noun" = "回复";
 "gif" = "Gif";
 "images" = "图像";
-"audio" = "录音";
+"audio" = "音频";
 "voice_message" = "语音消息";
 "forwarded" = "转发了";
 "forwarded_message" = "转发的消息";
@@ -99,7 +99,7 @@
 "video" = "视频";
 "documents" = "文档";
 "contact" = "联系人";
-"verified_contact" = "已验证联系人";
+"verified_contact" = "已验证的联系人";
 "camera" = "相机";
 // "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "捕获";
@@ -244,7 +244,7 @@
 "videochat_tap_to_open" = "点击来打开";
 "videochat_instance" = "视频聊天实例";
 "videochat_instance_placeholder" = "您的视频聊天实例";
-"videochat_instance_explain" = "定义了视频聊天实例之后，您可以在聊天里发起视频聊天。视频聊天的两端都需要有兼容的应用或兼容的浏览器。\n\n示例: https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
+"videochat_instance_explain" = "定义了视频聊天实例后，您可以在聊天里发起视频聊天。视频聊天的两端都需要有兼容的应用或兼容的浏览器。\n\n示例: https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "使用“%1$@”邀请其他人加入视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置（如果有的话）。";
 "videochat_invitation" = "视频聊天邀请";
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
@@ -254,7 +254,7 @@
 "ask_delete_message" = "您确定要删除这条消息吗？";
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
-"ask_export_attachment" = "导出附件？导出附件将允许您设备上的任意应用程序访问它们。\n\n继续？";
+"ask_export_attachment" = "导出附件？导出附件将允许您设备上的任意应用程序访问它们。\n\n是否继续？";
 "ask_block_contact" = "屏蔽此联系人？您将不再收到此联系人的消息。";
 "ask_unblock_contact" = "取消屏蔽此联系人？您将再次能收到此联系人的消息。";
 "ask_delete_contacts" = "删除联系人？\n\n仍有在进行中的聊天的联系人和在系统通讯录中的联系人无法被永久删除。";
@@ -287,7 +287,7 @@
 "chat_no_chats_yet_hint" = "您可以与其他 Delta Chat 用户以及任意电子邮件地址聊天。";
 "chat_all_archived" = "所有聊天已归档。\n按\"+\"来开始新聊天。";
 "chat_share_with_title" = "分享给";
-"chat_input_placeholder" = "消息";
+"chat_input_placeholder" = "输入消息…";
 "chat_archived_label" = "已归档";
 "chat_no_messages" = "没有消息。";
 "chat_self_talk_subtitle" = "发给自己的消息";
@@ -315,21 +315,21 @@
 "mailing_list_profile_info" = "邮件列表名称和图像的更改仅适用于此设备。 ";
 
 // map
-"filter_map_on_time" = "显示在时间范围内的位置";
+"filter_map_on_time" = "显示时间范围内的位置";
 "show_location_traces" = "显示轨迹";
 "add_poi" = "发送兴趣点";
 
 // chat audit log
 "chat_audit_log_empty_message" = "此聊天的系统消息会出现在这里";
 "chat_audit_log_title" = "%1$@ 的聊天审计日志";
-"chat_audit_log_description" = "这个视图只显示系统和信息消息。可用于查找最后聊天操作而无需滚动许多普通消息";
+"chat_audit_log_description" = "此视图只显示系统消息和信息消息。可用于查找最后聊天操作而无需滚动许多普通消息。";
 
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "不再询问 %1$@";
 "puny_code_warning_header" = "检测到可疑链接";
 // placeholder contains the hostname converted to ascii
-"puny_code_warning_question" = "你确定你想访问 %1$@ 吗？";
+"puny_code_warning_question" = "您确定要访问 %1$@ 吗？";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "你将被转到一个链接，该链接可能通过使用来自不同字母表的相似字符来错误地表示字符。打开标记为 %1$@ 的链接将把你带到以 ascii 码编码的 %2$@。如果这样的字符出乎你的意料，那么这个链接可能是有害的";
 
@@ -426,7 +426,7 @@
 "pref_using_default" = "使用默认值： %1$@";
 "pref_profile_info_headline" = "您的个人资料";
 "pref_profile_photo" = "个人资料图片";
-"pref_blocked_contacts" = "已屏蔽联系人";
+"pref_blocked_contacts" = "已屏蔽的联系人";
 "blocked_empty_hint" = "被您屏蔽的联系人将显示于此。";
 "pref_profile_photo_remove_ask" = "移除个人资料图片？";
 "pref_password_and_account_settings" = "密码和账户";
@@ -438,7 +438,7 @@
 "pref_default_status_text" = "由我的 Delta Chat Messenger 发送： https://delta.chat";
 "pref_enter_sends" = "回车键发送";
 "pref_enter_sends_explain" = "按回车键发送文本消息";
-"pref_outgoing_media_quality" = "发送媒体质量";
+"pref_outgoing_media_quality" = "发出媒体质量";
 "pref_outgoing_balanced" = "平衡";
 "pref_outgoing_worse" = "体积小，但质量更差";
 "pref_vibrate" = "振动";
@@ -520,7 +520,7 @@
 "select_your_new_profile_image" = "选择新的个人资料图片";
 "profile_image_delete" = "删除个人资料图片";
 "pref_show_tray_icon" = "显示托盘图标";
-"pref_edit_profile" = "编辑概要";
+"pref_edit_profile" = "编辑个人资料";
 
 // Emoji picker and categories
 "emoji_search_results" = "搜索结果";
@@ -587,8 +587,8 @@
 "systemmsg_member_removed" = "已移除成员 %1$@ ";
 "systemmsg_group_left" = "已离开群组";
 "systemmsg_read_receipt_subject" = "消息已被打开";
-"systemmsg_read_receipt_body" = "您发送的“%1$@”消息已在收件人的屏幕上显示过。\n\n这并不保证内容已被阅读。";
-"systemmsg_cannot_decrypt" = "此消息无法解密。\n\n• 简单地回复此消息以要求发件人再次发送该消息可能会有所帮助。\n\n• 如果您在此设备或其他设备上重新安装了 Delta Chat 或其他电子邮件程序，则可能需要从别处发送 Autocrypt 设置消息。";
+"systemmsg_read_receipt_body" = "您发送的“%1$@”消息已在接收者的屏幕上显示过。\n\n这并不保证内容已被阅读。";
+"systemmsg_cannot_decrypt" = "此消息无法解密。\n\n• 简单回复此消息并要求发送者重发该消息可能会有所帮助。\n\n• 如果您在此设备或其他设备上重新安装了 Delta Chat 或其他电子邮件程序，则可能需要从别处发送 Autocrypt 设置消息。";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
 "systemmsg_action_by_me" = "我 %1$@。";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
@@ -624,11 +624,11 @@
 "qrscan_failed" = "二维码无法被解码";
 "qrscan_ask_join_group" = "您要加入群组“%1$@”吗？";
 "qrscan_fingerprint_mismatch" = "扫描到的指纹与上次见到的 %1$@ 的指纹不匹配。";
-"qrscan_no_addr_found" = "此二维码包含指纹但没有电子邮件地址。\n\n对于带外验证，请先与收件人建立加密连接。";
+"qrscan_no_addr_found" = "此二维码包含指纹但没有电子邮件地址。\n\n对于带外验证，请先与接收者建立加密连接。";
 "qrscan_contains_text" = "已扫描到的二维码文本：\n\n%1$@";
 "qrscan_contains_url" = "已扫描到的二维码 URL：\n\n%1$@";
 "qrscan_fingerprint_label" = "指纹";
-"qrscan_x_verified_introduce_myself" = "%1$@ 已验证， 自我介绍…";
+"qrscan_x_verified_introduce_myself" = "%1$@ 已验证， 自我介绍中…";
 "qrshow_title" = "邀请二维码";
 "qrshow_x_joining" = "%1$@ 加入。";
 "qrshow_x_verified" = "%1$@ 已验证。";
@@ -652,7 +652,7 @@
 "copy_qr_data_success" = "已复制二维码链接到剪贴板";
 "mailto_dialog_header_select_chat" = "选择要发送消息的聊天";
 // first placeholder is the name of the chat
-"mailto_dialog_confirm_replace_draft" = "%1$@ 已经有一条草稿信息，你想替换它吗？";
+"mailto_dialog_confirm_replace_draft" = "%1$@ 已经有一条草稿信息，要替换它吗？";
 "mailto_link_could_not_be_decoded" = "无法解码 mailto 链接：%1$@";
 
 // notifications 
@@ -715,7 +715,7 @@
 "global_menu_file_open_desktop" = "打开 Delta Chat";
 "global_menu_minimize_to_tray" = "最小化";
 "no_chat_selected_suggestion_desktop" = "选择一个聊天或创建新聊天";
-"write_message_desktop" = "写消息";
+"write_message_desktop" = "输入消息…";
 "encryption_info_title_desktop" = "加密信息";
 "contact_detail_title_desktop" = "联系人详情";
 "contact_request_title_desktop" = "联系人请求";
@@ -759,7 +759,7 @@
 "menu.view.developer.open.log.folder" = "打开日志文件夹";
 "menu.view.developer.open.current.log.file" = "打开当前日志文件";
 "user_location_permission_explanation" = "Delta Chat 需要位置权限来显示和分享您的位置。";
-"explain_desktop_minimized_disabled_tray_pref" = "托盘图标不能被禁用，因为Delta Chat 启动时带 --minimized 参数";
+"explain_desktop_minimized_disabled_tray_pref" = "在 Delta Chat 带 --minimized 参数启动时，无法禁用托盘图标。";
 "no_spellcheck_suggestions_found" = "未找到拼写建议";
 "show_window" = "显示窗口";
 
