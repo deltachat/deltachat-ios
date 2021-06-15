@@ -36,12 +36,17 @@ public class DcAccounts {
         return DcUtils.copyAndFreeArray(inputArray: cAccounts)
     }
 
+    public func get() -> DcContext {
+        let cPtr = dc_accounts_get_selected_account(accountsPointer)
+        return DcContext(contextPointer: cPtr)
+    }
+
     public func maybeNetwork() {
         dc_accounts_maybe_network(accountsPointer)
     }
 
     public func maybeStartIO() {
-        if getSelectedAccount().isConfigured() {
+        if get().isConfigured() {
             dc_accounts_start_io(accountsPointer)
         }
     }
@@ -52,11 +57,6 @@ public class DcAccounts {
 
     public func selectAccount(id: Int) -> Bool {
         return dc_accounts_select_account(accountsPointer, UInt32(id)) == 1
-    }
-
-    public func getSelectedAccount() -> DcContext {
-        let cPtr = dc_accounts_get_selected_account(accountsPointer)
-        return DcContext(contextPointer: cPtr)
     }
 
     public func removeAccount(id: Int) -> Bool {
