@@ -45,13 +45,13 @@ public class DcAccounts {
         dc_accounts_maybe_network(accountsPointer)
     }
 
-    public func maybeStartIO() {
+    public func maybeStartIo() {
         if get().isConfigured() {
             dc_accounts_start_io(accountsPointer)
         }
     }
 
-    public func stopIO() {
+    public func stopIo() {
         dc_accounts_stop_io(accountsPointer)
     }
 
