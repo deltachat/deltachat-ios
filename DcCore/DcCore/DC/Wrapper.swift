@@ -736,6 +736,10 @@ public class DcEvent {
         dc_event_unref(eventPointer)
     }
 
+    public var accountId: Int {
+        return Int(dc_event_get_account_id(eventPointer))
+    }
+
     public var id: Int32 {
         return Int32(dc_event_get_id(eventPointer))
     }
