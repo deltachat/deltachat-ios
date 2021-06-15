@@ -10,14 +10,6 @@ public class DcAccounts {
     var accountsPointer: OpaquePointer?
 
     public init() {
-        var version = ""
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            version += " " + appVersion
-        }
-
-        if let sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
-            accountsPointer = dc_accounts_new("iOS\(version)", sharedDbLocation.path)
-        }
     }
 
     deinit {
@@ -80,6 +72,21 @@ public class DcAccounts {
         return DcAccountsEventEmitter(eventEmitterPointer: eventEmitterPointer)
     }
 
+    public func openDatabase() {
+        var version = ""
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            version += " " + appVersion
+        }
+
+        if let sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
+            accountsPointer = dc_accounts_new("iOS\(version)", sharedDbLocation.path)
+        }
+    }
+
+    public func closeDatabase() {
+        dc_accounts_unref(accountsPointer)
+        accountsPointer = nil
+    }
 }
 
 public class DcContext {
