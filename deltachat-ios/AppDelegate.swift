@@ -11,7 +11,7 @@ let logger = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    private let dcContext = DcContext()
+    private let dcAccounts = DcAccounts()
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
@@ -55,7 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let console = ConsoleDestination()
         console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format
         logger.addDestination(console)
-        dcContext.logger = DcLogger()
+
+        dcAccounts.openDatabase()
+        migrateToDcAccounts()
+        dcAccounts.get().logger = DcLogger()
         logger.info("➡️ didFinishLaunchingWithOptions")
 
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -68,14 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             window.backgroundColor = UIColor.white
         }
 
-        openDatabase()
         installEventHandler()
-        RelayHelper.setup(dcContext)
-        appCoordinator = AppCoordinator(window: window, dcContext: dcContext)
-        locationManager = LocationManager(context: dcContext)
+        RelayHelper.setup(dcAccounts)
+        appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)
+        locationManager = LocationManager(dcAccounts: dcAccounts)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        notificationManager = NotificationManager(dcContext: dcContext)
-        dcContext.maybeStartIo()
+        notificationManager = NotificationManager(dcAccounts: dcAccounts)
+        dcAccounts.maybeStartIo()
         setStockTranslations()
 
         reachability.whenReachable = { reachability in
@@ -83,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // Reachability::reachabilityChanged uses DispatchQueue.main.async only
             logger.info("network: reachable", reachability.connection.description)
             DispatchQueue.global(qos: .background).async { [weak self] in
-                self?.dcContext.maybeNetwork()
+                self?.dcAccounts.maybeNetwork()
             }
         }
 
@@ -102,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             increaseDebugCounter("notify-remote-launch")
         }
 
-        if dcContext.isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+        if dcAccounts.get().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
         }
 
@@ -138,12 +140,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
-        dcContext.maybeStartIo()
+        dcAccounts.maybeStartIo()
 
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             if self.reachability.connection != .none {
-                self.dcContext.maybeNetwork()
+                self.dcAccounts.maybeNetwork()
             }
 
             if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
@@ -206,7 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.unregisterBackgroundTask()
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
-                self.dcContext.stopIo()
+                self.dcAccounts.stopIo()
 
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling unregisterBackgroundTask()
@@ -381,7 +383,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, this handler is not used as we are taking care of timings below.
             logger.info("⬅️ finishing fetch by system urgency requests")
-            self?.dcContext.stopIo()
+            self?.dcAccounts.get().stopIo()
             completionHandler(.newData)
             if backgroundTask != .invalid {
                 UIApplication.shared.endBackgroundTask(backgroundTask)
@@ -390,8 +392,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         // we're in background, run IO for a little time
-        dcContext.maybeStartIo()
-        dcContext.maybeNetwork()
+        dcAccounts.maybeStartIo()
+        dcAccounts.maybeNetwork()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
             logger.info("⬅️ finishing fetch")
@@ -401,7 +403,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 return
             }
             if !self.appIsInForeground() {
-                self.dcContext.stopIo()
+                self.dcAccounts.stopIo()
             }
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
@@ -445,24 +447,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - misc.
 
-    func openDatabase() {
-        guard let databaseLocation = DatabaseHelper(dcContext: dcContext).updateDatabaseLocation() else {
+    func migrateToDcAccounts() {
+        let dcContext = DcContext()
+
+        // first database migration to shared container, can be removed at some point
+        // implemented in April 2020 (https://github.com/deltachat/deltachat-ios/pull/612)
+        let databaseHelper = DatabaseHelper(dcLogger: dcContext.logger)
+        guard let databaseLocation = databaseHelper.updateDatabaseLocation() else {
             fatalError("Database could not be opened")
         }
-        logger.info("open: \(databaseLocation)")
         dcContext.openDatabase(dbFile: databaseLocation)
+        if dcContext.isConfigured() {
+            dcContext.closeDatabase()
+            if dcAccounts.migrateAccount(dbLocation: databaseLocation) == 0 {
+                fatalError("Account could not be migrated")
+                // TODO: show error message in UI
+            }
+            databaseHelper.clearUnmanagedAccountData()
+        }
     }
 
+
+    func openDatabase() {
+        dcAccounts.openDatabase()
+    }
+    
     func closeDatabase() {
-        dcContext.closeDatabase()
+        dcAccounts.closeDatabase()
+    }
+
+    func deleteCurrentAccount() {
+        let _ = dcAccounts.removeAccount(id: dcAccounts.get().id)
     }
 
     func installEventHandler() {
 
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
-            let eventHandler = DcEventHandler(dcContext: self.dcContext)
-            let eventEmitter = self.dcContext.getEventEmitter()
+            let eventHandler = DcEventHandler(dcAccounts: self.dcAccounts)
+            let eventEmitter = self.dcAccounts.getEventEmitter()
             while true {
                 guard let event = eventEmitter.getNextEvent() else { break }
                 eventHandler.handleEvent(event: event)
@@ -488,6 +511,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     private func setStockTranslations() {
+        let dcContext = dcAccounts.get()
         dcContext.setStockTranslation(id: DC_STR_NOMESSAGES, localizationKey: "chat_no_messages")
         dcContext.setStockTranslation(id: DC_STR_SELF, localizationKey: "self")
         dcContext.setStockTranslation(id: DC_STR_DRAFT, localizationKey: "draft")

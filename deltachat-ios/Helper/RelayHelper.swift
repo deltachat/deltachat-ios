@@ -3,17 +3,17 @@ import DcCore
 
 class RelayHelper {
     static var sharedInstance: RelayHelper = RelayHelper()
-    private static var dcContext: DcContext?
+    private static var dcAccounts: DcAccounts?
     var messageIds: [Int]?
 
     private init() {
-        guard RelayHelper.dcContext != nil else {
+        guard RelayHelper.dcAccounts != nil else {
             fatalError("Error - you must call RelayHelper.setup() before accessing RelayHelper.shared")
         }
     }
 
-    class func setup(_ dcContext: DcContext) {
-        RelayHelper.dcContext = dcContext
+    class func setup(_ dcAccounts: DcAccounts) {
+        RelayHelper.dcAccounts = dcAccounts
     }
 
     func setForwardMessage(messageId: Int) {
@@ -30,7 +30,7 @@ class RelayHelper {
 
     func forward(to chat: Int) {
         if let messageIds = self.messageIds {
-            RelayHelper.dcContext?.forwardMessages(with: messageIds, to: chat)
+            RelayHelper.dcAccounts?.get().forwardMessages(with: messageIds, to: chat)
         }
         self.messageIds = nil
     }

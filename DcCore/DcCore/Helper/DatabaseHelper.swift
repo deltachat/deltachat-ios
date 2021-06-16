@@ -49,10 +49,10 @@ public class DatabaseHelper {
         return sharedDbBlobsDir
     }
 
-    var dcContext: DcContext
+    var dcLogger: Logger?
 
-    public init(dcContext: DcContext) {
-        self.dcContext = dcContext
+    public init(dcLogger: Logger?) {
+        self.dcLogger = dcLogger
     }
 
     func clearDbBlobsDir(at path: String) {
@@ -67,7 +67,7 @@ public class DatabaseHelper {
                 try fileManager.removeItem(atPath: path)
             }
         } catch {
-            dcContext.logger?.error("Could not clean shared blobs dir, it might be it didn't exist")
+            dcLogger?.error("Could not clean shared blobs dir, it might be it didn't exist")
         }
     }
 
@@ -77,12 +77,12 @@ public class DatabaseHelper {
             do {
                 try filemanager.removeItem(atPath: path)
             } catch {
-                dcContext.logger?.error("Failed to delete db: \(error)")
+                dcLogger?.error("Failed to delete db: \(error)")
             }
         }
     }
 
-    public func clearAccountData() {
+    public func clearUnmanagedAccountData() {
         clearDb(at: currentDatabaseLocation)
         clearDbBlobsDir(at: currentBlobsDirLocation)
     }
@@ -94,7 +94,7 @@ public class DatabaseHelper {
                 clearDbBlobsDir(at: sharedDbBlobsDir)
                 try filemanager.moveItem(at: URL(fileURLWithPath: localDbBlobsDir), to: URL(fileURLWithPath: sharedDbBlobsDir))
             } catch let error {
-                dcContext.logger?.error("Could not move db blobs directory to shared space: \(error.localizedDescription)")
+                dcLogger?.error("Could not move db blobs directory to shared space: \(error.localizedDescription)")
             }
         }
     }
@@ -107,7 +107,7 @@ public class DatabaseHelper {
               try filemanager.moveItem(at: URL(fileURLWithPath: localDbFile), to: URL(fileURLWithPath: sharedDbFile))
               moveBlobsFolder()
           } catch let error {
-              dcContext.logger?.error("Could not update DB location. Share extension will probably not work. \n\(error.localizedDescription)")
+              dcLogger?.error("Could not update DB location. Share extension will probably not work. \n\(error.localizedDescription)")
               return localDbFile
           }
       }

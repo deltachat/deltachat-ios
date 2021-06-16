@@ -78,7 +78,8 @@ public class DcAccounts {
             version += " " + appVersion
         }
 
-        if let sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
+        if var sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
+            sharedDbLocation.appendPathComponent("accounts", isDirectory: true)
             accountsPointer = dc_accounts_new("iOS\(version)", sharedDbLocation.path)
         }
     }
@@ -108,6 +109,10 @@ public class DcContext {
         if contextPointer == nil { return } // avoid a warning about a "careless call"
         dc_context_unref(contextPointer)
         contextPointer = nil
+    }
+
+    public var id: Int {
+        return Int(dc_get_id(contextPointer))
     }
 
     // viewType: one of DC_MSG_*

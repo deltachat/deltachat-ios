@@ -7,7 +7,7 @@ import DcCore
 class AppCoordinator {
 
     private let window: UIWindow
-    private let dcContext: DcContext
+    private let dcAccounts: DcAccounts
     private let qrTab = 0
     public  let chatsTab = 1
     private let settingsTab = 2
@@ -30,7 +30,7 @@ class AppCoordinator {
     }()
 
     private lazy var qrNavController: UINavigationController = {
-        let root = QrPageController(dcContext: dcContext)
+        let root = QrPageController(dcContext: dcAccounts.get())
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
@@ -38,8 +38,8 @@ class AppCoordinator {
     }()
 
     private lazy var chatsNavController: UINavigationController = {
-        let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: false)
-        let root = ChatListController(dcContext: dcContext, viewModel: viewModel)
+        let viewModel = ChatListViewModel(dcContext: dcAccounts.get(), isArchive: false)
+        let root = ChatListController(dcContext: dcAccounts.get(), viewModel: viewModel)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
@@ -47,7 +47,7 @@ class AppCoordinator {
     }()
 
     private lazy var settingsNavController: UINavigationController = {
-        let root = SettingsViewController(dcContext: dcContext)
+        let root = SettingsViewController(dcContext: dcAccounts.get())
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
@@ -55,9 +55,10 @@ class AppCoordinator {
     }()
 
     // MARK: - misc
-    init(window: UIWindow, dcContext: DcContext) {
+    init(window: UIWindow, dcAccounts: DcAccounts) {
         self.window = window
-        self.dcContext = dcContext
+        self.dcAccounts = dcAccounts
+        let dcContext = dcAccounts.get()
 
         if dcContext.isConfigured() {
             presentTabBarController()
@@ -104,14 +105,17 @@ class AppCoordinator {
     }
 
     func presentWelcomeController() {
-        loginNavController.setViewControllers([WelcomeViewController(dcContext: dcContext)], animated: true)
+        if dcAccounts.get().isConfigured() {
+            let _ = dcAccounts.addAccount()
+        }
+        loginNavController.setViewControllers([WelcomeViewController(dcContext: dcAccounts.get())], animated: true)
         window.rootViewController = loginNavController
         window.makeKeyAndVisible()
 
         // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
         // to avoid appearing an old number of a previous installation, we reset the counter manually.
         // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
-        NotificationManager.updateApplicationIconBadge(dcContext: dcContext, reset: true)
+        NotificationManager.updateApplicationIconBadge(dcContext: dcAccounts.get(), reset: true)
     }
 
     func presentTabBarController() {

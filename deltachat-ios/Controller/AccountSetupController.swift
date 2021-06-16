@@ -773,9 +773,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
             self.dcContext.stopIo()
+            appDelegate.deleteCurrentAccount()
             appDelegate.closeDatabase()
-            DatabaseHelper(dcContext: self.dcContext).clearAccountData()
             appDelegate.openDatabase()
+            // FIXME: reinitialize UIs with new DcContext
             appDelegate.installEventHandler()
             self.dcContext.maybeStartIo()
             appDelegate.appCoordinator.presentWelcomeController()

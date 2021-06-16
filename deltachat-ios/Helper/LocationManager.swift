@@ -5,13 +5,15 @@ import DcCore
 class LocationManager: NSObject, CLLocationManagerDelegate {
 
     let locationManager: CLLocationManager
-    let dcContext: DcContext
+    let dcAccounts: DcAccounts
+    var dcContext: DcContext
     var lastLocation: CLLocation?
     var chatIdLocationRequest: Int?
     var durationLocationRequest: Int?
 
-    init(context: DcContext) {
-        dcContext = context
+    init(dcAccounts: DcAccounts) {
+        self.dcAccounts = dcAccounts
+        self.dcContext = dcAccounts.get()
         locationManager = CLLocationManager()
         locationManager.distanceFilter = 25
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

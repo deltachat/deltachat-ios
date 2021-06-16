@@ -8,12 +8,19 @@ public class NotificationManager {
     var incomingMsgObserver: NSObjectProtocol?
     var msgsNoticedObserver: NSObjectProtocol?
 
+    private let dcAccounts: DcAccounts
     private var dcContext: DcContext
 
-    init(dcContext: DcContext) {
-        self.dcContext = dcContext
+    init(dcAccounts: DcAccounts) {
+        self.dcAccounts = dcAccounts
+        self.dcContext = dcAccounts.get()
         initIncomingMsgsObserver()
         initMsgsNoticedObserver()
+    }
+
+    public func switchContext() {
+        NotificationManager.removeAllNotifications()
+        dcContext = dcAccounts.get()
     }
 
     public static func updateApplicationIconBadge(dcContext: DcContext, reset: Bool) {
