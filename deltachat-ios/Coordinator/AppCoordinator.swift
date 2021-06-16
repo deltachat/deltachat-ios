@@ -47,7 +47,7 @@ class AppCoordinator {
     }()
 
     private lazy var settingsNavController: UINavigationController = {
-        let root = SettingsViewController(dcContext: dcAccounts.get())
+        let root = SettingsViewController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
@@ -108,7 +108,7 @@ class AppCoordinator {
         if dcAccounts.get().isConfigured() {
             let _ = dcAccounts.addAccount()
         }
-        loginNavController.setViewControllers([WelcomeViewController(dcContext: dcAccounts.get())], animated: true)
+        loginNavController.setViewControllers([WelcomeViewController(dcAccounts: dcAccounts)], animated: true)
         window.rootViewController = loginNavController
         window.makeKeyAndVisible()
 

@@ -8,7 +8,7 @@ protocol ProgressAlertHandler: UIViewController {
     func updateProgressAlertValue(value: Int?)
     func updateProgressAlert(error: String?)
     func updateProgressAlertSuccess(completion: VoidFunction?)
-    func addProgressAlertListener(dcContext: DcContext, progressName: Notification.Name, onSuccess: @escaping VoidFunction)
+    func addProgressAlertListener(dcAccounts: DcAccounts, progressName: Notification.Name, onSuccess: @escaping VoidFunction)
 }
 
 extension ProgressAlertHandler {
@@ -63,7 +63,7 @@ extension ProgressAlertHandler {
         })
     }
 
-    func addProgressAlertListener(dcContext: DcContext, progressName: Notification.Name, onSuccess: @escaping VoidFunction) {
+    func addProgressAlertListener(dcAccounts: DcAccounts, progressName: Notification.Name, onSuccess: @escaping VoidFunction) {
         let nc = NotificationCenter.default
         progressObserver = nc.addObserver(
             forName: progressName,
@@ -73,10 +73,10 @@ extension ProgressAlertHandler {
             guard let self = self else { return }
             if let ui = notification.userInfo {
                 if ui["error"] as? Bool ?? false {
-                    dcContext.maybeStartIo()
+                    dcAccounts.maybeStartIo()
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as? Bool ?? false {
-                    dcContext.maybeStartIo()
+                    dcAccounts.maybeStartIo()
                     self.updateProgressAlertSuccess(completion: onSuccess)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)

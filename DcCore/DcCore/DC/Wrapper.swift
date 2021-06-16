@@ -41,6 +41,7 @@ public class DcAccounts {
         return DcContext(contextPointer: cPtr)
     }
 
+    // call maybeNetwork() from a worker thread.
     public func maybeNetwork() {
         dc_accounts_maybe_network(accountsPointer)
     }
@@ -315,14 +316,6 @@ public class DcContext {
         return "ErrGetContactEncrInfo"
     }
 
-    public func interruptIdle() {
-    }
-
-    public func getEventEmitter() -> DcEventEmitter {
-        let eventEmitterPointer = dc_get_event_emitter(contextPointer)
-        return DcEventEmitter(eventEmitterPointer: eventEmitterPointer)
-    }
-
     public func openDatabase(dbFile: String) {
         var version = ""
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -335,16 +328,6 @@ public class DcContext {
     public func closeDatabase() {
         dc_context_unref(contextPointer)
         contextPointer = nil
-    }
-
-    public func maybeStartIo() {
-        if isConfigured() {
-            dc_start_io(contextPointer)
-        }
-    }
-
-    public func stopIo() {
-        dc_stop_io(contextPointer)
     }
 
     public func setStockTranslation(id: Int32, localizationKey: String) {
@@ -558,11 +541,6 @@ public class DcContext {
         return messageIds
     }
 
-    // call dc_maybe_network() from a worker thread.
-    public func maybeNetwork() {
-        dc_maybe_network(contextPointer)
-    }
-
     // also, there is no much worth in adding a separate function or so
     // for each config option - esp. if they are just forwarded to the core
     // and set/get only at one line of code each.
@@ -708,24 +686,6 @@ public class DcAccountsEventEmitter {
 
     deinit {
         dc_accounts_event_emitter_unref(eventEmitterPointer)
-    }
-}
-
-public class DcEventEmitter {
-    private var eventEmitterPointer: OpaquePointer?
-
-    // takes ownership of specified pointer
-    public init(eventEmitterPointer: OpaquePointer?) {
-        self.eventEmitterPointer = eventEmitterPointer
-    }
-
-    public func getNextEvent() -> DcEvent? {
-        guard let eventPointer = dc_get_next_event(eventEmitterPointer) else { return nil }
-        return DcEvent(eventPointer: eventPointer)
-    }
-
-    deinit {
-        dc_event_emitter_unref(eventEmitterPointer)
     }
 }
 

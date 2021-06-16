@@ -27,6 +27,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private var dcContext: DcContext
+    private var dcAccounts: DcAccounts
 
     private let externalPathDescr = "File Sharing/Delta Chat"
 
@@ -206,8 +207,9 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return [profileSection, preferencesSection, autocryptSection, backupSection, helpSection]
     }()
 
-    init(dcContext: DcContext) {
-        self.dcContext = dcContext
+    init(dcAccounts: DcAccounts) {
+        self.dcContext = dcAccounts.get()
+        self.dcAccounts = dcAccounts
         super.init(style: .grouped)
     }
 
@@ -232,7 +234,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addProgressAlertListener(dcContext: dcContext, progressName: dcNotificationImexProgress) { [weak self] in
+        addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationImexProgress) { [weak self] in
             guard let self = self else { return }
             self.progressAlert?.dismiss(animated: true, completion: nil)
         }
@@ -423,7 +425,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         if !documents.isEmpty {
             showProgressAlert(title: String.localized("imex_progress_title_desktop"), dcContext: dcContext)
             DispatchQueue.main.async {
-                self.dcContext.stopIo()
+                self.dcAccounts.stopIo()
                 self.dcContext.imex(what: what, directory: documents[0])
             }
         } else {
@@ -441,7 +443,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     // MARK: - coordinator
     private func showEditSettingsController() {
-        let editController = EditSettingsController(dcContext: dcContext)
+        let editController = EditSettingsController(dcAccounts: dcAccounts)
         navigationController?.pushViewController(editController, animated: true)
     }
 

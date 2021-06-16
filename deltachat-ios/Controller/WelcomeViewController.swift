@@ -2,7 +2,8 @@ import UIKit
 import DcCore
 
 class WelcomeViewController: UIViewController, ProgressAlertHandler {
-    private let dcContext: DcContext
+    private var dcContext: DcContext
+    private let dcAccounts: DcAccounts
     var progressObserver: NSObjectProtocol?
     var onProgressSuccess: VoidFunction?
 
@@ -16,7 +17,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let view = WelcomeContentView()
         view.onLogin = { [weak self] in
             guard let self = self else { return }
-            let accountSetupController = AccountSetupController(dcContext: self.dcContext, editView: false)
+            let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
             accountSetupController.onLoginSuccess = {
                 [weak self] in
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -40,18 +41,20 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private var qrCodeReader: QrCodeReaderController?
     weak var progressAlert: UIAlertController?
 
-    init(dcContext: DcContext) {
-        self.dcContext = dcContext
+    init(dcAccounts: DcAccounts) {
+        self.dcAccounts = dcAccounts
+        self.dcContext = dcAccounts.get()
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized("welcome_desktop")
         onProgressSuccess = { [weak self] in
-            let profileInfoController = ProfileInfoViewController(context: dcContext)
+            guard let self = self else { return }
+            let profileInfoController = ProfileInfoViewController(context: self.dcContext)
             profileInfoController.onClose = {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.presentTabBarController()
                 }
             }
-            self?.navigationController?.setViewControllers([profileInfoController], animated: true)
+            self.navigationController?.setViewControllers([profileInfoController], animated: true)
         }
     }
 
@@ -113,9 +116,13 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private func createAccountFromQRCode(qrCode: String) {
         let success = dcContext.setConfigFromQR(qrCode: qrCode)
         if success {
-            addProgressAlertListener(dcContext: dcContext, progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
+            addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
-            dcContext.stopIo()
+            dcAccounts.stopIo()
+            let accountId = dcAccounts.addAccount()
+            if accountId != 0 {
+                self.dcContext = dcAccounts.getAccount(id: accountId)
+            }
             dcContext.configure()
         } else {
             accountCreationErrorAlert()

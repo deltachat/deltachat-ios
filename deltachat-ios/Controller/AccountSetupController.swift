@@ -3,7 +3,8 @@ import UIKit
 import DcCore
 
 class AccountSetupController: UITableViewController, ProgressAlertHandler {
-    private let dcContext: DcContext
+    private var dcContext: DcContext
+    private let dcAccounts: DcAccounts
     private var skipOauth = false
     private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
@@ -278,9 +279,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             textLabel: String.localized("pref_watch_inbox_folder"),
             on: dcContext.getConfigBool("inbox_watch"),
             action: { cell in
-                self.dcContext.stopIo()
+                self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("inbox_watch", cell.isOn)
-                self.dcContext.maybeStartIo()
+                self.dcAccounts.maybeStartIo()
         })
     }()
 
@@ -289,9 +290,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             textLabel: String.localized("pref_watch_sent_folder"),
             on: dcContext.getConfigBool("sentbox_watch"),
             action: { cell in
-                self.dcContext.stopIo()
+                self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
-                self.dcContext.maybeStartIo()
+                self.dcAccounts.maybeStartIo()
         })
     }()
 
@@ -300,9 +301,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             textLabel: String.localized("pref_watch_mvbox_folder"),
             on: dcContext.getConfigBool("mvbox_watch"),
             action: { cell in
-                self.dcContext.stopIo()
+                self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("mvbox_watch", cell.isOn)
-                self.dcContext.maybeStartIo()
+                self.dcAccounts.maybeStartIo()
         })
     }()
 
@@ -335,9 +336,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }()
 
     // MARK: - constructor
-    init(dcContext: DcContext, editView: Bool) {
+    init(dcAccounts: DcAccounts, editView: Bool) {
         self.editView = editView
-        self.dcContext = dcContext
+        self.dcAccounts = dcAccounts
+        self.dcContext = dcAccounts.get()
 
         self.sections.append(basicSection)
         self.sections.append(advancedSection)
@@ -587,7 +589,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         }
 
         print("oAuth-Flag when loggin in: \(dcContext.getAuthFlags())")
-        dcContext.stopIo()
+        dcAccounts.stopIo()
         dcContext.configure()
         showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
     }
@@ -668,7 +670,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
-                    self.dcContext.maybeStartIo()
+                    self.dcAccounts.maybeStartIo()
                     var errorMessage = ui["errorMessage"] as? String
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.reachability.connection == .none {
                         errorMessage = String.localized("login_error_no_internet_connection")
@@ -677,7 +679,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                     }
                     self.updateProgressAlert(error: errorMessage)
                 } else if ui["done"] as! Bool {
-                    self.dcContext.maybeStartIo()
+                    self.dcAccounts.maybeStartIo()
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
@@ -771,14 +773,14 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             message: nil,
             preferredStyle: .safeActionSheet)
 
-        alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { _ in
-            self.dcContext.stopIo()
-            appDelegate.deleteCurrentAccount()
-            appDelegate.closeDatabase()
-            appDelegate.openDatabase()
-            // FIXME: reinitialize UIs with new DcContext
+        alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.dcAccounts.stopIo()
+            self.dcAccounts.removeAccount(id: self.dcAccounts.get().id)
+            self.dcAccounts.closeDatabase()
+            self.dcAccounts.openDatabase()
             appDelegate.installEventHandler()
-            self.dcContext.maybeStartIo()
+            self.dcAccounts.maybeStartIo()
             appDelegate.appCoordinator.presentWelcomeController()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
