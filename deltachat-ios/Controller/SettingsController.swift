@@ -27,7 +27,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private var dcContext: DcContext
-    private var dcAccounts: DcAccounts
+    private let dcAccounts: DcAccounts
 
     private let externalPathDescr = "File Sharing/Delta Chat"
 

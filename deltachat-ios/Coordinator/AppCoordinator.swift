@@ -21,50 +21,52 @@ class AppCoordinator {
     }()
 
     // MARK: - tabbar view handling
-    private lazy var tabBarController: UITabBarController = {
+    private var qrNavController = UINavigationController()
+    private var chatsNavController = UINavigationController()
+    private var settingsNavController = UINavigationController()
+    private var tabBarController = UITabBarController()
+    private func createTabBarController() -> UITabBarController {
+        qrNavController = createQrNavigationController()
+        chatsNavController = createChatsNavigationController()
+        settingsNavController = createSettingsNavigationController()
         let tabBarController = UITabBarController()
         tabBarController.delegate = appStateRestorer
         tabBarController.viewControllers = [qrNavController, chatsNavController, settingsNavController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
-    }()
+    }
 
-    private lazy var qrNavController: UINavigationController = {
+    private func createQrNavigationController() -> UINavigationController {
         let root = QrPageController(dcContext: dcAccounts.get())
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         return nav
-    }()
+    }
 
-    private lazy var chatsNavController: UINavigationController = {
+    private func createChatsNavigationController() -> UINavigationController {
         let viewModel = ChatListViewModel(dcContext: dcAccounts.get(), isArchive: false)
         let root = ChatListController(dcContext: dcAccounts.get(), viewModel: viewModel)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
         return nav
-    }()
+    }
 
-    private lazy var settingsNavController: UINavigationController = {
+    private func createSettingsNavigationController() -> UINavigationController {
         let root = SettingsViewController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
         return nav
-    }()
+    }
 
     // MARK: - misc
     init(window: UIWindow, dcAccounts: DcAccounts) {
         self.window = window
         self.dcAccounts = dcAccounts
         let dcContext = dcAccounts.get()
-
-        if dcContext.isConfigured() {
-            presentTabBarController()
-        } else {
-            presentWelcomeController()
-        }
+        initializeRootController()
 
         let lastActiveTab = appStateRestorer.restoreLastActiveTab()
         if lastActiveTab == -1 {
@@ -104,10 +106,15 @@ class AppCoordinator {
         }
     }
 
-    func presentWelcomeController() {
+    func initializeRootController() {
         if dcAccounts.get().isConfigured() {
-            let _ = dcAccounts.addAccount()
+            presentTabBarController()
+        } else {
+            presentWelcomeController()
         }
+    }
+
+    func presentWelcomeController() {
         loginNavController.setViewControllers([WelcomeViewController(dcAccounts: dcAccounts)], animated: true)
         window.rootViewController = loginNavController
         window.makeKeyAndVisible()
@@ -119,7 +126,7 @@ class AppCoordinator {
     }
 
     func presentTabBarController() {
-        window.rootViewController = tabBarController
+        window.rootViewController = createTabBarController()
         showTab(index: chatsTab)
         window.makeKeyAndVisible()
     }

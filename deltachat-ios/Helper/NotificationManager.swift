@@ -18,7 +18,7 @@ public class NotificationManager {
         initMsgsNoticedObserver()
     }
 
-    public func switchContext() {
+    public func reloadDcContext() {
         NotificationManager.removeAllNotifications()
         dcContext = dcAccounts.get()
     }

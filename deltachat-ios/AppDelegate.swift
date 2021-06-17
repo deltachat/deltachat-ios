@@ -58,6 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         dcAccounts.openDatabase()
         migrateToDcAccounts()
+        if dcAccounts.getAll().isEmpty {
+            dcAccounts.addAccount()
+        }
         dcAccounts.get().logger = DcLogger()
         logger.info("➡️ didFinishLaunchingWithOptions")
 
@@ -467,6 +470,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    func reloadDcContext() {
+        locationManager.reloadDcContext()
+        notificationManager.reloadDcContext()
+        if dcAccounts.get().isConfigured() {
+            appCoordinator.presentTabBarController()
+        } else {
+            appCoordinator.presentWelcomeController()
+        }
+    }
 
     func openDatabase() {
         dcAccounts.openDatabase()
@@ -477,7 +489,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func deleteCurrentAccount() {
-        let _ = dcAccounts.removeAccount(id: dcAccounts.get().id)
+        _ = dcAccounts.removeAccount(id: dcAccounts.get().id)
     }
 
     func installEventHandler() {

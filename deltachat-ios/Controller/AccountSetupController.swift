@@ -758,9 +758,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                 alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
                 present(alert, animated: true)
             }
+        } else {
+            logger.error("no documents directory found")
         }
 
-        logger.error("no documents directory found")
     }
 
     private func deleteAccount() {
@@ -775,13 +776,18 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
             guard let self = self else { return }
+            appDelegate.locationManager.disableLocationStreamingInAllChats()
             self.dcAccounts.stopIo()
             self.dcAccounts.removeAccount(id: self.dcAccounts.get().id)
-            self.dcAccounts.closeDatabase()
-            self.dcAccounts.openDatabase()
+            if let firstAccountId = self.dcAccounts.getAll().first {
+                _ = self.dcAccounts.selectAccount(id: firstAccountId)
+            } else {
+                let accountId = self.dcAccounts.addAccount()
+                _ = self.dcAccounts.selectAccount(id: accountId)
+            }
+            appDelegate.reloadDcContext()
             appDelegate.installEventHandler()
             self.dcAccounts.maybeStartIo()
-            appDelegate.appCoordinator.presentWelcomeController()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)

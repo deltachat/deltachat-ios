@@ -25,6 +25,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
     }
 
+    public func reloadDcContext() {
+        dcContext = dcAccounts.get()
+    }
+
     func shareLocation(chatId: Int, duration: Int) {
         if duration > 0 {
             var authStatus: CLAuthorizationStatus
