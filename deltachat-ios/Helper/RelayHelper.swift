@@ -30,7 +30,7 @@ class RelayHelper {
 
     func forward(to chat: Int) {
         if let messageIds = self.messageIds {
-            RelayHelper.dcAccounts?.get().forwardMessages(with: messageIds, to: chat)
+            RelayHelper.dcAccounts?.getSelected().forwardMessages(with: messageIds, to: chat)
         }
         self.messageIds = nil
     }

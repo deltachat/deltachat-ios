@@ -208,7 +208,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }()
 
     init(dcAccounts: DcAccounts) {
-        self.dcContext = dcAccounts.get()
+        self.dcContext = dcAccounts.getSelected()
         self.dcAccounts = dcAccounts
         super.init(style: .grouped)
     }

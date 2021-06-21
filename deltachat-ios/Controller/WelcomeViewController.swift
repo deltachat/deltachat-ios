@@ -43,7 +43,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
-        self.dcContext = dcAccounts.get()
+        self.dcContext = dcAccounts.getSelected()
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized("welcome_desktop")
         onProgressSuccess = { [weak self] in

@@ -37,7 +37,7 @@ class AppCoordinator {
     }
 
     private func createQrNavigationController() -> UINavigationController {
-        let root = QrPageController(dcContext: dcAccounts.get())
+        let root = QrPageController(dcContext: dcAccounts.getSelected())
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
@@ -45,8 +45,8 @@ class AppCoordinator {
     }
 
     private func createChatsNavigationController() -> UINavigationController {
-        let viewModel = ChatListViewModel(dcContext: dcAccounts.get(), isArchive: false)
-        let root = ChatListController(dcContext: dcAccounts.get(), viewModel: viewModel)
+        let viewModel = ChatListViewModel(dcContext: dcAccounts.getSelected(), isArchive: false)
+        let root = ChatListController(dcContext: dcAccounts.getSelected(), viewModel: viewModel)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
@@ -65,7 +65,7 @@ class AppCoordinator {
     init(window: UIWindow, dcAccounts: DcAccounts) {
         self.window = window
         self.dcAccounts = dcAccounts
-        let dcContext = dcAccounts.get()
+        let dcContext = dcAccounts.getSelected()
         initializeRootController()
 
         let lastActiveTab = appStateRestorer.restoreLastActiveTab()
@@ -107,7 +107,7 @@ class AppCoordinator {
     }
 
     func initializeRootController() {
-        if dcAccounts.get().isConfigured() {
+        if dcAccounts.getSelected().isConfigured() {
             presentTabBarController()
         } else {
             presentWelcomeController()
@@ -122,7 +122,7 @@ class AppCoordinator {
         // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
         // to avoid appearing an old number of a previous installation, we reset the counter manually.
         // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
-        NotificationManager.updateApplicationIconBadge(dcContext: dcAccounts.get(), reset: true)
+        NotificationManager.updateApplicationIconBadge(dcContext: dcAccounts.getSelected(), reset: true)
     }
 
     func presentTabBarController() {

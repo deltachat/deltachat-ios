@@ -86,7 +86,7 @@ public class DcEventHandler {
             dcContext.logger?.warning("network: \(event.data2String)")
 
         case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
-            if dcContext.id != dcAccounts.get().id {
+            if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("change: \(id)")
@@ -106,7 +106,7 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_MSGS_NOTICED:
-            if dcContext.id != dcAccounts.get().id {
+            if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             let nc = NotificationCenter.default
@@ -121,7 +121,7 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CHAT_MODIFIED:
-            if dcContext.id != dcAccounts.get().id {
+            if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("chat modified: \(id)")
@@ -136,7 +136,7 @@ public class DcEventHandler {
                 )
             }
         case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
-            if dcContext.id != dcAccounts.get().id {
+            if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("chat ephemeral timer modified: \(id)")
@@ -150,7 +150,7 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_INCOMING_MSG:
-            if dcContext.id != dcAccounts.get().id {
+            if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             let nc = NotificationCenter.default
@@ -173,7 +173,7 @@ public class DcEventHandler {
             dcContext.logger?.info("message delivered: \(data1)-\(data2)")
 
         case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
-            if dcContext.id != dcAccounts.get().id {
+            if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("securejoin inviter progress \(data1)")
@@ -192,7 +192,7 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_SECUREJOIN_JOINER_PROGRESS:
-            if dcContext.id != dcAccounts.get().id {
+            if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("securejoin joiner progress \(data1)")
@@ -210,7 +210,7 @@ public class DcEventHandler {
                 )
             }
         case DC_EVENT_CONTACTS_CHANGED:
-            if dcContext.id != dcAccounts.get().id {
+            if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("contact changed: \(data1)")

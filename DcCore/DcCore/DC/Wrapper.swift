@@ -36,7 +36,7 @@ public class DcAccounts {
         return DcUtils.copyAndFreeArray(inputArray: cAccounts)
     }
 
-    public func get() -> DcContext {
+    public func getSelected() -> DcContext {
         let cPtr = dc_accounts_get_selected_account(accountsPointer)
         return DcContext(contextPointer: cPtr)
     }
@@ -47,7 +47,7 @@ public class DcAccounts {
     }
 
     public func maybeStartIo() {
-        if get().isConfigured() {
+        if getSelected().isConfigured() {
             dc_accounts_start_io(accountsPointer)
         }
     }

@@ -13,7 +13,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
-        self.dcContext = dcAccounts.get()
+        self.dcContext = dcAccounts.getSelected()
         locationManager = CLLocationManager()
         locationManager.distanceFilter = 25
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -26,7 +26,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     public func reloadDcContext() {
-        dcContext = dcAccounts.get()
+        dcContext = dcAccounts.getSelected()
     }
 
     func shareLocation(chatId: Int, duration: Int) {

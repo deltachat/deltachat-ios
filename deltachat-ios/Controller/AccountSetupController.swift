@@ -339,7 +339,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     init(dcAccounts: DcAccounts, editView: Bool) {
         self.editView = editView
         self.dcAccounts = dcAccounts
-        self.dcContext = dcAccounts.get()
+        self.dcContext = dcAccounts.getSelected()
 
         self.sections.append(basicSection)
         self.sections.append(advancedSection)
@@ -778,7 +778,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             guard let self = self else { return }
             appDelegate.locationManager.disableLocationStreamingInAllChats()
             self.dcAccounts.stopIo()
-            self.dcAccounts.removeAccount(id: self.dcAccounts.get().id)
+            self.dcAccounts.removeAccount(id: self.dcAccounts.getSelected().id)
             if let firstAccountId = self.dcAccounts.getAll().first {
                 _ = self.dcAccounts.selectAccount(id: firstAccountId)
             } else {

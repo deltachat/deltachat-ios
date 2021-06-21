@@ -34,7 +34,7 @@ class ShareViewController: SLComposeServiceViewController {
     let logger = SimpleLogger()
     let dcAccounts: DcAccounts = DcAccounts()
     lazy var dcContext: DcContext = {
-        return dcAccounts.get()
+        return dcAccounts.getSelected()
     }()
 
     var selectedChatId: Int?
@@ -95,7 +95,7 @@ class ShareViewController: SLComposeServiceViewController {
             }
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 guard let self = self else { return }
-                self.shareAttachment = ShareAttachment(dcContext: self.dcAccounts.get(), inputItems: self.extensionContext?.inputItems, delegate: self)
+                self.shareAttachment = ShareAttachment(dcContext: self.dcAccounts.getSelected(), inputItems: self.extensionContext?.inputItems, delegate: self)
             }
             reloadConfigurationItems()
             validateContent()
@@ -132,12 +132,12 @@ class ShareViewController: SLComposeServiceViewController {
                 if messages.count == 1 {
                     messages[0].text?.append(self.contentText)
                 } else {
-                    let message = dcAccounts.get().newMessage(viewType: DC_MSG_TEXT)
+                    let message = dcAccounts.getSelected().newMessage(viewType: DC_MSG_TEXT)
                     message.text = self.contentText
                     messages.insert(message, at: 0)
                 }
             }
-            let chatListController = SendingController(chatId: chatId, dcMsgs: messages, dcContext: dcAccounts.get())
+            let chatListController = SendingController(chatId: chatId, dcMsgs: messages, dcContext: dcAccounts.getSelected())
             chatListController.delegate = self
             self.pushConfigurationViewController(chatListController)
         }
@@ -161,7 +161,7 @@ class ShareViewController: SLComposeServiceViewController {
             item?.value = selectedChat?.name
             logger.debug("configurationItems chat name: \(String(describing: selectedChat?.name))")
             item?.tapHandler = {
-                let chatListController = ChatListController(dcContext: self.dcAccounts.get(), chatListDelegate: self)
+                let chatListController = ChatListController(dcContext: self.dcAccounts.getSelected(), chatListDelegate: self)
                 self.pushConfigurationViewController(chatListController)
             }
         } else {

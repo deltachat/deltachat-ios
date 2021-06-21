@@ -54,7 +54,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
-        self.dcContext = dcAccounts.get()
+        self.dcContext = dcAccounts.getSelected()
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }

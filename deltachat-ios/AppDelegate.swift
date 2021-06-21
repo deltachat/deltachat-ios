@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if dcAccounts.getAll().isEmpty {
             dcAccounts.addAccount()
         }
-        dcAccounts.get().logger = DcLogger()
+        dcAccounts.getSelected().logger = DcLogger()
         logger.info("➡️ didFinishLaunchingWithOptions")
 
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -107,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             increaseDebugCounter("notify-remote-launch")
         }
 
-        if dcAccounts.get().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+        if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             registerForNotifications()
         }
 
@@ -473,7 +473,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func reloadDcContext() {
         locationManager.reloadDcContext()
         notificationManager.reloadDcContext()
-        if dcAccounts.get().isConfigured() {
+        if dcAccounts.getSelected().isConfigured() {
             appCoordinator.presentTabBarController()
         } else {
             appCoordinator.presentWelcomeController()
@@ -489,7 +489,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func deleteCurrentAccount() {
-        _ = dcAccounts.removeAccount(id: dcAccounts.get().id)
+        _ = dcAccounts.removeAccount(id: dcAccounts.getSelected().id)
     }
 
     func installEventHandler() {
@@ -523,7 +523,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     private func setStockTranslations() {
-        let dcContext = dcAccounts.get()
+        let dcContext = dcAccounts.getSelected()
         dcContext.setStockTranslation(id: DC_STR_NOMESSAGES, localizationKey: "chat_no_messages")
         dcContext.setStockTranslation(id: DC_STR_SELF, localizationKey: "self")
         dcContext.setStockTranslation(id: DC_STR_DRAFT, localizationKey: "draft")

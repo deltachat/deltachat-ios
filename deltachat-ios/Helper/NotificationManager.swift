@@ -13,14 +13,14 @@ public class NotificationManager {
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
-        self.dcContext = dcAccounts.get()
+        self.dcContext = dcAccounts.getSelected()
         initIncomingMsgsObserver()
         initMsgsNoticedObserver()
     }
 
     public func reloadDcContext() {
         NotificationManager.removeAllNotifications()
-        dcContext = dcAccounts.get()
+        dcContext = dcAccounts.getSelected()
     }
 
     public static func updateApplicationIconBadge(dcContext: DcContext, reset: Bool) {
