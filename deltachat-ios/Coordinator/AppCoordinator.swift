@@ -21,20 +21,16 @@ class AppCoordinator {
     }()
 
     // MARK: - tabbar view handling
-    private var qrNavController = UINavigationController()
-    private var chatsNavController = UINavigationController()
-    private var settingsNavController = UINavigationController()
-    private var tabBarController = UITabBarController()
-    private func createTabBarController() -> UITabBarController {
-        qrNavController = createQrNavigationController()
-        chatsNavController = createChatsNavigationController()
-        settingsNavController = createSettingsNavigationController()
+    lazy var tabBarController: UITabBarController = {
+        let qrNavController = createQrNavigationController()
+        let chatsNavController = createChatsNavigationController()
+        let settingsNavController = createSettingsNavigationController()
         let tabBarController = UITabBarController()
         tabBarController.delegate = appStateRestorer
         tabBarController.viewControllers = [qrNavController, chatsNavController, settingsNavController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
-    }
+    }()
 
     private func createQrNavigationController() -> UINavigationController {
         let root = QrPageController(dcContext: dcAccounts.getSelected())
@@ -90,17 +86,21 @@ class AppCoordinator {
 
     func showChat(chatId: Int, msgId: Int? = nil, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
-        if let rootController = self.chatsNavController.viewControllers.first as? ChatListController {
+
+        if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
             if clearViewControllerStack {
-                self.chatsNavController.popToRootViewController(animated: false)
+                rootController.popToRootViewController(animated: false)
             }
-            rootController.showChat(chatId: chatId, highlightedMsg: msgId, animated: animated)
+            if let controller = rootController.viewControllers.first as? ChatListController {
+                controller.showChat(chatId: chatId, highlightedMsg: msgId, animated: animated)
+            }
         }
     }
 
     func handleQRCode(_ code: String) {
         showTab(index: qrTab)
-        if let topViewController = qrNavController.topViewController,
+        if let navController = self.tabBarController.selectedViewController as? UINavigationController,
+           let topViewController = navController.topViewController,
             let qrPageController = topViewController as? QrPageController {
             qrPageController.handleQrCode(code)
         }
@@ -126,14 +126,21 @@ class AppCoordinator {
     }
 
     func presentTabBarController() {
-        window.rootViewController = createTabBarController()
+        window.rootViewController = tabBarController
         showTab(index: chatsTab)
         window.makeKeyAndVisible()
     }
 
     func popTabsToRootViewControllers() {
-        qrNavController.popToRootViewController(animated: false)
-        chatsNavController.popToRootViewController(animated: false)
-        settingsNavController.popToRootViewController(animated: false)
+        self.tabBarController.viewControllers?.forEach { controller in
+            if let navController = controller as? UINavigationController {
+                navController.popToRootViewController(animated: false)
+            }
+        }
+    }
+
+    func resetTabBarRootViewControllers() {
+        self.tabBarController.setViewControllers([createQrNavigationController(), createChatsNavigationController(), createSettingsNavigationController()], animated: false)
+        presentTabBarController()
     }
 }

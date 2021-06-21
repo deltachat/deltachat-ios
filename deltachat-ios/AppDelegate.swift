@@ -475,7 +475,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         locationManager.reloadDcContext()
         notificationManager.reloadDcContext()
         if dcAccounts.getSelected().isConfigured() {
-            appCoordinator.presentTabBarController()
+            appCoordinator.resetTabBarRootViewControllers()
         } else {
             appCoordinator.presentWelcomeController()
         }
