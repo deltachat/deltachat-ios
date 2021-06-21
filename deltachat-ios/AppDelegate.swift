@@ -459,15 +459,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         guard let databaseLocation = databaseHelper.updateDatabaseLocation() else {
             fatalError("Database could not be opened")
         }
-        dcContext.openDatabase(dbFile: databaseLocation)
-        if dcContext.isConfigured() {
-            dcContext.closeDatabase()
-            if dcAccounts.migrate(dbLocation: databaseLocation) == 0 {
-                fatalError("Account could not be migrated")
-                // TODO: show error message in UI
-            }
-            databaseHelper.clearUnmanagedAccountData()
+
+        if databaseHelper.unmanagedDatabaseLocation == nil {
+            return
         }
+
+        if dcAccounts.migrate(dbLocation: databaseLocation) == 0 {
+            fatalError("Account could not be migrated")
+            // TODO: show error message in UI
+        }
+        databaseHelper.clearUnmanagedAccountData()
     }
 
     func reloadDcContext() {

@@ -33,20 +33,24 @@ public class DatabaseHelper {
         return URL(fileURLWithPath: paths[0], isDirectory: true)
     }
 
-    public var currentDatabaseLocation: String {
+    public var unmanagedDatabaseLocation: String? {
         let filemanager = FileManager.default
         if filemanager.fileExists(atPath: localDbFile) {
             return localDbFile
+        } else if filemanager.fileExists(atPath: sharedDbFile) {
+            return sharedDbFile
         }
-        return sharedDbFile
+        return nil
     }
 
-    var currentBlobsDirLocation: String {
+    var unmanagedBlobsDirLocation: String? {
         let filemanager = FileManager.default
         if filemanager.fileExists(atPath: localDbBlobsDir) {
             return localDbBlobsDir
+        } else if filemanager.fileExists(atPath: sharedDbBlobsDir) {
+            return sharedDbBlobsDir
         }
-        return sharedDbBlobsDir
+        return nil
     }
 
     var dcLogger: Logger?
@@ -55,7 +59,8 @@ public class DatabaseHelper {
         self.dcLogger = dcLogger
     }
 
-    func clearDbBlobsDir(at path: String) {
+    func clearDbBlobsDir(at path: String?) {
+        guard let path = path else { return }
         let fileManager = FileManager.default
         do {
             if fileManager.fileExists(atPath: path) {
@@ -71,7 +76,8 @@ public class DatabaseHelper {
         }
     }
 
-    func clearDb(at path: String) {
+    func clearDb(at path: String?) {
+        guard let path = path else { return }
         let filemanager = FileManager.default
         if filemanager.fileExists(atPath: path) {
             do {
@@ -83,8 +89,8 @@ public class DatabaseHelper {
     }
 
     public func clearUnmanagedAccountData() {
-        clearDb(at: currentDatabaseLocation)
-        clearDbBlobsDir(at: currentBlobsDirLocation)
+        clearDb(at: unmanagedDatabaseLocation)
+        clearDbBlobsDir(at: unmanagedBlobsDirLocation)
     }
 
     func moveBlobsFolder() {
