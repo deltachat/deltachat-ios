@@ -119,9 +119,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
             dcAccounts.stopIo()
-            let accountId = dcAccounts.addAccount()
+            let accountId = dcAccounts.add()
             if accountId != 0 {
-                self.dcContext = dcAccounts.getAccount(id: accountId)
+                self.dcContext = dcAccounts.get(id: accountId)
             }
             dcContext.configure()
         } else {

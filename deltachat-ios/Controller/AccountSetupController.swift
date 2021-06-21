@@ -778,12 +778,12 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             guard let self = self else { return }
             appDelegate.locationManager.disableLocationStreamingInAllChats()
             self.dcAccounts.stopIo()
-            self.dcAccounts.removeAccount(id: self.dcAccounts.getSelected().id)
+            self.dcAccounts.remove(id: self.dcAccounts.getSelected().id)
             if let firstAccountId = self.dcAccounts.getAll().first {
-                _ = self.dcAccounts.selectAccount(id: firstAccountId)
+                _ = self.dcAccounts.select(id: firstAccountId)
             } else {
-                let accountId = self.dcAccounts.addAccount()
-                _ = self.dcAccounts.selectAccount(id: accountId)
+                let accountId = self.dcAccounts.add()
+                _ = self.dcAccounts.select(id: accountId)
             }
             appDelegate.reloadDcContext()
             appDelegate.installEventHandler()

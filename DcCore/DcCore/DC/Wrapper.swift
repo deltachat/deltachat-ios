@@ -18,15 +18,15 @@ public class DcAccounts {
         accountsPointer = nil
     }
 
-    public func migrateAccount(dbLocation: String) -> Int {
+    public func migrate(dbLocation: String) -> Int {
         return Int(dc_accounts_migrate_account(accountsPointer, dbLocation))
     }
 
-    public func addAccount() -> Int {
+    public func add() -> Int {
         return Int(dc_accounts_add_account(accountsPointer))
     }
 
-    public func getAccount(id: Int) -> DcContext {
+    public func get(id: Int) -> DcContext {
         let contextPointer = dc_accounts_get_account(accountsPointer, UInt32(id))
         return DcContext(contextPointer: contextPointer)
     }
@@ -56,11 +56,11 @@ public class DcAccounts {
         dc_accounts_stop_io(accountsPointer)
     }
 
-    public func selectAccount(id: Int) -> Bool {
+    public func select(id: Int) -> Bool {
         return dc_accounts_select_account(accountsPointer, UInt32(id)) == 1
     }
 
-    public func removeAccount(id: Int) -> Bool {
+    public func remove(id: Int) -> Bool {
         return dc_accounts_remove_account(accountsPointer, UInt32(id)) == 1
     }
 

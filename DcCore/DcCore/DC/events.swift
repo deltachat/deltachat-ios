@@ -23,7 +23,7 @@ public class DcEventHandler {
         let id = event.id
         let data1 = event.data1Int
         let data2 = event.data2Int
-        let dcContext = dcAccounts.getAccount(id: event.accountId)
+        let dcContext = dcAccounts.get(id: event.accountId)
 
         if id >= DC_EVENT_ERROR && id <= 499 {
             let s = event.data2String

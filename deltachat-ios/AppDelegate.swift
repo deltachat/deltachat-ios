@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcAccounts.openDatabase()
         migrateToDcAccounts()
         if dcAccounts.getAll().isEmpty {
-            dcAccounts.addAccount()
+            dcAccounts.add()
         }
         dcAccounts.getSelected().logger = DcLogger()
         logger.info("➡️ didFinishLaunchingWithOptions")
@@ -462,7 +462,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.openDatabase(dbFile: databaseLocation)
         if dcContext.isConfigured() {
             dcContext.closeDatabase()
-            if dcAccounts.migrateAccount(dbLocation: databaseLocation) == 0 {
+            if dcAccounts.migrate(dbLocation: databaseLocation) == 0 {
                 fatalError("Account could not be migrated")
                 // TODO: show error message in UI
             }
@@ -489,7 +489,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func deleteCurrentAccount() {
-        _ = dcAccounts.removeAccount(id: dcAccounts.getSelected().id)
+        _ = dcAccounts.remove(id: dcAccounts.getSelected().id)
     }
 
     func installEventHandler() {
