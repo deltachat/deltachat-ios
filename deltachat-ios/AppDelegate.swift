@@ -175,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
-        closeDatabase()
+        dcAccounts.closeDatabase()
         reachability.stopNotifier()
     }
 
@@ -478,14 +478,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } else {
             appCoordinator.presentWelcomeController()
         }
-    }
-
-    func openDatabase() {
-        dcAccounts.openDatabase()
-    }
-    
-    func closeDatabase() {
-        dcAccounts.closeDatabase()
     }
 
     func deleteCurrentAccount() {
