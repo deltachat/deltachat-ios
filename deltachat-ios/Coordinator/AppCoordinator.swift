@@ -140,7 +140,9 @@ class AppCoordinator {
     }
 
     func resetTabBarRootViewControllers() {
-        self.tabBarController.setViewControllers([createQrNavigationController(), createChatsNavigationController(), createSettingsNavigationController()], animated: false)
+        self.tabBarController.setViewControllers([createQrNavigationController(),
+                                                  createChatsNavigationController(),
+                                                  createSettingsNavigationController()], animated: false)
         presentTabBarController()
     }
 }
