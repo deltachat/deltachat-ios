@@ -452,23 +452,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func migrateToDcAccounts() {
         let dcContext = DcContext()
-
-        // first database migration to shared container, can be removed at some point
-        // implemented in April 2020 (https://github.com/deltachat/deltachat-ios/pull/612)
-        let databaseHelper = DatabaseHelper(dcLogger: dcContext.logger)
-        guard let databaseLocation = databaseHelper.updateDatabaseLocation() else {
-            fatalError("Database could not be opened")
+        let dbHelper = DatabaseHelper()
+        if let databaseLocation = dbHelper.unmanagedDatabaseLocation,
+           dcAccounts.migrate(dbLocation: databaseLocation) == 0 {
+                fatalError("Account could not be migrated")
+                // TODO: show error message in UI
         }
-
-        if databaseHelper.unmanagedDatabaseLocation == nil {
-            return
-        }
-
-        if dcAccounts.migrate(dbLocation: databaseLocation) == 0 {
-            fatalError("Account could not be migrated")
-            // TODO: show error message in UI
-        }
-        databaseHelper.clearUnmanagedAccountData()
     }
 
     func reloadDcContext() {
