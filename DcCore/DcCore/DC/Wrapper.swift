@@ -316,20 +316,6 @@ public class DcContext {
         return "ErrGetContactEncrInfo"
     }
 
-    public func openDatabase(dbFile: String) {
-        var version = ""
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            version += " " + appVersion
-        }
-
-        contextPointer = dc_context_new("iOS" + version, dbFile, nil)
-    }
-
-    public func closeDatabase() {
-        dc_context_unref(contextPointer)
-        contextPointer = nil
-    }
-
     public func setStockTranslation(id: Int32, localizationKey: String) {
         dc_set_stock_translation(contextPointer, UInt32(id), String.localized(localizationKey))
     }
