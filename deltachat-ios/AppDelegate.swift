@@ -451,7 +451,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - misc.
 
     func migrateToDcAccounts() {
-        let dcContext = DcContext()
         let dbHelper = DatabaseHelper()
         if let databaseLocation = dbHelper.unmanagedDatabaseLocation,
            dcAccounts.migrate(dbLocation: databaseLocation) == 0 {
