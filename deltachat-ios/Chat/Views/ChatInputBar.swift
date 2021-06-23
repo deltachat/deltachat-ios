@@ -49,7 +49,7 @@ public class ChatInputBar: InputBarAccessoryView {
     }
     
     override open func calculateMaxTextViewHeight() -> CGFloat {
-        if traitCollection.verticalSizeClass == .regular {
+        if traitCollection.verticalSizeClass == .regular || UIDevice.current.userInterfaceIdiom == .pad {
             let divisor: CGFloat = 3
             var subtract: CGFloat = 0
             subtract += hasDraft ? 90 : 0
@@ -60,7 +60,7 @@ public class ChatInputBar: InputBarAccessoryView {
             }
             return height
         } else {
-            // horizontal layout
+            // landscape phone layout
             let height = UIScreen.main.bounds.height - keyboardHeight - 12
             return height
         }
@@ -105,7 +105,9 @@ public class ChatInputBar: InputBarAccessoryView {
 
     private func updateTextViewHeight() {
         maxTextViewHeight = calculateMaxTextViewHeight()
-        if keyboardHeight > 0, UIApplication.shared.statusBarOrientation.isLandscape {
+        if keyboardHeight > 0,
+           UIApplication.shared.statusBarOrientation.isLandscape,
+           UIDevice.current.userInterfaceIdiom == .phone {
             setShouldForceMaxTextViewHeight(to: true, animated: false)
         } else if shouldForceTextViewMaxHeight {
             setShouldForceMaxTextViewHeight(to: false, animated: false)
