@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         installEventHandler()
-        RelayHelper.setup(dcAccounts)
+        relayHelper = RelayHelper.setup(dcAccounts.getSelected())
         appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)
         locationManager = LocationManager(dcAccounts: dcAccounts)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
@@ -463,6 +463,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func reloadDcContext() {
         locationManager.reloadDcContext()
         notificationManager.reloadDcContext()
+        RelayHelper.sharedInstance.cancel()
+        _ = RelayHelper.setup(dcAccounts.getSelected())
         if dcAccounts.getSelected().isConfigured() {
             appCoordinator.resetTabBarRootViewControllers()
         } else {
