@@ -12,8 +12,9 @@ class RelayHelper {
         }
     }
 
-    class func setup(_ dcContext: DcContext) {
+    class func setup(_ dcContext: DcContext) -> RelayHelper {
         RelayHelper.dcContext = dcContext
+        return sharedInstance
     }
 
     func setForwardMessage(messageId: Int) {

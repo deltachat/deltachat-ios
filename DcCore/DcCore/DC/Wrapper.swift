@@ -2,6 +2,95 @@ import Foundation
 import UIKit
 import AVFoundation
 
+public class DcAccounts {
+
+    /// The application group identifier defines a group of apps or extensions that have access to a shared container.
+    /// The ID is created in the apple developer portal and can be changed there.
+    let applicationGroupIdentifier = "group.chat.delta.ios"
+    var accountsPointer: OpaquePointer?
+
+    public init() {
+    }
+
+    deinit {
+        if accountsPointer == nil { return }
+        dc_accounts_unref(accountsPointer)
+        accountsPointer = nil
+    }
+
+    public func migrate(dbLocation: String) -> Int {
+        return Int(dc_accounts_migrate_account(accountsPointer, dbLocation))
+    }
+
+    public func add() -> Int {
+        return Int(dc_accounts_add_account(accountsPointer))
+    }
+
+    public func get(id: Int) -> DcContext {
+        let contextPointer = dc_accounts_get_account(accountsPointer, UInt32(id))
+        return DcContext(contextPointer: contextPointer)
+    }
+
+    public func getAll() -> [Int] {
+        let cAccounts = dc_accounts_get_all(accountsPointer)
+        return DcUtils.copyAndFreeArray(inputArray: cAccounts)
+    }
+
+    public func getSelected() -> DcContext {
+        let cPtr = dc_accounts_get_selected_account(accountsPointer)
+        return DcContext(contextPointer: cPtr)
+    }
+
+    // call maybeNetwork() from a worker thread.
+    public func maybeNetwork() {
+        dc_accounts_maybe_network(accountsPointer)
+    }
+
+    public func maybeStartIo() {
+        if getSelected().isConfigured() {
+            dc_accounts_start_io(accountsPointer)
+        }
+    }
+
+    public func stopIo() {
+        dc_accounts_stop_io(accountsPointer)
+    }
+
+    public func select(id: Int) -> Bool {
+        return dc_accounts_select_account(accountsPointer, UInt32(id)) == 1
+    }
+
+    public func remove(id: Int) -> Bool {
+        return dc_accounts_remove_account(accountsPointer, UInt32(id)) == 1
+    }
+
+    public func importAccount(filePath: String) -> Int {
+        return Int(dc_accounts_import_account(accountsPointer, filePath))
+    }
+
+    public func getEventEmitter() -> DcAccountsEventEmitter {
+        let eventEmitterPointer = dc_accounts_get_event_emitter(accountsPointer)
+        return DcAccountsEventEmitter(eventEmitterPointer: eventEmitterPointer)
+    }
+
+    public func openDatabase() {
+        var version = ""
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            version += " " + appVersion
+        }
+
+        if var sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
+            sharedDbLocation.appendPathComponent("accounts", isDirectory: true)
+            accountsPointer = dc_accounts_new("iOS\(version)", sharedDbLocation.path)
+        }
+    }
+
+    public func closeDatabase() {
+        dc_accounts_unref(accountsPointer)
+        accountsPointer = nil
+    }
+}
+
 public class DcContext {
 
     public var logger: Logger?
@@ -12,11 +101,19 @@ public class DcContext {
 
     public init() {
     }
+
+    public init(contextPointer: OpaquePointer?) {
+        self.contextPointer = contextPointer
+    }
     
     deinit {
         if contextPointer == nil { return } // avoid a warning about a "careless call"
         dc_context_unref(contextPointer)
         contextPointer = nil
+    }
+
+    public var id: Int {
+        return Int(dc_get_id(contextPointer))
     }
 
     // viewType: one of DC_MSG_*
@@ -217,38 +314,6 @@ public class DcContext {
             return switftString
         }
         return "ErrGetContactEncrInfo"
-    }
-
-    public func interruptIdle() {
-    }
-
-    public func getEventEmitter() -> DcEventEmitter {
-        let eventEmitterPointer = dc_get_event_emitter(contextPointer)
-        return DcEventEmitter(eventEmitterPointer: eventEmitterPointer)
-    }
-
-    public func openDatabase(dbFile: String) {
-        var version = ""
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            version += " " + appVersion
-        }
-
-        contextPointer = dc_context_new("iOS" + version, dbFile, nil)
-    }
-
-    public func closeDatabase() {
-        dc_context_unref(contextPointer)
-        contextPointer = nil
-    }
-
-    public func maybeStartIo() {
-        if isConfigured() {
-            dc_start_io(contextPointer)
-        }
-    }
-
-    public func stopIo() {
-        dc_stop_io(contextPointer)
     }
 
     public func setStockTranslation(id: Int32, localizationKey: String) {
@@ -462,11 +527,6 @@ public class DcContext {
         return messageIds
     }
 
-    // call dc_maybe_network() from a worker thread.
-    public func maybeNetwork() {
-        dc_maybe_network(contextPointer)
-    }
-
     // also, there is no much worth in adding a separate function or so
     // for each config option - esp. if they are just forwarded to the core
     // and set/get only at one line of code each.
@@ -596,7 +656,8 @@ public class DcContext {
     }
 }
 
-public class DcEventEmitter {
+
+public class DcAccountsEventEmitter {
     private var eventEmitterPointer: OpaquePointer?
 
     // takes ownership of specified pointer
@@ -605,12 +666,12 @@ public class DcEventEmitter {
     }
 
     public func getNextEvent() -> DcEvent? {
-        guard let eventPointer = dc_get_next_event(eventEmitterPointer) else { return nil }
+        guard let eventPointer = dc_accounts_get_next_event(eventEmitterPointer) else { return nil }
         return DcEvent(eventPointer: eventPointer)
     }
 
     deinit {
-        dc_event_emitter_unref(eventEmitterPointer)
+        dc_accounts_event_emitter_unref(eventEmitterPointer)
     }
 }
 
@@ -624,6 +685,10 @@ public class DcEvent {
 
     deinit {
         dc_event_unref(eventPointer)
+    }
+
+    public var accountId: Int {
+        return Int(dc_event_get_account_id(eventPointer))
     }
 
     public var id: Int32 {

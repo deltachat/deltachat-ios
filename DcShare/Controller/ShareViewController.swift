@@ -31,12 +31,12 @@ class ShareViewController: SLComposeServiceViewController {
         }
     }
 
-    lazy var dbHelper: DatabaseHelper = {
-       return DatabaseHelper(dcContext: dcContext)
+    let logger = SimpleLogger()
+    let dcAccounts: DcAccounts = DcAccounts()
+    lazy var dcContext: DcContext = {
+        return dcAccounts.getSelected()
     }()
 
-    let logger = SimpleLogger()
-    let dcContext: DcContext = DcContext()
     var selectedChatId: Int?
     var selectedChat: DcChat?
     var shareAttachment: ShareAttachment?
@@ -77,27 +77,25 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     override func presentationAnimationDidFinish() {
-        if dbHelper.currentDatabaseLocation == dbHelper.sharedDbFile {
-            dcContext.logger = self.logger
-            dcContext.openDatabase(dbFile: dbHelper.sharedDbFile)
-            isAccountConfigured = dcContext.isConfigured()
-            if isAccountConfigured {
-                if #available(iOSApplicationExtension 13.0, *) {
-                   if let intent = self.extensionContext?.intent as? INSendMessageIntent, let chatId = Int(intent.conversationIdentifier ?? "") {
-                       selectedChatId = chatId
-                   }
-                }
+        dcAccounts.openDatabase()
+        dcContext.logger = self.logger
+        isAccountConfigured = dcContext.isConfigured()
+        if isAccountConfigured {
+            if #available(iOSApplicationExtension 13.0, *) {
+               if let intent = self.extensionContext?.intent as? INSendMessageIntent, let chatId = Int(intent.conversationIdentifier ?? "") {
+                   selectedChatId = chatId
+               }
+            }
 
-                if selectedChatId == nil {
-                    selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
-                }
-                if let chatId = selectedChatId {
-                    selectedChat = dcContext.getChat(chatId: chatId)
-                }
-                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                    guard let self = self else { return }
-                    self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
-                }
+            if selectedChatId == nil {
+                selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+            }
+            if let chatId = selectedChatId {
+                selectedChat = dcContext.getChat(chatId: chatId)
+            }
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                guard let self = self else { return }
+                self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
             }
             reloadConfigurationItems()
             validateContent()
@@ -146,9 +144,7 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     func quit() {
-        if dbHelper.currentDatabaseLocation == dbHelper.sharedDbFile {
-            dcContext.closeDatabase()
-        }
+        dcAccounts.closeDatabase()
 
         // Inform the host that we're done, so it un-blocks its UI.
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)

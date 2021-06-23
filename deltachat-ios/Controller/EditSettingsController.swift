@@ -3,6 +3,7 @@ import DcCore
 
 class EditSettingsController: UITableViewController, MediaPickerDelegate {
     private let dcContext: DcContext
+    private let dcAccounts: DcAccounts
 
     private let section1 = 0
     private let section1Name = 0
@@ -51,8 +52,9 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         return cell
     }()
 
-    init(dcContext: DcContext) {
-        self.dcContext = dcContext
+    init(dcAccounts: DcAccounts) {
+        self.dcAccounts = dcAccounts
+        self.dcContext = dcAccounts.getSelected()
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }
@@ -118,7 +120,7 @@ class EditSettingsController: UITableViewController, MediaPickerDelegate {
         if cell.tag == tagAccountSettingsCell {
             tableView.deselectRow(at: indexPath, animated: false)
             guard let nc = navigationController else { return }
-            let accountSetupVC = AccountSetupController(dcContext: dcContext, editView: true)
+            let accountSetupVC = AccountSetupController(dcAccounts: dcAccounts, editView: true)
             nc.pushViewController(accountSetupVC, animated: true)
         }
     }

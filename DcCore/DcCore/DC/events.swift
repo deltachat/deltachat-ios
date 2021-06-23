@@ -13,16 +13,17 @@ public let dcEphemeralTimerModified =  Notification.Name(rawValue: "dcEphemeralT
 public let dcMsgsNoticed = Notification.Name(rawValue: "dcMsgsNoticed")
 
 public class DcEventHandler {
-    let dcContext: DcContext
+    let dcAccounts: DcAccounts
 
-    public init(dcContext: DcContext) {
-        self.dcContext = dcContext
+    public init(dcAccounts: DcAccounts) {
+        self.dcAccounts = dcAccounts
     }
 
     public func handleEvent(event: DcEvent) {
         let id = event.id
         let data1 = event.data1Int
         let data2 = event.data2Int
+        let dcContext = dcAccounts.get(id: event.accountId)
 
         if id >= DC_EVENT_ERROR && id <= 499 {
             let s = event.data2String
@@ -68,7 +69,7 @@ public class DcEventHandler {
 
         case DC_EVENT_IMEX_PROGRESS:
             let nc = NotificationCenter.default
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async {
                 nc.post(
                     name: dcNotificationImexProgress,
                     object: nil,
@@ -76,7 +77,7 @@ public class DcEventHandler {
                         "progress": Int(data1),
                         "error": Int(data1) == 0,
                         "done": Int(data1) == 1000,
-                        "errorMessage": self?.dcContext.lastErrorString as Any,
+                        "errorMessage": dcContext.lastErrorString as Any,
                     ]
                 )
             }
@@ -85,6 +86,9 @@ public class DcEventHandler {
             dcContext.logger?.warning("network: \(event.data2String)")
 
         case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             dcContext.logger?.info("change: \(id)")
 
             let nc = NotificationCenter.default
@@ -102,6 +106,9 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_MSGS_NOTICED:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
                 nc.post(
@@ -114,6 +121,9 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CHAT_MODIFIED:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             dcContext.logger?.info("chat modified: \(id)")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
@@ -126,6 +136,9 @@ public class DcEventHandler {
                 )
             }
         case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             dcContext.logger?.info("chat ephemeral timer modified: \(id)")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
@@ -137,6 +150,9 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_INCOMING_MSG:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             let nc = NotificationCenter.default
             let userInfo = [
                 "message_id": Int(data2),
@@ -157,6 +173,9 @@ public class DcEventHandler {
             dcContext.logger?.info("message delivered: \(data1)-\(data2)")
 
         case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             dcContext.logger?.info("securejoin inviter progress \(data1)")
 
             let nc = NotificationCenter.default
@@ -173,6 +192,9 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_SECUREJOIN_JOINER_PROGRESS:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             dcContext.logger?.info("securejoin joiner progress \(data1)")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
@@ -188,6 +210,9 @@ public class DcEventHandler {
                 )
             }
         case DC_EVENT_CONTACTS_CHANGED:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             dcContext.logger?.info("contact changed: \(data1)")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {

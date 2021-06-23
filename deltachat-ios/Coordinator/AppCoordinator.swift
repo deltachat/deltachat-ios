@@ -7,7 +7,7 @@ import DcCore
 class AppCoordinator {
 
     private let window: UIWindow
-    private let dcContext: DcContext
+    private let dcAccounts: DcAccounts
     private let qrTab = 0
     public  let chatsTab = 1
     private let settingsTab = 2
@@ -21,7 +21,10 @@ class AppCoordinator {
     }()
 
     // MARK: - tabbar view handling
-    private lazy var tabBarController: UITabBarController = {
+    lazy var tabBarController: UITabBarController = {
+        let qrNavController = createQrNavigationController()
+        let chatsNavController = createChatsNavigationController()
+        let settingsNavController = createSettingsNavigationController()
         let tabBarController = UITabBarController()
         tabBarController.delegate = appStateRestorer
         tabBarController.viewControllers = [qrNavController, chatsNavController, settingsNavController]
@@ -29,41 +32,37 @@ class AppCoordinator {
         return tabBarController
     }()
 
-    private lazy var qrNavController: UINavigationController = {
-        let root = QrPageController(dcContext: dcContext)
+    private func createQrNavigationController() -> UINavigationController {
+        let root = QrPageController(dcContext: dcAccounts.getSelected())
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         return nav
-    }()
+    }
 
-    private lazy var chatsNavController: UINavigationController = {
-        let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: false)
-        let root = ChatListController(dcContext: dcContext, viewModel: viewModel)
+    private func createChatsNavigationController() -> UINavigationController {
+        let viewModel = ChatListViewModel(dcContext: dcAccounts.getSelected(), isArchive: false)
+        let root = ChatListController(dcContext: dcAccounts.getSelected(), viewModel: viewModel)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
         return nav
-    }()
+    }
 
-    private lazy var settingsNavController: UINavigationController = {
-        let root = SettingsViewController(dcContext: dcContext)
+    private func createSettingsNavigationController() -> UINavigationController {
+        let root = SettingsViewController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "settings")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
         return nav
-    }()
+    }
 
     // MARK: - misc
-    init(window: UIWindow, dcContext: DcContext) {
+    init(window: UIWindow, dcAccounts: DcAccounts) {
         self.window = window
-        self.dcContext = dcContext
-
-        if dcContext.isConfigured() {
-            presentTabBarController()
-        } else {
-            presentWelcomeController()
-        }
+        self.dcAccounts = dcAccounts
+        let dcContext = dcAccounts.getSelected()
+        initializeRootController()
 
         let lastActiveTab = appStateRestorer.restoreLastActiveTab()
         if lastActiveTab == -1 {
@@ -87,31 +86,43 @@ class AppCoordinator {
 
     func showChat(chatId: Int, msgId: Int? = nil, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
-        if let rootController = self.chatsNavController.viewControllers.first as? ChatListController {
+
+        if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
             if clearViewControllerStack {
-                self.chatsNavController.popToRootViewController(animated: false)
+                rootController.popToRootViewController(animated: false)
             }
-            rootController.showChat(chatId: chatId, highlightedMsg: msgId, animated: animated)
+            if let controller = rootController.viewControllers.first as? ChatListController {
+                controller.showChat(chatId: chatId, highlightedMsg: msgId, animated: animated)
+            }
         }
     }
 
     func handleQRCode(_ code: String) {
         showTab(index: qrTab)
-        if let topViewController = qrNavController.topViewController,
+        if let navController = self.tabBarController.selectedViewController as? UINavigationController,
+           let topViewController = navController.topViewController,
             let qrPageController = topViewController as? QrPageController {
             qrPageController.handleQrCode(code)
         }
     }
 
+    func initializeRootController() {
+        if dcAccounts.getSelected().isConfigured() {
+            presentTabBarController()
+        } else {
+            presentWelcomeController()
+        }
+    }
+
     func presentWelcomeController() {
-        loginNavController.setViewControllers([WelcomeViewController(dcContext: dcContext)], animated: true)
+        loginNavController.setViewControllers([WelcomeViewController(dcAccounts: dcAccounts)], animated: true)
         window.rootViewController = loginNavController
         window.makeKeyAndVisible()
 
         // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
         // to avoid appearing an old number of a previous installation, we reset the counter manually.
         // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
-        NotificationManager.updateApplicationIconBadge(dcContext: dcContext, reset: true)
+        NotificationManager.updateApplicationIconBadge(dcContext: dcAccounts.getSelected(), reset: true)
     }
 
     func presentTabBarController() {
@@ -121,8 +132,17 @@ class AppCoordinator {
     }
 
     func popTabsToRootViewControllers() {
-        qrNavController.popToRootViewController(animated: false)
-        chatsNavController.popToRootViewController(animated: false)
-        settingsNavController.popToRootViewController(animated: false)
+        self.tabBarController.viewControllers?.forEach { controller in
+            if let navController = controller as? UINavigationController {
+                navController.popToRootViewController(animated: false)
+            }
+        }
+    }
+
+    func resetTabBarRootViewControllers() {
+        self.tabBarController.setViewControllers([createQrNavigationController(),
+                                                  createChatsNavigationController(),
+                                                  createSettingsNavigationController()], animated: false)
+        presentTabBarController()
     }
 }
