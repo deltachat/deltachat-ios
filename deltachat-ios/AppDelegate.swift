@@ -58,8 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         dcAccounts.openDatabase()
         migrateToDcAccounts()
-        if dcAccounts.getAll().isEmpty {
-            dcAccounts.add()
+        if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
+           fatalError("Could not initialize a new account.")
         }
         dcAccounts.getSelected().logger = DcLogger()
         logger.info("➡️ didFinishLaunchingWithOptions")
