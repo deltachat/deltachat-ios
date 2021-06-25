@@ -24,6 +24,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case help = 10
         case autodel = 11
         case mediaQuality = 12
+        case switchAccount = 13
     }
 
     private var dcContext: DcContext
@@ -168,6 +169,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    private lazy var switchAccountCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.switchAccount.rawValue
+        cell.actionTitle = String.localized("switch_account")
+        cell.selectionStyle = .default
+        return cell
+    }()
+
     private lazy var helpCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.help.rawValue
@@ -183,7 +192,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let profileSection = SectionConfigs(
             headerTitle: String.localized("pref_profile_info_headline"),
             footerTitle: nil,
-            cells: [profileCell]
+            cells: [profileCell, switchAccountCell]
         )
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
@@ -291,6 +300,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
         case .advanced: showAdvancedDialog()
+        case .switchAccount: showSwitchAccountMenu()
         case .help: showHelp()
         }
     }
@@ -416,6 +426,48 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             SettingsViewController.showDebugToolkit(dcContext: self.dcContext)
         })
         alert.addAction(logAction)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func presentError(message: String) {
+        let error = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        error.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+        present(error, animated: true)
+    }
+
+    private func showSwitchAccountMenu() {
+        let accountIds = dcAccounts.getAll()
+        let selectedAccount = dcAccounts.getSelected()
+
+        // switch account
+        let alert = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
+        for accountId in accountIds {
+            let account = dcAccounts.get(id: accountId)
+            var title = account.addr ?? ""
+            if let displayname = account.displayname {
+                title = "\(displayname) (\(title))"
+            }
+            title += account.configured ? "" : " (not configured)"
+            title = (selectedAccount.id==accountId ? "✔︎ " : "") + title
+            alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                if self.dcAccounts.select(id: accountId) {
+                    // TODO: go to chatlist with new account
+                }
+            }))
+        }
+
+        // add account
+        alert.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
+            // TODO
+        }))
+
+        // delete account
+        if accountIds.count > 1 {
+            alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .default, handler: nil)) // TODO
+        }
+
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
