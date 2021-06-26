@@ -26,7 +26,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private let tagSmtpPasswordCell = 10
     private let tagSmtpSecurityCell = 11
     private let tagCertCheckCell = 12
-    private let tagDeleteAccountCell = 13
     private let tagRestoreCell = 14
     private let tagViewLogCell = 15
 
@@ -46,7 +45,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     let advancedSection = 200
     let restoreSection = 300
     let folderSection = 400
-    let dangerSection = 500
     private var sections = [Int]()
 
     private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
@@ -66,7 +64,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         viewLogCell
     ]
     private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
-    private lazy var dangerCells: [UITableViewCell] = [deleteAccountCell]
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
     private var providerInfoShowing: Bool = false
@@ -112,14 +109,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textLabel?.text = String.localized("import_backup_title")
         cell.accessoryType = .disclosureIndicator
         cell.tag = tagRestoreCell
-        return cell
-    }()
-
-    private lazy var deleteAccountCell: ActionCell = {
-        let cell = ActionCell(frame: .zero)
-        cell.actionTitle = String.localized("delete_account")
-        cell.actionColor = UIColor.red
-        cell.tag = tagDeleteAccountCell
         return cell
     }()
 
@@ -345,7 +334,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         self.sections.append(advancedSection)
         if editView {
             self.sections.append(folderSection)
-            self.sections.append(dangerSection)
         } else {
             self.sections.append(restoreSection)
         }
@@ -412,8 +400,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             return restoreCells.count
         } else if sections[section] == folderSection {
             return folderCells.count
-        } else if sections[section] == dangerSection {
-            return dangerCells.count
         } else {
             return advancedSectionShowing ? advancedSectionCells.count : 1
         }
@@ -424,8 +410,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             return String.localized("login_header")
         } else if sections[section] == folderSection {
             return String.localized("pref_imap_folder_handling")
-        } else if sections[section] == dangerSection {
-            return String.localized("danger")
         } else {
             return nil
         }
@@ -469,8 +453,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             return restoreCells[row]
         } else if sections[section] == folderSection {
             return folderCells[row]
-        } else if sections[section] == dangerSection {
-            return dangerCells[row]
         } else {
             return advancedSectionCells[row]
         }
@@ -489,9 +471,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         case tagRestoreCell:
             tableView.reloadData() // otherwise the disclosureIndicator may stay selected
             restoreBackup()
-        case tagDeleteAccountCell:
-            tableView.deselectRow(at: indexPath, animated: false)
-            deleteAccount()
         case tagAdvancedCell:
             toggleAdvancedSection()
         case tagImapSecurityCell:
@@ -762,35 +741,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             logger.error("no documents directory found")
         }
 
-    }
-
-    private func deleteAccount() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-
-        let alert = UIAlertController(
-            title: String.localized("delete_account_ask"),
-            message: nil,
-            preferredStyle: .safeActionSheet)
-
-        alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
-            guard let self = self else { return }
-            appDelegate.locationManager.disableLocationStreamingInAllChats()
-            self.dcAccounts.stopIo()
-            _ = self.dcAccounts.remove(id: self.dcAccounts.getSelected().id)
-            if let firstAccountId = self.dcAccounts.getAll().first {
-                _ = self.dcAccounts.select(id: firstAccountId)
-            } else {
-                let accountId = self.dcAccounts.add()
-                _ = self.dcAccounts.select(id: accountId)
-            }
-            appDelegate.reloadDcContext()
-            appDelegate.installEventHandler()
-            self.dcAccounts.maybeStartIo()
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-        present(alert, animated: true, completion: nil)
     }
 
     private func handleLoginSuccess() {
