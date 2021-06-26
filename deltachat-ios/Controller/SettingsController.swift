@@ -438,38 +438,52 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     private func showSwitchAccountMenu() {
         let accountIds = dcAccounts.getAll()
-        let selectedAccount = dcAccounts.getSelected()
+        let selectedAccountId = dcAccounts.getSelected().id
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
         // switch account
-        let alert = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
+        let menu = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
         for accountId in accountIds {
             let account = dcAccounts.get(id: accountId)
-            var title = account.addr ?? ""
-            if let displayname = account.displayname {
-                title = "\(displayname) (\(title))"
-            }
-            title += account.configured ? "" : " (not configured)"
-            title = (selectedAccount.id==accountId ? "✔︎ " : "") + title
-            alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
-                if self.dcAccounts.select(id: accountId) {
-                    // TODO: go to chatlist with new account
-                }
+            var title = account.displaynameAndAddr
+            title = (selectedAccountId==accountId ? "✔︎ " : "") + title
+            menu.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
+                _ = self?.dcAccounts.select(id: accountId)
+                appDelegate.reloadDcContext()
             }))
         }
 
         // add account
-        alert.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
-            // TODO
+        menu.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
+            _ = self?.dcAccounts.add()
+            appDelegate.reloadDcContext()
         }))
 
         // delete account
-        if accountIds.count > 1 {
-            alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .default, handler: nil)) // TODO
-        }
+        menu.addAction(UIAlertAction(title: String.localized("delete_account"), style: .default, handler: { [weak self] _ in
+            let confirm1 = UIAlertController(title: String.localized("delete_account_ask"), message: nil, preferredStyle: .safeActionSheet)
+            confirm1.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
+                guard let self = self else { return }
+                let account = self.dcAccounts.get(id: selectedAccountId)
+                let confirm2 = UIAlertController(title: account.displaynameAndAddr,
+                    message: String.localized("forget_login_confirmation_desktop"), preferredStyle: .alert)
+                confirm2.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+                    guard let self = self else { return }
+                    _ = self.dcAccounts.remove(id: selectedAccountId)
+                    if self.dcAccounts.getAll().isEmpty {
+                        _ = self.dcAccounts.add()
+                    }
+                    appDelegate.reloadDcContext()
+                }))
+                confirm2.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+                self.present(confirm2, animated: true, completion: nil)
+            }))
+            confirm1.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            self?.present(confirm1, animated: true, completion: nil)
+        }))
 
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        menu.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(menu, animated: true, completion: nil)
     }
 
     private func startImex(what: Int32) {

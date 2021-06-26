@@ -538,6 +538,15 @@ public class DcContext {
         set { setConfig("displayname", newValue) }
     }
 
+    public var displaynameAndAddr: String {
+        var ret = addr ?? ""
+        if let displayname = displayname {
+            ret = "\(displayname) (\(ret))"
+        }
+        ret += configured ? "" : " (not configured)"
+        return ret.trimmingCharacters(in: .whitespaces)
+    }
+
     public var selfstatus: String? {
         get { return getConfig("selfstatus") }
         set { setConfig("selfstatus", newValue) }
