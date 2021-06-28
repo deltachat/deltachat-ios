@@ -64,10 +64,6 @@ public class DcAccounts {
         return dc_accounts_remove_account(accountsPointer, UInt32(id)) == 1
     }
 
-    public func importAccount(filePath: String) -> Int {
-        return Int(dc_accounts_import_account(accountsPointer, filePath))
-    }
-
     public func getEventEmitter() -> DcAccountsEventEmitter {
         let eventEmitterPointer = dc_accounts_get_event_emitter(accountsPointer)
         return DcAccountsEventEmitter(eventEmitterPointer: eventEmitterPointer)
