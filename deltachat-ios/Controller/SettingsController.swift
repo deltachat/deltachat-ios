@@ -469,6 +469,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                     message: String.localized("forget_login_confirmation_desktop"), preferredStyle: .alert)
                 confirm2.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
                     guard let self = self else { return }
+                    appDelegate.locationManager.disableLocationStreamingInAllChats()
                     _ = self.dcAccounts.remove(id: selectedAccountId)
                     if self.dcAccounts.getAll().isEmpty {
                         _ = self.dcAccounts.add()
