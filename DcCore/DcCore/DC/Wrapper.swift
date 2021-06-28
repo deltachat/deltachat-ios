@@ -8,6 +8,7 @@ public class DcAccounts {
     /// The ID is created in the apple developer portal and can be changed there.
     let applicationGroupIdentifier = "group.chat.delta.ios"
     var accountsPointer: OpaquePointer?
+    public var logger: Logger?
 
     public init() {
     }
@@ -28,7 +29,7 @@ public class DcAccounts {
 
     public func get(id: Int) -> DcContext {
         let contextPointer = dc_accounts_get_account(accountsPointer, UInt32(id))
-        return DcContext(contextPointer: contextPointer)
+        return DcContext(contextPointer: contextPointer, logger: logger)
     }
 
     public func getAll() -> [Int] {
@@ -38,7 +39,7 @@ public class DcAccounts {
 
     public func getSelected() -> DcContext {
         let cPtr = dc_accounts_get_selected_account(accountsPointer)
-        return DcContext(contextPointer: cPtr)
+        return DcContext(contextPointer: cPtr, logger: logger)
     }
 
     // call maybeNetwork() from a worker thread.
@@ -95,11 +96,9 @@ public class DcContext {
     public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
 
-    public init() {
-    }
-
-    public init(contextPointer: OpaquePointer?) {
+    public init(contextPointer: OpaquePointer?, logger: Logger?) {
         self.contextPointer = contextPointer
+        self.logger = logger
     }
     
     deinit {

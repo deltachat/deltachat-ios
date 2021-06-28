@@ -56,12 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format
         logger.addDestination(console)
 
+        dcAccounts.logger = DcLogger()
         dcAccounts.openDatabase()
         migrateToDcAccounts()
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
            fatalError("Could not initialize a new account.")
         }
-        dcAccounts.getSelected().logger = DcLogger()
         logger.info("➡️ didFinishLaunchingWithOptions")
 
         window = UIWindow(frame: UIScreen.main.bounds)
