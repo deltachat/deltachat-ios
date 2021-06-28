@@ -1,6 +1,7 @@
 import UIKit
 import DcCore
 import QuickLook
+import Intents
 
 class GroupChatDetailViewController: UIViewController {
 
@@ -327,6 +328,7 @@ class GroupChatDetailViewController: UIViewController {
     private func deleteChat() {
         dcContext.deleteChat(chatId: chatId)
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
+        INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
 
         // just pop to viewControllers - we've in chatlist or archive then
         // (no not use `navigationController?` here: popping self will make the reference becoming nil)

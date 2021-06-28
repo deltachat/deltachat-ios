@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import Intents
 
 
 // MARK: - ChatListViewModel
@@ -178,6 +179,7 @@ class ChatListViewModel: NSObject {
     func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
+        INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
     }
 
     func archiveChatToggle(chatId: Int) {

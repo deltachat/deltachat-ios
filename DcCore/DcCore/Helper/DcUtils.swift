@@ -22,7 +22,7 @@ public struct DcUtils {
             let sendMessageIntent = INSendMessageIntent(recipients: nil,
                                                         content: nil,
                                                         speakableGroupName: groupName,
-                                                        conversationIdentifier: "\(chat.id)",
+                                                        conversationIdentifier: "\(context.id).\(chatId)",
                                                         serviceName: nil,
                                                         sender: nil)
 
@@ -34,6 +34,7 @@ public struct DcUtils {
 
             // Donate the intent.
             let interaction = INInteraction(intent: sendMessageIntent, response: nil)
+            interaction.groupIdentifier = "\(context.id)"
             interaction.donate(completion: { error in
                 if error != nil {
                     context.logger?.error(error.debugDescription)
