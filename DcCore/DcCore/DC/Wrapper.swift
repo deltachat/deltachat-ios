@@ -1144,6 +1144,13 @@ public class DcMsg {
         return dc_msg_get_showpadlock(messagePointer) == 1
     }
 
+    public func getVideoChatUrl() -> String {
+        guard let cString = dc_msg_get_videochat_url(messagePointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
 }
 
 public class DcContact {

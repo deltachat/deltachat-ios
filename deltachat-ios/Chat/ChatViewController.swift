@@ -704,6 +704,10 @@ class ChatViewController: UITableViewController {
             message.type == DC_MSG_AUDIO ||
             message.type == DC_MSG_VOICE {
             showMediaGalleryFor(message: message)
+        } else if message.type == DC_MSG_VIDEOCHAT_INVITATION {
+            if let url = NSURL(string: message.getVideoChatUrl()) {
+                UIApplication.shared.open(url as URL)
+            }
         }
         _ = handleUIMenu()
     }
