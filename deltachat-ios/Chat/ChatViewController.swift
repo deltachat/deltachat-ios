@@ -252,6 +252,7 @@ class ChatViewController: UITableViewController {
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: "info")
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
+        tableView.register(VideoInviteCell.self, forCellReuseIdentifier: "video_invite")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
@@ -557,21 +558,29 @@ class ChatViewController: UITableViewController {
         }
 
         let cell: BaseMessageCell
-        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO || message.type == DC_MSG_STICKER {
+        switch Int32(message.type) {
+        case DC_MSG_VIDEOCHAT_INVITATION:
+            let videoInviteCell = tableView.dequeueReusableCell(withIdentifier: "video_invite", for: indexPath) as? VideoInviteCell ?? VideoInviteCell()
+            videoInviteCell.update(dcContext: dcContext, msg: message)
+            return videoInviteCell
+
+        case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
             cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? ImageTextCell ?? ImageTextCell()
-        } else if message.type == DC_MSG_FILE {
+
+        case DC_MSG_FILE:
             if message.isSetupMessage {
                 cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
                 message.text = String.localized("autocrypt_asm_click_body")
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
             }
-        } else if message.type == DC_MSG_AUDIO ||  message.type == DC_MSG_VOICE {
+
+        case DC_MSG_AUDIO, DC_MSG_VOICE:
             let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
                                                                                       for: indexPath) as? AudioMessageCell ?? AudioMessageCell()
             audioController.update(audioMessageCell, with: message.id)
             cell = audioMessageCell
-        } else {
+        default:
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
 

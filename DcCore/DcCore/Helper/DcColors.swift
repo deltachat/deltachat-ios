@@ -13,6 +13,7 @@ public struct DcColors {
                                                           dark: UIColor.init(hexString: "333333"))
     public static let contactCellBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let defaultBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
+    public static let defaultInverseColor = UIColor.themeColor(light: .black, dark: .white)
     public static let sharedChatCellBackgroundColor = UIColor.themeColor(light: white, dark: actionCellBackgroundDark)
     public static let chatBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))

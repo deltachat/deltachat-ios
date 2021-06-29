@@ -316,7 +316,8 @@ public class BaseMessageCell: UITableViewCell {
                                           color: getBackgroundColor(dcContext: dcContext, message: msg))
 
         if !msg.isInfo {
-            bottomLabel.attributedText = getFormattedBottomLine(message: msg)
+            bottomLabel.attributedText = MessageUtils.getFormattedBottomLine(message: msg,
+                                                                             tintColor: !(isTransparent || bottomCompactView) ? DcColors.checkmarkGreen : nil)
         }
 
         if let quoteText = msg.quoteText {
@@ -368,7 +369,7 @@ public class BaseMessageCell: UITableViewCell {
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(getFormattedBottomLineAccessibilityString(message: message))"
+            "\(MessageUtils.getFormattedBottomLineAccessibilityString(message: message))"
     }
 
     func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {
@@ -381,130 +382,6 @@ public class BaseMessageCell: UITableViewCell {
             backgroundColor = DcColors.messageSecondaryColor
         }
         return backgroundColor
-    }
-
-    func getFormattedBottomLineAccessibilityString(message: DcMsg) -> String {
-        let padlock =  message.showPadlock() ? "\(String.localized("encrypted_message")), " : ""
-        let date = "\(message.formattedSentDate()), "
-        let sendingState = "\(getSendingStateString(message.state))"
-        return "\(date) \(padlock) \(sendingState)"
-    }
-
-    func getFormattedBottomLine(message: DcMsg) -> NSAttributedString {
-
-        var paragraphStyle = NSParagraphStyle()
-        if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
-            paragraphStyle = style
-        }
-
-        var timestampAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.preferredFont(for: .caption1, weight: .regular),
-            .foregroundColor: DcColors.grayDateColor,
-            .paragraphStyle: paragraphStyle,
-        ]
-
-        let text = NSMutableAttributedString()
-        if message.fromContactId == Int(DC_CONTACT_ID_SELF) {
-            let tintColor: UIColor? = !(bottomCompactView || isTransparent) ? DcColors.checkmarkGreen : nil
-            if let style = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle {
-                style.alignment = .right
-                timestampAttributes[.paragraphStyle] = style
-                if let tintColor = tintColor {
-                    timestampAttributes[.foregroundColor] = tintColor
-                }
-            }
-
-            text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
-            if message.showPadlock() {
-                attachPadlock(to: text, color: tintColor)
-            }
-            
-            if message.hasLocation {
-                attachLocation(to: text, color: tintColor)
-            }
-
-            attachSendingState(message.state, to: text)
-            return text
-        }
-
-        text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
-        if message.showPadlock() {
-            attachPadlock(to: text)
-        }
-        
-        if message.hasLocation {
-            attachLocation(to: text)
-        }
-        
-        return text
-    }
-
-    private func attachLocation(to text: NSMutableAttributedString, color: UIColor? = nil) {
-        let imageAttachment = NSTextAttachment()
-        
-        if let color = color {
-            imageAttachment.image = UIImage(named: "ic_location")?.maskWithColor(color: color)?.scaleDownImage(toMax: 12)
-        } else {
-            imageAttachment.image = UIImage(named: "ic_location")?.maskWithColor(color: DcColors.grayDateColor)?.scaleDownImage(toMax: 12)
-        }
-        
-        let imageString = NSMutableAttributedString(attachment: imageAttachment)
-        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -0.5], range: NSRange(location: 0, length: 1))
-        text.append(NSAttributedString(string: "\u{202F}"))
-        text.append(imageString)
-    }
-    
-    private func attachPadlock(to text: NSMutableAttributedString, color: UIColor? = nil) {
-        let imageAttachment = NSTextAttachment()
-        if let color = color {
-            imageAttachment.image = UIImage(named: "ic_lock")?.maskWithColor(color: color)?.scaleDownImage(toMax: 15)
-        } else {
-            imageAttachment.image = UIImage(named: "ic_lock")?.scaleDownImage(toMax: 15)
-        }
-        let imageString = NSMutableAttributedString(attachment: imageAttachment)
-        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -0.5], range: NSRange(location: 0, length: 1))
-        text.append(NSAttributedString(string: " "))
-        text.append(imageString)
-    }
-
-    private func getSendingStateString(_ state: Int) -> String {
-        switch Int32(state) {
-        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            return String.localized("a11y_delivery_status_sending")
-        case DC_STATE_OUT_DELIVERED:
-            return String.localized("a11y_delivery_status_delivered")
-        case DC_STATE_OUT_MDN_RCVD:
-            return String.localized("a11y_delivery_status_read")
-        case DC_STATE_OUT_FAILED:
-            return String.localized("a11y_delivery_status_error")
-        default:
-            return ""
-        }
-    }
-
-    private func attachSendingState(_ state: Int, to text: NSMutableAttributedString) {
-        let imageAttachment = NSTextAttachment()
-        var offset: CGFloat = -2
-
-        switch Int32(state) {
-        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 14)?.maskWithColor(color: DcColors.grayDateColor)
-        case DC_STATE_OUT_DELIVERED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))
-            offset = -3.5
-        case DC_STATE_OUT_MDN_RCVD:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))
-            text.append(NSAttributedString(string: "\u{202F}"))
-            offset = -3.5
-        case DC_STATE_OUT_FAILED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 14)
-        default:
-            imageAttachment.image = nil
-        }
-        let imageString = NSMutableAttributedString(attachment: imageAttachment)
-        imageString.addAttributes([.baselineOffset: offset],
-                                  range: NSRange(location: 0, length: 1))
-        text.append(imageString)
     }
 
     override public func prepareForReuse() {
