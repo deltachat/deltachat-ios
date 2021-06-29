@@ -170,7 +170,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             }
         }
 
-        // do not just pop view controller as the stack is empty on restarts
         appDelegate.reloadDcContext()
     }
 }
