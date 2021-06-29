@@ -448,14 +448,16 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             var title = account.displaynameAndAddr
             title = (selectedAccountId==accountId ? "✔︎ " : "") + title
             menu.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
-                _ = self?.dcAccounts.select(id: accountId)
+                guard let self = self else { return }
+                _ = self.dcAccounts.select(id: accountId)
                 appDelegate.reloadDcContext()
             }))
         }
 
         // add account
         menu.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
-            _ = self?.dcAccounts.add()
+            guard let self = self else { return }
+            _ = self.dcAccounts.add()
             appDelegate.reloadDcContext()
         }))
 
