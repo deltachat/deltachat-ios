@@ -24,6 +24,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case help = 10
         case autodel = 11
         case mediaQuality = 12
+        case switchAccount = 13
     }
 
     private var dcContext: DcContext
@@ -168,6 +169,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    private lazy var switchAccountCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.switchAccount.rawValue
+        cell.actionTitle = String.localized("switch_account")
+        cell.selectionStyle = .default
+        return cell
+    }()
+
     private lazy var helpCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.help.rawValue
@@ -183,7 +192,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let profileSection = SectionConfigs(
             headerTitle: String.localized("pref_profile_info_headline"),
             footerTitle: nil,
-            cells: [profileCell]
+            cells: [profileCell, switchAccountCell]
         )
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
@@ -291,6 +300,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
         case .advanced: showAdvancedDialog()
+        case .switchAccount: showSwitchAccountMenu()
         case .help: showHelp()
         }
     }
@@ -418,6 +428,65 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         alert.addAction(logAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func presentError(message: String) {
+        let error = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        error.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+        present(error, animated: true)
+    }
+
+    private func showSwitchAccountMenu() {
+        let accountIds = dcAccounts.getAll()
+        let selectedAccountId = dcAccounts.getSelected().id
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        // switch account
+        let menu = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
+        for accountId in accountIds {
+            let account = dcAccounts.get(id: accountId)
+            var title = account.displaynameAndAddr
+            title = (selectedAccountId==accountId ? "✔︎ " : "") + title
+            menu.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                _ = self.dcAccounts.select(id: accountId)
+                appDelegate.reloadDcContext()
+            }))
+        }
+
+        // add account
+        menu.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            _ = self.dcAccounts.add()
+            appDelegate.reloadDcContext()
+        }))
+
+        // delete account
+        menu.addAction(UIAlertAction(title: String.localized("delete_account"), style: .default, handler: { [weak self] _ in
+            let confirm1 = UIAlertController(title: String.localized("delete_account_ask"), message: nil, preferredStyle: .safeActionSheet)
+            confirm1.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
+                guard let self = self else { return }
+                let account = self.dcAccounts.get(id: selectedAccountId)
+                let confirm2 = UIAlertController(title: account.displaynameAndAddr,
+                    message: String.localized("forget_login_confirmation_desktop"), preferredStyle: .alert)
+                confirm2.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+                    guard let self = self else { return }
+                    appDelegate.locationManager.disableLocationStreamingInAllChats()
+                    _ = self.dcAccounts.remove(id: selectedAccountId)
+                    if self.dcAccounts.getAll().isEmpty {
+                        _ = self.dcAccounts.add()
+                    }
+                    appDelegate.reloadDcContext()
+                }))
+                confirm2.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+                self.present(confirm2, animated: true, completion: nil)
+            }))
+            confirm1.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            self?.present(confirm1, animated: true, completion: nil)
+        }))
+
+        menu.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(menu, animated: true, completion: nil)
     }
 
     private func startImex(what: Int32) {

@@ -77,8 +77,8 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     override func presentationAnimationDidFinish() {
+        dcAccounts.logger = logger
         dcAccounts.openDatabase()
-        dcContext.logger = self.logger
         isAccountConfigured = dcContext.isConfigured()
         if isAccountConfigured {
             if #available(iOSApplicationExtension 13.0, *) {

@@ -38,6 +38,15 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         return view
     }()
 
+    private lazy var canCancel: Bool = {
+        // "cancel" removes selected unconfigured account, so there needs to be at least one other account
+        return dcAccounts.getAll().count >= 2
+    }()
+
+    private lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+    }()
+
     private var qrCodeReader: QrCodeReaderController?
     weak var progressAlert: UIAlertController?
 
@@ -45,7 +54,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
         super.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = String.localized("welcome_desktop")
+        self.navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
         onProgressSuccess = { [weak self] in
             guard let self = self else { return }
             let profileInfoController = ProfileInfoViewController(context: self.dcContext)
@@ -66,6 +75,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
+        if canCancel {
+            navigationItem.leftBarButtonItem = cancelButton
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -142,6 +154,23 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         present(alert, animated: true)
+    }
+
+    @objc private func cancelButtonPressed() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        // take a bit care on account removal:
+        // remove only unconfigured and make sure, there is another account
+        // (normally, both checks are not needed, however, some resilience wrt future program-flow-changes seems to be reasonable here)
+        let selectedAccount = dcAccounts.getSelected()
+        if !selectedAccount.isConfigured() {
+            _ = dcAccounts.remove(id: selectedAccount.id)
+            if self.dcAccounts.getAll().isEmpty {
+                _ = self.dcAccounts.add()
+            }
+        }
+
+        appDelegate.reloadDcContext()
     }
 }
 
