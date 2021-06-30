@@ -634,7 +634,8 @@ class ChatViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if disableWriting || dcContext.getMessage(id: messageIds[indexPath.row]).isInfo {
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        if disableWriting || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION {
             return nil
         }
 
