@@ -1192,8 +1192,8 @@ class ChatViewController: UITableViewController {
                                         }
                                     }
                                 }})
-        alert.addAction(ok)
         alert.addAction(cancel)
+        alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
     }
 
