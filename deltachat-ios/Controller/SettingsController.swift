@@ -539,7 +539,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private func showVideoChatInstance() {
-        let videoInstanceController = SettingsVideoChatInstanceController(dcContext: dcContext)
+        let videoInstanceController = SettingsVideoChatViewController(dcContext: dcContext)
         navigationController?.pushViewController(videoInstanceController, animated: true)
     }
 
