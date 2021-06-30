@@ -25,6 +25,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case autodel = 11
         case mediaQuality = 12
         case switchAccount = 13
+        case videoChat = 14
     }
 
     private var dcContext: DcContext
@@ -97,6 +98,15 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         cell.textLabel?.text = String.localized("pref_outgoing_media_quality")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
+        return cell
+    }()
+
+    private lazy var videoChatInstanceCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.videoChat.rawValue
+        cell.textLabel?.text = String.localized("videochat_instance")
+        cell.accessoryType = .disclosureIndicator
+        cell.detailTextLabel?.text = dcContext.getConfig("webrtc_instance")
         return cell
     }()
 
@@ -197,7 +207,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [contactRequestCell, showEmailsCell, blockedContactsCell, autodelCell, mediaQualityCell, notificationCell, receiptConfirmationCell]
+            cells: [contactRequestCell, showEmailsCell, blockedContactsCell, autodelCell, mediaQualityCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
@@ -294,6 +304,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .blockedContacts: showBlockedContacts()
         case .autodel: showAutodelOptions()
         case .mediaQuality: showMediaQuality()
+        case .videoChat: showVideoChatInstance()
         case .notifications: break
         case .receiptConfirmation: break
         case .autocryptPreferences: break
@@ -507,6 +518,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
         showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
         mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
+        videoChatInstanceCell.detailTextLabel?.text = dcContext.getConfig("webrtc_instance")
         autodelCell.detailTextLabel?.text = autodelSummary()
     }
 
@@ -524,6 +536,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private func  showMediaQuality() {
         let mediaQualityController = MediaQualityController(dcContext: dcContext)
         navigationController?.pushViewController(mediaQualityController, animated: true)
+    }
+
+    private func showVideoChatInstance() {
+        let videoInstanceController = SettingsVideoChatInstanceController(dcContext: dcContext)
+        navigationController?.pushViewController(videoInstanceController, animated: true)
     }
 
     private func showBlockedContacts() {
