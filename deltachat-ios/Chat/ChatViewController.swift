@@ -1187,7 +1187,9 @@ class ChatViewController: UITableViewController {
                                     let messageId = self.dcContext.sendVideoChatInvitation(chatId: self.chatId)
                                     let inviteMessage = self.dcContext.getMessage(id: messageId)
                                     if let url = NSURL(string: inviteMessage.getVideoChatUrl()) {
-                                        UIApplication.shared.open(url as URL)
+                                        DispatchQueue.main.async {
+                                            UIApplication.shared.open(url as URL)
+                                        }
                                     }
                                 }})
         alert.addAction(ok)
