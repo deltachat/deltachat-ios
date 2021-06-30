@@ -990,11 +990,13 @@ class ChatViewController: UITableViewController {
         let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),
                                                     style: isLocationStreaming ? .destructive : .default,
                                                     handler: locationStreamingButtonPressed(_:))
+        let videoChatInvitation = UIAlertAction(title: String.localized("videochat"), style: .default, handler: videoChatButtonPressed(_:))
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
         alert.addAction(voiceMessageAction)
+        alert.addAction(videoChatInvitation)
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             alert.addAction(locationStreamingAction)
         }
@@ -1168,6 +1170,29 @@ class ChatViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+
+    private func videoChatButtonPressed(_ action: UIAlertAction) {
+        let chat = dcContext.getChat(chatId: chatId)
+
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("videochat_invite_user_to_videochat"), chat.name),
+                                      message: String.localized("videochat_invite_user_hint"),
+                                      preferredStyle: .alert)
+        let cancel = UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil)
+        let ok = UIAlertAction(title: String.localized("ok"),
+                               style: .default,
+                               handler: { _ in
+                                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                                    guard let self = self else { return }
+                                    let messageId = self.dcContext.sendVideoChatInvitation(chatId: self.chatId)
+                                    let inviteMessage = self.dcContext.getMessage(id: messageId)
+                                    if let url = NSURL(string: inviteMessage.getVideoChatUrl()) {
+                                        UIApplication.shared.open(url as URL)
+                                    }
+                                }})
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
     }
 
     private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
