@@ -48,7 +48,6 @@ public class VideoInviteCell: UITableViewCell {
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
-        label.text = String.localized("open")
         return label
     }()
 
@@ -112,8 +111,15 @@ public class VideoInviteCell: UITableViewCell {
     }
 
     func update(dcContext: DcContext, msg: DcMsg) {
-        messageLabel.text = msg.text
         let fromContact = dcContext.getContact(id: msg.fromContactId)
+        if msg.isFromCurrentSender {
+            messageLabel.text = String.localized("videochat_you_invited_hint")
+            openLabel.text = String.localized("videochat_tap_to_open")
+
+        } else {
+            messageLabel.text = String.localizedStringWithFormat(String.localized("videochat_contact_invited_hint"), fromContact.displayName)
+            openLabel.text = String.localized("videochat_tap_to_join")
+        }
         avatarView.setName(msg.getSenderName(fromContact))
         avatarView.setColor(fromContact.color)
         if let profileImage = fromContact.profileImage {
