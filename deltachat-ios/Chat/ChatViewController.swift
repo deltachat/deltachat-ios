@@ -252,6 +252,7 @@ class ChatViewController: UITableViewController {
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: "info")
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
+        tableView.register(VideoInviteCell.self, forCellReuseIdentifier: "video_invite")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
@@ -557,21 +558,29 @@ class ChatViewController: UITableViewController {
         }
 
         let cell: BaseMessageCell
-        if message.type == DC_MSG_IMAGE || message.type == DC_MSG_GIF || message.type == DC_MSG_VIDEO || message.type == DC_MSG_STICKER {
+        switch Int32(message.type) {
+        case DC_MSG_VIDEOCHAT_INVITATION:
+            let videoInviteCell = tableView.dequeueReusableCell(withIdentifier: "video_invite", for: indexPath) as? VideoInviteCell ?? VideoInviteCell()
+            videoInviteCell.update(dcContext: dcContext, msg: message)
+            return videoInviteCell
+
+        case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
             cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? ImageTextCell ?? ImageTextCell()
-        } else if message.type == DC_MSG_FILE {
+
+        case DC_MSG_FILE:
             if message.isSetupMessage {
                 cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
                 message.text = String.localized("autocrypt_asm_click_body")
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
             }
-        } else if message.type == DC_MSG_AUDIO ||  message.type == DC_MSG_VOICE {
+
+        case DC_MSG_AUDIO, DC_MSG_VOICE:
             let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
                                                                                       for: indexPath) as? AudioMessageCell ?? AudioMessageCell()
             audioController.update(audioMessageCell, with: message.id)
             cell = audioMessageCell
-        } else {
+        default:
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
 
@@ -625,7 +634,8 @@ class ChatViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if disableWriting || dcContext.getMessage(id: messageIds[indexPath.row]).isInfo {
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        if disableWriting || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION {
             return nil
         }
 
@@ -695,6 +705,10 @@ class ChatViewController: UITableViewController {
             message.type == DC_MSG_AUDIO ||
             message.type == DC_MSG_VOICE {
             showMediaGalleryFor(message: message)
+        } else if message.type == DC_MSG_VIDEOCHAT_INVITATION {
+            if let url = NSURL(string: message.getVideoChatUrl()) {
+                UIApplication.shared.open(url as URL)
+            }
         }
         _ = handleUIMenu()
     }
@@ -982,6 +996,12 @@ class ChatViewController: UITableViewController {
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
         alert.addAction(voiceMessageAction)
+
+        if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
+            let videoChatInvitation = UIAlertAction(title: String.localized("videochat"), style: .default, handler: videoChatButtonPressed(_:))
+            alert.addAction(videoChatInvitation)
+        }
+
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             alert.addAction(locationStreamingAction)
         }
@@ -1157,6 +1177,31 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    private func videoChatButtonPressed(_ action: UIAlertAction) {
+        let chat = dcContext.getChat(chatId: chatId)
+
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("videochat_invite_user_to_videochat"), chat.name),
+                                      message: String.localized("videochat_invite_user_hint"),
+                                      preferredStyle: .alert)
+        let cancel = UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil)
+        let ok = UIAlertAction(title: String.localized("ok"),
+                               style: .default,
+                               handler: { _ in
+                                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                                    guard let self = self else { return }
+                                    let messageId = self.dcContext.sendVideoChatInvitation(chatId: self.chatId)
+                                    let inviteMessage = self.dcContext.getMessage(id: messageId)
+                                    if let url = NSURL(string: inviteMessage.getVideoChatUrl()) {
+                                        DispatchQueue.main.async {
+                                            UIApplication.shared.open(url as URL)
+                                        }
+                                    }
+                                }})
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
+
     private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
         let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
             self.locationStreamingFor(seconds: duration)
@@ -1291,7 +1336,8 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        return !dcContext.getMessage(id: messageIds[indexPath.row]).isInfo
+        let messageId = messageIds[indexPath.row]
+        return !(dcContext.getMessage(id: messageId).isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER)
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
@@ -1306,7 +1352,8 @@ class ChatViewController: UITableViewController {
     // context menu for iOS 13+
     @available(iOS 13, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        if tableView.isEditing {
+        let messageId = messageIds[indexPath.row]
+        if tableView.isEditing || dcContext.getMessage(id: messageId).isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
         return UIContextMenuConfiguration(

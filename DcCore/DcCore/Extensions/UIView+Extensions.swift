@@ -8,35 +8,19 @@ public extension UIView {
     }
 
     func alignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
-        let constraint = self.leadingAnchor.constraint(equalTo: anchor, constant: paddingLeading)
-        if let priority = priority {
-            constraint.priority = priority
-        }
-        constraint.isActive = true
+        _ = constraintAlignLeadingToAnchor(anchor, paddingLeading: paddingLeading, priority: priority)
     }
 
     func alignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
-        let constraint = self.trailingAnchor.constraint(equalTo: anchor, constant: -paddingTrailing)
-        if let priority = priority {
-            constraint.priority = priority
-        }
-        constraint.isActive = true
+        _ = constraintAlignTrailingToAnchor(anchor, paddingTrailing: paddingTrailing, priority: priority)
     }
 
     func alignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
-        let constraint = self.topAnchor.constraint(equalTo: anchor, constant: paddingTop)
-        if let priority = priority {
-            constraint.priority = priority
-        }
-        constraint.isActive = true
+        _ = constraintAlignTopToAnchor(anchor, paddingTop: paddingTop, priority: priority)
     }
 
     func alignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
-        let constraint = self.bottomAnchor.constraint(equalTo: anchor, constant: -paddingBottom)
-        if let priority = priority {
-            constraint.priority = priority
-        }
-        constraint.isActive = true
+        _ = constraintAlignBottomToAnchor(anchor, paddingBottom: paddingBottom, priority: priority)
     }
 
     func fill(view: UIView, paddingLeading: CGFloat? = 0.0, paddingTrailing: CGFloat? = 0.0, paddingTop: CGFloat? = 0.0, paddingBottom: CGFloat? = 0.0) {
@@ -44,6 +28,42 @@ public extension UIView {
         alignTrailingToAnchor(view.trailingAnchor, paddingTrailing: paddingTrailing ?? 0.0)
         alignTopToAnchor(view.topAnchor, paddingTop: paddingTop ?? 0.0)
         alignBottomToAnchor(view.bottomAnchor, paddingBottom: paddingBottom ?? 0.0)
+    }
+
+    func constraintAlignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = self.leadingAnchor.constraint(equalTo: anchor, constant: paddingLeading)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        constraint.isActive = true
+        return constraint
+    }
+
+    func constraintAlignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = self.trailingAnchor.constraint(equalTo: anchor, constant: -paddingTrailing)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        constraint.isActive = true
+        return constraint
+    }
+
+    func constraintAlignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = self.topAnchor.constraint(equalTo: anchor, constant: paddingTop)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        constraint.isActive = true
+        return constraint
+    }
+
+    func constraintAlignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = self.bottomAnchor.constraint(equalTo: anchor, constant: -paddingBottom)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        constraint.isActive = true
+        return constraint
     }
 
     func constraintAlignTopTo(_ view: UIView) -> NSLayoutConstraint {

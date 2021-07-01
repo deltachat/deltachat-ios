@@ -5,6 +5,20 @@ public class InitialsBadge: UIView {
     private let verificationViewPadding: CGFloat = 2
     private let size: CGFloat
 
+    var leadingImageAnchorConstraint: NSLayoutConstraint?
+    var trailingImageAnchorConstraint: NSLayoutConstraint?
+    var topImageAnchorConstraint: NSLayoutConstraint?
+    var bottomImageAnchorConstraint: NSLayoutConstraint?
+
+    public var imagePadding: CGFloat = 0 {
+        didSet {
+            leadingImageAnchorConstraint?.constant = imagePadding
+            topImageAnchorConstraint?.constant = imagePadding
+            trailingImageAnchorConstraint?.constant = -imagePadding
+            bottomImageAnchorConstraint?.constant = -imagePadding
+        }
+    }
+
     private var label: UILabel = {
         let label = UILabel()
         label.textAlignment = NSTextAlignment.center
@@ -69,10 +83,10 @@ public class InitialsBadge: UIView {
     private func setupSubviews(with radius: CGFloat) {
         addSubview(imageView)
         imageView.layer.cornerRadius = radius
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        imageView.alignTopToAnchor(topAnchor)
-        imageView.alignBottomToAnchor(bottomAnchor)
+        leadingImageAnchorConstraint = imageView.constraintAlignLeadingToAnchor(leadingAnchor)
+        trailingImageAnchorConstraint = imageView.constraintAlignTrailingToAnchor(trailingAnchor)
+        topImageAnchorConstraint = imageView.constraintAlignTopToAnchor(topAnchor)
+        bottomImageAnchorConstraint = imageView.constraintAlignBottomToAnchor(bottomAnchor)
 
         addSubview(label)
         label.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true

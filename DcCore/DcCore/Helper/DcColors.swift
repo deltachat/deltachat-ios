@@ -13,6 +13,7 @@ public struct DcColors {
                                                           dark: UIColor.init(hexString: "333333"))
     public static let contactCellBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let defaultBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
+    public static let defaultInverseColor = UIColor.themeColor(light: .black, dark: .white)
     public static let sharedChatCellBackgroundColor = UIColor.themeColor(light: white, dark: actionCellBackgroundDark)
     public static let chatBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))
@@ -27,7 +28,7 @@ public struct DcColors {
                                                      dark: UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1))
     public static let providerPreparationBackground = UIColor.themeColor(lightHex: "#fffdf7b2", darkHex: "##fffdf7b2")
     public static let providerBrokenBackground = UIColor.themeColor(light: SystemColor.red.uiColor, dark: SystemColor.red.uiColor)
-    public static let systemMessageBackgroundColor = UIColor.themeColor(light: UIColor.rgb(red: 248, green: 248, blue: 248),
+    public static let systemMessageBackgroundColor = UIColor.themeColor(light: UIColor(white: 0.9, alpha: 0.5),
                                                                         dark: UIColor(white: 0.2, alpha: 0.5))
     public static let deaddropBackground = UIColor.themeColor(light: UIColor.init(hexString: "ebebec"), dark: UIColor.init(hexString: "1a1a1c"))
 }

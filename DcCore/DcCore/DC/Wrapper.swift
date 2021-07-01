@@ -126,6 +126,10 @@ public class DcContext {
         dc_send_msg(contextPointer, UInt32(chatId), message.messagePointer)
     }
 
+    public func sendVideoChatInvitation(chatId: Int) -> Int {
+        return Int(dc_send_videochat_invitation(contextPointer,  UInt32(chatId)))
+    }
+
     // TODO: remove count and from parameters if we don't use it
     public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
@@ -1142,6 +1146,13 @@ public class DcMsg {
 
     public func showPadlock() -> Bool {
         return dc_msg_get_showpadlock(messagePointer) == 1
+    }
+
+    public func getVideoChatUrl() -> String {
+        guard let cString = dc_msg_get_videochat_url(messagePointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
     }
 
 }

@@ -215,6 +215,22 @@ extension QrPageController: QrCodeReaderDelegate {
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
             present(alert, animated: true)
 
+        case DC_QR_WEBRTC_INSTANCE:
+            guard let domain = qrParsed.text1 else { return }
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("videochat_instance_from_qr"), domain),
+                                          message: nil,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                let success = self.dcContext.setConfigFromQR(qrCode: code)
+                if !success {
+                    logger.warning("Could not set webrtc instance from QR code.")
+                    // TODO: alert?!
+                }
+            }))
+            present(alert, animated: true)
+
         default:
             var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
             if state == DC_QR_ERROR {
