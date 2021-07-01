@@ -28,6 +28,7 @@ public class VideoInviteCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.setImage(#imageLiteral(resourceName: "ic_videochat").withRenderingMode(.alwaysTemplate))
         view.tintColor = DcColors.defaultInverseColor
+        view.imagePadding = 3
         return view
     }()
 
@@ -87,9 +88,9 @@ public class VideoInviteCell: UITableViewCell {
         contentView.addSubview(bottomLabel)
         contentView.addConstraints([
             videoIcon.constraintAlignTopTo(contentView, paddingTop: 12),
-            videoIcon.constraintCenterXTo(contentView, paddingX: -36),
+            videoIcon.constraintCenterXTo(contentView, paddingX: -20),
             avatarView.constraintAlignTopTo(contentView, paddingTop: 12),
-            avatarView.constraintCenterXTo(contentView, paddingX: 36),
+            avatarView.constraintCenterXTo(contentView, paddingX: 20),
             messageLabel.constraintToBottomOf(videoIcon, paddingTop: 16),
             messageLabel.constraintAlignLeadingMaxTo(contentView, paddingLeading: UIDevice.current.userInterfaceIdiom == .pad ? 150 : 50),
             messageLabel.constraintAlignTrailingMaxTo(contentView, paddingTrailing: UIDevice.current.userInterfaceIdiom == .pad ? 150 : 50),
