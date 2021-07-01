@@ -21,6 +21,7 @@ public class NotificationManager {
     public func reloadDcContext() {
         NotificationManager.removeAllNotifications()
         dcContext = dcAccounts.getSelected()
+        NotificationManager.updateApplicationIconBadge(dcContext: dcContext, reset: false)
     }
 
     public static func updateApplicationIconBadge(dcContext: DcContext, reset: Bool) {
