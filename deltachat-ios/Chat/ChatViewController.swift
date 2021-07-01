@@ -991,13 +991,17 @@ class ChatViewController: UITableViewController {
         let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),
                                                     style: isLocationStreaming ? .destructive : .default,
                                                     handler: locationStreamingButtonPressed(_:))
-        let videoChatInvitation = UIAlertAction(title: String.localized("videochat"), style: .default, handler: videoChatButtonPressed(_:))
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
         alert.addAction(voiceMessageAction)
-        alert.addAction(videoChatInvitation)
+
+        if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
+            let videoChatInvitation = UIAlertAction(title: String.localized("videochat"), style: .default, handler: videoChatButtonPressed(_:))
+            alert.addAction(videoChatInvitation)
+        }
+
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             alert.addAction(locationStreamingAction)
         }
