@@ -1332,7 +1332,8 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        return !dcContext.getMessage(id: messageIds[indexPath.row]).isInfo
+        let messageId = messageIds[indexPath.row]
+        return !(dcContext.getMessage(id: messageId).isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER)
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
@@ -1347,7 +1348,8 @@ class ChatViewController: UITableViewController {
     // context menu for iOS 13+
     @available(iOS 13, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        if tableView.isEditing {
+        let messageId = messageIds[indexPath.row]
+        if tableView.isEditing || dcContext.getMessage(id: messageId).isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
         return UIContextMenuConfiguration(
