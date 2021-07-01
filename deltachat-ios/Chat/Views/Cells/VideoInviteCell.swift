@@ -62,7 +62,7 @@ public class VideoInviteCell: UITableViewCell {
         label.paddingTrailing = 4
         label.clipsToBounds = true
         label.isAccessibilityElement = false
-        label.backgroundColor = UIColor(alpha: 200, red: 50, green: 50, blue: 50)
+        label.backgroundColor = DcColors.systemMessageBackgroundColor
         return label
     }()
 
