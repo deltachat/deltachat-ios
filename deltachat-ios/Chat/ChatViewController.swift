@@ -858,13 +858,7 @@ class ChatViewController: UITableViewController {
     private func showEmptyStateView(_ show: Bool) {
         if show {
             let dcChat = dcContext.getChat(chatId: chatId)
-            if chatId == DC_CHAT_ID_DEADDROP {
-                if dcContext.showEmails != DC_SHOW_EMAILS_ALL {
-                    emptyStateView.text = String.localized("chat_no_contact_requests")
-                } else {
-                    emptyStateView.text = String.localized("chat_no_messages")
-                }
-            } else if dcChat.isGroup {
+            if dcChat.isGroup {
                 if dcChat.isUnpromoted {
                     emptyStateView.text = String.localized("chat_new_group_hint")
                 } else {
@@ -975,9 +969,7 @@ class ChatViewController: UITableViewController {
     }
 
     @objc private func chatProfilePressed() {
-        if chatId != DC_CHAT_ID_DEADDROP {
-            showChatDetail(chatId: chatId)
-        }
+        showChatDetail(chatId: chatId)
     }
 
     @objc private func clipperButtonPressed() {

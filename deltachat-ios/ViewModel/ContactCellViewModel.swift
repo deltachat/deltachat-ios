@@ -13,7 +13,6 @@ protocol AvatarCellViewModel {
 enum CellModel {
     case contact(ContactCellData)
     case chat(ChatCellData)
-    case deaddrop(DeaddropCellData)
     case profile
 }
 
@@ -27,12 +26,6 @@ struct ChatCellData {
     let highlightMsgId: Int?
     let summary: DcLot
     let unreadMessages: Int
-}
-
-struct DeaddropCellData {
-    let chatId: Int
-    let msgId: Int
-    let summary: DcLot
 }
 
 class ContactCellViewModel: AvatarCellViewModel {
@@ -126,15 +119,6 @@ class ChatCellViewModel: AvatarCellViewModel {
         self.subtitleHighlightIndexes = subtitleHighlightIndexes
         self.summary = chatData.summary
         self.chat = dcContext.getChat(chatId: chatData.chatId)
-        self.dcContext = dcContext
-    }
-
-    init(dcContext: DcContext, deaddropCellData cellData: DeaddropCellData) {
-        self.type = CellModel.deaddrop(cellData)
-        self.titleHighlightIndexes = []
-        self.subtitleHighlightIndexes = []
-        self.chat = dcContext.getChat(chatId: cellData.chatId)
-        self.summary = cellData.summary
         self.dcContext = dcContext
     }
 }
