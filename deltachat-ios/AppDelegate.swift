@@ -6,6 +6,7 @@ import UserNotifications
 import DcCore
 import DBDebugToolkit
 import SDWebImageWebPCoder
+import Intents
 
 let logger = SwiftyBeaver.self
 
@@ -452,10 +453,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func migrateToDcAccounts() {
         let dbHelper = DatabaseHelper()
-        if let databaseLocation = dbHelper.unmanagedDatabaseLocation,
-           dcAccounts.migrate(dbLocation: databaseLocation) == 0 {
-                fatalError("Account could not be migrated")
-                // TODO: show error message in UI
+        if let databaseLocation = dbHelper.unmanagedDatabaseLocation {
+            if dcAccounts.migrate(dbLocation: databaseLocation) == 0 {
+                 fatalError("Account could not be migrated")
+                 // TODO: show error message in UI
+            }
+            INInteraction.deleteAll(completion: nil)
         }
     }
 
