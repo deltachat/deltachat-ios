@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import Intents
 
 // this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
@@ -430,6 +431,7 @@ class ContactDetailViewController: UITableViewController {
         }
         viewModel.context.deleteChat(chatId: viewModel.chatId)
         NotificationManager.removeNotificationsForChat(dcContext: viewModel.context, chatId: viewModel.chatId)
+        INInteraction.delete(with: ["\(viewModel.context.id).\(viewModel.chatId)"])
 
         // just pop to viewControllers - we've in chatlist or archive then
         // (no not use `navigationController?` here: popping self will make the reference becoming nil)

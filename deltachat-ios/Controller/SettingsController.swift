@@ -1,6 +1,7 @@
 import UIKit
 import DcCore
 import DBDebugToolkit
+import Intents
 
 internal final class SettingsViewController: UITableViewController, ProgressAlertHandler {
 
@@ -484,6 +485,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                     guard let self = self else { return }
                     appDelegate.locationManager.disableLocationStreamingInAllChats()
                     _ = self.dcAccounts.remove(id: selectedAccountId)
+                    INInteraction.delete(with: "\(selectedAccountId)", completion: nil)
                     if self.dcAccounts.getAll().isEmpty {
                         _ = self.dcAccounts.add()
                     }
