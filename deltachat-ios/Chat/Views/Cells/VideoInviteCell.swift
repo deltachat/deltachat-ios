@@ -143,6 +143,8 @@ public class VideoInviteCell: UITableViewCell {
         messageLabel.attributedText = nil
         bottomLabel.text = nil
         bottomLabel.attributedText = nil
+        openLabel.text = nil
+        openLabel.attributedText = nil
         avatarView.reset()
     }
 
