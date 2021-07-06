@@ -27,6 +27,7 @@
 		302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84CD2397F6CD001C261F /* URL+Extension.swift */; };
 		302D5450268B6B2300A8B271 /* MessageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D544F268B6B2300A8B271 /* MessageUtils.swift */; };
 		302D5454268B84CB00A8B271 /* SettingsVideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D5453268B84CB00A8B271 /* SettingsVideoChatViewController.swift */; };
+		302D546A2693591700A8B271 /* ChatContactRequestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D54692693591700A8B271 /* ChatContactRequestBar.swift */; };
 		302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */; };
 		30349291256441E200A523D0 /* QuotePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30349290256441E200A523D0 /* QuotePreview.swift */; };
 		303492952565AABC00A523D0 /* DraftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492942565AABC00A523D0 /* DraftModel.swift */; };
@@ -241,6 +242,7 @@
 		302B84CD2397F6CD001C261F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		302D544F268B6B2300A8B271 /* MessageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtils.swift; sourceTree = "<group>"; };
 		302D5453268B84CB00A8B271 /* SettingsVideoChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVideoChatViewController.swift; sourceTree = "<group>"; };
+		302D54692693591700A8B271 /* ChatContactRequestBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContactRequestBar.swift; sourceTree = "<group>"; };
 		302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = "deltachat-ios/Chat/Views/PlayButtonView.swift"; sourceTree = SOURCE_ROOT; };
 		30349290256441E200A523D0 /* QuotePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotePreview.swift; sourceTree = "<group>"; };
 		303492942565AABC00A523D0 /* DraftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftModel.swift; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				303492CE2587C2DC00A523D0 /* ChatInputBar.swift */,
 				3067AA4B2666310E00525036 /* ChatInputTextView.swift */,
 				307A82CB25B8D26700748B57 /* ChatEditingBar.swift */,
+				302D54692693591700A8B271 /* ChatContactRequestBar.swift */,
 				302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */,
 				30F8817524DA97DA0023780E /* BackgroundContainer.swift */,
 				3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */,
@@ -1364,6 +1367,7 @@
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
+				302D546A2693591700A8B271 /* ChatContactRequestBar.swift in Sources */,
 				305DDD8725DD97BF00974489 /* DynamicFontButton.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */,

@@ -54,6 +54,13 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
+    public lazy var contactRequestBar: ChatContactRequestBar = {
+        let view = ChatContactRequestBar()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -239,7 +246,8 @@ class ChatViewController: UITableViewController {
     }
 
     override func loadView() {
-        self.tableView = ChatTableView(messageInputBar: self.disableWriting ? nil : messageInputBar)
+        let inputBar = self.disableWriting && !dcContext.getChat(chatId: chatId).isContactRequest ? nil : messageInputBar
+        self.tableView = ChatTableView(messageInputBar: inputBar)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view = self.tableView
@@ -266,13 +274,18 @@ class ChatViewController: UITableViewController {
         configureEmptyStateView()
 
         if !disableWriting {
-            configureMessageInputBar()
-            draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
-            messageInputBar.inputTextView.text = draft.text
-            configureDraftArea(draft: draft, animated: false)
-            editingBar.delegate = self
-            tableView.allowsMultipleSelectionDuringEditing = true
+            configureUIForWriting()
+        } else if dcContext.getChat(chatId: chatId).isContactRequest {
+            configureContactRequestBar()
         }
+    }
+
+    private func configureUIForWriting() {
+        configureMessageInputBar()
+        draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
+        messageInputBar.inputTextView.text = draft.text
+        configureDraftArea(draft: draft, animated: false)
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     private func getTopInsetHeight() -> CGFloat {
@@ -612,6 +625,14 @@ class ChatViewController: UITableViewController {
 
     public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
+    }
+
+    private func configureContactRequestBar() {
+        messageInputBar.setMiddleContentView(contactRequestBar, animated: false)
+        messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
+        messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
+        messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+        messageInputBar.setStackViewItems([], forStack: .top, animated: false)
     }
 
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
@@ -1655,6 +1676,22 @@ extension ChatViewController: ChatEditingDelegate {
 
     func onCancelPressed() {
         setEditing(isEditing: false)
+    }
+}
+
+// MARK: - ChatContactRequestBar
+extension ChatViewController: ChatContactRequestDelegate {
+    func onAcceptPressed() {
+        dcContext.acceptChat(chatId: chatId)
+        disableWriting = !dcContext.getChat(chatId: chatId).canSend
+        if !disableWriting {
+            configureUIForWriting()
+        }
+    }
+
+    func onBlockPressed() {
+        dcContext.blockChat(chatId: chatId)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
