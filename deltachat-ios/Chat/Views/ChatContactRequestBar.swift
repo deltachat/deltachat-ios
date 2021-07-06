@@ -84,5 +84,8 @@ public class ChatContactRequestBar: UIView, InputItem {
     @objc func onBlockPressed() {
         delegate?.onBlockPressed()
     }
-}
 
+    public override var intrinsicContentSize: CGSize {
+        return CGSize(width: super.intrinsicContentSize.width, height: 44)
+    }
+}
