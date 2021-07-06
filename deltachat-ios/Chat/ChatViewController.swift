@@ -1683,10 +1683,7 @@ extension ChatViewController: ChatEditingDelegate {
 extension ChatViewController: ChatContactRequestDelegate {
     func onAcceptPressed() {
         dcContext.acceptChat(chatId: chatId)
-        disableWriting = !dcContext.getChat(chatId: chatId).canSend
-        if !disableWriting {
-            configureUIForWriting()
-        }
+        configureUIForWriting()
     }
 
     func onBlockPressed() {
