@@ -188,6 +188,10 @@ public class DcContext {
         dc_add_address_book(contextPointer, contactString)
     }
 
+    public func lookupContactIdByAddress(_ address: String) -> Int {
+        return Int(dc_lookup_contact_id_by_addr(contextPointer, addr))
+    }
+
     public func getChat(chatId: Int) -> DcChat {
         let chatPointer = dc_get_chat(contextPointer, UInt32(chatId))
         return DcChat(chatPointer: chatPointer)
