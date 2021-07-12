@@ -126,9 +126,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("➡️ open url")
 
         // gets here when app returns from oAuth2-Setup process - the url contains the provided token
-        if let params = url.queryParameters, let token = params["code"] {
-            NotificationCenter.default.post(name: NSNotification.Name("oauthLoginApproved"), object: nil, userInfo: ["token": token])
-        }
+        // if let params = url.queryParameters, let token = params["code"] {
+        //    NotificationCenter.default.post(name: NSNotification.Name("oauthLoginApproved"), object: nil, userInfo: ["token": token])
+        // }
 
         // Hack to format url properly
         let urlString = url.absoluteString
