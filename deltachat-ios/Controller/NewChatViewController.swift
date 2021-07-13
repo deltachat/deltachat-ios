@@ -325,15 +325,15 @@ class NewChatViewController: UITableViewController {
         navigationController?.pushViewController(newContactController, animated: true)
     }
 
-    private func showNewChat(contactId: Int) {
+    private func showNewChat(contactId: Int, animated: Bool = true) {
         let chatId = dcContext.createChatByContactId(contactId: contactId)
-        showChat(chatId: Int(chatId))
+        showChat(chatId: Int(chatId), animated: animated)
     }
 
-    private func showChat(chatId: Int) {
+    private func showChat(chatId: Int, animated: Bool = true) {
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        navigationController?.pushViewController(chatViewController, animated: true)
-        navigationController?.viewControllers.remove(at: 1)
+        navigationController?.popToRootViewController(animated: false)
+        navigationController?.pushViewController(chatViewController, animated: animated)
     }
 
     private func showContactDetail(contactId: Int) {
@@ -391,9 +391,19 @@ extension NewChatViewController {
     }
 
     private func askToChatWith(address: String) {
-        var contactId = dcContext.lookupContactIdByAddress(address)
+        // FIXME: the line below should work
+        // var contactId = dcContext.lookupContactIdByAddress(address)
+
+        // workaround:
+        let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: address)
+        let index = contacts.firstIndex(where: { self.dcContext.getContact(id: $0).email == address }) ?? -1
+        var contactId = 0
+        if index >= 0 {
+            contactId = contacts[index]
+        }
+
         if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
-            self.showNewChat(contactId: contactId)
+            self.showNewChat(contactId: contactId, animated: false)
         } else {
             let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
                                           message: nil,
@@ -407,7 +417,7 @@ extension NewChatViewController {
                 self.showNewChat(contactId: contactId)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-                self.reactivateSearchBarIfNeeded()
+                self.dismiss(animated: true, completion: nil)
             }))
             present(alert, animated: true, completion: nil)
         }

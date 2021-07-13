@@ -86,7 +86,7 @@ class RelayHelper {
                 if !body.isEmpty {
                     mailtoDraft += "\n\n \(body)"
                 }
-            } else if (!body.isEmpty) {
+            } else if !body.isEmpty {
                 mailtoDraft = body
             }
 
