@@ -89,6 +89,12 @@ class NewChatViewController: UITableViewController {
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         tableView.sectionHeaderHeight = UITableView.automaticDimension
+
+        if RelayHelper.sharedInstance.isMailtoHandling() {
+            if let mailtoAddress = RelayHelper.sharedInstance.mailtoAddress {
+                askToChatWith(address: mailtoAddress)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +104,7 @@ class NewChatViewController: UITableViewController {
 
     // MARK: - actions
     @objc func cancelButtonPressed() {
+
         dismiss(animated: true, completion: nil)
     }
 
@@ -381,6 +388,29 @@ extension NewChatViewController {
             self.dismiss(animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func askToChatWith(address: String) {
+        var contactId = dcContext.lookupContactIdByAddress(address)
+        if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
+            self.showNewChat(contactId: contactId)
+        } else {
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
+                                          message: nil,
+                                          preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.dismiss(animated: true, completion: nil)
+                if contactId == 0 {
+                    contactId = self.dcContext.createContact(name: nil, email: address)
+                }
+                self.showNewChat(contactId: contactId)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+                self.reactivateSearchBarIfNeeded()
+            }))
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     private func askToChatWith(contactId: Int) {

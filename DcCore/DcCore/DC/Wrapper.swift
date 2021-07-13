@@ -150,7 +150,7 @@ public class DcContext {
         return ids
     }
 
-    public func createContact(name: String, email: String) -> Int {
+    public func createContact(name: String?, email: String) -> Int {
         return Int(dc_create_contact(contextPointer, name, email))
     }
 

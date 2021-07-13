@@ -97,6 +97,20 @@ class AppCoordinator {
         }
     }
 
+    func handleMailtoURL(_ url: URL) {
+        if RelayHelper.sharedInstance.parseMailtoUrl(url) {
+            showTab(index: chatsTab)
+            if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
+                rootController.popToRootViewController(animated: false)
+                if let controller = rootController.viewControllers.first as? ChatListController {
+                    controller.showNewChatController()
+                }
+            }
+        } else {
+            logger.warning("Could not parse mailto: URL")
+        }
+    }
+    
     func handleQRCode(_ code: String) {
         showTab(index: qrTab)
         if let navController = self.tabBarController.selectedViewController as? UINavigationController,
