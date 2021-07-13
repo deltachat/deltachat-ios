@@ -127,7 +127,7 @@ public class DcContext {
     }
 
     public func sendVideoChatInvitation(chatId: Int) -> Int {
-        return Int(dc_send_videochat_invitation(contextPointer,  UInt32(chatId)))
+        return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
     }
 
     // TODO: remove count and from parameters if we don't use it
