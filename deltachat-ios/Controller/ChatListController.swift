@@ -394,22 +394,23 @@ class ChatListController: UITableViewController {
     }
 
     public func handleMailto() {
-        let mailtoAddress = RelayHelper.sharedInstance.mailtoAddress
-        // FIXME: the line below should work
-        // var contactId = dcContext.lookupContactIdByAddress(mailtoAddress)
+        if let mailtoAddress = RelayHelper.sharedInstance.mailtoAddress {
+            // FIXME: the line below should work
+            // var contactId = dcContext.lookupContactIdByAddress(mailtoAddress)
 
-        // workaround:
-        let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: mailtoAddress)
-        let index = contacts.firstIndex(where: { dcContext.getContact(id: $0).email == mailtoAddress }) ?? -1
-        var contactId = 0
-        if index >= 0 {
-            contactId = contacts[index]
-        }
+            // workaround:
+            let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: mailtoAddress)
+            let index = contacts.firstIndex(where: { dcContext.getContact(id: $0).email == mailtoAddress }) ?? -1
+            var contactId = 0
+            if index >= 0 {
+                contactId = contacts[index]
+            }
 
-        if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
-            showChat(chatId: dcContext.getChatIdByContactId(contactId: contactId), animated: false)
-        } else {
-            showNewChatController(animated: false)
+            if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
+                showChat(chatId: dcContext.getChatIdByContactId(contactId: contactId), animated: false)
+            } else {
+                askToChatWith(address: mailtoAddress)
+            }
         }
     }
 
@@ -446,6 +447,21 @@ class ChatListController: UITableViewController {
             }
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func askToChatWith(address: String) {
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
+                                      message: nil,
+                                      preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let contactId = self.dcContext.createContact(name: nil, email: address)
+            self.showNewChat(contactId: contactId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            RelayHelper.sharedInstance.finishMailto()
+        }))
         present(alert, animated: true, completion: nil)
     }
 
