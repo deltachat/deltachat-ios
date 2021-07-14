@@ -98,7 +98,6 @@ class NewChatViewController: UITableViewController {
 
     // MARK: - actions
     @objc func cancelButtonPressed() {
-
         dismiss(animated: true, completion: nil)
     }
 
@@ -326,8 +325,8 @@ class NewChatViewController: UITableViewController {
 
     private func showChat(chatId: Int) {
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        self.navigationController?.pushViewController(chatViewController, animated: true)
-        self.navigationController?.viewControllers.remove(at: 1)
+        navigationController?.pushViewController(chatViewController, animated: true)
+        navigationController?.viewControllers.remove(at: 1)
     }
 
     private func showContactDetail(contactId: Int) {
@@ -375,12 +374,9 @@ extension NewChatViewController {
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
-            self?.dismiss(animated: true, completion: nil)
             self?.deleteContact(contactId: contactId, indexPath: indexPath)
         }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
-            self?.dismiss(animated: true, completion: nil)
-        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 
@@ -394,7 +390,6 @@ extension NewChatViewController {
                                           message: nil,
                                           preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                self.dismiss(animated: true, completion: nil)
                 self.showNewChat(contactId: contactId)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
