@@ -127,7 +127,7 @@ public class DcContext {
     }
 
     public func sendVideoChatInvitation(chatId: Int) -> Int {
-        return Int(dc_send_videochat_invitation(contextPointer,  UInt32(chatId)))
+        return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
     }
 
     // TODO: remove count and from parameters if we don't use it
@@ -150,7 +150,7 @@ public class DcContext {
         return ids
     }
 
-    public func createContact(name: String, email: String) -> Int {
+    public func createContact(name: String?, email: String) -> Int {
         return Int(dc_create_contact(contextPointer, name, email))
     }
 
@@ -186,6 +186,10 @@ public class DcContext {
 
     public func addContacts(contactString: String) {
         dc_add_address_book(contextPointer, contactString)
+    }
+
+    public func lookupContactIdByAddress(_ address: String) -> Int {
+        return Int(dc_lookup_contact_id_by_addr(contextPointer, addr))
     }
 
     public func getChat(chatId: Int) -> DcChat {
