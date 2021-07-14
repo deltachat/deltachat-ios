@@ -494,9 +494,9 @@ class ChatListController: UITableViewController {
     }
 
     // MARK: - coordinator
-    func showNewChatController(animated: Bool = true) {
+    private func showNewChatController() {
         let newChatVC = NewChatViewController(dcContext: dcContext)
-        navigationController?.pushViewController(newChatVC, animated: animated)
+        navigationController?.pushViewController(newChatVC, animated: true)
     }
 
     func showChat(chatId: Int, highlightedMsg: Int? = nil, animated: Bool = true) {
