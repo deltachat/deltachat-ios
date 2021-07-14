@@ -61,8 +61,7 @@ class RelayHelper {
             returns true if parsing was successful
      */
     func parseMailtoUrl(_ url: URL) -> Bool {
-        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
-           !urlComponents.path.isEmpty {
+        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
             var subject: String = ""
             var body: String = ""
             let queryItems = urlComponents.queryItems ?? []
@@ -83,14 +82,16 @@ class RelayHelper {
             if !subject.isEmpty {
                 mailtoDraft = subject
                 if !body.isEmpty {
-                    mailtoDraft += "\n\n \(body)"
+                    mailtoDraft += "\n\n\(body)"
                 }
             } else if !body.isEmpty {
                 mailtoDraft = body
             }
 
-            mailtoAddress = splitString(urlComponents.path)[0] // we currently only allow 1 receipient
-            return true
+            if !urlComponents.path.isEmpty {
+                mailtoAddress = splitString(urlComponents.path)[0] // we currently only allow 1 receipient
+            }
+            return mailtoAddress != nil || !mailtoDraft.isEmpty
         }
         return false
     }
