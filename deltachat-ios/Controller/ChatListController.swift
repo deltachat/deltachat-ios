@@ -450,39 +450,30 @@ class ChatListController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    private func askToChatWith(address: String) {
+    private func askToChatWith(address: String, contactId: Int = 0) {
+        var contactId = contactId
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
-            let contactId = self.dcContext.createContact(name: nil, email: address)
+            if contactId == 0 {
+                contactId = self.dcContext.createContact(name: nil, email: address)
+            }
             self.showNewChat(contactId: contactId)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            RelayHelper.sharedInstance.finishMailto()
+            if RelayHelper.sharedInstance.isMailtoHandling() {
+                RelayHelper.sharedInstance.finishMailto()
+            }
         }))
         present(alert, animated: true, completion: nil)
     }
 
+
     private func askToChatWith(contactId: Int) {
         let dcContact = dcContext.getContact(id: contactId)
-        let alert = UIAlertController(
-            title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
-            message: nil,
-            preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(
-            title: String.localized("start_chat"),
-            style: .default,
-            handler: { _ in
-                self.showNewChat(contactId: contactId)
-        }))
-        alert.addAction(UIAlertAction(
-            title: String.localized("cancel"),
-            style: .cancel,
-            handler: { _ in
-        }))
-        self.present(alert, animated: true, completion: nil)
+        askToChatWith(address: dcContact.nameNAddr, contactId: contactId)
     }
 
     private func deleteChat(chatId: Int, animated: Bool) {
