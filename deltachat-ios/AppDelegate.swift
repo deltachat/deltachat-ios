@@ -140,8 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.appCoordinator.handleQRCode(urlString)
             return true
         case "mailto":
-            self.appCoordinator.handleMailtoURL(url)
-            return true
+            return self.appCoordinator.handleMailtoURL(url)
         default:
             return false
         }
