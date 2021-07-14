@@ -239,12 +239,6 @@ class ChatListController: UITableViewController {
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
 
         switch cellData.type {
-        case .deaddrop:
-            guard let deaddropCell = tableView.dequeueReusableCell(withIdentifier: deadDropCellReuseIdentifier, for: indexPath) as? ContactCell else {
-                break
-            }
-            deaddropCell.updateCell(cellViewModel: cellData)
-            return deaddropCell
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
@@ -276,14 +270,6 @@ class ChatListController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
         switch cellData.type {
-        case .deaddrop(let deaddropData):
-            safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
-            if dcContext.showEmails == DC_SHOW_EMAILS_ALL {
-                let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
-                navigationController?.pushViewController(deaddropViewController, animated: true)
-            } else {
-                showDeaddropRequestAlert(msgId: deaddropData.msgId)
-            }
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
@@ -310,7 +296,7 @@ class ChatListController: UITableViewController {
             return []
         }
 
-        if chatId==DC_CHAT_ID_ARCHIVED_LINK || chatId==DC_CHAT_ID_DEADDROP {
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
             return []
             // returning nil may result in a default delete action,
             // see https://forums.developer.apple.com/thread/115030
@@ -426,28 +412,6 @@ class ChatListController: UITableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
-    }
-
-    private func showDeaddropRequestAlert(msgId: Int) {
-        let dcMsg = dcContext.getMessage(id: msgId)
-        let (title, startButton, blockButton) = MailboxViewController.deaddropQuestion(context: dcContext, msg: dcMsg)
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: startButton, style: .default, handler: { _ in
-            let chat = self.dcContext.decideOnContactRequest(msgId, DC_DECISION_START_CHAT)
-            self.showChat(chatId: chat.id)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("not_now"), style: .default, handler: { _ in
-            DispatchQueue.global(qos: .userInitiated).async {
-                self.dcContext.decideOnContactRequest(msgId, DC_DECISION_NOT_NOW)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: blockButton, style: .destructive, handler: { _ in
-            DispatchQueue.global(qos: .userInitiated).async {
-                self.dcContext.decideOnContactRequest(msgId, DC_DECISION_BLOCK)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-        present(alert, animated: true, completion: nil)
     }
 
     private func askToChatWith(address: String, contactId: Int = 0) {

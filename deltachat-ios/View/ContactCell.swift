@@ -33,7 +33,7 @@ class ContactCell: UITableViewCell {
     }()
 
     lazy var bottomlineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator, archivedIndicator, unreadMessageCounter])
+        let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator, archivedIndicator, contactRequest, unreadMessageCounter])
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.alignment = .center
@@ -47,7 +47,7 @@ class ContactCell: UITableViewCell {
         return badge
     }()
 
-    let titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
@@ -57,7 +57,7 @@ class ContactCell: UITableViewCell {
         return label
     }()
 
-    private let pinnedIndicator: UIImageView = {
+    lazy var pinnedIndicator: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
@@ -68,7 +68,7 @@ class ContactCell: UITableViewCell {
         return view
     }()
 
-    private let mutedIndicator: UIImageView = {
+    lazy var mutedIndicator: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
@@ -79,7 +79,7 @@ class ContactCell: UITableViewCell {
         return view
     }()
 
-    private let timeLabel: UILabel = {
+    lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
@@ -89,14 +89,14 @@ class ContactCell: UITableViewCell {
         return label
     }()
 
-    private let locationStreamingIndicator: UIImageView = {
+    lazy var locationStreamingIndicator: UIImageView = {
         let view = LocationStreamingIndicator(height: 16)
         view.isHidden = true
         view.contentMode = .scaleAspectFit
         return view
     }()
 
-    let subtitleLabel: UILabel = {
+    lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = DcColors.middleGray
         label.lineBreakMode = .byTruncatingTail
@@ -105,33 +105,18 @@ class ContactCell: UITableViewCell {
         return label
     }()
 
-    private let deliveryStatusIndicator: UIImageView = {
+    private lazy var deliveryStatusIndicator: UIImageView = {
         let view = UIImageView()
         view.isHidden = true
         return view
     }()
 
-    private let archivedIndicator: UIView = {
-        let tintColor = UIColor(hexString: "848ba7")
-        let label = UILabel()
-        label.font = label.font.withSize(14)
-        label.text = String.localized("chat_archived_label")
-        label.textColor = tintColor
-        label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal) // needed so label does not expand to available space
-        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
-        let view = UIView()
-        view.layer.borderColor = tintColor.cgColor
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 2
-        view.isHidden = true
+    private lazy var archivedIndicator: UIView = {
+        return createTagLabel(tag: String.localized("chat_archived_label"))
+    }()
 
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 4).isActive = true
-        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4).isActive = true
-        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        return view
+    private lazy var contactRequest: UIView = {
+        return createTagLabel(tag: String.localized("chat_contact_request"))
     }()
 
     private let unreadMessageCounter: MessageCounter = {
@@ -153,7 +138,28 @@ class ContactCell: UITableViewCell {
         }
     }
 
+    private func createTagLabel(tag: String) -> UIView {
+        let tintColor = UIColor(hexString: "848ba7")
+        let label = UILabel()
+        label.font = label.font.withSize(14)
+        label.text = tag
+        label.textColor = tintColor
+        label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal) // needed so label does not expand to available space
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 2), for: NSLayoutConstraint.Axis.horizontal)
+        let view = UIView()
+        view.layer.borderColor = tintColor.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 2
+        view.isHidden = true
 
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 4).isActive = true
+        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4).isActive = true
+        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        return view
+    }
     private func configureCompressionPriority() {
         if isLargeText {
             timeLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
@@ -224,7 +230,7 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool) {
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool, isContactRequest: Bool) {
         if isLargeText {
             unreadMessageCounter.setCount(unreadCount)
             unreadMessageCounter.isHidden = unreadCount == 0
@@ -232,16 +238,17 @@ class ContactCell: UITableViewCell {
             pinnedIndicator.isHidden = true
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = true
+            contactRequest.isHidden = true
             return
         }
 
-        if visibility==DC_CHAT_VISIBILITY_ARCHIVED {
+        if visibility == DC_CHAT_VISIBILITY_ARCHIVED {
             pinnedIndicator.isHidden = true
             unreadMessageCounter.isHidden = true
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = false
         } else if unreadCount > 0 {
-            pinnedIndicator.isHidden = !(visibility==DC_CHAT_VISIBILITY_PINNED)
+            pinnedIndicator.isHidden = !(visibility == DC_CHAT_VISIBILITY_PINNED)
             unreadMessageCounter.setCount(unreadCount)
             unreadMessageCounter.isHidden = false
             unreadMessageCounter.backgroundColor = isMuted ? .gray : .red
@@ -261,12 +268,13 @@ class ContactCell: UITableViewCell {
                 deliveryStatusIndicator.image = nil
             }
 
-            pinnedIndicator.isHidden = !(visibility==DC_CHAT_VISIBILITY_PINNED)
+            pinnedIndicator.isHidden = !(visibility == DC_CHAT_VISIBILITY_PINNED)
             unreadMessageCounter.isHidden = true
             deliveryStatusIndicator.isHidden = deliveryStatusIndicator.image == nil ? true : false
             archivedIndicator.isHidden = true
         }
 
+        contactRequest.isHidden = !isContactRequest
         mutedIndicator.isHidden = !isMuted
         locationStreamingIndicator.isHidden = !isLocationStreaming
     }
@@ -293,20 +301,6 @@ class ContactCell: UITableViewCell {
         subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
 
         switch cellViewModel.type {
-        case .deaddrop(let deaddropData):
-            safe_assert(deaddropData.chatId == DC_CHAT_ID_DEADDROP)
-            backgroundColor = DcColors.deaddropBackground
-            let msg = cellViewModel.dcContext.getMessage(id: deaddropData.msgId)
-            let contact = cellViewModel.dcContext.getContact(id: msg.fromContactId)
-            if let img = contact.profileImage {
-                resetBackupImage()
-                setImage(img)
-            } else {
-                setBackupImage(name: contact.nameNAddr, color: contact.color)
-            }
-            setTimeLabel(deaddropData.summary.timestamp)
-            titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-
         case .chat(let chatData):
             let chat = cellViewModel.dcContext.getChat(chatId: chatData.chatId)
 
@@ -333,7 +327,8 @@ class ContactCell: UITableViewCell {
                                 status: chatData.summary.state,
                                 visibility: chat.visibility,
                                 isLocationStreaming: chat.isSendingLocations,
-                                isMuted: chat.isMuted)
+                                isMuted: chat.isMuted,
+                                isContactRequest: chat.isContactRequest)
 
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
@@ -349,7 +344,8 @@ class ContactCell: UITableViewCell {
                                 status: 0,
                                 visibility: 0,
                                 isLocationStreaming: false,
-                                isMuted: false)
+                                isMuted: false,
+                                isContactRequest: false)
         case .profile:
             let contact = cellViewModel.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
             titleLabel.text = cellViewModel.title
@@ -365,7 +361,8 @@ class ContactCell: UITableViewCell {
             status: 0,
             visibility: 0,
             isLocationStreaming: false,
-            isMuted: false)
+            isMuted: false,
+            isContactRequest: false)
         }
 
     }
