@@ -89,17 +89,16 @@ class NewChatViewController: UITableViewController {
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         tableView.sectionHeaderHeight = UITableView.automaticDimension
-
-        if RelayHelper.sharedInstance.isMailtoHandling() {
-            if let mailtoAddress = RelayHelper.sharedInstance.mailtoAddress {
-                askToChatWith(address: mailtoAddress)
-            }
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
+        if RelayHelper.sharedInstance.isMailtoHandling() {
+            if let mailtoAddress = RelayHelper.sharedInstance.mailtoAddress {
+                askToChatWith(address: mailtoAddress)
+            }
+        }
     }
 
     // MARK: - actions
@@ -325,15 +324,15 @@ class NewChatViewController: UITableViewController {
         navigationController?.pushViewController(newContactController, animated: true)
     }
 
-    private func showNewChat(contactId: Int, animated: Bool = true) {
+    private func showNewChat(contactId: Int) {
         let chatId = dcContext.createChatByContactId(contactId: contactId)
-        showChat(chatId: Int(chatId), animated: animated)
+        showChat(chatId: Int(chatId))
     }
 
-    private func showChat(chatId: Int, animated: Bool = true) {
+    private func showChat(chatId: Int) {
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-        navigationController?.popToRootViewController(animated: false)
-        navigationController?.pushViewController(chatViewController, animated: animated)
+        self.navigationController?.pushViewController(chatViewController, animated: true)
+        self.navigationController?.viewControllers.remove(at: 1)
     }
 
     private func showContactDetail(contactId: Int) {
@@ -384,43 +383,26 @@ extension NewChatViewController {
             self?.dismiss(animated: true, completion: nil)
             self?.deleteContact(contactId: contactId, indexPath: indexPath)
         }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
     }
 
     private func askToChatWith(address: String) {
-        // FIXME: the line below should work
-        // var contactId = dcContext.lookupContactIdByAddress(address)
-
-        // workaround:
-        let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: address)
-        let index = contacts.firstIndex(where: { self.dcContext.getContact(id: $0).email == address }) ?? -1
-        var contactId = 0
-        if index >= 0 {
-            contactId = contacts[index]
-        }
-
-        if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
-            self.showNewChat(contactId: contactId, animated: false)
-        } else {
-            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
-                                          message: nil,
-                                          preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
-                self.dismiss(animated: true, completion: nil)
-                if contactId == 0 {
-                    contactId = self.dcContext.createContact(name: nil, email: address)
-                }
-                self.showNewChat(contactId: contactId)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-                self.dismiss(animated: true, completion: nil)
-            }))
-            present(alert, animated: true, completion: nil)
-        }
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
+                                      message: nil,
+                                      preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let contactId = self.dcContext.createContact(name: nil, email: address)
+            self.showNewChat(contactId: contactId)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
+            RelayHelper.sharedInstance.finishMailto()
+            self?.navigationController?.popToRootViewController(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
     private func askToChatWith(contactId: Int) {

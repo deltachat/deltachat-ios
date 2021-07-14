@@ -61,8 +61,7 @@ class RelayHelper {
             returns true if parsing was successful
      */
     func parseMailtoUrl(_ url: URL) -> Bool {
-        if Utils.isEmail(url: url),
-           let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
+        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
            !urlComponents.path.isEmpty {
             var subject: String = ""
             var body: String = ""

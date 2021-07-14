@@ -393,6 +393,26 @@ class ChatListController: UITableViewController {
         timer = nil
     }
 
+    public func handleMailto() {
+        let mailtoAddress = RelayHelper.sharedInstance.mailtoAddress
+        // FIXME: the line below should work
+        // var contactId = dcContext.lookupContactIdByAddress(mailtoAddress)
+
+        // workaround:
+        let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: mailtoAddress)
+        let index = contacts.firstIndex(where: { dcContext.getContact(id: $0).email == mailtoAddress }) ?? -1
+        var contactId = 0
+        if index >= 0 {
+            contactId = contacts[index]
+        }
+
+        if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
+            showChat(chatId: dcContext.getChatIdByContactId(contactId: contactId), animated: false)
+        } else {
+            showNewChatController(animated: false)
+        }
+    }
+
     // MARK: - alerts
     private func showDeleteChatConfirmationAlert(chatId: Int) {
         let alert = UIAlertController(

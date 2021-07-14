@@ -354,6 +354,9 @@ class ChatViewController: UITableViewController {
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
+        } else if RelayHelper.sharedInstance.isMailtoHandling() {
+            messageInputBar.inputTextView.text = RelayHelper.sharedInstance.mailtoDraft
+            RelayHelper.sharedInstance.finishMailto()
         }
 
         prepareContextMenu()

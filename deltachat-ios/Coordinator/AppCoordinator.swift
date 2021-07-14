@@ -103,7 +103,7 @@ class AppCoordinator {
             if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
                 rootController.popToRootViewController(animated: false)
                 if let controller = rootController.viewControllers.first as? ChatListController {
-                    controller.showNewChatController(animated: true)
+                    controller.handleMailto()
                 }
             }
         } else {
