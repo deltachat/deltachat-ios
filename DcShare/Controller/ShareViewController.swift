@@ -47,11 +47,16 @@ class ShareViewController: SLComposeServiceViewController {
     var previewImageWidthConstraint: NSLayoutConstraint?
 
     lazy var preview: SDAnimatedImageView? = {
-        let imageView = SDAnimatedImageView(frame: .zero)
+
+        UIGraphicsBeginImageContext(CGSize(width: 96, height: 96))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        let imageView = SDAnimatedImageView(image: image)
         imageView.clipsToBounds = true
         imageView.shouldGroupAccessibilityChildren = true
         imageView.isAccessibilityElement = false
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         previewImageHeightConstraint = imageView.constraintHeightTo(96)
         previewImageWidthConstraint = imageView.constraintWidthTo(96)
         previewImageHeightConstraint?.isActive = true
