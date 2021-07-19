@@ -174,6 +174,8 @@ class ChatListController: UITableViewController {
     @objc
     public func onNavigationTitleTapped() {
         logger.debug("on navigation title tapped")
+        let connectivityViewController = ConnectivityViewController(dcContext: dcContext)
+        navigationController?.pushViewController(connectivityViewController, animated: true)
     }
 
     func getConnectivityString(conenctedString: String) -> String {
@@ -188,8 +190,6 @@ class ChatListController: UITableViewController {
           return String.localized("connectivity_not_connected")
         }
     }
-
-    
 
     // MARK: - configuration
     private func configureTableView() {

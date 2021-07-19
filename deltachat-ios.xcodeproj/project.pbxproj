@@ -28,6 +28,7 @@
 		302D5450268B6B2300A8B271 /* MessageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D544F268B6B2300A8B271 /* MessageUtils.swift */; };
 		302D5454268B84CB00A8B271 /* SettingsVideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D5453268B84CB00A8B271 /* SettingsVideoChatViewController.swift */; };
 		302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */; };
+		302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */; };
 		30349291256441E200A523D0 /* QuotePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30349290256441E200A523D0 /* QuotePreview.swift */; };
 		303492952565AABC00A523D0 /* DraftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492942565AABC00A523D0 /* DraftModel.swift */; };
 		3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3034929E25752FC800A523D0 /* MediaPreview.swift */; };
@@ -243,6 +244,7 @@
 		302D544F268B6B2300A8B271 /* MessageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtils.swift; sourceTree = "<group>"; };
 		302D5453268B84CB00A8B271 /* SettingsVideoChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVideoChatViewController.swift; sourceTree = "<group>"; };
 		302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = "deltachat-ios/Chat/Views/PlayButtonView.swift"; sourceTree = SOURCE_ROOT; };
+		302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityViewController.swift; sourceTree = "<group>"; };
 		30349290256441E200A523D0 /* QuotePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotePreview.swift; sourceTree = "<group>"; };
 		303492942565AABC00A523D0 /* DraftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftModel.swift; sourceTree = "<group>"; };
 		3034929E25752FC800A523D0 /* MediaPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPreview.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 				AEE6EC472283045D00EDC689 /* EditSettingsController.swift */,
 				AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */,
 				AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */,
+				302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */,
 				AE19887423EB264000B4CD5F /* HelpViewController.swift */,
 				304F769425DD237B0094B5E2 /* WebViewViewController.swift */,
 				304F769825DD23D70094B5E2 /* FullMessageViewController.swift */,
@@ -1302,6 +1305,7 @@
 				303492952565AABC00A523D0 /* DraftModel.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
+				302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
 				305702A124C6453700D84EFC /* TypeAlias.swift in Sources */,
 				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,

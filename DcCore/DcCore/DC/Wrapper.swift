@@ -323,6 +323,13 @@ public class DcContext {
         return dc_get_connectivity(contextPointer)
     }
 
+    public func getConnectivityHtml() -> String {
+        guard let cString = dc_get_connectivity_html(contextPointer) else { return ""}
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public func setStockTranslation(id: Int32, localizationKey: String) {
         dc_set_stock_translation(contextPointer, UInt32(id), String.localized(localizationKey))
     }
