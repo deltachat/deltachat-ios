@@ -386,9 +386,10 @@ class ChatListController: UITableViewController {
             if !viewModel.isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
+        } else if viewModel.isArchive {
+            titleView.text = String.localized("chat_archived_chats_title")
+            navigationItem.setLeftBarButton(nil, animated: true)
         } else {
-            let connectedText: String = viewModel.isArchive ? String.localized("chat_archived_chats_title") :
-                String.localized("app_name")
             titleView.text = getConnectivityString(conenctedString: connectedText)
             navigationItem.setLeftBarButton(nil, animated: true)
         }
