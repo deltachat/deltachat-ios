@@ -2,7 +2,8 @@ import UIKit
 import DcCore
 
 class ConnectivityViewController: WebViewViewController {
-    let dcContext: DcContext
+    private let dcContext: DcContext
+    private var connectivityChangedObserver: NSObjectProtocol?
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -17,6 +18,20 @@ class ConnectivityViewController: WebViewViewController {
         super.viewDidLoad()
         self.title = String.localized("connectivity")
         loadHtml()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
+                                                     object: nil,
+                                                     queue: nil) { [weak self] _ in
+                                                        self?.loadHtml()
+                                                     }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        if let connectivityChangedObserver = self.connectivityChangedObserver {
+            NotificationCenter.default.removeObserver(connectivityChangedObserver)
+        }
     }
 
     private func loadHtml() {
