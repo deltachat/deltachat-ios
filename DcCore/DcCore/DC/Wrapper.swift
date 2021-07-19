@@ -319,6 +319,10 @@ public class DcContext {
         return "ErrGetContactEncrInfo"
     }
 
+    public func getConnectivity() -> Int32 {
+        return dc_get_connectivity(contextPointer)
+    }
+
     public func setStockTranslation(id: Int32, localizationKey: String) {
         dc_set_stock_translation(contextPointer, UInt32(id), String.localized(localizationKey))
     }
