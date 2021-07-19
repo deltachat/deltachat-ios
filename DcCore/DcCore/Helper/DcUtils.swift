@@ -153,4 +153,16 @@ public struct DcUtils {
 		return image
 	}
 
+    public static func getConnectivityString(dcContext: DcContext, connectedString: String) -> String {
+        let connectivity = dcContext.getConnectivity()
+        if connectivity >= DC_CONNECTIVITY_CONNECTED {
+            return connectedString
+        } else if connectivity >= DC_CONNECTIVITY_WORKING {
+            return String.localized("connectivity_getting_new_msgs")
+        } else if connectivity >= DC_CONNECTIVITY_CONNECTING {
+          return String.localized("connectivity_connecting")
+        } else {
+          return String.localized("connectivity_not_connected")
+        }
+    }
 }

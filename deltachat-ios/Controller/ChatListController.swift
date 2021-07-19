@@ -178,18 +178,7 @@ class ChatListController: UITableViewController {
         navigationController?.pushViewController(connectivityViewController, animated: true)
     }
 
-    func getConnectivityString(conenctedString: String) -> String {
-        let connectivity = dcContext.getConnectivity()
-        if connectivity >= DC_CONNECTIVITY_CONNECTED {
-            return conenctedString
-        } else if connectivity >= DC_CONNECTIVITY_WORKING {
-            return String.localized("connectivity_getting_new_msgs")
-        } else if connectivity >= DC_CONNECTIVITY_CONNECTING {
-          return String.localized("connectivity_connecting")
-        } else {
-          return String.localized("connectivity_not_connected")
-        }
-    }
+    
 
     // MARK: - configuration
     private func configureTableView() {
@@ -390,7 +379,7 @@ class ChatListController: UITableViewController {
             titleView.text = String.localized("chat_archived_chats_title")
             navigationItem.setLeftBarButton(nil, animated: true)
         } else {
-            titleView.text = getConnectivityString(conenctedString: connectedText)
+            titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("app_name"))
             navigationItem.setLeftBarButton(nil, animated: true)
         }
         titleView.sizeToFit()
