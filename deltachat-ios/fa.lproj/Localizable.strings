@@ -45,11 +45,10 @@
 "done" = "انجام شد";
 "undo" = "واگرد";
 "offline" = "آفلاین";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "بعدی";
 "error" = "خطا";
 "error_x" = "خطا: %1$@";
-"error_no_network" = "شبکه در دسترس نیست.";
 "no_app_to_handle_data" = "نرم‌افزاری برای باز کردن این نوع داده یافت نشد";
 "no_browser_installed" = "هیچ مرورگری نصب نیست.";
 "file_not_found" = "عدم یافتن %1$@";
@@ -327,7 +326,7 @@
 "login_smtp_port" = "SMTP port ";
 "login_smtp_security" = "امنیت SMTP  ";
 "login_auth_method" = "روش تایید هویت";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "بررسی %1$@";
 "login_info_oauth2_title" = "با تنظیمات ساده‌ شده ادامه می‌دهید؟";
 "login_info_oauth2_text" = "آدرس ایمیل وارد شده از تنظیمات ساده پشتیبانی می‌کند(OAuth 2.0).\n\nIn مرحله بعد، لطفا به دلتاچت اجازه دهید که به عنوان نرم‌افزار ایمیل شما عمل نماید\n\n سرور دلتاچت وجود ندارد داده‌های شما در دستگاه خودتان باقی می‌ماند. ";
@@ -339,7 +338,7 @@
 "import_backup_title" = "وارد کردن نسخه پشتیبانی";
 "import_backup_ask" = "نسخه پشتیبانی در\"%1$@\" پیدا شد.\n\n آیا می‌خواهید همه داده ها و تنظیمات از آن وارد شود؟";
 "import_backup_no_backup_found" = "نسخه پشتیبانی پیدا نشد.\n\n نسخه پشتیبانی را در\"%1$@\" کپی کرده و دوباره امتحان کنید. در غیر این صورت می‌توانید \"شروع پیام‌رسانی\" را فشار دهید دا فرایند به صورت عادی ادامه یابد. ";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "امکان ورود با\"%1$@\"وجود ندارد. لطفا صحت ایمیل و رمز عبور را بررسی کنید. ";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "بازخورد از %1$@: %2$@\n\n برخی ارائه دهندگان ایمیل، اطلاعات بیشتری درمورد ابن مشکل برایتان ارسال می‌کنند. می‌توانید صندوق ورودی خود را از طریق وب سایت ایمیل یا نرم‌افزار همیشگی خود بررسی کنید. . اگر به مشکلی برخوردید به ارائه دهندگان ایمیل یا دوستان خود مراجعه کنید. ";

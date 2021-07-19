@@ -57,11 +57,10 @@
 "done" = "Виконано";
 "undo" = "Скасувати";
 "offline" = "Не в мережі";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Наступний";
 "error" = "Помилка";
 "error_x" = "Помилка: %1$@";
-"error_no_network" = "Мережа недоступна.";
 "no_app_to_handle_data" = "Додаток, що дозволяє обробляти цей тип даних, не знайдено.";
 "no_browser_installed" = "Не встановлено браузер.";
 "file_not_found" = "Не вдалося знайти %1$@.";
@@ -94,7 +93,7 @@
 "voice_message" = "Голосове повідомлення";
 "forwarded" = "Переслане";
 "forwarded_message" = "Переслане повідомлення";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Переслано від %1$@";
 "video" = "Відео";
 "documents" = "Документи";
@@ -383,7 +382,7 @@
 "login_smtp_port" = "SMTP-порт";
 "login_smtp_security" = "Налаштування безпеки SMTP";
 "login_auth_method" = "Метод авторизації";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Перевірка %1$@";
 "login_info_oauth2_title" = "Продовжити спрощене налаштування?";
 "login_info_oauth2_text" = "Введена адреса електронної пошти підтримує спрощене налаштування (OAuth2).\n\nНа наступному кроці дозвольте, будь ласка, Delta Chat виступати у якості Вашого додатку для чату за допомогою електронної пошти.\n\nУ Delta Chat немає серверів, Ваші дані залишаються на Вашому пристрої!";
@@ -395,7 +394,7 @@
 "import_backup_title" = "Імпортувати бекап";
 "import_backup_ask" = "Знайдена резервна копія «%1$@».\n\nВідновити з неї всі дані і параметри?";
 "import_backup_no_backup_found" = "Резервних копій не знайдено.\n\nПомістить резервну копію у папку «%1$@» і спробуйте знову запустити відновлення. Для установлення без відновлення параметрів натисніть «Почати спілкування».";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Не вдалося увійти як «%1$@». Будь ласка, перевірте правильність адреси електронної пошти і пароля.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Відповідь сервера %1$@: %2$@\n\nДеякі сервери електронної пошти зберігають додаткову інформацію у папці «Вхідні». Ви можете перевірити цю папку, наприклад, використовуючи доступ через веб-інтерфейс. Якщо Ви зіткнулися з проблемами, проконсультуйтеся з провайдером електронної пошти або знайомими фахівцями.";

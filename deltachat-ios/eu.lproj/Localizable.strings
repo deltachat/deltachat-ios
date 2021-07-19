@@ -36,11 +36,10 @@
 "one_moment" = "Unetxo bat...";
 "done" = "Egina";
 "undo" = "Desegin";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Hurrengoa";
 "error" = "Errorea";
 "error_x" = "Errorea: %1$@";
-"error_no_network" = "Sarea ez dago eskuragarri.";
 "no_app_to_handle_data" = "Ezin izan da datu mota hau kudeatzeko aplikaziorik.";
 "no_browser_installed" = "Ez dago nabigatzailerik instalatuta.";
 "file_not_found" = "Ezin izan da %1$@ aurkitu.";
@@ -283,7 +282,7 @@
 "import_backup_title" = "Inportatu babes-kopia";
 "import_backup_ask" = "Babes-kopia aurkitu da:  \"%1$@\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
 "import_backup_no_backup_found" = "Ez da babes-kopiarik aurkitu.\n\nKopiatu babes-kopia \"%1$@\" karpetan eta saiatu berriro. Bestela, sakatu \"Hasi txateatzen\" ezarpen arruntarekin aurrera egiteko.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "%1$@(r)en erantzuna: %2$@\n\nHornitzaile batzuk informazio gehigarria uzten dute zure sarrera ontzian; adibidez bere web interfazearen bidez egiaztatu dezakezu. Galdetu zure hornitzaileari edo lagunei arazoak badituzu.";

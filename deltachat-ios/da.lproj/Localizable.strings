@@ -49,11 +49,10 @@
 "done" = "Færdig";
 "undo" = "Fortryd";
 "offline" = "Offline";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Næste";
 "error" = "Fejl";
 "error_x" = "Fejl: %1$@";
-"error_no_network" = "Netværk utilgængelig";
 "no_app_to_handle_data" = "Kan ikke finde et program til håndtering af denne type data.";
 "no_browser_installed" = "Ingen browser installeret.";
 "file_not_found" = "Kunne ikke finde %1$@.";
@@ -333,7 +332,7 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP sikkerhed";
 "login_auth_method" = "Autorisationsmetode";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Checker %1$@";
 "login_info_oauth2_title" = "Fortsæt med forenklet opsætning?";
 "login_info_oauth2_text" = "Indtastet e-mail adresse understøtter simple opsætning (OAuth2).\n\nTillad i næste trin at Delta Chat agerer som samtale med e-mail program.\n\nDer er ingen Delta Chat servere, data forbliver på enhed.";
@@ -345,7 +344,7 @@
 "import_backup_title" = "Importer sikkerhedskopi";
 "import_backup_ask" = "Sikkerhedskopi fundet hos \"%1$@\".\n\nVil du Importere og bruge al data og opsætning fra den?";
 "import_backup_no_backup_found" = "Ingen sikkerhedskopi fundet.\n\nKopier sikkerhedskopi til \"%1$@\" og prøv igen. Alternativt, klik \"Start samtale\" for at følge normal opsætning proces.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Kan ikke logge ind som  \"%1$@\". Kontroller om e-mailadresse og adgangskode er korrekt.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Svar fra %1$@: %2$@\n\nNogle udbydere placerer ekstra information i indbakken; det kan kontrolleres f.eks. i net grænsefladen. Kontakt udbyder eller venner hvis disse problemer opstår.";

@@ -57,11 +57,10 @@
 "done" = "U bë";
 "undo" = "Zhbëje";
 "offline" = "Jo në linjë";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Pasuesja";
 "error" = "Gabim";
 "error_x" = "Gabim: %1$@";
-"error_no_network" = "Rrjet i pakapshëm.";
 "no_app_to_handle_data" = "S\’gjendet dot një aplikacion për trajtimin e këtij lloji të dhënash.";
 "no_browser_installed" = "S\’ka shfletues të instaluar.";
 "file_not_found" = "S\’u gjet dot %1$@.";
@@ -94,7 +93,7 @@
 "voice_message" = "Mesazh zanor";
 "forwarded" = "Përcjellë";
 "forwarded_message" = "Mesazhi u përcoll";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Përcjellë nga %1$@";
 "video" = "Video";
 "documents" = "Dokumente";
@@ -380,7 +379,7 @@
 "login_smtp_port" = "Portë SMTP";
 "login_smtp_security" = "Siguri SMTP";
 "login_auth_method" = "Metodë autorizimi";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Po kontrollohet %1$@";
 "login_info_oauth2_title" = "Të vazhdohet me rregullimin e thjeshtuar?";
 "login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth2).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të veprojë si aplikacioni juaj për Fjalosje Përmes Email-i.\n\nS\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
@@ -392,7 +391,7 @@
 "import_backup_title" = "Importo kopjeruajtje";
 "import_backup_ask" = "U gjet kopjeruajtje te \"%1$@\".\n\nDoni të importohen dhe përdoren krejt të dhënat dhe rregullimet prej atij?";
 "import_backup_no_backup_found" = "S\’u gjetën kopjeruajtje.\n\nKopjojeni kopjeruajtjen te \"%1$@\" dhe riprovoni. Ndryshe, shtypni \"Filloni të shkëmbeni mesazhe\", që të vazhdoni me procesin normal të rregullimit.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "S\’bëhet dot hyrja si %1$@. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Përgjigje nga %1$@: %2$@\n\nDisa shërbime vendosin të dhëna shtesë te kutia juaj e mesazheve të marrë; mund t\’i shihni, për shembull, te pjesa e dukshme web. Nëse hasni probleme, këshillohuni me shërbimin tuaj ose shokë.";

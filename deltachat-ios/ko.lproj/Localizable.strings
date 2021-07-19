@@ -34,7 +34,7 @@
 "one_moment" = "잠시만 기다려 주세요…";
 "done" = "완료";
 "undo" = "실행취소";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "확인";
 "error" = "오류";
 "contacts_headline" = "연락처";

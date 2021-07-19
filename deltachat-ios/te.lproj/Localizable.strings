@@ -34,7 +34,7 @@
 "one_moment" = "ఒక్క క్షణం ...";
 "done" = "పూర్తయింది";
 "undo" = "దిద్దుబాటు రద్దుచెయ్యి";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "తరువాత";
 "error" = "లోపం";
 "contacts_headline" = "కాంటాక్ట్స్";

@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Batalkan";
+"clear_search" = "Hapus pencarian";
 "yes" = "Ya";
 "no" = "Tidak";
 "select" = "Pilih";
@@ -30,12 +31,20 @@
 "unarchive" = "Tidak diarsip";
 "mute" = "Diam";
 "ephemeral_messages" = "Pesan yang berhilangan";
+"ephemeral_messages_hint" = "Pengaturan ini berlaku untuk semua peserta yang menggunakan Delta Chat. Namun, mereka dapat menyalin, menyimpan, dan meneruskan pesan atau menggunakan klien email lainnya.";
 "save" = "Simpan";
 "chat" = "Chat";
 "media" = "Media";
 "profile" = "Profil";
 "main_menu" = "Menu utama";
 "start_chat" = "Mulai obrolan";
+"show_full_message" = "Tampilkan semua pesan...";
+"show_full_message_in_browser" = "Tampilkan semua pesan di browser...";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Memuat...";
+"hide" = "Sembunyikan";
+"always" = "Selalu";
+"once" = "Sekali";
 "show_password" = "Tunjukkan kata kunci";
 "hide_password" = "Sembunyikan kata kunci";
 "not_now" = "Tidak sekarang";
@@ -44,11 +53,10 @@
 "done" = "Selesai";
 "undo" = "Undo";
 "offline" = "Offline";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Berikutnya";
 "error" = "Eror";
 "error_x" = "Eror: %1$@";
-"error_no_network" = "Jaringan tidak tersedia.";
 "no_app_to_handle_data" = "Tidak menemukan aplikasi untuk jenis data ini.";
 "no_browser_installed" = "Tak ada browser yang terpasang.";
 "file_not_found" = "Tak bisa menemukan %1$@.";
@@ -79,12 +87,16 @@
 "images" = "Gambar";
 "audio" = "Audio";
 "voice_message" = "Pesan suara";
+"forwarded" = "Diteruskan";
 "forwarded_message" = "Pesan yang diteruskan";
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+"forwarded_by" = "Diteruskan oleh %1$@";
 "video" = "Video";
 "documents" = "Dokumen";
 "contact" = "Kontak";
 "verified_contact" = "Kontak terverifikasi";
 "camera" = "Kamera";
+"switch_camera" = "Ganti kamera";
 "location" = "Lokasi";
 "gallery" = "Galeri";
 "images_and_videos" = "Gambar dan video";
@@ -141,6 +153,8 @@
 "menu_copy_to_clipboard" = "Kopi ke papan klip";
 "menu_copy_selection_to_clipboard" = "Salin yang dipilih";
 "menu_copy_link_to_clipboard" = "Salin pranala";
+"menu_copy_text_to_clipboard" = "Salin teks";
+"menu_copy_image_to_clipboard" = "Salin gambar";
 "paste_from_clipboard" = "Tempelkan dari papan klip";
 "menu_forward" = "Teruskan pesan";
 "menu_resend" = "Kirim ulang pesan";
@@ -161,6 +175,7 @@
 "menu_help" = "Bantuan";
 "privacy_policy" = "Kebijakan Privasi";
 "menu_select_all" = "Pilih semua";
+"select_more" = "Pilih lebih banyak";
 "menu_expand" = "Perluas";
 "menu_edit_name" = "Edit nama";
 "menu_settings" = "Setelan";
@@ -171,6 +186,7 @@
 "menu_zoom_in" = "Zoom perbesar";
 "menu_zoom_out" = "Zoom perkecil";
 "menu_save_log" = "Simpan log";
+"copy_json" = "Salin JSON";
 "title_share_location" = "Bagikan lokasi kepada seluruh anggota grup";
 "device_talk" = "Pesan perangkat";
 "device_talk_subtitle" = "Pesan-pesan buatan lokal";
@@ -316,7 +332,7 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "Keamanan SMTP";
 "login_auth_method" = "Metode otorisasi";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Memeriksa %1$@";
 "login_info_oauth2_title" = "Lanjutkan dengan pengaturan yang disederhanakan?";
 "login_info_oauth2_text" = "Bantuan untuk alamat surel yang telah dimasukkan adalah pengaturan yang disederhanakan (OAuth 2.0).\n\nPada langkah selanjutnya, izinkan Delta Chat sebagai Obrolan Anda pada aplikasi Surel.\n\nTidak ada server Delta Chat, obrolan Anda tetap di perangkat Anda.";
@@ -328,7 +344,7 @@
 "import_backup_title" = "Impor cadangan";
 "import_backup_ask" = "Cadangan ditemukan di \"%1$@\".\n\n Apakah Anda ingin mengimpor dan menggunakan semua data dan pengaturan darinya?";
 "import_backup_no_backup_found" = "Cadangan tidak ketemu.\n\nKopi cadangan ke \"%1$@\" dan coba lagi. Cara lain, tekan \"Mulai obrolan\" untuk melanjutkan proses pengaturan normal.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Tanggapan dari %1$@: %2$@\n\nBeberapa penyedia layanan provider menempatkan informasi tambahan di kotak masuk Anda; Anda bisa memeriksanya, misalnya di beranda depan web. Konsultasikan dengan penyedia atau teman Anda jika Anda mengalami masalah.";
@@ -415,6 +431,7 @@
 "pref_managekeys_export_explain" = "Ekspor kunci rahasia ke \"%1$@\"?";
 "pref_managekeys_import_secret_keys" = "Impor kunci rahasia";
 "pref_managekeys_import_explain" = "Impor kunci rahasia dari \"%1$@\"?\n\n• Kunci rahasia sebelumnya tidak akan terhapus\n\n• Kunci terakhir yang diimpo akan digunakan sebagai kunci default baru kecuali ada kata \"legacy\" di nama berkas.";
+"pref_managekeys_secret_keys_exported_to_x" = "Kunci rahasia berhasil ditulis ke \"%1$@\".";
 "pref_managekeys_secret_keys_imported_from_x" = "Kunci rahasia diimpor dari \"%1$@\".";
 "pref_background" = "Latar belakang";
 "pref_background_btn_default" = "Menggunakan gambar default";
@@ -439,6 +456,7 @@
 "emoji_foods" = "Makanan & Minuman";
 "emoji_activity" = "Aktifitas";
 "emoji_places" = "Perjalanan & Tempat";
+"emoji_objects" = "objek";
 "emoji_symbols" = "Simbol-simbol";
 // automatically delete message
 "delete_old_messages" = "Hapus pesan-pesan lama";
@@ -450,10 +468,13 @@
 "autodel_at_once" = "Segera";
 "after_30_seconds" = "Setelah 30 detik";
 "after_1_minute" = "Setelah 1 menit";
+"after_5_minutes" = "Setelah 5 menit";
+"after_30_minutes" = "Setelah 30 menit";
 "autodel_after_1_hour" = "Setelah 1 jam";
 "autodel_after_1_day" = "Setelah 1 hari";
 "autodel_after_1_week" = "Setelah 1 minggu";
 "autodel_after_4_weeks" = "Setelah 4 minggu";
+"after_5_weeks" = "Setelah 5 minggu";
 "autodel_after_1_year" = "Setelah 1 tahun";
 
 // autocrypt
@@ -487,11 +508,13 @@
 "systemmsg_action_by_me" = "%1$@ oleh saya.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ oleh %2$@.";
+"systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
 "systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
 
 // qr code stuff
 "qr_code" = "Kode QR";
+"load_qr_code_as_image" = "Muat kode QR sebagai gambar";
 "qrscan_title" = "Pindah kode QR";
 "qrscan_hint" = "Pegang kamera Anda di atas kode QR.";
 "qrscan_ask_join_group" = "Apakah anda ingin bergabung dengan grup \"%1$@\"?";

@@ -33,7 +33,7 @@
 "one_moment" = "لحظة…";
 "done" = "تم";
 "undo" = "ألغ";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "التالي";
 "error" = "خطأ";
 "error_x" = "خطأ: %1$@";
@@ -50,8 +50,6 @@
 "this_month" = "هذا الشهر";
 "last_week" = "الأسبوع الماضي";
 "last_month" = "الشهر الماضي";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 "self" = "أنا";
 "draft" = "مسودة";
 "image" = "صورة";

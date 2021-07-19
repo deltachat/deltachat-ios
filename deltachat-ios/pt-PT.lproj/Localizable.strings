@@ -19,7 +19,6 @@
 "undo" = "Desfazer";
 "error" = "Erro";
 "error_x" = "Erro: %1$@";
-"error_no_network" = "Rede indisponível.";
 "no_app_to_handle_data" = "Não é possível encontrar uma aplicação para lidar com esse tipo de dados.";
 "no_browser_installed" = "Navegador da internet não instalado.";
 "file_not_found" = "Não consegui localizar %1$@";
@@ -198,7 +197,7 @@
 "import_backup_title" = "Importar backup";
 "import_backup_ask" = "Backup encontrado em \"%1$@\".\n\nQuer importar e usar todos os dados e respectivas configurações?";
 "import_backup_no_backup_found" = "Nenhum backup encontrado. \n\nCopie o backup para \"%1$@\" e tente novamente. Em alternativa, pressione \"Iniciar mensagem\" para prosseguir com o processo de configuração normal.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Não é possível fazer o login como \"%1$@\". Por favor, verifique se o endereço de email e a palavra-chave estão corretos.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Resposta de %1$@: %2$@ \n\nAlguns provedores colocam informações adicionais na sua caixa de entrada; pode verificá-los, por exemplo, na interface web. Consulte o seu provedor ou amigos se você tiver problemas.";

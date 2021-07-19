@@ -36,11 +36,10 @@
 "one_moment" = "Unu momenton…";
 "done" = "Farita";
 "undo" = "Malfari";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Sekva";
 "error" = "Eraro";
 "error_x" = "Eraro: %1$@";
-"error_no_network" = "Reto neatingebla.";
 "no_app_to_handle_data" = "Ne povas trovi aplikaĵon por trakti tiun ĉi tipon de datumo.";
 "no_browser_installed" = "Neniu retumilo instalita.";
 "file_not_found" = "Ne povis trovi %1$@.";

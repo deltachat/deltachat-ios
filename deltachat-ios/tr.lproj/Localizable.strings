@@ -57,11 +57,10 @@
 "done" = "Bitti";
 "undo" = "Geri al";
 "offline" = "Çevrimdışı";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Sonraki";
 "error" = "Hata";
 "error_x" = "Hata: %1$@";
-"error_no_network" = "Ağ kullanım dışı.";
 "no_app_to_handle_data" = "Bu veri türünü işleyen bir uygulama bulunamıyor.";
 "no_browser_installed" = "Kurulu tarayıcı yok.";
 "file_not_found" = "%1$@ bulunamadı.";
@@ -94,7 +93,7 @@
 "voice_message" = "Sesli ileti";
 "forwarded" = "İletildi";
 "forwarded_message" = "İletilen ileti";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "%1$@ tarafından iletildi";
 "video" = "Video";
 "documents" = "Belgeler";
@@ -383,7 +382,7 @@
 "login_smtp_port" = "SMTP bağlantı noktası";
 "login_smtp_security" = "SMTP güvenliği";
 "login_auth_method" = "Yetkilendirme yöntemi";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "%1$@ denetleniyor";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
 "login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta ile Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
@@ -395,7 +394,7 @@
 "import_backup_title" = "Yedeği içe aktar";
 "import_backup_ask" = "\"%1$@\" üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
 "import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için \"İletileşmeye başla\"ya basın.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "\"%1$@\" olarak oturum açılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "%1$@ yanıtı: %2$@\n\nBazı sağlayıcılar size bu sorun hakkında e-posta gönderebilir; ilgili uygulamanızdan ya da web sitesinden gelen kutunuzu denetleyebiliyor olmalısınız. Sorun yaşarsanız sağlayıcınıza ya da arkadaşlarınıza danışın.";

@@ -57,11 +57,10 @@
 "done" = "Выполнено";
 "undo" = "Отмена";
 "offline" = "Не в сети";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Дальше";
 "error" = "Ошибка";
 "error_x" = "Ошибка: %1$@";
-"error_no_network" = "Сеть недоступна.";
 "no_app_to_handle_data" = "Приложение, позволяющее обрабатывать этот тип данных, не найдено.";
 "no_browser_installed" = "Браузер не установлен.";
 "file_not_found" = "Невозможно найти %1$@";
@@ -94,7 +93,7 @@
 "voice_message" = "Голосовое сообщение";
 "forwarded" = "Переслано";
 "forwarded_message" = "Пересланное сообщение";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Переслано %1$@";
 "video" = "Видео";
 "documents" = "Документы";
@@ -383,7 +382,7 @@
 "login_smtp_port" = "SMTP порт";
 "login_smtp_security" = "Параметры безопасности SMTP";
 "login_auth_method" = "Метод авторизации";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Проверяем %1$@";
 "login_info_oauth2_title" = "Продолжить упрощенную настройку?";
 "login_info_oauth2_text" = "Введённый адрес электронной почты поддерживает упрощённую настройку (OAuth2).\n\nНа следующем шаге разрешите, пожалуйста, Delta Chat выступать в качестве Вашего приложения для чата с помощью электронной почты.\n\nУ Delta Chat нет серверов, Ваши данные остаются на Вашем устройстве!";
@@ -395,7 +394,7 @@
 "import_backup_title" = "Импорт резервной копии";
 "import_backup_ask" = "Найдена резервная копия в «%1$@».\n\nВы хотите импортировать и использовать все данные и параметры из неё?";
 "import_backup_no_backup_found" = "Резервных копий не найдено.\n\nПоместите резервную копию в папку «%1$@» и попробуйте снова запустить восстановление. Или как альтернатива, нажмите «Начать общение»  в обычном режиме.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Не удалось выполнить вход с логином \"%1$@\". Убедитесь, что адрес эл. почты и пароль указаны верно.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Ответ от %1$@: %2$@\n\nНекоторые поставщики электронной почты могут сообщить вам о дополнительной проблеме; у вас должна быть возможность проверять свой почтовый ящик с помощью обычного почтового приложения или веб-сайта. Если у вас возникнут проблемы, посоветуйтесь со своим провайдером или друзьями. ";

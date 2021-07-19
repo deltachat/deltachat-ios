@@ -31,11 +31,10 @@
 "not_now" = "Ne sada";
 "never" = "Nikada";
 "one_moment" = "Samo trenutak...";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Dalje";
 "error" = "Greška";
 "error_x" = "Greška: %1$@";
-"error_no_network" = "Mreža nije dostupna.";
 "file_not_found" = "%1$@ nije pronađeno.";
 "copied_to_clipboard" = "Kopirano u međuspremnik.";
 "contacts_headline" = "Kontakti";

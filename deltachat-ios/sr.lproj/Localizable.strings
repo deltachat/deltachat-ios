@@ -34,11 +34,10 @@
 "one_moment" = "Тренутак...";
 "done" = "Завршено";
 "undo" = "Опозови";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Следећи";
 "error" = "Грешка";
 "error_x" = "Грешка: %1$@";
-"error_no_network" = "Мрежа није доступна.";
 "no_app_to_handle_data" = "Нема апликације која обрађује ову врсту података.";
 "no_browser_installed" = "Прегледач није инсталиран.";
 "file_not_found" = "Не могу да нађем %1$@.";
@@ -206,7 +205,7 @@
 "import_backup_title" = "Увези резервну копију";
 "import_backup_ask" = "Резервна копија нађена у %1$@.\n\nЖелите ли да увезете и користите све њене податке и поставке?";
 "import_backup_no_backup_found" = "Нема резервних копија.\n\nКопирајте резервну копију у %1$@ и покушајте поново. Ако не желите, тапните \"Почни ћаскање\" да бисте почели уобичајени процес поставке.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Не могу да се пријавим као %1$@. Проверите да ли су е-адреса и лозинка тачни.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Одговор од %1$@: %2$@\n\nНеки пружаоци услуга остављају додатне информације у ваше пријемно сандуче; можете да проверите ово нпр. користећи веб сучеље ваше е-поште. Посаветујте се са пружаоцем услуге или пријатељима ако налетите на проблеме.";

@@ -51,11 +51,10 @@
 "done" = "Hotovo";
 "undo" = "Zpět";
 "offline" = "Nepřipojený";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Další";
 "error" = "Chyba";
 "error_x" = "Chyba %1$@";
-"error_no_network" = "Nedostupná síť";
 "no_app_to_handle_data" = "Neznámá aplikace pro tento typ dat.";
 "no_browser_installed" = "Žádná instalace prohlížeče";
 "file_not_found" = "Nemohu najít %1$@";
@@ -87,7 +86,7 @@
 "audio" = "Zvukový záznam";
 "voice_message" = "Hlasová zpráva";
 "forwarded_message" = "Přeposlaná zpráva";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Přeposlal %1$@";
 "video" = "Video";
 "documents" = "Dokumenty";
@@ -343,7 +342,7 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP zabezpečení";
 "login_auth_method" = "Metoda autorizace";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Prohlížím %1$@";
 "login_info_oauth2_title" = "Zkus zjednodušené nastavení?";
 "login_info_oauth2_text" = "Zadaný e-mail podporuje zjednodušené nastavení (OAuth 2.0).\n\nV příštím kroku dej prosím Delta Chatu povolení chovat se jako chat přes e-mail. \n\nŽádné servery Delta Chat nemá, tvá data zůstávají na tvém přístroji.";
@@ -355,7 +354,7 @@
 "import_backup_title" = "Nahrát zálohu";
 "import_backup_ask" = "Záloha nalezena v \"%1$@\"\n\nChceš nahrát  k používání všechna jeho data a nastavení?";
 "import_backup_no_backup_found" = "Žádná záloha nebyla nalezena. \n\nZkopíruj zálohu do \"%1$@\" a zkus to znovu. Případně, stiskni \"Start messaging\"  a pokračuj s běžným postupem pro nastavení.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Přihlášení jako \"%1$@\" selhalo. Zkontrolujte si prosím ještě jednou e-mail a heslo.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Odpověď od %1$@: %2$@\n\nNěkteří poskytovatelé e-mailují dodatečné informace k tomuto nezdaru; zkus se podívat do doručených e-mailů ve tvé běžné aplikaci. Při potížích se obrať na svého poskytovatele nebo na přátele.";

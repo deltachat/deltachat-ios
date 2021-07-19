@@ -36,7 +36,6 @@
 "undo" = "Geri qaytar";
 "error" = "Xəta";
 "error_x" = "Xəta: %1$@";
-"error_no_network" = "Şəbəkə əlçatmazdır.";
 "no_app_to_handle_data" = "Bu tip məlumatları idarə etmək üçün bir tətbiq tapılmadı.";
 "no_browser_installed" = "Heç bir brauzer quraşdırılıb.";
 "file_not_found" = "Tapa bilmədim %1$@.";
@@ -256,7 +255,7 @@
 "login_error_required_fields" = "Xahiş edirik düzgün bir e-poçt ünvanı və parol daxil et";
 "import_backup_title" = "Nüsxənin importu";
 "import_backup_ask" = "\"%1$@\" - də ehtiyat nüsxəsi tapıldı.\n\nİndi bütün məlumatları və parametrləri idxal etmək və istifadə etmək istəyirsiniz?";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = " \"%1$@\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to

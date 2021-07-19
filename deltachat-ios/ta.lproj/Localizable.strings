@@ -33,7 +33,7 @@
 "never" = "எப்போதும் இல்லை";
 "one_moment" = "ஒரு நிமிடம் காத்திருக்கவும் ...";
 "done" = "முடிந்தது";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "அடுத்தது";
 "error" = "பிழை";
 "error_x" = "பிழை: %1$@";

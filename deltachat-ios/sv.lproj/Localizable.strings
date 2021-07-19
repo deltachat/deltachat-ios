@@ -51,11 +51,10 @@
 "done" = "Klart";
 "undo" = "Ångra";
 "offline" = "Offline";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Nästa";
 "error" = "Fel";
 "error_x" = "Fel: %1$@";
-"error_no_network" = "Nätverk ej tillgängligt.";
 "no_app_to_handle_data" = "Kan inte hitta någon app som hanterar denna typ av data.";
 "no_browser_installed" = "Ingen webbläsare installerad.";
 "file_not_found" = "Kunde inte hitta %1$@.";
@@ -87,7 +86,7 @@
 "audio" = "Ljud";
 "voice_message" = "Röstmeddelande";
 "forwarded_message" = "Vidarebefordrat meddelande";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Vidarebefordrad av %1$@";
 "video" = "Video";
 "documents" = "Dokument";
@@ -342,7 +341,7 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP säkerhet";
 "login_auth_method" = "Auktoriseringsmetod";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Kontrollerar %1$@";
 "login_info_oauth2_title" = "Fortsätta med förenklad installation?";
 "login_info_oauth2_text" = "Den angivna e-postadressen stödjer förenklad inställning (OAuth 2.0).\n\nLåt Delta Chat agera som ditt chatt-över-epost-program, i nästa steg.\n\nDet finns ingen Delta Chat-server, din data stannar på din enhet.";
@@ -354,7 +353,7 @@
 "import_backup_title" = "Importera säkerhetskopia";
 "import_backup_ask" = "Säkerhetskopia hittades på %1$@.\n\n Vill du importera och använda all data och alla inställningar från den?";
 "import_backup_no_backup_found" = "Inga säkerhetskopior hittades.\n\nKopiera säkerhetskopian till \"%1$@\" och försök igen. Alternativt, tryck \"Börja chatta\" för att fortsätta den normala inställningsprocessen.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Kan inte logga in som \"%1$@\". Kontrollera om e-postadressen och lösenordet är korrekt.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Svar från %1$@: %2$@\n\nVissa e-postleverantörer placerar tilläggsinformation i din inkorg. Du kan kontrollera dem i t.ex. webbgränssnittet. Kontakta din e-postleverantör eller vänner om du stöter på problem.";

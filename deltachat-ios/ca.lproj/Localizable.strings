@@ -48,11 +48,10 @@
 "one_moment" = "Espereu...";
 "done" = "Fet";
 "undo" = "Desfés";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Següent";
 "error" = "Error";
 "error_x" = "Error: %1$@";
-"error_no_network" = "Xarxa no disponible.";
 "no_app_to_handle_data" = "No hi ha cap app per gestionar aquestes dades.";
 "no_browser_installed" = "Cap navegador instal·lat.";
 "file_not_found" = "No s\'ha trobat %1$@.";
@@ -84,7 +83,7 @@
 "audio" = "Àudio";
 "voice_message" = "Missatge de veu";
 "forwarded_message" = "Missatge reenviat";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Reenviat per %1$@";
 "video" = "Vídeo";
 "documents" = "Documents";
@@ -279,7 +278,7 @@
 "import_backup_title" = "Importa una còpia de seguretat";
 "import_backup_ask" = "S\'ha trobat una còpia de seguretat a \"%1$@\".\n\nVoleu importar-la i fer-ne servir les dades i els paràmetres de configuració?";
 "import_backup_no_backup_found" = "No s\'han trobat còpies de seguretat.\n\nCopieu la còpia de seguretat a \"%1$@\" i torneu-ho a provar. Com a alternativa, premeu \"Comença a escriure\" per encetar el procés de configuració habitual.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "No es pot iniciar la sessió com a \"%1$@\". Comproveu que l\'adreça electrònica i la contrasenya són correctes.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "La resposta de%1$@ ha sigut: %2$@\n\nHi ha proveïdors que posen informació addicional a la vostra safata d\'entrada; podeu trobar-la allà p. ex. usant la interfície de correu web. Consulteu el vostre proveïdor o els vostres amics si teniu problemes.";

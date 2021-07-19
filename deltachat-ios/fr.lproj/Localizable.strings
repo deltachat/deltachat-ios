@@ -38,6 +38,7 @@
 "main_menu" = "Menu principal";
 "start_chat" = "Commencer la discussion";
 "show_full_message" = "Montrer le message complet...";
+"hide" = "Cacher";
 "load_remote_content" = "Charger les images distantes";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Les images distantes peuvent être utilisées pour vous pister. Ce paramètre autorise également le chargement de polices ou d\'autres contenus. S\'il est désactivé, vous pouvez tout de même voir les images ancrées ou en cache. Souhaitez-vous charger les images distantes ?";
@@ -51,11 +52,10 @@
 "done" = "Fait";
 "undo" = "Annuler";
 "offline" = "Hors ligne";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Suivant";
 "error" = "Erreur";
 "error_x" = "Erreur : %1$@";
-"error_no_network" = "Réseau inaccessible.";
 "no_app_to_handle_data" = "Aucune application trouvée pour traiter ce type de données.";
 "no_browser_installed" = "Aucun navigateur installé.";
 "file_not_found" = "Impossible de trouver %1$@.";
@@ -87,7 +87,7 @@
 "audio" = "Son";
 "voice_message" = "Message vocal";
 "forwarded_message" = "Message transféré";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Transféré par %1$@";
 "video" = "Vidéo";
 "documents" = "Documents";
@@ -343,7 +343,7 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Sécurité SMTP";
 "login_auth_method" = "Méthode d\'autorisation";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Vérification de %1$@";
 "login_info_oauth2_title" = "Continuer avec une configuration simplifiée ?";
 "login_info_oauth2_text" = "L\'adresse de courriel saisie prend en charge une configuration simplifiée (OAuth2.0). \n\nDans l\'étape suivante, autorisez Delta Chat à agir comme votre application de Chat avec courriel . Il n\'y a pas de serveur Delta Chat, vos données restent sur votre appareil !";
@@ -355,7 +355,7 @@
 "import_backup_title" = "Importer une sauvegarde";
 "import_backup_ask" = "Sauvegarde trouvée sur \"%1$@\".\n\nVoulez-vous importer et en utiliser toutes les données et paramètres ?";
 "import_backup_no_backup_found" = "Aucune sauvegarde trouvée.\n\nCopiez le fichier de sauvegarde vers \"%1$@\" et essayez à nouveau. Ou bien, appuyez sur \"Démarrage communication\" pour suivre le processus normal de configuration.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Connexion en tant que \"%1$@\" échouée. Vérifiez s.v.p. que votre adresse courriel et votre mot de passe sont corrects.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Réponse de %1$@ : %2$@\n\nCertains fournisseurs peuvent envoyer des informations complémentaires par courriel concernant ce problème ; vous devriez pouvoir vérifier votre boîte de réception grâce à votre client de messagerie habituel ou par son interface web. Consultez votre fournisseur ou vos amis si vous rencontrez des problèmes.";

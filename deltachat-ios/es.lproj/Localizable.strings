@@ -52,11 +52,10 @@
 "done" = "Hecho";
 "undo" = "Deshacer";
 "offline" = "Fuera de línea";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Siguiente";
 "error" = "Error";
 "error_x" = "Error: %1$@";
-"error_no_network" = "Red no disponible.";
 "no_app_to_handle_data" = "No se encontró una aplicación compatible con el tipo de contenido";
 "no_browser_installed" = "No hay ningún navegador instalado.";
 "file_not_found" = "No se pudo encontrar %1$@.";
@@ -89,7 +88,7 @@
 "voice_message" = "Mensaje de voz";
 "forwarded" = "Reenviado";
 "forwarded_message" = "Mensaje reenviado";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Reenviado por %1$@";
 "video" = "Video";
 "documents" = "Documentos";
@@ -352,7 +351,7 @@
 "login_smtp_port" = "Puerto SMTP";
 "login_smtp_security" = "Seguridad SMTP";
 "login_auth_method" = "Método de autorización";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Chequeando %1$@";
 "login_info_oauth2_title" = "¿Continuar con la configuración simplificada?";
 "login_info_oauth2_text" = "La dirección de correo electrónico introducida admite una configuración simplificada (OAuth2).\n\nEn el próximo paso, permita que Delta Chat actúe como su aplicación de chat con correo electrónico.\n\nNo hay servidores de Delta Chat, tus datos permanecen en tu dispositivo!";
@@ -364,7 +363,7 @@
 "import_backup_title" = "Importar copia de respaldo";
 "import_backup_ask" = "Copia de respaldo encontrada en \"%1$@\".\n\n¿Desea importar y utilizar todos los datos y configuraciones de ella?";
 "import_backup_no_backup_found" = "No se encontraron copias de seguridad.\n\nCopie el archivo de respaldo en \"%1$@\" e inténtelo de nuevo. Alternativamente, presione \"Empezar a Chatear\" para continuar con el proceso de configuración normal.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "No se puede iniciar sesión como \"%1$@\". Por favor, compruebe si la dirección de correo y la contraseña son correctas.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Respuesta de %1$@: %2$@\n\nAlgunos proveedores colocan información adicional en su bandeja de entrada; Puedes comprobarlo por ej. en la interfaz web. Consulte a su proveedor o amigos si tiene problemas.";

@@ -57,11 +57,10 @@
 "done" = "Feito";
 "undo" = "Desfazer";
 "offline" = "Desconectado";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Avançar";
 "error" = "Erro";
 "error_x" = "Erro: %1$@";
-"error_no_network" = "Rede indisponível.";
 "no_app_to_handle_data" = "Não foi possível encontrar um app para abrir esse tipo de arquivo.";
 "no_browser_installed" = "Nenhum navegador instalado.";
 "file_not_found" = "Não foi possível encontrar %1$@.";
@@ -94,7 +93,7 @@
 "voice_message" = "Mensagem de voz";
 "forwarded" = "Encaminhado";
 "forwarded_message" = "Mensagem encaminhada";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Encaminhado por %1$@";
 "video" = "Vídeo";
 "documents" = "Documentos";
@@ -383,7 +382,7 @@
 "login_smtp_port" = "Porta SMTP";
 "login_smtp_security" = "Segurança SMTP";
 "login_auth_method" = "Método de autorização";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Verificando %1$@";
 "login_info_oauth2_title" = "Prosseguir pela configuração simplificada?";
 "login_info_oauth2_text" = "Seu servidor de e-mail aceita o método de configuração simplificada (OAuth 2.0).\n\n No próximo passo, por favor, permita que o Delta Chat seja seu aplicativo de e-mail.\n\nNão há servidor do Delta Chat. Seus dados ficam no seu aparelho.";
@@ -395,7 +394,7 @@
 "import_backup_title" = "Importar becape";
 "import_backup_ask" = "Becape localizado em \"%1$@\".\n\nVocê quer importá-lo e usar seus dados e configurações?";
 "import_backup_no_backup_found" = "Becapes não localizados.\n\nCopie o becape para \"%1$@\" e tente de novo. Alternativamente, toque em \"comece a conversar\" para prosseguir normalmente.";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Impossível acessar \"%1$@\". Por favor, verifique o e-mail e senha.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "Resposta de %1$@: %2$@\n\nAlguns provedores colocam informações adicionais na sua caixa de entrada; verifique-as, por exemplo, na interface web. Consulte o seu provedor ou amigos se você tiver problemas.";

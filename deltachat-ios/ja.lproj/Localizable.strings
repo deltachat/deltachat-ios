@@ -52,11 +52,10 @@
 "done" = "完了";
 "undo" = "元に戻す";
 "offline" = "オフライン";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "次へ";
 "error" = "エラー";
 "error_x" = "エラー：%1$@";
-"error_no_network" = "通信不能";
 "no_app_to_handle_data" = "この種類のファイルを開くためのアプリが見つかりません。";
 "no_browser_installed" = "ブラウザーが見つかりません";
 "file_not_found" = "%1$@を見付けられません";
@@ -88,7 +87,7 @@
 "audio" = "音楽";
 "voice_message" = "音声メッセージ";
 "forwarded_message" = "転送されたメッセージ";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "%1$@が転送しました";
 "video" = "動画";
 "documents" = "文章";
@@ -348,7 +347,7 @@
 "login_smtp_port" = "SMTPポート";
 "login_smtp_security" = "SMTP暗号方式";
 "login_auth_method" = "認証方法";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "%1$@が確認中";
 "login_info_oauth2_title" = "簡単セットアップを使用しましょうか？";
 "login_info_oauth2_text" = "入力されたメールアドレスは、簡易セットアップ（OAuth 2.0）に対応しています。次に「メールでチャット」を許可してください。Delta Chatにはサーバーがなく、テーダはデバイスにあります。";
@@ -360,7 +359,7 @@
 "import_backup_title" = "バックアップをインポート";
 "import_backup_ask" = "%1$@でバックアップがあります。\n\nすべての設定やデータを取り込んで使用しましょうか？";
 "import_backup_no_backup_found" = "バックアップが見つかりません。\n\n%1$@にバックアップをコピーして、再試行してください。又は、「メッセージの開始」を押して通常のセットアップを続行します。";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "%1$@としてログインできません。メールアドレスとパスワードを確認してください。";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "%1$@から：%2$@\n\nプロバイダーによって問題に関して情報をメールで貰える可能性があります。メールアプリ又はブラウザでメールを確認してください。";

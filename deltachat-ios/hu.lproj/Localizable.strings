@@ -25,11 +25,10 @@
 "one_moment" = "Egy pillanat...";
 "done" = "Kész";
 "undo" = "Visszavonás";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Tovább";
 "error" = "Hiba";
 "error_x" = "Hiba: %1$@";
-"error_no_network" = "A hálózat nem elérhető.";
 "no_browser_installed" = "Nincs böngésző telepítve.";
 "file_not_found" = "%1$@ nem található.";
 "copied_to_clipboard" = "Vágólapra másolva.";

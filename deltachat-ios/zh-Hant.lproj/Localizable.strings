@@ -57,11 +57,10 @@
 "done" = "已完成";
 "undo" = "撤销";
 "offline" = "离线";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "下一步";
 "error" = "错误";
 "error_x" = "错误： %1$@";
-"error_no_network" = "网络不可用。";
 "no_app_to_handle_data" = "无法找到用于处理此类数据的应用程序。";
 "no_browser_installed" = "没有安装浏览器。";
 "file_not_found" = "无法找到 %1$@。";
@@ -94,7 +93,7 @@
 "voice_message" = "语音消息";
 "forwarded" = "转发了";
 "forwarded_message" = "转发的消息";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "转发人 %1$@";
 "video" = "视频";
 "documents" = "文档";
@@ -383,7 +382,7 @@
 "login_smtp_port" = "SMTP 端口";
 "login_smtp_security" = "SMTP 安全类型";
 "login_auth_method" = "认证方法";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "检查 %1$@ 中";
 "login_info_oauth2_title" = "使用简化设置继续？";
 "login_info_oauth2_text" = "输入的电子邮件地址支持简化设置（OAuth 2.0）。\n\n在下一步中，请允许 Delta Chat 充当您的“通过电子邮件聊天”应用程序。\n\n不存在 Delta Chat 服务器，您的数据保留于您的设备！";
@@ -395,7 +394,7 @@
 "import_backup_title" = "导入备份";
 "import_backup_ask" = "在“%1$@”找到备份。\n\n您要导入并使用其中的全部数据与设置吗？";
 "import_backup_no_backup_found" = "没有找到备份。\n\n将备份复制到“%1$@”然后再试一次。或者按“开始发送消息”来进行常规设置流程。";
-// Translators: %1$s will be replaced by the email address
+// Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "无法作为“%1$@”登录。请检查电子邮件地址和密码是否正确。";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 "login_error_server_response" = "来自 %1$@ 的回应： %2$@\n\n某些提供商会在您的收件箱中放置额外信息; 您可以在 Web 端等处等查看它。 如遇到问题，请咨询您的提供商或朋友。";

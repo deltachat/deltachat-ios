@@ -31,7 +31,7 @@
 "unarchive" = "Unarchive";
 "mute" = "Mute";
 "ephemeral_messages" = "Disappearing messages";
-"ephemeral_messages_hint" = "These settings apply to all participants using Delta Chat. However, they may copy, save and forward messages or use other e-mail clients.";
+"ephemeral_messages_hint" = "These settings apply to all chat members using Delta Chat. However, they may copy, save and forward messages or use other e-mail clients.";
 "save" = "Save";
 "chat" = "Chat";
 "media" = "Media";
@@ -57,18 +57,17 @@
 "done" = "Done";
 "undo" = "Undo";
 "offline" = "Offline";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in ios headers, the string should be as short as possible, though.
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Next";
 "error" = "Error";
 "error_x" = "Error: %1$@";
-"error_no_network" = "Network unavailable.";
 "no_app_to_handle_data" = "Can\'t find an app to handle this type of data.";
 "no_browser_installed" = "No browser installed.";
 "file_not_found" = "Could not find %1$@.";
 "copied_to_clipboard" = "Copied to clipboard.";
 "contacts_headline" = "Contacts";
-"email_address" = "Email address";
-"bad_email_address" = "Bad email address.";
+"email_address" = "E-mail address";
+"bad_email_address" = "Bad e-mail address.";
 "password" = "Password";
 "existing_password" = "Existing password";
 "now" = "Now";
@@ -94,7 +93,7 @@
 "voice_message" = "Voice message";
 "forwarded" = "Forwarded";
 "forwarded_message" = "Forwarded message";
-// %1$s will be replaced by the name or the email-address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Forwarded by %1$@";
 "video" = "Video";
 "documents" = "Documents";
@@ -206,7 +205,7 @@
 "device_talk" = "Device messages";
 "device_talk_subtitle" = "Locally generated messages";
 "device_talk_explain" = "Messages in this chat are generated locally by your Delta Chat app. Its makers use it to inform about app updates and problems during usage.";
-"device_talk_welcome_message" = "Welcome to Delta Chat! – Delta Chat looks and feels like other popular messenger apps, but does not involve centralized control, tracking or selling you, friends, colleagues or family out to large organizations.\n\nTechnically, Delta Chat is an email application with a modern chat interface. Email in a new dress if you will 👻\n\nUse Delta Chat with anyone out of billions of people: just use their e-mail address. Recipients don\'t need to install Delta Chat, visit websites or sign up anywhere - however, of course, if they like, you may point them to 👉 https://get.delta.chat";
+"device_talk_welcome_message" = "Welcome to Delta Chat! – Delta Chat looks and feels like other popular messenger apps, but does not involve centralized control, tracking or selling you, friends, colleagues or family out to large organizations.\n\nTechnically, Delta Chat is an e-mail application with a modern chat interface. E-mail in a new dress if you will 👻\n\nUse Delta Chat with anyone out of billions of people: just use their e-mail address. Recipients don\'t need to install Delta Chat, visit websites or sign up anywhere - however, of course, if they like, you may point them to 👉 https://get.delta.chat";
 "edit_contact" = "Edit contact";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "Pin chat";
@@ -269,8 +268,8 @@
 
 // contact list
 "contacts_title" = "Contacts";
-"contacts_enter_name_or_email" = "Enter name or email address";
-"contacts_type_email_above" = "Type email address above";
+"contacts_enter_name_or_email" = "Enter name or e-mail address";
+"contacts_type_email_above" = "Type e-mail address above";
 "contacts_empty_hint" = "No contacts.";
 
 
@@ -284,7 +283,7 @@
 "chat_record_slide_to_cancel" = "Slide to cancel";
 "chat_record_explain" = "Tap and hold to record a voice message, release to send";
 "chat_no_chats_yet_title" = "Empty inbox.\nPress \"+\" to start a new chat.";
-"chat_no_chats_yet_hint" = "You can chat with other Delta Chat users and with any email address.";
+"chat_no_chats_yet_hint" = "You can chat with other Delta Chat users and with any e-mail address.";
 "chat_all_archived" = "All chats archived.\nPress \"+\" to start a new chat.";
 "chat_share_with_title" = "Share with";
 "chat_input_placeholder" = "Message";
@@ -296,7 +295,7 @@
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Saved";
 "chat_contact_request" = "Contact request";
-"chat_no_contact_requests" = "No contact requests.\n\nIf you want classic emails to appear here as contact requests, you can change the corresponding setting in the app settings.";
+"chat_no_contact_requests" = "No contact requests.\n\nIf you want classic e-mails to appear here as contact requests, you can change the corresponding setting in the app settings.";
 "retry_send" = "Retry to send message";
 "send_failed" = "Could not send message";
 // reasons for a disabled message composer
@@ -364,12 +363,21 @@
 "send_message" = "Send message";
 
 
+// Connectivity
+"connectivity" = "Connectivity";
+"connectivity_not_connected" = "Not connected";
+// Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Connecting…";
+"connectivity_getting_new_msgs" = "Getting new messages…";
+"connectivity_connected" = "Connected";
+
+
 // welcome and login
 "welcome_intro1_message" = "The messenger with the broadest audience in the world. Free and independent.";
 "login_title" = "Log in";
 "login_header" = "Log in to your server";
-"login_explain" = "Log in with an existing email account";
-"login_subheader" = "For known email providers additional settings are set up automatically. Sometimes IMAP needs to be enabled in the web settings. Consult your email provider or friends for help.";
+"login_explain" = "Log in with an existing e-mail account";
+"login_subheader" = "For known e-mail providers additional settings are set up automatically. Sometimes IMAP needs to be enabled in the web settings. Consult your e-mail provider or friends for help.";
 "login_no_servers_hint" = "There are no Delta Chat servers, your data stays on your device.";
 "login_inbox" = "Inbox";
 "login_imap_login" = "IMAP login name";
@@ -383,22 +391,22 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP security";
 "login_auth_method" = "Authorization method";
-// Translators: %1$s will be replaced by an email address
+// Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Checking %1$@";
 "login_info_oauth2_title" = "Continue with simplified setup?";
-"login_info_oauth2_text" = "The entered email address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to act as your Chat over Email app.\n\nThere are no Delta Chat servers, your data stays on your device.";
+"login_info_oauth2_text" = "The entered e-mail address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to act as your Chat over E-mail app.\n\nThere are no Delta Chat servers, your data stays on your device.";
 "login_certificate_checks" = "Certificate checks";
-"login_error_mail" = "Please enter a valid email address";
+"login_error_mail" = "Please enter a valid e-mail address";
 "login_error_server" = "Please enter a valid server / IP address";
 "login_error_port" = "Please enter a valid port (1–65535)";
-"login_error_required_fields" = "Please enter a valid email address and a password";
+"login_error_required_fields" = "Please enter a valid e-mail address and a password";
 "import_backup_title" = "Import backup";
 "import_backup_ask" = "Backup found at \"%1$@\".\n\nDo you want to import and use all data and settings from it?";
 "import_backup_no_backup_found" = "No backups found.\n\nCopy the backup to \"%1$@\" and try again. Alternatively, press \"Start messaging\" to continue with the normal setup process.";
-// Translators: %1$s will be replaced by the email address
-"login_error_cannot_login" = "Cannot login as \"%1$@\". Please check if the email address and the password are correct.";
+// Translators: %1$s will be replaced by the e-mail address
+"login_error_cannot_login" = "Cannot login as \"%1$@\". Please check if the e-mail address and the password are correct.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Response from %1$@: %2$@\n\nSome providers may email you additional information about this problem; you should be able to check your inbox using your regular email app or web site. Consult your provider or friends if you run into problems.";
+"login_error_server_response" = "Response from %1$@: %2$@\n\nSome providers may e-mail you additional information about this problem; you should be able to check your inbox using your regular e-mail app or web site. Consult your provider or friends if you run into problems.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accept invalid certificates";
 "used_settings" = "Used settings:";
@@ -483,7 +491,7 @@
 "pref_log_header" = "Log";
 "pref_other" = "Other";
 "pref_backup" = "Backup";
-"pref_backup_explain" = "Backup chats to external storage";
+"pref_backup_explain" = "Back up chats to external storage";
 "pref_backup_export_explain" = "A backup helps you to set up a new installation on this or on another device.\n\nThe backup will contain all messages, contacts and chats and your end-to-end Autocrypt setup. Keep the backup file in a safe place or delete it as soon as possible.";
 "pref_backup_export_start_button" = "Start backup";
 "pref_backup_written_to_x" = "Backup written successfully to \"%1$@\".";
@@ -505,7 +513,7 @@
 "pref_send_copy_to_self" = "Send copy to self";
 "pref_auto_folder_moves" = "Automatic moves to DeltaChat folder";
 "pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox";
-"pref_show_emails" = "Show classic emails";
+"pref_show_emails" = "Show classic e-mails";
 "pref_show_emails_no" = "No, chats only";
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
 "pref_show_emails_all" = "All";
@@ -545,9 +553,9 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n• This includes all media\n\n• Messages will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n⚠️ This includes emails, media and \"Saved messages\" in all server folders\n\n⚠️ Do not use this function if you want to keep data on the server\n\n⚠️ Do not use this function if you are using other email clients besides Delta Chat";
+"autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n⚠️ This includes e-mails, media and \"Saved messages\" in all server folders\n\n⚠️ Do not use this function if you want to keep data on the server\n\n⚠️ Do not use this function if you are using other e-mail clients besides Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "This includes emails, media and \"Saved messages\" in all server folders. Do not use this function if you want to keep data on the server or if you are using other email clients besides Delta Chat.";
+"autodel_server_enabled_hint" = "This includes e-mails, media and \"Saved messages\" in all server folders. Do not use this function if you want to keep data on the server or if you are using other e-mail clients besides Delta Chat.";
 "autodel_confirm" = "I understand, delete all these messages";
 "autodel_at_once" = "At once";
 "after_30_seconds" = "After 30 seconds";
@@ -563,7 +571,7 @@
 
 // autocrypt
 "autocrypt" = "Autocrypt";
-"autocrypt_explain" = "Autocrypt is a new and open specification for automatic end-to-end email encryption.\n\nYour end-to-end setup is created automatically as needed and you can transfer it between devices with Autocrypt Setup Messages.";
+"autocrypt_explain" = "Autocrypt is a new and open specification for automatic end-to-end e-mail encryption.\n\nYour end-to-end setup is created automatically as needed and you can transfer it between devices with Autocrypt Setup Messages.";
 "autocrypt_send_asm_title" = "Send Autocrypt Setup Message";
 "autocrypt_send_asm_explain_before" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps.\n\nThe setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "autocrypt_send_asm_button" = "Send Autocrypt Setup Message";
@@ -588,7 +596,7 @@
 "systemmsg_group_left" = "Group left.";
 "systemmsg_read_receipt_subject" = "Message opened";
 "systemmsg_read_receipt_body" = "The \"%1$@\" message you sent was displayed on the screen of the recipient.\n\nThis is no guarantee the content was read.";
-"systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• In case you re-installed Delta Chat or another email program on this or another device you may want to send an Autocrypt Setup Message from there.";
+"systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• In case you re-installed Delta Chat or another e-mail program on this or another device you may want to send an Autocrypt Setup Message from there.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
 "systemmsg_action_by_me" = "%1$@ by me.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
@@ -624,11 +632,19 @@
 "qrscan_failed" = "QR code could not be decoded";
 "qrscan_ask_join_group" = "Do you want to join the group \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "The scanned fingerprint does not match the last seen for %1$@.";
-"qrscan_no_addr_found" = "This QR code contains a fingerprint but no email address.\n\nFor an out-of-band-verification, please establish an encrypted connection to the recipient first.";
+"qrscan_no_addr_found" = "This QR code contains a fingerprint but no e-mail address.\n\nFor an out-of-band-verification, please establish an encrypted connection to the recipient first.";
 "qrscan_contains_text" = "Scanned QR code text:\n\n%1$@";
 "qrscan_contains_url" = "Scanned QR code URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Fingerprint";
 "qrscan_x_verified_introduce_myself" = "%1$@ verified, introduce myself…";
+"withdraw_verifycontact_explain" = "This QR code can be scanned by others to contact you.\n\nYou can deactivate the QR code here and reactivate it by scanning it again.";
+"withdraw_verifygroup_explain" = "This QR code can be scanned by others to join the group \"%1$@\".\n\nYou can deactivate the QR code here and reactivate it by scanning it again.";
+"withdraw_qr_code" = "Deactivate QR code";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "This QR code could be scanned by others to setup a contact with you.\n\nThe QR code is not active on this device.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "This QR code could be scanned by others to join the group \"%1$@\".\n\nThe QR code is not active on this device.";
+"revive_qr_code" = "Activate QR code";
 "qrshow_title" = "QR invite code";
 "qrshow_x_joining" = "%1$@ joins.";
 "qrshow_x_verified" = "%1$@ verified.";
@@ -641,7 +657,7 @@
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
 "qraccount_ask_create_and_login" = "Create new e-mail address on \"%1$@\" and log in there?";
 "qraccount_ask_create_and_login_another" = "Create new e-mail address on \"%1$@\" and log in there?\n\nYour existing account will not be deleted. Use the \"Switch account\" item to switch between your accounts.";
-"qraccount_success_enter_name" = "Login successful—your email address is %1$@\n\nIf you like, you can now enter a name and an profile image that will be displayed to people you write to.";
+"qraccount_success_enter_name" = "Login successful—your e-mail address is %1$@\n\nIf you like, you can now enter a name and an profile image that will be displayed to people you write to.";
 "qraccount_qr_code_cannot_be_used" = "The scanned QR code cannot be used to set up a new account.";
 "qraccount_use_on_new_install" = "The scanned QR code is for setting up a new account. You can scan the QR code when setting up a new Delta Chat installation.";
 "contact_verified" = "%1$@ verified.";
@@ -746,7 +762,7 @@
 "autocrypt_incorrect_desktop" = "Incorrect setup code. Please try again.";
 "create_chat_error_desktop" = "Could not create chat.";
 "ask_delete_chat_desktop" = "Delete this chat?";
-"email_validation_failed_desktop" = "Email address required.";
+"email_validation_failed_desktop" = "E-mail address required.";
 "forget_login_confirmation_desktop" = "Delete this login? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
 "account_info_hover_tooltip_desktop" = "E-Mail: %1$@\nSize: %2$@\nPath: %3$@";
 "me_desktop" = "me";
@@ -782,7 +798,7 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Background notifications";
 "pref_background_notifications_explain" = "Uses a background connection to your server and requires ignored battery optimizations.";
-"pref_background_notifications_rationale" = "To maintain connection to your email server and receive messages in the background, ignore battery optimizations in the next step.\n\nDelta Chat uses few resources and takes care not to drain your battery.";
+"pref_background_notifications_rationale" = "To maintain connection to your e-mail server and receive messages in the background, ignore battery optimizations in the next step.\n\nDelta Chat uses few resources and takes care not to drain your battery.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Reliable background connection";
 "pref_reliable_service_explain" = "Requires a permanent notification";
