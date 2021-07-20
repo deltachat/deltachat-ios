@@ -231,6 +231,44 @@ extension QrPageController: QrCodeReaderDelegate {
             }))
             present(alert, animated: true)
 
+        case DC_QR_WITHDRAW_VERIFYCONTACT:
+            let alert = UIAlertController(title: String.localized("withdraw_verifycontact_explain"),
+                                          message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+            alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
+                _ = self?.dcContext.setConfigFromQR(qrCode: code)
+            }))
+            present(alert, animated: true)
+
+        case DC_QR_REVIVE_VERIFYCONTACT:
+            let alert = UIAlertController(title: String.localized("revive_verifycontact_explain"),
+                                          message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+            alert.addAction(UIAlertAction(title: String.localized("revive_qr_code"), style: .default, handler: { [weak self] _ in
+                _ = self?.dcContext.setConfigFromQR(qrCode: code)
+            }))
+            present(alert, animated: true)
+
+        case DC_QR_WITHDRAW_VERIFYGROUP:
+            guard let groupName = qrParsed.text1 else { return }
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("withdraw_verifygroup_explain"), groupName),
+                                          message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+            alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
+                _ = self?.dcContext.setConfigFromQR(qrCode: code)
+            }))
+            present(alert, animated: true)
+
+        case DC_QR_REVIVE_VERIFYGROUP:
+            guard let groupName = qrParsed.text1 else { return }
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("revive_verifygroup_explain"), groupName),
+                                          message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+            alert.addAction(UIAlertAction(title: String.localized("revive_qr_code"), style: .default, handler: { [weak self] _ in
+                _ = self?.dcContext.setConfigFromQR(qrCode: code)
+            }))
+            present(alert, animated: true)
+
         default:
             var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
             if state == DC_QR_ERROR {
