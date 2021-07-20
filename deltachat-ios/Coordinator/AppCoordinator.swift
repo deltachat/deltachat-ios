@@ -129,7 +129,7 @@ class AppCoordinator {
         } else {
             presentWelcomeController()
         }
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .semibold)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .semibold)]
     }
 
     func presentWelcomeController() {

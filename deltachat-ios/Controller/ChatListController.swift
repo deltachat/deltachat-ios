@@ -21,7 +21,7 @@ class ChatListController: UITableViewController {
         let navTapGesture = UITapGestureRecognizer(target: self, action: #selector(onNavigationTitleTapped))
         view.addGestureRecognizer(navTapGesture)
         view.isUserInteractionEnabled = true
-        view.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        view.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         return view
     }()
 
