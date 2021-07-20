@@ -169,6 +169,9 @@ class ChatListController: UITableViewController {
     // MARK: - setup
     private func setupSubviews() {
         emptySearchStateLabel.addCenteredTo(parentView: view)
+        let backButton = UIBarButtonItem()
+        backButton.title = String.localized("pref_chats")
+        navigationItem.backBarButtonItem = backButton
     }
 
     @objc
@@ -177,8 +180,6 @@ class ChatListController: UITableViewController {
         let connectivityViewController = ConnectivityViewController(dcContext: dcContext)
         navigationController?.pushViewController(connectivityViewController, animated: true)
     }
-
-    
 
     // MARK: - configuration
     private func configureTableView() {
@@ -378,11 +379,18 @@ class ChatListController: UITableViewController {
         } else if viewModel.isArchive {
             titleView.text = String.localized("chat_archived_chats_title")
             navigationItem.setLeftBarButton(nil, animated: true)
+           
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("app_name"))
             navigationItem.setLeftBarButton(nil, animated: true)
         }
         titleView.sizeToFit()
+        
+        /**
+         let backItem = UIBarButtonItem()
+             backItem.title = "Something Else"
+         */
+        
     }
 
     func handleChatListUpdate() {
