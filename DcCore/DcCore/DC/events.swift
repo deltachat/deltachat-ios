@@ -227,6 +227,9 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
             dcContext.logger?.info("network: DC_EVENT_CONNECTIVITY_CHANGED: \(dcContext.getConnectivity())")
             DispatchQueue.main.async {
                 let nc = NotificationCenter.default
