@@ -38,8 +38,8 @@
 "profile" = "Profilo";
 "main_menu" = "Menu principale";
 "start_chat" = "Inizia una chat";
-"show_full_message" = "Mostra messaggio completo...";
-"show_full_message_in_browser" = "Mostra messaggio completo nel browser...";
+"show_full_message" = "Mostra messaggio completo…";
+"show_full_message_in_browser" = "Mostra messaggio completo nel browser…";
 // this is shown as placeholder when something is loading at some places
 "loading" = "Caricamento in corso…";
 "hide" = "Nascondi";
@@ -53,7 +53,7 @@
 "hide_password" = "Nascondi password";
 "not_now" = "Non ora";
 "never" = "Mai";
-"one_moment" = "Un momento...";
+"one_moment" = "Un momento…";
 "done" = "Fatto";
 "undo" = "Annulla";
 "offline" = "Disconnesso";
@@ -363,6 +363,15 @@
 "send_message" = "Invia messaggio";
 
 
+// Connectivity
+"connectivity" = "Connettività";
+"connectivity_not_connected" = "Non connesso";
+// Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Connessione in corso…";
+"connectivity_getting_new_msgs" = "Ricezione di nuovi messaggi…";
+"connectivity_connected" = "Connesso";
+
+
 // welcome and login
 "welcome_intro1_message" = "L’applicazione di messaggistica con la maggiore utenza al mondo. Libera e indipendente.";
 "login_title" = "Login";
@@ -413,7 +422,7 @@
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
-"forward_to" = "Inotra a...";
+"forward_to" = "Inotra a…";
 "share_multiple_attachments" = "Invia %1$d file alla chat selezionata?\n\nI file vengono inviati non modificati nella loro dimensione originale, ad es. immagini e video non vengono ricodificati.";
 "share_multiple_attachments_multiple_chats" = "Invia %1$d file(s) a %2$d chat?\n\nI file vengono inviati non modificati nella loro dimensione originale, ad es. immagini e video non vengono ricodificati.";
 "share_text_multiple_chats" = "Invia questo testo alle %1$d chat?\n\n\"%2$@\"";
@@ -628,6 +637,14 @@
 "qrscan_contains_url" = "URL del codice QR scansionato:\n\n%1$@";
 "qrscan_fingerprint_label" = "Impronta";
 "qrscan_x_verified_introduce_myself" = "%1$@ verificato, mi presento …";
+"withdraw_verifycontact_explain" = "Questo codice QR può essere scansionato da altri utenti per contattarti.\n\nÈ possibile disattivare il codice QR qui e riattivarlo scansionandolo di nuovo.";
+"withdraw_verifygroup_explain" = "Questo codice QR può essere scansionato da altri utenti per unirsi al gruppo \"%1$@\".\n\nÈ possibile disattivare il codice QR qui e riattivarlo scansionandolo di nuovo.";
+"withdraw_qr_code" = "Disattiva il codice QR";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Questo codice QR potrebbe essere scannerizzato da altri utenti per configurare un contatto con l\'utente.\n\nIl codice QR non è attivo in questo dispositivo.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Questo codice QR potrebbe essere scansionato da altri per unirsi al gruppo \"%1$@\".\n\nIl codice QR non è attivo su questo dispositivo.";
+"revive_qr_code" = "Attiva codice QR ";
 "qrshow_title" = "Codice QR di invito";
 "qrshow_x_joining" = "%1$@ entra.";
 "qrshow_x_verified" = "%1$@ verificato.";
@@ -635,9 +652,9 @@
 "qrshow_join_group_title" = "Codice QR di invito";
 "qrshow_join_group_hint" = "Scansionalo per entrare nel gruppo \"%1$@\".";
 "qrshow_join_contact_title" = "Codice QR di invito";
-"qrshow_join_contact_hint" = "Scansionalo per creare un contatto per %1$@";
+"qrshow_join_contact_hint" = "Scansionalo per creare un contatto con %1$@";
 "qrshow_join_contact_no_connection_hint" = "Il setup tramite codice QR richiede una connessione internet. Collegati a una rete prima di procedere.";
-"qrshow_join_contact_no_connection_toast" = "Nessuna connessione internet, impossibile effettuare l\'impostazione tramite QR.";
+"qrshow_join_contact_no_connection_toast" = "Nessuna connessione internet, impossibile effettuare l\'impostazione tramite codice QR.";
 "qraccount_ask_create_and_login" = "Creo un nuovo indirizzo email su \"%1$@\" e accedo?";
 "qraccount_ask_create_and_login_another" = "Crea un nuovo indirizzo e-mail su \"%1$@\" e accedi qui?\n\nIl tuo account esistente non verrà eliminato. Utilizza la voce \"Cambia account\" per passare da un account all\'altro.";
 "qraccount_success_enter_name" = "Accesso completato—il tuo indirizzo email è %1$@\n\nSe vuoi, puoi inserire un nome e un\'immagine profilo che verranno mostrati a chi ti scrive.";
@@ -693,7 +710,7 @@
 "about_licensed_under_desktop" = "Questo software è concesso in licenza con GNU GPL versione 3 e il codice sorgente è disponibile su GitHub.";
 "welcome_desktop" = "Benvenuto in Delta Chat";
 "login_known_accounts_title_desktop" = "Account conosciuti";
-"global_menu_preferences_language_desktop" = "Scegli la lingua...";
+"global_menu_preferences_language_desktop" = "Scegli la lingua…";
 "global_menu_file_desktop" = "File";
 "global_menu_file_quit_desktop" = "Esci";
 "global_menu_edit_desktop" = "Modifica";

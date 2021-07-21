@@ -298,6 +298,15 @@
 "send_message" = "Siųsti žinutę";
 
 
+// Connectivity
+"connectivity" = "Jungiamumas";
+"connectivity_not_connected" = "Neprisijungta";
+// Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Jungiamasi…";
+"connectivity_getting_new_msgs" = "Gaunamos naujos žinutės…";
+"connectivity_connected" = "Prisijungta";
+
+
 // welcome and login
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "login_title" = "Prisijungti";

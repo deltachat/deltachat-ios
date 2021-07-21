@@ -150,7 +150,7 @@
 "menu_add_attachment" = "Bijlage toevoegen";
 "menu_leave_group" = "Groep verlaten";
 "menu_delete_chat" = "Gesprek verwijderen";
-"ask_delete_named_chat" = "Weet je zeker dat je \'%1$@\' wilt verwijderen?";
+"ask_delete_named_chat" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
 "menu_delete_messages" = "Berichten verwijderen";
 "menu_delete_image" = "Afbeelding verwijderen";
 "delete_contact" = "Contactpersoon verwijderen";
@@ -231,7 +231,7 @@
 "share_location_for_two_hours" = "2 uur lang";
 "share_location_for_six_hours" = "6 uur lang";
 
-"file_saved_to" = "Het bestand is opgeslagen in \'%1$@\'.";
+"file_saved_to" = "Het bestand is opgeslagen in ‘%1$@’.";
 
 "videochat" = "Videogesprek";
 "videochat_invite_user_to_videochat" = "Wil je %1$@ uitnodigen voor een videogesprek?";
@@ -310,7 +310,7 @@
 
 // mailing lists
 "mailing_list" = "Mailinglijst";
-"ask_show_mailing_list" = "Wil je de mailinglijst \'%1$@\' tonen?";
+"ask_show_mailing_list" = "Wil je de mailinglijst ‘%1$@’ tonen?";
 "mailing_list_profile_info" = "Wijzigingen aan de mailinglijstnaam en -afbeelding worden alleen op dit apparaat getoond.";
 
 // map
@@ -363,6 +363,15 @@
 "send_message" = "Bericht versturen";
 
 
+// Connectivity
+"connectivity" = "Verbindingen";
+"connectivity_not_connected" = "Niet verbonden";
+// Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Bezig met verbinden…";
+"connectivity_getting_new_msgs" = "Bezig met ophalen van nieuwe berichten…";
+"connectivity_connected" = "Verbonden";
+
+
 // welcome and login
 "welcome_intro1_message" = "Dé berichtenapp met het breedste publiek ter wereld. Gratis en onafhankelijk.";
 "login_title" = "Inloggen";
@@ -405,7 +414,7 @@
 "add_account" = "Account toevoegen";
 "delete_account" = "Account verwijderen";
 "delete_account_ask" = "Weet je zeker dat je je accountgegevens wilt verwijderen?";
-"delete_account_explain_with_name" = "Alle gegevens van \'%1$@\' worden verwijderd: de eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
+"delete_account_explain_with_name" = "Alle gegevens van ‘%1$@’ worden verwijderd: de eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
 "switching_account" = "Bezig met overschakelen…";
 "try_connect_now" = "Probeer te verbinden";
 // Translations: %1$s will be replaced by a more detailed error message
@@ -443,7 +452,7 @@
 "pref_vibrate" = "Trillen";
 "pref_screen_security" = "Schermbeveiliging";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
-"pref_screen_security_explain" = "Geen schermfoto\'s tonen op de \'recent\'-lijst en binnen de app";
+"pref_screen_security_explain" = "Geen schermfoto\'s tonen op de ‘recent’-lijst en binnen de app";
 "pref_screen_security_please_restart_hint" = "Herstart de app om de wijzigingen toe te passen.";
 "pref_notifications" = "Meldingen";
 "pref_notifications_show" = "Tonen";
@@ -485,21 +494,21 @@
 "pref_backup_explain" = "Gesprekken back-uppen naar externe opslag";
 "pref_backup_export_explain" = "Een back-up helpt je om een nieuwe installatie in te stellen op dit of een ander apparaat.\n\nDe back-up bevat alle berichten, contactpersonen, gesprekken en je eind-tot-eindinstellingen. Bewaar het back-upbestand op een veilige plaats of verwijder het zo snel mogelijk.";
 "pref_backup_export_start_button" = "Nu back-uppen";
-"pref_backup_written_to_x" = "Back-up weggeschreven naar \'%1$@\'.";
+"pref_backup_written_to_x" = "De back-up is opgeslagen in ‘%1$@’.";
 "pref_managekeys_menu_title" = "Sleutels beheren";
 "pref_managekeys_export_secret_keys" = "Geheime sleutels exporteren";
-"pref_managekeys_export_explain" = "Geheime sleutels exporteren naar \'%1$@\'?";
+"pref_managekeys_export_explain" = "Geheime sleutels exporteren naar ‘%1$@’?";
 "pref_managekeys_import_secret_keys" = "Geheime sleutels importeren";
-"pref_managekeys_import_explain" = "Wil je geheime sleutels importeren uit \'%1$@\'?\n\n• Bestaande sleutels worden niet verwijderd.\n\n• De laatst geïmporteerde sleutel wordt als standaard gebruikt tenzij de bestandsnaam \"legacy\" bevat.";
-"pref_managekeys_secret_keys_exported_to_x" = "Geheime sleutels weggeschreven naar \'%1$@\'.";
-"pref_managekeys_secret_keys_imported_from_x" = "Geheime sleutels geïmporteerd uit \'%1$@\'.";
+"pref_managekeys_import_explain" = "Wil je geheime sleutels importeren uit ‘%1$@’?\n\n• Reeds aanwezige sleutels worden niet verwijderd.\n\n• De laatst geïmporteerde sleutel wordt als standaardsleutel gebruikt, tenzij de bestandsnaam het woord ‘legacy’ bevat.";
+"pref_managekeys_secret_keys_exported_to_x" = "De geheime sleutels zijn opgeslagen in ‘%1$@’.";
+"pref_managekeys_secret_keys_imported_from_x" = "De geheime sleutels zijn geïmporteerd uit ‘%1$@’.";
 "pref_background" = "Achtergrond";
 "pref_background_btn_default" = "Standaardafbeelding gebruiken";
 "pref_background_btn_gallery" = "Kiezen uit galerij";
 "pref_imap_folder_handling" = "IMAP-mappen controleren";
 "pref_imap_folder_warn_disable_defaults" = "Als je deze optie uitschakelt, zorg er dan voor dat je server en overige clients goed ingesteld zijn.\n\nAls dat niet zo is, dan werkt het misschien helemaal niet.";
 "pref_watch_inbox_folder" = "Postvak IN controleren op nieuwe berichten";
-"pref_watch_sent_folder" = "Map \'Verzonden\' controleren op nieuwe berichten";
+"pref_watch_sent_folder" = "Map ‘Verzonden’ controleren op nieuwe berichten";
 "pref_watch_mvbox_folder" = "DeltaChat-map controleren op nieuwe berichten";
 "pref_send_copy_to_self" = "Kopie versturen naar mijzelf";
 "pref_auto_folder_moves" = "Automatisch verplaatsen naar DeltaChat-map";
@@ -542,11 +551,11 @@
 "autodel_device_title" = "Berichten verwijderen van apparaat";
 "autodel_server_title" = "Berichten verwijderen van server";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_device_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten \'%2$@\'?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek \'Opgeslagen berichten\' wordt overgeslagen";
+"autodel_device_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten ‘%2$@’?\n\n• Dit omvat alle media\n\n• Berichten worden verwijderd, ongeacht of ze bekeken zijn\n\n• Het gesprek ‘Opgeslagen berichten’ wordt overgeslagen.";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten %2$@?\n\n⚠️ Dit omvat alle berichten, media en het gesprek \'Opgeslagen berichten\'.\n\n⚠️ Gebruik deze functie niet als je je gegevens wilt bewaren op de server\n\n⚠️ Gebruik deze functie niet als je ook andere e-mailclients gebruikt";
+"autodel_server_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten ‘%2$@’,?\n\n⚠️ Dit omvat alle berichten, media en het gesprek ‘Opgeslagen berichten’.\n\n⚠️ Gebruik deze functie niet als je je gegevens wilt bewaren op de server\n\n⚠️ Gebruik deze functie niet als je ook andere e-mailclients gebruikt";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "Dit omvat alle berichten, media en het gesprek \'Opgeslagen berichten\'. Gebruik deze functie niet als je je gegevens wilt bewaren op de server of als je ook andere e-mailclients gebruikt.";
+"autodel_server_enabled_hint" = "Dit omvat alle berichten, media en het gesprek ‘Opgeslagen berichten’. Gebruik deze functie niet als je je gegevens wilt bewaren op de server of als je ook andere e-mailclients gebruikt.";
 "autodel_confirm" = "Ik begrijp het; verwijder alle berichten";
 "autodel_at_once" = "Direct";
 "after_30_seconds" = "Na 30 seconden";
@@ -564,7 +573,7 @@
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt is een nieuwe, open specificatie voor het automatisch instellen van eind-tot-eindversleuteling.\n\nJe instellingen worden, indien nodig, automatisch aangemaakt en kunnen worden overgezet naar andere apparaten middels instelberichten.";
 "autocrypt_send_asm_title" = "Autocrypt-instelbericht versturen";
-"autocrypt_send_asm_explain_before" = "Een \'Autocrypt-instelbericht\' deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
+"autocrypt_send_asm_explain_before" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "autocrypt_send_asm_button" = "Autocrypt-instelbericht versturen";
 "autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:\n\n%1$@";
 "autocrypt_prefer_e2ee" = "Voorkeur voor eind-tot-eindversleuteling";
@@ -582,17 +591,17 @@
 "systemmsg_group_name_changed" = "Groepsnaam gewijzigd van \"%1$@\" in \"%2$@\".";
 "systemmsg_group_image_changed" = "Groepsafbeelding gewijzigd.";
 "systemmsg_group_image_deleted" = "Groepsafbeelding verwijderd.";
-"systemmsg_member_added" = "Deelnemer \'%1$@\' toegevoegd.";
-"systemmsg_member_removed" = "Deelnemer \'%1$@\' verwijderd.";
+"systemmsg_member_added" = "‘%1$@’ is toegevoegd.";
+"systemmsg_member_removed" = "‘%1$@’ is verwijderd.";
 "systemmsg_group_left" = "Groep verlaten.";
 "systemmsg_read_receipt_subject" = "Leesbevestiging";
-"systemmsg_read_receipt_body" = "Dit is een leesbevestiging voor het bericht \'%1$@\'.\n\nDit betekent dat het bericht getoond is op het apparaat van de ontvanger, maar niet dat het ook gelezen is.";
+"systemmsg_read_receipt_body" = "Het door jou verstuurde bericht, “%1$@”, heeft het scherm van de ontvanger bereikt.\n\nDit betekent echter niet dat het ook gelezen is.";
 "systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd op dit of een ander apparaat, verstuur het instelbericht dan opnieuw.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
 "systemmsg_action_by_me" = "%1$@ door mij.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%1$@ door %2$@.";
-"systemmsg_unknown_sender_for_chat" = "Onbekende afzender in dit gesprek. Zie \'Informatie\' voor meer informatie.";
+"systemmsg_unknown_sender_for_chat" = "Dit gesprek bevat een onbekende afzender. Zie ‘Informatie’ voor meer informatie.";
 "systemmsg_subject_for_new_contact" = "Bericht van %1$@";
 "systemmsg_failed_sending_to" = "Het bericht kan niet worden verstuurd aan %1$@.";
 
@@ -628,19 +637,27 @@
 "qrscan_contains_url" = "Gescande QR-code-url:\n\n %1$@";
 "qrscan_fingerprint_label" = "Vingerafdruk";
 "qrscan_x_verified_introduce_myself" = "%1$@ is goedgekeurd - vertel iets over jezelf…";
+"withdraw_verifycontact_explain" = "Deze qr-code kan door anderen worden gescand om contact met je op te nemen.\n\nJe kunt de qr-code hier deactiveren en opnieuw activeren door deze opnieuw te scannen.";
+"withdraw_verifygroup_explain" = "Deze qr-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nJe kunt de qr-code hier deactiveren en opnieuw activeren door deze opnieuw te scannen.";
+"withdraw_qr_code" = "QR-code deactiveren";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Deze qr-code kan door anderen worden gescand om contact met je op te nemen.\n\nDe qr-code is niet actief op dit apparaat.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Deze qr-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nDe qr-code is niet actief op dit apparaat.";
+"revive_qr_code" = "QR-code activeren";
 "qrshow_title" = "QR-uitnodigingscode";
 "qrshow_x_joining" = "%1$@ heeft deelgenomen.";
 "qrshow_x_verified" = "%1$@ is goedgekeurd.";
 "qrshow_x_has_joined_group" = "%1$@ neemt nu deel aan de groep.";
 "qrshow_join_group_title" = "QR-uitnodigingscode";
-"qrshow_join_group_hint" = "Scan dit om deel te nemen aan de groep \'%1$@\'.";
+"qrshow_join_group_hint" = "Scan dit om deel te nemen aan de groep ‘%1$@’.";
 "qrshow_join_contact_title" = "QR-uitnodigingscode";
 "qrshow_join_contact_hint" = "Scan dit om een contactpersoon in te stellen met %1$@";
 "qrshow_join_contact_no_connection_hint" = "Voor het instellen van QR-codes is een internetverbinding vereist. Maak verbinding en probeer het opnieuw.";
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
-"qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op \'%1$@\' en daarmee inloggen?";
-"qraccount_ask_create_and_login_another" = "Wil je een nieuw e-mailadres aanmaken op \'%1$@\' en daarmee inloggen?\n\nJe reeds aanwezige account wordt niet verwijderd. Gebruik de knop \'Ander account kiezen\' om tussen accounts te schakelen.";
-"qraccount_success_enter_name" = "Het inloggen is gelukt. Je e-mailadres is \'%1$@\'.\n\nAls je wilt, kun je een naam en profielafbeelding opgeven die worden getoond aan de mensen waarmee je communiceert.";
+"qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?";
+"qraccount_ask_create_and_login_another" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
+"qraccount_success_enter_name" = "Het inloggen is gelukt - je e-mailadres is ‘%1$@’.\n\nAls je wilt, kun je een naam en profielafbeelding opgeven die worden getoond aan de mensen waarmee je communiceert.";
 "qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
 "qraccount_use_on_new_install" = "De gescande QR-code is voor het instellen van een nieuw account. Je kunt deze direct scannen na het (opnieuw) installeren van Delta Chat.";
 "contact_verified" = "%1$@ is goedgekeurd.";
@@ -670,10 +687,10 @@
 // permissions
 "perm_required_title" = "Machtiging vereist";
 "perm_continue" = "Doorgaan";
-"perm_explain_access_to_camera_denied" = "Delta Chat wil foto\'s en video\'s kunnen maken. Ga naar de app-instellingen, kies \'Rechten\' en schakel \'Camera\' in.";
-"perm_explain_access_to_mic_denied" = "Delta Chat wil spraakberichten versturen. Ga naar de app-instellingen, kies \'Rechten\' en schakel \'Microfoon\' in.";
-"perm_explain_access_to_storage_denied" = "Delta Chat wil bestanden kunnen ontvangen of versturen. Ga naar de app-instellingen, kies \'Rechten\' en schakel \'Opslag\' in.";
-"perm_explain_access_to_location_denied" = "Delta Chat wil je locatie kunnen delen. Ga naar de app-instellingen, kies \'Rechten\' en schakel \'Locatie\' in.";
+"perm_explain_access_to_camera_denied" = "Delta Chat wil foto\'s en video\'s kunnen maken. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Camera’ in.";
+"perm_explain_access_to_mic_denied" = "Delta Chat wil spraakberichten versturen. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Microfoon’ in.";
+"perm_explain_access_to_storage_denied" = "Delta Chat wil bestanden kunnen ontvangen en versturen. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Opslag’ in.";
+"perm_explain_access_to_location_denied" = "Delta Chat wil je locatie kunnen delen. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Locatie’ in.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Teken met je vinger om vervaging toe te passen";
@@ -730,7 +747,7 @@
 "login_required_desktop" = "vereist";
 "name_desktop" = "Naam";
 "autocrypt_key_transfer_desktop" = "Autocrypt-sleuteloverdracht";
-"initiate_key_transfer_desktop" = "Een \'Autocrypt-instelbericht\' deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps. De instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
+"initiate_key_transfer_desktop" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps. De instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "reply_to_message_desktop" = "Bericht beantwoorden";
 "select_group_image_desktop" = "Kies een groepsafbeelding";
 "imex_progress_title_desktop" = "Back-upvoortgang";

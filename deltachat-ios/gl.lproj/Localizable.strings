@@ -38,10 +38,10 @@
 "profile" = "Perfil";
 "main_menu" = "Menú principal";
 "start_chat" = "Inciar chat";
-"show_full_message" = "Mostrar mensaxe completa...";
-"show_full_message_in_browser" = "Mostrar mensaxe completa no navegador...";
+"show_full_message" = "Mostrar mensaxe completa…";
+"show_full_message_in_browser" = "Mostrar mensaxe completa no navegador…";
 // this is shown as placeholder when something is loading at some places
-"loading" = "Cargando...";
+"loading" = "Cargando…";
 "hide" = "Ocultar";
 "activate" = "Activar";
 "load_remote_content" = "Cargar imaxes remotas";
@@ -53,7 +53,7 @@
 "hide_password" = "Agochar contrasinal";
 "not_now" = "Agora non";
 "never" = "Nunca";
-"one_moment" = "Un momento...";
+"one_moment" = "Un momento…";
 "done" = "Feito";
 "undo" = "Desfacer";
 "offline" = "Sen conexión";
@@ -363,6 +363,15 @@
 "send_message" = "Enviar mensaxe";
 
 
+// Connectivity
+"connectivity" = "Conectividade";
+"connectivity_not_connected" = "Non conectado";
+// Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Conectando…";
+"connectivity_getting_new_msgs" = "Obtendo novas mensaxes…";
+"connectivity_connected" = "Conectado";
+
+
 // welcome and login
 "welcome_intro1_message" = "O sistema de conversa con maior audiencia no mundo. Libre e independente.";
 "login_title" = "Conectar";
@@ -406,14 +415,14 @@
 "delete_account" = "Eliminar conta";
 "delete_account_ask" = "Estás seguro de que queres eliminar os datos da túa conta?";
 "delete_account_explain_with_name" = "Todos os datos da conta \"%1$@\" neste dispositivo vanse eliminar, incluíndo os axustes de cifrado extremo-a-extremo, contactos, conversas, mensaxes e multimedia. Esta acción non ten volta.";
-"switching_account" = "Cambiando de conta...";
+"switching_account" = "Cambiando de conta…";
 "try_connect_now" = "Intenta conectar agora";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Fallou a configuración. Erro: %1$@";
 
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
-"forward_to" = "Reenviar a...";
+"forward_to" = "Reenviar a…";
 "share_multiple_attachments" = "Enviar %1$d ficheiro á conversa seleccionada?\n\nOs ficheiros terán o mesmo tamaño que o orixinal, ex. as imaxes e vídeos non se recodifican.";
 "share_multiple_attachments_multiple_chats" = "Enviar %1$d ficheiro(s) a %2$d conversas?\n\nOs ficheiros terán o mesmo tamaño, ex. imaxes e vídeos non se recodifican.";
 "share_text_multiple_chats" = "Enviar este texto a %1$d conversas?\n\n\"%2$@\"";
@@ -627,7 +636,15 @@
 "qrscan_contains_text" = "Texto escaneado no código QR:\n\n%1$@";
 "qrscan_contains_url" = "URL escaneado no código QR:\n\n%1$@";
 "qrscan_fingerprint_label" = "Pegada dactilar";
-"qrscan_x_verified_introduce_myself" = "%1$@ verificado, presentándome...";
+"qrscan_x_verified_introduce_myself" = "%1$@ verificado, presentándome…";
+"withdraw_verifycontact_explain" = "Este código QR permite que outras persoas contacten contigo.\n\nPodes desactivar o código QR aquí e reactivalo volvéndoo a escanear.";
+"withdraw_verifygroup_explain" = "Este código QR permite que outras persoas se unan ao grupo \"%1$@\".\n\nPodes desactivar aquí o código QR e reactivalo volvéndoo a escanear.";
+"withdraw_qr_code" = "Desactivar código QR";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Este código QR podía ser escaneado por outras persoas para contactar contigo.\n\nO código QR non está activo neste dispositio.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "O código QR podía ser escaneado por outras persoas para unirse ao grupo \"%1$@\".\n\nO código QR non está activo neste dispositivo.";
+"revive_qr_code" = "Activar código QR";
 "qrshow_title" = "Código QR de convite";
 "qrshow_x_joining" = "%1$@ uneuse.";
 "qrshow_x_verified" = "%1$@ verificado.";

@@ -360,6 +360,15 @@
 "send_message" = "Dërgo mesazh";
 
 
+// Connectivity
+"connectivity" = "Aftësi lidhjeje";
+"connectivity_not_connected" = "I palidhur";
+// Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Po lidhet…";
+"connectivity_getting_new_msgs" = "Po merren mesazhe të rinj…";
+"connectivity_connected" = "I lidhur";
+
+
 // welcome and login
 "welcome_intro1_message" = "Shkëmbyesi i mesazheve me publikun më të gjerë në botë. I lirë dhe i pavarur.";
 "login_title" = "Hyrje";
@@ -624,6 +633,14 @@
 "qrscan_contains_url" = "URL kodi QR të skanuar:\n\n%1$@";
 "qrscan_fingerprint_label" = "Shenja gishtash";
 "qrscan_x_verified_introduce_myself" = "%1$@ u verifikua, po prezantoj veten…";
+"withdraw_verifycontact_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u lidhur me ju.\n\nKodin QR mund ta çaktivizoni këtu dhe ta riaktivizoni duke e riskanuar.";
+"withdraw_verifygroup_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e grupit \"%1$@\".\n\nKodin QR mund ta çaktivizoni këtu dhe ta riaktivizoni duke e riskanuar.";
+"withdraw_qr_code" = "Çaktivizoni kodin QR";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Ky kod QR mund të skanohet nga të tjerë për të ujdisur kontakt me ju.\n\nKodi QR s’është aktiv në këtë pajisje.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e grupit \"%1$@\".\n\nKodi QR s’është aktiv në këtë pajisje.";
+"revive_qr_code" = "Aktivizoni kod QR";
 "qrshow_title" = "Kod QR ftese";
 "qrshow_x_joining" = "%1$@ vjen.";
 "qrshow_x_verified" = "%1$@ u verifikua.";

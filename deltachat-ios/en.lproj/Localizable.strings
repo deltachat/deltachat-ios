@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancel";
-"clear_search" = "Clear search";
+"clear_search" = "Clear Search";
 "yes" = "Yes";
 "no" = "No";
 "select" = "Select";
@@ -16,7 +16,7 @@
 "automatic" = "Automatic";
 "strict" = "Strict";
 "open" = "Open";
-"open_attachment" = "Open attachment";
+"open_attachment" = "Open Attachment";
 "join" = "Join";
 "rejoin" = "Rejoin";
 "delete" = "Delete";
@@ -30,27 +30,27 @@
 "archive" = "Archive";
 "unarchive" = "Unarchive";
 "mute" = "Mute";
-"ephemeral_messages" = "Disappearing messages";
+"ephemeral_messages" = "Disappearing Messages";
 "ephemeral_messages_hint" = "These settings apply to all chat members using Delta Chat. However, they may copy, save and forward messages or use other e-mail clients.";
 "save" = "Save";
 "chat" = "Chat";
 "media" = "Media";
 "profile" = "Profile";
-"main_menu" = "Main menu";
-"start_chat" = "Start chat";
-"show_full_message" = "Show full message…";
-"show_full_message_in_browser" = "Show full message in browser…";
+"main_menu" = "Main Menu";
+"start_chat" = "Start Chat";
+"show_full_message" = "Show Full Message…";
+"show_full_message_in_browser" = "Show Full Message in Browser…";
 // this is shown as placeholder when something is loading at some places
 "loading" = "Loading…";
 "hide" = "Hide";
 "activate" = "Activate";
-"load_remote_content" = "Load remote images";
+"load_remote_content" = "Load Remote Images";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Remote images can be used to track you.\n\nThe setting also allows loading fonts and other content. Even if it is disabled, you may still see embedded or cached images.\n\nLoad remote images?";
 "always" = "Always";
 "once" = "Once";
-"show_password" = "Show password";
-"hide_password" = "Hide password";
+"show_password" = "Show Password";
+"hide_password" = "Hide Password";
 "not_now" = "Not now";
 "never" = "Never";
 "one_moment" = "One moment…";
@@ -66,10 +66,10 @@
 "file_not_found" = "Could not find %1$@.";
 "copied_to_clipboard" = "Copied to clipboard.";
 "contacts_headline" = "Contacts";
-"email_address" = "E-mail address";
+"email_address" = "E-mail Address";
 "bad_email_address" = "Bad e-mail address.";
 "password" = "Password";
-"existing_password" = "Existing password";
+"existing_password" = "Existing Password";
 "now" = "Now";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "Danger";
@@ -90,23 +90,23 @@
 "gif" = "Gif";
 "images" = "Images";
 "audio" = "Audio";
-"voice_message" = "Voice message";
+"voice_message" = "Voice Message";
 "forwarded" = "Forwarded";
-"forwarded_message" = "Forwarded message";
+"forwarded_message" = "Forwarded Message";
 // %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Forwarded by %1$@";
 "video" = "Video";
 "documents" = "Documents";
 "contact" = "Contact";
-"verified_contact" = "Verified contact";
+"verified_contact" = "Verified Contact";
 "camera" = "Camera";
 // "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Capture";
-"switch_camera" = "Switch camera";
-"toggle_fullscreen" = "Toggle full screen mode";
+"switch_camera" = "Switch Camera";
+"toggle_fullscreen" = "Toggle Full Screen Mode";
 "location" = "Location";
 "gallery" = "Gallery";
-"images_and_videos" = "Images and videos";
+"images_and_videos" = "Images and Videos";
 "file" = "File";
 "files" = "Files";
 "unknown" = "Unknown";
@@ -135,88 +135,88 @@
 
 
 // menu labels (or icon, buttons...)
-"menu_new_contact" = "New contact";
-"menu_new_chat" = "New chat";
-"menu_new_group" = "New group";
-"menu_new_verified_group" = "New verified group";
+"menu_new_contact" = "New Contact";
+"menu_new_chat" = "New Chat";
+"menu_new_group" = "New Group";
+"menu_new_verified_group" = "New Verified Group";
 "menu_send" = "Send";
-"menu_toggle_keyboard" = "Toggle emoji keyboard";
-"menu_edit_group" = "Edit group";
-"menu_group_name_and_image" = "Group name and image";
-"menu_show_map" = "Show map";
-"menu_show_global_map" = "Show all locations";
-"menu_archive_chat" = "Archive chat";
-"menu_unarchive_chat" = "Unarchive chat";
-"menu_add_attachment" = "Add attachment";
-"menu_leave_group" = "Leave group";
-"menu_delete_chat" = "Delete chat";
+"menu_toggle_keyboard" = "Toggle Emoji Keyboard";
+"menu_edit_group" = "Edit Group";
+"menu_group_name_and_image" = "Group Name and Image";
+"menu_show_map" = "Show Map";
+"menu_show_global_map" = "Show all Locations";
+"menu_archive_chat" = "Archive Chat";
+"menu_unarchive_chat" = "Unarchive Chat";
+"menu_add_attachment" = "Add Attachment";
+"menu_leave_group" = "Leave Group";
+"menu_delete_chat" = "Delete Chat";
 "ask_delete_named_chat" = "Are you sure you want to delete \"%1$@\"?";
-"menu_delete_messages" = "Delete messages";
-"menu_delete_image" = "Delete image";
-"delete_contact" = "Delete contact";
-"menu_delete_locations" = "Delete all locations?";
-"menu_delete_location" = "Delete this location?";
-"menu_message_details" = "Message details";
-"menu_copy_to_clipboard" = "Copy to clipboard";
-"menu_copy_selection_to_clipboard" = "Copy selection";
-"menu_copy_link_to_clipboard" = "Copy link";
-"menu_copy_text_to_clipboard" = "Copy text";
-"menu_copy_image_to_clipboard" = "Copy image";
-"paste_from_clipboard" = "Paste from clipboard";
-"menu_forward" = "Forward message";
-"menu_resend" = "Resend message";
-"menu_reply" = "Reply to message";
-"menu_mute" = "Mute notifications";
+"menu_delete_messages" = "Delete Messages";
+"menu_delete_image" = "Delete Image";
+"delete_contact" = "Delete Contact";
+"menu_delete_locations" = "Delete all Locations?";
+"menu_delete_location" = "Delete this Location?";
+"menu_message_details" = "Message Details";
+"menu_copy_to_clipboard" = "Copy to Clipboard";
+"menu_copy_selection_to_clipboard" = "Copy Selection";
+"menu_copy_link_to_clipboard" = "Copy Link";
+"menu_copy_text_to_clipboard" = "Copy Text";
+"menu_copy_image_to_clipboard" = "Copy Image";
+"paste_from_clipboard" = "Paste from Clipboard";
+"menu_forward" = "Forward Message";
+"menu_resend" = "Resend Message";
+"menu_reply" = "Reply to Message";
+"menu_mute" = "Mute Notifications";
 "menu_unmute" = "Unmute";
-"menu_export_attachment" = "Export attachment";
-"menu_all_media" = "All media";
+"menu_export_attachment" = "Export Attachment";
+"menu_all_media" = "All Media";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
-"show_in_chat" = "Show in chat";
+"show_in_chat" = "Show in Chat";
 "menu_share" = "Share";
 // this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
 "block" = "Block";
-"menu_block_contact" = "Block contact";
-"menu_unblock_contact" = "Unblock contact";
+"menu_block_contact" = "Block Contact";
+"menu_unblock_contact" = "Unblock Contact";
 "menu_play" = "Play";
 "menu_pause" = "Pause";
-"menu_scroll_to_bottom" = "Scroll to the bottom";
-"menu_scroll_to_top" = "Scroll to the top";
+"menu_scroll_to_bottom" = "Scroll to the Bottom";
+"menu_scroll_to_top" = "Scroll to the Top";
 "menu_help" = "Help";
-"privacy_policy" = "Privacy policy";
-"menu_select_all" = "Select all";
+"privacy_policy" = "Privacy Policy";
+"menu_select_all" = "Select All";
 "select_more" = "Select more";
 "menu_expand" = "Expand";
-"menu_edit_name" = "Edit name";
+"menu_edit_name" = "Edit Name";
 "menu_settings" = "Settings";
 "menu_advanced" = "Advanced";
-"menu_deaddrop" = "Contact requests";
+"menu_deaddrop" = "Contact Requests";
 "menu_deaddrop_subtitle" = "Press message to start chatting";
-"menu_view_profile" = "View profile";
-"menu_zoom_in" = "Zoom in";
-"menu_zoom_out" = "Zoom out";
-"menu_save_log" = "Save log";
-"menu_more_options" = "More options";
-"menu_learn_spelling" = "Learn spelling";
+"menu_view_profile" = "View Profile";
+"menu_zoom_in" = "Zoom In";
+"menu_zoom_out" = "Zoom Out";
+"menu_save_log" = "Save Log";
+"menu_more_options" = "More Options";
+"menu_learn_spelling" = "Learn Apelling";
 "menu_chat_audit_log" = "Chat Audit Log";
-"jump_to_message" = "Jump to message";
+"jump_to_message" = "Jump to Message";
 "copy_json" = "Copy JSON";
-"replace_draft" = "Replace draft";
+"replace_draft" = "Replace Draft";
 "title_share_location" = "Share location with all group members";
-"device_talk" = "Device messages";
+"device_talk" = "Device Messages";
 "device_talk_subtitle" = "Locally generated messages";
 "device_talk_explain" = "Messages in this chat are generated locally by your Delta Chat app. Its makers use it to inform about app updates and problems during usage.";
 "device_talk_welcome_message" = "Welcome to Delta Chat! – Delta Chat looks and feels like other popular messenger apps, but does not involve centralized control, tracking or selling you, friends, colleagues or family out to large organizations.\n\nTechnically, Delta Chat is an e-mail application with a modern chat interface. E-mail in a new dress if you will 👻\n\nUse Delta Chat with anyone out of billions of people: just use their e-mail address. Recipients don\'t need to install Delta Chat, visit websites or sign up anywhere - however, of course, if they like, you may point them to 👉 https://get.delta.chat";
-"edit_contact" = "Edit contact";
+"edit_contact" = "Edit Contact";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
-"pin_chat" = "Pin chat";
+"pin_chat" = "Pin Chat";
 // Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
-"unpin_chat" = "Unpin chat";
+"unpin_chat" = "Unpin Chat";
 // Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin" = "Pin";
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Unpin";
 "ConversationFragment_quoted_message_not_found" = "Original message not found";
-"reply_privately" = "Reply privately";
+"reply_privately" = "Reply Privately";
 
 "mute_for_one_hour" = "Mute for 1 hour";
 "mute_for_two_hours" = "Mute for 2 hours";
@@ -224,25 +224,25 @@
 "mute_for_seven_days" = "Mute for 7 days";
 "mute_forever" = "Mute forever";
 
-"share_location_once" = "once";
-"share_location_for_5_minutes" = "for 5 minutes";
-"share_location_for_30_minutes" = "for 30 minutes";
-"share_location_for_one_hour" = "for 1 hour";
-"share_location_for_two_hours" = "for 2 hours";
-"share_location_for_six_hours" = "for 6 hours";
+"share_location_once" = "Once";
+"share_location_for_5_minutes" = "For 5 minutes";
+"share_location_for_30_minutes" = "For 30 minutes";
+"share_location_for_one_hour" = "For 1 hour";
+"share_location_for_two_hours" = "For 2 hours";
+"share_location_for_six_hours" = "For 6 hours";
 
 "file_saved_to" = "File saved to \"%1$@\".";
 
-"videochat" = "Video chat";
+"videochat" = "Video Chat";
 "videochat_invite_user_to_videochat" = "Invite %1$@ to a video chat?";
 "videochat_invite_user_hint" = "This requires a compatible app or a compatible browser on both ends.";
 "videochat_contact_invited_hint" = "%1$@ invited to a video chat.";
 "videochat_you_invited_hint" = "You invited to a video chat.";
 "videochat_will_open_in_your_browser" = "This video chat will open in your browser.";
-"videochat_tap_to_join" = "Tap to join";
-"videochat_tap_to_open" = "Tap to open";
-"videochat_instance" = "Video chat instance";
-"videochat_instance_placeholder" = "Your video chat instance";
+"videochat_tap_to_join" = "Tap to Join";
+"videochat_tap_to_open" = "Tap to Open";
+"videochat_instance" = "Video Chat Instance";
+"videochat_instance_placeholder" = "Your Video Chat Instance";
 "videochat_instance_explain" = "If a video chat instance is defined, you can start a video chat from each chat. Video chats require a compatible app or a compatible browser on both ends.\n\nExamples: https://meet.jit.si/$ROOM or basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "Use \"%1$@\" to invite others to video chats?\n\nOnce set, you can start a video chat from each chat. This will replace the previous setting for video chats, if any.";
 "videochat_invitation" = "Video chat invitation";
@@ -274,7 +274,7 @@
 
 
 // chatlist and chat view
-"chat_archived_chats_title" = "Archived chats";
+"chat_archived_chats_title" = "Archived Chats";
 "chat_please_enter_message" = "Please enter a message.";
 "chat_camera_unavailable" = "Camera unavailable.";
 "chat_unable_to_record_audio" = "Unable to record audio.";
@@ -290,11 +290,11 @@
 "chat_archived_label" = "Archived";
 "chat_no_messages" = "No messages.";
 "chat_self_talk_subtitle" = "Messages I sent to myself";
-"saved_messages" = "Saved messages";
+"saved_messages" = "Saved Messages";
 "saved_messages_explain" = "• Forward messages here for easy access\n\n• Take notes or voice memos\n\n• Attach media to save them";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Saved";
-"chat_contact_request" = "Contact request";
+"chat_contact_request" = "Contact Request";
 "chat_no_contact_requests" = "No contact requests.\n\nIf you want classic e-mails to appear here as contact requests, you can change the corresponding setting in the app settings.";
 "retry_send" = "Retry to send message";
 "send_failed" = "Could not send message";
@@ -306,10 +306,10 @@
 "cannot_display_unsuported_file_type" = "Cannot display this file type: %1$@";
 "attachment_failed_to_load" = "Failed to load attachment";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
-"lock_recording" = "Lock recording";
+"lock_recording" = "Lock Recording";
 
 // mailing lists
-"mailing_list" = "Mailing list";
+"mailing_list" = "Mailing List";
 "ask_show_mailing_list" = "Show mailing list \"%1$@\"?";
 "mailing_list_profile_info" = "Changes on mailing list name and image apply to this device only.";
 
@@ -339,17 +339,17 @@
 
 
 // create/edit groups, contact/group profile
-"group_name" = "Group name";
-"group_avatar" = "Group image";
-"remove_group_image" = "Remove group image";
-"change_group_image" = "Change group image";
-"group_create_button" = "Create group";
+"group_name" = "Group Name";
+"group_avatar" = "Group Image";
+"remove_group_image" = "Remove Group Image";
+"change_group_image" = "Change Group Image";
+"group_create_button" = "Create Group";
 "group_please_enter_group_name" = "Please enter a name for the group.";
-"group_add_members" = "Add members";
+"group_add_members" = "Add Members";
 "group_hello_draft" = "Hello, I\'ve just created the group \"%1$@\" for us.";
 "group_self_not_in_group" = "You must be a member of the group to perform this action.";
 "profile_encryption" = "Encryption";
-"profile_shared_chats" = "Shared chats";
+"profile_shared_chats" = "Shared Chats";
 "tab_contact" = "Contact";
 "tab_group" = "Group";
 "tab_members" = "Members";
@@ -359,8 +359,8 @@
 "tab_map" = "Map";
 "tab_gallery_empty_hint" = "Images and videos shared in this chat will be displayed here.";
 "tab_docs_empty_hint" = "Documents, music and other files shared in this chat will be displayed here.";
-"media_preview" = "Media preview";
-"send_message" = "Send message";
+"media_preview" = "Media Preview";
+"send_message" = "Send Message";
 
 
 // Connectivity
@@ -374,33 +374,33 @@
 
 // welcome and login
 "welcome_intro1_message" = "The messenger with the broadest audience in the world. Free and independent.";
-"login_title" = "Log in";
-"login_header" = "Log in to your server";
+"login_title" = "Log In";
+"login_header" = "Log In to Your Server";
 "login_explain" = "Log in with an existing e-mail account";
 "login_subheader" = "For known e-mail providers additional settings are set up automatically. Sometimes IMAP needs to be enabled in the web settings. Consult your e-mail provider or friends for help.";
 "login_no_servers_hint" = "There are no Delta Chat servers, your data stays on your device.";
 "login_inbox" = "Inbox";
-"login_imap_login" = "IMAP login name";
-"login_imap_server" = "IMAP server";
-"login_imap_port" = "IMAP port";
-"login_imap_security" = "IMAP security";
+"login_imap_login" = "IMAP Login Name";
+"login_imap_server" = "IMAP Server";
+"login_imap_port" = "IMAP Port";
+"login_imap_security" = "IMAP Security";
 "login_outbox" = "Outbox";
-"login_smtp_login" = "SMTP login name";
-"login_smtp_password" = "SMTP password";
-"login_smtp_server" = "SMTP server";
-"login_smtp_port" = "SMTP port";
-"login_smtp_security" = "SMTP security";
-"login_auth_method" = "Authorization method";
+"login_smtp_login" = "SMTP Login Name";
+"login_smtp_password" = "SMTP Password";
+"login_smtp_server" = "SMTP Server";
+"login_smtp_port" = "SMTP Port";
+"login_smtp_security" = "SMTP Security";
+"login_auth_method" = "Authorization Method";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Checking %1$@";
 "login_info_oauth2_title" = "Continue with simplified setup?";
 "login_info_oauth2_text" = "The entered e-mail address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to act as your Chat over E-mail app.\n\nThere are no Delta Chat servers, your data stays on your device.";
-"login_certificate_checks" = "Certificate checks";
+"login_certificate_checks" = "Certificate Checks";
 "login_error_mail" = "Please enter a valid e-mail address";
 "login_error_server" = "Please enter a valid server / IP address";
 "login_error_port" = "Please enter a valid port (1–65535)";
 "login_error_required_fields" = "Please enter a valid e-mail address and a password";
-"import_backup_title" = "Import backup";
+"import_backup_title" = "Import Backup";
 "import_backup_ask" = "Backup found at \"%1$@\".\n\nDo you want to import and use all data and settings from it?";
 "import_backup_no_backup_found" = "No backups found.\n\nCopy the backup to \"%1$@\" and try again. Alternatively, press \"Start messaging\" to continue with the normal setup process.";
 // Translators: %1$s will be replaced by the e-mail address
@@ -410,9 +410,9 @@
 // TLS certificate checks
 "accept_invalid_certificates" = "Accept invalid certificates";
 "used_settings" = "Used settings:";
-"switch_account" = "Switch account";
-"add_account" = "Add account";
-"delete_account" = "Delete account";
+"switch_account" = "Switch Account";
+"add_account" = "Add Account";
+"delete_account" = "Delete Account";
 "delete_account_ask" = "Are you sure you want to delete your account data?";
 "delete_account_explain_with_name" = "All account data of \"%1$@\" on this device will be deleted, including your end-to-end encryption setup, contacts, chats, messages and media. This action cannot be undone.";
 "switching_account" = "Switching account…";
@@ -432,25 +432,25 @@
 // preferences
 "pref_using_custom" = "Using custom: %1$@";
 "pref_using_default" = "Using default: %1$@";
-"pref_profile_info_headline" = "Your profile info";
-"pref_profile_photo" = "Profile image";
-"pref_blocked_contacts" = "Blocked contacts";
+"pref_profile_info_headline" = "Your Profile Info";
+"pref_profile_photo" = "Profile Image";
+"pref_blocked_contacts" = "Blocked Contacts";
 "blocked_empty_hint" = "If you block contacts, they will be shown here.";
 "pref_profile_photo_remove_ask" = "Remove profile image?";
-"pref_password_and_account_settings" = "Password and account";
+"pref_password_and_account_settings" = "Password and Account";
 "pref_who_can_see_profile_explain" = "Your profile image and name will be shown alongside your messages when communicating with other users. Already sent information can not be deleted or removed.";
-"pref_your_name" = "Your name";
+"pref_your_name" = "Your Name";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
-"pref_default_status_label" = "Signature text";
+"pref_default_status_label" = "Signature Text";
 // Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
 "pref_default_status_text" = "Sent with my Delta Chat Messenger: https://delta.chat";
-"pref_enter_sends" = "Enter key sends";
+"pref_enter_sends" = "Enter Key Sends";
 "pref_enter_sends_explain" = "Pressing the Enter key will send text messages";
-"pref_outgoing_media_quality" = "Outgoing media quality";
+"pref_outgoing_media_quality" = "Outgoing Media Quality";
 "pref_outgoing_balanced" = "Balanced";
 "pref_outgoing_worse" = "Worse quality, small size";
 "pref_vibrate" = "Vibrate";
-"pref_screen_security" = "Screen security";
+"pref_screen_security" = "Screen Security";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
 "pref_screen_security_explain" = "Request to block screenshots in the recents list and inside the app";
 "pref_screen_security_please_restart_hint" = "To apply the screen security setting please restart the app.";
@@ -460,11 +460,11 @@
 "pref_notifications_explain" = "Enable system notifications for new messages";
 "pref_show_notification_content" = "Show message content in notification";
 "pref_show_notification_content_explain" = "Shows sender and first words of the message in notifications";
-"pref_led_color" = "LED color";
+"pref_led_color" = "LED Color";
 "pref_sound" = "Sound";
 "pref_silent" = "Silent";
 "pref_privacy" = "Privacy";
-"pref_chats_and_media" = "Chats and media";
+"pref_chats_and_media" = "Chats and Media";
 "pref_system_default" = "System default";
 // Translators: "light" in the meaning "opposite of dark"
 "pref_light_theme" = "Light";
@@ -472,68 +472,68 @@
 "pref_appearance" = "Appearance";
 "pref_theme" = "Theme";
 "pref_language" = "Language";
-"pref_incognito_keyboard" = "Incognito keyboard";
+"pref_incognito_keyboard" = "Incognito Keyboard";
 // Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
 "pref_incognito_keyboard_explain" = "Request keyboard to disable personalized learning";
-"pref_read_receipts" = "Read receipts";
+"pref_read_receipts" = "Read Receipts";
 "pref_read_receipts_explain" = "If read receipts are disabled, you won\'t be able to see read receipts from others.";
-"pref_manage_keys" = "Manage keys";
-"pref_use_system_emoji" = "Use system emoji";
+"pref_manage_keys" = "Manage Keys";
+"pref_use_system_emoji" = "Use System Emoji";
 "pref_use_system_emoji_explain" = "Turn off Delta Chat\'s built-in emoji support";
-"pref_app_access" = "App access";
+"pref_app_access" = "App Access";
 "pref_communication" = "Communication";
 "pref_chats" = "Chats";
-"pref_in_chat_sounds" = "In-chat sounds";
-"pref_message_text_size" = "Message font size";
-"pref_view_log" = "View log";
+"pref_in_chat_sounds" = "In-Chat Sounds";
+"pref_message_text_size" = "Message Font Size";
+"pref_view_log" = "View Log";
 "pref_saved_log" = "Saved the log to \"Downloads\" folder";
 "pref_save_log_failed" = "Failed to save the log";
 "pref_log_header" = "Log";
 "pref_other" = "Other";
 "pref_backup" = "Backup";
-"pref_backup_explain" = "Back up chats to external storage";
+"pref_backup_explain" = "Back Up Chats to External Storage";
 "pref_backup_export_explain" = "A backup helps you to set up a new installation on this or on another device.\n\nThe backup will contain all messages, contacts and chats and your end-to-end Autocrypt setup. Keep the backup file in a safe place or delete it as soon as possible.";
-"pref_backup_export_start_button" = "Start backup";
+"pref_backup_export_start_button" = "Start Backup";
 "pref_backup_written_to_x" = "Backup written successfully to \"%1$@\".";
-"pref_managekeys_menu_title" = "Manage keys";
-"pref_managekeys_export_secret_keys" = "Export secret keys";
+"pref_managekeys_menu_title" = "Manage Keys";
+"pref_managekeys_export_secret_keys" = "Export Secret Keys";
 "pref_managekeys_export_explain" = "Export secret keys to \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Import secret keys";
+"pref_managekeys_import_secret_keys" = "Import Secret Keys";
 "pref_managekeys_import_explain" = "Import secret keys from \"%1$@\"?\n\n• Existing secret keys will not be deleted\n\n• The last imported key will be used as the new default key unless it has the word \"legacy\" in its filename.";
 "pref_managekeys_secret_keys_exported_to_x" = "Secret keys written successfully to \"%1$@\".";
 "pref_managekeys_secret_keys_imported_from_x" = "Secret keys imported from \"%1$@\".";
 "pref_background" = "Background";
-"pref_background_btn_default" = "Use default image";
-"pref_background_btn_gallery" = "Select from gallery";
-"pref_imap_folder_handling" = "IMAP folder handling";
+"pref_background_btn_default" = "Use Default Image";
+"pref_background_btn_gallery" = "Select From Gallery";
+"pref_imap_folder_handling" = "IMAP Folder Handling";
 "pref_imap_folder_warn_disable_defaults" = "If you disable this option, make sure, your server and your other clients are configured accordingly.\n\nOtherwise things may not work at all.";
-"pref_watch_inbox_folder" = "Watch Inbox folder";
-"pref_watch_sent_folder" = "Watch Sent folder";
-"pref_watch_mvbox_folder" = "Watch DeltaChat folder";
-"pref_send_copy_to_self" = "Send copy to self";
-"pref_auto_folder_moves" = "Automatic moves to DeltaChat folder";
+"pref_watch_inbox_folder" = "Watch Inbox Folder";
+"pref_watch_sent_folder" = "Watch Sent Folder";
+"pref_watch_mvbox_folder" = "Watch DeltaChat Folder";
+"pref_send_copy_to_self" = "Send Copy to Self";
+"pref_auto_folder_moves" = "Automatic Moves to DeltaChat Folder";
 "pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox";
-"pref_show_emails" = "Show classic e-mails";
+"pref_show_emails" = "Show Classic E-mails";
 "pref_show_emails_no" = "No, chats only";
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
 "pref_show_emails_all" = "All";
-"pref_experimental_features" = "Experimental features";
-"pref_on_demand_location_streaming" = "On-demand location streaming";
+"pref_experimental_features" = "Experimental Features";
+"pref_on_demand_location_streaming" = "On-demand Location Streaming";
 "pref_background_default" = "Default background";
 "pref_background_default_color" = "Default color";
 "pref_background_custom_image" = "Custom image";
 "pref_background_custom_color" = "Custom color";
 "export_aborted" = "Export aborted.";
-"profile_image_select" = "Select profile image";
+"profile_image_select" = "Select Profile Image";
 "select_your_new_profile_image" = "Select your new profile image";
-"profile_image_delete" = "Delete profile image";
-"pref_show_tray_icon" = "Show tray icon";
-"pref_edit_profile" = "Edit profile";
+"profile_image_delete" = "Delete Profile Image";
+"pref_show_tray_icon" = "Show Tray Icon";
+"pref_edit_profile" = "Edit Profile";
 
 // Emoji picker and categories
-"emoji_search_results" = "Search results";
+"emoji_search_results" = "Search Results";
 "emoji_not_found" = "No emoji found";
-"emoji_recent" = "Recently used";
+"emoji_recent" = "Recently Used";
 "emoji_people" = "People & Body";
 "emoji_nature" = "Animals & Nature";
 "emoji_foods" = "Food & Drink";
@@ -545,11 +545,11 @@
 
 
 // automatically delete message
-"delete_old_messages" = "Delete old messages";
+"delete_old_messages" = "Delete Old Messages";
 // devs: autodel_title is deprecated, use delete_old_messages instead
-"autodel_title" = "Auto-delete messages";
-"autodel_device_title" = "Delete messages from device";
-"autodel_server_title" = "Delete messages from server";
+"autodel_title" = "Auto-Delete Messages";
+"autodel_device_title" = "Delete Messages from Device";
+"autodel_server_title" = "Delete Messages from Server";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n• This includes all media\n\n• Messages will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -576,7 +576,7 @@
 "autocrypt_send_asm_explain_before" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps.\n\nThe setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "autocrypt_send_asm_button" = "Send Autocrypt Setup Message";
 "autocrypt_send_asm_explain_after" = "Your setup has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:\n\n%1$@";
-"autocrypt_prefer_e2ee" = "Prefer end-to-end encryption";
+"autocrypt_prefer_e2ee" = "Prefer End-To-End Encryption";
 "autocrypt_asm_subject" = "Autocrypt Setup Message";
 "autocrypt_asm_general_body" = "This is the Autocrypt Setup Message used to transfer your end-to-end setup between clients.\n\nTo decrypt and use your setup, open the message in an Autocrypt-compliant client and enter the setup code presented on the generating device.";
 "autocrypt_asm_click_body" = "This is the Autocrypt Setup Message used to transfer your end-to-end setup between clients.\n\nTo decrypt and use your setup, tap or click on this message.";
@@ -625,9 +625,9 @@
 "enter_system_secret_to_continue" = "Please enter your system defined secret to continue.";
 
 // qr code stuff
-"qr_code" = "QR code";
-"load_qr_code_as_image" = "Load QR code as image";
-"qrscan_title" = "Scan QR code";
+"qr_code" = "QR Code";
+"load_qr_code_as_image" = "Load QR Code as Image";
+"qrscan_title" = "Scan QR Code";
 "qrscan_hint" = "Hold your camera over the QR code.";
 "qrscan_failed" = "QR code could not be decoded";
 "qrscan_ask_join_group" = "Do you want to join the group \"%1$@\"?";
@@ -639,19 +639,19 @@
 "qrscan_x_verified_introduce_myself" = "%1$@ verified, introduce myself…";
 "withdraw_verifycontact_explain" = "This QR code can be scanned by others to contact you.\n\nYou can deactivate the QR code here and reactivate it by scanning it again.";
 "withdraw_verifygroup_explain" = "This QR code can be scanned by others to join the group \"%1$@\".\n\nYou can deactivate the QR code here and reactivate it by scanning it again.";
-"withdraw_qr_code" = "Deactivate QR code";
+"withdraw_qr_code" = "Deactivate QR Code";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
-"revive_verifycontact_explain" = "This QR code could be scanned by others to setup a contact with you.\n\nThe QR code is not active on this device.";
+"revive_verifycontact_explain" = "This QR code could be scanned by others to contact you.\n\nThe QR code is not active on this device.";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "This QR code could be scanned by others to join the group \"%1$@\".\n\nThe QR code is not active on this device.";
-"revive_qr_code" = "Activate QR code";
-"qrshow_title" = "QR invite code";
+"revive_qr_code" = "Activate QR Code";
+"qrshow_title" = "QR Invite Code";
 "qrshow_x_joining" = "%1$@ joins.";
 "qrshow_x_verified" = "%1$@ verified.";
 "qrshow_x_has_joined_group" = "%1$@ joined the group.";
-"qrshow_join_group_title" = "QR invite code";
+"qrshow_join_group_title" = "QR Invite Code";
 "qrshow_join_group_hint" = "Scan this to join the group \"%1$@\".";
-"qrshow_join_contact_title" = "QR invite code";
+"qrshow_join_contact_title" = "QR Invite Code";
 "qrshow_join_contact_hint" = "Scan this to set up a contact with %1$@.";
 "qrshow_join_contact_no_connection_hint" = "QR code setup requires an internet connection. Please connect to a network before proceeding.";
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
@@ -673,7 +673,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d new messages in %2$d chats";
-"notify_mark_read" = "Mark read";
+"notify_mark_read" = "Mark Read";
 "notify_reply_button" = "Reply";
 "notify_new_message" = "New message";
 "notify_background_connection_enabled" = "Background connection enabled";
@@ -694,10 +694,10 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Draw anywhere to blur";
-"ImageEditorHud_add_text" = "Add text";
+"ImageEditorHud_add_text" = "Add Text";
 "ImageEditorHud_blur" = "Blur";
-"ImageEditorHud_brush_marker" = "Marker brush";
-"ImageEditorHud_brush_highlight" = "Highlight brush";
+"ImageEditorHud_brush_marker" = "Marker Brush";
+"ImageEditorHud_brush_highlight" = "Highlight Brush";
 "ImageEditorHud_crop" = "Crop";
 "ImageEditorHud_flip" = "Flip";
 "ImageEditorHud_rotate" = "Rotate";
@@ -709,7 +709,7 @@
 "about_offical_app_desktop" = "This is the official Delta Chat Desktop app.";
 "about_licensed_under_desktop" = "This software is licensed under GNU GPL version 3 and the source code is available on GitHub.";
 "welcome_desktop" = "Welcome to Delta Chat";
-"login_known_accounts_title_desktop" = "Known accounts";
+"login_known_accounts_title_desktop" = "Known Accounts";
 "global_menu_preferences_language_desktop" = "Language";
 "global_menu_file_desktop" = "File";
 "global_menu_file_quit_desktop" = "Quit";
@@ -726,37 +726,37 @@
 "global_menu_help_desktop" = "Help";
 "global_menu_help_learn_desktop" = "Learn more about Delta Chat";
 "global_menu_help_contribute_desktop" = "Contribute on GitHub";
-"global_menu_help_report_desktop" = "Report an issue";
+"global_menu_help_report_desktop" = "Report an Issue";
 "global_menu_help_about_desktop" = "About Delta Chat";
 "global_menu_file_open_desktop" = "Open Delta Chat";
 "global_menu_minimize_to_tray" = "Minimize";
 "no_chat_selected_suggestion_desktop" = "Select a chat or create a new chat";
 "write_message_desktop" = "Write a message";
-"encryption_info_title_desktop" = "Encryption info";
-"contact_detail_title_desktop" = "Contact detail";
-"contact_request_title_desktop" = "Contact request";
-"delete_message_desktop" = "Delete message";
-"more_info_desktop" = "More info";
+"encryption_info_title_desktop" = "Encryption Info";
+"contact_detail_title_desktop" = "Contact Detail";
+"contact_request_title_desktop" = "Contact Request";
+"delete_message_desktop" = "Delete Message";
+"more_info_desktop" = "More Info";
 "logout_desktop" = "Logout";
 "timestamp_format_m_desktop" = "MMM D";
-"encryption_info_desktop" = "Show encryption info";
+"encryption_info_desktop" = "Show Encryption Info";
 "verified_desktop" = "verified";
 "remove_desktop" = "Remove";
 "save_desktop" = "Save";
-"add_contact_desktop" = "Add contact";
+"add_contact_desktop" = "Add Contact";
 "login_required_desktop" = "required";
 "name_desktop" = "Name";
 "autocrypt_key_transfer_desktop" = "Autocrypt key transfer";
 "initiate_key_transfer_desktop" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps. The setup will be encrypted by a setup code displayed here and must be typed on the other device.";
-"reply_to_message_desktop" = "Reply to message";
-"select_group_image_desktop" = "Select group image";
-"imex_progress_title_desktop" = "Backup progress";
-"download_attachment_desktop" = "Download attachment";
-"export_backup_desktop" = "Export backup";
-"transfer_key_desktop" = "Transfer key";
+"reply_to_message_desktop" = "Reply to Message";
+"select_group_image_desktop" = "Select Group Image";
+"imex_progress_title_desktop" = "Backup Progress";
+"download_attachment_desktop" = "Download Attachment";
+"export_backup_desktop" = "Export Backup";
+"transfer_key_desktop" = "Transfer Key";
 "show_key_transfer_message_desktop" = "Your key has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
 "new_message_from_desktop" = "New message from";
-"unblock_contacts_desktop" = "Unblock contacts";
+"unblock_contacts_desktop" = "Unblock Contacts";
 "none_blocked_desktop" = "No blocked contacts yet";
 "autocrypt_correct_desktop" = "Autocrypt setup transferred.";
 "autocrypt_incorrect_desktop" = "Incorrect setup code. Please try again.";
@@ -766,14 +766,14 @@
 "forget_login_confirmation_desktop" = "Delete this login? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
 "account_info_hover_tooltip_desktop" = "E-Mail: %1$@\nSize: %2$@\nPath: %3$@";
 "me_desktop" = "me";
-"in_this_group_desktop" = "Group members";
+"in_this_group_desktop" = "Group Members";
 "not_in_this_group_desktop" = "Potential group members (not in group)";
 "message_detail_sent_desktop" = "sent";
 "message_detail_received_desktop" = "received";
 "message_detail_from_desktop" = "from";
 "message_detail_to_desktop" = "to";
-"menu.view.developer.open.log.folder" = "Open the log folder";
-"menu.view.developer.open.current.log.file" = "Open current logfile";
+"menu.view.developer.open.log.folder" = "Open the Log Folder";
+"menu.view.developer.open.current.log.file" = "Open Current Logfile";
 "user_location_permission_explanation" = "Delta Chat needs the location permission in order to show and share your location.";
 "explain_desktop_minimized_disabled_tray_pref" = "Tray icon cannot be disabled as Delta Chat was started with the --minimized option.";
 "no_spellcheck_suggestions_found" = "No spelling suggestions found.";
@@ -796,11 +796,11 @@
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Background notifications";
+"pref_background_notifications" = "Background Notifications";
 "pref_background_notifications_explain" = "Uses a background connection to your server and requires ignored battery optimizations.";
 "pref_background_notifications_rationale" = "To maintain connection to your e-mail server and receive messages in the background, ignore battery optimizations in the next step.\n\nDelta Chat uses few resources and takes care not to drain your battery.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Reliable background connection";
+"pref_reliable_service" = "Reliable Background Connection";
 "pref_reliable_service_explain" = "Requires a permanent notification";
 "perm_enable_bg_reminder_title" = "Tap here to receive messages while Delta Chat is in the background.";
 "perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
