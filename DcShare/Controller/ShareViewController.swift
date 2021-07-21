@@ -224,16 +224,6 @@ extension ShareViewController: ShareAttachmentDelegate {
             guard let self = self else { return }
             if let preview = self.preview {
                 preview.image = self.shareAttachment?.thumbnail ?? nil
-
-                if let image = preview.image, image.sd_imageFormat == .webP {
-                    self.previewImageWidthConstraint?.isActive = false
-                    self.previewImageHeightConstraint?.isActive = false
-                    preview.centerInSuperview()
-                    self.textView.text = nil
-                    self.textView.attributedText = nil
-                    self.placeholder = nil
-                    self.textView.isHidden = true
-                }
             }
         }
     }

@@ -115,12 +115,7 @@ class ShareAttachment {
             }
             if let result = result {
                 let path: String? = ImageFormat.saveImage(image: result)
-                var msg: DcMsg
-                if result.sd_imageFormat == .webP {
-                    msg = self.dcContext.newMessage(viewType: DC_MSG_STICKER)
-                } else {
-                    msg = self.dcContext.newMessage(viewType: DC_MSG_IMAGE)
-                }
+                let msg = self.dcContext.newMessage(viewType: DC_MSG_IMAGE)
                 msg.setFile(filepath: path)
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
