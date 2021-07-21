@@ -66,7 +66,7 @@
 "file_not_found" = "Could not find %1$@.";
 "copied_to_clipboard" = "Copied to clipboard.";
 "contacts_headline" = "Contacts";
-"email_address" = "E-mail Address";
+"email_address" = "E-Mail Address";
 "bad_email_address" = "Bad e-mail address.";
 "password" = "Password";
 "existing_password" = "Existing Password";
@@ -513,7 +513,7 @@
 "pref_send_copy_to_self" = "Send Copy to Self";
 "pref_auto_folder_moves" = "Automatic Moves to DeltaChat Folder";
 "pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox";
-"pref_show_emails" = "Show Classic E-mails";
+"pref_show_emails" = "Show Classic E-Mails";
 "pref_show_emails_no" = "No, chats only";
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
 "pref_show_emails_all" = "All";
