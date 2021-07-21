@@ -385,12 +385,6 @@ class ChatListController: UITableViewController {
             navigationItem.setLeftBarButton(nil, animated: true)
         }
         titleView.sizeToFit()
-        
-        /**
-         let backItem = UIBarButtonItem()
-             backItem.title = "Something Else"
-         */
-        
     }
 
     func handleChatListUpdate() {
