@@ -169,9 +169,7 @@ class ChatListController: UITableViewController {
     // MARK: - setup
     private func setupSubviews() {
         emptySearchStateLabel.addCenteredTo(parentView: view)
-        let backButton = UIBarButtonItem()
-        backButton.title = String.localized("pref_chats")
-        navigationItem.backBarButtonItem = backButton
+        navigationItem.backButtonTitle = String.localized("pref_chats")
     }
 
     @objc
