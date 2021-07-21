@@ -38,6 +38,23 @@ class ConnectivityViewController: WebViewViewController {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             let html = self.dcContext.getConnectivityHtml()
+                .replacingOccurrences(of: "</style>", with:
+                    """
+                    body {
+                        font-size: 13pt;
+                        font-family: -apple-system, sans-serif;
+                        padding: 0 .5rem .5rem .5rem;
+                        -webkit-text-size-adjust: none;
+                    }
+
+                    @media (prefers-color-scheme: dark) {
+                      body {
+                        background-color: black !important;
+                        color: #eee;
+                      }
+                    }
+                    </style>
+                    """)
             DispatchQueue.main.async {
                 self.webView.loadHTMLString(html, baseURL: nil)
             }
