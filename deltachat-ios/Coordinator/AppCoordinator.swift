@@ -129,6 +129,12 @@ class AppCoordinator {
         } else {
             presentWelcomeController()
         }
+
+        // make sure, we use the same font in all titles,
+        // here and in the custom chatlist title
+        // (according to https://learnui.design/blog/ios-font-size-guidelines.html )
+        // (it would be a bit nicer, if we would query the system font and pass it to chatlist, but well :)
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
     }
 
     func presentWelcomeController() {

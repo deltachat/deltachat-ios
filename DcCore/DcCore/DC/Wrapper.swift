@@ -47,6 +47,10 @@ public class DcAccounts {
         dc_accounts_maybe_network(accountsPointer)
     }
 
+    public func maybeNetworkLost() {
+        dc_accounts_maybe_network_lost(accountsPointer)
+    }
+
     public func maybeStartIo() {
         if getSelected().isConfigured() {
             dc_accounts_start_io(accountsPointer)
@@ -317,6 +321,17 @@ public class DcContext {
             return switftString
         }
         return "ErrGetContactEncrInfo"
+    }
+
+    public func getConnectivity() -> Int32 {
+        return dc_get_connectivity(contextPointer)
+    }
+
+    public func getConnectivityHtml() -> String {
+        guard let cString = dc_get_connectivity_html(contextPointer) else { return ""}
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
     }
 
     public func setStockTranslation(id: Int32, localizationKey: String) {

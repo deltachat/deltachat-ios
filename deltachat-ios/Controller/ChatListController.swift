@@ -12,8 +12,18 @@ class ChatListController: UITableViewController {
     private var msgChangedObserver: NSObjectProtocol?
     private var msgsNoticedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
+    private var connectivityChangedObserver: NSObjectProtocol?
 
     private weak var timer: Timer?
+
+    private lazy var titleView: UILabel = {
+        let view = UILabel()
+        let navTapGesture = UITapGestureRecognizer(target: self, action: #selector(onNavigationTitleTapped))
+        view.addGestureRecognizer(navTapGesture)
+        view.isUserInteractionEnabled = true
+        view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        return view
+    }()
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -82,7 +92,9 @@ class ChatListController: UITableViewController {
         dcContext.addDeviceMessage(label: "update_1_20b_ios", msg: msg)
 
         // create view
+        navigationItem.titleView = titleView
         updateTitle()
+
         viewModel.refreshData()
 
         if RelayHelper.sharedInstance.isForwarding() {
@@ -113,6 +125,12 @@ class ChatListController: UITableViewController {
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
+        connectivityChangedObserver = nc.addObserver(forName: dcNotificationConnectivityChanged,
+                                                     object: nil,
+                                                     queue: nil) { [weak self] _ in
+                                                        self?.updateTitle()
+                                                     }
+
         nc.addObserver(
             self,
             selector: #selector(applicationDidBecomeActive(_:)),
@@ -140,6 +158,9 @@ class ChatListController: UITableViewController {
         if let msgsNoticedObserver = self.msgsNoticedObserver {
             nc.removeObserver(msgsNoticedObserver)
         }
+        if let connectivityChangedObserver = self.connectivityChangedObserver {
+            nc.removeObserver(connectivityChangedObserver)
+        }
         // remove non-block observers
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
@@ -148,6 +169,14 @@ class ChatListController: UITableViewController {
     // MARK: - setup
     private func setupSubviews() {
         emptySearchStateLabel.addCenteredTo(parentView: view)
+        navigationItem.backButtonTitle = String.localized("pref_chats")
+    }
+
+    @objc
+    public func onNavigationTitleTapped() {
+        logger.debug("on navigation title tapped")
+        let connectivityViewController = ConnectivityViewController(dcContext: dcContext)
+        navigationController?.pushViewController(connectivityViewController, animated: true)
     }
 
     // MARK: - configuration
@@ -341,15 +370,19 @@ class ChatListController: UITableViewController {
     // MARK: updates
     private func updateTitle() {
         if RelayHelper.sharedInstance.isForwarding() {
-            title = String.localized("forward_to")
+            titleView.text = String.localized("forward_to")
             if !viewModel.isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
+        } else if viewModel.isArchive {
+            titleView.text = String.localized("chat_archived_chats_title")
+            navigationItem.setLeftBarButton(nil, animated: true)
+           
         } else {
-            title = viewModel.isArchive ? String.localized("chat_archived_chats_title") :
-                String.localized("pref_chats")
+            titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
             navigationItem.setLeftBarButton(nil, animated: true)
         }
+        titleView.sizeToFit()
     }
 
     func handleChatListUpdate() {

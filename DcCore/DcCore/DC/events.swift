@@ -11,6 +11,7 @@ public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventCo
 public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
 public let dcEphemeralTimerModified =  Notification.Name(rawValue: "dcEphemeralTimerModified")
 public let dcMsgsNoticed = Notification.Name(rawValue: "dcMsgsNoticed")
+public let dcNotificationConnectivityChanged = Notification.Name(rawValue: "dcNotificationConnectivityChanged")
 
 public class DcEventHandler {
     let dcAccounts: DcAccounts
@@ -222,6 +223,20 @@ public class DcEventHandler {
                     userInfo: [
                         "contact_id": Int(data1)
                     ]
+                )
+            }
+
+        case DC_EVENT_CONNECTIVITY_CHANGED:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
+            dcContext.logger?.info("network: DC_EVENT_CONNECTIVITY_CHANGED: \(dcContext.getConnectivity())")
+            DispatchQueue.main.async {
+                let nc = NotificationCenter.default
+                nc.post(
+                    name: dcNotificationConnectivityChanged,
+                    object: nil,
+                    userInfo: nil
                 )
             }
 

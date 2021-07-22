@@ -95,6 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         reachability.whenUnreachable = { _ in
             logger.info("network: not reachable")
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                self?.dcAccounts.maybeNetworkLost()
+            }
         }
 
         do {

@@ -27,6 +27,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case mediaQuality = 12
         case switchAccount = 13
         case videoChat = 14
+        case connectivity = 15
     }
 
     private var dcContext: DcContext
@@ -35,11 +36,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private let externalPathDescr = "File Sharing/Delta Chat"
 
     let documentInteractionController = UIDocumentInteractionController()
+
+    private var connectivityChangedObserver: NSObjectProtocol?
+
+    // MARK: - ProgressAlertHandler
     weak var progressAlert: UIAlertController?
     var progressObserver: NSObjectProtocol?
 
     // MARK: - cells
-
     private lazy var profileCell: ContactCell = {
         let cell = ContactCell(style: .default, reuseIdentifier: nil)
         let cellViewModel = ProfileViewModel(context: dcContext)
@@ -195,6 +199,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    private lazy var connectivityCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.connectivity.rawValue
+        cell.textLabel?.text = String.localized("connectivity")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
     private lazy var sections: [SectionConfigs] = {
         var appNameAndVersion = "Delta Chat"
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -222,7 +234,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let helpSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: appNameAndVersion,
-            cells: [helpCell]
+            cells: [connectivityCell, helpCell]
         )
         return [profileSection, preferencesSection, autocryptSection, backupSection, helpSection]
     }()
@@ -258,6 +270,13 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             guard let self = self else { return }
             self.progressAlert?.dismiss(animated: true, completion: nil)
         }
+        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
+                                                                             object: nil,
+                                                                             queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
+                                                                                        connectedString: String.localized("connectivity_connected"))
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -265,6 +284,9 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let nc = NotificationCenter.default
         if let backupProgressObserver = self.progressObserver {
             nc.removeObserver(backupProgressObserver)
+        }
+        if let connectivityChangedObserver = self.connectivityChangedObserver {
+            NotificationCenter.default.removeObserver(connectivityChangedObserver)
         }
     }
 
@@ -314,6 +336,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .advanced: showAdvancedDialog()
         case .switchAccount: showSwitchAccountMenu()
         case .help: showHelp()
+        case .connectivity: showConnectivity()
         }
     }
 
@@ -522,6 +545,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
         videoChatInstanceCell.detailTextLabel?.text = dcContext.getConfig("webrtc_instance")
         autodelCell.detailTextLabel?.text = autodelSummary()
+        connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: dcContext,
+                                                                               connectedString: String.localized("connectivity_connected"))
     }
 
     // MARK: - coordinator
@@ -562,6 +587,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     private func showHelp() {
         navigationController?.pushViewController(HelpViewController(), animated: true)
+    }
+
+    private func showConnectivity() {
+        navigationController?.pushViewController(ConnectivityViewController(dcContext: dcContext), animated: true)
     }
 
     public static func showDebugToolkit(dcContext: DcContext) {
