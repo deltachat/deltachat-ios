@@ -35,7 +35,7 @@ public class ChatContactRequestBar: UIView, InputItem {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [acceptButton, blockButton])
+        let view = UIStackView(arrangedSubviews: [blockButton, acceptButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .center
