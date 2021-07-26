@@ -733,6 +733,10 @@ class ChatViewController: UITableViewController {
         }
         _ = handleUIMenu()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
+    }
 
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
 
