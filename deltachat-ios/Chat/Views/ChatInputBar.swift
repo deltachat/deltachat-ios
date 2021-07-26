@@ -15,6 +15,7 @@ public class ChatInputBar: InputBarAccessoryView {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(onScrollDownPressed), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     

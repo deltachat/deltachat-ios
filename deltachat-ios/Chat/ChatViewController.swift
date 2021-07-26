@@ -529,6 +529,7 @@ class ChatViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         _ = handleUIMenu()
+        messageInputBar.scrollDownButton.isHidden = isInitial || isLastRowVisible()
 
         let id = messageIds[indexPath.row]
         if id == DC_MSG_ID_DAYMARKER {
@@ -600,8 +601,6 @@ class ChatViewController: UITableViewController {
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
                     showName: showName)
-
-        messageInputBar.scrollDownButton.isHidden = isLastRowVisible()
 
         return cell
     }
