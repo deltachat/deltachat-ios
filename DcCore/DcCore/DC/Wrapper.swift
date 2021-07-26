@@ -196,6 +196,14 @@ public class DcContext {
         return Int(dc_lookup_contact_id_by_addr(contextPointer, addr))
     }
 
+    public func acceptChat(chatId: Int) {
+        dc_accept_chat(contextPointer, UInt32(chatId))
+    }
+
+    public func blockChat(chatId: Int) {
+        dc_block_chat(contextPointer, UInt32(chatId))
+    }
+
     public func getChat(chatId: Int) -> DcChat {
         let chatPointer = dc_get_chat(contextPointer, UInt32(chatId))
         return DcChat(chatPointer: chatPointer)
@@ -213,12 +221,6 @@ public class DcContext {
         } else {
             return Int(chatId)
         }
-    }
-
-    @discardableResult
-    public func decideOnContactRequest(_ messageId: Int, _ decision: Int32) -> DcChat {
-        let chatId = dc_decide_on_contact_request(contextPointer, UInt32(messageId), decision)
-        return getChat(chatId: Int(chatId))
     }
 
     public func getChatlist(flags: Int32, queryString: String?, queryId: Int) -> DcChatlist {
@@ -828,6 +830,10 @@ public class DcChat {
         return Int(dc_chat_is_device_talk(chatPointer)) != 0
     }
 
+    public var isContactRequest: Bool {
+        return Int(dc_chat_is_contact_request(chatPointer)) != 0
+    }
+
     public var canSend: Bool {
         return Int(dc_chat_can_send(chatPointer)) != 0
     }
@@ -936,10 +942,6 @@ public class DcMsg {
 
     public var chatId: Int {
         return Int(dc_msg_get_chat_id(messagePointer))
-    }
-
-    public var realChatId: Int {
-        return Int(dc_msg_get_real_chat_id(messagePointer))
     }
 
     public var overrideSenderName: String? {

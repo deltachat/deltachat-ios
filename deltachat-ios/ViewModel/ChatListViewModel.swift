@@ -137,8 +137,6 @@ class ChatListViewModel: NSObject {
     func chatIdFor(section: Int, row: Int) -> Int? {
         let cellData = cellDataFor(section: section, row: row)
         switch cellData.type {
-        case .deaddrop(let data):
-            return data.chatId
         case .chat(let data):
             return data.chatId
         case .contact:
@@ -208,11 +206,6 @@ private extension ChatListViewModel {
         let list: DcChatlist = searchResultChatList ?? chatList
         let chatId = list.getChatId(index: index)
         let summary = list.getSummary(index: index)
-
-        if let msgId = msgIdFor(row: index), chatId == DC_CHAT_ID_DEADDROP {
-            return ChatCellViewModel(dcContext: dcContext, deaddropCellData: DeaddropCellData(chatId: chatId, msgId: msgId, summary: summary))
-        }
-
         let chat = dcContext.getChat(chatId: chatId)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 

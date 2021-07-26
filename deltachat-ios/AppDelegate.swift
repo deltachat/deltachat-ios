@@ -524,7 +524,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_SELF, localizationKey: "self")
         dcContext.setStockTranslation(id: DC_STR_DRAFT, localizationKey: "draft")
         dcContext.setStockTranslation(id: DC_STR_VOICEMESSAGE, localizationKey: "voice_message")
-        dcContext.setStockTranslation(id: DC_STR_DEADDROP, localizationKey: "chat_contact_request")
         dcContext.setStockTranslation(id: DC_STR_IMAGE, localizationKey: "image")
         dcContext.setStockTranslation(id: DC_STR_VIDEO, localizationKey: "video")
         dcContext.setStockTranslation(id: DC_STR_AUDIO, localizationKey: "audio")

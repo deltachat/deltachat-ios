@@ -27,6 +27,7 @@
 		302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84CD2397F6CD001C261F /* URL+Extension.swift */; };
 		302D5450268B6B2300A8B271 /* MessageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D544F268B6B2300A8B271 /* MessageUtils.swift */; };
 		302D5454268B84CB00A8B271 /* SettingsVideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D5453268B84CB00A8B271 /* SettingsVideoChatViewController.swift */; };
+		302D546A2693591700A8B271 /* ChatContactRequestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D54692693591700A8B271 /* ChatContactRequestBar.swift */; };
 		302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */; };
 		302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */; };
 		30349291256441E200A523D0 /* QuotePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30349290256441E200A523D0 /* QuotePreview.swift */; };
@@ -152,7 +153,6 @@
 		AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D752253431E007DC082 /* AccountSetupController.swift */; };
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
 		AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */; };
-		AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */; };
 		AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC472283045D00EDC689 /* EditSettingsController.swift */; };
 		AEE700252438E0E500D6992E /* ProgressAlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE700242438E0E500D6992E /* ProgressAlertHandler.swift */; };
 		AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */; };
@@ -243,6 +243,7 @@
 		302B84CD2397F6CD001C261F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		302D544F268B6B2300A8B271 /* MessageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtils.swift; sourceTree = "<group>"; };
 		302D5453268B84CB00A8B271 /* SettingsVideoChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVideoChatViewController.swift; sourceTree = "<group>"; };
+		302D54692693591700A8B271 /* ChatContactRequestBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContactRequestBar.swift; sourceTree = "<group>"; };
 		302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = "deltachat-ios/Chat/Views/PlayButtonView.swift"; sourceTree = SOURCE_ROOT; };
 		302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityViewController.swift; sourceTree = "<group>"; };
 		30349290256441E200A523D0 /* QuotePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotePreview.swift; sourceTree = "<group>"; };
@@ -409,7 +410,6 @@
 		AEE56D752253431E007DC082 /* AccountSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
-		AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		AEE6EC472283045D00EDC689 /* EditSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsController.swift; sourceTree = "<group>"; };
 		AEE700242438E0E500D6992E /* ProgressAlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAlertHandler.swift; sourceTree = "<group>"; };
 		AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryTimeLabel.swift; sourceTree = "<group>"; };
@@ -603,6 +603,7 @@
 				303492CE2587C2DC00A523D0 /* ChatInputBar.swift */,
 				3067AA4B2666310E00525036 /* ChatInputTextView.swift */,
 				307A82CB25B8D26700748B57 /* ChatEditingBar.swift */,
+				302D54692693591700A8B271 /* ChatContactRequestBar.swift */,
 				302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */,
 				30F8817524DA97DA0023780E /* BackgroundContainer.swift */,
 				3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */,
@@ -790,7 +791,6 @@
 				AE19887423EB264000B4CD5F /* HelpViewController.swift */,
 				304F769425DD237B0094B5E2 /* WebViewViewController.swift */,
 				304F769825DD23D70094B5E2 /* FullMessageViewController.swift */,
-				AEE6EC402282DF5700EDC689 /* MailboxViewController.swift */,
 				785BE16721E247F1003BE98C /* MessageInfoViewController.swift */,
 				7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */,
 				7A0052C71FBE6CB40048C3BF /* NewContactController.swift */,
@@ -1317,7 +1317,6 @@
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
 				AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */,
 				B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */,
-				AEE6EC412282DF5700EDC689 /* MailboxViewController.swift in Sources */,
 				AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
 				30653081254358B10093E196 /* QuoteView.swift in Sources */,
@@ -1372,6 +1371,7 @@
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
+				302D546A2693591700A8B271 /* ChatContactRequestBar.swift in Sources */,
 				305DDD8725DD97BF00974489 /* DynamicFontButton.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */,

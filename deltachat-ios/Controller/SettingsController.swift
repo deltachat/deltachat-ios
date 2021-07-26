@@ -13,7 +13,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     private enum CellTags: Int {
         case profile = 0
-        case contactRequest = 1
         case showEmails = 2
         case blockedContacts = 3
         case notifications = 4
@@ -49,14 +48,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let cellViewModel = ProfileViewModel(context: dcContext)
         cell.updateCell(cellViewModel: cellViewModel)
         cell.tag = CellTags.profile.rawValue
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    private lazy var contactRequestCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.tag = CellTags.contactRequest.rawValue
-        cell.textLabel?.text = String.localized("menu_deaddrop")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -220,7 +211,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [contactRequestCell, showEmailsCell, blockedContactsCell, autodelCell, mediaQualityCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
+            cells: [showEmailsCell, blockedContactsCell, autodelCell, mediaQualityCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
@@ -322,7 +313,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
         switch cellTag {
         case .profile: showEditSettingsController()
-        case .contactRequest: showContactRequests()
         case .showEmails: showClassicMail()
         case .blockedContacts: showBlockedContacts()
         case .autodel: showAutodelOptions()
@@ -578,11 +568,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private func showAutodelOptions() {
         let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
         navigationController?.pushViewController(settingsAutodelOverviewController, animated: true)
-    }
-
-    private func showContactRequests() {
-        let deaddropViewController = MailboxViewController(dcContext: dcContext, chatId: Int(DC_CHAT_ID_DEADDROP))
-        navigationController?.pushViewController(deaddropViewController, animated: true)
     }
 
     private func showHelp() {

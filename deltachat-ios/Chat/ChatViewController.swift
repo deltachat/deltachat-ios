@@ -54,6 +54,13 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
+    public lazy var contactRequestBar: ChatContactRequestBar = {
+        let view = ChatContactRequestBar()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -239,7 +246,8 @@ class ChatViewController: UITableViewController {
     }
 
     override func loadView() {
-        self.tableView = ChatTableView(messageInputBar: self.disableWriting ? nil : messageInputBar)
+        let inputBar = self.disableWriting && !dcContext.getChat(chatId: chatId).isContactRequest ? nil : messageInputBar
+        self.tableView = ChatTableView(messageInputBar: inputBar)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view = self.tableView
@@ -266,13 +274,18 @@ class ChatViewController: UITableViewController {
         configureEmptyStateView()
 
         if !disableWriting {
-            configureMessageInputBar()
-            draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
-            messageInputBar.inputTextView.text = draft.text
-            configureDraftArea(draft: draft, animated: false)
-            editingBar.delegate = self
-            tableView.allowsMultipleSelectionDuringEditing = true
+            configureUIForWriting()
+        } else if dcContext.getChat(chatId: chatId).isContactRequest {
+            configureContactRequestBar()
         }
+    }
+
+    private func configureUIForWriting() {
+        configureMessageInputBar()
+        draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
+        messageInputBar.inputTextView.text = draft.text
+        configureDraftArea(draft: draft, animated: false)
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     private func getTopInsetHeight() -> CGFloat {
@@ -614,6 +627,14 @@ class ChatViewController: UITableViewController {
         markSeenMessagesInVisibleArea()
     }
 
+    private func configureContactRequestBar() {
+        messageInputBar.setMiddleContentView(contactRequestBar, animated: false)
+        messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
+        messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
+        messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+        messageInputBar.setStackViewItems([], forStack: .top, animated: false)
+    }
+
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
         draftArea.configure(draft: draft)
         if draft.isEditing {
@@ -858,13 +879,7 @@ class ChatViewController: UITableViewController {
     private func showEmptyStateView(_ show: Bool) {
         if show {
             let dcChat = dcContext.getChat(chatId: chatId)
-            if chatId == DC_CHAT_ID_DEADDROP {
-                if dcContext.showEmails != DC_SHOW_EMAILS_ALL {
-                    emptyStateView.text = String.localized("chat_no_contact_requests")
-                } else {
-                    emptyStateView.text = String.localized("chat_no_messages")
-                }
-            } else if dcChat.isGroup {
+            if dcChat.isGroup {
                 if dcChat.isUnpromoted {
                     emptyStateView.text = String.localized("chat_new_group_hint")
                 } else {
@@ -975,9 +990,7 @@ class ChatViewController: UITableViewController {
     }
 
     @objc private func chatProfilePressed() {
-        if chatId != DC_CHAT_ID_DEADDROP {
-            showChatDetail(chatId: chatId)
-        }
+        showChatDetail(chatId: chatId)
     }
 
     @objc private func clipperButtonPressed() {
@@ -1663,6 +1676,19 @@ extension ChatViewController: ChatEditingDelegate {
 
     func onCancelPressed() {
         setEditing(isEditing: false)
+    }
+}
+
+// MARK: - ChatContactRequestBar
+extension ChatViewController: ChatContactRequestDelegate {
+    func onAcceptPressed() {
+        dcContext.acceptChat(chatId: chatId)
+        configureUIForWriting()
+    }
+
+    func onBlockPressed() {
+        dcContext.blockChat(chatId: chatId)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
