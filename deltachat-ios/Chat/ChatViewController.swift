@@ -464,6 +464,14 @@ class ChatViewController: UITableViewController {
         AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
         
+        removeMessageObservers()
+        let nc = NotificationCenter.default
+        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        audioController.stopAnyOngoingPlaying()
+    }
+    
+    private func removeMessageObservers() {
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -474,9 +482,6 @@ class ChatViewController: UITableViewController {
         if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
             nc.removeObserver(ephemeralTimerModifiedObserver)
         }
-        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
-        audioController.stopAnyOngoingPlaying()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -1059,8 +1064,9 @@ class ChatViewController: UITableViewController {
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { [weak self] _ in
                             guard let self = self else { return }
+                            // remove message observers early to avoid careless calls to dcContext methods
+                            self.removeMessageObservers()
                             self.dcContext.deleteChat(chatId: self.chatId)
-
                             self.navigationController?.popViewController(animated: true)
                           })
     }
