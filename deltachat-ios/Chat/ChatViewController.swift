@@ -346,6 +346,7 @@ class ChatViewController: UITableViewController {
                         self.highlightedMsg = nil
                         self.isInitial = false
                         self.ignoreInputBarChange = false
+                        self.messageInputBar.scrollDownButton.isHidden = self.isLastRowVisible()
                     }
                 })
             } else {
@@ -476,7 +477,6 @@ class ChatViewController: UITableViewController {
         nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
         nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         audioController.stopAnyOngoingPlaying()
-
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -542,6 +542,7 @@ class ChatViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         _ = handleUIMenu()
+        messageInputBar.scrollDownButton.isHidden = isInitial || isLastRowVisible()
 
         let id = messageIds[indexPath.row]
         if id == DC_MSG_ID_DAYMARKER {
@@ -736,6 +737,10 @@ class ChatViewController: UITableViewController {
         }
         _ = handleUIMenu()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
+    }
 
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
 
@@ -836,7 +841,11 @@ class ChatViewController: UITableViewController {
         let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
         return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
     }
-
+    
+    private func scrollToBottom() {
+        scrollToBottom(animated: true)
+    }
+    
     private func scrollToBottom(animated: Bool) {
         if !messageIds.isEmpty {
             DispatchQueue.main.async { [weak self] in
@@ -919,8 +928,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
         messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
         messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 38)
-        messageInputBar.inputTextView.layer.borderColor = UIColor.themeColor(light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1),
-                                                                             dark: UIColor(red: 55 / 255, green: 55/255, blue: 55/255, alpha: 1)).cgColor
+        messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
         messageInputBar.inputTextView.layer.borderWidth = 1.0
         messageInputBar.inputTextView.layer.cornerRadius = 13.0
         messageInputBar.inputTextView.layer.masksToBounds = true
@@ -930,6 +938,7 @@ class ChatViewController: UITableViewController {
         if let inputTextView = messageInputBar.inputTextView as? ChatInputTextView {
             inputTextView.imagePasteDelegate = self
         }
+        messageInputBar.onScrollDownButtonPressed = scrollToBottom
     }
 
     private func evaluateInputBar(draft: DraftModel) {
