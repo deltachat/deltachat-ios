@@ -1053,6 +1053,18 @@ class ChatViewController: UITableViewController {
             }))
         present(alert, animated: true, completion: nil)
     }
+    
+    private func askToDeleteChat() {
+        let title = String.localized(stringID: "ask_delete_chat", count: 1)
+        confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
+                          actionHandler: { [weak self] _ in
+                            guard let self = self else { return }
+                            self.dcContext.deleteChat(chatId: self.chatId)
+
+                            self.navigationController?.popViewController(animated: true)
+                          })
+    }
+    
 
     private func askToChatWith(email: String) {
         let contactId = self.dcContext.createContact(name: "", email: email)
@@ -1690,14 +1702,18 @@ extension ChatViewController: ChatEditingDelegate {
 
 // MARK: - ChatContactRequestBar
 extension ChatViewController: ChatContactRequestDelegate {
-    func onAcceptPressed() {
+    func onAcceptRequest() {
         dcContext.acceptChat(chatId: chatId)
         configureUIForWriting()
     }
 
-    func onBlockPressed() {
+    func onBlockRequest() {
         dcContext.blockChat(chatId: chatId)
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func onDeleteRequest() {
+        self.askToDeleteChat()
     }
 }
 

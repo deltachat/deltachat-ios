@@ -3,8 +3,9 @@ import InputBarAccessoryView
 import DcCore
 
 public protocol ChatContactRequestDelegate: class {
-    func onAcceptPressed()
-    func onBlockPressed()
+    func onAcceptRequest()
+    func onBlockRequest()
+    func onDeleteRequest()
 }
 
 public class ChatContactRequestBar: UIView, InputItem {
@@ -70,17 +71,21 @@ public class ChatContactRequestBar: UIView, InputItem {
         let acceptGestureListener = UITapGestureRecognizer(target: self, action: #selector(onAcceptPressed))
         acceptButton.addGestureRecognizer(acceptGestureListener)
 
-        let blockGestureListener = UITapGestureRecognizer(target: self, action: #selector(onBlockPressed))
+        let blockGestureListener = UITapGestureRecognizer(target: self, action: #selector(onRejectPressed))
         blockButton.addGestureRecognizer(blockGestureListener)
 
     }
 
     @objc func onAcceptPressed() {
-        delegate?.onAcceptPressed()
+        delegate?.onAcceptRequest()
     }
 
-    @objc func onBlockPressed() {
-        delegate?.onBlockPressed()
+    @objc func onRejectPressed() {
+        if isGroupRequest {
+            delegate?.onDeleteRequest()
+        } else {
+            delegate?.onBlockRequest()
+        }
     }
 
     public override var intrinsicContentSize: CGSize {
