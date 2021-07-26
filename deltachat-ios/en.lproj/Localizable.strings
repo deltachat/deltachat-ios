@@ -177,6 +177,7 @@
 "block" = "Block";
 "menu_block_contact" = "Block Contact";
 "menu_unblock_contact" = "Unblock Contact";
+"accept" = "Accept";
 "menu_play" = "Play";
 "menu_pause" = "Pause";
 "menu_scroll_to_bottom" = "Scroll to the Bottom";
@@ -288,6 +289,7 @@
 "chat_share_with_title" = "Share with";
 "chat_input_placeholder" = "Message";
 "chat_archived_label" = "Archived";
+"chat_request_label" = "Request";
 "chat_no_messages" = "No messages.";
 "chat_self_talk_subtitle" = "Messages I sent to myself";
 "saved_messages" = "Saved Messages";
@@ -365,10 +367,13 @@
 
 // Connectivity
 "connectivity" = "Connectivity";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Not connected";
-// Note that the three dots are a single character (…), not three (...)
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Connecting…";
-"connectivity_getting_new_msgs" = "Getting new messages…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Updating…";
+// Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Connected";
 
 
@@ -817,4 +822,3 @@
 
 "perm_ios_explain_access_to_camera_denied" = "To take photos, capture videos or use the QR-Code scanner, open the system settings and enable \"Camera\".";
 "open_settings" = "Open Settings";
-"accept" = "Accept";

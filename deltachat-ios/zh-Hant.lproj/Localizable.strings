@@ -365,10 +365,13 @@
 
 // Connectivity
 "connectivity" = "连接性";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "未连接";
-// Note that the three dots are a single character (…), not three (...)
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "连接中…";
-"connectivity_getting_new_msgs" = "获取新消息中…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "更新中…";
+// Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "已连接";
 
 

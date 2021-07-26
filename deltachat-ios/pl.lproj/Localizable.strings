@@ -597,6 +597,9 @@
 "systemmsg_chat_protection_disabled" = "Ochrona czatu wyłączona.";
 "systemmsg_chat_protection_enabled" = "Ochrona czatu włączona.";
 
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Aby kontynuować, wprowadź swój tajny kod zdefiniowany w systemie.";
+
 // qr code stuff
 "qr_code" = "Kod QR";
 "load_qr_code_as_image" = "Załaduj kod QR jako obraz";
@@ -610,6 +613,14 @@
 "qrscan_contains_url" = "Zeskanowany kod QR zawiera następujący adres:\n\n%1$@";
 "qrscan_fingerprint_label" = "Odciski palca";
 "qrscan_x_verified_introduce_myself" = "Zweryfikowano %1$@, przedstaw się…";
+"withdraw_verifycontact_explain" = "Ten kod QR może zostać zeskanowany przez inne osoby w celu skontaktowania się z Tobą.\n\nTutaj możesz dezaktywować kod QR i ponownie go aktywować poprzez zeskanowanie.";
+"withdraw_verifygroup_explain" = "Ten kod QR może zostać zeskanowany przez inne osoby, aby dołączyć do grupy „%1$@”.\n\nTutaj możesz dezaktywować kod QR i ponownie go aktywować poprzez zeskanowanie.";
+"withdraw_qr_code" = "Dezaktywuj kod QR";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Ten kod QR mógł być skanowany przez inne osoby w celu skontaktowania się z Tobą.\n\nKod QR nie jest już aktywny na tym urządzeniu.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Ten kod QR mógł być skanowany przez inne osoby, aby dołączyć do grupy „%1$@”.\n\nKod QR nie jest już aktywny na tym urządzeniu.";
+"revive_qr_code" = "Aktywuj kod QR";
 "qrshow_title" = "Kod QR zaproszenia";
 "qrshow_x_joining" = "%1$@ dołącza.";
 "qrshow_x_verified" = "Zweryfikowano %1$@";

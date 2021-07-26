@@ -365,10 +365,13 @@
 
 // Connectivity
 "connectivity" = "Verbindingen";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Niet verbonden";
-// Note that the three dots are a single character (…), not three (...)
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Bezig met verbinden…";
-"connectivity_getting_new_msgs" = "Bezig met ophalen van nieuwe berichten…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Bezig met bijwerken…";
+// Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Verbonden";
 
 
@@ -629,7 +632,7 @@
 "load_qr_code_as_image" = "QR-code als afbeelding laden";
 "qrscan_title" = "QR-code scannen";
 "qrscan_hint" = "Plaatst je camera boven de QR-code";
-"qrscan_failed" = "De qr-code kan niet worden ontcijferd";
+"qrscan_failed" = "De QR-code kan niet worden ontcijferd";
 "qrscan_ask_join_group" = "Wil je deelnemen aan de groep \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "De gescande vingerafdruk komt niet overeen met de vorige voor %1$@";
 "qrscan_no_addr_found" = "Deze QR-code bevat een vingerafdruk, maar geen e-mailadres.\n\nVoor out-of-bandgoedkeuring, moet je eerst een beveiligde verbinding opzetten met de ontvanger.";
@@ -637,13 +640,13 @@
 "qrscan_contains_url" = "Gescande QR-code-url:\n\n %1$@";
 "qrscan_fingerprint_label" = "Vingerafdruk";
 "qrscan_x_verified_introduce_myself" = "%1$@ is goedgekeurd - vertel iets over jezelf…";
-"withdraw_verifycontact_explain" = "Deze qr-code kan door anderen worden gescand om contact met je op te nemen.\n\nJe kunt de qr-code hier deactiveren en opnieuw activeren door deze opnieuw te scannen.";
-"withdraw_verifygroup_explain" = "Deze qr-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nJe kunt de qr-code hier deactiveren en opnieuw activeren door deze opnieuw te scannen.";
+"withdraw_verifycontact_explain" = "Deze QR-code kan door anderen worden gescand om contact met je op te nemen.\n\nJe kunt de QR-code hier deactiveren en opnieuw activeren door deze opnieuw te scannen.";
+"withdraw_verifygroup_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nJe kunt de QR-code hier deactiveren en opnieuw activeren door deze opnieuw te scannen.";
 "withdraw_qr_code" = "QR-code deactiveren";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
-"revive_verifycontact_explain" = "Deze qr-code kan door anderen worden gescand om contact met je op te nemen.\n\nDe qr-code is niet actief op dit apparaat.";
+"revive_verifycontact_explain" = "Deze QR-code kan door anderen worden gescand om contact met je op te nemen.\n\nDe QR-code is niet actief op dit apparaat.";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
-"revive_verifygroup_explain" = "Deze qr-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nDe qr-code is niet actief op dit apparaat.";
+"revive_verifygroup_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nDe QR-code is niet actief op dit apparaat.";
 "revive_qr_code" = "QR-code activeren";
 "qrshow_title" = "QR-uitnodigingscode";
 "qrshow_x_joining" = "%1$@ heeft deelgenomen.";
@@ -665,7 +668,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_group_explain" = "Goedgekeurde groepen (experimenteel) zijn extra beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd eind-tot-eind versleuteld.";
-"copy_qr_data_success" = "De qr-url is gekopieerd naar het klembord";
+"copy_qr_data_success" = "De QR-url is gekopieerd naar het klembord";
 "mailto_dialog_header_select_chat" = "Kies in welk gesprek je dit bericht wilt delen";
 // first placeholder is the name of the chat
 "mailto_dialog_confirm_replace_draft" = "%1$@ bevat al een concept. Wil je dit vervangen?";

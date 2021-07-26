@@ -38,7 +38,12 @@
 "profile" = "Perfil";
 "main_menu" = "Menú principal";
 "start_chat" = "Comenzar chat";
-"show_full_message" = "Mostrar el mensaje completo...";
+"show_full_message" = "Mostrar mensaje completo...";
+"show_full_message_in_browser" = "Mostrar mensaje completo en el navegador…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Cargando…";
+"hide" = "Ocultar";
+"activate" = "Activar";
 "load_remote_content" = "Cargar imágenes remotas";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Las imágenes remotas pueden ser usadas para seguirte.\n\nLa opción también permite cargar fuentes y otros contenidos. Inclusive si están deshabilitadas, quizás puedas ver imágenes embebidas o en caché.\n\n¿Cargar imágenes remotas?";
@@ -155,6 +160,8 @@
 "menu_copy_to_clipboard" = "Copiar al portapapeles";
 "menu_copy_selection_to_clipboard" = "Copiar selección";
 "menu_copy_link_to_clipboard" = "Copiar enlace";
+"menu_copy_text_to_clipboard" = "Copiar texto";
+"menu_copy_image_to_clipboard" = "Copiar imagen";
 "paste_from_clipboard" = "Pegar del portapapeles";
 "menu_forward" = "Reenviar mensaje";
 "menu_resend" = "Reenviar mensaje";
@@ -188,6 +195,7 @@
 "menu_zoom_in" = "Acercar";
 "menu_zoom_out" = "Alejar";
 "menu_save_log" = "Salvar log";
+"menu_more_options" = "Más opciones";
 "title_share_location" = "Compartir ubicación con todos los miembros del grupo";
 "device_talk" = "Mensajes del dispositivo";
 "device_talk_subtitle" = "Mensajes generados localmente";
@@ -330,6 +338,18 @@
 "tab_docs_empty_hint" = "Documentos, música y otros archivos compartidos en este chat se mostrarán aquí.";
 "media_preview" = "Vista previa de multimedia";
 "send_message" = "Enviar mensaje";
+
+
+// Connectivity
+"connectivity" = "Conectividad";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "Desconectado";
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Conectando…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Actualizando…";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "Conectado";
 
 
 // welcome and login

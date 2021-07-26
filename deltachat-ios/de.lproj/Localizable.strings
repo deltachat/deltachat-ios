@@ -177,6 +177,7 @@
 "block" = "Blockieren";
 "menu_block_contact" = "Kontakt blockieren";
 "menu_unblock_contact" = "Kontakt nicht mehr blockieren";
+"accept" = "Annehmen";
 "menu_play" = "Wiedergabe";
 "menu_pause" = "Pause";
 "menu_scroll_to_bottom" = "Zum Ende scrollen";
@@ -288,6 +289,7 @@
 "chat_share_with_title" = "Teilen mit";
 "chat_input_placeholder" = "Nachricht";
 "chat_archived_label" = "Archiviert";
+"chat_request_label" = "Anfrage";
 "chat_no_messages" = "Keine Nachrichten.";
 "chat_self_talk_subtitle" = "Nachrichten, die ich mir selber geschickt habe";
 "saved_messages" = "Gespeicherte Nachrichten";
@@ -365,10 +367,13 @@
 
 // Connectivity
 "connectivity" = "Verbindungsstatus";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Nicht verbunden";
-// Note that the three dots are a single character (…), not three (...)
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Verbinde…";
-"connectivity_getting_new_msgs" = "Neue Nachrichten abholen…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Aktualisiere…";
+// Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Verbunden";
 
 

@@ -365,10 +365,13 @@
 
 // Connectivity
 "connectivity" = "Connettività";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Non connesso";
-// Note that the three dots are a single character (…), not three (...)
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Connessione in corso…";
-"connectivity_getting_new_msgs" = "Ricezione di nuovi messaggi…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Aggiorno…";
+// Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Connesso";
 
 

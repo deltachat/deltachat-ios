@@ -363,6 +363,18 @@
 "send_message" = "Надіслати повідомлення";
 
 
+// Connectivity
+"connectivity" = "Підключення";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "Не з\'єднано";
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Підключення...";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Оновлення...";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "Підключено";
+
+
 // welcome and login
 "welcome_intro1_message" = "Мессенджер з найширшою аудиторією у світі. Безкоштовний і незалежний.";
 "login_title" = "Увійти";
@@ -628,6 +640,14 @@
 "qrscan_contains_url" = "URL з QR-коду:\n\n%1$@";
 "qrscan_fingerprint_label" = "Відбиток";
 "qrscan_x_verified_introduce_myself" = "%1$@ підтверджено, передається особиста інформація...";
+"withdraw_verifycontact_explain" = "Цей QR-код можуть сканувати інші, щоб зв’язатися з вами.\n\nВи можете деактивувати QR-код і знову активувати його, відсканувавши повторно.";
+"withdraw_verifygroup_explain" = "Цей QR-код можуть сканувати інші, щоб приєднатися до групи \"%1$@\".\n\nВи можете деактивувати QR-код і знову активувати його, відсканувавши повторно.";
+"withdraw_qr_code" = "Деактивувати QR-код";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Цей QR-код можуть сканувати інші, щоб зв’язатися з вами.\n\nQR-код неактивний на цьому пристрої.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Цей QR-код можуть сканувати інші, щоб приєднатися до групи \"%1$@\".\n\nQR-код неактивний на цьому пристрої.";
+"revive_qr_code" = "Активувати QR-код";
 "qrshow_title" = "QR-код запрошення";
 "qrshow_x_joining" = "%1$@ приєднався(-лася).";
 "qrshow_x_verified" = "%1$@ перевірений(-а).";
