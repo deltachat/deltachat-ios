@@ -63,6 +63,13 @@ class ChatViewController: UITableViewController {
     lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
+    
+    private lazy var scrollDownButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(onScrollDownButtonPressed), for: .touchUpInside)
+        return button
+    }()
 
     private var locationStreamingItem: UIBarButtonItem = {
         let indicator = LocationStreamingIndicator()
@@ -333,6 +340,7 @@ class ChatViewController: UITableViewController {
                         self.highlightedMsg = nil
                         self.isInitial = false
                         self.ignoreInputBarChange = false
+                        self.scrollDownButton.isHidden = self.isLastRowVisible()
                     }
                 })
             } else {
@@ -433,6 +441,10 @@ class ChatViewController: UITableViewController {
         }
         
         handleUserVisibility(isVisible: true)
+        if let view = UIApplication.shared.keyWindow {
+            view.addSubview(scrollDownButton)
+            setupScrollDownButton()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -463,7 +475,11 @@ class ChatViewController: UITableViewController {
         nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
         nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         audioController.stopAnyOngoingPlaying()
-
+        
+        
+        if let view = UIApplication.shared.keyWindow, scrollDownButton.isDescendant(of: view) {
+            scrollDownButton.removeFromSuperview()
+        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -600,6 +616,8 @@ class ChatViewController: UITableViewController {
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
                     showName: showName)
+
+        scrollDownButton.isHidden = isLastRowVisible()
 
         return cell
     }
@@ -815,7 +833,12 @@ class ChatViewController: UITableViewController {
         let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
         return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
     }
-
+    
+    
+    @objc func onScrollDownButtonPressed() {
+        scrollToBottom(animated: true)
+    }
+    
     private func scrollToBottom(animated: Bool) {
         if !messageIds.isEmpty {
             DispatchQueue.main.async { [weak self] in
@@ -972,6 +995,21 @@ class ChatViewController: UITableViewController {
                 UIView.animate(withDuration: 0.3, animations: {
                     item.backgroundColor = DcColors.colorDisabled
                 })}
+    }
+    
+    func setupScrollDownButton() {
+        NSLayoutConstraint.activate([
+            scrollDownButton.constraintAlignBottomTo(tableView, paddingBottom: 64),
+            scrollDownButton.constraintAlignTrailingTo(tableView, paddingTrailing: 12),
+            scrollDownButton.constraintHeightTo(40),
+            scrollDownButton.constraintWidthTo(40)
+        ])
+        scrollDownButton.backgroundColor = DcColors.defaultBackgroundColor
+        scrollDownButton.setImage(UIImage(named: "ic_scrolldown")?.sd_tintedImage(with: .systemBlue), for: .normal)
+        scrollDownButton.layer.cornerRadius = 20
+        scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
+        scrollDownButton.layer.borderWidth = 1
+        scrollDownButton.layer.masksToBounds = true
     }
 
     @objc private func chatProfilePressed() {
