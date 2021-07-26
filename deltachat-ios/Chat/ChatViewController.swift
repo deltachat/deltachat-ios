@@ -464,7 +464,6 @@ class ChatViewController: UITableViewController {
         nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
         nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         audioController.stopAnyOngoingPlaying()
-        
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
