@@ -233,7 +233,7 @@ class ContactCell: UITableViewCell {
     func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool, isContactRequest: Bool) {
         if isLargeText {
             unreadMessageCounter.setCount(unreadCount)
-            unreadMessageCounter.isHidden = unreadCount == 0
+            unreadMessageCounter.isHidden = unreadCount == 0 || isContactRequest
             unreadMessageCounter.backgroundColor = isMuted ? .gray : .red
             pinnedIndicator.isHidden = true
             deliveryStatusIndicator.isHidden = true
@@ -250,7 +250,7 @@ class ContactCell: UITableViewCell {
         } else if unreadCount > 0 {
             pinnedIndicator.isHidden = !(visibility == DC_CHAT_VISIBILITY_PINNED)
             unreadMessageCounter.setCount(unreadCount)
-            unreadMessageCounter.isHidden = false
+            unreadMessageCounter.isHidden = isContactRequest
             unreadMessageCounter.backgroundColor = isMuted ? .gray : .red
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = true
