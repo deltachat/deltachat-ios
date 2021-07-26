@@ -16,6 +16,8 @@ public class ChatContactRequestBar: UIView, InputItem {
     public func keyboardEditingBeginsAction() {}
 
     weak var delegate: ChatContactRequestDelegate?
+    
+    private var isGroupRequest: Bool = false
 
     private lazy var acceptButton: UIButton = {
         let view = UIButton()
@@ -27,7 +29,7 @@ public class ChatContactRequestBar: UIView, InputItem {
 
     private lazy var blockButton: UIButton = {
         let view = UIButton()
-        view.setTitle(String.localized("block"), for: .normal)
+        view.setTitle(isGroupRequest ? String.localized("delete") : String.localized("block"), for: .normal)
         view.setTitleColor(.systemRed, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
@@ -43,14 +45,10 @@ public class ChatContactRequestBar: UIView, InputItem {
         return view
     }()
 
-    convenience init() {
-        self.init(frame: .zero)
-
-    }
-
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setupSubviews()
+    public required init(isGroupRequest: Bool) {
+        self.isGroupRequest = isGroupRequest
+        super.init(frame: .zero)
+        setupSubviews()
     }
 
     required init(coder: NSCoder) {

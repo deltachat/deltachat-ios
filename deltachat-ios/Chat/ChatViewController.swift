@@ -55,7 +55,7 @@ class ChatViewController: UITableViewController {
     }()
 
     public lazy var contactRequestBar: ChatContactRequestBar = {
-        let view = ChatContactRequestBar()
+        let view = ChatContactRequestBar(isGroupRequest: dcContext.getChat(chatId: chatId).isGroup)
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
