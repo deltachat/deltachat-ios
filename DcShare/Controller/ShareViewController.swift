@@ -87,8 +87,13 @@ class ShareViewController: SLComposeServiceViewController {
         isAccountConfigured = dcContext.isConfigured()
         if isAccountConfigured {
             if #available(iOSApplicationExtension 13.0, *) {
-               if let intent = self.extensionContext?.intent as? INSendMessageIntent, let chatId = Int(intent.conversationIdentifier ?? "") {
-                   selectedChatId = chatId
+                if let intent = self.extensionContext?.intent as? INSendMessageIntent,
+                   let identifiers = intent.conversationIdentifier?.split(separator: ".") {
+                    let contextId = Int(identifiers[0])
+                    let chatId = Int(identifiers[1])
+                    if dcContext.id == contextId {
+                        selectedChatId = chatId
+                    }
                }
             }
 

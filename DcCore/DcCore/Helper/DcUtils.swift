@@ -14,7 +14,7 @@ public struct DcUtils {
         }
     }
 
-    public static func donateSendMessageIntent(context: DcContext, chatId: Int) {
+    public static func donateSendMessageIntent(context: DcContext, chatId: Int, chatAvatar: UIImage?) {
         if #available(iOS 13.0, *) {
             let chat = context.getChat(chatId: chatId)
             let groupName = INSpeakableString(spokenPhrase: chat.name)
@@ -28,6 +28,9 @@ public struct DcUtils {
 
             // Add the user's avatar to the intent.
             if let imageData = chat.profileImage?.pngData() {
+                let image = INImage(imageData: imageData)
+                sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
+            } else if let imageData = chatAvatar?.pngData() {
                 let image = INImage(imageData: imageData)
                 sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
             }

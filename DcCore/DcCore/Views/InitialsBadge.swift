@@ -139,4 +139,15 @@ public class InitialsBadge: UIView {
         imageView.image = nil
         label.text = nil
     }
+    
+    public func asImage() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
+        if let context = UIGraphicsGetCurrentContext() {
+            layer.render(in: context)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image
+        }
+        return nil
+    }
 }

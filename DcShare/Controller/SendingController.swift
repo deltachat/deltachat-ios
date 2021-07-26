@@ -18,6 +18,19 @@ class SendingController: UIViewController {
         view.text = String.localized("one_moment")
         return view
     }()
+    
+    private lazy var initialsBadge: InitialsBadge = {
+        let view = InitialsBadge(size: 95)
+        let chat = dcContext.getChat(chatId: chatId)
+        view.setColor(chat.color)
+        if let image = chat.profileImage {
+            view.setImage(image)
+        } else {
+            view.setName(chat.name)
+        }
+        view.isHidden = true
+        return view
+    }()
 
     private var activityIndicator: UIActivityIndicatorView = {
         let view: UIActivityIndicatorView
@@ -53,11 +66,14 @@ class SendingController: UIViewController {
     private func setupViews() {
         view.addSubview(progressLabel)
         view.addSubview(activityIndicator)
+        view.addSubview(initialsBadge)
         view.addConstraints([
             progressLabel.constraintCenterXTo(view),
             progressLabel.constraintAlignTopTo(view, paddingTop: 25),
             activityIndicator.constraintCenterXTo(view),
-            activityIndicator.constraintCenterYTo(view)
+            activityIndicator.constraintCenterYTo(view),
+            initialsBadge.constraintCenterXTo(view),
+            initialsBadge.constraintCenterYTo(view)
         ])
         setupNavigationBar()
     }
@@ -75,7 +91,10 @@ class SendingController: UIViewController {
             }
 
             if !self.dcContext.getChat(chatId: self.chatId).isSelfTalk {
-                DcUtils.donateSendMessageIntent(context: self.dcContext, chatId: self.chatId)
+                self.initialsBadge.isHidden = false
+                let image = self.initialsBadge.asImage()
+                self.initialsBadge.isHidden = true
+                DcUtils.donateSendMessageIntent(context: self.dcContext, chatId: self.chatId, chatAvatar: image)
             }
             self.delegate?.onSendingAttemptFinished()
         }
