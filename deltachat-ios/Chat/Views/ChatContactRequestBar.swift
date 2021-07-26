@@ -28,7 +28,7 @@ public class ChatContactRequestBar: UIView, InputItem {
     private lazy var blockButton: UIButton = {
         let view = UIButton()
         view.setTitle(String.localized("block"), for: .normal)
-        view.setTitleColor(.systemBlue, for: .normal)
+        view.setTitleColor(.systemRed, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         return view
