@@ -116,7 +116,7 @@ class ContactCell: UITableViewCell {
     }()
 
     private lazy var contactRequest: UIView = {
-        return createTagLabel(tag: String.localized("chat_contact_request"))
+        return createTagLabel(tag: String.localized("chat_request_label"))
     }()
 
     private let unreadMessageCounter: MessageCounter = {

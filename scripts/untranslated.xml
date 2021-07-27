@@ -12,5 +12,4 @@
     
     <string name="perm_ios_explain_access_to_camera_denied">To take photos, capture videos or use the QR-Code scanner, open the system settings and enable \"Camera\".</string>
     <string name="open_settings">Open Settings</string>
-    <string name="accept">Accept</string>
 </resources>
