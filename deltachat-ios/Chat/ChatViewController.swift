@@ -55,7 +55,7 @@ class ChatViewController: UITableViewController {
     }()
 
     public lazy var contactRequestBar: ChatContactRequestBar = {
-        let view = ChatContactRequestBar()
+        let view = ChatContactRequestBar(isGroupRequest: dcContext.getChat(chatId: chatId).isGroup)
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -464,6 +464,14 @@ class ChatViewController: UITableViewController {
         AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
         
+        removeMessageObservers()
+        let nc = NotificationCenter.default
+        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        audioController.stopAnyOngoingPlaying()
+    }
+    
+    private func removeMessageObservers() {
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -474,9 +482,6 @@ class ChatViewController: UITableViewController {
         if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
             nc.removeObserver(ephemeralTimerModifiedObserver)
         }
-        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
-        audioController.stopAnyOngoingPlaying()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -1053,6 +1058,19 @@ class ChatViewController: UITableViewController {
             }))
         present(alert, animated: true, completion: nil)
     }
+    
+    private func askToDeleteChat() {
+        let title = String.localized(stringID: "ask_delete_chat", count: 1)
+        confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
+                          actionHandler: { [weak self] _ in
+                            guard let self = self else { return }
+                            // remove message observers early to avoid careless calls to dcContext methods
+                            self.removeMessageObservers()
+                            self.dcContext.deleteChat(chatId: self.chatId)
+                            self.navigationController?.popViewController(animated: true)
+                          })
+    }
+    
 
     private func askToChatWith(email: String) {
         let contactId = self.dcContext.createContact(name: "", email: email)
@@ -1690,14 +1708,18 @@ extension ChatViewController: ChatEditingDelegate {
 
 // MARK: - ChatContactRequestBar
 extension ChatViewController: ChatContactRequestDelegate {
-    func onAcceptPressed() {
+    func onAcceptRequest() {
         dcContext.acceptChat(chatId: chatId)
         configureUIForWriting()
     }
 
-    func onBlockPressed() {
+    func onBlockRequest() {
         dcContext.blockChat(chatId: chatId)
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func onDeleteRequest() {
+        self.askToDeleteChat()
     }
 }
 

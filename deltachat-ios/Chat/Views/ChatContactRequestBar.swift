@@ -3,8 +3,9 @@ import InputBarAccessoryView
 import DcCore
 
 public protocol ChatContactRequestDelegate: class {
-    func onAcceptPressed()
-    func onBlockPressed()
+    func onAcceptRequest()
+    func onBlockRequest()
+    func onDeleteRequest()
 }
 
 public class ChatContactRequestBar: UIView, InputItem {
@@ -16,6 +17,8 @@ public class ChatContactRequestBar: UIView, InputItem {
     public func keyboardEditingBeginsAction() {}
 
     weak var delegate: ChatContactRequestDelegate?
+    
+    private var isGroupRequest: Bool = false
 
     private lazy var acceptButton: UIButton = {
         let view = UIButton()
@@ -27,15 +30,15 @@ public class ChatContactRequestBar: UIView, InputItem {
 
     private lazy var blockButton: UIButton = {
         let view = UIButton()
-        view.setTitle(String.localized("block"), for: .normal)
-        view.setTitleColor(.systemBlue, for: .normal)
+        view.setTitle(isGroupRequest ? String.localized("delete") : String.localized("block"), for: .normal)
+        view.setTitleColor(.systemRed, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         return view
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [acceptButton, blockButton])
+        let view = UIStackView(arrangedSubviews: [blockButton, acceptButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .center
@@ -43,14 +46,10 @@ public class ChatContactRequestBar: UIView, InputItem {
         return view
     }()
 
-    convenience init() {
-        self.init(frame: .zero)
-
-    }
-
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setupSubviews()
+    public required init(isGroupRequest: Bool) {
+        self.isGroupRequest = isGroupRequest
+        super.init(frame: .zero)
+        setupSubviews()
     }
 
     required init(coder: NSCoder) {
@@ -72,17 +71,21 @@ public class ChatContactRequestBar: UIView, InputItem {
         let acceptGestureListener = UITapGestureRecognizer(target: self, action: #selector(onAcceptPressed))
         acceptButton.addGestureRecognizer(acceptGestureListener)
 
-        let blockGestureListener = UITapGestureRecognizer(target: self, action: #selector(onBlockPressed))
+        let blockGestureListener = UITapGestureRecognizer(target: self, action: #selector(onRejectPressed))
         blockButton.addGestureRecognizer(blockGestureListener)
 
     }
 
     @objc func onAcceptPressed() {
-        delegate?.onAcceptPressed()
+        delegate?.onAcceptRequest()
     }
 
-    @objc func onBlockPressed() {
-        delegate?.onBlockPressed()
+    @objc func onRejectPressed() {
+        if isGroupRequest {
+            delegate?.onDeleteRequest()
+        } else {
+            delegate?.onBlockRequest()
+        }
     }
 
     public override var intrinsicContentSize: CGSize {
