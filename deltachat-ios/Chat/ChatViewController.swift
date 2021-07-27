@@ -266,6 +266,7 @@ class ChatViewController: UITableViewController {
         tableView.keyboardDismissMode = .interactive
         tableView.contentInsetAdjustmentBehavior = .never
         navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.backButtonTitle = String.localized("chat")
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
