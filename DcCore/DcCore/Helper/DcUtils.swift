@@ -161,7 +161,7 @@ public struct DcUtils {
         if connectivity >= DC_CONNECTIVITY_CONNECTED {
             return connectedString
         } else if connectivity >= DC_CONNECTIVITY_WORKING {
-            return String.localized("connectivity_getting_new_msgs")
+            return String.localized("connectivity_updating")
         } else if connectivity >= DC_CONNECTIVITY_CONNECTING {
           return String.localized("connectivity_connecting")
         } else {
