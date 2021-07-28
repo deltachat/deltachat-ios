@@ -13,6 +13,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     private enum CellTags: Int {
         case profile = 0
+        case showArchive = 1
         case showEmails = 2
         case blockedContacts = 3
         case notifications = 4
@@ -48,6 +49,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let cellViewModel = ProfileViewModel(context: dcContext)
         cell.updateCell(cellViewModel: cellViewModel)
         cell.tag = CellTags.profile.rawValue
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var showArchiveCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.showArchive.rawValue
+        cell.textLabel?.text = String.localized("chat_archived_chats_title")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -211,7 +220,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [showEmailsCell, blockedContactsCell, autodelCell, mediaQualityCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
+            cells: [showArchiveCell, showEmailsCell, blockedContactsCell, autodelCell, mediaQualityCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
@@ -316,6 +325,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
         switch cellTag {
         case .profile: showEditSettingsController()
+        case .showArchive: showArchivedCharts()
         case .showEmails: showClassicMail()
         case .blockedContacts: showBlockedContacts()
         case .autodel: showAutodelOptions()
@@ -561,6 +571,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private func showVideoChatInstance() {
         let videoInstanceController = SettingsVideoChatViewController(dcContext: dcContext)
         navigationController?.pushViewController(videoInstanceController, animated: true)
+    }
+
+    private func showArchivedCharts() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.appCoordinator.showArchivedChats()
     }
 
     private func showBlockedContacts() {

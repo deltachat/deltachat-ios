@@ -302,7 +302,7 @@ class ChatListController: UITableViewController {
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                showArchive()
+                showArchive(animated: true)
             } else {
                 showChat(chatId: chatId, highlightedMsg: chatData.highlightMsgId)
             }
@@ -504,10 +504,10 @@ class ChatListController: UITableViewController {
         navigationController?.pushViewController(chatVC, animated: animated)
     }
 
-    private func showArchive() {
+    public func showArchive(animated: Bool) {
         let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
         let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-        navigationController?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: animated)
     }
 
     private func showNewChat(contactId: Int) {
