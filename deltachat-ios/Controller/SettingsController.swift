@@ -259,7 +259,12 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         super.viewDidAppear(animated)
         addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationImexProgress) { [weak self] in
             guard let self = self else { return }
-            self.progressAlert?.dismiss(animated: true, completion: nil)
+
+            self.progressAlert?.dismiss(animated: true) {
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.reloadDcContext()
+                }
+            }
         }
         connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
                                                                              object: nil,

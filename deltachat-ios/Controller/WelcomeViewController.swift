@@ -21,8 +21,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             accountSetupController.onLoginSuccess = {
                 [weak self] in
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.appCoordinator.presentTabBarController()
-                    appDelegate.appCoordinator.popTabsToRootViewControllers()
+                    appDelegate.reloadDcContext()
                 }
             }
             self.navigationController?.pushViewController(accountSetupController, animated: true)
@@ -60,7 +59,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             let profileInfoController = ProfileInfoViewController(context: self.dcContext)
             profileInfoController.onClose = {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.appCoordinator.presentTabBarController()
+                    appDelegate.reloadDcContext()
                 }
             }
             self.navigationController?.setViewControllers([profileInfoController], animated: true)
@@ -126,18 +125,21 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     // MARK: - actions
 
     private func createAccountFromQRCode(qrCode: String) {
-        let success = dcContext.setConfigFromQR(qrCode: qrCode)
-        if success {
-            addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
-            showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
-            dcAccounts.stopIo()
-            let accountId = dcAccounts.add()
-            if accountId != 0 {
-                self.dcContext = dcAccounts.get(id: accountId)
+        // ensure we're configuring on an empty new account
+        let accountId = dcAccounts.getSelected().isConfigured() ?
+            dcAccounts.add() : dcAccounts.getSelected().id
+
+        if accountId != 0 {
+            self.dcContext = dcAccounts.get(id: accountId)
+            let success = dcContext.setConfigFromQR(qrCode: qrCode)
+            if success {
+                addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
+                showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
+                dcAccounts.stopIo()
+                dcContext.configure()
+            } else {
+                accountCreationErrorAlert()
             }
-            dcContext.configure()
-        } else {
-            accountCreationErrorAlert()
         }
     }
 
