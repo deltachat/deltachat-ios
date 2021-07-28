@@ -84,6 +84,16 @@ class AppCoordinator {
         tabBarController.selectedIndex = index
     }
 
+    func showArchivedChats() {
+        showTab(index: chatsTab)
+
+        if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
+           let chatListController = rootController.viewControllers.first as? ChatListController {
+            rootController.popToRootViewController(animated: false)
+            chatListController.showArchive(animated: false)
+        }
+    }
+
     func showChat(chatId: Int, msgId: Int? = nil, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
 

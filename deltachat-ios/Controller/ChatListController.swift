@@ -74,8 +74,8 @@ class ChatListController: UITableViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = newButton
         if !viewModel.isArchive {
+            navigationItem.rightBarButtonItem = newButton
             navigationItem.searchController = searchController
         }
         configureTableView()
@@ -169,7 +169,7 @@ class ChatListController: UITableViewController {
     // MARK: - setup
     private func setupSubviews() {
         emptySearchStateLabel.addCenteredTo(parentView: view)
-        navigationItem.backButtonTitle = String.localized("pref_chats")
+        navigationItem.backButtonTitle = viewModel.isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
     }
 
     @objc
@@ -302,7 +302,7 @@ class ChatListController: UITableViewController {
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                showArchive()
+                showArchive(animated: true)
             } else {
                 showChat(chatId: chatId, highlightedMsg: chatData.highlightMsgId)
             }
@@ -504,10 +504,10 @@ class ChatListController: UITableViewController {
         navigationController?.pushViewController(chatVC, animated: animated)
     }
 
-    private func showArchive() {
+    public func showArchive(animated: Bool) {
         let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
         let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
-        navigationController?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: animated)
     }
 
     private func showNewChat(contactId: Int) {
