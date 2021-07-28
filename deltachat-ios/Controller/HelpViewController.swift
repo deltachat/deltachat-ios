@@ -1,12 +1,15 @@
 import UIKit
 import WebKit
+import DcCore
 
 class HelpViewController: WebViewViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         self.title = String.localized("menu_help")
+        self.webView.isOpaque = false
+        self.webView.backgroundColor = .clear
+        view.backgroundColor = DcColors.defaultBackgroundColor
     }
 
     override func viewWillAppear(_ animated: Bool) {
