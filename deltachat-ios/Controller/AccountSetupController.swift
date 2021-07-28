@@ -677,8 +677,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
+                    self.dcAccounts.maybeStartIo()
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
+                    self.dcAccounts.maybeStartIo()
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
