@@ -1,5 +1,32 @@
 # Delta Chat iOS Changelog
 
+## 1.21.0 Testflight
+2021-07
+
+* added: multi-account functionality: add and switch accounts from the settings
+* added: every new "contact request" is shown as a separate chat now,
+  you can block or accept or archive or pin them
+  (old contact requests are available in "Archived Chats")
+* added: the title bar shows if the app is not connected
+* added: a tap in the title bar shows connectivity details (also available in settings)
+* added: allow defining a video chat instance (eg. any jitsi instance)
+* added: send video chat invites
+* added: receive video chat invites as such
+* added: offer a button for quick scrolling down in a chat
+* deactivate and reactivate your own QR codes by just scanning them
+* quotes can now refer messages from other chats
+* do not show signature in "Saved Messages"
+* revert sharing webp files as stickers
+* fix date labels stuck in the seventies sometimes
+* fix "show in chat"
+* fix sharing issues
+* fix: crash in gallery
+* fix message input bar and share layout for iPad
+* fix: keep keyboard open after cancelling drafts and quotes 
+* fix displaying of small images
+* fix more scrolling issues
+
+
 ## 1.20.5
 2021-06
 
