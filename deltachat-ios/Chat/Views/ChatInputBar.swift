@@ -27,12 +27,13 @@ public class ChatInputBar: InputBarAccessoryView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupKeyboardObserver()
+        backgroundView.backgroundColor = DcColors.defaultBackgroundColor
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupKeyboardObserver()
-        backgroundColor = DcColors.chatBackgroundColor
+        backgroundView.backgroundColor = DcColors.defaultBackgroundColor
     }
 
     override open func setup() {
