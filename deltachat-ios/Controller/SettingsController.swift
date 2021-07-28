@@ -244,8 +244,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("menu_settings")
-        let backButton = UIBarButtonItem(title: String.localized("menu_settings"), style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backButton
         documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
         tableView.rowHeight = UITableView.automaticDimension
     }
