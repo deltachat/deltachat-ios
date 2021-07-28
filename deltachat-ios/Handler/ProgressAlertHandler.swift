@@ -48,7 +48,9 @@ extension ProgressAlertHandler {
             self.progressAlert?.dismiss(animated: false) {
                 let errorAlert = UIAlertController(title: String.localized("error"), message: message, preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                self.present(errorAlert, animated: true, completion: nil)
+                // sometimes error messages are not shown and we get the same error as above
+                // as a workaround we disable animated here as well
+                self.present(errorAlert, animated: false, completion: nil)
             }
         })
     }
