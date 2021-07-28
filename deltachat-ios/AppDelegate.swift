@@ -473,6 +473,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func reloadDcContext() {
+        setStockTranslations()
         locationManager.reloadDcContext()
         notificationManager.reloadDcContext()
         RelayHelper.sharedInstance.cancel()
