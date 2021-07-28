@@ -74,8 +74,8 @@ class ChatListController: UITableViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = newButton
         if !viewModel.isArchive {
+            navigationItem.rightBarButtonItem = newButton
             navigationItem.searchController = searchController
         }
         configureTableView()
@@ -169,7 +169,7 @@ class ChatListController: UITableViewController {
     // MARK: - setup
     private func setupSubviews() {
         emptySearchStateLabel.addCenteredTo(parentView: view)
-        navigationItem.backButtonTitle = String.localized("pref_chats")
+        navigationItem.backButtonTitle = viewModel.isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
     }
 
     @objc
