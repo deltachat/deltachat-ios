@@ -370,7 +370,7 @@
 // Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Підключення...";
 // Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
-"connectivity_updating" = "Оновлення...";
+"connectivity_updating" = "Оновлення…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Підключено";
 

@@ -177,6 +177,7 @@
 "block" = "Engelle";
 "menu_block_contact" = "Kişiyi Engelle";
 "menu_unblock_contact" = "Kişiyi Engelleme";
+"accept" = "Kabul Et";
 "menu_play" = "Oynat";
 "menu_pause" = "Duraklat";
 "menu_scroll_to_bottom" = "Alta Kaydır";
@@ -288,6 +289,7 @@
 "chat_share_with_title" = "Paylaş";
 "chat_input_placeholder" = "İleti";
 "chat_archived_label" = "Arşivlendi";
+"chat_request_label" = "İstek";
 "chat_no_messages" = "İleti yok.";
 "chat_self_talk_subtitle" = "Kendime gönderdiğim iletiler";
 "saved_messages" = "Kaydedilen İletiler";

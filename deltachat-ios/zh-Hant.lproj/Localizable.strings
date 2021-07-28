@@ -177,6 +177,7 @@
 "block" = "屏蔽";
 "menu_block_contact" = "屏蔽联系人";
 "menu_unblock_contact" = "取消屏蔽联系人";
+"accept" = "接受";
 "menu_play" = "播放";
 "menu_pause" = "暂停";
 "menu_scroll_to_bottom" = "滚动至底部";
@@ -288,6 +289,7 @@
 "chat_share_with_title" = "分享给";
 "chat_input_placeholder" = "输入消息…";
 "chat_archived_label" = "已归档";
+"chat_request_label" = "请求";
 "chat_no_messages" = "没有消息。";
 "chat_self_talk_subtitle" = "发给自己的消息";
 "saved_messages" = "保存的消息";

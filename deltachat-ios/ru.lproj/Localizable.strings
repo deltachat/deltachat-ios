@@ -177,6 +177,7 @@
 "block" = "Заблокировать";
 "menu_block_contact" = "Заблокировать контакт";
 "menu_unblock_contact" = "Разблокировать контакт";
+"accept" = "Принять";
 "menu_play" = "Воспроизвести";
 "menu_pause" = "Пауза";
 "menu_scroll_to_bottom" = "Прокрутить вниз";
@@ -288,6 +289,7 @@
 "chat_share_with_title" = "Поделиться с";
 "chat_input_placeholder" = "Сообщение";
 "chat_archived_label" = "Архивировано";
+"chat_request_label" = "Запрос";
 "chat_no_messages" = "Нет сообщений.";
 "chat_self_talk_subtitle" = "Сообщения отправленные себе";
 "saved_messages" = "Сохранённые сообщения";

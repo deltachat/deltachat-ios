@@ -175,6 +175,7 @@
 "block" = "Bllokoje";
 "menu_block_contact" = "Bllokoje kontaktin";
 "menu_unblock_contact" = "Zhbllokoje kontaktin";
+"accept" = "Pranoje";
 "menu_play" = "Luaje";
 "menu_pause" = "Pushoje";
 "menu_scroll_to_bottom" = "Rrëshqit drejt fundit";
@@ -286,6 +287,7 @@
 "chat_share_with_title" = "Ndajeni me ";
 "chat_input_placeholder" = "Mesazh";
 "chat_archived_label" = "Arkivuar";
+"chat_request_label" = "Kërkoje";
 "chat_no_messages" = "S\’ka mesazhe.";
 "chat_self_talk_subtitle" = "Mesazhe që i kam dërguar vetes";
 "saved_messages" = "Mesazhe të ruajtur";

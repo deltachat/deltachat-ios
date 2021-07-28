@@ -177,6 +177,7 @@
 "block" = "Bloquear";
 "menu_block_contact" = "Bloquear contacto";
 "menu_unblock_contact" = "Desbloquear contacto";
+"accept" = "Aceptar";
 "menu_play" = "Reproducir";
 "menu_pause" = "Pausar";
 "menu_scroll_to_bottom" = "Moverse abaixo";
@@ -288,6 +289,7 @@
 "chat_share_with_title" = "Compartir con";
 "chat_input_placeholder" = "Mensaxe";
 "chat_archived_label" = "Arquivado";
+"chat_request_label" = "Solicitar";
 "chat_no_messages" = "Sen mensaxes.";
 "chat_self_talk_subtitle" = "Mensaxes que me enviei a min mesma";
 "saved_messages" = "Mensaxes gardadas";
@@ -370,7 +372,7 @@
 // Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Conectando…";
 // Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
-"connectivity_updating" = "Actualizando...";
+"connectivity_updating" = "Actualizando…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Conectado";
 

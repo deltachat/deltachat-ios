@@ -177,6 +177,7 @@
 "block" = "Blokkeren";
 "menu_block_contact" = "Contactpersoon blokkeren";
 "menu_unblock_contact" = "Contactpersoon deblokkeren";
+"accept" = "Accepteren";
 "menu_play" = "Afspelen";
 "menu_pause" = "Pauzeren";
 "menu_scroll_to_bottom" = "Ga naar het einde";
@@ -288,6 +289,7 @@
 "chat_share_with_title" = "Delen met";
 "chat_input_placeholder" = "Bericht";
 "chat_archived_label" = "Gearchiveerd";
+"chat_request_label" = "Verzoek";
 "chat_no_messages" = "Geen berichten.";
 "chat_self_talk_subtitle" = "Aan mijzelf gestuurde berichten";
 "saved_messages" = "Opgeslagen berichten";

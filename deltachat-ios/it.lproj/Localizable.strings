@@ -177,6 +177,7 @@
 "block" = "Bloccare";
 "menu_block_contact" = "Blocca contatto";
 "menu_unblock_contact" = "Sblocca contatto";
+"accept" = "Accettare";
 "menu_play" = "Riproduci";
 "menu_pause" = "Pausa";
 "menu_scroll_to_bottom" = "Scorri alla fine";
@@ -288,6 +289,7 @@
 "chat_share_with_title" = "Condividi con";
 "chat_input_placeholder" = "Messaggio";
 "chat_archived_label" = "Archiviato";
+"chat_request_label" = "Richiesta";
 "chat_no_messages" = "Nessun messaggio.";
 "chat_self_talk_subtitle" = "Messaggi inviati a me stesso";
 "saved_messages" = "Messaggi salvati";
