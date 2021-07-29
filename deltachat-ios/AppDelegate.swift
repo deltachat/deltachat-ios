@@ -485,12 +485,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    func deleteCurrentAccount() {
-        _ = dcAccounts.remove(id: dcAccounts.getSelected().id)
-    }
-
     func installEventHandler() {
-
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             let eventHandler = DcEventHandler(dcAccounts: self.dcAccounts)
