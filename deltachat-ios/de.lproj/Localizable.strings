@@ -292,6 +292,7 @@
 "chat_request_label" = "Anfrage";
 "chat_no_messages" = "Keine Nachrichten.";
 "chat_self_talk_subtitle" = "Nachrichten, die ich mir selber geschickt habe";
+"archive_empty_hint" = "Wenn Sie Chats archivieren, werden diese hier angezeigt.";
 "saved_messages" = "Gespeicherte Nachrichten";
 "saved_messages_explain" = "• Nachrichten zum Merken hierher weiterleiten\n\n• Notizen oder Sprachmemos machen\n\n• Medien zum Speichern einfügen";
 // this "Saved" should match the "Saved" from "Saved messages"

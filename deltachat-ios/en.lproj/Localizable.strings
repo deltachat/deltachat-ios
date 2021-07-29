@@ -292,6 +292,7 @@
 "chat_request_label" = "Request";
 "chat_no_messages" = "No messages.";
 "chat_self_talk_subtitle" = "Messages I sent to myself";
+"archive_empty_hint" = "If you archive chats, they will be shown here.";
 "saved_messages" = "Saved Messages";
 "saved_messages_explain" = "• Forward messages here for easy access\n\n• Take notes or voice memos\n\n• Attach media to save them";
 // this "Saved" should match the "Saved" from "Saved messages"
