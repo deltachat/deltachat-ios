@@ -500,7 +500,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         }))
 
         // delete account
-        menu.addAction(UIAlertAction(title: String.localized("delete_account"), style: .default, handler: { [weak self] _ in
+        menu.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
             let confirm1 = UIAlertController(title: String.localized("delete_account_ask"), message: nil, preferredStyle: .safeActionSheet)
             confirm1.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
                 guard let self = self else { return }
