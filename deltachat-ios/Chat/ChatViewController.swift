@@ -635,6 +635,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func configureContactRequestBar() {
+        messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
         messageInputBar.setMiddleContentView(contactRequestBar, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
         messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
