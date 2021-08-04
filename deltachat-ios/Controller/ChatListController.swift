@@ -60,7 +60,7 @@ class ChatListController: UITableViewController {
         self.viewModel = viewModel
         self.dcContext = dcContext
         if viewModel.isArchive {
-            super.init(nibName: nil, bundle: nil)
+            super.init(style: .grouped)
         } else {
             super.init(style: .grouped)
         }
