@@ -33,7 +33,7 @@ class ContactCell: UITableViewCell {
     }()
 
     lazy var bottomlineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator, archivedIndicator, contactRequest, unreadMessageCounter])
+        let stackView = UIStackView(arrangedSubviews: [subtitleLabel, deliveryStatusIndicator, contactRequest, archivedIndicator, unreadMessageCounter])
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.alignment = .center
