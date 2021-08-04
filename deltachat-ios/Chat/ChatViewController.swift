@@ -1266,7 +1266,8 @@ class ChatViewController: UITableViewController {
         } else {
             // new outgoing message
             let msg = dcContext.getMessage(id: messageId)
-            if msg.chatId == chatId {
+            if msg.state != DC_STATE_OUT_DRAFT,
+               msg.chatId == chatId {
                 if let newMsgMarkerIndex = messageIds.index(of: Int(DC_MSG_ID_MARKER1)) {
                     messageIds.remove(at: newMsgMarkerIndex)
                 }
