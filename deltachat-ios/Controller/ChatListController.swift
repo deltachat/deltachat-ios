@@ -50,7 +50,7 @@ class ChatListController: UITableViewController {
         return button
     }()
 
-    private lazy var emptySearchStateLabel: EmptyStateLabel = {
+    private lazy var emptyStateLabel: EmptyStateLabel = {
         let label = EmptyStateLabel()
         label.isHidden = false
         return label
@@ -168,7 +168,7 @@ class ChatListController: UITableViewController {
     
     // MARK: - setup
     private func setupSubviews() {
-        emptySearchStateLabel.addCenteredTo(parentView: view)
+        emptyStateLabel.addCenteredTo(parentView: view)
         navigationItem.backButtonTitle = viewModel.isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
     }
 
@@ -379,11 +379,14 @@ class ChatListController: UITableViewController {
                 String.localized("search_no_result_for_x"),
                 emptySearchText
             )
-            emptySearchStateLabel.text = text
-            emptySearchStateLabel.isHidden = false
+            emptyStateLabel.text = text
+            emptyStateLabel.isHidden = false
+        } else if viewModel.isArchive && viewModel.numberOfRowsIn(section: 0) == 0 {
+            emptyStateLabel.text = String.localized("archive_empty_hint")
+            emptyStateLabel.isHidden = false
         } else {
-            emptySearchStateLabel.text = nil
-            emptySearchStateLabel.isHidden = true
+            emptyStateLabel.text = nil
+            emptyStateLabel.isHidden = true
         }
     }
     
