@@ -21,6 +21,12 @@ class QrViewController: UIViewController {
         return view
     }()
 
+    private var copyButton: UIBarButtonItem {
+        let button =  UIBarButtonItem(title: String.localized("global_menu_edit_copy_desktop"),
+                                      style: .plain, target: self, action: #selector(copyButtonPressed))
+        return button
+    }
+
     var qrCodeHint: String {
         willSet {
             let qrCode = dcContext.getSecurejoinQr(chatId: chatId)
@@ -46,6 +52,7 @@ class QrViewController: UIViewController {
         title = String.localized("qrshow_title")
         setupSubviews()
         view.backgroundColor = DcColors.defaultBackgroundColor
+        navigationItem.rightBarButtonItem = copyButton
     }
 
     override func viewDidLayoutSubviews() {
@@ -84,6 +91,12 @@ class QrViewController: UIViewController {
 
         // this enables vertical scrolling
         frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
+    }
+
+    // MARK: - actions
+    @objc private func copyButtonPressed() {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = dcContext.getSecurejoinQr(chatId: chatId)
     }
 
 }
