@@ -125,6 +125,10 @@ class AppCoordinator {
     }
     
     func handleQRCode(_ code: String) {
+        // Hack to format url properly
+        let code = code.replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
+                       .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
+
         showTab(index: qrTab)
         if let navController = self.tabBarController.selectedViewController as? UINavigationController,
            let topViewController = navController.topViewController,

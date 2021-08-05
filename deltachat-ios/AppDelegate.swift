@@ -135,12 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         switch url.scheme?.lowercased() {
         case "openpgp4fpr":
-            // Hack to format url properly
-            let urlString = url.absoluteString
-                           .replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
-                           .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
-
-            self.appCoordinator.handleQRCode(urlString)
+            self.appCoordinator.handleQRCode(url.absoluteString)
             return true
         case "mailto":
             return self.appCoordinator.handleMailtoURL(url)

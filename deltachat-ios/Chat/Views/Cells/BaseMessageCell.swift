@@ -464,7 +464,9 @@ extension BaseMessageCell: MessageLabelDelegate {
     public func didSelectHashtag(_ hashtag: String) {}
 
     public func didSelectCustom(_ pattern: String, match: String?) {
-        logger.debug("did select CUSTOM")
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let match = match {
+            appDelegate.appCoordinator.handleQRCode(match)
+        }
     }
 }
 
