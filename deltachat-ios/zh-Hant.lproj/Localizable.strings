@@ -292,6 +292,7 @@
 "chat_request_label" = "请求";
 "chat_no_messages" = "没有消息。";
 "chat_self_talk_subtitle" = "发给自己的消息";
+"archive_empty_hint" = "被您归档的聊天将显示于此。";
 "saved_messages" = "保存的消息";
 "saved_messages_explain" = "• 转发消息于此以便于访问\n\n• 做笔记或语音备忘录\n\n• 附加媒体以保存它们";
 // this "Saved" should match the "Saved" from "Saved messages"
@@ -627,7 +628,7 @@
 "systemmsg_chat_protection_enabled" = "已启用聊天保护";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
-"enter_system_secret_to_continue" = "请输入你系统定义的 secret 以继续";
+"enter_system_secret_to_continue" = "请输入您的系统密码以继续。";
 
 // qr code stuff
 "qr_code" = "二维码";

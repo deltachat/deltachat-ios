@@ -290,6 +290,7 @@
 "chat_request_label" = "Kërkoje";
 "chat_no_messages" = "S\’ka mesazhe.";
 "chat_self_talk_subtitle" = "Mesazhe që i kam dërguar vetes";
+"archive_empty_hint" = "Nëse arkivoni fjalosje, ato do të shfaqen këtu.";
 "saved_messages" = "Mesazhe të ruajtur";
 "saved_messages_explain" = "• Përcillini mesazhet këtu për përdorim të lehtë\n\n• Mbani shënime ose kujtesa zanore\n\n• Bashkëngjitni media për t’i ruajtur";
 // this "Saved" should match the "Saved" from "Saved messages"

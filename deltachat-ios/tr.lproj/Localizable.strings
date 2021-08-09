@@ -292,6 +292,7 @@
 "chat_request_label" = "İstek";
 "chat_no_messages" = "İleti yok.";
 "chat_self_talk_subtitle" = "Kendime gönderdiğim iletiler";
+"archive_empty_hint" = "Sohbetleri arşivlerseniz, onlar burada gösterilecek.";
 "saved_messages" = "Kaydedilen İletiler";
 "saved_messages_explain" = "• Kolay erişim için iletileri buraya iletin\n\n• Notlar ya da sesli notlar alın\n\n• Onları kaydetmek için ortamlar iliştirin";
 // this "Saved" should match the "Saved" from "Saved messages"

@@ -2,6 +2,7 @@
 "app_name" = "دلتا چت";
 "ok" = "تایید";
 "cancel" = "لغو";
+"clear_search" = "پاک کردن جستجو";
 "yes" = "بله";
 "no" = "خیر";
 "select" = "انتخاب";
@@ -30,13 +31,24 @@
 "unarchive" = "خروج از بایگانی";
 "mute" = "سکوت";
 "ephemeral_messages" = "پیام‌های ناپدید شونده";
-"ephemeral_messages_hint" = "این تنظیمات برای تمام افرادی که از دلتاچت استفاده می کنند اعمال می‌شود. با این وجود، آنها ممکن است پیامها را کپی، ذخیره یا فوروارد کنند و یا از سایر برنامه های ایمیل استفاده کند.";
+"ephemeral_messages_hint" = "این تنظیمات برای تمام افرادی که از دلتاچت استفاده می کنند اعمال می‌شود. ولی ممکن است آن‌ها پیامها را کپی، ذخیره یا فوروارد کرده و یا از سایر برنامه های ایمیل استفاده کنند.";
 "save" = "ذخیره";
 "chat" = "گفتگو";
 "media" = "رسانه";
 "profile" = "پروفایل";
 "main_menu" = "صفحه اصلی";
 "start_chat" = "شروع چت";
+"show_full_message" = "نمایش پیام کامل...";
+"show_full_message_in_browser" = "نمایش پیام کامل در مرورگر";
+// this is shown as placeholder when something is loading at some places
+"loading" = "در حال بارگیری...";
+"hide" = "مخفی کردن";
+"activate" = "فعال کردن";
+"load_remote_content" = "بارگیری تصاویر از آدرس‌های دیگر";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "تصاویر مربوط به آدرس‌های اینترنتی دیگر می‌توانند برای ردیابی شما استفاده شوند. \n\n این تنظیمات همچنین برای بارگیری فونت‌ها و دیگر محتواها استفاده می‌شود. اگر غیرفعال باشد ممکن است همچنان تصاویر درون پیام و تصاویر دانلود شده را ببینید. \n\n آيا تصاویر خارجی بارگیری شوند؟";
+"always" = "همیشه";
+"once" = "همین یک بار";
 "show_password" = "نمایش رمزعبور";
 "hide_password" = "مخفی کردن رمز عبور";
 "not_now" = "اکنون نه";
@@ -80,11 +92,17 @@
 "audio" = "صدا";
 "voice_message" = "پیام صوتی";
 "forwarded_message" = "پیام هدایت شده";
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+"forwarded_by" = "توسط%1$@ هدایت شده است";
 "video" = "فیلم";
 "documents" = "اسناد";
 "contact" = "مخاطب";
 "verified_contact" = "مخاطب تایید شده. ";
 "camera" = "دوربین";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+"capture" = "گرفتن";
+"switch_camera" = "تغییر دوربین";
+"toggle_fullscreen" = "تغییر وضعیت تمام صفحه";
 "location" = "موقعیت مکانی";
 "gallery" = "گالری";
 "images_and_videos" = "تصاویر و فیلم‌ها";
@@ -141,6 +159,8 @@
 "menu_copy_to_clipboard" = "کپی در حافظه";
 "menu_copy_selection_to_clipboard" = "رونوشت برداری از انتخاب شده";
 "menu_copy_link_to_clipboard" = "رونوشت برداری از لینک";
+"menu_copy_text_to_clipboard" = "کپی کردن متن";
+"menu_copy_image_to_clipboard" = "کپی تصویر";
 "paste_from_clipboard" = "الصاق از حافظه";
 "menu_forward" = "هدایت پیام";
 "menu_resend" = "بازارسال پیام";
@@ -152,14 +172,19 @@
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "نمایش در گفتگو";
 "menu_share" = "اشتراک";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "مسدود کردن";
 "menu_block_contact" = "انسداد مخاطب";
 "menu_unblock_contact" = "عدم انسداد مخاطب";
+"accept" = "پذیرش";
 "menu_play" = "اجرا";
 "menu_pause" = "توقف";
 "menu_scroll_to_bottom" = "اسکرول تا پایین";
 "menu_scroll_to_top" = "اسکرول تا بالا";
 "menu_help" = "کمک";
+"privacy_policy" = "خط مشی رازداری";
 "menu_select_all" = "انتخاب همه";
+"select_more" = "انتخاب بیشتر";
 "menu_expand" = "گسترش";
 "menu_edit_name" = "ویرایش نام";
 "menu_settings" = "تنظیمات";
@@ -170,6 +195,7 @@
 "menu_zoom_in" = "درشت نمایی";
 "menu_zoom_out" = "کوچک نمایی";
 "menu_save_log" = "ذخیره گزارش";
+"menu_more_options" = "گزینه‌های بیشتر";
 "title_share_location" = "اشتراک موقعیت مکانی با همه اعضای گروه";
 "device_talk" = "پیام‌های دستگاه";
 "device_talk_subtitle" = "پیام‌های  داخلی";

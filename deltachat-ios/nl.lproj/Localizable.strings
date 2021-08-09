@@ -292,6 +292,7 @@
 "chat_request_label" = "Verzoek";
 "chat_no_messages" = "Geen berichten.";
 "chat_self_talk_subtitle" = "Aan mijzelf gestuurde berichten";
+"archive_empty_hint" = "Gearchiveerde gesprekken worden hier getoond.";
 "saved_messages" = "Opgeslagen berichten";
 "saved_messages_explain" = "• Stuur berichten door naar hier om ze snel terug te kunnen lezen\n\n• Maak aantekeningen of spraakopnamen\n\n• Voeg media toe om deze op te slaan";
 // this "Saved" should match the "Saved" from "Saved messages"

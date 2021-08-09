@@ -1,5 +1,5 @@
 NSCameraUsageDescription = "Delta Chat utilizza la fotocamera per scattare e inviare foto e video e per scansionare i codici QR.";
-NSContactsUsageDescription = "Autorizzare l\'accesso alla rubrica ti permette di chattare con i contatti nel tuo dispositivo.";
-NSMicrophoneUsageDescription = "Autorizzare l\'accesso al microfono ti permette di registrare audio.";
-NSPhotoLibraryUsageDescription = "Autorizzare l\'accesso alla galleria ti permette di caricare foto da essa.";
-NSPhotoLibraryAddUsageDescription = "Delta Chat vuole salvare le immagini nella tua libreria di foto.";
+NSContactsUsageDescription = "Delta Chat usa i tuoi contatti per mostrare una lista di indirizzi e-mail a cui puoi scrivere. Delta Chat non ha un server, i tuoi contatti non vengono inviati da nessuna parte.";
+NSMicrophoneUsageDescription = "Delta Chat utilizza il tuo microfono per registrare e inviare messaggi vocali e video con audio.";
+NSPhotoLibraryUsageDescription = "Delta Chat ti permetterà di scegliere quali foto della tua libreria inviare.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat vuole salvare le immagini nella tua libreria fotografica.";

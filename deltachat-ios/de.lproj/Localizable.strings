@@ -362,7 +362,7 @@
 "tab_map" = "Karte";
 "tab_gallery_empty_hint" = "In diesem Chat geteilte Bilder und Videos werden hier angezeigt.";
 "tab_docs_empty_hint" = "In diesem Chat geteilte Dokumente, Musik und Dateien werden hier angezeigt.";
-"media_preview" = "Media-Vorschau";
+"media_preview" = "Medien-Vorschau";
 "send_message" = "Nachricht senden";
 
 
@@ -410,7 +410,7 @@
 "import_backup_ask" = "Backup \"%1$@\" gefunden.\n\nDieses einlesen und alle Daten und Einstellungen daraus verwenden?";
 "import_backup_no_backup_found" = "Kein Backup gefunden.\n\nDie Sicherung nach \"%1$@\" kopieren und es erneut versuchen. Alternativ \"Jetzt beginnen\" wählen, um den normalen Einrichtungsprozess fortzusetzen.";
 // Translators: %1$s will be replaced by the e-mail address
-"login_error_cannot_login" = "Login als \"%1$@\" nicht möglich. Bitte E-Mail Adresse und Passwort auf Richtigkeit überprüfen.";
+"login_error_cannot_login" = "Login als \"%1$@\" nicht möglich. Bitte E-Mail-Adresse und Passwort auf Richtigkeit überprüfen.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
 
 // TLS certificate checks
@@ -458,7 +458,7 @@
 "pref_vibrate" = "Vibrieren";
 "pref_screen_security" = "Bildschirmsicherheit";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
-"pref_screen_security_explain" = "Aufforderung zum Sperren von Screenshots in der Kürzlich erstellten Liste und in der App";
+"pref_screen_security_explain" = "Aufforderung zum Sperren von Screenshots in der kürzlich erstellten Liste und in der App";
 "pref_screen_security_please_restart_hint" = "Um die Bildschirmsicherheitseinstellungen anzuwenden, bitte App neu starten.";
 "pref_notifications" = "Benachrichtigungen";
 "pref_notifications_show" = "Anzeigen";
@@ -489,7 +489,7 @@
 "pref_app_access" = "App-Zugriff";
 "pref_communication" = "Kommunikation";
 "pref_chats" = "Chats";
-"pref_in_chat_sounds" = "In-Chat Klänge";
+"pref_in_chat_sounds" = "In-Chat-Klänge";
 "pref_message_text_size" = "Schriftgröße";
 "pref_view_log" = "Protokoll anzeigen";
 "pref_saved_log" = "Die Logdatei wurde im Downloads Ordner gespeichert.";

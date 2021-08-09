@@ -292,6 +292,7 @@
 "chat_request_label" = "Solicitar";
 "chat_no_messages" = "Sen mensaxes.";
 "chat_self_talk_subtitle" = "Mensaxes que me enviei a min mesma";
+"archive_empty_hint" = "Se arquivas os chats, aparecerán aquí.";
 "saved_messages" = "Mensaxes gardadas";
 "saved_messages_explain" = "• Reenvía aquí as mensaxes para un acceso rápido\n\n• Toma notas de texto ou voz\n\n• Anexa medios para gardalos";
 // this "Saved" should match the "Saved" from "Saved messages"

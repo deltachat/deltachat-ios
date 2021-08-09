@@ -292,6 +292,7 @@
 "chat_request_label" = "Запрос";
 "chat_no_messages" = "Нет сообщений.";
 "chat_self_talk_subtitle" = "Сообщения отправленные себе";
+"archive_empty_hint" = "Если вы архивируете чаты, они будут показаны здесь.";
 "saved_messages" = "Сохранённые сообщения";
 "saved_messages_explain" = "• Пересылайте сообщения сюда для быстрого доступа\n\n• Делайте текстовые или голосовые заметки\n\n• Прикрепляйте медиафайлы, чтобы сохранить их";
 // this "Saved" should match the "Saved" from "Saved messages"

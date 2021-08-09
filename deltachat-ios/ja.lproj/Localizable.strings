@@ -39,6 +39,10 @@
 "main_menu" = "メインメニュー";
 "start_chat" = "チャットを開始する";
 "show_full_message" = "メッセージ全体を表示";
+"show_full_message_in_browser" = "ブラウザにフルメッセージを表示";
+// this is shown as placeholder when something is loading at some places
+"loading" = "読み込み中";
+"hide" = "非表示";
 "load_remote_content" = "リモート画像を読み込む";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "リモート画像で追跡ができる。\n\nこの設定はフォントや他のコンテツを読み込むことも許可する。無効にしても埋め込まれた画像やキャッシュされた画像を表示されます。\n\nリモート画像を読み込む？";
@@ -86,6 +90,7 @@
 "images" = "画像";
 "audio" = "音楽";
 "voice_message" = "音声メッセージ";
+"forwarded" = "転送された";
 "forwarded_message" = "転送されたメッセージ";
 // %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "%1$@が転送しました";
@@ -154,6 +159,8 @@
 "menu_copy_to_clipboard" = "クリップボードにコピー";
 "menu_copy_selection_to_clipboard" = "コピー";
 "menu_copy_link_to_clipboard" = "リンクをコピー";
+"menu_copy_text_to_clipboard" = "テキストをコピー";
+"menu_copy_image_to_clipboard" = "画像をコピー";
 "paste_from_clipboard" = "クリップボードのデータを貼り付ける";
 "menu_forward" = "メッセージを転送";
 "menu_resend" = "メッセージを再送信";
@@ -187,6 +194,8 @@
 "menu_zoom_in" = "拡大";
 "menu_zoom_out" = "縮小";
 "menu_save_log" = "ログ保存";
+"jump_to_message" = "メッセージへ移動";
+"copy_json" = "JSONをコピー";
 "title_share_location" = "現在地を全員に公開する";
 "device_talk" = "デバイスのメッセージ";
 "device_talk_subtitle" = "ローカルで生成されたメッセージ";
@@ -235,6 +244,7 @@
 
 // get confirmations
 "ask_leave_group" = "本当に退室しますか";
+"ask_delete_message" = "メッセージを削除してもよろしいですか？";
 "ask_forward" = "%1$@にメッセージを転送しますか？";
 "ask_forward_multiple" = "%1$dチャットにメッセージを転送しますか？";
 "ask_export_attachment" = "添付ファイルをエクスポートしますか？添付ファイルをエクスポートすると、他のアプリからもアクセスできるようになります。\n\nよろしいですか？";
@@ -297,6 +307,7 @@
 "show_location_traces" = "トレースを表示する";
 "add_poi" = "指定位置を送る";
 
+"puny_code_warning_header" = "疑わしいリンクが検出された";
 // search
 "search" = "検索";
 "search_explain" = "チャット･メッセージ･連絡先を検索";
@@ -326,6 +337,18 @@
 "tab_docs_empty_hint" = "このチャットで共有されたドキュメントや音楽などがここに表示されます。";
 "media_preview" = "メディアのプレビュー";
 "send_message" = "送る";
+
+
+// Connectivity
+"connectivity" = "接続性";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "未接続";
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "接続中";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "アップデート中";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "接続済み";
 
 
 // welcome and login
@@ -479,6 +502,9 @@
 "profile_image_select" = "アイコン画像を選択する";
 "select_your_new_profile_image" = "新しいアイコン画像を選択してください";
 "profile_image_delete" = "アイコン画像を削除する";
+"pref_show_tray_icon" = "トレイアイコンの表示";
+"pref_edit_profile" = "プロフィール編集";
+
 // Emoji picker and categories
 "emoji_search_results" = "検索結果";
 "emoji_not_found" = "絵文字がみつかりません";
@@ -648,6 +674,7 @@
 "unblock_contacts_desktop" = "拒否を解除";
 "none_blocked_desktop" = "ブロックされた人がいない";
 "autocrypt_correct_desktop" = "自動暗号化設定が転送されました";
+"create_chat_error_desktop" = "チャットを作成できませんでした。";
 "ask_delete_chat_desktop" = "チャットを削除しますか";
 "email_validation_failed_desktop" = "メールアドレスが必要です";
 "account_info_hover_tooltip_desktop" = "メール：%1$@\nサイズ：%2$@\nPath：%3$@";
