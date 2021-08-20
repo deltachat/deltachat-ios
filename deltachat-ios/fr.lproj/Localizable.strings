@@ -723,3 +723,5 @@
 "pref_reliable_service_explain" = "Requiert une notification permanente";
 "perm_enable_bg_reminder_title" = "Touchez ici pour recevoir des messages pendant que DeltaChat est en arrière-plan.";
 "perm_enable_bg_already_done" = "Vous avez déjà autorisé Delta Chat à recevoir des messages en arrière plan.\n\nSi vous ne les recevez toujours pas en arrière plan, vérifiez les paramètres de votre système.";
+
+
