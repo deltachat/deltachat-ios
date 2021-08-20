@@ -93,6 +93,15 @@ class ChatListController: UITableViewController {
 
         // create view
         navigationItem.titleView = titleView
+
+        // set connectivity changed observer before we acutally init the title,
+        // otherwise, we may miss events and the title is not correct.
+        let nc = NotificationCenter.default
+        connectivityChangedObserver = nc.addObserver(forName: dcNotificationConnectivityChanged,
+                                                     object: nil,
+                                                     queue: nil) { [weak self] _ in
+                                                        self?.updateTitle()
+                                                     }
         updateTitle()
 
         viewModel.refreshData()
@@ -125,11 +134,6 @@ class ChatListController: UITableViewController {
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
-        connectivityChangedObserver = nc.addObserver(forName: dcNotificationConnectivityChanged,
-                                                     object: nil,
-                                                     queue: nil) { [weak self] _ in
-                                                        self?.updateTitle()
-                                                     }
 
         nc.addObserver(
             self,
