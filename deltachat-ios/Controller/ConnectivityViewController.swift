@@ -14,21 +14,25 @@ class ConnectivityViewController: WebViewViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // called only once after loading
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localized("connectivity")
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
-        loadHtml()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    // called everytime the view will appear
+    override func viewWillAppear(_ animated: Bool) {
+        // set connectivity changed observer before we acutally init html,
+        // otherwise, we may miss events and the html is not correct.
         connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
                                                      object: nil,
                                                      queue: nil) { [weak self] _ in
                                                         self?.loadHtml()
                                                      }
+        loadHtml()
     }
 
     override func viewDidDisappear(_ animated: Bool) {

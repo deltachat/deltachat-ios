@@ -259,6 +259,17 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // set connectivity changed observer before we acutally init `connectivityCell.detailTextLabel` in `updateCells()`,
+        // otherwise, we may miss events and the label is not correct.
+        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
+                                                                             object: nil,
+                                                                             queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
+                                                                                        connectedString: String.localized("connectivity_connected"))
+        }
+
         updateCells()
     }
 
@@ -272,13 +283,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                     appDelegate.reloadDcContext()
                 }
             }
-        }
-        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
-                                                                             object: nil,
-                                                                             queue: nil) { [weak self] _ in
-            guard let self = self else { return }
-            self.connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
-                                                                                        connectedString: String.localized("connectivity_connected"))
         }
     }
 
