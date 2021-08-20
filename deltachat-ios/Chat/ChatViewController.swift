@@ -1714,7 +1714,12 @@ extension ChatViewController: ChatEditingDelegate {
 extension ChatViewController: ChatContactRequestDelegate {
     func onAcceptRequest() {
         dcContext.acceptChat(chatId: chatId)
-        configureUIForWriting()
+        let chat = dcContext.getChat(chatId: chatId)
+        if chat.isMailinglist {
+            messageInputBar.isHidden = true
+        } else {
+            configureUIForWriting()
+        }
     }
 
     func onBlockRequest() {
