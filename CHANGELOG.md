@@ -1,5 +1,19 @@
 # Delta Chat iOS Changelog
 
+## v1.22.0
+
+* added: connectivity view shows quota information, if supported by the provider
+* fix account migration, updates are displayed instantly now
+* fix forwarding mails containing only quotes
+* fix ordering of some system messages
+* fix handling of gmail labels
+* fix connectivity display for outgoing messages
+* fix acceping mailing lists
+* fix drafts popping up as message bubbles
+* fix connectivity info updates
+* update translations and provider database
+
+
 ## v1.21.1 Testflight
 2021-08
 
