@@ -18,7 +18,7 @@ public class ChatContactRequestBar: UIView, InputItem {
 
     weak var delegate: ChatContactRequestDelegate?
     
-    private var isGroupRequest: Bool = false
+    private var useDeleteButton: Bool = false
 
     private lazy var acceptButton: UIButton = {
         let view = UIButton()
@@ -30,7 +30,7 @@ public class ChatContactRequestBar: UIView, InputItem {
 
     private lazy var blockButton: UIButton = {
         let view = UIButton()
-        view.setTitle(isGroupRequest ? String.localized("delete") : String.localized("block"), for: .normal)
+        view.setTitle(useDeleteButton ? String.localized("delete") : String.localized("block"), for: .normal)
         view.setTitleColor(.systemRed, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
@@ -46,8 +46,8 @@ public class ChatContactRequestBar: UIView, InputItem {
         return view
     }()
 
-    public required init(isGroupRequest: Bool) {
-        self.isGroupRequest = isGroupRequest
+    public required init(useDeleteButton: Bool) {
+        self.useDeleteButton = useDeleteButton
         super.init(frame: .zero)
         setupSubviews()
     }
@@ -81,7 +81,7 @@ public class ChatContactRequestBar: UIView, InputItem {
     }
 
     @objc func onRejectPressed() {
-        if isGroupRequest {
+        if useDeleteButton {
             delegate?.onDeleteRequest()
         } else {
             delegate?.onBlockRequest()
