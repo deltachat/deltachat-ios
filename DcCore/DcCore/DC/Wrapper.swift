@@ -51,10 +51,8 @@ public class DcAccounts {
         dc_accounts_maybe_network_lost(accountsPointer)
     }
 
-    public func maybeStartIo() {
-        if getSelected().isConfigured() {
-            dc_accounts_start_io(accountsPointer)
-        }
+    public func startIo() {
+        dc_accounts_start_io(accountsPointer)
     }
 
     public func stopIo() {
