@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         locationManager = LocationManager(dcAccounts: dcAccounts)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         notificationManager = NotificationManager(dcAccounts: dcAccounts)
-        dcAccounts.maybeStartIo()
+        dcAccounts.startIo()
         setStockTranslations()
 
         reachability.whenReachable = { reachability in
@@ -154,7 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
-        dcAccounts.maybeStartIo()
+        dcAccounts.startIo()
 
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
@@ -335,7 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // we need to ensure IO is running as the function may be called from suspended state
     // (with app in memory, but gracefully shut down before; sort of freezed).
     // if the function was not called from suspended state,
-    // the call to maybeStartIo() did nothing, therefore, interrupt and force fetch.
+    // the call to startIo() did nothing, therefore, interrupt and force fetch.
     //
     // we have max. 30 seconds time for our job and to call the completion handler.
     // as the system tracks the elapsed time, power usage, and data costs, we return faster,
@@ -406,7 +406,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         // we're in background, run IO for a little time
-        dcAccounts.maybeStartIo()
+        dcAccounts.startIo()
         dcAccounts.maybeNetwork()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in

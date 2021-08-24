@@ -270,7 +270,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             action: { cell in
                 self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("inbox_watch", cell.isOn)
-                self.dcAccounts.maybeStartIo()
+                self.dcAccounts.startIo()
         })
     }()
 
@@ -281,7 +281,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             action: { cell in
                 self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
-                self.dcAccounts.maybeStartIo()
+                self.dcAccounts.startIo()
         })
     }()
 
@@ -292,7 +292,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             action: { cell in
                 self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("mvbox_watch", cell.isOn)
-                self.dcAccounts.maybeStartIo()
+                self.dcAccounts.startIo()
         })
     }()
 
@@ -649,7 +649,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
-                    self.dcAccounts.maybeStartIo()
+                    self.dcAccounts.startIo()
                     var errorMessage = ui["errorMessage"] as? String
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.reachability.connection == .none {
                         errorMessage = String.localized("login_error_no_internet_connection")
@@ -658,7 +658,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                     }
                     self.updateProgressAlert(error: errorMessage)
                 } else if ui["done"] as! Bool {
-                    self.dcAccounts.maybeStartIo()
+                    self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
@@ -677,10 +677,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
-                    self.dcAccounts.maybeStartIo()
+                    self.dcAccounts.startIo()
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
                 } else if ui["done"] as! Bool {
-                    self.dcAccounts.maybeStartIo()
+                    self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
@@ -727,6 +727,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             if let file = dcContext.imexHasBackup(filePath: documents[0]) {
                 logger.info("restoring backup: \(file)")
                 showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
+                dcAccounts.stopIo()
                 dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
             }
             else {
