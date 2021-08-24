@@ -8,6 +8,8 @@
 "on" = "Įjungta";
 "off" = "Išjungta";
 "def" = "Pagal numatymą";
+"default_value" = "Numatytasis (%1$@)";
+"default_value_as_above" = "Numatytasis (toks pats kaip aukščiau)";
 "custom" = "Tinkintas";
 "none" = "Nėra";
 "automatic" = "Automatinis";
@@ -167,6 +169,7 @@
 "block" = "Užblokuoti";
 "menu_block_contact" = "Užblokuoti adresatą";
 "menu_unblock_contact" = "Atblokuoti adresatą";
+"accept" = "Priimti";
 "menu_play" = "Atkurti";
 "menu_pause" = "Pristabdyti";
 "menu_scroll_to_bottom" = "Slinkti į apačią";
@@ -254,6 +257,7 @@
 "chat_new_group_hint" = "Rašykite pirmąją žinutę, taip leisdami kitiems atsakyti šioje grupėje..\n\n• Nieko tokio, jei ne visi dalyviai naudoja Delta Chat.\n\n• Pirmosios žinutės pristatymas gali šiek tiek užtrukti.";
 "chat_record_slide_to_cancel" = "Perbraukite, norėdami atsisakyti";
 "chat_record_explain" = "Bakstelėkite ir laikykite, norėdami įrašyti balso žinutę. Atleiskite, norėdami išsiųsti";
+"chat_no_chats_yet_hint" = "Galite bendrauti su kitais Delta Chat naudotojais ir bet kuriais el. pašto adresais.";
 "chat_share_with_title" = "Bendrinti su";
 "chat_input_placeholder" = "Žinutė";
 "chat_archived_label" = "Archyvuotas";
@@ -265,8 +269,14 @@
 "saved" = "Įrašyta";
 "chat_contact_request" = "Adresato užklausa";
 "send_failed" = "Nepavyko išsiųsti žinutės";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Jūs negalite rašyti, nes nesate šioje grupėje. Norėdami prisijungti, paprašykite kito nario.";
+"messaging_disabled_device_chat" = "Šiame pokalbyje yra vietiniu lygmeniu sukurtos žinutės. Štai kodėl negalite rašyti jokių žinučių.";
+"cannot_display_unsuported_file_type" = "Nepavyksta atvaizduoti šio failo tipo: %1$@";
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";
 "puny_code_warning_header" = "Aptikta įtartina nuoroda";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Ar tikrai norite apsilankyti %1$@?";
 // search
 "search" = "Ieškoti";
 "search_explain" = "Ieškokite pokalbių, adresatų ir žinučių";
@@ -304,6 +314,8 @@
 "connectivity_not_connected" = "Neprisijungta";
 // Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Jungiamasi…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Atnaujinama…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Prisijungta";
 
@@ -385,6 +397,7 @@
 "pref_notifications" = "Pranešimai";
 "pref_notifications_show" = "Rodyti";
 "pref_notifications_priority" = "Pirmenybė";
+"pref_show_notification_content" = "Rodyti pranešime žinutės turinį";
 "pref_led_color" = "Šviesos diodo spalva";
 "pref_sound" = "Garsas";
 "pref_privacy" = "Privatumas";
@@ -410,6 +423,7 @@
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
 "pref_message_text_size" = "Žinučių šrifto dydis";
 "pref_view_log" = "Rodyti žurnalą";
+"pref_saved_log" = "Žurnalas įrašytas į „Atsiuntimų“ aplanką";
 "pref_save_log_failed" = "Nepavyko įrašyti žurnalo";
 "pref_log_header" = "Žurnalas";
 "pref_other" = "Kita";
@@ -446,6 +460,8 @@
 "pref_show_tray_icon" = "Rodyti dėklo piktogramą";
 "pref_edit_profile" = "Taisyti profilį";
 
+// Emoji picker and categories
+"emoji_search_results" = "Paieškos rezultatai";
 "emoji_recent" = "Paskiausi";
 "emoji_people" = "Žmonės ir kūnas";
 "emoji_nature" = "Gyvūnai ir gamta";
@@ -529,6 +545,8 @@
 "qrscan_contains_text" = "Nuskenuoto QR kodo tekstas:\n\n%1$@";
 "qrscan_contains_url" = "Nuskenuoto QR kodo URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Kontrolinis kodas";
+"withdraw_qr_code" = "Pasyvinti QR kodą";
+"revive_qr_code" = "Aktyvuoti QR kodą";
 "qrshow_title" = "QR pakvietimo kodas";
 "qrshow_x_verified" = "%1$@ patvirtintas.";
 "qrshow_x_has_joined_group" = "%1$@ prisijungė prie grupės.";
@@ -571,6 +589,7 @@
 // dc_str_* resources
 "encrypted_message" = "Šifruota žinutė";
 
+"about_licensed_under_desktop" = "Ši programinė įranga yra licencijuota pagal GNU GPL versiją 3, o pirminis kodas yra prieinamas „GitHub“ internetinėje svetainėje.";
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
 "login_known_accounts_title_desktop" = "Žinomos paskyros";
 "global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";
@@ -635,6 +654,7 @@
 "message_detail_to_desktop" = "kam";
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
 "menu.view.developer.open.current.log.file" = "Atverti dabartinio žurnalo failą";
+"explain_desktop_minimized_disabled_tray_pref" = "Dėklo piktograma negali būti išjungta, nes Delta Chat buvo paleista naudojant --minimized parinktį.";
 "no_spellcheck_suggestions_found" = "Nerasta jokių rašybos pasiūlymų.";
 "show_window" = "Rodyti langą";
 
@@ -658,3 +678,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Patikimas foninis ryšys";
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";
+"perm_enable_bg_already_done" = "Jūs jau leidote Delta Chat gauti žinutes fone.\n\nJei žinutės vis tiek nepristatomos fone, patikrinkite taip pat savo sistemos nustatymus.";
+
+

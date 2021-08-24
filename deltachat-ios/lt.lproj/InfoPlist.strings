@@ -1,2 +1,3 @@
+NSMicrophoneUsageDescription = "Delta Chat naudoja mikrofoną, kad įrašytų ir siųstų balso žinutes bei vaizdo įrašus su garsu.";
 NSPhotoLibraryUsageDescription = "Delta Chat leis jums pasirinkti, kurias nuotraukas iš savo kolekcijos išsiųsti.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat nori įrašyti paveikslus į jūsų nuotraukų kolekciją.";
