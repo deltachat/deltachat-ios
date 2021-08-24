@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+## v1.22.1
+
+* fix: always reconnect if account creation was cancelled
+* update translations
+
+
 ## v1.22.0
 
 * added: connectivity view shows quota information, if supported by the provider
