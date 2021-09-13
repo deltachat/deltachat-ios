@@ -53,13 +53,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d chat</string>
+			<string>%d čet</string>
 			<key>few</key>
-			<string>%d chatov</string>
+			<string>%d čety</string>
 			<key>many</key>
-			<string>%d chatov</string>
+			<string>%d četov</string>
 			<key>other</key>
-			<string>%d chaty</string>
+			<string>%d čety</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -193,13 +193,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%dčet bol archivovaný</string>
+			<string>%d čet bol archivovaný</string>
 			<key>few</key>
-			<string>%dchaty archivované</string>
+			<string>%d čety boli archivované</string>
 			<key>many</key>
-			<string>%dchaty archivované</string>
+			<string>%d četov bolo archivovaných</string>
 			<key>other</key>
-			<string>%d chaty archivované</string>
+			<string>%d čety boli archivované</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>

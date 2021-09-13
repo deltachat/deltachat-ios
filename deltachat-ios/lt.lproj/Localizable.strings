@@ -161,6 +161,7 @@
 "menu_mute" = "Išjungti pranešimus";
 "menu_unmute" = "Įjungti pranešimus";
 "menu_export_attachment" = "Eksportuoti priedą";
+"menu_export_attachments" = "Eksportuoti priedus";
 "menu_all_media" = "Visa medija";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Rodyti pokalbyje";
@@ -227,6 +228,8 @@
 "videochat_tap_to_open" = "Bakstelėkite norėdami atverti";
 "videochat_instance" = "Vaizdo pokalbio egzempliorius";
 "videochat_instance_placeholder" = "Jūsų vaizdo pokalbio egzempliorius";
+"videochat_instance_explain" = "Jei yra apibrėžtas vaizdo pokalbių egzempliorius, kiekviename pokalbyje galite pradėti vaizdo pokalbį. Vaizdo pokalbiai reikalauja, kad abi pusės turėtų suderinamą programėlę arba suderinamą naršyklę.\n\nPavyzdžiai: https://meet.jit.si/$KAMBARYS arba basicwebrtc:https://jūsų-serveris";
+"videochat_invitation" = "Pakvietimas į vaizdo pokalbį";
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
 "ask_delete_message" = "Ar tikrai norite ištrinti šią žinutę?";
@@ -258,11 +261,13 @@
 "chat_record_slide_to_cancel" = "Perbraukite, norėdami atsisakyti";
 "chat_record_explain" = "Bakstelėkite ir laikykite, norėdami įrašyti balso žinutę. Atleiskite, norėdami išsiųsti";
 "chat_no_chats_yet_hint" = "Galite bendrauti su kitais Delta Chat naudotojais ir bet kuriais el. pašto adresais.";
+"chat_all_archived" = "Visi pokalbiai archyvuoti.\nPaspauskite „+“ norėdami pradėti naują pokalbį.";
 "chat_share_with_title" = "Bendrinti su";
 "chat_input_placeholder" = "Žinutė";
 "chat_archived_label" = "Archyvuotas";
 "chat_no_messages" = "Žinučių nėra.";
 "chat_self_talk_subtitle" = "Žinutės, kurias siunčiu asmeniškai sau";
+"archive_empty_hint" = "Jei archyvuosite pokalbius, jie bus rodomi čia.";
 "saved_messages" = "Įrašytos žinutės";
 "saved_messages_explain" = "• Persiųskite žinutes čia, kad lengvai jas pasiektumėte\n\n• Rašykitės pastabas ar įrašynėkite balso žinutes\n\n• Pridėkite mediją, norėdami ją išsaugoti";
 // this "Saved" should match the "Saved" from "Saved messages"
@@ -558,10 +563,15 @@
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
 "qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
 "qraccount_success_enter_name" = "Prisijungimas sėkmingas — jūsų el. pašto adresas yra %1$@\n\nJei norite, dabar galite įvesti vardą ir pridėti profilio paveikslą, kuris bus rodomas žmonėms, kuriems rašysite.";
+"qraccount_qr_code_cannot_be_used" = "Nuskenuotas QR kodas negali būti naudojamas naujos paskyros nustatymui.";
+"qraccount_use_on_new_install" = "Nuskenuotas QR kodas yra skirtas naujos paskyros nustatymui. Galite nuskenuoti QR kodą tuomet, kai nustatote naują Delta Chat diegimą.";
 "contact_verified" = "%1$@ patvirtintas.";
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Pakeista sąranka, skirta %1$@.";
+"mailto_dialog_header_select_chat" = "Pasirinkite pokalbį, į kurį siųsti žinutę";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "Pokalbyje %1$@ jau yra žinutės juodraštis. Ar norite jį pakeisti?";
 "mailto_link_could_not_be_decoded" = "nepavyko dekoduoti mailto nuorodos: %1$@";
 
 "notify_mark_read" = "Žymėti kaip skaitytą";
@@ -635,6 +645,7 @@
 "download_attachment_desktop" = "Atsisiųsti priedą";
 "export_backup_desktop" = "Eksportuoti atsarginę kopiją";
 "transfer_key_desktop" = "Perduoti raktą";
+"show_key_transfer_message_desktop" = "Jūsų raktas išsiųstas jums patiems. Persijunkite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti prašoma įvesti sąrankos kodą. Įveskite šiuos skaitmenis:";
 "new_message_from_desktop" = "Nauja žinutė nuo";
 "unblock_contacts_desktop" = "Atblokuoti adresatus";
 "none_blocked_desktop" = "Kol kas nėra užblokuotų adresatų";

@@ -169,6 +169,7 @@
 "menu_mute" = "Acalar notificacións";
 "menu_unmute" = "Dar voz";
 "menu_export_attachment" = "Exportar anexo";
+"menu_export_attachments" = "Exportar anexos";
 "menu_all_media" = "Todos os medios";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Mostrar na conversa";

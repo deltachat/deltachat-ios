@@ -169,6 +169,7 @@
 "menu_mute" = "Meldingen uitschakelen";
 "menu_unmute" = "Meldingen inschakelen";
 "menu_export_attachment" = "Bijlage exporteren";
+"menu_export_attachments" = "Bijlagen exporteren";
 "menu_all_media" = "Alle media";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Tonen in bijbehorend gesprek";

@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Avbryt";
+"clear_search" = "Rensa sök";
 "yes" = "Ja";
 "no" = "Nej";
 "select" = "Välj";
@@ -38,6 +39,11 @@
 "main_menu" = "Huvudmeny";
 "start_chat" = "Starta chatt";
 "show_full_message" = "Visa hela meddelandet...";
+"show_full_message_in_browser" = "Visa hela meddelandet i webbläsaren...";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Laddar...";
+"hide" = "Dölj";
+"activate" = "Aktivera";
 "load_remote_content" = "Ladda in fjärrbilder";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Fjärrbilder kan användas för att spåra dig.\n\nInställningen att fonter och annat innehåll laddas in. Även om inställningen är inaktiverad kan eventuellt inbäddade eller cachade fjärrbilder visas.\n\nLadda in fjärrbilder?";
@@ -85,6 +91,7 @@
 "images" = "Bilder";
 "audio" = "Ljud";
 "voice_message" = "Röstmeddelande";
+"forwarded" = "Vidarebefodrat";
 "forwarded_message" = "Vidarebefordrat meddelande";
 // %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Vidarebefordrad av %1$@";
@@ -93,6 +100,10 @@
 "contact" = "Kontakt";
 "verified_contact" = "Verifierad kontakt";
 "camera" = "Kamera";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+"capture" = "Fånga";
+"switch_camera" = "Växla kamera";
+"toggle_fullscreen" = "Växla fullskärm";
 "location" = "Plats";
 "gallery" = "Galleri";
 "images_and_videos" = "Bilder och videor";
@@ -149,6 +160,8 @@
 "menu_copy_to_clipboard" = "Kopierad till urklipp";
 "menu_copy_selection_to_clipboard" = "Kopiera urval";
 "menu_copy_link_to_clipboard" = "Kopiera länk";
+"menu_copy_text_to_clipboard" = "Kopiera text";
+"menu_copy_image_to_clipboard" = "Kopiera bild";
 "paste_from_clipboard" = "Klistra in från urklipp";
 "menu_forward" = "Vidarebefordra meddelande";
 "menu_resend" = "Skicka om meddelandet";
@@ -156,6 +169,7 @@
 "menu_mute" = "Stäng av avisering";
 "menu_unmute" = "Slå på";
 "menu_export_attachment" = "Exportera bilaga";
+"menu_export_attachments" = "Exportera bilaga";
 "menu_all_media" = "All media";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Visa i chatten";
@@ -164,11 +178,13 @@
 "block" = "Blockera";
 "menu_block_contact" = "Blockera kontakt";
 "menu_unblock_contact" = "Avblockera kontakten";
+"accept" = "Acceptera";
 "menu_play" = "Spela upp";
 "menu_pause" = "Paus";
 "menu_scroll_to_bottom" = "Skrolla till botten";
 "menu_scroll_to_top" = "Bläddra till toppen";
 "menu_help" = "Hjälp";
+"privacy_policy" = "Integritetspolicy";
 "menu_select_all" = "Markera alla";
 "select_more" = "Välj flera";
 "menu_expand" = "Expandera";
@@ -181,6 +197,12 @@
 "menu_zoom_in" = "Zooma in";
 "menu_zoom_out" = "Zooma ut";
 "menu_save_log" = "Spara logg";
+"menu_more_options" = "Mer alternativ";
+"menu_learn_spelling" = "Lär stavning";
+"menu_chat_audit_log" = "Granskningslogg av chatt";
+"jump_to_message" = "Hoppa till meddelande";
+"copy_json" = "Kopiera JSON";
+"replace_draft" = "Ersätt utkast";
 "title_share_location" = "Dela plats med alla gruppmedlemmar";
 "device_talk" = "Enhetsmeddelanden";
 "device_talk_subtitle" = "Lokalt genererade meddelanden";
@@ -230,6 +252,7 @@
 
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
+"ask_delete_message" = "Är du säker på att du vill radera detta meddelande?";
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
 "ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
@@ -267,8 +290,10 @@
 "chat_share_with_title" = "Dela med";
 "chat_input_placeholder" = "Meddelande";
 "chat_archived_label" = "Arkiverat";
+"chat_request_label" = "Efterfråga";
 "chat_no_messages" = "Inga meddelanden.";
 "chat_self_talk_subtitle" = "Meddelanden jag skickat till mig själv";
+"archive_empty_hint" = "Om du arkiverar chattar, så kommer de visas här.";
 "saved_messages" = "Sparade meddelanden";
 "saved_messages_explain" = "• Vidarebefordra meddelanden här för enkel åtkomst\n\n• Spara anteckningar eller röstmemon\n\n• Bifoga mediafiler för att spara dom";
 // this "Saved" should match the "Saved" from "Saved messages"
@@ -281,6 +306,7 @@
 "messaging_disabled_not_in_group" = "Du kan inte skriva eftersom du inte är med i denna grupp. Be en medlem bjuda in dig, för att gå med";
 "messaging_disabled_device_chat" = "Den här chatten innehåller meddelanden som har genererats lokalt. Därför kan du inte skriva meddelanden.";
 "messaging_disabled_deaddrop" = "Tryck på ett meddelande för att acceptera, eller neka en kontaktförfrågan";
+"messaging_disabled_mailing_list" = "Att skicka meddelande till e-postlistor stöds inte ännu";
 "cannot_display_unsuported_file_type" = "Denna filtyp kan inte visas: %1$@";
 "attachment_failed_to_load" = "Bilagan kunde inte visas";
 // mailing lists

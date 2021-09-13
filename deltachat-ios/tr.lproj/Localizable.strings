@@ -169,6 +169,7 @@
 "menu_mute" = "Bildirimleri Sessize Al";
 "menu_unmute" = "Sesini aç";
 "menu_export_attachment" = "İlişiği Dışa Aktar";
+"menu_export_attachments" = "İlişikleri Dışa Aktar";
 "menu_all_media" = "Tüm Ortamlar";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Sohbette Göster";
@@ -254,7 +255,7 @@
 "ask_delete_message" = "Bu iletiyi silmek istediğinizden emin misiniz?";
 "ask_forward" = "İletiler %1$@ alıcısına iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
-"ask_export_attachment" = "İlişik dışa aktarılsın mı? İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
+"ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
 "ask_block_contact" = "Bu kişi engellensin mi? Artık bu kişiden gelen iletileri almayacaksınız.";
 "ask_unblock_contact" = "Bu kişi engellenmesin mi? Bir kez daha bu kişiden gelen iletileri alabileceksiniz.";
 "ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
@@ -814,3 +815,6 @@
 
 // device messages for updates
 "update_1_20" = "1.20 sürümünde geliştirilen e-posta uyumluluğu:\n\n📫 Posta listelerini okuma\n📭 HTML postaları okuma\n📪 Destek adreslerini iyi işleme\n📫 Çoğu büyük ve küçük sorunlar düzeltildi\n\nPostaya yönelik bu ilk adımlar ve daha fazlası hakkındaki yeni blog gönderimizi okuyun:";
+"update_1_22" = "1.22\'de ne yeni?\n\n👋 Sohbet İstekleri artık tekli sohbetler olarak açılır ve kabul etmeden ya da engellemeden önce ayrıntılı incelenebilir\n\n🗄️ Arşiv şimdi ana menüden kolayca erişilebilirdir - orada eski isteklerinizi de bulacaksınız\n\n📮📮📮 Çoklu hesap geliştirildi: Hesaplar arasında geçiş yapmak artık daha hızlı ve uzun güncelleştirmeler tarafından daha az engellenir\n\n🤔 Neler olduğunu bilin: Bağlantı sorunları artık başlık çubuğunda gösterilir, ayrıntılar için dokunun\n\nDaha fazlası blogda:";
+"update_1_22_ios" = "1.22\'de ne yeni?\n\n👋 Sohbet İstekleri artık tekli sohbetler olarak açılır ve kabul etmeden ya da engellemeden önce ayrıntılı incelenebilir\n\n🗄️ Arşiv şimdi ana menüden kolayca erişilebilirdir - orada eski isteklerinizi de bulacaksınız\n\n📮📮📮 Çoklu hesap geliştirildi: Hesaplar arasında geçiş yapmak artık daha hızlı ve uzun güncelleştirmeler tarafından daha az engellenir\n\n🤔 Neler olduğunu bilin: Bağlantı sorunları artık başlık çubuğunda gösterilir, ayrıntılar için dokunun\n\nDaha fazlası blogda:";
+

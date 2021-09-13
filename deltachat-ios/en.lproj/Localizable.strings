@@ -16,6 +16,8 @@
 "automatic" = "Automatic";
 "strict" = "Strict";
 "open" = "Open";
+"download" = "Download";
+"downloading" = "Downloading…";
 "open_attachment" = "Open Attachment";
 "join" = "Join";
 "rejoin" = "Rejoin";
@@ -169,6 +171,7 @@
 "menu_mute" = "Mute Notifications";
 "menu_unmute" = "Unmute";
 "menu_export_attachment" = "Export Attachment";
+"menu_export_attachments" = "Export Attachments";
 "menu_all_media" = "All Media";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Show in Chat";
@@ -254,7 +257,7 @@
 "ask_delete_message" = "Are you sure you want to delete this message?";
 "ask_forward" = "Forward messages to %1$@?";
 "ask_forward_multiple" = "Forward messages to %1$d chats?";
-"ask_export_attachment" = "Export attachment? Exporting attachments will allow any other apps on your device to access them.\n\nContinue?";
+"ask_export_attachment" = "Exporting attachments will allow any other apps on your device to access them.\n\nContinue?";
 "ask_block_contact" = "Block this contact? You will no longer receive messages from this contact.";
 "ask_unblock_contact" = "Unblock this contact? You will once again be able to receive messages from this contact.";
 "ask_delete_contacts" = "Delete contacts?\n\nContacts with ongoing chats and contacts from the system\'s address book cannot be deleted permanently.";
@@ -530,6 +533,16 @@
 "pref_background_custom_image" = "Custom image";
 "pref_background_custom_color" = "Custom color";
 "export_aborted" = "Export aborted.";
+"auto_download_messages" = "Auto-Download Messages";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Up to %1$@";
+"up_to_x_most_worse_quality_images" = "Up to %1$@, most worse quality images";
+"up_to_x_most_balanced_quality_images" = "Up to %1$@, most balanced quality images";
+"no_limit" = "No limit";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ message";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "Download maximum available until %1$@";
 "profile_image_select" = "Select Profile Image";
 "select_your_new_profile_image" = "Select your new profile image";
 "profile_image_delete" = "Delete Profile Image";
