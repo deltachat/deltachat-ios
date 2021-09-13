@@ -9,6 +9,7 @@ struct Constants {
         static let deltachatUserProvidedCredentialsKey = "__DELTACHAT_USER_PROVIDED_CREDENTIALS_KEY__"
         static let deltachatImapEmailKey = "__DELTACHAT_IMAP_EMAIL_KEY__"
         static let deltachatImapPasswordKey = "__DELTACHAT_IMAP_PASSWORD_KEY__"
+        static let lastSelectedAccountKey = "__DELTACHAT_LAST_SELECTED_ACCOUNT_KEY__"
     }
 
     static let notificationIdentifier = "deltachat-ios-local-notifications"

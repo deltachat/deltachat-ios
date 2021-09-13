@@ -483,6 +483,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let selectedAccountId = dcAccounts.getSelected().id
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
+        let prefs = UserDefaults.standard
         // switch account
         let menu = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
         for accountId in accountIds {
@@ -491,6 +492,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             title = (selectedAccountId==accountId ? "✔︎ " : "") + title
             menu.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
                 guard let self = self else { return }
+                prefs.setValue(selectedAccountId, forKey: Constants.Keys.lastSelectedAccountKey)
                 _ = self.dcAccounts.select(id: accountId)
                 appDelegate.reloadDcContext()
             }))
@@ -499,6 +501,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         // add account
         menu.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
+            prefs.setValue(selectedAccountId, forKey: Constants.Keys.lastSelectedAccountKey)
             _ = self.dcAccounts.add()
             appDelegate.reloadDcContext()
         }))
@@ -518,6 +521,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                     INInteraction.delete(with: "\(selectedAccountId)", completion: nil)
                     if self.dcAccounts.getAll().isEmpty {
                         _ = self.dcAccounts.add()
+                    } else {
+                        let lastSelectedAccountId = prefs.integer(forKey: Constants.Keys.lastSelectedAccountKey)
+                        if lastSelectedAccountId != 0 {
+                            _ = self.dcAccounts.select(id: lastSelectedAccountId)
+                        }
                     }
                     appDelegate.reloadDcContext()
                 }))
