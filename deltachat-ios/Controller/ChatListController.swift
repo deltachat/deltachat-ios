@@ -13,6 +13,7 @@ class ChatListController: UITableViewController {
     private var msgsNoticedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
     private var connectivityChangedObserver: NSObjectProtocol?
+    private var msgChangedSearchResultObserver: NSObjectProtocol?
 
     private weak var timer: Timer?
 
@@ -80,6 +81,22 @@ class ChatListController: UITableViewController {
         }
         configureTableView()
         setupSubviews()
+        let nc = NotificationCenter.default
+        msgChangedSearchResultObserver = nc.addObserver(
+            forName: dcNotificationChanged,
+            object: nil,
+            queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            if self.viewModel.searchActive {
+                self.viewModel.updateSearchResults(for: self.searchController)
+            }
+        }
+    }
+
+    deinit {
+        if let msgChagnedResultObserver = self.msgChangedSearchResultObserver {
+            NotificationCenter.default.removeObserver(msgChagnedResultObserver)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
