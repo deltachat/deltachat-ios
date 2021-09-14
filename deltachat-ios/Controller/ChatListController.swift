@@ -87,15 +87,17 @@ class ChatListController: UITableViewController {
             object: nil,
             queue: nil) { [weak self] _ in
             guard let self = self else { return }
-            if self.viewModel.searchActive {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+               self.viewModel.searchActive,
+               appDelegate.appIsInForeground() {
                 self.viewModel.updateSearchResults(for: self.searchController)
             }
         }
     }
 
     deinit {
-        if let msgChagnedResultObserver = self.msgChangedSearchResultObserver {
-            NotificationCenter.default.removeObserver(msgChagnedResultObserver)
+        if let msgChangedResultObserver = self.msgChangedSearchResultObserver {
+            NotificationCenter.default.removeObserver(msgChangedResultObserver)
         }
     }
 
