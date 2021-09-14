@@ -184,6 +184,7 @@ class ChatListViewModel: NSObject {
         let chat = dcContext.getChat(chatId: chatId)
         let isArchivedBefore = chat.isArchived
         if !isArchivedBefore {
+            dcContext.marknoticedChat(chatId: chatId)
             NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         }
         dcContext.archiveChat(chatId: chatId, archive: !isArchivedBefore)
