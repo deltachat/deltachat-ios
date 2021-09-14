@@ -526,12 +526,11 @@ class ChatViewController: UITableViewController {
     }
     
     func handleUserVisibility(isVisible: Bool) {
+        isVisibleToUser = isVisible
         if isVisible {
-            isVisibleToUser = true
             startTimer()
             markSeenMessagesInVisibleArea()
         } else {
-            isVisibleToUser = false
             stopTimer()
             draft.save(context: dcContext)
         }
