@@ -125,9 +125,13 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     // MARK: - actions
 
     private func createAccountFromQRCode(qrCode: String) {
-        // ensure we're configuring on an empty new account
-        let accountId = dcAccounts.getSelected().isConfigured() ?
-            dcAccounts.add() : dcAccounts.getSelected().id
+        if dcAccounts.getSelected().isConfigured() {
+            UserDefaults.standard.setValue(dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
+
+            // ensure we're configuring on an empty new account
+            _ = dcAccounts.add()
+        }
+        let accountId = dcAccounts.getSelected().id
 
         if accountId != 0 {
             self.dcContext = dcAccounts.get(id: accountId)
@@ -160,7 +164,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     @objc private func cancelButtonPressed() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
         // take a bit care on account removal:
         // remove only unconfigured and make sure, there is another account
         // (normally, both checks are not needed, however, some resilience wrt future program-flow-changes seems to be reasonable here)
@@ -170,6 +173,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             if self.dcAccounts.getAll().isEmpty {
                 _ = self.dcAccounts.add()
             }
+        }
+
+        let lastSelectedAccountId = UserDefaults.standard.integer(forKey: Constants.Keys.lastSelectedAccountKey)
+        if lastSelectedAccountId != 0 {
+            _ = dcAccounts.select(id: lastSelectedAccountId)
         }
 
         appDelegate.reloadDcContext()
