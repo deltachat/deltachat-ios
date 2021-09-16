@@ -120,7 +120,7 @@ class ShareAttachment {
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
-                    self.imageThumbnail = result
+                    self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
                     self.delegate?.onThumbnailChanged()
                 }
             }
