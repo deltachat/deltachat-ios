@@ -232,6 +232,19 @@ private extension ChatListViewModel {
         let msg: DcMsg = dcContext.getMessage(id: msgId)
         let chatId: Int = msg.chatId
         let chat: DcChat = dcContext.getChat(chatId: chatId)
+        if !chat.isValid {
+            // chat might be deleted and searchResultMessageIds deprecated, so return a dummy view model
+            // cleanup of the searchResultMessageIds will be done in message change event handling
+            return ChatCellViewModel(
+                dcContext: dcContext,
+                chatData: ChatCellData(
+                    chatId: 0,
+                    highlightMsgId: 0,
+                    summary: DcLot(nil),
+                    unreadMessages: 0
+                )
+            )
+        }
         let summary: DcLot = msg.summary(chat: chat)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 

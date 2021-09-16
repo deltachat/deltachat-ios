@@ -763,9 +763,7 @@ public class DcChatlist {
     }
 
     public func getSummary(index: Int) -> DcLot {
-        guard let lotPointer = dc_chatlist_get_summary(self.chatListPointer, index, nil) else {
-            fatalError("lot-pointer was nil")
-        }
+        let lotPointer = dc_chatlist_get_summary(self.chatListPointer, index, nil)
         return DcLot(lotPointer)
     }
 }
@@ -784,6 +782,10 @@ public class DcChat {
 
     public var id: Int {
         return Int(dc_chat_get_id(chatPointer))
+    }
+
+    public var isValid: Bool {
+        return self.chatPointer != nil
     }
 
     public var name: String {
@@ -1155,10 +1157,10 @@ public class DcMsg {
 
     public func summary(chat: DcChat) -> DcLot {
         guard let chatPointer = chat.chatPointer else {
-            fatalError()
+            return DcLot(nil);
         }
         guard let dcLotPointer = dc_msg_get_summary(messagePointer, chatPointer) else {
-            fatalError()
+            return DcLot(nil)
         }
         return DcLot(dcLotPointer)
     }
@@ -1274,7 +1276,7 @@ public class DcLot {
     private var dcLotPointer: OpaquePointer?
 
     // takes ownership of specified pointer
-    public init(_ dcLotPointer: OpaquePointer) {
+    public init(_ dcLotPointer: OpaquePointer?) {
         self.dcLotPointer = dcLotPointer
     }
 
