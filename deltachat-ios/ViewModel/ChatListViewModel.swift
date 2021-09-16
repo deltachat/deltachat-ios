@@ -355,6 +355,7 @@ extension ChatListViewModel: UISearchResultsUpdating {
         } else {
             inBgSearch = true
             DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                usleep(100000)
                 self?.needsAnotherBgSearch = false
                 self?.filterContentForSearchText(self?.searchText ?? "")
 
