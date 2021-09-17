@@ -134,6 +134,7 @@ public class BaseMessageCell: UITableViewCell {
         button.setTitleColor(.gray, for: .highlighted)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .left
+        button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(onActionButtonTapped), for: .touchUpInside)
         button.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -198,7 +199,7 @@ public class BaseMessageCell: UITableViewCell {
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
             messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3),
             actionButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
-            actionButton.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 12),
+            actionButton.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 12),
             bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
             bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
             bottomLabel.constraintToBottomOf(actionButton, paddingTop: 8, priority: .defaultHigh),
