@@ -128,6 +128,10 @@ public class DcContext {
         dc_send_msg(contextPointer, UInt32(chatId), message.messagePointer)
     }
 
+    public func downloadFullMessage(id: Int) {
+        dc_download_full_msg(contextPointer, Int32(id))
+    }
+
     public func sendVideoChatInvitation(chatId: Int) -> Int {
         return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
     }
@@ -1000,6 +1004,10 @@ public class DcMsg {
             }
             dc_msg_set_quote(messagePointer, newValue?.messagePointer)
         }
+    }
+
+    public var downloadState: Int32 {
+        return dc_msg_get_download_state(messagePointer)
     }
 
     public var viewtype: MessageViewType? {
