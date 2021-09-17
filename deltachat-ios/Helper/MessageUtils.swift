@@ -36,10 +36,17 @@ public class MessageUtils {
                 attachLocation(to: text, color: tintColor)
             }
 
-            attachSendingState(message.state, to: text)
+            let messageState = message.downloadState == DC_DOWNLOAD_IN_PROGRESS ?
+                Int(DC_DOWNLOAD_IN_PROGRESS) :
+                message.state
+            attachSendingState(messageState, to: text)
             return text
         }
 
+        if message.downloadState == DC_DOWNLOAD_IN_PROGRESS {
+            attachSendingState(Int(DC_DOWNLOAD_IN_PROGRESS), to: text)
+        }
+        
         text.append(NSAttributedString(string: message.formattedSentDate(), attributes: timestampAttributes))
         if message.showPadlock() {
             attachPadlock(to: text)
@@ -100,7 +107,7 @@ public class MessageUtils {
         var offset: CGFloat = -2
 
         switch Int32(state) {
-        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING, DC_DOWNLOAD_IN_PROGRESS:
             imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 14)?.maskWithColor(color: DcColors.grayDateColor)
         case DC_STATE_OUT_DELIVERED:
             imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))

@@ -567,6 +567,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_PROTECTION_DISABLED, localizationKey: "systemmsg_chat_protection_disabled")
         dcContext.setStockTranslation(id: DC_STR_REPLY_NOUN, localizationKey: "reply_noun")
         dcContext.setStockTranslation(id: DC_STR_FORWARDED, localizationKey: "forwarded")
+        dcContext.setStockTranslation(id: DC_STR_PARTIAL_DOWNLOAD_MSG_BODY, localizationKey: "n_bytes_message")
+        dcContext.setStockTranslation(id: DC_STR_DOWNLOAD_AVAILABILITY, localizationKey: "download_max_available_until")
     }
 
     func appIsInForeground() -> Bool {

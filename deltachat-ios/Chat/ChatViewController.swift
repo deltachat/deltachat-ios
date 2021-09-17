@@ -1513,8 +1513,12 @@ extension ChatViewController: BaseMessageCellDelegate {
             return
         }
         let msg = dcContext.getMessage(id: messageIds[indexPath.row])
-        let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id)
-        navigationController?.pushViewController(fullMessageViewController, animated: true)
+        if msg.downloadState != DC_DOWNLOAD_DONE {
+            dcContext.downloadFullMessage(id: msg.id)
+        } else {
+            let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id)
+            navigationController?.pushViewController(fullMessageViewController, animated: true)
+        }
     }
 
     @objc func quoteTapped(indexPath: IndexPath) {

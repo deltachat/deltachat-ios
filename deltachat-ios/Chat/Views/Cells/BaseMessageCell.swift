@@ -60,7 +60,6 @@ public class BaseMessageCell: UITableViewCell {
         }
         set {
             mainContentAboveActionBtnConstraint?.constant = newValue ? -2 : 8
-            actionButton.setTitle(newValue ? "" : String.localized("show_full_message"), for: .normal)
             actionBtnZeroHeightConstraint?.isActive = newValue
             actionButton.isHidden = newValue
         }
@@ -310,7 +309,23 @@ public class BaseMessageCell: UITableViewCell {
             avatarView.isHidden = true
         }
 
-        isActionButtonHidden = !msg.hasHtml
+        let downloadState = msg.downloadState
+        let hasHtml = msg.hasHtml
+        isActionButtonHidden = !hasHtml && downloadState == DC_DOWNLOAD_DONE
+        
+        switch downloadState {
+        case DC_DOWNLOAD_FAILURE, DC_DOWNLOAD_AVAILABLE:
+            actionButton.setTitle(String.localized("download"), for: .normal)
+        case DC_DOWNLOAD_IN_PROGRESS:
+            actionButton.isEnabled = false
+            actionButton.setTitle(String.localized("downloading"), for: .normal)
+        default:
+            break
+        }
+        
+        if hasHtml {
+            actionButton.setTitle(String.localized("show_full_message"), for: .normal)
+        }
 
         messageBackgroundContainer.update(rectCorners: messageStyle,
                                           color: getBackgroundColor(dcContext: dcContext, message: msg))
@@ -399,6 +414,7 @@ public class BaseMessageCell: UITableViewCell {
         messageLabel.attributedText = nil
         messageLabel.delegate = nil
         quoteView.prepareForReuse()
+        actionButton.isEnabled = true
     }
 
     // MARK: - Context menu
