@@ -10,11 +10,11 @@ public class BaseMessageCell: UITableViewCell {
     private var trailingConstraintCurrentSender: NSLayoutConstraint?
     private var mainContentBelowTopLabelConstraint: NSLayoutConstraint?
     private var mainContentUnderTopLabelConstraint: NSLayoutConstraint?
-    private var mainContentAboveFullMessageBtnConstraint: NSLayoutConstraint?
+    private var mainContentAboveActionBtnConstraint: NSLayoutConstraint?
     private var mainContentUnderBottomLabelConstraint: NSLayoutConstraint?
     private var mainContentViewLeadingConstraint: NSLayoutConstraint?
     private var mainContentViewTrailingConstraint: NSLayoutConstraint?
-    private var fullMessageZeroHeightConstraint: NSLayoutConstraint?
+    private var actionBtnZeroHeightConstraint: NSLayoutConstraint?
 
     public var mainContentViewHorizontalPadding: CGFloat {
         get {
@@ -46,7 +46,7 @@ public class BaseMessageCell: UITableViewCell {
             return mainContentUnderBottomLabelConstraint?.isActive ?? false
         }
         set {
-            mainContentAboveFullMessageBtnConstraint?.isActive = !newValue
+            mainContentAboveActionBtnConstraint?.isActive = !newValue
             mainContentUnderBottomLabelConstraint?.isActive = newValue
             bottomLabel.backgroundColor = newValue ?
                 UIColor(alpha: 200, red: 50, green: 50, blue: 50) :
@@ -54,15 +54,15 @@ public class BaseMessageCell: UITableViewCell {
         }
     }
 
-    public var isFullMessageButtonHidden: Bool {
+    public var isActionButtonHidden: Bool {
         get {
-            return fullMessageButton.isHidden
+            return actionButton.isHidden
         }
         set {
-            mainContentAboveFullMessageBtnConstraint?.constant = newValue ? -2 : 8
-            fullMessageButton.setTitle(newValue ? "" : String.localized("show_full_message"), for: .normal)
-            fullMessageZeroHeightConstraint?.isActive = newValue
-            fullMessageButton.isHidden = newValue
+            mainContentAboveActionBtnConstraint?.constant = newValue ? -2 : 8
+            actionButton.setTitle(newValue ? "" : String.localized("show_full_message"), for: .normal)
+            actionBtnZeroHeightConstraint?.isActive = newValue
+            actionButton.isHidden = newValue
         }
     }
 
@@ -128,14 +128,14 @@ public class BaseMessageCell: UITableViewCell {
         return view
     }()
 
-    lazy var fullMessageButton: DynamicFontButton = {
+    lazy var actionButton: DynamicFontButton = {
         let button = DynamicFontButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.systemBlue, for: .normal)
         button.setTitleColor(.gray, for: .highlighted)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         button.titleLabel?.textAlignment = .left
-        button.addTarget(self, action: #selector(onFullMessageButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onActionButtonTapped), for: .touchUpInside)
         button.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
@@ -184,7 +184,7 @@ public class BaseMessageCell: UITableViewCell {
         contentView.addSubview(messageBackgroundContainer)
         messageBackgroundContainer.addSubview(mainContentView)
         messageBackgroundContainer.addSubview(topLabel)
-        messageBackgroundContainer.addSubview(fullMessageButton)
+        messageBackgroundContainer.addSubview(actionButton)
         messageBackgroundContainer.addSubview(bottomLabel)
         contentView.addSubview(avatarView)
 
@@ -198,11 +198,11 @@ public class BaseMessageCell: UITableViewCell {
             topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
             messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3),
-            fullMessageButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
-            fullMessageButton.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 12),
+            actionButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
+            actionButton.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 12),
             bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
             bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
-            bottomLabel.constraintToBottomOf(fullMessageButton, paddingTop: 8, priority: .defaultHigh),
+            bottomLabel.constraintToBottomOf(actionButton, paddingTop: 8, priority: .defaultHigh),
             bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6)
         ])
 
@@ -219,14 +219,14 @@ public class BaseMessageCell: UITableViewCell {
 
         mainContentBelowTopLabelConstraint = mainContentView.constraintToBottomOf(topLabel, paddingTop: 6)
         mainContentUnderTopLabelConstraint = mainContentView.constraintAlignTopTo(messageBackgroundContainer)
-        mainContentAboveFullMessageBtnConstraint = fullMessageButton.constraintToBottomOf(mainContentView, paddingTop: 8, priority: .defaultHigh)
+        mainContentAboveActionBtnConstraint = actionButton.constraintToBottomOf(mainContentView, paddingTop: 8, priority: .defaultHigh)
         mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
 
-        fullMessageZeroHeightConstraint = fullMessageButton.constraintHeightTo(0)
+        actionBtnZeroHeightConstraint = actionButton.constraintHeightTo(0)
 
         topCompactView = false
         bottomCompactView = false
-        isFullMessageButtonHidden = true
+        isActionButtonHidden = true
         
 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
@@ -265,9 +265,9 @@ public class BaseMessageCell: UITableViewCell {
         }
     }
 
-    @objc func onFullMessageButtonTapped() {
+    @objc func onActionButtonTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
-            baseDelegate?.fullMessageTapped(indexPath: indexPath)
+            baseDelegate?.actionButtonTapped(indexPath: indexPath)
         }
     }
 
@@ -310,7 +310,7 @@ public class BaseMessageCell: UITableViewCell {
             avatarView.isHidden = true
         }
 
-        isFullMessageButtonHidden = !msg.hasHtml
+        isActionButtonHidden = !msg.hasHtml
 
         messageBackgroundContainer.update(rectCorners: messageStyle,
                                           color: getBackgroundColor(dcContext: dcContext, message: msg))
@@ -475,5 +475,5 @@ public protocol BaseMessageCellDelegate: class {
     func avatarTapped(indexPath: IndexPath)
     func textTapped(indexPath: IndexPath)
     func quoteTapped(indexPath: IndexPath)
-    func fullMessageTapped(indexPath: IndexPath)
+    func actionButtonTapped(indexPath: IndexPath)
 }

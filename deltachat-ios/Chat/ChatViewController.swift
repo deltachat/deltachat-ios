@@ -1508,7 +1508,7 @@ class ChatViewController: UITableViewController {
 // MARK: - BaseMessageCellDelegate
 extension ChatViewController: BaseMessageCellDelegate {
 
-    @objc func fullMessageTapped(indexPath: IndexPath) {
+    @objc func actionButtonTapped(indexPath: IndexPath) {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
