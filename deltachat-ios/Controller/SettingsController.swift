@@ -230,8 +230,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [showArchiveCell, showEmailsCell, blockedContactsCell, autodelCell, mediaQualityCell,
-                    downloadOnDemandCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
+            cells: [showArchiveCell, showEmailsCell, blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
+                    autodelCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
