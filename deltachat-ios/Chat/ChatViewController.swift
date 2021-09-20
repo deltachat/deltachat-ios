@@ -340,7 +340,7 @@ class ChatViewController: UITableViewController {
             loadMessages()
             self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
                                                        left: 0,
-                                                       bottom: self.messageInputBar.calculateIntrinsicContentSize().height,
+                                                       bottom: self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight,
                                                        right: 0)
 
             if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
