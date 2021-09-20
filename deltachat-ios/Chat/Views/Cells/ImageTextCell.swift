@@ -44,7 +44,8 @@ class ImageTextCell: BaseMessageCell {
 
     override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
         messageLabel.text = msg.text
-        bottomCompactView = msg.type != DC_MSG_STICKER && msg.text?.isEmpty ?? true
+        let hasEmptyText = msg.text?.isEmpty ?? true
+        bottomCompactView = msg.type != DC_MSG_STICKER && !msg.hasHtml && hasEmptyText
         mainContentView.spacing = msg.text?.isEmpty ?? false ? 0 : 6
         topCompactView = msg.quoteText == nil ? true : false
         isTransparent = msg.type == DC_MSG_STICKER
