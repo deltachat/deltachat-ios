@@ -1165,7 +1165,7 @@ public class DcMsg {
 
     public func summary(chat: DcChat) -> DcLot {
         guard let chatPointer = chat.chatPointer else {
-            return DcLot(nil);
+            return DcLot(nil)
         }
         guard let dcLotPointer = dc_msg_get_summary(messagePointer, chatPointer) else {
             return DcLot(nil)
