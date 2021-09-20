@@ -25,9 +25,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case help = 10
         case autodel = 11
         case mediaQuality = 12
-        case switchAccount = 13
-        case videoChat = 14
-        case connectivity = 15
+        case downloadOnDemand = 13
+        case switchAccount = 14
+        case videoChat = 15
+        case connectivity = 16
     }
 
     private var dcContext: DcContext
@@ -103,6 +104,15 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         cell.textLabel?.text = String.localized("pref_outgoing_media_quality")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
+        return cell
+    }()
+
+    private lazy var downloadOnDemandCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.downloadOnDemand.rawValue
+        cell.textLabel?.text = String.localized("auto_download_messages")
+        cell.accessoryType = .disclosureIndicator
+        cell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(val: dcContext.getConfigInt("download_limit"))
         return cell
     }()
 
@@ -220,7 +230,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [showArchiveCell, showEmailsCell, blockedContactsCell, autodelCell, mediaQualityCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
+            cells: [showArchiveCell, showEmailsCell, blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
+                    autodelCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
@@ -334,6 +345,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .blockedContacts: showBlockedContacts()
         case .autodel: showAutodelOptions()
         case .mediaQuality: showMediaQuality()
+        case .downloadOnDemand: showDownloadOnDemand()
         case .videoChat: showVideoChatInstance()
         case .notifications: break
         case .receiptConfirmation: break
@@ -558,6 +570,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
         showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
         mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
+        downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(
+            val: dcContext.getConfigInt("download_limit"))
         videoChatInstanceCell.detailTextLabel?.text = dcContext.getConfig("webrtc_instance")
         autodelCell.detailTextLabel?.text = autodelSummary()
         connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: dcContext,
@@ -578,6 +592,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private func  showMediaQuality() {
         let mediaQualityController = MediaQualityController(dcContext: dcContext)
         navigationController?.pushViewController(mediaQualityController, animated: true)
+    }
+
+    private func showDownloadOnDemand() {
+        let downloadOnDemandViewController = DownloadOnDemandViewController(dcContext: dcContext)
+        navigationController?.pushViewController(downloadOnDemandViewController, animated: true)
     }
 
     private func showVideoChatInstance() {

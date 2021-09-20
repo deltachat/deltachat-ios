@@ -128,6 +128,10 @@ public class DcContext {
         dc_send_msg(contextPointer, UInt32(chatId), message.messagePointer)
     }
 
+    public func downloadFullMessage(id: Int) {
+        dc_download_full_msg(contextPointer, Int32(id))
+    }
+
     public func sendVideoChatInvitation(chatId: Int) -> Int {
         return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
     }
@@ -1002,6 +1006,10 @@ public class DcMsg {
         }
     }
 
+    public var downloadState: Int32 {
+        return dc_msg_get_download_state(messagePointer)
+    }
+
     public var viewtype: MessageViewType? {
         switch dc_msg_get_viewtype(messagePointer) {
         case 0:
@@ -1157,7 +1165,7 @@ public class DcMsg {
 
     public func summary(chat: DcChat) -> DcLot {
         guard let chatPointer = chat.chatPointer else {
-            return DcLot(nil);
+            return DcLot(nil)
         }
         guard let dcLotPointer = dc_msg_get_summary(messagePointer, chatPointer) else {
             return DcLot(nil)
