@@ -16,6 +16,8 @@
 "automatic" = "Otomatik";
 "strict" = "Katı";
 "open" = "Aç";
+"download" = "İndir";
+"downloading" = "İndiriliyor…";
 "open_attachment" = "İlişiği Aç";
 "join" = "Katıl";
 "rejoin" = "Yeniden katıl";
@@ -398,6 +400,13 @@
 "login_smtp_port" = "SMTP Bağlantı Noktası";
 "login_smtp_security" = "SMTP Güvenliği";
 "login_auth_method" = "Yetkilendirme Yöntemi";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "SOCKS5\'i Kullan";
+"login_socks5_host" = "SOCKS5 Ana Bilgisayarı";
+"login_socks5_port" = "SOCKS5 Bağlantı Noktası";
+"login_socks5_user" = "SOCKS5 Kullanıcısı";
+"login_socks5_password" = "SOCKS5 Parolası";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "%1$@ denetleniyor";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
@@ -423,7 +432,10 @@
 "delete_account_ask" = "Hesap verilerinizi silmek istediğinizden emin misiniz?";
 "delete_account_explain_with_name" = "Uçtan uca şifreleme ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak \"%1$@\" hesabının bu aygıttaki verilerinin tümü silinecek. Bu eylem geri alınamaz.";
 "switching_account" = "Hesap değiştiriliyor…";
+"unconfigured_account" = "Yapılandırılmayan hesap";
+"unconfigured_account_hint" = "Yapılandırmak için hesabı açın.";
 "try_connect_now" = "Şimdi bağlanmayı dene";
+"sync_all" = "Tümünü Eşzamanla";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Yapılandırma başarısız. Hata: %1$@";
 
@@ -531,6 +543,16 @@
 "pref_background_custom_image" = "Özel görsel";
 "pref_background_custom_color" = "Özel renk";
 "export_aborted" = "Dışa aktarmadan vazgeçildi.";
+"auto_download_messages" = "İletileri Otomatik İndir";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "%1$@ kadar";
+"up_to_x_most_worse_quality_images" = "%1$@ kadar, en kötü kaliteli görseller";
+"up_to_x_most_balanced_quality_images" = "%1$@ kadar, en dengeli kaliteli görseller";
+"no_limit" = "Sınır yok";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ ileti";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "İndirme en fazla %1$@ zamanına kadar kullanılabilir";
 "profile_image_select" = "Profil Görseli Seç";
 "select_your_new_profile_image" = "Yeni profil görselinizi seçin";
 "profile_image_delete" = "Profil Görselini Sil";
@@ -579,9 +601,9 @@
 // autocrypt
 "autocrypt" = "Autocrypt";
 "autocrypt_explain" = "Autocrypt, otomatik uçtan uca e-posta şifrelemesi için yeni ve açık bir belirtimdir.\n\nUçtan uca ayarlamanız, gerektiğinde otomatik olarak oluşturulur ve Autocrypt Ayarlama İletileri ile aygıtlar arasında aktarabilirsiniz.";
-"autocrypt_send_asm_title" = "Autocrypt Ayarlama İletisi gönder";
+"autocrypt_send_asm_title" = "Autocrypt Ayarlama İletisi Gönder";
 "autocrypt_send_asm_explain_before" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır.\n\nAyarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
-"autocrypt_send_asm_button" = "Autocrypt Ayarlama İletisi gönder";
+"autocrypt_send_asm_button" = "Autocrypt Ayarlama İletisi Gönder";
 "autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:\n\n%1$@";
 "autocrypt_prefer_e2ee" = "Uçtan Uca Şifrelemeyi Yeğle";
 "autocrypt_asm_subject" = "Autocrypt Ayarlama İletisi";

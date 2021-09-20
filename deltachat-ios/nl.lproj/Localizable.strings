@@ -16,6 +16,8 @@
 "automatic" = "Automatisch";
 "strict" = "Strikt";
 "open" = "Openen";
+"download" = "Downloaden";
+"downloading" = "Bezig met downloaden…";
 "open_attachment" = "Bijlage openen";
 "join" = "Deelnemen";
 "rejoin" = "Opnieuw deelnemen";
@@ -398,6 +400,13 @@
 "login_smtp_port" = "SMTP-poort";
 "login_smtp_security" = "SMTP-beveiliging";
 "login_auth_method" = "Autorisatiemethode";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "SOCKS5 gebruiken";
+"login_socks5_host" = "SOCKS5-host";
+"login_socks5_port" = "SOCKS5-poort";
+"login_socks5_user" = "SOCKS5-gebruiker";
+"login_socks5_password" = "SOCKS5-wachtwoord";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Bezig met controleren van %1$@";
 "login_info_oauth2_title" = "Wil je doorgaan met vereenvoudigd instellen?";
@@ -423,7 +432,10 @@
 "delete_account_ask" = "Weet je zeker dat je je accountgegevens wilt verwijderen?";
 "delete_account_explain_with_name" = "Alle gegevens van ‘%1$@’ worden verwijderd: de eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
 "switching_account" = "Bezig met overschakelen…";
+"unconfigured_account" = "Niet-ingesteld account";
+"unconfigured_account_hint" = "Open een account om het in te stellen.";
 "try_connect_now" = "Probeer te verbinden";
+"sync_all" = "Alles synchroniseren";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Het instellen is mislukt. Foutmelding: %1$@";
 
@@ -531,6 +543,16 @@
 "pref_background_custom_image" = "Eigen afbeelding";
 "pref_background_custom_color" = "Eigen kleur";
 "export_aborted" = "Het exporteren is afgebroken.";
+"auto_download_messages" = "Berichten automatisch downloaden";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Tot %1$@";
+"up_to_x_most_worse_quality_images" = "Tot %1$@ - lage afbeeldingskwaliteit";
+"up_to_x_most_balanced_quality_images" = "Tot %1$@ - redelijke afbeeldingskwaliteit";
+"no_limit" = "Onbeperkt";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ bericht";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "Maximaal downloaden tot en met een aantal van %1$@";
 "profile_image_select" = "Profielfoto kiezen";
 "select_your_new_profile_image" = "Kies een nieuwe profielfoto";
 "profile_image_delete" = "Profielfoto verwijderen";

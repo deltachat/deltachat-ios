@@ -400,6 +400,13 @@
 "login_smtp_port" = "SMTP-Port";
 "login_smtp_security" = "SMTP-Sicherheit";
 "login_auth_method" = "Autorisierungsmethode";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "SOCKS5 verwenden";
+"login_socks5_host" = "SOCKS5-Host";
+"login_socks5_port" = "SOCKS5-Port";
+"login_socks5_user" = "SOCKS5-Anmeldename";
+"login_socks5_password" = "SOCKS5-Passwort";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Teste %1$@";
 "login_info_oauth2_title" = "Weiter mit vereinfachter Einrichtung?";
@@ -425,7 +432,10 @@
 "delete_account_ask" = "Möchten Sie das E-Mail-Konto und alle Daten wirklich von diesem Gerät löschen?";
 "delete_account_explain_with_name" = "Alle Daten des E-Mail-Kontos \"%1$@\" werden von diesem Gerät gelöscht, dies schließt Ihre Ende-zu-Ende Autocrypt-Einstellungen, Kontakte, Chats, Nachrichten und Medien mit ein. Diese Aktion kann nicht rückgängig gemacht werden.";
 "switching_account" = "E-Mail-Konto wechseln…";
+"unconfigured_account" = "Unkonfiguriertes E-Mail-Konto";
+"unconfigured_account_hint" = "E-Mail-Konto zum Konfigurieren öffnen.";
 "try_connect_now" = "Versuche, zu verbinden";
+"sync_all" = "Alles synchronisieren";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfiguration fehlgeschlagen. Fehler: %1$@";
 

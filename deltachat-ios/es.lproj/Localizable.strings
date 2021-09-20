@@ -16,6 +16,8 @@
 "automatic" = "Automático";
 "strict" = "Estricto";
 "open" = "Abrir";
+"download" = "Descargar";
+"downloading" = "Descargando…";
 "open_attachment" = "Abrir adjunto";
 "join" = "Unirse";
 "rejoin" = "Volver a unirse";
@@ -169,6 +171,7 @@
 "menu_mute" = "Silenciar notificaciones";
 "menu_unmute" = "Des-silenciar ";
 "menu_export_attachment" = "Exportar adjunto";
+"menu_export_attachments" = "Exportar adjuntos";
 "menu_all_media" = "Toda la multimedia";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Mostrar en el chat";
@@ -197,6 +200,7 @@
 "menu_zoom_out" = "Alejar";
 "menu_save_log" = "Salvar log";
 "menu_more_options" = "Más opciones";
+"menu_learn_spelling" = "Aprender ortografía";
 "menu_chat_audit_log" = "Registro de auditoría de chat";
 "jump_to_message" = "Saltar al mensaje";
 "copy_json" = "Copiar JSON";
@@ -529,6 +533,16 @@
 "pref_background_custom_image" = "Imagen personalizada";
 "pref_background_custom_color" = "Color personalizado";
 "export_aborted" = "Exportado abortado.";
+"auto_download_messages" = "Descarga automática de mensajes";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Hasta %1$@";
+"up_to_x_most_worse_quality_images" = "Hasta %1$@, la mayoría de imágenes de peor calidad";
+"up_to_x_most_balanced_quality_images" = "Hasta %1$@, la mayoría de imágenes de calidad balanceada";
+"no_limit" = "Sin límite";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "Mensaje de %1$@";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "Descarga disponible hasta %1$@";
 "profile_image_select" = "Seleccionar imagen de perfil";
 "select_your_new_profile_image" = "Seleccionar tu nueva imagen de perfil";
 "profile_image_delete" = "Borrar imagen de perfil";

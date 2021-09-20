@@ -16,6 +16,8 @@
 "automatic" = "自动";
 "strict" = "严格";
 "open" = "打开";
+"download" = "下载";
+"downloading" = "下载中…";
 "open_attachment" = "打开附件";
 "join" = "加入";
 "rejoin" = "重新加入";
@@ -398,6 +400,13 @@
 "login_smtp_port" = "SMTP 端口";
 "login_smtp_security" = "SMTP 安全类型";
 "login_auth_method" = "认证方法";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "使用 SOCKS5 代理";
+"login_socks5_host" = "SOCKS5 主机";
+"login_socks5_port" = "SOCKS5 端口";
+"login_socks5_user" = "SOCKS5 用户名";
+"login_socks5_password" = "SOCKS5 密码";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "检查 %1$@ 中";
 "login_info_oauth2_title" = "使用简化设置继续？";
@@ -423,7 +432,10 @@
 "delete_account_ask" = "您确定要删除您的账户数据吗？";
 "delete_account_explain_with_name" = "此设备上“%1$@”的所有帐户数据都将被删除，包括您的端到端加密设置、联系人、聊天、消息及媒体。 此操作无法撤消。";
 "switching_account" = "切换账户 …";
+"unconfigured_account" = "未配置的账户";
+"unconfigured_account_hint" = "打开账户配置它";
 "try_connect_now" = "立即尝试连接";
+"sync_all" = "同步所有";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "配置失败。错误：%1$@";
 
@@ -531,6 +543,16 @@
 "pref_background_custom_image" = "自定义图像";
 "pref_background_custom_color" = "自定义颜色";
 "export_aborted" = "导出已中止。";
+"auto_download_messages" = "自动下载消息";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "最多 %1$@";
+"up_to_x_most_worse_quality_images" = "最多 %1$@，分辨率最低的图像";
+"up_to_x_most_balanced_quality_images" = "最多 %1$@，分辨率最均衡图像";
+"no_limit" = "无限制";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ 条消息";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "下载最晚于 %1$@ 前可用";
 "profile_image_select" = "选择个人资料图片";
 "select_your_new_profile_image" = "选择新的个人资料图片";
 "profile_image_delete" = "删除个人资料图片";
