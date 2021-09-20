@@ -41,9 +41,9 @@ class DownloadOnDemandViewController: UITableViewController {
         case 655360:
             return String.localizedStringWithFormat(String.localized("up_to_x_most_balanced_quality_images"), "640 KiB")
         case 5242880:
-            return String.localizedStringWithFormat(String.localized("up_to_x"), "5 MB")
+            return String.localizedStringWithFormat(String.localized("up_to_x"), "5 MiB")
         case 26214400:
-            return String.localizedStringWithFormat(String.localized("up_to_x"), "25 MB")
+            return String.localizedStringWithFormat(String.localized("up_to_x"), "25 MiB")
         default:
             return "Err"
         }
