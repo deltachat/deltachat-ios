@@ -291,7 +291,11 @@ class ChatViewController: UITableViewController {
     }
 
     private func getTopInsetHeight() -> CGFloat {
-        return UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.bounds.height ?? 0)
+        let navigationBarHeight = (navigationController?.navigationBar.bounds.height ?? 0)
+        if let root = UIApplication.shared.keyWindow?.rootViewController {
+            return navigationBarHeight + root.view.safeAreaInsets.top
+        }
+        return UIApplication.shared.statusBarFrame.height + navigationBarHeight
     }
 
     private func startTimer() {
