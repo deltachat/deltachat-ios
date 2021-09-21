@@ -1656,7 +1656,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
                                                    bottom: size.height + messageInputBar.keyboardHeight,
                                                    right: 0)
         if isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating  && highlightedMsg == nil && !ignoreInputBarChange {
-            self.tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentSize.height), animated: true)
+            scrollToBottom()
         }
     }
 }
