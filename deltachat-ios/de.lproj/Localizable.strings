@@ -90,6 +90,8 @@
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Antwort";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Sticker";
 "images" = "Bilder";
 "audio" = "Audio";
 "voice_message" = "Sprachnachricht";
@@ -338,6 +340,7 @@
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Sie sind einem Link gefolgt, der durch die Verwendung ähnlich aussehender Zeichen aus verschiedenen Alphabeten zu einer falschen Darstellung führen könnte. Wenn Sie dem Link mit der Bezeichnung %1$@ folgen, gelangen Sie zu %2$@, was für nicht-lateinische Zeichen normal ist. Wenn Sie solche Zeichen nicht erwartet haben, könnte dieser Link schädlich sein.";
 
+
 // search
 "search" = "Suchen";
 "search_explain" = "Suche nach Chats, Kontakten und Nachrichten";
@@ -370,6 +373,12 @@
 
 
 // Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Eingehende Nachrichten";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Ausgehende Nachrichten";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Speicher auf %1$@";
 "connectivity" = "Verbindungsstatus";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Nicht verbunden";
@@ -379,6 +388,11 @@
 "connectivity_updating" = "Aktualisiere…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Verbunden";
+"sending" = "Sende…";
+"last_msg_sent_successfully" = "Letzte Nachricht erfolgreich versandt.";
+"not_supported_by_provider" = "Nicht unterstützt von Ihrem E-Mail-Anbieter.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Nachrichten";
 
 
 // welcome and login
@@ -649,6 +663,13 @@
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Chat-Absicherung ausgeschaltet.";
 "systemmsg_chat_protection_enabled" = "Chat-Absicherung eingeschaltet.";
+
+"devicemsg_self_deleted" = "Sie haben den Chat \"Gespeicherte Nachrichten\" gelöscht.\n\nℹ️ Um das Feature \"Gespeicherte Nachrichten\" erneut zu verwenden, erstellen Sie einfach einen Chat mit sich selbst.";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ Der Speicherplatz Ihres E-Mail-Anbieters ist bald erschöpft; bereits %1$@%% sind verbraucht.\n\nSie können möglicherweise keine Nachrichten mehr empfangen, wenn der Speicherplatz zu 100%% verbraucht ist.\n\n👉 Bitte prüfen Sie, ob Sie alte Daten im Webinterface des  E-Mail-Anbieters löschen können und erwägen Sie \"Einstellungen / Alte Nachrichten löschen\" zu aktivieren. Den aktuellen Speicherverbrauch können Sie jederzeit unter \"Einstellungen / Verbindung\" überprüfen.";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Ihr Gerät schein ein falsches Datum oder eine falsche Uhrzeit (%1$@) zu verwenden.\n\nStellen Sie Ihre Uhr richtig ein, ⏰🔧 damit Ihre Nachrichten korrekt empfangen verweden können.";
+"devicemsg_update_reminder" = "⚠️ Ihre Delta-Chat-Version ist möglicherweise veraltet.\n\nDies kann zu Problemen führen, wenn Ihre Chat-PartnerInnen neuere Versionen verwenden - und Ihnen die neuesten Funktionen fehlen 😳\nBitte überprüfen Sie https://get.delta.chat oder Ihren App-Store auf Updates.";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Bitte geben Sie den System-Entsperrcode ein, um fortzufahren.";

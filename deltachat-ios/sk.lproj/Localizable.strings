@@ -355,7 +355,6 @@
 "send_message" = "Poslať správu";
 
 
-// Connectivity
 "connectivity" = "Pripojenie";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Nepripojené";
@@ -365,8 +364,6 @@
 "connectivity_updating" = "Aktualizujem…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Pripojené";
-
-
 // welcome and login
 "welcome_intro1_message" = "Posol s najširším publikom na svete. Slobodný a nezávislý.";
 "login_title" = "Prihlásiť sa";

@@ -338,6 +338,7 @@
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Farklı alfabelerden benzer görünen karakterleri kullanarak karakterleri yanlış temsil edebilecek bir bağlantı izlediniz. %1$@ etiketli bağlantıyı takip etmek, Latin olmayan karakterler için normal olan %2$@ dönüşümüne yol açacaktır. Bu tür karakterleri beklemiyorsanız, bu bağlantı zararlı olabilir";
 
+
 // search
 "search" = "Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
@@ -369,7 +370,6 @@
 "send_message" = "İleti Gönder";
 
 
-// Connectivity
 "connectivity" = "Bağlanabilirlik";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Bağlı değil";
@@ -379,8 +379,6 @@
 "connectivity_updating" = "Güncelleştiriliyor…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Bağlandı";
-
-
 // welcome and login
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsız.";
 "login_title" = "Oturum Aç";

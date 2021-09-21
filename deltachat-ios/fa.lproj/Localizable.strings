@@ -333,6 +333,7 @@
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "شما لینکی را دنبال کرده‌اید که با نمایش حروفی که از نظر ظاهری شباهت دارند ممکن است شما را به جای دیگری ببرد. دنبال کردن لینک با برچسب %1$@ شما را به %2$@ خواهد برد که حالت عادی برای حروف انگلیسی است. اگر انتظار این حروف را نداشتید ممکن است لینک مورد نظر مضر باشد. ";
 
+
 // search
 "search" = "جستجو";
 "search_explain" = "جستجو برای گفتگوها، مخاطبین و پیام‌ها";
@@ -364,7 +365,6 @@
 "send_message" = "ارسال پیام";
 
 
-// Connectivity
 "connectivity" = "اتصالات";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "متصل نیست";
@@ -374,8 +374,6 @@
 "connectivity_updating" = "درحال به روز رسانی...";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "متصل شد";
-
-
 // welcome and login
 "welcome_intro1_message" = "پیام‌رسانی با وسیع‌ترین طیف مخاطبین در جهان. آزاد و مستقل. ";
 "login_title" = "ورود";

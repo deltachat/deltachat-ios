@@ -338,6 +338,7 @@
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Hai seguito un link che potrebbe rappresentare in modo errato i caratteri utilizzando caratteri dall\'aspetto simile ad alfabeti diversi. Se si segue il link con l\'etichetta %1$@ si arriva a %2$@ che è normale per i caratteri non latini. Se non ti aspettavi tali caratteri, questo collegamento potrebbe essere dannoso";
 
+
 // search
 "search" = "Cerca";
 "search_explain" = "Cerca in chat, contatti e messaggi";
@@ -369,7 +370,6 @@
 "send_message" = "Invia Messaggio";
 
 
-// Connectivity
 "connectivity" = "Connettività";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Non connesso";
@@ -379,8 +379,6 @@
 "connectivity_updating" = "Aggiorno…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Connesso";
-
-
 // welcome and login
 "welcome_intro1_message" = "L’applicazione di messaggistica con la maggiore utenza al mondo. Libera e indipendente.";
 "login_title" = "Login";

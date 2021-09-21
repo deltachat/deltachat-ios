@@ -315,7 +315,6 @@
 "send_message" = "Siųsti žinutę";
 
 
-// Connectivity
 "connectivity" = "Jungiamumas";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Neprisijungta";
@@ -325,8 +324,6 @@
 "connectivity_updating" = "Atnaujinama…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Prisijungta";
-
-
 // welcome and login
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "login_title" = "Prisijungti";

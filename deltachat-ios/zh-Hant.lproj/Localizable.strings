@@ -90,6 +90,8 @@
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "回复";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "贴纸";
 "images" = "图像";
 "audio" = "音频";
 "voice_message" = "语音消息";
@@ -338,6 +340,7 @@
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "你将被转到一个链接，该链接可能通过使用来自不同字母表的相似字符来错误地表示字符。打开标记为 %1$@ 的链接将把你带到以 ascii 码编码的 %2$@。如果这样的字符出乎你的意料，那么这个链接可能是有害的";
 
+
 // search
 "search" = "搜索";
 "search_explain" = "搜索聊天、联系人和消息";
@@ -370,6 +373,12 @@
 
 
 // Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "传入消息";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "传出消息";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "%1$@ 上的存储";
 "connectivity" = "连接性";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "未连接";
@@ -379,6 +388,11 @@
 "connectivity_updating" = "更新中…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "已连接";
+"sending" = "发送中…";
+"last_msg_sent_successfully" = "上一条消息发送成功。";
+"not_supported_by_provider" = "你的邮件供应商不支持";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "消息";
 
 
 // welcome and login
@@ -649,6 +663,13 @@
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "已禁用聊天保护";
 "systemmsg_chat_protection_enabled" = "已启用聊天保护";
+
+"devicemsg_self_deleted" = "你删除了聊天中的“已保存消息”。\n\nℹ️要再次使用“保存消息”功能，请创建一个新的与自己的聊天。";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️你快要超出邮件服务商提供的存储空间，你已使用 %1$@ %%。\n\n你将无法接收消息，当存储用量达到 100 %%。\n\n👉请检查您是否可以在提供商的网络界面中删除旧数据，并考虑启用“设置/删除旧信息”。您可以随时在“设置/连接”查看当前的存储使用情况。";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️设备的日期或事件似乎不准确 （%1$@）。\n\n请调整时钟⏰🔧确保正确接收信息。";
+"devicemsg_update_reminder" = "⚠️你的 Delta Chat 版本可能过时了。\n\n这也许会造成问题，因为您的聊天伙伴很可能使用的是更新的版本，而且您错过了最新的功能😳\n请浏览 https://get.delta.chat 或您的应用商店获取更新。";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "请输入您的系统密码以继续。";

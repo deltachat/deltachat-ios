@@ -90,6 +90,8 @@
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Resposta";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Adhesivo";
 "images" = "Imaxes";
 "audio" = "Audio";
 "voice_message" = "Mensaxe de voz";
@@ -338,6 +340,7 @@
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Seguiches unha ligazón que podería intentar confundirte utilizando caracteres que semellan parecidos en diferentes alfabetos. Premendo na ligazón %1$@ vaite levar a %2$@ que é nonrmal para carateres non-Latinos. Se non esperabas estos caracteres a ligazón podería ser maliciosa";
 
+
 // search
 "search" = "Buscar";
 "search_explain" = "Buscar conversas, contactos e mensaxes";
@@ -370,6 +373,12 @@
 
 
 // Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Mensaxes entrantes";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Mensaxes saíntes";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Almacenar en %1$@";
 "connectivity" = "Conectividade";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Non conectado";
@@ -379,6 +388,11 @@
 "connectivity_updating" = "Actualizando…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Conectado";
+"sending" = "Enviando...";
+"last_msg_sent_successfully" = "Enviouse correctamente a última mensaxe.";
+"not_supported_by_provider" = "O teu provedor non ten soporte";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Mensaxes";
 
 
 // welcome and login
@@ -400,6 +414,13 @@
 "login_smtp_port" = "Porto SMTP";
 "login_smtp_security" = "Seguridade SMTP";
 "login_auth_method" = "Método de autorización";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Usar SOCKS5";
+"login_socks5_host" = "Servidor SOCKS5";
+"login_socks5_port" = "Porto SOCKS5";
+"login_socks5_user" = "Usuaria SOCKS5";
+"login_socks5_password" = "Contrasinal SOCKS5";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Comprobando %1$@";
 "login_info_oauth2_title" = "Continuar co axuste simplificado?";
@@ -425,7 +446,10 @@
 "delete_account_ask" = "Estás seguro de que queres eliminar os datos da túa conta?";
 "delete_account_explain_with_name" = "Todos os datos da conta \"%1$@\" neste dispositivo vanse eliminar, incluíndo os axustes de cifrado extremo-a-extremo, contactos, conversas, mensaxes e multimedia. Esta acción non ten volta.";
 "switching_account" = "Cambiando de conta…";
+"unconfigured_account" = "Conta non configurada";
+"unconfigured_account_hint" = "Abrir conta para configurala.";
 "try_connect_now" = "Intenta conectar agora";
+"sync_all" = "Sinrc Todo";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Fallou a configuración. Erro: %1$@";
 
@@ -639,6 +663,13 @@
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Protección do chat desactivada.";
 "systemmsg_chat_protection_enabled" = "Protección do chat activada.";
+
+"devicemsg_self_deleted" = "Eliminaches o chat \"Mensaxes gardadas\".\n\nℹ️ Para usar \"Mensaxes gardadas\" de novo, crea un novo chat contigo mesmo.";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ A almacenaxe do teu provedor vaise esgotar, xa utilizaches %1$@ %%.\n\nPode que non recibas mensaxes cando a almacenaxe chegue a 100%% utilizado.\n\n👉 Mira se podes eliminar datos antigos na interface web do teu provedor e pensa se debes activar \"Axustes / Eliminar Mensaxes Antigas\". Podes ver a almacenaxe actual utilizada en \"Axustes / Conectividade\".";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ A hora ou data no teu dispositivo poderían ser incorrectas (%1$@).\n\nAxusta o reloxio ⏰🔧 para asegurar que as túas mensaxes son recibidas correctamente.";
+"devicemsg_update_reminder" = "⚠️ A túa versión de Delta Chat podería estar desactualizada.\n\nEsto podería causar problemas porque os teus correspondentes utilizan versións máis novas - e ademáis non tes as últimas características 😳\nVai a https://get.delta.chat ou tenda de aplicacións para máis detalles.";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Escribe o código establecido no sistema para continuar.";

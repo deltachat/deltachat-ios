@@ -338,6 +338,7 @@
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Вы перешли по ссылке, которая может искажать символы, используя одинаковые символы из разных алфавитов. Переход по ссылке отмеченной %1$@  приведет к переходу по ней к %2$@ что является нормальным для нелатинских символов. Если вы не ожидали появления таких символов, эта ссылка может быть опасной.";
 
+
 // search
 "search" = "Поиск";
 "search_explain" = "Поиск чатов, контактов и сообщений";
@@ -369,7 +370,6 @@
 "send_message" = "Отправить сообщение";
 
 
-// Connectivity
 "connectivity" = "Соединение";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Нет соединения";
@@ -379,8 +379,6 @@
 "connectivity_updating" = "Обновление…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Соединено";
-
-
 // welcome and login
 "welcome_intro1_message" = "Мессенджер с самой широкой аудиторией в мире. Бесплатный и независимый.";
 "login_title" = "Логин";

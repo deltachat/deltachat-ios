@@ -155,7 +155,7 @@
 "ask_delete_named_chat" = "¿Estás seguro de que deseas eliminar \"%1$@\"?";
 "menu_delete_messages" = "Eliminar mensajes";
 "menu_delete_image" = "Eliminar imagen";
-"delete_contact" = "Borrar contacto";
+"delete_contact" = "Eliminar contacto";
 "menu_delete_locations" = "¿Eliminar todas las ubicaciones?";
 "menu_delete_location" = "¿Eliminar esta ubicación?";
 "menu_message_details" = "Detalles del mensaje";
@@ -228,12 +228,12 @@
 "mute_for_seven_days" = "Silenciar por 7 días";
 "mute_forever" = "Silenciar por siempre";
 
-"share_location_once" = "una vez";
-"share_location_for_5_minutes" = "por 5 minutos ";
-"share_location_for_30_minutes" = "por 30 minutos";
-"share_location_for_one_hour" = "por 1 hora";
-"share_location_for_two_hours" = "por 2 horas";
-"share_location_for_six_hours" = "por 6 horas";
+"share_location_once" = "Una vez";
+"share_location_for_5_minutes" = "Por 5 minutos ";
+"share_location_for_30_minutes" = "Por 30 minutos";
+"share_location_for_one_hour" = "Por 1 hora";
+"share_location_for_two_hours" = "Por 2 horas";
+"share_location_for_six_hours" = "Por 6 horas";
 
 "file_saved_to" = "Archivo guardado en \"%1$@\".";
 
@@ -303,7 +303,7 @@
 "chat_contact_request" = "Solicitud de contacto";
 "chat_no_contact_requests" = "No hay solicitudes de contacto.\n\nSi desea que los correos electrónicos clásicos aparezcan aquí como solicitudes de contacto, puede cambiar la configuración correspondiente en la configuración de la aplicación.";
 "retry_send" = "Reintentar enviar mensaje";
-"send_failed" = "Falló enviar el mensaje";
+"send_failed" = "No se pudo enviar el mensaje";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "No puedes escribir porque no estás en este grupo. Para unirte, pregúntale a otro miembro.";
 "messaging_disabled_device_chat" = "Este chat contiene mensajes generados localmente. Por eso no puedes escribir ningún mensaje.";
@@ -338,6 +338,7 @@
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Siguió un enlace que podría estar tergiversando caracteres al usar caracteres de diferentes alfabetos con un aspecto similar. Seguir el enlace etiquetado %1$@ conducirá a %2$@, que es normal para caracteres no latinos. Si no esperaba tales caracteres, este enlace podría ser dañino";
 
+
 // search
 "search" = "Buscar";
 "search_explain" = "Buscar chats, contactos, y mensajes";
@@ -369,7 +370,6 @@
 "send_message" = "Enviar mensaje";
 
 
-// Connectivity
 "connectivity" = "Conectividad";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Desconectado";
@@ -379,8 +379,6 @@
 "connectivity_updating" = "Actualizando…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Conectado";
-
-
 // welcome and login
 "welcome_intro1_message" = "La aplicación de mensajería instantánea con la audiencia más amplia del mundo. Libre e independiente. ";
 "login_title" = "Iniciar sesión";
@@ -400,6 +398,13 @@
 "login_smtp_port" = "Puerto SMTP";
 "login_smtp_security" = "Seguridad SMTP";
 "login_auth_method" = "Método de autorización";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Usar SOCKS5";
+"login_socks5_host" = "Servidor SOCKS5";
+"login_socks5_port" = "Puerto SOCKS5";
+"login_socks5_user" = "Usuario SOCKS5";
+"login_socks5_password" = "Contraseña SOCKS5";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Chequeando %1$@";
 "login_info_oauth2_title" = "¿Continuar con la configuración simplificada?";
@@ -425,7 +430,10 @@
 "delete_account_ask" = "¿Estás seguro de que quieres eliminar los datos de tu cuenta?";
 "delete_account_explain_with_name" = "Todos los datos de la cuenta de \"%1$@\" este dispositivo serán eliminados. Incluyendo la configuración de encriptado punto a punto, contactos, chats, mensajes y multimedia. Esta acción no puede ser deshecha.";
 "switching_account" = "Cambiando cuenta...";
+"unconfigured_account" = "Cuenta no configurada";
+"unconfigured_account_hint" = "Abrir cuenta para configurarla.";
 "try_connect_now" = "Intentar conectar ahora";
+"sync_all" = "Sincronizar todo";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "La configuración falló. Error: %1$@";
 
