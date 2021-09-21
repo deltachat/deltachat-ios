@@ -280,6 +280,7 @@ class ChatViewController: UITableViewController {
         } else if dcContext.getChat(chatId: chatId).isContactRequest {
             configureContactRequestBar()
         }
+        loadMessages()
     }
 
     private func configureUIForWriting() {
@@ -337,7 +338,6 @@ class ChatViewController: UITableViewController {
         }
         if !isDismissing {
             self.tableView.becomeFirstResponder()
-            loadMessages()
             self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
                                                        left: 0,
                                                        bottom: self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight,
@@ -362,9 +362,15 @@ class ChatViewController: UITableViewController {
                         self.scrollToLastUnseenMessage()
                     }
                 }, completion: { [weak self] finished in
+                    guard let self = self else { return }
                     if finished {
-                        self?.isInitial = false
-                        self?.ignoreInputBarChange = false
+                        if !self.isInitial {
+                            // relaod messages since this VC was in background in the navigation stack,
+                            // all message observers have been inactive in the meanwhile
+                            self.loadMessages()
+                        }
+                        self.isInitial = false
+                        self.ignoreInputBarChange = false
                     }
                 })
             }
