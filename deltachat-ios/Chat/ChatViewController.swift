@@ -338,9 +338,15 @@ class ChatViewController: UITableViewController {
         }
         if !isDismissing {
             self.tableView.becomeFirstResponder()
+            var bottomInsets = self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight
+            if UIApplication.shared.statusBarOrientation.isLandscape,
+               let root = UIApplication.shared.keyWindow?.rootViewController {
+                // in landscape we need to take safeAreaInsets into account, in portrait they're already part of the keyboard height
+                bottomInsets += root.view.safeAreaInsets.bottom
+            }
             self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
                                                        left: 0,
-                                                       bottom: self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight,
+                                                       bottom: bottomInsets,
                                                        right: 0)
 
             if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
@@ -1657,9 +1663,15 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         if isDismissing {
             return
         }
+        var bottomInsets = size.height + messageInputBar.keyboardHeight
+        if UIApplication.shared.statusBarOrientation.isLandscape,
+           let root = UIApplication.shared.keyWindow?.rootViewController {
+            // in landscape we need to take safeAreaInsets into account, in portrait they're already part of the keyboard height
+            bottomInsets += root.view.safeAreaInsets.bottom
+        }
         self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
                                                    left: 0,
-                                                   bottom: size.height + messageInputBar.keyboardHeight,
+                                                   bottom: bottomInsets,
                                                    right: 0)
         if isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating  && highlightedMsg == nil && !ignoreInputBarChange {
             scrollToBottom()
