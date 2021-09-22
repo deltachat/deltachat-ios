@@ -138,7 +138,7 @@ public class ChatInputBar: InputBarAccessoryView {
         self.addSubview(scrollDownButton)
         NSLayoutConstraint.activate([
             scrollDownButton.constraintAlignTopTo(self, paddingTop: -52),
-            scrollDownButton.constraintAlignTrailingTo(self, paddingTrailing: 12),
+            scrollDownButton.constraintAlignTrailingToAnchor(self.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 12),
             scrollDownButton.constraintHeightTo(40),
             scrollDownButton.constraintWidthTo(40)
         ])
