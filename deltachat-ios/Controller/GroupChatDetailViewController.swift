@@ -248,8 +248,12 @@ class GroupChatDetailViewController: UIViewController {
         ephemeralTimerObserver = nc.addObserver(
             forName: dcEphemeralTimerModified,
             object: nil,
-            queue: OperationQueue.main) { [weak self] _ in
-            self?.updateEphemeralTimerCellValue()
+            queue: OperationQueue.main) { [weak self] notification in
+            guard let self = self else { return }
+            if let ui = notification.userInfo,
+               self.chatId == ui["chat_id"] as? Int {
+                self.updateEphemeralTimerCellValue()
+            }
         }
         chatModifiedObserver = nc.addObserver(
             forName: dcNotificationChatModified,
