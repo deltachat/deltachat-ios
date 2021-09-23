@@ -233,8 +233,6 @@ class GroupChatDetailViewController: UIViewController {
     // MARK: - observers
     private func setupObservers() {
         let nc = NotificationCenter.default
-        // one observer is sufficient since changes of the ephemeral timer and all chat
-        // and member related changes result in a DC_MSG_CHANGED event
         incomingMsgsObserver = nc.addObserver(
             forName: dcNotificationIncoming,
             object: nil,
