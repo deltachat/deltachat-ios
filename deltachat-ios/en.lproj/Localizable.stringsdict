@@ -146,6 +146,22 @@
 			<string>Delete %d messages here and on the server?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Delete %d message?</string>
+			<key>other</key>
+			<string>Delete %d messages?</string>
+		</dict>
+	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

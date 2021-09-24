@@ -90,6 +90,8 @@
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Ответить";
 "gif" = "GIF";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Стикер";
 "images" = "Изображения";
 "audio" = "Аудио";
 "voice_message" = "Голосовое сообщение";
@@ -370,6 +372,13 @@
 "send_message" = "Отправить сообщение";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Входящие сообщения";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Исходящие сообщения";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Хранилище на %1$@";
 "connectivity" = "Соединение";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Нет соединения";
@@ -379,6 +388,13 @@
 "connectivity_updating" = "Обновление…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Соединено";
+"sending" = "Отправка…";
+"last_msg_sent_successfully" = "Последнее сообщение отправлено успешно.";
+"not_supported_by_provider" = "Не поддерживается вашим провайдером.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Сообщения";
+
+
 // welcome and login
 "welcome_intro1_message" = "Мессенджер с самой широкой аудиторией в мире. Бесплатный и независимый.";
 "login_title" = "Логин";
@@ -398,6 +414,13 @@
 "login_smtp_port" = "SMTP порт";
 "login_smtp_security" = "Параметры безопасности SMTP";
 "login_auth_method" = "Метод авторизации";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Использовать SOCKS5";
+"login_socks5_host" = "Сервер SOCKS5";
+"login_socks5_port" = "Порт SOCKS5";
+"login_socks5_user" = "Пользователь SOCKS5";
+"login_socks5_password" = "Пароль SOCKS5";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Проверяем %1$@";
 "login_info_oauth2_title" = "Продолжить упрощенную настройку?";
@@ -423,7 +446,10 @@
 "delete_account_ask" = "Вы уверены, что хотите удалить данные учётной записи?";
 "delete_account_explain_with_name" = "Все данные учётной записи \"%1$@\" на этом устройстве будут удалены, включая настройки сквозного шифрования, контакты, чаты, сообщения и мультимедиа. Это действие не может быть отменено.";
 "switching_account" = "Меняем аккаунт...";
+"unconfigured_account" = "Ненастроенный аккаунт";
+"unconfigured_account_hint" = "Откройте аккаунт чтобы настроить его.";
 "try_connect_now" = "Попробуй подключиться сейчас";
+"sync_all" = "Синхронизировать все";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Ошибка конфигурации. Ошибка: %1$@";
 

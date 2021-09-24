@@ -90,6 +90,8 @@
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Rispondi";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Sticker";
 "images" = "Immagine";
 "audio" = "Audio";
 "voice_message" = "Messaggio Vocale";
@@ -370,6 +372,13 @@
 "send_message" = "Invia Messaggio";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Messaggi in arrivo";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Messaggi in uscita";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Memorizzazione su %1$@";
 "connectivity" = "Connettività";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Non connesso";
@@ -379,6 +388,13 @@
 "connectivity_updating" = "Aggiorno…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Connesso";
+"sending" = "Invio...";
+"last_msg_sent_successfully" = "Ultimo messaggio inviato con successo.";
+"not_supported_by_provider" = "Non supportato dal tuo provider.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Messaggi";
+
+
 // welcome and login
 "welcome_intro1_message" = "L’applicazione di messaggistica con la maggiore utenza al mondo. Libera e indipendente.";
 "login_title" = "Login";
@@ -455,7 +471,7 @@
 "blocked_empty_hint" = "Se blocchi dei contatti, verranno elencati qui.";
 "pref_profile_photo_remove_ask" = "Rimuvere la foto profilo?";
 "pref_password_and_account_settings" = "Password e Account";
-"pref_who_can_see_profile_explain" = "L\'immagine del tuo profilo e il tuo nome saranno mostrati insieme ai tuoi messaggi quando comunichi con altri utenti. Le informazioni già inviate non possono essere cancellate o rimosse.";
+"pref_who_can_see_profile_explain" = "L\'immagine del tuo profilo e il tuo nome saranno mostrati insieme ai tuoi messaggi quando comunicherai con altri utenti. Le informazioni già inviate non possono essere cancellate o rimosse.";
 "pref_your_name" = "Il tuo Nome";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "Firma";
@@ -533,7 +549,7 @@
 "pref_show_emails" = "Mostra E-mail Tradizionali";
 "pref_show_emails_no" = "No, solo chat";
 "pref_show_emails_accepted_contacts" = "Per i contatti accettati";
-"pref_show_emails_all" = "Tutte";
+"pref_show_emails_all" = "Tutti";
 "pref_experimental_features" = "Funzionalità Sperimentali";
 "pref_on_demand_location_streaming" = "Streaming su Richiesta della Posizione";
 "pref_background_default" = "Sfondo predefinito";
@@ -647,6 +663,13 @@
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Protezione chat disattivata.";
 "systemmsg_chat_protection_enabled" = "Protezione chat abilitata.";
+
+"devicemsg_self_deleted" = "Hai eliminato la chat \"Messaggi salvati\".\n\nℹ️ Per utilizzare nuovamente la funzione \"Messaggi salvati\", crea una nuova chat con te stesso.";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ Lo spazio di archiviazione del tuo provider sta già per superare %1$@%% vengono utilizzati.\n\nPotrebbe non essere possibile ricevere messaggi quando lo spazio di archiviazione è 100%% utilizzato.\n\n👉 Si prega di verificare se è possibile eliminare i vecchi dati nell\'interfaccia web del provider e considerare di abilitare \"Impostazioni / Elimina Vecchi Messaggi\". Puoi controllare l\'utilizzo corrente dello spazio di archiviazione in qualsiasi momento in \"Impostazioni / Connettività\".";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ La data o l\'ora del tuo dispositivo sembrano imprecise (%1$@).\n\nRegola l\'orologio ⏰🔧 per assicurarti che i tuoi messaggi vengano ricevuti correttamente.";
+"devicemsg_update_reminder" = "⚠️ La tua versione di Delta Chat potrebbe essere obsoleta.\n\nCiò potrebbe causare problemi perché i tuoi partner di chat utilizzano versioni più recenti - e ti mancano le funzionalità più recenti 😳\nControlla https://get.delta.chat o il tuo app store per gli aggiornamenti. ";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Per favore inserisci il tuo codice segreto definito dal sistema per continuare.";

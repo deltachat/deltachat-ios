@@ -146,6 +146,22 @@
 			<string>%d Nachrichten lokal und vom Server löschen?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d Nachricht löschen?</string>
+			<key>other</key>
+			<string>%d Nachrichten löschen?</string>
+		</dict>
+	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

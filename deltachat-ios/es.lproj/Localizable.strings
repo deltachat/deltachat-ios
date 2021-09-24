@@ -90,6 +90,8 @@
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Respuesta";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Sticker";
 "images" = "Imágenes";
 "audio" = "Audio";
 "voice_message" = "Mensaje de voz";
@@ -370,6 +372,13 @@
 "send_message" = "Enviar mensaje";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Mensajes entrantes";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Mensajes salientes";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Almacenamiento en %1$@";
 "connectivity" = "Conectividad";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Desconectado";
@@ -379,6 +388,13 @@
 "connectivity_updating" = "Actualizando…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Conectado";
+"sending" = "Enviando...";
+"last_msg_sent_successfully" = "El último mensaje fue enviado satisfactoriamente.";
+"not_supported_by_provider" = "No soportado por tu proveedor.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Mensajes";
+
+
 // welcome and login
 "welcome_intro1_message" = "La aplicación de mensajería instantánea con la audiencia más amplia del mundo. Libre e independiente. ";
 "login_title" = "Iniciar sesión";
@@ -647,6 +663,13 @@
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Protección de chat desactivada.";
 "systemmsg_chat_protection_enabled" = "Protección de chat activada.";
+
+"devicemsg_self_deleted" = "Eliminaste los chats de los \"Mensajes guardados\". \n\nℹ️ Para volver a usar los\"Mensajes guardados\", debes crear un chat contigo mismo.";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ El almacenamiento de tu proveedor está por excederse, ya tienes %1$@%% en uso.\n\nQuizás no puedas recibir mensajes cuando el almacenamiento esté al 100%% de uso.\n\n👉 Por favor chequea si puedes eliminar los datos antiguos en la página web del proveedor y considera habilitar \"Ajustes / Eliminar mensajes antiguos\". Puedes chequear tu almacenamiento actual en cualquier momento en \"Ajustes / Conectividad\".";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Fecha y hora de tu dispositivo parecen ser inadecuadas (%1$@).\n\nAjusta tu reloj ⏰🔧 para asegurarte que los mensajes sean recibidos correctamente.";
+"devicemsg_update_reminder" = "⚠️ Tu versión de Delta Chat puede estar desactualizada.\n\nEsto puede causar problems porque tus contactos usan nuevas versiones - y tú te estás perdiendo las últimas novedades 😳\nChequea https://get.delta.chat o tu tienda de aplicaciones para actualizaciones.";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Ingrese su secreto del sistema para continuar.";

@@ -16,6 +16,8 @@
 "automatic" = "Автоматично";
 "strict" = "Суворо";
 "open" = "Відкрити";
+"download" = "Завантажити";
+"downloading" = "Завантаження...";
 "open_attachment" = "Відкрити вкладення";
 "join" = "Приєднатися";
 "rejoin" = "Заново приєднатися";
@@ -88,6 +90,8 @@
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Відповідь";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Стікер";
 "images" = "Зображення";
 "audio" = "Аудіо";
 "voice_message" = "Голосове повідомлення";
@@ -368,6 +372,13 @@
 "send_message" = "Надіслати повідомлення";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Вхідні повідомлення";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Вихідні повідомлення";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Сховище на %1$@";
 "connectivity" = "Підключення";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Не з\'єднано";
@@ -377,6 +388,13 @@
 "connectivity_updating" = "Оновлення…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Підключено";
+"sending" = "Надсилання...";
+"last_msg_sent_successfully" = "Останнє повідомлення успішно надіслано.";
+"not_supported_by_provider" = "Не підтримується вашим провайдером електронної пошти.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Повідомлення";
+
+
 // welcome and login
 "welcome_intro1_message" = "Мессенджер з найширшою аудиторією у світі. Безкоштовний і незалежний.";
 "login_title" = "Увійти";
@@ -396,6 +414,13 @@
 "login_smtp_port" = "SMTP-порт";
 "login_smtp_security" = "Налаштування безпеки SMTP";
 "login_auth_method" = "Метод авторизації";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Використовувати SOCKS5";
+"login_socks5_host" = "Хост SOCKS5";
+"login_socks5_port" = "Порт SOCKS5";
+"login_socks5_user" = "Ім\'я користувача SOCKS5";
+"login_socks5_password" = "Пароль SOCKS5";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Перевірка %1$@";
 "login_info_oauth2_title" = "Продовжити спрощене налаштування?";
@@ -411,7 +436,7 @@
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Не вдалося увійти як «%1$@». Будь ласка, перевірте правильність адреси електронної пошти і пароля.";
 // Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Відповідь сервера %1$@: %2$@\n\nДеякі сервери електронної пошти зберігають додаткову інформацію у папці «Вхідні». Ви можете перевірити цю папку, наприклад, використовуючи доступ через веб-інтерфейс. Якщо Ви зіткнулися з проблемами, проконсультуйтеся з провайдером електронної пошти або знайомими фахівцями.";
+"login_error_server_response" = "Відповідь від %1$@: %2$@\n\nДеякі сервери електронної пошти зберігають додаткову інформацію у папці «Вхідні». Ви можете перевірити цю папку, наприклад, використовуючи доступ через веб-інтерфейс. Якщо Ви зіткнулися з проблемами, проконсультуйтеся з провайдером електронної пошти або знайомими фахівцями.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Приймати невірні сертифікати";
 "used_settings" = "Використані налаштування:";
@@ -421,7 +446,10 @@
 "delete_account_ask" = "Ви впевнені, що хочете видалити дані вашого облікового запису?";
 "delete_account_explain_with_name" = "Дані облікового запису \"%1$@\" на цьому пристрої будуть видалені, включаючи налаштування наскрізного шифрування, контакти, чати, повідомлення та медіа. Ця дія не може бути скасована.";
 "switching_account" = "Перемикаємо обліковий запис...";
+"unconfigured_account" = "Неналаштований обліковий запис";
+"unconfigured_account_hint" = "Відкрити обліковий запис для налаштування.";
 "try_connect_now" = "Спробувати підключитися негайно";
+"sync_all" = "Синхронізувати все";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Помилка конфігурації: %1$@";
 
@@ -529,6 +557,16 @@
 "pref_background_custom_image" = "Персональне зображення";
 "pref_background_custom_color" = "Персональний колір";
 "export_aborted" = "Експорт припинено.";
+"auto_download_messages" = "Автоматично завантажувати повідомлення";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "До %1$@";
+"up_to_x_most_worse_quality_images" = "До %1$@, зображення найгіршої якості";
+"up_to_x_most_balanced_quality_images" = "До %1$@, найбільш збалансована якість зображень";
+"no_limit" = "Без обмежень";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "Повідомлення розміром %1$@\'";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "Максимум завантажень доступний до %1$@";
 "profile_image_select" = "Вибрати зображення профілю";
 "select_your_new_profile_image" = "Вибрати ваше нове зображення профілю";
 "profile_image_delete" = "Видалити зображення профілю";
@@ -625,6 +663,13 @@
 // Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
 "systemmsg_chat_protection_disabled" = "Захист чату вимкнено.";
 "systemmsg_chat_protection_enabled" = "Захист чату увімкнено.";
+
+"devicemsg_self_deleted" = "Ви видалили чат \"Збережені повідомлення\".\n\nℹ️ Аби використовувати функцію \"Збережені повідомлення\" знову, створіть новий чат самі із собою.";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ Сховище вашого провайдера електронної пошти майже заповнено, вже використовується %1$@%%.\n\nМожливо, ви не зможете отримати повідомлення, коли пам’ять буде використана на 100%%.\n\n👉 Перевірте, чи можна видалити старі дані у веб -інтерфейсі провайдера та включіть \"Налаштування / Видалити старі повідомлення\". Ви можете будь-коли перевірити своє поточне використання сховища в \"Налаштування / Підключення\". ";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Дата і час на вашому пристрої видаються неточними (%1$@).\n\nНалаштуйте свій годинник ⏰🔧 для правильного отримання ваших повідомлень.";
+"devicemsg_update_reminder" = "⚠️ Ваша версія Delta Chat може бути застарілою.\n\nЦе може спричинити проблеми, оскільки ваші співрозмовники в чаті використовують новіші версії, а вам не вистачає найновіших функцій 😳 \nПеревірте оновлення на https://get.delta.chat або у вашому магазині додатків. ";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Введіть захисний код, щоб продовжити.";
