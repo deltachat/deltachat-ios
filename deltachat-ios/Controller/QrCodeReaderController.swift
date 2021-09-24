@@ -46,11 +46,13 @@ class QrCodeReaderController: UIViewController {
         } else {
             AVCaptureDevice.requestAccess(for: .video, completionHandler: {  [weak self] (granted: Bool) in
                 guard let self = self else { return }
-                if granted {
-                    self.setupQRCodeScanner()
-                } else {
-                    self.showCameraWarning()
-                    self.showPermissionAlert()
+                DispatchQueue.main.async {
+                    if granted {
+                        self.setupQRCodeScanner()
+                    } else {
+                        self.showCameraWarning()
+                        self.showPermissionAlert()
+                    }
                 }
             })
         }
