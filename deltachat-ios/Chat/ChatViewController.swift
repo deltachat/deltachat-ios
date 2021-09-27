@@ -240,6 +240,7 @@ class ChatViewController: UITableViewController {
         self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
+        self.navigationController?.delegate = self
     }
 
     required init?(coder _: NSCoder) {
@@ -370,11 +371,6 @@ class ChatViewController: UITableViewController {
                 }, completion: { [weak self] finished in
                     guard let self = self else { return }
                     if finished {
-                        if !self.isInitial {
-                            // relaod messages since this VC was in background in the navigation stack,
-                            // all message observers have been inactive in the meanwhile
-                            self.loadMessages()
-                        }
                         self.isInitial = false
                         self.ignoreInputBarChange = false
                     }
@@ -398,6 +394,34 @@ class ChatViewController: UITableViewController {
         super.viewDidAppear(animated)
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
 
+        // things that do not affect the chatview
+        // and are delayed after the view is displayed
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            self.dcContext.marknoticedChat(chatId: self.chatId)
+        }
+
+        handleUserVisibility(isVisible: true)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
+        navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
+        isDismissing = true
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        isDismissing = false
+        ignoreInputBarChange = true
+        AppStateRestorer.shared.resetLastActiveChat()
+        handleUserVisibility(isVisible: false)
+        audioController.stopAnyOngoingPlaying()
+    }
+
+    private func setupObservers() {
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
@@ -456,40 +480,9 @@ class ChatViewController: UITableViewController {
                        selector: #selector(applicationWillResignActive(_:)),
                        name: UIApplication.willResignActiveNotification,
                        object: nil)
-
-        // things that do not affect the chatview
-        // and are delayed after the view is displayed
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else { return }
-            self.dcContext.marknoticedChat(chatId: self.chatId)
-        }
-        
-        handleUserVisibility(isVisible: true)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
-        navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-        isDismissing = true
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        isDismissing = false
-        ignoreInputBarChange = true
-        AppStateRestorer.shared.resetLastActiveChat()
-        handleUserVisibility(isVisible: false)
-        
-        removeMessageObservers()
-        let nc = NotificationCenter.default
-        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
-        audioController.stopAnyOngoingPlaying()
     }
     
-    private func removeMessageObservers() {
+    private func removeObservers() {
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -500,6 +493,9 @@ class ChatViewController: UITableViewController {
         if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
             nc.removeObserver(ephemeralTimerModifiedObserver)
         }
+
+        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -1083,7 +1079,7 @@ class ChatViewController: UITableViewController {
                           actionHandler: { [weak self] _ in
                             guard let self = self else { return }
                             // remove message observers early to avoid careless calls to dcContext methods
-                            self.removeMessageObservers()
+                            self.removeObservers()
                             self.dcContext.deleteChat(chatId: self.chatId)
                             self.navigationController?.popViewController(animated: true)
                           })
@@ -1802,4 +1798,17 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
         sendSticker(image)
     }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension ChatViewController: UINavigationControllerDelegate {
+    override func willMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            //logger.debug("chat observer: remove")
+            removeObservers()
+        } else {
+            //logger.debug("chat observer: setup")
+            setupObservers()
+        }
+     }
 }
