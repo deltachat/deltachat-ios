@@ -123,9 +123,9 @@ class ContactDetailViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupObservers()
         updateHeader() // maybe contact name has been edited
         updateCellValues()
-        setupObservers()
         tableView.reloadData()
     }
 

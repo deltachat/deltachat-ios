@@ -212,10 +212,10 @@ class GroupChatDetailViewController: UIViewController {
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
+        setupObservers()
         updateHeader()
         updateMediaCellValues()
         updateEphemeralTimerCellValue()
-        setupObservers()
     }
 
     
