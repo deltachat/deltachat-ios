@@ -146,7 +146,9 @@ public class DcEventHandler {
                 nc.post(
                     name: dcEphemeralTimerModified,
                     object: nil,
-                    userInfo: nil
+                    userInfo: [
+                        "chat_id": Int(data1),
+                    ]
                 )
             }
 

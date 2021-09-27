@@ -38,7 +38,7 @@ class ContactDetailViewModel {
     let chatId: Int
     var isSavedMessages: Bool
     var isDeviceTalk: Bool
-    private let sharedChats: DcChatlist
+    private var sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
     private var chatActions: [ChatAction] = []
     private var chatOptions: [ChatOption] = []
@@ -153,6 +153,19 @@ class ContactDetailViewModel {
     func getSharedChatIdAt(indexPath: IndexPath) -> Int {
         let index = indexPath.row
         return sharedChats.getChatId(index: index)
+    }
+
+    func getSharedChatIds() -> [Int] {
+        let max = sharedChats.length
+        var chatIds: [Int] = []
+        for n in 0..<max {
+            chatIds.append(sharedChats.getChatId(index: n))
+        }
+        return chatIds
+    }
+
+    func updateSharedChats() {
+        self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
     }
 
     func update(sharedChatCell cell: ContactCell, row index: Int) {

@@ -72,6 +72,10 @@ class GroupChatDetailViewController: UIViewController {
 
     // stores contactIds
     private var groupMemberIds: [Int] = []
+    
+    private var incomingMsgsObserver: NSObjectProtocol?
+    private var ephemeralTimerObserver: NSObjectProtocol?
+    private var chatModifiedObserver: NSObjectProtocol?
 
     // MARK: - subviews
 
@@ -208,14 +212,70 @@ class GroupChatDetailViewController: UIViewController {
         updateGroupMembers()
         tableView.reloadData() // to display updates
         editBarButtonItem.isEnabled = currentUser != nil
+        setupObservers()
         updateHeader()
-        updateCellValues()
+        updateMediaCellValues()
+        updateEphemeralTimerCellValue()
     }
 
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeObservers()
+    }
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory !=
             traitCollection.preferredContentSizeCategory {
             groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        }
+    }
+    
+    // MARK: - observers
+    private func setupObservers() {
+        let nc = NotificationCenter.default
+        incomingMsgsObserver = nc.addObserver(
+            forName: dcNotificationIncoming,
+            object: nil,
+            queue: OperationQueue.main) { [weak self] notification in
+            guard let self = self else { return }
+            if let ui = notification.userInfo,
+               self.chatId == ui["chat_id"] as? Int {
+                self.updateMediaCellValues()
+            }
+        }
+        ephemeralTimerObserver = nc.addObserver(
+            forName: dcEphemeralTimerModified,
+            object: nil,
+            queue: OperationQueue.main) { [weak self] notification in
+            guard let self = self else { return }
+            if let ui = notification.userInfo,
+               self.chatId == ui["chat_id"] as? Int {
+                self.updateEphemeralTimerCellValue()
+            }
+        }
+        chatModifiedObserver = nc.addObserver(
+            forName: dcNotificationChatModified,
+            object: nil,
+            queue: OperationQueue.main) { [weak self] notification in
+            guard let self = self else { return }
+            if let ui = notification.userInfo,
+               self.chatId == ui["chat_id"] as? Int {
+                self.updateHeader()
+                self.updateGroupMembers()
+            }
+        }
+    }
+    
+    private func removeObservers() {
+        let nc = NotificationCenter.default
+        if let msgChangedObserver = self.incomingMsgsObserver {
+            nc.removeObserver(msgChangedObserver)
+        }
+        if let ephemeralTimerObserver = self.ephemeralTimerObserver {
+            nc.removeObserver(ephemeralTimerObserver)
+        }
+        if let chatModifiedObserver = self.chatModifiedObserver {
+            nc.removeObserver(chatModifiedObserver)
         }
     }
 
@@ -239,8 +299,11 @@ class GroupChatDetailViewController: UIViewController {
         groupHeader.setVerified(isVerified: chat.isProtected)
     }
 
-    private func updateCellValues() {
+    private func updateEphemeralTimerCellValue() {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
+    }
+    
+    private func updateMediaCellValues() {
         galleryCell.detailTextLabel?.text = String.numberOrNone(galleryItemMessageIds.count)
         documentsCell.detailTextLabel?.text = String.numberOrNone(documentItemMessageIds.count)
     }

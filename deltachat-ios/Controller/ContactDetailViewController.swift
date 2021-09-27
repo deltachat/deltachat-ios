@@ -95,6 +95,9 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private var incomingMsgsObserver: NSObjectProtocol?
+    private var contactChangedObserver: NSObjectProtocol?
+
     init(dcContext: DcContext, contactId: Int) {
         self.viewModel = ContactDetailViewModel(dcContext: dcContext, contactId: contactId)
         super.init(style: .grouped)
@@ -120,9 +123,15 @@ class ContactDetailViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupObservers()
         updateHeader() // maybe contact name has been edited
         updateCellValues()
         tableView.reloadData()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeObservers()
     }
 
     // MARK: - setup and configuration
@@ -220,6 +229,47 @@ class ContactDetailViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.titleFor(section: section)
+    }
+
+    // MARK: - observers
+    private func setupObservers() {
+        let nc = NotificationCenter.default
+        contactChangedObserver = nc.addObserver(
+            forName: dcNotificationContactChanged,
+            object: nil,
+            queue: OperationQueue.main) { [weak self] notification in
+            guard let self = self else { return }
+            if let ui = notification.userInfo,
+               self.viewModel.contactId == ui["contact_id"] as? Int {
+                self.updateHeader()
+            }
+        }
+        incomingMsgsObserver = nc.addObserver(
+            forName: dcNotificationIncoming,
+            object: nil,
+            queue: OperationQueue.main) { [weak self] notification in
+            guard let self = self else { return }
+            if let ui = notification.userInfo,
+               let chatId = ui["chat_id"] as? Int {
+                if self.viewModel.getSharedChatIds().contains(chatId) {
+                    self.viewModel.updateSharedChats()
+                    if self.viewModel.chatId == chatId {
+                        self.updateCellValues()
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+
+    private func removeObservers() {
+        let nc = NotificationCenter.default
+        if let contactChangedObserver = self.contactChangedObserver {
+            nc.removeObserver(contactChangedObserver)
+        }
+        if let incomingMsgsObserver = self.incomingMsgsObserver {
+            nc.removeObserver(incomingMsgsObserver)
+        }
     }
 
     // MARK: - updates
