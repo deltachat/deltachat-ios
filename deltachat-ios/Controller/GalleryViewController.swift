@@ -6,6 +6,7 @@ class GalleryViewController: UIViewController {
 
     private let dcContext: DcContext
     // MARK: - data
+    private let chatId: Int
     private var mediaMessageIds: [Int]
     private var items: [Int: GalleryItem] = [:]
 
@@ -71,8 +72,9 @@ class GalleryViewController: UIViewController {
         return config
     }()
 
-    init(context: DcContext, mediaMessageIds: [Int]) {
+    init(context: DcContext, chatId: Int, mediaMessageIds: [Int]) {
         self.dcContext = context
+        self.chatId = chatId
         self.mediaMessageIds = mediaMessageIds
         super.init(nibName: nil, bundle: nil)
     }
@@ -134,7 +136,10 @@ class GalleryViewController: UIViewController {
 
     // MARK: - actions
     private func askToDeleteItem(at indexPath: IndexPath) {
-        let title = String.localized(stringID: "ask_delete_messages", count: 1)
+        let chat = dcContext.getChat(chatId: chatId)
+        let title = chat.isDeviceTalk ?
+            String.localized(stringID: "ask_delete_messages_simple", count: 1) :
+            String.localized(stringID: "ask_delete_messages", count: 1)
         let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
         let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             self?.deleteItem(at: indexPath)

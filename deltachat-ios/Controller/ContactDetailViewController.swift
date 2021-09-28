@@ -463,13 +463,13 @@ class ContactDetailViewController: UITableViewController {
 
     private func showDocuments() {
         let messageIds: [Int] = viewModel.documentItemMessageIds.reversed()
-        let fileGalleryController = DocumentGalleryController(context: viewModel.context, fileMessageIds: messageIds)
+        let fileGalleryController = DocumentGalleryController(context: viewModel.context, chatId: viewModel.chatId, fileMessageIds: messageIds)
         navigationController?.pushViewController(fileGalleryController, animated: true)
     }
 
     private func showGallery() {
         let messageIds: [Int] = viewModel.galleryItemMessageIds.reversed()
-        let galleryController = GalleryViewController(context: viewModel.context, mediaMessageIds: messageIds)
+        let galleryController = GalleryViewController(context: viewModel.context, chatId: viewModel.chatId, mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
     }
 

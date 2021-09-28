@@ -5,6 +5,7 @@ class DocumentGalleryController: UIViewController {
 
     private var fileMessageIds: [Int]
     private let dcContext: DcContext
+    private let chatId: Int
 
     private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -46,9 +47,10 @@ class DocumentGalleryController: UIViewController {
         return menu
     }()
 
-    init(context: DcContext, fileMessageIds: [Int]) {
+    init(context: DcContext, chatId: Int, fileMessageIds: [Int]) {
         self.dcContext = context
         self.fileMessageIds = fileMessageIds
+        self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
         self.title = String.localized("files")
     }
@@ -89,7 +91,10 @@ class DocumentGalleryController: UIViewController {
 
     // MARK: - actions
     private func askToDeleteItem(at indexPath: IndexPath) {
-        let title = String.localized(stringID: "ask_delete_messages", count: 1)
+        let chat = dcContext.getChat(chatId: chatId)
+        let title = chat.isDeviceTalk ?
+            String.localized(stringID: "ask_delete_messages_simple", count: 1) :
+            String.localized(stringID: "ask_delete_messages", count: 1)
         let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
         let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             self?.deleteItem(at: indexPath)
