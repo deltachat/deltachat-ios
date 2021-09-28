@@ -15,6 +15,7 @@ public class BaseMessageCell: UITableViewCell {
     private var mainContentViewLeadingConstraint: NSLayoutConstraint?
     private var mainContentViewTrailingConstraint: NSLayoutConstraint?
     private var actionBtnZeroHeightConstraint: NSLayoutConstraint?
+    private var actionBtnTrailingConstraint: NSLayoutConstraint?
 
     public var mainContentViewHorizontalPadding: CGFloat {
         get {
@@ -61,6 +62,7 @@ public class BaseMessageCell: UITableViewCell {
         set {
             mainContentAboveActionBtnConstraint?.constant = newValue ? -2 : 8
             actionBtnZeroHeightConstraint?.isActive = newValue
+            actionBtnTrailingConstraint?.isActive = !newValue
             actionButton.isHidden = newValue
         }
     }
@@ -199,7 +201,6 @@ public class BaseMessageCell: UITableViewCell {
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
             messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3),
             actionButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
-            actionButton.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 12),
             bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
             bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
             bottomLabel.constraintToBottomOf(actionButton, paddingTop: 8, priority: .defaultHigh),
@@ -223,6 +224,7 @@ public class BaseMessageCell: UITableViewCell {
         mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
 
         actionBtnZeroHeightConstraint = actionButton.constraintHeightTo(0)
+        actionBtnTrailingConstraint = actionButton.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 12)
 
         topCompactView = false
         bottomCompactView = false
