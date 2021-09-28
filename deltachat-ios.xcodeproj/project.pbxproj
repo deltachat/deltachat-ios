@@ -74,6 +74,7 @@
 		30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */; };
 		30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
+		30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */; };
 		30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348DE24F3F819005C93D1 /* ChatTableView.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
 		30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E424F6647D005C93D1 /* FileTextCell.swift */; };
@@ -325,6 +326,7 @@
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEphemeralMessageController.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
+		30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSearchAccessoryBar.swift; sourceTree = "<group>"; };
 		30E348DE24F3F819005C93D1 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
 		30E348E424F6647D005C93D1 /* FileTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTextCell.swift; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				303492CE2587C2DC00A523D0 /* ChatInputBar.swift */,
 				3067AA4B2666310E00525036 /* ChatInputTextView.swift */,
 				307A82CB25B8D26700748B57 /* ChatEditingBar.swift */,
+				30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */,
 				302D54692693591700A8B271 /* ChatContactRequestBar.swift */,
 				302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */,
 				30F8817524DA97DA0023780E /* BackgroundContainer.swift */,
@@ -1280,6 +1283,7 @@
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
+				30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */,
 				AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */,
 				AE8DD451249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift in Sources */,
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
