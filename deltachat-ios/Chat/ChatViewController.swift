@@ -469,6 +469,7 @@ class ChatViewController: UITableViewController {
                             self.insertMessage(self.dcContext.getMessage(id: id))
                         }
                     }
+                    self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
                 }
             }
         }
