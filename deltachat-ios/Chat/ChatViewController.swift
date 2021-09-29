@@ -240,7 +240,6 @@ class ChatViewController: UITableViewController {
         self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
-        self.navigationController?.delegate = self
     }
 
     required init?(coder _: NSCoder) {
@@ -420,6 +419,17 @@ class ChatViewController: UITableViewController {
         handleUserVisibility(isVisible: false)
         audioController.stopAnyOngoingPlaying()
     }
+
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            // logger.debug("chat observer: remove")
+            removeObservers()
+        } else {
+            // logger.debug("chat observer: setup")
+            setupObservers()
+        }
+     }
 
     private func setupObservers() {
         let nc = NotificationCenter.default
@@ -1800,15 +1810,3 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
     }
 }
 
-// MARK: - UINavigationControllerDelegate
-extension ChatViewController: UINavigationControllerDelegate {
-    override func willMove(toParent parent: UIViewController?) {
-        if parent == nil {
-            //logger.debug("chat observer: remove")
-            removeObservers()
-        } else {
-            //logger.debug("chat observer: setup")
-            setupObservers()
-        }
-     }
-}
