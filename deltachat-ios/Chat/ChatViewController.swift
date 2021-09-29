@@ -26,7 +26,11 @@ class ChatViewController: UITableViewController {
     private var ignoreInputBarChange = false
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
+
+    // search related
     private var isSearchActive: Bool = false
+    private var searchMessageIds: [Int] = []
+    private var searchResultIndex: Int = 0
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -1780,11 +1784,24 @@ extension ChatViewController: ChatEditingDelegate {
 extension ChatViewController: ChatSearchDelegate {
     func onSearchPreviousPressed() {
         logger.debug("onSearch Previous Pressed")
+        let searchResult = searchMessageIds
+        if searchResultIndex == 0 && !searchResult.isEmpty {
+            searchResultIndex = searchResult.count - 1
+        } else {
+            searchResultIndex -= 1
+        }
+        scrollToMessage(msgId: searchResult[searchResultIndex])
     }
 
     func onSearchNextPressed() {
         logger.debug("onSearch Next Pressed")
-
+        let searchResult = searchMessageIds
+        if searchResultIndex == searchResult.count - 1 {
+            searchResultIndex = 0
+        } else {
+            searchResultIndex += 1
+        }
+        scrollToMessage(msgId: searchResult[searchResultIndex])
     }
 }
 
@@ -1792,6 +1809,19 @@ extension ChatViewController: ChatSearchDelegate {
 extension ChatViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         logger.debug("searchbar: \(searchText)")
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self = self else { return }
+            let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.searchMessageIds = resultIds
+                self.searchResultIndex = self.searchMessageIds.isEmpty ? 0 : self.searchMessageIds.count - 1
+                self.searchAccessoryBar.isEnabled = !resultIds.isEmpty
+                if let lastId = resultIds.last {
+                    self.scrollToMessage(msgId: lastId)
+                }
+            }
+        }
     }
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
