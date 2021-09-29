@@ -26,6 +26,7 @@ class ChatViewController: UITableViewController {
     private var ignoreInputBarChange = false
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
+    private var isSearchActive: Bool = false
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -34,6 +35,17 @@ class ChatViewController: UITableViewController {
     lazy var draft: DraftModel = {
         let draft = DraftModel(dcContext: dcContext, chatId: chatId)
         return draft
+    }()
+
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = String.localized("search")
+        searchController.searchBar.delegate = self
+        searchController.searchBar.inputAccessoryView = messageInputBar
+        searchController.searchBar.autocorrectionType = .yes
+        searchController.searchBar.keyboardType = .default
+        return searchController
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
@@ -49,6 +61,13 @@ class ChatViewController: UITableViewController {
 
     public lazy var editingBar: ChatEditingBar = {
         let view = ChatEditingBar()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    public lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
+        let view = ChatSearchAccessoryBar()
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -261,6 +280,8 @@ class ChatViewController: UITableViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.backButtonTitle = String.localized("chat")
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -672,7 +693,12 @@ class ChatViewController: UITableViewController {
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
         }
-        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
+
+        if isSearchActive {
+            messageInputBar.setStackViewItems([searchAccessoryBar, draftArea], forStack: .top, animated: false)
+        } else {
+            messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: false)
+        }
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -1747,6 +1773,39 @@ extension ChatViewController: ChatEditingDelegate {
 
     func onCancelPressed() {
         setEditing(isEditing: false)
+    }
+}
+
+// MARK: - ChatSearchDelegate
+extension ChatViewController: ChatSearchDelegate {
+    func onSearchPreviousPressed() {
+        logger.debug("onSearch Previous Pressed")
+    }
+
+    func onSearchNextPressed() {
+        logger.debug("onSearch Next Pressed")
+
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension ChatViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        logger.debug("searchbar: \(searchText)")
+    }
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        logger.debug("searchbar: searchBarShouldBeginEditing")
+        isSearchActive = true
+        configureDraftArea(draft: draft)
+        return true
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        logger.debug("searchbar: searchBarTextDidEndEditing")
+        isSearchActive = false
+        configureDraftArea(draft: draft)
+        self.tableView.becomeFirstResponder()
     }
 }
 
