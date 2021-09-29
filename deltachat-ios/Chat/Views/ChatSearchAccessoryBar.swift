@@ -5,7 +5,6 @@ import DcCore
 public protocol ChatSearchDelegate: class {
     func onSearchPreviousPressed()
     func onSearchNextPressed()
-    func onCancelSearchPressed()
 }
 
 public class ChatSearchAccessoryBar: UIView, InputItem {
@@ -25,16 +24,6 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
     }
 
     weak var delegate: ChatSearchDelegate?
-
-    private lazy var cancelButton: UIButton = {
-        let view = UIButton()
-        view.setTitle(String.localized("cancel"), for: .normal)
-        view.setTitleColor(.systemBlue, for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.imageView?.contentMode = .scaleAspectFit
-        view.isUserInteractionEnabled = true
-        return view
-    }()
 
     private lazy var upButton: UIButton = {
         let view = UIButton()
@@ -69,7 +58,7 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [cancelButton, downButton, upButton])
+        let view = UIStackView(arrangedSubviews: [downButton, upButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .center
@@ -101,24 +90,16 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
             mainContentView.constraintAlignLeadingTo(self),
             mainContentView.constraintAlignTrailingTo(self),
             upButton.constraintHeightTo(36),
-            downButton.constraintHeightTo(26),
-            cancelButton.constraintHeightTo(36),
+            downButton.constraintHeightTo(36),
         ])
 
         backgroundColor = DcColors.chatBackgroundColor
-
-        let cancelGestureListener = UITapGestureRecognizer(target: self, action: #selector(onCancelPressed))
-        cancelButton.addGestureRecognizer(cancelGestureListener)
 
         let upGestaureListener = UITapGestureRecognizer(target: self, action: #selector(onUpPressed))
         upButton.addGestureRecognizer(upGestaureListener)
 
         let downGestureListener = UITapGestureRecognizer(target: self, action: #selector(onDownPressed))
         downButton.addGestureRecognizer(downGestureListener)
-    }
-
-    @objc func onCancelPressed() {
-        delegate?.onCancelSearchPressed()
     }
 
     @objc func onUpPressed() {
