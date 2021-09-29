@@ -27,11 +27,6 @@ class ChatViewController: UITableViewController {
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
 
-    // search related
-    private var isSearchActive: Bool = false
-    private var searchMessageIds: [Int] = []
-    private var searchResultIndex: Int = 0
-
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
     }()
@@ -41,7 +36,13 @@ class ChatViewController: UITableViewController {
         return draft
     }()
 
-    private lazy var searchController: UISearchController = {
+    // search related
+    var activateSearchOnAppear: Bool = false
+    private var isSearchActive: Bool = false
+    private var searchMessageIds: [Int] = []
+    private var searchResultIndex: Int = 0
+
+    lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
@@ -50,6 +51,14 @@ class ChatViewController: UITableViewController {
         searchController.searchBar.autocorrectionType = .yes
         searchController.searchBar.keyboardType = .default
         return searchController
+    }()
+
+    public lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
+        let view = ChatSearchAccessoryBar()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isEnabled = false
+        return view
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
@@ -65,13 +74,6 @@ class ChatViewController: UITableViewController {
 
     public lazy var editingBar: ChatEditingBar = {
         let view = ChatEditingBar()
-        view.delegate = self
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    public lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
-        let view = ChatSearchAccessoryBar()
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
