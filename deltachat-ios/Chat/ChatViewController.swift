@@ -358,6 +358,12 @@ class ChatViewController: UITableViewController {
         }
         if !isDismissing {
             self.tableView.becomeFirstResponder()
+            if activateSearchOnAppear {
+                DispatchQueue.main.async { [weak self] in
+                    self?.searchController.isActive = true
+                    self?.searchController.searchBar.becomeFirstResponder()
+                }
+            }
             var bottomInsets = self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight
             if UIApplication.shared.statusBarOrientation.isLandscape,
                let root = UIApplication.shared.keyWindow?.rootViewController {
@@ -1834,6 +1840,13 @@ extension ChatViewController: UISearchBarDelegate {
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        logger.debug("searchbar: searchBarTextDidEndEditing")
+        isSearchActive = false
+        configureDraftArea(draft: draft)
+        self.tableView.becomeFirstResponder()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         logger.debug("searchbar: searchBarTextDidEndEditing")
         isSearchActive = false
         configureDraftArea(draft: draft)

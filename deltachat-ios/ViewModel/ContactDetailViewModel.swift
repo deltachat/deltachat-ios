@@ -15,6 +15,7 @@ class ContactDetailViewModel {
     enum ChatOption {
         case gallery
         case documents
+        case search
         case ephemeralMessages
         case muteChat
         case startChat
@@ -71,7 +72,7 @@ class ContactDetailViewModel {
         sections.append(.chatActions)
 
         if chatId != 0 {
-            chatOptions = [.gallery, .documents]
+            chatOptions = [.gallery, .documents, .search]
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
             }

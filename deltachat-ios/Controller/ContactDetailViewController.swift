@@ -89,6 +89,17 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var searchCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("search")
+        cell.accessoryType = .disclosureIndicator
+        if viewModel.chatId == 0 {
+            cell.isUserInteractionEnabled = false
+            cell.textLabel?.isEnabled = false
+        }
+        return cell
+    }()
+
     private lazy var statusCell: MultilineLabelCell = {
         let cell = MultilineLabelCell()
         cell.multilineDelegate = self
@@ -170,6 +181,8 @@ class ContactDetailViewController: UITableViewController {
                 return documentsCell
             case .gallery:
                 return galleryCell
+            case .search:
+                return searchCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
             case .muteChat:
@@ -333,6 +346,8 @@ class ContactDetailViewController: UITableViewController {
             showDocuments()
         case .gallery:
             showGallery()
+        case .search:
+            showSearch()
         case .ephemeralMessages:
             showEphemeralMessagesController()
         case .muteChat:
@@ -471,6 +486,15 @@ class ContactDetailViewController: UITableViewController {
         let messageIds: [Int] = viewModel.galleryItemMessageIds.reversed()
         let galleryController = GalleryViewController(context: viewModel.context, chatId: viewModel.chatId, mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
+    }
+
+    private func showSearch() {
+        if let chatViewController = navigationController?.viewControllers.last(where: {
+            $0 is ChatViewController
+        }) as? ChatViewController {
+            chatViewController.activateSearchOnAppear = true
+            navigationController?.popViewController(animated: true)
+        }
     }
 
     private func showContactAvatarIfNeeded() {
