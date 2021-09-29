@@ -97,23 +97,16 @@ class ChatViewController: UITableViewController {
         return UIBarButtonItem(customView: imageView)
     }()
 
-    private lazy var badgeItem: UIBarButtonItem = {
+    private lazy var initialsBadge: InitialsBadge = {
         let badge: InitialsBadge
-        let chat = dcContext.getChat(chatId: chatId)
-        if let image = chat.profileImage {
-            badge = InitialsBadge(image: image, size: 28, accessibilityLabel: String.localized("menu_view_profile"))
-        } else {
-            badge = InitialsBadge(
-                name: chat.name,
-                color: chat.color,
-                size: 28,
-                accessibilityLabel: String.localized("menu_view_profile")
-            )
-            badge.setLabelFont(UIFont.systemFont(ofSize: 14))
-        }
-        badge.setVerified(chat.isProtected)
+        badge = InitialsBadge(size: 28, accessibilityLabel: String.localized("menu_view_profile"))
+        badge.setLabelFont(UIFont.systemFont(ofSize: 14))
         badge.accessibilityTraits = .button
-        return UIBarButtonItem(customView: badge)
+        return badge
+    }()
+
+    private lazy var badgeItem: UIBarButtonItem = {
+        return UIBarButtonItem(customView: initialsBadge)
     }()
 
     private lazy var contextMenu: ContextMenuProvider = {
@@ -812,6 +805,14 @@ class ChatViewController: UITableViewController {
 
         titleView.updateTitleView(title: chat.name, subtitle: subtitle)
         navigationItem.titleView = titleView
+
+        if let image = chat.profileImage {
+            initialsBadge.setImage(image)
+        } else {
+            initialsBadge.setName(chat.name)
+            initialsBadge.setColor(chat.color)
+        }
+        initialsBadge.setVerified(chat.isProtected)
 
         var rightBarButtonItems = [badgeItem]
         if chat.isSendingLocations {
