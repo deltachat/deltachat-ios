@@ -1117,7 +1117,10 @@ class ChatViewController: UITableViewController {
     }
 
     private func askToDeleteMessages(ids: [Int]) {
-        let title = String.localized(stringID: "ask_delete_messages", count: ids.count)
+        let chat = dcContext.getChat(chatId: chatId)
+        let title = chat.isDeviceTalk ?
+            String.localized(stringID: "ask_delete_messages_simple", count: ids.count) :
+            String.localized(stringID: "ask_delete_messages", count: ids.count)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
                             self.dcContext.deleteMessages(msgIds: ids)

@@ -379,12 +379,12 @@ class GroupChatDetailViewController: UIViewController {
 
     private func showDocuments() {
         let messageIds: [Int] = documentItemMessageIds.reversed()
-        let fileGalleryController = DocumentGalleryController(context: dcContext, fileMessageIds: messageIds)
+        let fileGalleryController = DocumentGalleryController(context: dcContext, chatId: chatId, fileMessageIds: messageIds)
         navigationController?.pushViewController(fileGalleryController, animated: true)    }
 
     private func showGallery() {
         let messageIds: [Int] = galleryItemMessageIds.reversed()
-        let galleryController = GalleryViewController(context: dcContext, mediaMessageIds: messageIds)
+        let galleryController = GalleryViewController(context: dcContext, chatId: chatId, mediaMessageIds: messageIds)
         navigationController?.pushViewController(galleryController, animated: true)
     }
 
