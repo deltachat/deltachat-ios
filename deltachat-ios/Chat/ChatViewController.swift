@@ -280,6 +280,7 @@ class ChatViewController: UITableViewController {
         } else if dcContext.getChat(chatId: chatId).isContactRequest {
             configureContactRequestBar()
         }
+        loadMessages()
     }
 
     private func configureUIForWriting() {
@@ -291,7 +292,11 @@ class ChatViewController: UITableViewController {
     }
 
     private func getTopInsetHeight() -> CGFloat {
-        return UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.bounds.height ?? 0)
+        let navigationBarHeight = (navigationController?.navigationBar.bounds.height ?? 0)
+        if let root = UIApplication.shared.keyWindow?.rootViewController {
+            return navigationBarHeight + root.view.safeAreaInsets.top
+        }
+        return UIApplication.shared.statusBarFrame.height + navigationBarHeight
     }
 
     private func startTimer() {
@@ -333,10 +338,15 @@ class ChatViewController: UITableViewController {
         }
         if !isDismissing {
             self.tableView.becomeFirstResponder()
-            loadMessages()
+            var bottomInsets = self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight
+            if UIApplication.shared.statusBarOrientation.isLandscape,
+               let root = UIApplication.shared.keyWindow?.rootViewController {
+                // in landscape we need to take safeAreaInsets into account, in portrait they're already part of the keyboard height
+                bottomInsets += root.view.safeAreaInsets.bottom
+            }
             self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
                                                        left: 0,
-                                                       bottom: self.messageInputBar.calculateIntrinsicContentSize().height,
+                                                       bottom: bottomInsets,
                                                        right: 0)
 
             if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
@@ -358,9 +368,10 @@ class ChatViewController: UITableViewController {
                         self.scrollToLastUnseenMessage()
                     }
                 }, completion: { [weak self] finished in
+                    guard let self = self else { return }
                     if finished {
-                        self?.isInitial = false
-                        self?.ignoreInputBarChange = false
+                        self.isInitial = false
+                        self.ignoreInputBarChange = false
                     }
                 })
             }
@@ -382,6 +393,45 @@ class ChatViewController: UITableViewController {
         super.viewDidAppear(animated)
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
 
+        // things that do not affect the chatview
+        // and are delayed after the view is displayed
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            self.dcContext.marknoticedChat(chatId: self.chatId)
+        }
+
+        handleUserVisibility(isVisible: true)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
+        navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
+        isDismissing = true
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        isDismissing = false
+        ignoreInputBarChange = true
+        AppStateRestorer.shared.resetLastActiveChat()
+        handleUserVisibility(isVisible: false)
+        audioController.stopAnyOngoingPlaying()
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            // logger.debug("chat observer: remove")
+            removeObservers()
+        } else {
+            // logger.debug("chat observer: setup")
+            setupObservers()
+        }
+     }
+
+    private func setupObservers() {
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
@@ -440,40 +490,9 @@ class ChatViewController: UITableViewController {
                        selector: #selector(applicationWillResignActive(_:)),
                        name: UIApplication.willResignActiveNotification,
                        object: nil)
-
-        // things that do not affect the chatview
-        // and are delayed after the view is displayed
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else { return }
-            self.dcContext.marknoticedChat(chatId: self.chatId)
-        }
-        
-        handleUserVisibility(isVisible: true)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
-        navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-        isDismissing = true
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        isDismissing = false
-        ignoreInputBarChange = true
-        AppStateRestorer.shared.resetLastActiveChat()
-        handleUserVisibility(isVisible: false)
-        
-        removeMessageObservers()
-        let nc = NotificationCenter.default
-        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
-        audioController.stopAnyOngoingPlaying()
     }
     
-    private func removeMessageObservers() {
+    private func removeObservers() {
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -484,6 +503,9 @@ class ChatViewController: UITableViewController {
         if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
             nc.removeObserver(ephemeralTimerModifiedObserver)
         }
+
+        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -1067,7 +1089,7 @@ class ChatViewController: UITableViewController {
                           actionHandler: { [weak self] _ in
                             guard let self = self else { return }
                             // remove message observers early to avoid careless calls to dcContext methods
-                            self.removeMessageObservers()
+                            self.removeObservers()
                             self.dcContext.deleteChat(chatId: self.chatId)
                             self.navigationController?.popViewController(animated: true)
                           })
@@ -1647,12 +1669,18 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         if isDismissing {
             return
         }
+        var bottomInsets = size.height + messageInputBar.keyboardHeight
+        if UIApplication.shared.statusBarOrientation.isLandscape,
+           let root = UIApplication.shared.keyWindow?.rootViewController {
+            // in landscape we need to take safeAreaInsets into account, in portrait they're already part of the keyboard height
+            bottomInsets += root.view.safeAreaInsets.bottom
+        }
         self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
                                                    left: 0,
-                                                   bottom: size.height + messageInputBar.keyboardHeight,
+                                                   bottom: bottomInsets,
                                                    right: 0)
         if isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating  && highlightedMsg == nil && !ignoreInputBarChange {
-            self.tableView.setContentOffset(CGPoint(x: 0, y: tableView.contentSize.height), animated: true)
+            scrollToBottom()
         }
     }
 }
@@ -1781,3 +1809,4 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
         sendSticker(image)
     }
 }
+
