@@ -49,7 +49,6 @@
 "this_week" = "இந்த வாரம்";
 "this_month" = "இந்த மாதம்";
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "நான்";
 "draft" = "வரைவு";
 "image" = "படம்";

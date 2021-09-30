@@ -79,13 +79,14 @@
 "last_month" = "Ostatni miesiąc";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "Ja";
 "draft" = "Szkic";
 "image" = "Obraz";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Odpowiedź";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Naklejka";
 "images" = "Obrazy";
 "audio" = "Audio";
 "voice_message" = "Wiadomość głosowa";
@@ -281,6 +282,7 @@
 "chat_archived_label" = "Zarchiwizowane";
 "chat_no_messages" = "Brak wiadomości.";
 "chat_self_talk_subtitle" = "Wiadomości wysłane do siebie";
+"archive_empty_hint" = "Jeśli zarchiwizujesz czaty, zostaną one pokazane tutaj.";
 "saved_messages" = "Zapisane wiadomości";
 "saved_messages_explain" = "• Przesyłaj tu wiadomości, aby mieć je pod ręką\n\n• Rób notatki lub notatki głosowe\n\n• Dołączaj media, aby je zachować";
 // this "Saved" should match the "Saved" from "Saved messages"
@@ -348,6 +350,15 @@
 "send_message" = "Wyślij wiadomość";
 
 
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Łączenie…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Aktualizowanie…";
+"sending" = "Wysyłanie…";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Wiadomości";
+
+
 // welcome and login
 "welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
 "login_title" = "Zaloguj się";
@@ -367,6 +378,13 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Bezpieczeństwo SMTP";
 "login_auth_method" = "Metoda autoryzacji";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Użyj SOCKS5";
+"login_socks5_host" = "Host SOCKS5";
+"login_socks5_port" = "Port SOCKS5";
+"login_socks5_user" = "Użytkownik SOCKS5";
+"login_socks5_password" = "Hasło SOCKS5";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Sprawdzanie %1$@";
 "login_info_oauth2_title" = "Kontynuuj w uproszczonej konfiguracji?";
@@ -500,6 +518,14 @@
 "pref_background_custom_image" = "Własny obraz";
 "pref_background_custom_color" = "Własny kolor";
 "export_aborted" = "Eksport przerwany.";
+"auto_download_messages" = "Automatyczne pobieranie wiadomości";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Do %1$@";
+"up_to_x_most_worse_quality_images" = "Do %1$@, większość obrazów gorszej jakości.";
+"up_to_x_most_balanced_quality_images" = "Do %1$@, obrazy o najbardziej zrównoważonej jakości";
+"no_limit" = "Bez limitu";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "Wiadomość %1$@";
 "profile_image_select" = "Wybierz zdjęcie profilowe";
 "select_your_new_profile_image" = "Wybierz nowe zdjęcie profilowe";
 "profile_image_delete" = "Usuń zdjęcie profilowe";

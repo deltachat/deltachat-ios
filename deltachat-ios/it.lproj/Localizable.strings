@@ -143,6 +143,11 @@
 "menu_new_chat" = "Nuova Chat";
 "menu_new_group" = "Nuovo Gruppo";
 "menu_new_verified_group" = "Nuovo Gruppo Verificato";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Lista Trasmissione";
+"broadcast_lists" = "Liste Trasmissioni";
+"new_broadcast_list" = "Nuova Lista Trasmissione";
+"add_recipients" = "Aggiungi Destinatari";
 "menu_send" = "Inviato";
 "menu_toggle_keyboard" = "Alterna la Tastiera Emoji";
 "menu_edit_group" = "Modifica Gruppo";
@@ -269,6 +274,8 @@
 "ask_delete_value" = "Elimina %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Rimuovere %1$@ dal gruppo?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Rimuovere %1$@ dalla lista trasmissione?";
 "open_url_confirmation" = "Vuoi aprire questo link?";
 
 
@@ -285,6 +292,7 @@
 "chat_camera_unavailable" = "Fotocamera non disponibile.";
 "chat_unable_to_record_audio" = "Impossibile registrare audio.";
 "chat_no_messages_hint" = "Invia un messaggio a %1$@:\n\n• Non è necessario che anche %2$@ usi Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante e non essere crittografato. ";
+"chat_new_broadcast_hint" = "In una lista trasmissione, gli altri riceveranno messaggi nelle loro chat private con te.\n\nI destinatari non saranno a conoscenza l\'uno dell\'altro.";
 "chat_new_group_hint" = "Invia il primo messaggio per permettere agli altri di rispondere nel gruppo\n\n• Non è necessario che tutti i membri usino Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante.";
 "chat_record_slide_to_cancel" = "Scorri per annullare";
 "chat_record_explain" = "Tocca e mantieni per registrare un messaggio vocale, rilascia per inviare ";
@@ -378,7 +386,7 @@
 // Used as a headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Messaggi in uscita";
 // Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
-"storage_on_domain" = "Memorizzazione su %1$@";
+"storage_on_domain" = "Spazio su %1$@";
 "connectivity" = "Connettività";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Non connesso";

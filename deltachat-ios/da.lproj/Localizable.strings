@@ -73,7 +73,6 @@
 "last_month" = "Sidste måned";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "Mig";
 "draft" = "Kladde";
 "image" = "Billede";

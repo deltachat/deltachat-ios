@@ -80,7 +80,6 @@
 "last_month" = "先月";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "自分";
 "draft" = "下書き";
 "image" = "画像";

@@ -143,6 +143,11 @@
 "menu_new_chat" = "Neuer Chat";
 "menu_new_group" = "Neue Gruppe";
 "menu_new_verified_group" = "Neue verifizierte Gruppe";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Broadcast-Liste";
+"broadcast_lists" = "Broadcast-Listen";
+"new_broadcast_list" = "Neue Broadcast-Liste";
+"add_recipients" = "Empfänger hinzufügen";
 "menu_send" = "Senden";
 "menu_toggle_keyboard" = "Emojis einblenden";
 "menu_edit_group" = "Gruppe bearbeiten";
@@ -269,6 +274,8 @@
 "ask_delete_value" = "%1$@ löschen?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ aus der Gruppe löschen?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "%1$@ von der Broadcast-Liste entfernen?";
 "open_url_confirmation" = "Diesen Link öffnen?";
 
 
@@ -285,6 +292,7 @@
 "chat_camera_unavailable" = "Kamera nicht verfügbar.";
 "chat_unable_to_record_audio" = "Audio kann nicht aufgenommen werden.";
 "chat_no_messages_hint" = "Eine Nachricht an %1$@ senden:\n\n• Es ist in Ordnung, wenn %2$@ kein Delta Chat verwendet.\n\n• Die Übermittlung der ersten Nachricht kann eine Weile dauern und erfolgt unverschlüsselt. ";
+"chat_new_broadcast_hint" = "In Broadcast-Listen erhalten die Empfänger die Nachrichten in den privaten Chats mit Ihnen.\n\nDie Empfänger wissen nicht, wer die anderen Empfänger sind.";
 "chat_new_group_hint" = "Verfassen Sie die erste Nachricht, damit andere innerhalb dieser Gruppe antworten können.\n\n-- Es ist in Ordnung, wenn nicht alle Mitglieder Delta Chat verwenden.\n\n-- Die Zustellung der ersten Nachricht kann einige Zeit dauern.";
 "chat_record_slide_to_cancel" = "Schieben, um abzubrechen";
 "chat_record_explain" = "Tippen und halten, um eine Sprachnachricht aufzunehmen, loslassen um zu senden. ";

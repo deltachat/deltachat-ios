@@ -78,7 +78,6 @@
 "last_month" = "Praeitą mėnesį";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "Aš";
 "draft" = "Juodraštis";
 "image" = "Paveikslas";
@@ -281,6 +280,8 @@
 "messaging_disabled_device_chat" = "Šiame pokalbyje yra vietiniu lygmeniu sukurtos žinutės. Štai kodėl negalite rašyti jokių žinučių.";
 "cannot_display_unsuported_file_type" = "Nepavyksta atvaizduoti šio failo tipo: %1$@";
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";
+// chat audit log
+"chat_audit_log_empty_message" = "Čia atsiras šio pokalbio sisteminės žinutės";
 "puny_code_warning_header" = "Aptikta įtartina nuoroda";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Ar tikrai norite apsilankyti %1$@?";
@@ -324,6 +325,8 @@
 "connectivity_updating" = "Atnaujinama…";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "Prisijungta";
+"sending" = "Siunčiama…";
+"last_msg_sent_successfully" = "Paskutinė žinutė sėkmingai išsiųsta.";
 // welcome and login
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "login_title" = "Prisijungti";
@@ -343,6 +346,13 @@
 "login_smtp_port" = "SMTP prievadas";
 "login_smtp_security" = "SMTP saugumas";
 "login_auth_method" = "Įgaliojimų suteikimo metodas";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Naudoti SOCKS5";
+"login_socks5_host" = "SOCKS5 serveris";
+"login_socks5_port" = "SOCKS5 prievadas";
+"login_socks5_user" = "SOCKS5 naudotojas";
+"login_socks5_password" = "SOCKS5 slaptažodis";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Tikrinamas %1$@";
 "login_info_oauth2_title" = "Tęsti, naudojant supaprastintą sąranką?";
@@ -367,6 +377,7 @@
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
 "delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";
 "switching_account" = "Perjungiama paskyra…";
+"unconfigured_account_hint" = "Atverkite paskyrą norėdami ją konfigūruoti.";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfigūracija patyrė nesėkmę. Klaida: %1$@";
 
@@ -539,6 +550,8 @@
 "systemmsg_chat_protection_disabled" = "Pokalbio apsauga išjungta.";
 "systemmsg_chat_protection_enabled" = "Pokalbio apsauga įjungta.";
 
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Atrodo, kad jūsų įrenginyje yra nustatyta netiksli data ar laikas (%1$@).\n\nSuderinkite savo laikrodį ⏰🔧 kad užtikrintumėte, jog žinutės bus gaunamos teisingai.";
 // qr code stuff
 "qr_code" = "QR kodas";
 "load_qr_code_as_image" = "Įkelti QR kodą kaip paveikslą";

@@ -143,6 +143,11 @@
 "menu_new_chat" = "Nieuw gesprek";
 "menu_new_group" = "Nieuwe groep";
 "menu_new_verified_group" = "Nieuwe goedgekeurde groep";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Uitzendlijst";
+"broadcast_lists" = "Uitzendlijsten";
+"new_broadcast_list" = "Nieuwe uitzendlijst";
+"add_recipients" = "Ontvangers toevoegen";
 "menu_send" = "Versturen";
 "menu_toggle_keyboard" = "Emoji-toetsenbord tonen/verbergen";
 "menu_edit_group" = "Groep aanpassen";
@@ -269,6 +274,8 @@
 "ask_delete_value" = "Wil je %1$@ verwijderen?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Wil je %1$@ verwijderen van de uitzendlijst?";
 "open_url_confirmation" = "Weet je zeker dat je deze link wilt openen?";
 
 

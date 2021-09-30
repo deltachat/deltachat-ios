@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "យល់ព្រម";
 "cancel" = "ចោល";
+"clear_search" = "លុបការស្វែងរក";
 "yes" = "បាទ/ចាស";
 "no" = "ទេ";
 "select" = "សំរាំង";
@@ -15,6 +16,8 @@
 "automatic" = "ដោយស្វ័យប្រវត្ដិ";
 "strict" = "យ៉ាង ដិតដល";
 "open" = "បើក";
+"download" = "ទាញយក";
+"downloading" = "កំពុងទាញយក…";
 "open_attachment" = "បើកឯកសារភ្ជាប់";
 "join" = "ចូលរួម";
 "rejoin" = "ចូលរួមម្តងទៀត";
@@ -38,6 +41,11 @@
 "main_menu" = "បញ្ជីដើម";
 "start_chat" = "ចាប់ផ្តើមសន្ទនា";
 "show_full_message" = "បង្ហាញសារទាំងស្រុង…";
+"show_full_message_in_browser" = "បង្ហាញសារពេញលេញ នៅក្នុងកម្មវិធីរុករក…";
+// this is shown as placeholder when something is loading at some places
+"loading" = "កំពុងផ្ទុក…";
+"hide" = "លាក់";
+"activate" = "ធ្វើឲ្យសកម្ម";
 "load_remote_content" = "ផ្ទុករូបភាពពីខាងក្រៅ";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "រូបភាពពីខាងក្រៅអាចប្រើបានប្រើដើម្បីតាមដានអ្នក។\n\nការកំណត់នេះក៏អនុញ្ញាតឱ្យផ្ទុកពុម្ពអក្សរនិងមាតិកាផ្សេងទៀត។ ទោះបីជាវាត្រូវបានបិទក៏ដោយអ្នកនៅតែអាចមើលឃើញរូបភាពដែលបានបង្កប់ឬលាក់ទុក។\n\nផ្ទុករូបភាពពីខាងក្រៅ?";
@@ -75,16 +83,18 @@
 "last_month" = "ខែមុន";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "ខ្ញុំ";
 "draft" = "ពង្រាង";
 "image" = "រូបភាព";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "ចម្លើយតប";
 "gif" = "រូបភាពចលនា";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "ស្លាក";
 "images" = "រូបភាព";
 "audio" = "សម្លេង";
 "voice_message" = "សារជាសម្លេង";
+"forwarded" = "បានបញ្ជូនបន្ត";
 "forwarded_message" = "សារដែលបានបញ្ជូនបន្ត";
 // %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "បញ្ជូនបន្តពី %1$@";
@@ -93,6 +103,10 @@
 "contact" = "ទំនាក់ទំនង";
 "verified_contact" = "ទំនាក់ទំនងដែលបានផ្ទៀងផ្ទាត់";
 "camera" = "កាមេរ៉ា";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+"capture" = "ចាប់យក";
+"switch_camera" = "ប្តូរកាមេរ៉ា";
+"toggle_fullscreen" = "បិទបើករបៀបពេញអេក្រង់";
 "location" = "ទីតាំង";
 "gallery" = "វិចិត្រសាល";
 "images_and_videos" = "រូបភាព និងវីដេអូ";
@@ -149,13 +163,16 @@
 "menu_copy_to_clipboard" = "ចម្លងទៅក្តារខ្ទាស់ឯកសារ";
 "menu_copy_selection_to_clipboard" = "ចម្លងផ្នែកខ្លះ";
 "menu_copy_link_to_clipboard" = "ចម្លងតំណភ្ជាប់";
-"paste_from_clipboard" = "ទាញយកពីក្តារខ្ទាស់ឯកសារ";
+"menu_copy_text_to_clipboard" = "ចម្លងអក្សរ";
+"menu_copy_image_to_clipboard" = "ចម្លងរូបភាព";
+"paste_from_clipboard" = "បិទភ្ជាប់ ពីក្តារខ្ទាស់";
 "menu_forward" = "បញ្ជូនបន្តសារ";
 "menu_resend" = "ផ្ញើសារម្តងទៀត";
 "menu_reply" = "ឆ្លើយតបសារ";
 "menu_mute" = "ធ្វើឲ្យមិនឃើញមិនលឺការជូនដំណឹង";
 "menu_unmute" = "ចេញពីមិនឃើញមិនលឺ";
 "menu_export_attachment" = "នាំចេញឯកសារភ្ជាប់";
+"menu_export_attachments" = "នាំចេញ ឯកសារភ្ជាប់";
 "menu_all_media" = "ប្រព័ន្ធផ្សព្វផ្សាយទាំងអស់";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "បង្ហាញនៅក្នុងសន្ទនា";
@@ -164,11 +181,13 @@
 "block" = "រារាំង";
 "menu_block_contact" = "រារាំងទំនាក់ទំនង";
 "menu_unblock_contact" = "មិនរារាំងទំនាក់ទំនង";
+"accept" = "ទទួលយក";
 "menu_play" = "ចាក់";
 "menu_pause" = "ផ្អាក";
 "menu_scroll_to_bottom" = "រំកិលចុះទៅក្រោម";
 "menu_scroll_to_top" = "រំកិលឡើងទៅលើ";
 "menu_help" = "ជំនួយ";
+"privacy_policy" = "គោលការណ៍ភាពឯកជន";
 "menu_select_all" = "ជ្រើសរើសទាំងអស់";
 "select_more" = "ជ្រើសរើសថែមទៀត";
 "menu_expand" = "លាត";
@@ -181,6 +200,12 @@
 "menu_zoom_in" = "បង្រួមទំហំ";
 "menu_zoom_out" = "ពង្រីកទំហំ";
 "menu_save_log" = "រក្សាទុកកំណត់ហេតុ";
+"menu_more_options" = "ជម្រើសជាច្រើនទៀត";
+"menu_learn_spelling" = "រៀនប្រកបអក្សរ";
+"menu_chat_audit_log" = "កំណត់ហេតុសវនកម្មជជែកកំសាន្ត";
+"jump_to_message" = "លោតទៅកាន់សារ";
+"copy_json" = "ចម្លង JSON";
+"replace_draft" = "បន្លាស់សេចក្តីព្រាង";
 "title_share_location" = "ចែករំលែក ទីតាំងជាមួយសមាជិកក្រុមទាំងអស់";
 "device_talk" = "សារពីឧបករណ៍";
 "device_talk_subtitle" = "សារដែលបានបង្កើតពីសា Delta Chat";
@@ -230,6 +255,7 @@
 
 // get confirmations
 "ask_leave_group" = "តើអ្នកប្រាកដហើយថាចង់ចាកចេញពីក្រុមនេះ?";
+"ask_delete_message" = "តើអ្នកប្រាកដថា ចង់លុបសារនេះ?";
 "ask_forward" = "បញ្ជូនសារទៅកាន់ %1$@?";
 "ask_forward_multiple" = "បញ្ជូនសារទាំងនេះទៅកាន់សន្ទនា %1$d?";
 "ask_export_attachment" = "នាំចេញឯកសារភ្ជាប់? ការនាំចេញឯកសារភ្ជាប់ នឹងអនុញ្ញាតឲ្យកម្មវិធីផ្សេងទៀត ដំណើរការនៅលើឧបករណ៍របស់អ្នក។\n\nបន្ត?";
@@ -267,8 +293,10 @@
 "chat_share_with_title" = "ចែករំលែកជាមួយ";
 "chat_input_placeholder" = "សារ";
 "chat_archived_label" = " បានរក្សាទុកជាឯកសារ";
+"chat_request_label" = "សំណើ";
 "chat_no_messages" = "គ្មានសារ";
 "chat_self_talk_subtitle" = "សារខ្ញុំបានផ្ញើទៅខ្លួនឯង";
+"archive_empty_hint" = "ប្រសិនបើអ្នករក្សាទុកប័ណ្ណសារសន្ទនា សារនឹងបង្ហាញនៅទីនេះ។";
 "saved_messages" = "សារដែលបានរក្សាទុករួចហើយ";
 "saved_messages_explain" = "• បញ្ជូនសារនៅទីនេះដើម្បីងាយស្រួលចូល\n\n• កត់សម្គាល់ រឺកំណត់ត្រាសម្លេង\n\n• ភ្ជាប់ឯកសារដើម្បីរក្សាទុក។";
 // this "Saved" should match the "Saved" from "Saved messages"
@@ -281,15 +309,36 @@
 "messaging_disabled_not_in_group" = "អ្នកមិនអាចសរសេរ ពីព្រោះអ្នកមិននៅក្នុងក្រុមនេះ។ ដើម្បីចូលរួម សុំសមាជិកផ្សេងទៀត។";
 "messaging_disabled_device_chat" = "ការសន្ទនានេះផ្ទុកសារក្នុងតំបន់។ ដូច្នេះអ្នកមិនអាចសរសេរសារណាមួយបានទេ។";
 "messaging_disabled_deaddrop" = "ចុចលើសារដើម្បីទទួលយក ឬបដិសេធស្នើសុំទំនាក់ទំនង។";
+"messaging_disabled_mailing_list" = "ការផ្ញើសារ នៅក្នុងបញ្ជីប៉ុស្តិ៍សំបុត្រ មិនទាន់ត្រូវបានគាំទ្រនៅឡើយ។";
 "cannot_display_unsuported_file_type" = "មិនអាចបង្ហាញប្រភេទឯកសារនេះ៖ %1$@";
 "attachment_failed_to_load" = "បានបរាជ័យ ក្នុងការផ្ទុកឯកសារភ្ជាប់។";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "ចាក់សោរ ការថត";
+
 // mailing lists
 "mailing_list" = "អ៊ីម៉ែលការផ្សាយ";
 "ask_show_mailing_list" = "បង្ហាញសារអ៊ីម៉ែលការផ្សាយ \"%1$@\"?";
+"mailing_list_profile_info" = "ការផ្លាស់ប្តូរឈ្មោះឬរូបភាពនៅលើ បញ្ជីប៉ុស្តិ៍សំបុត្រ អនុវត្តចំពោះឧបករណ៍នេះប៉ុណ្ណោះ។";
+
 // map
 "filter_map_on_time" = "បង្ហាញទីតាំងនៅក្នុងស៊ុមពេលវេលា";
 "show_location_traces" = "បង្ហាញដាន";
 "add_poi" = "ផ្ញើចំណុចចំណាប់អារម្មណ៍";
+
+// chat audit log
+"chat_audit_log_empty_message" = "សារប្រព័ន្ធ នៃសន្ទនានេះ នឹងបង្ហាញនៅទីនេះ។";
+"chat_audit_log_title" = "កំណត់ហេតុសវនកម្មជជែកកំសាន្តសម្រាប់ %1$@";
+"chat_audit_log_description" = "ទិដ្ឋភាពនេះ បង្ហាញតែប្រព័ន្ធ និងពត៌មានសារ។ ប្រយោជន៍សម្រាប់ការស្វែងរកសកម្មភាពសារចុងក្រោយ ដោយគ្មានរមូរតាមសារធម្មតា។";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "កុំសួរម្តងទៀតសម្រាប់ %1$@";
+"puny_code_warning_header" = "បានរកឃើញតំណគួរឱ្យសង្ស័យ";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "តើអ្នកប្រាកដថា អ្នកចង់ទៅលេង %1$@?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "អ្នកបានធ្វើតាមតំណ ដែលអាចបង្ហាញពីតួអក្សរខុស ដោយប្រើរូបស្រដៀងគ្នាពីអក្ខរក្រមផ្សេងៗ។ ការធ្វើតាមតំណភ្ជាប់ដែលមានស្លាក %1$@ នឹងនាំទៅដល់ %2$@ ដែលមិនមែនជាតួអក្សរឡាតាំងធម្មតា។ ប្រសិនបើអ្នកមិនបាន រំពឹងគិតថាមានតួអក្សរបែបនេះ តំណនេះអាចបង្កគ្រោះថ្នាក់។";
+
 
 // search
 "search" = "ស្វែងរក";
@@ -322,6 +371,29 @@
 "send_message" = "ផ្ញើ​សារ";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "សារចូល";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "សារចេញ";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "ទំហំផ្ទុកនៅលើ %1$@";
+"connectivity" = "ការតភ្ជាប់និងសេវាកម្ម";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "មិនបានតភ្ជាប់";
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "កំពុងស្វែងរកការតភ្ជាប់…";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "កំពុងធ្វើបច្ចុប្បន្នភាព…";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "បានតភ្ជាប់";
+"sending" = "កំពុងបញ្ជូន…";
+"last_msg_sent_successfully" = "បានផ្ញើសារចុងក្រោយដោយជោគជ័យ។";
+"not_supported_by_provider" = "មិនត្រូវបានគាំទ្រ ដោយកម្មវិធីផ្តល់សេវារបស់អ្នកទេ។";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "សារ";
+
+
 // welcome and login
 "welcome_intro1_message" = "អ្នកនាំសារជាមួយនឹងវិសាលភាពទស្សនិកក្នុងពិភពលោក។ ដោយឥតគិតថ្លៃ និងឯករាជ្យ។";
 "login_title" = "កត់ចូល";
@@ -341,6 +413,13 @@
 "login_smtp_port" = "ច្រករបស SMTP";
 "login_smtp_security" = "សន្តិសុខ SMTP";
 "login_auth_method" = "ការចុះបញ្ជី";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "ប្រើ SOCKS5";
+"login_socks5_host" = "ម្ចាស់ SOCKS5";
+"login_socks5_port" = "ច្រក SOCKS5";
+"login_socks5_user" = "អ្នកប្រើប្រាស់ SOCKS5";
+"login_socks5_password" = "ពាក្យសម្ងាត់ SOCKS5";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "ត្រួតពិនិត្យ %1$@";
 "login_info_oauth2_title" = "បន្តជាមួយការដំឡើងសាមញ្ញ?";
@@ -366,7 +445,10 @@
 "delete_account_ask" = "តើអ្នកប្រាកដហើយថាចង់លុបទិន្នន័យគណនីរបស់អ្នក?";
 "delete_account_explain_with_name" = "ទិន្នន័យគណនីទាំងអស់របស់ \"%1$@\" នៅលើឧបករណ៍នេះនឹងបានលុប រួមបញ្ចូលទាំងការរៀបចំ ទៅបញ្ចប់ការអុិនគ្រឹបឧបករណ៍ដល់ឧបករណ៍ ទំនាក់ទំនង សន្ទនា សារ និងសម្លេង។ សកម្មភាពនេះមិនអាចធ្វើឡើងវិញបានទេ។";
 "switching_account" = "កំពុងប្តូរឆ្លាស់គណនី…";
+"unconfigured_account" = "គណនីដែលមិនបានកំណត់រចនាសម្ព័ន្";
+"unconfigured_account_hint" = "បើកគណនី ដើម្បីកំណត់រចនាសម្ព័ន្ធវា។";
 "try_connect_now" = "ព្យាយាមភ្ជាប់ឥលូវនេះ";
+"sync_all" = "ធ្វើសមកាលកម្មទាំងអស់";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "ការកំណត់រចនាសម្ព័ន្ឌ បរាជ័យ។ កំហុស៖ %1$@";
 
@@ -474,9 +556,22 @@
 "pref_background_custom_image" = "រួបភាពផ្ទាល់ខ្លួន";
 "pref_background_custom_color" = "ពណ៌ផ្ទាល់ខ្លួន";
 "export_aborted" = "ការនាំចេញបានបញ្ឈប់";
+"auto_download_messages" = "ទាញយកសារដោយស្វ័យប្រវត្តិ";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "រហូតដល់ %1$@";
+"up_to_x_most_worse_quality_images" = "រហូតដល់ %1$@ រូបភាពគុណភាពអាក្រក់បំផុត";
+"up_to_x_most_balanced_quality_images" = "រហូតដល់ %1$@ រូបភាពដែលមានគុណភាពមានតុល្យភាពបំផុត";
+"no_limit" = "គ្មានដែនកំណត់";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "សារ %1$@";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "ទាញយកអតិបរមា អាចប្រើបានរហូតដល់ %1$@";
 "profile_image_select" = "ជ្រើសរើសរូបភាពទិន្ន័យផ្ទាល់ខ្លួន";
 "select_your_new_profile_image" = "ជ្រើសរើសរូបភាពទិន្នន័យផ្ទាល់ខ្លួនថ្មី";
 "profile_image_delete" = "លុបរូបភាពទិន្នន័យផ្ទាល់ខ្លួន";
+"pref_show_tray_icon" = "បង្ហាញរូបតំណាងថាស";
+"pref_edit_profile" = "កែសម្រួល ទិន្នន័យផ្ទាល់ខ្លួន";
+
 // Emoji picker and categories
 "emoji_search_results" = "លទ្ធផលស្វែងរក";
 "emoji_not_found" = "រកមិនឃើញរូបសញ្ញាអារម្មណ៍";
@@ -568,6 +663,16 @@
 "systemmsg_chat_protection_disabled" = "ការការពារសន្ទនាត្រូវបានបិទ";
 "systemmsg_chat_protection_enabled" = "ការការពារសន្ទនាត្រូវបានបើក";
 
+"devicemsg_self_deleted" = "អ្នកបានលុប \"សារដែលបានរក្សាទុក\" សន្ទនា។\n\nℹ️ ដើម្បីប្រើមុខងារ \"សារដែលបានរក្សាទុក\" ជាថ្មីម្តងទៀត សូមបង្កើតសន្ទនាថ្មីជាមួយខ្លួនអ្នក។";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️️ឃ្លាំងផ្ទុករបស់កម្មវិធីផ្តល់សេវាឲ្យអ្នក ជិតអស់ហើយត្រូវបានប្រើ %1$@%% រួចហើយ។\n\n អ្នកប្រហែលជាមិនអាចទទួលបានសារទេនៅពេលប្រើទំហំផ្ទុក ១០០%% ។\n\n👉 សូមពិនិត្យមើលថាតើ អ្នកអាចលុបទិន្នន័យចាស់នៅក្នុងចំណុចប្រទាក់គេហទំព័ររបស់កម្មវិធីផ្តល់សេវាកម្មហើយពិចារណាបើក \"ការកំណត់ / លុបសារចាស់ \"។ អ្នកអាចពិនិត្យមើលការប្រើប្រាស់ទំហំផ្ទុកបច្ចុប្បន្នរបស់អ្នកបានគ្រប់ពេលនៅ \"ការកំណត់ / ការតភ្ជាប់និងសេវាកម្ម\" ។";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ កាលបរិច្ឆេទ ឬពេលវេលានៃឧបករណ៍របស់អ្នកហាក់ដូចជាមិនត្រឹមត្រូវ (%1$@)។\n\n កែតម្រូវនាឡិការបស់អ្នក ⏰🔧 ដើម្បីធានាថា សាររបស់អ្នកត្រូវបានទទួលត្រឹមត្រូវ។";
+"devicemsg_update_reminder" = "⚠️កំណែ Delta Chat របស់អ្នកប្រហែលជាហួសសម័យហើយ។\n\n នេះអាចបណ្តាលឱ្យមានបញ្ហាដោយសារតែដៃគូជជែករបស់អ្នកប្រើកំណែថ្មីជាង - ហើយអ្នកកំពុងបាត់លក្ខណៈពិសេសចុងក្រោយ 😳\n សូមពិនិត្យមើល https://get.delta.chat ឬហាងកម្មវិធីរបស់អ្នកដើម្បីទទួលបានព័ត៌មានថ្មីៗ ។";
+
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "សូមបញ្ចូល ប្រព័ន្ធកំណត់ដោយសម្ងាត់របស់អ្នក ដើម្បីបន្ត។";
+
 // qr code stuff
 "qr_code" = "QR កូដ";
 "load_qr_code_as_image" = "ផ្ទុកកូដ QR ជារូបភាព";
@@ -581,6 +686,14 @@
 "qrscan_contains_url" = "URL ពិកូដ QR ដែលបានស្គេន:\n\n%1$@";
 "qrscan_fingerprint_label" = "ស្នាមម្រាមដៃ";
 "qrscan_x_verified_introduce_myself" = "%1$@ បានផ្ទៀងផ្ទាត់, ណែនាំខ្លួនឯង…";
+"withdraw_verifycontact_explain" = "អ្នកផ្សេងទៀតអាចស្កេនលេខកូដ QR នេះដើម្បីទាក់ទងអ្នក។\n\nអ្នកអាចធ្វើឱ្យកូដ QR អសកម្មនៅទីនេះហើយបើកដំណើរ។";
+"withdraw_verifygroup_explain" = "អ្នកផ្សេងទៀតអាចស្កេនលេខកូដ QR នេះដើម្បីចូលរួមក្រុម \"%1$@\"។\n\nអ្នកអាចធ្វើឱ្យកូដ QR អសកម្មនៅទីនេះ ហើយធ្វើឱ្យវាសកម្មឡើងវិញដោយស្កេនម្តងទៀត។";
+"withdraw_qr_code" = "ធ្វើឱ្យកូដ QR អសកម្ម";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "អ្នកផ្សេងទៀតអាចស្កេនលេខកូដ QR នេះដើម្បីទាក់ទងអ្នក។\n\nកូដ QR មិនសកម្មនៅលើឧបករណ៍នេះទេ។";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "អ្នកផ្សេងទៀតអាចស្កេនលេខកូដ QR នេះដើម្បីចូលរួមក្រុម \"%1$@ \"។\n\n កូដ QR មិនសកម្មនៅលើឧបករណ៍នេះទេ។";
+"revive_qr_code" = "ធ្វើឱ្យកូដ QR សកម្ម";
 "qrshow_title" = "កូដ QR សម្រាប់ការអញ្ជើញ";
 "qrshow_x_joining" = "%1$@ ចូលរួម";
 "qrshow_x_verified" = "%1$@ បានផ្ទៀងផ្ទាត់";
@@ -602,6 +715,11 @@
 "contact_setup_changed" = "បានដូរការរៀបចំសម្រាប់ %1$@";
 "verified_group_explain" = "\"ក្រុមបានផ្ទៀងផ្ទាត់\" (ពិសោធន៍) បានផ្តល់សុវត្ថិភាពប្រឆាំងនឹងសកម្មភាពវាយប្រហារ។ សមាជិកត្រូវបានផ្ទៀងផ្ទាត់ជាមុខងារទីពីរ ដោយសមាជិកដទៃទៀត និងសារតែងតែបានអ៊ិនគ្រីប ពីឧបករណ៍ដល់ឧបករណ៍។";
 "copy_qr_data_success" = "បានចម្លង QR-url ទៅក្តារខ្ទាស់";
+"mailto_dialog_header_select_chat" = "ជ្រើសរើសការជជែក ដើម្បីផ្ញើសារទៅកាន់";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@ មានសារព្រាងរួចហើយ តើអ្នកចង់ជំនួសវាទេ?";
+"mailto_link_could_not_be_decoded" = "សំបុត្រទៅតំណភ្ជាប់ មិនអាចឌិកូដទេ: %1$@";
+
 // notifications 
 "notify_n_messages_in_m_chats" = "សារ %1$d ថ្មីក្នុងសន្ទនា %2$d";
 "notify_mark_read" = "សម្គាល់ថាអាន";
@@ -625,6 +743,14 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "គូកន្លែងណាដើម្បីឲ្យព្រិលៗ";
+"ImageEditorHud_add_text" = "បន្ថែមអក្សរ";
+"ImageEditorHud_blur" = "ព្រាល";
+"ImageEditorHud_brush_marker" = "ជក់ផាត់ សម្គាល់";
+"ImageEditorHud_brush_highlight" = "ជក់ផាត់ ធ្វើឲ្យលេចឡើង";
+"ImageEditorHud_crop" = "កាត់";
+"ImageEditorHud_flip" = "ត្រឡប់";
+"ImageEditorHud_rotate" = "បង្វិល";
+
 // dc_str_* resources
 "encrypted_message" = "សារដែលបានធ្វើឲ្យសម្ងាត់";
 
@@ -651,6 +777,8 @@
 "global_menu_help_contribute_desktop" = "រួមចំណែកនៅលើ GitHub";
 "global_menu_help_report_desktop" = "រាយការណ៍ពីបញ្ហា";
 "global_menu_help_about_desktop" = "អំពីសា Delta Chat";
+"global_menu_file_open_desktop" = "បើក Delta Chat";
+"global_menu_minimize_to_tray" = "ធ្វើឲ្យអប្បបរមា";
 "no_chat_selected_suggestion_desktop" = "ជ្រើសរើសសន្ទនា ឬបង្កើតសន្ទនាថ្មី";
 "write_message_desktop" = "សរសេរសារ";
 "encryption_info_title_desktop" = "ពត៌មានពីការធ្វើឲ្យសារជាសម្ងាត់";
@@ -696,6 +824,10 @@
 "menu.view.developer.open.log.folder" = "បើកថតឯកសារកត់";
 "menu.view.developer.open.current.log.file" = "បើកឯកសារកត់បច្ចុប្បន្ន";
 "user_location_permission_explanation" = "សា Delta Chat ត្រូវការការអនុញ្ញាតទីតាំង ដើម្បីបង្ហាញ និងចែករំលែកទីតាំងរបស់អ្នក។";
+"explain_desktop_minimized_disabled_tray_pref" = "រូបតំណាងថាស មិនអាចបិទបានទេដោយសារ Delta Chat ត្រូវបានចាប់ផ្តើមជាមួយជម្រើសបង្រួមអប្បបរមា។";
+"no_spellcheck_suggestions_found" = "រកមិនឃើញការណែនាំអក្ខរាវិរុទ្ធទេ។";
+"show_window" = "បង្ហាញក្របខ័ណ្ឌ";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "ស្ថានភាពចែកចាយ៖ មានកំហុស";
 "a11y_encryption_padlock" = "សោត្រដោកការអ៊ិនគ្រីប";
@@ -722,4 +854,9 @@
 "perm_enable_bg_reminder_title" = "ប៉ះទីនេះដើម្បីទទួលសារកំឡុងពេល សា Delta Chat គឺស្ថិតនៅក្នុងផ្ទៃខាងក្រោយ។";
 "perm_enable_bg_already_done" = "អ្នកបានអនុញ្ញាតរួចរាល់ហើយឲ្យសា Delta Chat ដើម្បីទទួលសារនៅផ្ទៃខាងក្រោយ\n\nប្រសិនបើ សារនៅតែមិនមកដល់ផ្ទៃខាងក្រោយ សូមពិនិត្យការការកំណត់ប្រពន្ធ័របស់អ្នកផងដែរ។";
 
+
+// device messages for updates
+"update_1_20" = "ធ្វើឱ្យប្រសើរឡើង នូវភាពរួមគ្នានៃអ៊ីមែលនៅក្នុងកំណែ ១.២០៖\n\n📫 អានបញ្ជីសំបុត្ររួម\n📭 អានអ៊ីមែល HTML\n📪 ការដោះស្រាយអាសយដ្ឋានគាំទ្របានល្អ\n- ការរំខានធំ និងតូចតាចជាច្រើនត្រូវបានជួសជុល\n\nសូមអានប្លុកថ្មីរបស់យើងអំពី ជំហានដំបូងទាំងនេះ ឆ្ពោះទៅរកសំបុត្រ និងអ្វីៗជាច្រើនទៀត៖";
+"update_1_22" = "តើមានអ្វីថ្មីនៅក្នុង ១.២២?\n\n👋 ឥឡូវនេះការស្នើសុំជជែក លេចឡើងជាការជជែកតែមួយ ហើយអាចត្រូវបានត្រួតពិនិត្យយ៉ាងលំអិតមុនពេលទទួលយក ឬរារាំង\n\n🗄 ប័ណ្ណសារឥឡូវនេះ អាចចូលដំណើរការបានយ៉ាងងាយស្រួលពីម៉ឺនុយមេ - អ្នក នឹងរកឃើញសំណើចាស់របស់អ្នកនៅទីនោះផងដែរ\n\n📮📮📮 គណនីច្រើនប្រសើរឡើង៖ ការផ្លាស់ប្តូរគណនីឥឡូវនេះលឿនជាងមុនហើយមិនសូវត្រូវបានរារាំងដោយការអាប់ដេតយូរទេ\n\n🤔 ដឹងថាមានអ្វីកើតឡើង៖ បញ្ហាការតភ្ជាប់ត្រូវបានបង្ហាញនៅក្នុង របារចំណងជើងឥឡូវនេះសូមចុចសម្រាប់ព័ត៌មានលម្អិត\n\nព័ត៌មានបន្ថែមនៅលើប្លក់៖";
+"update_1_22_ios" = "តើមានអ្វីថ្មីនៅក្នុង ១.២២?\n\n👋 ឥឡូវនេះការស្នើសុំជជែកលេចឡើងជាការជជែកតែមួយ ហើយអាចត្រូវបានត្រួតពិនិត្យយ៉ាងលំអិតមុននឹងទទួលយក ឬរារាំង\n\n🗄 បណ្ណសារឥឡូវនេះ អាចចូលដំណើរការបានយ៉ាងងាយស្រួលពីការកំណត់ - អ្នកនឹង រកឃើញសំណើចាស់របស់អ្នកនៅទីនោះផងដែរ\n\n📮📮📮 បន្ថែមគណនីច្រើន៖ ប្តូរ និងគ្រប់គ្រងគណនីនៅក្នុងការកំណត់\n\n🤔 ដឹងថាមានអ្វីកើតឡើង៖ បញ្ហាការតភ្ជាប់ត្រូវបានបង្ហាញនៅក្នុងរបារចំណងជើងឥឡូវនេះ សូមចុច ព័ត៌មានលម្អិត\n\n ព័ត៌មានបន្ថែមនៅលើប្លក់៖";
 

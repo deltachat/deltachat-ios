@@ -143,6 +143,11 @@
 "menu_new_chat" = "Yeni Sohbet";
 "menu_new_group" = "Yeni Grup";
 "menu_new_verified_group" = "Yeni Doğrulanan Grup";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Yayın Listesi";
+"broadcast_lists" = "Yayın Listeleri";
+"new_broadcast_list" = "Yeni Yayın Listesi";
+"add_recipients" = "Alıcılar Ekle";
 "menu_send" = "Gönder";
 "menu_toggle_keyboard" = "Emoji Klavyesine Geç";
 "menu_edit_group" = "Grubu Düzenle";
@@ -269,6 +274,8 @@
 "ask_delete_value" = "%1$@ silinsin mi?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "%1$@ gruptan kaldırılsın mı?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "%1$@ yayın listesinden kaldırılsın mı?";
 "open_url_confirmation" = "Bu bağlantıyı açmak istiyor musunuz?";
 
 
@@ -285,6 +292,7 @@
 "chat_camera_unavailable" = "Kamera kullanım dışı.";
 "chat_unable_to_record_audio" = "Ses kaydedilemiyor.";
 "chat_no_messages_hint" = "%1$@ alıcısına ileti gönder:\n\n• %2$@ Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir ve şifrelenmeyebilir.";
+"chat_new_broadcast_hint" = "Bir yayın listesinde, diğerleri sizinle olan özel sohbetlerinde ileti alacak.\n\nAlıcılar birbirlerinin farkında olmayacak.";
 "chat_new_group_hint" = "İlk iletiyi oluşturun, diğerlerinin bu grupta yanıtlamasına izin verin.\n\n• Tüm üyeler Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir.";
 "chat_record_slide_to_cancel" = "Vazgeçmek için kaydırın";
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
@@ -309,7 +317,7 @@
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Yazamazsınız çünkü bu grupta değilsiniz. Katılmak için başka bir üyeye sorun.";
 "messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir. Bu nedenle herhangi bir ileti yazamazsınız.";
-"messaging_disabled_deaddrop" = "İletişim isteğini kabul etmek ya da reddetmek için bir iletinin üzerine tıklayın";
+"messaging_disabled_deaddrop" = "İletişim isteğini kabul etmek ya da reddetmek için bir iletinin üzerinde tıklayın";
 "messaging_disabled_mailing_list" = "Posta listelerinden gönderilen iletiler henüz desteklenmiyor";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";

@@ -182,6 +182,26 @@
 			<string>Видалити %d повідомлень тут і на сервері?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Видалити %d повідомлення?</string>
+			<key>few</key>
+			<string>Видалити %d повідомлення?</string>
+			<key>many</key>
+			<string>Видалити %d повідомлень?</string>
+			<key>other</key>
+			<string>Видалити %d повідомлення?</string>
+		</dict>
+	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
