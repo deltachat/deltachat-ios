@@ -431,6 +431,33 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         present(askAlert, animated: true, completion: nil)
     }
 
+    private func showExperimentalDialog() {
+        let alert = UIAlertController(title: String.localized("pref_experimental_features"), message: nil, preferredStyle: .safeActionSheet)
+
+        let locationStreaming = UserDefaults.standard.bool(forKey: "location_streaming")
+        let title = (locationStreaming ? "✔︎ " : "") + String.localized("pref_on_demand_location_streaming")
+        alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
+            if !locationStreaming {
+                let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Location streaming\"",
+                                              message: "You will find a corresponding option in the attach menu (the paper clip) of each chat now.\n\n"
+                                                + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            } else if self.dcContext.isSendingLocationsToChat(chatId: 0) {
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                    return
+                }
+                appDelegate.locationManager.disableLocationStreamingInAllChats()
+            }
+        }))
+
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
     private func showAdvancedDialog() {
         let alert = UIAlertController(title: String.localized("menu_advanced"), message: nil, preferredStyle: .safeActionSheet)
 
@@ -454,25 +481,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             self.present(alert, animated: true, completion: nil)
         }))
 
-        let locationStreaming = UserDefaults.standard.bool(forKey: "location_streaming")
-        let title = locationStreaming ?
-            "Disable on-demand location streaming" : String.localized("pref_on_demand_location_streaming")
-        alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
-            guard let self = self else { return }
-            UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
-            if !locationStreaming {
-                let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Location streaming\"",
-                                              message: "You will find a corresponding option in the attach menu (the paper clip) of each chat now.\n\n"
-                                                + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                self.navigationController?.present(alert, animated: true, completion: nil)
-            } else if self.dcContext.isSendingLocationsToChat(chatId: 0) {
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                    return
-                }
-                appDelegate.locationManager.disableLocationStreamingInAllChats()
-            }
+        alert.addAction(UIAlertAction(title: String.localized("pref_experimental_features"), style: .default, handler: { [weak self] _ in
+            self?.showExperimentalDialog()
         }))
 
         let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [weak self] _ in
