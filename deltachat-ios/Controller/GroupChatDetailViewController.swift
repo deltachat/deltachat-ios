@@ -35,14 +35,6 @@ class GroupChatDetailViewController: UIViewController {
 
     private let sections: [ProfileSections]
 
-    private var currentUser: DcContact? {
-        let myId = groupMemberIds.filter { dcContext.getContact(id: $0).email == dcContext.addr }.first
-        guard let currentUserId = myId else {
-            return nil
-        }
-        return dcContext.getContact(id: currentUserId)
-    }
-
     private lazy var canEdit: Bool = {
         return chat.isMailinglist || chat.canSend
     }()
@@ -567,28 +559,28 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        guard let currentUser = self.currentUser else {
+        if !chat.canSend {
             return false
         }
         let row = indexPath.row
         let sectionType = sections[indexPath.section]
         if sectionType == .members &&
             !isMemberManagementRow(row: row) &&
-            getGroupMemberIdFor(row) != currentUser.id {
+            getGroupMemberIdFor(row) != DC_CONTACT_ID_SELF {
             return true
         }
         return false
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard let currentUser = self.currentUser else {
+        if !chat.canSend {
             return nil
         }
         let row = indexPath.row
         let sectionType = sections[indexPath.section]
         if sectionType == .members &&
             !isMemberManagementRow(row: row) &&
-            getGroupMemberIdFor(row) != currentUser.id {
+            getGroupMemberIdFor(row) != DC_CONTACT_ID_SELF {
             // action set for members except for current user
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
                 guard let self = self else { return }
@@ -666,15 +658,13 @@ extension GroupChatDetailViewController {
     }
 
     private func showLeaveGroupConfirmationAlert() {
-        if let userId = currentUser?.id {
-            let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
-                _ = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: userId)
-                self.editBarButtonItem.isEnabled = false
-                self.updateGroupMembers()
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
+        let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
+            _ = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: Int(DC_CONTACT_ID_SELF))
+            self.editBarButtonItem.isEnabled = false
+            self.updateGroupMembers()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
