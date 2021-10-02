@@ -9,8 +9,11 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     private var deleteGroupImage: Bool = false
     private var useGroupWording: Bool
 
-    private let rowGroupName = 0
-    private let rowAvatar = 1
+    enum EditRows {
+         case name
+         case avatar
+    }
+    private let editRows: [EditRows]
 
     var avatarSelectionCell: AvatarSelectionCell
 
@@ -43,6 +46,11 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         self.chat = chat
         self.avatarSelectionCell = AvatarSelectionCell(image: chat.profileImage)
         self.useGroupWording = !chat.isBroadcast && !chat.isMailinglist
+        if chat.isBroadcast {
+            self.editRows = [.name]
+        } else {
+            self.editRows = [.name, .avatar]
+        }
         super.init(style: .grouped)
         self.avatarSelectionCell.hintLabel.text = String.localized(useGroupWording ? "group_avatar" : "image")
         self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
@@ -61,7 +69,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == rowAvatar {
+        if editRows[indexPath.row] == .avatar {
             return avatarSelectionCell
         } else {
             return groupNameCell
@@ -73,7 +81,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return editRows.count
     }
     
     @objc func saveContactButtonPressed() {
