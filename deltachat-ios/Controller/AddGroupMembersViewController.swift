@@ -5,10 +5,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
     var onMembersSelected: ((Set<Int>) -> Void)?
     lazy var isVerifiedGroup: Bool = false
 
-    lazy var isNewGroup: Bool = {
-        return chat == nil
-    }()
-
     private lazy var sections: [AddGroupMemberSections] = {
         if isVerifiedGroup {
             return [.memberList]
@@ -91,9 +87,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     @objc func doneButtonPressed() {
         if let onMembersSelected = onMembersSelected {
-            if isNewGroup {
-                selectedContactIds.insert(Int(DC_CONTACT_ID_SELF))
-            }
             onMembersSelected(selectedContactIds)
         }
         navigationController?.popViewController(animated: true)

@@ -314,7 +314,7 @@ class NewChatViewController: UITableViewController {
 
     // MARK: - coordinator
     private func showNewGroupController(isVerified: Bool, createBroadcast: Bool = false) {
-        let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified)
+        let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified, createBroadcast: createBroadcast)
         navigationController?.pushViewController(newGroupController, animated: true)
     }
 

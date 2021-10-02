@@ -256,6 +256,10 @@ public class DcContext {
         return Int(dc_create_group_chat(contextPointer, verified ? 1 : 0, name))
     }
 
+    public func createBroadcastList() -> Int {
+        return Int(dc_create_broadcast_list(contextPointer))
+    }
+
     public func addContactToChat(chatId: Int, contactId: Int) -> Bool {
         return dc_add_contact_to_chat(contextPointer, UInt32(chatId), UInt32(contactId)) == 1
     }
