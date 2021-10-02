@@ -585,7 +585,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
                 guard let self = self else { return }
                 let contact = self.getGroupMember(at: row)
-                let title = String.localizedStringWithFormat(String.localized("ask_remove_members"), contact.nameNAddr)
+                let title = String.localizedStringWithFormat(String.localized(self.chat.isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
                     let success = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: contact.id)
