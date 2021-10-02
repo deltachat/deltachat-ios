@@ -29,7 +29,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
-    private let memberManagementRows = 2
+    private let memberManagementRows: Int
 
     private let dcContext: DcContext
 
@@ -42,6 +42,10 @@ class GroupChatDetailViewController: UIViewController {
         }
         return dcContext.getContact(id: currentUserId)
     }
+
+    private lazy var canEdit: Bool = {
+        return chat.isMailinglist || chat.canSend
+    }()
 
     private var chatId: Int
     private var chat: DcChat {
@@ -169,10 +173,17 @@ class GroupChatDetailViewController: UIViewController {
         if chat.isMailinglist {
             self.chatOptions = [.gallery, .documents, .muteChat]
             self.chatActions = [.archiveChat, .deleteChat]
+            self.memberManagementRows = 2
             self.sections = [.chatOptions, .chatActions]
+        } else if chat.isBroadcast {
+            self.chatOptions = [.gallery, .documents]
+            self.chatActions = [.archiveChat, .deleteChat]
+            self.memberManagementRows = 1
+            self.sections = [.chatOptions, .members, .chatActions]
         } else {
             self.chatOptions = [.gallery, .documents, .ephemeralMessages, .muteChat]
             self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
+            self.memberManagementRows = 2
             self.sections = [.chatOptions, .members, .chatActions]
         }
 
@@ -199,6 +210,8 @@ class GroupChatDetailViewController: UIViewController {
         super.viewDidLoad()
         if chat.isMailinglist {
             title = String.localized("mailing_list")
+        } else if chat.isBroadcast {
+            title = String.localized("broadcast_list")
         } else {
             title = String.localized("tab_group")
         }
@@ -211,7 +224,7 @@ class GroupChatDetailViewController: UIViewController {
         // update chat object, maybe chat name was edited
         updateGroupMembers()
         tableView.reloadData() // to display updates
-        editBarButtonItem.isEnabled = currentUser != nil
+        editBarButtonItem.isEnabled = canEdit
         setupObservers()
         updateHeader()
         updateMediaCellValues()
@@ -286,11 +299,7 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func updateHeader() {
-        groupHeader.updateDetails(
-            title: chat.name,
-            subtitle: chat.isMailinglist ?
-                nil : String.localizedStringWithFormat(String.localized("n_members"), chat.getContactIds(dcContext).count)
-        )
+        groupHeader.updateDetails(title: chat.name, subtitle: nil)
         if let img = chat.profileImage {
             groupHeader.setImage(img)
         } else {
@@ -432,7 +441,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let sectionType = sections[indexPath.section]
         let row = indexPath.row
-        if sectionType == .members && row != membersRowAddMembers && row != membersRowQrInvite {
+        if sectionType == .members && !isMemberManagementRow(row: row) {
             return ContactCell.cellHeight
         } else {
             return UITableView.automaticDimension
@@ -455,13 +464,13 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return muteChatCell
             }
         case .members:
-            if row == membersRowAddMembers || row == membersRowQrInvite {
+            if isMemberManagementRow(row: row) {
                 guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
                 safe_fatalError("could not dequeue action cell")
                 break
                 }
                 if row == membersRowAddMembers {
-                    actionCell.actionTitle = String.localized("group_add_members")
+                    actionCell.actionTitle = String.localized(chat.isBroadcast ? "add_recipients" : "group_add_members")
                     actionCell.actionColor = UIColor.systemBlue
                 } else if row == membersRowQrInvite {
                     actionCell.actionTitle = String.localized("qrshow_join_group_title")
@@ -520,10 +529,12 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 }
             }
         case .members:
-            if row == membersRowAddMembers {
-                showAddGroupMember(chatId: chat.id)
-            } else if row == membersRowQrInvite {
-                showQrCodeInvite(chatId: chat.id)
+            if isMemberManagementRow(row: row) {
+                if row == membersRowAddMembers {
+                    showAddGroupMember(chatId: chat.id)
+                } else if row == membersRowQrInvite {
+                    showQrCodeInvite(chatId: chat.id)
+                }
             } else {
                 let memberId = getGroupMemberIdFor(row)
                 if memberId == DC_CONTACT_ID_SELF {
@@ -549,7 +560,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members {
-            return String.localized("tab_members")
+            return String.localizedStringWithFormat(String.localized(chat.isBroadcast ? "n_recipients" : "n_members"),
+                                                    chat.getContactIds(dcContext).count)
         }
         return nil
     }
