@@ -590,6 +590,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_ERROR, localizationKey: "error_x")
         dcContext.setStockTranslation(id: DC_STR_NOT_SUPPORTED_BY_PROVIDER, localizationKey: "not_supported_by_provider")
         dcContext.setStockTranslation(id: DC_STR_MESSAGES, localizationKey: "messages")
+        dcContext.setStockTranslation(id: DC_STR_BROADCAST_LIST, localizationKey: "broadcast_list")
+        dcContext.setStockTranslation(id: DC_STR_PART_OF_TOTAL_USED, localizationKey: "part_of_total_used")
     }
 
     func appIsInForeground() -> Bool {

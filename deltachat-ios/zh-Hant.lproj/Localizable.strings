@@ -401,6 +401,8 @@
 "not_supported_by_provider" = "你的邮件供应商不支持";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "消息";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "已使用 %1$@ GB，共 %2$@ GB";
 
 
 // welcome and login

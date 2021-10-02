@@ -144,9 +144,9 @@
 "menu_new_group" = "Nieuwe groep";
 "menu_new_verified_group" = "Nieuwe goedgekeurde groep";
 // consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
-"broadcast_list" = "Uitzendlijst";
-"broadcast_lists" = "Uitzendlijsten";
-"new_broadcast_list" = "Nieuwe uitzendlijst";
+"broadcast_list" = "Verzendlijst";
+"broadcast_lists" = "Verzendlijsten";
+"new_broadcast_list" = "Nieuwe verzendlijst";
 "add_recipients" = "Ontvangers toevoegen";
 "menu_send" = "Versturen";
 "menu_toggle_keyboard" = "Emoji-toetsenbord tonen/verbergen";
@@ -275,7 +275,7 @@
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
 // Translators: %1$s will be replaced by a comma separated list of names
-"ask_remove_from_broadcast" = "Wil je %1$@ verwijderen van de uitzendlijst?";
+"ask_remove_from_broadcast" = "Wil je %1$@ verwijderen van de verzendlijst?";
 "open_url_confirmation" = "Weet je zeker dat je deze link wilt openen?";
 
 
@@ -292,6 +292,7 @@
 "chat_camera_unavailable" = "De camera is niet beschikbaar.";
 "chat_unable_to_record_audio" = "Kan geen audio opnemen.";
 "chat_no_messages_hint" = "Verstuur een bericht aan %1$@:\n\n• %2$@ hoeft Delta Chat niet te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren en onversleuteld zijn.";
+"chat_new_broadcast_hint" = "Als je een verzendlijst maakt, dan onhvangen anderen bericht van jou in hun privégesprekken.\n\nDe ontvangers kunnen elkaar echter niet zien.";
 "chat_new_group_hint" = "Stel het eerste bericht op, zodat anderen binnen deze groep kunnen reageren.\n\n• Niet alle leden hoeven Delta Chat te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren.";
 "chat_record_slide_to_cancel" = "Veeg opzij om te annuleren";
 "chat_record_explain" = "Houdt ingedrukt om een spraakbericht op te nemen; laat los om te versturen";
@@ -400,6 +401,8 @@
 "not_supported_by_provider" = "Wordt niet ondersteund door je provider.";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Berichten";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ van %2$@ in gebruik";
 
 
 // welcome and login

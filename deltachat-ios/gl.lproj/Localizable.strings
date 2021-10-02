@@ -83,6 +83,7 @@
 "last_month" = "Último mes";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
 "self" = "Eu";
 "draft" = "Borrador";
 "image" = "Imaxe";
@@ -142,6 +143,11 @@
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
 "menu_new_verified_group" = "Novo grupo verificado";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Lista de difusión";
+"broadcast_lists" = "Listas de difusión";
+"new_broadcast_list" = "Nova lista de difusión";
+"add_recipients" = "Engadir correspondentes";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Activar teclado emoji";
 "menu_edit_group" = "Editar grupo";
@@ -268,6 +274,8 @@
 "ask_delete_value" = "Eliminar %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Eliminar  %1$@ do grupo?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Eliminar %1$@ da lista de difusión?";
 "open_url_confirmation" = "Queres abrir esta ligazón?";
 
 
@@ -284,6 +292,7 @@
 "chat_camera_unavailable" = "Cámara non dispoñible.";
 "chat_unable_to_record_audio" = "Non se puido gravar o audio.";
 "chat_no_messages_hint" = "Enviar mensaxe a %1$@:\n\n• Da igual se %2$@ non utiliza Delta Chat.\n\n• A entrega da primeira mensaxe podería demorarse un pouco e non estar cifrada.";
+"chat_new_broadcast_hint" = "Nas listas de difusión, as correspondentes recibirán mensaxes en chats privados contigo.\n\nAs correspondentes non saberán unhas das outras.";
 "chat_new_group_hint" = "Escribe a primeira mensaxe, permita a outras responder a este grupo.\n\n• Da igual se outros membros non utilizan Delta Chat.\n\n• A entrega da primeira mensaxe podería demorarse un pouco.";
 "chat_record_slide_to_cancel" = "Desliza para cancelar";
 "chat_record_explain" = "Toca e mantén para gravar mensaxe de voz, solta para enviar";
@@ -392,6 +401,8 @@
 "not_supported_by_provider" = "O teu provedor non ten soporte";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Mensaxes";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "Utilizado %1$@ de %2$@";
 
 
 // welcome and login

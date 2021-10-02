@@ -83,6 +83,7 @@
 "last_month" = "Останнього місяця";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
 "self" = "Мої";
 "draft" = "Чернетка";
 "image" = "Зображення";
@@ -142,6 +143,11 @@
 "menu_new_chat" = "Новий чат";
 "menu_new_group" = "Нова група";
 "menu_new_verified_group" = "Нова перевірена група";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Список трансляцій";
+"broadcast_lists" = "Списки трансляцій";
+"new_broadcast_list" = "Новий Список трансляцій";
+"add_recipients" = "Додати одержувачів";
 "menu_send" = "Відправити";
 "menu_toggle_keyboard" = "Увімкнути емодзі-клавіатуру";
 "menu_edit_group" = "Редагувати групу";
@@ -268,6 +274,8 @@
 "ask_delete_value" = "Видалити %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Видалити %1$@ із групи?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Видалити %1$@ зі списку трансляцій?";
 "open_url_confirmation" = "Ви впевнені, що хочете відкрити це посилання?";
 
 
@@ -284,6 +292,7 @@
 "chat_camera_unavailable" = "Камера недоступна.";
 "chat_unable_to_record_audio" = "Неможливо записати аудіо.";
 "chat_no_messages_hint" = "Надіслати повідомлення %1$@:\n\n• Це спрацює, якщо %2$@ не використовує Delta Chat.\n\n• Перше повідомлення може виявитися незашифрованим, його доставка може зайняти деякий час.";
+"chat_new_broadcast_hint" = "У списку трансляцій інші отримуватимуть повідомлення у своїх приватних чатах з вами.\n\nОдержувачі не будуть знати один про одного.";
 "chat_new_group_hint" = "Напишіть перше повідомлення, що дасть можливість іншим учасникам групи відповісти на нього.\n\n• Це спрацює, навіть якщо не всі учасники використовують Delta Chat.\n\n• Доставка першого повідомлення може зайняти деякий час.";
 "chat_record_slide_to_cancel" = "Рухайте для скасування";
 "chat_record_explain" = "Натисніть і утримуйте для запису голосового повідомлення, відпустіть для відправки";
@@ -392,6 +401,8 @@
 "not_supported_by_provider" = "Не підтримується вашим провайдером електронної пошти.";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Повідомлення";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "Використано %1$@ з %2$@";
 
 
 // welcome and login

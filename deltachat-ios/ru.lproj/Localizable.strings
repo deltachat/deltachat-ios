@@ -401,8 +401,6 @@
 "not_supported_by_provider" = "Не поддерживается вашим провайдером.";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Сообщения";
-
-
 // welcome and login
 "welcome_intro1_message" = "Мессенджер с самой широкой аудиторией в мире. Бесплатный и независимый.";
 "login_title" = "Логин";

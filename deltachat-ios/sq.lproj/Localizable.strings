@@ -83,6 +83,7 @@
 "last_month" = "Muajin e shkuar";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
 "self" = "Unë";
 "draft" = "Skicë";
 "image" = "Figurë";
@@ -140,6 +141,7 @@
 "menu_new_chat" = "Fjalosje e re";
 "menu_new_group" = "Grup i ri";
 "menu_new_verified_group" = "Grup i ri i verifikuar";
+"add_recipients" = "Shtoni Marrës";
 "menu_send" = "Dërgoje";
 "menu_toggle_keyboard" = "Shfaq/fshih tastierë emoji";
 "menu_edit_group" = "Përpunoni grup";
@@ -390,8 +392,6 @@
 "not_supported_by_provider" = "I pambuluar nga furnizuesi juaj i shërbimit";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Mesazhe";
-
-
 // welcome and login
 "welcome_intro1_message" = "Shkëmbyesi i mesazheve me publikun më të gjerë në botë. I lirë dhe i pavarur.";
 "login_title" = "Hyrje";

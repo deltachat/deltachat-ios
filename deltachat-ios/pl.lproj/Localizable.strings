@@ -357,8 +357,6 @@
 "sending" = "Wysyłanie…";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Wiadomości";
-
-
 // welcome and login
 "welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
 "login_title" = "Zaloguj się";

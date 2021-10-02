@@ -401,6 +401,8 @@
 "not_supported_by_provider" = "Sağlayıcınız tarafından desteklenmiyor.";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "İletiler";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ / %2$@ kullanıldı";
 
 
 // welcome and login
