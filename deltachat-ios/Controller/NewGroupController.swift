@@ -238,15 +238,14 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if sections[section] == .members {
+        if sections[section] == .members && !contactIdsForGroup.isEmpty {
             if createBroadcast {
                 return String.localized(stringID: "n_recipients", count: contactIdsForGroup.count)
             } else {
                 return String.localized(stringID: "n_members", count: contactIdsForGroup.count)
             }
-        } else {
-            return nil
         }
+        return nil
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
