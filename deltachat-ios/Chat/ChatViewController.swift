@@ -41,12 +41,14 @@ class ChatViewController: UITableViewController {
     private var isSearchActive: Bool = false
     private var searchMessageIds: [Int] = []
     private var searchResultIndex: Int = 0
+    private var debounceTimer: Timer?
 
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
         searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
         searchController.searchBar.inputAccessoryView = messageInputBar
         searchController.searchBar.autocorrectionType = .yes
         searchController.searchBar.keyboardType = .default
@@ -1819,26 +1821,35 @@ extension ChatViewController: ChatSearchDelegate {
     }
 }
 
-// MARK: - UISearchBarDelegate
-extension ChatViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        logger.debug("searchbar: \(searchText)")
-        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            guard let self = self else { return }
-            let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
-            DispatchQueue.main.async { [weak self] in
+// MARK: UISearchResultUpdating
+extension ChatViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        logger.debug("searchbar: \(String(describing: searchController.searchBar.text))")
+        debounceTimer?.invalidate()
+        debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
+            let searchText = searchController.searchBar.text ?? ""
+            DispatchQueue.global().async {
+                let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
+                DispatchQueue.main.async { [weak self] in
+
                 guard let self = self else { return }
-                self.searchMessageIds = resultIds
-                self.searchResultIndex = self.searchMessageIds.isEmpty ? 0 : self.searchMessageIds.count - 1
-                self.searchAccessoryBar.isEnabled = !resultIds.isEmpty
-                if let lastId = resultIds.last {
-                    self.scrollToMessage(msgId: lastId)
+                    self.searchMessageIds = resultIds
+                    self.searchResultIndex = self.searchMessageIds.isEmpty ? 0 : self.searchMessageIds.count - 1
+                    self.searchAccessoryBar.isEnabled = !resultIds.isEmpty
+                    self.searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: self.searchResultIndex + 1)
+
+                    if let lastId = resultIds.last {
+                        self.scrollToMessage(msgId: lastId, animated: false)
+                    }
+                    self.reloadData()
                 }
-                self.searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: self.searchResultIndex + 1)
-                self.reloadData()
             }
         }
     }
+}
+
+// MARK: - UISearchBarDelegate
+extension ChatViewController: UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         logger.debug("searchbar: searchBarShouldBeginEditing")
