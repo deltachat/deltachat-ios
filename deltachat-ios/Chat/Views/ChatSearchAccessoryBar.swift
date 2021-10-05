@@ -31,8 +31,7 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
             view.setImage(UIImage(systemName: "chevron.up"), for: .normal)
             view.tintColor = .systemBlue
         } else {
-            view.setTitle(String.localized("previous"), for: .normal)
-            view.setTitleColor(.systemBlue, for: .normal)
+            view.setImage(UIImage(named: "ic_chevron_up")?.sd_tintedImage(with: .systemBlue), for: .normal)
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
@@ -47,8 +46,7 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
             view.setImage(UIImage(systemName: "chevron.down"), for: .normal)
             view.tintColor = .systemBlue
         } else {
-            view.setTitle(String.localized("next"), for: .normal)
-            view.setTitleColor(.systemBlue, for: .normal)
+            view.setImage(UIImage(named: "ic_chevron_down")?.sd_tintedImage(with: .systemBlue), for: .normal)
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         view.imageView?.contentMode = .scaleAspectFit
