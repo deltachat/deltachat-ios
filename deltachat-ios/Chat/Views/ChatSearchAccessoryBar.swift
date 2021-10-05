@@ -98,10 +98,12 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
             searchResultLabel.constraintCenterXTo(self),
             buttonContainer.constraintAlignTopTo(self, paddingTop: 4),
             buttonContainer.constraintAlignBottomTo(self, paddingBottom: 4),
-            buttonContainer.constraintWidthTo(80),
-            buttonContainer.constraintAlignTrailingToAnchor(self.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 22),
-            upButton.constraintHeightTo(36),
-            downButton.constraintHeightTo(36),
+            buttonContainer.constraintWidthTo(90),
+            buttonContainer.constraintAlignTrailingToAnchor(self.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 12),
+            upButton.constraintHeightTo(40),
+            downButton.constraintHeightTo(40),
+            upButton.constraintWidthTo(40),
+            downButton.constraintWidthTo(40)
         ])
 
         backgroundColor = DcColors.chatBackgroundColor
