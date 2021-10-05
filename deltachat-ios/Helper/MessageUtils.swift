@@ -146,7 +146,7 @@ public class MessageUtils {
                 let range = (messageText.lowercased() as NSString).range(of: searchText.lowercased())
                 mutableAttributedString.addAttribute(.font, value: UIFont.preferredFont(for: .body, weight: .semibold), range: range)
                 if highlight {
-                    mutableAttributedString.addAttribute(.backgroundColor, value: UIColor.systemYellow, range: range)
+                    mutableAttributedString.addAttribute(.backgroundColor, value: DcColors.highlight, range: range)
                 }
             }
             return mutableAttributedString
