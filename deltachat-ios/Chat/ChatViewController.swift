@@ -1796,26 +1796,24 @@ extension ChatViewController: ChatEditingDelegate {
 extension ChatViewController: ChatSearchDelegate {
     func onSearchPreviousPressed() {
         logger.debug("onSearch Previous Pressed")
-        let searchResult = searchMessageIds
-        if searchResultIndex == 0 && !searchResult.isEmpty {
-            searchResultIndex = searchResult.count - 1
+        if searchResultIndex == 0 && !searchMessageIds.isEmpty {
+            searchResultIndex = searchMessageIds.count - 1
         } else {
             searchResultIndex -= 1
         }
-        scrollToMessage(msgId: searchResult[searchResultIndex])
+        scrollToMessage(msgId: searchMessageIds[searchResultIndex])
         searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
         self.reloadData()
     }
 
     func onSearchNextPressed() {
         logger.debug("onSearch Next Pressed")
-        let searchResult = searchMessageIds
-        if searchResultIndex == searchResult.count - 1 {
+        if searchResultIndex == searchMessageIds.count - 1 {
             searchResultIndex = 0
         } else {
             searchResultIndex += 1
         }
-        scrollToMessage(msgId: searchResult[searchResultIndex])
+        scrollToMessage(msgId: searchMessageIds[searchResultIndex])
         searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
         self.reloadData()
     }
