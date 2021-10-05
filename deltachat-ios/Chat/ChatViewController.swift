@@ -1801,6 +1801,7 @@ extension ChatViewController: ChatSearchDelegate {
             searchResultIndex -= 1
         }
         scrollToMessage(msgId: searchResult[searchResultIndex])
+        searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
     }
 
     func onSearchNextPressed() {
@@ -1812,6 +1813,7 @@ extension ChatViewController: ChatSearchDelegate {
             searchResultIndex += 1
         }
         scrollToMessage(msgId: searchResult[searchResultIndex])
+        searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
     }
 }
 
@@ -1830,6 +1832,7 @@ extension ChatViewController: UISearchBarDelegate {
                 if let lastId = resultIds.last {
                     self.scrollToMessage(msgId: lastId)
                 }
+                self.searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: self.searchResultIndex + 1)
             }
         }
     }

@@ -15,7 +15,6 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
     public func keyboardEditingEndsAction() {}
     public func keyboardEditingBeginsAction() {}
 
-
     public var isEnabled: Bool {
         willSet(newValue) {
             upButton.isEnabled = newValue
@@ -57,11 +56,20 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
         return view
     }()
 
-    private lazy var mainContentView: UIStackView = {
+    private lazy var searchResultLabel: UILabel = {
+        let view = UILabel(frame: .zero)
+        view.font = UIFont.preferredFont(for: .body, weight: .regular)
+        view.textColor = DcColors.grayDateColor
+        view.textAlignment = .center
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private lazy var buttonContainer: UIStackView = {
         let view = UIStackView(arrangedSubviews: [downButton, upButton])
         view.axis = .horizontal
-        view.distribution = .fillEqually
-        view.alignment = .center
+        view.distribution = .equalSpacing
+        view.alignment = .trailing
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -82,13 +90,16 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
     }
 
     public func setupSubviews() {
-        addSubview(mainContentView)
+        addSubview(searchResultLabel)
+        addSubview(buttonContainer)
 
         addConstraints([
-            mainContentView.constraintAlignTopTo(self, paddingTop: 4),
-            mainContentView.constraintAlignBottomTo(self, paddingBottom: 4),
-            mainContentView.constraintAlignLeadingTo(self),
-            mainContentView.constraintAlignTrailingTo(self),
+            searchResultLabel.constraintCenterYTo(self),
+            searchResultLabel.constraintCenterXTo(self),
+            buttonContainer.constraintAlignTopTo(self, paddingTop: 4),
+            buttonContainer.constraintAlignBottomTo(self, paddingBottom: 4),
+            buttonContainer.constraintWidthTo(100),
+            buttonContainer.constraintAlignTrailingToAnchor(self.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 23),
             upButton.constraintHeightTo(36),
             downButton.constraintHeightTo(36),
         ])
@@ -108,5 +119,13 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
 
     @objc func onDownPressed() {
         delegate?.onSearchNextPressed()
+    }
+
+    public func updateSearchResult(sum: Int, position: Int) {
+        if sum == 0 {
+            searchResultLabel.text = nil
+        } else {
+            searchResultLabel.text = "\(position) / \(sum)"
+        }
     }
 }
