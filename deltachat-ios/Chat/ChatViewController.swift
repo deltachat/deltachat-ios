@@ -50,6 +50,7 @@ class ChatViewController: UITableViewController {
         searchController.searchBar.inputAccessoryView = messageInputBar
         searchController.searchBar.autocorrectionType = .yes
         searchController.searchBar.keyboardType = .default
+        searchController.searchBar.isHidden = true
         return searchController
     }()
 
@@ -361,6 +362,7 @@ class ChatViewController: UITableViewController {
             if activateSearchOnAppear {
                 DispatchQueue.main.async { [weak self] in
                     self?.searchController.isActive = true
+                    self?.searchController.searchBar.isHidden = false
                     self?.searchController.searchBar.becomeFirstResponder()
                 }
             }
@@ -1850,6 +1852,7 @@ extension ChatViewController: UISearchBarDelegate {
         logger.debug("searchbar: searchBarTextDidEndEditing")
         isSearchActive = false
         configureDraftArea(draft: draft)
+        self.searchController.searchBar.isHidden = true
         self.tableView.becomeFirstResponder()
     }
 }
@@ -1922,4 +1925,3 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
         sendSticker(image)
     }
 }
-
