@@ -670,7 +670,9 @@ class ChatViewController: UITableViewController {
                     msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
-                    showName: showName)
+                    showName: showName,
+                    searchText: searchController.searchBar.text,
+                    highlight: !searchMessageIds.isEmpty && message.id == searchMessageIds[searchResultIndex])
 
         return cell
     }
@@ -1802,6 +1804,7 @@ extension ChatViewController: ChatSearchDelegate {
         }
         scrollToMessage(msgId: searchResult[searchResultIndex])
         searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
+        self.reloadData()
     }
 
     func onSearchNextPressed() {
@@ -1814,6 +1817,7 @@ extension ChatViewController: ChatSearchDelegate {
         }
         scrollToMessage(msgId: searchResult[searchResultIndex])
         searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
+        self.reloadData()
     }
 }
 
@@ -1833,6 +1837,7 @@ extension ChatViewController: UISearchBarDelegate {
                     self.scrollToMessage(msgId: lastId)
                 }
                 self.searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: self.searchResultIndex + 1)
+                self.reloadData()
             }
         }
     }
@@ -1848,15 +1853,16 @@ extension ChatViewController: UISearchBarDelegate {
         logger.debug("searchbar: searchBarTextDidEndEditing")
         isSearchActive = false
         configureDraftArea(draft: draft)
-        self.tableView.becomeFirstResponder()
+        tableView.becomeFirstResponder()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         logger.debug("searchbar: searchBarTextDidEndEditing")
         isSearchActive = false
         configureDraftArea(draft: draft)
-        self.searchController.searchBar.isHidden = true
-        self.tableView.becomeFirstResponder()
+        searchController.searchBar.isHidden = true
+        tableView.becomeFirstResponder()
+        reloadData()
     }
 }
 

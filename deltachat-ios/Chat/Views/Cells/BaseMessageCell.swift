@@ -274,7 +274,7 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
@@ -359,6 +359,10 @@ public class BaseMessageCell: UITableViewCell {
         } else {
             quoteView.isHidden = true
         }
+
+        messageLabel.attributedText = MessageUtils.getFormattedSearchResultMessage(messageText: msg.text,
+                                                                                       searchText: searchText,
+                                                                                       highlight: highlight)
 
         messageLabel.delegate = self
         accessibilityLabel = configureAccessibilityString(message: msg)

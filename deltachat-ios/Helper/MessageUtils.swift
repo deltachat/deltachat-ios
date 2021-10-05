@@ -133,4 +133,25 @@ public class MessageUtils {
         let sendingState = "\(MessageUtils.getSendingStateString(message.state))"
         return "\(date) \(padlock) \(sendingState)"
     }
+
+    public static func getFormattedSearchResultMessage(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
+        if let messageText = messageText {
+            let fontAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.preferredFont(for: .body, weight: .regular),
+                .foregroundColor: DcColors.defaultTextColor
+            ]
+            let mutableAttributedString = NSMutableAttributedString(string: messageText, attributes: fontAttributes)
+
+            if let searchText = searchText, messageText.lowercased().contains(searchText.lowercased()) {
+                let range = (messageText.lowercased() as NSString).range(of: searchText.lowercased())
+                mutableAttributedString.addAttribute(.font, value: UIFont.preferredFont(for: .body, weight: .semibold), range: range)
+                if highlight {
+                    mutableAttributedString.addAttribute(.backgroundColor, value: UIColor.systemYellow, range: range)
+                }
+            }
+            return mutableAttributedString
+        }
+
+        return nil
+    }
 }

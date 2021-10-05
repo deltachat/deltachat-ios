@@ -29,7 +29,7 @@ class FileTextCell: BaseMessageCell {
         fileView.prepareForReuse()
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
         if let text = msg.text, !text.isEmpty {
             messageLabel.text = text
             spacer?.isActive = true
@@ -39,7 +39,13 @@ class FileTextCell: BaseMessageCell {
         
         fileView.configure(message: msg)
         accessibilityLabel = "\(String.localized("document")), \(fileView.configureAccessibilityLabel())"
-        super.update(dcContext: dcContext, msg: msg, messageStyle: messageStyle, showAvatar: showAvatar, showName: showName)
+        super.update(dcContext: dcContext,
+                     msg: msg,
+                     messageStyle: messageStyle,
+                     showAvatar: showAvatar,
+                     showName: showName,
+                     searchText: searchText,
+                     highlight: highlight)
     }
     
 }

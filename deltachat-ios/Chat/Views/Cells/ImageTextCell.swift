@@ -42,7 +42,7 @@ class ImageTextCell: BaseMessageCell {
         contentImageView.addGestureRecognizer(gestureRecognizer)
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
         messageLabel.text = msg.text
         let hasEmptyText = msg.text?.isEmpty ?? true
         bottomCompactView = msg.type != DC_MSG_STICKER && !msg.hasHtml && hasEmptyText
@@ -93,7 +93,13 @@ class ImageTextCell: BaseMessageCell {
                 setAspectRatioFor(message: msg, with: placeholderImage, isPlaceholder: true)
             }
         }
-        super.update(dcContext: dcContext, msg: msg, messageStyle: messageStyle, showAvatar: showAvatar, showName: showName)
+        super.update(dcContext: dcContext,
+                     msg: msg,
+                     messageStyle: messageStyle,
+                     showAvatar: showAvatar,
+                     showName: showName,
+                     searchText: searchText,
+                     highlight: highlight)
     }
 
     @objc func onImageTapped() {
