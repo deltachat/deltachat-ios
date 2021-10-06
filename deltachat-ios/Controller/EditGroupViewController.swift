@@ -7,9 +7,13 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
 
     private var changeGroupImage: UIImage?
     private var deleteGroupImage: Bool = false
+    private var useGroupWording: Bool
 
-    private let rowGroupName = 0
-    private let rowAvatar = 1
+    enum EditRows {
+         case name
+         case avatar
+    }
+    private let editRows: [EditRows]
 
     var avatarSelectionCell: AvatarSelectionCell
 
@@ -20,7 +24,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var groupNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("group_name"), placeholder: self.chat.name)
+        let cell = TextFieldCell(description: String.localized(useGroupWording ? "group_name" : "name_desktop"), placeholder: self.chat.name)
         cell.setText(text: self.chat.name)
         cell.onTextFieldChange = self.groupNameEdited(_:)
         return cell
@@ -41,10 +45,16 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         self.dcContext = dcContext
         self.chat = chat
         self.avatarSelectionCell = AvatarSelectionCell(image: chat.profileImage)
+        self.useGroupWording = !chat.isBroadcast && !chat.isMailinglist
+        if chat.isBroadcast {
+            self.editRows = [.name]
+        } else {
+            self.editRows = [.name, .avatar]
+        }
         super.init(style: .grouped)
-        self.avatarSelectionCell.hintLabel.text = String.localized("group_avatar")
+        self.avatarSelectionCell.hintLabel.text = String.localized(useGroupWording ? "group_avatar" : "image")
         self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
-        title = String.localized("menu_edit_group")
+        title = String.localized(useGroupWording ? "menu_edit_group" : "global_menu_edit_desktop")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -59,7 +69,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == rowAvatar {
+        if editRows[indexPath.row] == .avatar {
             return avatarSelectionCell
         } else {
             return groupNameCell
@@ -71,7 +81,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return editRows.count
     }
     
     @objc func saveContactButtonPressed() {
@@ -94,7 +104,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: String.localized("group_avatar"), message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized(useGroupWording ? "group_avatar" : "image"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
             alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
             if avatarSelectionCell.isAvatarSet() {

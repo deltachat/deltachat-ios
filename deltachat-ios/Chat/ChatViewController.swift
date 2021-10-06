@@ -793,6 +793,8 @@ class ChatViewController: UITableViewController {
         let chatContactIds = chat.getContactIds(dcContext)
         if chat.isMailinglist {
             subtitle = String.localized("mailing_list")
+        } else if chat.isBroadcast {
+            subtitle = String.localized(stringID: "n_recipients", count: chatContactIds.count)
         } else if chat.isGroup {
             subtitle = String.localized(stringID: "n_members", count: chatContactIds.count)
         } else if chat.isDeviceTalk {
@@ -920,7 +922,9 @@ class ChatViewController: UITableViewController {
         if show {
             let dcChat = dcContext.getChat(chatId: chatId)
             if dcChat.isGroup {
-                if dcChat.isUnpromoted {
+                if dcChat.isBroadcast {
+                    emptyStateView.text = String.localized("chat_new_broadcast_hint")
+                } else if dcChat.isUnpromoted {
                     emptyStateView.text = String.localized("chat_new_group_hint")
                 } else {
                     emptyStateView.text = String.localized("chat_no_messages")

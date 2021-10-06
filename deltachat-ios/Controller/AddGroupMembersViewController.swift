@@ -4,10 +4,7 @@ import DcCore
 class AddGroupMembersViewController: GroupMembersViewController {
     var onMembersSelected: ((Set<Int>) -> Void)?
     lazy var isVerifiedGroup: Bool = false
-
-    lazy var isNewGroup: Bool = {
-        return chat == nil
-    }()
+    private var isBroadcast: Bool = false
 
     private lazy var sections: [AddGroupMemberSections] = {
         if isVerifiedGroup {
@@ -56,9 +53,10 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     // add members of new group, no chat object yet
-    init(dcContext: DcContext, preselected: Set<Int>, isVerified: Bool) {
+    init(dcContext: DcContext, preselected: Set<Int>, isVerified: Bool, isBroadcast: Bool) {
         super.init(dcContext: dcContext)
         isVerifiedGroup = isVerified
+        self.isBroadcast = isBroadcast
         numberOfSections = sections.count
         selectedContactIds = preselected
     }
@@ -68,6 +66,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         self.chatId = chatId
         super.init(dcContext: dcContext)
         isVerifiedGroup = chat?.isProtected ?? false
+        isBroadcast = chat?.isBroadcast ?? false
         numberOfSections = sections.count
         selectedContactIds = Set(dcContext.getChat(chatId: chatId).getContactIds(dcContext))
     }
@@ -79,7 +78,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("group_add_members")
+        title = String.localized(isBroadcast ? "add_recipients" : "group_add_members")
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = cancelButton
         contactIds = loadMemberCandidates()
@@ -91,9 +90,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     @objc func doneButtonPressed() {
         if let onMembersSelected = onMembersSelected {
-            if isNewGroup {
-                selectedContactIds.insert(Int(DC_CONTACT_ID_SELF))
-            }
             onMembersSelected(selectedContactIds)
         }
         navigationController?.popViewController(animated: true)

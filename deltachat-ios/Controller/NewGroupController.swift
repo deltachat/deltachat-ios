@@ -13,18 +13,28 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private var deleteGroupImage: Bool = false
 
     let isVerifiedGroup: Bool
+    let createBroadcast: Bool
     let dcContext: DcContext
     private var contactAddedObserver: NSObjectProtocol?
 
-    private let sectionGroupDetails = 0
-    private let sectionGroupDetailsRowName = 0
-    private let sectionGroupDetailsRowAvatar = 1
-    private let countSectionGroupDetails = 2
-    private let sectionInvite = 1
-    private let sectionInviteRowAddMembers = 0
-    private let sectionInviteRowShowQrCode = 1
-    private lazy var countSectionInvite: Int = 2
-    private let sectionGroupMembers = 2
+    enum DetailsRows {
+        case name
+        case avatar
+    }
+    private let detailsRows: [DetailsRows]
+
+    enum InviteRows {
+        case addMembers
+        case showQrCode
+    }
+    private let inviteRows: [InviteRows]
+
+    enum NewGroupSections {
+        case details
+        case invite
+        case members
+    }
+    private let sections: [NewGroupSections]
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(navigationController: navigationController)
@@ -51,11 +61,22 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     var qrInviteCodeCell: ActionCell?
 
-    init(dcContext: DcContext, isVerified: Bool) {
-        self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
-        self.groupContactIds = Array(contactIdsForGroup)
+    init(dcContext: DcContext, isVerified: Bool, createBroadcast: Bool) {
         self.isVerifiedGroup = isVerified
+        self.createBroadcast = createBroadcast
         self.dcContext = dcContext
+        if createBroadcast {
+            self.sections = [.invite, .members]
+            self.detailsRows = []
+            self.inviteRows = [.addMembers]
+            self.contactIdsForGroup = []
+        } else {
+            self.sections = [.details, .invite, .members]
+            self.detailsRows = [.name, .avatar]
+            self.inviteRows = [.addMembers, .showQrCode]
+            self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
+        }
+        self.groupContactIds = Array(contactIdsForGroup)
         super.init(style: .grouped)
     }
 
@@ -65,13 +86,19 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = isVerifiedGroup ? String.localized("menu_new_verified_group") : String.localized("menu_new_group")
+        if isVerifiedGroup {
+            title = String.localized("menu_new_verified_group")
+        } else if createBroadcast {
+            title = String.localized("new_broadcast_list")
+        } else {
+            title = String.localized("menu_new_group")
+        }
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
-        doneButton.isEnabled = false
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         self.hideKeyboardOnTap()
+        checkDoneButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -99,53 +126,55 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
     }
 
+    private func checkDoneButton() {
+        var nameOk = true
+        if !createBroadcast {
+            let name = groupNameCell.textField.text ?? ""
+            nameOk = !name.isEmpty
+        }
+        doneButton.isEnabled = nameOk && contactIdsForGroup.count >= 1
+    }
 
     @objc func doneButtonPressed() {
-        if groupChatId == 0 {
+        if createBroadcast {
+            groupChatId = dcContext.createBroadcastList()
+        } else if groupChatId == 0 {
             groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
         } else {
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         }
 
         for contactId in contactIdsForGroup {
-            let success = dcContext.addContactToChat(chatId: groupChatId, contactId: contactId)
-
-            if let groupImage = changeGroupImage {
-                AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: groupChatId)
-            } else if deleteGroupImage {
-                AvatarHelper.saveChatAvatar(dcContext: dcContext, image: nil, for: groupChatId)
-            }
-
-            if success {
-                logger.info("successfully added \(contactId) to group \(groupName)")
-            } else {
-                logger.error("failed to add \(contactId) to group \(groupName)")
-            }
+            _ = dcContext.addContactToChat(chatId: groupChatId, contactId: contactId)
+        }
+        if let groupImage = changeGroupImage {
+            AvatarHelper.saveChatAvatar(dcContext: dcContext, image: groupImage, for: groupChatId)
+        } else if deleteGroupImage {
+            AvatarHelper.saveChatAvatar(dcContext: dcContext, image: nil, for: groupChatId)
         }
 
         showGroupChat(chatId: Int(groupChatId))
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return 3
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
         let row = indexPath.row
 
-        switch section {
-        case sectionGroupDetails:
-             if row == sectionGroupDetailsRowAvatar {
+        switch sections[indexPath.section] {
+        case .details:
+            if detailsRows[row] == .avatar {
                 return avatarSelectionCell
             } else {
                 return groupNameCell
             }
-        case sectionInvite:
-            if row == sectionInviteRowAddMembers {
+        case .invite:
+            if inviteRows[row] == .addMembers {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
                 if let actionCell = cell as? ActionCell {
-                    actionCell.actionTitle = String.localized("group_add_members")
+                    actionCell.actionTitle = String.localized(createBroadcast ? "add_recipients" : "group_add_members")
                     actionCell.actionColor = UIColor.systemBlue
                     actionCell.isUserInteractionEnabled = true
                 }
@@ -160,7 +189,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 }
                 return cell
             }
-        default:
+        case .members:
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
                 let contact = dcContext.getContact(id: groupContactIds[row])
@@ -180,47 +209,49 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if section == sectionGroupDetails && isVerifiedGroup {
+        if sections[section] == .details && isVerifiedGroup {
             return String.localized("verified_group_explain")
+        } else if sections[section] == .invite && createBroadcast {
+            return String.localized("chat_new_broadcast_hint")
         }
         return nil
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let section = indexPath.section
-        switch section {
-        case sectionGroupDetails, sectionInvite:
+        switch sections[indexPath.section] {
+        case .details, .invite:
             return UITableView.automaticDimension
-        default:
+        case .members:
             return ContactCell.cellHeight
         }
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case sectionGroupDetails:
-            return countSectionGroupDetails
-        case sectionInvite:
-            return countSectionInvite
-        default:
+        switch sections[section] {
+        case .details:
+            return detailsRows.count
+        case .invite:
+            return inviteRows.count
+        case .members:
             return contactIdsForGroup.count
         }
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == sectionGroupMembers {
-            return String.localized("in_this_group_desktop")
-        } else {
-            return nil
+        if sections[section] == .members && !contactIdsForGroup.isEmpty {
+            if createBroadcast {
+                return String.localized(stringID: "n_recipients", count: contactIdsForGroup.count)
+            } else {
+                return String.localized(stringID: "n_members", count: contactIdsForGroup.count)
+            }
         }
+        return nil
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = indexPath.section
-        let row = indexPath.row
-        if section == sectionInvite {
+        if sections[indexPath.section] == .invite {
             tableView.deselectRow(at: indexPath, animated: false)
-            if row == sectionInviteRowAddMembers {
+            if inviteRows[indexPath.row] == .addMembers {
                 var contactsWithoutSelf = contactIdsForGroup
                 contactsWithoutSelf.remove(Int(DC_CONTACT_ID_SELF))
                 showAddMembers(preselectedMembers: contactsWithoutSelf, isVerified: self.isVerifiedGroup)
@@ -232,11 +263,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let section = indexPath.section
         let row = indexPath.row
 
         // swipe by delete
-        if section == sectionGroupMembers, groupContactIds[row] != DC_CONTACT_ID_SELF {
+        if sections[indexPath.section] == .members, groupContactIds[indexPath.row] != DC_CONTACT_ID_SELF {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
                 guard let self = self else { return }
                 if self.groupChatId != 0,
@@ -256,13 +286,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
     }
 
-
     private func updateGroupName(textView: UITextField) {
         let name = textView.text ?? ""
         groupName = name
-        doneButton.isEnabled = name.containsCharacters()
         qrInviteCodeCell?.isUserInteractionEnabled = name.containsCharacters()
         qrInviteCodeCell?.actionColor = groupName.isEmpty ? DcColors.colorDisabled : UIColor.systemBlue
+        checkDoneButton()
     }
 
     private func onAvatarTapped() {
@@ -302,6 +331,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
         groupContactIds = Array(contactIdsForGroup)
         self.tableView.reloadData()
+        checkDoneButton()
     }
 
     func updateGroupContactIdsOnListSelection(_ members: Set<Int>) {
@@ -314,13 +344,21 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         contactIdsForGroup = members
         groupContactIds = Array(members)
         self.tableView.reloadData()
+        checkDoneButton()
     }
 
     func removeGroupContactFromList(at indexPath: IndexPath) {
         let row = indexPath.row
         self.contactIdsForGroup.remove(self.groupContactIds[row])
         self.groupContactIds.remove(at: row)
+
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            self.tableView.reloadData() // needed to update the "N members"-title, however do not interrupt the nice delete-animation
+            self.checkDoneButton()
+        }
         tableView.deleteRows(at: [indexPath], with: .fade)
+        CATransaction.commit()
     }
 
     // MARK: - coordinator
@@ -355,9 +393,14 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
         let newGroupController = AddGroupMembersViewController(dcContext: dcContext,
                                                                preselected: preselectedMembers,
-                                                               isVerified: isVerified)
+                                                               isVerified: isVerified,
+                                                               isBroadcast: createBroadcast)
         newGroupController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
             guard let self = self else { return }
+            var memberIds = memberIds
+            if !self.createBroadcast {
+                memberIds.insert(Int(DC_CONTACT_ID_SELF))
+            }
             self.updateGroupContactIdsOnListSelection(memberIds)
         }
         navigationController?.pushViewController(newGroupController, animated: true)

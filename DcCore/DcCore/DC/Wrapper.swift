@@ -256,6 +256,10 @@ public class DcContext {
         return Int(dc_create_group_chat(contextPointer, verified ? 1 : 0, name))
     }
 
+    public func createBroadcastList() -> Int {
+        return Int(dc_create_broadcast_list(contextPointer))
+    }
+
     public func addContactToChat(chatId: Int, contactId: Int) -> Bool {
         return dc_add_contact_to_chat(contextPointer, UInt32(chatId), UInt32(contactId)) == 1
     }
@@ -819,11 +823,15 @@ public class DcChat {
         // isMultiUser() might fit better,
         // however, would result in lots of code changes, so we leave this as is for now.
         let type = Int(dc_chat_get_type(chatPointer))
-        return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_MAILINGLIST
+        return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_MAILINGLIST || type == DC_CHAT_TYPE_BROADCAST
     }
 
     public var isMailinglist: Bool {
         return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_MAILINGLIST
+    }
+
+    public var isBroadcast: Bool {
+        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_BROADCAST
     }
 
     public var isSelfTalk: Bool {

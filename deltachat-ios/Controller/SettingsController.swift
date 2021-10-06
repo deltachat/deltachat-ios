@@ -434,6 +434,22 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     private func showExperimentalDialog() {
         let alert = UIAlertController(title: String.localized("pref_experimental_features"), message: nil, preferredStyle: .safeActionSheet)
 
+        let broadcastLists = UserDefaults.standard.bool(forKey: "broadcast_lists")
+        alert.addAction(UIAlertAction(title: (broadcastLists ? "✔︎ " : "") + String.localized("broadcast_lists"),
+                                      style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            UserDefaults.standard.set(!broadcastLists, forKey: "broadcast_lists")
+            if !broadcastLists {
+                let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Broadcast Lists\"!",
+                                              message: "You can now create new \"Broadcast Lists\" from the \"New Chat\" dialog\n\n"
+                                                + "In case you are using more than one device, broadcast lists are currently not synced between them\n\n"
+                                                + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            }
+        }))
+
         let locationStreaming = UserDefaults.standard.bool(forKey: "location_streaming")
         let title = (locationStreaming ? "✔︎ " : "") + String.localized("pref_on_demand_location_streaming")
         alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
