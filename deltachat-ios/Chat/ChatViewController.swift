@@ -37,7 +37,7 @@ class ChatViewController: UITableViewController {
     }()
 
     // search related
-    var activateSearchOnAppear: Bool = false
+    var activateSearch: Bool = false
     private var isSearchActive: Bool = false
     private var searchMessageIds: [Int] = []
     private var searchResultIndex: Int = 0
@@ -48,11 +48,11 @@ class ChatViewController: UITableViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         searchController.searchResultsUpdater = self
         searchController.searchBar.inputAccessoryView = messageInputBar
         searchController.searchBar.autocorrectionType = .yes
         searchController.searchBar.keyboardType = .default
-        searchController.searchBar.isHidden = true
         return searchController
     }()
 
@@ -289,7 +289,6 @@ class ChatViewController: UITableViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.backButtonTitle = String.localized("chat")
-        navigationItem.searchController = searchController
         definesPresentationContext = true
 
         if !dcContext.isConfigured() {
@@ -315,7 +314,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func getTopInsetHeight() -> CGFloat {
-        let navigationBarHeight = (navigationController?.navigationBar.bounds.height ?? 0)
+        let navigationBarHeight = navigationController?.navigationBar.bounds.height ?? 0
         if let root = UIApplication.shared.keyWindow?.rootViewController {
             return navigationBarHeight + root.view.safeAreaInsets.top
         }
@@ -341,6 +340,11 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    public func activateSearchOnAppear() {
+        activateSearch = true
+        navigationItem.searchController = self.searchController
+    }
+
     private func stopTimer() {
         if let timer = timer {
             timer.invalidate()
@@ -361,12 +365,12 @@ class ChatViewController: UITableViewController {
         }
         if !isDismissing {
             self.tableView.becomeFirstResponder()
-            if activateSearchOnAppear {
+            if activateSearch {
+                activateSearch = false
                 DispatchQueue.main.async { [weak self] in
                     self?.searchController.isActive = true
-                    self?.searchController.searchBar.isHidden = false
-                    self?.searchController.searchBar.becomeFirstResponder()
                 }
+                
             }
             var bottomInsets = self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight
             if UIApplication.shared.statusBarOrientation.isLandscape,
@@ -1852,26 +1856,32 @@ extension ChatViewController: UISearchResultsUpdating {
 extension ChatViewController: UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        logger.debug("searchbar: searchBarShouldBeginEditing")
         isSearchActive = true
         configureDraftArea(draft: draft)
         return true
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        logger.debug("searchbar: searchBarTextDidEndEditing")
         isSearchActive = false
         configureDraftArea(draft: draft)
         tableView.becomeFirstResponder()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        logger.debug("searchbar: searchBarTextDidEndEditing")
         isSearchActive = false
         configureDraftArea(draft: draft)
-        searchController.searchBar.isHidden = true
         tableView.becomeFirstResponder()
+        navigationItem.searchController = nil
         reloadData()
+    }
+}
+
+// MARK: - UISearchControllerDelegate
+extension ChatViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        DispatchQueue.main.async { [weak self] in
+            self?.searchController.searchBar.becomeFirstResponder()
+        }
     }
 }
 

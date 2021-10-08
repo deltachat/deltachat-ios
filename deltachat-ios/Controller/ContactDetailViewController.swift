@@ -492,7 +492,7 @@ class ContactDetailViewController: UITableViewController {
         if let chatViewController = navigationController?.viewControllers.last(where: {
             $0 is ChatViewController
         }) as? ChatViewController {
-            chatViewController.activateSearchOnAppear = true
+            chatViewController.activateSearchOnAppear()
             navigationController?.popViewController(animated: true)
         }
     }
