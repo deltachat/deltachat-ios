@@ -37,7 +37,7 @@ class ChatViewController: UITableViewController {
     }()
 
     // search related
-    var activateSearch: Bool = false
+    private var activateSearch: Bool = false
     private var isSearchActive: Bool = false
     private var searchMessageIds: [Int] = []
     private var searchResultIndex: Int = 0
