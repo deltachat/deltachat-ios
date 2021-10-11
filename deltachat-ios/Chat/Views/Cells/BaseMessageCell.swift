@@ -406,6 +406,18 @@ public class BaseMessageCell: UITableViewCell {
         return backgroundColor
     }
 
+    func getTextOffset(of text: String?) -> CGFloat {
+        guard let text = text else { return 0 }
+        let offsetInLabel = messageLabel.label.offsetOfSubstring(text)
+        if offsetInLabel == 0 {
+            return 0
+        }
+
+        let labelTop = CGPoint(x: messageLabel.label.bounds.minX, y: messageLabel.label.bounds.minY)
+        let point = messageLabel.label.convert(labelTop, to: self)
+        return point.y + offsetInLabel
+    }
+
     override public func prepareForReuse() {
         accessibilityLabel = nil
         textLabel?.text = nil

@@ -955,13 +955,32 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func scrollToMessage(msgId: Int, animated: Bool = true) {
+    private func scrollToMessage(msgId: Int, animated: Bool = true, scrollToText: Bool = false) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             guard let index = self.messageIds.firstIndex(of: msgId) else {
                 return
             }
             let indexPath = IndexPath(row: index, section: 0)
+
+            if scrollToText {
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                let cell = self.tableView.cellForRow(at: indexPath)
+                if let messageCell = cell as? BaseMessageCell {
+                    let textYPos = messageCell.getTextOffset(of: self.searchController.searchBar.text)
+                    let currentYPos = self.tableView.contentOffset.y
+                    let padding: CGFloat = 12
+                    self.tableView.setContentOffset(CGPoint(x: 0,
+                                                            y: textYPos +
+                                                                currentYPos -
+                                                                2 * UIFont.preferredFont(for: .body, weight: .regular).lineHeight -
+                                                                padding),
+                                                    animated: animated)
+
+                    return
+                }
+            }
+
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
         }
     }
@@ -1807,7 +1826,7 @@ extension ChatViewController: ChatSearchDelegate {
         } else {
             searchResultIndex -= 1
         }
-        scrollToMessage(msgId: searchMessageIds[searchResultIndex])
+        scrollToMessage(msgId: searchMessageIds[searchResultIndex], animated: true, scrollToText: true)
         searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
         self.reloadData()
     }
@@ -1819,7 +1838,7 @@ extension ChatViewController: ChatSearchDelegate {
         } else {
             searchResultIndex += 1
         }
-        scrollToMessage(msgId: searchMessageIds[searchResultIndex])
+        scrollToMessage(msgId: searchMessageIds[searchResultIndex], animated: true, scrollToText: true)
         searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
         self.reloadData()
     }
@@ -1843,7 +1862,7 @@ extension ChatViewController: UISearchResultsUpdating {
                     self.searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: self.searchResultIndex + 1)
 
                     if let lastId = resultIds.last {
-                        self.scrollToMessage(msgId: lastId, animated: false)
+                        self.scrollToMessage(msgId: lastId, animated: true, scrollToText: true)
                     }
                     self.reloadData()
                 }
