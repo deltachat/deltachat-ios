@@ -703,6 +703,15 @@ class ChatViewController: UITableViewController {
     }
 
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
+        if isSearchActive {
+            messageInputBar.setMiddleContentView(searchAccessoryBar, animated: false)
+            messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
+            messageInputBar.setStackViewItems([], forStack: .top, animated: false)
+            messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+            return
+        }
+
         draftArea.configure(draft: draft)
         if draft.isEditing {
             messageInputBar.setMiddleContentView(editingBar, animated: false)
@@ -716,11 +725,7 @@ class ChatViewController: UITableViewController {
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
         }
 
-        if isSearchActive {
-            messageInputBar.setStackViewItems([searchAccessoryBar, draftArea], forStack: .top, animated: false)
-        } else {
-            messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: false)
-        }
+        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: false)
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
