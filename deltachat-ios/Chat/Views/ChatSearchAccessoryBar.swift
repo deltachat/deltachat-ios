@@ -93,7 +93,7 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
 
         addConstraints([
             searchResultLabel.constraintCenterYTo(self),
-            searchResultLabel.constraintCenterXTo(self),
+            searchResultLabel.constraintAlignLeadingToAnchor(self.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 32),
             buttonContainer.constraintAlignTopTo(self, paddingTop: 4),
             buttonContainer.constraintAlignBottomTo(self, paddingBottom: 4),
             buttonContainer.constraintWidthTo(90),
