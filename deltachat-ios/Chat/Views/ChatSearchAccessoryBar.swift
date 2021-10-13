@@ -64,7 +64,7 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
     }()
 
     private lazy var buttonContainer: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [downButton, upButton])
+        let view = UIStackView(arrangedSubviews: [upButton, downButton])
         view.axis = .horizontal
         view.distribution = .equalSpacing
         view.alignment = .trailing
