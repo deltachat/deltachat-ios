@@ -724,8 +724,7 @@ class ChatViewController: UITableViewController {
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
         }
-
-        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: false)
+        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
