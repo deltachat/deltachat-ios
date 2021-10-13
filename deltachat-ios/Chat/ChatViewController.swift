@@ -975,7 +975,7 @@ class ChatViewController: UITableViewController {
                                                                 currentYPos -
                                                                 2 * UIFont.preferredFont(for: .body, weight: .regular).lineHeight -
                                                                 padding),
-                                                    animated: animated)
+                                                    animated: false)
 
                     return
                 }
@@ -1851,7 +1851,7 @@ extension ChatViewController: UISearchResultsUpdating {
         debounceTimer?.invalidate()
         debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
             let searchText = searchController.searchBar.text ?? ""
-            DispatchQueue.global().async {
+            DispatchQueue.global(qos: .userInteractive).async {
                 let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
                 DispatchQueue.main.async { [weak self] in
 

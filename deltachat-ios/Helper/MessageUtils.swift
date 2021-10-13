@@ -142,11 +142,14 @@ public class MessageUtils {
             ]
             let mutableAttributedString = NSMutableAttributedString(string: messageText, attributes: fontAttributes)
 
-            if let searchText = searchText, messageText.lowercased().contains(searchText.lowercased()) {
-                let range = (messageText.lowercased() as NSString).range(of: searchText.lowercased())
-                mutableAttributedString.addAttribute(.font, value: UIFont.preferredFont(for: .body, weight: .semibold), range: range)
-                if highlight {
-                    mutableAttributedString.addAttribute(.backgroundColor, value: DcColors.highlight, range: range)
+            if let searchText = searchText {
+                let ranges = messageText.ranges(of: searchText, options: .caseInsensitive)
+                for range in ranges {
+                    let nsRange = NSRange(range, in: messageText)
+                    mutableAttributedString.addAttribute(.font, value: UIFont.preferredFont(for: .body, weight: .semibold), range: nsRange)
+                    if highlight {
+                        mutableAttributedString.addAttribute(.backgroundColor, value: DcColors.highlight, range: nsRange)
+                    }
                 }
             }
             return mutableAttributedString
