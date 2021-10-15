@@ -38,7 +38,6 @@ class ChatViewController: UITableViewController {
 
     // search related
     private var activateSearch: Bool = false
-    private var isSearchActive: Bool = false
     private var searchMessageIds: [Int] = []
     private var searchResultIndex: Int = 0
     private var debounceTimer: Timer?
@@ -703,7 +702,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
-        if isSearchActive {
+        if searchController.isActive {
             messageInputBar.setMiddleContentView(searchAccessoryBar, animated: false)
             messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
@@ -1879,19 +1878,17 @@ extension ChatViewController: UISearchResultsUpdating {
 extension ChatViewController: UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        isSearchActive = true
         configureDraftArea(draft: draft)
         return true
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        isSearchActive = false
         configureDraftArea(draft: draft)
         tableView.becomeFirstResponder()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        isSearchActive = false
+        searchController.isActive = false
         configureDraftArea(draft: draft)
         tableView.becomeFirstResponder()
         navigationItem.searchController = nil
