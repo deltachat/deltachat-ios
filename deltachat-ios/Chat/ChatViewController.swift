@@ -36,6 +36,33 @@ class ChatViewController: UITableViewController {
         return draft
     }()
 
+    // search related
+    private var activateSearch: Bool = false
+    private var searchMessageIds: [Int] = []
+    private var searchResultIndex: Int = 0
+    private var debounceTimer: Timer?
+
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = String.localized("search")
+        searchController.searchBar.delegate = self
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.inputAccessoryView = messageInputBar
+        searchController.searchBar.autocorrectionType = .yes
+        searchController.searchBar.keyboardType = .default
+        return searchController
+    }()
+
+    public lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
+        let view = ChatSearchAccessoryBar()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isEnabled = false
+        return view
+    }()
+
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = ChatInputBar()
 
@@ -261,6 +288,7 @@ class ChatViewController: UITableViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.backButtonTitle = String.localized("chat")
+        definesPresentationContext = true
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -285,7 +313,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func getTopInsetHeight() -> CGFloat {
-        let navigationBarHeight = (navigationController?.navigationBar.bounds.height ?? 0)
+        let navigationBarHeight = navigationController?.navigationBar.bounds.height ?? 0
         if let root = UIApplication.shared.keyWindow?.rootViewController {
             return navigationBarHeight + root.view.safeAreaInsets.top
         }
@@ -311,6 +339,11 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    public func activateSearchOnAppear() {
+        activateSearch = true
+        navigationItem.searchController = self.searchController
+    }
+
     private func stopTimer() {
         if let timer = timer {
             timer.invalidate()
@@ -331,6 +364,13 @@ class ChatViewController: UITableViewController {
         }
         if !isDismissing {
             self.tableView.becomeFirstResponder()
+            if activateSearch {
+                activateSearch = false
+                DispatchQueue.main.async { [weak self] in
+                    self?.searchController.isActive = true
+                }
+                
+            }
             var bottomInsets = self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight
             if UIApplication.shared.statusBarOrientation.isLandscape,
                let root = UIApplication.shared.keyWindow?.rootViewController {
@@ -635,7 +675,9 @@ class ChatViewController: UITableViewController {
                     msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
-                    showName: showName)
+                    showName: showName,
+                    searchText: searchController.searchBar.text,
+                    highlight: !searchMessageIds.isEmpty && message.id == searchMessageIds[searchResultIndex])
 
         return cell
     }
@@ -660,6 +702,15 @@ class ChatViewController: UITableViewController {
     }
 
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
+        if searchController.isActive {
+            messageInputBar.setMiddleContentView(searchAccessoryBar, animated: false)
+            messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
+            messageInputBar.setStackViewItems([], forStack: .top, animated: false)
+            messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+            return
+        }
+
         draftArea.configure(draft: draft)
         if draft.isEditing {
             messageInputBar.setMiddleContentView(editingBar, animated: false)
@@ -907,13 +958,32 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func scrollToMessage(msgId: Int, animated: Bool = true) {
+    private func scrollToMessage(msgId: Int, animated: Bool = true, scrollToText: Bool = false) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             guard let index = self.messageIds.firstIndex(of: msgId) else {
                 return
             }
             let indexPath = IndexPath(row: index, section: 0)
+
+            if scrollToText {
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                let cell = self.tableView.cellForRow(at: indexPath)
+                if let messageCell = cell as? BaseMessageCell {
+                    let textYPos = messageCell.getTextOffset(of: self.searchController.searchBar.text)
+                    let currentYPos = self.tableView.contentOffset.y
+                    let padding: CGFloat = 12
+                    self.tableView.setContentOffset(CGPoint(x: 0,
+                                                            y: textYPos +
+                                                                currentYPos -
+                                                                2 * UIFont.preferredFont(for: .body, weight: .regular).lineHeight -
+                                                                padding),
+                                                    animated: false)
+
+                    return
+                }
+            }
+
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
         }
     }
@@ -1750,6 +1820,91 @@ extension ChatViewController: ChatEditingDelegate {
     }
 }
 
+// MARK: - ChatSearchDelegate
+extension ChatViewController: ChatSearchDelegate {
+    func onSearchPreviousPressed() {
+        logger.debug("onSearch Previous Pressed")
+        if searchResultIndex == 0 && !searchMessageIds.isEmpty {
+            searchResultIndex = searchMessageIds.count - 1
+        } else {
+            searchResultIndex -= 1
+        }
+        scrollToMessage(msgId: searchMessageIds[searchResultIndex], animated: true, scrollToText: true)
+        searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
+        self.reloadData()
+    }
+
+    func onSearchNextPressed() {
+        logger.debug("onSearch Next Pressed")
+        if searchResultIndex == searchMessageIds.count - 1 {
+            searchResultIndex = 0
+        } else {
+            searchResultIndex += 1
+        }
+        scrollToMessage(msgId: searchMessageIds[searchResultIndex], animated: true, scrollToText: true)
+        searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
+        self.reloadData()
+    }
+}
+
+// MARK: UISearchResultUpdating
+extension ChatViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        logger.debug("searchbar: \(String(describing: searchController.searchBar.text))")
+        debounceTimer?.invalidate()
+        debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
+            let searchText = searchController.searchBar.text ?? ""
+            DispatchQueue.global(qos: .userInteractive).async {
+                let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
+                DispatchQueue.main.async { [weak self] in
+
+                guard let self = self else { return }
+                    self.searchMessageIds = resultIds
+                    self.searchResultIndex = self.searchMessageIds.isEmpty ? 0 : self.searchMessageIds.count - 1
+                    self.searchAccessoryBar.isEnabled = !resultIds.isEmpty
+                    self.searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: self.searchResultIndex + 1)
+
+                    if let lastId = resultIds.last {
+                        self.scrollToMessage(msgId: lastId, animated: true, scrollToText: true)
+                    }
+                    self.reloadData()
+                }
+            }
+        }
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension ChatViewController: UISearchBarDelegate {
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        configureDraftArea(draft: draft)
+        return true
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        configureDraftArea(draft: draft)
+        tableView.becomeFirstResponder()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.isActive = false
+        configureDraftArea(draft: draft)
+        tableView.becomeFirstResponder()
+        navigationItem.searchController = nil
+        reloadData()
+    }
+}
+
+// MARK: - UISearchControllerDelegate
+extension ChatViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        DispatchQueue.main.async { [weak self] in
+            self?.searchController.searchBar.becomeFirstResponder()
+        }
+    }
+}
+
 // MARK: - ChatContactRequestBar
 extension ChatViewController: ChatContactRequestDelegate {
     func onAcceptRequest() {
@@ -1818,4 +1973,3 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
         sendSticker(image)
     }
 }
-

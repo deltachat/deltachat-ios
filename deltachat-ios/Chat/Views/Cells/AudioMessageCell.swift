@@ -39,7 +39,7 @@ public class AudioMessageCell: BaseMessageCell {
         delegate?.playButtonTapped(cell: self, messageId: messageId)
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
         messageId = msg.id
         if let text = msg.text {
             mainContentView.spacing = text.isEmpty ? 0 : 8
@@ -61,7 +61,13 @@ public class AudioMessageCell: BaseMessageCell {
         })
         
 
-        super.update(dcContext: dcContext, msg: msg, messageStyle: messageStyle, showAvatar: showAvatar, showName: showName)
+        super.update(dcContext: dcContext,
+                     msg: msg,
+                     messageStyle: messageStyle,
+                     showAvatar: showAvatar,
+                     showName: showName,
+                     searchText: searchText,
+                     highlight: highlight)
     }
 
     public override func prepareForReuse() {

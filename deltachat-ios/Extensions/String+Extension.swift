@@ -9,6 +9,22 @@ extension String {
         return String(self[idx1..<idx2])
     }
 
+    func substring(to: Index) -> String {
+        return String(self[startIndex..<to])
+    }
+
+    func ranges(of string: String, options: String.CompareOptions = []) -> [Range<Index>] {
+        var result: [Range<Index>] = []
+        var startIndex = self.startIndex
+        while startIndex < endIndex,
+            let range = self[startIndex...].range(of: string, options: options) {
+                result.append(range)
+                startIndex = range.lowerBound < range.upperBound ? range.upperBound :
+                    index(range.lowerBound, offsetBy: 1, limitedBy: endIndex) ?? endIndex
+        }
+        return result
+    }
+
     // O(n) - returns indexes of subsequences -> can be used to highlight subsequence within string
     func contains(subSequence: String) -> [Int] {
         if subSequence.count > count {

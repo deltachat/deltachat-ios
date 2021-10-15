@@ -99,3 +99,20 @@ extension UINavigationController {
         }
     }
 }
+
+extension UILabel {
+    func offsetOfSubstring(_ substring: String) -> CGFloat {
+        guard let text = text else {
+            return 0
+        }
+
+        let searchIndexes = text.ranges(of: substring, options: .caseInsensitive)
+        guard let firstIndex = searchIndexes.first else {
+            return 0
+        }
+
+        let prefix = text.substring(to: firstIndex.lowerBound)
+        let size: CGSize = prefix.size(withAttributes: [NSAttributedString.Key.font: font])
+        return size.height
+    }
+}

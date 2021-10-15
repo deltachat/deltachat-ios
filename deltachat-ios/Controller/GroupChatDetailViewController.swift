@@ -14,6 +14,7 @@ class GroupChatDetailViewController: UIViewController {
     enum ChatOption {
         case gallery
         case documents
+        case search
         case ephemeralMessages
         case muteChat
     }
@@ -157,13 +158,24 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
+    private lazy var searchCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("search")
+        cell.accessoryType = .disclosureIndicator
+        if chatId == 0 {
+            cell.isUserInteractionEnabled = false
+            cell.textLabel?.isEnabled = false
+        }
+        return cell
+    }()
+
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
         self.chatId = chatId
 
         let chat = dcContext.getChat(chatId: chatId)
         if chat.isMailinglist {
-            self.chatOptions = [.gallery, .documents, .muteChat]
+            self.chatOptions = [.gallery, .documents, .search, .muteChat]
             self.chatActions = [.archiveChat, .deleteChat]
             self.memberManagementRows = 2
             self.sections = [.chatOptions, .chatActions]
@@ -173,7 +185,7 @@ class GroupChatDetailViewController: UIViewController {
             self.memberManagementRows = 1
             self.sections = [.chatOptions, .members, .chatActions]
         } else {
-            self.chatOptions = [.gallery, .documents, .ephemeralMessages, .muteChat]
+            self.chatOptions = [.gallery, .documents, .search, .ephemeralMessages, .muteChat]
             self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
             self.memberManagementRows = 2
             self.sections = [.chatOptions, .members, .chatActions]
@@ -389,6 +401,15 @@ class GroupChatDetailViewController: UIViewController {
         navigationController?.pushViewController(galleryController, animated: true)
     }
 
+    private func showSearch() {
+        if let chatViewController = navigationController?.viewControllers.last(where: {
+            $0 is ChatViewController
+        }) as? ChatViewController {
+            chatViewController.activateSearchOnAppear()
+            navigationController?.popViewController(animated: true)
+        }
+    }
+
     private func deleteChat() {
         dcContext.deleteChat(chatId: chatId)
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
@@ -450,6 +471,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return galleryCell
             case .documents:
                 return documentsCell
+            case .search:
+                return searchCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
             case .muteChat:
@@ -508,6 +531,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 showGallery()
             case .documents:
                 showDocuments()
+            case .search:
+                showSearch()
             case .ephemeralMessages:
                 showEphemeralMessagesController()
             case .muteChat:

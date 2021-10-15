@@ -6,6 +6,7 @@ public struct DcColors {
 
 
     public static let primary = UIColor.systemBlue
+    public static let highlight = UIColor.themeColor(light: UIColor.yellow, dark: UIColor.systemBlue)
     public static let colorDisabled = UIColor.themeColor(light: UIColor(white: 0.9, alpha: 1), dark: UIColor(white: 0.2, alpha: 1))
     public static let messagePrimaryColor = UIColor.themeColor(light: UIColor.rgb(red: 220, green: 248, blue: 198),
                                                         dark: UIColor.init(hexString: "224508"))

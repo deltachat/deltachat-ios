@@ -274,7 +274,7 @@ public class BaseMessageCell: UITableViewCell {
     }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
@@ -360,6 +360,10 @@ public class BaseMessageCell: UITableViewCell {
             quoteView.isHidden = true
         }
 
+        messageLabel.attributedText = MessageUtils.getFormattedSearchResultMessage(messageText: msg.text,
+                                                                                       searchText: searchText,
+                                                                                       highlight: highlight)
+
         messageLabel.delegate = self
         accessibilityLabel = configureAccessibilityString(message: msg)
     }
@@ -400,6 +404,18 @@ public class BaseMessageCell: UITableViewCell {
             backgroundColor = DcColors.messageSecondaryColor
         }
         return backgroundColor
+    }
+
+    func getTextOffset(of text: String?) -> CGFloat {
+        guard let text = text else { return 0 }
+        let offsetInLabel = messageLabel.label.offsetOfSubstring(text)
+        if offsetInLabel == 0 {
+            return 0
+        }
+
+        let labelTop = CGPoint(x: messageLabel.label.bounds.minX, y: messageLabel.label.bounds.minY)
+        let point = messageLabel.label.convert(labelTop, to: self)
+        return point.y + offsetInLabel
     }
 
     override public func prepareForReuse() {

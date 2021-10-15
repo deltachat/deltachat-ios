@@ -11,9 +11,16 @@ class TextMessageCell: BaseMessageCell {
         messageLabel.paddingTrailing = 12
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
         messageLabel.text = msg.text
-        super.update(dcContext: dcContext, msg: msg, messageStyle: messageStyle, showAvatar: showAvatar, showName: showName)
+
+        super.update(dcContext: dcContext,
+                     msg: msg,
+                     messageStyle: messageStyle,
+                     showAvatar: showAvatar,
+                     showName: showName,
+                     searchText: searchText,
+                     highlight: highlight)
     }
 
     override func prepareForReuse() {
