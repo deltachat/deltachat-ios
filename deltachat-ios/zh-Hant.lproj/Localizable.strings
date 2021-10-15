@@ -733,6 +733,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d 个聊天中有 %1$d 条新消息";
+"notify_dismiss" = "不予理会";
 "notify_mark_read" = "标记为已读";
 "notify_reply_button" = "回复";
 "notify_new_message" = "新消息";

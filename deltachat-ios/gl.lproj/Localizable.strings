@@ -733,6 +733,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d novas mensaxes en %2$d conversas";
+"notify_dismiss" = "Desbotar";
 "notify_mark_read" = "Marcar como lido";
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Nova mensaxe";

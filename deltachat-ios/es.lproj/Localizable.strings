@@ -475,7 +475,7 @@
 // preferences
 "pref_using_custom" = "Usando valor personalizado: %1$@";
 "pref_using_default" = "Usando valor por defecto: %1$@";
-"pref_profile_info_headline" = "Información de perfil ";
+"pref_profile_info_headline" = "Información de perfil";
 "pref_profile_photo" = "Foto de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
 "blocked_empty_hint" = "Si bloqueas contactos, se mostrarán aquí.";
