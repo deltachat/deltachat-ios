@@ -2,6 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Annuler";
+"clear_search" = "Effacer la recherche";
 "yes" = "Oui";
 "no" = "Non";
 "select" = "Sélectionner";
@@ -15,6 +16,8 @@
 "automatic" = "Automatique";
 "strict" = "Stricte";
 "open" = "Ouvert";
+"download" = "Télécharger";
+"downloading" = "Téléchargement en cours...";
 "open_attachment" = "Ouvrir la pièce jointe";
 "join" = "Rejoindre";
 "rejoin" = "Réintégrer";
@@ -38,7 +41,11 @@
 "main_menu" = "Menu principal";
 "start_chat" = "Commencer la discussion";
 "show_full_message" = "Montrer le message complet...";
+"show_full_message_in_browser" = "Afficher le message complet dans le navigateur";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Chargement...";
 "hide" = "Cacher";
+"activate" = "Activer";
 "load_remote_content" = "Charger les images distantes";
 // possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Les images distantes peuvent être utilisées pour vous pister. Ce paramètre autorise également le chargement de polices ou d\'autres contenus. S\'il est désactivé, vous pouvez tout de même voir les images ancrées ou en cache. Souhaitez-vous charger les images distantes ?";
@@ -62,7 +69,7 @@
 "copied_to_clipboard" = "Copié dans le presse-papier.";
 "contacts_headline" = "Contacts";
 "email_address" = "Adresse de courriel";
-"bad_email_address" = "Mauvaise adresse email.";
+"bad_email_address" = "Adresse mail incorrecte";
 "password" = "Mot de passe";
 "existing_password" = "Mot de passe existant";
 "now" = "Maintenant";
@@ -76,15 +83,19 @@
 "last_month" = "Le mois dernier";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
 "self" = "Moi";
 "draft" = "Brouillon";
 "image" = "Image";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Réponse";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Vignette";
 "images" = "Images";
 "audio" = "Son";
 "voice_message" = "Message vocal";
+"forwarded" = "Transféré";
 "forwarded_message" = "Message transféré";
 // %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Transféré par %1$@";
@@ -93,6 +104,10 @@
 "contact" = "Contact";
 "verified_contact" = "Contact vérifié";
 "camera" = "Caméra";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+"capture" = "Enregistrer";
+"switch_camera" = "Changer de caméra";
+"toggle_fullscreen" = "Activer le plein écran";
 "location" = "Position";
 "gallery" = "Galerie";
 "images_and_videos" = "Images et vidéos";
@@ -128,6 +143,11 @@
 "menu_new_chat" = "Nouvelle discussion";
 "menu_new_group" = "Nouveau groupe";
 "menu_new_verified_group" = "Nouveau groupe vérifié";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Liste de diffusion";
+"broadcast_lists" = "Listes de diffusion";
+"new_broadcast_list" = "Nouvelle liste de diffusion";
+"add_recipients" = "Ajouter des destinataires";
 "menu_send" = "Envoyer";
 "menu_toggle_keyboard" = "Basculer le clavier emoji";
 "menu_edit_group" = "Modifier le groupe";
@@ -149,6 +169,8 @@
 "menu_copy_to_clipboard" = "Copier vers presse-papiers";
 "menu_copy_selection_to_clipboard" = "Copier la sélection";
 "menu_copy_link_to_clipboard" = "Copier le lien";
+"menu_copy_text_to_clipboard" = "Copier le texte";
+"menu_copy_image_to_clipboard" = "Copier l\'image";
 "paste_from_clipboard" = "Coller depuis le presse-papiers";
 "menu_forward" = "Faire suivre le message";
 "menu_resend" = "Renvoyer le message";
@@ -156,6 +178,7 @@
 "menu_mute" = "Déactiver les notifications";
 "menu_unmute" = "Réactiver";
 "menu_export_attachment" = "Exporter le fichier joint";
+"menu_export_attachments" = "Exporter les pièces-jointes";
 "menu_all_media" = "Tous les médias";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Montrer dans la discussion";
@@ -164,6 +187,7 @@
 "block" = "Bloquer";
 "menu_block_contact" = "Bloquer ce contact";
 "menu_unblock_contact" = "Débloquer ce contact";
+"accept" = "Accepter";
 "menu_play" = "Jouer";
 "menu_pause" = "Pause";
 "menu_scroll_to_bottom" = "Faites défiler jusqu\'en bas";
@@ -182,6 +206,12 @@
 "menu_zoom_in" = "Zoom avant";
 "menu_zoom_out" = "Zoom arrière";
 "menu_save_log" = "Sauvegarder le journal";
+"menu_more_options" = "Plus d\'options";
+"menu_learn_spelling" = "Ajouter au dictionnaire";
+"menu_chat_audit_log" = "Journal d\'audit de la discussion";
+"jump_to_message" = "Aller au message";
+"copy_json" = "Copier le JSON";
+"replace_draft" = "Remplacer le brouillon";
 "title_share_location" = "Partager la position avec tous les membres du groupe";
 "device_talk" = "Messages de l\'appareil";
 "device_talk_subtitle" = "Messages générés localement";
@@ -231,6 +261,7 @@
 
 // get confirmations
 "ask_leave_group" = "Voulez-vous vraiment quitter ce groupe ?";
+"ask_delete_message" = "Voulez-vous vraiment effacer ce message ?";
 "ask_forward" = "Faire suivre les messages à %1$@ ?";
 "ask_forward_multiple" = "Faire suivre les messages à %1$d discussions ?";
 "ask_export_attachment" = "Exporter une pièce jointe ? L\'exportation des pièces jointes permettra à toute autre application sur votre appareil d\'y accéder. Continuer ?";
@@ -243,6 +274,8 @@
 "ask_delete_value" = "Effacer %1$@ ?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Retirer %1$@ du groupe ?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Retirer %1$@ de la liste de diffusion ?";
 "open_url_confirmation" = "Voulez-vous ouvrir ce lien ?";
 
 
@@ -259,6 +292,7 @@
 "chat_camera_unavailable" = "Caméra indisponible.";
 "chat_unable_to_record_audio" = "Impossible d\'enregistrer le son.";
 "chat_no_messages_hint" = "Envoyer un message à %1$@:\n\n• C\'est OK si  %2$@ n\'utilise pas Delta Chat.\n\n• La remise du premier message peut prendre un moment et peut ne pas être chiffré.";
+"chat_new_broadcast_hint" = "Dans une liste de diffusion, les autres personnes recevront les messages dans leur discussion directe/privée avec vous.\n\nLes destinataires ne pourront pas se voir entre eux.";
 "chat_new_group_hint" = "Composez le premier message, permettant aux autres de répondre au sein de ce groupe. C\'est ok même si tous les membres n\'utilisent pas le Chat Delta. La transmission du premier message peut prendre un certain temps.";
 "chat_record_slide_to_cancel" = "Glisser pour annuler";
 "chat_record_explain" = "Appuyez et maintenez pour enregistrer un message vocal, relâchez pour l’envoyer";
@@ -268,8 +302,10 @@
 "chat_share_with_title" = "Partager avec";
 "chat_input_placeholder" = "Message";
 "chat_archived_label" = "Archivé";
+"chat_request_label" = "Requête";
 "chat_no_messages" = "Aucun message.";
 "chat_self_talk_subtitle" = "Messages envoyés à moi-même";
+"archive_empty_hint" = "Les discussions archivées apparaîtront ici.";
 "saved_messages" = "Messages sauvegardés";
 "saved_messages_explain" = "• Transférez les messages ici pour un accès facile\n\n• Prenez des notes, des mémos vocaux\n\n• Joignez des fichiers pour les sauvegarder";
 // this "Saved" should match the "Saved" from "Saved messages"
@@ -282,15 +318,36 @@
 "messaging_disabled_not_in_group" = "Vous ne pouvez pas écrire car vous ne faites pas partie de ce groupe. Pour le rejoindre, demandez à un membre.";
 "messaging_disabled_device_chat" = "Cette discussion contient des messages générés localement. Par conséquent, vous ne pouvez pas écrire le moindre message.";
 "messaging_disabled_deaddrop" = "Cliquez sur un message pour accepter ou rejeter la demande de contact.";
+"messaging_disabled_mailing_list" = "Envoyer des messages dans des listes de diffusion n\'est pas encore possible";
 "cannot_display_unsuported_file_type" = "Impossible d\'afficher ce type de fichier : %1$@";
 "attachment_failed_to_load" = "Échec du chargement de la pièce jointe";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Maintenir l\'enregistrement";
+
 // mailing lists
 "mailing_list" = "Liste de diffusion";
 "ask_show_mailing_list" = "Montrer la liste de diffusion « %1$@ » ?";
+"mailing_list_profile_info" = "Les changements du nom et de l\'avatar de la liste de diffusion s\'applique uniquement sur cet appareil.";
+
 // map
 "filter_map_on_time" = "Afficher les positions dans le temps";
 "show_location_traces" = "Afficher les traces";
 "add_poi" = "Afficher les points d\'intérêt";
+
+// chat audit log
+"chat_audit_log_empty_message" = "Les messages systèmes de cette discussion devrait apparaître ici";
+"chat_audit_log_title" = "Journal d\'audit de la discussion pour %1$@";
+"chat_audit_log_description" = "Cette vue montre seulement les messages système et d\'information. Utile pour trouver les dernières actions dans la discussion sans défiler à travers beaucoup de messages normaux.";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Ne pas demander à nouveau pour %1$@";
+"puny_code_warning_header" = "Lien suspect détecté";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Voulez-vous vraiment visiter %1$@ ?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Vous avez cliqué sur un lien qui pourait avoir des caractères mal représentés du à l\'utilisation de caractères similaires provenant d\'alphabets différents. Suivre le lien marqué comme %1$@ aménera à %2$@ qui est le lien avec des caractères latins normaux. Si vous ne vous attendez pas à de tel caractères ce lien est potentiellement dangereux";
+
 
 // search
 "search" = "Chercher";
@@ -323,6 +380,31 @@
 "send_message" = "Envoyer message";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Messages entrants";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Messages sortants";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Espace de stockage sur %1$@";
+"connectivity" = "Connectivité";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "Non connecté";
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Connexion...";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Mise à jour...";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "Connecté";
+"sending" = "Envoi...";
+"last_msg_sent_successfully" = "Dernier message envoyé avec succés.";
+"not_supported_by_provider" = "Non pris en charge par votre fournisseur de mail.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Messages";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ sur %2$@ utilisé";
+
+
 // welcome and login
 "welcome_intro1_message" = "Le messager avec le plus large public au monde. Libre et indépendant.";
 "login_title" = "Connexion";
@@ -342,6 +424,13 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Sécurité SMTP";
 "login_auth_method" = "Méthode d\'autorisation";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Utiliser SOCKS5";
+"login_socks5_host" = "Hôte SOCKS5";
+"login_socks5_port" = "Port SOCKS5";
+"login_socks5_user" = "Utilisateur SOCKS5";
+"login_socks5_password" = "Mot de passe SOCKS5";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Vérification de %1$@";
 "login_info_oauth2_title" = "Continuer avec une configuration simplifiée ?";
@@ -367,7 +456,10 @@
 "delete_account_ask" = "Êtes-vous sûr de vouloir supprimer les données de votre compte ?";
 "delete_account_explain_with_name" = "Toutes les données de compte de « %1$@ » sur cet appareil seront effacées, y compris votre configuration de chiffrement de bout en bout, vos contacts, discussions, messages et médias. Cette action est irrévocable.";
 "switching_account" = "Changement de compte...";
+"unconfigured_account" = "Compte non configuré";
+"unconfigured_account_hint" = "Ouvrir le compte pour le configurer";
 "try_connect_now" = "Essayer de se connecter maintenant";
+"sync_all" = "Tout synchroniser";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Échec de la configuration. Erreur : %1$@";
 
@@ -475,9 +567,22 @@
 "pref_background_custom_image" = "Image personnalisée";
 "pref_background_custom_color" = "Couleur personnalisée";
 "export_aborted" = "Exportation annulée.";
+"auto_download_messages" = "Télécharger les messages automatiquement";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Jusqu\'à %1$@";
+"up_to_x_most_worse_quality_images" = "Jusqu\'à %1$@, plus mauvaise qualité d\'image";
+"up_to_x_most_balanced_quality_images" = "Jusqu\'à %1$@, qualité d\'image raisonnable ";
+"no_limit" = "Pas de limite";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ message";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "Télécharger le plus possible jusqu\'à %1$@";
 "profile_image_select" = "Sélectionnez l\'image de profil";
 "select_your_new_profile_image" = "Sélectionnez votre nouvelle image de profil";
 "profile_image_delete" = "Effacer l\'image de profil";
+"pref_show_tray_icon" = "Afficher l\'icône dans la zone de notifications";
+"pref_edit_profile" = "Édition du profil";
+
 // Emoji picker and categories
 "emoji_search_results" = "Résultats de la recherche";
 "emoji_not_found" = "Pas d\'emoji trouvé";
@@ -569,6 +674,16 @@
 "systemmsg_chat_protection_disabled" = "Protection de la discussion désactivée.";
 "systemmsg_chat_protection_enabled" = "Protection de la discussion activée.";
 
+"devicemsg_self_deleted" = "Vous avez supprimé la discussion \"Message enregistrés\".\n\nℹ️ Pour de nouveau utiliser la fonctionnalité \"Message enregistrés\", commencez une nouvelle discussion avec vous-même.";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ L\'espace de stockage de votre fournisseur va bientôt être excédé, %1$@ sur %% est utilisé.\n\nous ne serez peut-être plus capable de recevoir des messages quand l\'espace de stockage est 100%% utilisé.\n\n👉 Vérifier s\'il vous plaît que vous pouvez supprimer d\'ancienne données depuis l\'interface web de votre fournisseur et considérez d\'activer \"Paramètres / Supprimer les messages anciens\". Vous pouvez jetez un coup d\'oeil à l\'utilisation courante de votre espace de stockage à tout moment depuis \"Paramètres / Connectivité\".";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Le temps ou date sur votre appareil semble être décalé (%1$@).\n\nAjustez votre horloge ⏰🔧 pour s\'assurer que vos messages soient bien reçus.";
+"devicemsg_update_reminder" = "⚠️ Votre version de Delta Chat semble être obsolète.\n\nCeci pourrait poser des problèmes car vos contacts utilisent des versions plus récentes - et vous loupez les dernières fonctionnalités 😳\nVeuillez s\'il vous plaît faire un tour sur https://get.delta.chat ou votre magasin d\'applications pour une mise à jour.";
+
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Pour continuer, veuillez s\'il vous plaît entrer votre code secret système.";
+
 // qr code stuff
 "qr_code" = "Code QR";
 "load_qr_code_as_image" = "Charger le code QR comme une image";
@@ -582,6 +697,14 @@
 "qrscan_contains_url" = "Url du QR code numérisé :\n\n%1$@";
 "qrscan_fingerprint_label" = "Empreinte digitale";
 "qrscan_x_verified_introduce_myself" = "%1$@ vérifié, me présenter …";
+"withdraw_verifycontact_explain" = "Ce code QR pourrait être scanné par d\'autre personnes pour vous contacter.\n\nVous pouvez désactiver le QR code ici et le réactiver en le scannant ici de nouveau.";
+"withdraw_verifygroup_explain" = "Le code QR peut être scanné par d\'autres personnes pour rejoindre le groupe \"%1$@\".\n\nVous pouvez désactiver le QR code ici et le réactiver en le scannant ici de nouveau.";
+"withdraw_qr_code" = "Désactiver le QR Code";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Ce code QR pourrait être scanné par d\'autre personnes pour vous contacter.\n\nCe code QR n\'est pas actif sur cet appareil.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Ce code QR pourrait être scanné par d\'autre personnes pour rejoindre le groupe \"%1$@\".\n\nLe code QR n\'est pas actif sur cet appareil.";
+"revive_qr_code" = "Activer le QR Code";
 "qrshow_title" = "QR Code d\'Invitation";
 "qrshow_x_joining" = "%1$@ rejoints.";
 "qrshow_x_verified" = "%1$@ vérifiés.";
@@ -603,8 +726,14 @@
 "contact_setup_changed" = "Configuration modifiée pour %1$@";
 "verified_group_explain" = "Les groupes vérifiés (fonction expérimentale) offrent une sécurité contre les attaques actives. Les membres sont vérifiés avec un second facteur par d\'autres membres et les messages sont toujours chiffrés de bout en bout.";
 "copy_qr_data_success" = "L\'URL du code QR a été copié dans le presse-papiers";
+"mailto_dialog_header_select_chat" = "Sélectionnez une discussion à qui envoyer le message";
+// first placeholder is the name of the chat
+"mailto_dialog_confirm_replace_draft" = "%1$@a déjà un message en brouillon, voulez-vous le remplacer?";
+"mailto_link_could_not_be_decoded" = "Le lien mailto n\'a pas pu être décodé: %1$@";
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nouveaux messages dans %2$d tchats";
+"notify_dismiss" = "Rejeter";
 "notify_mark_read" = "Marquer comme lu";
 "notify_reply_button" = "Répondre";
 "notify_new_message" = "Nouveau message";
@@ -626,6 +755,14 @@
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Dessinez n\'importe où pour flouter";
+"ImageEditorHud_add_text" = "Ajouter du texte";
+"ImageEditorHud_blur" = "Flouter";
+"ImageEditorHud_brush_marker" = "Marqueur";
+"ImageEditorHud_brush_highlight" = "Surbrillance";
+"ImageEditorHud_crop" = "Rogner";
+"ImageEditorHud_flip" = "Tourner";
+"ImageEditorHud_rotate" = "Pivoter";
+
 // dc_str_* resources
 "encrypted_message" = "Message chiffré";
 
@@ -652,6 +789,8 @@
 "global_menu_help_contribute_desktop" = "Contribuer sur Github";
 "global_menu_help_report_desktop" = "Signaler un problème";
 "global_menu_help_about_desktop" = "À propos de Delta Chat";
+"global_menu_file_open_desktop" = "Ouvrir Delta Chat";
+"global_menu_minimize_to_tray" = "Minimiser";
 "no_chat_selected_suggestion_desktop" = "Sélectionner une discussion ou en créer une nouvelle";
 "write_message_desktop" = "Écrire un message";
 "encryption_info_title_desktop" = "Information de chiffrement";
@@ -697,6 +836,10 @@
 "menu.view.developer.open.log.folder" = "Ouvrir le dossier Journal";
 "menu.view.developer.open.current.log.file" = "Ouvrir le fichier Journal courant";
 "user_location_permission_explanation" = "DeltaChat a besoin de l\'autorisation de votre position pour l\'afficher et la partager.";
+"explain_desktop_minimized_disabled_tray_pref" = "L\'icône système ne peut pas être enlevé car Delta Chat a été démarré avec l\'option --minimized.";
+"no_spellcheck_suggestions_found" = "Aucune propositions de correction trouvées.";
+"show_window" = "Afficher la fenêtre";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "État de la livraison : Erreur";
 "a11y_encryption_padlock" = "Cadenas de chiffrement";
@@ -723,4 +866,9 @@
 "perm_enable_bg_reminder_title" = "Touchez ici pour recevoir des messages pendant que DeltaChat est en arrière-plan.";
 "perm_enable_bg_already_done" = "Vous avez déjà autorisé Delta Chat à recevoir des messages en arrière plan.\n\nSi vous ne les recevez toujours pas en arrière plan, vérifiez les paramètres de votre système.";
 
+
+// device messages for updates
+"update_1_20" = "Compatibilité avec les courriel améliorés en version 1.20:\n\n📫 Lis les listes de diffusion\n📭 Lis les courriels au format HTML\n📪 Bon support des addresses de support\n📫 Beaucoup de nuisances mineures et majeures corrigées\n\nLisez notre nouveau billet de blog à propos de ces avancés sur le mail et plus:";
+"update_1_22" = "Quoi de neuf dans la 1.22?\n\n👋 Les demandes de contacts apparaissent dorénavant comme une discussion à part et peuvent être inspectées en détail avant de les accepter ou de les bloquer\n\n🗄️ L\'Archive est maintenant facilement accessible depuis les paramètres - vous trouverez aussi par là vos anciennes demande de contacts\n\n📮📮📮 Amélioration du multi-compte: le changement de comptes est maintenant plus rapide et moins souvent bloqué par de longues mises à jour 🤔 Sachez ce qui se passe: les problèmes de connectivité sont maintenant montrés dans le titre de la fenêtre, cliquez dessus pour plus de détails\n\nPlus sur notre blog:";
+"update_1_22_ios" = "Quoi de neuf dans la 1.22?\n\n👋 Les demandes de contacts apparaissent dorénavant comme une discussion à part et peuvent être inspectées en détail avant de les accepter ou de les bloquer\n\n🗄️ L\'Archive est maintenant facilement accessible depuis les paramètres - vous trouverez aussi par là vos anciennes demande de contacts\n\n📮📮📮 Comptes multiples ajoutés: Passez de l\'un à l\'autre et gérez les depuis vos paramètres\n\n🤔 Sachez ce qui se passe: les problèmes de connectivité sont maintenant montrés dans le titre de la fenêtre, cliquez dessus pour plus de détails\n\nPlus sur notre blog:";
 

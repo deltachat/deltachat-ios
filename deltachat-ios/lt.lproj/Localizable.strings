@@ -377,6 +377,7 @@
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
 "delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";
 "switching_account" = "Perjungiama paskyra…";
+"unconfigured_account" = "Nesukonfigūruota paskyra";
 "unconfigured_account_hint" = "Atverkite paskyrą norėdami ją konfigūruoti.";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfigūracija patyrė nesėkmę. Klaida: %1$@";

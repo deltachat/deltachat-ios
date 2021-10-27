@@ -98,6 +98,22 @@
 			<string>%d membres</string>
 		</dict>
 	</dict>
+	<key>n_recipients</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d destinataire</string>
+			<key>other</key>
+			<string>%d destinataires</string>
+		</dict>
+	</dict>
 	<key>ask_send_following_n_files_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -144,6 +160,22 @@
 			<string>Effacer %d messages ici et sur le serveur ?</string>
 			<key>other</key>
 			<string>Effacer %dmessages ici et sur le serveur ?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Effacer %d message ?</string>
+			<key>other</key>
+			<string>Effacer %d messages ?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

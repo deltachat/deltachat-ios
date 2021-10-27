@@ -16,6 +16,8 @@
 "automatic" = "自動";
 "strict" = "厳重";
 "open" = "開く";
+"download" = "ダウンロード";
+"downloading" = "ダウンロード中";
 "open_attachment" = "添付ファイルを開く";
 "join" = "参加";
 "rejoin" = "参加";

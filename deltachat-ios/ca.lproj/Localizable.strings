@@ -16,6 +16,8 @@
 "automatic" = "Automàtic";
 "strict" = "Estricte";
 "open" = "Obre";
+"download" = "Descarrega";
+"downloading" = "Descarregant...";
 "open_attachment" = "Obre l\'adjunt";
 "join" = "Uneix-te";
 "rejoin" = "Torna a unir-te";
@@ -34,11 +36,19 @@
 "ephemeral_messages_hint" = "Aquestes opcions són d\'aplicació per tots els integrants que usin Delta Chat. Tot i això, poden copiar, guardar o reenviar missatges o usar altres clients de correu.";
 "save" = "Guarda";
 "chat" = "Xat";
+"media" = "Multimèdia";
 "profile" = "Perfil";
 "main_menu" = "Menú principal";
 "start_chat" = "Inicia un xat";
 "show_full_message" = "Mostra el missatge sencer...";
+"show_full_message_in_browser" = "Mostra el missatge sencer al navegador...";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Carregant...";
+"hide" = "Amaga";
+"activate" = "Activa-ho";
 "load_remote_content" = "Carrega les imatges remotes";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Les imatges remotes es poden usar per rastrejar-te.\n\nEl paràmetre també permet la càrrega de fonts i altres continguts. Fins i tot si és deshabilitat, encara podríeu veure imatges incrustades o en memòria catxè.\n\nCàrrega d\'imatges remotes?";
 "always" = "Sempre";
 "once" = "Una vegada";
 "show_password" = "Mostra la contrasenya";
@@ -48,6 +58,7 @@
 "one_moment" = "Espereu...";
 "done" = "Fet";
 "undo" = "Desfés";
+"offline" = "En desconnexió";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "Següent";
 "error" = "Error";
@@ -72,15 +83,19 @@
 "last_month" = "El mes passat";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
 "self" = "Jo";
 "draft" = "Esborrany";
 "image" = "Imatge";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Respon";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Adhesiu";
 "images" = "Imatges";
 "audio" = "Àudio";
 "voice_message" = "Missatge de veu";
+"forwarded" = "Reenviat";
 "forwarded_message" = "Missatge reenviat";
 // %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Reenviat per %1$@";
@@ -92,6 +107,7 @@
 // "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Captura";
 "switch_camera" = "Canvia la càmera";
+"toggle_fullscreen" = "Alterna el mode de pantalla completa";
 "location" = "Ubicació";
 "gallery" = "Galeria";
 "images_and_videos" = "Imatges i vídeos";
@@ -127,6 +143,11 @@
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Grup nou";
 "menu_new_verified_group" = "Nou grup verificat";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Llista de difusió";
+"broadcast_lists" = "Llistes de difusió";
+"new_broadcast_list" = "Nova llista de difusió";
+"add_recipients" = "Afegeix destinataris";
 "menu_send" = "Envia";
 "menu_toggle_keyboard" = "Canvia al teclat d\'emoticones";
 "menu_edit_group" = "Modifica el grup";
@@ -148,6 +169,8 @@
 "menu_copy_to_clipboard" = "Copia al porta-retalls";
 "menu_copy_selection_to_clipboard" = "Copia el seleccionat";
 "menu_copy_link_to_clipboard" = "Enllaç de còpia";
+"menu_copy_text_to_clipboard" = "Copia el text";
+"menu_copy_image_to_clipboard" = "Copia la imatge";
 "paste_from_clipboard" = "Enganxa des del porta-retalls";
 "menu_forward" = "Reenvia el missatge";
 "menu_resend" = "Torna a enviar el missatge";
@@ -155,6 +178,7 @@
 "menu_mute" = "Silencia les notificacions";
 "menu_unmute" = "Activa el so";
 "menu_export_attachment" = "Exporta l\'adjunt";
+"menu_export_attachments" = "Exporta els adjunts";
 "menu_all_media" = "Tots els multimèdia";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Mostra al xat";
@@ -163,12 +187,15 @@
 "block" = "Bloqueja";
 "menu_block_contact" = "Bloca el contacte";
 "menu_unblock_contact" = "Desbloca el contacte";
+"accept" = "Accepta";
 "menu_play" = "Reprodueix";
 "menu_pause" = "Pausa";
 "menu_scroll_to_bottom" = "Vés al final";
 "menu_scroll_to_top" = "Desplaça\'t al cap d\'amunt";
 "menu_help" = "Ajuda";
+"privacy_policy" = "Política de Privacitat";
 "menu_select_all" = "Selecciona-ho tot";
+"select_more" = "Tria\'n més";
 "menu_expand" = "Desplega";
 "menu_edit_name" = "Edita el nom";
 "menu_settings" = "Preferències";
@@ -179,8 +206,28 @@
 "menu_zoom_in" = "Apropa";
 "menu_zoom_out" = "Allunya";
 "menu_save_log" = "Guarda el registre";
+"menu_more_options" = "Més opcions";
+"menu_learn_spelling" = "Aprèn l\'ortografia";
+"menu_chat_audit_log" = "Registre de l\'auditoria de xat";
+"jump_to_message" = "Ves al missatge";
+"copy_json" = "Copia JSON";
+"replace_draft" = "Substitueix l\'esborrany";
 "title_share_location" = "Comparteix la ubicació amb tots els membres del grup";
 "device_talk" = "Missatges del dispositiu";
+"device_talk_subtitle" = "Missatges generats localment";
+"device_talk_explain" = "Els missatges d\'aquest xat són generats localment per la vostra app de Delta Chat. Els seus creadors els usen per informar-vos d\'actualitzacions de l\'app i problemes durant el seu ús.";
+"edit_contact" = "Edita el contacte";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Fixa el xat";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Desfixa el xat";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Fixa";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Desfixa";
+"ConversationFragment_quoted_message_not_found" = "No s\'ha trobat el missatge original";
+"reply_privately" = "Respon en privat";
+
 "mute_for_one_hour" = "Silencia 1 hora";
 "mute_for_two_hours" = "Silencia 2 hores";
 "mute_for_one_day" = "Silencia 1 dia";
@@ -194,15 +241,40 @@
 "share_location_for_two_hours" = "durant 2 hores";
 "share_location_for_six_hours" = "durant 6 hores";
 
+"file_saved_to" = "Fitxer desat a \"%1$@\".";
+
+"videochat" = "Vídeo xat";
+"videochat_invite_user_to_videochat" = "Voleu convidar %1$@ a un vídeo xat?";
+"videochat_invite_user_hint" = "Això requereix una app compatible o un navegador compatible a ambdós extrems.";
+"videochat_contact_invited_hint" = "%1$@ ha sigut convidat a un vídeo xat.";
+"videochat_you_invited_hint" = "Vostè va convidar a un vídeo xat.";
+"videochat_will_open_in_your_browser" = "Aquest vídeo xat s\'obrirà al vostre navegador.";
+"videochat_tap_to_join" = "Toca per afegir-t\'hi";
+"videochat_tap_to_open" = "Toca per obrir-ho";
+"videochat_instance" = "Instància de vídeo xat";
+"videochat_instance_placeholder" = "La vostra instància de vídeo xat";
+"videochat_invitation" = "Invitació a un vídeo xat";
+"videochat_invitation_body" = "Heu sigut convidats a un vídeo xat, cliqueu %1$@ per unir-vos-hi.";
+
 // get confirmations
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
+"ask_delete_message" = "Esteu segur de voler esborrar aquest missatge?";
 "ask_forward" = "Reenvia missatges a %1$@?";
+"ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
 "ask_export_attachment" = "Exporto l\'adjunt? En exportar els adjunts permetreu que altres apps del dispositiu hi puguin accedir.\n\nVoleu continuar endavant?";
 "ask_block_contact" = "Voleu blocar aquest contacte? En aquest cas ja no en rebreu més missatges.";
 "ask_unblock_contact" = "Voleu desblocar aquest contacte? Llavors podreu tornar a rebre\'n missatges.";
 "ask_delete_contacts" = "Voleu esborrar els contactes? Això eliminarà definitivament els contactes seleccionats.\n\nEls contactes amb xats oberts i els que estiguin al vostre directori d\'adreces no es poden eliminar definitivament. ";
 "cannot_delete_contacts_in_use" = "No es poden esborrar els contactes amb xats actius.";
 "ask_start_chat_with" = "Voleu xatejar amb %1$@?";
+"ask_delete_value" = "Voleu esborrar %1$@?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Voleu eliminar %1$@ del grup?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Voleu eliminar %1$@ de la llista de difusió?";
+"open_url_confirmation" = "Voleu obrir aquest enllaç?";
+
+
 // contact list
 "contacts_title" = "Llista de contactes";
 "contacts_enter_name_or_email" = "Introduïu el vostre nom o la vostra adreça de correu electrònic";
@@ -216,6 +288,7 @@
 "chat_camera_unavailable" = "Càmera no disponible.";
 "chat_unable_to_record_audio" = "No es pot gravar so.";
 "chat_no_messages_hint" = "Envia el missatge a %1$@:\n\n• No cal amoïnar-se si %2$@ no usa Delta Chat.\n\n• El lliurament del primer missatge por trigar una estona i potser arriba sense encriptar.";
+"chat_new_broadcast_hint" = "En una llista de difusió, els altres reben els missatges en els seus xats privats amb vostè.\n\nEls destinataris no podran veure\'s entre ells.";
 "chat_new_group_hint" = "Escriviu el primer missatge i així els altres podran respondre a tot el grup.\n\n• No patiu si hi ha membres que no fan servir Delta Chat.\n\n• El lliurament del primer missatge pot trigar una estona.";
 "chat_record_slide_to_cancel" = "Llisca per cancel·lar";
 "chat_record_explain" = "Mantingues premut per gravar un missatge de veu i deixa anar per enviar-lo";
@@ -225,8 +298,13 @@
 "chat_share_with_title" = "Comparteix amb";
 "chat_input_placeholder" = "Missatge";
 "chat_archived_label" = "Arxivat";
+"chat_request_label" = "Sol·licitud";
 "chat_no_messages" = "Cap missatge.";
 "chat_self_talk_subtitle" = "Missatges enviats a mi mateix/a";
+"archive_empty_hint" = "Si arxiveu xats, els voreu aquí.";
+"saved_messages" = "Missatges desats";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Desat";
 "chat_contact_request" = "Sol·licitud de contacte";
 "chat_no_contact_requests" = "No hi ha sol·licituds de contacte.\n\nSi voleu veure aquí els e-mails clàssics com a sol·licitud de contacte, podeu canviar-ho a les preferències de l\'app.";
 // map

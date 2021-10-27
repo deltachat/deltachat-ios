@@ -292,7 +292,7 @@
 "chat_camera_unavailable" = "Fotocamera non disponibile.";
 "chat_unable_to_record_audio" = "Impossibile registrare audio.";
 "chat_no_messages_hint" = "Invia un messaggio a %1$@:\n\n• Non è necessario che anche %2$@ usi Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante e non essere crittografato. ";
-"chat_new_broadcast_hint" = "In una lista trasmissione, gli altri riceveranno messaggi nelle loro chat private con te.\n\nI destinatari non saranno a conoscenza l\'uno dell\'altro.";
+"chat_new_broadcast_hint" = "In una lista trasmissione, gli altri riceveranno i messaggi nelle loro chat private con te.\n\nI destinatari non saranno a conoscenza l\'uno dell\'altro.";
 "chat_new_group_hint" = "Invia il primo messaggio per permettere agli altri di rispondere nel gruppo\n\n• Non è necessario che tutti i membri usino Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante.";
 "chat_record_slide_to_cancel" = "Scorri per annullare";
 "chat_record_explain" = "Tocca e mantieni per registrare un messaggio vocale, rilascia per inviare ";
@@ -561,7 +561,7 @@
 "pref_show_emails_accepted_contacts" = "Per i contatti accettati";
 "pref_show_emails_all" = "Sì";
 "pref_experimental_features" = "Funzionalità Sperimentali";
-"pref_on_demand_location_streaming" = "Streaming su Richiesta della Posizione";
+"pref_on_demand_location_streaming" = "Trasmissione Posizione su Richiesta";
 "pref_background_default" = "Sfondo predefinito";
 "pref_background_default_color" = "Colore predefinito";
 "pref_background_custom_image" = "Immagine personalizzata";
@@ -733,6 +733,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nuovi messaggi in %2$d chat";
+"notify_dismiss" = "Ignora";
 "notify_mark_read" = "Segna come Letto";
 "notify_reply_button" = "Rispondi";
 "notify_new_message" = "Nuovo messaggio";

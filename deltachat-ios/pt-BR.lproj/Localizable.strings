@@ -16,6 +16,8 @@
 "automatic" = "Automático";
 "strict" = "Rigoroso";
 "open" = "Abrir";
+"download" = "Descarregar";
+"downloading" = "Descarregando…";
 "open_attachment" = "Abrir anexo";
 "join" = "Entrar";
 "rejoin" = "Re-entrar";
@@ -81,12 +83,15 @@
 "last_month" = "Mês passado";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
 "self" = "Eu";
 "draft" = "Rascunho";
 "image" = "Imagem";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Responder";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Sticker";
 "images" = "Imagens";
 "audio" = "Áudio";
 "voice_message" = "Mensagem de voz";
@@ -138,6 +143,11 @@
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
 "menu_new_verified_group" = "Novo grupo verificado";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Lista de Transmissão";
+"broadcast_lists" = "Listas de Transmissão";
+"new_broadcast_list" = "Nova Lista de Transmissão";
+"add_recipients" = "Adicionar Destinatários";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Ativar teclado de emojis";
 "menu_edit_group" = "Modificar grupo";
@@ -168,6 +178,7 @@
 "menu_mute" = "Silenciar notificações";
 "menu_unmute" = "Reativar notificações";
 "menu_export_attachment" = "Exportar o anexo";
+"menu_export_attachments" = "Exportar anexos";
 "menu_all_media" = "Todos os arquivos de mídia";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Mostrar na conversa";
@@ -176,6 +187,7 @@
 "block" = "Bloquear";
 "menu_block_contact" = "Bloquear contato";
 "menu_unblock_contact" = "Desbloquear contato";
+"accept" = "Aceitar";
 "menu_play" = "Ouvir";
 "menu_pause" = "Pausar";
 "menu_scroll_to_bottom" = "Rolar até o fim";
@@ -262,6 +274,8 @@
 "ask_delete_value" = "Apagar %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Remover %1$@ do grupo?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Remover %1$@ da lista de transmissão?";
 "open_url_confirmation" = "Você quer abrir este link?";
 
 
@@ -278,6 +292,7 @@
 "chat_camera_unavailable" = "Câmera indisponível.";
 "chat_unable_to_record_audio" = "Impossível gravar áudio.";
 "chat_no_messages_hint" = "Enviar mensagem para %1$@:\n\n• Não tem problema se %2$@ não usa o Delta Chat.\n\n• O envio da primeira mensagem pode demorar e não ser criptografada.";
+"chat_new_broadcast_hint" = "Em uma lista de transmissão, as pessoas receberão mensagens em seus bate-papos privados com você.\n\nOs destinatários não saberão uns dos outros. ";
 "chat_new_group_hint" = "Compor a primeira mensagem habilitará os participantes a ingressar no grupo.\n\n• Não tem problema se nem todos usarem o Delta Chat.\n\n• O envio da primeira mensagem pode demorar.";
 "chat_record_slide_to_cancel" = "Deslize para cancelar";
 "chat_record_explain" = "Toque e segure para gravar uma mensagem de voz e, depois, solte para enviar";
@@ -287,8 +302,10 @@
 "chat_share_with_title" = "Compartilhar com";
 "chat_input_placeholder" = "Mensagem";
 "chat_archived_label" = "Arquivado";
+"chat_request_label" = "Solicitar";
 "chat_no_messages" = "Sem mensagens.";
 "chat_self_talk_subtitle" = "Mensagens para mim mesmo";
+"archive_empty_hint" = "Se você arquivar bate-papos, eles serão exibidos aqui. ";
 "saved_messages" = "Mensagens salvas";
 "saved_messages_explain" = "• Encaminhe mensagens aqui para fácil acesso\n\n• Faça anotações ou gravações de voz\n\n• Anexe mídia para salvá-las";
 // this "Saved" should match the "Saved" from "Saved messages"
@@ -363,9 +380,34 @@
 "send_message" = "Enviar mensagem";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Mensagens Recebidas";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Mensagens Enviadas";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Armazenamento em %1$@";
+"connectivity" = "Conectividade";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "Não conectado";
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Conectando...";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Atualizando...";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "Conectado";
+"sending" = "Enviando...";
+"last_msg_sent_successfully" = "Última mensagem enviada com sucesso.";
+"not_supported_by_provider" = "Não suportado pelo seu provedor. ";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Mensagens";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ de %2$@ usado";
+
+
 // welcome and login
 "welcome_intro1_message" = "O aplicativo com a maior base de usuários do mundo. Livre e independente.";
-"login_title" = "Login";
+"login_title" = "Acessar";
 "login_header" = "Acesse seu servidor";
 "login_explain" = "Acesse com uma conta de email existente";
 "login_subheader" = "Para os provedores de e-mail mais conhecidos as configurações adicionais são detectadas automaticamente. Por vezes, o IMAP precisa estar ativado nas configurações do servidor. Consulte seu provedor de e-mail ou amigos para obter ajuda.";
@@ -382,6 +424,13 @@
 "login_smtp_port" = "Porta SMTP";
 "login_smtp_security" = "Segurança SMTP";
 "login_auth_method" = "Método de autorização";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Usar SOCKS5";
+"login_socks5_host" = "Servidor SOCKS5 ";
+"login_socks5_port" = "Porta SOCKS5";
+"login_socks5_user" = "Usuário SOCKS5";
+"login_socks5_password" = "Senha SOCKS5";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Verificando %1$@";
 "login_info_oauth2_title" = "Prosseguir pela configuração simplificada?";
@@ -407,7 +456,10 @@
 "delete_account_ask" = "Tem certeza de que deseja excluir os dados da sua conta?";
 "delete_account_explain_with_name" = "Todos os dados da conta de \"%1$@\" neste dispositivo serão excluídos, incluindo sua configuração de criptografia de ponta a ponta, contatos, bate-papos, mensagens e mídia. Essa ação não pode ser desfeita.";
 "switching_account" = "Mudando de conta...";
+"unconfigured_account" = "Conta não configurada";
+"unconfigured_account_hint" = "Abrir conta para configurá-la.";
 "try_connect_now" = "Tentando conectar agora";
+"sync_all" = "Sincronizar Tudo";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Falha na configuração. Erro: %1$@";
 
@@ -477,7 +529,7 @@
 "pref_in_chat_sounds" = "Sons da conversa";
 "pref_message_text_size" = "Tamanho da fonte de mensagens";
 "pref_view_log" = "Ver relatório";
-"pref_saved_log" = "Registro salvo em pasta de Downloads";
+"pref_saved_log" = "Registro salvo na pasta de \"Downloads\"";
 "pref_save_log_failed" = "Falha ao salvar registro";
 "pref_log_header" = "Registro";
 "pref_other" = "Outro";
@@ -515,6 +567,16 @@
 "pref_background_custom_image" = "Imagem personalizada";
 "pref_background_custom_color" = "Cor personalizada";
 "export_aborted" = "Exportação abortada.";
+"auto_download_messages" = "Descarregar Mensagens Automaticamente";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Até %1$@";
+"up_to_x_most_worse_quality_images" = "Até %1$@, imagens de pior qualidade";
+"up_to_x_most_balanced_quality_images" = "Até %1$@, imagens de qualidade equilibrada";
+"no_limit" = "Sem limite";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "Mensagem de %1$@";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "Descarregamento máximo disponível até %1$@";
 "profile_image_select" = "Selecione a imagem do perfil";
 "select_your_new_profile_image" = "Selecione sua nova imagem do perfil";
 "profile_image_delete" = "Excluir imagem do perfil";
@@ -612,6 +674,13 @@
 "systemmsg_chat_protection_disabled" = "Proteção da conversa desligada.";
 "systemmsg_chat_protection_enabled" = "Proteção da conversa ligada.";
 
+"devicemsg_self_deleted" = "Você excluiu o bate-papo \"Mensagens salvas\".\n\nℹ️ Para usar o recurso \"Mensagens salvas\" novamente, crie um novo bate-papo com você mesmo. ";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ O armazenamento em seu provedor está prestes a terminar, %1$@%% já foram utilizados\n\nVocê pode não conseguir receber mensagens quando o armazenamento estiver 100 %% utilizado.\n\n👉 Verifique se você pode excluir dados antigos através da interface da web do provedor e considere habilitar \"Configurações / Excluir Mensagens Antigas\". Você pode verificar o uso de armazenamento atual a qualquer momento em \"Configurações / Conectividade\". ";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ A data ou hora do seu dispositivo parecem imprecisas (%1$@).\n\nAjuste o relógio ⏰🔧 para garantir que suas mensagens sejam recebidas corretamente.";
+"devicemsg_update_reminder" = "⚠️ Sua versão do Delta Chat pode estar desatualizada.\n\nIsso pode causar problemas porque seus parceiros de bate-papo usam versões mais recentes - e você está perdendo os recursos mais recentes 😳\nEntre em https://get.delta.chat ou seu verifique com seu provedor de aplicativos por atualizações.";
+
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Por favor, insira o segredo de sistema para continuar. ";
 
@@ -628,6 +697,14 @@
 "qrscan_contains_url" = "O código QR escaneado contém a seguinte URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Impressão";
 "qrscan_x_verified_introduce_myself" = "%1$@ verificado, apresentar-me …";
+"withdraw_verifycontact_explain" = "Este código QR pode ser lido por outras pessoas para entrar em contato com você.\n\nVocê pode desativar o código QR aqui e reativá-lo escaneando-o novamente.";
+"withdraw_verifygroup_explain" = "Este código QR pode ser lido por outras pessoas para entrar no grupo \"%1$@\".\n\nVocê pode desativar o código QR aqui e reativá-lo escaneando-o novamente.";
+"withdraw_qr_code" = "Desativar Código QR";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Este código QR pode ser lido por outras pessoas para entrar em contato com você.\n\nO código QR não está ativo neste dispositivo.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Este código QR pode ser lido por outras pessoas para se juntar ao grupo \"%1$@\".\n\nO código QR não está ativo neste dispositivo.";
+"revive_qr_code" = "Ativar Código QR";
 "qrshow_title" = "Código QR de convite";
 "qrshow_x_joining" = "%1$@ ingressou.";
 "qrshow_x_verified" = "%1$@ verificado.";
@@ -656,6 +733,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d novas mensagens em %2$d conversas";
+"notify_dismiss" = "Descartar";
 "notify_mark_read" = "Marcar como lida";
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Nova mensagem";
@@ -734,7 +812,7 @@
 "reply_to_message_desktop" = "Responder à mensagem";
 "select_group_image_desktop" = "Selecionar avatar de grupo";
 "imex_progress_title_desktop" = "Progresso do becape";
-"download_attachment_desktop" = "Baixar anexo";
+"download_attachment_desktop" = "Descarregar anexo";
 "export_backup_desktop" = "Exportar becape";
 "transfer_key_desktop" = "Transferir chaves";
 "show_key_transfer_message_desktop" = "Sua chave foi enviada para você mesmo. Abra a mensagem de configuração no seu outro dispositivo. Lá será exibido uma solicitação de código. Digite-o lá. Depois disso, seu dispositivo estará pronto para usar o Autocrypt.";
@@ -791,3 +869,6 @@
 
 // device messages for updates
 "update_1_20" = "Compatibilidade de e-mail aprimorada na versão 1.20:\n\n📫 Leitura de listas de e-mail\n📭 Leitura de e-mails HTML\n📪 Tratamento melhorado de endereços de suporte\n📫 Muitos incômodos maiores e menores corrigidos\n\nLeia nossa nova postagem no blog sobre esses primeiros passos em relação ao e-mail e muito mais:";
+"update_1_22" = "O que há de novo no 1.22?\n\n👋As solicitações de bate-papo agora aparecem como bate-papos únicos e podem ser inspecionadas em detalhes antes de aceitar ou bloquear\n\n🗄️ O arquivo agora está facilmente acessível a partir do menu principal - você também encontrará suas solicitações antigas lá\n\n📮📮📮 Multi-conta aprimorada: alternar contas agora é mais rápido e menos frequentemente bloqueado por atualizações demoradas\n\n🤔 Saiba o que está acontecendo: agora problemas de conexão são mostrados na barra de título, toque para obter detalhes\n\nMais no blog:";
+"update_1_22_ios" = "O que há de novo na 1.22?\n\n👋 As solicitações de bate-papo agora aparecem como bate-papos únicos e podem ser inspecionadas em detalhes antes de aceitar ou bloquear\n\n🗄️ O arquivo agora pode ser acessado facilmente nas configurações - você também encontrará suas antigas solicitações lá\n\n📮📮📮 Multi-contas adicionadas: Alterne e gerencie contas nas configurações\n\n🤔 Saiba o que está acontecendo: Problemas de conexão agora são mostrados na barra de título, toque para obter detalhes\n\nMais no blog: ";
+

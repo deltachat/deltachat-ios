@@ -39,7 +39,7 @@
 			<key>many</key>
 			<string>%d godzin</string>
 			<key>other</key>
-			<string>%d godziny</string>
+			<string>%d godzin</string>
 		</dict>
 	</dict>
 	<key>n_chats</key>

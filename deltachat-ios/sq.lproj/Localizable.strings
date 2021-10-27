@@ -392,6 +392,10 @@
 "not_supported_by_provider" = "I pambuluar nga furnizuesi juaj i shërbimit";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Mesazhe";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ nga %2$@ gjithsej";
+
+
 // welcome and login
 "welcome_intro1_message" = "Shkëmbyesi i mesazheve me publikun më të gjerë në botë. I lirë dhe i pavarur.";
 "login_title" = "Hyrje";
@@ -719,6 +723,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d mesazhe të rinj në %2$d fjalosje";
+"notify_dismiss" = "Hidhe tej";
 "notify_mark_read" = "Vëri shenjë si i lexuar";
 "notify_reply_button" = "Përgjigju";
 "notify_new_message" = "Mesazh i ri";

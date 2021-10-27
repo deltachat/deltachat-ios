@@ -98,6 +98,38 @@
 			<string>%d membres</string>
 		</dict>
 	</dict>
+	<key>n_recipients</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d destinatari</string>
+			<key>other</key>
+			<string>%d destinataris</string>
+		</dict>
+	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Voleu enviar el següent fitxer a %s?</string>
+			<key>other</key>
+			<string>Voleu enviar els següents %d fitxers a %s?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_chat</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -130,6 +162,22 @@
 			<string>Esborra %d missatges aquí i al servidor?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Vols esborrar %d missatge?</string>
+			<key>other</key>
+			<string>Voleu esborrar %d missatges?</string>
+		</dict>
+	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -160,6 +208,22 @@
 			<string>%d xat arxivat</string>
 			<key>other</key>
 			<string>%d xats desarxivats</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d nou missatge</string>
+			<key>other</key>
+			<string>%d nous missatges</string>
 		</dict>
 	</dict>
 </dict>

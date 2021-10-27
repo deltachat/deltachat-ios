@@ -173,6 +173,7 @@
 "block" = "Zablokuj";
 "menu_block_contact" = "Blokuj kontakt";
 "menu_unblock_contact" = "Odblokuj kontakt";
+"accept" = "Akceptuj";
 "menu_play" = "Odtwarzaj";
 "menu_pause" = "Wstrzymaj";
 "menu_scroll_to_bottom" = "Przewiń na dołu";
@@ -280,6 +281,7 @@
 "chat_share_with_title" = "Udostępnij";
 "chat_input_placeholder" = "Wiadomość";
 "chat_archived_label" = "Zarchiwizowane";
+"chat_request_label" = "Prośba";
 "chat_no_messages" = "Brak wiadomości.";
 "chat_self_talk_subtitle" = "Wiadomości wysłane do siebie";
 "archive_empty_hint" = "Jeśli zarchiwizujesz czaty, zostaną one pokazane tutaj.";
@@ -350,13 +352,30 @@
 "send_message" = "Wyślij wiadomość";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Wiadomości przychodzące";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Wiadomości wychodzące";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Zajętość skrzynki %1$@";
+"connectivity" = "Łączność";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "Nie połączony";
 // Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Łączenie…";
 // Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_updating" = "Aktualizowanie…";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "Połączony";
 "sending" = "Wysyłanie…";
+"last_msg_sent_successfully" = "Twoja ostatnia wiadomość została pomyślnie wysłana";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Wiadomości";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ z %2$@ ";
+
+
 // welcome and login
 "welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
 "login_title" = "Zaloguj się";
@@ -408,7 +427,10 @@
 "delete_account_ask" = "Czy na pewno chcesz usunąć dane swojego konta?";
 "delete_account_explain_with_name" = "Wszystkie dane konta „%1$@” na tym urządzeniu zostaną usunięte, w tym konfiguracja szyfrowania end-to-end, kontakty, czaty, wiadomości i multimedia. Tej operacji nie można cofnąć.";
 "switching_account" = "Przełączam konto…";
+"unconfigured_account" = "Nieskonfigurowane konto";
+"unconfigured_account_hint" = "Otwórz konto, aby je skonfigurować";
 "try_connect_now" = "Spróbuj się teraz połączyć";
+"sync_all" = "Synchronizuj wszystkie";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfiguracja nie powiodła się. Błąd: %1$@";
 
