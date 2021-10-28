@@ -267,8 +267,10 @@ class ChatViewController: UITableViewController {
 
     override func loadView() {
         let dcChat = dcContext.getChat(chatId: chatId)
-        let inputBar = !dcChat.canSend && !dcChat.isContactRequest ? nil : messageInputBar
-        self.tableView = ChatTableView(messageInputBar: inputBar)
+        self.tableView = ChatTableView(messageInputBar: messageInputBar)
+        if !dcChat.canSend {
+            messageInputBar.isHidden = true
+        }
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view = self.tableView
