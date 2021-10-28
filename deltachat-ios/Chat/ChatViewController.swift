@@ -266,11 +266,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func loadView() {
-        let dcChat = dcContext.getChat(chatId: chatId)
         self.tableView = ChatTableView(messageInputBar: messageInputBar)
-        if !dcChat.canSend {
-            messageInputBar.isHidden = true
-        }
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view = self.tableView
@@ -303,6 +299,8 @@ class ChatViewController: UITableViewController {
             configureUIForWriting()
         } else if dcChat.isContactRequest {
             configureContactRequestBar()
+        } else {
+            messageInputBar.isHidden = true
         }
         loadMessages()
     }
@@ -520,13 +518,15 @@ class ChatViewController: UITableViewController {
                 let dcChat = self.dcContext.getChat(chatId: self.chatId)
                 if dcChat.canSend {
                     if self.messageInputBar.isHidden {
-                        self.messageInputBar.isHidden = false
                         self.configureUIForWriting()
+                        self.messageInputBar.isHidden = false
 
-                        // TODO: this update method works in the emulator only.
-                        // the view is there, however,
-                        // going to profile and back shows the view also on real devices
-                        self.setNeedsFocusUpdate()
+                        // TODO: if the viewController is opened initially with hidden input bar,
+                        // it is _not_ shown that way. however, it is kind of there, opening+closing the profile shows it.
+                        //
+                        // (if the the viewController is opened initially with input bar,
+                        // showing and hiding works any number of times)
+                        // (you can test that with a second device/emulator and add/remove the other member)
                     }
                 } else if !dcChat.isContactRequest {
                     if !self.messageInputBar.isHidden {
