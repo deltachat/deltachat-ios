@@ -720,6 +720,10 @@
 "qraccount_success_enter_name" = "Het inloggen is gelukt - je e-mailadres is ‘%1$@’.\n\nAls je wilt, kun je een naam en profielafbeelding opgeven die worden getoond aan de mensen waarmee je communiceert.";
 "qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
 "qraccount_use_on_new_install" = "De gescande QR-code is voor het instellen van een nieuw account. Je kunt deze direct scannen na het (opnieuw) installeren van Delta Chat.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ heeft je uitgenodigd voor deze groep.\n\nEr wordt gewacht op antwoord van het apparaat %2$@…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "%1$@ heefn geantwoord en wacht op toelating tot de groep…";
 "contact_verified" = "%1$@ is goedgekeurd.";
 "contact_not_verified" = "Kan %1$@ niet goedkeuren";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

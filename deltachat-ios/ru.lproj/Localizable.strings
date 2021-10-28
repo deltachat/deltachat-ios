@@ -88,7 +88,7 @@
 "draft" = "Черновик";
 "image" = "Изображение";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
-"reply_noun" = "Ответить";
+"reply_noun" = "Ответ";
 "gif" = "GIF";
 // "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
 "sticker" = "Стикер";
@@ -720,6 +720,10 @@
 "qraccount_success_enter_name" = "Вход успешно выполнен—ваш адрес электронной почты %1$@\n\nЕсли хотите, можете ввести имя и установить аватар, которые будут отображаться людям, которым вы пишете.";
 "qraccount_qr_code_cannot_be_used" = "Отсканированный QR код не может быть использован для создания нового аккаунта.";
 "qraccount_use_on_new_install" = "Отсканированный QR код предназначен для создания нового аккаунта. Вы можете отсканировать QR код при установке Delta Chat.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ пригласил вас в группу.\n\nОжидаем ответа от %2$@…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "%1$@ ответил, ожидаем добавления в группу…";
 "contact_verified" = "%1$@ подтвержден.";
 "contact_not_verified" = "Невозможно подтвердить %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

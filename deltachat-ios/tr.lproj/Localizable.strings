@@ -720,6 +720,10 @@
 "qraccount_success_enter_name" = "Oturum açma başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kod yeni bir hesap ayarlamak için kullanılamıyor.";
 "qraccount_use_on_new_install" = "Taranan QR kod yeni bir hesap ayarlamak içindir. QR kodu yeni bir Delta Chat kurulumunu ayarlarken tarayabilirsiniz.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ sizi bu gruba katılmaya davet etti.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "%1$@ yanıtladı; gruba eklenmesi bekleniyor…";
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
@@ -733,6 +737,7 @@
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%2$d sohbette %1$d yeni ileti";
+"notify_dismiss" = "Kapat";
 "notify_mark_read" = "Okundu İmi";
 "notify_reply_button" = "Yanıtla";
 "notify_new_message" = "Yeni ileti";

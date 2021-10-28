@@ -710,6 +710,10 @@
 "qraccount_success_enter_name" = "Hyrje e suksesshme—adresa juaj email është %1$@\n\nNëse doni, tani mund të jepni një emër dhe një figurë avatari që do t’u shfaqet personave që ju shkruajnë.";
 "qraccount_qr_code_cannot_be_used" = "Kodi QR i skanuar s’mund të përdoret për të ujdisur një llogari të re.";
 "qraccount_use_on_new_install" = "Kodi QR i skanuar është për ujdisje të një llogarie të re. Kodin QR mund ta skanoni kur ujdisni një instalim të ri të Delta Chat-it.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ ju ftoi të bëheni pjesë e këtij grupi.\n\nPo pritet për pajisjen e %2$@ që të përgjigjet…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";
 "contact_verified" = "%1$@ u verifikua.";
 "contact_not_verified" = "S\’verifikohet dot %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
