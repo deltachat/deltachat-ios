@@ -354,7 +354,12 @@ class GroupChatDetailViewController: UIViewController {
      }
 
     private func getGroupMemberIdFor(_ row: Int) -> Int {
-        return groupMemberIds[row - memberManagementRows]
+        let index = row - memberManagementRows
+        if index >= 0 && index < groupMemberIds.count {
+            return groupMemberIds[index]
+        } else {
+            return 0
+        }
     }
 
     private func isMemberManagementRow(row: Int) -> Bool {
