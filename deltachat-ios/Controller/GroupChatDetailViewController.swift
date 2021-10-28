@@ -25,20 +25,16 @@ class GroupChatDetailViewController: UIViewController {
         case deleteChat
     }
 
-    private let chatOptions: [ChatOption]
-    private let chatActions: [ChatAction]
+    private var chatOptions: [ChatOption]
+    private var chatActions: [ChatAction]
 
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
-    private let memberManagementRows: Int
+    private var memberManagementRows: Int
 
     private let dcContext: DcContext
 
     private let sections: [ProfileSections]
-
-    private lazy var canEdit: Bool = {
-        return chat.isMailinglist || chat.canSend
-    }()
 
     private var chatId: Int
     private var chat: DcChat {
@@ -174,20 +170,14 @@ class GroupChatDetailViewController: UIViewController {
         self.chatId = chatId
 
         let chat = dcContext.getChat(chatId: chatId)
+        self.chatActions = []
+        self.chatOptions = []
+        self.memberManagementRows = 0
         if chat.isMailinglist {
-            self.chatOptions = [.gallery, .documents, .search, .muteChat]
-            self.chatActions = [.archiveChat, .deleteChat]
-            self.memberManagementRows = 2
             self.sections = [.chatOptions, .chatActions]
         } else if chat.isBroadcast {
-            self.chatOptions = [.gallery, .documents]
-            self.chatActions = [.archiveChat, .deleteChat]
-            self.memberManagementRows = 1
             self.sections = [.chatOptions, .members, .chatActions]
         } else {
-            self.chatOptions = [.gallery, .documents, .search, .ephemeralMessages, .muteChat]
-            self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
-            self.memberManagementRows = 2
             self.sections = [.chatOptions, .members, .chatActions]
         }
 
@@ -225,10 +215,11 @@ class GroupChatDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // update chat object, maybe chat name was edited
+
         updateGroupMembers()
-        tableView.reloadData() // to display updates
-        editBarButtonItem.isEnabled = canEdit
+        updateOptions()
+        tableView.reloadData()
+
         setupObservers()
         updateHeader()
         updateMediaCellValues()
@@ -279,6 +270,8 @@ class GroupChatDetailViewController: UIViewController {
                self.chatId == ui["chat_id"] as? Int {
                 self.updateHeader()
                 self.updateGroupMembers()
+                self.updateOptions()
+                self.tableView.reloadData()
             }
         }
     }
@@ -299,7 +292,28 @@ class GroupChatDetailViewController: UIViewController {
     // MARK: - update
     private func updateGroupMembers() {
         groupMemberIds = chat.getContactIds(dcContext)
-        tableView.reloadData()
+    }
+
+    private func updateOptions() {
+        self.editBarButtonItem.isEnabled = chat.isMailinglist || chat.canSend
+
+        if chat.isMailinglist {
+            self.chatOptions = [.gallery, .documents, .search, .muteChat]
+            self.memberManagementRows = 0
+            self.chatActions = [.archiveChat, .deleteChat]
+        } else if chat.isBroadcast {
+            self.chatOptions = [.gallery, .documents, .search]
+            self.memberManagementRows = 1
+            self.chatActions = [.archiveChat, .deleteChat]
+        } else if chat.canSend {
+            self.chatOptions = [.gallery, .documents, .search, .ephemeralMessages, .muteChat]
+            self.memberManagementRows = 2
+            self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
+        } else {
+            self.chatOptions = [.gallery, .documents, .search, .muteChat]
+            self.memberManagementRows = 0
+            self.chatActions = [.archiveChat, .deleteChat]
+        }
     }
 
     private func updateHeader() {
@@ -686,8 +700,6 @@ extension GroupChatDetailViewController {
         let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
             _ = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: Int(DC_CONTACT_ID_SELF))
-            self.editBarButtonItem.isEnabled = false
-            self.updateGroupMembers()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
