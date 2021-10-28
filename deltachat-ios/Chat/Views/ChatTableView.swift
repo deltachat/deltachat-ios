@@ -6,7 +6,7 @@ class ChatTableView: UITableView {
     var messageInputBar: InputBarAccessoryView
     
     override var inputAccessoryView: UIView? {
-        return messageInputBar.isHidden ? nil : messageInputBar
+        return messageInputBar
     }
 
     override var canBecomeFirstResponder: Bool {

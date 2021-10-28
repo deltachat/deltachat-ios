@@ -520,13 +520,6 @@ class ChatViewController: UITableViewController {
                     if self.messageInputBar.isHidden {
                         self.configureUIForWriting()
                         self.messageInputBar.isHidden = false
-
-                        // TODO: if the viewController is opened initially with hidden input bar,
-                        // it is _not_ shown that way. however, it is kind of there, opening+closing the profile shows it.
-                        //
-                        // (if the the viewController is opened initially with input bar,
-                        // showing and hiding works any number of times)
-                        // (you can test that with a second device/emulator and add/remove the other member)
                     }
                 } else if !dcChat.isContactRequest {
                     if !self.messageInputBar.isHidden {
