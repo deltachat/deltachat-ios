@@ -16,6 +16,7 @@ class ChatViewController: UITableViewController {
 
     var msgChangedObserver: NSObjectProtocol?
     var incomingMsgObserver: NSObjectProtocol?
+    var chatModifiedObserver: NSObjectProtocol?
     var ephemeralTimerModifiedObserver: NSObjectProtocol?
     // isDismissing indicates whether the ViewController is/was about to dismissed.
     // The VC can be dismissed by pressing back '<' or by a swipe-to-dismiss gesture.
@@ -507,6 +508,16 @@ class ChatViewController: UITableViewController {
             }
         }
 
+        chatModifiedObserver = nc.addObserver(
+            forName: dcNotificationChatModified,
+            object: nil, queue: OperationQueue.main
+        ) { [weak self] notification in
+            guard let self = self else { return }
+            if let ui = notification.userInfo, self.chatId == ui["chat_id"] as? Int {
+
+            }
+        }
+
         ephemeralTimerModifiedObserver = nc.addObserver(
             forName: dcEphemeralTimerModified,
             object: nil, queue: OperationQueue.main
@@ -533,6 +544,9 @@ class ChatViewController: UITableViewController {
         }
         if let incomingMsgObserver = self.incomingMsgObserver {
             nc.removeObserver(incomingMsgObserver)
+        }
+        if let chatModifiedObserver = self.chatModifiedObserver {
+            nc.removeObserver(chatModifiedObserver)
         }
         if let ephemeralTimerModifiedObserver = self.ephemeralTimerModifiedObserver {
             nc.removeObserver(ephemeralTimerModifiedObserver)
