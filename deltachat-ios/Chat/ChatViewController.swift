@@ -221,11 +221,12 @@ class ChatViewController: UITableViewController {
             }
         )
 
+        let dcChat = dcContext.getChat(chatId: chatId)
         let config = ContextMenuProvider()
-        if #available(iOS 13.0, *), !disableWriting {
+        if #available(iOS 13.0, *), dcChat.canSend {
             let mainContextMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, forwardItem, infoItem, copyItem, deleteItem])
             config.setMenu([mainContextMenu, selectMoreItem])
-        } else if !disableWriting {
+        } else if dcChat.canSend {
             config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
         } else {
             config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
@@ -237,7 +238,6 @@ class ChatViewController: UITableViewController {
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
-    private var disableWriting: Bool
     var showCustomNavBar = true
     var highlightedMsg: Int?
 
@@ -254,10 +254,8 @@ class ChatViewController: UITableViewController {
     }()
 
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
-        let dcChat = dcContext.getChat(chatId: chatId)
         self.dcContext = dcContext
         self.chatId = chatId
-        self.disableWriting = !dcChat.canSend
         self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
@@ -268,7 +266,8 @@ class ChatViewController: UITableViewController {
     }
 
     override func loadView() {
-        let inputBar = self.disableWriting && !dcContext.getChat(chatId: chatId).isContactRequest ? nil : messageInputBar
+        let dcChat = dcContext.getChat(chatId: chatId)
+        let inputBar = !dcChat.canSend && !dcChat.isContactRequest ? nil : messageInputBar
         self.tableView = ChatTableView(messageInputBar: inputBar)
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -297,9 +296,10 @@ class ChatViewController: UITableViewController {
         }
         configureEmptyStateView()
 
-        if !disableWriting {
+        let dcChat = dcContext.getChat(chatId: chatId)
+        if dcChat.canSend {
             configureUIForWriting()
-        } else if dcContext.getChat(chatId: chatId).isContactRequest {
+        } else if dcChat.isContactRequest {
             configureContactRequestBar()
         }
         loadMessages()
@@ -474,7 +474,8 @@ class ChatViewController: UITableViewController {
         ) { [weak self] notification in
             guard let self = self else { return }
             if let ui = notification.userInfo {
-                if self.disableWriting {
+                let dcChat = self.dcContext.getChat(chatId: self.chatId)
+                if !dcChat.canSend {
                     // always refresh, as we can't check currently
                     self.refreshMessages()
                 } else if let id = ui["message_id"] as? Int {
@@ -486,7 +487,7 @@ class ChatViewController: UITableViewController {
                     }
                 }
                 if self.showCustomNavBar {
-                    self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
+                    self.updateTitle(chat: dcChat)
                 }
             }
         }
@@ -748,7 +749,8 @@ class ChatViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        if disableWriting || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION {
+        let dcChat = dcContext.getChat(chatId: chatId)
+        if !dcChat.canSend || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION {
             return nil
         }
 
