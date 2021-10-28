@@ -1,9 +1,8 @@
 import UIKit
 import DcCore
 
-class QrPageController: UIPageViewController, ProgressAlertHandler {
+class QrPageController: UIPageViewController {
     private let dcContext: DcContext
-    weak var progressAlert: UIAlertController?
     var progressObserver: NSObjectProtocol?
     var qrCodeReaderController: QrCodeReaderController?
 
@@ -288,24 +287,12 @@ extension QrPageController: QrCodeReaderDelegate {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-            alert.dismiss(animated: true, completion: nil)
-            self.showProgressAlert(title: String.localized("one_moment")+"\n\n", dcContext: self.dcContext)
-            // execute blocking secure join in background
-            DispatchQueue.global(qos: .background).async {
-                self.addSecureJoinProgressListener()
-                self.dcContext.lastErrorString = nil
-                let chatId = self.dcContext.joinSecurejoin(qrCode: code)
-                let errorString = self.dcContext.lastErrorString
-                self.removeSecureJoinProgressListener()
-
-                DispatchQueue.main.async {
-                    self.progressAlert?.dismiss(animated: true, completion: nil)
-                    if chatId != 0 {
-                        self.showChat(chatId: chatId)
-                    } else if errorString != nil {
-                        self.showErrorAlert(error: errorString!)
-                    }
-                }
+            self.dcContext.lastErrorString = nil
+            let chatId = self.dcContext.joinSecurejoin(qrCode: code)
+            if chatId != 0 {
+                self.showChat(chatId: chatId)
+            } else {
+                self.showErrorAlert(error: self.dcContext.lastErrorString ?? "ErrJoinNoString")
             }
         }))
         present(alert, animated: true, completion: nil)
@@ -317,31 +304,4 @@ extension QrPageController: QrCodeReaderDelegate {
             alert.dismiss(animated: true, completion: nil)
         }))
     }
-
-    private func addSecureJoinProgressListener() {
-        let nc = NotificationCenter.default
-        progressObserver = nc.addObserver(
-            forName: dcNotificationSecureJoinerProgress,
-            object: nil,
-            queue: nil
-        ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo,
-                ui["progress"] as? Int == 400,
-                let contactId = ui["contact_id"] as? Int {
-                self.progressAlert?.message = String.localizedStringWithFormat(
-                    String.localized("qrscan_x_verified_introduce_myself"),
-                    self.dcContext.getContact(id: contactId).nameNAddr
-                )
-            }
-        }
-    }
-
-    private func removeSecureJoinProgressListener() {
-        let nc = NotificationCenter.default
-        if let observer = self.progressObserver {
-            nc.removeObserver(observer)
-        }
-    }
-
 }
