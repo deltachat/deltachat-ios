@@ -517,7 +517,22 @@ class ChatViewController: UITableViewController {
         ) { [weak self] notification in
             guard let self = self else { return }
             if let ui = notification.userInfo, self.chatId == ui["chat_id"] as? Int {
+                let dcChat = self.dcContext.getChat(chatId: self.chatId)
+                if dcChat.canSend {
+                    if self.messageInputBar.isHidden {
+                        self.messageInputBar.isHidden = false
+                        self.configureUIForWriting()
 
+                        // TODO: this update method works in the emulator only.
+                        // the view is there, however,
+                        // going to profile and back shows the view also on real devices
+                        self.setNeedsFocusUpdate()
+                    }
+                } else if !dcChat.isContactRequest {
+                    if !self.messageInputBar.isHidden {
+                        self.messageInputBar.isHidden = true
+                    }
+                }
             }
         }
 
