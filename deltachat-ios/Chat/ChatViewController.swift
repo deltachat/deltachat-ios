@@ -840,7 +840,7 @@ class ChatViewController: UITableViewController {
     private func updateTitle(chat: DcChat) {
         let titleView =  ChatTitleView()
 
-        var subtitle = "ErrSubtitle"
+        var subtitle = ""
         let chatContactIds = chat.getContactIds(dcContext)
         if chat.isMailinglist {
             subtitle = String.localized("mailing_list")

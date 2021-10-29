@@ -520,12 +520,7 @@ class ContactDetailViewController: UITableViewController {
         NotificationManager.removeNotificationsForChat(dcContext: viewModel.context, chatId: viewModel.chatId)
         INInteraction.delete(with: ["\(viewModel.context.id).\(viewModel.chatId)"])
 
-        // just pop to viewControllers - we've in chatlist or archive then
-        // (no not use `navigationController?` here: popping self will make the reference becoming nil)
-        if let navigationController = navigationController {
-            navigationController.popViewController(animated: false)
-            navigationController.popViewController(animated: true)
-        }
+        navigationController?.popViewControllers(viewsToPop: 2, animated: true)
     }
 }
 
