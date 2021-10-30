@@ -38,7 +38,7 @@
 "next" = "확인";
 "error" = "오류";
 "contacts_headline" = "연락처";
-"password" = "잠금번호";
+"password" = "비밀번호";
 "now" = "방금 전";
 // Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
 "danger" = "위험";
@@ -134,7 +134,7 @@
 "contacts_empty_hint" = "대화상대가 없습니다";
 
 
-"chat_archived_chats_title" = "보관 된 채팅";
+"chat_archived_chats_title" = "보관된 채팅";
 "chat_record_slide_to_cancel" = "밀어서 취소";
 "chat_share_with_title" = "공유 대상";
 "chat_input_placeholder" = "메시지";
@@ -160,7 +160,7 @@
 "pref_blocked_contacts" = "차단 목록";
 "pref_password_and_account_settings" = "계정 설정";
 "pref_your_name" = "내 이름";
-"pref_enter_sends" = "엔터키로 메시지 전송";
+"pref_enter_sends" = "엔터로 메시지 전송";
 "pref_vibrate" = "진동";
 "pref_screen_security" = "화면 보안";
 // Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
