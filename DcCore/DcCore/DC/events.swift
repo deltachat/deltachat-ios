@@ -5,7 +5,6 @@ public let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChang
 public let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
 public let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificationImexProgress")
 public let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
-public let dcNotificationSecureJoinerProgress = Notification.Name(rawValue: "MrEventSecureJoinerProgress")
 public let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
 public let dcNotificationContactChanged = Notification.Name(rawValue: "MrEventContactsChanged")
 public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificationChatModified")
@@ -194,24 +193,6 @@ public class DcEventHandler {
                 )
             }
 
-        case DC_EVENT_SECUREJOIN_JOINER_PROGRESS:
-            if dcContext.id != dcAccounts.getSelected().id {
-                return
-            }
-            dcContext.logger?.info("securejoin joiner progress \(data1)")
-            let nc = NotificationCenter.default
-            DispatchQueue.main.async {
-                nc.post(
-                    name: dcNotificationSecureJoinerProgress,
-                    object: nil,
-                    userInfo: [
-                        "contact_id": Int(data1),
-                        "progress": Int(data2),
-                        "error": Int(data2) == 0,
-                        "done": Int(data2) == 1000,
-                    ]
-                )
-            }
         case DC_EVENT_CONTACTS_CHANGED:
             if dcContext.id != dcAccounts.getSelected().id {
                 return
