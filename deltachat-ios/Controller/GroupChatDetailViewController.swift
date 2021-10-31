@@ -434,12 +434,7 @@ class GroupChatDetailViewController: UIViewController {
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
 
-        // just pop to viewControllers - we've in chatlist or archive then
-        // (no not use `navigationController?` here: popping self will make the reference becoming nil)
-        if let navigationController = navigationController {
-            navigationController.popViewController(animated: false)
-            navigationController.popViewController(animated: true)
-        }
+        navigationController?.popViewControllers(viewsToPop: 2, animated: true)
     }
 
     private func showGroupAvatarIfNeeded() {
