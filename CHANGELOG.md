@@ -1,12 +1,47 @@
 # Delta Chat iOS Changelog
 
+## v1.24.0
+2021-11
+
+* new "In-Chat Search" added; tap the corresponding option in the profile
+* new option "Auto-Download Messages": Define the max. messages size to be downloaded automatically -
+  larger messages, as videos or large images, can be downloaded manually by a simple tap then
+* new: much easier joining of groups via qr-code: nothing blocks
+  and you get all progress information in the immediately created group
+* new: get warnings before your server runs out of space (if quota is supported by your provider)
+* messages are marked as "being read" already when the first recipient opened the message
+  (before, that requires 50% of the recipients to open the message)
+* contact requests are notified as usual now
+* add an option to copy a contact's email address to the clipboard
+* force strict certificate checks when a strict certificate was seen on first login
+* do not forward group names on forwarding messages
+* "Broadcast Lists", as kown from other messengers, added as an experimental feature
+  (you can enable it at "Settings / Advanced")
+* fix: disappearing messages timer now synced more reliable in groups
+* fix: improve detection of some mailing list names
+* fix "QR process failed" error
+* fix DNS and certificate issues
+* fix: if account creation was aborted, go to the previously selected account, not to the first
+* fix: update app badge counter on archiving a chat directly
+* fix: reduce memory consumption of share extension
+* fix: update search result when messages update
+* fix requesting camera permissions on some devices
+* fix: use correct margins on phones with a notch
+* fix: update chat profile when chat changes remotely
+* fix: no more screen flickering when deleting a chat
+* update provider-database
+* update translations and local help
+
+
 ## v1.22.1
+2021-08
 
 * fix: always reconnect if account creation was cancelled
 * update translations
 
 
 ## v1.22.0
+2021-08
 
 * added: connectivity view shows quota information, if supported by the provider
 * fix account migration, updates are displayed instantly now
