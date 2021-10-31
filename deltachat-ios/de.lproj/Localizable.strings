@@ -142,6 +142,8 @@
 "menu_new_contact" = "Neuer Kontakt";
 "menu_new_chat" = "Neuer Chat";
 "menu_new_group" = "Neue Gruppe";
+// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+"new_group_or_subject" = "Neue Gruppe oder Betreff";
 "menu_new_verified_group" = "Neue verifizierte Gruppe";
 // consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
 "broadcast_list" = "Broadcast-Liste";
