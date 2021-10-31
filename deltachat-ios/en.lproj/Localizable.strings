@@ -481,7 +481,7 @@
 "blocked_empty_hint" = "If you block contacts, they will be shown here.";
 "pref_profile_photo_remove_ask" = "Remove profile image?";
 "pref_password_and_account_settings" = "Password and Account";
-"pref_who_can_see_profile_explain" = "Your profile image and name will be shown alongside your messages when communicating with other users. Already sent information can not be deleted or removed.";
+"pref_who_can_see_profile_explain" = "Your profile image, name and signature will be sent together with your messages when communicating with other users.";
 "pref_your_name" = "Your Name";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "Signature Text";

@@ -720,6 +720,10 @@
 "qraccount_success_enter_name" = "Вхід успішний — ваша ел. адреса %1$@\n\nЯкщо ви бажаєте, ви можете ввести ім\'я та аватар.";
 "qraccount_qr_code_cannot_be_used" = "Зісканований QR-код не може бути використаний для створення нового облікового запису.";
 "qraccount_use_on_new_install" = "Зісканований QR-код для створення нового облікового запису. Ви можете зісканувати QR-код коли налаштовуєте нову інсталяцію.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ запросили вас приєднатися до цієї групи.\n\nОчікуємо на відповідь від пристрою %2$@…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "%1$@ відповіли, очікуємо на додавання до групи…";
 "contact_verified" = "%1$@ підтверджений(-а)";
 "contact_not_verified" = "Неможливо підтвердити %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

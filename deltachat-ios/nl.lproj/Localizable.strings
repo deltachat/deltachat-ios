@@ -481,7 +481,7 @@
 "blocked_empty_hint" = "Geblokkeerde contactpersonen worden hier getoond.";
 "pref_profile_photo_remove_ask" = "Profielfoto verwijderen?";
 "pref_password_and_account_settings" = "Wachtwoord en account";
-"pref_who_can_see_profile_explain" = "Je profielfoto en -naam worden getoond in gesprekken, naast je berichten. Reeds verstuurde informatie kan niet worden verwijderd of teruggehaald.";
+"pref_who_can_see_profile_explain" = "Je profielfoto, -naam en handtekening worden getoond in gesprekken, naast je berichten.";
 "pref_your_name" = "Je naam";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "Handtekeningtekst";
