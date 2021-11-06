@@ -142,6 +142,8 @@
 "menu_new_contact" = "Nouveau contact";
 "menu_new_chat" = "Nouvelle discussion";
 "menu_new_group" = "Nouveau groupe";
+// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+"new_group_or_subject" = "Nouveau groupe ou sujet.";
 "menu_new_verified_group" = "Nouveau groupe vérifié";
 // consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
 "broadcast_list" = "Liste de diffusion";
@@ -720,6 +722,10 @@
 "qraccount_success_enter_name" = "Connexion réussie – votre adresse de courriel est %1$@\n\nSi vous le souhaitez, vous pouvez maintenant choisir un nom et une image de profil qui seront affichés aux personnes à qui vous écrivez.";
 "qraccount_qr_code_cannot_be_used" = "Le code QR scanné ne peut pas être utilisé pour ouvrir un nouveau compte.";
 "qraccount_use_on_new_install" = "Le code QR scanné permet de configurer un nouveau compte. Vous pouvez scanner le code QR à la configuration d\'une nouvelle installation de Delta Chat.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ vous a invité à rejoindre ce groupe.\n\nEn attente de la réponse de l’appareil de %2$@…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "%1$@ a répondu, en attente d’être ajouté au groupe…";
 "contact_verified" = "%1$@ vérifié.";
 "contact_not_verified" = "Ne peut pas vérifier %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
@@ -871,4 +877,3 @@
 "update_1_20" = "Compatibilité avec les courriel améliorés en version 1.20:\n\n📫 Lis les listes de diffusion\n📭 Lis les courriels au format HTML\n📪 Bon support des addresses de support\n📫 Beaucoup de nuisances mineures et majeures corrigées\n\nLisez notre nouveau billet de blog à propos de ces avancés sur le mail et plus:";
 "update_1_22" = "Quoi de neuf dans la 1.22?\n\n👋 Les demandes de contacts apparaissent dorénavant comme une discussion à part et peuvent être inspectées en détail avant de les accepter ou de les bloquer\n\n🗄️ L\'Archive est maintenant facilement accessible depuis les paramètres - vous trouverez aussi par là vos anciennes demande de contacts\n\n📮📮📮 Amélioration du multi-compte: le changement de comptes est maintenant plus rapide et moins souvent bloqué par de longues mises à jour 🤔 Sachez ce qui se passe: les problèmes de connectivité sont maintenant montrés dans le titre de la fenêtre, cliquez dessus pour plus de détails\n\nPlus sur notre blog:";
 "update_1_22_ios" = "Quoi de neuf dans la 1.22?\n\n👋 Les demandes de contacts apparaissent dorénavant comme une discussion à part et peuvent être inspectées en détail avant de les accepter ou de les bloquer\n\n🗄️ L\'Archive est maintenant facilement accessible depuis les paramètres - vous trouverez aussi par là vos anciennes demande de contacts\n\n📮📮📮 Comptes multiples ajoutés: Passez de l\'un à l\'autre et gérez les depuis vos paramètres\n\n🤔 Sachez ce qui se passe: les problèmes de connectivité sont maintenant montrés dans le titre de la fenêtre, cliquez dessus pour plus de détails\n\nPlus sur notre blog:";
-
