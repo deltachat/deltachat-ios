@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v1.24.0
+## v1.24.1
 2021-11
 
 * new "In-Chat Search" added; tap the corresponding option in the profile
