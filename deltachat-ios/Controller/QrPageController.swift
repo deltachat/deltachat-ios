@@ -287,12 +287,11 @@ extension QrPageController: QrCodeReaderDelegate {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-            self.dcContext.lastErrorString = nil
             let chatId = self.dcContext.joinSecurejoin(qrCode: code)
             if chatId != 0 {
                 self.showChat(chatId: chatId)
             } else {
-                self.showErrorAlert(error: self.dcContext.lastErrorString ?? "ErrJoinNoString")
+                self.showErrorAlert(error: self.dcContext.lastErrorString)
             }
         }))
         present(alert, animated: true, completion: nil)

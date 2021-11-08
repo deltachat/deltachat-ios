@@ -156,7 +156,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     private func accountCreationErrorAlert() {
-        let title = dcContext.lastErrorString ?? String.localized("error")
+        let title = dcContext.lastErrorString
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         present(alert, animated: true)
