@@ -247,6 +247,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         notifyToken = nil
 
         // register for showing notifications
+        //
+        // note: the alert-dialog cannot be customized, however, since iOS 12,
+        // it can be avoided completely by using `.provisional`,
+        // https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications
         UNUserNotificationCenter.current()
           .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
             if granted {
