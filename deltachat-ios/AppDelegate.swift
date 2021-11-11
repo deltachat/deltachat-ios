@@ -247,19 +247,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         notifyToken = nil
 
         // register for showing notifications
-        //
-        // note: the alert-dialog cannot be customized, however, since iOS 12,
-        // it can be avoided completely by using `.provisional`,
-        // https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications
+        var opt: UNAuthorizationOptions = [.alert, .sound, .badge]
+        if #available(iOS 12.0, *) {
+            // .provisional notifications delay the consent of the user to the moment the first notification is shown,
+            // as a drawback, until that moment, notifications are less visible.
+            opt = [.provisional, .alert, .sound, .badge]
+        }
         UNUserNotificationCenter.current()
-          .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
+          .requestAuthorization(options: opt) { [weak self] granted, error in
             if granted {
                 // we are allowed to show notifications:
                 // register for receiving remote notifications
                 logger.info("Notifications: Permission granted: \(granted)")
                 self?.maybeRegisterForRemoteNotifications()
             } else {
-                logger.info("Notifications: Permission not granted.")
+                logger.info("Notifications: Permission not granted: \(String(describing: error))")
             }
         }
     }
