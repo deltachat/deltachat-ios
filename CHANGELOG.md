@@ -1,5 +1,13 @@
 # Delta Chat iOS Changelog
 
+## v1.24.3
+2021-11
+
+* fix messages added on scanning the QR code of an contact
+* fix incorrect assignment of Delta Chat replies to classic email threads
+* update translations and local help
+
+
 ## v1.24.1
 2021-11
 
