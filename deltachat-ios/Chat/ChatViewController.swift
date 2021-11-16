@@ -148,7 +148,7 @@ class ChatViewController: UITableViewController {
                 let msg = self.dcContext.getMessage(id: id)
 
                 let pasteboard = UIPasteboard.general
-                if msg.type == DC_MSG_TEXT {
+                if msg.type == DC_MSG_TEXT || msg.type == DC_MSG_VIDEOCHAT_INVITATION {
                     pasteboard.string = msg.text
                 } else {
                     pasteboard.string = msg.summary(chars: 10000000)
