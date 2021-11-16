@@ -22,7 +22,7 @@ class ImageTextCell: BaseMessageCell {
     open lazy var playButtonView: PlayButtonView = {
         let playButtonView = PlayButtonView()
         playButtonView.isHidden = true
-        translatesAutoresizingMaskIntoConstraints = false
+        playButtonView.translatesAutoresizingMaskIntoConstraints = false
         return playButtonView
     }()
 
