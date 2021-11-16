@@ -27,7 +27,7 @@
 "back" = "Tillbaka";
 "close" = "Stäng";
 "forward" = "Vidarebefordra";
-"archive" = "Arkiv";
+"archive" = "Arkivera";
 "unarchive" = "Avarkivera";
 "mute" = "Tyst";
 "ephemeral_messages" = "Försvinnande meddelanden";
