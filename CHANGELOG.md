@@ -1,5 +1,13 @@
 # Delta Chat iOS Changelog
 
+## v1.24.5
+2021-11
+
+* fix missing stickers, image and video messages on iOS 15
+* fix "copy to clipboard" for video chat invites
+* update translations
+
+
 ## v1.24.4
 2021-11
 
