@@ -81,23 +81,16 @@ class ChatListController: UITableViewController {
         }
         configureTableView()
         setupSubviews()
-        let nc = NotificationCenter.default
-        msgChangedSearchResultObserver = nc.addObserver(
-            forName: dcNotificationChanged,
-            object: nil,
-            queue: nil) { [weak self] _ in
-            guard let self = self else { return }
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-               self.viewModel.searchActive,
-               appDelegate.appIsInForeground() {
-                self.viewModel.updateSearchResults(for: self.searchController)
-            }
-        }
     }
 
-    deinit {
-        if let msgChangedResultObserver = self.msgChangedSearchResultObserver {
-            NotificationCenter.default.removeObserver(msgChangedResultObserver)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            // logger.debug("chat observer: remove")
+            removeObservers()
+        } else {
+            // logger.debug("chat observer: setup")
+            addObservers()
         }
     }
 
@@ -112,15 +105,6 @@ class ChatListController: UITableViewController {
 
         // create view
         navigationItem.titleView = titleView
-
-        // set connectivity changed observer before we acutally init the title,
-        // otherwise, we may miss events and the title is not correct.
-        let nc = NotificationCenter.default
-        connectivityChangedObserver = nc.addObserver(forName: dcNotificationConnectivityChanged,
-                                                     object: nil,
-                                                     queue: nil) { [weak self] _ in
-                                                        self?.updateTitle()
-                                                     }
         updateTitle()
 
         viewModel.refreshData()
@@ -134,7 +118,35 @@ class ChatListController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startTimer()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopTimer()
+    }
+
+    // MARK: - setup
+    private func addObservers() {
         let nc = NotificationCenter.default
+        
+        connectivityChangedObserver = nc.addObserver(forName: dcNotificationConnectivityChanged,
+                                                     object: nil,
+                                                     queue: nil) { [weak self] _ in
+                                                        self?.updateTitle()
+                                                     }
+
+        msgChangedSearchResultObserver = nc.addObserver(
+            forName: dcNotificationChanged,
+            object: nil,
+            queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+               self.viewModel.searchActive,
+               appDelegate.appIsInForeground() {
+                self.viewModel.updateSearchResults(for: self.searchController)
+            }
+        }
+
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
             object: nil,
@@ -166,12 +178,12 @@ class ChatListController: UITableViewController {
             object: nil)
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        stopTimer()
-
+    private func removeObservers() {
         let nc = NotificationCenter.default
         // remove observers with a block
+        if let msgChangedResultObserver = self.msgChangedSearchResultObserver {
+            nc.removeObserver(msgChangedResultObserver)
+        }
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
         }
@@ -189,7 +201,6 @@ class ChatListController: UITableViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
     
-    // MARK: - setup
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
         navigationItem.backButtonTitle = viewModel.isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
