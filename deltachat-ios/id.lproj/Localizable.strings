@@ -27,7 +27,9 @@
 "back" = "Kembali";
 "close" = "Tutup";
 "forward" = "Teruskan";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Arsip";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Tidak diarsip";
 "mute" = "Diam";
 "ephemeral_messages" = "Pesan yang berhilangan";

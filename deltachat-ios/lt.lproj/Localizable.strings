@@ -27,7 +27,9 @@
 "back" = "Atgal";
 "close" = "Užverti";
 "forward" = "Persiųsti";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archyvuoti";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Išarchyvuoti";
 "ephemeral_messages" = "Išnykstančios žinutės";
 "ephemeral_messages_hint" = "Šie nustatymai taikomi visiems Delta Chat besinaudojantiems dalyviams. Vis dėlto, jie gali kopijuoti, įrašyti ir persiųsti žinutes arba naudoti kitas el. pašto kliento programas.";

@@ -20,7 +20,9 @@
 "back" = "Назад";
 "close" = "Близу";
 "forward" = "Проследи";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Архивирај ћаскање";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Деархивирај ћаскање";
 "mute" = "Искључи обавештења";
 "ephemeral_messages" = "Нестајуће поруке";

@@ -25,7 +25,9 @@
 "back" = "In palas";
 "close" = "Serra";
 "forward" = "Inoltra";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archìvia";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Riprìstina";
 "mute" = "Boga su sonu";
 "ephemeral_messages" = "Messàgios chi isparessent";

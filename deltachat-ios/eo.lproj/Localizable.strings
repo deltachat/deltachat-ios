@@ -20,7 +20,9 @@
 "back" = "Reen";
 "close" = "Fermi";
 "forward" = "Plusendi";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Arĥivi";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Malarĥivi";
 "mute" = "Muta sciigoj";
 "ephemeral_messages" = "Memviŝontaj mesaĝoj";

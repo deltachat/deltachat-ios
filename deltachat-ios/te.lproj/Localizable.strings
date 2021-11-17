@@ -20,7 +20,9 @@
 "back" = "తిరిగి";
 "close" = "దగ్గరగా";
 "forward" = "ఫార్వర్డ్";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "ఆర్కైవ్";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "ఆర్కైవ్ రద్దు";
 "mute" = "నిశబ్ధం";
 "ephemeral_messages" = "అదృశ్యమవుతున్న సందేశాలు";

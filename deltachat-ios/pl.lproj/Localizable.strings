@@ -26,7 +26,9 @@
 "back" = "Wróć";
 "close" = "Zamknij";
 "forward" = "Przekaż";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archiwizuj";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Przywróć z archiwum";
 "ephemeral_messages" = "Znikające wiadomości";
 "ephemeral_messages_hint" = "Te ustawienia dotyczą wszystkich uczestników korzystających z Delta Chat. Mogą jednak kopiować, zapisywać i przekazywać wiadomości lub korzystać z innych klientów poczty e-mail.";
@@ -819,5 +821,3 @@
 "perm_enable_bg_already_done" = "Pozwolono już Delta Chat na odbieranie wiadomości w tle.\n\nJeśli wiadomości nadal nie docierają w tle, sprawdź też ustawienia systemu.";
 
 
-// device messages for updates
-"update_1_20" = "Poprawiona zgodność z pocztą e-mail w wersji 1.20:\n\n📫 Czytaj listy mailingowe\n📭 Czytaj wiadomości e-mail w formacie HTML\n📪 Lepsza obsługa adresów pomocy\n📫 Naprawiono wiele większych i drobnych niedogodności\n\nPrzeczytaj nasz nowy wpis na blogu na temat pierwszych kroków w kierunku poczty i nie tylko:";

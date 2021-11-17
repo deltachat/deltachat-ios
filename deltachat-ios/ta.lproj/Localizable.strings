@@ -20,7 +20,9 @@
 "back" = "மீண்டும்";
 "close" = "நெருக்கமான";
 "forward" = "முன்னோக்கு";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "காப்பகத்தை";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "மீட்டெடுக்கலாம்";
 "mute" = "ஓசையற்ற";
 "ephemeral_messages" = "காணாமல் போகும் செய்திகள்";

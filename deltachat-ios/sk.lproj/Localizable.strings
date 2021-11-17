@@ -27,7 +27,9 @@
 "back" = "Späť";
 "close" = "Zatvoriť";
 "forward" = "Vpred";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archivovať";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Zrušiť archiváciu";
 "mute" = "Stíšiť";
 "ephemeral_messages" = "Miznúce správy";

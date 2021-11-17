@@ -20,7 +20,9 @@
 "back" = "Geri";
 "close" = "Bağla";
 "forward" = "Başqasına göndərmə";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Arxivləşmə";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Arxivdən çıxarma";
 "mute" = "Səssiz";
 "ephemeral_messages" = "Yox olan mesajlar";

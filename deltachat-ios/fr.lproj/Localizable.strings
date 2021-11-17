@@ -29,7 +29,9 @@
 "back" = "Retour";
 "close" = "Fermer";
 "forward" = "Faire suivre";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archiver";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
 "unarchive" = "Désarchiver";
 "mute" = "Sourdine";
 "ephemeral_messages" = "Messages éphémères";
@@ -874,6 +876,5 @@
 
 
 // device messages for updates
-"update_1_20" = "Compatibilité avec les courriel améliorés en version 1.20:\n\n📫 Lis les listes de diffusion\n📭 Lis les courriels au format HTML\n📪 Bon support des addresses de support\n📫 Beaucoup de nuisances mineures et majeures corrigées\n\nLisez notre nouveau billet de blog à propos de ces avancés sur le mail et plus:";
 "update_1_22" = "Quoi de neuf dans la 1.22?\n\n👋 Les demandes de contacts apparaissent dorénavant comme une discussion à part et peuvent être inspectées en détail avant de les accepter ou de les bloquer\n\n🗄️ L\'Archive est maintenant facilement accessible depuis les paramètres - vous trouverez aussi par là vos anciennes demande de contacts\n\n📮📮📮 Amélioration du multi-compte: le changement de comptes est maintenant plus rapide et moins souvent bloqué par de longues mises à jour 🤔 Sachez ce qui se passe: les problèmes de connectivité sont maintenant montrés dans le titre de la fenêtre, cliquez dessus pour plus de détails\n\nPlus sur notre blog:";
 "update_1_22_ios" = "Quoi de neuf dans la 1.22?\n\n👋 Les demandes de contacts apparaissent dorénavant comme une discussion à part et peuvent être inspectées en détail avant de les accepter ou de les bloquer\n\n🗄️ L\'Archive est maintenant facilement accessible depuis les paramètres - vous trouverez aussi par là vos anciennes demande de contacts\n\n📮📮📮 Comptes multiples ajoutés: Passez de l\'un à l\'autre et gérez les depuis vos paramètres\n\n🤔 Sachez ce qui se passe: les problèmes de connectivité sont maintenant montrés dans le titre de la fenêtre, cliquez dessus pour plus de détails\n\nPlus sur notre blog:";
