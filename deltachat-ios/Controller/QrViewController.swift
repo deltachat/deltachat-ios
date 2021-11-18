@@ -106,6 +106,8 @@ class QrViewContentView: UIView {
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
+        // the accessibility text is directly tied to the qr code image view
+        label.isAccessibilityElement = false
         return label
     }()
 
@@ -133,6 +135,7 @@ class QrViewContentView: UIView {
 
     // MARK: - update
     func update(svg: String?, qrCode: String?, hint: String?) {
+        qrCodeView.imageView.accessibilityHint = hint
         if let svg = svg {
             let svgData = svg.data(using: .utf8)
             let image = SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])

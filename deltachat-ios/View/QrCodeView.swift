@@ -5,6 +5,7 @@ class QRCodeView: UIView {
     lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
+        view.isAccessibilityElement = true
         return view
     }()
 
