@@ -16,6 +16,8 @@ target 'deltachat-ios' do
   pod 'SCSiriWaveformView'
   pod 'SDWebImage', '~> 5.9.1'
   pod 'SDWebImageWebPCoder'
+  pod 'SDWebImageSVGKitPlugin'
+  pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
   target 'deltachat-iosTests' do
     inherit! :search_paths
     # Pods for testing

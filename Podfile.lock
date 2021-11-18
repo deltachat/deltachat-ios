@@ -1,4 +1,7 @@
 PODS:
+  - CocoaLumberjack (3.7.2):
+    - CocoaLumberjack/Core (= 3.7.2)
+  - CocoaLumberjack/Core (3.7.2)
   - DBDebugToolkit (0.6.0)
   - InputBarAccessoryView (4.3.1):
     - InputBarAccessoryView/Core (= 4.3.1)
@@ -17,9 +20,14 @@ PODS:
   - SDWebImage (5.9.5):
     - SDWebImage/Core (= 5.9.5)
   - SDWebImage/Core (5.9.5)
+  - SDWebImageSVGKitPlugin (1.2.0):
+    - SDWebImage/Core (~> 5.6)
+    - SVGKit (>= 2.1)
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
+  - SVGKit (3.1.0):
+    - CocoaLumberjack (~> 3.0)
   - SwiftFormat/CLI (0.40.9)
   - SwiftLint (0.43.1)
   - SwiftyBeaver (1.9.4)
@@ -30,36 +38,53 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SCSiriWaveformView
   - SDWebImage (~> 5.9.1)
+  - SDWebImageSVGKitPlugin
   - SDWebImageWebPCoder
+  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
   - SwiftFormat/CLI
   - SwiftLint
   - SwiftyBeaver
 
 SPEC REPOS:
   trunk:
+    - CocoaLumberjack
     - DBDebugToolkit
     - InputBarAccessoryView
     - libwebp
     - ReachabilitySwift
     - SCSiriWaveformView
     - SDWebImage
+    - SDWebImageSVGKitPlugin
     - SDWebImageWebPCoder
     - SwiftFormat
     - SwiftLint
     - SwiftyBeaver
 
+EXTERNAL SOURCES:
+  SVGKit:
+    :branch: 3.x
+    :git: https://github.com/SVGKit/SVGKit.git
+
+CHECKOUT OPTIONS:
+  SVGKit:
+    :commit: e9bc636845fb4d6d5d8e25a9bd08e75c5cf92de9
+    :git: https://github.com/SVGKit/SVGKit.git
+
 SPEC CHECKSUMS:
+  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
   DBDebugToolkit: 03eb3483da4daf03b853b83ade5a8da9c8b7aff4
   InputBarAccessoryView: 58a348be7ea2736c7eec60e5c315511c2dbb39fd
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
   SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
+  SDWebImageSVGKitPlugin: 06a811c05b9e839982baeb5251d15fe7a79abb82
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
+  SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   SwiftyBeaver: 576177b2c5c94b3aedd5993914e91271a0524e88
 
-PODFILE CHECKSUM: bda1eaa52c3523837e45c30f0792783dc02e1de9
+PODFILE CHECKSUM: 632fce258414c6c6231891ec0ba5fb604075674b
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
