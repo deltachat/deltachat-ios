@@ -288,8 +288,17 @@ public class DcContext {
         dc_marknoticed_chat(self.contextPointer, UInt32(chatId))
     }
 
-    public func getSecurejoinQr (chatId: Int) -> String? {
+    public func getSecurejoinQr(chatId: Int) -> String? {
         if let cString = dc_get_securejoin_qr(self.contextPointer, UInt32(chatId)) {
+            let swiftString = String(cString: cString)
+            dc_str_unref(cString)
+            return swiftString
+        }
+        return nil
+    }
+
+    public func getSecurejoinQrSVG(chatId: Int) -> String? {
+        if let cString = dc_get_securejoin_qr_svg(self.contextPointer, UInt32(chatId)) {
             let swiftString = String(cString: cString)
             dc_str_unref(cString)
             return swiftString
