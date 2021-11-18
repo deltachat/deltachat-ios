@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import DcCore
+import SDWebImageSVGKitPlugin
 
 class QrViewController: UIViewController {
 
@@ -16,7 +17,8 @@ class QrViewController: UIViewController {
 
     private lazy var qrContentView: QrViewContentView = {
         let qrCode = dcContext.getSecurejoinQr(chatId: chatId)
-        let view = QrViewContentView(qrCode: qrCode, hint: qrCodeHint)
+        let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
+        let view = QrViewContentView(svg: svg, qrCode: qrCode, hint: qrCodeHint)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -24,7 +26,8 @@ class QrViewController: UIViewController {
     var qrCodeHint: String {
         willSet {
             let qrCode = dcContext.getSecurejoinQr(chatId: chatId)
-            qrContentView.update(qrCode: qrCode, hint: newValue)
+            let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
+            qrContentView.update(svg: svg, qrCode: qrCode, hint: newValue)
         }
     }
     private let chatId: Int
@@ -118,9 +121,9 @@ class QrViewContentView: UIView {
         return container.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
     }()
 
-    init(qrCode: String?, hint: String) {
+    init(svg: String?, qrCode: String?, hint: String) {
         super.init(frame: .zero)
-        update(qrCode: qrCode, hint: hint)
+        update(svg: svg, qrCode: qrCode, hint: hint)
         setupSubviews()
     }
 
@@ -129,7 +132,15 @@ class QrViewContentView: UIView {
     }
 
     // MARK: - update
-    func update(qrCode: String?, hint: String?) {
+    func update(svg: String?, qrCode: String?, hint: String?) {
+        if let svg = svg {
+            let svgData = svg.data(using: .utf8)
+            let image = SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])
+            qrCodeView.imageView.image = image
+            hintLabel.isHidden = true
+            return
+        }
+   
         if let qrCode = qrCode {
             qrCodeView.generateCode(
                 qrCode,
@@ -137,6 +148,7 @@ class QrViewContentView: UIView {
                 backgroundColor: .white
             )
         }
+        hintLabel.isHidden = false
         hintLabel.text = hint
     }
 
