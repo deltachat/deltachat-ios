@@ -2,7 +2,11 @@ import UIKit
 
 class QRCodeView: UIView {
     lazy var filter = CIFilter(name: "CIQRCodeGenerator")
-    lazy var imageView = UIImageView()
+    lazy var imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
