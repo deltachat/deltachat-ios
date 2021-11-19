@@ -6,28 +6,22 @@ import SDWebImageSVGKitPlugin
 class QrViewController: UIViewController {
 
     private let dcContext: DcContext
-
     var onDismissed: (() -> Void)?
-
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = false
-        return scrollView
-    }()
-
-    private lazy var qrContentView: QrViewContentView = {
-        let qrCode = dcContext.getSecurejoinQr(chatId: chatId)
+    
+    private lazy var qrContentView: UIImageView = {
         let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
-        let view = QrViewContentView(svg: svg, qrCode: qrCode, hint: qrCodeHint)
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = getQrImage(svg: svg)
         return view
     }()
 
     var qrCodeHint: String {
         willSet {
-            let qrCode = dcContext.getSecurejoinQr(chatId: chatId)
             let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
-            qrContentView.update(svg: svg, qrCode: qrCode, hint: newValue)
+            qrContentView.image = getQrImage(svg: svg)
+            qrContentView.accessibilityHint = newValue
         }
     }
     private let chatId: Int
@@ -51,146 +45,30 @@ class QrViewController: UIViewController {
         view.backgroundColor = DcColors.defaultBackgroundColor
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        qrContentView.minContainerHeight = view.frame.height - (view.safeAreaInsets.top + view.safeAreaInsets.bottom)
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        qrContentView.minContainerHeight = size.height - (view.safeAreaInsets.top + view.safeAreaInsets.bottom)
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
-
     override func viewDidDisappear(_ animated: Bool) {
         onDismissed?()
     }
 
     // MARK: - setup
     private func setupSubviews() {
-        view.addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(qrContentView)
-
-        let frameGuide = scrollView.frameLayoutGuide
-        let contentGuide = scrollView.contentLayoutGuide
-
-        frameGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        frameGuide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        frameGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        frameGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-
-        contentGuide.leadingAnchor.constraint(equalTo: qrContentView.leadingAnchor).isActive = true
-        contentGuide.topAnchor.constraint(equalTo: qrContentView.topAnchor).isActive = true
-        contentGuide.trailingAnchor.constraint(equalTo: qrContentView.trailingAnchor).isActive = true
-        contentGuide.bottomAnchor.constraint(equalTo: qrContentView.bottomAnchor).isActive = true
-
-        // this enables vertical scrolling
-        frameGuide.widthAnchor.constraint(equalTo: contentGuide.widthAnchor).isActive = true
+        view.addSubview(qrContentView)
+        let qrDefaultWidth = qrContentView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75)
+        qrDefaultWidth.priority = UILayoutPriority(500)
+        qrDefaultWidth.isActive = true
+        let qrMinWidth = qrContentView.widthAnchor.constraint(lessThanOrEqualToConstant: 260)
+        qrMinWidth.priority = UILayoutPriority(999)
+        qrMinWidth.isActive = true
+        qrContentView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.05).isActive = true
+        qrContentView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        qrContentView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
-
-}
-
-// MARK: - QrViewContentView
-class QrViewContentView: UIView {
-
-    private var qrCodeView: QRCodeView = {
-        let view = QRCodeView(frame: .zero)
-        return view
-    }()
-
-    private lazy var hintLabel: UILabel = {
-        let label = UILabel.init()
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = .preferredFont(forTextStyle: .subheadline)
-        label.adjustsFontForContentSizeCategory = true
-        // the accessibility text is directly tied to the qr code image view
-        label.isAccessibilityElement = false
-        return label
-    }()
-
-    private let container = UIView()
-
-    var minContainerHeight: CGFloat = 0 {
-        didSet {
-            containerMinHeightConstraint.constant = minContainerHeight
-        }
-    }
-
-    private lazy var containerMinHeightConstraint: NSLayoutConstraint = {
-        return container.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
-    }()
-
-    init(svg: String?, qrCode: String?, hint: String) {
-        super.init(frame: .zero)
-        update(svg: svg, qrCode: qrCode, hint: hint)
-        setupSubviews()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: - update
-    func update(svg: String?, qrCode: String?, hint: String?) {
-        qrCodeView.imageView.accessibilityHint = hint
+    
+    func getQrImage(svg: String?) -> UIImage? {
         if let svg = svg {
             let svgData = svg.data(using: .utf8)
-            let image = SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])
-            qrCodeView.imageView.image = image
-            hintLabel.isHidden = true
-            return
+            return SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])
         }
-   
-        if let qrCode = qrCode {
-            qrCodeView.generateCode(
-                qrCode,
-                foregroundColor: .darkText,
-                backgroundColor: .white
-            )
-        }
-        hintLabel.isHidden = false
-        hintLabel.text = hint
+        return nil
     }
 
-    private func setupSubviews() {
-        addSubview(container)
-        container.translatesAutoresizingMaskIntoConstraints = false
-
-        container.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        container.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        container.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75).isActive = true
-        container.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0).isActive = true
-
-        containerMinHeightConstraint.isActive = true
-
-        let stackView = UIStackView(arrangedSubviews: [qrCodeView, hintLabel])
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(stackView)
-        stackView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
-
-        qrCodeView.translatesAutoresizingMaskIntoConstraints = false
-        let qrCodeMinWidth = stackView.widthAnchor.constraint(lessThanOrEqualToConstant: 260)
-        qrCodeMinWidth.priority = UILayoutPriority(rawValue: 1000)
-        qrCodeMinWidth.isActive = true
-        let qrCodeDefaultWidth = stackView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 1)
-        qrCodeDefaultWidth.priority = UILayoutPriority(500)
-        qrCodeDefaultWidth.isActive = true
-        qrCodeView.heightAnchor.constraint(equalTo: qrCodeView.widthAnchor, multiplier: 1).isActive = true
-
-        hintLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-
-        let stackTopAnchor = stackView.topAnchor.constraint(equalTo: container.layoutMarginsGuide.topAnchor)
-        stackTopAnchor.priority = .defaultLow
-        stackTopAnchor.isActive = true
-
-        let stackBottomAnchor = stackView.bottomAnchor.constraint(equalTo: container.layoutMarginsGuide.bottomAnchor)
-        stackBottomAnchor.priority = .defaultLow
-        stackBottomAnchor.isActive = true
-    }
 }
