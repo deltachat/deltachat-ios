@@ -134,11 +134,25 @@ public class FileView: UIView {
             fileImageView.image = pdfThumbnail
             horizontalLayout = allowLayoutChange ? false : horizontalLayout
             ThumbnailCache.shared.storeImage(image: pdfThumbnail, key: url.absoluteString)
+        } else if url.pathExtension == "svg" {
+            fileImageView.sd_setImage(with: url) { img, error, cacheType, imageURL in
+                if error == nil, let img = img, let imageURL = imageURL {
+                    self.horizontalLayout = self.allowLayoutChange ? false : self.horizontalLayout
+                    ThumbnailCache.shared.storeImage(image: img, key: imageURL.absoluteString)
+                } else {
+                    self.loadDocumentThumbnail(url: url, placeholder: placeholder)
+                }
+                return
+            }
         } else {
-            let controller = UIDocumentInteractionController(url: url)
-            fileImageView.image = controller.icons.first ?? placeholder
-            horizontalLayout = allowLayoutChange ? true : horizontalLayout
+            loadDocumentThumbnail(url: url, placeholder: placeholder)
         }
+    }
+    
+    private func loadDocumentThumbnail(url: URL, placeholder: UIImage?) {
+        let controller = UIDocumentInteractionController(url: url)
+        fileImageView.image = controller.icons.first ?? placeholder
+        horizontalLayout = allowLayoutChange ? true : horizontalLayout
     }
 
 
