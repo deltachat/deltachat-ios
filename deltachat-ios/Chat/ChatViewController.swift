@@ -64,6 +64,17 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
+    public lazy var backgroundContainer: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        if #available(iOS 12.0, *) {
+            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        } else {
+            view.image = UIImage(named: "background_light")
+        }
+        return view
+    }()
+
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
     open var messageInputBar = ChatInputBar()
 
@@ -274,6 +285,7 @@ class ChatViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundView = backgroundContainer
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: "image")
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
@@ -841,6 +853,9 @@ class ChatViewController: UITableViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
+        if #available(iOS 12.0, *) {
+            backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        }
     }
 
     func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
