@@ -297,6 +297,11 @@ class ChatViewController: UITableViewController {
         tableView.keyboardDismissMode = .interactive
         tableView.contentInsetAdjustmentBehavior = .never
         navigationController?.setNavigationBarHidden(false, animated: false)
+
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        }
+
         navigationItem.backButtonTitle = String.localized("chat")
         definesPresentationContext = true
 
