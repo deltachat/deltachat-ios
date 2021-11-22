@@ -25,7 +25,7 @@ class InfoMessageCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         clipsToBounds = false
-        backgroundColor = .none
+        backgroundColor = .clear
         setupSubviews()
     }
 
