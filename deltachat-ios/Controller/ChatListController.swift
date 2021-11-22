@@ -88,10 +88,6 @@ class ChatListController: UITableViewController {
         msg.text = String.localized("update_1_24_ios") + " https://delta.chat/en/blog"
         dcContext.addDeviceMessage(label: "update_1_24a_ios", msg: msg)
 
-        // create view
-        navigationItem.titleView = titleView
-        updateTitle()
-
         viewModel.refreshData()
     }
 
@@ -108,6 +104,10 @@ class ChatListController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // create view
+        navigationItem.titleView = titleView
+        updateTitle()
 
         if RelayHelper.sharedInstance.isForwarding() {
             quitSearch(animated: false)
