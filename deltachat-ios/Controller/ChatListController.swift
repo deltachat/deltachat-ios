@@ -81,6 +81,18 @@ class ChatListController: UITableViewController {
         }
         configureTableView()
         setupSubviews()
+
+        // update messages - for new messages, do not reuse or modify strings but create new ones.
+        // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
+        let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
+        msg.text = String.localized("update_1_24_ios") + " https://delta.chat/en/blog"
+        dcContext.addDeviceMessage(label: "update_1_24a_ios", msg: msg)
+
+        // create view
+        navigationItem.titleView = titleView
+        updateTitle()
+
+        viewModel.refreshData()
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -96,18 +108,6 @@ class ChatListController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        // update messages - for new messages, do not reuse or modify strings but create new ones.
-        // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
-        let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-        msg.text = String.localized("update_1_24_ios") + " https://delta.chat/en/blog"
-        dcContext.addDeviceMessage(label: "update_1_24a_ios", msg: msg)
-
-        // create view
-        navigationItem.titleView = titleView
-        updateTitle()
-
-        viewModel.refreshData()
 
         if RelayHelper.sharedInstance.isForwarding() {
             quitSearch(animated: false)
