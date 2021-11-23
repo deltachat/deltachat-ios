@@ -136,7 +136,14 @@
 "menu_new_contact" = "Nowy kontakt";
 "menu_new_chat" = "Nowy czat";
 "menu_new_group" = "Nowa grupa";
+// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+"new_group_or_subject" = "Nowa grupa lub temat";
 "menu_new_verified_group" = "Nowa zweryfikowana grupa";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Lista rozgłoszeniowa";
+"broadcast_lists" = "Lista rozgłoszeniowa";
+"new_broadcast_list" = "Nowa lista rozgłoszeniowa";
+"add_recipients" = "Dodaj odbiorców";
 "menu_send" = "Wyślij";
 "menu_toggle_keyboard" = "Przełącz klawiaturę emoji";
 "menu_edit_group" = "Edytuj grupę";
@@ -167,6 +174,7 @@
 "menu_mute" = "Wyłącz powiadomienia";
 "menu_unmute" = "Wyłącz powiadomienia";
 "menu_export_attachment" = "Eksportuj załącznik";
+"menu_export_attachments" = "Eksportuj załączniki";
 "menu_all_media" = "Wszystkie multimedia";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "Pokaż w czacie";
@@ -258,6 +266,8 @@
 "ask_delete_value" = "Usunąć %1$@?";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "Usunąć %1$@ z grupy?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Usunąć odbiorcę %1$@ z listy rozgłoszeniowej?";
 "open_url_confirmation" = "Czy chcesz otworzyć ten link?";
 
 
@@ -274,6 +284,7 @@
 "chat_camera_unavailable" = "Aparat niedostępny.";
 "chat_unable_to_record_audio" = "Nie można nagrać dźwięku.";
 "chat_no_messages_hint" = "Wyślij wiadomość do %1$@:\n\n• Nie ma problemu, jeśli %2$@ nie używa Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać i może być niezaszyfrowane.";
+"chat_new_broadcast_hint" = "Na liście rozgłoszeniowej inne osoby będą otrzymywać wiadomości w swoich prywatnych czatach z Tobą.\n\nOdbiorcy nie będą o sobie nawzajem wiedzieć.";
 "chat_new_group_hint" = "Napisz pierwszą wiadomość, by inni mogli odpowiedzieć w tej grupie.\n\n• Nie ma problemu, jeśli nie wszyscy członkowie korzystają z Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać.";
 "chat_record_slide_to_cancel" = "PRZESUŃ, BY ANULOWAĆ";
 "chat_record_explain" = "Dotknij i przytrzymaj, aby nagrać wiadomość głosową, zwolnij, aby wysłać";
@@ -645,6 +656,10 @@
 "systemmsg_chat_protection_disabled" = "Ochrona czatu wyłączona.";
 "systemmsg_chat_protection_enabled" = "Ochrona czatu włączona.";
 
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Data lub godzina urządzenia wydaje się być niedokładna (%1$@).\n\nDostosuj zegar ⏰🔧, aby upewnić się, że wiadomości są prawidłowo odbierane.";
+"devicemsg_update_reminder" = "⚠️ Twoja wersja Delta Chat może być nieaktualna.\n\nMoże to powodować problemy, ponieważ Twoi partnerzy czatu korzystają z nowszych wersji, a Ty nie masz najnowszych funkcji 😳\nSprawdź aktualizacje na stronie https://get.delta.chat lub w sklepie z aplikacjami.";
+
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Aby kontynuować, wprowadź swój tajny kod zdefiniowany w systemie.";
 
@@ -691,6 +706,8 @@
 "verified_group_explain" = "Zweryfikowane grupy (eksperymentalne) zapewniają bezpieczeństwo przed aktywnymi atakami. Członkowie są weryfikowani za pomocą drugiego czynnika przez innych członków, a wiadomości są zawsze szyfrowane metodą end-to-end. ";
 "copy_qr_data_success" = "Skopiowano adres kodu QR do schowka";
 "mailto_dialog_header_select_chat" = "Wybierz czat, do którego chcesz wysłać wiadomość";
+"mailto_link_could_not_be_decoded" = "link mailto nie mógł zostać odszyfrowany: %1$@";
+
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d nowe wiadomości w %2$d czatach";
 "notify_mark_read" = "Oznacz jako przeczytane";
@@ -821,3 +838,8 @@
 "perm_enable_bg_already_done" = "Pozwolono już Delta Chat na odbieranie wiadomości w tle.\n\nJeśli wiadomości nadal nie docierają w tle, sprawdź też ustawienia systemu.";
 
 
+// device messages for updates
+"update_1_22" = "Co nowego w wersji 1.22?\n\n👋 Żądania czatu pojawiają się teraz jako pojedyncze czaty i można je szczegółowo przejrzeć przed zaakceptowaniem lub zablokowaniem\n\n🗄️ Archiwum jest teraz łatwo dostępne z głównego menu – znajdziesz również swoje stare żądania\n\n📮📮📮 Ulepszono obsługę wielu kont: Przełączanie kont jest teraz szybsze i rzadziej blokowane przez długie aktualizacje\n\n🤔 Dowiedz się, co się dzieje: problemy z połączeniem są teraz wyświetlane na pasku tytułu, kliknij, aby wyświetlić szczegóły\n\nWięcej informacji na blogu:";
+"update_1_22_ios" = "Co nowego w wersji 1.22?\n\n👋 Żądania czatu pojawiają się teraz jako pojedyncze czaty i można je szczegółowo przejrzeć przed zaakceptowaniem lub zablokowaniem\n\n🗄️ Archiwum jest teraz łatwo dostępne w ustawieniach – znajdziesz również swoje stare żądanian\n📮📮📮 Dodano obsługę wielu kont: przełączaj konta i zarządzaj nimi w ustawieniach\n\n🤔 Know what\'s going on: Connection problems are shown in the title bar now, tap for details\n\nMore on the blog:";
+"update_1_24_android" = "1.24 w skrócie:\n\n• Zapisywanie dotknięć: wybór konta w lewym górnym rogu listy czatu\n• Zapisywanie kolejnych dotknięć: dotknij i przytrzymaj ikony aplikacji, aby bezpośrednio otwierać ostatnie czaty\n• Oszczędzaj transfer: pobierz duże pliki w razie potrzeby\n• Oszczędzaj nerwy: szybsze, nieblokujące dołączanie za pomocą kodów QR i nowe opcje kodów QR\n\nWięcej na 👉";
+"update_1_24_ios" = "1.24 w skrócie:\n\n• Rozpocznij wyszukiwanie na czacie z profilu czatu\n• Oszczędzaj transfer: pobierz duże pliki w razie potrzeby\n• Oszczędzaj nerwy: szybsze, nieblokujące dołączanie za pomocą kodów QR \n\nWięcej na 👉";

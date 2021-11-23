@@ -83,6 +83,8 @@
 "this_month" = "Deze maand";
 "last_week" = "Vorige week";
 "last_month" = "Vorige maand";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Laatst gezien om %1$@";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 
@@ -297,7 +299,7 @@
 "chat_unable_to_record_audio" = "Kan geen audio opnemen.";
 "chat_no_messages_hint" = "Verstuur een bericht aan %1$@:\n\n• %2$@ hoeft Delta Chat niet te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren en onversleuteld zijn.";
 "chat_new_broadcast_hint" = "Als je een verzendlijst maakt, dan onhvangen anderen bericht van jou in hun privégesprekken.\n\nDe ontvangers kunnen elkaar echter niet zien.";
-"chat_new_group_hint" = "Stel het eerste bericht op, zodat anderen binnen deze groep kunnen reageren.\n\n• Niet alle leden hoeven Delta Chat te gebruiken.\n\n• Het afleveren van het eerste bericht kan even duren.";
+"chat_new_group_hint" = "Stel het eerste bericht op, zodat anderen binnen deze groep kunnen reageren.";
 "chat_record_slide_to_cancel" = "Veeg opzij om te annuleren";
 "chat_record_explain" = "Houdt ingedrukt om een spraakbericht op te nemen; laat los om te versturen";
 "chat_no_chats_yet_title" = "Je Postvak IN is leeg.\nDruk op \"+\" om een gesprek te beginnen.";

@@ -83,6 +83,8 @@
 "this_month" = "Këtë muaj";
 "last_week" = "Javën e shkuar";
 "last_month" = "Muajin e shkuar";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Parë së fundi më %1$@";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 

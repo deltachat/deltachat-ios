@@ -297,7 +297,7 @@
 "chat_unable_to_record_audio" = "Ses kaydedilemiyor.";
 "chat_no_messages_hint" = "%1$@ alıcısına ileti gönder:\n\n• %2$@ Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir ve şifrelenmeyebilir.";
 "chat_new_broadcast_hint" = "Bir yayın listesinde, diğerleri sizinle olan özel sohbetlerinde ileti alacak.\n\nAlıcılar birbirlerinin farkında olmayacak.";
-"chat_new_group_hint" = "İlk iletiyi oluşturun, diğerlerinin bu grupta yanıtlamasına izin verin.\n\n• Tüm üyeler Delta Chat kullanmıyorsa tamam.\n\n• İlk iletinin teslim edilmesi biraz zaman alabilir.";
+"chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu grubu görecek.";
 "chat_record_slide_to_cancel" = "Vazgeçmek için kaydırın";
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
 "chat_no_chats_yet_title" = "Boş gelen kutusu.\nYeni bir sohbete başlamak için \"+\" simgesine basın.";

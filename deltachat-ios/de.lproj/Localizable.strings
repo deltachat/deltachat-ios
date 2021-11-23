@@ -83,6 +83,9 @@
 "this_month" = "Dieser Monat";
 "last_week" = "Letzte Woche";
 "last_month" = "Letzter Monat";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Zuletzt gesehen %1$@";
+"last_seen_unknown" = "Zuletzt gesehen: Unbekannt";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 
@@ -297,7 +300,7 @@
 "chat_unable_to_record_audio" = "Audio kann nicht aufgenommen werden.";
 "chat_no_messages_hint" = "Eine Nachricht an %1$@ senden:\n\n• Es ist in Ordnung, wenn %2$@ kein Delta Chat verwendet.\n\n• Die Übermittlung der ersten Nachricht kann eine Weile dauern und erfolgt unverschlüsselt. ";
 "chat_new_broadcast_hint" = "In Broadcast-Listen erhalten die Empfänger die Nachrichten in den privaten Chats mit Ihnen.\n\nDie Empfänger wissen nicht, wer die anderen Empfänger sind.";
-"chat_new_group_hint" = "Verfassen Sie die erste Nachricht, damit andere innerhalb dieser Gruppe antworten können.\n\n-- Es ist in Ordnung, wenn nicht alle Mitglieder Delta Chat verwenden.\n\n-- Die Zustellung der ersten Nachricht kann einige Zeit dauern.";
+"chat_new_group_hint" = "Andere sehen diese Gruppe erst, nachdem Sie eine erste Nachricht gesendet haben.";
 "chat_record_slide_to_cancel" = "Schieben, um abzubrechen";
 "chat_record_explain" = "Tippen und halten, um eine Sprachnachricht aufzunehmen, loslassen um zu senden. ";
 "chat_no_chats_yet_title" = "Posteingang ist leer.\n\"+\" drücken, um einen neuen Chat zu starten.";

@@ -122,6 +122,26 @@
 			<string>%d používateľ</string>
 		</dict>
 	</dict>
+	<key>n_recipients</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d príjemca</string>
+			<key>few</key>
+			<string>%d príjemcovia</string>
+			<key>many</key>
+			<string>%d príjemcovia</string>
+			<key>other</key>
+			<string>%d príjemcovia</string>
+		</dict>
+	</dict>
 	<key>ask_send_following_n_files_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -180,6 +200,26 @@
 			<string>Odstrániť %d správy tu a na serveri?</string>
 			<key>other</key>
 			<string>Odstrániť %d správy tu a na serveri?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Odstrániť %d správu?</string>
+			<key>few</key>
+			<string>Odstrániť %d správy?</string>
+			<key>many</key>
+			<string>Odstrániť %d správy?</string>
+			<key>other</key>
+			<string>Odstrániť %d správy?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

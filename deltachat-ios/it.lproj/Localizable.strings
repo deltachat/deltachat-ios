@@ -83,6 +83,9 @@
 "this_month" = "Questo mese";
 "last_week" = "Ultima settimana";
 "last_month" = "Ultimo mese";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Visto l\'ultima volta a %1$@";
+"last_seen_unknown" = "Visto l\'ultima volta: Sconosciuto";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 
