@@ -81,7 +81,60 @@ class ChatListController: UITableViewController {
         }
         configureTableView()
         setupSubviews()
+
+        // update messages - for new messages, do not reuse or modify strings but create new ones.
+        // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
+        let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
+        msg.text = String.localized("update_1_24_ios") + " https://delta.chat/en/blog"
+        dcContext.addDeviceMessage(label: "update_1_24a_ios", msg: msg)
+
+        viewModel.refreshData()
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            // logger.debug("chat observer: remove")
+            removeObservers()
+        } else {
+            // logger.debug("chat observer: setup")
+            addObservers()
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // create view
+        navigationItem.titleView = titleView
+        updateTitle()
+
+        if RelayHelper.sharedInstance.isForwarding() {
+            quitSearch(animated: false)
+            tableView.scrollToTop()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        startTimer()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopTimer()
+    }
+
+    // MARK: - setup
+    private func addObservers() {
         let nc = NotificationCenter.default
+        
+        connectivityChangedObserver = nc.addObserver(forName: dcNotificationConnectivityChanged,
+                                                     object: nil,
+                                                     queue: nil) { [weak self] _ in
+                                                        self?.updateTitle()
+                                                     }
+
         msgChangedSearchResultObserver = nc.addObserver(
             forName: dcNotificationChanged,
             object: nil,
@@ -93,48 +146,7 @@ class ChatListController: UITableViewController {
                 self.viewModel.updateSearchResults(for: self.searchController)
             }
         }
-    }
 
-    deinit {
-        if let msgChangedResultObserver = self.msgChangedSearchResultObserver {
-            NotificationCenter.default.removeObserver(msgChangedResultObserver)
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // update messages - for new messages, do not reuse or modify strings but create new ones.
-        // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
-        let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-        msg.text = String.localized("update_1_24_ios") + " https://delta.chat/en/blog"
-        dcContext.addDeviceMessage(label: "update_1_24a_ios", msg: msg)
-
-        // create view
-        navigationItem.titleView = titleView
-
-        // set connectivity changed observer before we acutally init the title,
-        // otherwise, we may miss events and the title is not correct.
-        let nc = NotificationCenter.default
-        connectivityChangedObserver = nc.addObserver(forName: dcNotificationConnectivityChanged,
-                                                     object: nil,
-                                                     queue: nil) { [weak self] _ in
-                                                        self?.updateTitle()
-                                                     }
-        updateTitle()
-
-        viewModel.refreshData()
-
-        if RelayHelper.sharedInstance.isForwarding() {
-            quitSearch(animated: false)
-            tableView.scrollToTop()
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        startTimer()
-        let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
             forName: dcNotificationChanged,
             object: nil,
@@ -166,12 +178,12 @@ class ChatListController: UITableViewController {
             object: nil)
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        stopTimer()
-
+    private func removeObservers() {
         let nc = NotificationCenter.default
         // remove observers with a block
+        if let msgChangedResultObserver = self.msgChangedSearchResultObserver {
+            nc.removeObserver(msgChangedResultObserver)
+        }
         if let msgChangedObserver = self.msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
         }
@@ -189,7 +201,6 @@ class ChatListController: UITableViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
     
-    // MARK: - setup
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
         navigationItem.backButtonTitle = viewModel.isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
