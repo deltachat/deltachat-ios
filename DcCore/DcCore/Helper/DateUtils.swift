@@ -32,16 +32,24 @@ public class DateUtils {
 
     public static func getExtendedRelativeTimeSpanString(timeStamp: Double) -> String {
         let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)
-        let date = Date(timeIntervalSince1970: timeStamp)
-        let formatter = getLocalDateFormatter()
-        let is24h = is24hDefault()
 
         if seconds < DtU.minute {
             return String.localized("now")
         } else if seconds < DtU.hour {
             let mins = seconds / DtU.minute
             return String.localized(stringID: "n_minutes", count: Int(mins))
-        } else if seconds < DtU.day {
+        } else {
+            return getExtendedAbsTimeSpanString(timeStamp: timeStamp)
+        }
+    }
+
+    public static func getExtendedAbsTimeSpanString(timeStamp: Double) -> String {
+        let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)
+        let date = Date(timeIntervalSince1970: timeStamp)
+        let formatter = getLocalDateFormatter()
+        let is24h = is24hDefault()
+
+        if seconds < DtU.day {
             formatter.dateFormat = is24h ?  "HH:mm" : "hh:mm a"
             return formatter.string(from: date)
         } else if seconds < 6 * DtU.day {
@@ -55,6 +63,7 @@ public class DateUtils {
             return formatter.string(from: date)
         }
     }
+
 
     public static func getBriefRelativeTimeSpanString(timeStamp: Double) -> String {
         let seconds = getRelativeTimeInSeconds(timeStamp: timeStamp)

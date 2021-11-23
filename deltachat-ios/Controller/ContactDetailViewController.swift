@@ -244,6 +244,10 @@ class ContactDetailViewController: UITableViewController {
         return viewModel.titleFor(section: section)
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return viewModel.footerFor(section: section)
+    }
+
     // MARK: - observers
     private func setupObservers() {
         let nc = NotificationCenter.default

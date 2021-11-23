@@ -39,6 +39,7 @@ class ContactDetailViewModel {
     let chatId: Int
     var isSavedMessages: Bool
     var isDeviceTalk: Bool
+    var lastSeen: Int64
     private var sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
     private var chatActions: [ChatAction] = []
@@ -59,8 +60,9 @@ class ContactDetailViewModel {
 
         sections.append(.chatOptions)
 
+        let dcContact = context.getContact(id: contactId)
+        self.lastSeen = dcContact.lastSeen
         if !self.isSavedMessages {
-            let dcContact = context.getContact(id: contactId)
             if !dcContact.status.isEmpty {
                 sections.append(.statusArea)
             }
@@ -183,6 +185,21 @@ class ContactDetailViewModel {
         case .chatOptions: return nil
         case .statusArea: return String.localized("pref_default_status_label")
         case .sharedChats: return String.localized("profile_shared_chats")
+        case .chatActions: return nil
+        }
+    }
+
+    func footerFor(section: Int) -> String? {
+        switch sections[section] {
+        case .chatOptions:
+            if lastSeen == 0 {
+                return String.localized("last_seen_unknown")
+            } else {
+                return String.localizedStringWithFormat(String.localized("last_seen_at"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(lastSeen)))
+            }
+
+        case .statusArea: return nil
+        case .sharedChats: return nil
         case .chatActions: return nil
         }
     }
