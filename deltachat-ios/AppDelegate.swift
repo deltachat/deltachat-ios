@@ -7,6 +7,7 @@ import DcCore
 import DBDebugToolkit
 import SDWebImageWebPCoder
 import Intents
+import SDWebImageSVGKitPlugin
 
 let logger = SwiftyBeaver.self
 
@@ -117,7 +118,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
-
+        let svgCoder = SDImageSVGKCoder.shared
+        SDImageCodersManager.shared.addCoder(svgCoder)
         return true
     }
 
