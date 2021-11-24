@@ -27,7 +27,6 @@ public class DcEventHandler {
 
         if id >= DC_EVENT_ERROR && id <= 499 {
             let s = event.data2String
-            dcContext.lastErrorString = s
             dcContext.logger?.error("event: \(s)")
             return
         }

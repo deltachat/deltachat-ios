@@ -94,7 +94,6 @@ public class DcContext {
 
     public var logger: Logger?
     var contextPointer: OpaquePointer?
-    public var lastErrorString: String?
     public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
 
@@ -111,6 +110,13 @@ public class DcContext {
 
     public var id: Int {
         return Int(dc_get_id(contextPointer))
+    }
+
+    public var lastErrorString: String {
+        guard let cString = dc_get_last_error(contextPointer) else { return "ErrNull" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
     }
 
     // viewType: one of DC_MSG_*
