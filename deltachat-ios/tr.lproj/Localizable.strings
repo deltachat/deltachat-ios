@@ -83,6 +83,9 @@
 "this_month" = "Bu ay";
 "last_week" = "Geçen hafta";
 "last_month" = "Geçen ay";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Son görülme %1$@";
+"last_seen_unknown" = "Son görülme: Bilinmeyen";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 

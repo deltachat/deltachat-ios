@@ -85,6 +85,7 @@
 "last_month" = "Vorige maand";
 // the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Laatst gezien om %1$@";
+"last_seen_unknown" = "Laatst gezien: onbekend";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 
