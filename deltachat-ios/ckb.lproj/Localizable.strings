@@ -526,8 +526,10 @@
 "qrshow_x_verified" = "%1$@ پشتڕاست کرایەوە";
 "qrshow_x_has_joined_group" = "%1$@ بەشداری کۆڕ بوو";
 "qrshow_join_group_title" = "کۆدی QRی بانگهێشت کردن";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "بۆ بەشداربوون لە کۆڕ ئەمە سکان بکە: \"%1$@\"";
 "qrshow_join_contact_title" = "کۆدی QRی بانگهێشت کردن";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "بۆ ڕێکخستنی پێوەندی لەگەڵ %1$@، ئەم کۆدە سکان بکە. ";
 "qrshow_join_contact_no_connection_toast" = "هێڵی ئینتەرنێت بەردەست نییە، ڕێکخستنی کۆدی QR جێبەجێ ناکرێ.";
 "qraccount_ask_create_and_login" = "دەتەوێت ناونیشانی ئیمەیلێکی نوێ لەسەر \"%1$@\" درووست بکەیت و لەوێ بچیتە ژوورەوە؟";

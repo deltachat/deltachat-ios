@@ -178,6 +178,7 @@
 "menu_copy_link_to_clipboard" = "Link kopiëren";
 "menu_copy_text_to_clipboard" = "Tekst kopiëren";
 "menu_copy_image_to_clipboard" = "Afbeelding kopiëren";
+"menu_copy_email_to_clipboard" = "E-mailadres kopiëren";
 "paste_from_clipboard" = "Plakken van klembord";
 "menu_forward" = "Bericht doorsturen";
 "menu_resend" = "Bericht opnieuw versturen";
@@ -717,9 +718,11 @@
 "qrshow_x_verified" = "%1$@ is goedgekeurd.";
 "qrshow_x_has_joined_group" = "%1$@ neemt nu deel aan de groep.";
 "qrshow_join_group_title" = "QR-uitnodigingscode";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Scan dit om deel te nemen aan de groep ‘%1$@’.";
 "qrshow_join_contact_title" = "QR-uitnodigingscode";
-"qrshow_join_contact_hint" = "Scan dit om een contactpersoon in te stellen met %1$@";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+"qrshow_join_contact_hint" = "Scan dit om een gesprek te beginnen met %1$@";
 "qrshow_join_contact_no_connection_hint" = "Voor het instellen van QR-codes is een internetverbinding vereist. Maak verbinding en probeer het opnieuw.";
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
 "qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?";
@@ -739,7 +742,7 @@
 "copy_qr_data_success" = "De QR-url is gekopieerd naar het klembord";
 "mailto_dialog_header_select_chat" = "Kies in welk gesprek je dit bericht wilt delen";
 // first placeholder is the name of the chat
-"mailto_dialog_confirm_replace_draft" = "%1$@ bevat al een concept. Wil je dit vervangen?";
+"confirm_replace_draft" = "%1$@ bevat al een concept. Wil je dit vervangen?";
 "mailto_link_could_not_be_decoded" = "De mailto-link kan niet worden ontcijferd: %1$@";
 
 // notifications 
@@ -836,7 +839,7 @@
 "ask_delete_chat_desktop" = "Weet je zeker dat je dit gesprek wilt verwijderen?";
 "email_validation_failed_desktop" = "E-mailadres vereist.";
 "forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd: je eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
-"account_info_hover_tooltip_desktop" = "E-Mail: %1$@\nGrootte: %2$@\nPad: %3$@";
+"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nGrootte: %2$@\nAccount-id: %3$@";
 "me_desktop" = "ik";
 "in_this_group_desktop" = "Groepsleden";
 "not_in_this_group_desktop" = "Potentiële groepsleden (niet in de groep)";
@@ -850,6 +853,7 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Het systeemvakpictogram is uitgeschakeld omdat Delta Chat is gestart met de optie --minimized";
 "no_spellcheck_suggestions_found" = "Geen suggesties gevonden.";
 "show_window" = "Venster tonen";
+"login_socks5_experimental_warning" = "De SOCKS5-ondersteuning is momenteel nog experimenteel - gebruik hiervan is op eigen risico. Als je een e-mailadres invoert, dan vindt er een dns-opzoeking plaats die niet wordt doorgesluisd via SOCKS5.";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Bezorgstatus: afleveren mislukt";

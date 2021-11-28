@@ -453,8 +453,10 @@
 "qrshow_x_verified" = "%1$@ egiaztatuta.";
 "qrshow_x_has_joined_group" = "%1$@ taldera elkartu da.";
 "qrshow_join_group_title" = "QR gonbidapen-kodea";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Eskaneatu hau \"%1$@\" taldera elkartzeko.";
 "qrshow_join_contact_title" = "QR gonbidapen-kodea";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Eskaneatu hau %1$@ erabiltzailearen kontaktua ezartzeko";
 "qrshow_join_contact_no_connection_hint" = "Ezarpen QR kodeak Internet konexioa behar du. Konektatu sarera jarraitu aurretik";
 "qrshow_join_contact_no_connection_toast" = "Ez dago Internet konexiorik, ezin da QR kode bidezko ezarpena aplikatu";

@@ -178,6 +178,7 @@
 "menu_copy_link_to_clipboard" = "Copia Link";
 "menu_copy_text_to_clipboard" = "Copia Testo";
 "menu_copy_image_to_clipboard" = "Copia l\'Immagine";
+"menu_copy_email_to_clipboard" = "Copia E-Mail";
 "paste_from_clipboard" = "Incolla dagli Appunti";
 "menu_forward" = "Inoltra Messaggio";
 "menu_resend" = "Reinvia Messaggio";
@@ -222,8 +223,8 @@
 "title_share_location" = "Condividi posizione con tutti i membri";
 "device_talk" = "Messaggi del Dispositivo";
 "device_talk_subtitle" = "Messaggi generati localmente";
-"device_talk_explain" = "I messaggi in questa chat vengono generati localmente da Delta Chat. Gli sviluppatori li usano per informarti sugli aggiornamenti o sui problemi d\'utilizzo.";
-"device_talk_welcome_message" = "Benvenuto in Delta Chat! - Delta Chat ha l\'aspetto e lo stile di altre popolari applicazioni di messaggistica, ma non costringe ad un controllo centralizzato, al tracciamento o alla vendita tua, dei tuoi amici, colleghi o familiari a grandi organizzazioni.\n\nTecnicamente, Delta Chat è un\'applicazione di posta elettronica con un\'interfaccia moderna. L\'email in una nuova veste 👻\n\nUtilizza Delta Chat con chiunque: basta conoscere il loro indirizzo e-mail. I destinatari non hanno bisogno di installare Delta Chat, visitare siti web o iscriversi da nessuna parte - ma, naturalmente se lo desiderano, puoi suggerirgli 👉 https://get.delta.chat";
+"device_talk_explain" = "I messaggi in questa chat vengono generati localmente da Delta Chat. Gli sviluppatori li usano per informarti sugli aggiornamenti o sui problemi di utilizzo.";
+"device_talk_welcome_message" = "Benvenuto in Delta Chat! - Delta Chat ha l\'aspetto e lo stile di altre popolari applicazioni di messaggistica, ma non costringe a un controllo centralizzato, al tracciamento o alla vendita tua, dei tuoi amici, colleghi o familiari a grandi organizzazioni.\n\nTecnicamente, Delta Chat è un\'applicazione di posta elettronica con un\'interfaccia moderna. L\'email in una nuova veste 👻\n\nUtilizza Delta Chat con chiunque: basta conoscere il loro indirizzo e-mail. I destinatari non hanno bisogno di installare Delta Chat, visitare siti web o iscriversi da nessuna parte - ma, naturalmente se lo desiderano, puoi suggerirgli 👉 https://get.delta.chat";
 "edit_contact" = "Modifica Contatto";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "Fissa Chat";
@@ -322,7 +323,7 @@
 "retry_send" = "Riprova l\'invio del messaggio";
 "send_failed" = "Invio del messaggio fallito";
 // reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Non puoi scrivere perché non sei in questo gruppo. Per partecipare, chiedi a un altro membro.";
+"messaging_disabled_not_in_group" = "Non puoi scrivere perché non sei in questo gruppo. Per partecipare, chiedi ad un altro membro.";
 "messaging_disabled_device_chat" = "Questa chat contiene messaggi generati localmente. Quindi non puoi scrivere alcun messaggio.";
 "messaging_disabled_deaddrop" = "Fare clic su un messaggio per accettare o rifiutare la richiesta di contatto";
 "messaging_disabled_mailing_list" = "L\'invio dei messaggi nelle mailing list non è ancora supportato";
@@ -441,7 +442,7 @@
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "Verifica %1$@";
 "login_info_oauth2_title" = "Usare il setup semplificato?";
-"login_info_oauth2_text" = "L\'indirizzo email inserito supporta l\'autenticazione semplificata (OAuth2.0).\n\nContinuando, puoi autorizzare Delta Chat ad operare come app di messaggistica via e-mail.\n\nNon esistono server di Delta Chat, i tuoi dati restano nel tuo dispositivo!";
+"login_info_oauth2_text" = "L\'indirizzo email inserito supporta l\'autenticazione semplificata (OAuth2.0).\n\nContinuando, puoi autorizzare Delta Chat a operare come app di messaggistica via e-mail.\n\nNon esistono server di Delta Chat, i tuoi dati restano nel tuo dispositivo!";
 "login_certificate_checks" = "Controlli Certificato";
 "login_error_mail" = "Inserisci un indirizzo email valido";
 "login_error_server" = "Inserisci un server / indirizzo IP valido";
@@ -542,7 +543,7 @@
 "pref_other" = "Altro";
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Backup Chats su Memoria Esterna";
-"pref_backup_export_explain" = "Un backup ti aiuta ad impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni Autocrypt. Tienilo al sicuro o eliminalo il prima possibile. ";
+"pref_backup_export_explain" = "Un backup ti aiuta a impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni Autocrypt. Tienilo al sicuro o eliminalo il prima possibile. ";
 "pref_backup_export_start_button" = "Avvia Backup";
 "pref_backup_written_to_x" = "Backup scritto con successo in %1$@";
 "pref_managekeys_menu_title" = "Gestisci Chiavi";
@@ -717,10 +718,12 @@
 "qrshow_x_verified" = "%1$@ verificato.";
 "qrshow_x_has_joined_group" = "%1$@ è entrato nel gruppo.";
 "qrshow_join_group_title" = "Codice QR di Invito";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Scansionalo per entrare nel gruppo \"%1$@\".";
 "qrshow_join_contact_title" = "Codice QR di Invito";
-"qrshow_join_contact_hint" = "Scansionalo per creare un contatto con %1$@";
-"qrshow_join_contact_no_connection_hint" = "Il setup tramite codice QR richiede una connessione internet. Collegati a una rete prima di procedere.";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+"qrshow_join_contact_hint" = "Scansionalo per chattare con %1$@";
+"qrshow_join_contact_no_connection_hint" = "Il setup tramite codice QR richiede una connessione internet. Collegati ad una rete prima di procedere.";
 "qrshow_join_contact_no_connection_toast" = "Nessuna connessione internet, impossibile effettuare l\'impostazione tramite codice QR.";
 "qraccount_ask_create_and_login" = "Creo un nuovo indirizzo email su \"%1$@\" e accedo?";
 "qraccount_ask_create_and_login_another" = "Crea un nuovo indirizzo e-mail su \"%1$@\" e accedi qui?\n\nIl tuo account esistente non verrà eliminato. Utilizza la voce \"Cambia account\" per passare da un account all\'altro.";
@@ -728,7 +731,7 @@
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere usato per creare un nuovo account.";
 "qraccount_use_on_new_install" = "Il codice QR scansionato serve a creare un nuovo account. Puoi scansionare il codice quando configuri una nuova installazione di Delta Chat.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_started" = "%1$@ ti ha invitato a unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";
+"secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ha risposto, in attesa di essere aggiunto al gruppo…";
 "contact_verified" = "%1$@ verificato.";
@@ -739,7 +742,7 @@
 "copy_qr_data_success" = "URL QR copiato negli appunti";
 "mailto_dialog_header_select_chat" = "Seleziona la chat a cui inviare il messaggio";
 // first placeholder is the name of the chat
-"mailto_dialog_confirm_replace_draft" = "%1$@ ha già una bozza di messaggio, vuoi sostituirla?";
+"confirm_replace_draft" = "%1$@ ha già una bozza di messaggio, vuoi sostituirla?";
 "mailto_link_could_not_be_decoded" = "Il link mailto non può essere decodificato: %1$@";
 
 // notifications 
@@ -836,7 +839,7 @@
 "ask_delete_chat_desktop" = "Eliminare questa chat?";
 "email_validation_failed_desktop" = "Indirizzo E-mail richiesto.";
 "forget_login_confirmation_desktop" = "Eliminare questo accesso? Tutto verrà eliminato, inclusa la configurazione end-to-end, i contatti, le chat, i messaggi e i media. Questa azione non può essere annullata.";
-"account_info_hover_tooltip_desktop" = "E-Mail: %1$@\nDimensione: %2$@\nPercorso: %3$@";
+"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nDimensione: %2$@\nAccount Id: %3$@";
 "me_desktop" = "me";
 "in_this_group_desktop" = "Membri del Gruppo";
 "not_in_this_group_desktop" = "Membri potenziali (non nel gruppo)";
@@ -850,6 +853,7 @@
 "explain_desktop_minimized_disabled_tray_pref" = "L\'icona nella barra delle applicazioni non può essere disabilitata poiché Delta Chat è stato avviato con l\'opzione --minimizzato.";
 "no_spellcheck_suggestions_found" = "Nessun suggerimento ortografico trovato.";
 "show_window" = "Mostra Finestra";
+"login_socks5_experimental_warning" = "Il supporto SOCKS5 è attualmente sperimentale. Usatelo a vostro rischio e pericolo. Se si digita un indirizzo nel campo e-mail, ci sarà una ricerca DNS che non verrà trasferita tramite SOCKS5.";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stato di consegna: Errore";

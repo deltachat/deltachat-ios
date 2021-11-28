@@ -714,8 +714,10 @@
 "qrshow_x_verified" = "%1$@ overené.";
 "qrshow_x_has_joined_group" = "%1$@ sa pripojil k skupine.";
 "qrshow_join_group_title" = "QR pozývací kód";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Naskenujte to a pripojte sa k skupine „%1$@“.";
 "qrshow_join_contact_title" = "QR pozývací kód";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Naskenujte to a vytvorte kontakt s %1$@ .";
 "qrshow_join_contact_no_connection_hint" = "Nastavenie QR kódu vyžaduje pripojenie k internetu. Pred pokračovaním sa pripojte k sieti.";
 "qrshow_join_contact_no_connection_toast" = "Nie je pripojenie na internet, nedá sa nastaviť kód QR.";
@@ -735,8 +737,6 @@
 "verified_group_explain" = "Overené skupiny (experimentálne) poskytujú bezpečnosť proti aktívnym útokom. Členovia sú overovaní druhým faktorom ostatnými členmi a správy sú vždy šifrované end-to-end.";
 "copy_qr_data_success" = "Skopírovaná adresa URL QR do schránky";
 "mailto_dialog_header_select_chat" = "Vyberte čet, kam bude správa odoslaná";
-// first placeholder is the name of the chat
-"mailto_dialog_confirm_replace_draft" = "Pre %1$@ už máte uložený koncept, chcete ho nahradiť?";
 "mailto_link_could_not_be_decoded" = "prepojenie mailto sa nepodarilo dekódovať: %1$@";
 
 // notifications 
@@ -833,7 +833,6 @@
 "ask_delete_chat_desktop" = "Odstrániť tento rozhovor?";
 "email_validation_failed_desktop" = "Vyžaduje sa e-mailová adresa.";
 "forget_login_confirmation_desktop" = "Odstrániť tieto prihlasovacie údaje? Odstráni sa všetko vrátane vášho kompletného nastavenia, kontaktov, četov, správ a médií. Túto akciu nie je možné vrátiť späť.";
-"account_info_hover_tooltip_desktop" = "E-mail: %1$@\nVeľkosť: %2$@\nCesta: %3$@";
 "me_desktop" = "ja";
 "in_this_group_desktop" = "Členovia skupiny";
 "not_in_this_group_desktop" = "Potenciálni členovia skupiny (nie sú v skupine)";
@@ -847,7 +846,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Ikonu v systémovej lište nie je možné vypnúť, pretože Delta Chat bol spustený s prepínačom --minimized.";
 "no_spellcheck_suggestions_found" = "Neboli nájdené žiadne návrhy opravy preklepov.";
 "show_window" = "Zobraziť okno";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stav doručenia: Chyba";
 "a11y_encryption_padlock" = "Šifrovací zámok";

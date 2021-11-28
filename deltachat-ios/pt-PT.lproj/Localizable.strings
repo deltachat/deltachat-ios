@@ -322,8 +322,10 @@
 "qrshow_x_verified" = "%1$@ verificado.";
 "qrshow_x_has_joined_group" = "%1$@ juntou-se ao grupo.";
 "qrshow_join_group_title" = "QR com código de convite";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Digitalize para se juntar ao geupo \"%1$@\".";
 "qrshow_join_contact_title" = "QR com código de convite";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Digitalize para configurar um contato com %1$@";
 "contact_verified" = "%1$@ verificado.";
 "contact_not_verified" = "Não é possível verificar %1$@";

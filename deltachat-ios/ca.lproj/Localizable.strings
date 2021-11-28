@@ -489,8 +489,10 @@
 "qrshow_x_verified" = "%1$@ verificat.";
 "qrshow_x_has_joined_group" = "%1$@ s\'ha unit al grup.";
 "qrshow_join_group_title" = "Codi QR d\'invitació";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Escanegeu això per unir-vos al grup \"%1$@\".";
 "qrshow_join_contact_title" = "Codi QR d\'invitació";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Escanegeu això per establir contacte amb %1$@";
 "contact_verified" = "%1$@ verificat.";
 "contact_not_verified" = "No es pot verificar%1$@";

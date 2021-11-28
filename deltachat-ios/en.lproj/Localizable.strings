@@ -178,6 +178,7 @@
 "menu_copy_link_to_clipboard" = "Copy Link";
 "menu_copy_text_to_clipboard" = "Copy Text";
 "menu_copy_image_to_clipboard" = "Copy Image";
+"menu_copy_email_to_clipboard" = "Copy E-Mail";
 "paste_from_clipboard" = "Paste from Clipboard";
 "menu_forward" = "Forward Message";
 "menu_resend" = "Resend Message";
@@ -717,8 +718,10 @@
 "qrshow_x_verified" = "%1$@ verified.";
 "qrshow_x_has_joined_group" = "%1$@ joined the group.";
 "qrshow_join_group_title" = "QR Invite Code";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Scan to join group \"%1$@\"";
 "qrshow_join_contact_title" = "QR Invite Code";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Scan to chat with %1$@";
 "qrshow_join_contact_no_connection_hint" = "QR code setup requires an internet connection. Please connect to a network before proceeding.";
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
@@ -739,7 +742,7 @@
 "copy_qr_data_success" = "Copied QR url to clipboard";
 "mailto_dialog_header_select_chat" = "Select chat to send the message to";
 // first placeholder is the name of the chat
-"mailto_dialog_confirm_replace_draft" = "%1$@ already has a draft message, do you want to replace it?";
+"confirm_replace_draft" = "%1$@ already has a draft message, do you want to replace it?";
 "mailto_link_could_not_be_decoded" = "mailto link could not be decoded: %1$@";
 
 // notifications 
@@ -836,7 +839,7 @@
 "ask_delete_chat_desktop" = "Delete this chat?";
 "email_validation_failed_desktop" = "E-mail address required.";
 "forget_login_confirmation_desktop" = "Delete this login? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
-"account_info_hover_tooltip_desktop" = "E-Mail: %1$@\nSize: %2$@\nPath: %3$@";
+"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nSize: %2$@\nAccount Id: %3$@";
 "me_desktop" = "me";
 "in_this_group_desktop" = "Group Members";
 "not_in_this_group_desktop" = "Potential group members (not in group)";
@@ -850,6 +853,7 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Tray icon cannot be disabled as Delta Chat was started with the --minimized option.";
 "no_spellcheck_suggestions_found" = "No spelling suggestions found.";
 "show_window" = "Show Window";
+"login_socks5_experimental_warning" = "SOCKS5 support is currently experimental. Please use at your own risk. If you type in an adress in the e-mail field, there will be DNS lookup that won't get tunneld through SOCKS5.";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Delivery status: Error";

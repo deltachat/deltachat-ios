@@ -717,8 +717,10 @@
 "qrshow_x_verified" = "%1$@ verificado.";
 "qrshow_x_has_joined_group" = "%1$@ uneuse ao grupo.";
 "qrshow_join_group_title" = "Código QR de convite";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Escanea esto para unirte ao grupo \"%1$@\".";
 "qrshow_join_contact_title" = "Código QR de convite";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Escanea esto para conectar con %1$@-";
 "qrshow_join_contact_no_connection_hint" = "O axuste dun código QR precisa de conexión a internet. Conéctate a rede antes de continuar.";
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode facer o axuste por código QR";
@@ -738,8 +740,6 @@
 "verified_group_explain" = "Os grupos verificados (experimental) proporcionan seguridade contra ataques activos. As integrantes son verificadas cun segundo factor por outros membros e as mensaxes van sempre cifradas E2E.";
 "copy_qr_data_success" = "Copiado o url do QR ao portapapeis";
 "mailto_dialog_header_select_chat" = "Elexir chat ao que enviar a mensaxe";
-// first placeholder is the name of the chat
-"mailto_dialog_confirm_replace_draft" = "%1$@ xa ten unha mensaxe borrador, queres substituílo?";
 "mailto_link_could_not_be_decoded" = "a ligazón mailto non se puido descodificar: %1$@";
 
 // notifications 
@@ -836,7 +836,6 @@
 "ask_delete_chat_desktop" = "Eliminar a conversa?";
 "email_validation_failed_desktop" = "Correo-e requerido.";
 "forget_login_confirmation_desktop" = "Eliminar esta conexión? Borrarase todo, incluíndo os axustes de cifrado, contactos, conversas, mensaxes e ficheiros de medios. Esta acción non ten volta atrás.";
-"account_info_hover_tooltip_desktop" = "Email: %1$@\nTamaño: %2$@\nRuta: %3$@";
 "me_desktop" = "eu";
 "in_this_group_desktop" = "Membros do grupo";
 "not_in_this_group_desktop" = "Membros potenciais do grupo (fóra do grupo)";
@@ -850,7 +849,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "A icona da bandexa do sistema non se pode desactivar porque Delta Chat iniciouse coa opción --minimized.";
 "no_spellcheck_suggestions_found" = "Non se atopan suxestións de escrita.";
 "show_window" = "Mostrar xanela";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Estado da entrega: Fallo";
 "a11y_encryption_padlock" = "Cadeado do cifrado";

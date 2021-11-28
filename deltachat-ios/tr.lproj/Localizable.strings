@@ -178,6 +178,7 @@
 "menu_copy_link_to_clipboard" = "Bağlantıyı Kopyala";
 "menu_copy_text_to_clipboard" = "Metni Kopyala";
 "menu_copy_image_to_clipboard" = "Görseli Kopyala";
+"menu_copy_email_to_clipboard" = "E-Postayı Kopyala";
 "paste_from_clipboard" = "Panodan Yapıştır";
 "menu_forward" = "İletiyi İlet";
 "menu_resend" = "İletiyi Yeniden Gönder";
@@ -717,9 +718,11 @@
 "qrshow_x_verified" = "%1$@ doğrulandı.";
 "qrshow_x_has_joined_group" = "%1$@ gruba katıldı.";
 "qrshow_join_group_title" = "QR Davet Kodu";
-"qrshow_join_group_hint" = "\"%1$@\" grubuna katılmak için bunu tarayın.";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
+"qrshow_join_group_hint" = "\"%1$@\" grubuna katılmak için bunu tarayın";
 "qrshow_join_contact_title" = "QR Davet Kodu";
-"qrshow_join_contact_hint" = "%1$@ ile bir iletişim ayarlamak için bunu tarayın.";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+"qrshow_join_contact_hint" = "%1$@ ile bir iletişim ayarlamak için bunu tarayın";
 "qrshow_join_contact_no_connection_hint" = "QR kod ayarlaması bir Internet bağlantısı gerektirir. İşlemden önce lütfen bir ağa bağlanın.";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kod ayarlaması gerçekleştirilemiyor.";
 "qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?";
@@ -739,7 +742,7 @@
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
 "mailto_dialog_header_select_chat" = "İletinin gönderileceği sohbeti seçin";
 // first placeholder is the name of the chat
-"mailto_dialog_confirm_replace_draft" = "%1$@ zaten taslak bir ileti; onu değiştirmek istiyor musunuz?";
+"confirm_replace_draft" = "%1$@ zaten bir taslak ileti; onu değiştirmek istiyor musunuz?";
 "mailto_link_could_not_be_decoded" = "mailto bağlantısının kodu çözülemedi: %1$@";
 
 // notifications 
@@ -836,7 +839,7 @@
 "ask_delete_chat_desktop" = "Bu sohbet silinsin mi?";
 "email_validation_failed_desktop" = "E-posta adresi gerekli.";
 "forget_login_confirmation_desktop" = "Bu oturum silinsin mi? Uçtan uca ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak her şey silinecek. Bu eylem geri alınamaz.";
-"account_info_hover_tooltip_desktop" = "E-posta: %1$@\nBoyut: %2$@\nYol: %3$@";
+"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nSize: %2$@\nAccount Id: %3$@";
 "me_desktop" = "ben";
 "in_this_group_desktop" = "Grup Üyeleri";
 "not_in_this_group_desktop" = "Olası grup üyeleri (grupta değil)";
@@ -850,6 +853,7 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Delta Chat --minimized seçeneğiyle başlatıldığından tepsi simgesi etkisizleştirilemez.";
 "no_spellcheck_suggestions_found" = "Yazım önerileri bulunamadı.";
 "show_window" = "Pencereyi Göster";
+"login_socks5_experimental_warning" = "SOCKS5 desteği şu anda deneysel. Lütfen riski size ait olarak kullanın. E-posta alanına bir adres yazarsanız, SOCKS5 üzerinden tünellenmeyen DNS araması olacak.";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Teslimat durumu: Hata";

@@ -712,8 +712,10 @@
 "qrshow_x_verified" = "%1$@ បានផ្ទៀងផ្ទាត់";
 "qrshow_x_has_joined_group" = "%1$@ បានចូលរួមក្រុមនេះ";
 "qrshow_join_group_title" = "កូដ QR សម្រាប់ការអញ្ជើញ";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "ស្គេនទីនេះដើម្បីចូលរួមក្រុម \"%1$@\" នេះ។";
 "qrshow_join_contact_title" = "កូដ QR សម្រាប់ការអញ្ជើញ";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "ស្គេនទីនេះដើម្បីរៀបចំទំនាក់ទំនងជាមួយ %1$@";
 "qrshow_join_contact_no_connection_hint" = "រៀបចំកូដ QR អញ្ជើញតម្រូវការភ្ជាប់សេវាអុិនធ័រណេត។ សូមភ្ជាប់ទៅបណ្តាញមុនពេលដំណើរការ។";
 "qrshow_join_contact_no_connection_toast" = "គ្មានសេវាអុិនធ័រណេត មិនអាចអនុវត្ត ការរៀបចំកូដ QR";
@@ -729,8 +731,6 @@
 "verified_group_explain" = "\"ក្រុមបានផ្ទៀងផ្ទាត់\" (ពិសោធន៍) បានផ្តល់សុវត្ថិភាពប្រឆាំងនឹងសកម្មភាពវាយប្រហារ។ សមាជិកត្រូវបានផ្ទៀងផ្ទាត់ជាមុខងារទីពីរ ដោយសមាជិកដទៃទៀត និងសារតែងតែបានអ៊ិនគ្រីប ពីឧបករណ៍ដល់ឧបករណ៍។";
 "copy_qr_data_success" = "បានចម្លង QR-url ទៅក្តារខ្ទាស់";
 "mailto_dialog_header_select_chat" = "ជ្រើសរើសការជជែក ដើម្បីផ្ញើសារទៅកាន់";
-// first placeholder is the name of the chat
-"mailto_dialog_confirm_replace_draft" = "%1$@ មានសារព្រាងរួចហើយ តើអ្នកចង់ជំនួសវាទេ?";
 "mailto_link_could_not_be_decoded" = "សំបុត្រទៅតំណភ្ជាប់ មិនអាចឌិកូដទេ: %1$@";
 
 // notifications 
@@ -826,7 +826,6 @@
 "ask_delete_chat_desktop" = "លុបការសន្ទនានេះ?";
 "email_validation_failed_desktop" = "ទាមទារអស័យដ្ឋានអុីម៉េល";
 "forget_login_confirmation_desktop" = "លុបការកត់ចូលនេះ? គ្រប់យ៉ាងនឹងត្រូវបានលុប រួមបញ្ចូលទាំងការរៀបចំ ទៅបញ្ចប់ការអុិនគ្រឹបឧបករណ៍ដល់ឧបករណ៍ ទំនាក់ទំនង សន្ទនា សារ និងប្រពន្ធ័ផ្សព្វផ្សាយ។ សកម្មភាពនេះមិនអាចធ្វើឡើងវិញបានទេ។";
-"account_info_hover_tooltip_desktop" = "អុីម៉េល: %1$@\nទំហំ: %2$@\nផ្លូវ: %3$@";
 "me_desktop" = "ខ្ញុំ";
 "in_this_group_desktop" = "សមាជិកក្រុម";
 "not_in_this_group_desktop" = "សក្តានុពលសមាជិកក្រុម (មិននៅក្នុងក្រុម)";
@@ -840,7 +839,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "រូបតំណាងថាស មិនអាចបិទបានទេដោយសារ Delta Chat ត្រូវបានចាប់ផ្តើមជាមួយជម្រើសបង្រួមអប្បបរមា។";
 "no_spellcheck_suggestions_found" = "រកមិនឃើញការណែនាំអក្ខរាវិរុទ្ធទេ។";
 "show_window" = "បង្ហាញក្របខ័ណ្ឌ";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "ស្ថានភាពចែកចាយ៖ មានកំហុស";
 "a11y_encryption_padlock" = "សោត្រដោកការអ៊ិនគ្រីប";
