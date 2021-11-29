@@ -251,7 +251,7 @@ class ContactCell: UITableViewCell {
             pinnedIndicator.isHidden = !(visibility == DC_CHAT_VISIBILITY_PINNED)
             unreadMessageCounter.setCount(unreadCount)
             unreadMessageCounter.isHidden = isContactRequest
-            unreadMessageCounter.backgroundColor = isMuted ? .gray : .red
+            unreadMessageCounter.backgroundColor = isMuted ? .gray : DcColors.unreadBadge
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = true
         } else {
