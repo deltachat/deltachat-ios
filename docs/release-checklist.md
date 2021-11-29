@@ -13,12 +13,12 @@ on the command-line:
 3. update local help:
    $ ./scripts/create-local-help.py
 
-4. add a device message to ChatListController::viewWillAppear()
-   and update CHANGELOG.md
-   (the core-changelog at
-   https://github.com/deltachat/deltachat-core-rust/blob/master/CHANGELOG.md
-   and the "N commits to master since last release" on
-   https://github.com/deltachat/deltachat-ios/releases gives some good hints)
+4. a) update CHANGELOG.md
+      from https://github.com/deltachat/deltachat-core-rust/blob/master/CHANGELOG.md
+      and https://github.com/deltachat/deltachat-ios/pulls?q=is%3Apr+is%3Aclosed+sort%3Aupdated-desc
+   b) add used core version to CHANGELOG.md
+   c) add a device message to ConversationListActivity::onCreate()
+      or remove the old one
 
 in Xcode:
 
