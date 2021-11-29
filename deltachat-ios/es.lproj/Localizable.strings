@@ -83,6 +83,9 @@
 "this_month" = "Este mes";
 "last_week" = "La semana pasada";
 "last_month" = "El mes pasado";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Visto por última vez: %1$@";
+"last_seen_unknown" = "Visto por última vez: Desconocido";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 
@@ -175,6 +178,7 @@
 "menu_copy_link_to_clipboard" = "Copiar enlace";
 "menu_copy_text_to_clipboard" = "Copiar texto";
 "menu_copy_image_to_clipboard" = "Copiar imagen";
+"menu_copy_email_to_clipboard" = "Copiar correo electrónico";
 "paste_from_clipboard" = "Pegar del portapapeles";
 "menu_forward" = "Reenviar mensaje";
 "menu_resend" = "Reenviar mensaje";
@@ -737,6 +741,8 @@
 "verified_group_explain" = "Los grupos verificados (experimentales) brindan seguridad contra ataques activos. Los miembros son verificados con un segundo factor por otros miembros y los mensajes siempre están encriptados de extremo a extremo.";
 "copy_qr_data_success" = "URL del código QR copiado al portapapeles";
 "mailto_dialog_header_select_chat" = "Seleccione el chat para enviar el mensaje";
+// first placeholder is the name of the chat
+"confirm_replace_draft" = "%1$@ ya tiene un mensaje borrador, ¿quieres reemplazarlo?";
 "mailto_link_could_not_be_decoded" = "El enlace mailto no se pudo decodificar: %1$@";
 
 // notifications 
@@ -833,6 +839,7 @@
 "ask_delete_chat_desktop" = "¿Eliminar este chat?";
 "email_validation_failed_desktop" = "Se requiere una dirección de correo.";
 "forget_login_confirmation_desktop" = "¿Borrar esta sesión? Todo se eliminará, incluida la configuración de extremo a extremo, contactos, chats, mensajes y multimedia. Esta acción es definitiva y no puede ser revertida.";
+"account_info_hover_tooltip_desktop2" = "Correo: %1$@\nTamaño: %2$@\nID de la cuenta: %3$@";
 "me_desktop" = "Yo";
 "in_this_group_desktop" = "Miembros del grupo";
 "not_in_this_group_desktop" = "Miembros potenciales del grupo (no en el grupo)";
@@ -846,6 +853,8 @@
 "explain_desktop_minimized_disabled_tray_pref" = "El icono de la bandeja no se puede desactivar ya que Delta Chat se inició con la opción --minimized.";
 "no_spellcheck_suggestions_found" = "No se encontraron sugerencias ortográficas.";
 "show_window" = "Mostrar ventana";
+"login_socks5_experimental_warning" = "La compatibilidad con SOCKS5 es experimental actualmente. Por favor, use bajo su propio riesgo. Si escribe una dirección en el campo de correo electrónico, habrá una búsqueda de DNS que no se canalizará a través de SOCKS5.";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Estado de envío: Error";
 "a11y_encryption_padlock" = "Candado de cifrado";
@@ -874,7 +883,6 @@
 
 
 // device messages for updates
-"update_1_22" = "¿Qué hay de nuevo en la versión 1.22?\n\n👋 Las solicitudes de contacto ahora aparecen como chats independientes y pueden ser inspeccionados en detalle antes de aceptar o bloquear\n\n🗄️ Los chats archivados ahora están accesibles desde el menú principal - también encontrarás tus solicitudes de contacto antiguas allí\n\n📮📮📮 Mejorado el soporte multi-cuentas: Cambiar de cuenta ahora es más rápido y menos frecuentemente bloqueado por actualizaciones prolongadas\n\n🤔 Sepa lo que está pasando: los problemas de conexión ahora se muestran en la barra de título, tóquela para obtener más detalles\n\nMás en el blog:";
-"update_1_22_ios" = "¿Qué hay de nuevo en la versión 1.22?\n\n👋 Las solicitudes de contacto ahora aparecen como chats independientes y pueden ser inspeccionados en detalle antes de aceptar o bloquear\n\n🗄️ Los chats archivados ahora están accesibles desde los ajustes - también encontrarás tus solicitudes de contacto antiguas allí\n\n📮📮📮 Añadido soporte para cuentas múltiples: Cambia y administra cuentas en los ajustes\n\n🤔 Sepa lo que está pasando: los problemas de conexión ahora se muestran en la barra de título, tóquela para obtener más detalles\n\nMás en el blog:";
 "update_1_24_android" = "1.24 de forma resumida:\n\n• Ahorre toques: Selección de cuenta en la esquina superior izquierda de la lista de chats\n• Ahorre más toques: Mantenga presionado el ícono de la aplicación para abrir los chats recientes directamente\n• Ahorre tráfico: Descargue archivos grandes según sea necesario\n• Ahorre tiempo: invitación de códigos QR más rápidas, sin bloqueo y nuevas opciones de códigos QR\n\nMás en 👉";
 "update_1_24_ios" = "1.24 de forma resumida:\n\n• Inicie una búsqueda en el chat desde el perfil del chat\n• Ahorre tráfico: Descargue archivos grandes según sea necesario\n• Ahorre tiempo: invitación de códigos QR más rápidas y sin bloqueo\n\nMás en 👉";
+"update_1_26" = "1.26 pulido 💅\n\n• Después de hacer que los códigos QR funcionen más rápido en 1.24, también se ven mucho mejor ahora, en todas las plataformas\n• Los avatares y las insignias tienen un aspecto similar en todas las plataformas\n• Se corrigieron muchos errores";

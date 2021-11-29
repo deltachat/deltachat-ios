@@ -853,7 +853,7 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Tray icon cannot be disabled as Delta Chat was started with the --minimized option.";
 "no_spellcheck_suggestions_found" = "No spelling suggestions found.";
 "show_window" = "Show Window";
-"login_socks5_experimental_warning" = "SOCKS5 support is currently experimental. Please use at your own risk. If you type in an adress in the e-mail field, there will be DNS lookup that won't get tunneld through SOCKS5.";
+"login_socks5_experimental_warning" = "SOCKS5 support is currently experimental. Please use at your own risk. If you type in an address in the e-mail field, there will be DNS lookup that won\'t get tunneled through SOCKS5.";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Delivery status: Error";
@@ -883,10 +883,9 @@
 
 
 // device messages for updates
-"update_1_22" = "What\'s new in 1.22?\n\n👋 Chat Requests now pop up as single chats and can be inspected in detail before accepting or blocking\n\n🗄️ The Archive is now easily accessible from the main menu - you\'ll also find your old requests there\n\n📮📮📮 Multi-account improved: Switching accounts is now faster and less often blocked by lengthy updates\n\n🤔 Know what\'s going on: Connection problems are shown in the title bar now, tap for details\n\nMore on the blog:";
-"update_1_22_ios" = "What\'s new in 1.22?\n\n👋 Chat Requests now pop up as single chats and can be inspected in detail before accepting or blocking\n\n🗄️ The Archive is now easily accessible from the settings - you\'ll also find your old requests there\n\n📮📮📮 Multi-account added: Switch and manage accounts in the settings\n\n🤔 Know what\'s going on: Connection problems are shown in the title bar now, tap for details\n\nMore on the blog:";
 "update_1_24_android" = "1.24 at a glance:\n\n• Save taps: Account selection in the upper left corner of the chat list\n• Save more taps: Long-tap the app icon to open recent chats directly\n• Save traffic: Download large files as needed\n• Save nerves: faster, non-blocking QR code joins and new QR code options\n\nMore at 👉";
 "update_1_24_ios" = "1.24 at a glance:\n\n• Start an in-chat search from the chat\'s profile\n• Save traffic: Download large files as needed\n• Save nerves: faster, non-blocking QR code joins\n\nMore at 👉";
+"update_1_26" = "1.26 polishing 💅\n\n• After making the QR codes non-blocking in 1.24, they also look much nicer now - on all platforms\n• Avatars and badges look similar across platform\n• Lots of bugs fixed";
 
 "import_contacts" = "Import device contacts";
 "import_contacts_message" = "To chat with contacts from your device open Settings and enable Contacts.";
