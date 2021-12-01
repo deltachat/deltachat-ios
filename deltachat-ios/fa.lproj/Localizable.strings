@@ -16,6 +16,8 @@
 "automatic" = "خودکار";
 "strict" = "سخت‌گیرانه";
 "open" = "بازکردن";
+"download" = "بارگیری";
+"downloading" = "در حال بارگیری...";
 "open_attachment" = "باز کردن ضمیمه";
 "join" = "پیوستن";
 "rejoin" = "پیوستن مجدد";
@@ -81,14 +83,20 @@
 "this_month" = "این ماه";
 "last_week" = "هفته گذشته";
 "last_month" = "ماه گذشته";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "آخرین بار در %1$@ دیده شده";
+"last_seen_unknown" = "آخرین زمان مشاهده: نامشخص";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
 "self" = "من";
 "draft" = "پیش‌نویس";
 "image" = "تصویر";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "پاسخ";
 "gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "استیکر";
 "images" = "تصاویر";
 "audio" = "صدا";
 "voice_message" = "پیام صوتی";
@@ -139,7 +147,14 @@
 "menu_new_contact" = "مخاطب جدید";
 "menu_new_chat" = "گفتگوی جدید";
 "menu_new_group" = "گروه جدید";
+// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+"new_group_or_subject" = "گروه یا عنوان جدید";
 "menu_new_verified_group" = "گروه تایید شده جدید";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "لیست Broadcast";
+"broadcast_lists" = "لیست‌های Broadcast";
+"new_broadcast_list" = "لیست Broadcast جدید";
+"add_recipients" = "افزودن گیرنده";
 "menu_send" = "ارسال";
 "menu_toggle_keyboard" = "تعییر صفحه کلید شکلک‌ها";
 "menu_edit_group" = "ویرایش گروه";
@@ -163,6 +178,7 @@
 "menu_copy_link_to_clipboard" = "رونوشت برداری از لینک";
 "menu_copy_text_to_clipboard" = "رونوشت گرفتن از متن";
 "menu_copy_image_to_clipboard" = "رونوشت گرفتن از تصویر";
+"menu_copy_email_to_clipboard" = "کپی کردن رایانامه";
 "paste_from_clipboard" = "چسباندن از حافظه";
 "menu_forward" = "هدایت پیام";
 "menu_resend" = "بازارسال پیام";
@@ -170,6 +186,7 @@
 "menu_mute" = "ساکت کردن اعلان";
 "menu_unmute" = "صدا دار کردن";
 "menu_export_attachment" = "صادر کردن ضمیمه";
+"menu_export_attachments" = "صادر کردن ضمیمه";
 "menu_all_media" = "همه رسانه‌ها";
 // menu entry that opens eg. a gallery image or a document in the chat at the correct position
 "show_in_chat" = "نمایش در گفتگو";
@@ -263,6 +280,8 @@
 "ask_delete_value" = "پاک کردن %1$@؟";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "حذف %1$@ از گروه؟";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "آيا%1$@ از لیست Broadcast پاک شود؟ ";
 "open_url_confirmation" = "آیا می‌خواهید این لینک را باز کنید؟";
 
 
@@ -366,6 +385,13 @@
 "send_message" = "ارسال پیام";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "پیام‌های ورودی";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "پیام‌های خروجی";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "ذخیره کردن در %1$@";
 "connectivity" = "اتصالات";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "متصل نیست";
@@ -375,6 +401,15 @@
 "connectivity_updating" = "درحال به روز رسانی...";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "متصل شد";
+"sending" = "در حال ارسال...";
+"last_msg_sent_successfully" = "آخرین پیام با موفقیت ارسال شد.";
+"not_supported_by_provider" = "ارائه دهنده شما از این پشتیبانی نمی‌کند";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "پیام‌ها";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
+
+
 // welcome and login
 "welcome_intro1_message" = "پیام‌رسانی با وسیع‌ترین طیف مخاطبین در جهان. آزاد و مستقل. ";
 "login_title" = "ورود";
@@ -393,6 +428,13 @@
 "login_smtp_port" = "SMTP Port";
 "login_smtp_security" = "SMTP Security";
 "login_auth_method" = "Authorization Method";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "استفاده از SOCKS5";
+"login_socks5_host" = "SOCKS5 Host";
+"login_socks5_port" = "SOCKS5 Port";
+"login_socks5_user" = "SOCKS5 User";
+"login_socks5_password" = "SOCKS5 Password";
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "بررسی %1$@";
 "login_info_oauth2_title" = "با تنظیمات ساده‌ شده ادامه می‌دهید؟";
@@ -417,7 +459,10 @@
 "delete_account_ask" = "آیا از حذف حساب کاربری اطمینان دارید؟";
 "delete_account_explain_with_name" = "همه اطلاعات حساب مربوط به \"%1$@\" روی این دستگاه پاک می‌شود که شامل تنظیمات رمزگذاری گیرنده به گیرنده ، مخاطبین، پیام‌ها و رسانه می‌شود. این عمل قابل بازگشت نیست.";
 "switching_account" = "درحال تغییر حساب کاربری";
+"unconfigured_account" = "حساب تنظیم نشده";
+"unconfigured_account_hint" = "بازکردن حساب برای تنظیم آن";
 "try_connect_now" = "اکنون برای اتصال تلاش کنید";
+"sync_all" = "به روزرسانی همه ";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "پیکربندی ناموفق. خطا:‌%1$@";
 
@@ -523,6 +568,16 @@
 "pref_background_custom_image" = "تصویر ترجیحی";
 "pref_background_custom_color" = "رنگ ترجیحی";
 "export_aborted" = "فرایند صدور متوقف شد.";
+"auto_download_messages" = "بارگیری خودکار پیام‌ها";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "تا سقف %1$@";
+"up_to_x_most_worse_quality_images" = "تا سقف %1$@، بدترین کیفیت تصویر";
+"up_to_x_most_balanced_quality_images" = "تا سقف %1$@، متعادل‌ترین کیفیت تصویر";
+"no_limit" = "بدون محدودیت";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "پیام %1$@ ";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "سقف دانلود تا %1$@ فعال خواهد بود";
 "profile_image_select" = "انتخاب تصویر نمایه";
 "select_your_new_profile_image" = "انتخاب تصویر پروفایل جدید";
 "profile_image_delete" = "حذف تصویر نمایه";
@@ -620,6 +675,9 @@
 "systemmsg_chat_protection_disabled" = "محافظت از گفنگو غیرفعال شد.";
 "systemmsg_chat_protection_enabled" = "محافظت از گفتگو فعال شد.";
 
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+// %1%s will be replaced by date and time in some human-readable format
+
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "برای ادامه، لطفا رمز تعیین شده توسط سیستم خود را وارد کنید";
 
@@ -661,6 +719,9 @@
 "qraccount_success_enter_name" = "ورود موفق—آدرس ایمیل شما %1$@است.\n\n اگر دوست دارید می‌توانید اکنون یک اسم وارد کرده و تصویر نمایه‌ای که هنگام نوشتن برای دیگران نشان داده می‌شود را انتخاب نمایید. ";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه اندازی اکانت جدید استفاده کرد. ";
 "qraccount_use_on_new_install" = "کد کیوآر اسکن شده برای راه اندازی یک اکانت جدید است. می‌توانید در حال تنظیم یک دلتاچت تازه نصب شده کیوآر  را اسکن کنید.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "کاربر %1$@ پاسخ داد، در انتظار اضافه شدن به گروه...";
 "contact_verified" = "%1$@تایید شد.";
 "contact_not_verified" = "%1$@تایید نشد. ";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
@@ -668,10 +729,13 @@
 "verified_group_explain" = "گرو‌ه های تایید شده(آزمایشی) در برابر حمله‌های فعال امنیت دارند. اعضا با یک روش ثانویه هم از طریق دیگر اعضا احراز هویت می‌شوند و پیام‌ها هم همیشه به صورت رمزگذاری شده به صورت گیرنده به گیرنده می‌باشد. ";
 "copy_qr_data_success" = "آدرس کیوآر در حافظه ذخیر شد";
 "mailto_dialog_header_select_chat" = "گفتگو را برای ارسال پیام انتخاب کنید";
+// first placeholder is the name of the chat
+"confirm_replace_draft" = "گفتگوی %1$@ همین حالا هم یک پیام پیشنویس دارد؛ آیا می‌خواهید آن را جایگزین کنید؟";
 "mailto_link_could_not_be_decoded" = "امکان رمزگشایی ایمیل به لینک وجود ندارد: %1$@";
 
 // notifications 
 "notify_n_messages_in_m_chats" = "%1$d پیام جدید در %2$d گفتگو";
+"notify_dismiss" = "صرف نظر";
 "notify_mark_read" = "علامت گذاری به عنوان خوانده شده";
 "notify_reply_button" = "پاسخ";
 "notify_new_message" = "پیام جدید";
@@ -771,6 +835,8 @@
 "explain_desktop_minimized_disabled_tray_pref" = "چون دلتاچت با تنظیمات --زیرصفحه شروع به کار کرده است نمی‌توان نمادک زیر صفحه را غیر فعال کرد. ";
 "no_spellcheck_suggestions_found" = "هیچ پیشنهادی برای املا پیدا نشد";
 "show_window" = "نمایش پنجره";
+"login_socks5_experimental_warning" = "پشتیبانی از قابلیت SOCKS5 هنوز آزمایشی است. لطفا در صورت استفاده،‌خطرات را بپذیرید. اگر یک آدرس را در بخش رایانامه وارد کنید همچنان  DNS lookup  رخ می‌دهد که ممکن است از طریق SOCKS5 صورت نگیرد. ";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "وضعیت ارسال: خطا";
 "a11y_encryption_padlock" = "قفل رمزگذاری";
@@ -798,3 +864,4 @@
 "perm_enable_bg_already_done" = "قبلا اجازه دسترسی به فعالیت در پس زمینه را به دلتاچت داده‌اید. \n\n اگر پیام‌ها هنوز هم در شرایط پس زمینه نمی‌آمد لطفا تنظیمات سیستم را نیز بررسی نمایید. ";
 
 
+// device messages for updates
