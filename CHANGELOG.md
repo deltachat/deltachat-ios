@@ -1,11 +1,26 @@
 # Delta Chat iOS Changelog
 
+## v1.26.0
+2021-11
+
+* re-layout all QR codes and unify appearance among the different platforms
+* show when a contact was "Last seen" in the contact's profile
+* group creation: skip presetting a draft that is deleted most times anyway
+* auto-generated avatars are displayed similar across all platforms now
+* speed up returning to chat list
+* fix chat assignment when forwarding
+* fix group-related system messages appearing as normal messages in multi-device setups
+* update translations
+* update to core69
+
+
 ## v1.24.5
 2021-11
 
 * fix missing stickers, image and video messages on iOS 15
 * fix "copy to clipboard" for video chat invites
 * update translations
+* using core65
 
 
 ## v1.24.4
@@ -15,6 +30,7 @@
 * fix: apply existing ephemeral timer also to partially downloaded messages;
   after full download, the ephemeral timer starts over
 * update translations and local help
+* update to core65
 
 
 ## v1.24.3
