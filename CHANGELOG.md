@@ -1,7 +1,7 @@
 # Delta Chat iOS Changelog
 
-## v1.26.0
-2021-11
+## v1.26.2
+2021-12
 
 * re-layout all QR codes and unify appearance among the different platforms
 * show when a contact was "Last seen" in the contact's profile
@@ -10,6 +10,8 @@
 * speed up returning to chat list
 * fix chat assignment when forwarding
 * fix group-related system messages appearing as normal messages in multi-device setups
+* fix removing members if the corresponding messages arrive disordered
+* fix potential issue with disappearing avatars on downgrades
 * update translations
 * update to core69
 
