@@ -29,6 +29,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case switchAccount = 14
         case videoChat = 15
         case connectivity = 16
+        case selectBackground = 17
     }
 
     private var dcContext: DcContext
@@ -217,6 +218,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    private lazy var selectBackgroundCell: UITableViewCell = {
+        let cell = UITableViewCell()
+        cell.tag = CellTags.selectBackground.rawValue
+        cell.textLabel?.text = String.localized("pref_background")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
     private lazy var sections: [SectionConfigs] = {
         var appNameAndVersion = "Delta Chat"
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -233,6 +242,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             cells: [showArchiveCell, showEmailsCell, blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
                     autodelCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
         )
+        let appearanceSection = SectionConfigs(
+            headerTitle: String.localized("pref_appearance"),
+            footerTitle: nil,
+            cells: [selectBackgroundCell]
+        )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
             footerTitle: String.localized("autocrypt_explain"),
@@ -247,7 +261,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             footerTitle: appNameAndVersion,
             cells: [connectivityCell, helpCell]
         )
-        return [profileSection, preferencesSection, autocryptSection, backupSection, helpSection]
+
+        return [profileSection, preferencesSection, appearanceSection, autocryptSection, backupSection, helpSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -356,6 +371,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .switchAccount: showSwitchAccountMenu()
         case .help: showHelp()
         case .connectivity: showConnectivity()
+        case .selectBackground: selectBackground()
         }
     }
 
@@ -651,6 +667,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     private func showConnectivity() {
         navigationController?.pushViewController(ConnectivityViewController(dcContext: dcContext), animated: true)
+    }
+
+    private func selectBackground() {
+        navigationController?.pushViewController(SettingsBackgroundSelectionController(dcContext: dcContext), animated: true)
     }
 
     public static func showDebugToolkit(dcContext: DcContext) {
