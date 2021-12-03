@@ -13,7 +13,7 @@
 * fix removing members if the corresponding messages arrive disordered
 * fix potential issue with disappearing avatars on downgrades
 * update translations
-* update to core69
+* update to core70
 
 
 ## v1.24.5
