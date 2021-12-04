@@ -3,9 +3,9 @@ import UIKit
 import DcCore
 
 class SettingsBackgroundSelectionController: UIViewController {
-    let dcContext: DcContext
+    private let dcContext: DcContext
 
-    lazy var selectBackgroundButton: DynamicFontButton = {
+    private lazy var selectBackgroundButton: DynamicFontButton = {
         let btn = DynamicFontButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle(String.localized("pref_background_btn_gallery"), for: .normal)
@@ -21,7 +21,7 @@ class SettingsBackgroundSelectionController: UIViewController {
         return btn
     }()
 
-    lazy var selectDefaultButton: DynamicFontButton = {
+    private lazy var selectDefaultButton: DynamicFontButton = {
         let btn = DynamicFontButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle(String.localized("pref_background_btn_default"), for: .normal)
@@ -32,13 +32,13 @@ class SettingsBackgroundSelectionController: UIViewController {
         btn.titleLabel?.lineBreakMode = .byWordWrapping
         btn.titleLabel?.textAlignment = .center
         btn.contentHorizontalAlignment = .center
-        //btn.addTarget(self, action: #selector(onActionButtonTapped), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(onDefaultSelected), for: .touchUpInside)
         btn.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
         btn.titleLabel?.adjustsFontForContentSizeCategory = true
         return btn
     }()
 
-    lazy var container: UIStackView = {
+    private lazy var container: UIStackView = {
         let container = UIStackView(arrangedSubviews: [selectDefaultButton, selectBackgroundButton])
         container.translatesAutoresizingMaskIntoConstraints = false
         container.distribution = .fillEqually
@@ -48,7 +48,7 @@ class SettingsBackgroundSelectionController: UIViewController {
         return container
     }()
 
-    public lazy var backgroundContainer: UIImageView = {
+    private lazy var backgroundContainer: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +74,7 @@ class SettingsBackgroundSelectionController: UIViewController {
         setupSubviews()
     }
 
-    func setupSubviews() {
+    private func setupSubviews() {
         view.addSubview(backgroundContainer)
         view.addSubview(container)
 
