@@ -54,7 +54,12 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
-        setDefault(view)
+        if let backgroundImageURL = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
+            view.sd_setImage(with: URL(fileURLWithPath: backgroundImageURL), completed: nil)
+        } else {
+            setDefault(view)
+        }
+
         return view
     }()
 
@@ -112,6 +117,8 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
 
     @objc private func onDefaultSelected() {
         setDefault(backgroundContainer)
+        UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageUrl)
+        UserDefaults.standard.synchronize()
     }
 
     private func setDefault(_ imageView: UIImageView) {
@@ -124,7 +131,10 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
 
     // MARK: MediaPickerDelegate
     func onImageSelected(image: UIImage) {
-        backgroundContainer.image = image
+        if let pathInDocDir = ImageFormat.saveImage(image: image) {
+            UserDefaults.standard.set(pathInDocDir, forKey: Constants.Keys.backgroundImageUrl)
+            UserDefaults.standard.synchronize()
+            backgroundContainer.image = image
+        }
     }
-
 }
