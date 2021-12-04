@@ -63,7 +63,7 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         return view
     }()
 
-    private lazy var mediaPicker: MediaPicker? = {
+    private lazy var mediaPicker: MediaPicker = {
         let mediaPicker = MediaPicker(navigationController: navigationController)
         mediaPicker.delegate = self
         return mediaPicker
@@ -112,7 +112,7 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
     }
 
     @objc private func onSelectBackgroundImage() {
-        mediaPicker?.showPhotoGallery()
+        mediaPicker.showPhotoGallery()
     }
 
     @objc private func onDefaultSelected() {
