@@ -2,7 +2,8 @@ import Foundation
 import UIKit
 import DcCore
 
-class SettingsBackgroundSelectionController: UIViewController {
+class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelegate {
+
     private let dcContext: DcContext
 
     private lazy var selectBackgroundButton: DynamicFontButton = {
@@ -18,6 +19,7 @@ class SettingsBackgroundSelectionController: UIViewController {
         btn.contentHorizontalAlignment = .center
         btn.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
         btn.titleLabel?.adjustsFontForContentSizeCategory = true
+        btn.addTarget(self, action: #selector(onSelectBackgroundImage), for: .touchUpInside)
         return btn
     }()
 
@@ -52,12 +54,14 @@ class SettingsBackgroundSelectionController: UIViewController {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 12.0, *) {
-            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
-        } else {
-            view.image = UIImage(named: "background_light")
-        }
+        setDefault(view)
         return view
+    }()
+
+    private lazy var mediaPicker: MediaPicker? = {
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self
+        return mediaPicker
     }()
 
     init(dcContext: DcContext) {
@@ -100,6 +104,27 @@ class SettingsBackgroundSelectionController: UIViewController {
         let bottomSafeArea = view.safeAreaInsets.bottom
         selectBackgroundButton.contentEdgeInsets = UIEdgeInsets(top: 12, left: 8, bottom: bottomSafeArea + 12, right: 8)
         selectDefaultButton.contentEdgeInsets = UIEdgeInsets(top: 12, left: 8, bottom: bottomSafeArea + 12, right: 8)
+    }
+
+    @objc private func onSelectBackgroundImage() {
+        mediaPicker?.showPhotoGallery()
+    }
+
+    @objc private func onDefaultSelected() {
+        setDefault(backgroundContainer)
+    }
+
+    private func setDefault(_ imageView: UIImageView) {
+        if #available(iOS 12.0, *) {
+            imageView.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        } else {
+            imageView.image = UIImage(named: "background_light")
+        }
+    }
+
+    // MARK: MediaPickerDelegate
+    func onImageSelected(image: UIImage) {
+        backgroundContainer.image = image
     }
 
 }
