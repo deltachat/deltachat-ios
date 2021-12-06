@@ -80,8 +80,6 @@ public class ChatContactRequestBar: UIView, InputItem {
             mainContentView.constraintAlignTrailingTo(self),
         ])
 
-        backgroundColor = DcColors.chatBackgroundColor
-
         let acceptGestureListener = UITapGestureRecognizer(target: self, action: #selector(onAcceptPressed))
         acceptButton.addGestureRecognizer(acceptGestureListener)
 

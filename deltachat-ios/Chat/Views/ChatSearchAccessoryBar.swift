@@ -104,8 +104,6 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
             downButton.constraintWidthTo(40)
         ])
 
-        backgroundColor = DcColors.chatBackgroundColor
-
         let upGestaureListener = UITapGestureRecognizer(target: self, action: #selector(onUpPressed))
         upButton.addGestureRecognizer(upGestaureListener)
 
