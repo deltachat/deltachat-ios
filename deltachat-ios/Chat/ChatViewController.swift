@@ -883,10 +883,6 @@ class ChatViewController: UITableViewController {
         return corners
     }
 
-    private func getBackgroundColor(for currentMessage: DcMsg) -> UIColor {
-        return currentMessage.isFromCurrentSender ? DcColors.messagePrimaryColor : DcColors.messageSecondaryColor
-    }
-
     private func updateTitle(chat: DcChat) {
         let titleView =  ChatTitleView()
 
