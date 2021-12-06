@@ -99,8 +99,6 @@ public class ChatEditingBar: UIView, InputItem {
             cancelButton.constraintHeightTo(36),
         ])
 
-        backgroundColor = DcColors.chatBackgroundColor
-
         let cancelGestureListener = UITapGestureRecognizer(target: self, action: #selector(onCancelPressed))
         cancelButton.addGestureRecognizer(cancelGestureListener)
 
