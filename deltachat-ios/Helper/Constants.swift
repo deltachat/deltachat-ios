@@ -13,6 +13,7 @@ struct Constants {
         static let backgroundImageUrl = "__BACKGROUND_IMAGE_URL__"
     }
 
+    static let backgroundImageName = "BACKGROUND_IMAGE"
     static let notificationIdentifier = "deltachat-ios-local-notifications"
 
 }
