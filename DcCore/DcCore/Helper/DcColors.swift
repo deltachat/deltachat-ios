@@ -24,11 +24,11 @@ public struct DcColors {
     public static let grayDateColor = UIColor.themeColor(lightHex: "999999", darkHex: "bbbbbb") // slight variations of lightGray (#aaaaaa)
     public static let middleGray = UIColor(hexString: "848ba7")
     public static let secondaryTextColor = UIColor.themeColor(lightHex: "848ba7", darkHex: "a5abc0")
-    public static let inputFieldColor =  UIColor.themeColor(light: UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1),
-                                                     dark: UIColor(red: 10 / 255, green: 10 / 255, blue: 10 / 255, alpha: 1))
-    public static let placeholderColor = UIColor.themeColor(light: UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1),
-                                                     dark: UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1))
     public static let providerPreparationBackground = UIColor.themeColor(lightHex: "#fffdf7b2", darkHex: "##fffdf7b2")
+    public static let inputFieldColor =  UIColor.themeColor(
+        light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 0.25),
+        dark: UIColor(red: 30 / 255, green: 30 / 255, blue: 30 / 255, alpha: 0.25))
+    public static let placeholderColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
     public static let providerBrokenBackground = UIColor.themeColor(light: SystemColor.red.uiColor, dark: SystemColor.red.uiColor)
     public static let systemMessageBackgroundColor = UIColor.init(hexString: "55444444")
     public static let deaddropBackground = UIColor.themeColor(light: UIColor.init(hexString: "ebebec"), dark: UIColor.init(hexString: "1a1a1c"))
