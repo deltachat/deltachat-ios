@@ -68,12 +68,12 @@ extension ImageFormat {
         return loadImageFrom(data: imageData)
     }
 
-    public static func saveImage(image: UIImage) -> String? {
+    public static func saveImage(image: UIImage, name: String? = nil) -> String? {
         if image.sd_isAnimated,
            let data = image.sd_imageData() {
             let format = ImageFormat.get(from: data)
             if format != .unknown {
-                return ImageFormat.saveImage(data: data, suffix: format.rawValue)
+                return ImageFormat.saveImage(data: data, name: name, suffix: format.rawValue)
             }
         }
         let suffix = image.isTransparent() ? "png" : "jpg"
@@ -81,15 +81,22 @@ extension ImageFormat {
             return nil
         }
 
-        return saveImage(data: data, suffix: suffix)
+        return saveImage(data: data, name: name, suffix: suffix)
     }
 
-    public static func saveImage(data: Data, suffix: String) -> String? {
-        let timestamp = Double(Date().timeIntervalSince1970)
+    public static func saveImage(data: Data, name: String? = nil, suffix: String) -> String? {
+        var path: URL?
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
-                                                           appropriateFor: nil, create: false) as NSURL,
-            let path = directory.appendingPathComponent("\(timestamp).\(suffix)")
-            else { return nil }
+                                                              appropriateFor: nil, create: false) as NSURL
+        else { return nil }
+        if let name = name {
+            path = directory.appendingPathComponent("\(name).\(suffix)")
+        } else {
+            let timestamp = Double(Date().timeIntervalSince1970)
+            path = directory.appendingPathComponent("\(timestamp).\(suffix)")
+        }
+
+        guard let path = path else { return nil }
 
         do {
             try data.write(to: path)
