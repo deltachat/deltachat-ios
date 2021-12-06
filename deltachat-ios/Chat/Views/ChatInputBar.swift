@@ -18,7 +18,6 @@ public class ChatInputBar: InputBarAccessoryView {
         button.isHidden = true
         return button
     }()
-    
 
     public convenience init() {
         self.init(frame: .zero)
@@ -27,19 +26,20 @@ public class ChatInputBar: InputBarAccessoryView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupKeyboardObserver()
-        backgroundView.backgroundColor = DcColors.defaultBackgroundColor
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupKeyboardObserver()
-        backgroundView.backgroundColor = DcColors.defaultBackgroundColor
     }
 
     override open func setup() {
         replaceInputBar()
         setupScrollDownButton()
         super.setup()
+        backgroundColor = .clear
+        backgroundView.backgroundColor = DcColors.defaultBackgroundColor
+        isTranslucent = true
     }
     
     @objc func onScrollDownPressed() {

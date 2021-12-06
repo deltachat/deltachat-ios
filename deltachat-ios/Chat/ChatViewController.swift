@@ -1069,8 +1069,6 @@ class ChatViewController: UITableViewController {
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
-        messageInputBar.backgroundView.backgroundColor = DcColors.chatBackgroundColor
-        messageInputBar.backgroundColor = DcColors.chatBackgroundColor
         messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
         messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
