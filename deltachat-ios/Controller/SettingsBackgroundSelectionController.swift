@@ -54,6 +54,7 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
         if let backgroundImageURL = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
             view.sd_setImage(with: URL(fileURLWithPath: backgroundImageURL), completed: nil)
         } else {
