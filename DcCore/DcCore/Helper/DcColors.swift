@@ -10,8 +10,8 @@ public struct DcColors {
     public static let colorDisabled = UIColor.themeColor(light: UIColor(white: 0.9, alpha: 1), dark: UIColor(white: 0.2, alpha: 1))
     public static let messagePrimaryColor = UIColor.themeColor(light: UIColor.rgb(red: 220, green: 248, blue: 198),
                                                         dark: UIColor.init(hexString: "224508"))
-    public static let messageSecondaryColor = UIColor.themeColor(light: UIColor.init(hexString: "ebebed"),
-                                                          dark: UIColor.init(hexString: "333333"))
+    public static let messageSecondaryColor = UIColor.themeColor(light: .white,
+                                                                 dark: .black)
     public static let contactCellBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let defaultBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let defaultInverseColor = UIColor.themeColor(light: .black, dark: .white)
