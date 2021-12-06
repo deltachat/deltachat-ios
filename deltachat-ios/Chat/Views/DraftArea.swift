@@ -28,6 +28,14 @@ public class DraftArea: UIView, InputItem {
         return view
     }()
 
+    lazy var blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .light)
+        let view = UIVisualEffectView(effect: blurEffect)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+
     lazy var quotePreview: QuotePreview = {
         let view = QuotePreview()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -61,9 +69,11 @@ public class DraftArea: UIView, InputItem {
     }
 
     public func setupSubviews() {
+        addSubview(blurView)
         addSubview(mainContentView)
+        backgroundColor = DcColors.defaultBackgroundColor.withAlphaComponent(0.75)
+        blurView.fillSuperview()
         mainContentView.fillSuperview()
-        mainContentView.backgroundColor = DcColors.chatBackgroundColor
     }
 
     public func configure(draft: DraftModel) {

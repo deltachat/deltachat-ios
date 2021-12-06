@@ -73,7 +73,6 @@ public class DraftPreview: UIView {
         ])
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(cancel))
         cancelButton.addGestureRecognizer(recognizer)
-        backgroundColor = DcColors.chatBackgroundColor
         isAccessibilityElement = true
         let accessibilityCancelAction = UIAccessibilityCustomAction(name: String.localized("cancel"), target: self, selector: #selector(cancel))
         accessibilityCustomActions = [accessibilityCancelAction]
