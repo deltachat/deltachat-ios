@@ -860,7 +860,8 @@ class ChatViewController: UITableViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
-        if #available(iOS 12.0, *) {
+        if #available(iOS 12.0, *),
+            UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
     }
