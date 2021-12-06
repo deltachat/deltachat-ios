@@ -132,7 +132,7 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
 
     // MARK: MediaPickerDelegate
     func onImageSelected(image: UIImage) {
-        if let pathInDocDir = ImageFormat.saveImage(image: image) {
+        if let pathInDocDir = ImageFormat.saveImage(image: image, name: Constants.backgroundImageName) {
             UserDefaults.standard.set(pathInDocDir, forKey: Constants.Keys.backgroundImageUrl)
             UserDefaults.standard.synchronize()
             backgroundContainer.image = image
