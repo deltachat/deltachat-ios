@@ -67,7 +67,9 @@ class ChatViewController: UITableViewController {
     public lazy var backgroundContainer: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        if #available(iOS 12.0, *) {
+        if let path = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
+            view.sd_setImage(with: URL(fileURLWithPath: path), completed: nil)
+        } else if #available(iOS 12.0, *) {
             view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         } else {
             view.image = UIImage(named: "background_light")
