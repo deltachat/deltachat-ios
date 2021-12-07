@@ -1536,6 +1536,30 @@ class ChatViewController: UITableViewController {
         contextMenu.performAction(action: action, indexPath: indexPath)
     }
 
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeTargetedPreview(for: configuration)
+    }
+
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeTargetedPreview(for: configuration)
+    }
+
+    @available(iOS 13.0, *)
+    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let messageId = configuration.identifier as? NSString else { return nil }
+        guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
+        let indexPath = IndexPath(row: index, section: 0)
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return nil }
+
+        // clear background, so that background image is still visible
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+        return UITargetedPreview(view: cell, parameters: parameters)
+    }
+
     // context menu for iOS 13+
     @available(iOS 13, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -1544,7 +1568,7 @@ class ChatViewController: UITableViewController {
             return nil
         }
         return UIContextMenuConfiguration(
-            identifier: nil,
+            identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
             actionProvider: { [weak self] _ in
                 self?.contextMenu.actionProvider(indexPath: indexPath)
