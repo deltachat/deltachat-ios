@@ -1552,7 +1552,7 @@ class ChatViewController: UITableViewController {
         guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
 
-        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
 
         // clear background, so that background image is still visible
         let parameters = UIPreviewParameters()
