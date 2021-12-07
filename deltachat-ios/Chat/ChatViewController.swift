@@ -792,7 +792,7 @@ class ChatViewController: UITableViewController {
                                         })
         if #available(iOS 13.0, *) {
             action.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "ic_reply_black" : "ic_reply")
-            action.backgroundColor = DcColors.chatBackgroundColor
+            action.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.25)
         } else {
             action.image = UIImage(named: "ic_reply_black")
             action.backgroundColor = .systemBlue
