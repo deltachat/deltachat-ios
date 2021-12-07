@@ -273,6 +273,15 @@ public class BaseMessageCell: UITableViewCell {
         }
     }
 
+    public override func setSelected(_ selected: Bool, animated: Bool) {
+         super.setSelected(selected, animated: animated)
+         if selected {
+             selectedBackgroundView?.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.25)
+         } else {
+             selectedBackgroundView?.backgroundColor = .clear
+         }
+     }
+
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
