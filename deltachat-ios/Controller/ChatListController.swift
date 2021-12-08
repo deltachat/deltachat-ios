@@ -541,6 +541,7 @@ class ChatListController: UITableViewController {
         if searchController.isActive {
             searchController.searchBar.resignFirstResponder()
         }
+        logger.info("⏰ ChatListController showChat")
         let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
         navigationController?.pushViewController(chatVC, animated: animated)
     }

@@ -280,6 +280,7 @@ class ChatViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        logger.info("⏰ ChatViewController viewDidLoad start")
         let start = CFAbsoluteTimeGetCurrent()
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: "image")
@@ -368,6 +369,7 @@ class ChatViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        logger.info("⏰ ChatViewController viewWillAppear start")
         let start = CFAbsoluteTimeGetCurrent()
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
@@ -438,6 +440,7 @@ class ChatViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        logger.info("⏰ ChatViewController viewDidAppear start")
         let start = CFAbsoluteTimeGetCurrent()
 
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
