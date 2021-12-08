@@ -254,11 +254,14 @@ class ChatViewController: UITableViewController {
     }()
 
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
+        let start = CFAbsoluteTimeGetCurrent()
         self.dcContext = dcContext
         self.chatId = chatId
         self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger.info("⏰ ChatViewController init diff: \(diff) s")
     }
 
     required init?(coder _: NSCoder) {
@@ -266,14 +269,18 @@ class ChatViewController: UITableViewController {
     }
 
     override func loadView() {
+        let start = CFAbsoluteTimeGetCurrent()
         self.tableView = ChatTableView(messageInputBar: messageInputBar)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view = self.tableView
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger.info("⏰ ChatViewController loadView diff: \(diff) s")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let start = CFAbsoluteTimeGetCurrent()
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: "image")
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
@@ -303,6 +310,9 @@ class ChatViewController: UITableViewController {
             messageInputBar.isHidden = true
         }
         loadMessages()
+
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger.info("⏰ ChatViewController viewDidLoad diff: \(diff) s")
     }
 
     private func configureUIForWriting() {
@@ -358,6 +368,7 @@ class ChatViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let start = CFAbsoluteTimeGetCurrent()
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
         if showCustomNavBar {
@@ -421,10 +432,14 @@ class ChatViewController: UITableViewController {
         }
 
         prepareContextMenu()
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger.info("⏰ ChatViewController viewWillAppear diff: \(diff) s")
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        let start = CFAbsoluteTimeGetCurrent()
+
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
 
         // things that do not affect the chatview
@@ -435,6 +450,9 @@ class ChatViewController: UITableViewController {
         }
 
         handleUserVisibility(isVisible: true)
+
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger.info("⏰ ChatViewController viewDidAppear diff: \(diff) s")
     }
 
     override func viewWillDisappear(_ animated: Bool) {
