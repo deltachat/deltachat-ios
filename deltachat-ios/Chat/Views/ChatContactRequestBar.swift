@@ -20,20 +20,34 @@ public class ChatContactRequestBar: UIView, InputItem {
     
     private var useDeleteButton: Bool = false
 
-    private lazy var acceptButton: UIButton = {
-        let view = UIButton()
+    private lazy var acceptButton: DynamicFontButton = {
+        let view = DynamicFontButton()
         view.setTitle(String.localized("accept"), for: .normal)
+        view.accessibilityLabel = String.localized("accept")
         view.setTitleColor(.systemBlue, for: .normal)
+        view.setTitleColor(.gray, for: .highlighted)
+        view.titleLabel?.lineBreakMode = .byWordWrapping
+        view.titleLabel?.textAlignment = .center
+        view.contentHorizontalAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
+        view.titleLabel?.adjustsFontForContentSizeCategory = true
         return view
     }()
 
-    private lazy var blockButton: UIButton = {
-        let view = UIButton()
+    private lazy var blockButton: DynamicFontButton = {
+        let view = DynamicFontButton()
         view.setTitle(useDeleteButton ? String.localized("delete") : String.localized("block"), for: .normal)
+        view.accessibilityLabel = useDeleteButton ? String.localized("delete") : String.localized("block")
         view.setTitleColor(.systemRed, for: .normal)
+        view.setTitleColor(.gray, for: .highlighted)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.titleLabel?.lineBreakMode = .byWordWrapping
+        view.titleLabel?.textAlignment = .center
+        view.contentHorizontalAlignment = .center
         view.isUserInteractionEnabled = true
+        view.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
+        view.titleLabel?.adjustsFontForContentSizeCategory = true
         return view
     }()
 
@@ -41,7 +55,7 @@ public class ChatContactRequestBar: UIView, InputItem {
         let view = UIStackView(arrangedSubviews: [blockButton, acceptButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
-        view.alignment = .center
+        view.alignment = .fill
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
