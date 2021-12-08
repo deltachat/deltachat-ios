@@ -144,11 +144,12 @@ public class DcContext {
 
     // TODO: remove count and from parameters if we don't use it
     public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
-        let start = CFAbsoluteTimeGetCurrent()
+        var start = CFAbsoluteTimeGetCurrent()
         let cMessageIds = getChatMessages(chatId: chatId)
-        let diff = CFAbsoluteTimeGetCurrent() - start
-        logger?.info("⏰ getMessageIds: \(diff) s")
+        var diff = CFAbsoluteTimeGetCurrent() - start
+        logger?.info("⏰ getMessageIds core: \(diff) s")
 
+        start = CFAbsoluteTimeGetCurrent()
         let ids: [Int]
         if let from = from {
             // skip last part
@@ -159,6 +160,8 @@ public class DcContext {
         } else {
             ids = DcUtils.copyAndFreeArray(inputArray: cMessageIds)
         }
+        diff = CFAbsoluteTimeGetCurrent() - start
+        logger?.info("⏰ getMessageIds UI: \(diff) s")
         return ids
     }
 
@@ -492,7 +495,11 @@ public class DcContext {
     }
 
     public func getUnreadMessages(chatId: Int) -> Int {
-        return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
+        let start = CFAbsoluteTimeGetCurrent()
+        let unreadMessages = Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger?.info("⏰ getUnreadMessages: \(diff) s")
+        return unreadMessages
     }
 
     public func estimateDeletionCnt(fromServer: Bool, timeout: Int) -> Int {

@@ -310,7 +310,9 @@ class ChatViewController: UITableViewController {
         } else {
             messageInputBar.isHidden = true
         }
+        logger.info("⏰ ChatViewController viewDidLoad loadMessages")
         loadMessages()
+        logger.info("⏰ ChatViewController viewDidLoad loadMessages finished")
 
         let diff = CFAbsoluteTimeGetCurrent() - start
         logger.info("⏰ ChatViewController viewDidLoad diff: \(diff) s")
@@ -963,7 +965,11 @@ class ChatViewController: UITableViewController {
 
         self.showEmptyStateView(self.messageIds.isEmpty)
 
+        let start = CFAbsoluteTimeGetCurrent()
         self.reloadData()
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        logger.info("⏰ ChatViewController reloadData diff: \(diff) s")
+
     }
 
     private func isLastRowVisible() -> Bool {
