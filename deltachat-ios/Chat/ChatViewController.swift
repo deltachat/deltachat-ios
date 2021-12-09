@@ -331,7 +331,7 @@ class ChatViewController: UITableViewController {
                 else { return }
                 
                 if appDelegate.appIsInForeground() {
-                    self.messageIds = self.getMessageIds()
+                    self.messageIds = self.dcContext.getChatMsgs(chatId: self.chatId)
                     self.reloadData()
                 } else {
                     logger.warning("startTimer() must not be executed in background")
@@ -911,7 +911,7 @@ class ChatViewController: UITableViewController {
 
     @objc
     private func refreshMessages() {
-        self.messageIds = self.getMessageIds()
+        self.messageIds = dcContext.getChatMsgs(chatId: chatId)
         let wasLastSectionVisible = self.isLastRowVisible()
         self.reloadData()
         if wasLastSectionVisible {
@@ -933,7 +933,7 @@ class ChatViewController: UITableViewController {
     private func loadMessages() {
 
         // update message ids
-        var msgIds = self.getMessageIds()
+        var msgIds = dcContext.getChatMsgs(chatId: chatId)
         let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
         if freshMsgsCount > 0 && msgIds.count >= freshMsgsCount {
             let index = msgIds.count - freshMsgsCount
@@ -1037,10 +1037,6 @@ class ChatViewController: UITableViewController {
         } else {
             emptyStateView.isHidden = true
         }
-    }
-    
-    private func getMessageIds() -> [Int] {
-        return dcContext.getMessageIds(chatId: chatId)
     }
 
     @objc private func saveDraft() {
