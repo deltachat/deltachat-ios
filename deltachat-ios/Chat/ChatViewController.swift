@@ -972,7 +972,7 @@ class ChatViewController: UITableViewController {
     private func scrollToLastUnseenMessage() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            if let markerMessageIndex = self.messageIds.index(of: Int(DC_MSG_ID_MARKER1)) {
+            if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
                 let indexPath = IndexPath(row: markerMessageIndex, section: 0)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             } else {
@@ -1393,7 +1393,7 @@ class ChatViewController: UITableViewController {
             let msg = dcContext.getMessage(id: messageId)
             if msg.state != DC_STATE_OUT_DRAFT,
                msg.chatId == chatId {
-                if let newMsgMarkerIndex = messageIds.index(of: Int(DC_MSG_ID_MARKER1)) {
+                if let newMsgMarkerIndex = messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
                     messageIds.remove(at: newMsgMarkerIndex)
                 }
                 insertMessage(msg)
