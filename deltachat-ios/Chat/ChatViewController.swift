@@ -1386,7 +1386,7 @@ class ChatViewController: UITableViewController {
     }
 
     func updateMessage(_ messageId: Int) {
-        if messageIds.firstIndex(where: { $0 == messageId }) != nil {
+        if messageIds.firstIndex(of: messageId) != nil {
             reloadData()
         } else {
             // new outgoing message
