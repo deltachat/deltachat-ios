@@ -38,8 +38,9 @@ public class ChatInputBar: InputBarAccessoryView {
         setupScrollDownButton()
         super.setup()
         backgroundColor = .clear
-        backgroundView.backgroundColor = DcColors.defaultBackgroundColor
-        isTranslucent = true
+        backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
+        backgroundView.addSubview(blurView)
+        blurView.fillSuperview()
     }
     
     @objc func onScrollDownPressed() {
