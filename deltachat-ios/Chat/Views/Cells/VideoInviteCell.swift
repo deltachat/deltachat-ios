@@ -66,9 +66,12 @@ public class VideoInviteCell: UITableViewCell {
         label.backgroundColor = DcColors.systemMessageBackgroundColor
         return label
     }()
+    
+    private var showSelectionBackground: Bool
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        showSelectionBackground = false
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         clipsToBounds = false
         backgroundColor = .clear
@@ -108,7 +111,6 @@ public class VideoInviteCell: UITableViewCell {
             bottomLabel.constraintAlignLeadingMaxTo(contentView, paddingLeading: UIDevice.current.userInterfaceIdiom == .pad ? 150 : 50),
             bottomLabel.constraintAlignBottomTo(contentView, paddingBottom: 12)
         ])
-        selectionStyle = .none
     }
 
     func update(dcContext: DcContext, msg: DcMsg) {
@@ -137,6 +139,15 @@ public class VideoInviteCell: UITableViewCell {
         messageBackgroundContainer.update(rectCorners: corners, color: DcColors.systemMessageBackgroundColor)
     }
 
+    public override func setSelected(_ selected: Bool, animated: Bool) {
+         super.setSelected(selected, animated: animated)
+         if selected && showSelectionBackground {
+             selectedBackgroundView?.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.5)
+         } else {
+             selectedBackgroundView?.backgroundColor = .clear
+         }
+     }
+
     public override func prepareForReuse() {
         super.prepareForReuse()
         messageLabel.text = nil
@@ -146,6 +157,12 @@ public class VideoInviteCell: UITableViewCell {
         openLabel.text = nil
         openLabel.attributedText = nil
         avatarView.reset()
+        showSelectionBackground = false
     }
+}
 
+extension VideoInviteCell: SelectableCell {
+    public func showSelectionBackground(_ show: Bool) {
+        showSelectionBackground = show
+    }
 }
