@@ -81,6 +81,7 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
     }
 
     override func viewDidLoad() {
+        self.title = String.localized("pref_background")
         setupSubviews()
     }
 
