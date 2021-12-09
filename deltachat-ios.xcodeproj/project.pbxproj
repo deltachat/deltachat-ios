@@ -72,6 +72,7 @@
 		30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */; };
+		30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AAD71A2762869600DE3DC1 /* SelectableCell.swift */; };
 		30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */; };
@@ -324,6 +325,7 @@
 		30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOnDemandViewController.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageCell.swift; sourceTree = "<group>"; };
+		30AAD71A2762869600DE3DC1 /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEphemeralMessageController.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 				30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */,
 				3008CB7124F93EB900E6A617 /* AudioMessageCell.swift */,
 				3010968826838A040032CBA0 /* VideoInviteCell.swift */,
+				30AAD71A2762869600DE3DC1 /* SelectableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1283,6 +1286,7 @@
 				303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */,
 				3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */,
 				AED62BCE247687E6009E220D /* LocationStreamingIndicator.swift in Sources */,
+				30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */,
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
 				AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,

@@ -168,8 +168,11 @@ public class BaseMessageCell: UITableViewCell {
         container.isUserInteractionEnabled = true
         return container
     }()
+    
+    private var showSelectionBackground: Bool
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        showSelectionBackground = false
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         clipsToBounds = false
         backgroundColor = .none
@@ -275,8 +278,8 @@ public class BaseMessageCell: UITableViewCell {
 
     public override func setSelected(_ selected: Bool, animated: Bool) {
          super.setSelected(selected, animated: animated)
-         if selected {
-             selectedBackgroundView?.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.25)
+         if selected && showSelectionBackground {
+             selectedBackgroundView?.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.5)
          } else {
              selectedBackgroundView?.backgroundColor = .clear
          }
@@ -443,6 +446,7 @@ public class BaseMessageCell: UITableViewCell {
         messageLabel.delegate = nil
         quoteView.prepareForReuse()
         actionButton.isEnabled = true
+        showSelectionBackground = false
     }
 
     // MARK: - Context menu
@@ -507,6 +511,12 @@ extension BaseMessageCell: MessageLabelDelegate {
     public func didSelectHashtag(_ hashtag: String) {}
 
     public func didSelectCustom(_ pattern: String, match: String?) {}
+}
+
+extension BaseMessageCell: SelectableCell {
+    public func showSelectionBackground(_ show: Bool) {
+        showSelectionBackground = show
+    }
 }
 
 // MARK: - BaseMessageCellDelegate
