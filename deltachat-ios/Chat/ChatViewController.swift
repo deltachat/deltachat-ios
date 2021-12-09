@@ -715,6 +715,7 @@ class ChatViewController: UITableViewController {
         }
 
         cell.baseDelegate = self
+        cell.showSelectionBackground(tableView.isEditing)
         cell.update(dcContext: dcContext,
                     msg: message,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
@@ -829,6 +830,14 @@ class ChatViewController: UITableViewController {
                 self?.dcContext.markSeenMessages(messageIds: [UInt32(id)])
             }
         }
+    }
+
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let cell = tableView.cellForRow(at: indexPath) as? SelectableCell {
+            cell.showSelectionBackground(tableView.isEditing)
+            return indexPath
+        }
+        return nil
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -1643,6 +1652,9 @@ class ChatViewController: UITableViewController {
             if tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false {
                 tableView.deselectRow(at: indexPath, animated: false)
             } else {
+                if let cell = tableView.cellForRow(at: indexPath) as? SelectableCell {
+                    cell.showSelectionBackground(true)
+                }
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
             handleEditingBar()
