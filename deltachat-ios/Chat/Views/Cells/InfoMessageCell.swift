@@ -19,6 +19,7 @@ class InfoMessageCell: UITableViewCell {
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
         label.font = UIFont.preferredFont(for: .subheadline, weight: .medium)
+        label.textColor = DcColors.systemMessageFontColor
         return label
     }()
 
