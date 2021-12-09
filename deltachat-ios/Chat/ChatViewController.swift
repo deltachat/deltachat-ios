@@ -833,6 +833,10 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return tableView.cellForRow(at: indexPath) as? SelectableCell != nil
+    }
+
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let cell = tableView.cellForRow(at: indexPath) as? SelectableCell {
             cell.showSelectionBackground(tableView.isEditing)
