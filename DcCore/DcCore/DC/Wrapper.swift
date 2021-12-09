@@ -142,23 +142,13 @@ public class DcContext {
         return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
     }
 
-    // TODO: remove count and from parameters if we don't use it
-    public func getMessageIds(chatId: Int, count: Int? = nil, from: Int? = nil) -> [Int] {
+    public func getChatMsgs(chatId: Int) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
-        let cMessageIds = getChatMessages(chatId: chatId)
+        let cMessageIds = dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(DC_GCM_ADDDAYMARKER), 0)
         let diff = CFAbsoluteTimeGetCurrent() - start
-        logger?.info("⏰ getMessageIds: \(diff) s")
+        logger?.info("⏰ getChatMsgs: \(diff) s")
 
-        let ids: [Int]
-        if let from = from {
-            // skip last part
-            ids = DcUtils.copyAndFreeArrayWithOffset(inputArray: cMessageIds, len: count, skipEnd: from)
-        } else if let count = count {
-            // skip first part
-            ids = DcUtils.copyAndFreeArrayWithLen(inputArray: cMessageIds, len: count)
-        } else {
-            ids = DcUtils.copyAndFreeArray(inputArray: cMessageIds)
-        }
+        let ids = DcUtils.copyAndFreeArray(inputArray: cMessageIds)
         return ids
     }
 
@@ -380,10 +370,6 @@ public class DcContext {
         messageIds.withUnsafeBufferPointer { ptr in
             dc_markseen_msgs(contextPointer, ptr.baseAddress, Int32(ptr.count))
         }
-    }
-
-    private func getChatMessages(chatId: Int) -> OpaquePointer {
-        return dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(DC_GCM_ADDDAYMARKER), 0)
     }
     
     public func getMsgInfo(msgId: Int) -> String {

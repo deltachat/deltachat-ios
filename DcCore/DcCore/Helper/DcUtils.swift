@@ -58,43 +58,6 @@ public struct DcUtils {
         return acc
     }
 
-    static func copyAndFreeArrayWithLen(inputArray: OpaquePointer?, len: Int = 0) -> [Int] {
-        var acc: [Int] = []
-        let arrayLen = dc_array_get_cnt(inputArray)
-        let start = max(0, arrayLen - len)
-        for i in start ..< arrayLen {
-            let e = dc_array_get_id(inputArray, i)
-            acc.append(Int(e))
-        }
-        dc_array_unref(inputArray)
-
-        return acc
-    }
-
-    static func copyAndFreeArrayWithOffset(inputArray: OpaquePointer?, len: Int? = 0, from: Int = 0, skipEnd: Int = 0) -> [Int] {
-        let lenArray = dc_array_get_cnt(inputArray)
-        let length = len ?? lenArray
-        if lenArray <= skipEnd || lenArray == 0 {
-            dc_array_unref(inputArray)
-            return []
-        }
-
-        let start = lenArray - 1 - skipEnd
-        let end = max(0, start - length)
-        let finalLen = start - end + (length > 0 ? 0 : 1)
-        var acc: [Int] = [Int](repeating: 0, count: finalLen)
-
-        for i in stride(from: start, to: end, by: -1) {
-            let index = finalLen - (start - i) - 1
-            acc[index] = Int(dc_array_get_id(inputArray, i))
-        }
-
-        dc_array_unref(inputArray)
-        print("got: \(from) \(length) \(lenArray) - \(acc)")
-
-        return acc
-    }
-
     public static func getMimeTypeForPath(path: String) -> String {
         let url = NSURL(fileURLWithPath: path)
         let pathExtension = url.pathExtension
