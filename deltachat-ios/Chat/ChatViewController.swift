@@ -684,6 +684,7 @@ class ChatViewController: UITableViewController {
         switch Int32(message.type) {
         case DC_MSG_VIDEOCHAT_INVITATION:
             let videoInviteCell = tableView.dequeueReusableCell(withIdentifier: "video_invite", for: indexPath) as? VideoInviteCell ?? VideoInviteCell()
+            videoInviteCell.showSelectionBackground(tableView.isEditing)
             videoInviteCell.update(dcContext: dcContext, msg: message)
             return videoInviteCell
 
