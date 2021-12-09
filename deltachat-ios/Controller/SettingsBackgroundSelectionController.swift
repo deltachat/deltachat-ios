@@ -40,13 +40,20 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         return btn
     }()
 
+    lazy var blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .light)
+        let view = UIVisualEffectView(effect: blurEffect)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private lazy var container: UIStackView = {
         let container = UIStackView(arrangedSubviews: [selectDefaultButton, selectBackgroundButton])
         container.translatesAutoresizingMaskIntoConstraints = false
         container.distribution = .fillEqually
         container.axis = .horizontal
         container.alignment = .fill
-        container.backgroundColor = DcColors.systemMessageBackgroundColor
+        container.backgroundColor = DcColors.defaultTransparentBackgroundColor
         return container
     }()
 
@@ -87,12 +94,17 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
 
     private func setupSubviews() {
         view.addSubview(backgroundContainer)
+        view.addSubview(blurView)
         view.addSubview(container)
 
         view.addConstraints([
             container.constraintAlignBottomTo(view),
             container.constraintAlignLeadingTo(view),
             container.constraintAlignTrailingTo(view),
+            blurView.constraintAlignTopTo(container),
+            blurView.constraintAlignLeadingTo(container),
+            blurView.constraintAlignTrailingTo(container),
+            blurView.constraintAlignBottomTo(container),
             backgroundContainer.constraintAlignBottomTo(view),
             backgroundContainer.constraintAlignLeadingTo(view),
             backgroundContainer.constraintAlignTrailingTo(view),

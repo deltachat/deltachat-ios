@@ -71,7 +71,7 @@ public class DraftArea: UIView, InputItem {
     public func setupSubviews() {
         addSubview(blurView)
         addSubview(mainContentView)
-        backgroundColor = DcColors.defaultBackgroundColor.withAlphaComponent(0.75)
+        backgroundColor = DcColors.defaultTransparentBackgroundColor
         blurView.fillSuperview()
         mainContentView.fillSuperview()
     }
