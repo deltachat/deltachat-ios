@@ -724,6 +724,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
         messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
         messageInputBar.setStackViewItems([], forStack: .top, animated: false)
+        messageInputBar.onScrollDownButtonPressed = scrollToBottom
     }
 
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
