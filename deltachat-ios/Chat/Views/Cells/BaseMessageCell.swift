@@ -394,8 +394,8 @@ public class BaseMessageCell: UITableViewCell {
                 quoteView.setImagePreview(quoteMsg.image)
                 if quoteMsg.isForwarded {
                     quoteView.senderTitle.text = String.localized("forwarded_message")
-                    quoteView.senderTitle.textColor = DcColors.grayDateColor
-                    quoteView.citeBar.backgroundColor = DcColors.grayDateColor
+                    quoteView.senderTitle.textColor = DcColors.unknownSender
+                    quoteView.citeBar.backgroundColor = DcColors.unknownSender
                 } else {
                     let contact = dcContext.getContact(id: quoteMsg.fromContactId)
                     quoteView.senderTitle.text = quoteMsg.getSenderName(contact, markOverride: true)
