@@ -57,7 +57,7 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
     private lazy var searchResultLabel: UILabel = {
         let view = UILabel(frame: .zero)
         view.font = UIFont.preferredFont(for: .body, weight: .regular)
-        view.textColor = DcColors.grayDateColor
+        view.textColor = DcColors.grayTextColor
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
