@@ -36,7 +36,7 @@ public class BaseMessageCell: UITableViewCell {
             mainContentBelowTopLabelConstraint?.isActive = !newValue
             mainContentUnderTopLabelConstraint?.isActive = newValue
             topLabel.backgroundColor = newValue ?
-                UIColor(alpha: 200, red: 20, green: 20, blue: 20) :
+                DcColors.systemMessageBackgroundColor :
                 UIColor(alpha: 0, red: 0, green: 0, blue: 0)
         }
     }
@@ -297,7 +297,17 @@ public class BaseMessageCell: UITableViewCell {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
-            topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor : DcColors.defaultTextColor
+            let topLabelTextColor: UIColor
+            if msg.isForwarded {
+                if topCompactView {
+                    topLabelTextColor = DcColors.coreDark05
+                } else {
+                    topLabelTextColor = DcColors.unknownSender
+                }
+            } else {
+                topLabelTextColor = DcColors.defaultTextColor
+            }
+            topLabel.textColor = topLabelTextColor
             leadingConstraint?.isActive = false
             leadingConstraintGroup?.isActive = false
             trailingConstraint?.isActive = false
@@ -306,8 +316,19 @@ public class BaseMessageCell: UITableViewCell {
         } else {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") :
                 showName ? msg.getSenderName(fromContact, markOverride: true) : nil
-            topLabel.textColor = msg.isForwarded ? DcColors.grayDateColor :
-                showName ? fromContact.color : DcColors.defaultTextColor
+            let topLabelTextColor: UIColor
+            if msg.isForwarded {
+                if topCompactView {
+                    topLabelTextColor = DcColors.coreDark05
+                } else {
+                    topLabelTextColor = DcColors.unknownSender
+                }
+            } else if showName {
+                topLabelTextColor = fromContact.color
+            } else {
+                topLabelTextColor = DcColors.defaultTextColor
+            }
+            topLabel.textColor = topLabelTextColor
             leadingConstraintCurrentSender?.isActive = false
             trailingConstraintCurrentSender?.isActive = false
             if showName {
