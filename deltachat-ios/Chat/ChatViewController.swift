@@ -660,7 +660,7 @@ class ChatViewController: UITableViewController {
                 }
 
                 let nextMessage = dcContext.getMessage(id: nextMessageId)
-                cell.update(text: DateUtils.getDateString(date: nextMessage.sentDate))
+                cell.update(text: DateUtils.getDateString(date: nextMessage.sentDate), weight: .bold)
             } else {
                 cell.update(text: "ErrDaymarker")
             }
