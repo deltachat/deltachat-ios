@@ -27,7 +27,7 @@ public class VideoInviteCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.setImage(#imageLiteral(resourceName: "ic_videochat").withRenderingMode(.alwaysTemplate))
-        view.tintColor = DcColors.defaultInverseColor
+        view.tintColor = .white
         view.imagePadding = 3
         return view
     }()
@@ -39,6 +39,7 @@ public class VideoInviteCell: UITableViewCell {
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
         label.font = UIFont.preferredFont(for: .body, weight: .regular)
+        label.textColor = DcColors.systemMessageFontColor
         return label
     }()
 
@@ -49,6 +50,7 @@ public class VideoInviteCell: UITableViewCell {
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
+        label.textColor = DcColors.systemMessageFontColor
         return label
     }()
 
