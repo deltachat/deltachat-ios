@@ -39,7 +39,7 @@ public class ChatInputBar: InputBarAccessoryView {
         super.setup()
         backgroundColor = .clear
         backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
-        backgroundView.addSubview(blurView)
+        insertSubview(blurView, at: 0)
         blurView.fillSuperview()
     }
     
