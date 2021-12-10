@@ -129,7 +129,7 @@ public class VideoInviteCell: UITableViewCell {
             avatarView.setImage(profileImage)
         }
 
-        bottomLabel.attributedText = MessageUtils.getFormattedBottomLine(message: msg, tintColor: nil)
+        bottomLabel.attributedText = MessageUtils.getFormattedBottomLine(message: msg, tintColor: DcColors.coreDark05)
         
         var corners: UIRectCorner = []
         corners.formUnion(.topLeft)
