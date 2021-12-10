@@ -18,7 +18,6 @@ class InfoMessageCell: UITableViewCell {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
-        label.font = UIFont.preferredFont(for: .subheadline, weight: .medium)
         label.textColor = DcColors.systemMessageFontColor
         return label
     }()
@@ -52,8 +51,13 @@ class InfoMessageCell: UITableViewCell {
         selectionStyle = .none
     }
 
-    func update(text: String?) {
+    func update(text: String?, weight: UIFont.Weight? = nil) {
         messageLabel.text = text
+        if let weight = weight {
+            messageLabel.font = UIFont.preferredFont(for: .subheadline, weight: weight)
+        } else {
+            messageLabel.font =  UIFont.preferredFont(for: .subheadline, weight: .medium)
+        }
         var corners: UIRectCorner = []
         corners.formUnion(.topLeft)
         corners.formUnion(.bottomLeft)
