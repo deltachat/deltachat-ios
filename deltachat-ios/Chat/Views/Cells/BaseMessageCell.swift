@@ -49,8 +49,13 @@ public class BaseMessageCell: UITableViewCell {
         set {
             mainContentAboveActionBtnConstraint?.isActive = !newValue
             mainContentUnderBottomLabelConstraint?.isActive = newValue
-            bottomLabel.backgroundColor = newValue ?
-                UIColor(alpha: 200, red: 50, green: 50, blue: 50) :
+        }
+    }
+
+    public var showBottomLabelBackground: Bool {
+        didSet {
+            bottomLabel.backgroundColor = showBottomLabelBackground ?
+                DcColors.systemMessageBackgroundColor :
                 UIColor(alpha: 0, red: 0, green: 0, blue: 0)
         }
     }
@@ -173,6 +178,7 @@ public class BaseMessageCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         showSelectionBackground = false
+        showBottomLabelBackground = false
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         clipsToBounds = false
         backgroundColor = .none
@@ -231,6 +237,7 @@ public class BaseMessageCell: UITableViewCell {
 
         topCompactView = false
         bottomCompactView = false
+        showBottomLabelBackground = false
         isActionButtonHidden = true
         
 
@@ -346,8 +353,16 @@ public class BaseMessageCell: UITableViewCell {
                                           color: getBackgroundColor(dcContext: dcContext, message: msg))
 
         if !msg.isInfo {
+            var tintColor: UIColor
+            if showBottomLabelBackground {
+                tintColor = DcColors.coreDark05
+            } else if msg.isFromCurrentSender {
+                tintColor = DcColors.checkmarkGreen
+            } else {
+                tintColor = DcColors.incomingMessageSecondaryTextColor
+            }
             bottomLabel.attributedText = MessageUtils.getFormattedBottomLine(message: msg,
-                                                                             tintColor: !(isTransparent || bottomCompactView) ? DcColors.checkmarkGreen : nil)
+                                                                             tintColor: tintColor)
         }
 
         if let quoteText = msg.quoteText {

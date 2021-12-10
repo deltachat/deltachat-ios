@@ -23,6 +23,9 @@ public struct DcColors {
     public static let defaultTextColor = UIColor.themeColor(light: .darkText, dark: .white)
     public static let grayTextColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
     public static let grayDateColor = UIColor.themeColor(lightHex: "999999", darkHex: "bbbbbb") // slight variations of lightGray (#aaaaaa)
+    public static let coreDark05 = UIColor.init(hexString: "EFEFEF") // naming according to DC Android
+    public static let grey50 = UIColor.init(hexString: "808080") // naming according to DC Android
+    public static let incomingMessageSecondaryTextColor = UIColor.themeColor(light: grey50, dark: coreDark05)
     public static let middleGray = UIColor(hexString: "848ba7")
     public static let secondaryTextColor = UIColor.themeColor(lightHex: "848ba7", darkHex: "a5abc0")
     public static let inputFieldColor =  UIColor.themeColor(

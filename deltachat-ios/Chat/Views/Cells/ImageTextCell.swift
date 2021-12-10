@@ -46,6 +46,7 @@ class ImageTextCell: BaseMessageCell {
         messageLabel.text = msg.text
         let hasEmptyText = msg.text?.isEmpty ?? true
         bottomCompactView = msg.type != DC_MSG_STICKER && !msg.hasHtml && hasEmptyText
+        showBottomLabelBackground = !msg.hasHtml && hasEmptyText
         mainContentView.spacing = msg.text?.isEmpty ?? false ? 0 : 6
         topCompactView = msg.quoteText == nil ? true : false
         isTransparent = msg.type == DC_MSG_STICKER
