@@ -36,8 +36,8 @@ public class QuotePreview: DraftPreview {
                 quoteView.setImagePreview(quoteMessage.image)
                 if quoteMessage.isForwarded {
                     quoteView.senderTitle.text = String.localized("forwarded_message")
-                    quoteView.senderTitle.textColor = DcColors.grayDateColor
-                    quoteView.citeBar.backgroundColor = DcColors.grayDateColor
+                    quoteView.senderTitle.textColor = DcColors.unknownSender
+                    quoteView.citeBar.backgroundColor = DcColors.unknownSender
                 } else {
                     let contact = draft.dcContext.getContact(id: quoteMessage.fromContactId)
                     quoteView.senderTitle.text = quoteMessage.getSenderName(contact, markOverride: true)

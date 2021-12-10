@@ -4,7 +4,7 @@ import DcCore
 public class QuoteView: UIView {
     public lazy var citeBar: UIView = {
         let view = UIView()
-        view.backgroundColor = DcColors.grayDateColor
+        view.backgroundColor = DcColors.unknownSender
         view.clipsToBounds = true
         view.layer.cornerRadius = 1.5
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +99,7 @@ public class QuoteView: UIView {
         quote.attributedText = nil
         senderTitle.text = nil
         senderTitle.attributedText = nil
-        citeBar.backgroundColor = DcColors.grayDateColor
+        citeBar.backgroundColor = DcColors.unknownSender
         imagePreview.image = nil
         imageWidthConstraint?.constant = 0
     }
