@@ -393,7 +393,7 @@ class ContactDetailViewController: UITableViewController {
 
     private func showDeleteChatConfirmationAlert() {
         let alert = UIAlertController(
-            title: nil,
+            title: viewModel.context.getChat(chatId: viewModel.chatId).name,
             message: String.localized("ask_delete_chat_desktop"),
             preferredStyle: .safeActionSheet
         )
