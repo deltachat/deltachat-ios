@@ -478,7 +478,7 @@ class ChatListController: UITableViewController {
     private func showDeleteChatConfirmationAlert(chatId: Int) {
         let alert = UIAlertController(
             title: nil,
-            message: String.localized("ask_delete_chat_desktop"),
+            message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name),
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
