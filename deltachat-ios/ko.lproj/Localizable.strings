@@ -22,7 +22,7 @@
 "rejoin" = "다시 참가";
 "delete" = "삭제";
 "info" = "정보";
-"update" = "최신 정보";
+"update" = "업데이트";
 "emoji" = "이모지";
 "attachment" = "첨부 파일";
 "back" = "뒤";
@@ -46,14 +46,18 @@
 "loading" = "로딩 중...";
 "hide" = "숨기기";
 "activate" = "활성화";
+"load_remote_content" = "원격 이미지 불러오기";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "원격 이미지는 당신을 추적하기 위해 사용될 수 있습니다.\n\n이 설정은 폰트와 다른 콘텐츠를 불러오는 것도 허용합니다. 만약 비활성화되어도, 내장 또는 캐시된 이미지를 볼 수 있습니다.\n\n원격 이미지를 불러올까요?";
 "always" = "항상";
+"once" = "한번만";
 "show_password" = "비밀번호 보이기";
 "hide_password" = "비밀번호 숨기기";
 "not_now" = "나중에";
 "never" = "절대";
 "one_moment" = "잠시만 기다려 주세요…";
 "done" = "완료";
-"undo" = "실행취소";
+"undo" = "실행 취소";
 "offline" = "오프라인";
 // Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
 "next" = "확인";
@@ -75,12 +79,15 @@
 "this_month" = "이번달";
 "last_week" = "저번 주";
 "last_month" = "저번 달";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "%1$@에 마지막 접속 ";
+"last_seen_unknown" = "마지막 접속: 알 수 없음";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 
 "self" = "나";
-"draft" = "임시저장";
-"image" = "사진";
+"draft" = "임시 저장";
+"image" = "이미지";
 // Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "답장";
 "gif" = "GIF";
@@ -94,8 +101,9 @@
 // %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "%1$@에 의해 전달됨";
 "video" = "동영상";
-"documents" = "문서들";
+"documents" = "문서";
 "contact" = "연락처";
+"verified_contact" = "확인된 연락처";
 "camera" = "카메라";
 // "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "캡쳐";
@@ -135,10 +143,13 @@
 "menu_new_contact" = "대화상대 추가";
 "menu_new_chat" = "채팅 시작";
 "menu_new_group" = "새 그룹";
-"menu_new_verified_group" = "새로 확인 된 그룹";
+// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+"new_group_or_subject" = "새 그룹이나 주제";
+"menu_new_verified_group" = "새 확인된 그룹";
 "menu_send" = "보내기";
 "menu_toggle_keyboard" = "이모티콘 키보드 전환";
 "menu_edit_group" = "그룹 편집";
+"menu_group_name_and_image" = "그룹 이름과 이미지";
 "menu_show_map" = "지도 보이기";
 "menu_archive_chat" = "채팅 보관";
 "menu_unarchive_chat" = "보관되지 않은 채팅";
@@ -155,7 +166,8 @@
 "menu_copy_link_to_clipboard" = "링크 복사";
 "menu_copy_text_to_clipboard" = "텍스트 복사";
 "menu_copy_image_to_clipboard" = "이미지 복사";
-"paste_from_clipboard" = "클립보드에서 복사";
+"menu_copy_email_to_clipboard" = "이메일 복사";
+"paste_from_clipboard" = "클립보드에서 붙여넣기";
 "menu_forward" = "메시지 전달";
 "menu_resend" = "메시지 다시 보내기";
 "menu_reply" = "메시지 답장";
@@ -179,12 +191,14 @@
 "menu_edit_name" = "이름 편집";
 "menu_settings" = "설정";
 "menu_advanced" = "고급 설정";
-"menu_deaddrop" = "사서함";
+"menu_deaddrop" = "연락 요청";
+"menu_view_profile" = "프로필 보기";
 "menu_zoom_in" = "확대";
 "menu_zoom_out" = "축소";
 "menu_save_log" = "로그 저장";
 "copy_json" = "JSON 복사";
-"device_talk" = "장치 메시지";
+"device_talk" = "기기 메시지";
+"edit_contact" = "연락처 수정";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "채팅 고정";
 // Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
@@ -199,11 +213,14 @@
 "mute_for_seven_days" = "7일 동안 알림 일시 끄기";
 "mute_forever" = "영원히";
 
+"share_location_once" = "한 번";
 "share_location_for_5_minutes" = "5분 동안";
 "share_location_for_30_minutes" = "30분 동안";
 "share_location_for_one_hour" = "1시간 동안";
 "share_location_for_two_hours" = "2시간 동안";
 "share_location_for_six_hours" = "6시간 동안";
+
+"file_saved_to" = "파일 \"%1$@\"에 저장됨.";
 
 // get confirmations
 "ask_leave_group" = "이 그룹에서 나가시겠습니까?";

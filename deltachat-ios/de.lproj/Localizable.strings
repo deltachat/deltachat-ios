@@ -300,6 +300,8 @@
 "chat_camera_unavailable" = "Kamera nicht verfügbar.";
 "chat_unable_to_record_audio" = "Audio kann nicht aufgenommen werden.";
 "chat_no_messages_hint" = "Eine Nachricht an %1$@ senden:\n\n• Es ist in Ordnung, wenn %2$@ kein Delta Chat verwendet.\n\n• Die Übermittlung der ersten Nachricht kann eine Weile dauern und erfolgt unverschlüsselt. ";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Senden Sie eine Nachricht. Es ist in Ordnung, wenn %1$@ kein Delta Chat hat.";
 "chat_new_broadcast_hint" = "In Broadcast-Listen erhalten die Empfänger die Nachrichten in den privaten Chats mit Ihnen.\n\nDie Empfänger wissen nicht, wer die anderen Empfänger sind.";
 "chat_new_group_hint" = "Andere sehen diese Gruppe erst, nachdem Sie eine erste Nachricht gesendet haben.";
 "chat_record_slide_to_cancel" = "Schieben, um abzubrechen";
@@ -581,6 +583,7 @@
 "up_to_x_most_worse_quality_images" = "Bis zu %1$@, die meisten Bilder schlechter Qualität";
 "up_to_x_most_balanced_quality_images" = "Bis zu %1$@, die meisten Bilder ausgewogener Qualität";
 "no_limit" = "Keine Begrenzung";
+"download_failed" = "Download gescheitert";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ Nachricht";
 // %1$s will be replaced by human-readable date and time

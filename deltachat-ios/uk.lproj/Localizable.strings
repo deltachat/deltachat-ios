@@ -581,6 +581,7 @@
 "up_to_x_most_worse_quality_images" = "До %1$@, зображення найгіршої якості";
 "up_to_x_most_balanced_quality_images" = "До %1$@, найбільш збалансована якість зображень";
 "no_limit" = "Без обмежень";
+"download_failed" = "Не вдалося завантажити";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "Повідомлення розміром %1$@\'";
 // %1$s will be replaced by human-readable date and time

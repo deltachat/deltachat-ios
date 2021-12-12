@@ -100,6 +100,20 @@
 			<string>%d 수신자</string>
 		</dict>
 	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%s에게 %d파일을 보낼까요?</string>
+		</dict>
+	</dict>
 	<key>chat_n_new_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

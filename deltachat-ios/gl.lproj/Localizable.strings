@@ -581,6 +581,7 @@
 "up_to_x_most_worse_quality_images" = "Ata %1$@, a maioría de imaxes da peor calidade";
 "up_to_x_most_balanced_quality_images" = "Ata %1$@, a maioría de imaxes de calidade equilibrada";
 "no_limit" = "Sen límite";
+"download_failed" = "Fallou a descarga";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ mensaxe";
 // %1$s will be replaced by human-readable date and time
