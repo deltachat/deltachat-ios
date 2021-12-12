@@ -1031,7 +1031,7 @@ class ChatViewController: UITableViewController {
             } else if dcChat.isDeviceTalk {
                 emptyStateView.text = String.localized("device_talk_explain")
             } else {
-                emptyStateView.text = String.localizedStringWithFormat(String.localized("chat_no_messages_hint"), dcChat.name, dcChat.name)
+                emptyStateView.text = String.localizedStringWithFormat(String.localized("chat_new_one_to_one_hint"), dcChat.name)
             }
             emptyStateView.isHidden = false
         } else {
