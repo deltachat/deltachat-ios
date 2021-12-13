@@ -94,6 +94,15 @@ class AppCoordinator {
         }
     }
 
+    func isShowingChat(chatId: Int) -> Bool {
+        if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
+           let chatViewController = rootController.viewControllers.last as? ChatViewController,
+           chatViewController.chatId == chatId {
+            return true
+        }
+        return false
+    }
+
     func showChat(chatId: Int, msgId: Int? = nil, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
 

@@ -457,7 +457,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let userInfo = response.notification.request.content.userInfo
              if let chatId = userInfo["chat_id"] as? Int,
                  let msgId = userInfo["message_id"] as? Int {
-                 appCoordinator.showChat(chatId: chatId, msgId: msgId, animated: false, clearViewControllerStack: true)
+                 if !appCoordinator.isShowingChat(chatId: chatId) {
+                     appCoordinator.showChat(chatId: chatId, msgId: msgId, animated: false, clearViewControllerStack: true)
+                 }
              }
         }
 
