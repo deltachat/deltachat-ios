@@ -2,21 +2,67 @@
 "app_name" = "Delta Chat";
 "ok" = "確定";
 "cancel" = "取消";
+"clear_search" = "清除搜尋";
 "yes" = "是";
 "no" = "否";
-"on" = "開";
-"off" = "關";
+"select" = "選擇";
+"on" = "開啟";
+"off" = "關閉";
 "def" = "預設";
+"default_value" = "預設 (%1$@)";
+"default_value_as_above" = "預設 (同上)";
 "custom" = "自訂";
 "none" = "無";
+"automatic" = "自動";
+"strict" = "嚴格";
 "open" = "開啟";
+"download" = "下載";
+"downloading" = "下載中⋯";
+"open_attachment" = "開啟附件";
+"join" = "加入";
+"rejoin" = "重新加入";
 "delete" = "刪除";
+"info" = "資訊";
+"update" = "更新";
+"emoji" = "表情符號";
+"attachment" = "附件";
+"back" = "返回";
+"close" = "關閉";
+"forward" = "轉發";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+"archive" = "封存";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+"unarchive" = "取消封存";
+"mute" = "靜音";
 "ephemeral_messages" = "自動銷毀訊息";
-"not_now" = "不要";
+"ephemeral_messages_hint" = "這些設定將會套用在所有使用 Delta Chat 的聊天成員上。但他們依然可以複製、儲存和轉發訊息，或使用其他的電子郵件客戶端。";
+"save" = "儲存";
+"chat" = "聊天";
+"media" = "多媒體";
+"profile" = "個人檔案";
+"main_menu" = "主選單";
+"start_chat" = "開始對話";
+"show_full_message" = "顯示完整訊息⋯";
+"show_full_message_in_browser" = "在瀏覽器中顯示完整訊息⋯";
+// this is shown as placeholder when something is loading at some places
+"loading" = "載入中⋯";
+"hide" = "隱藏";
+"activate" = "啟用";
+"load_remote_content" = "載入遠端圖片";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "遠端圖檔可以用來追蹤你。\n\n這個設定也會同時載入字體和其他內容。即使這個設定被關閉，你依然還是會看到嵌入或快取圖檔。\n\n要載入遠端圖檔嗎？";
+"always" = "永遠";
+"once" = "僅一次";
+"show_password" = "顯示密碼";
+"hide_password" = "隱藏密碼";
+"not_now" = "現在不要";
 "never" = "永遠不要";
-"one_moment" = "請稍候…";
+"one_moment" = "請稍候⋯";
 "done" = "完成";
 "undo" = "復原";
+"offline" = "離線";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+"next" = "下一個";
 "error" = "錯誤";
 "error_x" = "錯誤: %1$@";
 "no_app_to_handle_data" = "沒有可以處理這種資料的應用程式";
@@ -27,31 +73,51 @@
 "email_address" = "電子郵件信箱";
 "bad_email_address" = "錯誤的電子郵件信箱";
 "password" = "密碼";
+"existing_password" = "既有密碼";
 "now" = "現在";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "注意";
 "today" = "今天";
 "yesterday" = "昨天";
 "this_week" = "本週";
 "this_month" = "本月";
 "last_week" = "上週";
 "last_month" = "上個月";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "最後上線時間：%1$@";
+"last_seen_unknown" = "最後上線時間：未知";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
 "self" = "我";
 "draft" = "草稿";
 "image" = "圖片";
-"gif" = "Gif";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "回覆";
+"gif" = "GIF";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "貼圖";
 "images" = "圖片";
 "audio" = "音訊";
 "voice_message" = "語音訊息";
+"forwarded" = "已轉發";
 "forwarded_message" = "轉發的訊息";
-"video" = "視訊";
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+"forwarded_by" = "由%1$@轉發";
+"video" = "影片";
 "documents" = "文件";
 "contact" = "聯絡人";
 "verified_contact" = "驗證過的聯絡人";
 "camera" = "相機";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+"capture" = "拍攝";
+"switch_camera" = "切換相機";
+"toggle_fullscreen" = "切換全螢幕模式";
 "location" = "所在地";
 "gallery" = "相簿";
+"images_and_videos" = "圖片和影片";
 "file" = "檔案";
+"files" = "檔案";
 "unknown" = "未知";
 
 "green" = "綠色";
@@ -63,23 +129,28 @@
 "magenta" = "洋紅色";
 "white" = "白色";
 
+"zoom" = "縮放";
+"extra_small" = "最小";
 "small" = "小";
 "normal" = "正常";
 "large" = "大";
-"extra_large" = "特大";
+"extra_large" = "最大";
 
 "fast" = "快";
 "slow" = "慢";
-
-"message_delivered" = "訊息已抵達";
-"message_read" = "訊息已讀";
-
 
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "新增聯絡人";
 "menu_new_chat" = "新增對話";
 "menu_new_group" = "新增群組";
-"menu_new_verified_group" = "新增驗證專用群組";
+// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+"new_group_or_subject" = "新增群組或主題";
+"menu_new_verified_group" = "新增已驗證群組";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "廣播列表";
+"broadcast_lists" = "廣播列表";
+"new_broadcast_list" = "新增廣播列表";
+"add_recipients" = "新增對象";
 "menu_send" = "送出";
 "menu_toggle_keyboard" = "切換表情符號鍵盤";
 "menu_edit_group" = "編輯群組";
@@ -91,62 +162,116 @@
 "menu_add_attachment" = "新增附件";
 "menu_leave_group" = "退出群組";
 "menu_delete_chat" = "刪除對話";
+"ask_delete_named_chat" = "你確定你要刪除\"%1$@\"？";
 "menu_delete_messages" = "刪除訊息";
-"menu_delete_image" = "刪除圖片";
-"menu_delete_locations" = "刪除所有地點？";
-"menu_delete_location" = "刪除本地點？";
+"delete_contact" = "刪除聯絡人";
+"menu_delete_location" = "刪除這個地點？";
 "menu_message_details" = "訊息詳細內容";
 "menu_copy_to_clipboard" = "複製到剪貼簿";
+"menu_copy_selection_to_clipboard" = "複製選取範圍";
+"menu_copy_link_to_clipboard" = "複製連結";
+"menu_copy_text_to_clipboard" = "複製文字";
+"menu_copy_image_to_clipboard" = "複製圖片";
+"menu_copy_email_to_clipboard" = "複製電子郵件";
+"paste_from_clipboard" = "從剪貼簿貼上";
 "menu_forward" = "轉發訊息";
-"menu_resend" = "重發訊息";
 "menu_reply" = "回覆訊息";
 "menu_mute" = "關閉通知";
 "menu_unmute" = "開啟通知";
 "menu_export_attachment" = "另存附件";
-"menu_all_media" = "全部的媒體";
+"menu_export_attachments" = "另存附件";
+"menu_all_media" = "所有媒體";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "在對話中顯示";
 "menu_share" = "分享";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "封鎖";
 "menu_block_contact" = "封鎖聯絡人";
 "menu_unblock_contact" = "解除封鎖聯絡人";
+"accept" = "接受";
 "menu_play" = "播放";
 "menu_pause" = "暫停";
 "menu_scroll_to_bottom" = "捲動到底端";
 "menu_scroll_to_top" = "捲動到頂端";
-"menu_help" = "求助";
+"menu_help" = "幫助";
+"privacy_policy" = "隱私權政策";
 "menu_select_all" = "全選";
-"menu_expand" = "展開";
+"select_more" = "多選";
 "menu_edit_name" = "編輯名稱";
 "menu_settings" = "設定";
 "menu_advanced" = "進階";
-"menu_deaddrop" = "聯絡請求";
-"menu_deaddrop_subtitle" = "按訊息鍵開始交談";
 "menu_view_profile" = "查看個人檔案";
 "menu_zoom_in" = "放大";
 "menu_zoom_out" = "縮小";
+"menu_save_log" = "儲存日誌";
+"menu_more_options" = "更多選項";
+"menu_learn_spelling" = "學習拼寫";
+"menu_chat_audit_log" = "對話審查紀錄";
+"jump_to_message" = "移動至訊息";
+"copy_json" = "複製 JSON 內容";
+"replace_draft" = "取代草稿";
 "title_share_location" = "分享所在地給所有群組成員";
+"device_talk" = "裝置訊息";
+"device_talk_subtitle" = "本機產生的訊息";
+"device_talk_explain" = "這個聊天室內的訊息是由 Delta Chat 軟體在本地產生的。開發者會在這裡發送軟體更新和使用幫助。";
+"device_talk_welcome_message" = "歡迎使用 Delta Chat！Delta Chat 看起來就如同大部分的聊天軟體一樣，但並沒有集中式的控制，且不會追蹤或販賣你、或與你有關人士的資料給大公司。\n\n嚴格來說，Delta Chat 是一款擁有聊天界面的電子郵件軟體；簡單來說就是幫電子郵件穿上新衣啦👻\n\n使用 Delta Chat 來跟全世界的人溝通，全程只需要他們的電郵地址。對方不需要安裝 Delta Chat、造訪網頁或額外註冊帳號 - 但如果他們想要的話，你也可以透過這個連結來分享給他們 👉 https://get.delta.chat";
+"edit_contact" = "編輯聯絡人";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "釘選聯絡人";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "取消釘選聯絡人";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "釘選";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "取消釘選";
+"ConversationFragment_quoted_message_not_found" = "找不到原始訊息";
+"reply_privately" = "私下回覆";
+
 "mute_for_one_hour" = "靜音1小時";
 "mute_for_two_hours" = "靜音2小時";
 "mute_for_one_day" = "靜音1天";
 "mute_for_seven_days" = "靜音7天";
 "mute_forever" = "永遠靜音";
 
-"share_location_once" = "單次";
 "share_location_for_5_minutes" = "5分鐘";
 "share_location_for_30_minutes" = "30分鐘";
 "share_location_for_one_hour" = "1小時";
 "share_location_for_two_hours" = "2小時";
 "share_location_for_six_hours" = "6小時";
 
+"file_saved_to" = "檔案已儲存至\"%1$@\"。";
+
+"videochat" = "視訊通話";
+"videochat_invite_user_to_videochat" = "邀請%1$@至視訊通話？";
+"videochat_invite_user_hint" = "這個動作需要雙方有相容的應用程式或瀏覽器。";
+"videochat_contact_invited_hint" = "已將%1$@邀請至視訊通話。";
+"videochat_you_invited_hint" = "你已經被邀請至視訊通話。";
+"videochat_tap_to_join" = "點擊以加入";
+"videochat_tap_to_open" = "點擊以開啟";
+"videochat_instance" = "視訊通話服務商";
+"videochat_instance_placeholder" = "你的視訊通話服務商";
+"videochat_instance_explain" = "如果你已經定義了視訊通話服務商，你可以在每個聊天室內開啟視訊通話。視訊通話必須要雙方有一個相容的應用程式或是瀏覽器。\n\n例如：https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
+"videochat_instance_from_qr" = "要使用\"%1$@\"來邀請其他人加入視訊通話嗎？\n\n一旦設定完成，你可以在每個聊天室內開啟視訊通話。這將會取代先前的視訊通話設定。";
+"videochat_invitation" = "視訊通話邀請";
+"videochat_invitation_body" = "你被邀請至視訊電話，點擊%1$@以加入。";
+
 // get confirmations
 "ask_leave_group" = "確定要離開本群組？";
+"ask_delete_message" = "你確定要刪除這則訊息？";
 "ask_forward" = "轉發訊息給%1$@？";
-"ask_export_attachment" = "要匯出附件嗎？匯出的附件可以用裝置上的其它 App 打開。\n\n繼續？";
+"ask_forward_multiple" = "轉發訊息到%1$d個聊天室？";
+"ask_export_attachment" = "要匯出附件嗎？匯出的附件可以用裝置上的其它應用程式打開。\n\n要繼續嗎？";
 "ask_block_contact" = "要封鎖這個人嗎？你之後不會再收到這個人的訊息。";
 "ask_unblock_contact" = "要解除封鎖嗎？你之後可以繼續收到這個人的訊息。";
 "ask_delete_contacts" = "要刪除聯絡人嗎？選定的聯絡人將被永久刪除。\n\n正在進行對話的聯絡人、以及系統通訊錄中的聯絡人，無法被永久刪除。";
-"cannot_delete_contacts_in_use" = "正在對話的聯絡人不能刪除。";
+"ask_delete_contact" = "要刪除%1$@聯絡人嗎？\n\n聊天室中的聯絡人和系統聯絡人將不會被永久刪除。";
+"cannot_delete_contacts_in_use" = "無法刪除聊天室內的聯絡人。";
 "ask_start_chat_with" = "要和%1$@開始對話嗎？";
+"ask_delete_value" = "刪除%1$@？";
 // Translators: %1$s will be replaces by a comma separated list of names
 "ask_remove_members" = "要把%1$@移出群組嗎？";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "將%1$@自廣播列表中移除？";
 // contact list
 "contacts_title" = "聯絡人清單";
 "contacts_enter_name_or_email" = "請輸入姓名或email地址";
@@ -159,7 +284,6 @@
 "chat_please_enter_message" = "請輸入訊息";
 "chat_camera_unavailable" = "無法開啟鏡頭";
 "chat_unable_to_record_audio" = "無法錄音";
-"chat_no_messages_hint" = "傳送訊息給%1$@:\n\n• 即使%2$@沒有使用 Delta Chat 也沒關係\n\n• 傳送的第一個訊息可能要一點時間，而且可能沒有加密";
 "chat_new_group_hint" = "請傳送第一條訊息，以便其它人在群組內回覆\n\n• 即使群組內有些人沒使用 Delta Chat 也沒關係(請注意在他們那端可能沒加密)\n\n• 傳送第一條訊息需要花一點時間。";
 "chat_record_slide_to_cancel" = "滑動以取消";
 "chat_record_explain" = "按住不放錄音，放開後傳送";
@@ -171,8 +295,6 @@
 "chat_archived_label" = "封存";
 "chat_no_messages" = "沒有訊息";
 "chat_self_talk_subtitle" = "傳送給自己的訊息";
-"chat_contact_request" = "聯絡請求";
-"chat_no_contact_requests" = "沒有聯絡請求。\n\n如果你希望在這裡看到一般的 email 信件的話，請在「設定」中開啟相關設定。";
 // map
 "filter_map_on_time" = "顯示指定時間內的所在地";
 "show_location_traces" = "顯示移動足跡";
@@ -190,7 +312,6 @@
 "group_create_button" = "建立群組";
 "group_please_enter_group_name" = "請輸入群組的名稱";
 "group_add_members" = "新增成員";
-"group_hello_draft" = "嗨! 我剛建立了 %1$@ 群組";
 "group_self_not_in_group" = "你必須先加入群組，才能執行本功能。";
 "profile_encryption" = "加密";
 "profile_shared_chats" = "共享的對話";
@@ -233,8 +354,6 @@
 "import_backup_no_backup_found" = "找不到備份\n\n請把備份複製到 %1$@ 然後再試一次，或是按「開始傳送訊息」進行標準設定。";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "無法登入 %1$@。請確定 email 帳號和密碼是否正確。 ";
-// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "伺服器 %1$@ 的回應: %2$@\n\n有些郵件服務商會在你的收件匣提供進一步的資訊，請檢查一下，並看看 web 介面上有沒有相關設定。還是不行的話，請洽詢郵件服務商，或是請朋友幫忙。";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "轉發給...";
@@ -247,7 +366,6 @@
 "pref_profile_info_headline" = "你的個人資料";
 "pref_profile_photo" = "大頭照";
 "pref_blocked_contacts" = "已封鎖的聯絡人";
-"pref_profile_photo_remove_ask" = "移除大頭照?";
 "pref_who_can_see_profile_explain" = "你的名字和大頭照在通訊的過程中，會提供給對方看到。已傳送的資訊無法被刪除或移除。";
 "pref_your_name" = "你的名字";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
@@ -358,9 +476,4 @@
 "qrscan_ask_join_group" = "你要參加群組 %1$@ 嗎?";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "掃描 QRCode 以新增 %1$@";
-"contact_detail_title_desktop" = "聯絡人詳細資料";
-"contact_request_title_desktop" = "聯絡請求";
-"add_contact_desktop" = "新增聯絡人";
-"unblock_contacts_desktop" = "解除封鎖聯絡人";
-"none_blocked_desktop" = "沒有封鎖的聯絡人";
 "forget_login_confirmation_desktop" = "確定要刪除這裡的登入嗎? 所有的設定都會被刪除，包括端到端加密設定、聯絡人、對話、訊息、媒體檔案等。本動作不能復原。";

@@ -96,10 +96,6 @@
 "fast" = "Rapida";
 "slow" = "Malrapida";
 
-"message_delivered" = "Mesaĝo sendita";
-"message_read" = "Mesaĝo legita";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nova kontakto";
 "menu_new_chat" = "Nova babilo";
@@ -117,13 +113,10 @@
 "menu_leave_group" = "Forlasi grupon";
 "menu_delete_chat" = "Forigi babilon";
 "menu_delete_messages" = "Forigi mesaĝojn";
-"menu_delete_image" = "Forigi bildon";
-"menu_delete_locations" = "Ĉu forigi ĉiujn lokojn?";
 "menu_delete_location" = "Ĉu forigi tiun ĉi lokon?";
 "menu_message_details" = "Mesaĝ-detaloj";
 "menu_copy_to_clipboard" = "Kopii al tondujo";
 "menu_forward" = "Plusendi mesaĝon";
-"menu_resend" = "Resendi mesaĝon";
 "menu_reply" = "Respondi al mesaĝo";
 "menu_mute" = "Silentigi sciigojn";
 "menu_unmute" = "Malsilentigi";
@@ -138,12 +131,9 @@
 "menu_scroll_to_top" = "Rulumi al la supro";
 "menu_help" = "Helpo";
 "menu_select_all" = "Elekti ĉion";
-"menu_expand" = "Etendi";
 "menu_edit_name" = "Redakti nomon";
 "menu_settings" = "Agordoj";
 "menu_advanced" = "Speciala";
-"menu_deaddrop" = "Kontakt-petoj";
-"menu_deaddrop_subtitle" = "Premu mesaĝon por komenci babiladon";
 "menu_view_profile" = "Vidi profilon";
 "menu_zoom_in" = "Zomi";
 "menu_zoom_out" = "Malzomi";
@@ -168,7 +158,6 @@
 "mute_for_seven_days" = "Silentigi por 7 tagoj";
 "mute_forever" = "Silentigi por ĉiam";
 
-"share_location_once" = "unufoje";
 "share_location_for_5_minutes" = "por 5 minutoj";
 "share_location_for_30_minutes" = "por 30 minutoj";
 "share_location_for_one_hour" = "por 1 horo";
@@ -196,7 +185,6 @@
 "chat_please_enter_message" = "Bonvolu enigi mesaĝon.";
 "chat_camera_unavailable" = "Fotilo neatingebla.";
 "chat_unable_to_record_audio" = "Ne povas registri aŭdaĵon.";
-"chat_no_messages_hint" = "Sendi mesaĝon al %1$@:\n\n• Ne estas problemo se %2$@ ne uzas Delta Chat-on.\n\n• Liveri la unuan mesaĝon eble prenos iom da tempo kaj eble ne estos ĉifrita.";
 "chat_record_slide_to_cancel" = "Gliti por nuligi";
 "chat_record_explain" = "Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi";
 "chat_no_chats_yet_hint" = "Vi povas babili kun aliaj uzantoj de Delta Chat kaj kun iu ajn retadreso.";
@@ -207,9 +195,7 @@
 "chat_no_messages" = "Neniu mesaĝo.";
 "chat_self_talk_subtitle" = "Mesaĝoj senditaj al mi mem";
 "saved_messages" = "Konservitaj mesaĝoj";
-"chat_contact_request" = "Kontakt-peto";
 "retry_send" = "Reprovi sendi mesaĝon";
-"send_failed" = "Ne povis sendi mesaĝon";
 "show_location_traces" = "Montri spurojn";
 "add_poi" = "Sendi punkton de intereso";
 
@@ -225,7 +211,6 @@
 "group_create_button" = "Krei grupon";
 "group_please_enter_group_name" = "Bonvolu enigi nomon por la grupo.";
 "group_add_members" = "Aldoni anojn";
-"group_hello_draft" = "Saluton, mi ĵus kreis la grupon \"%1$@\" por ni.";
 "group_self_not_in_group" = "Vi devas esti grupano por fari tion.";
 "profile_encryption" = "Ĉifrado";
 "profile_shared_chats" = "Kunhavigitaj babiloj";
@@ -274,7 +259,6 @@
 
 "pref_profile_photo" = "Profilbildo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
-"pref_profile_photo_remove_ask" = "Ĉu forigi profilbildon?";
 "pref_password_and_account_settings" = "Pasvorto kaj konto";
 "pref_your_name" = "Via nomo";
 // Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
@@ -336,7 +320,6 @@
 "pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";
 "autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
-"notify_mark_read" = "Marki legita";
 "notify_reply_button" = "Respondi";
 "notify_new_message" = "Nova mesaĝo";
 "notify_priority_high" = "Alta";
@@ -359,5 +342,3 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Forviŝi";
 "save_desktop" = "Konservi";
-"me_desktop" = "mi";
-"message_detail_from_desktop" = "De";

@@ -79,10 +79,6 @@
 "fast" = "Gyors";
 "slow" = "Lassú";
 
-"message_delivered" = "Üzenet kézbesítve";
-"message_read" = "Üzenet elolvasva";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Új partner";
 "menu_new_chat" = "Új beszélgetés";
@@ -100,13 +96,10 @@
 "menu_leave_group" = "Csoport elhagyása";
 "menu_delete_chat" = "Beszélgetés törlése";
 "menu_delete_messages" = "Üzenetek törlése";
-"menu_delete_image" = "Kép törlése";
-"menu_delete_locations" = "Minden helyszínt törölsz?";
 "menu_delete_location" = "Törlöd ezt a helyszínt?";
 "menu_message_details" = "Üzenet részletei";
 "menu_copy_to_clipboard" = "Vágólapra másolás";
 "menu_forward" = "Üzenet továbbítása";
-"menu_resend" = "Üzenet újraküldése";
 "menu_reply" = "Válasz az üzenetre";
 "menu_mute" = "Értesítések némítása";
 "menu_unmute" = "Némítás kikapcsolása";
@@ -124,7 +117,6 @@
 "menu_edit_name" = "Név módosítása";
 "menu_settings" = "Beállítások";
 "menu_advanced" = "Haladó";
-"menu_deaddrop" = "Levelesláda";
 "menu_view_profile" = "Profil megtekintése";
 "menu_save_log" = "Naplófájl mentése";
 "title_share_location" = "Hely megosztása a csoport összes tagjával";
@@ -134,7 +126,6 @@
 "mute_for_seven_days" = "Némítás 7 napra";
 "mute_forever" = "Némítás örökre";
 
-"share_location_once" = "egyszer";
 "share_location_for_5_minutes" = "5 percig";
 "share_location_for_30_minutes" = "30 percig";
 "share_location_for_one_hour" = "1 óráig";
@@ -154,7 +145,6 @@
 
 // chatlist and chat view
 "chat_archived_chats_title" = "Archivált beszélgetések";
-"chat_no_messages_hint" = "Üzenetküldés %1$@ partnernek:\n\n• Nincs gond, ha %2$@ nem használja a Delta Chatet.\n\n• Az első üzenet kézbesítése kicsit lassabb lehet.";
 "chat_new_group_hint" = "Írj egy kezdőüzenetet, hogy a többiek válaszolhassanak a csoportban.\n\n• Nincs gond, ha nem használja minden tag a Delta Chatet.\n\n• Az első üzenet kézbesítése kicsit lassabb lehet.";
 "chat_record_slide_to_cancel" = "Visszavonás csúsztatással";
 "chat_no_chats_yet_title" = "Üres a postaláda.\nNyomd meg a \"+\" gombot új beszélgetés indításához.";
@@ -164,7 +154,6 @@
 "chat_archived_label" = "Archivált";
 "chat_no_messages" = "Nincs üzenet.";
 "chat_self_talk_subtitle" = "Magamnak küldött üzenetek";
-"chat_contact_request" = "Levelesláda";
 // search
 "search" = "Keresés";
 // create/edit groups, contact/group profile
@@ -173,7 +162,6 @@
 "group_create_button" = "Csoport készítése";
 "group_please_enter_group_name" = "Nevezd el a csoportot.";
 "group_add_members" = "Tagok felvétele";
-"group_hello_draft" = "Helló, indítottam magunknak egy csoportot „%1$@” néven.";
 "group_self_not_in_group" = "A csoport tagjának kell lenned, hogy ezt megtehesd.";
 "profile_encryption" = "Titkosítás";
 "tab_contact" = "Névjegy";
@@ -261,9 +249,6 @@
 "qrshow_x_has_joined_group" = "%1$@ csatlakozott a csoporthoz.";
 "contact_verified" = "%1$@ ellenőrizve.";
 "contact_not_verified" = "%1$@ nem ellenőrizhető";
-// notifications 
-"notify_n_messages_in_m_chats" = "%1$dúj üzenet %2$d beszélgetésben";
-"notify_mark_read" = "Olvasottnak jelöl";
 "notify_reply_button" = "Válasz";
 "notify_new_message" = "Új üzenet";
 "notify_priority_high" = "Magas";
@@ -292,17 +277,10 @@
 "global_menu_view_desktop" = "Nézet";
 "global_menu_help_desktop" = "Súgó";
 "no_chat_selected_suggestion_desktop" = "Válassz ki egy beszélgetést vagy indíts egy újat";
-"contact_request_title_desktop" = "Levelesláda";
 "more_info_desktop" = "További információ";
 "remove_desktop" = "Eltávolítás";
 "save_desktop" = "Mentés";
-"add_contact_desktop" = "Új partner";
 "name_desktop" = "Név";
-"download_attachment_desktop" = "Csatolmány letöltése";
 "export_backup_desktop" = "Biztonsági mentés exportálása";
-"unblock_contacts_desktop" = "Tiltás feloldása";
-"none_blocked_desktop" = "Nincs letiltott partner";
-"me_desktop" = "Én";
-"message_detail_from_desktop" = "feladó";
 "menu.view.developer.open.log.folder" = "Naplófájlok könyvtárának megnyitása";
 "menu.view.developer.open.current.log.file" = "Jelenlegi naplófájl megnyitása";

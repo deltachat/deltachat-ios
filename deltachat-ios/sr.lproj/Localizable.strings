@@ -94,9 +94,6 @@
 "fast" = "Брзо";
 "slow" = "Спор";
 
-"message_read" = "Порука прочитана";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Нови контакт";
 "menu_new_chat" = "Ново ћаскање";
@@ -112,11 +109,9 @@
 "menu_leave_group" = "Напусти групу";
 "menu_delete_chat" = "Обриши ћаскање";
 "menu_delete_messages" = "Избришите поруке";
-"menu_delete_image" = "Избриши слику";
 "menu_message_details" = "Детаљи поруке";
 "menu_copy_to_clipboard" = "Копирај у клипборд";
 "menu_forward" = "Прослеђена порука";
-"menu_resend" = "Понови слање";
 "menu_reply" = "Одговори на поруку";
 "menu_mute" = "Искључи обавештења";
 "menu_unmute" = "Укључи";
@@ -134,7 +129,6 @@
 "menu_edit_name" = "Уреди назив";
 "menu_settings" = "Поставке";
 "menu_advanced" = "Напредно";
-"menu_deaddrop" = "Захтеви за контакт";
 "menu_view_profile" = "Прикажи профил";
 "menu_zoom_in" = "Увеличати";
 "menu_zoom_out" = "Умањи умањивање";
@@ -146,7 +140,6 @@
 "mute_for_seven_days" = "Утишај 7 сати";
 "mute_forever" = "Увек утишан";
 
-"share_location_once" = "једном";
 // get confirmations
 "ask_leave_group" = "Желите ли заиста да напустите ову групу?";
 "ask_forward" = "Да проследим изабране поруке за %1$@?";
@@ -159,7 +152,6 @@
 
 
 "chat_archived_chats_title" = "Архивирана ћаскања";
-"chat_no_messages_hint" = "Пошаљи поруку за %1$@:\n\n• У реду је ако %2$@ не користи Делта ћаскање.\n\n• Испорука прве поруке ће можда да потраје.";
 "chat_new_group_hint" = "Саставите прву поруку и тиме омогућите осталима да пишу у групи.\n\n• У реду је ако сви чланови не користе Делта ћаскање.\n\n• Испорука прве поруке ће можда да потраје.";
 "chat_record_slide_to_cancel" = "Превуците за отказивање";
 "chat_record_explain" = "Тапните и држите за снимање гласовне поруке, пустите за слање";
@@ -169,7 +161,6 @@
 "chat_no_messages" = "Нема порука.";
 "chat_self_talk_subtitle" = "Поруке које сам слао себи";
 "saved_messages" = "Сачуване поруке";
-"chat_contact_request" = "Захтеви за контакт";
 // search
 "search" = "Претрага";
 // create/edit groups, contact/group profile
@@ -178,7 +169,6 @@
 "group_create_button" = "Створити групу";
 "group_please_enter_group_name" = "Унесите назив групе";
 "group_add_members" = "Додајте чланове";
-"group_hello_draft" = "Здраво, управо направих групу „%1$@“ за нас.";
 "group_self_not_in_group" = "Морате бити члан групе да бисте извршили ову радњу.";
 "profile_encryption" = "Шифровање";
 "profile_shared_chats" = "Дељена ћаскања";
@@ -208,8 +198,6 @@
 "import_backup_no_backup_found" = "Нема резервних копија.\n\nКопирајте резервну копију у %1$@ и покушајте поново. Ако не желите, тапните \"Почни ћаскање\" да бисте почели уобичајени процес поставке.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Не могу да се пријавим као %1$@. Проверите да ли су е-адреса и лозинка тачни.";
-// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Одговор од %1$@: %2$@\n\nНеки пружаоци услуга остављају додатне информације у ваше пријемно сандуче; можете да проверите ово нпр. користећи веб сучеље ваше е-поште. Посаветујте се са пружаоцем услуге или пријатељима ако налетите на проблеме.";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Проследи за…";
@@ -285,7 +273,6 @@
 "qrscan_contains_text" = "Очитани текст бар-кôда:\n\n%1$@";
 "qrscan_contains_url" = "Очитани УРЛ бар-кôда:\n\n%1$@";
 "qrscan_fingerprint_label" = "Отисак";
-"qrscan_x_verified_introduce_myself" = "%1$@ потврђен, представљам се…";
 "qrshow_title" = "Бар-кôд за потврду";
 "qrshow_x_joining" = "%1$@ се придружи.";
 "qrshow_x_verified" = "%1$@ потврђен.";
@@ -293,7 +280,6 @@
 "qrshow_join_group_title" = "Бар-кôд за потврду";
 "qrshow_join_contact_title" = "Бар-кôд за потврду";
 "contact_verified" = "%1$@ потврђен.";
-"notify_mark_read" = "Означи прочитаним";
 "notify_reply_button" = "Одговори";
 "notify_new_message" = "Нова порука";
 "notify_priority_high" = "Висок";
@@ -313,11 +299,8 @@
 "global_menu_preferences_language_desktop" = "Језик";
 "global_menu_file_desktop" = "Фајл";
 "global_menu_help_desktop" = "Помоћ";
-"contact_request_title_desktop" = "Захтеви за контакт";
 "more_info_desktop" = "Више података";
 "remove_desktop" = "Уклони";
 "save_desktop" = "Сачувај";
-"add_contact_desktop" = "Нови контакт";
 "name_desktop" = "Име";
 "export_backup_desktop" = "Извези резервну копију";
-"me_desktop" = "Ја";

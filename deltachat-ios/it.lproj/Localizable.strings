@@ -139,10 +139,6 @@
 "fast" = "Veloce";
 "slow" = "Lento";
 
-"message_delivered" = "Messaggio consegnato";
-"message_read" = "Messaggio letto";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nuovo Contatto";
 "menu_new_chat" = "Nuova Chat";
@@ -168,9 +164,7 @@
 "menu_delete_chat" = "Elimina Chat";
 "ask_delete_named_chat" = "Sei sicuro di voler eliminare \"%1$@\"?";
 "menu_delete_messages" = "Elimina Messaggi";
-"menu_delete_image" = "Elimina Immagine";
 "delete_contact" = "Elimina Contatto";
-"menu_delete_locations" = "Eliminare tutte le Posizioni?";
 "menu_delete_location" = "Elimino questa Posizione?";
 "menu_message_details" = "Dettagli Messaggio";
 "menu_copy_to_clipboard" = "Copia negli Appunti";
@@ -181,7 +175,6 @@
 "menu_copy_email_to_clipboard" = "Copia E-Mail";
 "paste_from_clipboard" = "Incolla dagli Appunti";
 "menu_forward" = "Inoltra Messaggio";
-"menu_resend" = "Reinvia Messaggio";
 "menu_reply" = "Rispondi al Messaggio";
 "menu_mute" = "Silenzia Notifiche";
 "menu_unmute" = "Abilita Notifiche";
@@ -204,12 +197,9 @@
 "privacy_policy" = "Privacy Policy";
 "menu_select_all" = "Seleziona Tutto";
 "select_more" = "Seleziona di più";
-"menu_expand" = "Espandi";
 "menu_edit_name" = "Modifica Nome";
 "menu_settings" = "Impostazioni";
 "menu_advanced" = "Avanzate";
-"menu_deaddrop" = "Richieste di Contatto";
-"menu_deaddrop_subtitle" = "Premi messaggio per iniziare una chat";
 "menu_view_profile" = "Vedi Profilo";
 "menu_zoom_in" = "Zoom In";
 "menu_zoom_out" = "Zoom Out";
@@ -243,7 +233,6 @@
 "mute_for_seven_days" = "Silenzia per 7 giorni";
 "mute_forever" = "Silenzia per sempre";
 
-"share_location_once" = "Una volta";
 "share_location_for_5_minutes" = "Per 5 minuti";
 "share_location_for_30_minutes" = "Per 30 minuti";
 "share_location_for_one_hour" = "Per 1 ora";
@@ -257,7 +246,6 @@
 "videochat_invite_user_hint" = "Questo richiede un\'app compatibile o un browser compatibile da entrambe le parti.";
 "videochat_contact_invited_hint" = "%1$@ ti ha invitato a una video chat.";
 "videochat_you_invited_hint" = "Hai invitato a una video chat.";
-"videochat_will_open_in_your_browser" = "Questa video chat si aprirà nel tuo browser.";
 "videochat_tap_to_join" = "Tocca per Partecipare";
 "videochat_tap_to_open" = "Tocca per Aprire";
 "videochat_instance" = "Istanza Video Chat";
@@ -299,7 +287,8 @@
 "chat_please_enter_message" = "Scrivere un messaggio.";
 "chat_camera_unavailable" = "Fotocamera non disponibile.";
 "chat_unable_to_record_audio" = "Impossibile registrare audio.";
-"chat_no_messages_hint" = "Invia un messaggio a %1$@:\n\n• Non è necessario che anche %2$@ usi Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante e non essere crittografato. ";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Invia un messaggio. Va bene se %1$@ non utilizza Delta Chat.";
 "chat_new_broadcast_hint" = "In una lista trasmissione, gli altri riceveranno i messaggi nelle loro chat private con te.\n\nI destinatari non saranno a conoscenza l\'uno dell\'altro.";
 "chat_new_group_hint" = "Invia il primo messaggio per permettere agli altri di rispondere nel gruppo\n\n• Non è necessario che tutti i membri usino Delta Chat.\n\n• L\'invio del primo messaggio può richiedere qualche istante.";
 "chat_record_slide_to_cancel" = "Scorri per annullare";
@@ -318,14 +307,10 @@
 "saved_messages_explain" = "• Inoltra i messaggi per trovarli facilmente\n\n• Memorizza note scritte o vocali\n\n• Allega oggetti per salvarli";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Salvato";
-"chat_contact_request" = "Richiesta di Contatto";
-"chat_no_contact_requests" = "Nessuna richiesta di contatto.\n\nSe vuoi che le email tradizionali appaiano qui come richieste di contatto puoi selezionare la relativa opzione nelle impostazioni.";
 "retry_send" = "Riprova l\'invio del messaggio";
-"send_failed" = "Invio del messaggio fallito";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Non puoi scrivere perché non sei in questo gruppo. Per partecipare, chiedi ad un altro membro.";
 "messaging_disabled_device_chat" = "Questa chat contiene messaggi generati localmente. Quindi non puoi scrivere alcun messaggio.";
-"messaging_disabled_deaddrop" = "Fare clic su un messaggio per accettare o rifiutare la richiesta di contatto";
 "messaging_disabled_mailing_list" = "L\'invio dei messaggi nelle mailing list non è ancora supportato";
 "cannot_display_unsuported_file_type" = "Impossibile visualizzare questo tipo di file: %1$@";
 "attachment_failed_to_load" = "Impossibile caricare l\'allegato";
@@ -334,7 +319,6 @@
 
 // mailing lists
 "mailing_list" = "Mailing List";
-"ask_show_mailing_list" = "Mostra la mailing list \"%1$@\"?";
 "mailing_list_profile_info" = "Le modifiche al nome e all\'immagine della mailing list si applicano solo a questo dispositivo.";
 
 // map
@@ -371,7 +355,6 @@
 "group_create_button" = "Crea Gruppo";
 "group_please_enter_group_name" = "Inserisci un nome per il gruppo.";
 "group_add_members" = "Aggiungi Membri";
-"group_hello_draft" = "Ciao, ho appena creato il gruppo \"%1$@\" per noi.";
 "group_self_not_in_group" = "Devi essere membro del gruppo per fare questa operazione.";
 "profile_encryption" = "Crittografia";
 "profile_shared_chats" = "Chat Condivise";
@@ -453,8 +436,6 @@
 "import_backup_no_backup_found" = "Nessun backup trovato\n\nCopia il backup in \"%1$@\" e riprova. Altimenti premi \"Inizia a messaggiare\" per procedere con il setup normale.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Impossibile accedere come \"%1$@\". Verifica che l\'indirizzo email e la password siano corretti.";
-// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Risposta da%1$@: %2$@\n\nAlcuni fornitori inseriscono altre informazioni nella tua casella; puoi controllarle ad es. dalla pagina web. Consulta il fornitore o i tuoi amici se riscontri problemi.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accetta certificati non validi";
 "used_settings" = "Impostazioni in uso:";
@@ -463,7 +444,6 @@
 "delete_account" = "Elimina Account";
 "delete_account_ask" = "Sei certo di voler eliminare i dati dell\'account?";
 "delete_account_explain_with_name" = "Verranno eliminati tutti i dati dell\'account di \"%1$@\" su questo dispositivo, inclusa la configurazione della crittografia end-to-end, contatti, chat, messaggi e contenuti multimediali. Questa azione non può essere annullata.";
-"switching_account" = "Cambio account...";
 "unconfigured_account" = "Account non configurato";
 "unconfigured_account_hint" = "Apri l\'account per configurarlo.";
 "try_connect_now" = "Prova a connetterti ora";
@@ -487,7 +467,6 @@
 "pref_profile_photo" = "Foto Profilo";
 "pref_blocked_contacts" = "Contatti Bloccati";
 "blocked_empty_hint" = "Se blocchi dei contatti, verranno elencati qui.";
-"pref_profile_photo_remove_ask" = "Rimuvere la foto profilo?";
 "pref_password_and_account_settings" = "Password e Account";
 "pref_who_can_see_profile_explain" = "L\'immagine del tuo profilo e il tuo nome saranno mostrati insieme ai tuoi messaggi quando comunicherai con altri utenti. Le informazioni già inviate non possono essere cancellate o rimosse.";
 "pref_your_name" = "Il tuo Nome";
@@ -608,8 +587,6 @@
 
 // automatically delete message
 "delete_old_messages" = "Elimina i Vecchi Messaggi";
-// devs: autodel_title is deprecated, use delete_old_messages instead
-"autodel_title" = "Auto Eliminazione dei Messaggi";
 "autodel_device_title" = "Elimina Messaggi dal Dispositivo";
 "autodel_server_title" = "Elimina Messaggi dal Server";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -705,7 +682,6 @@
 "qrscan_contains_text" = "Testo del codice QR scansionato::\n\n%1$@";
 "qrscan_contains_url" = "URL del codice QR scansionato:\n\n%1$@";
 "qrscan_fingerprint_label" = "Impronta";
-"qrscan_x_verified_introduce_myself" = "%1$@ verificato, mi presento …";
 "withdraw_verifycontact_explain" = "Questo codice QR può essere scansionato da altri utenti per contattarti.\n\nÈ possibile disattivare il codice QR qui e riattivarlo scansionandolo di nuovo.";
 "withdraw_verifygroup_explain" = "Questo codice QR può essere scansionato da altri utenti per unirsi al gruppo \"%1$@\".\n\nÈ possibile disattivare il codice QR qui e riattivarlo scansionandolo di nuovo.";
 "withdraw_qr_code" = "Disattiva il Codice QR";
@@ -724,12 +700,11 @@
 "qrshow_join_contact_title" = "Codice QR di Invito";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Scansionalo per chattare con %1$@";
-"qrshow_join_contact_no_connection_hint" = "Il setup tramite codice QR richiede una connessione internet. Collegati ad una rete prima di procedere.";
 "qrshow_join_contact_no_connection_toast" = "Nessuna connessione internet, impossibile effettuare l\'impostazione tramite codice QR.";
 "qraccount_ask_create_and_login" = "Creo un nuovo indirizzo email su \"%1$@\" e accedo?";
 "qraccount_ask_create_and_login_another" = "Crea un nuovo indirizzo e-mail su \"%1$@\" e accedi qui?\n\nIl tuo account esistente non verrà eliminato. Utilizza la voce \"Cambia account\" per passare da un account all\'altro.";
 "qraccount_success_enter_name" = "Accesso completato—il tuo indirizzo email è %1$@\n\nSe vuoi, puoi inserire un nome e un\'immagine profilo che verranno mostrati a chi ti scrive.";
-"qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere usato per creare un nuovo account.";
+"qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo account.";
 "qraccount_use_on_new_install" = "Il codice QR scansionato serve a creare un nuovo account. Puoi scansionare il codice quando configuri una nuova installazione di Delta Chat.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";
@@ -747,9 +722,7 @@
 "mailto_link_could_not_be_decoded" = "Il link mailto non può essere decodificato: %1$@";
 
 // notifications 
-"notify_n_messages_in_m_chats" = "%1$d nuovi messaggi in %2$d chat";
 "notify_dismiss" = "Ignora";
-"notify_mark_read" = "Segna come Letto";
 "notify_reply_button" = "Rispondi";
 "notify_new_message" = "Nuovo messaggio";
 "notify_background_connection_enabled" = "Connessione in background abilitata";
@@ -809,48 +782,28 @@
 "no_chat_selected_suggestion_desktop" = "Seleziona o crea una nuova chat";
 "write_message_desktop" = "Scrivi un messaggio";
 "encryption_info_title_desktop" = "Informazioni di Cifratura";
-"contact_detail_title_desktop" = "Dettagli Contatto";
-"contact_request_title_desktop" = "Richiesta di Contatto";
 "delete_message_desktop" = "Elimina Messaggio";
 "more_info_desktop" = "Maggiori Informazioni";
-"logout_desktop" = "Logout";
 "timestamp_format_m_desktop" = "D MMM";
 "encryption_info_desktop" = "Mostra Info Cifratura";
-"verified_desktop" = "verificato";
 "remove_desktop" = "Rimuovi";
 "save_desktop" = "Salva";
-"add_contact_desktop" = "Aggiungi Contatto";
-"login_required_desktop" = "richiesto";
 "name_desktop" = "Nome";
 "autocrypt_key_transfer_desktop" = "Trasferimento chiave Autocrypt";
 "initiate_key_transfer_desktop" = "Un Messaggio di Configurazione Autocrypt condivide in modo sicuro la tua configurazione end-to-end con altre applicazioni compatibili con Autocrypt. La configurazione sarà criptata da un codice di configurazione visualizzato qui e deve essere digitato sull\'altro dispositivo.";
-"reply_to_message_desktop" = "Rispondi al Messaggio";
 "select_group_image_desktop" = "Seleziona Immagine Gruppo";
 "imex_progress_title_desktop" = "Avanzamento Backup";
-"download_attachment_desktop" = "Scarica Allegato";
 "export_backup_desktop" = "Esporta Backup";
-"transfer_key_desktop" = "Trasferisci Chiave";
 "show_key_transfer_message_desktop" = "La tua chiave ti è stata inviata. Passa all\'altro dispositivo, apri il messaggio di configurazione e inserisci il seguente codice quando richiesto. Una volta fatto, il dispositivo sarà pronto per usare Autocrypt.";
-"new_message_from_desktop" = "Nuovo messaggio da";
-"unblock_contacts_desktop" = "Sblocca Contatti";
-"none_blocked_desktop" = "Nessun contatto bloccato";
 "autocrypt_correct_desktop" = "Configurazione di Autocrypt trasferita.";
 "autocrypt_incorrect_desktop" = "Codice di impostazione errato. Si prega di riprovare.";
 "create_chat_error_desktop" = "Impossibile creare una chat.";
-"ask_delete_chat_desktop" = "Eliminare questa chat?";
-"email_validation_failed_desktop" = "Indirizzo E-mail richiesto.";
 "forget_login_confirmation_desktop" = "Eliminare questo accesso? Tutto verrà eliminato, inclusa la configurazione end-to-end, i contatti, le chat, i messaggi e i media. Questa azione non può essere annullata.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nDimensione: %2$@\nAccount Id: %3$@";
-"me_desktop" = "me";
-"in_this_group_desktop" = "Membri del Gruppo";
-"not_in_this_group_desktop" = "Membri potenziali (non nel gruppo)";
 "message_detail_sent_desktop" = "inviato";
 "message_detail_received_desktop" = "ricevuto";
-"message_detail_from_desktop" = "da";
-"message_detail_to_desktop" = "a";
 "menu.view.developer.open.log.folder" = "Apri Cartella dei Log";
 "menu.view.developer.open.current.log.file" = "Apri Logfile Corrente";
-"user_location_permission_explanation" = "Delta Chat richiede i permessi di localizzazione per mostrare e condividere la posizione.";
 "explain_desktop_minimized_disabled_tray_pref" = "L\'icona nella barra delle applicazioni non può essere disabilitata poiché Delta Chat è stato avviato con l\'opzione --minimizzato.";
 "no_spellcheck_suggestions_found" = "Nessun suggerimento ortografico trovato.";
 "show_window" = "Mostra Finestra";

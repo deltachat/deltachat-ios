@@ -85,9 +85,6 @@
 "fast" = "வேகமாக";
 "slow" = "மெதுவாக";
 
-"message_read" = "செய்தி வாசிக்கப்பட்டது";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "புதிய தொடர்பு";
 "menu_new_chat" = "புது அரட்டை";
@@ -100,7 +97,6 @@
 "menu_message_details" = "செய்தி விவரங்கள்";
 "menu_copy_to_clipboard" = "பிடிப்பு பலகை";
 "menu_forward" = "செய்தியை முன்னோக்கியனுப்பு";
-"menu_resend" = "செய்தியை மீண்டும் அனுப்பு";
 "menu_reply" = "செய்திக்கு பதில்";
 "menu_mute" = "அறிவிப்புகளை ஊமையாக்கு";
 "menu_unmute" = "ஊமையாக்குதலை தவிர்க்கவும்";
@@ -113,7 +109,6 @@
 "menu_edit_name" = "பெயரை திருத்தவும்";
 "menu_settings" = "அமைப்புகள்";
 "menu_advanced" = "மேம்பட்ட அமைப்புகள்";
-"menu_deaddrop" = "தொடர்பு கோரிக்கை";
 "menu_view_profile" = "சுயவிவரத்தை காண்பி";
 "mute_for_one_hour" = "1 மணி இதற்காக ஊமையாக்கு";
 "mute_for_two_hours" = "2 மணிகள் இதற்காக ஊமையாக்கு";
@@ -142,14 +137,12 @@
 "chat_archived_label" = "ஆவண காக்கப்படுத்தப்பட்டது";
 "chat_no_messages" = "சேதிகள் இல்லை";
 "chat_self_talk_subtitle" = "தங்களுக்கே அனுப்பி கொண்ட செய்திகள்";
-"chat_contact_request" = "தொடர்பு கோரிக்கை";
 // search
 "search" = "தேடு";
 // create/edit groups, contact/group profile
 "group_name" = "குழுவின் பெயர்";
 "group_please_enter_group_name" = "குழுவிற்கு ஒரு பெயரை சூட்டவும்";
 "group_add_members" = "உறுப்பினர்களை சேர்க்க";
-"group_hello_draft" = "வணக்கம் , நான் நமக்கு \"%1$@\" என்ற பெயரில் குழுவை உருவாக்கி உள்ளேன்";
 "profile_encryption" = "மறைகுறியாக்கம்";
 "tab_contact" = "தொடர்பு";
 "tab_gallery" = "காட்சி கூடம்";
@@ -231,13 +224,7 @@
 "global_menu_view_desktop" = "பார்வை";
 "global_menu_help_desktop" = "உதவி";
 "global_menu_help_about_desktop" = "Delta Chat பற்றி";
-"contact_request_title_desktop" = "தொடர்பு கோரிக்கை";
 "more_info_desktop" = "மேலும் தகவல்";
 "remove_desktop" = "நீக்கு";
 "save_desktop" = "சேமி";
-"add_contact_desktop" = "புதிய தொடர்பு";
 "name_desktop" = "பெயர்";
-"unblock_contacts_desktop" = "தொடர்பு தடுப்பினை நீக்கவும்";
-"none_blocked_desktop" = "இதுவரையில் எந்த தொடர்பும் தடுக்கப்படவில்லை";
-"me_desktop" = "நான்";
-"message_detail_from_desktop" = "அனுப்புதல்";

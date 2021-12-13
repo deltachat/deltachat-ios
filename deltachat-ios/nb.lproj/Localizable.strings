@@ -103,10 +103,6 @@
 "fast" = "Raskt";
 "slow" = "Langsomt";
 
-"message_delivered" = "Melding levert";
-"message_read" = "Melding lest";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Ny kontakt";
 "menu_new_chat" = "Ny chat";
@@ -124,13 +120,10 @@
 "menu_leave_group" = "Forlat gruppe";
 "menu_delete_chat" = "Slett sludring";
 "menu_delete_messages" = "Slett meldinger";
-"menu_delete_image" = "Slett bilde";
-"menu_delete_locations" = "Slett alle steder?";
 "menu_delete_location" = "Slett på dette stedet?";
 "menu_message_details" = "Meldingsdetaljer";
 "menu_copy_to_clipboard" = "Kopier til utklippstavle";
 "menu_forward" = "Videresend melding";
-"menu_resend" = "Send melding på nytt";
 "menu_reply" = "Svar på melding";
 "menu_mute" = "Demp merknader";
 "menu_unmute" = "Fjern demping";
@@ -145,12 +138,9 @@
 "menu_scroll_to_top" = "Rull til toppen";
 "menu_help" = "Hjelp";
 "menu_select_all" = "Velg alle";
-"menu_expand" = "Utvid";
 "menu_edit_name" = "Rediger navn";
 "menu_settings" = "Innstillinger";
 "menu_advanced" = "Avanserte innstillinger";
-"menu_deaddrop" = "Kontaktforespørsler";
-"menu_deaddrop_subtitle" = "Trykk på melding for å begynne å chatte";
 "menu_view_profile" = "Vis profil";
 "menu_zoom_in" = "Zoome in";
 "menu_zoom_out" = "Zoome ut";
@@ -175,7 +165,6 @@
 "mute_for_seven_days" = "Demp i 7 dager";
 "mute_forever" = "Alltid dempet";
 
-"share_location_once" = "en gang";
 "share_location_for_5_minutes" = "i 5 minutter";
 "share_location_for_30_minutes" = "i 30 minutter";
 "share_location_for_one_hour" = "i 1 time";
@@ -189,7 +178,6 @@
 "videochat_invite_user_hint" = "Dette krever en kompatibel app, eller en kompatible nettleser i begge ender.";
 "videochat_contact_invited_hint" = "%1$@ inviterte til en videochat.";
 "videochat_you_invited_hint" = "Du inviterte til en videochat.";
-"videochat_will_open_in_your_browser" = "Denne videochatten åpnes i nettleseren din";
 "videochat_tap_to_join" = "Trykk for å bli med";
 "videochat_tap_to_open" = "Trykk for å åpne";
 "videochat_instance" = "Videochatteinstans";
@@ -224,7 +212,6 @@
 "chat_please_enter_message" = "Vennligst skiv en melding.";
 "chat_camera_unavailable" = "Kamera ikke tilgjengelig.";
 "chat_unable_to_record_audio" = "Ikke mulig å ta opp lyd.";
-"chat_no_messages_hint" = "Send melding til %1$@:\n\n• Det er greit hvis %2$@ ikke bruker Delta Chat.\n\n• Levering av den første meldingen kan ta sin tid.";
 "chat_new_group_hint" = "Forfatt den første meldingen, noe som lar andre svare i gruppen.\n\n• Det er greit at ikke alle medlemmer bruker Delta Chat.\n\n• Levering av den første meldingen kan ta sin tid.";
 "chat_record_slide_to_cancel" = "Dra for å avbryte";
 "chat_record_explain" = "Trykk og hold for å ta opp en melding, slipp for å sende";
@@ -237,14 +224,12 @@
 "chat_no_messages" = "Ingen meldinger.";
 "chat_self_talk_subtitle" = "Meldinger jeg har sendt til meg selv";
 "saved_messages" = "Lagrede meldinger";
-"chat_contact_request" = "Kontaktforespørsel";
 // search
 "search" = "Søk";
 // create/edit groups, contact/group profile
 "group_name" = "Gruppenavn";
 "group_create_button" = "Lag gruppe";
 "group_add_members" = "Legg til medlem";
-"group_hello_draft" = "Hei, jeg har akkurat opprettet gruppen \"%1$@\" for oss.";
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delte sludringer";
 "tab_contact" = "Kontakt";
@@ -364,7 +349,6 @@
 "qrscan_contains_text" = "Den skannede QR-koden inneholder følgende tekst:\n\n%1$@";
 "qrscan_contains_url" = "Den skannede QR-koden inneholder følgende lenke:\n\n%1$@";
 "qrscan_fingerprint_label" = "Fingeravtrykk";
-"qrscan_x_verified_introduce_myself" = "%1$@ bekreftet, sender introduksjonstekst …";
 "qrshow_title" = "QR-invitasjonskode";
 "qrshow_x_joining" = "%1$@ tar del.";
 "qrshow_x_verified" = "%1$@ bekreftet.";
@@ -375,7 +359,6 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Skann dette for å bekrefte en kontakt med %1$@.";
 "contact_verified" = "%1$@ bekreftet.";
-"notify_mark_read" = "Merk som lest";
 "notify_reply_button" = "Svar";
 "notify_new_message" = "Ny meldin";
 "notify_priority_high" = "Høy";
@@ -399,18 +382,12 @@
 "global_menu_help_desktop" = "Hjelp";
 "global_menu_help_about_desktop" = "Om Delta Chat";
 "encryption_info_title_desktop" = "Krypteringsinfo";
-"contact_request_title_desktop" = "Kontaktforespørsel";
 "delete_message_desktop" = "Slett melding";
 "more_info_desktop" = "Mer informasjon";
 "encryption_info_desktop" = "Krypteringsinfo";
-"verified_desktop" = "bekreftet";
 "remove_desktop" = "Fjerne";
 "save_desktop" = "Lagre";
 "name_desktop" = "Navn";
 "autocrypt_key_transfer_desktop" = "Autocrypt-nøkkeloverføring";
 "initiate_key_transfer_desktop" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
 "export_backup_desktop" = "Eksporter sikkerhetskopi";
-"unblock_contacts_desktop" = "Fjern blokkering av kontakter";
-"none_blocked_desktop" = "Ingen blokkerte kontakter enda";
-"me_desktop" = "Meg";
-"message_detail_from_desktop" = "Fra";

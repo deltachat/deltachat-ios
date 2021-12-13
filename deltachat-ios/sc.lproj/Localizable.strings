@@ -111,10 +111,6 @@
 "fast" = "Lestru";
 "slow" = "Lentu";
 
-"message_delivered" = "Messàgiu intregadu";
-"message_read" = "Messàgiu lèghidu";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Cuntatu nou";
 "menu_new_chat" = "Tzarrada noa";
@@ -133,13 +129,10 @@
 "menu_delete_chat" = "Iscantzella sa tzarrada";
 "ask_delete_named_chat" = "Ses seguru de chèrrere iscantzellare \"%1$@\"?";
 "menu_delete_messages" = "Iscantzella sos messàgios";
-"menu_delete_image" = "Iscantzella s\'immàgine";
-"menu_delete_locations" = "Iscantzellare totu sas positziones?";
 "menu_delete_location" = "Iscantzellare custa positzione?";
 "menu_message_details" = "Detàllios de su messàgiu";
 "menu_copy_to_clipboard" = "Còpia in punta de billete";
 "menu_forward" = "Inoltra su messàgiu";
-"menu_resend" = "Torra a imbiare su messàgiu";
 "menu_reply" = "Risponde a su messàgiu";
 "menu_mute" = "Istuda sas notìficas";
 "menu_unmute" = "Allughe sas notìficas";
@@ -154,12 +147,9 @@
 "menu_scroll_to_top" = "Iscurre a pitzus";
 "menu_help" = "Agiudu";
 "menu_select_all" = "Ischerta totu";
-"menu_expand" = "Ismànnia";
 "menu_edit_name" = "Modìfica su nùmene";
 "menu_settings" = "Impostatziones";
 "menu_advanced" = "Avantzadas";
-"menu_deaddrop" = "Rechestas de cuntatu";
-"menu_deaddrop_subtitle" = "Incarca Messàgiu pro incumentzare a tzarrare";
 "menu_view_profile" = "Pòmpia su profilu";
 "menu_zoom_in" = "Ismànnia";
 "menu_zoom_out" = "Mìnima";
@@ -184,7 +174,6 @@
 "mute_for_seven_days" = "A sa muda pro 7 dies";
 "mute_forever" = "A sa muda pro semper";
 
-"share_location_once" = "una borta";
 "share_location_for_5_minutes" = "pro 5 minutos";
 "share_location_for_30_minutes" = "pro 30 minutos";
 "share_location_for_one_hour" = "pro 1 ora";
@@ -198,7 +187,6 @@
 "videochat_invite_user_hint" = "Custu bisòngiat de un\'aplicatzione cumpatìbile o unu navigadore cumpatìbile dae ambas alas.";
 "videochat_contact_invited_hint" = "%1$@ t\'at invitadu a una vìdeu-tzarrada.";
 "videochat_you_invited_hint" = "As invitadu a una vìdeu-tzarrada.";
-"videochat_will_open_in_your_browser" = "Custa vìdeu-tzarrada s\'at a abèrrere in su navigadore web tuo.";
 "videochat_tap_to_join" = "Toca pro bi pigare parte";
 "videochat_tap_to_open" = "Toca pro abèrrere";
 "videochat_instance" = "Istàntzia de vìdeu-tzarrada";
@@ -236,7 +224,6 @@
 "chat_please_enter_message" = "Pro praghere inserta unu messàgiu.";
 "chat_camera_unavailable" = "Fotocàmera non disponìbile";
 "chat_unable_to_record_audio" = "Registratzione de su sonu fallida";
-"chat_no_messages_hint" = "Imbia unu messàgiu a %1$@:\n\n• Lu podes fàghere fintzas si %2$@ no impreat Delta Chat.\n\n• Sa cunsinna de su primu messàgiu diat pòdere pigare un\'agigu de tempus e no èssere critografada.";
 "chat_new_group_hint" = "Imbia su primu messàgiu, permitende a sos àteros de ti rispòndere in intro de custu grupu.\n\n•Lu podes fàghere fintzas si non totu sos membros impreant Delta Chat.Sa cunsinna de su primu messàgiu diat pòdere pigare un\'agigu de tempus.";
 "chat_record_slide_to_cancel" = "Iscurre pro annulare";
 "chat_record_explain" = "Incarca e mantene incarcadu pro registrare unu messàgiu vocale, lassa pro imbiare";
@@ -252,14 +239,10 @@
 "saved_messages_explain" = "• Inoltra sos messàgios inoghe pro bi pòdere atzèdere in manera lestra\n\n• Sarva notas iscritas o sonoras\n\n• Allega mèdios pro los sarvare";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Sarvadu";
-"chat_contact_request" = "Rechesta de cuntatu";
-"chat_no_contact_requests" = "Peruna rechesta de cuntatu.\n\nSi cheres chi sas lìteras eletrònicas clàssicas apàrgiant inoghe comente rechestas de cuntatu, podes mudare s\'impostatzione chi li pertocat in sas impostatziones de s\'aplicatzione.";
 "retry_send" = "Torra a proare a imbiare su messàgiu";
-"send_failed" = "Imbiu de su messàgiu fallidu";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Non podes iscrìere ca non ses in custu grupu. Pro b\'intrare pedi a un\'àteru membru.";
 "messaging_disabled_device_chat" = "Custa tzarrada cuntenet messàgios ingendrados localmente. Duncas non podet iscrìere messàgiu perunu.";
-"messaging_disabled_deaddrop" = "Incarca in unu messàgiu pro atzetare o negare sa rechesta de cuntatu.";
 "cannot_display_unsuported_file_type" = "Impossìbile ammustrare custa casta de documentu: %1$@";
 // map
 "filter_map_on_time" = "Ammustra sas positziones in su tempus";
@@ -280,7 +263,6 @@
 "group_create_button" = "Crea unu grupu";
 "group_please_enter_group_name" = "Inserta unu nùmene pro su grupu.";
 "group_add_members" = "Annanghe mambros";
-"group_hello_draft" = "Salude, apo creadu su grupu \"%1$@\" como como pro nois.";
 "group_self_not_in_group" = "Depes èssre unu membru de su grupu pro fàghere cust\'atzione.";
 "profile_encryption" = "Tzifradura";
 "profile_shared_chats" = "Tzarradas cumpartzidas";
@@ -330,8 +312,6 @@
 "import_backup_no_backup_found" = "Peruna còpia de seguresa agatada.\n\nCòpia sa còpia de seguresa in \"%1$@\" e torra a proare. Si nono, incarca. Asinuncas, incarca \"Incumintza a messagiare\" pro sighire cun su protzessu de impostatzione normale.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Impossìbile atzèdere comente \"%1$@\". pro paghere verìfica si s\'indiritzu de posta eletrònica e sa crae de intrada sunt curretos.";
-// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Risposta dae %1$@: %2$@\n\nUnos cantos frunidores insertant informatziones in prus in sa cartella de intrada tua; podes verificare a es. dae sa pàgina web. Si tenes problemas consulta su frunidore tuo o sos amigos tuos.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Atzetat tzertificados non vàlidos";
 "used_settings" = "Impostatziones impreadas:";
@@ -339,7 +319,6 @@
 "add_account" = "Annanghe unu contu";
 "delete_account" = "Iscantzella su contu";
 "delete_account_ask" = "Ses seguru de chèrrere iscantzellare sos datos de su contu tuo?";
-"switching_account" = "Cambiende contu…";
 "try_connect_now" = "Proa a ti collegare como";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Configuratzione fallida. Errore: %1$@";
@@ -360,7 +339,6 @@
 "pref_profile_photo" = "Fotografia de profilu";
 "pref_blocked_contacts" = "Cuntatos blocados";
 "blocked_empty_hint" = "Si as a blocare cuntatos ant a èssere allistados inoghe.";
-"pref_profile_photo_remove_ask" = "Bogare sa fotografia de profilu?";
 "pref_password_and_account_settings" = "Crae de intrada e contu";
 "pref_who_can_see_profile_explain" = "S\'immàgine de profilu tua e su nùmene tuo ant a èssere ammustrados in paris cun sos messàgios tuos cando ses comunichende cun àteros impreadores. Sas informatziones giai imbiadas non podent èssere iscantzelladas o bogadas.";
 "pref_your_name" = "Su nùmene tuo";
@@ -455,8 +433,6 @@
 "emoji_not_found" = "Peruna emoji agatada";
 // automatically delete message
 "delete_old_messages" = "Iscantzella sos messàgios betzos";
-// devs: autodel_title is deprecated, use delete_old_messages instead
-"autodel_title" = "Iscantzella sos messàgios automaticamente";
 "autodel_device_title" = "Iscantzella sos messàgios dae su dispositivu";
 "autodel_server_title" = "Iscantzella sos messàgios dae su servidore";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.

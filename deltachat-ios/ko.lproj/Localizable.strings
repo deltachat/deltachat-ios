@@ -135,10 +135,6 @@
 "fast" = "빠르게";
 "slow" = "느리게";
 
-"message_delivered" = "메시지 전달됨";
-"message_read" = "메시지 읽기";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "대화상대 추가";
 "menu_new_chat" = "채팅 시작";
@@ -158,7 +154,6 @@
 "menu_delete_chat" = "채팅방 나가기";
 "ask_delete_named_chat" = "메시지 \"%1$@\"을 지우려는 것이 확실한가요?";
 "menu_delete_messages" = "메시지 삭제";
-"menu_delete_image" = "이미지 삭제";
 "delete_contact" = "연락처 삭제";
 "menu_message_details" = "메시지 세부정보";
 "menu_copy_to_clipboard" = "클립보드에 복사";
@@ -169,7 +164,6 @@
 "menu_copy_email_to_clipboard" = "이메일 복사";
 "paste_from_clipboard" = "클립보드에서 붙여넣기";
 "menu_forward" = "메시지 전달";
-"menu_resend" = "메시지 다시 보내기";
 "menu_reply" = "메시지 답장";
 "menu_mute" = "알림 음소거";
 "menu_unmute" = "음소거 해제";
@@ -191,7 +185,6 @@
 "menu_edit_name" = "이름 편집";
 "menu_settings" = "설정";
 "menu_advanced" = "고급 설정";
-"menu_deaddrop" = "연락 요청";
 "menu_view_profile" = "프로필 보기";
 "menu_zoom_in" = "확대";
 "menu_zoom_out" = "축소";
@@ -213,7 +206,6 @@
 "mute_for_seven_days" = "7일 동안 알림 일시 끄기";
 "mute_forever" = "영원히";
 
-"share_location_once" = "한 번";
 "share_location_for_5_minutes" = "5분 동안";
 "share_location_for_30_minutes" = "30분 동안";
 "share_location_for_one_hour" = "1시간 동안";
@@ -237,7 +229,6 @@
 "chat_input_placeholder" = "메시지";
 "chat_archived_label" = "보관됨";
 "chat_no_messages" = "메시지가 없습니다…";
-"chat_contact_request" = "사서함";
 // search
 "search" = "검색";
 // create/edit groups, contact/group profile
@@ -292,7 +283,6 @@
 "pref_other" = "기타";
 "pref_background" = "채팅방 배경화면";
 "systemmsg_group_left" = "그룹이 남았습니다.";
-"notify_mark_read" = "읽음으로 표시";
 "notify_reply_button" = "답장";
 "notify_new_message" = "새 메시지";
 "notify_priority_high" = "높게";
@@ -311,11 +301,6 @@
 "global_menu_edit_desktop" = "편집";
 "global_menu_view_desktop" = "우선순위";
 "global_menu_help_desktop" = "도움말";
-"contact_request_title_desktop" = "사서함";
 "more_info_desktop" = "더 많은 정보";
 "remove_desktop" = "삭제";
 "save_desktop" = "저장";
-"add_contact_desktop" = "대화상대 추가";
-"none_blocked_desktop" = "차단한 친구가 없습니다";
-"me_desktop" = "나";
-"message_detail_from_desktop" = "보낸 사람";

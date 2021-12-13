@@ -82,10 +82,6 @@
 "fast" = "Brzo";
 "slow" = "Sporo";
 
-"message_delivered" = "Poruka isporučena";
-"message_read" = "Poruka pročitana";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Novi kontakt";
 "menu_new_group" = "Nova grupa";
@@ -96,13 +92,10 @@
 "menu_add_attachment" = "Dodaj privitak";
 "menu_leave_group" = "Napusti grupu";
 "menu_delete_messages" = "Obriši poruke";
-"menu_delete_image" = "Obriši sliku";
-"menu_delete_locations" = "Obrisati sve lokacije?";
 "menu_delete_location" = "Obrisati ovu lokaciju?";
 "menu_message_details" = "Detalji poruke";
 "menu_copy_to_clipboard" = "Kopiraj u međuspremnik";
 "menu_forward" = "Proslijedi poruku";
-"menu_resend" = "Ponovno pošalji poruku";
 "menu_reply" = "Odgovori na poruku";
 "menu_mute" = "Utišaj obavijesti";
 "menu_unmute" = "Ukloni utišanje";
@@ -156,7 +149,6 @@
 "forward_to" = "Proslijedi do...";
 "pref_profile_photo" = "Profilna slika";
 "pref_blocked_contacts" = "Blokirani kontakti";
-"pref_profile_photo_remove_ask" = "Ukloniti profilnu sliku?";
 "pref_password_and_account_settings" = "Lozinka i račun";
 "pref_your_name" = "Vaše ime";
 "pref_enter_sends" = "Enter šalje poruku";
@@ -206,7 +198,6 @@
 // qr code stuff
 "qr_code" = "QR kod";
 "qrscan_fingerprint_label" = "Otisak prsta";
-"notify_mark_read" = "Označi pročitano";
 "notify_reply_button" = "Odgovori";
 "notify_new_message" = "Nova poruka";
 "notify_priority_high" = "Visoko";
@@ -235,15 +226,6 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Ukloni";
 "save_desktop" = "Spremi";
-"add_contact_desktop" = "Dodaj kontakt";
-"login_required_desktop" = "zahtjevano";
 "name_desktop" = "Ime";
-"reply_to_message_desktop" = "Odgovori na poruku";
-"download_attachment_desktop" = "Preuzmi privitak";
-"new_message_from_desktop" = "Nova poruka od";
-"me_desktop" = "ja";
-"in_this_group_desktop" = "Članovi grupe";
 "message_detail_sent_desktop" = "poslano";
 "message_detail_received_desktop" = "primljeno";
-"message_detail_from_desktop" = "od";
-"message_detail_to_desktop" = "za";

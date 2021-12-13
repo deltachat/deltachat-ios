@@ -95,11 +95,9 @@
 "menu_leave_group" = "غادر الفريق";
 "menu_delete_chat" = "احدف المحادثة";
 "menu_delete_messages" = "احذف الرسائل";
-"menu_delete_image" = "احذف الصورة";
 "menu_message_details" = "تفاصيل الرسالة";
 "menu_copy_to_clipboard" = "انسخ إلى الحافظة";
 "menu_forward" = "إعادة توجيه الرسالة";
-"menu_resend" = "إعادة الإرسال";
 "menu_reply" = "الرَدّ على الرسالة";
 "menu_mute" = "كتم الإشعارات";
 "menu_unmute" = "إلغاء الكتم.";
@@ -202,7 +200,6 @@
 "pref_show_emails_all" = "كلها";
 "autocrypt_continue_transfer_retry" = "أعد المحاولة";
 "qrscan_fingerprint_label" = "البصمة";
-"notify_mark_read" = "اعتبره كمقروء";
 "notify_reply_button" = "رد";
 "notify_new_message" = "رسالة جديدة";
 "notify_priority_high" = "عالي";
@@ -229,11 +226,6 @@
 "global_menu_help_desktop" = "المساعدة";
 "delete_message_desktop" = "حذف الرسالة";
 "more_info_desktop" = "تفاصيل أكثر";
-"logout_desktop" = "الخروج";
 "remove_desktop" = "أزِل";
 "save_desktop" = "حفظ";
 "name_desktop" = "الاسم";
-"new_message_from_desktop" = "رسالة جديدة مِن";
-"none_blocked_desktop" = "لا توجد جهات اتصال محظورة";
-"ask_delete_chat_desktop" = "هل أنت متأكد مِن أنك تريد حذف هذا؟";
-"in_this_group_desktop" = "أعضاء المجموعة";

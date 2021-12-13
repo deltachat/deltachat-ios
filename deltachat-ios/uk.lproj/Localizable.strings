@@ -139,10 +139,6 @@
 "fast" = "Швидко";
 "slow" = "Повільно";
 
-"message_delivered" = "Повідомлення доставлено";
-"message_read" = "Повідомлення прочитано";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Новий контакт";
 "menu_new_chat" = "Новий чат";
@@ -168,9 +164,7 @@
 "menu_delete_chat" = "Видалити чат";
 "ask_delete_named_chat" = "Ви впевнені, що хочете видалити \"%1$@\"?";
 "menu_delete_messages" = "Видалити повідомлення";
-"menu_delete_image" = "Видалити зображення";
 "delete_contact" = "Видалити контакт";
-"menu_delete_locations" = "Видалити всі місця?";
 "menu_delete_location" = "Видалити це місце?";
 "menu_message_details" = "Деталі повідомлення";
 "menu_copy_to_clipboard" = "Копіювати в буфер обміну";
@@ -181,7 +175,6 @@
 "menu_copy_email_to_clipboard" = "Копіювати електронну пошту";
 "paste_from_clipboard" = "Вставити із буферу обміну";
 "menu_forward" = "Переслати повідомлення";
-"menu_resend" = "Повторно надіслати повідомлення";
 "menu_reply" = "Відповісти на повідомлення";
 "menu_mute" = "Вимкнути сповіщення";
 "menu_unmute" = "Увімкнути сповіщення";
@@ -204,12 +197,9 @@
 "privacy_policy" = "Політика конфіденційності";
 "menu_select_all" = "Вибрати все";
 "select_more" = "Вибрати ще";
-"menu_expand" = "Розширити";
 "menu_edit_name" = "Редагувати ім\'я";
 "menu_settings" = "Налаштування";
 "menu_advanced" = "Додатково";
-"menu_deaddrop" = "Запити на спілкування";
-"menu_deaddrop_subtitle" = "Натисніть на повідомлення, щоб почати чат";
 "menu_view_profile" = "Переглянути профіль";
 "menu_zoom_in" = "Наблизити";
 "menu_zoom_out" = "Віддалити";
@@ -243,7 +233,6 @@
 "mute_for_seven_days" = "Відключити сповіщення на 7 днів";
 "mute_forever" = "Вимкнути сповіщення назавжди";
 
-"share_location_once" = "один раз";
 "share_location_for_5_minutes" = "на 5 хвилин";
 "share_location_for_30_minutes" = "на 30 хвилин";
 "share_location_for_one_hour" = "на 1 годину";
@@ -257,7 +246,6 @@
 "videochat_invite_user_hint" = "Це потребує сумісного додатку або сумісного браузера на обох кінцях.";
 "videochat_contact_invited_hint" = "%1$@ запрошено у відео чат.";
 "videochat_you_invited_hint" = "Вас запрошено у відео чат.";
-"videochat_will_open_in_your_browser" = "Цей відео чат відкриється у вашому браузері.";
 "videochat_tap_to_join" = "Торкніться щоб приєднатися";
 "videochat_tap_to_open" = "Торкніться щоб відкрити";
 "videochat_instance" = "Відео чат";
@@ -299,7 +287,6 @@
 "chat_please_enter_message" = "Будь ласка, введіть повідомлення.";
 "chat_camera_unavailable" = "Камера недоступна.";
 "chat_unable_to_record_audio" = "Неможливо записати аудіо.";
-"chat_no_messages_hint" = "Надіслати повідомлення %1$@:\n\n• Це спрацює, якщо %2$@ не використовує Delta Chat.\n\n• Перше повідомлення може виявитися незашифрованим, його доставка може зайняти деякий час.";
 "chat_new_broadcast_hint" = "У списку трансляцій інші отримуватимуть повідомлення у своїх приватних чатах з вами.\n\nОдержувачі не будуть знати один про одного.";
 "chat_new_group_hint" = "Інші побачать цю групу лише після того, як ви надішлете перше повідомлення.";
 "chat_record_slide_to_cancel" = "Рухайте для скасування";
@@ -318,14 +305,10 @@
 "saved_messages_explain" = "• Пересилайте повідомлення сюди для швидкого доступу\n\n• Робіть нотатки або голосові нагадування\n\n• Вкладайте медіа для збереження";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Збережені";
-"chat_contact_request" = "Запит контакту";
-"chat_no_contact_requests" = "Немає запитів контактів.\n\nЯкщо Ви бажаєте, щоб звичайна пошта з\'являлася тут як запити контактів, Ви можете змінити відповідний параметр у налаштуваннях додатку.";
 "retry_send" = "Спробувати надіслати повідомлення ще раз";
-"send_failed" = "Не можу надіслати повідомлення";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Ви не можете тут писати, бо ви не в цій групі. Запитайте іншого члена групи про приєднання.";
 "messaging_disabled_device_chat" = "Цей чат містить повідомлення, створені локально. Тому ви не можете писати жодних повідомлень";
-"messaging_disabled_deaddrop" = "Клацніть на повідомлення, щоб прийняти або відхилити запит на контакт";
 "messaging_disabled_mailing_list" = "Надсилання повідомлень у списках розсилки поки не підтримується";
 "cannot_display_unsuported_file_type" = "Неможливо відобразити цей тип файлів: %1$@";
 "attachment_failed_to_load" = "Не вдалося завантажити вкладення";
@@ -334,7 +317,6 @@
 
 // mailing lists
 "mailing_list" = "Список адресатів";
-"ask_show_mailing_list" = "Показати список адресатів \"%1$@\"?";
 "mailing_list_profile_info" = "Зміни в назві списку розсилки та зображенні стосуються лише цього пристрою.";
 
 // map
@@ -371,7 +353,6 @@
 "group_create_button" = "Створити групу";
 "group_please_enter_group_name" = "Введіть назву групи.";
 "group_add_members" = "Додати учасників";
-"group_hello_draft" = "Привіт! Я щойно створив групу для нас групу «%1$@».";
 "group_self_not_in_group" = "Щоб виконати цю дію, Ви повинні бути учасником групи.";
 "profile_encryption" = "Шифрування";
 "profile_shared_chats" = "Розшарені чати";
@@ -453,8 +434,6 @@
 "import_backup_no_backup_found" = "Резервних копій не знайдено.\n\nПомістить резервну копію у папку «%1$@» і спробуйте знову запустити відновлення. Для установлення без відновлення параметрів натисніть «Почати спілкування».";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Не вдалося увійти як «%1$@». Будь ласка, перевірте правильність адреси електронної пошти і пароля.";
-// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Відповідь від %1$@: %2$@\n\nДеякі сервери електронної пошти зберігають додаткову інформацію у папці «Вхідні». Ви можете перевірити цю папку, наприклад, використовуючи доступ через веб-інтерфейс. Якщо Ви зіткнулися з проблемами, проконсультуйтеся з провайдером електронної пошти або знайомими фахівцями.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Приймати невірні сертифікати";
 "used_settings" = "Використані налаштування:";
@@ -463,7 +442,6 @@
 "delete_account" = "Видалити обліковий запис";
 "delete_account_ask" = "Ви впевнені, що хочете видалити дані вашого облікового запису?";
 "delete_account_explain_with_name" = "Дані облікового запису \"%1$@\" на цьому пристрої будуть видалені, включаючи налаштування наскрізного шифрування, контакти, чати, повідомлення та медіа. Ця дія не може бути скасована.";
-"switching_account" = "Перемикаємо обліковий запис...";
 "unconfigured_account" = "Неналаштований обліковий запис";
 "unconfigured_account_hint" = "Відкрити обліковий запис для налаштування.";
 "try_connect_now" = "Спробувати підключитися негайно";
@@ -487,7 +465,6 @@
 "pref_profile_photo" = "Фото профілю";
 "pref_blocked_contacts" = "Заблоковані контакти";
 "blocked_empty_hint" = "Заблоковані вами контакти будуть відображені тут.";
-"pref_profile_photo_remove_ask" = "Видалити фото профілю?";
 "pref_password_and_account_settings" = "Пароль та обліковий запис";
 "pref_who_can_see_profile_explain" = "Зображення профілю та ім\'я будуть відображатися в чатах з іншими користувачами. Відправлена інформація не може бути видалена або відкликана.";
 "pref_your_name" = "Ваше ім\'я";
@@ -608,8 +585,6 @@
 
 // automatically delete message
 "delete_old_messages" = "Видалити старі повідомлення";
-// devs: autodel_title is deprecated, use delete_old_messages instead
-"autodel_title" = "Автоматичне видалення повідомлень";
 "autodel_device_title" = "Видалити повідомлення з пристрою";
 "autodel_server_title" = "Видалити повідомлення на сервері";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -705,7 +680,6 @@
 "qrscan_contains_text" = "Текст з QR-коду:\n\n%1$@";
 "qrscan_contains_url" = "URL з QR-коду:\n\n%1$@";
 "qrscan_fingerprint_label" = "Відбиток";
-"qrscan_x_verified_introduce_myself" = "%1$@ підтверджено, передається особиста інформація...";
 "withdraw_verifycontact_explain" = "Цей QR-код можуть сканувати інші, щоб зв’язатися з вами.\n\nВи можете деактивувати QR-код і знову активувати його, відсканувавши повторно.";
 "withdraw_verifygroup_explain" = "Цей QR-код можуть сканувати інші, щоб приєднатися до групи \"%1$@\".\n\nВи можете деактивувати QR-код і знову активувати його, відсканувавши повторно.";
 "withdraw_qr_code" = "Деактивувати QR-код";
@@ -724,7 +698,6 @@
 "qrshow_join_contact_title" = "QR-код запрошення";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Відскануйте код, щоб спілкуватись з %1$@";
-"qrshow_join_contact_no_connection_hint" = "Налаштування QR-коду потребує інтернет з\'єднання. Будь ласка, під\'єднайтесь до мережі перед тим як продовжити.";
 "qrshow_join_contact_no_connection_toast" = "Відсутнє інтернет з\'єднання, не можу налаштувати QR-код.";
 "qraccount_ask_create_and_login" = "Створити нову електронну адресу на \"%1$@\" та увійти у неї?";
 "qraccount_ask_create_and_login_another" = "Створити нову електронну адресу на \"%1$@\" та увійти у неї?\n\nВаш поточний обліковий запис не буде видалено. Використовуйте \"Перемкнути обліковий запис\".";
@@ -747,9 +720,7 @@
 "mailto_link_could_not_be_decoded" = "неможливо декодувати посилання mailto: %1$@";
 
 // notifications 
-"notify_n_messages_in_m_chats" = "%1$d нових повідомлень з %2$d чатів";
 "notify_dismiss" = "Відхилити";
-"notify_mark_read" = "Позначити прочитаним";
 "notify_reply_button" = "Відповісти";
 "notify_new_message" = "Нове повідомлення";
 "notify_background_connection_enabled" = "З\'єднання у фоновому режимі увімкнено";
@@ -809,48 +780,28 @@
 "no_chat_selected_suggestion_desktop" = "Виберіть чат або створіть новий";
 "write_message_desktop" = "Напишіть повідомлення";
 "encryption_info_title_desktop" = "Інформація про шифрування";
-"contact_detail_title_desktop" = "Деталі контакту";
-"contact_request_title_desktop" = "Запит на спілкування";
 "delete_message_desktop" = "Видалити повідомлення";
 "more_info_desktop" = "Більше інформації";
-"logout_desktop" = "Вийти";
 "timestamp_format_m_desktop" = "d MMMM";
 "encryption_info_desktop" = "Показати інформацію про шифрування";
-"verified_desktop" = "Перевірено";
 "remove_desktop" = "Видалити";
 "save_desktop" = "Зберегти";
-"add_contact_desktop" = "Додати контакт";
-"login_required_desktop" = "потрібний";
 "name_desktop" = "Ім\'я";
 "autocrypt_key_transfer_desktop" = "Передавання ключів Autocrypt";
 "initiate_key_transfer_desktop" = "Повідомлення з параметрами Autocrypt слугує для безпечного передавання параметрів наскрізного шифрування між власними додатками для роботи з електронною поштою, що підтримують протокол Autocrypt. Ці параметри шифруються з використанням спеціального інсталяційного коду, що показаний тут і повинен бути введений у налаштовуємому додатку.";
-"reply_to_message_desktop" = "Відповісти на повідомлення";
 "select_group_image_desktop" = "Вибрати зображення групи";
 "imex_progress_title_desktop" = "Прогрес резервного копіювання";
-"download_attachment_desktop" = "Завантажити вкладення";
 "export_backup_desktop" = "Експорт резервної копії";
-"transfer_key_desktop" = "Ключ передачі";
 "show_key_transfer_message_desktop" = "Ваш ключ було надіслано до вас. Перейдіть на інший пристрій та відкрийте установче повідомлення. Вас мають спитати установчий код. Введіть наступні цифри:";
-"new_message_from_desktop" = "Нове повідомлення від";
-"unblock_contacts_desktop" = "Розблокувати контакти";
-"none_blocked_desktop" = "Немає заблокованих контактів";
 "autocrypt_correct_desktop" = "Налаштування Autocrypt успішно передані!";
 "autocrypt_incorrect_desktop" = "Невірний інсталяційний код. Спробуйте ввести його повторно.";
 "create_chat_error_desktop" = "Не вдалося створити чат.";
-"ask_delete_chat_desktop" = "Ви впевнені, що хочете видалити цей чат?";
-"email_validation_failed_desktop" = "Потрібна адреса електронної пошти.";
 "forget_login_confirmation_desktop" = "Видалити цей обліковий запис? При цьому будуть видалені всі дані, включно з параметрами наскрізного шифрування, списками контактів, чатами, повідомленнями та медіафайлами. Цю дію не можна буде скасувати.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nРозмір: %2$@\nІдентиф. аккаунту: %3$@";
-"me_desktop" = "Я";
-"in_this_group_desktop" = "Учасники групи";
-"not_in_this_group_desktop" = "Потенційні учасники (не в групі)";
 "message_detail_sent_desktop" = "Надіслано";
 "message_detail_received_desktop" = "Отримано";
-"message_detail_from_desktop" = "від";
-"message_detail_to_desktop" = " ";
 "menu.view.developer.open.log.folder" = "Відкрити папку журналів";
 "menu.view.developer.open.current.log.file" = "Відкрити поточний файл журналу";
-"user_location_permission_explanation" = "Delta Chat потребує дозволу на доступ до геоданих щоб ділитися вашим місцезнаходженням.";
 "explain_desktop_minimized_disabled_tray_pref" = "Іконку в треї не можна вимкнути, оскільки Delta Chat було запущено за допомогою параметра --minimized.";
 "no_spellcheck_suggestions_found" = "Пропозицій щодо написання не знайдено.";
 "show_window" = "Показати вікно";

@@ -131,10 +131,6 @@
 "fast" = "Snabb";
 "slow" = "Långsam";
 
-"message_delivered" = "Meddelande levererat";
-"message_read" = "Meddelande läst";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Ny kontakt";
 "menu_new_chat" = "Ny chatt";
@@ -153,9 +149,7 @@
 "menu_delete_chat" = "Ta bort chatt";
 "ask_delete_named_chat" = "Är du säker på att du vill ta bort \"%1$@\"?";
 "menu_delete_messages" = "Ta bort meddelanden";
-"menu_delete_image" = "Ta bort bild";
 "delete_contact" = "Ta bort kontakt";
-"menu_delete_locations" = "Ta bort alla platser?";
 "menu_delete_location" = "Ta bort denna plats?";
 "menu_message_details" = "Meddelandedetaljer";
 "menu_copy_to_clipboard" = "Kopierad till urklipp";
@@ -165,7 +159,6 @@
 "menu_copy_image_to_clipboard" = "Kopiera bild";
 "paste_from_clipboard" = "Klistra in från urklipp";
 "menu_forward" = "Vidarebefordra meddelande";
-"menu_resend" = "Skicka om meddelandet";
 "menu_reply" = "Svara på meddelandet";
 "menu_mute" = "Stäng av avisering";
 "menu_unmute" = "Slå på";
@@ -188,12 +181,9 @@
 "privacy_policy" = "Integritetspolicy";
 "menu_select_all" = "Markera alla";
 "select_more" = "Välj flera";
-"menu_expand" = "Expandera";
 "menu_edit_name" = "Redigera namn";
 "menu_settings" = "Inställningar";
 "menu_advanced" = "Avancerat";
-"menu_deaddrop" = "Kontaktförfrågningar";
-"menu_deaddrop_subtitle" = "Tryck på meddelande för att börja chatta";
 "menu_view_profile" = "Visa profil";
 "menu_zoom_in" = "Zooma in";
 "menu_zoom_out" = "Zooma ut";
@@ -227,7 +217,6 @@
 "mute_for_seven_days" = "Tysta 7 dagar";
 "mute_forever" = "Tysta för evigt";
 
-"share_location_once" = "en gång";
 "share_location_for_5_minutes" = "i 5 minuter";
 "share_location_for_30_minutes" = "i 30 minuter";
 "share_location_for_one_hour" = "i 1 timma";
@@ -241,7 +230,6 @@
 "videochat_invite_user_hint" = "Detta kräver ett kompatibelt program eller en kompatibel webbläsare i bägge ändar.";
 "videochat_contact_invited_hint" = "%1$@ bjöd in till en videochatt";
 "videochat_you_invited_hint" = "Du bjöd in till en videochatt";
-"videochat_will_open_in_your_browser" = "Denna videochatt öppnas i din webbläsare.";
 "videochat_tap_to_join" = "Tryck för att ansluta";
 "videochat_tap_to_open" = "Tryck för att öppna";
 "videochat_instance" = "Videochattinstans";
@@ -281,7 +269,6 @@
 "chat_please_enter_message" = "Skriv ett meddelande.";
 "chat_camera_unavailable" = "Kamera otillgänglig.";
 "chat_unable_to_record_audio" = "Det går inte att spela in ljud.";
-"chat_no_messages_hint" = "Skicka meddelande till %1$@:\n\n• Det är okej om %2$@ inte använder Delta Chat.\n\n• Leverans av det första meddelandet kan ta ett tag och det kan vara okrypterad.";
 "chat_new_group_hint" = "Komponera det första meddelandet, så att andra kan svara inom denna grupp.\n\n• Det är okej om inte alla medlemmar använder Delta Chat.\n\n• Det kan ta en stund innan det första meddelandet levereras.";
 "chat_record_slide_to_cancel" = "Svep för att avbryta";
 "chat_record_explain" = "Tryck och håll ner för att spela in ett röstmeddelande, släpp för att skicka.";
@@ -299,20 +286,15 @@
 "saved_messages_explain" = "• Vidarebefordra meddelanden här för enkel åtkomst\n\n• Spara anteckningar eller röstmemon\n\n• Bifoga mediafiler för att spara dom";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Sparad";
-"chat_contact_request" = "Kontaktförfrågan";
-"chat_no_contact_requests" = "Inga kontaktförfrågningar.\n\nOm du vill att vanliga e-postmeddelanden skall visas som kontaktförfrågningar här, kan du ändra det i appens inställningar.";
 "retry_send" = "Skicka om meddelandet";
-"send_failed" = "Kunde inte skicka meddelandet";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Du kan inte skriva eftersom du inte är med i denna grupp. Be en medlem bjuda in dig, för att gå med";
 "messaging_disabled_device_chat" = "Den här chatten innehåller meddelanden som har genererats lokalt. Därför kan du inte skriva meddelanden.";
-"messaging_disabled_deaddrop" = "Tryck på ett meddelande för att acceptera, eller neka en kontaktförfrågan";
 "messaging_disabled_mailing_list" = "Att skicka meddelande till e-postlistor stöds inte ännu";
 "cannot_display_unsuported_file_type" = "Denna filtyp kan inte visas: %1$@";
 "attachment_failed_to_load" = "Bilagan kunde inte visas";
 // mailing lists
 "mailing_list" = "Mejllista";
-"ask_show_mailing_list" = "Visa mejllistan \"%1$@\"?";
 // map
 "filter_map_on_time" = "Visa platser inom tidsramen";
 "show_location_traces" = "Visa spår";
@@ -332,7 +314,6 @@
 "group_create_button" = "Skapa grupp";
 "group_please_enter_group_name" = "Ange ett namn för gruppen.";
 "group_add_members" = "Lägg till medlemmar";
-"group_hello_draft" = "Hej, jag har precis skapat gruppen \"%1$@\" för oss.";
 "group_self_not_in_group" = "Du måste vara medlem i gruppen för att utföra denna åtgärd.";
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delade chattar";
@@ -382,8 +363,6 @@
 "import_backup_no_backup_found" = "Inga säkerhetskopior hittades.\n\nKopiera säkerhetskopian till \"%1$@\" och försök igen. Alternativt, tryck \"Börja chatta\" för att fortsätta den normala inställningsprocessen.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Kan inte logga in som \"%1$@\". Kontrollera om e-postadressen och lösenordet är korrekt.";
-// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Svar från %1$@: %2$@\n\nVissa e-postleverantörer placerar tilläggsinformation i din inkorg. Du kan kontrollera dem i t.ex. webbgränssnittet. Kontakta din e-postleverantör eller vänner om du stöter på problem.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptera ogiltiga certifikat";
 "used_settings" = "Använda inställningar:";
@@ -391,7 +370,6 @@
 "add_account" = "Lägg till konto";
 "delete_account" = "Ta bort konto";
 "delete_account_ask" = "Är du säker på att du vill ta bort din kontodata?";
-"switching_account" = "Byter konto...";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Vidarebefordra till...";
@@ -407,7 +385,6 @@
 "pref_profile_info_headline" = "Din profilinformation";
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockerade kontakter";
-"pref_profile_photo_remove_ask" = "Ta bort profilfotot?";
 "pref_password_and_account_settings" = "Lösenord och konto";
 "pref_who_can_see_profile_explain" = "Din profilbild och ditt namn visas tillsammans med dina meddelanden när du kommunicerar med andra användare. Information som redan skickats kan inte tas bort eller flyttas.";
 "pref_your_name" = "Ditt namn";
@@ -494,8 +471,6 @@
 "export_aborted" = "Exporten avbruten";
 // automatically delete message
 "delete_old_messages" = "Ta bort gamla meddelanden";
-// devs: autodel_title is deprecated, use delete_old_messages instead
-"autodel_title" = "Ta bort meddelanden automatiskt";
 "autodel_device_title" = "Ta bort meddelanden från enheten";
 "autodel_server_title" = "Ta bort meddelanden från servern";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -563,7 +538,6 @@
 "qrscan_contains_text" = "Skannad QR-kod-text:\n\n%1$@";
 "qrscan_contains_url" = "Skannad QR-kod-URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Fingeravtryck";
-"qrscan_x_verified_introduce_myself" = "%1$@ verifierad, introducerar mig själv...";
 "qrshow_title" = "QR-kod för inbjudan";
 "qrshow_x_joining" = "%1$@ anslutna.";
 "qrshow_x_verified" = "%1$@ verifierad.";
@@ -574,7 +548,6 @@
 "qrshow_join_contact_title" = "QR-kod för inbjudan";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Skanna det här för att få kontakt med %1$@.";
-"qrshow_join_contact_no_connection_hint" = "QR-kod-inställning kräver en internetanslutning. Anslut till ett nätverk innan du fortsätter.";
 "qrshow_join_contact_no_connection_toast" = "Ingen internetanslutning, kan inte utföra QR-kod-inställning.";
 "qraccount_ask_create_and_login" = "Skapa ny e-postadress på \"%1$@\" och logga in där?";
 "qraccount_ask_create_and_login_another" = "Vill du skapa en ny e-postadress på \"%1$@\" och logga in där?\n\nDitt befintliga konto kommer inte att tas bort. Använd \"Byt konto\" för att växla mellan dina konton.";
@@ -586,9 +559,6 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Ändrade inställningarna för %1$@.";
 "verified_group_explain" = "Verifierade grupper (experimentellt) tillhandahåller skydd mot aktiva attacker. Medlemmar verifieras med en andra faktor, av andra medlemmar, och meddelanden är alltid slutpunkt-till-slutpunkt-krypterade.";
-// notifications 
-"notify_n_messages_in_m_chats" = "%1$d nya meddelanden i %2$d chattar";
-"notify_mark_read" = "Läst";
 "notify_reply_button" = "Svara";
 "notify_new_message" = "Nytt meddelande";
 "notify_background_connection_enabled" = "Bakgrundsanslutning aktiverad";
@@ -635,47 +605,27 @@
 "no_chat_selected_suggestion_desktop" = "Välj en chatt eller skapa en ny";
 "write_message_desktop" = "Skriv ett meddelande";
 "encryption_info_title_desktop" = "Krypteringsinfo";
-"contact_detail_title_desktop" = "Kontaktinformation";
-"contact_request_title_desktop" = "Kontaktförfrågan";
 "delete_message_desktop" = "Ta bort meddelande";
 "more_info_desktop" = "Mer information";
-"logout_desktop" = "Logga ut";
 "timestamp_format_m_desktop" = "MMM D";
 "encryption_info_desktop" = "Visa krypteringsinfo";
-"verified_desktop" = "verifierad";
 "remove_desktop" = "Ta bort";
 "save_desktop" = "Save";
-"add_contact_desktop" = "Lägg till kontakt";
-"login_required_desktop" = "obligatorisk";
 "name_desktop" = "Namn";
 "autocrypt_key_transfer_desktop" = "Autocrypt nyckelöverföring";
 "initiate_key_transfer_desktop" = "Ett Autocrypt inställningsmeddelande delar din slutpunkt-till-slutpunkt-inställning med andra Autocrypt-anpassade program på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den andra enheten.";
-"reply_to_message_desktop" = "Svara på meddelande";
 "select_group_image_desktop" = "Välj en gruppbild";
 "imex_progress_title_desktop" = "Säkerhetskopieringsförlopp";
-"download_attachment_desktop" = "Ladda ner bifogad fil";
 "export_backup_desktop" = "Exportera säkerhetskopia";
-"transfer_key_desktop" = "Överför nyckel";
 "show_key_transfer_message_desktop" = "Din nyckel har skickats till dig själv. Byt till den andra enheten och öppna inställningsmeddelandet. . Du kommer att tillfrågas om en inställningskod. Ange följande siffror:";
-"new_message_from_desktop" = "Nytt meddelande från";
-"unblock_contacts_desktop" = "Avblockera kontakter";
-"none_blocked_desktop" = "Inga blockerade kontakter ännu";
 "autocrypt_correct_desktop" = "Autocrypt-inställning överförd.";
 "autocrypt_incorrect_desktop" = "Felaktig inställningskod. Försök igen.";
 "create_chat_error_desktop" = "Kunde inte skapa chatt.";
-"ask_delete_chat_desktop" = "Ta bort den här chatten?";
-"email_validation_failed_desktop" = "E-postadress krävs.";
 "forget_login_confirmation_desktop" = "Ta bort den här inloggningen? Allt kommer att raderas, inklusive din slutpunkt-till-slutpunkt-inställning, dina kontakter, media och meddelanden. Denna åtgärd kan inte ångras.";
-"me_desktop" = "jag";
-"in_this_group_desktop" = "Gruppmedlemmar";
-"not_in_this_group_desktop" = "Potentiella gruppmedlemmar (ännu inte i gruppen)";
 "message_detail_sent_desktop" = "skickat";
 "message_detail_received_desktop" = "mottaget";
-"message_detail_from_desktop" = "från";
-"message_detail_to_desktop" = "till";
 "menu.view.developer.open.log.folder" = "Öppna loggmappen";
 "menu.view.developer.open.current.log.file" = "Öppna aktuell loggfil";
-"user_location_permission_explanation" = "Delta Chat behöver platsbehörighet, för att kunna visa och dela din plats.";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Leveransstatus: Fel";
 "a11y_encryption_padlock" = "Hänglås för kryptering";

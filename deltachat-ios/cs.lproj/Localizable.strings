@@ -120,10 +120,6 @@
 "fast" = "Rychle";
 "slow" = "Pomalu";
 
-"message_delivered" = "Zpráva doručena";
-"message_read" = "Zpráva přečtena";
-
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nový kontakt";
 "menu_new_chat" = "Nový hovor";
@@ -142,9 +138,7 @@
 "menu_delete_chat" = "Vymaž hovor";
 "ask_delete_named_chat" = "Skutečně úplně vymazat \"%1$@\"?";
 "menu_delete_messages" = "Vymaž zprávy";
-"menu_delete_image" = "Vymaž obrázek";
 "delete_contact" = "Vymaž kontakt";
-"menu_delete_locations" = "Smazat všechny polohy?";
 "menu_delete_location" = "Smazat tuto polohu?";
 "menu_message_details" = "Podrobnosti zprávy";
 "menu_copy_to_clipboard" = "Kopíruj do mezipaměti";
@@ -152,7 +146,6 @@
 "menu_copy_link_to_clipboard" = "Kopíruj odkaz";
 "paste_from_clipboard" = "Vložit z mezipaměti";
 "menu_forward" = "Přeposlat zprávu";
-"menu_resend" = "Znovu poslat zprávu";
 "menu_reply" = "Odpověz na zprávu";
 "menu_mute" = "Umlčet upozornění";
 "menu_unmute" = "Zruš umlčení";
@@ -173,12 +166,9 @@
 "privacy_policy" = "Pravidla pro soukromí";
 "menu_select_all" = "Vyber vše";
 "select_more" = "Vyber více";
-"menu_expand" = "Rozšiř";
 "menu_edit_name" = "Uprav jméno";
 "menu_settings" = "Nastavení";
 "menu_advanced" = "Pokročilá";
-"menu_deaddrop" = "Požadavky o kontakt";
-"menu_deaddrop_subtitle" = "Začni hovor stikem zprávy";
 "menu_view_profile" = "Zobraz profil";
 "menu_zoom_in" = "Přiblížit";
 "menu_zoom_out" = "Oddálit";
@@ -206,7 +196,6 @@
 "mute_for_seven_days" = "Umlčet na 7 dní";
 "mute_forever" = "Umlčet na pořád";
 
-"share_location_once" = "jednou";
 "share_location_for_5_minutes" = "na 5 minut";
 "share_location_for_30_minutes" = "na 30 minut";
 "share_location_for_one_hour" = "na 1 hodinu";
@@ -220,7 +209,6 @@
 "videochat_invite_user_hint" = "Toto vyžaduje odpovídající prohlížeč na obou koncích.";
 "videochat_contact_invited_hint" = "%1$@ pozván na video hovor.";
 "videochat_you_invited_hint" = "Pozval jsi na video hovor.";
-"videochat_will_open_in_your_browser" = "Tento video hovor bude otevřen v tvém prohlížeči.";
 "videochat_tap_to_join" = "Připoj se stiskem";
 "videochat_tap_to_open" = "Otevři stiskem";
 "videochat_instance" = "Připravený video hovor";
@@ -259,7 +247,6 @@
 "chat_please_enter_message" = "Zadejte zprávu, prosím.";
 "chat_camera_unavailable" = "Kamera je nedostupná.";
 "chat_unable_to_record_audio" = "Nelze nahrávatt zvuk.";
-"chat_no_messages_hint" = "Pošli zprávu to %1$@:\n\n• Nevadí pokud %2$@ nemá Delta Chat.\n\n• Doručení první zprávy může trvat déle, a může být nešifrovaná.";
 "chat_new_group_hint" = "Napiš první zprávu a umožni ostatním odpovídat do této skupiny.\n\n• Nevadí pokud všichni členové nemají Delta Chat.\n\n• Doručení první zprávy může trvat déle.";
 "chat_record_slide_to_cancel" = "Zrušit tahem";
 "chat_record_explain" = "K nahrání hlasové zprávy stiskni a drž mikrofon, uvolni pro odeslání.";
@@ -275,19 +262,14 @@
 "saved_messages_explain" = "• Přepošli si sem zprávy pro jednoduchý přístup\n\n• Dělej si poznámky textové i hlasové\n\n• Přiložená multimedia se hned uloží";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Uloženo";
-"chat_contact_request" = "Požadavek o spojení";
-"chat_no_contact_requests" = "Žádné požadavky o spojení.\n\nKe zobrazení běžných e-mailů jako požadavků o spojení změňte příslušnou položku v Nastavení.";
 "retry_send" = "Opakuj pokus o zaslání zprávy";
-"send_failed" = "Zprávu nelze odeslat";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Nelze psát protože nejsi členem této skupiny. O přidání požádej jiného člena.";
 "messaging_disabled_device_chat" = "Tento hovor obsahuje samočinně vytvořené zprávy. Proto nelze psát vlastní zprávy.";
-"messaging_disabled_deaddrop" = "K povolení nebo zamítnutí kontaktu stiskni jeho zprávu";
 "cannot_display_unsuported_file_type" = "Nelze zobrazit tento typ souboru: %1$@";
 "attachment_failed_to_load" = "Nezdařilo se načíst přílohu";
 // mailing lists
 "mailing_list" = "Hromadná zpráva";
-"ask_show_mailing_list" = "Zobraz seznam hromadné zprávy \"%1$@\"?";
 // map
 "filter_map_on_time" = "Zobraz polohu v časovém rámci";
 "show_location_traces" = "Ukaž trasy";
@@ -307,7 +289,6 @@
 "group_create_button" = "Vytvoř skupinu";
 "group_please_enter_group_name" = "Vlož název skupiny, prosím.";
 "group_add_members" = "Přidej člena";
-"group_hello_draft" = "Zdar, právě vytvořená skupina \"%1$@\" je pro nás.";
 "group_self_not_in_group" = "Pro tuto aktivitu musíš být členem této skupiny.";
 "profile_encryption" = "Šifrování";
 "profile_shared_chats" = "Sdílené hovory";
@@ -357,8 +338,6 @@
 "import_backup_no_backup_found" = "Žádná záloha nebyla nalezena. \n\nZkopíruj zálohu do \"%1$@\" a zkus to znovu. Případně, stiskni \"Start messaging\"  a pokračuj s běžným postupem pro nastavení.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Přihlášení jako \"%1$@\" selhalo. Zkontrolujte si prosím ještě jednou e-mail a heslo.";
-// Translators: %1$s will be replaced by the server name (eg. imap.somewhere.org) and %2$s will be replaced by the human-readable response from the server. this response may be a single word or some sentences and may or may not be localized.
-"login_error_server_response" = "Odpověď od %1$@: %2$@\n\nNěkteří poskytovatelé e-mailují dodatečné informace k tomuto nezdaru; zkus se podívat do doručených e-mailů ve tvé běžné aplikaci. Při potížích se obrať na svého poskytovatele nebo na přátele.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Přijmout neplatné certifikáty";
 "used_settings" = "Použité nastavení";
@@ -367,7 +346,6 @@
 "delete_account" = "Vymaž účet";
 "delete_account_ask" = "Skutečně vymazat data tvého účtu?";
 "delete_account_explain_with_name" = "Všechna data účtu \"%1$@\" budou z tohoto zařízení vymazána, včetně nastavení end-to-end šifrování, kontaktů, hovorů, zpráv a multimedií. Tento úkon nelze vrátit zpět.";
-"switching_account" = "Přepínám účet ...";
 "try_connect_now" = "Teď se zkus připojit";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Nastavení selhalo. Chyba: %1$@";
@@ -388,7 +366,6 @@
 "pref_profile_photo" = "Obrázek profilu";
 "pref_blocked_contacts" = "Blokované kontakty";
 "blocked_empty_hint" = "Zablokované kontakty se zobrazí zde.";
-"pref_profile_photo_remove_ask" = "Odstranit obrázek profilu?";
 "pref_password_and_account_settings" = "Heslo a účet";
 "pref_who_can_see_profile_explain" = "Tvůj profilový obrázek a jméno budou zobrazeny vedle zpráv poslaných ostatním uživatelům. Data která jsou již jednou odeslaná nelze smazat ani odstranit. ";
 "pref_your_name" = "Tvé jméno";
@@ -495,8 +472,6 @@
 
 // automatically delete message
 "delete_old_messages" = "Vymaž staré zprávy";
-// devs: autodel_title is deprecated, use delete_old_messages instead
-"autodel_title" = "Zprávy mazat samočinně";
 "autodel_device_title" = "Vymaž zprávy z přístroje";
 "autodel_server_title" = "Vymaž zprávy ze serveru";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -582,7 +557,6 @@
 "qrscan_contains_text" = "Text z QR kódu:\n\n%1$@";
 "qrscan_contains_url" = "URL z QR kódu:\n\n%1$@";
 "qrscan_fingerprint_label" = "Otisk";
-"qrscan_x_verified_introduce_myself" = "%1$@ ověřen, představ se…";
 "qrshow_title" = "Zvací QR kód";
 "qrshow_x_joining" = "%1$@ se připojil.";
 "qrshow_x_verified" = "%1$@ ověřen.";
@@ -593,7 +567,6 @@
 "qrshow_join_contact_title" = "Zvací QR kód";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "K navázání spojení s %1$@ vyfoť kód.";
-"qrshow_join_contact_no_connection_hint" = "Nastavení pomocí QR kódu vyžaduje připojení k Internetu. Připoj se k síti prosím a pokračuj.";
 "qrshow_join_contact_no_connection_toast" = "Nejsi připojen k Internetu. Nastavení QR kódem nelze provést. ";
 "qraccount_ask_create_and_login" = "Vytvořit nový e-mail na \"%1$@\" a připojit se k němu?";
 "qraccount_ask_create_and_login_another" = "Vytvořit nový e-mail na \"%1$@\" a připojit se k němu?\n\nTvůj původní ůčet nebude smazán. Použij \"Přepni účet\" k přepnutí na jiný účet.";
@@ -606,9 +579,6 @@
 "contact_setup_changed" = "Změněné nastavení pro %1$@.";
 "verified_group_explain" = "Ověřené skupiny (pokusná funkce) zabezpečuje proti aktivním útokům. Noví členové jsou ověřeni ostatními členy druhou cestou a zprávy jsou vždy šifrované end-to-end.";
 "copy_qr_data_success" = "URL z QR kódu zkopírováno do mezipaměti";
-// notifications 
-"notify_n_messages_in_m_chats" = "%1$d nových zpráv v %2$d hovorech";
-"notify_mark_read" = "Označit za přečtené";
 "notify_reply_button" = "Odpověď";
 "notify_new_message" = "Nová zpráva";
 "notify_background_connection_enabled" = "Spojení na pozadí je zapnuto";
@@ -658,47 +628,27 @@
 "no_chat_selected_suggestion_desktop" = "Vyber hovor, nebo vytvoř nový";
 "write_message_desktop" = "Napiš zprávu";
 "encryption_info_title_desktop" = "Popis šifrování";
-"contact_detail_title_desktop" = "Podrobnosti kontaktu";
-"contact_request_title_desktop" = "Žádost o kontakt";
 "delete_message_desktop" = "Vymaž zprávu";
 "more_info_desktop" = "Více podrobností";
-"logout_desktop" = "Odhlásit";
 "timestamp_format_m_desktop" = "MMM D";
 "encryption_info_desktop" = "Zobraz popis šifrování";
-"verified_desktop" = "ověřeno";
 "remove_desktop" = "Odstranit";
 "save_desktop" = "Uložit";
-"add_contact_desktop" = "Přidej kontakt";
-"login_required_desktop" = "nutné";
 "name_desktop" = "Jméno";
 "autocrypt_key_transfer_desktop" = "Přenos klíče Autocryptu";
 "initiate_key_transfer_desktop" = "Nastavení Autocryptu zabezpečeně sdílí nastavení tvého šifrování s ostatními programy používající Autocrypt. Nastavení bude zašifrováno zobrazeným kódem, který musíš zadat i na tom druhém zařízení.";
-"reply_to_message_desktop" = "Odpověz na zprávu";
 "select_group_image_desktop" = "Vyber obrázek skupiny";
 "imex_progress_title_desktop" = "Stav zálohování";
-"download_attachment_desktop" = "Stáhni přílohu";
 "export_backup_desktop" = "Ulož zálohu";
-"transfer_key_desktop" = "Přenos klíče";
 "show_key_transfer_message_desktop" = "Poslal jsi si svůj klíč. Přejdi k druhému zařízení a otevři zprávu s nastavením. Měla by se ti objevit výzva k zadání kódu. Pak opiš následující číslo:";
-"new_message_from_desktop" = "Nová zpráva od";
-"unblock_contacts_desktop" = "Odblokuj kontakty";
-"none_blocked_desktop" = "Žádné zablokované kontakty";
 "autocrypt_correct_desktop" = "Nastavení Autocryptu přeneseno.";
 "autocrypt_incorrect_desktop" = "Nesprávný kód. Zkus to znovu, prosím.";
 "create_chat_error_desktop" = "Hovor nelze vytvořit.";
-"ask_delete_chat_desktop" = "Vymazat tento hovor?";
-"email_validation_failed_desktop" = "E-mail je nutný.";
 "forget_login_confirmation_desktop" = "Smazat toto přihlášení? Vše bude smazáno, včetně nastavení tvého end-to-end šifrování, kontaktů, hovorů, zpráv a multimedií. Tuto akci nelze vrátit zpět.";
-"me_desktop" = "já";
-"in_this_group_desktop" = "Členové skupiny";
-"not_in_this_group_desktop" = "Případní členové skupiny (nejsou ve skupině)";
 "message_detail_sent_desktop" = "odesláno";
 "message_detail_received_desktop" = "přijato";
-"message_detail_from_desktop" = "od";
-"message_detail_to_desktop" = "komu";
 "menu.view.developer.open.log.folder" = "Otevři složku se záznamem běhu";
 "menu.view.developer.open.current.log.file" = "Otevři stávající záznam běhu";
-"user_location_permission_explanation" = "Delta Chat potřebuje povolení ke zobrazení a sdílení tvé polohy.";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stav doručení: Chyba";
 "a11y_encryption_padlock" = "Zámek šifrování";
