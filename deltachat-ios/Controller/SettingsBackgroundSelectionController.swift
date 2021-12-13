@@ -63,7 +63,7 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         if let backgroundImageURL = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
-            view.sd_setImage(with: URL(fileURLWithPath: backgroundImageURL), completed: nil)
+            view.sd_setImage(with: URL(fileURLWithPath: backgroundImageURL), placeholderImage: nil, options: .refreshCached, completed: nil)
         } else {
             setDefault(view)
         }
@@ -148,7 +148,9 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         if let pathInDocDir = ImageFormat.saveImage(image: image, name: Constants.backgroundImageName) {
             UserDefaults.standard.set(pathInDocDir, forKey: Constants.Keys.backgroundImageUrl)
             UserDefaults.standard.synchronize()
-            backgroundContainer.image = image
+            backgroundContainer.sd_setImage(with: URL(fileURLWithPath: pathInDocDir), placeholderImage: nil, options: .refreshCached, completed: nil)
+        } else {
+            logger.error("failed to save background image")
         }
     }
 }
