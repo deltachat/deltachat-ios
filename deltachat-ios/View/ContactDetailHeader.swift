@@ -144,15 +144,23 @@ class ContactDetailHeader: UIView {
 
     func setMuted(isMuted: Bool) {
         if #available(iOS 13.0, *) {
-            muteButton.setImage(isMuted ? UIImage(systemName: "bell")?.sd_tintedImage(with: .systemBlue) :
-                                    UIImage(systemName: "bell.slash")?.sd_tintedImage(with: .systemBlue),
+            muteButton.setImage(isMuted ? UIImage(systemName: "bell.slash")?.sd_tintedImage(with: .systemBlue) :
+                                    UIImage(systemName: "bell")?.sd_tintedImage(with: .systemBlue),
                                 for: .normal)
         } else {
             muteButton.setImage(isMuted ?
-                                UIImage(named: "ic_notifications_on")?.sd_tintedImage(with: .systemBlue) :
-                                    UIImage(named: "ic_notifications_off")?.sd_tintedImage(with: .systemBlue),
+                                UIImage(named: "ic_notifications_off")?.sd_tintedImage(with: .systemBlue) :
+                                    UIImage(named: "ic_notifications_on")?.sd_tintedImage(with: .systemBlue),
                                 for: .normal)
         }
+    }
+
+    func showMuteButton(show: Bool) {
+        muteButton.isHidden = !show
+    }
+
+    func showSearchButton(show: Bool) {
+        searchButton.isHidden = !show
     }
 
     func setVerified(isVerified: Bool) {
