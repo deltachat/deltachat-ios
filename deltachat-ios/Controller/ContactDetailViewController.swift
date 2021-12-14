@@ -191,7 +191,7 @@ class ContactDetailViewController: UITableViewController {
         case .sharedChats:
             if let cell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
                 viewModel.update(sharedChatCell: cell, row: row)
-                cell.backgroundColor = DcColors.sharedChatCellBackgroundColor
+                cell.backgroundColor = DcColors.profileCellBackgroundColor
                 return cell
             }
         }

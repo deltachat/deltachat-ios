@@ -16,7 +16,7 @@ public struct DcColors {
     public static let defaultBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let defaultTransparentBackgroundColor = DcColors.defaultBackgroundColor.withAlphaComponent(0.75)
     public static let defaultInverseColor = UIColor.themeColor(light: .black, dark: .white)
-    public static let sharedChatCellBackgroundColor = UIColor.themeColor(light: white, dark: actionCellBackgroundDark)
+    public static let profileCellBackgroundColor = UIColor.themeColor(light: white, dark: actionCellBackgroundDark)
     public static let chatBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))
     public static let unreadBadge = UIColor(hexString: "3792fc")
