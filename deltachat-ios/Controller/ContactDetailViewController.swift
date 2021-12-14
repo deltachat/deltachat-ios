@@ -7,7 +7,12 @@ class ContactDetailViewController: UITableViewController {
     private let viewModel: ContactDetailViewModel
 
     private lazy var headerCell: ContactDetailHeader = {
-        return ContactDetailHeader()
+        let headerCell = ContactDetailHeader()
+        headerCell.showSearchButton(show: viewModel.chatId != 0)
+        headerCell.onAvatarTap = showContactAvatarIfNeeded
+        headerCell.onMuteButtonTapped = toggleMuteChat
+        headerCell.onSearchButtonTapped = showSearch
+        return headerCell
     }()
 
 
@@ -46,13 +51,6 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var muteChatCell: ActionCell = {
-        let cell = ActionCell()
-        cell.actionTitle = viewModel.chatIsMuted ? String.localized("menu_unmute") :  String.localized("menu_mute")
-        cell.actionColor = SystemColor.blue.uiColor
-        return cell
-    }()
-
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = viewModel.chatIsArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
@@ -81,17 +79,6 @@ class ContactDetailViewController: UITableViewController {
     private lazy var documentsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("files")
-        cell.accessoryType = .disclosureIndicator
-        if viewModel.chatId == 0 {
-            cell.isUserInteractionEnabled = false
-            cell.textLabel?.isEnabled = false
-        }
-        return cell
-    }()
-
-    private lazy var searchCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("search")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -181,12 +168,8 @@ class ContactDetailViewController: UITableViewController {
                 return documentsCell
             case .gallery:
                 return galleryCell
-            case .search:
-                return searchCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
-            case .muteChat:
-                return muteChatCell
             case .startChat:
                 return startChatCell
             }
@@ -300,6 +283,7 @@ class ContactDetailViewController: UITableViewController {
                 headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
             headerCell.setVerified(isVerified: false)
+            headerCell.showMuteButton(show: false)
         } else {
             headerCell.updateDetails(title: viewModel.contact.displayName,
                                      subtitle: viewModel.isDeviceTalk ? String.localized("device_talk_subtitle") : viewModel.contact.email)
@@ -309,8 +293,9 @@ class ContactDetailViewController: UITableViewController {
                 headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
             }
             headerCell.setVerified(isVerified: viewModel.contact.isVerified)
+            headerCell.setMuted(isMuted: viewModel.chatIsMuted)
+            headerCell.showMuteButton(show: true)
         }
-        headerCell.onAvatarTap = showContactAvatarIfNeeded
     }
 
     private func updateCellValues() {
@@ -350,19 +335,8 @@ class ContactDetailViewController: UITableViewController {
             showDocuments()
         case .gallery:
             showGallery()
-        case .search:
-            showSearch()
         case .ephemeralMessages:
             showEphemeralMessagesController()
-        case .muteChat:
-            tableView.deselectRow(at: indexPath, animated: false)
-            if viewModel.chatIsMuted {
-                self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
-                muteChatCell.actionTitle = String.localized("menu_mute")
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                showMuteAlert()
-            }
         case .startChat:
             tableView.deselectRow(at: indexPath, animated: false)
             let contactId = viewModel.contactId
@@ -376,6 +350,16 @@ class ContactDetailViewController: UITableViewController {
             self.navigationController?.popToRootViewController(animated: false)
         } else {
             archiveChatCell.actionTitle = String.localized("menu_archive_chat")
+        }
+    }
+
+    private func toggleMuteChat() {
+        if viewModel.chatIsMuted {
+            self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
+            headerCell.setMuted(isMuted: viewModel.chatIsMuted)
+            // self.navigationController?.popViewController(animated: true)
+        } else {
+            showMuteAlert()
         }
     }
 
@@ -436,8 +420,8 @@ class ContactDetailViewController: UITableViewController {
     private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
         let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
             self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: duration)
-            self.muteChatCell.actionTitle = String.localized("menu_unmute")
-            self.navigationController?.popViewController(animated: true)
+            self.headerCell.setMuted(isMuted: self.viewModel.chatIsMuted)
+            // self.navigationController?.popViewController(animated: true)
         })
         alert.addAction(action)
     }
