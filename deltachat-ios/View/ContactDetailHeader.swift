@@ -63,7 +63,11 @@ class ContactDetailHeader: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(muteBtnTapped), for: .touchUpInside)
         button.backgroundColor = DcColors.defaultBackgroundColor
-        button.setImage(UIImage(named: "volume_off")?.sd_tintedImage(with: .systemBlue), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.setImage(UIImage(systemName: "bell")?.sd_tintedImage(with: .systemBlue), for: .normal)
+        } else {
+            button.setImage(UIImage(named: "ic_notifications_on")?.sd_tintedImage(with: .systemBlue), for: .normal)
+        }
         button.layer.cornerRadius = 16
         button.layer.borderColor = DcColors.colorDisabled.cgColor
         button.layer.borderWidth = 1
@@ -136,6 +140,19 @@ class ContactDetailHeader: UIView {
     func setBackupImage(name: String, color: UIColor) {
         avatar.setColor(color)
         avatar.setName(name)
+    }
+
+    func setMuted(isMuted: Bool) {
+        if #available(iOS 13.0, *) {
+            muteButton.setImage(isMuted ? UIImage(systemName: "bell")?.sd_tintedImage(with: .systemBlue) :
+                                    UIImage(systemName: "bell.slash")?.sd_tintedImage(with: .systemBlue),
+                                for: .normal)
+        } else {
+            muteButton.setImage(isMuted ?
+                                UIImage(named: "ic_notifications_on")?.sd_tintedImage(with: .systemBlue) :
+                                    UIImage(named: "ic_notifications_off")?.sd_tintedImage(with: .systemBlue),
+                                for: .normal)
+        }
     }
 
     func setVerified(isVerified: Bool) {
