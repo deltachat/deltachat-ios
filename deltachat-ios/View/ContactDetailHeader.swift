@@ -4,6 +4,8 @@ import DcCore
 class ContactDetailHeader: UIView {
 
     var onAvatarTap: VoidFunction?
+    var onSearchButtonTapped: VoidFunction?
+    var onMuteButtonTapped: VoidFunction?
 
     public static let headerHeight: CGFloat = 74.5
 
@@ -37,6 +39,40 @@ class ContactDetailHeader: UIView {
         return label
     }()
 
+    private var searchButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(searchBtnTapped), for: .touchUpInside)
+        button.backgroundColor = DcColors.defaultBackgroundColor
+        button.setImage(UIImage(named: "ic_search")?.sd_tintedImage(with: .systemBlue), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 5, right: 6)
+        button.layer.cornerRadius = 16
+        button.layer.borderColor = DcColors.colorDisabled.cgColor
+        button.layer.borderWidth = 1
+        button.layer.masksToBounds = true
+        button.constraintHeightTo(32).isActive = true
+        button.constraintWidthTo(32).isActive = true
+        return button
+    }()
+
+    private var muteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(muteBtnTapped), for: .touchUpInside)
+        button.backgroundColor = DcColors.defaultBackgroundColor
+        button.setImage(UIImage(named: "volume_off")?.sd_tintedImage(with: .systemBlue), for: .normal)
+        button.layer.cornerRadius = 16
+        button.layer.borderColor = DcColors.colorDisabled.cgColor
+        button.layer.borderWidth = 1
+        button.layer.masksToBounds = true
+        button.constraintHeightTo(32).isActive = true
+        button.constraintWidthTo(32).isActive = true
+        return button
+    }()
+
     init() {
         super.init(frame: .zero)
         backgroundColor =  .clear
@@ -50,12 +86,15 @@ class ContactDetailHeader: UIView {
     private func setupSubviews() {
         let margin: CGFloat = 10
         let verticalStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        let horizontalStackView = UIStackView(arrangedSubviews: [searchButton, muteButton])
 
         addSubview(avatar)
         addSubview(verticalStackView)
+        addSubview(horizontalStackView)
 
         avatar.translatesAutoresizingMaskIntoConstraints = false
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
 
         addConstraints([
             avatar.constraintWidthTo(badgeSize),
@@ -68,8 +107,16 @@ class ContactDetailHeader: UIView {
         verticalStackView.clipsToBounds = true
         verticalStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
         verticalStackView.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -margin).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor, constant: -margin).isActive = true
         verticalStackView.axis = .vertical
+
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.distribution = .fillEqually
+        horizontalStackView.alignment = .center
+        horizontalStackView.constraintAlignLeadingToAnchor(verticalStackView.trailingAnchor).isActive = true
+        horizontalStackView.constraintAlignTrailingToAnchor(trailingAnchor, paddingTrailing: margin).isActive = true
+        horizontalStackView.constraintCenterYTo(self).isActive = true
+        horizontalStackView.spacing = margin
     }
 
     func updateDetails(title: String?, subtitle: String?) {
@@ -97,6 +144,14 @@ class ContactDetailHeader: UIView {
 
     @objc private func avatarTapped(_ sender: InitialsBadge) {
         onAvatarTap?()
+    }
+
+    @objc private func searchBtnTapped() {
+        onSearchButtonTapped?()
+    }
+
+    @objc private func muteBtnTapped() {
+        onMuteButtonTapped?()
     }
 
 }
