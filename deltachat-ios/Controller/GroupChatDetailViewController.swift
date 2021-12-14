@@ -14,9 +14,7 @@ class GroupChatDetailViewController: UIViewController {
     enum ChatOption {
         case gallery
         case documents
-        case search
         case ephemeralMessages
-        case muteChat
     }
 
     enum ChatAction {
@@ -100,6 +98,10 @@ class GroupChatDetailViewController: UIViewController {
         }
         header.onAvatarTap = showGroupAvatarIfNeeded
         header.setVerified(isVerified: chat.isProtected)
+        header.showMuteButton(show: chat.isMuted)
+        header.showSearchButton(show: true)
+        header.onSearchButtonTapped = showSearch
+        header.onMuteButtonTapped = toggleMuteChat
         return header
     }()
 
@@ -109,14 +111,6 @@ class GroupChatDetailViewController: UIViewController {
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
-
-    private lazy var muteChatCell: ActionCell = {
-        let cell = ActionCell()
-        cell.actionTitle = self.chat.isMuted ? String.localized("menu_unmute") :  String.localized("menu_mute")
-        cell.actionColor = SystemColor.blue.uiColor
-        return cell
-    }()
-
 
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
@@ -298,21 +292,25 @@ class GroupChatDetailViewController: UIViewController {
         self.editBarButtonItem.isEnabled = chat.isMailinglist || chat.canSend
 
         if chat.isMailinglist {
-            self.chatOptions = [.gallery, .documents, .search, .muteChat]
+            self.chatOptions = [.gallery, .documents]
             self.memberManagementRows = 0
             self.chatActions = [.archiveChat, .deleteChat]
+            self.groupHeader.showMuteButton(show: true)
         } else if chat.isBroadcast {
-            self.chatOptions = [.gallery, .documents, .search]
+            self.chatOptions = [.gallery, .documents]
             self.memberManagementRows = 1
             self.chatActions = [.archiveChat, .deleteChat]
+            self.groupHeader.showMuteButton(show: false)
         } else if chat.canSend {
-            self.chatOptions = [.gallery, .documents, .search, .ephemeralMessages, .muteChat]
+            self.chatOptions = [.gallery, .documents, .ephemeralMessages]
             self.memberManagementRows = 2
             self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
+            self.groupHeader.showMuteButton(show: true)
         } else {
-            self.chatOptions = [.gallery, .documents, .search, .muteChat]
+            self.chatOptions = [.gallery, .documents]
             self.memberManagementRows = 0
             self.chatActions = [.archiveChat, .deleteChat]
+            self.groupHeader.showMuteButton(show: true)
         }
     }
 
@@ -324,6 +322,7 @@ class GroupChatDetailViewController: UIViewController {
             groupHeader.setBackupImage(name: chat.name, color: chat.color)
         }
         groupHeader.setVerified(isVerified: chat.isProtected)
+        groupHeader.setMuted(isMuted: chat.isMuted)
     }
 
     private func updateEphemeralTimerCellValue() {
@@ -338,6 +337,16 @@ class GroupChatDetailViewController: UIViewController {
     // MARK: - actions
     @objc func editButtonPressed() {
         showGroupChatEdit(chat: chat)
+    }
+
+    private func toggleMuteChat() {
+        if chat.isMuted {
+            dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
+            groupHeader.setMuted(isMuted: false)
+            // navigationController?.popViewController(animated: true)
+        } else {
+            showMuteAlert()
+        }
     }
 
     private func toggleArchiveChat() {
@@ -485,12 +494,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return galleryCell
             case .documents:
                 return documentsCell
-            case .search:
-                return searchCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
-            case .muteChat:
-                return muteChatCell
             }
         case .members:
             if isMemberManagementRow(row: row) {
@@ -545,19 +550,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 showGallery()
             case .documents:
                 showDocuments()
-            case .search:
-                showSearch()
             case .ephemeralMessages:
                 showEphemeralMessagesController()
-            case .muteChat:
-                tableView.deselectRow(at: indexPath, animated: false)
-                if chat.isMuted {
-                    dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
-                    muteChatCell.actionTitle = String.localized("menu_mute")
-                    navigationController?.popViewController(animated: true)
-                } else {
-                    showMuteAlert()
-                }
             }
         case .members:
             if isMemberManagementRow(row: row) {
@@ -624,7 +618,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
                 guard let self = self else { return }
                 let contact = self.getGroupMember(at: row)
-                let title = String.localizedStringWithFormat(String.localized(self.chat.isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), contact.nameNAddr)
+                let title = String.localizedStringWithFormat(String.localized(self.chat.isBroadcast ?
+                                     "ask_remove_from_broadcast" :
+                                        "ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
                     let success = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: contact.id)
@@ -677,8 +673,8 @@ extension GroupChatDetailViewController {
     private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
         let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
             self.dcContext.setChatMuteDuration(chatId: self.chatId, duration: duration)
-            self.muteChatCell.actionTitle = String.localized("menu_unmute")
-            self.navigationController?.popViewController(animated: true)
+            self.groupHeader.setMuted(isMuted: true)
+            // self.navigationController?.popViewController(animated: true)
         })
         alert.addAction(action)
     }
