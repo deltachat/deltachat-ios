@@ -357,7 +357,7 @@ class ContactDetailViewController: UITableViewController {
         if viewModel.chatIsMuted {
             self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: 0)
             headerCell.setMuted(isMuted: viewModel.chatIsMuted)
-            // self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         } else {
             showMuteAlert()
         }
@@ -421,7 +421,7 @@ class ContactDetailViewController: UITableViewController {
         let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
             self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: duration)
             self.headerCell.setMuted(isMuted: self.viewModel.chatIsMuted)
-            // self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         })
         alert.addAction(action)
     }

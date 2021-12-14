@@ -343,7 +343,7 @@ class GroupChatDetailViewController: UIViewController {
         if chat.isMuted {
             dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
             groupHeader.setMuted(isMuted: false)
-            // navigationController?.popViewController(animated: true)
+            navigationController?.popViewController(animated: true)
         } else {
             showMuteAlert()
         }
@@ -674,7 +674,7 @@ extension GroupChatDetailViewController {
         let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
             self.dcContext.setChatMuteDuration(chatId: self.chatId, duration: duration)
             self.groupHeader.setMuted(isMuted: true)
-            // self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         })
         alert.addAction(action)
     }
