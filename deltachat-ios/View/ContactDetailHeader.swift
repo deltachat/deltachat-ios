@@ -43,7 +43,7 @@ class ContactDetailHeader: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(searchBtnTapped), for: .touchUpInside)
-        button.backgroundColor = DcColors.defaultBackgroundColor
+        button.backgroundColor = DcColors.profileCellBackgroundColor
         button.setImage(UIImage(named: "ic_search")?.sd_tintedImage(with: .systemBlue), for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
@@ -62,7 +62,7 @@ class ContactDetailHeader: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(muteBtnTapped), for: .touchUpInside)
-        button.backgroundColor = DcColors.defaultBackgroundColor
+        button.backgroundColor = DcColors.profileCellBackgroundColor
         if #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: "bell")?.sd_tintedImage(with: .systemBlue), for: .normal)
         } else {
