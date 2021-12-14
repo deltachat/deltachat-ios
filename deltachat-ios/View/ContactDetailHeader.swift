@@ -179,4 +179,10 @@ class ContactDetailHeader: UIView {
         onMuteButtonTapped?()
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        searchButton.layer.borderColor = DcColors.colorDisabled.cgColor
+        muteButton.layer.borderColor = DcColors.colorDisabled.cgColor
+    }
+
 }
