@@ -278,14 +278,18 @@ class ChatViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    let allStart = CFAbsoluteTimeGetCurrent()
     override func loadView() {
+        logger.info("🔨 *** ChatViewController: loadView starting ***")
         self.tableView = ChatTableView(messageInputBar: messageInputBar)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view = self.tableView
+        logger.info("🔨 ChatViewController: loadView ending")
     }
 
     override func viewDidLoad() {
+        logger.info("🔨 ChatViewController: viewDidLoad starting")
         super.viewDidLoad()
         tableView.backgroundView = backgroundContainer
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
@@ -322,6 +326,7 @@ class ChatViewController: UITableViewController {
             messageInputBar.isHidden = true
         }
         loadMessages()
+        logger.info("🔨 ChatViewController: viewDidLoad ending")
     }
 
     private func configureUIForWriting() {
@@ -376,6 +381,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        logger.info("🔨 ChatViewController: viewWillAppear starting")
         super.viewWillAppear(animated)
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
@@ -440,6 +446,7 @@ class ChatViewController: UITableViewController {
         }
 
         prepareContextMenu()
+        logger.info("🔨 ChatViewController: viewWillAppear ending,  \(CFAbsoluteTimeGetCurrent()-allStart) s since startx")
     }
 
     override func viewDidAppear(_ animated: Bool) {
