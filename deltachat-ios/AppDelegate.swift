@@ -536,6 +536,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func increaseDebugCounter(_ name: String) {
         let nowDate = Date()
         let nowTimestamp = Double(nowDate.timeIntervalSince1970)
+        // Values calculated for debug log view
         let startTimestamp = UserDefaults.standard.double(forKey: name + "-start")
         if nowTimestamp > startTimestamp + 60*60*24 {
             let cal: Calendar = Calendar(identifier: .gregorian)
@@ -547,6 +548,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let cnt = UserDefaults.standard.integer(forKey: name + "-count")
         UserDefaults.standard.set(cnt + 1, forKey: name + "-count")
         UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
+
+        // Values calculated for connectivity view
+        let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
+        var slidingTimeframe: [Double]
+        if timestamps != nil, let timestamps = timestamps as? Array<Double> {
+            slidingTimeframe = timestamps.filter({ nowTimestamp < $0 + 60 * 60 * 24 })
+        } else {
+            slidingTimeframe = [Double]()
+        }
+
+        slidingTimeframe.append(nowTimestamp)
+        UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
     }
 
     private func setStockTranslations() {

@@ -41,6 +41,68 @@ class ConnectivityViewController: WebViewViewController {
         }
     }
 
+    // this method needs to be run from a background thread
+    private func getNotificationStatus() -> String {
+        let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
+        let notificationsEnabledInDC = !UserDefaults.standard.bool(forKey: "notifications_disabled")
+        var notificationsEnabledInSystem = true
+        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
+        NotificationManager.notificationEnabledInSystem { enabled in
+            notificationsEnabledInSystem = enabled
+            semaphore.signal()
+        }
+        semaphore.wait()
+        if !notificationsEnabledInDC {
+            return """
+                      <span class="yellow dot"></span>
+                   """.appending(" ").appending(String.localized("notifications_disabled_dc"))
+        }
+
+        if !notificationsEnabledInSystem {
+            return """
+                      <span class="yellow dot"></span>
+                   """.appending(" ").appending(String.localized("notifications_disabled"))
+        }
+
+        guard let timestamps = timestamps else {
+            return String.localized("no_data")
+        }
+
+        if timestamps.isEmpty || timestamps.count == 1 {
+            return """
+                      <span class="red dot"></span>
+                   """.appending(" ").appending(String.localized("notifications_not_working"))
+        }
+
+        var timestampDeltas: Double = 0
+        for (index, element) in timestamps.enumerated() where index > 0 {
+            let diff = element - timestamps[index - 1]
+            timestampDeltas += diff
+        }
+
+        let averageDelta = timestampDeltas / Double(timestamps.count - 1)
+        let lastWakeup = DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestamps.last!)
+
+        if averageDelta / Double(60 * 60) > 1 {
+            // more than 1 hour in average
+            return  """
+                        <span class="green dot"></span>
+                    """
+                .appending(" ")
+            //     String.localizedStringWithFormat(String.localized(fromServer ? "autodel_server_ask" : "autodel_device_ask"), delCount, newDescr)
+
+                .appending(String.localizedStringWithFormat(String.localized("notifications_stats_hours"),
+                                                            "\(Int(averageDelta / 60 * 60))", lastWakeup))
+        }
+
+        return  """
+                    <span class="green dot"></span>
+                """
+            .appending(" ")
+            .appending(String.localizedStringWithFormat(String.localized("notifications_stats_minutes"),
+                                                        "\(Int(averageDelta / 60))", lastWakeup))
+    }
+
     private func loadHtml() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
@@ -61,6 +123,11 @@ class ConnectivityViewController: WebViewViewController {
                       }
                     }
                     </style>
+                    """).replacingOccurrences(of: "</body>", with:
+                    """
+                    <h3>\(String.localized("pref_notifications"))</h3>
+                    <ul><li>\(self.getNotificationStatus())</li>
+                    </body>
                     """)
             DispatchQueue.main.async {
                 self.webView.loadHTMLString(html, baseURL: nil)
