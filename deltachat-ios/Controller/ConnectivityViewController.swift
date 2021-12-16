@@ -94,8 +94,6 @@ class ConnectivityViewController: WebViewViewController {
                         <span class="green dot"></span>
                     """
                 .appending(" ")
-            //     String.localizedStringWithFormat(String.localized(fromServer ? "autodel_server_ask" : "autodel_device_ask"), delCount, newDescr)
-
                 .appending(String.localizedStringWithFormat(String.localized("notifications_stats_hours"),
                                                             "\(Int(averageDelta / 60 * 60))", lastWakeup))
         }
