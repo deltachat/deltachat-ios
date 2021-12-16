@@ -91,7 +91,7 @@ class ConnectivityViewController: WebViewViewController {
         if averageDelta / Double(60 * 60) > 1 {
             // more than 1 hour in average
             return  """
-                        <span class="green dot"></span>
+                        <span class="red dot"></span>
                     """
                 .appending(" ")
                 .appending(String.localizedStringWithFormat(String.localized("notifications_stats_hours"),
