@@ -552,7 +552,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Values calculated for connectivity view
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
         var slidingTimeframe: [Double]
-        if timestamps != nil, let timestamps = timestamps as? Array<Double> {
+        if timestamps != nil, let timestamps = timestamps as? [Double] {
             slidingTimeframe = timestamps.filter({ nowTimestamp < $0 + 60 * 60 * 24 })
         } else {
             slidingTimeframe = [Double]()
