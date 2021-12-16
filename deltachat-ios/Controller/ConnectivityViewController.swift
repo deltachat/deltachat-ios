@@ -95,7 +95,17 @@ class ConnectivityViewController: WebViewViewController {
                     """
                 .appending(" ")
                 .appending(String.localizedStringWithFormat(String.localized("notifications_stats_hours"),
-                                                            "\(Int(averageDelta / 60 * 60))", lastWakeup))
+                                                            "\(Int(averageDelta / (60 * 60)))", lastWakeup))
+        }
+
+        if averageDelta / Double(60 * 20) > 1 {
+            // more than 20 minutes in average
+            return  """
+                        <span class="yellow dot"></span>
+                    """
+                .appending(" ")
+                .appending(String.localizedStringWithFormat(String.localized("notifications_minutes_delayed"),
+                                                            "\(Int(averageDelta / 60))", lastWakeup))
         }
 
         return  """

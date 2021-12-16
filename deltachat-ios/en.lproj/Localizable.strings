@@ -863,5 +863,6 @@
 "notifications_disabled_dc" = "Notifications disabled in Delta Chat.";
 "notifications_disabled" = "Notifications disabled in system settings.";
 "notifications_not_working" = "No notifications received in last 24 hours.";
-"notifications_stats_minutes" = "Every %1$@ minutes. Last wakeup: %2$@";
-"notifications_stats_hours" = "Every %1$@ hours. Last wakeup: %2$";
+"notifications_stats_minutes" = "In average every %1$@ minutes. Last wakeup: %2$@";
+"notifications_stats_hours" = "Delayed. In average every %1$@ hours. Last wakeup: %2$@";
+"notifications_minutes_delayed" = "Delayed. In average every %1$@ minutes. Last wakeup: %2$@";
