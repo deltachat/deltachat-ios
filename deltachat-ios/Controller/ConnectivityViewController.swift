@@ -45,13 +45,18 @@ class ConnectivityViewController: WebViewViewController {
     private func getNotificationStatus() -> String {
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
         let notificationsEnabledInDC = !UserDefaults.standard.bool(forKey: "notifications_disabled")
-        var notificationsEnabledInSystem = true
-        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
-        NotificationManager.notificationEnabledInSystem { enabled in
-            notificationsEnabledInSystem = enabled
-            semaphore.signal()
+        var notificationsEnabledInSystem = false
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global(qos: .userInitiated).async {
+            NotificationManager.notificationEnabledInSystem { enabled in
+                notificationsEnabledInSystem = enabled
+                semaphore.signal()
+            }
         }
-        semaphore.wait()
+        if semaphore.wait(timeout: .now() + 1) == .timedOut {
+            return String.localized("no_data")
+        }
+
         if !notificationsEnabledInDC {
             return """
                       <span class="yellow dot"></span>
