@@ -226,5 +226,21 @@
 			<string>%d new messages</string>
 		</dict>
 	</dict>
+	<key>notifications_stats_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Delayed. In average every %1$d hour.</string>
+			<key>other</key>
+			<string>Delayed. In average every %1$d hours.</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

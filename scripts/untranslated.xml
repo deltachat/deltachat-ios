@@ -16,7 +16,11 @@
     <string name="notifications_disabled_dc">Notifications disabled in Delta Chat.</string>
     <string name="notifications_disabled">Notifications disabled in system settings.</string>
     <string name="notifications_not_working">No notifications received in last 24 hours.</string>
-    <string name="notifications_stats_minutes">In average every %1$s minutes. Last wakeup: %2$s</string>
-    <string name="notifications_stats_hours">Delayed. In average every %1$s hours. Last wakeup: %2$s</string>
-    <string name="notifications_minutes_delayed">Delayed. In average every %1$s minutes. Last wakeup: %2$s</string>
+    <string name="notifications_stats_minutes">In average every %1$d minutes.</string>
+    <string name="notifications_stats_minutes_delayed">Delayed. In average every %1$d minutes.</string>
+    <plurals name="notifications_stats_hours">
+            <item quantity="one">Delayed. In average every %1$d hour.</item>
+            <item quantity="other">Delayed. In average every %1$d hours.</item>
+    </plurals>
+    <string name="notifications_stats_last_wakeup">Last wakeup: %1$s</string>
 </resources>

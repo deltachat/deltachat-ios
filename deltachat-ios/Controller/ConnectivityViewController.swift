@@ -94,8 +94,9 @@ class ConnectivityViewController: WebViewViewController {
                         <span class="red dot"></span>
                     """
                 .appending(" ")
-                .appending(String.localizedStringWithFormat(String.localized("notifications_stats_hours"),
-                                                            "\(Int(averageDelta / (60 * 60)))", lastWakeup))
+                .appending(String.localized(stringID: "notifications_stats_hours", count: Int(averageDelta / (60 * 60))))
+                .appending(" ")
+                .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
         }
 
         if averageDelta / Double(60 * 20) > 1 {
@@ -104,16 +105,18 @@ class ConnectivityViewController: WebViewViewController {
                         <span class="yellow dot"></span>
                     """
                 .appending(" ")
-                .appending(String.localizedStringWithFormat(String.localized("notifications_minutes_delayed"),
-                                                            "\(Int(averageDelta / 60))", lastWakeup))
+                .appending(String.localized(stringID: "notifications_stats_minutes_delayed", count: Int(averageDelta / 60)))
+                .appending(" ")
+                .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
         }
 
         return  """
                     <span class="green dot"></span>
                 """
             .appending(" ")
-            .appending(String.localizedStringWithFormat(String.localized("notifications_stats_minutes"),
-                                                        "\(Int(averageDelta / 60))", lastWakeup))
+            .appending(String.localized(stringID: "notifications_stats_minutes", count: Int(averageDelta / 60)))
+            .appending(" ")
+            .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
     }
 
     private func loadHtml() {
