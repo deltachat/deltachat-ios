@@ -283,6 +283,8 @@
 "chat_please_enter_message" = "Napisz wiadomość.";
 "chat_camera_unavailable" = "Aparat niedostępny.";
 "chat_unable_to_record_audio" = "Nie można nagrać dźwięku.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Wyślij wiadomość. Nie szkodzi, jeśli %1$@ nie korzysta z Delta Chat.";
 "chat_new_broadcast_hint" = "Na liście rozgłoszeniowej inne osoby będą otrzymywać wiadomości w swoich prywatnych czatach z Tobą.\n\nOdbiorcy nie będą o sobie nawzajem wiedzieć.";
 "chat_new_group_hint" = "Napisz pierwszą wiadomość, by inni mogli odpowiedzieć w tej grupie.\n\n• Nie ma problemu, jeśli nie wszyscy członkowie korzystają z Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać.";
 "chat_record_slide_to_cancel" = "PRZESUŃ, BY ANULOWAĆ";

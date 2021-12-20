@@ -83,6 +83,9 @@
 "this_month" = "Tento mesiac";
 "last_week" = "Minulý týždeň";
 "last_month" = "Minulý mesiac";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Naposledy videné o%1$@";
+"last_seen_unknown" = "Naposledy videné: Neznáme";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
 
@@ -169,6 +172,7 @@
 "menu_copy_link_to_clipboard" = "Skopírovať odkaz";
 "menu_copy_text_to_clipboard" = "Kopírovať text";
 "menu_copy_image_to_clipboard" = "Kopírovať obrázok";
+"menu_copy_email_to_clipboard" = "Kopírovať E-Mail";
 "paste_from_clipboard" = "Prilepiť zo schránky";
 "menu_forward" = "Preposlať správu";
 "menu_reply" = "Odpovedať na správu";
@@ -283,6 +287,8 @@
 "chat_please_enter_message" = "Zadajte správu.";
 "chat_camera_unavailable" = "Fotoaparát nie je k dispozícii.";
 "chat_unable_to_record_audio" = "Nie je možné zaznamenať zvuk.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Pošlite správu. Je v poriadku ak%1$@ nepoužíva Delta Chat.";
 "chat_new_broadcast_hint" = "V zozname rozosielania, ostatní budú dostávať správy do ich osobných chatov s vami.\n\nPríjemcovia sa navzájom o sebe nedozvedia.";
 "chat_new_group_hint" = "Vytvorte prvú správu a umožnite ostatným odpovedať v rámci tejto skupiny.\n\n• Je v poriadku, ak nie všetci členovia používajú Delta Chat.\n\n• Doručenie prvej správy môže chvíľu trvať.";
 "chat_record_slide_to_cancel" = "Posunutím akciu zrušíte";
@@ -554,6 +560,7 @@
 "up_to_x_most_worse_quality_images" = "Až do %1$@, väčšina obrázkov v horšej kvalite";
 "up_to_x_most_balanced_quality_images" = "Až do %1$@, väčšina obrázkov vo vyváženej kvalite";
 "no_limit" = "Žiadny limit";
+"download_failed" = "Sťahovanie zlyhalo";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ správa";
 // %1$s will be replaced by human-readable date and time
@@ -710,6 +717,8 @@
 "verified_group_explain" = "Overené skupiny (experimentálne) poskytujú bezpečnosť proti aktívnym útokom. Členovia sú overovaní druhým faktorom ostatnými členmi a správy sú vždy šifrované end-to-end.";
 "copy_qr_data_success" = "Skopírovaná adresa URL QR do schránky";
 "mailto_dialog_header_select_chat" = "Vyberte čet, kam bude správa odoslaná";
+// first placeholder is the name of the chat
+"confirm_replace_draft" = "%1$@ už má koncept správy, chcete ho nahradiť?";
 "mailto_link_could_not_be_decoded" = "prepojenie mailto sa nepodarilo dekódovať: %1$@";
 
 // notifications 
@@ -790,6 +799,7 @@
 "autocrypt_incorrect_desktop" = "Nesprávny kód nastavenia. Prosím skúste znova.";
 "create_chat_error_desktop" = "Nepodarilo sa vytvoriť rozhovor.";
 "forget_login_confirmation_desktop" = "Odstrániť tieto prihlasovacie údaje? Odstráni sa všetko vrátane vášho kompletného nastavenia, kontaktov, četov, správ a médií. Túto akciu nie je možné vrátiť späť.";
+"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nVeľkosť: %2$@\n ID Účtu: %3$@";
 "message_detail_sent_desktop" = "odoslané";
 "message_detail_received_desktop" = "prijaté";
 "menu.view.developer.open.log.folder" = "Otvoriť priečinok denníka";
@@ -797,6 +807,8 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Ikonu v systémovej lište nie je možné vypnúť, pretože Delta Chat bol spustený s prepínačom --minimized.";
 "no_spellcheck_suggestions_found" = "Neboli nájdené žiadne návrhy opravy preklepov.";
 "show_window" = "Zobraziť okno";
+"login_socks5_experimental_warning" = "Podpora SOCKS5 je momentálne experimentálna. Prosím, používajte na vlastné riziko. Ak zadáte adresu do poľa e-mail, vykoná sa vyhľadávanie DNS, ktoré nebude tunelované cez SOCKS5.";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stav doručenia: Chyba";
 "a11y_encryption_padlock" = "Šifrovací zámok";
@@ -827,3 +839,4 @@
 // device messages for updates
 "update_1_24_android" = "1.24 v skratke:\n\n• Uloženie klepnutím: Výber účtu v ľavom hornom rohu zoznamu četov\n• Uloženie viacerými klepnutiami: Dlhým klepnutím na ikonu aplikácie priamo otvoríte nedávne čety\n• Ušetrite premávku: sťahujte veľké súbory podľa potreby\n• Ušetrite nervy: rýchlejšie pripojenie QR kódu bez blokovania a nové možnosti kódu QR\n\nViac na 👉 ";
 "update_1_24_ios" = "1.24 v skratke:\n\n• Spustite vyhľadávanie v čete z profilu četu\n• Ušetrite premávku: sťahujte veľké súbory podľa potreby\n• Ušetrite nervy: rýchlejšie pripájanie na QR kódy bez blokovania\n\nViac na 👉";
+"update_1_26" = "1.26 vylepšenia 💅\n\n• Po tom, čo boli QR kódy vo verzii 1.24 neblokovateľné, teraz vyzerajú oveľa krajšie – na všetkých platformách\n• Avatary a odznaky vyzerajú na všetkých platformách podobne\n• Opravených veľa chýb";
