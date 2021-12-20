@@ -1,5 +1,5 @@
 import UIKit
-import InputBarAccessoryView
+//import InputBarAccessoryView
 import DcCore
 
 public protocol ChatContactRequestDelegate: class {

@@ -84,7 +84,8 @@ open class AutocompleteCell: UITableViewCell {
         super.layoutSubviews()
         guard let imageViewFrame = imageView?.frame else { return }
         let imageViewOrigin = CGPoint(x: imageViewFrame.origin.x + imageViewEdgeInsets.left, y: imageViewFrame.origin.y + imageViewEdgeInsets.top)
-        let imageViewSize = CGSize(width: imageViewFrame.size.width - imageViewEdgeInsets.left - imageViewEdgeInsets.right, height: imageViewFrame.size.height - imageViewEdgeInsets.top - imageViewEdgeInsets.bottom)
+        let imageViewSize = CGSize(width: imageViewFrame.size.width - imageViewEdgeInsets.left - imageViewEdgeInsets.right,
+                                   height: imageViewFrame.size.height - imageViewEdgeInsets.top - imageViewEdgeInsets.bottom)
         imageView?.frame = CGRect(origin: imageViewOrigin, size: imageViewSize)
     }
     

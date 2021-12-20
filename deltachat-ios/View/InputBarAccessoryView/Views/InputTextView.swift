@@ -348,7 +348,7 @@ open class InputTextView: UITextView {
         }
         
         var curLocation = 0
-        if attachments.count == 0 {
+        if attachments.isEmpty {
             let text = attributedText.string.trimmingCharacters(in: .whitespacesAndNewlines)
             if !text.isEmpty {
                 components.append(text)
@@ -383,7 +383,7 @@ open class InputTextView: UITextView {
     @objc
     private func redrawTextAttachments() {
         
-        guard images.count > 0 else { return }
+        guard !images.isEmpty else { return }
         let range = NSRange(location: 0, length: attributedText.length)
         attributedText.enumerateAttribute(.attachment, in: range, options: [], using: { value, _, _ -> Void in
             if let attachment = value as? NSTextAttachment, let image = attachment.image {

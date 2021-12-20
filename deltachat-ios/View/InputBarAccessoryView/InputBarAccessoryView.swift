@@ -579,8 +579,8 @@ open class InputBarAccessoryView: UIView {
         
         // Calculate the required height
         let totalPadding = padding.top + padding.bottom + topStackViewPadding.top + middleContentViewPadding.top + middleContentViewPadding.bottom
-        let topStackViewHeight = topStackView.arrangedSubviews.count > 0 ? topStackView.bounds.height : 0
-        let bottomStackViewHeight = bottomStackView.arrangedSubviews.count > 0 ? bottomStackView.bounds.height : 0
+        let topStackViewHeight = !topStackView.arrangedSubviews.isEmpty ? topStackView.bounds.height : 0
+        let bottomStackViewHeight = !bottomStackView.arrangedSubviews.isEmpty ? bottomStackView.bounds.height : 0
         let verticalStackViewHeight = topStackViewHeight + bottomStackViewHeight
         let requiredHeight = inputTextViewHeight + totalPadding + verticalStackViewHeight
         return CGSize(width: UIView.noIntrinsicMetric, height: requiredHeight)
@@ -843,7 +843,7 @@ open class InputBarAccessoryView: UIView {
             var isEnabled = !trimmedText.isEmpty
             if !isEnabled {
                 // The images property is more resource intensive so only use it if needed
-                isEnabled = inputTextView.images.count > 0
+                isEnabled = !inputTextView.images.isEmpty
             }
             sendButton.isEnabled = isEnabled
         }

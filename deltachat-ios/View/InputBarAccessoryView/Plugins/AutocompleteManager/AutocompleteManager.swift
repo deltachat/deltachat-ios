@@ -429,14 +429,17 @@ open class AutocompleteManager: NSObject, InputPlugin, UITextViewDelegate, UITab
                     let nothing = NSAttributedString(string: "", attributes: typingTextAttributes)
 
                     let textToReplace = textView.attributedText.attributedSubstring(from: subrange).string
-                    guard deleteCompletionByParts, let delimiterRange = textToReplace.rangeOfCharacter(from: .whitespacesAndNewlines, options: .backwards, range: Range(subrange, in: textToReplace)) else {
+                    guard deleteCompletionByParts,
+                            let delimiterRange = textToReplace.rangeOfCharacter(from: .whitespacesAndNewlines,
+                                                                                options: .backwards,
+                                                                                range: Range(subrange, in: textToReplace)) else {
                         // Replace entire autocomplete
                         textView.attributedText = textView.attributedText.replacingCharacters(in: subrange, with: nothing)
                         textView.selectedRange = NSRange(location: subrange.location, length: 0)
                         return
                     }
                     // Delete up to delimiter
-                    let delimiterLocation = delimiterRange.lowerBound.utf16Offset(in: textToReplace)
+                    let delimiterLocation = delimiterRange.lowerBound.encodedOffset
                     let length = subrange.length - delimiterLocation
                     let rangeFromDelimiter = NSRange(location: delimiterLocation + subrange.location, length: length)
                     textView.attributedText = textView.attributedText.replacingCharacters(in: rangeFromDelimiter, with: nothing)

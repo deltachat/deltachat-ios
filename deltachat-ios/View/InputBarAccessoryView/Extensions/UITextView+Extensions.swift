@@ -13,7 +13,7 @@ internal extension UITextView {
     typealias Match = (prefix: String, word: String, range: NSRange)
     
     func find(prefixes: Set<String>, with delimiterSet: CharacterSet) -> Match? {
-        guard prefixes.count > 0 else { return nil }
+        guard !prefixes.isEmpty else { return nil }
 
         for prefix in prefixes {
             if let match = find(prefix: prefix, with: delimiterSet) {
@@ -34,7 +34,7 @@ internal extension UITextView {
             guard let index = leadingText.lastIndex(of: char) else { return nil }
             if i == 0 {
                 prefixStartIndex = index
-            } else if index.utf16Offset(in: leadingText) == prefixStartIndex.utf16Offset(in: leadingText) + 1 {
+            } else if index.encodedOffset == prefixStartIndex.encodedOffset + 1 {
                 prefixStartIndex = index
             } else {
                 return nil
@@ -44,8 +44,8 @@ internal extension UITextView {
         let wordRange = prefixStartIndex..<cursorRange.upperBound
         let word = leadingText[wordRange]
         
-        let location = wordRange.lowerBound.utf16Offset(in: leadingText)
-        let length = wordRange.upperBound.utf16Offset(in: word) - location
+        let location = wordRange.lowerBound.encodedOffset
+        let length = wordRange.upperBound.encodedOffset - location
         let range = NSRange(location: location, length: length)
         
         return (String(prefix), String(word), range)

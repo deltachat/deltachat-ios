@@ -39,14 +39,10 @@ class NSLayoutConstraintSet {
     var width: NSLayoutConstraint?
     var height: NSLayoutConstraint?
     
-    public init(top: NSLayoutConstraint? = nil,
-                bottom: NSLayoutConstraint? = nil,
-                left: NSLayoutConstraint? = nil,
-                right: NSLayoutConstraint? = nil,
-                centerX: NSLayoutConstraint? = nil,
-                centerY: NSLayoutConstraint? = nil,
-                width: NSLayoutConstraint? = nil,
-                height: NSLayoutConstraint? = nil) {
+    public init(top: NSLayoutConstraint? = nil, bottom: NSLayoutConstraint? = nil,
+                left: NSLayoutConstraint? = nil, right: NSLayoutConstraint? = nil,
+                centerX: NSLayoutConstraint? = nil, centerY: NSLayoutConstraint? = nil,
+                width: NSLayoutConstraint? = nil, height: NSLayoutConstraint? = nil) {
         self.top = top
         self.bottom = bottom
         self.left = left
