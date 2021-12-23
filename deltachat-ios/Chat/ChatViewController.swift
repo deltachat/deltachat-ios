@@ -17,13 +17,7 @@ class ChatViewController: UITableViewController {
     var incomingMsgObserver: NSObjectProtocol?
     var chatModifiedObserver: NSObjectProtocol?
     var ephemeralTimerModifiedObserver: NSObjectProtocol?
-    // isDismissing indicates whether the ViewController is/was about to dismissed.
-    // The VC can be dismissed by pressing back '<' or by a swipe-to-dismiss gesture.
-    // The latter is cancelable and leads to viewWillAppear is called in case the gesture is cancelled
-    // We need the flag to handle that special case correctly in viewWillAppear
-    private var isDismissing = false
     private var isInitial = true
-    private var ignoreInputBarChange = false
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
 
@@ -77,7 +71,10 @@ class ChatViewController: UITableViewController {
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
-    open var messageInputBar = ChatInputBar()
+    lazy var messageInputBar: ChatInputBar = {
+        let inputBar = ChatInputBar()
+        return inputBar
+    }()
 
     lazy var draftArea: DraftArea = {
         let view = DraftArea()
@@ -250,6 +247,11 @@ class ChatViewController: UITableViewController {
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
+    private lazy var keyboardManager: KeyboardManager = {
+        let manager = KeyboardManager()
+        return manager
+    }()
+
     var showCustomNavBar = true
     var highlightedMsg: Int?
 
@@ -278,6 +280,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func loadView() {
+        super.loadView()
         self.tableView = ChatTableView(messageInputBar: messageInputBar)
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -296,7 +299,7 @@ class ChatViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
-        tableView.contentInsetAdjustmentBehavior = .never
+       // tableView.contentInsetAdjustmentBehavior = .never
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         if #available(iOS 13.0, *) {
@@ -305,6 +308,22 @@ class ChatViewController: UITableViewController {
 
         navigationItem.backButtonTitle = String.localized("chat")
         definesPresentationContext = true
+
+        // Binding to the tableView will enabled interactive dismissal
+        keyboardManager.bind(to: tableView)
+
+        // Add some extra handling to manage content inset
+        keyboardManager.on(event: .didChangeFrame) { [weak self] _ in
+            guard let self = self else { return }
+            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
+                self.scrollToBottom()
+            }
+        }.on(event: .willChangeFrame) { [weak self] _ in
+            guard let self = self else { return }
+            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
+                self.scrollToBottom()
+            }
+        }
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -381,54 +400,39 @@ class ChatViewController: UITableViewController {
         if showCustomNavBar {
             updateTitle(chat: dcContext.getChat(chatId: chatId))
         }
-        if !isDismissing {
-            self.tableView.becomeFirstResponder()
-            if activateSearch {
-                activateSearch = false
-                DispatchQueue.main.async { [weak self] in
-                    self?.searchController.isActive = true
-                }
-                
-            }
-            var bottomInsets = self.messageInputBar.intrinsicContentSize.height + self.messageInputBar.keyboardHeight
-            if UIApplication.shared.statusBarOrientation.isLandscape,
-               let root = UIApplication.shared.keyWindow?.rootViewController {
-                // in landscape we need to take safeAreaInsets into account, in portrait they're already part of the keyboard height
-                bottomInsets += root.view.safeAreaInsets.bottom
-            }
-            self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
-                                                       left: 0,
-                                                       bottom: bottomInsets,
-                                                       right: 0)
-
-            if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-                UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
-                    self?.scrollToMessage(msgId: msgId, animated: false)
-                }, completion: { [weak self] finished in
-                    if finished {
-                        guard let self = self else { return }
-                        self.highlightedMsg = nil
-                        self.isInitial = false
-                        self.ignoreInputBarChange = false
-                        self.messageInputBar.scrollDownButton.isHidden = self.isLastRowVisible()
-                    }
-                })
-            } else {
-                UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
-                    guard let self = self else { return }
-                    if self.isInitial {
-                        self.scrollToLastUnseenMessage()
-                    }
-                }, completion: { [weak self] finished in
-                    guard let self = self else { return }
-                    if finished {
-                        self.isInitial = false
-                        self.ignoreInputBarChange = false
-                    }
-                })
+        tableView.becomeFirstResponder()
+        if activateSearch {
+            activateSearch = false
+            DispatchQueue.main.async { [weak self] in
+                self?.searchController.isActive = true
             }
         }
-        isDismissing = false
+
+        if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+            UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
+                self?.scrollToMessage(msgId: msgId, animated: false)
+            }, completion: { [weak self] finished in
+                if finished {
+                    guard let self = self else { return }
+                    self.highlightedMsg = nil
+                    self.isInitial = false
+                    self.messageInputBar.scrollDownButton.isHidden = self.isLastRowVisible()
+                }
+            })
+        } else {
+            UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
+                guard let self = self else { return }
+                if self.isInitial {
+                    self.scrollToLastUnseenMessage()
+                }
+            }, completion: { [weak self] finished in
+                guard let self = self else { return }
+                if finished {
+                    self.isInitial = false
+                }
+            })
+        }
+
 
 
         if RelayHelper.sharedInstance.isForwarding() {
@@ -453,6 +457,7 @@ class ChatViewController: UITableViewController {
         }
 
         handleUserVisibility(isVisible: true)
+        tableView.becomeFirstResponder()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -460,13 +465,12 @@ class ChatViewController: UITableViewController {
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-        isDismissing = true
+        tableView.resignFirstResponder()
+        messageInputBar.inputTextView.resignFirstResponder()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        isDismissing = false
-        ignoreInputBarChange = true
         AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
         audioController.stopAnyOngoingPlaying()
@@ -1823,25 +1827,6 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
         draft.text = text
         evaluateInputBar(draft: draft)
-    }
-
-    func inputBar(_ inputBar: InputBarAccessoryView, didChangeIntrinsicContentTo size: CGSize) {
-        if isDismissing {
-            return
-        }
-        var bottomInsets = size.height + messageInputBar.keyboardHeight
-        if UIApplication.shared.statusBarOrientation.isLandscape,
-           let root = UIApplication.shared.keyWindow?.rootViewController {
-            // in landscape we need to take safeAreaInsets into account, in portrait they're already part of the keyboard height
-            bottomInsets += root.view.safeAreaInsets.bottom
-        }
-        self.tableView.contentInset = UIEdgeInsets(top: self.getTopInsetHeight(),
-                                                   left: 0,
-                                                   bottom: bottomInsets,
-                                                   right: 0)
-        if isLastRowVisible() && !tableView.isDragging && !tableView.isDecelerating  && highlightedMsg == nil && !ignoreInputBarChange {
-            scrollToBottom()
-        }
     }
 }
 
