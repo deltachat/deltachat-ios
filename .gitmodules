@@ -2,5 +2,5 @@
 	path = deltachat-ios/libraries/deltachat-core-rust
 	url = https://github.com/deltachat/deltachat-core-rust.git
 [submodule "deltachat-ios/InputBarAccessoryView"]
-	path = deltachat-ios/InputBarAccessoryView
+	path = deltachat-ios/libraries/InputBarAccessoryView
 	url = https://github.com/cyBerta/InputBarAccessoryView.git
