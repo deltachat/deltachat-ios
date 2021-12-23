@@ -7,7 +7,6 @@ public class ChatInputBar: InputBarAccessoryView {
 
     var hasDraft: Bool = false
     var hasQuote: Bool = false
-    var keyboardHeight: CGFloat = 0
     
     var onScrollDownButtonPressed: (() -> Void)?
     
@@ -21,16 +20,6 @@ public class ChatInputBar: InputBarAccessoryView {
 
     public convenience init() {
         self.init(frame: .zero)
-    }
-
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupKeyboardObserver()
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupKeyboardObserver()
     }
 
     override open func setup() {
@@ -54,19 +43,6 @@ public class ChatInputBar: InputBarAccessoryView {
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         inputTextView.inputBarAccessoryView = self
     }
-
-    func setupKeyboardObserver() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardChanged),
-            name: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil
-        )
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
     
     override open func calculateMaxTextViewHeight() -> CGFloat {
         if traitCollection.verticalSizeClass == .regular || UIDevice.current.userInterfaceIdiom == .pad {
@@ -82,6 +58,7 @@ public class ChatInputBar: InputBarAccessoryView {
         } else {
             // landscape phone layout
             let height = UIScreen.main.bounds.height - keyboardHeight - 12
+            logger.debug("HEIGHTS: calculateMaxTextViewHeight screen \(UIScreen.main.bounds.height) - \(keyboardHeight) >> \(UIScreen.main.bounds.height - keyboardHeight)")
             return height
         }
     }
@@ -100,40 +77,12 @@ public class ChatInputBar: InputBarAccessoryView {
         maxTextViewHeight = calculateMaxTextViewHeight()
     }
 
-    @objc func keyboardChanged(_ notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            if (keyboardRectangle.height - intrinsicContentSize.height) == keyboardHeight {
-                return
-            }
-            invalidateIntrinsicContentSize()
-            keyboardHeight = keyboardRectangle.height - intrinsicContentSize.height
-            updateTextViewHeight()
-            delegate?.inputBar(self, didChangeIntrinsicContentTo: intrinsicContentSize)
-        }
-    }
-
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if (self.traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass)
-                || (self.traitCollection.horizontalSizeClass != previousTraitCollection?.horizontalSizeClass) {
-            invalidateIntrinsicContentSize()
-            updateTextViewHeight()
-            delegate?.inputBar(self, didChangeIntrinsicContentTo: intrinsicContentSize)
-        }
         scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
     }
 
-    private func updateTextViewHeight() {
-        maxTextViewHeight = calculateMaxTextViewHeight()
-        if keyboardHeight > 0,
-           UIApplication.shared.statusBarOrientation.isLandscape,
-           UIDevice.current.userInterfaceIdiom == .phone {
-            setShouldForceMaxTextViewHeight(to: true, animated: false)
-        } else if shouldForceTextViewMaxHeight {
-            setShouldForceMaxTextViewHeight(to: false, animated: false)
-        }
-    }
+    
     
     func setupScrollDownButton() {
         self.addSubview(scrollDownButton)
