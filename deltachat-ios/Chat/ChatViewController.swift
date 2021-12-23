@@ -478,6 +478,7 @@ class ChatViewController: UITableViewController {
         if parent == nil {
             // logger.debug("chat observer: remove")
             removeObservers()
+            draft.save(context: dcContext)
         } else {
             // logger.debug("chat observer: setup")
             setupObservers()
@@ -622,6 +623,7 @@ class ChatViewController: UITableViewController {
     @objc func applicationWillResignActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
             handleUserVisibility(isVisible: false)
+            draft.save(context: dcContext)
         }
     }
     
@@ -632,7 +634,6 @@ class ChatViewController: UITableViewController {
             markSeenMessagesInVisibleArea()
         } else {
             stopTimer()
-            draft.save(context: dcContext)
         }
     }
 
