@@ -45,41 +45,39 @@
 		304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F769825DD23D70094B5E2 /* FullMessageViewController.swift */; };
 		3052C60A253F082E007D13EA /* MessageLabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052C609253F082E007D13EA /* MessageLabelDelegate.swift */; };
 		3052C60E253F088E007D13EA /* DetectorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052C60D253F088E007D13EA /* DetectorType.swift */; };
-		30558A3927709AFA008781EE /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0427709AF5008781EE /* NSNotification+Extensions.swift */; };
-		30558A3A27709AFA008781EE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0527709AF5008781EE /* String+Extensions.swift */; };
-		30558A3B27709AFA008781EE /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0627709AF5008781EE /* UITextView+Extensions.swift */; };
-		30558A3C27709AFA008781EE /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0727709AF5008781EE /* NSMutableAttributedString+Extensions.swift */; };
-		30558A3D27709AFA008781EE /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0827709AF5008781EE /* UIView+AutoLayout.swift */; };
-		30558A3E27709AFA008781EE /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0A27709AF6008781EE /* KeyboardManager.swift */; };
-		30558A3F27709AFA008781EE /* KeyboardNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0B27709AF6008781EE /* KeyboardNotification.swift */; };
-		30558A4027709AFA008781EE /* KeyboardEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0C27709AF6008781EE /* KeyboardEvent.swift */; };
-		30558A4127709AFA008781EE /* RxInputBarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A0E27709AF6008781EE /* RxInputBarAccessoryView.swift */; };
-		30558A4227709AFA008781EE /* AttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1127709AF7008781EE /* AttachmentManager.swift */; };
-		30558A4327709AFA008781EE /* ImageAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1327709AF7008781EE /* ImageAttachmentCell.swift */; };
-		30558A4427709AFA008781EE /* AttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1427709AF7008781EE /* AttachmentCell.swift */; };
-		30558A4527709AFA008781EE /* AttachmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1527709AF7008781EE /* AttachmentsView.swift */; };
-		30558A4627709AFA008781EE /* AttachmentManagerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1727709AF7008781EE /* AttachmentManagerDataSource.swift */; };
-		30558A4727709AFA008781EE /* AttachmentManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1827709AF7008781EE /* AttachmentManagerDelegate.swift */; };
-		30558A4827709AFA008781EE /* AutocompleteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1A27709AF7008781EE /* AutocompleteManager.swift */; };
-		30558A4927709AFA008781EE /* AutocompleteSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1C27709AF7008781EE /* AutocompleteSession.swift */; };
-		30558A4A27709AFA008781EE /* AutocompleteCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1D27709AF7008781EE /* AutocompleteCompletion.swift */; };
-		30558A4B27709AFA008781EE /* AutocompleteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A1F27709AF7008781EE /* AutocompleteTableView.swift */; };
-		30558A4C27709AFA008781EE /* AutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2027709AF7008781EE /* AutocompleteCell.swift */; };
-		30558A4D27709AFA008781EE /* AutocompleteManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2227709AF7008781EE /* AutocompleteManagerDelegate.swift */; };
-		30558A4E27709AFA008781EE /* AutocompleteManagerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2327709AF7008781EE /* AutocompleteManagerDataSource.swift */; };
-		30558A4F27709AFA008781EE /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2527709AF7008781EE /* InputStackView.swift */; };
-		30558A5027709AFA008781EE /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2627709AF7008781EE /* InputTextView.swift */; };
-		30558A5127709AFA008781EE /* SeparatorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2727709AF7008781EE /* SeparatorLine.swift */; };
-		30558A5227709AFA008781EE /* InputBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2927709AF8008781EE /* InputBarButtonItem.swift */; };
-		30558A5327709AFA008781EE /* InputBarSendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2A27709AF8008781EE /* InputBarSendButton.swift */; };
-		30558A5427709AFA008781EE /* InputBarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2B27709AF8008781EE /* InputBarAccessoryView.swift */; };
-		30558A5527709AFA008781EE /* HorizontalEdgeInsets.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2D27709AF8008781EE /* HorizontalEdgeInsets.swift.swift */; };
-		30558A5627709AFA008781EE /* NSConstraintLayoutSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A2E27709AF8008781EE /* NSConstraintLayoutSet.swift */; };
-		30558A5727709AFA008781EE /* InputPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A3027709AF9008781EE /* InputPlugin.swift */; };
-		30558A5827709AFA008781EE /* InputBarAccessoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A3127709AF9008781EE /* InputBarAccessoryViewDelegate.swift */; };
-		30558A5927709AFA008781EE /* InputItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A3227709AF9008781EE /* InputItem.swift */; };
-		30558A5A27709AFA008781EE /* InputBarAccessoryView+Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A3527709AF9008781EE /* InputBarAccessoryView+Availability.swift */; };
-		30558A5C27709AFA008781EE /* InputBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558A3827709AFA008781EE /* InputBarViewController.swift */; };
+		30558B3627752C72008781EE /* InputBarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B0627752C71008781EE /* InputBarAccessoryView.swift */; };
+		30558B3727752C72008781EE /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B0827752C71008781EE /* NSNotification+Extensions.swift */; };
+		30558B3827752C72008781EE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B0927752C71008781EE /* String+Extensions.swift */; };
+		30558B3927752C72008781EE /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B0A27752C71008781EE /* UITextView+Extensions.swift */; };
+		30558B3A27752C72008781EE /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B0B27752C71008781EE /* NSMutableAttributedString+Extensions.swift */; };
+		30558B3B27752C72008781EE /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B0C27752C71008781EE /* UIView+AutoLayout.swift */; };
+		30558B3C27752C72008781EE /* HorizontalEdgePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B0E27752C71008781EE /* HorizontalEdgePadding.swift */; };
+		30558B3D27752C72008781EE /* NSConstraintLayoutSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B0F27752C71008781EE /* NSConstraintLayoutSet.swift */; };
+		30558B3E27752C72008781EE /* AttachmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1227752C71008781EE /* AttachmentManager.swift */; };
+		30558B3F27752C72008781EE /* ImageAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1427752C71008781EE /* ImageAttachmentCell.swift */; };
+		30558B4027752C72008781EE /* AttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1527752C71008781EE /* AttachmentCell.swift */; };
+		30558B4127752C72008781EE /* AttachmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1627752C71008781EE /* AttachmentsView.swift */; };
+		30558B4227752C72008781EE /* AttachmentManagerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1827752C71008781EE /* AttachmentManagerDataSource.swift */; };
+		30558B4327752C72008781EE /* AttachmentManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1927752C71008781EE /* AttachmentManagerDelegate.swift */; };
+		30558B4427752C72008781EE /* AutocompleteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1B27752C71008781EE /* AutocompleteManager.swift */; };
+		30558B4527752C72008781EE /* AutocompleteSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1D27752C71008781EE /* AutocompleteSession.swift */; };
+		30558B4627752C72008781EE /* AutocompleteCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B1E27752C71008781EE /* AutocompleteCompletion.swift */; };
+		30558B4727752C72008781EE /* AutocompleteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2027752C71008781EE /* AutocompleteTableView.swift */; };
+		30558B4827752C72008781EE /* AutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2127752C71008781EE /* AutocompleteCell.swift */; };
+		30558B4927752C72008781EE /* AutocompleteManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2327752C71008781EE /* AutocompleteManagerDelegate.swift */; };
+		30558B4A27752C72008781EE /* AutocompleteManagerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2427752C71008781EE /* AutocompleteManagerDataSource.swift */; };
+		30558B4B27752C72008781EE /* InputBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2627752C71008781EE /* InputBarViewController.swift */; };
+		30558B4C27752C72008781EE /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2827752C72008781EE /* InputStackView.swift */; };
+		30558B4D27752C72008781EE /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2927752C72008781EE /* InputTextView.swift */; };
+		30558B4E27752C73008781EE /* SeparatorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2A27752C72008781EE /* SeparatorLine.swift */; };
+		30558B4F27752C73008781EE /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2C27752C72008781EE /* KeyboardManager.swift */; };
+		30558B5027752C73008781EE /* KeyboardNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2D27752C72008781EE /* KeyboardNotification.swift */; };
+		30558B5127752C73008781EE /* KeyboardEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B2E27752C72008781EE /* KeyboardEvent.swift */; };
+		30558B5227752C73008781EE /* InputPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B3027752C72008781EE /* InputPlugin.swift */; };
+		30558B5327752C73008781EE /* InputBarAccessoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B3127752C72008781EE /* InputBarAccessoryViewDelegate.swift */; };
+		30558B5427752C73008781EE /* InputItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B3227752C72008781EE /* InputItem.swift */; };
+		30558B5527752C73008781EE /* InputBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B3427752C72008781EE /* InputBarButtonItem.swift */; };
+		30558B5627752C73008781EE /* InputBarSendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30558B3527752C72008781EE /* InputBarSendButton.swift */; };
 		3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057027E24C5B2F800D84EFC /* ChatListViewModel.swift */; };
 		3057028724C5C88300D84EFC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
 		3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
@@ -298,42 +296,39 @@
 		304F769825DD23D70094B5E2 /* FullMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullMessageViewController.swift; sourceTree = "<group>"; };
 		3052C609253F082E007D13EA /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabelDelegate.swift; sourceTree = "<group>"; };
 		3052C60D253F088E007D13EA /* DetectorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectorType.swift; sourceTree = "<group>"; };
-		30558A0427709AF5008781EE /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
-		30558A0527709AF5008781EE /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		30558A0627709AF5008781EE /* UITextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
-		30558A0727709AF5008781EE /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
-		30558A0827709AF5008781EE /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
-		30558A0A27709AF6008781EE /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
-		30558A0B27709AF6008781EE /* KeyboardNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardNotification.swift; sourceTree = "<group>"; };
-		30558A0C27709AF6008781EE /* KeyboardEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEvent.swift; sourceTree = "<group>"; };
-		30558A0E27709AF6008781EE /* RxInputBarAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxInputBarAccessoryView.swift; sourceTree = "<group>"; };
-		30558A1127709AF7008781EE /* AttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManager.swift; sourceTree = "<group>"; };
-		30558A1327709AF7008781EE /* ImageAttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAttachmentCell.swift; sourceTree = "<group>"; };
-		30558A1427709AF7008781EE /* AttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCell.swift; sourceTree = "<group>"; };
-		30558A1527709AF7008781EE /* AttachmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentsView.swift; sourceTree = "<group>"; };
-		30558A1727709AF7008781EE /* AttachmentManagerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManagerDataSource.swift; sourceTree = "<group>"; };
-		30558A1827709AF7008781EE /* AttachmentManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManagerDelegate.swift; sourceTree = "<group>"; };
-		30558A1A27709AF7008781EE /* AutocompleteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteManager.swift; sourceTree = "<group>"; };
-		30558A1C27709AF7008781EE /* AutocompleteSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteSession.swift; sourceTree = "<group>"; };
-		30558A1D27709AF7008781EE /* AutocompleteCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteCompletion.swift; sourceTree = "<group>"; };
-		30558A1F27709AF7008781EE /* AutocompleteTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableView.swift; sourceTree = "<group>"; };
-		30558A2027709AF7008781EE /* AutocompleteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteCell.swift; sourceTree = "<group>"; };
-		30558A2227709AF7008781EE /* AutocompleteManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteManagerDelegate.swift; sourceTree = "<group>"; };
-		30558A2327709AF7008781EE /* AutocompleteManagerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteManagerDataSource.swift; sourceTree = "<group>"; };
-		30558A2527709AF7008781EE /* InputStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
-		30558A2627709AF7008781EE /* InputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
-		30558A2727709AF7008781EE /* SeparatorLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLine.swift; sourceTree = "<group>"; };
-		30558A2927709AF8008781EE /* InputBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarButtonItem.swift; sourceTree = "<group>"; };
-		30558A2A27709AF8008781EE /* InputBarSendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarSendButton.swift; sourceTree = "<group>"; };
-		30558A2B27709AF8008781EE /* InputBarAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarAccessoryView.swift; sourceTree = "<group>"; };
-		30558A2D27709AF8008781EE /* HorizontalEdgeInsets.swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalEdgeInsets.swift.swift; sourceTree = "<group>"; };
-		30558A2E27709AF8008781EE /* NSConstraintLayoutSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSConstraintLayoutSet.swift; sourceTree = "<group>"; };
-		30558A3027709AF9008781EE /* InputPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPlugin.swift; sourceTree = "<group>"; };
-		30558A3127709AF9008781EE /* InputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarAccessoryViewDelegate.swift; sourceTree = "<group>"; };
-		30558A3227709AF9008781EE /* InputItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputItem.swift; sourceTree = "<group>"; };
-		30558A3427709AF9008781EE /* InputBarAccessoryView-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InputBarAccessoryView-Bridging-Header.h"; sourceTree = "<group>"; };
-		30558A3527709AF9008781EE /* InputBarAccessoryView+Availability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InputBarAccessoryView+Availability.swift"; sourceTree = "<group>"; };
-		30558A3827709AFA008781EE /* InputBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarViewController.swift; sourceTree = "<group>"; };
+		30558B0627752C71008781EE /* InputBarAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputBarAccessoryView.swift; path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/InputBarAccessoryView.swift"; sourceTree = SOURCE_ROOT; };
+		30558B0827752C71008781EE /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
+		30558B0927752C71008781EE /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		30558B0A27752C71008781EE /* UITextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
+		30558B0B27752C71008781EE /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		30558B0C27752C71008781EE /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		30558B0E27752C71008781EE /* HorizontalEdgePadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalEdgePadding.swift; sourceTree = "<group>"; };
+		30558B0F27752C71008781EE /* NSConstraintLayoutSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSConstraintLayoutSet.swift; sourceTree = "<group>"; };
+		30558B1227752C71008781EE /* AttachmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManager.swift; sourceTree = "<group>"; };
+		30558B1427752C71008781EE /* ImageAttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAttachmentCell.swift; sourceTree = "<group>"; };
+		30558B1527752C71008781EE /* AttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCell.swift; sourceTree = "<group>"; };
+		30558B1627752C71008781EE /* AttachmentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentsView.swift; sourceTree = "<group>"; };
+		30558B1827752C71008781EE /* AttachmentManagerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManagerDataSource.swift; sourceTree = "<group>"; };
+		30558B1927752C71008781EE /* AttachmentManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentManagerDelegate.swift; sourceTree = "<group>"; };
+		30558B1B27752C71008781EE /* AutocompleteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteManager.swift; sourceTree = "<group>"; };
+		30558B1D27752C71008781EE /* AutocompleteSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteSession.swift; sourceTree = "<group>"; };
+		30558B1E27752C71008781EE /* AutocompleteCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteCompletion.swift; sourceTree = "<group>"; };
+		30558B2027752C71008781EE /* AutocompleteTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableView.swift; sourceTree = "<group>"; };
+		30558B2127752C71008781EE /* AutocompleteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteCell.swift; sourceTree = "<group>"; };
+		30558B2327752C71008781EE /* AutocompleteManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteManagerDelegate.swift; sourceTree = "<group>"; };
+		30558B2427752C71008781EE /* AutocompleteManagerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteManagerDataSource.swift; sourceTree = "<group>"; };
+		30558B2627752C71008781EE /* InputBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarViewController.swift; sourceTree = "<group>"; };
+		30558B2827752C72008781EE /* InputStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
+		30558B2927752C72008781EE /* InputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		30558B2A27752C72008781EE /* SeparatorLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLine.swift; sourceTree = "<group>"; };
+		30558B2C27752C72008781EE /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
+		30558B2D27752C72008781EE /* KeyboardNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardNotification.swift; sourceTree = "<group>"; };
+		30558B2E27752C72008781EE /* KeyboardEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEvent.swift; sourceTree = "<group>"; };
+		30558B3027752C72008781EE /* InputPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPlugin.swift; sourceTree = "<group>"; };
+		30558B3127752C72008781EE /* InputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarAccessoryViewDelegate.swift; sourceTree = "<group>"; };
+		30558B3227752C72008781EE /* InputItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputItem.swift; sourceTree = "<group>"; };
+		30558B3427752C72008781EE /* InputBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarButtonItem.swift; sourceTree = "<group>"; };
+		30558B3527752C72008781EE /* InputBarSendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarSendButton.swift; sourceTree = "<group>"; };
 		3057027E24C5B2F800D84EFC /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		3057029A24C6441300D84EFC /* EmptyStateLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateLabel.swift; sourceTree = "<group>"; };
 		305702A024C6453700D84EFC /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
@@ -625,185 +620,173 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		305589FD27709A6A008781EE /* InputBarAccessoryView */ = {
+		30558B0527752C09008781EE /* InputBarAccessoryView */ = {
 			isa = PBXGroup;
 			children = (
-				30558A2827709AF8008781EE /* Controls */,
-				30558A0327709AF5008781EE /* Extensions */,
-				30558A2B27709AF8008781EE /* InputBarAccessoryView.swift */,
-				30558A0927709AF6008781EE /* KeyboardManager */,
-				30558A2C27709AF8008781EE /* Models */,
-				30558A0F27709AF7008781EE /* Plugins */,
-				30558A2F27709AF9008781EE /* Protocols */,
-				30558A0D27709AF6008781EE /* RxInputBarAccessoryView */,
-				30558A3327709AF9008781EE /* Supporting Files */,
-				30558A3727709AFA008781EE /* ViewControllers */,
-				30558A2427709AF7008781EE /* Views */,
+				30558B3327752C72008781EE /* Controls */,
+				30558B0727752C71008781EE /* Extensions */,
+				30558B0627752C71008781EE /* InputBarAccessoryView.swift */,
+				30558B2B27752C72008781EE /* KeyboardManager */,
+				30558B0D27752C71008781EE /* Models */,
+				30558B1027752C71008781EE /* Plugins */,
+				30558B2F27752C72008781EE /* Protocols */,
+				30558B2527752C71008781EE /* ViewControllers */,
+				30558B2727752C72008781EE /* Views */,
 			);
-			name = InputBarAccessoryView;
-			path = View/InputBarAccessoryView;
+			path = InputBarAccessoryView;
 			sourceTree = "<group>";
 		};
-		30558A0327709AF5008781EE /* Extensions */ = {
+		30558B0727752C71008781EE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				30558A0427709AF5008781EE /* NSNotification+Extensions.swift */,
-				30558A0527709AF5008781EE /* String+Extensions.swift */,
-				30558A0627709AF5008781EE /* UITextView+Extensions.swift */,
-				30558A0727709AF5008781EE /* NSMutableAttributedString+Extensions.swift */,
-				30558A0827709AF5008781EE /* UIView+AutoLayout.swift */,
+				30558B0827752C71008781EE /* NSNotification+Extensions.swift */,
+				30558B0927752C71008781EE /* String+Extensions.swift */,
+				30558B0A27752C71008781EE /* UITextView+Extensions.swift */,
+				30558B0B27752C71008781EE /* NSMutableAttributedString+Extensions.swift */,
+				30558B0C27752C71008781EE /* UIView+AutoLayout.swift */,
 			);
-			path = Extensions;
-			sourceTree = "<group>";
+			name = Extensions;
+			path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/Extensions";
+			sourceTree = SOURCE_ROOT;
 		};
-		30558A0927709AF6008781EE /* KeyboardManager */ = {
+		30558B0D27752C71008781EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				30558A0A27709AF6008781EE /* KeyboardManager.swift */,
-				30558A0B27709AF6008781EE /* KeyboardNotification.swift */,
-				30558A0C27709AF6008781EE /* KeyboardEvent.swift */,
+				30558B0E27752C71008781EE /* HorizontalEdgePadding.swift */,
+				30558B0F27752C71008781EE /* NSConstraintLayoutSet.swift */,
 			);
-			path = KeyboardManager;
-			sourceTree = "<group>";
+			name = Models;
+			path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/Models";
+			sourceTree = SOURCE_ROOT;
 		};
-		30558A0D27709AF6008781EE /* RxInputBarAccessoryView */ = {
+		30558B1027752C71008781EE /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				30558A0E27709AF6008781EE /* RxInputBarAccessoryView.swift */,
+				30558B1127752C71008781EE /* AttachmentManager */,
+				30558B1A27752C71008781EE /* AutocompleteManager */,
 			);
-			path = RxInputBarAccessoryView;
-			sourceTree = "<group>";
+			name = Plugins;
+			path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/Plugins";
+			sourceTree = SOURCE_ROOT;
 		};
-		30558A0F27709AF7008781EE /* Plugins */ = {
+		30558B1127752C71008781EE /* AttachmentManager */ = {
 			isa = PBXGroup;
 			children = (
-				30558A1027709AF7008781EE /* AttachmentManager */,
-				30558A1927709AF7008781EE /* AutocompleteManager */,
-			);
-			path = Plugins;
-			sourceTree = "<group>";
-		};
-		30558A1027709AF7008781EE /* AttachmentManager */ = {
-			isa = PBXGroup;
-			children = (
-				30558A1127709AF7008781EE /* AttachmentManager.swift */,
-				30558A1227709AF7008781EE /* Views */,
-				30558A1627709AF7008781EE /* Protocols */,
+				30558B1227752C71008781EE /* AttachmentManager.swift */,
+				30558B1327752C71008781EE /* Views */,
+				30558B1727752C71008781EE /* Protocols */,
 			);
 			path = AttachmentManager;
 			sourceTree = "<group>";
 		};
-		30558A1227709AF7008781EE /* Views */ = {
+		30558B1327752C71008781EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				30558A1327709AF7008781EE /* ImageAttachmentCell.swift */,
-				30558A1427709AF7008781EE /* AttachmentCell.swift */,
-				30558A1527709AF7008781EE /* AttachmentsView.swift */,
+				30558B1427752C71008781EE /* ImageAttachmentCell.swift */,
+				30558B1527752C71008781EE /* AttachmentCell.swift */,
+				30558B1627752C71008781EE /* AttachmentsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		30558A1627709AF7008781EE /* Protocols */ = {
+		30558B1727752C71008781EE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				30558A1727709AF7008781EE /* AttachmentManagerDataSource.swift */,
-				30558A1827709AF7008781EE /* AttachmentManagerDelegate.swift */,
+				30558B1827752C71008781EE /* AttachmentManagerDataSource.swift */,
+				30558B1927752C71008781EE /* AttachmentManagerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		30558A1927709AF7008781EE /* AutocompleteManager */ = {
+		30558B1A27752C71008781EE /* AutocompleteManager */ = {
 			isa = PBXGroup;
 			children = (
-				30558A1A27709AF7008781EE /* AutocompleteManager.swift */,
-				30558A1B27709AF7008781EE /* Models */,
-				30558A1E27709AF7008781EE /* Views */,
-				30558A2127709AF7008781EE /* Protocols */,
+				30558B1B27752C71008781EE /* AutocompleteManager.swift */,
+				30558B1C27752C71008781EE /* Models */,
+				30558B1F27752C71008781EE /* Views */,
+				30558B2227752C71008781EE /* Protocols */,
 			);
 			path = AutocompleteManager;
 			sourceTree = "<group>";
 		};
-		30558A1B27709AF7008781EE /* Models */ = {
+		30558B1C27752C71008781EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				30558A1C27709AF7008781EE /* AutocompleteSession.swift */,
-				30558A1D27709AF7008781EE /* AutocompleteCompletion.swift */,
+				30558B1D27752C71008781EE /* AutocompleteSession.swift */,
+				30558B1E27752C71008781EE /* AutocompleteCompletion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		30558A1E27709AF7008781EE /* Views */ = {
+		30558B1F27752C71008781EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				30558A1F27709AF7008781EE /* AutocompleteTableView.swift */,
-				30558A2027709AF7008781EE /* AutocompleteCell.swift */,
+				30558B2027752C71008781EE /* AutocompleteTableView.swift */,
+				30558B2127752C71008781EE /* AutocompleteCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		30558A2127709AF7008781EE /* Protocols */ = {
+		30558B2227752C71008781EE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				30558A2227709AF7008781EE /* AutocompleteManagerDelegate.swift */,
-				30558A2327709AF7008781EE /* AutocompleteManagerDataSource.swift */,
+				30558B2327752C71008781EE /* AutocompleteManagerDelegate.swift */,
+				30558B2427752C71008781EE /* AutocompleteManagerDataSource.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		30558A2427709AF7008781EE /* Views */ = {
+		30558B2527752C71008781EE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				30558A2527709AF7008781EE /* InputStackView.swift */,
-				30558A2627709AF7008781EE /* InputTextView.swift */,
-				30558A2727709AF7008781EE /* SeparatorLine.swift */,
+				30558B2627752C71008781EE /* InputBarViewController.swift */,
 			);
-			path = Views;
-			sourceTree = "<group>";
+			name = ViewControllers;
+			path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/ViewControllers";
+			sourceTree = SOURCE_ROOT;
 		};
-		30558A2827709AF8008781EE /* Controls */ = {
+		30558B2727752C72008781EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				30558A2927709AF8008781EE /* InputBarButtonItem.swift */,
-				30558A2A27709AF8008781EE /* InputBarSendButton.swift */,
+				30558B2827752C72008781EE /* InputStackView.swift */,
+				30558B2927752C72008781EE /* InputTextView.swift */,
+				30558B2A27752C72008781EE /* SeparatorLine.swift */,
 			);
-			path = Controls;
-			sourceTree = "<group>";
+			name = Views;
+			path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/Views";
+			sourceTree = SOURCE_ROOT;
 		};
-		30558A2C27709AF8008781EE /* Models */ = {
+		30558B2B27752C72008781EE /* KeyboardManager */ = {
 			isa = PBXGroup;
 			children = (
-				30558A2D27709AF8008781EE /* HorizontalEdgeInsets.swift.swift */,
-				30558A2E27709AF8008781EE /* NSConstraintLayoutSet.swift */,
+				30558B2C27752C72008781EE /* KeyboardManager.swift */,
+				30558B2D27752C72008781EE /* KeyboardNotification.swift */,
+				30558B2E27752C72008781EE /* KeyboardEvent.swift */,
 			);
-			path = Models;
-			sourceTree = "<group>";
+			name = KeyboardManager;
+			path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/KeyboardManager";
+			sourceTree = SOURCE_ROOT;
 		};
-		30558A2F27709AF9008781EE /* Protocols */ = {
+		30558B2F27752C72008781EE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				30558A3027709AF9008781EE /* InputPlugin.swift */,
-				30558A3127709AF9008781EE /* InputBarAccessoryViewDelegate.swift */,
-				30558A3227709AF9008781EE /* InputItem.swift */,
+				30558B3027752C72008781EE /* InputPlugin.swift */,
+				30558B3127752C72008781EE /* InputBarAccessoryViewDelegate.swift */,
+				30558B3227752C72008781EE /* InputItem.swift */,
 			);
-			path = Protocols;
-			sourceTree = "<group>";
+			name = Protocols;
+			path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/Protocols";
+			sourceTree = SOURCE_ROOT;
 		};
-		30558A3327709AF9008781EE /* Supporting Files */ = {
+		30558B3327752C72008781EE /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				30558A3427709AF9008781EE /* InputBarAccessoryView-Bridging-Header.h */,
-				30558A3527709AF9008781EE /* InputBarAccessoryView+Availability.swift */,
+				30558B3427752C72008781EE /* InputBarButtonItem.swift */,
+				30558B3527752C72008781EE /* InputBarSendButton.swift */,
 			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		30558A3727709AFA008781EE /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				30558A3827709AFA008781EE /* InputBarViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
+			name = Controls;
+			path = "deltachat-ios/libraries/InputBarAccessoryView/Sources/Controls";
+			sourceTree = SOURCE_ROOT;
 		};
 		3057027D24C5B2C700D84EFC /* ViewModel */ = {
 			isa = PBXGroup;
@@ -930,7 +913,7 @@
 		7A9FB1421FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXGroup;
 			children = (
-				305589FD27709A6A008781EE /* InputBarAccessoryView */,
+				30558B0527752C09008781EE /* InputBarAccessoryView */,
 				AE57C07E2552BBC0003CFE70 /* Model */,
 				304219D7244072E600516852 /* DC */,
 				AE1988AA23EB3C7600B4CD5F /* Assets */,
@@ -1530,7 +1513,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */,
-				30558A5227709AFA008781EE /* InputBarButtonItem.swift in Sources */,
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
 				303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */,
 				3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */,
@@ -1539,111 +1521,114 @@
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
 				AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,
-				30558A4827709AFA008781EE /* AutocompleteManager.swift in Sources */,
 				AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */,
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
+				30558B4727752C72008781EE /* AutocompleteTableView.swift in Sources */,
+				30558B4927752C72008781EE /* AutocompleteManagerDelegate.swift in Sources */,
 				303492CF2587C2DC00A523D0 /* ChatInputBar.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
-				30558A4D27709AFA008781EE /* AutocompleteManagerDelegate.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
-				30558A4227709AFA008781EE /* AttachmentManager.swift in Sources */,
-				30558A3F27709AFA008781EE /* KeyboardNotification.swift in Sources */,
 				30734326249A280B00BF9AD1 /* MediaQualityController.swift in Sources */,
 				AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */,
-				30558A5327709AFA008781EE /* InputBarSendButton.swift in Sources */,
-				30558A4B27709AFA008781EE /* AutocompleteTableView.swift in Sources */,
-				30558A5127709AFA008781EE /* SeparatorLine.swift in Sources */,
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
-				30558A5627709AFA008781EE /* NSConstraintLayoutSet.swift in Sources */,
-				30558A4127709AFA008781EE /* RxInputBarAccessoryView.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
-				30558A3B27709AFA008781EE /* UITextView+Extensions.swift in Sources */,
+				30558B4E27752C73008781EE /* SeparatorLine.swift in Sources */,
+				30558B4827752C72008781EE /* AutocompleteCell.swift in Sources */,
 				30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */,
 				AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */,
 				AE8DD451249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift in Sources */,
-				30558A3A27709AFA008781EE /* String+Extensions.swift in Sources */,
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
 				B21005DB23383664004C70C5 /* SettingsClassicViewController.swift in Sources */,
 				AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */,
 				3008CB7224F93EB900E6A617 /* AudioMessageCell.swift in Sources */,
+				30558B3D27752C72008781EE /* NSConstraintLayoutSet.swift in Sources */,
 				302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */,
-				30558A3927709AFA008781EE /* NSNotification+Extensions.swift in Sources */,
 				303492AD2577CAC300A523D0 /* FileView.swift in Sources */,
+				30558B5327752C73008781EE /* InputBarAccessoryViewDelegate.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
-				30558A3E27709AFA008781EE /* KeyboardManager.swift in Sources */,
 				AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */,
+				30558B4327752C72008781EE /* AttachmentManagerDelegate.swift in Sources */,
 				B20462E62440C99600367A57 /* SettingsAutodelSetController.swift in Sources */,
 				3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */,
+				30558B4027752C72008781EE /* AttachmentCell.swift in Sources */,
 				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
+				30558B4B27752C72008781EE /* InputBarViewController.swift in Sources */,
+				30558B3727752C72008781EE /* NSNotification+Extensions.swift in Sources */,
+				30558B4227752C72008781EE /* AttachmentManagerDataSource.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
-				30558A5727709AFA008781EE /* InputPlugin.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
 				AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */,
 				30DAF71C275901610073C154 /* SettingsBackgroundSelectionController.swift in Sources */,
 				3010968926838A050032CBA0 /* VideoInviteCell.swift in Sources */,
 				303492CB257A814200A523D0 /* DraftArea.swift in Sources */,
 				AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */,
-				30558A4527709AFA008781EE /* AttachmentsView.swift in Sources */,
 				B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */,
 				AEE700252438E0E500D6992E /* ProgressAlertHandler.swift in Sources */,
 				30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */,
+				30558B5527752C73008781EE /* InputBarButtonItem.swift in Sources */,
 				306C32322445CDE9001D89F3 /* DcLogger.swift in Sources */,
-				30558A5827709AFA008781EE /* InputBarAccessoryViewDelegate.swift in Sources */,
 				307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */,
+				30558B5227752C73008781EE /* InputPlugin.swift in Sources */,
+				30558B3927752C72008781EE /* UITextView+Extensions.swift in Sources */,
+				30558B3A27752C72008781EE /* NSMutableAttributedString+Extensions.swift in Sources */,
 				303492952565AABC00A523D0 /* DraftModel.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
-				30558A4327709AFA008781EE /* ImageAttachmentCell.swift in Sources */,
 				302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */,
+				30558B4127752C72008781EE /* AttachmentsView.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
+				30558B5027752C73008781EE /* KeyboardNotification.swift in Sources */,
 				305702A124C6453700D84EFC /* TypeAlias.swift in Sources */,
 				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
 				302D5450268B6B2300A8B271 /* MessageUtils.swift in Sources */,
 				30149D9322F21129003C12B5 /* QrViewController.swift in Sources */,
-				30558A4C27709AFA008781EE /* AutocompleteCell.swift in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
-				30558A3D27709AFA008781EE /* UIView+AutoLayout.swift in Sources */,
+				30558B4427752C72008781EE /* AutocompleteManager.swift in Sources */,
 				30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
 				AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */,
 				B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */,
+				30558B4A27752C72008781EE /* AutocompleteManagerDataSource.swift in Sources */,
 				AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */,
-				30558A5C27709AFA008781EE /* InputBarViewController.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* EditSettingsController.swift in Sources */,
 				30653081254358B10093E196 /* QuoteView.swift in Sources */,
+				30558B5127752C73008781EE /* KeyboardEvent.swift in Sources */,
+				30558B3827752C72008781EE /* String+Extensions.swift in Sources */,
+				30558B4C27752C72008781EE /* InputStackView.swift in Sources */,
 				3067AAC62667F3FE00525036 /* ImageFormat.swift in Sources */,
-				30558A4F27709AFA008781EE /* InputStackView.swift in Sources */,
 				30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */,
+				30558B3F27752C72008781EE /* ImageAttachmentCell.swift in Sources */,
 				30EF7308252F6A3300E2C54A /* PaddingTextView.swift in Sources */,
-				30558A4E27709AFA008781EE /* AutocompleteManagerDataSource.swift in Sources */,
 				30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */,
 				3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
+				30558B5627752C73008781EE /* InputBarSendButton.swift in Sources */,
 				3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */,
+				30558B5427752C73008781EE /* InputItem.swift in Sources */,
 				AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */,
+				30558B4F27752C73008781EE /* KeyboardManager.swift in Sources */,
 				3052C60A253F082E007D13EA /* MessageLabelDelegate.swift in Sources */,
+				30558B3E27752C72008781EE /* AttachmentManager.swift in Sources */,
 				AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */,
 				AEA0F6A124474146009F887B /* ProfileInfoViewController.swift in Sources */,
 				303492A5257546B400A523D0 /* DraftPreview.swift in Sources */,
+				30558B4527752C72008781EE /* AutocompleteSession.swift in Sources */,
 				305961D02346125100C80F33 /* NSAttributedString+Extensions.swift in Sources */,
-				30558A5A27709AFA008781EE /* InputBarAccessoryView+Availability.swift in Sources */,
+				30558B4D27752C72008781EE /* InputTextView.swift in Sources */,
 				21D6C941260623F500D0755A /* NotificationManager.swift in Sources */,
-				30558A5527709AFA008781EE /* HorizontalEdgeInsets.swift.swift in Sources */,
 				302B84C72396770B001C261F /* RelayHelper.swift in Sources */,
+				30558B3B27752C72008781EE /* UIView+AutoLayout.swift in Sources */,
 				305961CF2346125100C80F33 /* UIColor+Extensions.swift in Sources */,
-				30558A5027709AFA008781EE /* InputTextView.swift in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
 				3052C60E253F088E007D13EA /* DetectorType.swift in Sources */,
-				30558A4A27709AFA008781EE /* AutocompleteCompletion.swift in Sources */,
 				30349291256441E200A523D0 /* QuotePreview.swift in Sources */,
 				AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */,
 				30FDB71F24D8170E0066C48D /* TextMessageCell.swift in Sources */,
-				30558A3C27709AFA008781EE /* NSMutableAttributedString+Extensions.swift in Sources */,
 				AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */,
 				302D5454268B84CB00A8B271 /* SettingsVideoChatViewController.swift in Sources */,
 				AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */,
@@ -1657,34 +1642,30 @@
 				305961D22346125100C80F33 /* CGRect+Extensions.swift in Sources */,
 				3057029B24C6441300D84EFC /* EmptyStateLabel.swift in Sources */,
 				30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */,
-				30558A5427709AFA008781EE /* InputBarAccessoryView.swift in Sources */,
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
 				305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */,
 				30EF7324252FF15F00E2C54A /* MessageLabel.swift in Sources */,
 				30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */,
-				30558A4727709AFA008781EE /* AttachmentManagerDelegate.swift in Sources */,
 				304F769525DD237B0094B5E2 /* WebViewViewController.swift in Sources */,
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
-				30558A4627709AFA008781EE /* AttachmentManagerDataSource.swift in Sources */,
 				30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */,
 				304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */,
 				AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */,
 				AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */,
-				30558A4427709AFA008781EE /* AttachmentCell.swift in Sources */,
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
-				30558A4927709AFA008781EE /* AutocompleteSession.swift in Sources */,
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
 				30FDB72124D838240066C48D /* BaseMessageCell.swift in Sources */,
+				30558B3C27752C72008781EE /* HorizontalEdgePadding.swift in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
 				AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */,
 				AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */,
 				302D546A2693591700A8B271 /* ChatContactRequestBar.swift in Sources */,
 				305DDD8725DD97BF00974489 /* DynamicFontButton.swift in Sources */,
-				30558A4027709AFA008781EE /* KeyboardEvent.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */,
+				30558B4627752C72008781EE /* AutocompleteCompletion.swift in Sources */,
+				30558B3627752C72008781EE /* InputBarAccessoryView.swift in Sources */,
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
-				30558A5927709AFA008781EE /* InputItem.swift in Sources */,
 				AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */,
 				AECEF03E244F2D55006C90DA /* QrPageController.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
