@@ -72,8 +72,8 @@ class ChatViewController: UITableViewController {
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
-    lazy var messageInputBar: ChatInputBar = {
-        let inputBar = ChatInputBar()
+    lazy var messageInputBar: InputBarAccessoryView = {
+        let inputBar = InputBarAccessoryView()
         return inputBar
     }()
 

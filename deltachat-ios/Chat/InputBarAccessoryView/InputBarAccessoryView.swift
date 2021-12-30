@@ -26,6 +26,7 @@
 //
 
 import UIKit
+import DcCore
 
 /// A powerful InputAccessoryView ideal for messaging applications
 open class InputBarAccessoryView: UIView {
@@ -151,8 +152,8 @@ open class InputBarAccessoryView: UIView {
     }()
     
     /// The InputTextView a user can input a message in
-    open lazy var inputTextView: InputTextView = {
-        let inputTextView = InputTextView()
+    open lazy var inputTextView: ChatInputTextView = {
+        let inputTextView = ChatInputTextView()
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         inputTextView.inputBarAccessoryView = self
         return inputTextView
@@ -340,6 +341,24 @@ open class InputBarAccessoryView: UIView {
     public var items: [InputItem] {
         return [leftStackViewItems, rightStackViewItems, bottomStackViewItems, topStackViewItems, nonStackViewItems].flatMap { $0 }
     }
+
+    // customization
+    /// indicates if a draft view was added to the InputBarAccessoryView
+    var hasDraft: Bool = false
+
+    /// indicates if a quote view was added to the InputBarAccessoryView
+    var hasQuote: Bool = false
+
+    /// optional callback that gets called if scroll down button was pressed
+    var onScrollDownButtonPressed: (() -> Void)?
+
+    lazy var scrollDownButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(onScrollDownPressed), for: .touchUpInside)
+        button.isHidden = true
+        return button
+    }()
 
     private let keyboardManager: KeyboardManager = KeyboardManager()
     open var keyboardHeight: CGFloat = 0
@@ -615,6 +634,10 @@ open class InputBarAccessoryView: UIView {
     }
 
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if !scrollDownButton.isHidden && scrollDownButton.point(inside: convert(point, to: scrollDownButton), with: event) {
+            return true
+        }
+
         guard frameInsets.left != 0 || frameInsets.right != 0 else {
             return super.point(inside: point, with: event)
         }
@@ -628,10 +651,21 @@ open class InputBarAccessoryView: UIView {
     ///
     /// - Returns: Max Height
     open func calculateMaxTextViewHeight() -> CGFloat {
-        if traitCollection.verticalSizeClass == .regular {
-            return (UIScreen.main.bounds.height / 3).rounded(.down)
+        if traitCollection.verticalSizeClass == .regular || UIDevice.current.userInterfaceIdiom == .pad {
+            let divisor: CGFloat = 3
+            var subtract: CGFloat = 0
+            subtract += hasDraft ? 90 : 0
+            subtract += hasQuote ? 90 : 0
+            let height = (UIScreen.main.bounds.height / divisor).rounded(.down) - subtract
+            if height < 40 {
+                return 40
+            }
+            return height
+        } else {
+            // landscape phone layout
+            let height = UIScreen.main.bounds.height - keyboardHeight - 12
+            return height
         }
-        return (UIScreen.main.bounds.height / 5).rounded(.down)
     }
     
     // MARK: - Layout Helper Methods
@@ -863,6 +897,7 @@ open class InputBarAccessoryView: UIView {
                 invalidateIntrinsicContentSize()
             }
         }
+        scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
     }
     
     /// Invalidates the intrinsicContentSize
@@ -950,4 +985,53 @@ open class InputBarAccessoryView: UIView {
     open func didSelectSendButton() {
         delegate?.inputBar(self, didPressSendButtonWith: inputTextView.text)
     }
+
+    // MARK: - Drafts - Customization
+    public func configure(draft: DraftModel) {
+        hasDraft = !draft.isEditing && draft.attachment != nil
+        hasQuote = !draft.isEditing && draft.quoteText != nil
+        leftStackView.isHidden = draft.isEditing
+        rightStackView.isHidden = draft.isEditing
+        maxTextViewHeight = calculateMaxTextViewHeight()
+    }
+
+    public func cancel() {
+        hasDraft = false
+        hasQuote = false
+        maxTextViewHeight = calculateMaxTextViewHeight()
+    }
+
+    @objc func onScrollDownPressed() {
+        if let callback = onScrollDownButtonPressed {
+            callback()
+        }
+    }
+
+    func setupScrollDownButton() {
+        self.addSubview(scrollDownButton)
+        NSLayoutConstraint.activate([
+            scrollDownButton.constraintAlignTopTo(self, paddingTop: -52),
+            scrollDownButton.constraintAlignTrailingToAnchor(self.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 12),
+            scrollDownButton.constraintHeightTo(40),
+            scrollDownButton.constraintWidthTo(40)
+        ])
+        scrollDownButton.backgroundColor = DcColors.defaultBackgroundColor
+        scrollDownButton.setImage(UIImage(named: "ic_scrolldown")?.sd_tintedImage(with: .systemBlue), for: .normal)
+        scrollDownButton.layer.cornerRadius = 20
+        scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
+        scrollDownButton.layer.borderWidth = 1
+        scrollDownButton.layer.masksToBounds = true
+        scrollDownButton.accessibilityLabel = String.localized("menu_scroll_to_bottom")
+    }
+
+    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if !scrollDownButton.isHidden {
+            let scrollButtonViewPoint = self.scrollDownButton.convert(point, from: self)
+            if let view = scrollDownButton.hitTest(scrollButtonViewPoint, with: event) {
+                return view
+            }
+        }
+        return super.hitTest(point, with: event)
+    }
+
 }

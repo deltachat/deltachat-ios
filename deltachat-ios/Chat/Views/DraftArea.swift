@@ -67,7 +67,7 @@ public class DraftArea: UIView, InputItem {
     }
 
     public func configure(draft: DraftModel) {
-        guard let  chatInputBar = inputBarAccessoryView as? ChatInputBar else {
+        guard let  chatInputBar = inputBarAccessoryView else {
             safe_fatalError("Expecting inputBarAccessoryView of type ChatInputBar")
             return
         }
@@ -87,7 +87,7 @@ public class DraftArea: UIView, InputItem {
         quotePreview.cancel()
         mediaPreview.cancel()
         documentPreview.cancel()
-        if let chatInputBar = inputBarAccessoryView as? ChatInputBar {
+        if let chatInputBar = inputBarAccessoryView {
             chatInputBar.cancel()
         }
     }
