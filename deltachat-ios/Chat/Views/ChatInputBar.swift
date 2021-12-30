@@ -1,5 +1,4 @@
 import UIKit
-import InputBarAccessoryView
 import DcCore
 
 
@@ -7,7 +6,6 @@ public class ChatInputBar: InputBarAccessoryView {
 
     var hasDraft: Bool = false
     var hasQuote: Bool = false
-    var keyboardHeight: CGFloat = 0
     
     var onScrollDownButtonPressed: (() -> Void)?
     

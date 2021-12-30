@@ -1,6 +1,5 @@
 import UIKit
 import DcCore
-import InputBarAccessoryView
 
 public class DraftArea: UIView, InputItem {
     public var inputBarAccessoryView: InputBarAccessoryView?

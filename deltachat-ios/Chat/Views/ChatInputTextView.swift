@@ -1,5 +1,5 @@
 import Foundation
-import InputBarAccessoryView
+import UIKit
 
 public class ChatInputTextView: InputTextView {
 
