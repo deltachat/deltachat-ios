@@ -57,7 +57,6 @@ public class ChatInputBar: InputBarAccessoryView {
         } else {
             // landscape phone layout
             let height = UIScreen.main.bounds.height - keyboardHeight - 12
-            logger.debug("HEIGHTS: calculateMaxTextViewHeight screen \(UIScreen.main.bounds.height) - \(keyboardHeight) >> \(UIScreen.main.bounds.height - keyboardHeight)")
             return height
         }
     }
@@ -81,8 +80,6 @@ public class ChatInputBar: InputBarAccessoryView {
         scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
     }
 
-    
-    
     func setupScrollDownButton() {
         self.addSubview(scrollDownButton)
         NSLayoutConstraint.activate([

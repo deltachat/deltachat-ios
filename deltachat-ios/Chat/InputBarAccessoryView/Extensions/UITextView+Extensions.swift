@@ -59,5 +59,3 @@ internal extension UITextView {
     }
     
 }
-
-

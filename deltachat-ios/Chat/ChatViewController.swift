@@ -318,7 +318,7 @@ class ChatViewController: UITableViewController {
             if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
                 self.scrollToBottom()
             }
-        }.on(event: .willChangeFrame) { [weak self] _ in
+        }.on(event: .willChangeFrame) { [weak self] _ in
             guard let self = self else { return }
             if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
                 self.scrollToBottom()
@@ -432,8 +432,6 @@ class ChatViewController: UITableViewController {
                 }
             })
         }
-
-
 
         if RelayHelper.sharedInstance.isForwarding() {
             askToForwardMessage()
