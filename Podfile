@@ -12,7 +12,6 @@ target 'deltachat-ios' do
   pod 'ReachabilitySwift'
   pod 'SwiftyBeaver'
   pod 'DBDebugToolkit'
-  pod 'InputBarAccessoryView'
   pod 'SCSiriWaveformView'
   pod 'SDWebImage', '~> 5.9.1'
   pod 'SDWebImageWebPCoder'
