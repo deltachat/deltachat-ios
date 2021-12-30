@@ -20,6 +20,7 @@ class ChatViewController: UITableViewController {
     private var isInitial = true
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
+    private var wasInputBarFirstResponder = false
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -299,7 +300,6 @@ class ChatViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
-       // tableView.contentInsetAdjustmentBehavior = .never
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         if #available(iOS 13.0, *) {
@@ -455,7 +455,13 @@ class ChatViewController: UITableViewController {
         }
 
         handleUserVisibility(isVisible: true)
-        tableView.becomeFirstResponder()
+
+        // this block ensures that if a swipe-to-dismiss gesture was cancelled, the UI recovers
+        if wasInputBarFirstResponder {
+            messageInputBar.inputTextView.becomeFirstResponder()
+        } else {
+            tableView.becomeFirstResponder()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -463,8 +469,10 @@ class ChatViewController: UITableViewController {
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-        tableView.resignFirstResponder()
-        messageInputBar.inputTextView.resignFirstResponder()
+        wasInputBarFirstResponder = messageInputBar.inputTextView.isFirstResponder
+        if !wasInputBarFirstResponder {
+            tableView.resignFirstResponder()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -472,6 +480,8 @@ class ChatViewController: UITableViewController {
         AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
         audioController.stopAnyOngoingPlaying()
+        messageInputBar.inputTextView.resignFirstResponder()
+        wasInputBarFirstResponder = false
     }
 
     override func willMove(toParent parent: UIViewController?) {
