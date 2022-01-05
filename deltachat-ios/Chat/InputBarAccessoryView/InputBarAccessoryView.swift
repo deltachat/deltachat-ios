@@ -655,7 +655,7 @@ open class InputBarAccessoryView: UIView {
     ///
     /// - Returns: Max Height
     open func calculateMaxTextViewHeight() -> CGFloat {
-        if traitCollection.verticalSizeClass == .regular || UIDevice.current.userInterfaceIdiom == .pad {
+        if UIApplication.shared.statusBarOrientation.isPortrait || UIDevice.current.userInterfaceIdiom == .pad || keyboardHeight == 0 {
             let divisor: CGFloat = 3
             var subtract: CGFloat = 0
             subtract += hasDraft ? 90 : 0
