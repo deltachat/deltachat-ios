@@ -56,9 +56,6 @@ open class InputBarAccessoryView: UIView {
     
     /**
      A UIVisualEffectView that adds a blur effect to make the view appear transparent.
-     
-     ## Important Notes ##
-     1. The blurView is initially not added to the backgroundView to improve performance when not needed. When `isTranslucent` is set to TRUE for the first time the blurView is added and anchored to the `backgroundView`s edge anchors
     */
     open lazy var blurView: UIVisualEffectView = {
         var blurEffect = UIBlurEffect(style: .light)
@@ -71,15 +68,9 @@ open class InputBarAccessoryView: UIView {
     }()
     
     /// Determines if the InputBarAccessoryView should have a translucent effect
-    open var isTranslucent: Bool = false {
+    open var isTranslucent: Bool = true {
         didSet {
-            if isTranslucent && blurView.superview == nil {
-                backgroundView.addSubview(blurView)
-                blurView.fillSuperview()
-            }
             blurView.isHidden = !isTranslucent
-            let color: UIColor = backgroundView.backgroundColor ?? InputBarAccessoryView.defaultBackgroundColor
-            backgroundView.backgroundColor = isTranslucent ? color.withAlphaComponent(0.75) : color
         }
     }
 
@@ -413,8 +404,7 @@ open class InputBarAccessoryView: UIView {
     
     /// Sets up the default properties
     open func setup() {
-
-        backgroundColor = InputBarAccessoryView.defaultBackgroundColor
+        backgroundColor = .clear
         autoresizingMask = [.flexibleHeight]
         setupSubviews()
         setupConstraints()
@@ -464,7 +454,7 @@ open class InputBarAccessoryView: UIView {
     
     /// Adds all of the subviews
     private func setupSubviews() {
-        
+        addSubview(blurView)
         addSubview(backgroundView)
         addSubview(topStackView)
         addSubview(contentView)
@@ -476,6 +466,8 @@ open class InputBarAccessoryView: UIView {
         middleContentViewWrapper.addSubview(inputTextView)
         middleContentView = inputTextView
         setStackViewItems([sendButton], forStack: .right, animated: false)
+        backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
+        blurView.fillSuperview()
     }
     
     /// Sets up the initial constraints of each subview
