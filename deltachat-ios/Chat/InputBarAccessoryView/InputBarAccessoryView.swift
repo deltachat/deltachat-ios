@@ -421,6 +421,7 @@ open class InputBarAccessoryView: UIView {
         setupObservers()
         setupGestureRecognizers()
         setupKeyboardEvents()
+        setupScrollDownButton()
     }
 
     private func setupKeyboardEvents() {
