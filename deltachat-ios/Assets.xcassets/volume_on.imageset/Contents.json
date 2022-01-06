@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bell-outline_white_1x.png",
+      "filename" : "volume-high_1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "bell-outline_white_2x.png",
+      "filename" : "volume-high_2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "bell-outline_white_3x.png",
+      "filename" : "volume-high_3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
