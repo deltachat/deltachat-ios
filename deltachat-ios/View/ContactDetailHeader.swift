@@ -48,7 +48,7 @@ class ContactDetailHeader: UIView {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 5, right: 6)
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.layer.cornerRadius = 16
         button.layer.borderColor = DcColors.colorDisabled.cgColor
         button.layer.borderWidth = 1
