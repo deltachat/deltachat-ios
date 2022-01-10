@@ -425,6 +425,9 @@ open class InputBarAccessoryView: UIView {
         }).on(event: .didChangeFrame, do: {  [weak self] (notification) in
             guard let self = self else { return }
             self.keyboardHeight = notification.endFrame.height - self.intrinsicContentSize.height
+            if self.isInPhoneLandscapeOrientation {
+                self.orientationDidChange()
+            }
         })
     }
 
