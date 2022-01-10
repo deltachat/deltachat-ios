@@ -12,6 +12,7 @@
 		3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */; };
 		3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008CB7524F95B6D00E6A617 /* AudioController.swift */; };
 		3010968926838A050032CBA0 /* VideoInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010968826838A040032CBA0 /* VideoInviteCell.swift */; };
+		3011E8052787365D00214221 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011E8042787365D00214221 /* KeychainManager.swift */; };
 		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
 		30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F4BFED252E3E020006B9B3 /* PaddingTextView.swift */; };
 		30152C9725A5D91900377714 /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF7323252FF15F00E2C54A /* MessageLabel.swift */; };
@@ -219,6 +220,7 @@
 		3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		3008CB7524F95B6D00E6A617 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		3010968826838A040032CBA0 /* VideoInviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInviteCell.swift; sourceTree = "<group>"; };
+		3011E8042787365D00214221 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		30149D9222F21129003C12B5 /* QrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrViewController.swift; sourceTree = "<group>"; };
 		3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderController.swift; sourceTree = "<group>"; };
 		3022E6BF22E8768800763272 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -857,6 +859,7 @@
 				AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */,
 				21D6C9392606190600D0755A /* NotificationManager.swift */,
 				302D544F268B6B2300A8B271 /* MessageUtils.swift */,
+				3011E8042787365D00214221 /* KeychainManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1401,6 +1404,7 @@
 				305DDD8725DD97BF00974489 /* DynamicFontButton.swift in Sources */,
 				785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */,
 				AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */,
+				3011E8052787365D00214221 /* KeychainManager.swift in Sources */,
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
 				AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */,
 				AECEF03E244F2D55006C90DA /* QrPageController.swift in Sources */,
