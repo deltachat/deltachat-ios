@@ -601,8 +601,9 @@ open class InputBarAccessoryView: UIView {
         
         let isPhoneInLandscape = UIApplication.shared.statusBarOrientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
         var inputTextViewHeight = requiredInputTextViewHeight
+        let bottomSafeAreaInsetsHeight = UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets.bottom ?? 0
 
-        if isPhoneInLandscape && keyboardHeight > 0 {
+        if isPhoneInLandscape && keyboardHeight > bottomSafeAreaInsetsHeight {
             textViewHeightAnchor?.isActive = true
             inputTextView.isScrollEnabled = true
             inputTextViewHeight = maxTextViewHeight
@@ -655,7 +656,8 @@ open class InputBarAccessoryView: UIView {
     ///
     /// - Returns: Max Height
     open func calculateMaxTextViewHeight() -> CGFloat {
-        if UIApplication.shared.statusBarOrientation.isPortrait || UIDevice.current.userInterfaceIdiom == .pad || keyboardHeight == 0 {
+        let bottomSafeAreaInsetsHeight = UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets.bottom ?? 0
+        if UIApplication.shared.statusBarOrientation.isPortrait || UIDevice.current.userInterfaceIdiom == .pad || keyboardHeight == bottomSafeAreaInsetsHeight {
             let divisor: CGFloat = 3
             var subtract: CGFloat = 0
             subtract += hasDraft ? 90 : 0
