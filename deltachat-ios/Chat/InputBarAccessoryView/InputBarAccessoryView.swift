@@ -671,7 +671,7 @@ open class InputBarAccessoryView: UIView {
             }
             return height
         } else {
-            // landscape phone layout
+            // landscape phone layout with shown keyboard
             let height = UIScreen.main.bounds.height - keyboardHeight - padding.vertical
             return height
         }
