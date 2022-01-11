@@ -6,6 +6,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     private var skipOauth = false
+    private var accountEncryption: Bool?
     private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
     var onProgressSuccess: VoidFunction? // not needed here
@@ -28,6 +29,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private let tagCertCheckCell = 12
     private let tagRestoreCell = 14
     private let tagViewLogCell = 15
+    private let tagAccountEncryptionCell = 16
 
     private let tagTextFieldEmail = 100
     private let tagTextFieldPassword = 200
@@ -51,6 +53,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private lazy var restoreCells: [UITableViewCell] = [restoreCell]
     private lazy var advancedSectionCells: [UITableViewCell] = [
         advancedShowCell,
+        accountEncryptionCell,
         imapSecurityCell,
         imapUserCell,
         imapServerCell,
@@ -117,6 +120,17 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.textLabel?.text = String.localized("menu_advanced")
         cell.accessoryType = .disclosureIndicator
         cell.tag = tagAdvancedCell
+        return cell
+    }()
+
+    lazy var accountEncryptionCell: SwitchCell = {
+        let isEditable = !dcContext.isConfigured() && !dcContext.isOpen()
+        let cell = SwitchCell(textLabel: String.localized("account_encryption"), on: false, action: { [weak self] cell in
+            self?.accountEncryption = cell.isOn
+        })
+        cell.isHidden = !isEditable
+        cell.isUserInteractionEnabled = isEditable
+        cell.tag = tagAccountEncryptionCell
         return cell
     }()
 
@@ -523,6 +537,17 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         }
 
         let password = passwordCell.getText() ?? "" // empty passwords are ok -> for oauth there is no password needed
+        var dbPassphrase: String?
+        if !dcContext.isOpen() {
+            if let encryptionEnabled = accountEncryption, encryptionEnabled {
+                do {
+                    dbPassphrase = try KeychainManager.getDBSecret()
+                } catch {
+                    logger.error("failed to obtain db secret: \(error)")
+                }
+            }
+            dcContext.open(passphrase: dbPassphrase)
+        }
 
         login(emailAddress: emailAddress, password: password)
     }
@@ -766,6 +791,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("mail_security")))
         smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("send_security")))
         certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
+        if dcContext.isConfigured() || dcContext.isOpen() {
+            // remove account selection option
+            advancedSectionCells.remove(at: 1)
+        }
     }
 
     private func resignFirstResponderOnAllCells() {
