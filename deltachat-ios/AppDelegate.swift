@@ -61,9 +61,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcAccounts.logger = DcLogger()
         dcAccounts.openDatabase()
         migrateToDcAccounts()
+
+        let passphrase: String
+        do {
+            passphrase = try KeychainManager.getDBSecret()
+        } catch {
+            fatalError("Could not get nor create a DB secret")
+        }
+
+        let accountIds = dcAccounts.getAll()
+        for accountId in accountIds {
+            let dcContext = dcAccounts.get(id: accountId)
+            if !dcContext.isOpen() {
+                dcContext.open(passphrase: passphrase)
+            }
+        }
+
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
            fatalError("Could not initialize a new account.")
         }
+
         logger.info("➡️ didFinishLaunchingWithOptions")
 
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -532,7 +549,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_VIDEO, localizationKey: "video")
         dcContext.setStockTranslation(id: DC_STR_AUDIO, localizationKey: "audio")
         dcContext.setStockTranslation(id: DC_STR_FILE, localizationKey: "file")
-        dcContext.setStockTranslation(id: DC_STR_STATUSLINE, localizationKey: "pref_default_status_text")
+        //dcContext.setStockTranslation(id: DC_STR_STATUSLINE, localizationKey: "pref_default_status_text")
         dcContext.setStockTranslation(id: DC_STR_MSGGRPNAME, localizationKey: "systemmsg_group_name_changed")
         dcContext.setStockTranslation(id: DC_STR_MSGGRPIMGCHANGED, localizationKey: "systemmsg_group_image_changed")
         dcContext.setStockTranslation(id: DC_STR_MSGADDMEMBER, localizationKey: "systemmsg_member_added")
