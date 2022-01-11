@@ -17,14 +17,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let view = WelcomeContentView()
         view.onLogin = { [weak self] in
             guard let self = self else { return }
-            let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
-            accountSetupController.onLoginSuccess = {
-                [weak self] in
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.reloadDcContext()
-                }
-            }
-            self.navigationController?.pushViewController(accountSetupController, animated: true)
+            self.showAccountSetupController()
         }
         view.onScanQRCode  = { [weak self] in
             guard let self = self else { return }
@@ -44,6 +37,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private lazy var cancelButton: UIBarButtonItem = {
         return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+    }()
+
+    private lazy var moreButton: UIBarButtonItem = {
+        return UIBarButtonItem(title: String.localized("more"), style: .plain, target: self, action: #selector(moreButtonPressed))
     }()
 
     private var qrCodeReader: QrCodeReaderController?
@@ -77,6 +74,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if canCancel {
             navigationItem.leftBarButtonItem = cancelButton
         }
+        navigationItem.rightBarButtonItem = moreButton
     }
 
     override func viewDidLayoutSubviews() {
@@ -161,6 +159,35 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         present(alert, animated: true)
+    }
+
+    @objc private func moreButtonPressed() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        let encryptedAccountAction = UIAlertAction(title: String.localized("Create encrypted account"), style: .default, handler: switchToEncrypted(_:))
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil)
+        alert.addAction(encryptedAccountAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func switchToEncrypted(_ action: UIAlertAction) {
+        let lastContextId = dcContext.id
+        let newContextId = dcAccounts.addClosedAccount()
+        _ = dcAccounts.remove(id: lastContextId)
+        _ = dcAccounts.select(id: newContextId)
+        let selected = dcAccounts.getSelected()
+        selected.open(passphrase: try? KeychainManager.getDBSecret())
+        showAccountSetupController()
+    }
+
+    private func showAccountSetupController() {
+        let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
+        accountSetupController.onLoginSuccess = {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.reloadDcContext()
+            }
+        }
+        self.navigationController?.pushViewController(accountSetupController, animated: true)
     }
 
     @objc private func cancelButtonPressed() {
