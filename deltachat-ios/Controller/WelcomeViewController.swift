@@ -128,6 +128,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if dcAccounts.getSelected().isConfigured() {
             UserDefaults.standard.setValue(dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
 
+            //FIXME: what do we want to do with QR-Code created accounts? For now: adding an unencrypted account
             // ensure we're configuring on an empty new account
             _ = dcAccounts.add()
         }
@@ -171,7 +172,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if !selectedAccount.isConfigured() {
             _ = dcAccounts.remove(id: selectedAccount.id)
             if self.dcAccounts.getAll().isEmpty {
-                _ = self.dcAccounts.add()
+                _ = self.dcAccounts.addClosedAccount()
             }
         }
 

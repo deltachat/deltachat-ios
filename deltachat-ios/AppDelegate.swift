@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
+        if dcAccounts.getAll().isEmpty, dcAccounts.addClosedAccount() == 0 {
            fatalError("Could not initialize a new account.")
         }
 

@@ -556,7 +556,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         menu.addAction(UIAlertAction(title: String.localized("add_account"), style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
             prefs.setValue(selectedAccountId, forKey: Constants.Keys.lastSelectedAccountKey)
-            _ = self.dcAccounts.add()
+            _ = self.dcAccounts.addClosedAccount()
             appDelegate.reloadDcContext()
         }))
 
@@ -574,7 +574,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                     _ = self.dcAccounts.remove(id: selectedAccountId)
                     INInteraction.delete(with: "\(selectedAccountId)", completion: nil)
                     if self.dcAccounts.getAll().isEmpty {
-                        _ = self.dcAccounts.add()
+                        _ = self.dcAccounts.addClosedAccount()
                     } else {
                         let lastSelectedAccountId = prefs.integer(forKey: Constants.Keys.lastSelectedAccountKey)
                         if lastSelectedAccountId != 0 {
