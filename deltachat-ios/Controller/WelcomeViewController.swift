@@ -174,7 +174,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     private func switchToEncrypted(_ action: UIAlertAction) {
-        let lastContextId = dcContext.id
+        let lastContextId = dcAccounts.getSelected().id
         let newContextId = dcAccounts.addClosedAccount()
         _ = dcAccounts.remove(id: lastContextId)
         _ = dcAccounts.select(id: newContextId)
@@ -202,7 +202,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if !selectedAccount.isConfigured() {
             _ = dcAccounts.remove(id: selectedAccount.id)
             if self.dcAccounts.getAll().isEmpty {
-                _ = self.dcAccounts.addClosedAccount()
+                _ = self.dcAccounts.add()
             }
         }
 
