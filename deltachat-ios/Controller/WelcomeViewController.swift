@@ -40,7 +40,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }()
 
     private lazy var moreButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: String.localized("more"), style: .plain, target: self, action: #selector(moreButtonPressed))
+        return UIBarButtonItem(image: UIImage(named: "ic_more_vert"),
+                               style: .plain,
+                               target: self,
+                               action: #selector(moreButtonPressed))
     }()
 
     private var qrCodeReader: QrCodeReaderController?
