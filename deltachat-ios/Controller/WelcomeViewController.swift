@@ -165,8 +165,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-        let encryptedAccountAction = UIAlertAction(title: String.localized("Create encrypted account"), style: .default, handler: switchToEncrypted(_:))
+        let alert = UIAlertController(title: "Encrypted Account (experimental)",
+                                      message: "Do you want to encrypt your account database? This cannot be undone.",
+                                      preferredStyle: .safeActionSheet)
+        let encryptedAccountAction = UIAlertAction(title: "Create encrypted account", style: .default, handler: switchToEncrypted(_:))
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil)
         alert.addAction(encryptedAccountAction)
         alert.addAction(cancelAction)
