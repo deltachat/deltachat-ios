@@ -124,8 +124,8 @@ public class DcContext {
     }
 
     // The passphrase can be ommited if the account db is not encrypted
-    public func open(passphrase: String? = nil) {
-        dc_context_open(contextPointer, passphrase)
+    public func open(passphrase: String? = nil) -> Bool {
+        dc_context_open(contextPointer, passphrase) == 1
     }
 
     public func isOpen() -> Bool {

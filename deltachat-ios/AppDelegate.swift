@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         for accountId in accountIds {
             let dcContext = dcAccounts.get(id: accountId)
             if !dcContext.isOpen() {
-                dcContext.open(passphrase: passphrase)
+                _ = dcContext.open(passphrase: passphrase)
             }
         }
 

@@ -181,7 +181,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         _ = dcAccounts.remove(id: lastContextId)
         _ = dcAccounts.select(id: newContextId)
         let selected = dcAccounts.getSelected()
-        selected.open(passphrase: try? KeychainManager.getDBSecret())
+        _ = selected.open(passphrase: try? KeychainManager.getDBSecret())
         showAccountSetupController()
     }
 
