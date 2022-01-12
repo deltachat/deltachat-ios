@@ -84,7 +84,14 @@ class ShareViewController: SLComposeServiceViewController {
     override func presentationAnimationDidFinish() {
         dcAccounts.logger = logger
         dcAccounts.openDatabase()
-        isAccountConfigured = dcContext.isConfigured()
+        if !dcContext.isOpen() {
+            let secret = try? KeychainManager.getDBSecret()
+            if !dcContext.open(passphrase: secret) {
+                logger.error("Failed to open database.")
+            }
+        }
+        isAccountConfigured = dcContext.isOpen() && dcContext.isConfigured()
+
         if isAccountConfigured {
             if #available(iOSApplicationExtension 13.0, *) {
                 if let intent = self.extensionContext?.intent as? INSendMessageIntent,
