@@ -62,6 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcAccounts.openDatabase()
         migrateToDcAccounts()
 
+        if let sharedUserDefaults = UserDefaults.shared, !sharedUserDefaults.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
+            // we can assume a fresh install -> reset the keychain for the case the app was removed and reinstalled
+            if !KeychainManager.deleteDBSecret() {
+                logger.warning("Failed to delete DB secret")
+            }
+        }
         let passphrase: String
         do {
             passphrase = try KeychainManager.getDBSecret()

@@ -17,6 +17,15 @@ public class KeychainManager {
         return secret
     }
 
+    public static func deleteDBSecret() -> Bool {
+        let query = [kSecClass as String: kSecClassGenericPassword,
+                     kSecAttrAccount as String: "dc_db"
+                    ] as CFDictionary
+
+        let status = SecItemDelete(query)
+        return status == errSecSuccess
+    }
+
     private static func createRandomPassword() -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXZY1234567890"
         return String((0..<36).map { _ in letters.randomElement()! })
@@ -33,7 +42,7 @@ public class KeychainManager {
         
         let status = SecItemAdd(keychainItemQuery, &ref)
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
-        
+        UserDefaults.shared?.set(true, forKey: UserDefaults.hasSavedKeyToKeychain)
         if let result = ref as? NSDictionary,
             let password = result[kSecValueData] as? String {
             return password
@@ -41,7 +50,6 @@ public class KeychainManager {
         
         return try queryDBSecret()
     }
-    
 
     private static func queryDBSecret() throws -> String {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
