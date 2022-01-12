@@ -75,6 +75,7 @@
 		30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */; };
 		30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AAD71A2762869600DE3DC1 /* SelectableCell.swift */; };
 		30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */; };
+		30B2BD02278F1C1900889AA4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011E8042787365D00214221 /* KeychainManager.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */; };
 		30DAF71C275901610073C154 /* SettingsBackgroundSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */; };
@@ -220,7 +221,7 @@
 		3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		3008CB7524F95B6D00E6A617 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		3010968826838A040032CBA0 /* VideoInviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInviteCell.swift; sourceTree = "<group>"; };
-		3011E8042787365D00214221 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		3011E8042787365D00214221 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainManager.swift; path = ../../DcCore/DcCore/Helper/KeychainManager.swift; sourceTree = "<group>"; };
 		30149D9222F21129003C12B5 /* QrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrViewController.swift; sourceTree = "<group>"; };
 		3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderController.swift; sourceTree = "<group>"; };
 		3022E6BF22E8768800763272 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1268,6 +1269,7 @@
 				30152C9D25A5D95400377714 /* MessageLabelDelegate.swift in Sources */,
 				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
+				30B2BD02278F1C1900889AA4 /* KeychainManager.swift in Sources */,
 				30152C9A25A5D92200377714 /* DetectorType.swift in Sources */,
 				30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */,
 				3067AAC72667F3FE00525036 /* ImageFormat.swift in Sources */,
