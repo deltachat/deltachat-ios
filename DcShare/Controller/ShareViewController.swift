@@ -85,9 +85,15 @@ class ShareViewController: SLComposeServiceViewController {
         dcAccounts.logger = logger
         dcAccounts.openDatabase()
         if !dcContext.isOpen() {
-            let secret = try? KeychainManager.getDBSecret()
-            if !dcContext.open(passphrase: secret) {
-                logger.error("Failed to open database.")
+            do {
+                let secret = try KeychainManager.getAccountSecret(accountID: dcContext.id)
+                if !dcContext.open(passphrase: secret) {
+                    logger.error("Failed to open database.")
+                }
+            } catch KeychainError.unhandledError(let message, let status) {
+                logger.error("KeychainError. \(message). Error status: \(status)")
+            } catch {
+                logger.error("\(error)")
             }
         }
         isAccountConfigured = dcContext.isOpen() && dcContext.isConfigured()

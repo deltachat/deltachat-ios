@@ -64,22 +64,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         if let sharedUserDefaults = UserDefaults.shared, !sharedUserDefaults.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
             // we can assume a fresh install -> reset the keychain for the case the app was removed and reinstalled
-            if !KeychainManager.deleteDBSecret() {
-                logger.warning("Failed to delete DB secret")
+            if !KeychainManager.deleteDBSecrets() {
+                logger.warning("Failed to delete DB secrets")
             }
-        }
-        let passphrase: String
-        do {
-            passphrase = try KeychainManager.getDBSecret()
-        } catch {
-            fatalError("Could not get nor create a DB secret")
         }
 
         let accountIds = dcAccounts.getAll()
         for accountId in accountIds {
             let dcContext = dcAccounts.get(id: accountId)
             if !dcContext.isOpen() {
-                _ = dcContext.open(passphrase: passphrase)
+                do {
+                    let secret = try KeychainManager.getAccountSecret(accountID: accountId)
+                    if !dcContext.open(passphrase: secret) {
+                        logger.error("Failed to open database for account \(accountId)")
+                    }
+                } catch KeychainError.unhandledError(let message, let status) {
+                    logger.error("Keychain error. \(message). Error status: \(status)")
+                } catch {
+                    logger.error("\(error)")
+                }
             }
         }
 

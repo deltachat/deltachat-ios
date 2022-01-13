@@ -1,31 +1,35 @@
 import Foundation
 import Security
 
+public enum KeychainError: Error {
+    case noPassword
+    case unhandledError(message: String, status: OSStatus)
+}
+
 public class KeychainManager {
-    enum KeychainError: Error {
-        case noPassword
-        case unexpectedPasswordData
-        case unhandledError(status: OSStatus)
-    }
     private typealias KcM = KeychainManager
     private static let teamId = "8Y86453UA8"
     private static let sharedKeychainGroup = "\(KcM.teamId).group.chat.delta.ios"
 
-    public static func getDBSecret() throws -> String {
-        guard let secret = try? queryDBSecret() else {
-            return try addDBSecret()
+    public static func getAccountSecret(accountID: Int) throws -> String {
+        do {
+            return try queryAccountSecret(id: accountID)
+        } catch KeychainError.noPassword {
+            return try addAccountSecret(id: accountID)
         }
-        
-        return secret
     }
 
-    public static func deleteDBSecret() -> Bool {
+    /**
+     * Deletes ALL secrets from keychain
+     * @return true if secrets have been deleted successfully or no secrets found
+     */
+    public static func deleteDBSecrets() -> Bool {
         let query = [kSecClass as String: kSecClassGenericPassword,
-                     kSecAttrAccount as String: "dc_db"
+                     kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject
                     ] as CFDictionary
 
         let status = SecItemDelete(query)
-        return status == errSecSuccess
+        return status == errSecSuccess || status == errSecItemNotFound
     }
 
     private static func createRandomPassword() -> String {
@@ -33,47 +37,47 @@ public class KeychainManager {
         return String((0..<36).map { _ in letters.randomElement()! })
     }
 
-    private static func addDBSecret() throws -> String {
+    private static func addAccountSecret(id: Int) throws -> String {
         let keychainItemQuery = [
           kSecValueData: createRandomPassword().data(using: .utf8)!,
-          kSecAttrAccount as String: "dc_db",
+          kSecAttrAccount as String: "\(id)",
           kSecClass: kSecClassGenericPassword,
-          kSecAttrAccessGroup as String: KeychainManager.sharedKeychainGroup as AnyObject
+          kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
         ] as CFDictionary
 
-        var ref: AnyObject?
-        
-        let status = SecItemAdd(keychainItemQuery, &ref)
-        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
-        UserDefaults.shared?.set(true, forKey: UserDefaults.hasSavedKeyToKeychain)
-        if let result = ref as? NSDictionary,
-            let password = result[kSecValueData] as? String {
-            return password
+        let status = SecItemAdd(keychainItemQuery, nil)
+        guard status == errSecSuccess else {
+            throw KeychainError.unhandledError(message: "Error adding secret for account \(id)",
+                                               status: status)
         }
-        
-        return try queryDBSecret()
+        UserDefaults.shared?.set(true, forKey: UserDefaults.hasSavedKeyToKeychain)
+        return try queryAccountSecret(id: id)
     }
 
-    private static func queryDBSecret() throws -> String {
+    private static func queryAccountSecret(id: Int) throws -> String {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
-                                    kSecAttrAccount as String: "dc_db",
+                                    kSecAttrAccount as String: "\(id)",
                                     kSecMatchLimit as String: kSecMatchLimitOne,
-                                    kSecAttrAccessGroup as String: KeychainManager.sharedKeychainGroup as AnyObject,
+                                    kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
                                     kSecReturnAttributes as String: true,
                                     kSecReturnData as String: true]
-        
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
-        guard status != errSecItemNotFound else { throw KeychainError.noPassword }
-        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
+        guard status != errSecItemNotFound else {
+            throw KeychainError.noPassword
+        }
+        guard status == errSecSuccess else {
+            throw KeychainError.unhandledError(message: "Unknown error while querying secret for account \(id):",
+                                               status: status)
+        }
         
         guard let existingItem = item as? [String: Any],
             let passwordData = existingItem[kSecValueData as String] as? Data,
             let password = String(data: passwordData, encoding: String.Encoding.utf8)
         else {
-            throw KeychainError.unexpectedPasswordData
+            throw KeychainError.unhandledError(message: "Unexpected password data for accuont \(id)",
+                                               status: 0)
         }
-
         return password
     }
 }

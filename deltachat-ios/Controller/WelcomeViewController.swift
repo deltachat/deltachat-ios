@@ -181,8 +181,18 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         _ = dcAccounts.remove(id: lastContextId)
         _ = dcAccounts.select(id: newContextId)
         let selected = dcAccounts.getSelected()
-        _ = selected.open(passphrase: try? KeychainManager.getDBSecret())
-        showAccountSetupController()
+        do {
+            let secret = try KeychainManager.getAccountSecret(accountID: selected.id)
+            guard selected.open(passphrase: secret) else {
+                logger.error("Failed to open account database for account \(selected.id)")
+                return
+            }
+            showAccountSetupController()
+        } catch KeychainError.unhandledError(let message, let status) {
+            logger.error("Keychain error. Failed to create encrypted account. \(message). Error status: \(status)")
+        } catch {
+            logger.error("Keychain error. Failed to create encrypted account.")
+        }
     }
 
     private func showAccountSetupController() {
