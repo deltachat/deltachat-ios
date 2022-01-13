@@ -6,5 +6,9 @@
 	<array>
 		<string>group.chat.delta.ios</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)group.chat.delta.ios</string>
+	</array>
 </dict>
 </plist>

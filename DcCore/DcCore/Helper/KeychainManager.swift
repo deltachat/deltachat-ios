@@ -2,7 +2,7 @@ import Foundation
 import Security
 
 public class KeychainManager {
-
+    private static let sharedKeychainGroup = "8Y86453UA8.group.chat.delta.ios"
     enum KeychainError: Error {
         case noPassword
         case unexpectedPasswordData
@@ -35,7 +35,8 @@ public class KeychainManager {
         let keychainItemQuery = [
           kSecValueData: createRandomPassword().data(using: .utf8)!,
           kSecAttrAccount as String: "dc_db",
-          kSecClass: kSecClassGenericPassword
+          kSecClass: kSecClassGenericPassword,
+          kSecAttrAccessGroup as String: KeychainManager.sharedKeychainGroup as AnyObject
         ] as CFDictionary
 
         var ref: AnyObject?
@@ -55,6 +56,7 @@ public class KeychainManager {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrAccount as String: "dc_db",
                                     kSecMatchLimit as String: kSecMatchLimitOne,
+                                    kSecAttrAccessGroup as String: KeychainManager.sharedKeychainGroup as AnyObject,
                                     kSecReturnAttributes as String: true,
                                     kSecReturnData as String: true]
         
