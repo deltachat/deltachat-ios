@@ -2,12 +2,14 @@ import Foundation
 import Security
 
 public class KeychainManager {
-    private static let sharedKeychainGroup = "8Y86453UA8.group.chat.delta.ios"
     enum KeychainError: Error {
         case noPassword
         case unexpectedPasswordData
         case unhandledError(status: OSStatus)
     }
+    private typealias KcM = KeychainManager
+    private static let teamId = "8Y86453UA8"
+    private static let sharedKeychainGroup = "\(KcM.teamId).group.chat.delta.ios"
 
     public static func getDBSecret() throws -> String {
         guard let secret = try? queryDBSecret() else {
