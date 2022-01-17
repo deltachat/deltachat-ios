@@ -531,8 +531,8 @@ public class DcContext {
         return DcProvider(dcProviderPointer)
     }
 
-    public func imex(what: Int32, directory: String) {
-        dc_imex(contextPointer, what, directory, nil)
+    public func imex(what: Int32, directory: String, passphrase: String? = nil) {
+        dc_imex(contextPointer, what, directory, passphrase)
     }
 
     public func imexHasBackup(filePath: String) -> String? {

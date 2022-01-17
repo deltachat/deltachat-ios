@@ -594,13 +594,13 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         present(menu, animated: true, completion: nil)
     }
 
-    private func startImex(what: Int32) {
+    private func startImex(what: Int32, passphrase: String? = nil) {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
             showProgressAlert(title: String.localized("imex_progress_title_desktop"), dcContext: dcContext)
             DispatchQueue.main.async {
                 self.dcAccounts.stopIo()
-                self.dcContext.imex(what: what, directory: documents[0])
+                self.dcContext.imex(what: what, directory: documents[0], passphrase: passphrase)
             }
         } else {
             logger.error("document directory not found")
