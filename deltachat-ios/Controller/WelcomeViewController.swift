@@ -40,7 +40,13 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }()
 
     private lazy var moreButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(named: "ic_more"),
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image,
                                style: .plain,
                                target: self,
                                action: #selector(moreButtonPressed))
