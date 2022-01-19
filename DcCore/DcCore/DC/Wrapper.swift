@@ -151,6 +151,17 @@ public class DcContext {
         dc_download_full_msg(contextPointer, Int32(id))
     }
 
+    public func sendWebxdcStatusUpdate(msgId: Int, payload: String, description: String) -> Bool {
+        return dc_send_webxdc_status_update(contextPointer, UInt32(msgId), payload, description) == 1
+    }
+
+    public func getWebxdcStatusUpdates(msgId: Int, statusUpdateId: Int) -> String {
+        guard let cString = dc_get_webxdc_status_updates(contextPointer, UInt32(msgId), UInt32(statusUpdateId)) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public func sendVideoChatInvitation(chatId: Int) -> Int {
         return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
     }
@@ -1052,6 +1063,8 @@ public class DcMsg {
             return .video
         case DC_MSG_VOICE:
             return .voice
+        case DC_MSG_WEBXDC:
+            return .webxdc
         default:
             return nil
         }
@@ -1082,6 +1095,28 @@ public class DcMsg {
             return nil
         }
     }()
+
+    public func getWebxdcBlob(filename: String) -> [Int8] {
+        let ptrSize = UnsafeMutablePointer<Int>.allocate(capacity: 1)
+        defer {
+            ptrSize.deallocate()
+        }
+        guard let ccharPtr = dc_msg_get_webxdc_blob(messagePointer, filename, ptrSize) else {
+            return []
+        }
+
+        let count = ptrSize.pointee
+        let buffer = UnsafeBufferPointer<Int8>(start: ccharPtr, count: count)
+        dc_str_unref(ccharPtr)
+        return Array(buffer)
+    }
+
+    public func getWebxdcInfoJson() -> String {
+        guard let cString = dc_msg_get_webxdc_info(messagePointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
 
     public var messageHeight: CGFloat {
         return CGFloat(dc_msg_get_height(messagePointer))
@@ -1388,6 +1423,7 @@ public enum MessageViewType: CustomStringConvertible {
     case text
     case video
     case voice
+    case webxdc
 
     public var description: String {
         switch self {
@@ -1399,6 +1435,7 @@ public enum MessageViewType: CustomStringConvertible {
         case .text: return "Text"
         case .video: return "Video"
         case .voice: return "Voice"
+        case .webxdc: return "Webxdc"
         }
     }
 }
