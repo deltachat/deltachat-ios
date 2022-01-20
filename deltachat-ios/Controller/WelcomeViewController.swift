@@ -17,14 +17,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let view = WelcomeContentView()
         view.onLogin = { [weak self] in
             guard let self = self else { return }
-            let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
-            accountSetupController.onLoginSuccess = {
-                [weak self] in
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.reloadDcContext()
-                }
-            }
-            self.navigationController?.pushViewController(accountSetupController, animated: true)
+            self.showAccountSetupController()
         }
         view.onScanQRCode  = { [weak self] in
             guard let self = self else { return }
@@ -44,6 +37,19 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private lazy var cancelButton: UIBarButtonItem = {
         return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+    }()
+
+    private lazy var moreButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image,
+                               style: .plain,
+                               target: self,
+                               action: #selector(moreButtonPressed))
     }()
 
     private var qrCodeReader: QrCodeReaderController?
@@ -77,6 +83,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if canCancel {
             navigationItem.leftBarButtonItem = cancelButton
         }
+        navigationItem.rightBarButtonItem = moreButton
     }
 
     override func viewDidLayoutSubviews() {
@@ -128,6 +135,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if dcAccounts.getSelected().isConfigured() {
             UserDefaults.standard.setValue(dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
 
+            //FIXME: what do we want to do with QR-Code created accounts? For now: adding an unencrypted account
             // ensure we're configuring on an empty new account
             _ = dcAccounts.add()
         }
@@ -160,6 +168,47 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         present(alert, animated: true)
+    }
+
+    @objc private func moreButtonPressed() {
+        let alert = UIAlertController(title: "Encrypted Account (experimental)",
+                                      message: "Do you want to encrypt your account database? This cannot be undone.",
+                                      preferredStyle: .safeActionSheet)
+        let encryptedAccountAction = UIAlertAction(title: "Create encrypted account", style: .default, handler: switchToEncrypted(_:))
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil)
+        alert.addAction(encryptedAccountAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func switchToEncrypted(_ action: UIAlertAction) {
+        let lastContextId = dcAccounts.getSelected().id
+        let newContextId = dcAccounts.addClosedAccount()
+        _ = dcAccounts.remove(id: lastContextId)
+        _ = dcAccounts.select(id: newContextId)
+        let selected = dcAccounts.getSelected()
+        do {
+            let secret = try KeychainManager.getAccountSecret(accountID: selected.id)
+            guard selected.open(passphrase: secret) else {
+                logger.error("Failed to open account database for account \(selected.id)")
+                return
+            }
+            showAccountSetupController()
+        } catch KeychainError.unhandledError(let message, let status) {
+            logger.error("Keychain error. Failed to create encrypted account. \(message). Error status: \(status)")
+        } catch {
+            logger.error("Keychain error. Failed to create encrypted account.")
+        }
+    }
+
+    private func showAccountSetupController() {
+        let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
+        accountSetupController.onLoginSuccess = {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.reloadDcContext()
+            }
+        }
+        self.navigationController?.pushViewController(accountSetupController, animated: true)
     }
 
     @objc private func cancelButtonPressed() {

@@ -25,6 +25,7 @@
 		3057028624C5C60000D84EFC /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057028524C5C60000D84EFC /* UITableView+Extensions.swift */; };
 		306C324824460CDE001D89F3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C324724460CDE001D89F3 /* DateUtils.swift */; };
 		308198AB24866229003BE20D /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308198AA24866229003BE20D /* UserDefaults+Extensions.swift */; };
+		30B2BD04278F207000889AA4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2BD03278F207000889AA4 /* KeychainManager.swift */; };
 		30E8F2212447357500CE2C90 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2202447357500CE2C90 /* DatabaseHelper.swift */; };
 		30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */; };
 		30E8F24B2449CF6500CE2C90 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */; };
@@ -63,6 +64,7 @@
 		3057028524C5C60000D84EFC /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		306C324724460CDE001D89F3 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		308198AA24866229003BE20D /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		30B2BD03278F207000889AA4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		30E8F2202447357500CE2C90 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		30421977243F1AF400516852 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				30B2BD03278F207000889AA4 /* KeychainManager.swift */,
 				30E8F2202447357500CE2C90 /* DatabaseHelper.swift */,
 				30421987243F23E500516852 /* Constants.swift */,
 				3042195C243E23F100516852 /* DcUtils.swift */,
@@ -323,6 +326,7 @@
 				30421986243F209E00516852 /* events.swift in Sources */,
 				30421951243DE15D00516852 /* Wrapper.swift in Sources */,
 				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
+				30B2BD04278F207000889AA4 /* KeychainManager.swift in Sources */,
 				30421952243DE15D00516852 /* wrapper.c in Sources */,
 				30E8F24B2449CF6500CE2C90 /* InitialsBadge.swift in Sources */,
 				30E8F2212447357500CE2C90 /* DatabaseHelper.swift in Sources */,

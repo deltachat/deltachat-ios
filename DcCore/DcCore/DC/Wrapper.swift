@@ -23,6 +23,10 @@ public class DcAccounts {
         return Int(dc_accounts_migrate_account(accountsPointer, dbLocation))
     }
 
+    public func addClosedAccount() -> Int {
+        return Int(dc_accounts_add_closed_account(accountsPointer))
+    }
+
     public func add() -> Int {
         return Int(dc_accounts_add_account(accountsPointer))
     }
@@ -117,6 +121,15 @@ public class DcContext {
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
+    }
+
+    // The passphrase can be ommited if the account db is not encrypted
+    public func open(passphrase: String? = nil) -> Bool {
+        dc_context_open(contextPointer, passphrase) == 1
+    }
+
+    public func isOpen() -> Bool {
+        return dc_context_is_open(contextPointer) == 1
     }
 
     // viewType: one of DC_MSG_*
@@ -518,8 +531,8 @@ public class DcContext {
         return DcProvider(dcProviderPointer)
     }
 
-    public func imex(what: Int32, directory: String) {
-        dc_imex(contextPointer, what, directory, nil)
+    public func imex(what: Int32, directory: String, passphrase: String? = nil) {
+        dc_imex(contextPointer, what, directory, passphrase)
     }
 
     public func imexHasBackup(filePath: String) -> String? {

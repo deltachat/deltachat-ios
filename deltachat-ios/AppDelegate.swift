@@ -61,9 +61,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcAccounts.logger = DcLogger()
         dcAccounts.openDatabase()
         migrateToDcAccounts()
+
+        if let sharedUserDefaults = UserDefaults.shared, !sharedUserDefaults.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
+            // we can assume a fresh install (UserDefaults are deleted on app removal)
+            // -> reset the keychain (which survives removals of the app) in case the app was removed and reinstalled.
+            if !KeychainManager.deleteDBSecrets() {
+                logger.warning("Failed to delete DB secrets")
+            }
+        }
+
+        let accountIds = dcAccounts.getAll()
+        for accountId in accountIds {
+            let dcContext = dcAccounts.get(id: accountId)
+            if !dcContext.isOpen() {
+                do {
+                    let secret = try KeychainManager.getAccountSecret(accountID: accountId)
+                    if !dcContext.open(passphrase: secret) {
+                        logger.error("Failed to open database for account \(accountId)")
+                    }
+                } catch KeychainError.unhandledError(let message, let status) {
+                    logger.error("Keychain error. \(message). Error status: \(status)")
+                } catch {
+                    logger.error("\(error)")
+                }
+            }
+        }
+
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
            fatalError("Could not initialize a new account.")
         }
+
         logger.info("➡️ didFinishLaunchingWithOptions")
 
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -532,7 +559,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_VIDEO, localizationKey: "video")
         dcContext.setStockTranslation(id: DC_STR_AUDIO, localizationKey: "audio")
         dcContext.setStockTranslation(id: DC_STR_FILE, localizationKey: "file")
-        dcContext.setStockTranslation(id: DC_STR_STATUSLINE, localizationKey: "pref_default_status_text")
+        //dcContext.setStockTranslation(id: DC_STR_STATUSLINE, localizationKey: "pref_default_status_text")
         dcContext.setStockTranslation(id: DC_STR_MSGGRPNAME, localizationKey: "systemmsg_group_name_changed")
         dcContext.setStockTranslation(id: DC_STR_MSGGRPIMGCHANGED, localizationKey: "systemmsg_group_image_changed")
         dcContext.setStockTranslation(id: DC_STR_MSGADDMEMBER, localizationKey: "systemmsg_member_added")
