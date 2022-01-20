@@ -709,7 +709,8 @@ class ChatViewController: UITableViewController {
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
             }
-
+        case DC_MSG_WEBXDC:
+                cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
         case DC_MSG_AUDIO, DC_MSG_VOICE:
             let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
                                                                                       for: indexPath) as? AudioMessageCell ?? AudioMessageCell()
@@ -879,6 +880,8 @@ class ChatViewController: UITableViewController {
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
+        } else if message.type == DC_MSG_WEBXDC {
+            showWebxdcViewFor(message: message)
         }
         _ = handleUIMenu()
     }
@@ -1599,6 +1602,11 @@ class ChatViewController: UITableViewController {
                 self?.contextMenu.actionProvider(indexPath: indexPath)
             }
         )
+    }
+
+    func showWebxdcViewFor(message: DcMsg) {
+        let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
+        navigationController?.pushViewController(webxdcViewController, animated: true)
     }
 
     func showMediaGalleryFor(indexPath: IndexPath) {
