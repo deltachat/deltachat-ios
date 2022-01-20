@@ -8,6 +8,9 @@ public enum KeychainError: Error {
 
 public class KeychainManager {
     private typealias KcM = KeychainManager
+    // the development team id is equivalent to $(AppIdentifierPrefix) in deltachat-ios.entitlements
+    // It is required as a prefix for the shared keychain identifier, but not straight forward to access programmatically,
+    // so we're hardcoding it here
     private static let teamId = "8Y86453UA8"
     private static let sharedKeychainGroup = "\(KcM.teamId).group.chat.delta.ios"
 
