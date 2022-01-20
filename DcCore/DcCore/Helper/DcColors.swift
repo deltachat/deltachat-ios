@@ -14,7 +14,7 @@ public struct DcColors {
                                                                  dark: .black)
     public static let contactCellBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let defaultBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
-    public static let defaultTransparentBackgroundColor = DcColors.defaultBackgroundColor.withAlphaComponent(0.75)
+    public static let defaultTransparentBackgroundColor = DcColors.defaultBackgroundColor.withAlphaComponent(0.5)
     public static let defaultInverseColor = UIColor.themeColor(light: .black, dark: .white)
     public static let profileCellBackgroundColor = UIColor.themeColor(light: white, dark: actionCellBackgroundDark)
     public static let chatBackgroundColor = UIColor.themeColor(light: .white, dark: .black)

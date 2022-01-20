@@ -1,5 +1,4 @@
 import UIKit
-import InputBarAccessoryView
 import DcCore
 
 public class QuotePreview: DraftPreview {

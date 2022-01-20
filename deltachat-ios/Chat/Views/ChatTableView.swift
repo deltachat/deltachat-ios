@@ -1,5 +1,4 @@
 import UIKit
-import InputBarAccessoryView
 
 class ChatTableView: UITableView {
 
@@ -16,6 +15,7 @@ class ChatTableView: UITableView {
     public init(messageInputBar: InputBarAccessoryView) {
         self.messageInputBar = messageInputBar
         super.init(frame: .zero, style: .plain)
+        
     }
 
     required init?(coder: NSCoder) {

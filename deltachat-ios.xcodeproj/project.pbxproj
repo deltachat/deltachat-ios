@@ -38,7 +38,6 @@
 		303492AD2577CAC300A523D0 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492AC2577CAC300A523D0 /* FileView.swift */; };
 		303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492B22577E40700A523D0 /* DocumentPreview.swift */; };
 		303492CB257A814200A523D0 /* DraftArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492CA257A814200A523D0 /* DraftArea.swift */; };
-		303492CF2587C2DC00A523D0 /* ChatInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492CE2587C2DC00A523D0 /* ChatInputBar.swift */; };
 		304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		304F5E44244F571C00462538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
@@ -70,6 +69,25 @@
 		30734326249A280B00BF9AD1 /* MediaQualityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30734325249A280B00BF9AD1 /* MediaQualityController.swift */; };
 		307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A82CB25B8D26700748B57 /* ChatEditingBar.swift */; };
 		307D822E241669C7006D2490 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D822D241669C7006D2490 /* LocationManager.swift */; };
+		3080A00F277DDA4C00E74565 /* InputBarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A00E277DDA4C00E74565 /* InputBarAccessoryView.swift */; };
+		3080A013277DDABA00E74565 /* KeyboardNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A010277DDAB900E74565 /* KeyboardNotification.swift */; };
+		3080A014277DDABA00E74565 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A011277DDAB900E74565 /* KeyboardManager.swift */; };
+		3080A015277DDABA00E74565 /* KeyboardEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A012277DDAB900E74565 /* KeyboardEvent.swift */; };
+		3080A01B277DDB8A00E74565 /* InputPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A018277DDB8900E74565 /* InputPlugin.swift */; };
+		3080A01C277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A019277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift */; };
+		3080A01D277DDB8A00E74565 /* InputItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A01A277DDB8A00E74565 /* InputItem.swift */; };
+		3080A021277DE09900E74565 /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A01E277DE09800E74565 /* InputStackView.swift */; };
+		3080A022277DE09900E74565 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A01F277DE09800E74565 /* InputTextView.swift */; };
+		3080A023277DE09900E74565 /* SeparatorLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A020277DE09900E74565 /* SeparatorLine.swift */; };
+		3080A027277DE12D00E74565 /* InputBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A025277DE12D00E74565 /* InputBarButtonItem.swift */; };
+		3080A028277DE12D00E74565 /* InputBarSendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A026277DE12D00E74565 /* InputBarSendButton.swift */; };
+		3080A02C277DE26000E74565 /* NSConstraintLayoutSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A02A277DE26000E74565 /* NSConstraintLayoutSet.swift */; };
+		3080A02D277DE26000E74565 /* HorizontalEdgePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A02B277DE26000E74565 /* HorizontalEdgePadding.swift */; };
+		3080A034277DE30100E74565 /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */; };
+		3080A035277DE30100E74565 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A030277DE2FF00E74565 /* String+Extensions.swift */; };
+		3080A036277DE30100E74565 /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A031277DE30000E74565 /* NSMutableAttributedString+Extensions.swift */; };
+		3080A037277DE30100E74565 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A032277DE30000E74565 /* UITextView+Extensions.swift */; };
+		3080A038277DE30100E74565 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A033277DE30100E74565 /* UIView+AutoLayout.swift */; };
 		30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */; };
@@ -260,7 +278,6 @@
 		303492AC2577CAC300A523D0 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
 		303492B22577E40700A523D0 /* DocumentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPreview.swift; sourceTree = "<group>"; };
 		303492CA257A814200A523D0 /* DraftArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftArea.swift; sourceTree = "<group>"; };
-		303492CE2587C2DC00A523D0 /* ChatInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputBar.swift; sourceTree = "<group>"; };
 		304219D1243F588500516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304219D82440734A00516852 /* DcMsg+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcMsg+Extension.swift"; sourceTree = "<group>"; };
 		304F769425DD237B0094B5E2 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +342,25 @@
 		30734325249A280B00BF9AD1 /* MediaQualityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaQualityController.swift; sourceTree = "<group>"; };
 		307A82CB25B8D26700748B57 /* ChatEditingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEditingBar.swift; sourceTree = "<group>"; };
 		307D822D241669C7006D2490 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		3080A00E277DDA4C00E74565 /* InputBarAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarAccessoryView.swift; sourceTree = "<group>"; };
+		3080A010277DDAB900E74565 /* KeyboardNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardNotification.swift; sourceTree = "<group>"; };
+		3080A011277DDAB900E74565 /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
+		3080A012277DDAB900E74565 /* KeyboardEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEvent.swift; sourceTree = "<group>"; };
+		3080A018277DDB8900E74565 /* InputPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPlugin.swift; sourceTree = "<group>"; };
+		3080A019277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarAccessoryViewDelegate.swift; sourceTree = "<group>"; };
+		3080A01A277DDB8A00E74565 /* InputItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputItem.swift; sourceTree = "<group>"; };
+		3080A01E277DE09800E74565 /* InputStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
+		3080A01F277DE09800E74565 /* InputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		3080A020277DE09900E74565 /* SeparatorLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLine.swift; sourceTree = "<group>"; };
+		3080A025277DE12D00E74565 /* InputBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarButtonItem.swift; sourceTree = "<group>"; };
+		3080A026277DE12D00E74565 /* InputBarSendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarSendButton.swift; sourceTree = "<group>"; };
+		3080A02A277DE26000E74565 /* NSConstraintLayoutSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSConstraintLayoutSet.swift; sourceTree = "<group>"; };
+		3080A02B277DE26000E74565 /* HorizontalEdgePadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalEdgePadding.swift; sourceTree = "<group>"; };
+		3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
+		3080A030277DE2FF00E74565 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		3080A031277DE30000E74565 /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		3080A032277DE30000E74565 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
+		3080A033277DE30100E74565 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOnDemandViewController.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageCell.swift; sourceTree = "<group>"; };
@@ -584,6 +620,72 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3080A00D277DDA1400E74565 /* InputBarAccessoryView */ = {
+			isa = PBXGroup;
+			children = (
+				3080A02E277DE2DD00E74565 /* Extensions */,
+				3080A029277DE21300E74565 /* Models */,
+				3080A024277DE10E00E74565 /* Controls */,
+				3080A016277DDABF00E74565 /* KeyboardManager */,
+				3080A017277DDB6000E74565 /* Protocols */,
+				3080A01E277DE09800E74565 /* InputStackView.swift */,
+				3080A01F277DE09800E74565 /* InputTextView.swift */,
+				3080A020277DE09900E74565 /* SeparatorLine.swift */,
+				3080A00E277DDA4C00E74565 /* InputBarAccessoryView.swift */,
+			);
+			path = InputBarAccessoryView;
+			sourceTree = "<group>";
+		};
+		3080A016277DDABF00E74565 /* KeyboardManager */ = {
+			isa = PBXGroup;
+			children = (
+				3080A012277DDAB900E74565 /* KeyboardEvent.swift */,
+				3080A011277DDAB900E74565 /* KeyboardManager.swift */,
+				3080A010277DDAB900E74565 /* KeyboardNotification.swift */,
+			);
+			path = KeyboardManager;
+			sourceTree = "<group>";
+		};
+		3080A017277DDB6000E74565 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3080A019277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift */,
+				3080A01A277DDB8A00E74565 /* InputItem.swift */,
+				3080A018277DDB8900E74565 /* InputPlugin.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3080A024277DE10E00E74565 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				3080A025277DE12D00E74565 /* InputBarButtonItem.swift */,
+				3080A026277DE12D00E74565 /* InputBarSendButton.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		3080A029277DE21300E74565 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3080A02B277DE26000E74565 /* HorizontalEdgePadding.swift */,
+				3080A02A277DE26000E74565 /* NSConstraintLayoutSet.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3080A02E277DE2DD00E74565 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3080A031277DE30000E74565 /* NSMutableAttributedString+Extensions.swift */,
+				3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */,
+				3080A030277DE2FF00E74565 /* String+Extensions.swift */,
+				3080A032277DE30000E74565 /* UITextView+Extensions.swift */,
+				3080A033277DE30100E74565 /* UIView+AutoLayout.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		30E8F2112447285600CE2C90 /* DcShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +705,7 @@
 			children = (
 				3008CB7524F95B6D00E6A617 /* AudioController.swift */,
 				30FDB6F824D1C1000066C48D /* ChatViewController.swift */,
+				3080A00D277DDA1400E74565 /* InputBarAccessoryView */,
 				30FDB6B524D193DD0066C48D /* Views */,
 				303492942565AABC00A523D0 /* DraftModel.swift */,
 			);
@@ -614,7 +717,6 @@
 			children = (
 				30FDB6B624D193DD0066C48D /* Cells */,
 				30E348DE24F3F819005C93D1 /* ChatTableView.swift */,
-				303492CE2587C2DC00A523D0 /* ChatInputBar.swift */,
 				3067AA4B2666310E00525036 /* ChatInputTextView.swift */,
 				307A82CB25B8D26700748B57 /* ChatEditingBar.swift */,
 				30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */,
@@ -1112,7 +1214,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DBDebugToolkit/DBDebugToolkit.framework",
-				"${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1126,7 +1227,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBDebugToolkit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputBarAccessoryView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSiriWaveformView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1290,19 +1390,24 @@
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
 				303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */,
 				3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */,
+				3080A01D277DDB8A00E74565 /* InputItem.swift in Sources */,
 				AED62BCE247687E6009E220D /* LocationStreamingIndicator.swift in Sources */,
 				30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */,
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
 				AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,
+				3080A037277DE30100E74565 /* UITextView+Extensions.swift in Sources */,
+				3080A027277DE12D00E74565 /* InputBarButtonItem.swift in Sources */,
 				AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */,
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
-				303492CF2587C2DC00A523D0 /* ChatInputBar.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
+				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
 				30734326249A280B00BF9AD1 /* MediaQualityController.swift in Sources */,
+				3080A01C277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift in Sources */,
 				AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */,
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
+				3080A013277DDABA00E74565 /* KeyboardNotification.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */,
@@ -1323,6 +1428,7 @@
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
 				AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */,
+				3080A02D277DE26000E74565 /* HorizontalEdgePadding.swift in Sources */,
 				30DAF71C275901610073C154 /* SettingsBackgroundSelectionController.swift in Sources */,
 				3010968926838A050032CBA0 /* VideoInviteCell.swift in Sources */,
 				303492CB257A814200A523D0 /* DraftArea.swift in Sources */,
@@ -1331,9 +1437,11 @@
 				AEE700252438E0E500D6992E /* ProgressAlertHandler.swift in Sources */,
 				30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */,
 				306C32322445CDE9001D89F3 /* DcLogger.swift in Sources */,
+				3080A036277DE30100E74565 /* NSMutableAttributedString+Extensions.swift in Sources */,
 				307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */,
 				303492952565AABC00A523D0 /* DraftModel.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */,
+				3080A021277DE09900E74565 /* InputStackView.swift in Sources */,
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
 				302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
@@ -1346,6 +1454,7 @@
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
+				3080A015277DDABA00E74565 /* KeyboardEvent.swift in Sources */,
 				AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */,
 				B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */,
 				AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */,
@@ -1356,6 +1465,7 @@
 				30EF7308252F6A3300E2C54A /* PaddingTextView.swift in Sources */,
 				30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */,
 				3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */,
+				3080A035277DE30100E74565 /* String+Extensions.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */,
@@ -1366,6 +1476,7 @@
 				303492A5257546B400A523D0 /* DraftPreview.swift in Sources */,
 				305961D02346125100C80F33 /* NSAttributedString+Extensions.swift in Sources */,
 				21D6C941260623F500D0755A /* NotificationManager.swift in Sources */,
+				3080A023277DE09900E74565 /* SeparatorLine.swift in Sources */,
 				302B84C72396770B001C261F /* RelayHelper.swift in Sources */,
 				305961CF2346125100C80F33 /* UIColor+Extensions.swift in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
@@ -1373,12 +1484,16 @@
 				30349291256441E200A523D0 /* QuotePreview.swift in Sources */,
 				AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */,
 				30FDB71F24D8170E0066C48D /* TextMessageCell.swift in Sources */,
+				3080A00F277DDA4C00E74565 /* InputBarAccessoryView.swift in Sources */,
 				AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */,
 				302D5454268B84CB00A8B271 /* SettingsVideoChatViewController.swift in Sources */,
+				3080A014277DDABA00E74565 /* KeyboardManager.swift in Sources */,
 				AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */,
 				AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */,
 				30F8817624DA97DA0023780E /* BackgroundContainer.swift in Sources */,
 				3067AA4C2666310E00525036 /* ChatInputTextView.swift in Sources */,
+				3080A02C277DE26000E74565 /* NSConstraintLayoutSet.swift in Sources */,
+				3080A038277DE30100E74565 /* UIView+AutoLayout.swift in Sources */,
 				30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */,
 				B20462E42440A4A600367A57 /* SettingsAutodelOverviewController.swift in Sources */,
 				305962102346154D00C80F33 /* String+Extension.swift in Sources */,
@@ -1390,11 +1505,14 @@
 				305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */,
 				30EF7324252FF15F00E2C54A /* MessageLabel.swift in Sources */,
 				30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */,
+				3080A034277DE30100E74565 /* NSNotification+Extensions.swift in Sources */,
+				3080A01B277DDB8A00E74565 /* InputPlugin.swift in Sources */,
 				304F769525DD237B0094B5E2 /* WebViewViewController.swift in Sources */,
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */,
 				304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */,
 				AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */,
+				3080A028277DE12D00E74565 /* InputBarSendButton.swift in Sources */,
 				AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */,
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
