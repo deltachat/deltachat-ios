@@ -63,7 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         migrateToDcAccounts()
 
         if let sharedUserDefaults = UserDefaults.shared, !sharedUserDefaults.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
-            // we can assume a fresh install -> reset the keychain for the case the app was removed and reinstalled
+            // we can assume a fresh install (UserDefaults are deleted on app removal)
+            // -> reset the keychain (which survives removals of the app) in case the app was removed and reinstalled.
             if !KeychainManager.deleteDBSecrets() {
                 logger.warning("Failed to delete DB secrets")
             }
