@@ -309,10 +309,9 @@ class ChatViewController: UITableViewController {
         navigationItem.backButtonTitle = String.localized("chat")
         definesPresentationContext = true
 
-        // Binding to the tableView will enabled interactive dismissal
+        // Binding to the tableView will enable interactive dismissal
         keyboardManager.bind(to: tableView)
 
-        // Add some extra handling to manage content inset
         keyboardManager.on(event: .didChangeFrame) { [weak self] _ in
             guard let self = self else { return }
             if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
