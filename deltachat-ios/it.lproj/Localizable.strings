@@ -696,7 +696,7 @@
 "qrshow_x_has_joined_group" = "%1$@ è entrato nel gruppo.";
 "qrshow_join_group_title" = "Codice QR di Invito";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
-"qrshow_join_group_hint" = "Scansionalo per entrare nel gruppo \"%1$@\".";
+"qrshow_join_group_hint" = "Scansionalo per entrare nel gruppo \"%1$@\"";
 "qrshow_join_contact_title" = "Codice QR di Invito";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Scansionalo per chattare con %1$@";

@@ -802,7 +802,7 @@
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nGröße: %2$@\nAccount-ID: %3$@";
 "message_detail_sent_desktop" = "gesendet";
 "message_detail_received_desktop" = "empfangen";
-"menu.view.developer.open.log.folder" = "Logdatei öffnen";
+"menu.view.developer.open.log.folder" = "Log-Ordner öffnen";
 "menu.view.developer.open.current.log.file" = "Aktuelle Logdatei öffnen";
 "explain_desktop_minimized_disabled_tray_pref" = "Benachrichtigungssymbol kann nicht deaktiviert werden, da Delta Chat mit der Option --minimized gestartet wurde.";
 "no_spellcheck_suggestions_found" = "Keine Rechtschreibvorschläge gefunden.";

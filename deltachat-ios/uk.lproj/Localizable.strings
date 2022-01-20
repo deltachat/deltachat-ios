@@ -287,6 +287,8 @@
 "chat_please_enter_message" = "Будь ласка, введіть повідомлення.";
 "chat_camera_unavailable" = "Камера недоступна.";
 "chat_unable_to_record_audio" = "Неможливо записати аудіо.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Відправити повідомлення. Це нічого, якщо %1$@ не використовує Delta Chat.";
 "chat_new_broadcast_hint" = "У списку трансляцій інші отримуватимуть повідомлення у своїх приватних чатах з вами.\n\nОдержувачі не будуть знати один про одного.";
 "chat_new_group_hint" = "Інші побачать цю групу лише після того, як ви надішлете перше повідомлення.";
 "chat_record_slide_to_cancel" = "Рухайте для скасування";
