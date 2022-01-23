@@ -87,12 +87,12 @@
 "reply_noun" = "Atsakymas";
 "gif" = "Gif";
 "images" = "Paveikslai";
-"audio" = "Garsas";
+"audio" = "Garso įrašai";
 "voice_message" = "Balso žinutė";
 "forwarded_message" = "Persiųsta žinutė";
 // %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
 "forwarded_by" = "Persiuntė %1$@";
-"video" = "Vaizdas";
+"video" = "Vaizdo įrašai";
 "documents" = "Dokumentai";
 "contact" = "Adresatas";
 "verified_contact" = "Patvirtintas adresatas";
@@ -130,6 +130,7 @@
 "menu_new_chat" = "Naujas pokalbis";
 "menu_new_group" = "Nauja grupė";
 "menu_new_verified_group" = "Nauja patvirtinta grupė";
+"add_recipients" = "Pridėti gavėjus";
 "menu_send" = "Siųsti";
 "menu_toggle_keyboard" = "Perjungti šypsniukų klaviatūrą";
 "menu_edit_group" = "Taisyti grupę";
@@ -182,10 +183,12 @@
 "menu_zoom_out" = "Mažinti";
 "menu_save_log" = "Įrašyti žurnalą";
 "menu_more_options" = "Daugiau parinkčių";
+"menu_chat_audit_log" = "Pokalbių audito žurnalas";
 "copy_json" = "Kopijuoti JSON";
 "replace_draft" = "Pakeisti juodraštį";
 "title_share_location" = "Bendrinti savo vietą su visais grupės dalyviais";
 "device_talk" = "Įrenginio žinutės";
+"device_talk_subtitle" = "Vietiniu mastu sugeneruotos žinutės";
 "edit_contact" = "Taisyti adresatą";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "Prisegti pokalbį";
@@ -215,12 +218,16 @@
 "videochat" = "Vaizdo pokalbis";
 "videochat_invite_user_to_videochat" = "Pakviesti %1$@ į vaizdo pokalbį?";
 "videochat_invite_user_hint" = "Tai reikalauja, kad abu pašnekovai turėtų suderinamą programėlę ar suderinamą naršyklę.";
+"videochat_contact_invited_hint" = "%1$@ pakvietė į vaizdo pokalbį.";
+"videochat_you_invited_hint" = "Jūs pakvietėte į vaizdo pokalbį.";
 "videochat_tap_to_join" = "Bakstelėkite norėdami prisijungti";
 "videochat_tap_to_open" = "Bakstelėkite norėdami atverti";
 "videochat_instance" = "Vaizdo pokalbio egzempliorius";
 "videochat_instance_placeholder" = "Jūsų vaizdo pokalbio egzempliorius";
-"videochat_instance_explain" = "Jei yra apibrėžtas vaizdo pokalbių egzempliorius, kiekviename pokalbyje galite pradėti vaizdo pokalbį. Vaizdo pokalbiai reikalauja, kad abi pusės turėtų suderinamą programėlę arba suderinamą naršyklę.\n\nPavyzdžiai: https://meet.jit.si/$KAMBARYS arba basicwebrtc:https://jūsų-serveris";
+"videochat_instance_explain" = "Jei yra apibrėžtas vaizdo pokalbių egzempliorius, kiekviename pokalbyje galite pradėti vaizdo pokalbį. Vaizdo pokalbiai reikalauja, kad abi pusės turėtų suderinamą programėlę arba suderinamą naršyklę.\n\nPavyzdžiai: https://meet.jit.si/$ROOM arba basicwebrtc:https://jūsų-serveris";
 "videochat_invitation" = "Pakvietimas į vaizdo pokalbį";
+"videochat_invitation_body" = "Jūs esate kviečiami į vaizdo pokalbį. Spustelėkite %1$@ jei norite prisijungti.";
+
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
 "ask_delete_message" = "Ar tikrai norite ištrinti šią žinutę?";
@@ -259,7 +266,7 @@
 "chat_self_talk_subtitle" = "Žinutės, kurias siunčiu asmeniškai sau";
 "archive_empty_hint" = "Jei archyvuosite pokalbius, jie bus rodomi čia.";
 "saved_messages" = "Įrašytos žinutės";
-"saved_messages_explain" = "• Persiųskite žinutes čia, kad lengvai jas pasiektumėte\n\n• Rašykitės pastabas ar įrašynėkite balso žinutes\n\n• Pridėkite mediją, norėdami ją išsaugoti";
+"saved_messages_explain" = "• Persiųskite žinutes čia, kad lengvai jas pasiektumėte\n\n• Rašykitės pastabas ar įrašinėkite balso žinutes\n\n• Pridėkite mediją, norėdami ją išsaugoti";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Įrašyta";
 // reasons for a disabled message composer
@@ -269,6 +276,9 @@
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";
 // chat audit log
 "chat_audit_log_empty_message" = "Čia atsiras šio pokalbio sisteminės žinutės";
+"chat_audit_log_title" = "Pokalbio audito žurnalas, skirtas %1$@";
+"chat_audit_log_description" = "Šiame rodinyje yra rodomi tik sisteminiai ir informaciniai pranešimai. Naudinga, jei norite rasti paskiausius pokalbio veiksmus, be būtinybės slinkti per daugelį įprastų žinučių.";
+
 "puny_code_warning_header" = "Aptikta įtartina nuoroda";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Ar tikrai norite apsilankyti %1$@?";
@@ -302,6 +312,11 @@
 "send_message" = "Siųsti žinutę";
 
 
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Gaunamosios žinutės";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Siunčiamosios žinutės";
 "connectivity" = "Jungiamumas";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "Neprisijungta";
@@ -313,6 +328,8 @@
 "connectivity_connected" = "Prisijungta";
 "sending" = "Siunčiama…";
 "last_msg_sent_successfully" = "Paskutinė žinutė sėkmingai išsiųsta.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Žinutės";
 // welcome and login
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "login_title" = "Prisijungti";
@@ -347,7 +364,7 @@
 "login_error_server" = "Įveskite teisingą serverį / IP adresą";
 "login_error_port" = "Įveskite teisingą prievadą (1–65535)";
 "login_error_required_fields" = "Įveskite teisingą el. pašto adresą ir slaptažodį";
-"import_backup_title" = "Importuoti atsarginę kopjią";
+"import_backup_title" = "Importuoti atsarginę kopiją";
 "import_backup_ask" = "Atsarginė kopija rasta ties \"%1$@\".\n\nAr norite iš jos importuoti ir naudoti visus duomenis ir nustatymus?";
 "import_backup_no_backup_found" = "Nerasta jokių atsarginių kopijų.\n\nNukopijuokite atsarginę kopiją į \"%1$@\" ir bandykite dar kartą. Priešingu atveju, paspauskite \"Pradėti susirašinėjimą\", kad pereitumėte į įprastą sąrankos procesą.";
 // Translators: %1$s will be replaced by the e-mail address
@@ -362,6 +379,7 @@
 "delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";
 "unconfigured_account" = "Nesukonfigūruota paskyra";
 "unconfigured_account_hint" = "Atverkite paskyrą norėdami ją konfigūruoti.";
+"sync_all" = "Sinchronizuoti visas";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfigūracija patyrė nesėkmę. Klaida: %1$@";
 
@@ -395,7 +413,9 @@
 "pref_notifications" = "Pranešimai";
 "pref_notifications_show" = "Rodyti";
 "pref_notifications_priority" = "Pirmenybė";
+"pref_notifications_explain" = "Įjungti sistemos pranešimus apie naujas žinutes";
 "pref_show_notification_content" = "Rodyti pranešime žinutės turinį";
+"pref_show_notification_content_explain" = "Rodyti pranešimuose siuntėjo vardą ir pirmuosius žinutės žodžius";
 "pref_led_color" = "Šviesos diodo spalva";
 "pref_sound" = "Garsas";
 "pref_privacy" = "Privatumas";
@@ -448,18 +468,32 @@
 "pref_send_copy_to_self" = "Siųsti kopiją sau pačiam";
 "pref_auto_folder_moves" = "Automatiniai perkėlimai į DeltaChat aplanką";
 "pref_auto_folder_moves_explain" = "Pokalbiai yra perkeliami, kad nebūtų sujauktas Gautųjų aplankas";
+"pref_show_emails" = "Rodyti klasikinius el. laiškus";
+"pref_show_emails_no" = "Ne, tik pokalbius";
+"pref_show_emails_accepted_contacts" = "Iš priimtų adresatų";
+"pref_show_emails_all" = "Iš visų";
 "pref_experimental_features" = "Eksperimentinės ypatybės";
 "pref_background_default" = "Numatytasis fonas";
 "pref_background_default_color" = "Numatytoji spalva";
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
 "export_aborted" = "Eksportavimas nutrauktas.";
+"auto_download_messages" = "Automatinis žinučių atsisiuntimas";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Iki %1$@";
+"up_to_x_most_worse_quality_images" = "Iki %1$@, iš esmės, blogos kokybės paveikslus";
+"up_to_x_most_balanced_quality_images" = "Iki %1$@, iš esmės, subalansuotos kokybės paveikslus";
+"no_limit" = "Be ribos";
+"download_failed" = "Atsiuntimas nepavyko";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ žinutė";
 "profile_image_delete" = "Ištrinti profilio paveikslą";
 "pref_show_tray_icon" = "Rodyti dėklo piktogramą";
 "pref_edit_profile" = "Taisyti profilį";
 
 // Emoji picker and categories
 "emoji_search_results" = "Paieškos rezultatai";
+"emoji_not_found" = "Nerasta jokių šypsniukų";
 "emoji_recent" = "Paskiausi";
 "emoji_people" = "Žmonės ir kūnas";
 "emoji_nature" = "Gyvūnai ir gamta";

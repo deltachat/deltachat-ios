@@ -549,6 +549,8 @@
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Zona de probas";
 "pref_on_demand_location_streaming" = "Difusión da ubicación por solicitude";
+"pref_developer_mode" = "Modo desenvolvemento";
+"pref_developer_mode_explain" = "Activa opcións de depuración e pode desestabilizar a app. Só para desenvolvedoras.";
 "pref_background_default" = "Fondo por omisión";
 "pref_background_default_color" = "Cor por omisión";
 "pref_background_custom_image" = "Imaxe persoal";

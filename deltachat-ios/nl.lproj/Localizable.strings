@@ -321,6 +321,12 @@
 "mailing_list" = "Mailinglijst";
 "mailing_list_profile_info" = "Wijzigingen aan de mailinglijstnaam en -afbeelding worden alleen op dit apparaat getoond.";
 
+// webxdc
+// "Start..." button for an app
+"start_app" = "Starten…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Accepteer eerst het gespreksverzoek.";
+
 // map
 "filter_map_on_time" = "Locaties tonen in tijdsbeeld";
 "show_location_traces" = "Sporen tonen";
@@ -549,6 +555,8 @@
 "pref_show_emails_all" = "Alles";
 "pref_experimental_features" = "Experimentele functies";
 "pref_on_demand_location_streaming" = "Locatie continue doorgeven (op verzoek)";
+"pref_developer_mode" = "Ontwikkelaarsmodus";
+"pref_developer_mode_explain" = "Schakelt foutopsporingspoties in die de app mogelijk minder stabiel maken. Alléén voor ontwikkelaars.";
 "pref_background_default" = "Standaardachtergrond";
 "pref_background_default_color" = "Standaardkleur";
 "pref_background_custom_image" = "Eigen afbeelding";

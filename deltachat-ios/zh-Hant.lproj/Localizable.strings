@@ -321,6 +321,12 @@
 "mailing_list" = "邮件列表";
 "mailing_list_profile_info" = "邮件列表名称和图像的更改仅适用于此设备。 ";
 
+// webxdc
+// "Start..." button for an app
+"start_app" = "启动…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "请先接受聊天请求";
+
 // map
 "filter_map_on_time" = "显示时间范围内的位置";
 "show_location_traces" = "显示轨迹";
@@ -549,6 +555,8 @@
 "pref_show_emails_all" = "全部";
 "pref_experimental_features" = "实验性功能";
 "pref_on_demand_location_streaming" = "按需位置流";
+"pref_developer_mode" = "开发者模式";
+"pref_developer_mode_explain" = "激活调试选项，使应用程序不太稳定。仅供开发人员。";
 "pref_background_default" = "默认背景";
 "pref_background_default_color" = "默认颜色";
 "pref_background_custom_image" = "自定义图像";

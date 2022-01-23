@@ -321,6 +321,12 @@
 "mailing_list" = "Список адресатів";
 "mailing_list_profile_info" = "Зміни в назві списку розсилки та зображенні стосуються лише цього пристрою.";
 
+// webxdc
+// "Start..." button for an app
+"start_app" = "Старт...";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Будь ласка, спочатку прийміть запит на чат.";
+
 // map
 "filter_map_on_time" = "Показати місця у часовому проміжку";
 "show_location_traces" = "Показати треки";
@@ -549,6 +555,8 @@
 "pref_show_emails_all" = "Всі";
 "pref_experimental_features" = "Експериментальні функції";
 "pref_on_demand_location_streaming" = "Стримінг геоданих за вимогою";
+"pref_developer_mode" = "Режим розробника";
+"pref_developer_mode_explain" = "Активує опції режиму налагодження та може зробити програму менш стабільною. Тільки для розробників.";
 "pref_background_default" = "Фон за замовчуванням";
 "pref_background_default_color" = "Колір за замовчуванням";
 "pref_background_custom_image" = "Персональне зображення";

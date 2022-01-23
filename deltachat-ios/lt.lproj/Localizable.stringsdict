@@ -162,6 +162,26 @@
 			<string>Ištrinti %d žinutę čia ir serveryje?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ištrinti %d žinutę?</string>
+			<key>few</key>
+			<string>Ištrinti %d žinutes?</string>
+			<key>many</key>
+			<string>Ištrinti %d žinučių?</string>
+			<key>other</key>
+			<string>Ištrinti %d žinutę?</string>
+		</dict>
+	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

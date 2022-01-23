@@ -319,6 +319,12 @@
 "mailing_list" = "Listë postimesh";
 "mailing_list_profile_info" = "Ndryshime në emër dhe figurë liste postimesh aplikohen vetëm në këtë pajisje.";
 
+// webxdc
+// "Start..." button for an app
+"start_app" = "Fillo…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Ju lutemi, së pari pranoni kërkesën për fjalosje.";
+
 // map
 "filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
 "show_location_traces" = "Shfaq gjurmë";
@@ -546,6 +552,8 @@
 "pref_show_emails_accepted_contacts" = "Për kontakte të pranuar";
 "pref_show_emails_all" = "Krejt";
 "pref_experimental_features" = "Veçori eksperimentale";
+"pref_developer_mode" = "Mënyra Zhvillues";
+"pref_developer_mode_explain" = "Aktivizon mundësi diagnostikimi dhe mund ta bëjë aplikacionin më pak të qëndrueshëm. Vetëm për zhvillues.";
 "pref_background_default" = "Sfond parazgjedhje";
 "pref_background_default_color" = "Ngjyrë parazgjedhje";
 "pref_background_custom_image" = "Figurë vetjake";
@@ -742,6 +750,8 @@
 "ImageEditorHud_draw_anywhere_to_blur" = "Që të turbullohet, vizatoni kudo qoftë";
 "ImageEditorHud_add_text" = "Shtoni tekst";
 "ImageEditorHud_blur" = "Turbulloje";
+"ImageEditorHud_brush_marker" = "Penel Shënimesh";
+"ImageEditorHud_brush_highlight" = "Penel Theksimesh";
 "ImageEditorHud_crop" = "Qethe";
 "ImageEditorHud_flip" = "Ktheje në anë tjetër";
 "ImageEditorHud_rotate" = "Rrotulloje";

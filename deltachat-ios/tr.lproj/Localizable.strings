@@ -321,6 +321,12 @@
 "mailing_list" = "Posta Listesi";
 "mailing_list_profile_info" = "Posta listesi adındaki ve görselindeki değişiklikler yalnızca bu aygıta uygulanır.";
 
+// webxdc
+// "Start..." button for an app
+"start_app" = "Başlat…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Lütfen önce sohbet isteğini kabul edin.";
+
 // map
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
 "show_location_traces" = "İzleri göster";
@@ -549,6 +555,8 @@
 "pref_show_emails_all" = "Tümü";
 "pref_experimental_features" = "Deneysel Özellikler";
 "pref_on_demand_location_streaming" = "İsteğe Bağlı Konum Akışı";
+"pref_developer_mode" = "Geliştirici Kipi";
+"pref_developer_mode_explain" = "Hata ayıklama seçeneklerini etkinleştirir ve uygulamayı daha az kararlı yapabilir. Yalnızca geliştiriciler içindir.";
 "pref_background_default" = "Varsayılan arka plan";
 "pref_background_default_color" = "Varsayılan renk";
 "pref_background_custom_image" = "Özel görsel";

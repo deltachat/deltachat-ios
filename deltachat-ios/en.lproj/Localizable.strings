@@ -321,6 +321,12 @@
 "mailing_list" = "Mailing List";
 "mailing_list_profile_info" = "Changes on mailing list name and image apply to this device only.";
 
+// webxdc
+// "Start..." button for an app
+"start_app" = "Start…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Please accept the chat request first.";
+
 // map
 "filter_map_on_time" = "Show locations in time frame";
 "show_location_traces" = "Show traces";
@@ -549,6 +555,8 @@
 "pref_show_emails_all" = "All";
 "pref_experimental_features" = "Experimental Features";
 "pref_on_demand_location_streaming" = "On-demand Location Streaming";
+"pref_developer_mode" = "Developer Mode";
+"pref_developer_mode_explain" = "Activates debugging options and can make the app less stable. For developers only.";
 "pref_background_default" = "Default background";
 "pref_background_default_color" = "Default color";
 "pref_background_custom_image" = "Custom image";
