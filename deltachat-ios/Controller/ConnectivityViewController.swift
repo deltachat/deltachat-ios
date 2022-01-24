@@ -44,7 +44,6 @@ class ConnectivityViewController: WebViewViewController {
     // this method needs to be run from a background thread
     private func getNotificationStatus() -> String {
         let title = " <b>" + String.localized("pref_notifications") + ":</b> "
-        let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
         let notificationsEnabledInDC = !UserDefaults.standard.bool(forKey: "notifications_disabled")
         var notificationsEnabledInSystem = false
         let semaphore = DispatchSemaphore(value: 0)
@@ -72,6 +71,7 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(String.localized("notifications_disabled"))
         }
 
+        let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
         guard let timestamps = timestamps else {
             return "<span class=\"yellow dot\"></span>"
                 .appending(title)
@@ -79,6 +79,7 @@ class ConnectivityViewController: WebViewViewController {
         }
 
         if timestamps.isEmpty || timestamps.count == 1 {
+            // FIXME: for timestamp == 1, that is just okay if the timestamp is not too old
             return "<span class=\"red dot\"></span>"
                 .appending(title)
                 .appending(String.localized("notifications_not_working"))
