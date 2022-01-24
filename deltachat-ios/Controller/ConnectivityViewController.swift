@@ -94,11 +94,11 @@ class ConnectivityViewController: WebViewViewController {
         let averageDelta = timestampDeltas / Double(timestamps.count - 1)
         let lastWakeup = DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestamps.last!)
 
-        if averageDelta / Double(60 * 60) > 1 {
+        if Int(averageDelta / Double(60 * 60)) > 1 {
             // more than 1 hour in average
             return "<span class=\"red dot\"></span>"
                 .appending(title)
-                .appending(String.localized(stringID: "notifications_stats_hours", count: Int(averageDelta / (60 * 60))))
+                .appending(String.localized(stringID: "notifications_stats_hours_delayed", count: Int(averageDelta / Double(60 * 60))))
                 .appending(" ")
                 .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
         }
