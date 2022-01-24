@@ -55,17 +55,19 @@ class ConnectivityViewController: WebViewViewController {
             }
         }
         if semaphore.wait(timeout: .now() + 1) == .timedOut {
-            return String.localized("no_data")
+            return "<span class=\"red dot\"></span>"
+                .appending(title)
+                .appending("Timeout Error")
         }
 
         if !notificationsEnabledInDC {
-            return "<span class=\"yellow dot\"></span>"
+            return "<span class=\"disabled dot\"></span>"
                 .appending(title)
                 .appending(String.localized("notifications_disabled_dc"))
         }
 
         if !notificationsEnabledInSystem {
-            return "<span class=\"yellow dot\"></span>"
+            return "<span class=\"disabled dot\"></span>"
                 .appending(title)
                 .appending(String.localized("notifications_disabled"))
         }
@@ -127,6 +129,10 @@ class ConnectivityViewController: WebViewViewController {
                         font-family: -apple-system, sans-serif;
                         padding: 0 .5rem .5rem .5rem;
                         -webkit-text-size-adjust: none;
+                    }
+
+                    .disabled {
+                        background-color: #aaaaaa;
                     }
 
                     @media (prefers-color-scheme: dark) {
