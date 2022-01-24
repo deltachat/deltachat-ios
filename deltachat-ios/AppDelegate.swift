@@ -550,16 +550,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
 
         // Values calculated for connectivity view
-        let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
-        var slidingTimeframe: [Double]
-        if timestamps != nil, let timestamps = timestamps as? [Double] {
-            slidingTimeframe = timestamps.filter({ nowTimestamp < $0 + 60 * 60 * 24 })
-        } else {
-            slidingTimeframe = [Double]()
+        if name == "notify-remote-receive" || name == "notify-local-wakeup" {
+            let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
+            var slidingTimeframe: [Double]
+            if timestamps != nil, let timestamps = timestamps as? [Double] {
+                slidingTimeframe = timestamps.filter({ nowTimestamp < $0 + 60 * 60 * 24 })
+            } else {
+                slidingTimeframe = [Double]()
+            }
+            slidingTimeframe.append(nowTimestamp)
+            UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
         }
-
-        slidingTimeframe.append(nowTimestamp)
-        UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
     }
 
     private func setStockTranslations() {
