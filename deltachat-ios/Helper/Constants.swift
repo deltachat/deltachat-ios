@@ -11,6 +11,7 @@ struct Constants {
         static let deltachatImapPasswordKey = "__DELTACHAT_IMAP_PASSWORD_KEY__"
         static let lastSelectedAccountKey = "__DELTACHAT_LAST_SELECTED_ACCOUNT_KEY__"
         static let backgroundImageUrl = "__BACKGROUND_IMAGE_URL__"
+        static let notificationTimestamps = "__NOTIFICATION_TIMESTAMPS__"
     }
 
     static let backgroundImageName = "BACKGROUND_IMAGE"

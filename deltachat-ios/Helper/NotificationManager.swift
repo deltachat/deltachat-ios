@@ -35,6 +35,12 @@ public class NotificationManager {
         }
     }
 
+    public static func notificationEnabledInSystem(completionHandler: @escaping (Bool) -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            return completionHandler(settings.authorizationStatus != .denied)
+        }
+    }
+
     public static func removeAllNotifications() {
         let nc = UNUserNotificationCenter.current()
         nc.removeAllDeliveredNotifications()
