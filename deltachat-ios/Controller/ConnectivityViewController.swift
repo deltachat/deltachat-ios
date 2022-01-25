@@ -80,9 +80,11 @@ class ConnectivityViewController: WebViewViewController {
 
         var averageDelta: Double = 0
         if timestamps.isEmpty {
+            // this should not happen:
+            // the array should not be empty as old notifications are only removed if a new one is added
             return "<span class=\"red dot\"></span>"
                 .appending(title)
-                .appending(String.localized("notifications_not_working"))
+                .appending("Bad Data")
         } else if timestamps.count == 1 {
             averageDelta = Double(Date().timeIntervalSince1970) - timestamps.first!
         } else {
