@@ -73,9 +73,12 @@ class ConnectivityViewController: WebViewViewController {
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
         guard let timestamps = timestamps else {
-            return "<span class=\"yellow dot\"></span>"
+            // in most cases, here the app was just installed and we do not have any data.
+            // so, do not show something error-like here.
+            // (in case of errors, it usually converts to an error sooner or later)
+            return "<span class=\"green dot\"></span>"
                 .appending(title)
-                .appending(String.localized("no_data"))
+                .appending(String.localized("on"))
         }
 
         var averageDelta: Double = 0
