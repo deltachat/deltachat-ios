@@ -78,20 +78,17 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(String.localized("no_data"))
         }
 
-        if timestamps.isEmpty || timestamps.count == 1 {
-            // FIXME: for timestamp == 1, that is just okay if the timestamp is not too old
+        var averageDelta: Double = 0
+        if timestamps.isEmpty {
             return "<span class=\"red dot\"></span>"
                 .appending(title)
                 .appending(String.localized("notifications_not_working"))
+        } else if timestamps.count == 1 {
+            averageDelta = Double(Date().timeIntervalSince1970) - timestamps.first!
+        } else {
+            averageDelta = (timestamps.last! - timestamps.first!) / Double(timestamps.count-1)
         }
 
-        var timestampDeltas: Double = 0
-        for (index, element) in timestamps.enumerated() where index > 0 {
-            let diff = element - timestamps[index - 1]
-            timestampDeltas += diff
-        }
-
-        let averageDelta = timestampDeltas / Double(timestamps.count - 1)
         let lastWakeup = DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestamps.last!)
 
         if Int(averageDelta / Double(60 * 60)) > 1 {
