@@ -49,7 +49,7 @@ public class DraftModel {
     }
 
     public func save(context: DcContext) {
-        if text == nil && quoteMessage == nil {
+        if (text?.isEmpty ?? true) && quoteMessage == nil {
             context.setDraft(chatId: chatId, message: nil)
             return
         }
