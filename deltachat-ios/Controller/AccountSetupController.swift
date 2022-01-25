@@ -63,7 +63,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         certCheckCell,
         viewLogCell
     ]
-    private lazy var folderCells: [UITableViewCell] = [inboxWatchCell, sentboxWatchCell, mvboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
+    private lazy var folderCells: [UITableViewCell] = [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
     private var providerInfoShowing: Bool = false
@@ -263,17 +263,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
-    lazy var inboxWatchCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_watch_inbox_folder"),
-            on: dcContext.getConfigBool("inbox_watch"),
-            action: { cell in
-                self.dcAccounts.stopIo()
-                self.dcContext.setConfigBool("inbox_watch", cell.isOn)
-                self.dcAccounts.startIo()
-        })
-    }()
-
     lazy var sentboxWatchCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("pref_watch_sent_folder"),
@@ -281,17 +270,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             action: { cell in
                 self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
-                self.dcAccounts.startIo()
-        })
-    }()
-
-    lazy var mvboxWatchCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_watch_mvbox_folder"),
-            on: dcContext.getConfigBool("mvbox_watch"),
-            action: { cell in
-                self.dcAccounts.stopIo()
-                self.dcContext.setConfigBool("mvbox_watch", cell.isOn)
                 self.dcAccounts.startIo()
         })
     }()
