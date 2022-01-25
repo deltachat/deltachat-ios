@@ -256,10 +256,6 @@ open class InputBarAccessoryView: UIView {
     /// The default value is `FALSE`
     public private(set) var isOverMaxTextViewHeight = false
     
-    /// A boolean that tracks orientation changes to calculate the correct intrinsicContentSize and
-    /// enable/disable NSLayoutContraints accordingly in calculateIntrinsicContentSize
-    private var isInPhoneLandscapeOrientation = false
-
     /// A boolean that when set as `TRUE` will always enable the `InputTextView` to be anchored to the
     /// height of `maxTextViewHeight`
     /// The default value is `FALSE`
@@ -425,7 +421,9 @@ open class InputBarAccessoryView: UIView {
         }).on(event: .didChangeFrame, do: {  [weak self] (notification) in
             guard let self = self else { return }
             self.keyboardHeight = notification.endFrame.height - self.intrinsicContentSize.height
-            if self.isInPhoneLandscapeOrientation {
+        }).on(event: .didShow, do: { [weak self] _ in
+            guard let self = self else { return }
+            if UIApplication.shared.statusBarOrientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone {
                 self.orientationDidChange()
             }
         })
@@ -601,31 +599,20 @@ open class InputBarAccessoryView: UIView {
     ///
     /// - Returns: The required intrinsicContentSize
     open func calculateIntrinsicContentSize() -> CGSize {
-        
-        let isPhoneInLandscape = UIApplication.shared.statusBarOrientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
         var inputTextViewHeight = requiredInputTextViewHeight
-        let bottomSafeAreaInsetsHeight = UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets.bottom ?? 0
-
-        if isPhoneInLandscape && keyboardHeight > bottomSafeAreaInsetsHeight {
-            textViewHeightAnchor?.isActive = true
-            inputTextView.isScrollEnabled = true
-            inputTextViewHeight = maxTextViewHeight
-            isOverMaxTextViewHeight = inputTextViewHeight >= maxTextViewHeight
-        } else if inputTextViewHeight >= maxTextViewHeight {
+        if inputTextViewHeight >= maxTextViewHeight {
             if !isOverMaxTextViewHeight {
                 textViewHeightAnchor?.isActive = true
                 inputTextView.isScrollEnabled = true
                 isOverMaxTextViewHeight = true
             }
             inputTextViewHeight = maxTextViewHeight
-        } else if isOverMaxTextViewHeight || isInPhoneLandscapeOrientation {
+        } else if isOverMaxTextViewHeight {
             textViewHeightAnchor?.isActive = false || shouldForceTextViewMaxHeight
             inputTextView.isScrollEnabled = false
             isOverMaxTextViewHeight = false
             inputTextView.invalidateIntrinsicContentSize()
         }
-
-        isInPhoneLandscapeOrientation = isPhoneInLandscape
 
         // Calculate the required height
         let totalPadding = padding.top + padding.bottom + topStackViewPadding.top + middleContentViewPadding.top + middleContentViewPadding.bottom
@@ -659,8 +646,7 @@ open class InputBarAccessoryView: UIView {
     ///
     /// - Returns: Max Height
     open func calculateMaxTextViewHeight() -> CGFloat {
-        let bottomSafeAreaInsetsHeight = UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets.bottom ?? 0
-        if UIApplication.shared.statusBarOrientation.isPortrait || UIDevice.current.userInterfaceIdiom == .pad || keyboardHeight == bottomSafeAreaInsetsHeight {
+        if UIApplication.shared.statusBarOrientation.isPortrait || UIDevice.current.userInterfaceIdiom == .pad {
             let divisor: CGFloat = 3
             var subtract: CGFloat = 0
             subtract += hasDraft ? 90 : 0
@@ -671,9 +657,8 @@ open class InputBarAccessoryView: UIView {
             }
             return height
         } else {
-            // landscape phone layout with shown keyboard
-            let height = UIScreen.main.bounds.height - keyboardHeight - padding.vertical
-            return height
+            // landscape phone layout
+            return UIScreen.main.bounds.height - keyboardHeight - padding.vertical
         }
     }
     
