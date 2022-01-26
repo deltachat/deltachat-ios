@@ -859,8 +859,8 @@
 
 "perm_ios_explain_access_to_camera_denied" = "To take photos, capture videos or use the QR-Code scanner, open the system settings and enable \"Camera\".";
 "open_settings" = "Open Settings";
-"notifications_disabled_dc" = "Disabled in Delta Chat";
-"notifications_disabled" = "Disabled in system settings";
+"disabled_in_dc" = "Disabled in Delta Chat";
+"disabled_in_system_settings" = "Disabled in system settings";
 "delayed" = "Delayed";
 "notifications_avg_minutes" = "On average every %1$d minutes";
 "notifications_avg_hours" = "On average every %1$d hours";

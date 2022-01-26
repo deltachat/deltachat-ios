@@ -62,13 +62,13 @@ class ConnectivityViewController: WebViewViewController {
         if !notificationsEnabledInDC {
             return "<span class=\"disabled dot\"></span>"
                 .appending(title)
-                .appending(String.localized("notifications_disabled_dc"))
+                .appending(String.localized("disabled_in_dc"))
         }
 
         if !notificationsEnabledInSystem {
             return "<span class=\"disabled dot\"></span>"
                 .appending(title)
-                .appending(String.localized("notifications_disabled"))
+                .appending(String.localized("disabled_in_system_settings"))
         }
 
         if !hasNotifyToken {
