@@ -15,7 +15,7 @@
     <string name="notifications_disabled_dc">Disabled in Delta Chat</string>
     <string name="notifications_disabled">Disabled in system settings</string>
     <string name="delayed">Delayed</string>
-    <string name="notifications_avg_minutes">In average every %1$d minutes</string>
-    <string name="notifications_avg_hours">In average every %1$d hours</string>
-    <string name="last_check_at">Last check at %1$s</string>
+    <string name="notifications_avg_minutes">On average every %1$d minutes</string>
+    <string name="notifications_avg_hours">On average every %1$d hours</string>
+    <string name="last_check_at">Checked at %1$s</string>
 </resources>
