@@ -42,7 +42,7 @@ class ConnectivityViewController: WebViewViewController {
     }
 
     // this method needs to be run from a background thread
-    private func getNotificationStatus() -> String {
+    private func getNotificationStatus(hasNotifyToken: Bool) -> String {
         let title = " <b>" + String.localized("pref_notifications") + ":</b> "
         let notificationsEnabledInDC = !UserDefaults.standard.bool(forKey: "notifications_disabled")
         var notificationsEnabledInSystem = false
@@ -62,20 +62,29 @@ class ConnectivityViewController: WebViewViewController {
         if !notificationsEnabledInDC {
             return "<span class=\"disabled dot\"></span>"
                 .appending(title)
-                .appending(String.localized("notifications_disabled_dc"))
+                .appending(String.localized("disabled_in_dc"))
         }
 
         if !notificationsEnabledInSystem {
             return "<span class=\"disabled dot\"></span>"
                 .appending(title)
-                .appending(String.localized("notifications_disabled"))
+                .appending(String.localized("disabled_in_system_settings"))
+        }
+
+        if !hasNotifyToken {
+            return "<span class=\"red dot\"></span>"
+                .appending(title)
+                .appending(String.localized("connectivity_not_connected"))
         }
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
         guard let timestamps = timestamps else {
-            return "<span class=\"yellow dot\"></span>"
+            // in most cases, here the app was just installed and we do not have any data.
+            // so, do not show something error-like here.
+            // (in case of errors, it usually converts to an error sooner or later)
+            return "<span class=\"green dot\"></span>"
                 .appending(title)
-                .appending(String.localized("no_data"))
+                .appending(String.localized("connectivity_connected"))
         }
 
         var averageDelta: Double = 0
@@ -91,34 +100,45 @@ class ConnectivityViewController: WebViewViewController {
             averageDelta = (timestamps.last! - timestamps.first!) / Double(timestamps.count-1)
         }
 
-        let lastWakeup = DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestamps.last!)
+        let lastWakeup = DateUtils.getExtendedAbsTimeSpanString(timeStamp: timestamps.last!)
 
         if Int(averageDelta / Double(60 * 60)) > 1 {
             // more than 1 hour in average
             return "<span class=\"red dot\"></span>"
                 .appending(title)
-                .appending(String.localized(stringID: "notifications_stats_hours_delayed", count: Int(averageDelta / Double(60 * 60))))
-                .appending(" ")
-                .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
+                .appending(String.localized("delayed"))
+                .appending(", ")
+                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+                .appending(", ")
+                .appending(String.localized(stringID: "notifications_avg_hours", count: Int(averageDelta / Double(60 * 60))))
         }
 
         if averageDelta / Double(60 * 20) > 1 {
             // more than 20 minutes in average
             return  "<span class=\"yellow dot\"></span>"
                 .appending(title)
-                .appending(String.localized(stringID: "notifications_stats_minutes_delayed", count: Int(averageDelta / 60)))
-                .appending(" ")
-                .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
+                .appending(String.localized("delayed"))
+                .appending(", ")
+                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+                .appending(", ")
+                .appending(String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
         }
 
         return  "<span class=\"green dot\"></span>"
             .appending(title)
-            .appending(String.localized(stringID: "notifications_stats_minutes", count: Int(averageDelta / 60)))
-            .appending(" ")
-            .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
+            .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+            .appending(", ")
+            .appending(String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
     }
 
     private func loadHtml() {
+        // appDelegate needs to be called from main thread
+        var hasNotifyToken = false
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            hasNotifyToken = appDelegate.notifyToken != nil
+        }
+
+        // do the remaining things in background thread
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             var html = self.dcContext.getConnectivityHtml()
@@ -144,7 +164,7 @@ class ConnectivityViewController: WebViewViewController {
                     </style>
                     """)
 
-            let notificationStatus = self.getNotificationStatus()
+            let notificationStatus = self.getNotificationStatus(hasNotifyToken: hasNotifyToken)
             if let range = html.range(of: "</ul>") {
                 html = html.replacingCharacters(in: range, with: "<li>" + notificationStatus + "</li></ul>")
             }
