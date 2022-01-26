@@ -71,6 +71,14 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(String.localized("notifications_disabled"))
         }
 
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            if appDelegate.notifyToken == nil {
+                return "<span class=\"red dot\"></span>"
+                    .appending(title)
+                    .appending("Service error")
+            }
+        }
+
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
         guard let timestamps = timestamps else {
             // in most cases, here the app was just installed and we do not have any data.
