@@ -94,31 +94,35 @@ class ConnectivityViewController: WebViewViewController {
             averageDelta = (timestamps.last! - timestamps.first!) / Double(timestamps.count-1)
         }
 
-        let lastWakeup = DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestamps.last!)
+        let lastWakeup = DateUtils.getExtendedAbsTimeSpanString(timeStamp: timestamps.last!)
 
         if Int(averageDelta / Double(60 * 60)) > 1 {
             // more than 1 hour in average
             return "<span class=\"red dot\"></span>"
                 .appending(title)
-                .appending(String.localized(stringID: "notifications_stats_hours_delayed", count: Int(averageDelta / Double(60 * 60))))
-                .appending(" ")
-                .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
+                .appending(String.localized("delayed"))
+                .appending(", ")
+                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+                .appending(", ")
+                .appending(String.localized(stringID: "notifications_avg_hours", count: Int(averageDelta / Double(60 * 60))))
         }
 
         if averageDelta / Double(60 * 20) > 1 {
             // more than 20 minutes in average
             return  "<span class=\"yellow dot\"></span>"
                 .appending(title)
-                .appending(String.localized(stringID: "notifications_stats_minutes_delayed", count: Int(averageDelta / 60)))
-                .appending(" ")
-                .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
+                .appending(String.localized("delayed"))
+                .appending(", ")
+                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+                .appending(", ")
+                .appending(String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
         }
 
         return  "<span class=\"green dot\"></span>"
             .appending(title)
-            .appending(String.localized(stringID: "notifications_stats_minutes", count: Int(averageDelta / 60)))
-            .appending(" ")
-            .appending(String.localizedStringWithFormat(String.localized("notifications_stats_last_wakeup"), lastWakeup))
+            .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+            .appending(", ")
+            .appending(String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
     }
 
     private func loadHtml() {
