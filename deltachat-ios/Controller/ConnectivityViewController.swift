@@ -74,7 +74,7 @@ class ConnectivityViewController: WebViewViewController {
         if !hasNotifyToken {
             return "<span class=\"red dot\"></span>"
                 .appending(title)
-                .appending("Service error")
+                .appending(String.localized("connectivity_not_connected"))
         }
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
@@ -84,7 +84,7 @@ class ConnectivityViewController: WebViewViewController {
             // (in case of errors, it usually converts to an error sooner or later)
             return "<span class=\"green dot\"></span>"
                 .appending(title)
-                .appending(String.localized("on"))
+                .appending(String.localized("connectivity_connected"))
         }
 
         var averageDelta: Double = 0
