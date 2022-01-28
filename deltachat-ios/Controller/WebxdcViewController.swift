@@ -78,7 +78,7 @@ class WebxdcViewController: WebViewViewController {
     private func getTitleFromWebxdcInfoJson() -> String {
         let jsonString = dcContext.getMessage(id: messageId).getWebxdcInfoJson()
         if let data: Data = jsonString.data(using: .utf8),
-           let infoJson = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String:AnyObject],
+           let infoJson = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: AnyObject],
            let title = infoJson["name"] as? String {
             return title
         }
