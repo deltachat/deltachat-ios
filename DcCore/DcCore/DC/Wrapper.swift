@@ -1096,19 +1096,19 @@ public class DcMsg {
         }
     }()
 
-    public func getWebxdcBlob(filename: String) -> [Int8] {
+    public func getWebxdcBlob(filename: String) -> Data {
         let ptrSize = UnsafeMutablePointer<Int>.allocate(capacity: 1)
         defer {
             ptrSize.deallocate()
         }
         guard let ccharPtr = dc_msg_get_webxdc_blob(messagePointer, filename, ptrSize) else {
-            return []
+            return Data()
         }
 
         let count = ptrSize.pointee
         let buffer = UnsafeBufferPointer<Int8>(start: ccharPtr, count: count)
         dc_str_unref(ccharPtr)
-        return Array(buffer)
+        return Data(buffer: buffer)
     }
 
     public func getWebxdcInfoJson() -> String {
