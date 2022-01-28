@@ -92,8 +92,9 @@ class WebxdcViewController: WebViewViewController {
 
 
     private func loadRestrictedHtml() {
+        // TODO: compile only once
         WKContentRuleListStore.default().compileContentRuleList(
-                forIdentifier: "ContentBlockingRules",
+                forIdentifier: "WebxdcContentBlockingRules",
                 encodedContentRuleList: blockRules) { (contentRuleList, error) in
 
             guard let contentRuleList = contentRuleList, error == nil else {
