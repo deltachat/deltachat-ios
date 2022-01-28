@@ -42,7 +42,7 @@ class ConnectivityViewController: WebViewViewController {
     }
 
     // this method needs to be run from a background thread
-    private func getNotificationStatus(hasNotifyToken: Bool) -> String {
+    private func getNotificationStatus(hasNotifyToken: Bool, backgroundRefreshStatus: UIBackgroundRefreshStatus) -> String {
         let title = " <b>" + String.localized("pref_notifications") + ":</b> "
         let notificationsEnabledInDC = !UserDefaults.standard.bool(forKey: "notifications_disabled")
         var notificationsEnabledInSystem = false
@@ -69,6 +69,12 @@ class ConnectivityViewController: WebViewViewController {
             return "<span class=\"disabled dot\"></span>"
                 .appending(title)
                 .appending(String.localized("disabled_in_system_settings"))
+        }
+
+        if backgroundRefreshStatus != .available {
+            return "<span class=\"disabled dot\"></span>"
+                .appending(title)
+                .appending(String.localized("bg_app_refresh_disabled"))
         }
 
         if !hasNotifyToken {
@@ -132,11 +138,12 @@ class ConnectivityViewController: WebViewViewController {
     }
 
     private func loadHtml() {
-        // appDelegate needs to be called from main thread
+        // `UIApplication.shared` needs to be called from main thread
         var hasNotifyToken = false
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             hasNotifyToken = appDelegate.notifyToken != nil
         }
+        let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
 
         // do the remaining things in background thread
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -164,7 +171,7 @@ class ConnectivityViewController: WebViewViewController {
                     </style>
                     """)
 
-            let notificationStatus = self.getNotificationStatus(hasNotifyToken: hasNotifyToken)
+            let notificationStatus = self.getNotificationStatus(hasNotifyToken: hasNotifyToken, backgroundRefreshStatus: backgroundRefreshStatus)
             if let range = html.range(of: "</ul>") {
                 html = html.replacingCharacters(in: range, with: "<li>" + notificationStatus + "</li></ul>")
             }

@@ -861,6 +861,7 @@
 "open_settings" = "Open Settings";
 "disabled_in_dc" = "Disabled in Delta Chat";
 "disabled_in_system_settings" = "Disabled in system settings";
+"bg_app_refresh_disabled" = "\"Background App Refresh\" disabled in system settings";
 "delayed" = "Delayed";
 "notifications_avg_minutes" = "On average every %1$d minutes";
 "notifications_avg_hours" = "On average every %1$d hours";
