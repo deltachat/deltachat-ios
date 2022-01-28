@@ -1,9 +1,11 @@
-
 import UIKit
 import WebKit
 import DcCore
 
 class WebxdcViewController: WebViewViewController {
+
+    let INTERNALSCHEMA = "webxdc"
+    let INTERNALDOMAIN = "local.app"
 
     var messageId: Int
     var dcContext: DcContext
@@ -23,6 +25,29 @@ class WebxdcViewController: WebViewViewController {
     ]
     """
 
+    override var configuration: WKWebViewConfiguration {
+        let preferences = WKPreferences()
+        let config = WKWebViewConfiguration()
+
+        config.userContentController.add(self, name: "webxdcHandler")
+        config.setURLSchemeHandler(self, forURLScheme: INTERNALSCHEMA)
+
+        if #available(iOS 13.0, *) {
+            preferences.isFraudulentWebsiteWarningEnabled = true
+        }
+
+        if #available(iOS 14.0, *) {
+            config.defaultWebpagePreferences.allowsContentJavaScript = true
+        } else {
+            preferences.javaScriptEnabled = true
+        }
+        preferences.javaScriptCanOpenWindowsAutomatically = false
+        config.preferences = preferences
+        preferences.javaScriptEnabled = false
+        config.preferences = preferences
+        return config
+    }
+
 
     init(dcContext: DcContext, messageId: Int) {
         self.dcContext = dcContext
@@ -38,21 +63,6 @@ class WebxdcViewController: WebViewViewController {
         super.viewDidLoad()
         self.title = getTitleFromWebxdcInfoJson()
 
-        let preferences = WKPreferences()
-        let configuration = WKWebViewConfiguration()
-
-        if #available(iOS 13.0, *) {
-            preferences.isFraudulentWebsiteWarningEnabled = true
-        }
-
-        if #available(iOS 14.0, *) {
-            configuration.defaultWebpagePreferences.allowsContentJavaScript = true
-        } else {
-            preferences.javaScriptEnabled = true
-        }
-        preferences.javaScriptCanOpenWindowsAutomatically = false
-
-        configuration.preferences = preferences
     }
 
     private func getTitleFromWebxdcInfoJson() -> String {
@@ -89,10 +99,40 @@ class WebxdcViewController: WebViewViewController {
     private func loadHtml() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
-//            let html = self.dcContext.getMsgHtml(msgId: self.messageId)
-//            DispatchQueue.main.async {
-//                self.webView.loadHTMLString(html, baseURL: nil)
-//            }
+            DispatchQueue.main.async {
+                self.webView.load(URLRequest(url: URL(string: "\(self.INTERNALSCHEMA)://msg\(self.messageId).\(self.INTERNALDOMAIN)/index.html")!))
+            }
         }
+    }
+}
+
+extension WebxdcViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    }
+}
+
+extension WebxdcViewController: WKURLSchemeHandler {
+    func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
+        if let url = urlSchemeTask.request.url, let scheme = url.scheme, scheme == INTERNALSCHEMA {
+            let file = url.lastPathComponent
+            logger.debug(file)
+            let dcMsg = dcContext.getMessage(id: messageId)
+            let data: Data = dcMsg.getWebxdcBlob(filename: file)
+            let mimeType = DcUtils.getMimeTypeForPath(path: file)
+            logger.debug(mimeType)
+
+            if !mimeType.contains(subSequence: "text").isEmpty {
+                logger.debug(String(bytes: data, encoding: String.Encoding.utf8) ?? "invalid string")
+            }
+
+            let response = URLResponse.init(url: url, mimeType: mimeType, expectedContentLength: data.count, textEncodingName: nil)
+
+            urlSchemeTask.didReceive(response)
+            urlSchemeTask.didReceive(data)
+            urlSchemeTask.didFinish()
+        }
+    }
+
+    func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
     }
 }
