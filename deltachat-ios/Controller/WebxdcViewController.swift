@@ -87,7 +87,7 @@ class WebxdcViewController: WebViewViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadRestrictedHtml()
+        loadHtml()
     }
 
 
