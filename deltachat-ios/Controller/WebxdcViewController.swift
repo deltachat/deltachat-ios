@@ -62,7 +62,17 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = getTitleFromWebxdcInfoJson()
+    }
 
+    override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        // TODO: what about tel:// and mailto://
+        if let url = navigationAction.request.url,
+            url.scheme != INTERNALSCHEMA {
+            logger.debug("cancel loading: \(url)")
+            decisionHandler(.cancel)
+            return }
+        logger.debug("loading: \(String(describing: navigationAction.request.url))")
+        decisionHandler(.allow)
     }
 
     private func getTitleFromWebxdcInfoJson() -> String {
