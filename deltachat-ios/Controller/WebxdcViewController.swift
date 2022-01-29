@@ -193,7 +193,12 @@ extension WebxdcViewController: WKURLSchemeHandler {
             let file = url.path
             logger.debug(file)
             let dcMsg = dcContext.getMessage(id: messageId)
-            let data: Data = dcMsg.getWebxdcBlob(filename: file)
+            var data: Data
+            if url.lastPathComponent == "webxdc.js" {
+                data = Data(webxdcbridge.utf8)
+            } else {
+                data = dcMsg.getWebxdcBlob(filename: file)
+            }
             let mimeType = DcUtils.getMimeTypeForPath(path: file)
             logger.debug(mimeType)
 
