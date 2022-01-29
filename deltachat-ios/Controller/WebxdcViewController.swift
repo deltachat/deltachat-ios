@@ -52,8 +52,8 @@ class WebxdcViewController: WebViewViewController {
 
             getAllUpdates: () => {
               // FIXME: we need to add an callback here, comp. https://programming.vip/docs/the-perfect-solution-for-wkwebview-to-interact-with-js.html
-              webkit.messageHandlers.getStatusUpdatesHandler.postMessage("0")
-              // call to webkit.messageHandlers.getStatusUpdatesHandler.postMessage("0") doesn't return anything currently but showcases
+              webkit.messageHandlers.getStatusUpdatesHandler.postMessage(0)
+              // call to webkit.messageHandlers.getStatusUpdatesHandler.postMessage(0) doesn't return anything currently but showcases
               // the communication js -> swift is working
               return  Promise.resolve([]);
             },
@@ -175,8 +175,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
         switch handler {
         case .getStatusUpdates:
             logger.debug("getStatusUpdates called")
-            guard let param = message.body as? String,
-                    let statusId = Int(param) else {
+            guard let statusId = message.body as? Int else {
                 logger.error("could not convert param \(message.body) to int")
                 return
             }
