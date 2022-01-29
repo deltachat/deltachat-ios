@@ -125,7 +125,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
 extension WebxdcViewController: WKURLSchemeHandler {
     func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
         if let url = urlSchemeTask.request.url, let scheme = url.scheme, scheme == INTERNALSCHEMA {
-            let file = url.lastPathComponent
+            let file = url.path
             logger.debug(file)
             let dcMsg = dcContext.getMessage(id: messageId)
             let data: Data = dcMsg.getWebxdcBlob(filename: file)
