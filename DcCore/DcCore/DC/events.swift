@@ -11,6 +11,7 @@ public let dcNotificationChatModified = Notification.Name(rawValue: "dcNotificat
 public let dcEphemeralTimerModified =  Notification.Name(rawValue: "dcEphemeralTimerModified")
 public let dcMsgsNoticed = Notification.Name(rawValue: "dcMsgsNoticed")
 public let dcNotificationConnectivityChanged = Notification.Name(rawValue: "dcNotificationConnectivityChanged")
+public let dcNotificationWebxdcUpdate = Notification.Name(rawValue: "dcNotificationWebxdcUpdate")
 
 public class DcEventHandler {
     let dcAccounts: DcAccounts
@@ -219,6 +220,23 @@ public class DcEventHandler {
                     name: dcNotificationConnectivityChanged,
                     object: nil,
                     userInfo: nil
+                )
+            }
+
+        case DC_EVENT_WEBXDC_STATUS_UPDATE:
+            if dcContext.id != dcAccounts.getSelected().id {
+                return
+            }
+            dcContext.logger?.info("webxdc: update!")
+            DispatchQueue.main.async {
+                let nc = NotificationCenter.default
+                nc.post(
+                    name: dcNotificationWebxdcUpdate,
+                    object: nil,
+                    userInfo: [
+                        "message_id": Int(data1),
+                        "status_id": Int(data2),
+                    ]
                 )
             }
 

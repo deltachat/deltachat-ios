@@ -13,7 +13,8 @@ class WebxdcViewController: WebViewViewController {
 
     var messageId: Int
     var dcContext: DcContext
-    private var loadContentOnce = false
+    var webxdcUpdateObserver: NSObjectProtocol?
+
 
     // Block just everything :)
     let blockRules = """
@@ -36,7 +37,7 @@ class WebxdcViewController: WebViewViewController {
 
           // instead of calling .getStatusUpdatesHandler (-> async),
           // we're passing the updates directly to this js function
-          window.__webxdcUpdateiOS = (updateString) => {
+          window.__webxdcUpdate = (updateString) => {
             var updates = JSON.parse(updateString);
             if (updates.length === 1) {
               update_listener(updates[0]);
@@ -115,6 +116,38 @@ class WebxdcViewController: WebViewViewController {
         self.title = getTitleFromWebxdcInfoJson()
     }
 
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            // remove observer
+            let nc = NotificationCenter.default
+            if let webxdcUpdateObserver = webxdcUpdateObserver {
+                nc.removeObserver(webxdcUpdateObserver)
+            }
+        } else {
+            addObserver()
+        }
+    }
+
+    private func addObserver() {
+        let nc = NotificationCenter.default
+        webxdcUpdateObserver = nc.addObserver(
+            forName: dcNotificationWebxdcUpdate,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] notification in
+            guard let self = self else { return }
+            guard let ui = notification.userInfo,
+                  let messageId = ui["message_id"] as? Int,
+                  let statusId = ui["status_id"] as? Int,
+                      messageId == self.messageId else {
+                          logger.error("failed to handle dcNotificationWebxdcUpdate")
+                          return
+                      }
+            self.updateWebxdc(statusId: statusId)
+        }
+    }
+
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         // TODO: what about tel:// and mailto://
         if let url = navigationAction.request.url,
@@ -166,6 +199,11 @@ class WebxdcViewController: WebViewViewController {
                 self.webView.load(URLRequest(url: URL(string: "\(self.INTERNALSCHEMA)://msg\(self.messageId).\(self.INTERNALDOMAIN)/index.html")!))
             }
         }
+    }
+
+    private func updateWebxdc(statusId: Int) {
+        let statusUpdates = self.dcContext.getWebxdcStatusUpdates(msgId: messageId, statusUpdateId: statusId)
+        logger.debug("status updates: \(statusUpdates)")
     }
 }
 
