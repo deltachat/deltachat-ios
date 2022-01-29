@@ -44,9 +44,9 @@ class WebxdcViewController: WebViewViewController {
           };
 
           return {
-            selfAddr: \(dcContext.addr ?? "unknown"),
+            selfAddr: "\(dcContext.addr ?? "unknown")",
 
-            selfName: \(dcContext.displayname ?? "unknown"),
+            selfName: "\(dcContext.displayname ?? "unknown")",
 
             setUpdateListener: (cb) => (update_listener = cb),
 
