@@ -62,7 +62,7 @@ class WebxdcViewController: WebViewViewController {
                 // only one parameter is allowed, we we create a new parameter object here
                 var parameter = {
                     payload: payload,
-                    desc: desc
+                    descr: descr
                 };
                 webkit.messageHandlers.sendStatusUpdateHandler.postMessage(JSON.stringify(parameter));
             },
