@@ -64,7 +64,7 @@ class WebxdcViewController: WebViewViewController {
                     payload: payload,
                     descr: descr
                 };
-                webkit.messageHandlers.sendStatusUpdateHandler.postMessage(JSON.stringify(parameter));
+                webkit.messageHandlers.sendStatusUpdateHandler.postMessage(parameter);
             },
           };
         })();
@@ -185,7 +185,17 @@ extension WebxdcViewController: WKScriptMessageHandler {
             // TODO: return
         case .sendStatusUpdate:
             logger.debug("sendStatusUpdate called")
-            // dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: <#T##String#>, description: <#T##String#>)
+            guard let dict = message.body as? [String: AnyObject],
+                  let payloadDict = dict["payload"] as?  [String: AnyObject],
+                  let payloadJson = try? JSONSerialization.data(withJSONObject: payloadDict, options: []),
+                  let payloadString = String(data: payloadJson, encoding: .utf8),
+                  let description = dict["descr"] as? String else {
+                      logger.error("Failed to parse status update parameters \(message.body)")
+                      return
+                  }
+
+            logger.debug(">> \(payloadString), \(description)")
+            _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
         default:
             logger.debug("another method was called")
         }
