@@ -93,8 +93,6 @@ class WebxdcViewController: WebViewViewController {
         }
         preferences.javaScriptCanOpenWindowsAutomatically = false
         config.preferences = preferences
-        preferences.javaScriptEnabled = false
-        config.preferences = preferences
         return config
     }
 
