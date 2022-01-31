@@ -1,5 +1,35 @@
 # Delta Chat iOS Changelog
 
+## v1.28.0
+2022-01
+
+* add option to create encrypted database at "Add Account",
+  the database passphrase is generated automatically and is stored in the system's keychain,
+  subsequent versions will probably get more options to handle passphrases
+* add writing support for supported mailinglist types; other mailinglist types stay read-only
+* add an option to define a background image that us used in all chats then :)
+* "Message Info" show routes
+* add "Search" and "Mute" as separate buttons to the chat profiles
+* the connectivity status now als show if notification work as expected
+* improve accessibility for the chat requests button bar
+* show chat title in delete confirmation dialog
+* speed up opening chats
+* explicit "Watch Inbox folder" and "Watch DeltaChat folder" settings no longer required;
+  the folders are watched automatically as needed
+* to safe traffic and connections, "Advanced / Watch Sent Folder" is disabled by default;
+  as all other IMAP folders, the folder is still checked on a regular base
+* detect correctly signed messages from Thunderbird and show them as such
+* synchronize Seen status across devices
+* more reliable group memberlist and group avatar updates
+* recognize MS Exchange read receipts as such
+* fix leaving groups
+* fix unread count issues in account switcher
+* fix scroll-down button for chat requests
+* add Bulgarian translations, update other translations and local help
+* update provider-database
+* update to core74
+
+
 ## v1.26.2
 2021-12
 
