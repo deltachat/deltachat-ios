@@ -30,7 +30,8 @@
 * add Bulgarian translations, update other translations and local help
 * update provider-database
 * update to core75
-
+* fix layout issues of the chat message input bar in phone's landscape orientation
+* semi-transparent chat input bar at the bottom of the chat view
 
 ## v1.26.2
 2021-12
