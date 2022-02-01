@@ -404,7 +404,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         if sections[section] == basicSection && editView {
             return String.localized("login_header")
         } else if sections[section] == folderSection {
-            return String.localized("pref_only_fetch_mvbox_explain")
+            return String.localized("pref_imap_folder_handling")
         } else {
             return nil
         }
