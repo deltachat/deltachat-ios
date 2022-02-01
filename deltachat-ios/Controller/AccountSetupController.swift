@@ -284,15 +284,16 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }()
 
     lazy var mvboxMoveCell: SwitchCell = {
-        return SwitchCell(
+        let cell = SwitchCell(
             textLabel: String.localized("pref_auto_folder_moves"),
             on: dcContext.getConfigBool("mvbox_move"),
             action: { cell in
                 self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("mvbox_move", cell.isOn)
                 self.dcAccounts.startIo()
-
         })
+        cell.uiSwitch.isEnabled = !dcContext.getConfigBool("only_fetch_mvbox")
+        return cell
     }()
 
     lazy var watchMvboxCell: SwitchCell = {
@@ -302,6 +303,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             action: { cell in
                 self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("only_fetch_mvbox", cell.isOn)
+                self.mvboxMoveCell.uiSwitch.isEnabled = !cell.isOn
                 self.dcAccounts.startIo()
         })
     }()
