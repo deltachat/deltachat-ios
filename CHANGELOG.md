@@ -7,7 +7,7 @@
   the database passphrase is generated automatically and is stored in the system's keychain,
   subsequent versions will probably get more options to handle passphrases
 * add writing support for supported mailinglist types; other mailinglist types stay read-only
-* add an option to define a background image that us used in all chats then :)
+* add an option to define a background image that is used in all chats then :)
 * "Message Info" show routes
 * add option "Your Profile Info / Password and Account / Only Fetch from DeltaChat Folder";
   this is useful if you can configure your server to move chat messages to the DeltaChat folder
