@@ -549,6 +549,8 @@
 "pref_send_copy_to_self" = "Kendime Kopya Gönder";
 "pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Taşınsın";
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
+"pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
+"pref_only_fetch_mvbox_explain" = "Diğer klasörleri yoksay. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
 "pref_show_emails" = "Klasik E-Postaları Göster";
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";

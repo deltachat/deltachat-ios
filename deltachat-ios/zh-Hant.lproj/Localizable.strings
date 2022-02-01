@@ -549,6 +549,8 @@
 "pref_send_copy_to_self" = "给自己发送副本";
 "pref_auto_folder_moves" = "自动移动至 DeltaChat 文件夹";
 "pref_auto_folder_moves_explain" = "移动聊天对话以免弄乱收件箱";
+"pref_only_fetch_mvbox_title" = "只从 DeltaChat 文件夹获取";
+"pref_only_fetch_mvbox_explain" = "忽略其他文件夹。需要你的服务器将聊天消息移动到 DeltaChat 文件夹。";
 "pref_show_emails" = "显示传统电子邮件";
 "pref_show_emails_no" = "不显示，仅聊天";
 "pref_show_emails_accepted_contacts" = "已接受的联系人";
