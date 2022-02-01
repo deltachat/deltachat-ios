@@ -10,7 +10,7 @@
 * add an option to define a background image that us used in all chats then :)
 * "Message Info" show routes
 * add "Search" and "Mute" as separate buttons to the chat profiles
-* the connectivity status now als show if notification work as expected
+* the connectivity status now also shows if notifications work as expected
 * improve accessibility for the chat requests button bar
 * show chat title in delete confirmation dialog
 * speed up opening chats
