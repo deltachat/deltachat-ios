@@ -63,7 +63,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         certCheckCell,
         viewLogCell
     ]
-    private lazy var folderCells: [UITableViewCell] = [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
+    private lazy var folderCells: [UITableViewCell] = [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell]
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
     private var providerInfoShowing: Bool = false
@@ -288,9 +288,23 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             textLabel: String.localized("pref_auto_folder_moves"),
             on: dcContext.getConfigBool("mvbox_move"),
             action: { cell in
+                self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("mvbox_move", cell.isOn)
+                self.dcAccounts.startIo()
         })
     }()
+
+    lazy var onlyFetchMvboxCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_only_fetch_mvbox_title"),
+            on: dcContext.getConfigBool("only_fetch_mvbox"),
+            action: { cell in
+                self.dcAccounts.stopIo()
+                self.dcContext.setConfigBool("only_fetch_mvbox", cell.isOn)
+                self.dcAccounts.startIo()
+        })
+    }()
+
 
     private lazy var loginButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
@@ -415,7 +429,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                 return String.localized("login_subheader")
             }
         } else if sections[section] == folderSection {
-            return String.localized("pref_auto_folder_moves_explain")
+            return String.localized("pref_only_fetch_mvbox_explain")
         } else {
             return nil
         }
