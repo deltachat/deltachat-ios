@@ -9,6 +9,8 @@
 * add writing support for supported mailinglist types; other mailinglist types stay read-only
 * add an option to define a background image that us used in all chats then :)
 * "Message Info" show routes
+* add option "Your Profile Info / Password and Account / Only Fetch from DeltaChat Folder";
+  this is useful if you can configure your server to move chat messages to the DeltaChat folder
 * add "Search" and "Mute" as separate buttons to the chat profiles
 * the connectivity status now also shows if notifications work as expected
 * improve accessibility for the chat requests button bar
@@ -27,7 +29,7 @@
 * fix scroll-down button for chat requests
 * add Bulgarian translations, update other translations and local help
 * update provider-database
-* update to core74
+* update to core75
 
 
 ## v1.26.2
