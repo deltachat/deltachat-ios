@@ -63,7 +63,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         certCheckCell,
         viewLogCell
     ]
-    private lazy var folderCells: [UITableViewCell] = [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, watchMvboxCell]
+    private lazy var folderCells: [UITableViewCell] = [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell]
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
     private var providerInfoShowing: Bool = false
@@ -294,7 +294,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         })
     }()
 
-    lazy var watchMvboxCell: SwitchCell = {
+    lazy var onlyFetchMvboxCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("pref_only_fetch_mvbox_title"),
             on: dcContext.getConfigBool("only_fetch_mvbox"),
