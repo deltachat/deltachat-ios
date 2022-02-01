@@ -288,7 +288,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             textLabel: String.localized("pref_auto_folder_moves"),
             on: dcContext.getConfigBool("mvbox_move"),
             action: { cell in
+                self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("mvbox_move", cell.isOn)
+                self.dcAccounts.startIo()
+
         })
     }()
 
