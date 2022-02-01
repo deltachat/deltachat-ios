@@ -549,6 +549,8 @@
 "pref_send_copy_to_self" = "Send Copy to Self";
 "pref_auto_folder_moves" = "Automatic Moves to DeltaChat Folder";
 "pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox";
+"pref_only_fetch_mvbox_title" = "Only Fetch from DeltaChat Folder";
+"pref_only_fetch_mvbox_explain" = "Ignore other folders. Requires your server to move chat messages to the DeltaChat folder.";
 "pref_show_emails" = "Show Classic E-Mails";
 "pref_show_emails_no" = "No, chats only";
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
