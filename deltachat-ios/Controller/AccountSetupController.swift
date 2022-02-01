@@ -63,7 +63,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         certCheckCell,
         viewLogCell
     ]
-    private lazy var folderCells: [UITableViewCell] = [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell]
+    private lazy var folderCells: [UITableViewCell] = [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, watchMvboxCell]
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
     private var providerInfoShowing: Bool = false
@@ -295,6 +295,18 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         })
     }()
 
+    lazy var watchMvboxCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_only_fetch_mvbox_title"),
+            on: dcContext.getConfigBool("only_fetch_mvbox"),
+            action: { cell in
+                self.dcAccounts.stopIo()
+                self.dcContext.setConfigBool("only_fetch_mvbox", cell.isOn)
+                self.dcAccounts.startIo()
+        })
+    }()
+
+
     private lazy var loginButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
             title: String.localized("login_title"),
@@ -390,7 +402,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         if sections[section] == basicSection && editView {
             return String.localized("login_header")
         } else if sections[section] == folderSection {
-            return String.localized("pref_imap_folder_handling")
+            return String.localized("pref_only_fetch_mvbox_explain")
         } else {
             return nil
         }
@@ -418,7 +430,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                 return String.localized("login_subheader")
             }
         } else if sections[section] == folderSection {
-            return String.localized("pref_auto_folder_moves_explain")
+            return String.localized("pref_only_fetch_mvbox_explain")
         } else {
             return nil
         }
