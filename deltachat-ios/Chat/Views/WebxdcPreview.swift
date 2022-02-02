@@ -24,7 +24,7 @@ public class WebxdcPreview: UIView {
     
     lazy var subtitleView: UILabel = {
         let view = UILabel()
-        view.font = UIFont.preferredItalicFont(for: .caption2)
+        view.font = UIFont.preferredFont(forTextStyle: .body)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 3
         isAccessibilityElement = false
