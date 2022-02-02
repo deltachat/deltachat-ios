@@ -14,6 +14,7 @@
 * add "Search" and "Mute" as separate buttons to the chat profiles
 * the connectivity status now also shows if notifications work as expected
 * improve accessibility for the chat requests button bar
+* semi-transparent chat input bar at the bottom of the chat view
 * show chat title in delete confirmation dialog
 * speed up opening chats
 * explicit "Watch Inbox folder" and "Watch DeltaChat folder" settings no longer required;
@@ -27,11 +28,11 @@
 * fix leaving groups
 * fix unread count issues in account switcher
 * fix scroll-down button for chat requests
+* fix layout issues of the chat message input bar in phone's landscape orientation
 * add Bulgarian translations, update other translations and local help
 * update provider-database
 * update to core75
-* fix layout issues of the chat message input bar in phone's landscape orientation
-* semi-transparent chat input bar at the bottom of the chat view
+
 
 ## v1.26.2
 2021-12
