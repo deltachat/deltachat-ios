@@ -11,4 +11,37 @@ extension DcMsg {
         let size = String(format: "%.1f", Double(filesize) / pow(1024, Double(digitGroups)))
         return "\(size) \(units[digitGroups])"
     }
+
+    public func getWebxdcInfoDict() -> [String: AnyObject] {
+        let jsonString = self.getWebxdcInfoJson()
+        if let data: Data = jsonString.data(using: .utf8),
+           let infoDict = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: AnyObject] {
+               return infoDict
+           }
+        return [:]
+    }
+
+    public func getWebxdcName() -> String? {
+        if let title = getWebxdcInfoDict()["name"] as? String {
+            return title
+        }
+        return nil
+    }
+
+    public func getWebxdcIcon() -> UIImage? {
+        if let iconfilePath = getWebxdcInfoDict()["icon"] as? String {
+            let blob = getWebxdcBlob(filename: iconfilePath)
+            if !blob.isEmpty {
+                return UIImage(data: blob)
+            }
+        }
+        return nil
+    }
+
+    public func getWebxdcSummary() -> String {
+        if let summary = getWebxdcInfoDict()["summary"] as? String {
+            return summary
+        }
+        return "Webxdc"
+    }
 }
