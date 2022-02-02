@@ -113,7 +113,7 @@ class WebxdcViewController: WebViewViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = getTitleFromWebxdcInfoJson()
+        self.title = dcContext.getMessage(id: messageId).getWebxdcName()
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -158,16 +158,6 @@ class WebxdcViewController: WebViewViewController {
         }
         logger.debug("loading: \(String(describing: navigationAction.request.url))")
         decisionHandler(.allow)
-    }
-
-    private func getTitleFromWebxdcInfoJson() -> String {
-        let jsonString = dcContext.getMessage(id: messageId).getWebxdcInfoJson()
-        if let data: Data = jsonString.data(using: .utf8),
-           let infoJson = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: AnyObject],
-           let title = infoJson["name"] as? String {
-            return title
-        }
-        return ""
     }
 
     override func viewWillAppear(_ animated: Bool) {
