@@ -12,6 +12,8 @@ class ChatListController: UITableViewController {
     private var msgChangedObserver: NSObjectProtocol?
     private var msgsNoticedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
+    private var chatModifiedObserver: NSObjectProtocol?
+    private var contactsChangedObserver: NSObjectProtocol?
     private var connectivityChangedObserver: NSObjectProtocol?
     private var msgChangedSearchResultObserver: NSObjectProtocol?
 
@@ -165,6 +167,18 @@ class ChatListController: UITableViewController {
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
+        chatModifiedObserver = nc.addObserver(
+            forName: dcNotificationChatModified,
+            object: nil,
+            queue: nil) { [weak self] _ in
+                self?.refreshInBg()
+            }
+        contactsChangedObserver = nc.addObserver(
+            forName: dcNotificationContactChanged,
+            object: nil,
+            queue: nil) { [weak self] _ in
+                self?.refreshInBg()
+            }
 
         nc.addObserver(
             self,
@@ -192,6 +206,12 @@ class ChatListController: UITableViewController {
         }
         if let msgsNoticedObserver = self.msgsNoticedObserver {
             nc.removeObserver(msgsNoticedObserver)
+        }
+        if let chatModifiedObserver = self.chatModifiedObserver {
+            nc.removeObserver(chatModifiedObserver)
+        }
+        if let contactsChangedObserver = self.contactsChangedObserver {
+            nc.removeObserver(contactsChangedObserver)
         }
         if let connectivityChangedObserver = self.connectivityChangedObserver {
             nc.removeObserver(connectivityChangedObserver)
