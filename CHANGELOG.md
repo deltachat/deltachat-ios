@@ -1,5 +1,12 @@
 # Delta Chat iOS Changelog
 
+## v1.28.1
+2022-02
+
+* fix some missing chatlist updates
+* update translations
+
+
 ## v1.28.0
 2022-01
 
