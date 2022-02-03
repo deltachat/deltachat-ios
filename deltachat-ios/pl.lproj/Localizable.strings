@@ -109,6 +109,8 @@
 "contact" = "Kontakt";
 "verified_contact" = "Zweryfikowany kontakt";
 "camera" = "Kamera";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+"capture" = "Zrób to";
 "switch_camera" = "Przełącz kamerę";
 "toggle_fullscreen" = "Przełącz na tryb pełnoekranowy";
 "location" = "Lokalizacja";
@@ -223,6 +225,8 @@
 // Translators: this is the opposite of "Pin", removing the sticky-state from sth.
 "unpin" = "Odepnij";
 "ConversationFragment_quoted_message_not_found" = "Nie znaleziono oryginalnej wiadomości";
+"reply_privately" = "Odpowiedz prywatnie ";
+
 "mute_for_one_hour" = "Wyłącz na 1 godzinę";
 "mute_for_two_hours" = "Wyłącz na 2 godziny";
 "mute_for_one_day" = "Wyłącz na 1 dzień";
@@ -316,6 +320,9 @@
 // mailing lists
 "mailing_list" = "Lista mailingowa";
 "mailing_list_profile_info" = "Zmiany nazwy i obrazu listy adresowej dotyczą tylko tego urządzenia.";
+
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Najpierw zaakceptuj prośbę o czat.";
 
 // map
 "filter_map_on_time" = "Pokaż lokalizacje w ramach czasowych";
@@ -539,12 +546,16 @@
 "pref_send_copy_to_self" = "Wyślij kopię do siebie";
 "pref_auto_folder_moves" = "Automatyczne przenoszenie do folderu DeltaChat";
 "pref_auto_folder_moves_explain" = "Rozmowy na czacie są przenoszone, aby nie zaśmiecać folderu Skrzynka odbiorcza";
+"pref_only_fetch_mvbox_title" = "Pobieraj tylko z folderu DeltaChat";
+"pref_only_fetch_mvbox_explain" = "Zignoruj inne foldery. Wymaga, aby twój serwer przenosił wiadomości czatu do folderu DeltaChat.";
 "pref_show_emails" = "Pokaż klasyczne e-maile";
 "pref_show_emails_no" = "Nie, tylko czaty";
 "pref_show_emails_accepted_contacts" = "Dla zaakceptowanych kontaktów";
 "pref_show_emails_all" = "Wszystkie";
 "pref_experimental_features" = "Funkcje eksperymentalne";
 "pref_on_demand_location_streaming" = "Przesyłanie strumieniowe lokalizacji na żądanie";
+"pref_developer_mode" = "Tryb programisty";
+"pref_developer_mode_explain" = "Aktywuje opcje debugowania i może spowodować, że aplikacja będzie mniej stabilna. Tylko dla programistów.";
 "pref_background_default" = "Domyślne tło";
 "pref_background_default_color" = "Domyślny kolor";
 "pref_background_custom_image" = "Własny obraz";
@@ -832,3 +843,6 @@
 "update_1_24_android" = "1.24 w skrócie:\n\n• Zapisywanie dotknięć: wybór konta w lewym górnym rogu listy czatu\n• Zapisywanie kolejnych dotknięć: dotknij i przytrzymaj ikony aplikacji, aby bezpośrednio otwierać ostatnie czaty\n• Oszczędzaj transfer: pobierz duże pliki w razie potrzeby\n• Oszczędzaj nerwy: szybsze, nieblokujące dołączanie za pomocą kodów QR i nowe opcje kodów QR\n\nWięcej na 👉";
 "update_1_24_ios" = "1.24 w skrócie:\n\n• Rozpocznij wyszukiwanie na czacie z profilu czatu\n• Oszczędzaj transfer: pobierz duże pliki w razie potrzeby\n• Oszczędzaj nerwy: szybsze, nieblokujące dołączanie za pomocą kodów QR \n\nWięcej na 👉";
 "update_1_26" = "1.26 dopracowanie 💅\n\n• Po tym jak w 1.24 kody QR przestały się blokować, teraz również wyglądają dużo ładniej - na wszystkich platformach\n• Awatary i plakietki wyglądają podobnie na różnych platformach\n• Naprawiono wiele błędów";
+"update_1_28_android" = "1.28 Najważniejsze informacje:\n\n🔒 Szyfrowanie: Nowa eksperymentalna opcja do utrzymywania kontaktów, szyfrowania sekretnych i tekstowych wiadomości zaszyfrowanych na twoim urządzeniu. Dostępne tylko podczas tworzenia konta i importowania plików kopii zapasowych.\n\n📫 Zapisywanie do listy dyskusyjnej\n\n💫 Szybsza konfiguracja początkowa dla większej liczby serwerów e-mail i usprawnionych opcji sieciowych, aby zapobiec przypadkowej błędnej konfiguracji\n\n🐜 Prawdopodobnie naprawione zgłaszane przez użytkownika problemy";
+"update_1_28_ios_extra_line" = "… i już teraz możesz wybrać tapetę w „Ustawienia » Tło” :) ";
+
