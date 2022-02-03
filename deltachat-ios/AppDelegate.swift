@@ -444,19 +444,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
             logger.info("⬅️ finishing fetch")
-
             guard let self = self else {
                 completionHandler(.failed)
                 return
             }
+
             if !self.appIsInForeground() {
                 self.dcAccounts.stopIo()
             }
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 logger.info("⬅️ fetch done")
+                guard let self = self else {
+                    completionHandler(.failed)
+                    return
+                }
+
+                self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
                 completionHandler(.newData)
 
                 if backgroundTask != .invalid {
@@ -561,6 +567,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             slidingTimeframe.append(nowTimestamp)
             UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
         }
+    }
+
+    private func pushToDebugArray(name: String, value: Double) {
+        let values = UserDefaults.standard.array(forKey: name)
+        var slidingValues = [Double]()
+        if values != nil, let values = values as? [Double] {
+            slidingValues = values.suffix(16)
+        }
+        slidingValues.append(value)
+        UserDefaults.standard.set(slidingValues, forKey: name)
     }
 
     private func setStockTranslations() {
