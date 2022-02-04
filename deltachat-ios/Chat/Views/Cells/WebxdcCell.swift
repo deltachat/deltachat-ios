@@ -16,6 +16,7 @@ public class WebxdcCell: BaseMessageCell {
         let spacerView = UIView()
         spacer = spacerView.constraintHeightTo(8, priority: .defaultHigh)
         spacer?.isActive = true
+        spacerView.constraintWidthTo(300, priority: UILayoutPriority(rawValue: 400)).isActive = true
         mainContentView.addArrangedSubview(webxdcView)
         mainContentView.addArrangedSubview(spacerView)
         mainContentView.addArrangedSubview(messageLabel)

@@ -3,12 +3,12 @@ import DcCore
 
 public class WebxdcPreview: UIView {
     
-    private var imageWidthConstraint: NSLayoutConstraint?
-    private var imageHeightConstraint: NSLayoutConstraint?
-    
     lazy var imagePreview: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .left
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
         return view
     }()
     
@@ -34,6 +34,7 @@ public class WebxdcPreview: UIView {
     lazy var containerStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [imagePreview, titleView, subtitleView])
         view.axis = .vertical
+        view.alignment = .leading
         view.spacing = 6
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -56,12 +57,10 @@ public class WebxdcPreview: UIView {
     private func setupSubviews() {
         addSubview(containerStackView)
         containerStackView.fillSuperview()
-        imageWidthConstraint = imagePreview.constraintWidthTo(80)
-        imageHeightConstraint = imagePreview.constraintHeightTo(80, priority: .defaultLow)
     }
     
     public func configure(message: DcMsg) {
-        imagePreview.image = message.getWebxdcIcon()
+        imagePreview.image = message.getWebxdcIcon()?.sd_resizedImage(with: CGSize(width: 175, height: 175), scaleMode: .aspectFill)
         titleView.text = message.getWebxdcName()
         subtitleView.text = message.getWebxdcSummary()
     }
