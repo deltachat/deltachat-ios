@@ -3,19 +3,20 @@ import WebKit
 import DcCore
 
 class WebxdcViewController: WebViewViewController {
-
+    
     enum WebxdcHandler: String {
+        case log  = "log"
         case getStatusUpdates = "getStatusUpdatesHandler"
         case sendStatusUpdate = "sendStatusUpdateHandler"
     }
     let INTERNALSCHEMA = "webxdc"
     let INTERNALDOMAIN = "local.app"
-
+    
     var messageId: Int
     var dcContext: DcContext
     var webxdcUpdateObserver: NSObjectProtocol?
-
-
+    
+    
     // Block just everything :)
     let blockRules = """
     [
@@ -29,36 +30,59 @@ class WebxdcViewController: WebViewViewController {
         }
     ]
     """
-
+    
     lazy var webxdcbridge: String = {
         let script = """
         window.webxdc = (() => {
+          var log = (s)=>webkit.messageHandlers.log.postMessage(s);
+        // setInterval(()=>log("thing"), 6000);
+        
           var update_listener = () => {};
-
+        
           // instead of calling .getStatusUpdatesHandler (-> async),
           // we're passing the updates directly to this js function
           window.__webxdcUpdate = (updateString) => {
-            var updates = JSON.parse(updateString);
-            if (updates.length === 1) {
-              update_listener(updates[0]);
+            // log("update received:"+updateString);
+            try {
+                var updates = JSON.parse(updateString);
+                if (updates.length === 1) {
+                  update_listener(updates[0]);
+                }
+            } catch (e) {
+                log("json error: "+ e.message)
             }
           };
-
+        
+          
+          var async_calls = {};
+          var async_call_id = 0;
+          window.__resolve_async_call = (id, rawPayload) => {
+            // log("async received:" + rawPayload)
+            try {
+                const payload = JSON.parse(rawPayload);
+                if (async_calls[id]) {
+                  async_calls[id](payload);
+                  delete async_calls[id];
+                }
+            } catch (e) {
+                log("json error: "+ e.message)
+            }
+          };
+        
           return {
             selfAddr: "\(dcContext.addr ?? "unknown")",
-
+        
             selfName: "\(dcContext.displayname ?? "unknown")",
-
+        
             setUpdateListener: (cb) => (update_listener = cb),
-
+        
             getAllUpdates: () => {
-              // FIXME: we need to add an callback here, comp. https://programming.vip/docs/the-perfect-solution-for-wkwebview-to-interact-with-js.html
-              webkit.messageHandlers.getStatusUpdatesHandler.postMessage(0)
-              // call to webkit.messageHandlers.getStatusUpdatesHandler.postMessage(0) doesn't return anything currently but showcases
-              // the communication js -> swift is working
-              return  Promise.resolve([]);
+              const invocation_id = async_call_id++;
+              // log("async sent:" + invocation_id);
+              webkit.messageHandlers.getStatusUpdatesHandler.postMessage(invocation_id);
+              return new Promise((resolve, reject) => {async_calls[invocation_id] = resolve;});
             },
-
+        
             sendUpdate: (payload, descr) => {
                 // only one parameter is allowed, we we create a new parameter object here
                 var parameter = {
@@ -72,24 +96,26 @@ class WebxdcViewController: WebViewViewController {
         """
         return script
     }()
-
+    
     override var configuration: WKWebViewConfiguration {
         let config = WKWebViewConfiguration()
         let preferences = WKPreferences()
         let contentController = WKUserContentController()
-
+        
         contentController.add(self, name: WebxdcHandler.sendStatusUpdate.rawValue)
         contentController.add(self, name: WebxdcHandler.getStatusUpdates.rawValue)
-        let bridgeScript = WKUserScript(source: webxdcbridge, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-        contentController.addUserScript(bridgeScript)
-
+        contentController.add(self, name: WebxdcHandler.log.rawValue)
+        // the bridgeScript is already imported by webxdc.js
+        // let bridgeScript = WKUserScript(source: webxdcbridge, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        // contentController.addUserScript(bridgeScript)
+        
         config.userContentController = contentController
         config.setURLSchemeHandler(self, forURLScheme: INTERNALSCHEMA)
-
+        
         if #available(iOS 13.0, *) {
             preferences.isFraudulentWebsiteWarningEnabled = true
         }
-
+        
         if #available(iOS 14.0, *) {
             config.defaultWebpagePreferences.allowsContentJavaScript = true
         } else {
@@ -99,23 +125,23 @@ class WebxdcViewController: WebViewViewController {
         config.preferences = preferences
         return config
     }
-
-
+    
+    
     init(dcContext: DcContext, messageId: Int) {
         self.dcContext = dcContext
         self.messageId = messageId
         super.init()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = dcContext.getMessage(id: messageId).getWebxdcName()
     }
-
+    
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         if parent == nil {
@@ -128,7 +154,7 @@ class WebxdcViewController: WebViewViewController {
             addObserver()
         }
     }
-
+    
     private func addObserver() {
         let nc = NotificationCenter.default
         webxdcUpdateObserver = nc.addObserver(
@@ -140,18 +166,18 @@ class WebxdcViewController: WebViewViewController {
             guard let ui = notification.userInfo,
                   let messageId = ui["message_id"] as? Int,
                   let statusId = ui["status_id"] as? Int,
-                      messageId == self.messageId else {
-                          logger.error("failed to handle dcNotificationWebxdcUpdate")
-                          return
-                      }
+                  messageId == self.messageId else {
+                      logger.error("failed to handle dcNotificationWebxdcUpdate")
+                      return
+                  }
             self.updateWebxdc(statusId: statusId)
         }
     }
-
+    
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         // TODO: what about tel:// and mailto://
         if let url = navigationAction.request.url,
-            url.scheme != INTERNALSCHEMA {
+           url.scheme != INTERNALSCHEMA {
             logger.debug("cancel loading: \(url)")
             decisionHandler(.cancel)
             return
@@ -159,29 +185,29 @@ class WebxdcViewController: WebViewViewController {
         logger.debug("loading: \(String(describing: navigationAction.request.url))")
         decisionHandler(.allow)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadHtml()
     }
-
-
+    
+    
     private func loadRestrictedHtml() {
         // TODO: compile only once
         WKContentRuleListStore.default().compileContentRuleList(
-                forIdentifier: "WebxdcContentBlockingRules",
-                encodedContentRuleList: blockRules) { (contentRuleList, error) in
-
-            guard let contentRuleList = contentRuleList, error == nil else {
-                return
+            forIdentifier: "WebxdcContentBlockingRules",
+            encodedContentRuleList: blockRules) { (contentRuleList, error) in
+                
+                guard let contentRuleList = contentRuleList, error == nil else {
+                    return
+                }
+                
+                let configuration = self.webView.configuration
+                configuration.userContentController.add(contentRuleList)
+                self.loadHtml()
             }
-
-            let configuration = self.webView.configuration
-            configuration.userContentController.add(contentRuleList)
-            self.loadHtml()
-        }
     }
-
+    
     private func loadHtml() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
@@ -190,10 +216,17 @@ class WebxdcViewController: WebViewViewController {
             }
         }
     }
-
+    
     private func updateWebxdc(statusId: Int) {
         let statusUpdates = self.dcContext.getWebxdcStatusUpdates(msgId: messageId, statusUpdateId: statusId)
         logger.debug("status updates: \(statusUpdates)")
+        webView.evaluateJavaScript("window.__webxdcUpdate(atob(\"\(statusUpdates.toBase64())\"))", completionHandler: nil)
+    }
+}
+
+extension String {
+    func toBase64() -> String {
+        return Data(self.utf8).base64EncodedString()
     }
 }
 
@@ -203,13 +236,22 @@ extension WebxdcViewController: WKScriptMessageHandler {
         switch handler {
         case .getStatusUpdates:
             logger.debug("getStatusUpdates called")
-            guard let statusId = message.body as? Int else {
+            guard let invocationId = message.body as? Int else {
                 logger.error("could not convert param \(message.body) to int")
                 return
             }
-            let statusUpdates = dcContext.getWebxdcStatusUpdates(msgId: messageId, statusUpdateId: statusId)
-            logger.debug("status updates for message \(messageId) and statusId: \(statusId): \(statusUpdates)")
-            // TODO: return
+            let statusUpdates = dcContext.getWebxdcStatusUpdates(msgId: messageId, statusUpdateId: 0)
+            logger.debug("status updates for message \(messageId): \(statusUpdates)")
+            webView.evaluateJavaScript("window.__resolve_async_call(\(invocationId), (atob(\"\(statusUpdates.toBase64())\")))", completionHandler: nil)
+            
+        case .log:
+            logger.debug("webxdc log called")
+            guard let msg = message.body as? String else {
+                logger.error("could not convert param \(message.body) to string")
+                return
+            }
+            logger.debug("webxdc log msg: "+msg)
+            
         case .sendStatusUpdate:
             logger.debug("sendStatusUpdate called")
             guard let dict = message.body as? [String: AnyObject],
@@ -220,7 +262,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
                       logger.error("Failed to parse status update parameters \(message.body)")
                       return
                   }
-
+            
             logger.debug(">> \(payloadString), \(description)")
             _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
         default:
@@ -243,13 +285,13 @@ extension WebxdcViewController: WKURLSchemeHandler {
             }
             let mimeType = DcUtils.getMimeTypeForPath(path: file)
             logger.debug(mimeType)
-
+            
             if !mimeType.contains(subSequence: "text").isEmpty {
                 logger.debug(String(bytes: data, encoding: String.Encoding.utf8) ?? "invalid string")
             }
-
+            
             let response = URLResponse(url: url, mimeType: mimeType, expectedContentLength: data.count, textEncodingName: nil)
-
+            
             urlSchemeTask.didReceive(response)
             urlSchemeTask.didReceive(data)
             urlSchemeTask.didFinish()
@@ -257,7 +299,7 @@ extension WebxdcViewController: WKURLSchemeHandler {
             logger.debug("not loading \(String(describing: urlSchemeTask.request.url))")
         }
     }
-
+    
     func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
     }
 }
