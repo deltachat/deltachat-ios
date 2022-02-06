@@ -62,3 +62,10 @@ export CPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platfor
 ```
 Note: the default terminal switched to zsh on MacOS Catalina. All your exported variables have to move to ~/.zshrc
 
+
+## Running the app on M1 Mac computers
+
+If you want to import/export a backup this is the location you want to put it (import) or retrieve it (export)
+```
+~/Library/Containers/98CC2CD0-7DED-4E02-9C0A-B4FF287AA877/Data/Documents
+```
