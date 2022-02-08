@@ -224,12 +224,6 @@ class WebxdcViewController: WebViewViewController {
     }
 }
 
-extension String {
-    func toBase64() -> String {
-        return Data(self.utf8).base64EncodedString()
-    }
-}
-
 extension WebxdcViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let handler = WebxdcHandler(rawValue: message.name)
