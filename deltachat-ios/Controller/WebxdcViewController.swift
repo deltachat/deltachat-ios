@@ -70,9 +70,9 @@ class WebxdcViewController: WebViewViewController {
           };
         
           return {
-            selfAddr: "\(dcContext.addr ?? "unknown")",
+            selfAddr: atob("\((dcContext.addr ?? "unknown").toBase64())"),
         
-            selfName: "\(dcContext.displayname ?? "unknown")",
+            selfName: atob("\((dcContext.displayname ?? dcContext.addr ?? "unknown").toBase64())"),
         
             setUpdateListener: (cb) => (update_listener = cb),
         
