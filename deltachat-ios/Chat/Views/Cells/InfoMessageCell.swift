@@ -73,3 +73,7 @@ class InfoMessageCell: UITableViewCell {
     }
 
 }
+
+extension InfoMessageCell: SelectableCell {
+    public func showSelectionBackground(_ show: Bool) {}
+}

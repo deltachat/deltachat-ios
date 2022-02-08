@@ -881,6 +881,8 @@ class ChatViewController: UITableViewController {
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
+        } else if message.isInfo, let parent = message.parent {
+            scrollToMessage(msgId: parent.id)
         }
         _ = handleUIMenu()
     }
