@@ -1782,7 +1782,12 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
-        showMediaGalleryFor(indexPath: indexPath)
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        if message.type == DC_MSG_WEBXDC {
+            showWebxdcViewFor(message: message)
+        } else {
+            showMediaGalleryFor(indexPath: indexPath)
+        }
     }
 
     @objc func avatarTapped(indexPath: IndexPath) {
