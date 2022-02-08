@@ -20,28 +20,4 @@ extension DcMsg {
            }
         return [:]
     }
-
-    public func getWebxdcName() -> String? {
-        if let title = getWebxdcInfoDict()["name"] as? String {
-            return title
-        }
-        return nil
-    }
-
-    public func getWebxdcIcon() -> UIImage? {
-        if let iconfilePath = getWebxdcInfoDict()["icon"] as? String {
-            let blob = getWebxdcBlob(filename: iconfilePath)
-            if !blob.isEmpty {
-                return UIImage(data: blob)
-            }
-        }
-        return nil
-    }
-
-    public func getWebxdcSummary() -> String {
-        if let summary = getWebxdcInfoDict()["summary"] as? String {
-            return summary
-        }
-        return "Webxdc"
-    }
 }

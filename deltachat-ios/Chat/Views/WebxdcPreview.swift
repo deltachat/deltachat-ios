@@ -60,9 +60,15 @@ public class WebxdcPreview: UIView {
     }
     
     public func configure(message: DcMsg) {
-        imagePreview.image = message.getWebxdcIcon()?.sd_resizedImage(with: CGSize(width: 175, height: 175), scaleMode: .aspectFill)
-        titleView.text = message.getWebxdcName()
-        subtitleView.text = message.getWebxdcSummary()
+        let dict = message.getWebxdcInfoDict()
+        if let iconfilePath = dict["icon"] as? String {
+            let blob = message.getWebxdcBlob(filename: iconfilePath)
+            if !blob.isEmpty {
+                imagePreview.image = UIImage(data: blob)?.sd_resizedImage(with: CGSize(width: 175, height: 175), scaleMode: .aspectFill)
+            }
+        }
+        titleView.text = dict["name"] as? String
+        subtitleView.text = dict["summary"] as? String ?? "Webxdc"
     }
 
     public func configureAccessibilityLabel() -> String {
