@@ -11,4 +11,13 @@ extension DcMsg {
         let size = String(format: "%.1f", Double(filesize) / pow(1024, Double(digitGroups)))
         return "\(size) \(units[digitGroups])"
     }
+
+    public func getWebxdcInfoDict() -> [String: AnyObject] {
+        let jsonString = self.getWebxdcInfoJson()
+        if let data: Data = jsonString.data(using: .utf8),
+           let infoDict = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: AnyObject] {
+               return infoDict
+           }
+        return [:]
+    }
 }

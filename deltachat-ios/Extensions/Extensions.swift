@@ -88,6 +88,14 @@ extension UIFont {
         let metrics = UIFontMetrics(forTextStyle: style)
         return metrics.scaledFont(for: font)
     }
+
+    static func preferredBoldFont(for style: TextStyle) -> UIFont {
+        let traits = UITraitCollection(preferredContentSizeCategory: .large)
+        let desc = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style, compatibleWith: traits)
+        let font = UIFont.boldSystemFont(ofSize: desc.pointSize)
+        let metrics = UIFontMetrics(forTextStyle: style)
+        return metrics.scaledFont(for: font)
+    }
 }
 
 extension UINavigationController {

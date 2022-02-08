@@ -297,6 +297,7 @@ class ChatViewController: UITableViewController {
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: "info")
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.register(VideoInviteCell.self, forCellReuseIdentifier: "video_invite")
+        tableView.register(WebxdcCell.self, forCellReuseIdentifier: "webxdc")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
@@ -709,7 +710,8 @@ class ChatViewController: UITableViewController {
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
             }
-
+        case DC_MSG_WEBXDC:
+                cell = tableView.dequeueReusableCell(withIdentifier: "webxdc", for: indexPath) as? WebxdcCell ?? WebxdcCell()
         case DC_MSG_AUDIO, DC_MSG_VOICE:
             let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
                                                                                       for: indexPath) as? AudioMessageCell ?? AudioMessageCell()
@@ -1601,6 +1603,11 @@ class ChatViewController: UITableViewController {
         )
     }
 
+    func showWebxdcViewFor(message: DcMsg) {
+        let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
+        navigationController?.pushViewController(webxdcViewController, animated: true)
+    }
+
     func showMediaGalleryFor(indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
@@ -1708,6 +1715,8 @@ extension ChatViewController: BaseMessageCellDelegate {
         let msg = dcContext.getMessage(id: messageIds[indexPath.row])
         if msg.downloadState != DC_DOWNLOAD_DONE {
             dcContext.downloadFullMessage(id: msg.id)
+        } else if msg.type == DC_MSG_WEBXDC {
+            showWebxdcViewFor(message: msg)
         } else {
             let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id)
             navigationController?.pushViewController(fullMessageViewController, animated: true)

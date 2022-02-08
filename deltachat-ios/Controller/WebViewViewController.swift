@@ -4,16 +4,19 @@ import WebKit
 class WebViewViewController: UIViewController, WKNavigationDelegate {
 
     public lazy var webView: WKWebView = {
+        let view = WKWebView(frame: .zero, configuration: configuration)
+        view.navigationDelegate = self
+        return view
+    }()
+
+    open var configuration: WKWebViewConfiguration {
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = false
 
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
-
-        let view = WKWebView(frame: .zero, configuration: configuration)
-        view.navigationDelegate = self
-        return view
-    }()
+        return configuration
+    }
 
     init() {
         super.init(nibName: nil, bundle: nil)

@@ -81,4 +81,8 @@ extension String {
             return "\(number)"
         }
     }
+
+    func toBase64() -> String {
+        return Data(self.utf8).base64EncodedString()
+    }
 }
