@@ -969,6 +969,7 @@ public class DcMsg {
         return Int(dc_msg_get_id(messagePointer))
     }
 
+
     public var fromContactId: Int {
         return Int(dc_msg_get_from_id(messagePointer))
     }
@@ -1037,6 +1038,11 @@ public class DcMsg {
             }
             dc_msg_set_quote(messagePointer, newValue?.messagePointer)
         }
+    }
+
+    public var parent: DcMsg? {
+        guard let msgpointer = dc_msg_get_parent(messagePointer) else { return nil }
+        return DcMsg(pointer: msgpointer)
     }
 
     public var downloadState: Int32 {
