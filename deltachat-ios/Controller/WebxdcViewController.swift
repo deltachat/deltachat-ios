@@ -35,14 +35,12 @@ class WebxdcViewController: WebViewViewController {
         let script = """
         window.webxdc = (() => {
           var log = (s)=>webkit.messageHandlers.log.postMessage(s);
-        // setInterval(()=>log("thing"), 6000);
         
           var update_listener = () => {};
         
           // instead of calling .getStatusUpdatesHandler (-> async),
           // we're passing the updates directly to this js function
           window.__webxdcUpdate = (updateString) => {
-            // log("update received:"+updateString);
             try {
                 var updates = JSON.parse(updateString);
                 if (updates.length === 1) {
@@ -57,7 +55,6 @@ class WebxdcViewController: WebViewViewController {
           var async_calls = {};
           var async_call_id = 0;
           window.__resolve_async_call = (id, rawPayload) => {
-            // log("async received:" + rawPayload)
             try {
                 const payload = JSON.parse(rawPayload);
                 if (async_calls[id]) {
@@ -78,7 +75,6 @@ class WebxdcViewController: WebViewViewController {
         
             getAllUpdates: () => {
               const invocation_id = async_call_id++;
-              // log("async sent:" + invocation_id);
               webkit.messageHandlers.getStatusUpdatesHandler.postMessage(invocation_id);
               return new Promise((resolve, reject) => {async_calls[invocation_id] = resolve;});
             },
@@ -105,9 +101,6 @@ class WebxdcViewController: WebViewViewController {
         contentController.add(self, name: WebxdcHandler.sendStatusUpdate.rawValue)
         contentController.add(self, name: WebxdcHandler.getStatusUpdates.rawValue)
         contentController.add(self, name: WebxdcHandler.log.rawValue)
-        // the bridgeScript is already imported by webxdc.js
-        // let bridgeScript = WKUserScript(source: webxdcbridge, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-        // contentController.addUserScript(bridgeScript)
         
         config.userContentController = contentController
         config.setURLSchemeHandler(self, forURLScheme: INTERNALSCHEMA)
@@ -229,7 +222,6 @@ extension WebxdcViewController: WKScriptMessageHandler {
         let handler = WebxdcHandler(rawValue: message.name)
         switch handler {
         case .getStatusUpdates:
-            logger.debug("getStatusUpdates called")
             guard let invocationId = message.body as? Int else {
                 logger.error("could not convert param \(message.body) to int")
                 return
@@ -239,7 +231,6 @@ extension WebxdcViewController: WKScriptMessageHandler {
             webView.evaluateJavaScript("window.__resolve_async_call(\(invocationId), (atob(\"\(statusUpdates.toBase64())\")))", completionHandler: nil)
             
         case .log:
-            logger.debug("webxdc log called")
             guard let msg = message.body as? String else {
                 logger.error("could not convert param \(message.body) to string")
                 return
@@ -247,7 +238,6 @@ extension WebxdcViewController: WKScriptMessageHandler {
             logger.debug("webxdc log msg: "+msg)
             
         case .sendStatusUpdate:
-            logger.debug("sendStatusUpdate called")
             guard let dict = message.body as? [String: AnyObject],
                   let payloadDict = dict["payload"] as?  [String: AnyObject],
                   let payloadJson = try? JSONSerialization.data(withJSONObject: payloadDict, options: []),
@@ -257,7 +247,6 @@ extension WebxdcViewController: WKScriptMessageHandler {
                       return
                   }
             
-            logger.debug(">> \(payloadString), \(description)")
             _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
         default:
             logger.debug("another method was called")
@@ -269,7 +258,6 @@ extension WebxdcViewController: WKURLSchemeHandler {
     func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
         if let url = urlSchemeTask.request.url, let scheme = url.scheme, scheme == INTERNALSCHEMA {
             let file = url.path
-            logger.debug(file)
             let dcMsg = dcContext.getMessage(id: messageId)
             var data: Data
             if url.lastPathComponent == "webxdc.js" {
@@ -278,12 +266,6 @@ extension WebxdcViewController: WKURLSchemeHandler {
                 data = dcMsg.getWebxdcBlob(filename: file)
             }
             let mimeType = DcUtils.getMimeTypeForPath(path: file)
-            logger.debug(mimeType)
-            
-            if !mimeType.contains(subSequence: "text").isEmpty {
-                logger.debug(String(bytes: data, encoding: String.Encoding.utf8) ?? "invalid string")
-            }
-            
             let response = URLResponse(url: url, mimeType: mimeType, expectedContentLength: data.count, textEncodingName: nil)
             
             urlSchemeTask.didReceive(response)
