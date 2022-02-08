@@ -881,7 +881,7 @@ class ChatViewController: UITableViewController {
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
-        } else if message.isInfo, let parent = message.parent {
+        } else if message.isInfo, let parent = message.parent, parent.type == DC_MSG_WEBXDC {
             scrollToMessage(msgId: parent.id)
         }
         _ = handleUIMenu()
