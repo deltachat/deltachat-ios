@@ -27,7 +27,8 @@ public class WebxdcPreview: UIView {
         let view = UILabel()
         view.font = UIFont.preferredFont(forTextStyle: .body)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.numberOfLines = 3
+        view.numberOfLines = 1
+        view.lineBreakMode = .byTruncatingTail
         isAccessibilityElement = false
         return view
     }()
