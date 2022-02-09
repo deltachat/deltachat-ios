@@ -93,6 +93,12 @@ class WebxdcViewController: WebViewViewController {
         return script
     }()
     
+    private let disableZoom: String = "var meta = document.createElement('meta');" +
+        "meta.name = 'viewport';" +
+        "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';" +
+        "var head = document.getElementsByTagName('head')[0];" +
+        "head.appendChild(meta);"
+
     override var configuration: WKWebViewConfiguration {
         let config = WKWebViewConfiguration()
         let preferences = WKPreferences()
@@ -102,6 +108,9 @@ class WebxdcViewController: WebViewViewController {
         contentController.add(self, name: WebxdcHandler.getStatusUpdates.rawValue)
         contentController.add(self, name: WebxdcHandler.log.rawValue)
         
+        let disableZoomScript: WKUserScript = WKUserScript(source: disableZoom, injectionTime: .atDocumentStart, forMainFrameOnly: true)
+        contentController.addUserScript(disableZoomScript)
+
         config.userContentController = contentController
         config.setURLSchemeHandler(self, forURLScheme: INTERNALSCHEMA)
         
