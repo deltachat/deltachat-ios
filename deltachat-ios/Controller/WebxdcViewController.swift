@@ -142,6 +142,7 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = dcContext.getMessage(id: messageId).getWebxdcInfoDict()["name"] as? String
+        webView.scrollView.bounces = false
     }
     
     override func willMove(toParent parent: UIViewController?) {
