@@ -184,6 +184,13 @@ class WebxdcViewController: WebViewViewController {
         loadHtml()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if #available(iOS 15.0, *) {
+            webView.pauseAllMediaPlayback()
+        }
+    }
+
     
     private func loadRestrictedHtml() {
         // TODO: compile only once
