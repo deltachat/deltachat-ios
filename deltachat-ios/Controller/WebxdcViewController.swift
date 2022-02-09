@@ -105,6 +105,9 @@ class WebxdcViewController: WebViewViewController {
         config.userContentController = contentController
         config.setURLSchemeHandler(self, forURLScheme: INTERNALSCHEMA)
         
+        config.mediaTypesRequiringUserActionForPlayback = []
+        config.allowsInlineMediaPlayback = true
+
         if #available(iOS 13.0, *) {
             preferences.isFraudulentWebsiteWarningEnabled = true
         }
