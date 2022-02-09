@@ -1113,8 +1113,9 @@ public class DcMsg {
 
         let count = ptrSize.pointee
         let buffer = UnsafeBufferPointer<Int8>(start: ccharPtr, count: count)
+        let data = Data(buffer: buffer)
         dc_str_unref(ccharPtr)
-        return Data(buffer: buffer)
+        return data
     }
 
     public func getWebxdcInfoJson() -> String {
