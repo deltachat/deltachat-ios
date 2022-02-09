@@ -881,6 +881,8 @@ class ChatViewController: UITableViewController {
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
+        } else if message.isInfo, let parent = message.parent, parent.type == DC_MSG_WEBXDC {
+            scrollToMessage(msgId: parent.id)
         }
         _ = handleUIMenu()
     }
@@ -1782,7 +1784,12 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
-        showMediaGalleryFor(indexPath: indexPath)
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        if message.type == DC_MSG_WEBXDC {
+            showWebxdcViewFor(message: message)
+        } else {
+            showMediaGalleryFor(indexPath: indexPath)
+        }
     }
 
     @objc func avatarTapped(indexPath: IndexPath) {

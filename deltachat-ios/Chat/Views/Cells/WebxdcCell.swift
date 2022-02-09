@@ -21,6 +21,14 @@ public class WebxdcCell: BaseMessageCell {
         mainContentView.addArrangedSubview(spacerView)
         mainContentView.addArrangedSubview(messageLabel)
         mainContentViewHorizontalPadding = 12
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
+        webxdcView.imagePreview.addGestureRecognizer(gestureRecognizer)
+    }
+
+    @objc func onImageTapped() {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.imageTapped(indexPath: indexPath)
+        }
     }
 
     public override func prepareForReuse() {

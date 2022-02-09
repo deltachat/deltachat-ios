@@ -9,6 +9,7 @@ public class WebxdcPreview: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
+        view.isUserInteractionEnabled = true
         return view
     }()
     
