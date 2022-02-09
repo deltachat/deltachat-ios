@@ -70,7 +70,11 @@ public class WebxdcPreview: UIView {
             }
         }
         titleView.text = dict["name"] as? String
-        subtitleView.text = dict["summary"] as? String ?? "Webxdc"
+        guard let summary = dict["summary"] as? String, !summary.isEmpty else {
+            subtitleView.text = "Webxdc"
+            return
+        }
+        subtitleView.text = summary
     }
 
     public func configureAccessibilityLabel() -> String {
