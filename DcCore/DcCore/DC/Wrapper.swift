@@ -1107,14 +1107,17 @@ public class DcMsg {
         defer {
             ptrSize.deallocate()
         }
+
         guard let ccharPtr = dc_msg_get_webxdc_blob(messagePointer, filename, ptrSize) else {
             return Data()
+        }
+        defer {
+            dc_str_unref(ccharPtr)
         }
 
         let count = ptrSize.pointee
         let buffer = UnsafeBufferPointer<Int8>(start: ccharPtr, count: count)
         let data = Data(buffer: buffer)
-        dc_str_unref(ccharPtr)
         return data
     }
 
