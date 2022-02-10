@@ -17,7 +17,7 @@ class WebxdcViewController: WebViewViewController {
     var webxdcUpdateObserver: NSObjectProtocol?
     
     
-    // Block just everything :)
+    // Block just everything, except of webxdc urls
     let blockRules = """
     [
         {
@@ -26,6 +26,14 @@ class WebxdcViewController: WebViewViewController {
             },
             "action": {
                 "type": "block"
+            }
+        },
+        {
+            "trigger": {
+                "url-filter": "webxdc://*"
+            },
+            "action": {
+                "type": "ignore-previous-rules"
             }
         }
     ]
@@ -184,9 +192,9 @@ class WebxdcViewController: WebViewViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadHtml()
+        loadRestrictedHtml()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if #available(iOS 15.0, *) {
@@ -194,7 +202,6 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
-    
     private func loadRestrictedHtml() {
         // TODO: compile only once
         WKContentRuleListStore.default().compileContentRuleList(
