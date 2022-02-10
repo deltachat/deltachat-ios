@@ -1437,6 +1437,12 @@ class ChatViewController: UITableViewController {
         } else {
             // new outgoing message
             let msg = dcContext.getMessage(id: messageId)
+            if msg.isInfo,
+               let parent = msg.parent,
+               parent.type == DC_MSG_WEBXDC {
+                return
+            }
+
             if msg.state != DC_STATE_OUT_DRAFT,
                msg.chatId == chatId {
                 if let newMsgMarkerIndex = messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
