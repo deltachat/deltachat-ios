@@ -131,7 +131,7 @@ class ContactDetailViewModel {
             chatId: chatId,
             messageType: DC_MSG_FILE,
             messageType2: DC_MSG_AUDIO,
-            messageType3: 0
+            messageType3: DC_MSG_WEBXDC
         )
     }
 
