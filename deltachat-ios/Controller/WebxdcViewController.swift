@@ -116,6 +116,8 @@ class WebxdcViewController: WebViewViewController {
         config.mediaTypesRequiringUserActionForPlayback = []
         config.allowsInlineMediaPlayback = true
 
+        config.websiteDataStore = WKWebsiteDataStore.default()
+
         if #available(iOS 13.0, *) {
             preferences.isFraudulentWebsiteWarningEnabled = true
         }
