@@ -434,52 +434,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         bgIoTimestamp = nowTimestamp
 
-        // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
-        var backgroundTask: UIBackgroundTaskIdentifier = .invalid
-        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-            // usually, this handler is not used as we are taking care of timings below.
-            logger.info("⬅️ finishing fetch by system urgency requests")
-            self?.dcAccounts.stopIo()
-            completionHandler(.newData)
-            if backgroundTask != .invalid {
-                UIApplication.shared.endBackgroundTask(backgroundTask)
-                backgroundTask = .invalid
-            }
-        }
+        let fetchSemaphore = DispatchSemaphore(value: 0)
 
         // we're in background, run IO for a little time
         dcAccounts.startIo()
         dcAccounts.maybeNetwork()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
-            logger.info("⬅️ finishing fetch")
-            guard let self = self else {
-                completionHandler(.failed)
-                return
-            }
+        logger.info("➡️ fetching")
+        _ = fetchSemaphore.wait(timeout: .now() + 10)
 
-            if !self.appIsInForeground() {
-                self.dcAccounts.stopIo()
-            }
-
-            // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
-            // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                logger.info("⬅️ fetch done")
-                guard let self = self else {
-                    completionHandler(.failed)
-                    return
-                }
-
-                self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
-                completionHandler(.newData)
-
-                if backgroundTask != .invalid {
-                    UIApplication.shared.endBackgroundTask(backgroundTask)
-                    backgroundTask = .invalid
-                }
-            }
+        logger.info("⬅️ finishing fetch")
+        if !appIsInForeground() {
+            dcAccounts.stopIo()
         }
+
+        // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
+        // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
+        _ = fetchSemaphore.wait(timeout: .now() + 1)
+        logger.info("⬅️ fetch done")
+
+        pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
+        completionHandler(.newData)
     }
 
 
