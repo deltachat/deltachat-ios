@@ -1033,9 +1033,6 @@ public class DcMsg {
             return DcMsg(pointer: msgpointer)
         }
         set {
-            if newValue == nil {
-                fatalError("Quote message cannot be set to null!")
-            }
             dc_msg_set_quote(messagePointer, newValue?.messagePointer)
         }
     }
