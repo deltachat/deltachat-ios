@@ -1478,7 +1478,7 @@ class ChatViewController: UITableViewController {
 
     private func stageDocument(url: NSURL) {
         keepKeyboard = true
-        self.draft.setAttachment(viewType: DC_MSG_FILE, path: url.relativePath)
+        self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
         self.configureDraftArea(draft: self.draft)
         self.messageInputBar.inputTextView.becomeFirstResponder()
     }
@@ -1850,6 +1850,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
+        draft.clear()
         draftArea.cancel()
     }
 
@@ -1869,7 +1870,7 @@ extension ChatViewController: DraftPreviewDelegate {
 
     func onCancelAttachment() {
         keepKeyboard = true
-        draft.setAttachment(viewType: nil, path: nil, mimetype: nil)
+        draft.clearAttachment()
         configureDraftArea(draft: draft)
         evaluateInputBar(draft: draft)
     }
@@ -1881,14 +1882,18 @@ extension ChatViewController: DraftPreviewDelegate {
     func onAttachmentTapped() {
         if let attachmentPath = draft.attachment {
             let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
-            let previewController = PreviewController(dcContext: dcContext, type: .single(attachmentURL))
-            if #available(iOS 13.0, *), draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
-                previewController.setEditing(true, animated: true)
-                previewController.delegate = self
+            if draft.viewType == DC_MSG_WEBXDC, let draftMessage = draft.draftMsg {
+                showWebxdcViewFor(message: draftMessage)
+            } else {
+                let previewController = PreviewController(dcContext: dcContext, type: .single(attachmentURL))
+                if #available(iOS 13.0, *), draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
+                    previewController.setEditing(true, animated: true)
+                    previewController.delegate = self
+                }
+                let nav = UINavigationController(rootViewController: previewController)
+                nav.modalPresentationStyle = .fullScreen
+                navigationController?.present(nav, animated: true)
             }
-            let nav = UINavigationController(rootViewController: previewController)
-            nav.modalPresentationStyle = .fullScreen
-            navigationController?.present(nav, animated: true)
         }
     }
 }

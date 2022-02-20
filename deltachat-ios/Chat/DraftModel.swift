@@ -3,15 +3,29 @@ import UIKit
 import DcCore
 
 public class DraftModel {
-    var quoteMessage: DcMsg?
+    var draftMsg: DcMsg?
     var dcContext: DcContext
-    var quoteText: String?
     var text: String?
-    var attachment: String?
-    var attachmentMimeType: String?
-    var viewType: Int32?
     let chatId: Int
     var isEditing: Bool = false
+    var quoteMessage: DcMsg? {
+        return draftMsg?.quoteMessage
+    }
+    var quoteText: String? {
+        return draftMsg?.quoteText
+    }
+    var attachment: String? {
+        return draftMsg?.fileURL?.relativePath
+    }
+    var attachmentMimeType: String? {
+        return draftMsg?.filemime
+    }
+    var viewType: Int32? {
+        if let viewType = draftMsg?.type {
+            return Int32(viewType)
+        }
+        return nil
+    }
 
     public init(dcContext: DcContext, chatId: Int) {
         self.chatId = chatId
@@ -19,53 +33,60 @@ public class DraftModel {
     }
 
     public func parse(draftMsg: DcMsg?) {
+        self.draftMsg = draftMsg
         text = draftMsg?.text
-        quoteText = draftMsg?.quoteText
-        quoteMessage = draftMsg?.quoteMessage
-        attachment = draftMsg?.fileURL?.relativePath
-        if let viewType = draftMsg?.type {
-            self.viewType = Int32(viewType)
-        }
-        attachmentMimeType = draftMsg?.filemime
     }
 
     public func setQuote(quotedMsg: DcMsg?) {
-        if let quotedMsg = quotedMsg {
-            // create a temporary draft to get the correct quoteText
-            let draftMessage = dcContext.newMessage(viewType: DC_MSG_TEXT)
-            draftMessage.quoteMessage = quotedMsg
-            self.quoteText = draftMessage.quoteText
-            self.quoteMessage = quotedMsg
-        } else {
-            self.quoteText = nil
-            self.quoteMessage = nil
+        if draftMsg == nil {
+            draftMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         }
+        draftMsg?.quoteMessage = quotedMsg
     }
 
     public func setAttachment(viewType: Int32?, path: String?, mimetype: String? = nil) {
-        attachment = path
-        self.viewType = viewType
-        attachmentMimeType = mimetype
+        if draftMsg == nil {
+            draftMsg = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
+        }
+        draftMsg?.setFile(filepath: path, mimeType: mimetype)
+        save(context: dcContext)
+    }
+
+    public func clearAttachment() {
+        let text = draftMsg?.text
+        let quoteMsg = draftMsg?.quoteMessage
+        if text != nil || quoteMsg != nil {
+            draftMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
+            draftMsg?.text = text
+            draftMsg?.quoteMessage = quoteMsg
+            save(context: dcContext)
+        } else {
+            draftMsg = nil
+            dcContext.setDraft(chatId: chatId, message: nil)
+        }
     }
 
     public func save(context: DcContext) {
-        if (text?.isEmpty ?? true) && quoteMessage == nil {
-            context.setDraft(chatId: chatId, message: nil)
+        if (text?.isEmpty ?? true) &&
+            (draftMsg == nil || quoteMessage == nil && attachment == nil) {
+            self.clear()
             return
         }
 
-        let draftMessage = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
-        draftMessage.text = text
-        if quoteMessage != nil {
-            draftMessage.quoteMessage = quoteMessage
+        if draftMsg == nil {
+            draftMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         }
-        if attachment != nil {
-            draftMessage.setFile(filepath: attachment, mimeType: attachmentMimeType)
-        }
-        context.setDraft(chatId: chatId, message: draftMessage)
+        draftMsg?.text = text
+        context.setDraft(chatId: chatId, message: draftMsg)
     }
 
     public func canSend() -> Bool {
         return !(text?.isEmpty ?? true) || attachment != nil
+    }
+
+    public func clear() {
+        text = nil
+        draftMsg = nil
+        dcContext.setDraft(chatId: chatId, message: nil)
     }
 }
