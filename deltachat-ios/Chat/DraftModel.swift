@@ -45,19 +45,17 @@ public class DraftModel {
     }
 
     public func setAttachment(viewType: Int32?, path: String?, mimetype: String? = nil) {
-        if draftMsg == nil {
-            draftMsg = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
-        }
+        let quoteMsg = draftMsg?.quoteMessage
+        draftMsg = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
+        draftMsg?.quoteMessage = quoteMsg
         draftMsg?.setFile(filepath: path, mimeType: mimetype)
         save(context: dcContext)
     }
 
     public func clearAttachment() {
-        let text = draftMsg?.text
         let quoteMsg = draftMsg?.quoteMessage
         if text != nil || quoteMsg != nil {
             draftMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-            draftMsg?.text = text
             draftMsg?.quoteMessage = quoteMsg
             save(context: dcContext)
         } else {
