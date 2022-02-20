@@ -7,7 +7,6 @@ import SDWebImage
 
 class ChatViewController: UITableViewController {
     var dcContext: DcContext
-    private var draftMessage: DcMsg?
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
     let chatId: Int
