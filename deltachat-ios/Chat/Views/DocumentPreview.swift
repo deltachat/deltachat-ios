@@ -36,12 +36,19 @@ public class DocumentPreview: DraftPreview {
 
     override public func configure(draft: DraftModel) {
         if !draft.isEditing,
-           draft.viewType == DC_MSG_FILE,
+           let viewType = draft.viewType,
+           viewType == DC_MSG_FILE || viewType == DC_MSG_WEBXDC,
            let path = draft.attachment {
-            let tmpMsg = draft.dcContext.newMessage(viewType: DC_MSG_FILE)
-            tmpMsg.setFile(filepath: path)
-            tmpMsg.text = draft.text
+            var tmpMsg: DcMsg
+            if let draftMsg = draft.draftMsg {
+                tmpMsg = draftMsg
+            } else {
+                tmpMsg = draft.dcContext.newMessage(viewType: viewType)
+                tmpMsg.setFile(filepath: path)
+                tmpMsg.text = draft.text
+            }
             fileView.configure(message: tmpMsg)
+            fileView.fileTitle.numberOfLines = 2
             self.delegate?.onAttachmentAdded()
             accessibilityLabel = "\(String.localized("attachment")), \(fileView.configureAccessibilityLabel())"
             isHidden = false

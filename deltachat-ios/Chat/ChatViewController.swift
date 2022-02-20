@@ -1534,7 +1534,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendAttachmentMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
-        let msg = dcContext.newMessage(viewType: viewType)
+        let msg = draft.draftMsg ?? dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: filePath)
         msg.text = (message ?? "").isEmpty ? nil : message
         if quoteMessage != nil {
@@ -1837,7 +1837,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if let filePath = draft.attachment, let viewType = draft.viewType {
             switch viewType {
-            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO:
+            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO, DC_MSG_WEBXDC:
                 self.sendAttachmentMessage(viewType: viewType, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
             default:
                 logger.warning("Unsupported viewType for drafted messages.")
