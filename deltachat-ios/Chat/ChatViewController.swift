@@ -1448,6 +1448,11 @@ class ChatViewController: UITableViewController {
                     messageIds.remove(at: newMsgMarkerIndex)
                 }
                 insertMessage(msg)
+            } else if msg.type == DC_MSG_WEBXDC,
+                      msg.chatId == chatId {
+                // webxdc draft got updated
+                draft.draftMsg = msg
+                configureDraftArea(draft: draft, animated: false)
             }
         }
     }
