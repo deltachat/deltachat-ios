@@ -1489,7 +1489,8 @@ class ChatViewController: UITableViewController {
 
     private func stageVideo(url: NSURL) {
         keepKeyboard = true
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.messageInputBar.inputTextView.becomeFirstResponder()
@@ -1506,7 +1507,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func stageImage(_ image: UIImage) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             if let pathInDocDir = ImageFormat.saveImage(image: image) {
                 DispatchQueue.main.async {
                     if pathInDocDir.suffix(4).contains(".gif") {
