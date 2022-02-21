@@ -40,7 +40,6 @@
 		303492CB257A814200A523D0 /* DraftArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492CA257A814200A523D0 /* DraftArea.swift */; };
 		304219D3243F588500516852 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
-		304A92C127AAE10B00588A15 /* WebxdcPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304A92C027AAE10B00588A15 /* WebxdcPreview.swift */; };
 		304F5E44244F571C00462538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		304F769525DD237B0094B5E2 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F769425DD237B0094B5E2 /* WebViewViewController.swift */; };
 		304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F769825DD23D70094B5E2 /* FullMessageViewController.swift */; };
@@ -283,7 +282,6 @@
 		303492CA257A814200A523D0 /* DraftArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftArea.swift; sourceTree = "<group>"; };
 		304219D1243F588500516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304219D82440734A00516852 /* DcMsg+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcMsg+Extension.swift"; sourceTree = "<group>"; };
-		304A92C027AAE10B00588A15 /* WebxdcPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebxdcPreview.swift; sourceTree = "<group>"; };
 		304F769425DD237B0094B5E2 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		304F769825DD23D70094B5E2 /* FullMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullMessageViewController.swift; sourceTree = "<group>"; };
 		3052C609253F082E007D13EA /* MessageLabelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabelDelegate.swift; sourceTree = "<group>"; };
@@ -740,7 +738,6 @@
 				303492AC2577CAC300A523D0 /* FileView.swift */,
 				303492B22577E40700A523D0 /* DocumentPreview.swift */,
 				303492CA257A814200A523D0 /* DraftArea.swift */,
-				304A92C027AAE10B00588A15 /* WebxdcPreview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1411,7 +1408,6 @@
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
-				304A92C127AAE10B00588A15 /* WebxdcPreview.swift in Sources */,
 				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
 				30734326249A280B00BF9AD1 /* MediaQualityController.swift in Sources */,
 				3080A01C277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift in Sources */,

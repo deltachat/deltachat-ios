@@ -72,7 +72,8 @@ class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderContro
     }
 
     func showDocumentLibrary() {
-        let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage]
+        // TODO: instead of adding kUTTypeData, we probably should implement a Document provider for webxdc's https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/FileProvider.html#//apple_ref/doc/uid/TP40014214-CH18
+        let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage, kUTTypeData]
         let documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false

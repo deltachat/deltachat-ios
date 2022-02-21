@@ -3,11 +3,12 @@ import UIKit
 import DcCore
 import SDWebImage
 
-class FileTextCell: BaseMessageCell {
+public class FileTextCell: BaseMessageCell {
 
-    private var spacer: NSLayoutConstraint?
+    private var spacerHeight: NSLayoutConstraint?
+    var spacerWidth: NSLayoutConstraint?
 
-    private lazy var fileView: FileView = {
+    lazy var fileView: FileView = {
         let view = FileView()
         return view
     }()
@@ -15,8 +16,9 @@ class FileTextCell: BaseMessageCell {
     override func setupSubviews() {
         super.setupSubviews()
         let spacerView = UIView()
-        spacer = spacerView.constraintHeightTo(8, priority: .defaultHigh)
-        spacer?.isActive = true
+        spacerHeight = spacerView.constraintHeightTo(8, priority: .defaultHigh)
+        spacerHeight?.isActive = true
+        spacerWidth = spacerView.constraintWidthTo(280, priority: UILayoutPriority(rawValue: 400))
         mainContentView.addArrangedSubview(fileView)
         mainContentView.addArrangedSubview(spacerView)
         mainContentView.addArrangedSubview(messageLabel)
@@ -24,7 +26,7 @@ class FileTextCell: BaseMessageCell {
         mainContentViewHorizontalPadding = 12
     }
 
-    override func prepareForReuse() {
+    public override func prepareForReuse() {
         super.prepareForReuse()
         fileView.prepareForReuse()
     }
@@ -32,9 +34,9 @@ class FileTextCell: BaseMessageCell {
     override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
         if let text = msg.text, !text.isEmpty {
             messageLabel.text = text
-            spacer?.isActive = true
+            spacerHeight?.isActive = true
         } else {
-            spacer?.isActive = false
+            spacerHeight?.isActive = false
         }
         
         fileView.configure(message: msg)

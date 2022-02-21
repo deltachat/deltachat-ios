@@ -7,7 +7,6 @@ import SDWebImage
 
 class ChatViewController: UITableViewController {
     var dcContext: DcContext
-    private var draftMessage: DcMsg?
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
     let chatId: Int
@@ -1449,6 +1448,11 @@ class ChatViewController: UITableViewController {
                     messageIds.remove(at: newMsgMarkerIndex)
                 }
                 insertMessage(msg)
+            } else if msg.type == DC_MSG_WEBXDC,
+                      msg.chatId == chatId {
+                // webxdc draft got updated
+                draft.draftMsg = msg
+                configureDraftArea(draft: draft, animated: false)
             }
         }
     }
@@ -1478,14 +1482,15 @@ class ChatViewController: UITableViewController {
 
     private func stageDocument(url: NSURL) {
         keepKeyboard = true
-        self.draft.setAttachment(viewType: DC_MSG_FILE, path: url.relativePath)
+        self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
         self.configureDraftArea(draft: self.draft)
         self.messageInputBar.inputTextView.becomeFirstResponder()
     }
 
     private func stageVideo(url: NSURL) {
         keepKeyboard = true
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.messageInputBar.inputTextView.becomeFirstResponder()
@@ -1502,7 +1507,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func stageImage(_ image: UIImage) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             if let pathInDocDir = ImageFormat.saveImage(image: image) {
                 DispatchQueue.main.async {
                     if pathInDocDir.suffix(4).contains(".gif") {
@@ -1534,7 +1540,7 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendAttachmentMessage(viewType: Int32, filePath: String, message: String? = nil, quoteMessage: DcMsg? = nil) {
-        let msg = dcContext.newMessage(viewType: viewType)
+        let msg = draft.draftMsg ?? dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: filePath)
         msg.text = (message ?? "").isEmpty ? nil : message
         if quoteMessage != nil {
@@ -1837,7 +1843,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if let filePath = draft.attachment, let viewType = draft.viewType {
             switch viewType {
-            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO:
+            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO, DC_MSG_WEBXDC:
                 self.sendAttachmentMessage(viewType: viewType, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
             default:
                 logger.warning("Unsupported viewType for drafted messages.")
@@ -1850,6 +1856,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
+        draft.clear()
         draftArea.cancel()
     }
 
@@ -1869,7 +1876,7 @@ extension ChatViewController: DraftPreviewDelegate {
 
     func onCancelAttachment() {
         keepKeyboard = true
-        draft.setAttachment(viewType: nil, path: nil, mimetype: nil)
+        draft.clearAttachment()
         configureDraftArea(draft: draft)
         evaluateInputBar(draft: draft)
     }
@@ -1881,14 +1888,18 @@ extension ChatViewController: DraftPreviewDelegate {
     func onAttachmentTapped() {
         if let attachmentPath = draft.attachment {
             let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
-            let previewController = PreviewController(dcContext: dcContext, type: .single(attachmentURL))
-            if #available(iOS 13.0, *), draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
-                previewController.setEditing(true, animated: true)
-                previewController.delegate = self
+            if draft.viewType == DC_MSG_WEBXDC, let draftMessage = draft.draftMsg {
+                showWebxdcViewFor(message: draftMessage)
+            } else {
+                let previewController = PreviewController(dcContext: dcContext, type: .single(attachmentURL))
+                if #available(iOS 13.0, *), draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
+                    previewController.setEditing(true, animated: true)
+                    previewController.delegate = self
+                }
+                let nav = UINavigationController(rootViewController: previewController)
+                nav.modalPresentationStyle = .fullScreen
+                navigationController?.present(nav, animated: true)
             }
-            let nav = UINavigationController(rootViewController: previewController)
-            nav.modalPresentationStyle = .fullScreen
-            navigationController?.present(nav, animated: true)
         }
     }
 }

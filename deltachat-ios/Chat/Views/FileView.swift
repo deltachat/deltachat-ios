@@ -41,9 +41,10 @@ public class FileView: UIView {
         return stackView
     }()
 
-    private lazy var fileImageView: UIImageView = {
+    lazy var fileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         isAccessibilityElement = false
         return imageView
     }()
@@ -58,17 +59,13 @@ public class FileView: UIView {
 
     lazy var fileTitle: UILabel = {
         let title = UILabel()
-        title.font = UIFont.preferredItalicFont(for: .body)
         title.translatesAutoresizingMaskIntoConstraints = false
-        title.numberOfLines = 3
-        title.lineBreakMode = .byCharWrapping
         isAccessibilityElement = false
         return title
     }()
 
     private lazy var fileSubtitle: UILabel = {
         let subtitle = UILabel()
-        subtitle.font = UIFont.preferredItalicFont(for: .caption2)
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         subtitle.numberOfLines = 1
         isAccessibilityElement = false
@@ -99,12 +96,48 @@ public class FileView: UIView {
     }
 
     public func configure(message: DcMsg) {
+        if message.type == DC_MSG_WEBXDC {
+           configureWebxdc(message: message)
+        } else if message.type == DC_MSG_FILE {
+            configureFile(message: message)
+        } else {
+            logger.error("Configuring message failed")
+        }
+    }
+
+    private func configureWebxdc(message: DcMsg) {
+        fileImageView.layer.cornerRadius = 8
+        let dict = message.getWebxdcInfoDict()
+        if let iconfilePath = dict["icon"] as? String {
+            let blob = message.getWebxdcBlob(filename: iconfilePath)
+            if !blob.isEmpty {
+                fileImageView.image = UIImage(data: blob)?.sd_resizedImage(with: CGSize(width: 175, height: 175), scaleMode: .aspectFill)
+            }
+        }
+        fileTitle.numberOfLines = 1
+        fileTitle.lineBreakMode = .byTruncatingTail
+        fileTitle.font = UIFont.preferredBoldFont(for: .body)
+        fileSubtitle.font = UIFont.preferredFont(forTextStyle: .body)
+        fileTitle.text = dict["name"] as? String
+        guard let summary = dict["summary"] as? String, !summary.isEmpty else {
+            fileSubtitle.text = "Webxdc"
+            return
+        }
+        fileSubtitle.text = summary
+    }
+
+    private func configureFile(message: DcMsg) {
+        fileImageView.layer.cornerRadius = 0
         if let url = message.fileURL {
             generateThumbnailFor(url: url, placeholder: defaultImage)
         } else {
             fileImageView.image = defaultImage
             horizontalLayout = true
         }
+        fileTitle.numberOfLines = 3
+        fileTitle.lineBreakMode = .byCharWrapping
+        fileTitle.font = UIFont.preferredItalicFont(for: .body)
+        fileSubtitle.font = UIFont.preferredItalicFont(for: .caption2)
         fileTitle.text = message.filename
         fileSubtitle.text = message.getPrettyFileSize()
     }
