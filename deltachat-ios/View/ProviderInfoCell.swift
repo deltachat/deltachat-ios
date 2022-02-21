@@ -22,7 +22,7 @@ class ProviderInfoCell: UITableViewCell {
 
     private let preparationColorSet: ColorSet = ColorSet(
         backgroundColor: DcColors.providerPreparationBackground,
-        tintColor: DcColors.grayTextColor
+        tintColor: UIColor.black
     )
 
     var onInfoButtonPressed: VoidFunction?
