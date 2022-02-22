@@ -1,6 +1,6 @@
 [main]
 host = https://www.transifex.com
-lang_map = nl_NL:nl, ja_JP:ja, pt_BR:pt-BR, pt:pt-PT, zh_CN:zh-Hant, zh_TW:zh-Hant-TW
+lang_map = nl_NL:nl, ja_JP:ja, pt_BR:pt-BR, pt:pt-PT, zh_CN:zh-Hans, zh_TW:zh-Hant
 
 [delta-chat-app.stringsxml]
 file_filter = tmpAndroidTranslations/<lang>/strings.xml
