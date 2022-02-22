@@ -149,7 +149,7 @@
 // consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
 "broadcast_list" = "广播列表";
 "broadcast_lists" = "广播列表";
-"new_broadcast_list" = "新的广播列表";
+"new_broadcast_list" = "新建广播列表";
 "add_recipients" = "添加收信人";
 "menu_send" = "发送";
 "menu_toggle_keyboard" = "切换 emoji 键盘";
@@ -200,7 +200,7 @@
 "menu_edit_name" = "编辑名称";
 "menu_settings" = "设置";
 "menu_advanced" = "高级";
-"menu_view_profile" = " 查看概要";
+"menu_view_profile" = "查看概要";
 "menu_zoom_in" = "放大";
 "menu_zoom_out" = "缩小";
 "menu_save_log" = "保存日志";
@@ -323,7 +323,7 @@
 
 // webxdc
 // "Start..." button for an app
-"start_app" = "启动…";
+"start_app" = "开始…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "请先接受聊天请求";
 
@@ -395,7 +395,7 @@
 "connectivity_connected" = "已连接";
 "sending" = "发送中…";
 "last_msg_sent_successfully" = "上一条消息发送成功。";
-"not_supported_by_provider" = "你的邮件供应商不支持";
+"not_supported_by_provider" = "不被您的邮件提供商支持。";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "消息";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
@@ -429,8 +429,8 @@
 "login_socks5_user" = "SOCKS5 用户名";
 "login_socks5_password" = "SOCKS5 密码";
 // Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "检查 %1$@ 中";
-"login_info_oauth2_title" = "使用简化设置继续？";
+"login_oauth2_checking_addr" = "正在检查 %1$@";
+"login_info_oauth2_title" = "使用简易设置继续？";
 "login_info_oauth2_text" = "输入的电子邮件地址支持简化设置（OAuth 2.0）。\n\n在下一步中，请允许 Delta Chat 充当您的“通过电子邮件聊天”应用程序。\n\n不存在 Delta Chat 服务器，您的数据保留于您的设备！";
 "login_certificate_checks" = "证书检查";
 "login_error_mail" = "请输入有效的电子邮件地址";
@@ -566,9 +566,9 @@
 "export_aborted" = "导出已中止。";
 "auto_download_messages" = "自动下载消息";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
-"up_to_x" = "最多 %1$@";
-"up_to_x_most_worse_quality_images" = "最多 %1$@，分辨率最低的图像";
-"up_to_x_most_balanced_quality_images" = "最多 %1$@，分辨率最均衡图像";
+"up_to_x" = "%1$@ 以下";
+"up_to_x_most_worse_quality_images" = "%1$@ 以下，图像质量最差";
+"up_to_x_most_balanced_quality_images" = "%1$@ 以下，图像质量最均衡";
 "no_limit" = "无限制";
 "download_failed" = "下载失败";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
