@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d分前</string>
+			<string>%d 分钟</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -27,7 +27,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d小時前</string>
+			<string>%d 小时</string>
 		</dict>
 	</dict>
 	<key>n_chats</key>
@@ -41,7 +41,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d個對話</string>
+			<string>%d 个聊天</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -55,7 +55,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d位聯絡人</string>
+			<string>%d 个联系人</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -69,7 +69,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d個訊息</string>
+			<string>%d 条消息</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -83,7 +83,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d位成員</string>
+			<string>%d 个成员</string>
 		</dict>
 	</dict>
 	<key>n_recipients</key>
@@ -97,7 +97,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d位對象</string>
+			<string>%d 名收信人 </string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>
@@ -111,7 +111,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>要將%d個檔案傳送給%s？</string>
+			<string>将以下 %d 个文件发送给 %s？</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>
@@ -125,7 +125,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>確定刪除%d個對話嗎？將會從對話紀錄中刪除，然而伺服器中仍會保留對話。</string>
+			<string>删除 %d 个聊天？这个（些）聊天将不再显示在聊天列表中，但它（们）的消息仍将保留于服务器。</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -139,7 +139,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>刪除本地及伺服器上的%d個訊息？</string>
+			<string>在此处和服务器上删除 %d 条消息？</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
@@ -153,7 +153,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>刪除%d則訊息？</string>
+			<string>删除 %d 条消息吗？</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>
@@ -167,7 +167,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>已封存%d個對話</string>
+			<string>%d 个聊天已归档</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -181,7 +181,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>已解封%d個對話</string>
+			<string>%d 个聊天已解档</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
@@ -195,7 +195,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d個新訊息</string>
+			<string>%d 条新消息</string>
 		</dict>
 	</dict>
 </dict>
