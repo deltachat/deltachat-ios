@@ -715,16 +715,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
             logger.info("looking for backup in: \(documents[0])")
-            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
-                var fileBytes: UInt64  = 0;
-                do {
-                    let attr = try FileManager.default.attributesOfItem(atPath: file)
-                    fileBytes = attr[FileAttributeKey.size] as! UInt64
-                } catch {
-                    logger.error("cannot get file size of \(file)")
-                }
-                logger.info("importing backup \(file), \(fileBytes) bytes")
 
+            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
+                logger.info("restoring backup: \(file)")
                 showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
                 dcAccounts.stopIo()
                 dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
