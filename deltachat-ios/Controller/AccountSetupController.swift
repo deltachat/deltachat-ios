@@ -708,7 +708,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     private func restoreBackup() {
         logger.info("restoring backup")
-        if dcContext.configured {
+        if dcContext.isConfigured() {
             return
         }
         addProgressHudBackupListener()

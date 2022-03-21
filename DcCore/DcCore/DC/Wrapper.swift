@@ -594,7 +594,7 @@ public class DcContext {
         if let displayname = displayname {
             ret = "\(displayname) (\(ret))"
         }
-        ret += configured ? "" : " (not configured)"
+        ret += isConfigured() ? "" : " (not configured)"
         return ret.trimmingCharacters(in: .whitespaces)
     }
 
@@ -708,11 +708,6 @@ public class DcContext {
         // one of DC_SHOW_EMAILS_*
         get { return getConfigInt("show_emails") }
         set { setConfigInt("show_emails", newValue) }
-    }
-
-    // do not use. use DcContext::isConfigured() instead
-    public var configured: Bool {
-        return getConfigBool("configured")
     }
 }
 
