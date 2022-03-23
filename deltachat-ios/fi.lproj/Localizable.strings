@@ -1,0 +1,855 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "OK";
+"cancel" = "Peruuta";
+"clear_search" = "Tyhjennä haku";
+"yes" = "Kyllä";
+"no" = "Ei";
+"select" = "Valitse";
+"on" = "Päällä";
+"off" = "Pois";
+"def" = "Oletus";
+"default_value" = "Oletus (%1$@)";
+"default_value_as_above" = "Oletus (sama kuin yllä)";
+"custom" = "Mukautettu";
+"none" = "Ei mitään";
+"automatic" = "Automaattinen";
+"strict" = "Tiukka";
+"open" = "Avoin";
+"download" = "Lataa";
+"downloading" = "Ladataan";
+"open_attachment" = "Avaa liite";
+"join" = "Liity";
+"rejoin" = "Liity uudelleen";
+"delete" = "Poista";
+"info" = "Lisätietoja";
+"update" = "Päivitä";
+"emoji" = "Emoji";
+"attachment" = "Liite";
+"back" = "Takaisin";
+"close" = "Sulje";
+"forward" = "Eteenpäin";
+// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+"archive" = "Arkistoi";
+// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+"unarchive" = "Poista arkistosta";
+"mute" = "Mykistä";
+"ephemeral_messages" = "Katoavat viestit";
+"ephemeral_messages_hint" = "Nämä asetukset pätevät kaikkiin Delta Chat -käyttäjiin. He voivat kuitenkin kopioida, tallentaa ja välittää viestejä tai käyttää toisia sähköpostisovelluksia.";
+"save" = "Tallenna";
+"chat" = "Keskustelu";
+"media" = "Media";
+"profile" = "Profiili";
+"main_menu" = "Päävalikko";
+"start_chat" = "Aloita keskustelu";
+"show_full_message" = "Näytä koko viesti...";
+"show_full_message_in_browser" = "Näytä koko viesti selaimessa...";
+// this is shown as placeholder when something is loading at some places
+"loading" = "Ladataan...";
+"hide" = "Piilota";
+"activate" = "Aktivoi";
+"load_remote_content" = "Lataa etäkuvat";
+// possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Etäkuvien avulla sinua voidaan seurata.\n\nAsetus mahdollistaa myös fonttien ja muun sisällön lataamisen. Voit nähdä upotettuja kuvia, vaikka asetus olisi pois.\n\nLataa etäkuvat?";
+"always" = "Aina";
+"once" = "Kerran";
+"show_password" = "Näytä salasana";
+"hide_password" = "Piilota salasana";
+"not_now" = "Ei nyt";
+"never" = "Ei koskaan";
+"one_moment" = "Hetki...";
+"done" = "Valmis";
+"undo" = "Peru";
+"offline" = "Ei verkkoyhteyttä";
+// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+"next" = "Seuraava";
+"error" = "Virhe";
+"error_x" = "Virhe: %1$@";
+"no_app_to_handle_data" = "Tiedoston avaamiseen sopivaa sovellusta ei löydetty.";
+"no_browser_installed" = "Selainta ei asennettu.";
+"file_not_found" = "%1$@ ei löytynyt. ";
+"copied_to_clipboard" = "Kopioitu leikepöydälle";
+"contacts_headline" = "Yhteystiedot";
+"email_address" = "Sähköpostiosoite";
+"bad_email_address" = "Virheellinen sähköpostiosoite";
+"password" = "Salasana";
+"existing_password" = "Vanha salasana";
+"now" = "Heti";
+// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+"danger" = "Varoitus";
+"today" = "Tänään";
+"yesterday" = "Eilen";
+"this_week" = "Tällä viikolla";
+"this_month" = "Tässä kuussa";
+"last_week" = "Viime viikolla";
+"last_month" = "Viime kuussa";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Nähty viimeksi %1$@";
+"last_seen_unknown" = "Nähty viimeksi: ei tiedossa";
+// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
+// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+
+"self" = "Minä";
+"draft" = "Luonnos";
+"image" = "Kuva";
+// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Vastaus";
+"gif" = "Gif";
+// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"sticker" = "Tarra";
+"images" = "Kuvat";
+"audio" = "Äänite";
+"voice_message" = "Ääniviesti";
+"forwarded" = "Välitetty";
+"forwarded_message" = "Välitetty viesti";
+// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+"forwarded_by" = "Välittäjä: %1$@";
+"video" = "Video";
+"documents" = "Asiakirjat";
+"contact" = "Yhteyshenkilö";
+"verified_contact" = "Varmistettu yhteyshenkilö";
+"camera" = "Kamera";
+// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+"capture" = "Kuvaa";
+"switch_camera" = "Vaihda kamera";
+"toggle_fullscreen" = "Kytke koko näytön tila";
+"location" = "Sijainti";
+"gallery" = "Galleria";
+"images_and_videos" = "Kuvat ja videot";
+"file" = "Tiedosto";
+"files" = "Tiedostot";
+"unknown" = "Tuntematon";
+
+"green" = "Vihreä";
+"red" = "Punainen";
+"blue" = "Sininen";
+"orange" = "Oranssi";
+"cyan" = "Sinivihreä";
+"purple" = "Violetti";
+"magenta" = "Magenta";
+"white" = "Valkoinen";
+
+"zoom" = "Suurennos";
+"extra_small" = "Erittäin pieni";
+"small" = "Pieni";
+"normal" = "Tavallinen";
+"large" = "Suuri";
+"extra_large" = "Erittäin suuri";
+
+"fast" = "Nopea";
+"slow" = "Hidas";
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Uusi yhteystieto";
+"menu_new_chat" = "Uusi keskustelu";
+"menu_new_group" = "Uusi ryhmä";
+// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+"new_group_or_subject" = "Uusi ryhmä tai aihe";
+"menu_new_verified_group" = "Uusi varmistettu ryhmä";
+// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+"broadcast_list" = "Kuulutuslista";
+"broadcast_lists" = "Kuulutuslistat";
+"new_broadcast_list" = "Uusi kuulutuslista";
+"add_recipients" = "Lisää vastaanottajia";
+"menu_send" = "Lähetä";
+"menu_toggle_keyboard" = "Näytä emoji-näppäimistö";
+"menu_edit_group" = "Muokkaa ryhmää";
+"menu_group_name_and_image" = "Ryhmän nimi ja kuva";
+"menu_show_map" = "Näytä kartta";
+"menu_show_global_map" = "Näytä kaikki sijainnit";
+"menu_archive_chat" = "Arkistoi keskustelu";
+"menu_unarchive_chat" = "Siirrä keskustelu pois arkistosta";
+"menu_add_attachment" = "Lisää liite";
+"menu_leave_group" = "Poistu ryhmästä";
+"menu_delete_chat" = "Poista keskustelu";
+"ask_delete_named_chat" = "Haluatko varmasti poistaa \"%1$@\"?";
+"menu_delete_messages" = "Poista viestit";
+"delete_contact" = "Poista yhteystieto";
+"menu_delete_location" = "Poista tämä sijainti?";
+"menu_message_details" = "Viestin tiedot";
+"menu_copy_to_clipboard" = "Kopioi leikepöydälle";
+"menu_copy_selection_to_clipboard" = "Kopioi valinta";
+"menu_copy_link_to_clipboard" = "Kopioi linkki";
+"menu_copy_text_to_clipboard" = "Kopioi teksti";
+"menu_copy_image_to_clipboard" = "Kopioi kuva";
+"menu_copy_email_to_clipboard" = "Kopioi sähköpostiosoite";
+"paste_from_clipboard" = "Liitä leikepöydältä";
+"menu_forward" = "Välitä viesti";
+"menu_reply" = "Vastaa viestiin";
+"menu_mute" = "Mykistä ilmoitukset";
+"menu_unmute" = "Poista mykistys";
+"menu_export_attachment" = "Vie liite";
+"menu_export_attachments" = "Vie liitteet";
+"menu_all_media" = "Kaikki media";
+// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+"show_in_chat" = "Näytä keskustelussa";
+"menu_share" = "Jaa";
+// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+"block" = "Estä";
+"menu_block_contact" = "Estä yhteystieto";
+"menu_unblock_contact" = "Salli yhteystieto";
+"accept" = "Hyväksy";
+"menu_play" = "Soita";
+"menu_pause" = "Tauko";
+"menu_scroll_to_bottom" = "Vieritä alas";
+"menu_scroll_to_top" = "Vieritä ylös";
+"menu_help" = "Ohje";
+"privacy_policy" = "Yksityisyyskäytäntö";
+"menu_select_all" = "Valitse kaikki";
+"select_more" = "Valitse lisää";
+"menu_edit_name" = "Muokkaa nimeä";
+"menu_settings" = "Asetukset";
+"menu_advanced" = "Edistyneet";
+"menu_view_profile" = "Näytä profiili";
+"menu_zoom_in" = "Suurenna";
+"menu_zoom_out" = "Pienennä";
+"menu_save_log" = "Tallenna loki";
+"menu_more_options" = "Lisää asetuksia";
+"menu_learn_spelling" = "Opi tavaus";
+"menu_chat_audit_log" = "Keskustelun tarkastusloki";
+"jump_to_message" = "Siirry viestiin";
+"copy_json" = "Kopioi JSON";
+"replace_draft" = "Korvaa luonnos";
+"title_share_location" = "Jaa sijainti kaikille ryhmän jäsenille";
+"device_talk" = "Laitteen viestit";
+"device_talk_subtitle" = "Paikallisesti luodut viestit";
+"device_talk_explain" = "Viestit tässä keskustelussa luodaan paikallisesti Delta Chat -sovelluksessa. Kehittäjät ilmoittavat niiden avulla sovelluksen päivityksistä ja mahdollisista ongelmista.";
+"device_talk_welcome_message" = "Tervetuloa Delta Chatiin! – Delta Chat näyttää ja tuntuu samalta kuin suositut pikaviestintäsovellukset, kuitenkin ilman keskitettyä kontrollia, seurantaa tai käyttäjien tietojen myymistä isoille yrityksille.\n\nTeknisesti Delta Chat on sähköpostisovellus nykyaikaisella pikaviestikäyttöliittymällä. Sähköposti uusissa vaatteissa, jos niin voi sanoa 👻\n\nDelta Chat toimii miljardien ihmisten kanssa: lähetä vain viesti heidän sähköpostiosoitteeseensa. Viestien vastaanottajien ei tarvitse asentaa Delta Chatia, käydä nettisivustoilla tai liittyä mihinkään - paitsi jos he haluavat. Silloin voit ohjata heidät osoitteeseen 👉 https://get.delta.chat";
+"edit_contact" = "Muokkaa yhteystietoa";
+// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin_chat" = "Kiinnitä keskustelu";
+// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Irrota keskustelu";
+// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+"pin" = "Kiinnitä";
+// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+"unpin" = "Irrota";
+"ConversationFragment_quoted_message_not_found" = "Alkuperäistä viestiä ei löydy";
+"reply_privately" = "Vastaa yksityisesti";
+
+"mute_for_one_hour" = "Mykistä 1 tunniksi";
+"mute_for_two_hours" = "Mykistä 2 tunniksi";
+"mute_for_one_day" = "Mykistä 1 päiväksi";
+"mute_for_seven_days" = "Mykistä 7 päiväksi";
+"mute_forever" = "Mykistä ikuisesti";
+
+"share_location_for_5_minutes" = "5 minuutiksi";
+"share_location_for_30_minutes" = "30 minuutiksi";
+"share_location_for_one_hour" = "1 tunniksi";
+"share_location_for_two_hours" = "2 tunniksi";
+"share_location_for_six_hours" = "6 tunniksi";
+
+"file_saved_to" = "Tiedosto tallennettu \"%1$@\".";
+
+"videochat" = "Videokeskustelu";
+"videochat_invite_user_to_videochat" = "Kutsu %1$@ videokeskusteluun?";
+"videochat_invite_user_hint" = "Tämä vaatii molemmilta yhteensopivan sovelluksen tai selaimen.";
+"videochat_contact_invited_hint" = "%1$@ kutsui sinut videokeskusteluun.";
+"videochat_you_invited_hint" = "Lähetit kutsun videokeskusteluun.";
+"videochat_tap_to_join" = "Napauta liittyäksesi";
+"videochat_tap_to_open" = "Napauta avataksesi";
+"videochat_instance" = "Videokeskustelun tarjoaja";
+"videochat_instance_placeholder" = "Videokeskustelusi tarjoaja";
+"videochat_instance_explain" = "Jos videokeskustelun tarjoaja määritellään, voit aloittaa videokeskustelun mistä tahansa keskustelusta. Videokeskustelu vaatii molemmilta yhteensopivan sovelluksen tai selaimen.\n\nEsimerkkejä: https://meet.jit.si/$ROOM tai basicwebrtc:https://sinun-palvelimesi";
+"videochat_instance_from_qr" = "Käytä \"%1$@\" videokeskustelupyyntöihin?\n\nTämän jälkeen voit aloittaa videokeskustelun mistä tahansa keskustelusta. Tämä korvaa edellisen videokeskusteluasetuksen, jos sellainen on.";
+"videochat_invitation" = "Videokeskustelukutsu";
+"videochat_invitation_body" = "Sinut on kutsuttu videokeskusteluun, klikkaa %1$@ liittyäksesi.";
+
+// get confirmations
+"ask_leave_group" = "Haluatko varmasti poistua tästä ryhmästä?";
+"ask_delete_message" = "Haluatko varmasti poistaa tämän viestin?";
+"ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
+"ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";
+"ask_export_attachment" = "Liitteiden vieminen antaa muille laitteen sovelluksille mahdollisuuden lukea niitä.\n\nJatka?";
+"ask_block_contact" = "Estä tämä yhteystieto? Et enää saa viestejä tästä osoitteesta.";
+"ask_unblock_contact" = "Poista yhteystiedon esto? Saat taas viestejä tältä yhteystiedolta.";
+"ask_delete_contacts" = "Poista yhteystiedot?\n\nEt voi poistaa yhteystietoja, joiden kanssa sinulla on aktiivinen keskustelu tai jotka on noudettu laitteen osoitekirjasta.";
+"ask_delete_contact" = "Poista yhteystieto %1$@?\n\nEt voi poistaa yhteystietoja, joiden kanssa sinulla on aktiivinen keskustelu tai jotka on noudettu laitteen osoitekirjasta.";
+"cannot_delete_contacts_in_use" = "Aktiivisten keskustelujen yhteystietoja ei voi poistaa.";
+"ask_start_chat_with" = "Aloita keskustelu yhteystiedon %1$@ kanssa?";
+"ask_delete_value" = "Poista %1$@?";
+// Translators: %1$s will be replaces by a comma separated list of names
+"ask_remove_members" = "Poista %1$@ ryhmästä?";
+// Translators: %1$s will be replaced by a comma separated list of names
+"ask_remove_from_broadcast" = "Poista %1$@ kuulutuslistalta?";
+"open_url_confirmation" = "Haluatko avata tämän linkin?";
+
+
+// contact list
+"contacts_title" = "Yhteystiedot";
+"contacts_enter_name_or_email" = "Anna nimi tai sähköpostiosoite";
+"contacts_type_email_above" = "Kirjoita sähköpostiosoite ylle";
+"contacts_empty_hint" = "Ei yhteystietoja";
+
+
+// chatlist and chat view
+"chat_archived_chats_title" = "Arkistoidut keskustelut";
+"chat_please_enter_message" = "Kirjoita viesti.";
+"chat_camera_unavailable" = "Kamera ei saatavilla.";
+"chat_unable_to_record_audio" = "Äänen tallentaminen ei onnistu.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Lähetä viesti. Ei haittaa, vaikka %1$@ ei käyttäisi Delta Chatia.";
+"chat_new_broadcast_hint" = "Kuulutuslistalla olevat saavat viestisi yksityisviesteinä sinulta.\n\nVastaanottajat eivät tiedä toisistaan.";
+"chat_new_group_hint" = "Muut näkevät ryhmän vasta, kun lähetät ensimmäisen viestin.";
+"chat_record_slide_to_cancel" = "Pyyhkäise peruuttaaksesi";
+"chat_record_explain" = "Pidä painettuna nauhoittaaksesi ääniviestin, irrota lähettääksesi";
+"chat_no_chats_yet_title" = "Saapuneet-kansio on tyhjä\nPaina \"+\" aloittaaksesi uuden keskustelun.";
+"chat_no_chats_yet_hint" = "Voit keskustella Delta Chat -käyttäjien kanssa tai minkä tahansa sähköpostiosoitteen kanssa.";
+"chat_all_archived" = "Kaikki keskustelut arkistoitu.\nPaina \"+\" aloittaaksesi uuden keskustelun.";
+"chat_share_with_title" = "Jaa";
+"chat_input_placeholder" = "Viesti";
+"chat_archived_label" = "Arkistoitu";
+"chat_request_label" = "Pyyntö";
+"chat_no_messages" = "Ei viestejä";
+"chat_self_talk_subtitle" = "Viestit, jotka lähetin itselleni";
+"archive_empty_hint" = "Arkistoimasi keskustelut näkyvät täällä";
+"saved_messages" = "Tallennetut viestit";
+"saved_messages_explain" = "• Välitä viestejä tänne helppoa pääsyä varten\n\n• Kirjoita tai äänitä muistiinpanoja\n\n• Liitä mediaa tallentaaksesi ne";
+// this "Saved" should match the "Saved" from "Saved messages"
+"saved" = "Tallennettu";
+"retry_send" = "Yritä uudelleen lähettääksesi viestin";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Et voi kirjoittaa, koska et ole ryhmän jäsen. Liittyäksesi pyydä, että joku jäsen liittää sinut ryhmään.";
+"messaging_disabled_device_chat" = "Tämän keskustelun viestit on luotu paikallisesti. Et voi kirjoittaa viestejä tänne.";
+"messaging_disabled_mailing_list" = "Sähköpostilistoille vastaamista ei vielä tueta";
+"cannot_display_unsuported_file_type" = "Tiedostotyypin näyttäminen epäonnistui: %1$@";
+"attachment_failed_to_load" = "Liitteiden lataaminen epäonnistui";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Lukitse äänitys";
+
+// mailing lists
+"mailing_list" = "Sähköpostilista";
+"mailing_list_profile_info" = "Muutokset sähköpostilistan nimeen ja kuvaan tallentuvat vain tähän laitteeseen.";
+
+// webxdc
+// "Start..." button for an app
+"start_app" = "Aloita...";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Hyväksy keskustelupyyntö ensin.";
+
+// map
+"filter_map_on_time" = "Näytä sijainnit aikajanalla";
+"show_location_traces" = "Näytä jäljet";
+"add_poi" = "Lähetä erikseen valittu piste";
+
+// chat audit log
+"chat_audit_log_empty_message" = "Keskustelun järjestelmäviestit näkyvät tässä";
+"chat_audit_log_title" = "Keskustelun tarkastusloki yhteystiedolle %1$@";
+"chat_audit_log_description" = "Tässä näytetään vain järjestelmä- ja ohjeviestit. Tämä näkymä helpottaa viimeisimpien tapahtumien löytämistä tavallisten viestien joukosta.";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Älä kysy enää osoitteelle %1$@";
+"puny_code_warning_header" = "Epäilyttävä linkki havaittu";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Haluatko varmasti vierailla osoitteessa %1$@?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Seurasit linkkiä, joka saattaa näyttää toisten aakkostojen merkkejä huijaussivustolle johtamiseen. Linkin teksti %1$@ johtaa osoitteeseen %2$@, mikä on tavallista ei-latinalaisille merkistöille. Jos et odottanut tätä, tämä linkki voi olla vahingollinen.";
+
+
+// search
+"search" = "Etsi";
+"search_explain" = "Etsi keskusteluja, yhteystietoja ja viestejä";
+"search_no_result_for_x" = "Ei tuloksia haulle \"%1$@\"";
+
+
+// create/edit groups, contact/group profile
+"group_name" = "Ryhmän nimi";
+"group_avatar" = "Ryhmän kuva";
+"remove_group_image" = "Poista ryhmän kuva";
+"change_group_image" = "Muuta ryhmän kuvaa";
+"group_create_button" = "Luo ryhmä";
+"group_please_enter_group_name" = "Anna ryhmän nimi";
+"group_add_members" = "Lisää jäseniä";
+"group_self_not_in_group" = "Sinun täytyy olla ryhmän jäsen suorittaaksesi tämän toiminnon.";
+"profile_encryption" = "Salaus";
+"profile_shared_chats" = "Jaetut keskustelut";
+"tab_contact" = "Yhteystieto";
+"tab_group" = "Ryhmä";
+"tab_members" = "Jäsenet";
+"tab_gallery" = "Galleria";
+"tab_docs" = "Asiakirjat";
+"tab_links" = "Linkit";
+"tab_map" = "Kartta";
+"tab_gallery_empty_hint" = "Tässä keskustelussa jaetut kuvat ja videot näkyvät tässä.";
+"tab_docs_empty_hint" = "Tässä keskustelussa jaetut asiakirjat, musiikki ja muut tiedostot näkyvät tässä.";
+"media_preview" = "Median esikatselu";
+"send_message" = "Lähetä viesti";
+
+
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Saapuvat viestit";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Lähtevät viestit";
+// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Tallennustila palvelimella %1$@";
+"connectivity" = "Yhteys";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "Ei yhdistetty";
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Yhdistetään...";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Päivitetään...";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "Yhdistetty";
+"sending" = "Lähetetään";
+"last_msg_sent_successfully" = "Viimeinen viesti lähetetty onnistuneesti.";
+"not_supported_by_provider" = "Palveluntarjoajasi ei tue tätä.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Viestit";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ / %2$@ käytössä";
+
+
+// welcome and login
+"welcome_intro1_message" = "Viestisovellus, jolla on maailman laajin yleisö. Ilmainen ja riippumaton.";
+"login_title" = "Kirjaudu sisään";
+"login_header" = "Kirjaudu palvelimellesi";
+"login_explain" = "Kirjaudu olemassa olevalla sähköpostitilillä";
+"login_subheader" = "Tunnetuille sähköpostipalveluntarjoajille muut asetukset luodaan automaattisesti. Joskus IMAP täytyy laittaa päälle verkkoasetuksissa. Kysy apua palveluntarjoajaltasi tai ystäviltäsi.";
+"login_no_servers_hint" = "Delta Chatilla ei ole palvelimia, tietosi säilyvät sinun laitteellasi.";
+"login_inbox" = "Saapuvan postin laatikko";
+"login_imap_login" = "IMAP-kirjautumistunnus";
+"login_imap_server" = "IMAP-palvelin";
+"login_imap_port" = "IMAP-portti";
+"login_imap_security" = "IMAP-turvallisuusprotokolla";
+"login_outbox" = "Lähtevän postin laatikko";
+"login_smtp_login" = "SMTP-kirjautumistunnus";
+"login_smtp_password" = "SMTP-salasana";
+"login_smtp_server" = "SMTP-palvelin";
+"login_smtp_port" = "SMTP-portti";
+"login_smtp_security" = "SMTP-turvallisuusprotokolla";
+"login_auth_method" = "Kirjautumismenetelmä";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Käytä SOCKS5";
+"login_socks5_host" = "SOCKS5-isäntä";
+"login_socks5_port" = "SOCKS5-portti";
+"login_socks5_user" = "SOCKS5-käyttäjä";
+"login_socks5_password" = "SOCKS5-salasana";
+// Translators: %1$s will be replaced by an e-mail address
+"login_oauth2_checking_addr" = "Tarkistetaan %1$@";
+"login_info_oauth2_title" = "Jatka yksinkertaisella asennuksella?";
+"login_info_oauth2_text" = "Annettu sähköpostiosoite tukee yksinkertaista asennusta (OAuth 2.0).\n\nSeuraavaksi sinun täytyy sallia Delta Chatin toiminta Chat over E-mail -sovelluksena.\n\nDelta Chatilla ei ole palvelimia, tietosi pysyvät laitteellasi.";
+"login_certificate_checks" = "Varmennetarkastukset";
+"login_error_mail" = "Anna kelvollinen sähköpostiosoite";
+"login_error_server" = "Anna kelvollinen palvelin tai IP-osoite";
+"login_error_port" = "Anna kelvollinen portti (1-65535)";
+"login_error_required_fields" = "Anna kelvollinen sähköpostiosoite ja salasana";
+"import_backup_title" = "Tuo varmuuskopio";
+"import_backup_ask" = "Varmuuskopio löydetty kohteesta \"%1$@\".\n\nHaluatko tuoda kaikki sen tiedot ja asetukset?";
+"import_backup_no_backup_found" = "Varmuuskopioita ei löytynyt.\n\nKopioi varmuuskopio kohteeseen \"%1$@\" ja yritä uudelleen. Vaihtoehtoisesti, paina \"Aloita viestittely\" jatkaaksesi tavallista asennusprosessia.";
+// Translators: %1$s will be replaced by the e-mail address
+"login_error_cannot_login" = "Kirjautuminen osoitteella \"%1$@\" epäonnistui. Tarkista, että sähköpostiosoite ja salasanat on kirjoitettu oikein.";
+// TLS certificate checks
+"accept_invalid_certificates" = "Hyväksy epäpätevät varmenteet";
+"used_settings" = "Käytetyt asetukset:";
+"switch_account" = "Vaihda tiliä";
+"add_account" = "Lisää tili";
+"delete_account" = "Poista tili";
+"delete_account_ask" = "Haluatko varmasti poistaa tilisi tiedot?";
+"delete_account_explain_with_name" = "Kaikki tilin \"%1$@\" tiedot poistetaan tältä laitteelta, mukaan lukien salausasetukset, yhteystiedot, keskustelut, viestit ja media. Tämä toiminto on peruuttamaton.";
+"unconfigured_account" = "Tilin asetuksia ei ole tehty";
+"unconfigured_account_hint" = "Avaa tili luodaksesi asetukset";
+"try_connect_now" = "Yritä yhdistää heti";
+"sync_all" = "Synkronoi kaikki";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Asetusten luominen epäonnistui. Virhe: %1$@";
+
+// share and forward messages
+// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+"forward_to" = "Välitä yhteystiedolle...";
+"share_multiple_attachments" = "Lähetä %1$d tiedostoa valittuun keskusteluun?\n\nTiedostot lähetetään muokkaamattomina ja alkuperäisen kokoisina, kuvia tai videoita ei pakata uudelleen.";
+"share_multiple_attachments_multiple_chats" = "Lähetä %1$d tiedosto(a) %2$d keskusteluun?\n\nTiedostot lähetetään muokkaamattomina ja alkuperäisen kokoisina, kuvia ja videoita ei pakata uudelleen.";
+"share_text_multiple_chats" = "Lähetä tämä teksti %1$d keskusteluun?\n\n\"%2$@\"";
+"share_abort" = "Jakaminen keskeytetty käyttöoikeuksien puuttumisen vuoksi";
+
+
+// preferences
+"pref_using_custom" = "Käytetään mukautettua: %1$@";
+"pref_using_default" = "Käytetään oletusta: %1$@";
+"pref_profile_info_headline" = "Profiilisi tiedot";
+"pref_profile_photo" = "Profiilikuva";
+"pref_blocked_contacts" = "Estetyt yhteystiedot";
+"blocked_empty_hint" = "Estämäsi yhteystiedot näkyvät tässä";
+"pref_password_and_account_settings" = "Salasana ja tili";
+"pref_who_can_see_profile_explain" = "Profiilikuvasi, nimesi ja allekirjoituksesi lähetetään yhdessä viestiesi kanssa muille käyttäjille.";
+"pref_your_name" = "Nimesi";
+// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+"pref_default_status_label" = "Allekirjoitus";
+// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+"pref_default_status_text" = "Lähetetty Delta Chat -sovelluksesta: https://delta.chat";
+"pref_enter_sends" = "Enter-näppäin lähettää";
+"pref_enter_sends_explain" = "Enter-näppäimen painaminen lähettää viestin";
+"pref_outgoing_media_quality" = "Lähtevän median laatu";
+"pref_outgoing_balanced" = "Tasapainotettu";
+"pref_outgoing_worse" = "Huonompi laatu, pienempi koko";
+"pref_vibrate" = "Värinä";
+"pref_screen_security" = "Näytön turvallisuus";
+// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+"pref_screen_security_explain" = "Pyydä järjestelmää estämään näyttökuvien tallentaminen sovelluksessa ja \"viimeiset\"-näkymässä.";
+"pref_screen_security_please_restart_hint" = "Näyttölukon käyttöönotto vaatii sovelluksen uudelleenkäynnistyksen.";
+"pref_notifications" = "Ilmoitukset";
+"pref_notifications_show" = "Näytä";
+"pref_notifications_priority" = "Tärkeys";
+"pref_notifications_explain" = "Järjestelmän ilmoitukset uusista viesteistä";
+"pref_show_notification_content" = "Näytä viestien sisältö ilmoituksissa";
+"pref_show_notification_content_explain" = "Näytä lähettäjän nimi ja viestin ensimmäiset sanat ilmoituksessa";
+"pref_led_color" = "LED-väri";
+"pref_sound" = "Ääni";
+"pref_silent" = "Äänetön";
+"pref_privacy" = "Yksityisyys";
+"pref_chats_and_media" = "Keskustelut ja media";
+"pref_system_default" = "Järjestelmän oletus";
+// Translators: "light" in the meaning "opposite of dark"
+"pref_light_theme" = "Vaalea";
+"pref_dark_theme" = "Tumma";
+"pref_appearance" = "Ulkonäkö";
+"pref_theme" = "Teema";
+"pref_language" = "Kieli";
+"pref_incognito_keyboard" = "Näppäimistön yksityisyys";
+// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+"pref_incognito_keyboard_explain" = "Pyydä näppäimistöä kytkemään yksilöity oppiminen pois päältä";
+"pref_read_receipts" = "Lukukuittaukset";
+"pref_read_receipts_explain" = "Jos lukukuittaukset kytketään pois, et näe kuittauksia myöskään muilta";
+"pref_manage_keys" = "Hallinnoi avaimia";
+"pref_use_system_emoji" = "Käytä järjestelmän emojeja";
+"pref_use_system_emoji_explain" = "Kytke pois Delta Chatin sisäänrakennettu emoji-tuki";
+"pref_app_access" = "Pääsy sovellukseen";
+"pref_communication" = "Viestintä";
+"pref_chats" = "Keskustelut";
+"pref_in_chat_sounds" = "Keskustelun äänet";
+"pref_message_text_size" = "Viestin fonttikoko";
+"pref_view_log" = "Näytä lok";
+"pref_saved_log" = "Tallenna loki Lataukset-kansioon";
+"pref_save_log_failed" = "Lokin tallennus epäonnistui";
+"pref_log_header" = "Lok";
+"pref_other" = "Mu";
+"pref_backup" = "Varmuuskopiointi";
+"pref_backup_explain" = "Varmuuskopioi keskustelut ulkoiseen tallennustilaan";
+"pref_backup_export_explain" = "Varmuuskopion avulla voit helpommin siirtää asetuksesi uuteen Delta Chat -asennukseen tällä tai toisella laitteella.\n\nVarmuuskopio sisältää kaikki viestit, yhteystiedot ja keskustelut sekä Autocrypt-asetukset. Säilytä varmuuskopiota turvallisessa paikassa ja poista se heti kun mahdollista.";
+"pref_backup_export_start_button" = "Aloita varmuuskopiointi";
+"pref_backup_written_to_x" = "Varmuuskopio kirjoitettu onnistuneesti kohteeseen \"%1$@\".";
+"pref_managekeys_menu_title" = "Hallinnoi avaimia";
+"pref_managekeys_export_secret_keys" = "Vie salaiset avaimet";
+"pref_managekeys_export_explain" = "Vie salaiset avaimet kohteeseen \"%1$@\"?";
+"pref_managekeys_import_secret_keys" = "Tuo salaiset avaimet";
+"pref_managekeys_import_explain" = "Tuo salaiset avaimet kohteesta \"%1$@\"?\n\n• Olemassa olevia salaisia avaimia ei poisteta\n\n• Viimeistä tuotua avainta käytetään oletusavaimena, paitsi jos sen tiedostonimessä on sana \"legacy\".";
+"pref_managekeys_secret_keys_exported_to_x" = "Salaiset avaimet kirjoitettu onnistuneesti kohteeseen \"%1$@\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Salaiset avaimet tuotu kohteesta \"%1$@\".";
+"pref_background" = "Tausta";
+"pref_background_btn_default" = "Käytä oletuskuvaa";
+"pref_background_btn_gallery" = "Valitse galleriasta";
+"pref_imap_folder_handling" = "IMAP-kansioiden käsittely";
+"pref_imap_folder_warn_disable_defaults" = "Jos poistat tämän asetuksen käytöstä, varmista, että palvelimessasi ja muissa asiakasohjelmissasi on oikeat asetukset.\n\nMuuten ne eivät ehkä toimi ollenkaan.";
+"pref_watch_inbox_folder" = "Tarkkaile Saapuneet-kansiota";
+"pref_watch_sent_folder" = "Tarkkaile Lähetetyt-kansiota";
+"pref_watch_mvbox_folder" = "Tarkkaile DeltaChat-kansiota";
+"pref_send_copy_to_self" = "Lähetä kopio itselle";
+"pref_auto_folder_moves" = "Siirrä automaattisesti DeltaChat-kansioon";
+"pref_auto_folder_moves_explain" = "Pikaviestikeskustelut siirretään Saapuneet-kansion sotkemisen välttämiseksi";
+"pref_only_fetch_mvbox_title" = "Nouda vain DeltaChat-kansiosta";
+"pref_only_fetch_mvbox_explain" = "Jätä muut kansiot huomiotta. Palvelimen on siirrettävä pikaviestit DeltaChat-kansioon.";
+"pref_show_emails" = "Näytä perinteiset sähköpostiviestit";
+"pref_show_emails_no" = "Ei, pelkät pikaviestit";
+"pref_show_emails_accepted_contacts" = "Hyväksytyille yhteystiedoille";
+"pref_show_emails_all" = "Kaikki";
+"pref_experimental_features" = "Kokeelliset ominaisuudet";
+"pref_on_demand_location_streaming" = "Sijainnin jako pyydettäessä";
+"pref_developer_mode" = "Kehittäjätila";
+"pref_developer_mode_explain" = "Kytkee päälle testausvalinnat ja voi tehdä sovelluksesta epävakaamman. Vain kehittäjille.";
+"pref_background_default" = "Oletustausta";
+"pref_background_default_color" = "Oletusväri";
+"pref_background_custom_image" = "Mukautettu kuva";
+"pref_background_custom_color" = "Mukautettu väri";
+"export_aborted" = "Vienti keskeytetty.";
+"auto_download_messages" = "Lataa viestit automaattisesti";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Korkeintaan %1$@";
+"up_to_x_most_worse_quality_images" = "Korkeintaan %1$@, suurin osa alhaisen laadun kuvista";
+"up_to_x_most_balanced_quality_images" = "Korkeintaan %1$@, suurin osa tasapainoisen laadun kuvista";
+"no_limit" = "Ei rajaa";
+"download_failed" = "Lataus epäonnistui";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ viesti";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "Latauksen yläraja ennen %1$@";
+"profile_image_select" = "Valitse profiilikuva";
+"select_your_new_profile_image" = "Valitse uusi profiilikuvasi";
+"profile_image_delete" = "Poista profiilikuva";
+"pref_show_tray_icon" = "Näytä työkalupalkin kuvake";
+"pref_edit_profile" = "Muokkaa profiilia";
+
+// Emoji picker and categories
+"emoji_search_results" = "Hakutulokset";
+"emoji_not_found" = "Emojia ei löytynyt";
+"emoji_recent" = "Viimeksi käytetyt";
+"emoji_people" = "Ihmiset & Keho";
+"emoji_nature" = "Eläimet & Luonto";
+"emoji_foods" = "Ruoka & Juoma";
+"emoji_activity" = "Aktiviteetit";
+"emoji_places" = "Matkustelu & Paikat";
+"emoji_objects" = "Esineet";
+"emoji_symbols" = "Symbolit";
+"emoji_flags" = "Liput";
+
+
+// automatically delete message
+"delete_old_messages" = "Poista vanhat viestit";
+"autodel_device_title" = "Poista viestit laitteelta";
+"autodel_server_title" = "Poista viestit palvelimelta";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Haluatko poistaa %1$d viestiä heti ja kaikki uudet viestit \"%2$@\" jatkossa?\n\n• Tämä sisältää kaiken median\n\n• Viestit poistetaan riippumatta siitä onko ne nähty vai ei\n\n• \"Tallennetut viestit\" jätetään paikalliselle laitteelle";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Haluatko poistaa %1$d viestiä heti ja kaikki uudet viestit \"%2$@\" jatkossa?\n\n⚠️ Tämä sisältää sähköpostiviestit, median ja kaikki \"Tallennetut viestit\" kaikissa palvelimen kansioissa\n\n⚠️ Älä käytä tätä toimintoa, jos haluat säilyttää tiedot palvelimella\n\n⚠️ Älä käytä tätä toimintoa, jos käytät muita sähköpostisovelluksia Delta Chatin lisäksi";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Tämä sisältää sähköpostit, median ja \"Tallennetut viestit\" kaikissa palvelimen kansioissa. Älä käytä tätä toimintoa, jos haluat pitää tietosi palvelimella tai jos käytät muita sähköpostisovelluksia Delta Chatin lisäksi.";
+"autodel_confirm" = "Ymmärrän, poista kaikki nämä viestit";
+"autodel_at_once" = "Heti";
+"after_30_seconds" = "30 sekunnin päästä";
+"after_1_minute" = "1 minuutin päästä";
+"after_5_minutes" = "5 minuutin päästä";
+"after_30_minutes" = "30 minuutin päästä";
+"autodel_after_1_hour" = "1 tunnin päästä";
+"autodel_after_1_day" = "1 päivän päästä";
+"autodel_after_1_week" = "1 viikon päästä";
+"autodel_after_4_weeks" = "4 viikon päästä";
+"after_5_weeks" = "5 viikon päästä";
+"autodel_after_1_year" = "1 vuoden päästä";
+
+// autocrypt
+"autocrypt" = "Autocrypt";
+"autocrypt_explain" = "Autocrypt on uusi ja avoin spesifikaatio sähköpostien automaattiselle päästä-päähän-salaukselle.\n\nPäästä-päähän-salauksen asetukset luodaan automaattisesti tarpeen mukaan ja ne voidaan siirtää laitteiden välillä Autocrypt-asetusviestien avulla.";
+"autocrypt_send_asm_title" = "Lähetä Autocrypt-asetusviesti";
+"autocrypt_send_asm_explain_before" = "Autocrypt-asetusviesti jakaa turvallisesti päästä-päähän-salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa.\n\nAsetuksen salataan tässä näytettävällä asetuskoodilla, joka on syötettävä toiseen laitteeseen.";
+"autocrypt_send_asm_button" = "Lähetä Autocrypt-asetusviesti";
+"autocrypt_send_asm_explain_after" = "Asetusviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään asennuskoodia. Anna seuraavat numerot:\n\n%1$@";
+"autocrypt_prefer_e2ee" = "Suosi päästä-päähän-salausta";
+"autocrypt_asm_subject" = "Autocrypt-asetusviesti";
+"autocrypt_asm_general_body" = "Tätä Autocrypt-asetusviestiä käytetään päästä-päähän-salauksen asetusten kopioimiseksi toiselle laitteelle.\n\nSalauksen purkamiseksi ja asetusten käyttöön ottamiseksi, avaa viesti toisella Autocrypt-yhteensopivalla sovelluksella ja anna asennuskoodi laitteelta, jolla koodi luotiin.";
+"autocrypt_asm_click_body" = "Tätä Autocrypt-asetusviestiä käytetään päästä-päähän-salauksen asetusten kopioimiseksi toiselle laitteelle.\n\nSalauksen purkamiseksi ja asetusten käyttöön ottamiseksi, napauta tai klikkaa tätä viestiä.";
+"autocrypt_continue_transfer_title" = "Autocrypt-asetusviesti";
+"autocrypt_continue_transfer_please_enter_code" = "Anna toisella laitteella näkyvä asennuskoodi.";
+"autocrypt_continue_transfer_succeeded" = "Päästä-päähän-salauksen asetuksen siirretty. Autocrypt toimii nyt tässä laitteessa samoilla asetuksilla kuin toisessa laitteessa.";
+"autocrypt_continue_transfer_retry" = "Uudelleen";
+"autocrypt_bad_setup_code" = "Virheellinen asennuskoodi. Yritä uudelleen.\n\nJos et muista asennuskoodia, lähetä uusi Autocrypt-asetusviesti toisella laitteella.";
+
+
+// system messages
+"systemmsg_group_name_changed" = "Ryhmän nimi vaihdettu: \"%1$@\" --> \"%2$@\".";
+"systemmsg_group_image_changed" = "Ryhmän kuva vaihdettu.";
+"systemmsg_group_image_deleted" = "Ryhmän kuva poistettu";
+"systemmsg_member_added" = "Jäsen %1$@ lisätty";
+"systemmsg_member_removed" = "Jäsen %1$@ poistettu";
+"systemmsg_group_left" = "Poistuit ryhmästä.";
+"systemmsg_read_receipt_subject" = "Viesti avattu";
+"systemmsg_read_receipt_body" = "Lähettämäsi viesti \"%1$@\" näytettiin vastaanottajan näytöllä.\n\nTämä ei takaa, että sisältö luettiin.";
+"systemmsg_cannot_decrypt" = "Viestin salausta ei voi purkaa.\n\n• Pyydä lähettäjää lähettämään viesti uudelleen.\n\n• Jos asensit Delta Chatin tai toisen sähköpostisovelluksen uudelleen tälle tai toiselle laitteelle, Autocrypt-asetusviestin lähettäminen siitä sovelluksesta voi auttaa.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+"systemmsg_action_by_me" = "%1$@ minun toimestani.";
+// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+"systemmsg_action_by_user" = "%1$@ käyttäjän %2$@ toimesta.";
+"systemmsg_unknown_sender_for_chat" = "Tuntematon lähettäjä. Katso \"lisätietoja\".";
+"systemmsg_subject_for_new_contact" = "Viesti lähettäjältä %1$@";
+"systemmsg_failed_sending_to" = "Viestin lähettäminen kohteeseen %1$@ epäonnistui.";
+
+"systemmsg_ephemeral_timer_disabled" = "Katoavien viestien ajastin poistettiin.";
+"systemmsg_ephemeral_timer_enabled" = "Katoavien viestien ajastin asetettu %1$@ sekuntiin.";
+"systemmsg_ephemeral_timer_minute" = "Katoavien viestien ajastin asetettu 1 minuuttiin.";
+"systemmsg_ephemeral_timer_hour" = "Katoavien viestien ajastin asetettu 1 tuntiin.";
+"systemmsg_ephemeral_timer_day" = "Katoavien viestien ajastin asetettu 1 päivään.";
+"systemmsg_ephemeral_timer_week" = "Katoavien viestien ajastin asetettu 1 viikkoon.";
+"systemmsg_ephemeral_timer_four_weeks" = "Katoavien viestien ajastin asetettu 4 viikkoon.";
+"systemmsg_ephemeral_timer_minutes" = "Katoavien viestien ajastin asetettu %1$@ minuuttiin.";
+"systemmsg_ephemeral_timer_hours" = "Katoavien viestien ajastin asetettu %1$@ tuntiin.";
+"systemmsg_ephemeral_timer_days" = "Katoavien viestien ajastin asetettu %1$@ päivään.";
+"systemmsg_ephemeral_timer_weeks" = "Katoavien viestien ajastin asetettu %1$@ viikkoon.";
+
+// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+"systemmsg_chat_protection_disabled" = "Keskustelusuojaus poistettu";
+"systemmsg_chat_protection_enabled" = "Keskustelusuojaus käytössä";
+
+"devicemsg_self_deleted" = "Poistit \"Tallennetut viestit\" -keskustelun.\n\nℹ️ Käyttääksesi \"Tallennetut viestit\" -ominaisuutta jälleen, aloita uusi keskustelu itsesi kanssa.";
+// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ Palveluntarjoajasi tallennuskiintiö ylitetään pian, käytössä on jo %1$@ / %%.\n\nEt välttämättä enää voi vastaanottaa viestejäsi, kun 100 %% on käytössä.\n\n👉 Kokeile poistaa viestejä palveluntarjoajasi internetkäyttöliittymästä. Kannattaa myös ehkä kytkeä päälle \"Asetukset / Poista vanhat viestit\". Voit tarkistaa tämän hetkisen tallennustilan käytön \"Asetukset / Yhteys\".";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Laitteesi päivämäärä tai aika vaikuttaa olevan väärässä (%1$@).\n\nAseta kellonaika ⏰🔧 varmistaaksesi, että viestin vastaanottaminen onnistuu.";
+"devicemsg_update_reminder" = "⚠️ Delta Chat -versio saattaa olla vanhentunut.\n\nTämä saattaa aiheuttaa ongelmia, koska muut käyttävät uudempia versioita - ja saatat jäädä paitsi uusista ominaisuuksista. 😳\nTarkista uudet päivitykset sovelluskaupastasi tai https://get.delta.chat";
+
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Anna järjestelmän määrittämä koodi jatkaaksesi.";
+
+// qr code stuff
+"qr_code" = "QR-koodi";
+"load_qr_code_as_image" = "Lataa QR-koodi kuvana";
+"qrscan_title" = "Skannaa QR-koodi";
+"qrscan_hint" = "Näytä QR-koodia kameraan";
+"qrscan_failed" = "QR-koodia ei voitu selvittää";
+"qrscan_ask_join_group" = "Haluatko liittyä ryhmään \"%1$@\"?";
+"qrscan_fingerprint_mismatch" = "Skannattu sormenjälki ei vastaa viimeksi nähtyä %1$@.";
+"qrscan_no_addr_found" = "Tämä QR-koodi sisältää sormenjäljen mutta ei sähköpostiosoitetta.\n\nOffline-varmentamista varten tulee ensin luoda salattu yhteys vastaanottajaan.";
+"qrscan_contains_text" = "Skannattu QR-koodin teksti:\n\n%1$@";
+"qrscan_contains_url" = "Skannattu QR-koodin URL:\n\n%1$@";
+"qrscan_fingerprint_label" = "Sormenjälki";
+"withdraw_verifycontact_explain" = "Muut voivat skannata tämän QR-koodin ottaakseen yhteyttä sinuun.\n\nVoit kytkeä QR-koodin pois täällä ja aktivoida sen uudelleen skannaamalla uudestaan.";
+"withdraw_verifygroup_explain" = "Muut voivat skannata tämän QR-koodin liittyäkseen ryhmään \"%1$@\".\n\nVoit kytkeä QR-koodin pois täällä ja aktivoida sen uudelleen skannaamalla.";
+"withdraw_qr_code" = "Kytke QR-koodi pois käytöstä";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Muut voivat skannata tämän QR-koodin ottaakseen yhteyttä sinuun.\n\nQR-koodi ei ole aktiivinen tällä laitteella.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Muut voivat skannata tämän QR-koodin liittyäkseen ryhmään \"%1$@\".\n\nQR-koodi ei ole aktiivinen tällä laitteella.";
+"revive_qr_code" = "Aktivoi QR-koodi";
+"qrshow_title" = "QR-kutsukoodi";
+"qrshow_x_joining" = "%1$@ liittyy";
+"qrshow_x_verified" = "%1$@ varmistettu";
+"qrshow_x_has_joined_group" = "%1$@ liittyi ryhmään.";
+"qrshow_join_group_title" = "QR-kutsukoodi";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
+"qrshow_join_group_hint" = "Skannaa liittyäksesi ryhmään \"%1$@\"";
+"qrshow_join_contact_title" = "QR-kutsukoodi";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+"qrshow_join_contact_hint" = "Skannaa aloittaaksesi keskustelun käyttäjän %1$@ kanssa";
+"qrshow_join_contact_no_connection_toast" = "Ei internetyhteyttä, QR-koodin luominen ei onnistu.";
+"qraccount_ask_create_and_login" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?";
+"qraccount_ask_create_and_login_another" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?\n\nNykyistä tiliäsi ei poisteta. Käytä valintaa \"Vaihda tiliä\" vaihtaaksesi tilien välillä.";
+"qraccount_success_enter_name" = "Kirjautuminen onnistui - sähköpostiosoitteesa on %1$@\n\nVoit nyt halutessasi antaa nimen ja profiilikuvan, jotka näytetään muille kirjoittaessasi heille.";
+"qraccount_qr_code_cannot_be_used" = "Uutta tiliä ei voida luoda skannatulla QR-koodilla.";
+"qraccount_use_on_new_install" = "Skannattu QR-koodi on käytössä uuden tilin luomiseksi. Voit skannata QR-koodin uuden Delta Chat -asennuksen yhteydessä.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ kutsui sinut tähän ryhmään.\n\nOdotetaan vastausta yhteystiedon %2$@ laitteelta...";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "Vastaus saatu käyttäjältä %1$@, odotetaan lisäystä ryhmään...";
+"contact_verified" = "%1$@ varmistettu.";
+"contact_not_verified" = "Ei voida varmistaa %1$@.";
+// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+"contact_setup_changed" = "Asetukset muutettu kohteessa %1$@.";
+"verified_group_explain" = "(Kokeelliset) varmistetut ryhmät suojaavat aktiivisilta hyökkäyksiltä. Jokainen käyttäjä varmistetaan erikseen ja viestit ovat aina päästä-päähän-salattuja.";
+"copy_qr_data_success" = "QR-osoite kopioitu leikepöydälle";
+"mailto_dialog_header_select_chat" = "Valitse keskustelu viestien lähettämiseen";
+// first placeholder is the name of the chat
+"confirm_replace_draft" = "Keskustelussa %1$@ on jo luonnos. Haluatko korvata sen?";
+"mailto_link_could_not_be_decoded" = "mailto-linkkiä ei voitu selvittää: %1$@";
+
+// notifications 
+"notify_dismiss" = "Hylkää";
+"notify_reply_button" = "Vastaa";
+"notify_new_message" = "Uusi viesti";
+"notify_background_connection_enabled" = "Yhteys käynnissä taustalla";
+"notify_priority_high" = "Korkea";
+"notify_priority_max" = "Maksimi";
+"notify_name_and_message" = "Nimi ja viesti";
+"notify_name_only" = "Pelkkä nimi";
+"notify_no_name_or_message" = "Ei nimeä eikä viestiä";
+
+
+// permissions
+"perm_required_title" = "Pääsylupa vaaditaan";
+"perm_continue" = "Jatka";
+"perm_explain_access_to_camera_denied" = "Ottaaksesi kuvia tai videoita mene sovelluksen asetuksiin, valitse \"Käyttöluvat\" ja kytke päälle \"Kamera\".";
+"perm_explain_access_to_mic_denied" = "Lähettääksesi ääniviestin mene sovelluksen asetuksiin, valitse \"Käyttöluvat\" ja kytke päälle \"Mikrofoni\".";
+"perm_explain_access_to_storage_denied" = "Lähettääksesi tai vastaanottaaksesi tiedostoja mene sovelluksen asetuksiin, valitse \"Käyttöluvat\" ja kytke päälle \"Tallennustila\".";
+"perm_explain_access_to_location_denied" = "Jakaaksesi sijaintisi mene sovelluksen asetuksiin, valitse \"Käyttöluvat\" ja kytke päälle \"Sijainti\".";
+
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Piirrää sumentaaksesi";
+"ImageEditorHud_add_text" = "Lisää teksti";
+"ImageEditorHud_blur" = "Sumennus";
+"ImageEditorHud_brush_marker" = "Merkkaustussi";
+"ImageEditorHud_brush_highlight" = "Korostuskynä";
+"ImageEditorHud_crop" = "Rajaa";
+"ImageEditorHud_flip" = "Käännä";
+"ImageEditorHud_rotate" = "Pyöritä";
+
+// dc_str_* resources
+"encrypted_message" = "Salattu viesti";
+
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"about_offical_app_desktop" = "Tämä on virallinen Delta Chat -työpöytäsovellus.";
+"about_licensed_under_desktop" = "Tämä ohjelmisto on GNU GPL v3 -lisensoitu, ja lähdekoodi on saatavilla GitHubissa.";
+"welcome_desktop" = "Tervetuloa Delta Chatiin";
+"login_known_accounts_title_desktop" = "Tunnetut tilit";
+"global_menu_preferences_language_desktop" = "Kieli";
+"global_menu_file_desktop" = "Tiedosto";
+"global_menu_file_quit_desktop" = "Sulje";
+"global_menu_edit_desktop" = "Muokkaa";
+"global_menu_edit_undo_desktop" = "Kumoa";
+"global_menu_edit_redo_desktop" = "Tee uudelleen";
+"global_menu_edit_cut_desktop" = "Leikkaa";
+"global_menu_edit_copy_desktop" = "Kopioi";
+"global_menu_edit_paste_desktop" = "Liitä";
+"global_menu_view_desktop" = "Näytä";
+"global_menu_view_floatontop_desktop" = "Pidä päällimmäisenä";
+"global_menu_view_developer_desktop" = "Kehittäjä";
+"global_menu_view_developer_tools_desktop" = "Kehittäjätyökalut";
+"global_menu_help_desktop" = "Ohje";
+"global_menu_help_learn_desktop" = "Lisätietoja Delta Chatista";
+"global_menu_help_contribute_desktop" = "Osallistu GitHubissa";
+"global_menu_help_report_desktop" = "Ilmoita ongelma";
+"global_menu_help_about_desktop" = "Tietoja Delta Chatista";
+"global_menu_file_open_desktop" = "Avaa Delta Chat";
+"global_menu_minimize_to_tray" = "Pienennä";
+"no_chat_selected_suggestion_desktop" = "Valitse tai luo keskustelu";
+"write_message_desktop" = "Kirjoita viesti";
+"encryption_info_title_desktop" = "Salaustiedot";
+"delete_message_desktop" = "Poista viesti";
+"more_info_desktop" = "Lisätietoja";
+"timestamp_format_m_desktop" = "MMM D";
+"encryption_info_desktop" = "Näytä salaustiedot";
+"remove_desktop" = "Poista";
+"save_desktop" = "Tallenna";
+"name_desktop" = "Nimi";
+"autocrypt_key_transfer_desktop" = "Autocrypt-avainten siirto";
+"initiate_key_transfer_desktop" = "Autocrypt-asetusviesti jakaa turvallisesti päästä-päähän-salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa. Asetukset salataan tässä näytettävällä asetuskoodilla, joka on syötettävä toiseen laitteeseen.";
+"select_group_image_desktop" = "Valitse ryhmän kuva";
+"imex_progress_title_desktop" = "Varmuuskopioinnin tila";
+"export_backup_desktop" = "Vie varmuuskopio";
+"show_key_transfer_message_desktop" = "Asetusviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään asennuskoodia. Anna seuraavat numerot:";
+"autocrypt_correct_desktop" = "Autocrypt-asetukset siirretty.";
+"autocrypt_incorrect_desktop" = "Virheellinen asennuskoodi. Yritä uudelleen.";
+"create_chat_error_desktop" = "Keskustelua ei voitu luoda.";
+"forget_login_confirmation_desktop" = "Poista tämä kirjautuminen? Kaikki tiedot poistetaan, mukaan lukien päästä-päähän-salauksen asetukset, yhteystiedot, keskustelut, viestit ja media. Tämä toiminto on peruuttamaton.";
+"account_info_hover_tooltip_desktop2" = "Sähköposti: %1$@\nKoko: %2$@\nTilin tunniste: %3$@";
+"message_detail_sent_desktop" = "lähetetty";
+"message_detail_received_desktop" = "vastaanotettu";
+"menu.view.developer.open.log.folder" = "Avaa lokikansio";
+"menu.view.developer.open.current.log.file" = "Avaa nykyinen lokitiedosto";
+"explain_desktop_minimized_disabled_tray_pref" = "Työkalupalkin kuvaketta ei voida poistaa, koska Delta Chat käynnistettiin \"Käynnistä pienennettynä\" -valinnalla.";
+"no_spellcheck_suggestions_found" = "Oikeinkirjoitusehdotusta ei löydy.";
+"show_window" = "Näytä ikkuna";
+"login_socks5_experimental_warning" = "SOCKS5-tuki on kokeellinen. Käytä omalla vastuulla. Jos annat osoitteen sähköpostikenttään, DNS-etsintää ei tunneloida SOCKS5 läpi.";
+
+// accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
+"a11y_delivery_status_error" = "Toimituksen tila: virhe";
+"a11y_encryption_padlock" = "Salauksen lukko";
+"a11y_delivery_status_sending" = "Toimituksen tila: lähetetään";
+"a11y_delivery_status_draft" = "Toimituksen tila: luonnos";
+"a11y_delivery_status_delivered" = "Toimituksen tila: toimitettu";
+"a11y_delivery_status_read" = "Toimituksen tila: luettu";
+"a11y_delivery_status_invalid" = "Toimituksen tila virheellinen";
+"a11y_message_context_menu_btn_label" = "Viestin toiminnot";
+"a11y_background_preview_label" = "Esikatselu taustalla";
+"a11y_disappearing_messages_activated" = "Viestien katoaminen päällä";
+
+
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"pref_background_notifications" = "Ilmoitukset taustalla";
+"pref_background_notifications_explain" = "Käyttää yhteyttä palvelimeesi taustalla. Akun käytön optimointi on poistettava käytöstä.";
+"pref_background_notifications_rationale" = "Yhteyden ylläpitämiseksi sähköpostipalvelimen kanssa ja viestien vastaanottamiseksi taustalla, poista akun käytön optimointi käytöstä seuraavassa vaiheessa.\n\nDelta Chat käyttää vain vähän laitteen suorituskyvystä, eikä juurikaan kuluta akkua.";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Luotettava yhteys taustalla";
+"pref_reliable_service_explain" = "Vaatii pysyvän ilmoituksen";
+"perm_enable_bg_reminder_title" = "Napauta vastaanottaaksesi viestejä, kun Delta Chat on taustalla.";
+"perm_enable_bg_already_done" = "Annoit jo luvan viestien vastaanottamiselle taustalla.\n\nJos et saa viestejä taustalla, tarkista myös järjestelmäasetukset.";
+
+
+// device messages for updates
+"update_1_24_android" = "1.24 pikakatsaus:\n\n• Säästä napautuksia: vaihda tiliä ylävasemmalla keskustelulistan yltä\n• Säästä lisää napautuksia: napauta sovelluskuvaketta pitkään valitaksesi keskusteluja suoraan.\n• Säästä dataa: lataa suuria tiedostoja tarpeen mukaan.\n• Säästä hermoja: nopeammat liittymiset QR-koodien avulla ja lisää QR-koodivalintoja\n\nLisää 👉";
+"update_1_24_ios" = "1.24 pikakatsaus:\n\n• Keskustelun sisäinen haku keskustelun profiilisivulta.\n• Säästä dataa lataamalla suuria tiedostoja tarpeen mukaan.\n• Säästä hermoja liittymällä nopeammin QR-koodien kautta\n\nLisää 👉";
+"update_1_26" = "1.26 hiomista 💅\n\n•QR-koodit näyttävät paremmilta kaikilla alustoilla.\n• Avatarit ja mitalit näyttävät samankaltaisilta eri alustojen välillä.\n• Paljon ongelmia korjattu.";
+"update_1_28_android" = "1.28 Nostot:\n\n🔒Salaus: Uusi kokeellinen valinta yhteystietojen, salausavainten ja tekstiviestien säilyttämiseksi salattuina latteellasi. Saatavilla ainoastaan tilin luomisen ja varmuuskopioiden tuomisen yhteydessä.\n\n📫 Kirjoita sähköpostilistoille.\n\n💫 Nopeampi asetusten luonti monille sähköpostipalvelimille ja yksinkertaistetut verkkoasetukset virheellisten asetusten ehkäisemiseksi\n\n🐜 Paljon käyttäjien raportoimien ongelmien korjauksia.";
+"update_1_28_ios_extra_line" = "... ja nyt voit vaihtaa taustakuvan: \"Asetukset / Taustakuva\" :)";
+

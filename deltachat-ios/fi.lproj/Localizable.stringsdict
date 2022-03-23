@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>n_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d minuutti</string>
+			<key>other</key>
+			<string>%d minuuttia</string>
+		</dict>
+	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d tunti</string>
+			<key>other</key>
+			<string>%d tuntia</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d keskustelu</string>
+			<key>other</key>
+			<string>%d keskustelua</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d yhteystieto</string>
+			<key>other</key>
+			<string>%d yhteystietoa</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d viesti</string>
+			<key>other</key>
+			<string>%d viestiä</string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d jäsen</string>
+			<key>other</key>
+			<string>%d jäsentä</string>
+		</dict>
+	</dict>
+	<key>n_recipients</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d vastaanottaja</string>
+			<key>other</key>
+			<string>%d vastaanottajaa</string>
+		</dict>
+	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Lähetä seuraava tiedosto yhteystiedolle%s?</string>
+			<key>other</key>
+			<string>Lähetä seuraavat %dtiedostot yhteystiedolle%s?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Poista %d keskustelu? Se ei enää näy keskustelulistauksessa, mutta sen viestit jäävät palvelimelle.</string>
+			<key>other</key>
+			<string>Poista %d keskustelua? Ne eivät enää näy keskustelulistauksessa, mutta niiden viestit jäävät palvelimelle.</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Poista %d viesti täältä ja palvelimelta?</string>
+			<key>other</key>
+			<string>Poista %d viestiä täältä ja palvelimelta?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Poista %d viesti?</string>
+			<key>other</key>
+			<string>Poista %d viestiä?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d keskustelu arkistoitu</string>
+			<key>other</key>
+			<string>%d keskustelua arkistoitu</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d keskustelu siirretty pois arkistosta</string>
+			<key>other</key>
+			<string>%d keskustelua siirretty pois arkistosta</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d uusi viesti</string>
+			<key>other</key>
+			<string>%d uutta viestiä</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
