@@ -285,6 +285,8 @@
 "chat_please_enter_message" = "لطفا یک پیام وارد کنید.";
 "chat_camera_unavailable" = "دوربین در دسترس نیست";
 "chat_unable_to_record_audio" = "ضبط صدا ممکن نیست. ";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "ارسال پیام. مشکلی نیست اگر %1$@ از دلتاچت استفاده نمی‌کند.";
 "chat_new_group_hint" = "نوشتن اولین پیام به دیگران امکان می‌دهد در این گروه پاسخ دهند. \n\n• مشکلی نیست اگر همه اعضا از دلتاچت استفاده نکنند\n\n• دریافت اولین پیام ممکن است به زمان بیشتری نیاز داشته باشد. ";
 "chat_record_slide_to_cancel" = "برای لغو بکشید.";
 "chat_record_explain" = "برای ضبط پیام صوتی فشار داده و نگهدارید، برای ارسال رها کنید. ";
@@ -315,6 +317,12 @@
 // mailing lists
 "mailing_list" = "لیست ایمیل";
 "mailing_list_profile_info" = "تغییرات انجام شده روی اسم و تصویر لیست ایمیل فقط در این دستگاه اعمال شود.";
+
+// webxdc
+// "Start..." button for an app
+"start_app" = "شروع...";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "لطفا اول درخواست گفتگو را قبول کنید.";
 
 // map
 "filter_map_on_time" = "نمایش موقعیت‌های مکانی در چارچوب زمان";
@@ -534,12 +542,16 @@
 "pref_send_copy_to_self" = "ارسال رونوشت به خودم";
 "pref_auto_folder_moves" = "انتقال خودکار به پوشه دلتاچت";
 "pref_auto_folder_moves_explain" = "گفتگوها برای جلوگیری از پر شدن صندوق ورودی جابجا شده‌اند";
+"pref_only_fetch_mvbox_title" = "فقط پوشه دلتاچت را بررسی کن";
+"pref_only_fetch_mvbox_explain" = "از بقیه پوشه‌ها صرف نظر کن. در صورت انتخاب این گزینه، ایمیل شما باید پیام‌ها را به پوشه دلتاچت انتقال دهد";
 "pref_show_emails" = "نمایش ایمیل‌های معمولی";
 "pref_show_emails_no" = "نه، فقط گفتگوها";
 "pref_show_emails_accepted_contacts" = "برای مخاطبین پذیرفته شده";
 "pref_show_emails_all" = "همه";
 "pref_experimental_features" = "ویژگی‌های آزمایشی";
 "pref_on_demand_location_streaming" = "اشتراک موقعیت مکانی در صورت نیاز";
+"pref_developer_mode" = "حالت برنامه نویسی";
+"pref_developer_mode_explain" = "تنظیمات عیب‌یابی را فعال می‌کند که موجب کاهش پایداری نرم‌افزار می‌شوند.  فقط جهت استفاده توسعه دهندگان";
 "pref_background_default" = "تصویر زمینه پیش‌فرض";
 "pref_background_default_color" = "رنگ پیش‌فرض";
 "pref_background_custom_image" = "تصویر ترجیحی";
@@ -551,6 +563,7 @@
 "up_to_x_most_worse_quality_images" = "تا سقف %1$@، بدترین کیفیت تصویر";
 "up_to_x_most_balanced_quality_images" = "تا سقف %1$@، متعادل‌ترین کیفیت تصویر";
 "no_limit" = "بدون محدودیت";
+"download_failed" = "بارگیری ناموفق";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "پیام %1$@ ";
 // %1$s will be replaced by human-readable date and time
@@ -816,3 +829,5 @@
 
 
 // device messages for updates
+"update_1_28_ios_extra_line" = "...و اکنون می‌توانید از بخش «تنظیمات/ پس‌زمینه » یک پس زمینه انتخاب کنید :)";
+
