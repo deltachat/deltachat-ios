@@ -89,8 +89,7 @@ class ChatListController: UITableViewController {
         let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         msg.text = String.localized("update_1_28_android") + "\n\n" + String.localized("update_1_28_ios_extra_line")
         dcContext.addDeviceMessage(label: "update_1_28a_ios", msg: msg)
-
-        viewModel.refreshData()
+        handleEmptyStateLabel()
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -427,7 +426,10 @@ class ChatListController: UITableViewController {
 
     func handleChatListUpdate() {
         tableView.reloadData()
+        handleEmptyStateLabel()
+    }
 
+    private func handleEmptyStateLabel() {
         if let emptySearchText = viewModel.emptySearchText {
             let text = String.localizedStringWithFormat(
                 String.localized("search_no_result_for_x"),
