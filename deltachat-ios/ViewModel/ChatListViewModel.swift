@@ -305,13 +305,13 @@ private extension ChatListViewModel {
     func filterAndUpdateList(searchText: String) {
         var overallCnt = 0
 
-        // #1 chats with searchPattern in title bar
+        // #1 - search for chats with searchPattern in title
         searchResultChatList = dcContext.getChatlist(flags: DC_GCL_NO_SPECIALS, queryString: searchText, queryId: 0)
         if let chatlist = searchResultChatList {
             overallCnt += chatlist.length
         }
 
-        // #2 contacts with searchPattern in name or in email
+        // #2 - search for contacts with searchPattern in name or in email
         if searchText != self.searchText && overallCnt > 0 {
             logger.info("... skipping getContacts and searchMessages, more recent search pending")
             searchResultContactIds = []
@@ -323,7 +323,7 @@ private extension ChatListViewModel {
         searchResultContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
         overallCnt += searchResultContactIds.count
 
-        // #3 messages with searchPattern (filtered by dc_core)
+        // #3 - search for messages with searchPattern in fulltext
         if searchText != self.searchText && overallCnt > 0 {
             logger.info("... skipping searchMessages, more recent search pending")
             searchResultMessageIds = []
