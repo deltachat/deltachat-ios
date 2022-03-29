@@ -505,15 +505,14 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             if let ui = notification.userInfo {
                 let dcChat = self.dcContext.getChat(chatId: self.chatId)
-                if !dcChat.canSend {
-                    // always refresh, as we can't check currently
+                if dcChat.canSend,
+                    let id = ui["message_id"] as? Int,
+                    id > 0 {
+                    self.updateMessage(id)
+                } else {
                     self.refreshMessages()
-                } else if let id = ui["message_id"] as? Int {
-                    if id > 0 {
-                        self.updateMessage(id)
-                    } else {
-                        // change might be a deletion
-                        self.refreshMessages()
+                    DispatchQueue.main.async {
+                        self.messageInputBar.scrollDownButton.isHidden = self.isLastRowVisible(checkScreenPosition: true)
                     }
                 }
                 if self.showCustomNavBar {
@@ -659,7 +658,6 @@ class ChatViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         _ = handleUIMenu()
-        messageInputBar.scrollDownButton.isHidden = isInitial || isLastRowVisible()
 
         let id = messageIds[indexPath.row]
         if id == DC_MSG_ID_DAYMARKER {
@@ -743,11 +741,18 @@ class ChatViewController: UITableViewController {
     public override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             markSeenMessagesInVisibleArea()
+            messageInputBar.scrollDownButton.isHidden = isLastRowVisible(checkScreenPosition: true)
         }
     }
 
     public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
+        messageInputBar.scrollDownButton.isHidden = isLastRowVisible(checkScreenPosition: true)
+    }
+
+    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        markSeenMessagesInVisibleArea()
+        messageInputBar.scrollDownButton.isHidden = isLastRowVisible(checkScreenPosition: true)
     }
 
     private func configureContactRequestBar() {
@@ -987,16 +992,23 @@ class ChatViewController: UITableViewController {
             msgIds.insert(Int(DC_MSG_ID_MARKER1), at: index)
         }
         self.messageIds = msgIds
+        logger.debug("debugging - loadMessages finished")
 
         self.showEmptyStateView(self.messageIds.isEmpty)
 
         self.reloadData()
     }
 
-    private func isLastRowVisible() -> Bool {
+    private func isLastRowVisible(checkScreenPosition: Bool = false) -> Bool {
         guard !messageIds.isEmpty else { return false }
-
         let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
+        if checkScreenPosition {
+            let rectOfCellInTableView = tableView.rectForRow(at: lastIndexPath)
+            let posY =  tableView.bounds.height + tableView.bounds.minY - messageInputBar.bounds.height - 10
+            logger.debug("isLastRowVisible: \(rectOfCellInTableView.minY) < \(posY)")
+            logger.debug("isLastRowVisible ===> \(rectOfCellInTableView.minY < posY)")
+            return rectOfCellInTableView.minY < posY
+        }
         return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
     }
     
