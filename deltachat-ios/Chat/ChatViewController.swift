@@ -515,6 +515,10 @@ class ChatViewController: UITableViewController {
                         // change might be a deletion
                         self.refreshMessages()
                     }
+                } else {
+                    // notification was resent by system after app was freezed and became active again, userInfo got lost. brrr...
+                    self.loadMessages()
+                    self.scrollToLastUnseenMessage()
                 }
                 if self.showCustomNavBar {
                     self.updateTitle(chat: dcChat)
