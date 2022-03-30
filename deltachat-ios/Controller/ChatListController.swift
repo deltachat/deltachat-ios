@@ -352,8 +352,6 @@ class ChatListController: UITableViewController {
             }
         case .profile:
             safe_fatalError("CellData type profile not allowed")
-        default:
-            break
         }
         safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
         return UITableViewCell()
