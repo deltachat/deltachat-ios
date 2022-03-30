@@ -31,10 +31,8 @@ class ChatListController: UITableViewController {
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = viewModel
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
-        searchController.searchBar.delegate = self
         return searchController
     }()
 
@@ -69,7 +67,13 @@ class ChatListController: UITableViewController {
             self.viewModel = ChatListViewModel(dcContext: self.dcContext, isArchive: isArchive)
             self.viewModel?.onChatListUpdate = self.handleChatListUpdate
             DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
+                guard let self = self else { return }
+                if !isArchive {
+                    self.navigationItem.searchController = self.searchController
+                    self.searchController.searchResultsUpdater = self.viewModel
+                    self.searchController.searchBar.delegate = self
+                }
+                self.tableView.reloadData()
             }
         }
     }
@@ -83,7 +87,6 @@ class ChatListController: UITableViewController {
         super.viewDidLoad()
         if isArchive {
             navigationItem.rightBarButtonItem = newButton
-            navigationItem.searchController = searchController
         }
         configureTableView()
         setupSubviews()
