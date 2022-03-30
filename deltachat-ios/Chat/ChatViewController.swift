@@ -992,7 +992,6 @@ class ChatViewController: UITableViewController {
             msgIds.insert(Int(DC_MSG_ID_MARKER1), at: index)
         }
         self.messageIds = msgIds
-        logger.debug("debugging - loadMessages finished")
 
         self.showEmptyStateView(self.messageIds.isEmpty)
 
@@ -1004,10 +1003,7 @@ class ChatViewController: UITableViewController {
         let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
         if checkScreenPosition {
             let rectOfCellInTableView = tableView.rectForRow(at: lastIndexPath)
-            let posY =  tableView.bounds.height + tableView.bounds.minY - messageInputBar.bounds.height - 10
-            logger.debug("isLastRowVisible: \(rectOfCellInTableView.minY) < \(posY)")
-            logger.debug("isLastRowVisible ===> \(rectOfCellInTableView.minY < posY)")
-            return rectOfCellInTableView.minY < posY
+            return rectOfCellInTableView.minY < tableView.bounds.maxY - messageInputBar.bounds.height - 10
         }
         return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
     }
