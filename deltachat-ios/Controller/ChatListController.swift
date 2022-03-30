@@ -85,7 +85,7 @@ class ChatListController: UITableViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if isArchive {
+        if !isArchive {
             navigationItem.rightBarButtonItem = newButton
         }
         configureTableView()
