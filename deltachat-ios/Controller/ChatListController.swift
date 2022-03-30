@@ -428,7 +428,7 @@ class ChatListController: UITableViewController {
     private func updateTitle() {
         if RelayHelper.sharedInstance.isForwarding() {
             titleView.text = String.localized("forward_to")
-            if isArchive {
+            if !isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
         } else if isArchive {
