@@ -321,6 +321,9 @@
 "mailing_list" = "Lista mailingowa";
 "mailing_list_profile_info" = "Zmiany nazwy i obrazu listy adresowej dotyczą tylko tego urządzenia.";
 
+// webxdc
+// "Start..." button for an app
+"start_app" = "Uruchom…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Najpierw zaakceptuj prośbę o czat.";
 
