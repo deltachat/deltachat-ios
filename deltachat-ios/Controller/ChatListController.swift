@@ -54,7 +54,7 @@ class ChatListController: UITableViewController {
 
     private lazy var emptyStateLabel: EmptyStateLabel = {
         let label = EmptyStateLabel()
-        label.isHidden = false
+        label.isHidden = true
         return label
     }()
 
@@ -96,7 +96,6 @@ class ChatListController: UITableViewController {
         let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         msg.text = String.localized("update_1_28_android") + "\n\n" + String.localized("update_1_28_ios_extra_line")
         dcContext.addDeviceMessage(label: "update_1_28a_ios", msg: msg)
-        handleEmptyStateLabel()
     }
 
     override func willMove(toParent parent: UIViewController?) {
