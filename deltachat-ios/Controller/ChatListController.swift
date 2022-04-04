@@ -2,8 +2,9 @@ import UIKit
 import DcCore
 
 class ChatListController: UITableViewController {
-    let viewModel: ChatListViewModel
+    var viewModel: ChatListViewModel?
     let dcContext: DcContext
+    var isArchive: Bool
 
     private let chatCellReuseIdentifier = "chat_cell"
     private let deadDropCellReuseIdentifier = "deaddrop_cell"
@@ -30,10 +31,8 @@ class ChatListController: UITableViewController {
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = viewModel
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
-        searchController.searchBar.delegate = self
         return searchController
     }()
 
@@ -55,19 +54,28 @@ class ChatListController: UITableViewController {
 
     private lazy var emptyStateLabel: EmptyStateLabel = {
         let label = EmptyStateLabel()
-        label.isHidden = false
+        label.isHidden = true
         return label
     }()
 
-    init(dcContext: DcContext, viewModel: ChatListViewModel) {
-        self.viewModel = viewModel
+    init(dcContext: DcContext, isArchive: Bool) {
         self.dcContext = dcContext
-        if viewModel.isArchive {
-            super.init(style: .grouped)
-        } else {
-            super.init(style: .grouped)
+        self.isArchive = isArchive
+        super.init(style: .grouped)
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self = self else { return }
+            self.viewModel = ChatListViewModel(dcContext: self.dcContext, isArchive: isArchive)
+            self.viewModel?.onChatListUpdate = self.handleChatListUpdate
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if !isArchive {
+                    self.navigationItem.searchController = self.searchController
+                    self.searchController.searchResultsUpdater = self.viewModel
+                    self.searchController.searchBar.delegate = self
+                }
+                self.handleChatListUpdate()
+            }
         }
-        viewModel.onChatListUpdate = handleChatListUpdate // register listener
     }
 
     required init?(coder _: NSCoder) {
@@ -77,9 +85,8 @@ class ChatListController: UITableViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !viewModel.isArchive {
+        if !isArchive {
             navigationItem.rightBarButtonItem = newButton
-            navigationItem.searchController = searchController
         }
         configureTableView()
         setupSubviews()
@@ -89,8 +96,6 @@ class ChatListController: UITableViewController {
         let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         msg.text = String.localized("update_1_28_android") + "\n\n" + String.localized("update_1_28_ios_extra_line")
         dcContext.addDeviceMessage(label: "update_1_28a_ios", msg: msg)
-
-        viewModel.refreshData()
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -143,9 +148,10 @@ class ChatListController: UITableViewController {
             queue: nil) { [weak self] _ in
             guard let self = self else { return }
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-               self.viewModel.searchActive,
+               let viewModel = self.viewModel,
+               viewModel.searchActive,
                appDelegate.appIsInForeground() {
-                self.viewModel.updateSearchResults(for: self.searchController)
+                viewModel.updateSearchResults(for: self.searchController)
             }
         }
 
@@ -223,7 +229,7 @@ class ChatListController: UITableViewController {
     
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
-        navigationItem.backButtonTitle = viewModel.isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
+        navigationItem.backButtonTitle = isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
     }
 
     @objc
@@ -241,11 +247,14 @@ class ChatListController: UITableViewController {
         tableView.rowHeight = ContactCell.cellHeight
     }
 
-    
+    private var isInitial = true
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
-            startTimer()
-            refreshInBg()
+            if !isInitial {
+                isInitial = false
+                startTimer()
+                refreshInBg()
+            }
         }
     }
 
@@ -260,13 +269,13 @@ class ChatListController: UITableViewController {
                 // do at least one refresh, without inital delay
                 // (refreshData() calls handleChatListUpdate() on main thread when done)
                 self?.needsAnotherBgRefresh = false
-                self?.viewModel.refreshData()
+                self?.viewModel?.refreshData()
 
                 // do subsequent refreshes with a delay of 500ms
                 while self?.needsAnotherBgRefresh != false {
                     usleep(500000)
                     self?.needsAnotherBgRefresh = false
-                    self?.viewModel.refreshData()
+                    self?.viewModel?.refreshData()
                 }
 
                 self?.inBgRefresh = false
@@ -300,7 +309,7 @@ class ChatListController: UITableViewController {
     }
     private func quitSearch(animated: Bool) {
         searchController.searchBar.text = nil
-        self.viewModel.endSearch()
+        self.viewModel?.endSearch()
         searchController.dismiss(animated: animated) {
             self.tableView.scrollToTop()
         }
@@ -310,17 +319,18 @@ class ChatListController: UITableViewController {
 
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections
+        return viewModel?.numberOfSections ?? 0
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsIn(section: section)
+        return viewModel?.numberOfRowsIn(section: section) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        guard let viewModel = viewModel else {
+            return UITableViewCell()
+        }
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
-
         switch cellData.type {
         case .chat(let chatData):
             let chatId = chatData.chatId
@@ -347,10 +357,15 @@ class ChatListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.titleForHeaderIn(section: section)
+        return viewModel?.titleForHeaderIn(section: section)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else {
+            tableView.deselectRow(at: indexPath, animated: false)
+            return
+        }
+
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
         switch cellData.type {
         case .chat(let chatData):
@@ -374,6 +389,7 @@ class ChatListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        guard let viewModel = viewModel else { return [] }
 
         guard let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else {
             return []
@@ -389,13 +405,13 @@ class ChatListController: UITableViewController {
         let archiveActionTitle: String = String.localized(archived ? "unarchive" : "archive")
 
         let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _ in
-            self?.viewModel.archiveChatToggle(chatId: chatId)
+            self?.viewModel?.archiveChatToggle(chatId: chatId)
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _ in
-            self?.viewModel.pinChatToggle(chatId: chat.id)
+            self?.viewModel?.pinChatToggle(chatId: chat.id)
         }
         pinAction.backgroundColor = UIColor.systemGreen
 
@@ -411,10 +427,10 @@ class ChatListController: UITableViewController {
     private func updateTitle() {
         if RelayHelper.sharedInstance.isForwarding() {
             titleView.text = String.localized("forward_to")
-            if !viewModel.isArchive {
+            if !isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
-        } else if viewModel.isArchive {
+        } else if isArchive {
             titleView.text = String.localized("chat_archived_chats_title")
             navigationItem.setLeftBarButton(nil, animated: true)
            
@@ -427,15 +443,18 @@ class ChatListController: UITableViewController {
 
     func handleChatListUpdate() {
         tableView.reloadData()
+        handleEmptyStateLabel()
+    }
 
-        if let emptySearchText = viewModel.emptySearchText {
+    private func handleEmptyStateLabel() {
+        if let emptySearchText = viewModel?.emptySearchText {
             let text = String.localizedStringWithFormat(
                 String.localized("search_no_result_for_x"),
                 emptySearchText
             )
             emptyStateLabel.text = text
             emptyStateLabel.isHidden = false
-        } else if viewModel.isArchive && viewModel.numberOfRowsIn(section: 0) == 0 {
+        } else if isArchive && (viewModel?.numberOfRowsIn(section: 0) ?? 0) == 0 {
             emptyStateLabel.text = String.localized("archive_empty_hint")
             emptyStateLabel.isHidden = false
         } else {
@@ -531,6 +550,7 @@ class ChatListController: UITableViewController {
     }
 
     private func deleteChat(chatId: Int, animated: Bool) {
+        guard let viewModel = viewModel else { return }
         if !animated {
             viewModel.deleteChat(chatId: chatId)
             refreshInBg()
@@ -562,8 +582,7 @@ class ChatListController: UITableViewController {
     }
 
     public func showArchive(animated: Bool) {
-        let viewModel = ChatListViewModel(dcContext: dcContext, isArchive: true)
-        let controller = ChatListController(dcContext: dcContext, viewModel: viewModel)
+        let controller = ChatListController(dcContext: dcContext, isArchive: true)
         navigationController?.pushViewController(controller, animated: animated)
     }
 
@@ -576,13 +595,13 @@ class ChatListController: UITableViewController {
 // MARK: - uisearchbardelegate
 extension ChatListController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        viewModel.beginSearch()
+        viewModel?.beginSearch()
         return true
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // searchBar will be set to "" by system
-        viewModel.endSearch()
+        viewModel?.endSearch()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
            self.tableView.scrollToTop()
         }
