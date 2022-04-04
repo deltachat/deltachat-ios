@@ -252,9 +252,9 @@ class ChatListController: UITableViewController {
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
             if !isInitial {
+                isInitial = false
                 startTimer()
                 refreshInBg()
-                isInitial = false
             }
         }
     }
