@@ -73,7 +73,7 @@ class ChatListController: UITableViewController {
                     self.searchController.searchResultsUpdater = self.viewModel
                     self.searchController.searchBar.delegate = self
                 }
-                self.tableView.reloadData()
+                self.handleChatListUpdate()
             }
         }
     }
