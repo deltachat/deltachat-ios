@@ -1515,12 +1515,12 @@ class ChatViewController: UITableViewController {
     private func stageImage(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
-            if let pathInDocDir = ImageFormat.saveImage(image: image) {
+            if let pathInCachesDir = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 DispatchQueue.main.async {
-                    if pathInDocDir.suffix(4).contains(".gif") {
-                        self.draft.setAttachment(viewType: DC_MSG_GIF, path: pathInDocDir)
+                    if pathInCachesDir.suffix(4).contains(".gif") {
+                        self.draft.setAttachment(viewType: DC_MSG_GIF, path: pathInCachesDir)
                     } else {
-                        self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInDocDir)
+                        self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInCachesDir)
                     }
                     self.configureDraftArea(draft: self.draft)
                     self.messageInputBar.inputTextView.becomeFirstResponder()
@@ -1531,7 +1531,7 @@ class ChatViewController: UITableViewController {
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
-            if let path = ImageFormat.saveImage(image: image) {
+            if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
             }
         }
@@ -1539,7 +1539,7 @@ class ChatViewController: UITableViewController {
 
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async {
-            if let path = ImageFormat.saveImage(image: image) {
+            if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
             }
         }

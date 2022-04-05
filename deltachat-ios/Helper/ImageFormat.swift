@@ -68,12 +68,12 @@ extension ImageFormat {
         return loadImageFrom(data: imageData)
     }
 
-    public static func saveImage(image: UIImage, name: String? = nil) -> String? {
+    public static func saveImage(image: UIImage, name: String? = nil, directory: FileManager.SearchPathDirectory? = .applicationSupportDirectory) -> String? {
         if image.sd_isAnimated,
            let data = image.sd_imageData() {
             let format = ImageFormat.get(from: data)
             if format != .unknown {
-                return ImageFormat.saveImage(data: data, name: name, suffix: format.rawValue)
+                return ImageFormat.saveImage(data: data, name: name, suffix: format.rawValue, directory: directory)
             }
         }
         let suffix = image.isTransparent() ? "png" : "jpg"
@@ -84,25 +84,53 @@ extension ImageFormat {
         return saveImage(data: data, name: name, suffix: suffix)
     }
 
-    public static func saveImage(data: Data, name: String? = nil, suffix: String) -> String? {
+    public static func saveImage(data: Data, name: String? = nil, suffix: String, directory: FileManager.SearchPathDirectory? = .applicationSupportDirectory) -> String? {
         var path: URL?
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask,
-                                                              appropriateFor: nil, create: false) as NSURL
-        else { return nil }
-        if let name = name {
-            path = directory.appendingPathComponent("\(name).\(suffix)")
-        } else {
-            let timestamp = Double(Date().timeIntervalSince1970)
-            path = directory.appendingPathComponent("\(timestamp).\(suffix)")
+
+        // ensure directory exists (application support dir doesn't exist per default)
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: directory!, in: .userDomainMask) as [URL]
+        guard let identifier = Bundle.main.bundleIdentifier else {
+            print("err: Could not find bundle identifier")
+            return nil
+        }
+        guard let directoryURL = urls.last else {
+            print("err: Could not find directory url for \(String(describing: directory)) in .userDomainMask")
+            return nil
+        }
+        var subdirectoryURL = directoryURL.appendingPathComponent(identifier)
+        do {
+            try fileManager.createDirectory(at: subdirectoryURL, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print("err: \(error.localizedDescription)")
+            return nil
         }
 
+        // Opt out from iCloud backup
+        var resourceValues: URLResourceValues = URLResourceValues()
+        resourceValues.isExcludedFromBackup = true
+        do {
+            try subdirectoryURL.setResourceValues(resourceValues)
+        } catch {
+            print("err: \(error.localizedDescription)")
+            return nil
+        }
+
+        // add file name to path
+        if let name = name {
+            path = subdirectoryURL.appendingPathComponent("\(name).\(suffix)")
+        } else {
+            let timestamp = Double(Date().timeIntervalSince1970)
+            path = subdirectoryURL.appendingPathComponent("\(timestamp).\(suffix)")
+        }
         guard let path = path else { return nil }
 
+        // write data
         do {
             try data.write(to: path)
             return path.relativePath
         } catch {
-            print(error.localizedDescription)
+            print("err: \(error.localizedDescription)")
             return nil
         }
     }
