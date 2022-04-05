@@ -10,7 +10,6 @@ class WebxdcViewController: WebViewViewController {
         case sendStatusUpdate = "sendStatusUpdateHandler"
     }
     let INTERNALSCHEMA = "webxdc"
-    let INTERNALDOMAIN = "local.app"
     
     var messageId: Int
     var dcContext: DcContext
@@ -221,8 +220,10 @@ class WebxdcViewController: WebViewViewController {
     private func loadHtml() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
+            let url = URL(string: "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/index.html")
+            let urlRequest = URLRequest(url: url!)
             DispatchQueue.main.async {
-                self.webView.load(URLRequest(url: URL(string: "\(self.INTERNALSCHEMA)://msg\(self.messageId).\(self.INTERNALDOMAIN)/index.html")!))
+                self.webView.load(urlRequest)
             }
         }
     }
