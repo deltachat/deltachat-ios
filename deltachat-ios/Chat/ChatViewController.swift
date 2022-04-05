@@ -1524,6 +1524,7 @@ class ChatViewController: UITableViewController {
                     }
                     self.configureDraftArea(draft: self.draft)
                     self.messageInputBar.inputTextView.becomeFirstResponder()
+                    ImageFormat.deleteImage(atPath: pathInCachesDir)
                 }
             }
         }
@@ -1533,6 +1534,7 @@ class ChatViewController: UITableViewController {
         DispatchQueue.global().async {
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
+                ImageFormat.deleteImage(atPath: path)
             }
         }
     }
@@ -1541,6 +1543,7 @@ class ChatViewController: UITableViewController {
         DispatchQueue.global().async {
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
+                ImageFormat.deleteImage(atPath: path)
             }
         }
     }

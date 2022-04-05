@@ -157,4 +157,27 @@ extension ImageFormat {
         }
         return nil
     }
+
+    public static func deleteImage(atPath: String) {
+        if Thread.isMainThread {
+            DispatchQueue.global(qos: .background).async {
+                deleteFile(path: atPath)
+            }
+        } else {
+            deleteFile(path: atPath)
+        }
+    }
+
+    private static func deleteFile(path: String) {
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: path) {
+            return
+        }
+
+        do {
+            try fileManager.removeItem(atPath: path)
+        } catch {
+            print("err: \(error.localizedDescription)")
+        }
+    }
 }
