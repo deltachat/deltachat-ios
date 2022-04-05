@@ -61,11 +61,16 @@ class ChatViewController: UITableViewController {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         if let path = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
-            view.sd_setImage(with: URL(fileURLWithPath: path), completed: nil)
-        } else if #available(iOS 12.0, *) {
-            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+            view.sd_setImage(with: URL(fileURLWithPath: path)) { [weak self] (_, error, _, _) in
+                if error != nil {
+                    logger.warning(String(describing: error))
+                    DispatchQueue.main.async {
+                        self?.setDefaultBackgroundImage(view: view)
+                    }
+                }
+            }
         } else {
-            view.image = UIImage(named: "background_light")
+            setDefaultBackgroundImage(view: view)
         }
         return view
     }()
@@ -1724,6 +1729,14 @@ class ChatViewController: UITableViewController {
         self.configureDraftArea(draft: self.draft)
         if let indexPath = selectedAtIndexPath {
             _ = handleSelection(indexPath: indexPath)
+        }
+    }
+
+    private func setDefaultBackgroundImage(view: UIImageView) {
+        if #available(iOS 12.0, *) {
+            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        } else {
+            view.image = UIImage(named: "background_light")
         }
     }
 }

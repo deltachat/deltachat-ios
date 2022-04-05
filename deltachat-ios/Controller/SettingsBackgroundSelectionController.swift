@@ -63,7 +63,14 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         if let backgroundImageURL = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
-            view.sd_setImage(with: URL(fileURLWithPath: backgroundImageURL), placeholderImage: nil, options: .refreshCached, completed: nil)
+            view.sd_setImage(with: URL(fileURLWithPath: backgroundImageURL), placeholderImage: nil, options: .refreshCached) { [weak self] (_, error, _, _) in
+                if error != nil {
+                    logger.warning(String.init(describing: error))
+                    DispatchQueue.main.async {
+                        self?.setDefault(view)
+                    }
+                }
+            }
         } else {
             setDefault(view)
         }
