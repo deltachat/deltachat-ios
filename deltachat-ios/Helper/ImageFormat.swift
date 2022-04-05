@@ -68,7 +68,7 @@ extension ImageFormat {
         return loadImageFrom(data: imageData)
     }
 
-    public static func saveImage(image: UIImage, name: String? = nil, directory: FileManager.SearchPathDirectory? = .applicationSupportDirectory) -> String? {
+    public static func saveImage(image: UIImage, name: String? = nil, directory: FileManager.SearchPathDirectory = .applicationSupportDirectory) -> String? {
         if image.sd_isAnimated,
            let data = image.sd_imageData() {
             let format = ImageFormat.get(from: data)
@@ -84,12 +84,12 @@ extension ImageFormat {
         return saveImage(data: data, name: name, suffix: suffix)
     }
 
-    public static func saveImage(data: Data, name: String? = nil, suffix: String, directory: FileManager.SearchPathDirectory? = .applicationSupportDirectory) -> String? {
+    public static func saveImage(data: Data, name: String? = nil, suffix: String, directory: FileManager.SearchPathDirectory = .applicationSupportDirectory) -> String? {
         var path: URL?
 
         // ensure directory exists (application support dir doesn't exist per default)
         let fileManager = FileManager.default
-        let urls = fileManager.urls(for: directory!, in: .userDomainMask) as [URL]
+        let urls = fileManager.urls(for: directory, in: .userDomainMask) as [URL]
         guard let identifier = Bundle.main.bundleIdentifier else {
             print("err: Could not find bundle identifier")
             return nil
