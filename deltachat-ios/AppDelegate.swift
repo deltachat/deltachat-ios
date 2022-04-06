@@ -197,7 +197,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     NotificationCenter.default.post(
                         name: dcNotificationChanged,
                         object: nil,
-                        userInfo: [:]
+                        userInfo: [
+                            "message_id": Int(0),
+                            "chat_id": Int(0),
+                        ]
                     )
                 }
             }
