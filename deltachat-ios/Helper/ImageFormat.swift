@@ -100,7 +100,9 @@ extension ImageFormat {
         }
         var subdirectoryURL = directoryURL.appendingPathComponent(identifier)
         do {
-            try fileManager.createDirectory(at: subdirectoryURL, withIntermediateDirectories: true, attributes: nil)
+            if !fileManager.fileExists(atPath: subdirectoryURL.path) {
+                try fileManager.createDirectory(at: subdirectoryURL, withIntermediateDirectories: true, attributes: nil)
+            }
         } catch {
             print("err: \(error.localizedDescription)")
             return nil

@@ -62,15 +62,15 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        if let backgroundImageURL = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
-            view.sd_setImage(with: URL(fileURLWithPath: backgroundImageURL), placeholderImage: nil, options: .refreshCached) { [weak self] (_, error, _, _) in
-                if error != nil {
-                    logger.warning(String.init(describing: error))
-                    DispatchQueue.main.async {
-                        self?.setDefault(view)
+        if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
+            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName), placeholderImage: nil, options: [.retryFailed, .refreshCached]) { [weak self] (_, error, _, _) in
+                    if let error = error {
+                        logger.error("Error loading background image: \(error.localizedDescription)" )
+                        DispatchQueue.main.async {
+                            self?.setDefault(view)
+                        }
                     }
                 }
-            }
         } else {
             setDefault(view)
         }
@@ -138,7 +138,7 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
 
     @objc private func onDefaultSelected() {
         setDefault(backgroundContainer)
-        UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageUrl)
+        UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
         UserDefaults.standard.synchronize()
     }
 
@@ -152,10 +152,10 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
 
     // MARK: MediaPickerDelegate
     func onImageSelected(image: UIImage) {
-        if let pathInDocDir = ImageFormat.saveImage(image: image, name: Constants.backgroundImageName) {
-            UserDefaults.standard.set(pathInDocDir, forKey: Constants.Keys.backgroundImageUrl)
+        if let path = ImageFormat.saveImage(image: image, name: Constants.backgroundImageName) {
+            UserDefaults.standard.set(URL(fileURLWithPath: path).lastPathComponent, forKey: Constants.Keys.backgroundImageName)
             UserDefaults.standard.synchronize()
-            backgroundContainer.sd_setImage(with: URL(fileURLWithPath: pathInDocDir), placeholderImage: nil, options: .refreshCached, completed: nil)
+            backgroundContainer.sd_setImage(with: URL(fileURLWithPath: path), placeholderImage: nil, options: .refreshCached, completed: nil)
         } else {
             logger.error("failed to save background image")
         }

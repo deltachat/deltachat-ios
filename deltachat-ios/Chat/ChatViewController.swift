@@ -60,10 +60,10 @@ class ChatViewController: UITableViewController {
     public lazy var backgroundContainer: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        if let path = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
-            view.sd_setImage(with: URL(fileURLWithPath: path)) { [weak self] (_, error, _, _) in
-                if error != nil {
-                    logger.warning(String(describing: error))
+        if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
+            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName), placeholderImage: nil, options: [.retryFailed]) { [weak self] (_, error, _, _) in
+                if let error = error {
+                    logger.error("Error loading background image: \(error.localizedDescription)" )
                     DispatchQueue.main.async {
                         self?.setDefaultBackgroundImage(view: view)
                     }
@@ -904,7 +904,7 @@ class ChatViewController: UITableViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
         if #available(iOS 12.0, *),
-            UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) == nil {
+            UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
     }
