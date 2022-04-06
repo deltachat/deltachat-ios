@@ -505,9 +505,7 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             if let ui = notification.userInfo {
                 let dcChat = self.dcContext.getChat(chatId: self.chatId)
-                if dcChat.canSend,
-                    let id = ui["message_id"] as? Int,
-                    id > 0 {
+                if dcChat.canSend, let id = ui["message_id"] as? Int, id > 0 {
                     self.updateMessage(id)
                 } else {
                     self.refreshMessages()
