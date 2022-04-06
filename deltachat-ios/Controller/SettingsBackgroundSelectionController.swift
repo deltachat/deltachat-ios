@@ -63,7 +63,9 @@ class SettingsBackgroundSelectionController: UIViewController, MediaPickerDelega
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
-            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName), placeholderImage: nil, options: [.retryFailed, .refreshCached]) { [weak self] (_, error, _, _) in
+            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
+                             placeholderImage: nil,
+                             options: [.retryFailed, .refreshCached]) { [weak self] (_, error, _, _) in
                     if let error = error {
                         logger.error("Error loading background image: \(error.localizedDescription)" )
                         DispatchQueue.main.async {

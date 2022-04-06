@@ -61,7 +61,9 @@ class ChatViewController: UITableViewController {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
-            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName), placeholderImage: nil, options: [.retryFailed]) { [weak self] (_, error, _, _) in
+            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
+                             placeholderImage: nil,
+                             options: [.retryFailed]) { [weak self] (_, error, _, _) in
                 if let error = error {
                     logger.error("Error loading background image: \(error.localizedDescription)" )
                     DispatchQueue.main.async {
