@@ -212,10 +212,15 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
-    var lastSerial: Int
+    var lastSerial: Int = 0
     private func updateWebxdc() {
         let statusUpdates = dcContext.getWebxdcStatusUpdates(msgId: messageId, lastKnownSerial: lastSerial)
-        // TODO: inspect statusUpdate and update lastSerial
+        if let data: Data = statusUpdates.data(using: .utf8),
+           let array = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [Any],
+           let first = array.first as? [String: Any],
+           let maxSerial = first["max_serial"] as? Int {
+            lastSerial = maxSerial
+        }
         webView.evaluateJavaScript("window.__webxdcUpdate(atob(\"\(statusUpdates.toBase64())\"))", completionHandler: nil)
     }
 }
