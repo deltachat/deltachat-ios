@@ -152,12 +152,13 @@ class WebxdcViewController: WebViewViewController {
         ) { [weak self] notification in
             guard let self = self else { return }
             guard let ui = notification.userInfo,
-                  let messageId = ui["message_id"] as? Int,
-                  messageId == self.messageId else {
+                  let messageId = ui["message_id"] as? Int else {
                       logger.error("failed to handle dcNotificationWebxdcUpdate")
                       return
                   }
-            self.updateWebxdc()
+            if messageId == self.messageId {
+                self.updateWebxdc()
+            }
         }
     }
     
@@ -255,8 +256,8 @@ extension WebxdcViewController: WKScriptMessageHandler {
                       logger.error("Failed to parse status update parameters \(message.body)")
                       return
                   }
-            
             _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
+
         default:
             logger.debug("another method was called")
         }
