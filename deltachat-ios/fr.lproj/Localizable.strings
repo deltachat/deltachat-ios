@@ -474,7 +474,7 @@
 "pref_blocked_contacts" = "Contacts bloqués";
 "blocked_empty_hint" = "Si vous bloquez des contacts, ils seront affichés ici.";
 "pref_password_and_account_settings" = "Mot de passe et compte";
-"pref_who_can_see_profile_explain" = "Votre image de profil, votre nom et votre signature seront envoyés au côté de vos messages lorsque vous communiquerez avec d\'autres utilisateurs.";
+"pref_who_can_see_profile_explain" = "Votre image de profil, votre nom et votre signature seront envoyés avec vos messages lorsque vous communiquerez avec d\'autres utilisateurs.";
 "pref_your_name" = "Votre nom";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "Signature";
@@ -709,7 +709,7 @@
 "qrshow_join_group_hint" = "Scannez ceci pour rejoindre le groupe \"%1$@\".";
 "qrshow_join_contact_title" = "QR code d\'invitation";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
-"qrshow_join_contact_hint" = "Scanner ceci pour créer un contact avec %1$@";
+"qrshow_join_contact_hint" = "Scanner pour discuter avec %1$@";
 "qrshow_join_contact_no_connection_toast" = "Pas de connexion Internet, ne peut pas effectuer la configuration du QR code.";
 "qraccount_ask_create_and_login" = "Créer une nouvelle adresse de courriel sur « %1$@ » et se connecter ici ?";
 "qraccount_ask_create_and_login_another" = "Créer une nouvelle adresse de courriel sur « %1$@ » et se connecter ici ?\n\nVotre compte existant ne sera pas effacé. Utilisez l\'élément de menu « Changer de compte » pour passer d\'un compte à l\'autre.";
@@ -814,7 +814,7 @@
 "explain_desktop_minimized_disabled_tray_pref" = "L\'icône système ne peut pas être enlevé car Delta Chat a été démarré avec l\'option --minimized.";
 "no_spellcheck_suggestions_found" = "Aucune propositions de correction trouvées.";
 "show_window" = "Afficher la fenêtre";
-"login_socks5_experimental_warning" = "Le support de SOCK5 est actuellement expérimental. Son utilisation est à vos risques et périls. Si vous saisissez une adresse de courriel, une requête DNS sera effectuée sans passer par SOCK5.";
+"login_socks5_experimental_warning" = "Le support de SOCK5 est actuellement expérimental. Utilisez le à vos risques et périls. Si vous saisissez une adresse de courriel, une requête DNS sera effectuée sans passer par SOCK5.";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "État de la livraison : Erreur";
