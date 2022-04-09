@@ -155,8 +155,8 @@ public class DcContext {
         return dc_send_webxdc_status_update(contextPointer, UInt32(msgId), payload, description) == 1
     }
 
-    public func getWebxdcStatusUpdates(msgId: Int, statusUpdateId: Int) -> String {
-        guard let cString = dc_get_webxdc_status_updates(contextPointer, UInt32(msgId), UInt32(statusUpdateId)) else { return "" }
+    public func getWebxdcStatusUpdates(msgId: Int, lastKnownSerial: Int) -> String {
+        guard let cString = dc_get_webxdc_status_updates(contextPointer, UInt32(msgId), UInt32(lastKnownSerial)) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString

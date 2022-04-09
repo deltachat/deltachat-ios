@@ -6,7 +6,7 @@ class WebxdcViewController: WebViewViewController {
     
     enum WebxdcHandler: String {
         case log  = "log"
-        case getStatusUpdates = "getStatusUpdatesHandler"
+        case setUpdateListener = "setUpdateListener"
         case sendStatusUpdate = "sendStatusUpdateHandler"
     }
     let INTERNALSCHEMA = "webxdc"
@@ -44,46 +44,31 @@ class WebxdcViewController: WebViewViewController {
           var log = (s)=>webkit.messageHandlers.log.postMessage(s);
         
           var update_listener = () => {};
-        
-          // instead of calling .getStatusUpdatesHandler (-> async),
-          // we're passing the updates directly to this js function
+
           window.__webxdcUpdate = (updateString) => {
             try {
                 var updates = JSON.parse(updateString);
-                if (updates.length === 1) {
-                  update_listener(updates[0]);
-                }
+                updates.forEach((update) => {
+                  update_listener(update);
+                });
             } catch (e) {
                 log("json error: "+ e.message)
             }
-          };
-        
-          
-          var async_calls = {};
-          var async_call_id = 0;
-          window.__resolve_async_call = (id, rawPayload) => {
-            try {
-                const payload = JSON.parse(rawPayload);
-                if (async_calls[id]) {
-                  async_calls[id](payload);
-                  delete async_calls[id];
-                }
-            } catch (e) {
-                log("json error: "+ e.message)
-            }
-          };
-        
+          }
+
           return {
             selfAddr: atob("\((dcContext.addr ?? "unknown").toBase64())"),
         
             selfName: atob("\((dcContext.displayname ?? dcContext.addr ?? "unknown").toBase64())"),
         
-            setUpdateListener: (cb) => (update_listener = cb),
-        
+            setUpdateListener: (cb, serial) => {
+                update_listener = cb
+                webkit.messageHandlers.setUpdateListener.postMessage(typeof serial === "undefined" ? 0 : parseInt(serial));
+            },
+
             getAllUpdates: () => {
-              const invocation_id = async_call_id++;
-              webkit.messageHandlers.getStatusUpdatesHandler.postMessage(invocation_id);
-              return new Promise((resolve, reject) => {async_calls[invocation_id] = resolve;});
+              console.error("deprecated 2022-02-20 all updates are returned through the callback set by setUpdateListener");
+              return Promise.resolve([]);
             },
         
             sendUpdate: (payload, descr) => {
@@ -106,7 +91,7 @@ class WebxdcViewController: WebViewViewController {
         let contentController = WKUserContentController()
         
         contentController.add(self, name: WebxdcHandler.sendStatusUpdate.rawValue)
-        contentController.add(self, name: WebxdcHandler.getStatusUpdates.rawValue)
+        contentController.add(self, name: WebxdcHandler.setUpdateListener.rawValue)
         contentController.add(self, name: WebxdcHandler.log.rawValue)
         
         config.userContentController = contentController
@@ -167,13 +152,13 @@ class WebxdcViewController: WebViewViewController {
         ) { [weak self] notification in
             guard let self = self else { return }
             guard let ui = notification.userInfo,
-                  let messageId = ui["message_id"] as? Int,
-                  let statusId = ui["status_id"] as? Int,
-                  messageId == self.messageId else {
+                  let messageId = ui["message_id"] as? Int else {
                       logger.error("failed to handle dcNotificationWebxdcUpdate")
                       return
                   }
-            self.updateWebxdc(statusId: statusId)
+            if messageId == self.messageId {
+                self.updateWebxdc()
+            }
         }
     }
     
@@ -227,11 +212,19 @@ class WebxdcViewController: WebViewViewController {
             }
         }
     }
-    
-    private func updateWebxdc(statusId: Int) {
-        let statusUpdates = self.dcContext.getWebxdcStatusUpdates(msgId: messageId, statusUpdateId: statusId)
-        logger.debug("status updates: \(statusUpdates)")
-        webView.evaluateJavaScript("window.__webxdcUpdate(atob(\"\(statusUpdates.toBase64())\"))", completionHandler: nil)
+
+    var lastSerial: Int?
+    private func updateWebxdc() {
+        if let lastSerial = lastSerial {
+            let statusUpdates = dcContext.getWebxdcStatusUpdates(msgId: messageId, lastKnownSerial: lastSerial)
+            if let data: Data = statusUpdates.data(using: .utf8),
+               let array = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [Any],
+               let first = array.first as? [String: Any],
+               let maxSerial = first["max_serial"] as? Int {
+                self.lastSerial = maxSerial
+            }
+            webView.evaluateJavaScript("window.__webxdcUpdate(atob(\"\(statusUpdates.toBase64())\"))", completionHandler: nil)
+        }
     }
 }
 
@@ -239,14 +232,13 @@ extension WebxdcViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let handler = WebxdcHandler(rawValue: message.name)
         switch handler {
-        case .getStatusUpdates:
-            guard let invocationId = message.body as? Int else {
+        case .setUpdateListener:
+            guard let lastKnownSerial = message.body as? Int else {
                 logger.error("could not convert param \(message.body) to int")
                 return
             }
-            let statusUpdates = dcContext.getWebxdcStatusUpdates(msgId: messageId, statusUpdateId: 0)
-            logger.debug("status updates for message \(messageId): \(statusUpdates)")
-            webView.evaluateJavaScript("window.__resolve_async_call(\(invocationId), (atob(\"\(statusUpdates.toBase64())\")))", completionHandler: nil)
+            lastSerial = lastKnownSerial
+            updateWebxdc()
             
         case .log:
             guard let msg = message.body as? String else {
@@ -264,8 +256,8 @@ extension WebxdcViewController: WKScriptMessageHandler {
                       logger.error("Failed to parse status update parameters \(message.body)")
                       return
                   }
-            
             _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
+
         default:
             logger.debug("another method was called")
         }

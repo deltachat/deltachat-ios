@@ -235,7 +235,6 @@ public class DcEventHandler {
                     object: nil,
                     userInfo: [
                         "message_id": Int(data1),
-                        "status_id": Int(data2),
                     ]
                 )
             }
