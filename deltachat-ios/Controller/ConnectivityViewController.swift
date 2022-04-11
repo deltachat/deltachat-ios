@@ -1,9 +1,34 @@
 import UIKit
 import DcCore
+import WebKit
 
 class ConnectivityViewController: WebViewViewController {
     private let dcContext: DcContext
     private var connectivityChangedObserver: NSObjectProtocol?
+
+    private let disableZoom: String = "var meta = document.createElement('meta');" +
+        "meta.name = 'viewport';" +
+        "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';" +
+        "var head = document.getElementsByTagName('head')[0];" +
+        "head.appendChild(meta);"
+
+     override var configuration: WKWebViewConfiguration {
+         let config = WKWebViewConfiguration()
+         let preferences = WKPreferences()
+         let contentController = WKUserContentController()
+
+         let disableZoomScript: WKUserScript = WKUserScript(source: disableZoom, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+         contentController.addUserScript(disableZoomScript)
+         config.userContentController = contentController
+         if #available(iOS 14.0, *) {
+             config.defaultWebpagePreferences.allowsContentJavaScript = false
+         } else {
+             preferences.javaScriptEnabled = false
+         }
+         preferences.javaScriptCanOpenWindowsAutomatically = false
+         config.preferences = preferences
+         return config
+     }
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -21,6 +46,7 @@ class ConnectivityViewController: WebViewViewController {
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
+        self.webView.scrollView.bounces = false
     }
 
     // called everytime the view will appear
