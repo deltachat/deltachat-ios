@@ -727,6 +727,8 @@
 "verified_group_explain" = "Les groupes vérifiés (fonction expérimentale) offrent une sécurité contre les attaques actives. Les membres sont vérifiés avec un second facteur par d\'autres membres et les messages sont toujours chiffrés de bout en bout.";
 "copy_qr_data_success" = "L\'URL du code QR a été copié dans le presse-papiers";
 "mailto_dialog_header_select_chat" = "Sélectionnez une discussion à qui envoyer le message";
+// first placeholder is the name of the chat
+"confirm_replace_draft" = "%1$@a déjà un message en brouillon, voulez-vous le remplacer?";
 "mailto_link_could_not_be_decoded" = "Le lien mailto n\'a pas pu être décodé: %1$@";
 
 // notifications 
@@ -807,6 +809,7 @@
 "autocrypt_incorrect_desktop" = "Code de configuration incorrect. Veuillez réessayer.";
 "create_chat_error_desktop" = "La discussion n’a pas pu être créée.";
 "forget_login_confirmation_desktop" = "Effacer cette connexion? Tout sera supprimé, y compris vos réglages bout en bout, contacts, discussions, messages et les fichiers multimédia. Cette action ne peut pas être défaite.";
+"account_info_hover_tooltip_desktop2" = "Adresse: %1$@\nTaille: %2$@\nID du compte: %3$@";
 "message_detail_sent_desktop" = "envoyé";
 "message_detail_received_desktop" = "reçu";
 "menu.view.developer.open.log.folder" = "Ouvrir le dossier Journal";
@@ -843,5 +846,9 @@
 "perm_enable_bg_already_done" = "Vous avez déjà autorisé Delta Chat à recevoir des messages en arrière plan.\n\nSi vous ne les recevez toujours pas en arrière plan, vérifiez les paramètres de votre système.";
 
 
+// device messages for updates
+"update_1_24_android" = "La 1.24 au premier abord:\n\n• Moins d\'effort: la sélection de compte est dans le coin supérieur gauche de la liste de discussion\n• Encore moins d\'effort: tapez longuement l\'icône de l\'application pour ouvrir directement les récentes discussions\n• Économisez de la bande passante: téléchargez de large fichiers sur demande\n• Moins casse-tête: invitations par QRCode non-bloquantes et plus rapide, nouvelles options pour les QRCodes\n\nPlus de détails sur 👉";
+"update_1_26" = "Peaufinage de la 1.26 💅\n\n• Après avoir rendu les QRCodes non bloquants en 1.24, ils sont maintenant bien plus plaisants visuellement\n• Les badges et avatars ont une apparence consistante sur toutes les plateformes\n• Beaucoup de bugs corrigés";
+"update_1_28_android" = "1.28 Changements marquants:\n\n🔒 Chiffrement: Une nouvelle option expérimentale pour garder vos contacts, vos secrets de chiffrement et vos messages texte chiffrés sur votre appareil. Disponible seulement lors de la création de compte et l\'import de fichiers de sauvegardes\n\n📫 Envoi de messages à une liste de distribution\n\n💫 Configuration initiale plus rapide pour davantage de serveurs mail et options réseaux éclaircies pour éviter d\'accidentelles mauvaises configurations\n\n🐜 Beaaaaaucoup de problèmes rapportés par les utilisateurs corrigés";
 "update_1_28_ios_extra_line" = "... et vous pouvez désormais sélectionner un arrière-plan dans \"Configuration / Arrière-plan\" :)";
 
