@@ -113,14 +113,14 @@ class ShareAttachment {
                 self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
                 result = nil
             }
-            if let result = result {
-                let path: String? = ImageFormat.saveImage(image: result)
+            if let result = result,
+               let path = ImageFormat.saveImage(image: result) {
                 let msg = self.dcContext.newMessage(viewType: DC_MSG_IMAGE)
                 msg.setFile(filepath: path)
                 self.messages.append(msg)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
-                    self.imageThumbnail = result.scaleDownImage(toMax: self.thumbnailSize)
+                    self.imageThumbnail = ImageFormat.scaleDownImage(NSURL(fileURLWithPath: path), toMax: self.thumbnailSize)
                     self.delegate?.onThumbnailChanged()
                 }
             }
