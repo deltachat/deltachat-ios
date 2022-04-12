@@ -506,7 +506,14 @@ class ChatViewController: UITableViewController {
             if let ui = notification.userInfo {
                 let dcChat = self.dcContext.getChat(chatId: self.chatId)
                 if dcChat.canSend, let id = ui["message_id"] as? Int, id > 0 {
-                    self.updateMessage(id)
+                    let msg = self.dcContext.getMessage(id: id)
+                    if msg.isInfo,
+                       let parent = msg.parent,
+                       parent.type == DC_MSG_WEBXDC {
+                        self.refreshMessages()
+                    } else {
+                        self.updateMessage(msg)
+                    }
                 } else {
                     self.refreshMessages()
                     DispatchQueue.main.async {
@@ -1436,18 +1443,11 @@ class ChatViewController: UITableViewController {
         appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds)
     }
 
-    func updateMessage(_ messageId: Int) {
-        if messageIds.firstIndex(of: messageId) != nil {
+    func updateMessage(_ msg: DcMsg) {
+        if messageIds.firstIndex(of: msg.id) != nil {
             reloadData()
         } else {
             // new outgoing message
-            let msg = dcContext.getMessage(id: messageId)
-            if msg.isInfo,
-               let parent = msg.parent,
-               parent.type == DC_MSG_WEBXDC {
-                return
-            }
-
             if msg.state != DC_STATE_OUT_DRAFT,
                msg.chatId == chatId {
                 if let newMsgMarkerIndex = messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
