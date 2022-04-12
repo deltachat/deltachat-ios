@@ -18,6 +18,7 @@ class ConnectivityViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localized("connectivity")
+        self.webView.scrollView.bounces = false
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
