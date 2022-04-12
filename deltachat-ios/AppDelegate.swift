@@ -117,7 +117,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // Reachability::reachabilityChanged uses DispatchQueue.main.async only
             logger.info("network: reachable", reachability.connection.description)
             DispatchQueue.global(qos: .background).async { [weak self] in
-                self?.dcAccounts.maybeNetwork()
+                guard let self = self else { return }
+                self.dcAccounts.maybeNetwork()
+                if self.notifyToken == nil &&
+                    self.dcAccounts.getSelected().isConfigured() &&
+                    !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+                        self.registerForNotifications()
+                }
             }
         }
 
