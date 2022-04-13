@@ -182,7 +182,7 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         if #available(iOS 15.0, *) {
-            webView.pauseAllMediaPlayback()
+            webView.setAllMediaPlaybackSuspended(true)
         }
     }
 
