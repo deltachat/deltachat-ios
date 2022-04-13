@@ -35,7 +35,7 @@ public struct DcColors {
     public static let providerPreparationBackground = UIColor.init(hexString: "fdf7b2")
     public static let providerBrokenBackground = UIColor.themeColor(light: SystemColor.red.uiColor, dark: SystemColor.red.uiColor)
     public static let systemMessageBackgroundColor = UIColor.init(hexString: "65444444")
-    public static let systemMessageFontColor = UIColor.themeColor(light: .white, dark: UIColor.init(hexString: "A4A6A9"))
+    public static let systemMessageFontColor = UIColor.white
     public static let deaddropBackground = UIColor.themeColor(light: UIColor.init(hexString: "ebebec"), dark: UIColor.init(hexString: "1a1a1c"))
 }
 
