@@ -7,6 +7,7 @@ protocol MediaPickerDelegate: class {
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
     func onVoiceMessageRecorded(url: NSURL)
+    func onVoiceMessageRecorderClosed()
     func onDocumentSelected(url: NSURL)
 }
 
@@ -20,12 +21,15 @@ extension MediaPickerDelegate {
     func onVoiceMessageRecorded(url: NSURL) {
         logger.debug("voice message recorded: \(url)")
     }
+    func onVoiceMessageRecorderClosed() {
+        logger.debug("Voice Message recorder closed.")
+    }
     func onDocumentSelected(url: NSURL) {
         logger.debug("document selected: \(url)")
     }
 }
 
-class MediaPicker: NSObject, UINavigationControllerDelegate, AudioRecorderControllerDelegate {
+class MediaPicker: NSObject, UINavigationControllerDelegate {
 
     enum CameraMediaTypes {
         case photo
@@ -183,12 +187,17 @@ extension MediaPicker: UIImagePickerControllerDelegate {
             }
         })
     }
+}
 
+extension MediaPicker: AudioRecorderControllerDelegate {
     func didFinishAudioAtPath(path: String) {
         let url = NSURL(fileURLWithPath: path)
         self.delegate?.onVoiceMessageRecorded(url: url)
     }
 
+    func didClose() {
+        self.delegate?.onVoiceMessageRecorderClosed()
+    }
 }
 
 extension MediaPicker: UIDocumentPickerDelegate {

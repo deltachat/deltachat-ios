@@ -4,6 +4,7 @@ import AVKit
 
 protocol AudioRecorderControllerDelegate: class {
     func didFinishAudioAtPath(path: String)
+    func didClose()
 }
 
 class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
@@ -166,6 +167,11 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder = nil
         stopUpdatingMeter()
         UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        delegate?.didClose()
     }
 
     func startUpdatingMeter() {
