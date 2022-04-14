@@ -358,8 +358,10 @@ public class BaseMessageCell: UITableViewCell {
         isActionButtonHidden = !hasWebxdc && !hasHtml && downloadState == DC_DOWNLOAD_DONE
         
         switch downloadState {
-        case DC_DOWNLOAD_FAILURE, DC_DOWNLOAD_AVAILABLE:
+        case DC_DOWNLOAD_AVAILABLE:
             actionButton.setTitle(String.localized("download"), for: .normal)
+        case DC_DOWNLOAD_FAILURE:
+            actionButton.setTitle(String.localized("download_failed"), for: .normal)
         case DC_DOWNLOAD_IN_PROGRESS:
             actionButton.isEnabled = false
             actionButton.setTitle(String.localized("downloading"), for: .normal)
