@@ -654,7 +654,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_INCOMING_MESSAGES, localizationKey: "incoming_messages")
         dcContext.setStockTranslation(id: DC_STR_OUTGOING_MESSAGES, localizationKey: "outgoing_messages")
         dcContext.setStockTranslation(id: DC_STR_STORAGE_ON_DOMAIN, localizationKey: "storage_on_domain")
-        dcContext.setStockTranslation(id: DC_STR_ONE_MOMENT, localizationKey: "one_moment")
         dcContext.setStockTranslation(id: DC_STR_CONNECTED, localizationKey: "connectivity_connected")
         dcContext.setStockTranslation(id: DC_STR_CONNTECTING, localizationKey: "connectivity_connecting")
         dcContext.setStockTranslation(id: DC_STR_UPDATING, localizationKey: "connectivity_updating")
@@ -669,6 +668,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_SECURE_JOIN_REPLIES, localizationKey: "secure_join_replies")
         dcContext.setStockTranslation(id: DC_STR_SETUP_CONTACT_QR_DESC, localizationKey: "qrshow_join_contact_hint")
         dcContext.setStockTranslation(id: DC_STR_SECURE_JOIN_GROUP_QR_DESC, localizationKey: "qrshow_join_group_hint")
+        dcContext.setStockTranslation(id: DC_STR_NOT_CONNECTED, localizationKey: "connectivity_not_connected")
     }
 
     func appIsInForeground() -> Bool {
