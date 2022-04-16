@@ -706,11 +706,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         }
         info += "\n"
 
-        info += "notify-fetch-durations="
-        let fetchDurations = UserDefaults.standard.array(forKey: "notify-fetch-durations")  as? [Double]
-        if let fetchDurations = fetchDurations {
-            for fetchDuration in fetchDurations {
-                info += String(format: "%.3fs ", fetchDuration)
+        info += "notify-fetch-info="
+        if let infos = UserDefaults.standard.array(forKey: "notify-fetch-info")  as? [String] {
+            for currInfo in infos {
+                info += currInfo + " "
             }
         }
         info += "\n"

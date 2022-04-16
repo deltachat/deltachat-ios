@@ -390,6 +390,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
         logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
+        self.pushToDebugArray("📡")
         increaseDebugCounter("notify-remote-receive")
         performFetch(completionHandler: completionHandler)
     }
@@ -405,14 +406,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
         logger.info("➡️ Notifications: performFetchWithCompletionHandler")
+        self.pushToDebugArray("🏠")
         increaseDebugCounter("notify-local-wakeup")
         performFetch(completionHandler: completionHandler)
     }
 
     private func performFetch(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        self.pushToDebugArray(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
+
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
         // in this case, there is no need to wait for things or do sth.
         if appIsInForeground() {
+            self.pushToDebugArray("e1")
             logger.info("➡️ app already in foreground")
             completionHandler(.newData)
             return
@@ -428,6 +433,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // if at some point we do per-message-push-notifications, we need to tweak this gate.
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         if nowTimestamp < bgIoTimestamp + 60 {
+            self.pushToDebugArray("e2")
             logger.info("➡️ fetch was just executed, skipping")
             completionHandler(.newData)
             return
@@ -438,6 +444,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         var backgroundTask: UIBackgroundTaskIdentifier = .invalid
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, this handler is not used as we are taking care of timings below.
+            self?.pushToDebugArray("e3")
             logger.info("⬅️ finishing fetch by system urgency requests")
             self?.dcAccounts.stopIo()
             completionHandler(.newData)
@@ -448,8 +455,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         // we're in background, run IO for a little time
+        pushToDebugArray("s1")
         dcAccounts.startIo()
+        pushToDebugArray("s2")
         dcAccounts.maybeNetwork()
+        pushToDebugArray("s3")
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
             logger.info("⬅️ finishing fetch")
@@ -458,23 +468,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 return
             }
 
+            self.pushToDebugArray("s4")
             if !self.appIsInForeground() {
+                self.pushToDebugArray("s5:"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
                 self.dcAccounts.stopIo()
             }
+            self.pushToDebugArray("s6:"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 logger.info("⬅️ fetch done")
+                self?.pushToDebugArray("d1")
                 guard let self = self else {
+                    self?.pushToDebugArray("e4")
                     completionHandler(.failed)
                     return
                 }
 
-                self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
+                self.pushToDebugArray("d2:"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
                 completionHandler(.newData)
+                self.pushToDebugArray("d3")
 
                 if backgroundTask != .invalid {
+                    self.pushToDebugArray("d4")
                     UIApplication.shared.endBackgroundTask(backgroundTask)
                     backgroundTask = .invalid
                 }
@@ -578,11 +595,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    private func pushToDebugArray(name: String, value: Double) {
+    private func pushToDebugArray(_ value: String) {
+        let name = "notify-fetch-info"
         let values = UserDefaults.standard.array(forKey: name)
-        var slidingValues = [Double]()
-        if values != nil, let values = values as? [Double] {
-            slidingValues = values.suffix(16)
+        var slidingValues = [String]()
+        if values != nil, let values = values as? [String] {
+            slidingValues = values.suffix(256)
         }
         slidingValues.append(value)
         UserDefaults.standard.set(slidingValues, forKey: name)
