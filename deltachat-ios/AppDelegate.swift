@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
 
-        bgIoTimestamp = Double(Date().timeIntervalSince1970)
+        self.pushToDebugArray("🏁")
 
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
@@ -433,7 +433,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // if at some point we do per-message-push-notifications, we need to tweak this gate.
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         if nowTimestamp < bgIoTimestamp + 60 {
-            self.pushToDebugArray("e2:"+String(format: "%.3fs:%.3fs", nowTimestamp, bgIoTimestamp + 60))
+            self.pushToDebugArray("e2:"+String(format: "%.3fs:%s:%.3fs:%s",
+                                               nowTimestamp,
+                                               DateUtils.getExtendedAbsTimeSpanString(timeStamp: nowTimestamp),
+                                               bgIoTimestamp + 60,
+                                               DateUtils.getExtendedAbsTimeSpanString(timeStamp: bgIoTimestamp + 60)))
             logger.info("➡️ fetch was just executed, skipping")
             completionHandler(.newData)
             return
