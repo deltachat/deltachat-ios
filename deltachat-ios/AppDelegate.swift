@@ -141,6 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         if let notificationOption = launchOptions?[.remoteNotification] {
+            self.pushToDebugArray("📡'")
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
             increaseDebugCounter("notify-remote-launch")
         }
