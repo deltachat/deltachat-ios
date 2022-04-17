@@ -404,18 +404,18 @@
 
 // welcome and login
 "welcome_intro1_message" = "O sistema de conversa con maior audiencia no mundo. Libre e independente.";
-"login_title" = "Conectar";
-"login_header" = "Conecta co teu servidor";
-"login_explain" = "Conecta cunha conta de correo existente";
+"login_title" = "Acceder";
+"login_header" = "Accede ao teu servidor";
+"login_explain" = "Accede cunha conta de correo existente";
 "login_subheader" = "Para os provedores de correo máis frecuentes os axustes establécense automaticamente. Porén poderías ter que activar IMAP nos seus axustes. Consulta o teu provedor de correo ou aos amigos se tes dúbidas.";
 "login_no_servers_hint" = "Non hai servidores Delta Chat, os teus datos permanecen no dispositivo.";
 "login_inbox" = "Entrada";
-"login_imap_login" = "nome usuario IMAP";
+"login_imap_login" = "identificador IMAP";
 "login_imap_server" = "Servidor IMAP";
 "login_imap_port" = "Porto IMAP";
 "login_imap_security" = "Seguridade IMAP";
 "login_outbox" = "Saída";
-"login_smtp_login" = "nome usuario SMTP";
+"login_smtp_login" = "identificador SMTP";
 "login_smtp_password" = "Contrasinal SMTP";
 "login_smtp_server" = "Servidor SMTP";
 "login_smtp_port" = "Porto SMTP";
@@ -441,7 +441,7 @@
 "import_backup_ask" = "Atopouse un respaldo en \"%1$@\".\n\nQueres importar e utilizar os seus datos e axustes?";
 "import_backup_no_backup_found" = "Non se atoparon respaldos.\n\nCopia o respaldo a \"%1$@\" e inténtao outra vez. Alternativamente, podes premer \"Comezar conversa\" e continuar co proceso normal de axustes.";
 // Translators: %1$s will be replaced by the e-mail address
-"login_error_cannot_login" = "Non se puido conectar como \"%1$@\". Comproba o enderezo de correo e o contrasinal.";
+"login_error_cannot_login" = "Non se puido acceder como \"%1$@\". Comproba o enderezo de correo e o contrasinal.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Aceptar certificados non válidos";
 "used_settings" = "Axustes utilizados:";
@@ -711,9 +711,9 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Escanea esto para conectar con %1$@-";
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode facer o axuste por código QR";
-"qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e conectar ali?";
-"qraccount_ask_create_and_login_another" = "Crear un novo enderezo de email en \"%1$@\" e conectarte?\n\nNon se eliminará a conta actual. Usa \"Cambiar de conta\" para cambiar entre as túas contas.";
-"qraccount_success_enter_name" = "Conexión correcta—o teu enderezo é %1$@\n\nSe queres, agora podes escribir un nome e unha imaxe de avatar que será mostrado as persoas coas que te comunicas.";
+"qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e acceder ali?";
+"qraccount_ask_create_and_login_another" = "Crear un novo enderezo de email en \"%1$@\" e acceder?\n\nNon se eliminará a conta actual. Usa \"Cambiar de conta\" para cambiar entre as túas contas.";
+"qraccount_success_enter_name" = "Conexión correcta—o teu enderezo é %1$@\n\nSe queres, agora podes escribir un nome e unha imaxe de avatar que será mostrado ás persoas coas que te comunicas.";
 "qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";
 "qraccount_use_on_new_install" = "O código QR escaneado é para crear unha nova conta. Podes escanear o código QR cando configures unha nova instalación de Delta Chat.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
