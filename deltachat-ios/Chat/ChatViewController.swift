@@ -1840,7 +1840,7 @@ extension ChatViewController: MediaPickerDelegate {
             // we need to wait a little bit, otherwise the  UIAccessibility notification is ignored and
             // the first accessibility element on the screen gets selected
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-                //return to attach button
+                // return to attach button
                 UIAccessibility.post(notification: .screenChanged, argument: self?.messageInputBar.leftStackView.subviews.first)
             }
         }
