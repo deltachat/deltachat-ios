@@ -56,4 +56,18 @@ struct Utils {
         // TODO: add more file suffixes
         return url.absoluteString.hasSuffix("wav")
     }
+
+    public static func getBackgroundImageURL(name: String) -> URL? {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask) as [URL]
+        guard let identifier = Bundle.main.bundleIdentifier else {
+            logger.error("backgroundImageURL: Could not find bundle identifier")
+            return nil
+        }
+        guard let directoryURL = urls.last else {
+            logger.error("backgroundImageURL: Could not find directory url for .applicationSupportDirectory in .userDomainMask")
+            return nil
+        }
+        return directoryURL.appendingPathComponent(identifier).appendingPathComponent(name)
+    }
 }

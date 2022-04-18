@@ -60,12 +60,19 @@ class ChatViewController: UITableViewController {
     public lazy var backgroundContainer: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        if let path = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) {
-            view.sd_setImage(with: URL(fileURLWithPath: path), completed: nil)
-        } else if #available(iOS 12.0, *) {
-            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
+            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
+                             placeholderImage: nil,
+                             options: [.retryFailed]) { [weak self] (_, error, _, _) in
+                if let error = error {
+                    logger.error("Error loading background image: \(error.localizedDescription)" )
+                    DispatchQueue.main.async {
+                        self?.setDefaultBackgroundImage(view: view)
+                    }
+                }
+            }
         } else {
-            view.image = UIImage(named: "background_light")
+            setDefaultBackgroundImage(view: view)
         }
         return view
     }()
@@ -899,7 +906,7 @@ class ChatViewController: UITableViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
         if #available(iOS 12.0, *),
-            UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageUrl) == nil {
+            UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
     }
@@ -1515,15 +1522,16 @@ class ChatViewController: UITableViewController {
     private func stageImage(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
-            if let pathInDocDir = ImageFormat.saveImage(image: image) {
+            if let pathInCachesDir = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 DispatchQueue.main.async {
-                    if pathInDocDir.suffix(4).contains(".gif") {
-                        self.draft.setAttachment(viewType: DC_MSG_GIF, path: pathInDocDir)
+                    if pathInCachesDir.suffix(4).contains(".gif") {
+                        self.draft.setAttachment(viewType: DC_MSG_GIF, path: pathInCachesDir)
                     } else {
-                        self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInDocDir)
+                        self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInCachesDir)
                     }
                     self.configureDraftArea(draft: self.draft)
                     self.messageInputBar.inputTextView.becomeFirstResponder()
+                    ImageFormat.deleteImage(atPath: pathInCachesDir)
                 }
             }
         }
@@ -1531,16 +1539,18 @@ class ChatViewController: UITableViewController {
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async {
-            if let path = ImageFormat.saveImage(image: image) {
+            if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
+                ImageFormat.deleteImage(atPath: path)
             }
         }
     }
 
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async {
-            if let path = ImageFormat.saveImage(image: image) {
+            if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
+                ImageFormat.deleteImage(atPath: path)
             }
         }
     }
@@ -1721,6 +1731,14 @@ class ChatViewController: UITableViewController {
         self.configureDraftArea(draft: self.draft)
         if let indexPath = selectedAtIndexPath {
             _ = handleSelection(indexPath: indexPath)
+        }
+    }
+
+    private func setDefaultBackgroundImage(view: UIImageView) {
+        if #available(iOS 12.0, *) {
+            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        } else {
+            view.image = UIImage(named: "background_light")
         }
     }
 }
