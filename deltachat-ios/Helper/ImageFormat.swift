@@ -84,6 +84,8 @@ extension ImageFormat {
         return saveImage(data: data, name: name, suffix: suffix)
     }
 
+    // implementation is following Apple's recommendations
+    // https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/AccessingFilesandDirectories/AccessingFilesandDirectories.html
     public static func saveImage(data: Data, name: String? = nil, suffix: String, directory: FileManager.SearchPathDirectory = .applicationSupportDirectory) -> String? {
         var path: URL?
 
@@ -94,7 +96,7 @@ extension ImageFormat {
             print("err: Could not find bundle identifier")
             return nil
         }
-        guard let directoryURL = urls.last else {
+        guard let directoryURL = urls.first else {
             print("err: Could not find directory url for \(String(describing: directory)) in .userDomainMask")
             return nil
         }
@@ -163,21 +165,21 @@ extension ImageFormat {
     public static func deleteImage(atPath: String) {
         if Thread.isMainThread {
             DispatchQueue.global(qos: .background).async {
-                deleteFile(path: atPath)
+                deleteFile(atPath: atPath)
             }
         } else {
-            deleteFile(path: atPath)
+            deleteFile(atPath: atPath)
         }
     }
 
-    private static func deleteFile(path: String) {
+    private static func deleteFile(atPath: String) {
         let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: path) {
+        if !fileManager.fileExists(atPath: atPath) {
             return
         }
 
         do {
-            try fileManager.removeItem(atPath: path)
+            try fileManager.removeItem(atPath: atPath)
         } catch {
             print("err: \(error.localizedDescription)")
         }
