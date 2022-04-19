@@ -235,6 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // let the app run in background for a little while
     // eg. to complete sending messages out and to react to responses.
     private func registerBackgroundTask() {
+        pushToDebugArray("⬅️1")
         logger.info("⬅️ registering background task")
         bgIoTimestamp = Double(Date().timeIntervalSince1970)
         unregisterBackgroundTask()
@@ -261,12 +262,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.unregisterBackgroundTask()
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
+                self.pushToDebugArray("⬅️2")
                 self.dcAccounts.stopIo()
 
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling unregisterBackgroundTask()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), done")
+                    self.pushToDebugArray("⬅️3")
                     self.unregisterBackgroundTask()
                 }
             } else {
@@ -413,8 +416,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     private func performFetch(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        self.pushToDebugArray(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
-
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
         // in this case, there is no need to wait for things or do sth.
         if appIsInForeground() {
@@ -434,11 +435,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // if at some point we do per-message-push-notifications, we need to tweak this gate.
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         if nowTimestamp < bgIoTimestamp + 60 {
-            self.pushToDebugArray("e2:"+String(format: "%.3fs:%s:%.3fs:%s",
-                                               nowTimestamp,
-                                               DateUtils.getExtendedAbsTimeSpanString(timeStamp: nowTimestamp),
-                                               bgIoTimestamp + 60,
-                                               DateUtils.getExtendedAbsTimeSpanString(timeStamp: bgIoTimestamp + 60)))
+            self.pushToDebugArray("e2")
             logger.info("➡️ fetch was just executed, skipping")
             completionHandler(.newData)
             return
@@ -607,7 +604,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if values != nil, let values = values as? [String] {
             slidingValues = values.suffix(256)
         }
-        slidingValues.append(value)
+        slidingValues.append(value+":"+DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
         UserDefaults.standard.set(slidingValues, forKey: name)
     }
 
