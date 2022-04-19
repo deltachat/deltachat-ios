@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         signal(SIGPIPE, SIG_IGN)
 
         self.pushToDebugArray("🏁")
-        bgIoTimestamp = Double(Date().timeIntervalSince1970)
+        //bgIoTimestamp = Double(Date().timeIntervalSince1970)
 
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
