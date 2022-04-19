@@ -473,10 +473,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             self.pushToDebugArray("s4")
             if !self.appIsInForeground() {
-                self.pushToDebugArray("s5:"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
+                self.pushToDebugArray("s5|"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
                 self.dcAccounts.stopIo()
             }
-            self.pushToDebugArray("s6:"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
+            self.pushToDebugArray("s6|"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
@@ -489,7 +489,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     return
                 }
 
-                self.pushToDebugArray("d2:"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
+                self.pushToDebugArray("d2|"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
                 completionHandler(.newData)
                 self.pushToDebugArray("d3")
 
@@ -605,7 +605,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if values != nil, let values = values as? [String] {
             slidingValues = values.suffix(256)
         }
-        slidingValues.append(value+":"+DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
+        slidingValues.append(value+"|"+DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
         UserDefaults.standard.set(slidingValues, forKey: name)
     }
 
