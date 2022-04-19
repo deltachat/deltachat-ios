@@ -605,7 +605,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let values = UserDefaults.standard.array(forKey: name)
         var slidingValues = [String]()
         if values != nil, let values = values as? [String] {
-            slidingValues = values.suffix(256)
+            slidingValues = values.suffix(512)
         }
         slidingValues.append(value+"|"+DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
         UserDefaults.standard.set(slidingValues, forKey: name)
