@@ -1128,9 +1128,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
         messageInputBar.inputTextView.delegate = self
-        if let inputTextView = messageInputBar.inputTextView as? ChatInputTextView {
-            inputTextView.imagePasteDelegate = self
-        }
+        messageInputBar.inputTextView.imagePasteDelegate = self
         messageInputBar.onScrollDownButtonPressed = scrollToBottom
     }
 
