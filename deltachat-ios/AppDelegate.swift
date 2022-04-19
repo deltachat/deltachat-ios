@@ -190,6 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // MARK: - app lifecycle
 
     func applicationWillEnterForeground(_: UIApplication) {
+        self.pushToDebugArray("➡️")
         logger.info("➡️ applicationWillEnterForeground")
         dcAccounts.startIo()
 
@@ -225,6 +226,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationWillTerminate(_: UIApplication) {
+        self.pushToDebugArray("⬅️T")
         logger.info("⬅️ applicationWillTerminate")
         dcAccounts.closeDatabase()
         reachability.stopNotifier()
