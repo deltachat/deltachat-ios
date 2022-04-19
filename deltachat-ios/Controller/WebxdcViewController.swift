@@ -41,6 +41,7 @@ class WebxdcViewController: WebViewViewController {
     lazy var webxdcbridge: String = {
         let script = """
         window.webxdc = (() => {
+          let setUpdateListenerPromise = null
           var log = (s)=>webkit.messageHandlers.log.postMessage(s);
         
           var update_listener = () => {};
@@ -53,6 +54,11 @@ class WebxdcViewController: WebViewViewController {
                 });
             } catch (e) {
                 log("json error: "+ e.message)
+            } finally {
+              if (setUpdateListenerPromise) {
+                 setUpdateListenerPromise()
+                 setUpdateListenerPromise = null
+              }
             }
           }
 
@@ -63,7 +69,11 @@ class WebxdcViewController: WebViewViewController {
         
             setUpdateListener: (cb, serial) => {
                 update_listener = cb
+                const promise = new Promise((res, _rej) => {
+                   setUpdateListenerPromise = res
+                })
                 webkit.messageHandlers.setUpdateListener.postMessage(typeof serial === "undefined" ? 0 : parseInt(serial));
+                return promise
             },
 
             getAllUpdates: () => {
