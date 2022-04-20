@@ -882,7 +882,7 @@ public class DcChat {
         return DcUtils.copyAndFreeArray(inputArray: dc_get_chat_contacts(dcContext.contextPointer, UInt32(id)))
     }
 
-    public lazy var profileImage: UIImage? = { [weak self] in
+    public lazy var profileImage: UIImage? = {
         guard let cString = dc_chat_get_profile_image(chatPointer) else { return nil }
         let filename = String(cString: cString)
         dc_str_unref(cString)
@@ -1075,7 +1075,7 @@ public class DcMsg {
         return nil
     }
 
-    public lazy var image: UIImage? = { [weak self] in
+    public lazy var image: UIImage? = {
         let filetype = dc_msg_get_viewtype(messagePointer)
         if let path = fileURL, filetype == DC_MSG_IMAGE || filetype == DC_MSG_GIF || filetype == DC_MSG_STICKER {
             if path.isFileURL {
@@ -1310,7 +1310,7 @@ public class DcContact {
         return dc_contact_is_blocked(contactPointer) == 1
     }
 
-    public lazy var profileImage: UIImage? = { [weak self] in
+    public lazy var profileImage: UIImage? = {
         guard let cString = dc_contact_get_profile_image(contactPointer) else { return nil }
         let filename = String(cString: cString)
         dc_str_unref(cString)
