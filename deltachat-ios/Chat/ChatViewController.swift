@@ -422,7 +422,7 @@ class ChatViewController: UITableViewController {
                     guard let self = self else { return }
                     self.highlightedMsg = nil
                     self.isInitial = false
-                    self.messageInputBar.scrollDownButton.isHidden = self.isLastRowVisible()
+                    self.updateScrollDownButtonVisibility()
                 }
             })
         } else {
@@ -524,7 +524,7 @@ class ChatViewController: UITableViewController {
                 } else {
                     self.refreshMessages()
                     DispatchQueue.main.async {
-                        self.messageInputBar.scrollDownButton.isHidden = self.isLastRowVisible(checkScreenPosition: true)
+                        self.updateScrollDownButtonVisibility()
                     }
                 }
                 if self.showCustomNavBar {
@@ -609,7 +609,7 @@ class ChatViewController: UITableViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let lastSectionVisibleBeforeTransition = self.isLastRowVisible()
+        let lastSectionVisibleBeforeTransition = self.isLastRowVisible(checkTopCellPostion: true, checkBottomCellPosition: true, allowPartialVisibility: true)
         coordinator.animate(
             alongsideTransition: { [weak self] _ in
                 guard let self = self else { return }
@@ -753,18 +753,22 @@ class ChatViewController: UITableViewController {
     public override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             markSeenMessagesInVisibleArea()
-            messageInputBar.scrollDownButton.isHidden = isLastRowVisible(checkScreenPosition: true)
+            updateScrollDownButtonVisibility()
         }
     }
 
     public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
-        messageInputBar.scrollDownButton.isHidden = isLastRowVisible(checkScreenPosition: true)
+        updateScrollDownButtonVisibility()
     }
 
     override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
-        messageInputBar.scrollDownButton.isHidden = isLastRowVisible(checkScreenPosition: true)
+        updateScrollDownButtonVisibility()
+    }
+
+    private func updateScrollDownButtonVisibility() {
+        messageInputBar.scrollDownButton.isHidden = isLastRowVisible(checkTopCellPostion: true, checkBottomCellPosition: true, allowPartialVisibility: true)
     }
 
     private func configureContactRequestBar() {
@@ -976,9 +980,9 @@ class ChatViewController: UITableViewController {
     @objc
     private func refreshMessages() {
         self.messageIds = dcContext.getChatMsgs(chatId: chatId)
-        let wasLastSectionVisible = self.isLastRowVisible()
+        let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
         self.reloadData()
-        if wasLastSectionVisible {
+        if wasLastSectionScrolledToBottom {
             self.scrollToBottom(animated: true)
         }
         self.showEmptyStateView(self.messageIds.isEmpty)
@@ -1010,14 +1014,48 @@ class ChatViewController: UITableViewController {
         self.reloadData()
     }
 
-    private func isLastRowVisible(checkScreenPosition: Bool = false) -> Bool {
+    private func isLastRowScrolledToBottom() -> Bool {
+        return isLastRowVisible(checkTopCellPostion: false, checkBottomCellPosition: true)
+    }
+
+    // verifies if the last message cell is visible
+    // - ommitting the parameters results in a simple check if the last message cell is preloaded. In that case it is not guaranteed that the cell is actually visible to the user and not covered e.g. by the messageInputBar
+    // - if set to true, checkTopCellPosition verifies if the top of the last message cell is visible to the user
+    // - if set to true, checkBottomCellPosition verifies if the bottom of the last message cell is visible to the user
+    // - if set to true, allowPartialVisiblity ensures that any part of the last message shown in the visible area results in a true return value.
+    // Using this flag large messages exceeding actual screen space are handled gracefully. This flag is only taken into account if checkTopCellPostion and checkBottomCellPosition are both set to true
+    private func isLastRowVisible(checkTopCellPostion: Bool = false, checkBottomCellPosition: Bool = false, allowPartialVisibility: Bool = false) -> Bool {
         guard !messageIds.isEmpty else { return false }
         let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
-        if checkScreenPosition {
-            let rectOfCellInTableView = tableView.rectForRow(at: lastIndexPath)
-            return rectOfCellInTableView.minY < tableView.bounds.maxY - messageInputBar.bounds.height - 10
+        if !(checkTopCellPostion || checkBottomCellPosition) {
+            return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
         }
-        return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
+        guard let window = UIApplication.shared.keyWindow else {
+            return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
+        }
+
+        let rectOfCellInTableView = tableView.rectForRow(at: lastIndexPath)
+        // convert points to same coordination system
+        let inputBarTopInWindow = messageInputBar.convert(CGPoint(x: 0, y: messageInputBar.bounds.minY), to: window)
+        let cellTopInWindow = tableView.convert(CGPoint(x: 0, y: rectOfCellInTableView.minY), to: window)
+        let cellBottomInWindow = tableView.convert(CGPoint(x: 0, y: rectOfCellInTableView.maxY), to: window)
+        let tableViewTopInWindow = tableView.convert(CGPoint(x: 0, y: tableView.bounds.minY), to: window)
+        // check if top and bottom of the message are within the visible area
+        let isTopVisible = cellTopInWindow.y < inputBarTopInWindow.y && cellTopInWindow.y >= tableViewTopInWindow.y
+        let isBottomVisible = cellBottomInWindow.y < inputBarTopInWindow.y && cellBottomInWindow.y >= tableViewTopInWindow.y
+        // check if the message is visible, but top and bottom of cell exceed visible area
+        let messageExceedsScreen = cellTopInWindow.y < tableViewTopInWindow.y && cellBottomInWindow.y > inputBarTopInWindow.y
+        if checkTopCellPostion && checkBottomCellPosition {
+            return allowPartialVisibility ?
+            isTopVisible || isBottomVisible || messageExceedsScreen :
+            isTopVisible && isBottomVisible
+        } else if checkTopCellPostion {
+            return isTopVisible
+        } else {
+            // checkBottomCellPosition
+            return isBottomVisible
+        }
+
     }
     
     private func scrollToBottom() {
@@ -1470,13 +1508,15 @@ class ChatViewController: UITableViewController {
 
     func insertMessage(_ message: DcMsg) {
         markSeenMessage(id: message.id)
-        let wasLastSectionVisible = isLastRowVisible()
+        let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
         messageIds.append(message.id)
         emptyStateView.isHidden = true
 
         reloadData()
-        if wasLastSectionVisible || message.isFromCurrentSender {
+        if wasLastSectionScrolledToBottom || message.isFromCurrentSender {
             scrollToBottom(animated: true)
+        } else {
+            updateScrollDownButtonVisibility()
         }
     }
 
