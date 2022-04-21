@@ -1341,12 +1341,14 @@ class ChatViewController: UITableViewController {
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
             self.mediaPicker?.showCamera()
         } else {
-            AVCaptureDevice.requestAccess(for: .video, completionHandler: {  [weak self] (granted: Bool) in
-                guard let self = self else { return }
-                if granted {
-                    self.mediaPicker?.showCamera()
-                } else {
-                    self.showCameraPermissionAlert()
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    if granted {
+                        self.mediaPicker?.showCamera()
+                    } else {
+                        self.showCameraPermissionAlert()
+                    }
                 }
             })
         }
