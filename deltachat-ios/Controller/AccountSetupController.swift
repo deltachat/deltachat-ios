@@ -573,48 +573,47 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
         return false
 
-        // disable oauth2 for now as not yet supported by deltachat-rust.
-        /*
-         if skipOauth {
-             // user has previously denied oAuth2-setup
-             return false
-         }
-
-         guard let oAuth2UrlPointer = dc_get_oauth2_url(mailboxPointer, emailAddress, "chat.delta:/auth") else {
-             //MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL)) -- do not reset, there may be different values
-             return false
-         }
-
-         let oAuth2Url = String(cString: oAuth2UrlPointer)
-
-         if let url = URL(string: oAuth2Url) {
-             let title = "Continue with simplified setup"
-             // swiftlint:disable all
-             let message = "The entered e-mail address supports a simplified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
-
-             let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-             let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
-                 [weak self] _ in // TODO: refactor usages of `self` to `self?` when this code is used again
-                 let nc = NotificationCenter.default
-                 self.oauth2Observer = nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name("oauthLoginApproved"), object: nil)
-                 self.launchOAuthBrowserWindow(url: url)
-             })
-             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                 _ in
-                 MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
-                 self.skipOauth = true
-                 handleCancel?()
-
-             })
-             oAuthAlertController.addAction(confirm)
-             oAuthAlertController.addAction(cancel)
-
-             present(oAuthAlertController, animated: true, completion: nil)
-             return true
-         } else {
-             return false
-         }
-         */
+        // don't use oauth2 for now as not yet supported by deltachat-rust.
+//
+//         if skipOauth {
+//             // user has previously denied oAuth2-setup
+//             return false
+//         }
+//
+//         guard let oAuth2UrlPointer = dc_get_oauth2_url(mailboxPointer, emailAddress, "chat.delta:/auth") else {
+//             //MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL)) -- do not reset, there may be different values
+//             return false
+//         }
+//
+//         let oAuth2Url = String(cString: oAuth2UrlPointer)
+//
+//         if let url = URL(string: oAuth2Url) {
+//             let title = "Continue with simplified setup"
+//             // swiftlint:disable all
+//             let message = "The entered e-mail address supports a simplified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
+//
+//             let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//             let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
+//                 [weak self] _ in // TODO: refactor usages of `self` to `self?` when this code is used again
+//                 let nc = NotificationCenter.default
+//                 self.oauth2Observer = nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name("oauthLoginApproved"), object: nil)
+//                 self.launchOAuthBrowserWindow(url: url)
+//             })
+//             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+//                 _ in
+//                 MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
+//                 self.skipOauth = true
+//                 handleCancel?()
+//
+//             })
+//             oAuthAlertController.addAction(confirm)
+//             oAuthAlertController.addAction(cancel)
+//
+//             present(oAuthAlertController, animated: true, completion: nil)
+//             return true
+//         } else {
+//             return false
+//         }
     }
 
     @objc func oauthLoginApproved(notification: Notification) {

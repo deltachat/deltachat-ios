@@ -39,7 +39,7 @@ class ContactDetailHeader: UIView {
         return label
     }()
 
-    private var searchButton: UIButton = {
+    private lazy var searchButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(searchBtnTapped), for: .touchUpInside)
@@ -58,7 +58,7 @@ class ContactDetailHeader: UIView {
         return button
     }()
 
-    private var muteButton: UIButton = {
+    private lazy var muteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(muteBtnTapped), for: .touchUpInside)

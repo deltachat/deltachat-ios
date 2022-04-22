@@ -26,7 +26,7 @@ PODS:
   - SVGKit (3.1.0):
     - CocoaLumberjack (~> 3.0)
   - SwiftFormat/CLI (0.40.9)
-  - SwiftLint (0.43.1)
+  - SwiftLint (0.47.0)
   - SwiftyBeaver (1.9.4)
 
 DEPENDENCIES:
@@ -76,7 +76,7 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
-  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
   SwiftyBeaver: 576177b2c5c94b3aedd5993914e91271a0524e88
 
 PODFILE CHECKSUM: b1373ee5525a53ced60269aa3cfce2018c295507
