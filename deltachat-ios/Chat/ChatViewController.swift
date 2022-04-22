@@ -1037,12 +1037,14 @@ class ChatViewController: UITableViewController {
         let rectOfCellInTableView = tableView.rectForRow(at: lastIndexPath)
         // convert points to same coordination system
         let inputBarTopInWindow = messageInputBar.convert(CGPoint(x: 0, y: messageInputBar.bounds.minY), to: window)
-        let cellTopInWindow = tableView.convert(CGPoint(x: 0, y: rectOfCellInTableView.minY), to: window)
-        let cellBottomInWindow = tableView.convert(CGPoint(x: 0, y: rectOfCellInTableView.maxY), to: window)
+        var cellTopInWindow = tableView.convert(CGPoint(x: 0, y: rectOfCellInTableView.minY), to: window)
+        cellTopInWindow.y = floor(cellTopInWindow.y)
+        var cellBottomInWindow = tableView.convert(CGPoint(x: 0, y: rectOfCellInTableView.maxY), to: window)
+        cellBottomInWindow.y = floor(cellBottomInWindow.y)
         let tableViewTopInWindow = tableView.convert(CGPoint(x: 0, y: tableView.bounds.minY), to: window)
         // check if top and bottom of the message are within the visible area
         let isTopVisible = cellTopInWindow.y < inputBarTopInWindow.y && cellTopInWindow.y >= tableViewTopInWindow.y
-        let isBottomVisible = cellBottomInWindow.y < inputBarTopInWindow.y && cellBottomInWindow.y >= tableViewTopInWindow.y
+        let isBottomVisible = cellBottomInWindow.y <= inputBarTopInWindow.y && cellBottomInWindow.y >= tableViewTopInWindow.y
         // check if the message is visible, but top and bottom of cell exceed visible area
         let messageExceedsScreen = cellTopInWindow.y < tableViewTopInWindow.y && cellBottomInWindow.y > inputBarTopInWindow.y
         if checkTopCellPostion && checkBottomCellPosition {
