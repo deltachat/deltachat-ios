@@ -145,6 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.pushToDebugArray("📡'")
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
             increaseDebugCounter("notify-remote-launch")
+            performFetch(completionHandler: dummyCompletionHandler)
         }
 
         if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
@@ -156,6 +157,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let svgCoder = SDImageSVGKCoder.shared
         SDImageCodersManager.shared.addCoder(svgCoder)
         return true
+    }
+
+    func dummyCompletionHandler(_ result: UIBackgroundFetchResult) {
     }
 
     // `open` is called when an url should be opened by Delta Chat.
@@ -587,7 +591,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
 
         // Values calculated for connectivity view
-        if name == "notify-remote-receive" || name == "notify-local-wakeup" {
+        if name == "notify-remote-receive" || name == "notify-remote-launch" || name == "notify-local-wakeup" {
             let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
             var slidingTimeframe: [Double]
             if timestamps != nil, let timestamps = timestamps as? [Double] {
