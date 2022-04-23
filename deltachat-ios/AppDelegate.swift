@@ -449,6 +449,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         bgIoTimestamp = nowTimestamp
 
+        let fetchSemaphore = DispatchSemaphore(value: 0)
+
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
         var backgroundTask: UIBackgroundTaskIdentifier = .invalid
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
@@ -463,19 +465,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        // we're in background, run IO for a little time
         pushToDebugArray("s1")
-        dcAccounts.startIo()
-        pushToDebugArray("s2")
-        dcAccounts.maybeNetwork()
-        pushToDebugArray("s3")
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
-            logger.info("⬅️ finishing fetch")
+        DispatchQueue.global(qos: .background).async { [weak self] in
+
             guard let self = self else {
                 completionHandler(.failed)
                 return
             }
+
+            // we're in background, run IO for a little time
+            self.dcAccounts.startIo()
+            self.pushToDebugArray("s2")
+            self.dcAccounts.maybeNetwork()
+            self.pushToDebugArray("s3")
+
+            _ = fetchSemaphore.wait(timeout: .now() + 10)
+
+            logger.info("⬅️ finishing fetch")
+
 
             self.pushToDebugArray("s4")
             if !self.appIsInForeground() {
@@ -484,16 +492,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
             self.pushToDebugArray("s6|"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
 
-            // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
-            // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            _ = fetchSemaphore.wait(timeout: .now() + 1)
+
                 logger.info("⬅️ fetch done")
-                self?.pushToDebugArray("d1")
-                guard let self = self else {
-                    self?.pushToDebugArray("e4")
-                    completionHandler(.failed)
-                    return
-                }
 
                 self.pushToDebugArray("d2|"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
                 completionHandler(.newData)
@@ -504,7 +505,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     UIApplication.shared.endBackgroundTask(backgroundTask)
                     backgroundTask = .invalid
                 }
-            }
         }
     }
 
