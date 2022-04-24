@@ -485,7 +485,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("⬅️ finishing fetch")
 
 
-            self.pushToDebugArray("s4")
+            self.pushToDebugArray("s4✔️")
             if !self.appIsInForeground() {
                 self.pushToDebugArray("s5|"+String(format: "%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
                 self.dcAccounts.stopIo()

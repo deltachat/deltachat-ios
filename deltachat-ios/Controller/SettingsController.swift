@@ -709,7 +709,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         info += "notify-fetch-info="
         if let infos = UserDefaults.standard.array(forKey: "notify-fetch-info")  as? [String] {
             for currInfo in infos {
-                info += currInfo + " "
+                info += currInfo.replacingOccurrences(of: "🏁|", with: "\n🏁|")
+                    .replacingOccurrences(of: "📡|", with: "\n📡|")
+                    .replacingOccurrences(of: "🏠|", with: "\n🏠|")
+                    .replacingOccurrences(of: "s4|", with: "s4✔️|") + " "
             }
         }
         info += "\n"
