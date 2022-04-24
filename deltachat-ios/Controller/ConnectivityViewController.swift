@@ -108,7 +108,20 @@ class ConnectivityViewController: WebViewViewController {
             averageDelta = (timestamps.last! - timestamps.first!) / Double(timestamps.count-1)
         }
 
-        let lastWakeup = DateUtils.getExtendedAbsTimeSpanString(timeStamp: timestamps.last!)
+        var lastWakeups = ""
+        var lastWakeupsCnt = 0
+        var lastTimstampStr = ""
+        for timestamp in timestamps.reversed() {
+            let thisTimestampStr = DateUtils.getExtendedAbsTimeSpanString(timeStamp: timestamp)
+            if lastTimstampStr != thisTimestampStr {
+                lastTimstampStr = thisTimestampStr
+                lastWakeups += (lastWakeupsCnt > 0 ? ", " : "") + thisTimestampStr
+                lastWakeupsCnt += 1
+                if lastWakeupsCnt >= 3 {
+                    break
+                }
+            }
+        }
 
         if Int(averageDelta / Double(60 * 60)) > 1 {
             // more than 1 hour in average
@@ -116,7 +129,7 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(title)
                 .appending(String.localized("delayed"))
                 .appending(", ")
-                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
                 .appending(", ")
                 .appending(String.localized(stringID: "notifications_avg_hours", count: Int(averageDelta / Double(60 * 60))))
         }
@@ -127,14 +140,14 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(title)
                 .appending(String.localized("delayed"))
                 .appending(", ")
-                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
                 .appending(", ")
                 .appending(String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
         }
 
         return  "<span class=\"green dot\"></span>"
             .appending(title)
-            .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeup))
+            .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
             .appending(", ")
             .appending(String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
     }
