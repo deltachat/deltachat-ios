@@ -464,7 +464,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         pushToDebugArray("s1")
 
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        DispatchQueue.global(/*.default qos as .background is not always executed*/).async { [weak self] in
 
             guard let self = self else {
                 completionHandler(.failed)
