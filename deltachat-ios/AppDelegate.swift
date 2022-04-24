@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.pushToDebugArray("📡'")
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
             increaseDebugCounter("notify-remote-launch")
-            performFetch(completionHandler: dummyCompletionHandler)
+            performFetch(completionHandler: { (_) -> Void in })
         }
 
         if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
@@ -157,9 +157,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let svgCoder = SDImageSVGKCoder.shared
         SDImageCodersManager.shared.addCoder(svgCoder)
         return true
-    }
-
-    func dummyCompletionHandler(_ result: UIBackgroundFetchResult) {
     }
 
     // `open` is called when an url should be opened by Delta Chat.
