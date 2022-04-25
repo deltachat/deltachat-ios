@@ -462,7 +462,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // create a new semaphore to make sure the received DC_CONNECTIVITY_CONNECTED really belongs to maybeNetwork() from above
             // (maybeNetwork() sets connectivity to DC_CONNECTIVITY_CONNECTING, when fetch is done, we're back at DC_CONNECTIVITY_CONNECTED)
             self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
-            _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 10)
+            _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 20)
             self.dcAccounts.fetchSemaphore = nil
 
             // TOCHECK: it seems, we are not always reaching this point in code,
