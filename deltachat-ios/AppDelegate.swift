@@ -466,6 +466,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             _ = fetchSemaphore.wait(timeout: .now() + 10)
 
+            // TOCHECK: it seems, we are not always reaching this point in code,
+            // the semaphore.wait does not exit after 10 seconds and the app gets suspended -
+            // maybe that is on purpose somehow to suspend inactive apps, not sure.
+            // this does not happen often, but still.
+            // cmp. https://github.com/deltachat/deltachat-ios/pull/1542#pullrequestreview-951620906
             logger.info("⬅️ finishing fetch")
 
             if !self.appIsInForeground() {
