@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // purpose of `bgIoTimestamp` is to block rapidly subsequent calls to remote- or local-wakeups:
     //
-    // `bgIoTimestamp` is set to last init, enter-background or last remote- or local-wakeup;
+    // `bgIoTimestamp` is set to enter-background or last remote- or local-wakeup;
     // in the minute after these events, subsequent remote- or local-wakeups are skipped
     // in favor to the chance of being awakened when it makes more sense
     // and to avoid issues with calling concurrent series of startIo/maybeNetwork/stopIo.
@@ -38,8 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // that is called if the app is started for the first time
     // or after the app is killed.
     //
-    // `didFinishLaunchingWithOptions` creates the context object and sets
-    // up other global things.
+    // - `didFinishLaunchingWithOptions` is also called before event methods as `didReceiveRemoteNotification` are called -
+    //   either _directly before_ (if the app was killed) or _long before_ (if the app was suspended).
+    //
+    // - in some cases `didFinishLaunchingWithOptions` is called _instead_ an event method and `launchOptions` tells the reason;
+    //   the event method may or may not be called in this case, see #1542 for some deeper information.
     //
     // `didFinishLaunchingWithOptions` is _not_ called
     // when the app wakes up from "suspended" state
@@ -48,8 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
-
-        bgIoTimestamp = Double(Date().timeIntervalSince1970)
 
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
