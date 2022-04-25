@@ -435,6 +435,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         bgIoTimestamp = nowTimestamp
+        increaseDebugDoingFetch()
 
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
         var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -553,10 +554,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    // Values calculated for debug log view
     private func increaseDebugCounter(_ name: String) {
         let nowDate = Date()
         let nowTimestamp = Double(nowDate.timeIntervalSince1970)
-        // Values calculated for debug log view
+
         let startTimestamp = UserDefaults.standard.double(forKey: name + "-start")
         if nowTimestamp > startTimestamp + 60*60*24 {
             let cal: Calendar = Calendar(identifier: .gregorian)
@@ -568,19 +570,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let cnt = UserDefaults.standard.integer(forKey: name + "-count")
         UserDefaults.standard.set(cnt + 1, forKey: name + "-count")
         UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
+    }
 
-        // Values calculated for connectivity view
-        if name == "notify-remote-receive" || name == "notify-local-wakeup" {
-            let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
-            var slidingTimeframe: [Double]
-            if timestamps != nil, let timestamps = timestamps as? [Double] {
-                slidingTimeframe = timestamps.filter({ nowTimestamp < $0 + 60 * 60 * 24 })
-            } else {
-                slidingTimeframe = [Double]()
-            }
-            slidingTimeframe.append(nowTimestamp)
-            UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
+    // Values calculated for connectivity view
+    private func increaseDebugDoingFetch() {
+        let nowTimestamp = Double(Date().timeIntervalSince1970)
+        let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
+        var slidingTimeframe: [Double]
+        if timestamps != nil, let timestamps = timestamps as? [Double] {
+            slidingTimeframe = timestamps.filter({ nowTimestamp < $0 + 60 * 60 * 24 })
+        } else {
+            slidingTimeframe = [Double]()
         }
+        slidingTimeframe.append(nowTimestamp)
+        UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
     }
 
     private func pushToDebugArray(name: String, value: Double) {
