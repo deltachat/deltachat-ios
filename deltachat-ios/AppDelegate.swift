@@ -471,6 +471,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // this does not happen often, but still.
             // cmp. https://github.com/deltachat/deltachat-ios/pull/1542#pullrequestreview-951620906
             logger.info("⬅️ finishing fetch")
+            self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
 
             // dispatch back to main as we cannot check the foreground state from non-main thread
             // (this again has the risk to be delayed by tens of minutes, however, fetch is done and we're mostly fine)
@@ -483,10 +484,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-                DispatchQueue.global().async { [weak self] in
+                DispatchQueue.global().async {
                     usleep(1_000_000)
                     logger.info("⬅️ fetch done")
-                    self?.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
                     completionHandler(.newData)
                     if backgroundTask != .invalid {
                         UIApplication.shared.endBackgroundTask(backgroundTask)
