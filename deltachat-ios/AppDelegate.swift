@@ -435,7 +435,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         bgIoTimestamp = nowTimestamp
-        increaseDebugDoingFetch()
+        addDebugFetchTimestamp()
 
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
         var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -578,7 +578,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     // Values calculated for connectivity view
-    private func increaseDebugDoingFetch() {
+    private func addDebugFetchTimestamp() {
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
         var slidingTimeframe: [Double]
