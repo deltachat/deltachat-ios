@@ -450,8 +450,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        let fetchSemaphore = DispatchSemaphore(value: 0)
-
         // move work to non-main thread to not block UI (otherwise, in case we get suspended, the app is blocked totally)
         // (we are using `qos: default` as `qos: .background` or `main.asyncAfter` may be delayed by tens of minutes)
         DispatchQueue.global().async { [weak self] in
@@ -461,7 +459,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.dcAccounts.startIo()
             self.dcAccounts.maybeNetwork()
 
-            _ = fetchSemaphore.wait(timeout: .now() + 10)
+            // create a new semaphore to make sure the received DC_CONNECTIVITY_CONNECTED really belongs to maybeNetwork() from above
+            // (maybeNetwork() sets connectivity to DC_CONNECTIVITY_CONNECTING, when fetch is done, we're back at DC_CONNECTIVITY_CONNECTED)
+            self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
+            _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 10)
+            self.dcAccounts.fetchSemaphore = nil
 
             // TOCHECK: it seems, we are not always reaching this point in code,
             // the semaphore.wait does not exit after 10 seconds and the app gets suspended -
@@ -482,11 +484,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
                 DispatchQueue.global().async { [weak self] in
-                    guard let self = self else { completionHandler(.failed); return }
-
-                    _ = fetchSemaphore.wait(timeout: .now() + 1)
+                    usleep(1_000_000)
                     logger.info("⬅️ fetch done")
-                    self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
+                    self?.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
                     completionHandler(.newData)
                     if backgroundTask != .invalid {
                         UIApplication.shared.endBackgroundTask(backgroundTask)
