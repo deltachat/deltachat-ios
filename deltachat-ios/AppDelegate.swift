@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // purpose of `bgIoTimestamp` is to block rapidly subsequent calls to remote- or local-wakeups:
     //
-    // `bgIoTimestamp` is set to last init, enter-background or last remote- or local-wakeup;
+    // `bgIoTimestamp` is set to enter-background or last remote- or local-wakeup;
     // in the minute after these events, subsequent remote- or local-wakeups are skipped
     // in favor to the chance of being awakened when it makes more sense
     // and to avoid issues with calling concurrent series of startIo/maybeNetwork/stopIo.
@@ -38,8 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // that is called if the app is started for the first time
     // or after the app is killed.
     //
-    // `didFinishLaunchingWithOptions` creates the context object and sets
-    // up other global things.
+    // - `didFinishLaunchingWithOptions` is also called before event methods as `didReceiveRemoteNotification` are called -
+    //   either _directly before_ (if the app was killed) or _long before_ (if the app was suspended).
+    //
+    // - in some cases `didFinishLaunchingWithOptions` is called _instead_ an event method and `launchOptions` tells the reason;
+    //   the event method may or may not be called in this case, see #1542 for some deeper information.
     //
     // `didFinishLaunchingWithOptions` is _not_ called
     // when the app wakes up from "suspended" state
@@ -48,8 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
-
-        bgIoTimestamp = Double(Date().timeIntervalSince1970)
 
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
@@ -143,6 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let notificationOption = launchOptions?[.remoteNotification] {
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
             increaseDebugCounter("notify-remote-launch")
+            performFetch(completionHandler: { (_) -> Void in })
         }
 
         if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
@@ -433,6 +435,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         bgIoTimestamp = nowTimestamp
+        addDebugFetchTimestamp()
 
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
         var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -447,16 +450,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        // we're in background, run IO for a little time
-        dcAccounts.startIo()
-        dcAccounts.maybeNetwork()
+        let fetchSemaphore = DispatchSemaphore(value: 0)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
-            logger.info("⬅️ finishing fetch")
+        // move work to non-main thread to not block UI (otherwise, in case we get suspended, the app is blocked totally)
+        // (we are using `qos: default` as `qos: .background` or `main.asyncAfter` may be delayed by tens of minutes)
+        DispatchQueue.global().async { [weak self] in
             guard let self = self else {
                 completionHandler(.failed)
                 return
             }
+
+            // we're in background, run IO for a little time
+            self.dcAccounts.startIo()
+            self.dcAccounts.maybeNetwork()
+
+            _ = fetchSemaphore.wait(timeout: .now() + 10)
+
+            // TOCHECK: it seems, we are not always reaching this point in code,
+            // the semaphore.wait does not exit after 10 seconds and the app gets suspended -
+            // maybe that is on purpose somehow to suspend inactive apps, not sure.
+            // this does not happen often, but still.
+            // cmp. https://github.com/deltachat/deltachat-ios/pull/1542#pullrequestreview-951620906
+            logger.info("⬅️ finishing fetch")
 
             if !self.appIsInForeground() {
                 self.dcAccounts.stopIo()
@@ -464,20 +479,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                logger.info("⬅️ fetch done")
-                guard let self = self else {
-                    completionHandler(.failed)
-                    return
-                }
+            _ = fetchSemaphore.wait(timeout: .now() + 1)
 
-                self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
-                completionHandler(.newData)
+            logger.info("⬅️ fetch done")
 
-                if backgroundTask != .invalid {
-                    UIApplication.shared.endBackgroundTask(backgroundTask)
-                    backgroundTask = .invalid
-                }
+            self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
+            completionHandler(.newData)
+
+            if backgroundTask != .invalid {
+                UIApplication.shared.endBackgroundTask(backgroundTask)
+                backgroundTask = .invalid
             }
         }
     }
@@ -548,10 +559,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    // Values calculated for debug log view
     private func increaseDebugCounter(_ name: String) {
         let nowDate = Date()
         let nowTimestamp = Double(nowDate.timeIntervalSince1970)
-        // Values calculated for debug log view
+
         let startTimestamp = UserDefaults.standard.double(forKey: name + "-start")
         if nowTimestamp > startTimestamp + 60*60*24 {
             let cal: Calendar = Calendar(identifier: .gregorian)
@@ -563,19 +575,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let cnt = UserDefaults.standard.integer(forKey: name + "-count")
         UserDefaults.standard.set(cnt + 1, forKey: name + "-count")
         UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
+    }
 
-        // Values calculated for connectivity view
-        if name == "notify-remote-receive" || name == "notify-local-wakeup" {
-            let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
-            var slidingTimeframe: [Double]
-            if timestamps != nil, let timestamps = timestamps as? [Double] {
-                slidingTimeframe = timestamps.filter({ nowTimestamp < $0 + 60 * 60 * 24 })
-            } else {
-                slidingTimeframe = [Double]()
-            }
-            slidingTimeframe.append(nowTimestamp)
-            UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
+    // Values calculated for connectivity view
+    private func addDebugFetchTimestamp() {
+        let nowTimestamp = Double(Date().timeIntervalSince1970)
+        let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps)
+        var slidingTimeframe: [Double]
+        if timestamps != nil, let timestamps = timestamps as? [Double] {
+            slidingTimeframe = timestamps.filter({ nowTimestamp < $0 + 60 * 60 * 24 })
+        } else {
+            slidingTimeframe = [Double]()
         }
+        slidingTimeframe.append(nowTimestamp)
+        UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
     }
 
     private func pushToDebugArray(name: String, value: Double) {
