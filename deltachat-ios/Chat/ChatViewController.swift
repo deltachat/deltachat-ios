@@ -321,12 +321,12 @@ class ChatViewController: UITableViewController {
 
         keyboardManager.on(event: .didChangeFrame) { [weak self] _ in
             guard let self = self else { return }
-            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
+            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil && !self.isInitial {
                 self.scrollToBottom()
             }
         }.on(event: .willChangeFrame) { [weak self] _ in
             guard let self = self else { return }
-            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
+            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil  && !self.isInitial {
                 self.scrollToBottom()
             }
         }
