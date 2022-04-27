@@ -330,7 +330,6 @@
 "send_message" = "Skicka meddelande";
 
 
-// welcome and login
 "welcome_intro1_message" = "Chattappen med den bredaste publiken i världen. Fri och oberoende.";
 "login_title" = "Logga in";
 "login_header" = "Logga in på din server";

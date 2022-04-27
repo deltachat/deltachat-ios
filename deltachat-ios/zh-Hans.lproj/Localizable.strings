@@ -29,6 +29,8 @@
 "back" = "返回";
 "close" = "关闭";
 "forward" = "转发";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "重新发送";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "归档";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -403,9 +405,11 @@
 
 
 // welcome and login
+"welcome_chat_over_email" = "通过电子邮件聊天。";
+"scan_invitation_code" = "扫描邀请码";
 "welcome_intro1_message" = "本通讯软件有着世界上最广泛的受众。自由且自主。";
 "login_title" = "登录";
-"login_header" = "登录至服务器";
+"login_header" = "登录您的电子邮件账户";
 "login_explain" = "使用现有电子邮件帐户登录";
 "login_subheader" = "对于已知的电子邮件提供商，附加设置会被自动设置。有时 IMAP 需要在网页版设置里启用。 请咨询您的电子邮件提供商或朋友来寻求帮助。";
 "login_no_servers_hint" = "不存在 Delta Chat 服务器，您的数据保留于您的设备！";
@@ -437,7 +441,7 @@
 "login_error_server" = "请输入有效的服务器 / IP 地址";
 "login_error_port" = "请输入有效的端口（1-65535）";
 "login_error_required_fields" = "请输入有效的电子邮件地址和密码";
-"import_backup_title" = "导入备份";
+"import_backup_title" = "从备份恢复";
 "import_backup_ask" = "在“%1$@”找到备份。\n\n您要导入并使用其中的全部数据与设置吗？";
 "import_backup_no_backup_found" = "没有找到备份。\n\n将备份复制到“%1$@”然后再试一次。或者按“开始发送消息”来进行常规设置流程。";
 // Translators: %1$s will be replaced by the e-mail address
@@ -542,7 +546,7 @@
 "pref_background_btn_default" = "使用默认图像";
 "pref_background_btn_gallery" = "从图库中选择";
 "pref_imap_folder_handling" = "IMAP 文件夹处理";
-"pref_imap_folder_warn_disable_defaults" = "如果禁用了此选项，请确保您的服务器和其他客户端已进行了相应的设置。\n\n否则可能无法正常工作。";
+"pref_imap_folder_warn_disable_defaults" = "若要更改此选项，请您务必调整服务器以及其他客户端的相应设置。\n\n否则软件可能无法正常工作。";
 "pref_watch_inbox_folder" = "监视收件箱文件夹";
 "pref_watch_sent_folder" = "监视已发送文件夹";
 "pref_watch_mvbox_folder" = "监视 DeltaChat 文件夹";
@@ -558,7 +562,7 @@
 "pref_experimental_features" = "实验性功能";
 "pref_on_demand_location_streaming" = "按需位置流";
 "pref_developer_mode" = "开发者模式";
-"pref_developer_mode_explain" = "激活调试选项，使应用程序不太稳定。仅供开发人员。";
+"pref_developer_mode_explain" = "激活调试选项。这会降低应用程序稳定性。仅供开发人员使用。";
 "pref_background_default" = "默认背景";
 "pref_background_default_color" = "默认颜色";
 "pref_background_custom_image" = "自定义图像";
@@ -675,7 +679,7 @@
 "devicemsg_storage_exceeding" = "⚠️邮件服务商提供的存储空间快满了，已使用 %1$@%%。\n\n当存储用量达到 100%% 时，您可能无法接收消息。\n\n👉请检查是否可以在提供商的网页界面上删除旧数据；您还可以考虑启用“设置/删除旧消息”。您可以随时在“设置/连接性”中查看当前的存储使用情况。";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟⏰🔧以确保能正确接收信息。";
-"devicemsg_update_reminder" = "⚠️您的 Delta Chat 版本可能过时了。\n\n这可能会在您的聊天伙伴使用更新的版本时造成问题；并且您缺失了最新功能😳\n请浏览 https://get.delta.chat 或应用商店来获取更新。";
+"devicemsg_update_reminder" = "⚠️您的 Delta Chat 版本可能过时了。\n\n这可能会在您的聊天伙伴使用更新的版本时造成问题。并且您缺失了最新功能😳\n请浏览 https://get.delta.chat 或应用商店来获取更新。";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "请输入您的系统密码以继续。";

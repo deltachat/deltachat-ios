@@ -402,7 +402,6 @@
 "part_of_total_used" = "%1$@ de %2$@ usado";
 
 
-// welcome and login
 "welcome_intro1_message" = "O aplicativo com a maior base de usuários do mundo. Livre e independente.";
 "login_title" = "Acessar";
 "login_header" = "Acesse seu servidor";

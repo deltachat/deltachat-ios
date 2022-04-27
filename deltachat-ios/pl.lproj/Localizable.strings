@@ -402,7 +402,6 @@
 "part_of_total_used" = "%1$@ z %2$@ ";
 
 
-// welcome and login
 "welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
 "login_title" = "Zaloguj się";
 "login_header" = "Zaloguj się na swój serwer";

@@ -29,6 +29,8 @@
 "back" = "Indietro";
 "close" = "Chiudi";
 "forward" = "Inoltra";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Reinvia";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archivia";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -97,7 +99,7 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
 "sticker" = "Sticker";
-"images" = "Immagine";
+"images" = "Immagini";
 "audio" = "Audio";
 "voice_message" = "Messaggio Vocale";
 "forwarded" = "Inoltrato";
@@ -129,7 +131,7 @@
 "magenta" = "Magenta";
 "white" = "Bianco";
 
-"zoom" = "Ingrandisci";
+"zoom" = "Ingrandimento";
 "extra_small" = "Extra piccolo";
 "small" = "Piccolo";
 "normal" = "Normale";
@@ -201,8 +203,8 @@
 "menu_settings" = "Impostazioni";
 "menu_advanced" = "Avanzate";
 "menu_view_profile" = "Vedi Profilo";
-"menu_zoom_in" = "Zoom In";
-"menu_zoom_out" = "Zoom Out";
+"menu_zoom_in" = "Ingrandisci";
+"menu_zoom_out" = "Rimpicciolisci";
 "menu_save_log" = "Salva Log";
 "menu_more_options" = "Più Opzioni";
 "menu_learn_spelling" = "Impara l\'Ortografia";
@@ -278,13 +280,13 @@
 // contact list
 "contacts_title" = "Contatti";
 "contacts_enter_name_or_email" = "Inserisci nome o indirizzo e-mail";
-"contacts_type_email_above" = "Inserisci qui sopra l\'indirizzo email";
+"contacts_type_email_above" = "Inserisci qui sopra l\'indirizzo e-mail";
 "contacts_empty_hint" = "Nessun contatto.";
 
 
 // chatlist and chat view
 "chat_archived_chats_title" = "Chat Archiviate";
-"chat_please_enter_message" = "Scrivere un messaggio.";
+"chat_please_enter_message" = "Scrivi un messaggio.";
 "chat_camera_unavailable" = "Fotocamera non disponibile.";
 "chat_unable_to_record_audio" = "Impossibile registrare audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
@@ -403,9 +405,11 @@
 
 
 // welcome and login
+"welcome_chat_over_email" = "Chat via E-mail.";
+"scan_invitation_code" = "Scansiona Invito";
 "welcome_intro1_message" = "L’applicazione di messaggistica con la maggiore utenza al mondo. Libera e indipendente.";
 "login_title" = "Login";
-"login_header" = "Login al Tuo Server";
+"login_header" = "Accedi al tuo Account E-Mail";
 "login_explain" = "Accedi con un indirizzo e-mail esistente";
 "login_subheader" = "Per i fornitori email conosciuti, le impostazioni aggiuntive vengono configurate automaticamente. A volte, IMAP deve essere abilitato dall\'interfaccia web dell\'email. Se riscontri problemi contatta il tuo fornitore email o i tuoi amici per aiutarti.";
 "login_no_servers_hint" = "Non esistono server di Delta Chat, i tuoi dati restano nel tuo dispositivo!";
@@ -840,7 +844,7 @@
 "pref_background_notifications_explain" = "Utilizza una connessione in background al tuo server e richiede ignora ottimizzazioni della batteria.";
 "pref_background_notifications_rationale" = "Per mantenere la connessione al tuo server di posta e ricevere messaggi in background, ignora le ottimizzazioni della batteria nel passaggio successivo.\n\nDelta Chat utilizza poche risorse e fa attenzione a non consumare la batteria.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Connessione in Background Affidabile";
+"pref_reliable_service" = "Connessione Affidabile";
 "pref_reliable_service_explain" = "Richiede una notifica permanente";
 "perm_enable_bg_reminder_title" = "Premi qui per ricevere i messaggi anche quando Delta Chat è in background.";
 "perm_enable_bg_already_done" = "Hai già autorizzato Delta Chat a ricevere messaggi in background.\n\nSe i messaggi non arrivano in background controlla le impostazioni di sistema.";

@@ -29,6 +29,8 @@
 "back" = "Zurück";
 "close" = "Schließen";
 "forward" = "Weiterleiten";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Erneut senden";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archivieren";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -403,9 +405,11 @@
 
 
 // welcome and login
+"welcome_chat_over_email" = "Chatten über E-Mail.";
+"scan_invitation_code" = "Einladungscode scannen";
 "welcome_intro1_message" = "Der Messenger mit der größten Reichweite der Welt. Frei und unabhängig.";
 "login_title" = "Login";
-"login_header" = "Bei Ihrem Server anmelden";
+"login_header" = "Bei Ihrem E-Mail-Konto anmelden";
 "login_explain" = "Mit existierendem E-Mail-Konto einloggen";
 "login_subheader" = "Für bekannte E-Mail-Anbieter werden zusätzliche Einstellungen automatisch vorgenommen. Manchmal muss IMAP in der Weboberfläche eingeschaltet werden. Bitten Sie Ihren Anbieter oder Freunde um Rat, wenn es Probleme gibt.";
 "login_no_servers_hint" = "Es gibt keine Delta Chat Server! Ihre Daten bleiben auf Ihrem Gerät!";
@@ -437,7 +441,7 @@
 "login_error_server" = "Bitte eine gültige Server/IP-Adresse eingeben";
 "login_error_port" = "Bitte einen gültigen Port  (1–65535) eingeben";
 "login_error_required_fields" = "Bitte eine gültige E-Mail-Adresse und ein Passwort eingeben";
-"import_backup_title" = "Backup importieren";
+"import_backup_title" = "Wiederherstellen aus Backup";
 "import_backup_ask" = "Backup \"%1$@\" gefunden.\n\nDieses einlesen und alle Daten und Einstellungen daraus verwenden?";
 "import_backup_no_backup_found" = "Kein Backup gefunden.\n\nDie Sicherung nach \"%1$@\" kopieren und es erneut versuchen. Alternativ \"Jetzt beginnen\" wählen, um den normalen Einrichtungsprozess fortzusetzen.";
 // Translators: %1$s will be replaced by the e-mail address

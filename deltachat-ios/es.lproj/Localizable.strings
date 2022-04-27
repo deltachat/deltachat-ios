@@ -402,7 +402,6 @@
 "part_of_total_used" = "%1$@ de %2$@ usado";
 
 
-// welcome and login
 "welcome_intro1_message" = "La aplicación de mensajería instantánea con la audiencia más amplia del mundo. Libre e independiente. ";
 "login_title" = "Iniciar sesión";
 "login_header" = "Inicie sesión en su servidor";

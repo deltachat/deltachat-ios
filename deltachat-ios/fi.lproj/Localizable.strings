@@ -402,7 +402,6 @@
 "part_of_total_used" = "%1$@ / %2$@ käytössä";
 
 
-// welcome and login
 "welcome_intro1_message" = "Viestisovellus, jolla on maailman laajin yleisö. Ilmainen ja riippumaton.";
 "login_title" = "Kirjaudu sisään";
 "login_header" = "Kirjaudu palvelimellesi";

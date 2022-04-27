@@ -399,7 +399,6 @@
 "part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
 
 
-// welcome and login
 "welcome_intro1_message" = "پیام‌رسانی با وسیع‌ترین طیف مخاطبین در جهان. آزاد و مستقل. ";
 "login_title" = "ورود";
 "login_header" = "به سرور خود وارد شوید";

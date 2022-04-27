@@ -336,7 +336,6 @@
 "part_of_total_used" = "%1$@ af %2$@ brugt";
 
 
-// welcome and login
 "welcome_intro1_message" = "Budbringeren med verdens bredeste publikum. Fri og uafhængig.";
 "login_title" = "Login";
 "login_header" = "Login til server";

@@ -15,7 +15,7 @@
 			<key>one</key>
 			<string>%d min</string>
 			<key>other</key>
-			<string>%d min.</string>
+			<string>%d min</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -47,7 +47,7 @@
 			<key>one</key>
 			<string>%d chat</string>
 			<key>other</key>
-			<string>%d chat</string>
+			<string>%d chats</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>

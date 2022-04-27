@@ -330,7 +330,6 @@
 "last_msg_sent_successfully" = "Paskutinė žinutė sėkmingai išsiųsta.";
 // Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
 "messages" = "Žinutės";
-// welcome and login
 "welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
 "login_title" = "Prisijungti";
 "login_header" = "Prisijungti prie savo serverio";

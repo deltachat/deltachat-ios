@@ -29,6 +29,8 @@
 "back" = "Geri";
 "close" = "Kapat";
 "forward" = "İlet";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Yeniden Gönder";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Arşivle";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -403,9 +405,11 @@
 
 
 // welcome and login
+"welcome_chat_over_email" = "E-Posta Üzerinden Sohbet.";
+"scan_invitation_code" = "Davet Kodunu Tara";
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsız.";
 "login_title" = "Oturum Aç";
-"login_header" = "Sunucunuzda Oturum Açın";
+"login_header" = "E-Posta Hesabınıza Oturum Açın";
 "login_explain" = "Varolan bir e-posta hesabıyla oturum açın";
 "login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'nin web ayarlarından etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
 "login_no_servers_hint" = "Delta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
@@ -437,7 +441,7 @@
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";
 "login_error_port" = "Lütfen geçerli bir bağlantı noktası (1–65535) girin";
 "login_error_required_fields" = "Lütfen geçerli bir e-posta adresi ve bir parola girin";
-"import_backup_title" = "Yedeği İçe Aktar";
+"import_backup_title" = "Yedekten Geri Yükle";
 "import_backup_ask" = "\"%1$@\" üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
 "import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için \"İletileşmeye başla\"ya basın.";
 // Translators: %1$s will be replaced by the e-mail address
@@ -474,7 +478,7 @@
 "pref_blocked_contacts" = "Engellenen Kişiler";
 "blocked_empty_hint" = "Kişileri engellerseniz, burada gösterilecekler.";
 "pref_password_and_account_settings" = "Parola ve Hesap";
-"pref_who_can_see_profile_explain" = "Diğer kullanıcılarla iletişim kurarken; profil görseliniz, adınız ve imzanız iletilerinizle birlikte gönderilecek.";
+"pref_who_can_see_profile_explain" = "Diğer kullanıcılarla iletişim kurulurken; profil görseliniz, adınız ve imzanız iletilerinizle birlikte gönderilecek.";
 "pref_your_name" = "Adınız";
 // Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
 "pref_default_status_label" = "İmza Metni";
@@ -542,7 +546,7 @@
 "pref_background_btn_default" = "Varsayılan Görseli Kullan";
 "pref_background_btn_gallery" = "Galeriden Seç";
 "pref_imap_folder_handling" = "IMAP Klasör İşleme";
-"pref_imap_folder_warn_disable_defaults" = "Bu seçeneği etkisizleştirirseniz, sunucunuzun ve diğer istemcilerinizin uygun olarak yapılandırıldığından emin olun.\n\nYoksa hiç çalışmayabilir.";
+"pref_imap_folder_warn_disable_defaults" = "Bu seçeneği değiştirirseniz, sunucunuzun ve diğer istemcilerinizin uygun olarak yapılandırıldığından emin olun.\n\nDeğilse özellikler hiç çalışmayabilir.";
 "pref_watch_inbox_folder" = "Gelen Kutusu Klasörünü İzle";
 "pref_watch_sent_folder" = "Gönderilen Klasörünü İzle";
 "pref_watch_mvbox_folder" = "DeltaChat Klasörünü İzle";
@@ -715,7 +719,7 @@
 "qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesap değiştir\" öğesini kullanın.";
 "qraccount_success_enter_name" = "Oturum açma başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kod yeni bir hesap ayarlamak için kullanılamıyor.";
-"qraccount_use_on_new_install" = "Taranan QR kod yeni bir hesap ayarlamak içindir. QR kodu yeni bir Delta Chat kurulumunu ayarlarken tarayabilirsiniz.";
+"qraccount_use_on_new_install" = "Taranan QR kod yeni bir hesap ayarlamak içindir. QR kodu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya davet etti.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
@@ -809,7 +813,7 @@
 "autocrypt_incorrect_desktop" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.";
 "create_chat_error_desktop" = "Sohbet oluşturulamadı.";
 "forget_login_confirmation_desktop" = "Bu oturum silinsin mi? Uçtan uca ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak her şey silinecek. Bu eylem geri alınamaz.";
-"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nSize: %2$@\nAccount Id: %3$@";
+"account_info_hover_tooltip_desktop2" = "E-Posta: %1$@\nBoyut: %2$@\nHesap Kimliği: %3$@";
 "message_detail_sent_desktop" = "gönderilme";
 "message_detail_received_desktop" = "alınma";
 "menu.view.developer.open.log.folder" = "Günlük Klasörünü Aç";

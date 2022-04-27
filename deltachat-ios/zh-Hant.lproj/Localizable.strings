@@ -325,7 +325,6 @@
 "tab_gallery_empty_hint" = "本對話中共享的圖片和視訊會顯示在這裡。";
 "tab_docs_empty_hint" = "本對話中共享的文件、音樂和其它檔案會顯示在這裡。";
 "media_preview" = "媒體預覽";
-// welcome and login
 "welcome_intro1_message" = "免費、獨立的通訊軟體，我們有全世界最廣的受眾。";
 "login_title" = "登入";
 "login_header" = "登入你的伺服器";

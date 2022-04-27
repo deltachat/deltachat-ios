@@ -29,6 +29,8 @@
 "back" = "Terug";
 "close" = "Sluiten";
 "forward" = "Doorsturen";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Opnieuw versturen";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archiveren";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -403,6 +405,8 @@
 
 
 // welcome and login
+"welcome_chat_over_email" = "Chatten via e-mail.";
+"scan_invitation_code" = "Uitnodigingscode scannen";
 "welcome_intro1_message" = "Dé berichtenapp met het breedste publiek ter wereld. Gratis en onafhankelijk.";
 "login_title" = "Inloggen";
 "login_header" = "Inloggen op je server";

@@ -332,7 +332,6 @@
 "connectivity_updating" = "アップデート中";
 // Shown eg. in the setting if the app is "Connected"
 "connectivity_connected" = "接続済み";
-// welcome and login
 "welcome_intro1_message" = "世界で最も大衆的なメッセンジャーです。自由に使えて独立している。";
 "login_title" = "ログイン";
 "login_header" = "自分のメールサーバーにログインする";

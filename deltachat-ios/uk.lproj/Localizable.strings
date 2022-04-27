@@ -402,7 +402,6 @@
 "part_of_total_used" = "Використано %1$@ з %2$@";
 
 
-// welcome and login
 "welcome_intro1_message" = "Мессенджер з найширшою аудиторією у світі. Безкоштовний і незалежний.";
 "login_title" = "Увійти";
 "login_header" = "Увійти на свій сервер";

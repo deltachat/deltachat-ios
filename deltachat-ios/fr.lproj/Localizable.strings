@@ -402,7 +402,6 @@
 "part_of_total_used" = "%1$@ sur %2$@ utilisé";
 
 
-// welcome and login
 "welcome_intro1_message" = "Le messager avec le plus large public au monde. Libre et indépendant.";
 "login_title" = "Connexion";
 "login_header" = "Connexion vers votre serveur";

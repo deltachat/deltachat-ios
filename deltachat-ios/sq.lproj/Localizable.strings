@@ -29,6 +29,8 @@
 "back" = "Mbrapsht";
 "close" = "Mbylle";
 "forward" = "Përpara";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Ridërgoje";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Arkivoje";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -401,6 +403,8 @@
 
 
 // welcome and login
+"welcome_chat_over_email" = "Fjalosje përmes Email-i";
+"scan_invitation_code" = "Skanoni Kod Ftese";
 "welcome_intro1_message" = "Shkëmbyesi i mesazheve me publikun më të gjerë në botë. I lirë dhe i pavarur.";
 "login_title" = "Hyrje";
 "login_header" = "Hyrje te shërbyesi juaj";

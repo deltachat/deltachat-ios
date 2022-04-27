@@ -212,7 +212,6 @@
 "tab_gallery_empty_hint" = "Bu çatda paylaşılan şəkillər və videolar burada nümayiş olunacaq.";
 "tab_docs_empty_hint" = "Bu söhbətdə paylaşılan sənədlər, musiqi və digər fayllar burada göstəriləcək.";
 "media_preview" = "Fayllara baxmaq";
-// welcome and login
 "welcome_intro1_message" = "Dünyanın ən böyük auditoriyasına sahib olan mesenjeri. Azad və müstəqil.";
 "login_title" = "Daxil ol";
 "login_header" = "Serverinə daxil ol";

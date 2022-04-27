@@ -402,7 +402,6 @@
 "part_of_total_used" = "%1$@ z %2$@využitých ";
 
 
-// welcome and login
 "welcome_intro1_message" = "Posol s najširším publikom na svete. Slobodný a nezávislý.";
 "login_title" = "Prihlásiť sa";
 "login_header" = "Prihláste sa na server";

@@ -29,6 +29,8 @@
 "back" = "Back";
 "close" = "Close";
 "forward" = "Forward";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Resend";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archive";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -403,9 +405,11 @@
 
 
 // welcome and login
+"welcome_chat_over_email" = "Chat over E-Mail.";
+"scan_invitation_code" = "Scan Invitation Code";
 "welcome_intro1_message" = "The messenger with the broadest audience in the world. Free and independent.";
 "login_title" = "Log In";
-"login_header" = "Log In to Your Server";
+"login_header" = "Log into your E-Mail Account";
 "login_explain" = "Log in with an existing e-mail account";
 "login_subheader" = "For known e-mail providers additional settings are set up automatically. Sometimes IMAP needs to be enabled in the web settings. Consult your e-mail provider or friends for help.";
 "login_no_servers_hint" = "There are no Delta Chat servers, your data stays on your device.";
@@ -437,7 +441,7 @@
 "login_error_server" = "Please enter a valid server / IP address";
 "login_error_port" = "Please enter a valid port (1–65535)";
 "login_error_required_fields" = "Please enter a valid e-mail address and a password";
-"import_backup_title" = "Import Backup";
+"import_backup_title" = "Restore from Backup";
 "import_backup_ask" = "Backup found at \"%1$@\".\n\nDo you want to import and use all data and settings from it?";
 "import_backup_no_backup_found" = "No backups found.\n\nCopy the backup to \"%1$@\" and try again. Alternatively, press \"Start messaging\" to continue with the normal setup process.";
 // Translators: %1$s will be replaced by the e-mail address
