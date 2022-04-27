@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var reachability = Reachability()!
     var window: UIWindow?
     var notifyToken: String?
+    var applicationInForeground: Bool = false
 
     // purpose of `bgIoTimestamp` is to block rapidly subsequent calls to remote- or local-wakeups:
     //
@@ -189,8 +190,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - app lifecycle
 
+    // applicationWillEnterForeground() is _not_ called on initial app start
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
+        applicationInForeground = true
         dcAccounts.startIo()
 
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -215,6 +218,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    // applicationDidBecomeActive() is called on initial app start _and_ after applicationWillEnterForeground()
+    func applicationDidBecomeActive(_: UIApplication) {
+        logger.info("➡️ applicationDidBecomeActive")
+        applicationInForeground = true
+    }
+
     func applicationWillResignActive(_: UIApplication) {
         logger.info("⬅️ applicationWillResignActive")
         registerBackgroundTask()
@@ -222,6 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("⬅️ applicationDidEnterBackground")
+        applicationInForeground = false
     }
 
     func applicationWillTerminate(_: UIApplication) {
@@ -435,7 +445,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         bgIoTimestamp = nowTimestamp
-        addDebugFetchTimestamp()
 
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
         var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -450,8 +459,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        let fetchSemaphore = DispatchSemaphore(value: 0)
-
         // move work to non-main thread to not block UI (otherwise, in case we get suspended, the app is blocked totally)
         // (we are using `qos: default` as `qos: .background` or `main.asyncAfter` may be delayed by tens of minutes)
         DispatchQueue.global().async { [weak self] in
@@ -461,38 +468,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.dcAccounts.startIo()
             self.dcAccounts.maybeNetwork()
 
-            _ = fetchSemaphore.wait(timeout: .now() + 10)
+            self.addDebugFetchTimestamp()
+
+            // create a new semaphore to make sure the received DC_CONNECTIVITY_CONNECTED really belongs to maybeNetwork() from above
+            // (maybeNetwork() sets connectivity to DC_CONNECTIVITY_CONNECTING, when fetch is done, we're back at DC_CONNECTIVITY_CONNECTED)
+            self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
+            _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 20)
+            self.dcAccounts.fetchSemaphore = nil
 
             // TOCHECK: it seems, we are not always reaching this point in code,
-            // the semaphore.wait does not exit after 10 seconds and the app gets suspended -
+            // semaphore?.wait() does not always exit after the given timeout and the app gets suspended -
             // maybe that is on purpose somehow to suspend inactive apps, not sure.
             // this does not happen often, but still.
             // cmp. https://github.com/deltachat/deltachat-ios/pull/1542#pullrequestreview-951620906
             logger.info("⬅️ finishing fetch")
+            self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
 
-            // dispatch back to main as we cannot check the foreground state from non-main thread
-            // (this again has the risk to be delayed by tens of minutes, however, fetch is done and we're mostly fine)
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { completionHandler(.failed); return }
+            if !self.appIsInForeground() {
+                self.dcAccounts.stopIo()
+            }
 
-                if !self.appIsInForeground() {
-                    self.dcAccounts.stopIo()
-                }
-
-                // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
-                // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-                DispatchQueue.global().async { [weak self] in
-                    guard let self = self else { completionHandler(.failed); return }
-
-                    _ = fetchSemaphore.wait(timeout: .now() + 1)
-                    logger.info("⬅️ fetch done")
-                    self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
-                    completionHandler(.newData)
-                    if backgroundTask != .invalid {
-                        UIApplication.shared.endBackgroundTask(backgroundTask)
-                        backgroundTask = .invalid
-                    }
-                }
+            // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
+            // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
+            usleep(1_000_000)
+            logger.info("⬅️ fetch done")
+            completionHandler(.newData)
+            if backgroundTask != .invalid {
+                UIApplication.shared.endBackgroundTask(backgroundTask)
+                backgroundTask = .invalid
             }
         }
     }
@@ -688,11 +691,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func appIsInForeground() -> Bool {
-        switch UIApplication.shared.applicationState {
-        case .background, .inactive:
-            return false
-        case .active:
-            return true
+        if Thread.isMainThread {
+            switch UIApplication.shared.applicationState {
+            case .background, .inactive:
+                applicationInForeground = false
+            case .active:
+                applicationInForeground = true
+            }
         }
+        return applicationInForeground
     }
 }

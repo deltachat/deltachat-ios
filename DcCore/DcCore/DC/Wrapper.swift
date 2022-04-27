@@ -9,6 +9,7 @@ public class DcAccounts {
     let applicationGroupIdentifier = "group.chat.delta.ios"
     var accountsPointer: OpaquePointer?
     public var logger: Logger?
+    public var fetchSemaphore: DispatchSemaphore?
 
     public init() {
     }
@@ -53,6 +54,10 @@ public class DcAccounts {
 
     public func maybeNetworkLost() {
         dc_accounts_maybe_network_lost(accountsPointer)
+    }
+
+    public func isAllWorkDone() -> Bool {
+        return dc_accounts_all_work_done(accountsPointer) != 0
     }
 
     public func startIo() {
