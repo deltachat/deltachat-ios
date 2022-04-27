@@ -233,6 +233,11 @@ class ChatViewController: UITableViewController {
                     guard let self = self else { return }
                     let messageId = self.messageIds[indexPath.row]
                     self.setEditing(isEditing: true, selectedAtIndexPath: indexPath)
+                    if UIAccessibility.isVoiceOverRunning {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
+                            UIAccessibility.post(notification: .layoutChanged, argument: self?.tableView.cellForRow(at: indexPath))
+                        })
+                    }
                 }
             }
         )
