@@ -542,8 +542,8 @@ public class DcContext {
         return Int(dc_add_device_msg(contextPointer, label, msg.cptr))
     }
 
-    public func getProviderFromEmail(addr: String) -> DcProvider? {
-        guard let dcProviderPointer = dc_provider_new_from_email(contextPointer, addr) else { return nil }
+    public func getProviderFromEmailWithDns(addr: String) -> DcProvider? {
+        guard let dcProviderPointer = dc_provider_new_from_email_with_dns(contextPointer, addr) else { return nil }
         return DcProvider(dcProviderPointer)
     }
 

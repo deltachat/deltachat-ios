@@ -520,7 +520,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func updateProviderInfo() {
-            provider = dcContext.getProviderFromEmail(addr: emailCell.getText() ?? "")
+        provider = dcContext.getProviderFromEmailWithDns(addr: emailCell.getText() ?? "")
         if let hint = provider?.beforeLoginHint,
             let status = provider?.status,
             let statusType = ProviderInfoStatus(rawValue: status),
