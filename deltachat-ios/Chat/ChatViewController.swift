@@ -1923,6 +1923,7 @@ extension ChatViewController: MediaPickerDelegate {
 
     func onVoiceMessageRecorderClosed() {
         if UIAccessibility.isVoiceOverRunning {
+            UIAccessibility.post(notification: .announcement, argument: nil)
             // we need to wait a little bit, otherwise the  UIAccessibility notification is ignored and
             // the first accessibility element on the screen gets selected
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in

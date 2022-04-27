@@ -106,6 +106,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.accessibilityViewIsModal = true
         self.view.backgroundColor = UIColor.themeColor(light: .white, dark: .black)
         self.navigationController?.isToolbarHidden = false
         self.navigationController?.toolbar.isTranslucent = true
