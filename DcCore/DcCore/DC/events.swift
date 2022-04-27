@@ -210,13 +210,13 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
+            if let sem = dcAccounts.fetchSemaphore, dcAccounts.isAllWorkDone() {
+                sem.signal()
+            }
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("network: DC_EVENT_CONNECTIVITY_CHANGED: \(dcContext.getConnectivity())")
-            if let sem = dcAccounts.fetchSemaphore, dcContext.getConnectivity() == DC_CONNECTIVITY_CONNECTED {
-                sem.signal()
-            }
             DispatchQueue.main.async {
                 let nc = NotificationCenter.default
                 nc.post(

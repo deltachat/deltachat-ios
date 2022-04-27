@@ -56,6 +56,10 @@ public class DcAccounts {
         dc_accounts_maybe_network_lost(accountsPointer)
     }
 
+    public func isAllWorkDone() -> Bool {
+        return dc_accounts_all_work_done(accountsPointer) != 0
+    }
+
     public func startIo() {
         dc_accounts_start_io(accountsPointer)
     }
