@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var reachability = Reachability()!
     var window: UIWindow?
     var notifyToken: String?
+    var applicationInForeground: Bool = false
 
     // purpose of `bgIoTimestamp` is to block rapidly subsequent calls to remote- or local-wakeups:
     //
@@ -189,8 +190,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - app lifecycle
 
+    // applicationWillEnterForeground() is _not_ called on initial app start
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
+        applicationInForeground = true
         dcAccounts.startIo()
 
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -215,6 +218,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    // applicationDidBecomeActive() is called on initial app start _and_ after applicationWillEnterForeground()
+    func applicationDidBecomeActive(_: UIApplication) {
+        logger.info("➡️ applicationDidBecomeActive")
+        applicationInForeground = true
+    }
+
     func applicationWillResignActive(_: UIApplication) {
         logger.info("⬅️ applicationWillResignActive")
         registerBackgroundTask()
@@ -222,6 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationDidEnterBackground(_: UIApplication) {
         logger.info("⬅️ applicationDidEnterBackground")
+        applicationInForeground = false
     }
 
     func applicationWillTerminate(_: UIApplication) {
@@ -688,11 +698,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func appIsInForeground() -> Bool {
-        switch UIApplication.shared.applicationState {
-        case .background, .inactive:
-            return false
-        case .active:
-            return true
+        if Thread.isMainThread {
+            switch UIApplication.shared.applicationState {
+            case .background, .inactive:
+                applicationInForeground = false
+            case .active:
+                applicationInForeground = true
+            }
         }
+        return applicationInForeground
     }
 }
