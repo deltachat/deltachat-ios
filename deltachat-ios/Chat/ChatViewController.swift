@@ -843,7 +843,7 @@ class ChatViewController: UITableViewController {
         let message = dcContext.getMessage(id: self.messageIds[indexPath.row])
         self.draft.setQuote(quotedMsg: message)
         self.configureDraftArea(draft: self.draft)
-        self.messageInputBar.inputTextView.becomeFirstResponder()
+        focusInputTextView()
     }
 
     func markSeenMessagesInVisibleArea() {
@@ -1552,11 +1552,20 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    private func focusInputTextView() {
+        self.messageInputBar.inputTextView.becomeFirstResponder()
+        if UIAccessibility.isVoiceOverRunning {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
+                UIAccessibility.post(notification: .layoutChanged, argument: self?.messageInputBar.inputTextView)
+            })
+        }
+    }
+
     private func stageDocument(url: NSURL) {
         keepKeyboard = true
         self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
         self.configureDraftArea(draft: self.draft)
-        self.messageInputBar.inputTextView.becomeFirstResponder()
+        self.focusInputTextView()
     }
 
     private func stageVideo(url: NSURL) {
@@ -1565,7 +1574,7 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
-            self.messageInputBar.inputTextView.becomeFirstResponder()
+            self.focusInputTextView()
         }
     }
 
@@ -1589,7 +1598,7 @@ class ChatViewController: UITableViewController {
                         self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInCachesDir)
                     }
                     self.configureDraftArea(draft: self.draft)
-                    self.messageInputBar.inputTextView.becomeFirstResponder()
+                    self.focusInputTextView()
                     ImageFormat.deleteImage(atPath: pathInCachesDir)
                 }
             }
@@ -1966,6 +1975,7 @@ extension ChatViewController: DraftPreviewDelegate {
         keepKeyboard = true
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
+        focusInputTextView()
     }
 
     func onCancelAttachment() {
@@ -1973,6 +1983,7 @@ extension ChatViewController: DraftPreviewDelegate {
         draft.clearAttachment()
         configureDraftArea(draft: draft)
         evaluateInputBar(draft: draft)
+        focusInputTextView()
     }
 
     func onAttachmentAdded() {
