@@ -1188,6 +1188,7 @@ class ChatViewController: UITableViewController {
 
     private func evaluateInputBar(draft: DraftModel) {
         messageInputBar.sendButton.isEnabled = draft.canSend()
+        messageInputBar.sendButton.accessibilityTraits = draft.canSend() ? .button : .notEnabled
     }
 
     private func configureInputBarItems() {
