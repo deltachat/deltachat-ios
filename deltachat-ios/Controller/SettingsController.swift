@@ -698,6 +698,14 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             info += "\(name)=\(cnt)x\(startStr)\(timestampStr)\n"
         }
 
+        info += "notify-timestamps="
+        if let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double] {
+            for currTimestamp in timestamps {
+                info += DateUtils.getExtendedAbsTimeSpanString(timeStamp: currTimestamp) + " "
+            }
+        }
+        info += "\n"
+
         info += "notify-fetch-durations="
         let fetchDurations = UserDefaults.standard.array(forKey: "notify-fetch-durations")  as? [Double]
         if let fetchDurations = fetchDurations {
