@@ -1064,13 +1064,13 @@ class ChatViewController: UITableViewController {
         scrollToBottom(animated: true)
     }
     
-    private func scrollToBottom(animated: Bool) {
+    private func scrollToBottom(animated: Bool, focusOnVoiceOver: Bool = false) {
         if !messageIds.isEmpty {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
-                    self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: animated)
+                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), animated: animated, focusWithVoiceOver: focusOnVoiceOver)
                 }
             }
         }
@@ -1081,12 +1081,12 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
                 let indexPath = IndexPath(row: markerMessageIndex, section: 0)
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                self.scrollToRow(at: indexPath, animated: false)
             } else {
                 // scroll to bottom
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
-                    self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: false)
+                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), animated: false)
                 }
             }
         }
@@ -1100,7 +1100,7 @@ class ChatViewController: UITableViewController {
             }
             let indexPath = IndexPath(row: index, section: 0)
 
-            if scrollToText {
+            if scrollToText && !UIAccessibility.isVoiceOverRunning {
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                 let cell = self.tableView.cellForRow(at: indexPath)
                 if let messageCell = cell as? BaseMessageCell {
@@ -1118,6 +1118,20 @@ class ChatViewController: UITableViewController {
                 }
             }
 
+            self.scrollToRow(at: indexPath, animated: false)
+        }
+    }
+
+    private func scrollToRow(at indexPath: IndexPath, animated: Bool, focusWithVoiceOver: Bool = true) {
+        if UIAccessibility.isVoiceOverRunning && focusWithVoiceOver {
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [weak self] in
+                guard let self = self else { return }
+                UIAccessibility.post(notification: .screenChanged, argument: self.tableView.cellForRow(at: indexPath))
+                self.markSeenMessagesInVisibleArea()
+                // TODO: with #1549 merged we can add here scrollDownlButton visibility
+            })
+        } else {
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
         }
     }
@@ -1517,7 +1531,9 @@ class ChatViewController: UITableViewController {
         emptyStateView.isHidden = true
 
         reloadData()
-        if wasLastSectionScrolledToBottom || message.isFromCurrentSender {
+        if UIAccessibility.isVoiceOverRunning && !message.isFromCurrentSender {
+            scrollToBottom(animated: false, focusOnVoiceOver: true)
+        } else if wasLastSectionScrolledToBottom || message.isFromCurrentSender {
             scrollToBottom(animated: true)
         } else {
             updateScrollDownButtonVisibility()
