@@ -445,7 +445,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         bgIoTimestamp = nowTimestamp
-        addDebugFetchTimestamp()
 
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
         var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -468,6 +467,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // we're in background, run IO for a little time
             self.dcAccounts.startIo()
             self.dcAccounts.maybeNetwork()
+
+            self.addDebugFetchTimestamp()
 
             // create a new semaphore to make sure the received DC_CONNECTIVITY_CONNECTED really belongs to maybeNetwork() from above
             // (maybeNetwork() sets connectivity to DC_CONNECTIVITY_CONNECTING, when fetch is done, we're back at DC_CONNECTIVITY_CONNECTED)
