@@ -145,6 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let notificationOption = launchOptions?[.remoteNotification] {
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
             increaseDebugCounter("notify-remote-launch")
+            pushToDebugArray("📡'")
             performFetch(completionHandler: { (_) -> Void in })
         }
 
@@ -403,6 +404,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     ) {
         logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
+        pushToDebugArray("📡")
         performFetch(completionHandler: completionHandler)
     }
 
@@ -418,6 +420,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     ) {
         logger.info("➡️ Notifications: performFetchWithCompletionHandler")
         increaseDebugCounter("notify-local-wakeup")
+        pushToDebugArray("🏠")
         performFetch(completionHandler: completionHandler)
     }
 
@@ -426,6 +429,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // in this case, there is no need to wait for things or do sth.
         if appIsInForeground() {
             logger.info("➡️ app already in foreground")
+            pushToDebugArray("ERR1")
             completionHandler(.newData)
             return
         }
@@ -441,6 +445,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         if nowTimestamp < bgIoTimestamp + 60 {
             logger.info("➡️ fetch was just executed, skipping")
+            pushToDebugArray("ERR2")
             completionHandler(.newData)
             return
         }
@@ -451,6 +456,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, this handler is not used as we are taking care of timings below.
             logger.info("⬅️ finishing fetch by system urgency requests")
+            self?.pushToDebugArray("ERR3")
             self?.dcAccounts.stopIo()
             completionHandler(.newData)
             if backgroundTask != .invalid {
@@ -458,6 +464,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 backgroundTask = .invalid
             }
         }
+
+        pushToDebugArray("1")
 
         // move work to non-main thread to not block UI (otherwise, in case we get suspended, the app is blocked totally)
         // (we are using `qos: default` as `qos: .background` or `main.asyncAfter` may be delayed by tens of minutes)
@@ -467,6 +475,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // we're in background, run IO for a little time
             self.dcAccounts.startIo()
             self.dcAccounts.maybeNetwork()
+            self.pushToDebugArray("2")
 
             self.addDebugFetchTimestamp()
 
@@ -482,7 +491,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // this does not happen often, but still.
             // cmp. https://github.com/deltachat/deltachat-ios/pull/1542#pullrequestreview-951620906
             logger.info("⬅️ finishing fetch")
-            self.pushToDebugArray(name: "notify-fetch-durations", value: Double(Date().timeIntervalSince1970)-nowTimestamp)
+            self.pushToDebugArray(String(format: "3/%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
 
             if !self.appIsInForeground() {
                 self.dcAccounts.stopIo()
@@ -494,6 +503,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("⬅️ fetch done")
             completionHandler(.newData)
             if backgroundTask != .invalid {
+                self.pushToDebugArray("OK")
                 UIApplication.shared.endBackgroundTask(backgroundTask)
                 backgroundTask = .invalid
             }
@@ -598,13 +608,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
     }
 
-    private func pushToDebugArray(name: String, value: Double) {
+    private func pushToDebugArray(_ value: String) {
+        let name = "notify-fetch-info2"
         let values = UserDefaults.standard.array(forKey: name)
-        var slidingValues = [Double]()
-        if values != nil, let values = values as? [Double] {
-            slidingValues = values.suffix(16)
+        var slidingValues = [String]()
+        if values != nil, let values = values as? [String] {
+            slidingValues = values.suffix(512)
         }
-        slidingValues.append(value)
+        slidingValues.append(value+"@"+DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
         UserDefaults.standard.set(slidingValues, forKey: name)
     }
 
