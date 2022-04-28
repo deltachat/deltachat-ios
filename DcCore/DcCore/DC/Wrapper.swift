@@ -9,7 +9,7 @@ public class DcAccounts {
     let applicationGroupIdentifier = "group.chat.delta.ios"
     var accountsPointer: OpaquePointer?
     public var logger: Logger?
-    public var fetchSemaphore: DispatchSemaphore?
+    public var doExitPerformFetch: Bool = true
 
     public init() {
     }

@@ -210,8 +210,8 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
-            if let sem = dcAccounts.fetchSemaphore, dcAccounts.isAllWorkDone() {
-                sem.signal()
+            if !dcAccounts.doExitPerformFetch && dcAccounts.isAllWorkDone() {
+                dcAccounts.doExitPerformFetch = true
             }
             if dcContext.id != dcAccounts.getSelected().id {
                 return

@@ -473,6 +473,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             guard let self = self else { completionHandler(.failed); return }
 
             // we're in background, run IO for a little time
+            self.dcAccounts.doExitPerformFetch = false
             self.dcAccounts.startIo()
             self.dcAccounts.maybeNetwork()
             self.pushToDebugArray("2")
@@ -481,9 +482,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             // create a new semaphore to make sure the received DC_CONNECTIVITY_CONNECTED really belongs to maybeNetwork() from above
             // (maybeNetwork() sets connectivity to DC_CONNECTIVITY_CONNECTING, when fetch is done, we're back at DC_CONNECTIVITY_CONNECTED)
-            self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
-            _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 20)
-            self.dcAccounts.fetchSemaphore = nil
+            for _ in 0..<20 {
+                usleep(500_000)
+                if self.dcAccounts.doExitPerformFetch {
+                    break
+                }
+            }
 
             // TOCHECK: it seems, we are not always reaching this point in code,
             // semaphore?.wait() does not always exit after the given timeout and the app gets suspended -
