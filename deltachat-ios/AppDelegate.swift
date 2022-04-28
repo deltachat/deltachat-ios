@@ -429,7 +429,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // in this case, there is no need to wait for things or do sth.
         if appIsInForeground() {
             logger.info("➡️ app already in foreground")
-            pushToDebugArray("ERR1")
+            pushToDebugArray("OK1")
             completionHandler(.newData)
             return
         }
@@ -445,7 +445,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         if nowTimestamp < bgIoTimestamp + 60 {
             logger.info("➡️ fetch was just executed, skipping")
-            pushToDebugArray("ERR2")
+            pushToDebugArray("OK2")
             completionHandler(.newData)
             return
         }
@@ -456,7 +456,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, this handler is not used as we are taking care of timings below.
             logger.info("⬅️ finishing fetch by system urgency requests")
-            self?.pushToDebugArray("ERR3")
+            self?.pushToDebugArray("ERR1")
             self?.dcAccounts.stopIo()
             completionHandler(.newData)
             if backgroundTask != .invalid {
@@ -503,7 +503,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("⬅️ fetch done")
             completionHandler(.newData)
             if backgroundTask != .invalid {
-                self.pushToDebugArray("OK")
+                self.pushToDebugArray("OK3")
                 UIApplication.shared.endBackgroundTask(backgroundTask)
                 backgroundTask = .invalid
             }
