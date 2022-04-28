@@ -3,11 +3,16 @@ import DcCore
 
 public class BaseMessageCell: UITableViewCell {
 
+    // horizontal message constraints for received messages
     private var leadingConstraint: NSLayoutConstraint?
     private var trailingConstraint: NSLayoutConstraint?
-    private var leadingConstraintCurrentSender: NSLayoutConstraint?
+    private var trailingConstraintEditingMode: NSLayoutConstraint?
     private var leadingConstraintGroup: NSLayoutConstraint?
+    // horizontal message constraints for sent messages
+    private var leadingConstraintCurrentSender: NSLayoutConstraint?
+    private var leadingConstraintCurrentSenderEditingMode: NSLayoutConstraint?
     private var trailingConstraintCurrentSender: NSLayoutConstraint?
+
     private var mainContentBelowTopLabelConstraint: NSLayoutConstraint?
     private var mainContentUnderTopLabelConstraint: NSLayoutConstraint?
     private var mainContentAboveActionBtnConstraint: NSLayoutConstraint?
@@ -218,8 +223,10 @@ public class BaseMessageCell: UITableViewCell {
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
         leadingConstraintGroup = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: 2)
-        trailingConstraint = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 36)
-        leadingConstraintCurrentSender = messageBackgroundContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 36)
+        trailingConstraint = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 50)
+        trailingConstraintEditingMode = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 6)
+        leadingConstraintCurrentSender = messageBackgroundContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 50)
+        leadingConstraintCurrentSenderEditingMode = messageBackgroundContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 6)
         trailingConstraintCurrentSender = messageBackgroundContainer.constraintAlignTrailingTo(contentView, paddingTrailing: 6)
 
         mainContentViewLeadingConstraint = mainContentView.constraintAlignLeadingTo(messageBackgroundContainer)
@@ -283,6 +290,31 @@ public class BaseMessageCell: UITableViewCell {
         }
     }
 
+    public override func willTransition(to state: UITableViewCell.StateMask) {
+        super.willTransition(to: state)
+        // while the content view gets intended by the appearance of the edit control,
+        // we're adapting the the padding of the messages on the left side of the screen
+        if state == .showingEditControl {
+            if trailingConstraint?.isActive ?? false {
+                trailingConstraint?.isActive = false
+                trailingConstraintEditingMode?.isActive = true
+            }
+            if leadingConstraintCurrentSender?.isActive ?? false {
+                leadingConstraintCurrentSender?.isActive = false
+                leadingConstraintCurrentSenderEditingMode?.isActive = true
+            }
+        } else {
+            if trailingConstraintEditingMode?.isActive ?? false {
+                trailingConstraintEditingMode?.isActive = false
+                trailingConstraint?.isActive = true
+            }
+            if leadingConstraintCurrentSenderEditingMode?.isActive ?? false {
+                leadingConstraintCurrentSenderEditingMode?.isActive = false
+                leadingConstraintCurrentSender?.isActive = true
+            }
+        }
+    }
+
     public override func setSelected(_ selected: Bool, animated: Bool) {
          super.setSelected(selected, animated: animated)
          if selected && showSelectionBackground {
@@ -311,7 +343,9 @@ public class BaseMessageCell: UITableViewCell {
             leadingConstraint?.isActive = false
             leadingConstraintGroup?.isActive = false
             trailingConstraint?.isActive = false
-            leadingConstraintCurrentSender?.isActive = true
+            trailingConstraintEditingMode?.isActive = false
+            leadingConstraintCurrentSender?.isActive = !isEditing
+            leadingConstraintCurrentSenderEditingMode?.isActive = isEditing
             trailingConstraintCurrentSender?.isActive = true
         } else {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") :
@@ -330,6 +364,7 @@ public class BaseMessageCell: UITableViewCell {
             }
             topLabel.textColor = topLabelTextColor
             leadingConstraintCurrentSender?.isActive = false
+            leadingConstraintCurrentSenderEditingMode?.isActive = false
             trailingConstraintCurrentSender?.isActive = false
             if showName {
                 leadingConstraint?.isActive = false
@@ -338,7 +373,8 @@ public class BaseMessageCell: UITableViewCell {
                 leadingConstraintGroup?.isActive = false
                 leadingConstraint?.isActive = true
             }
-            trailingConstraint?.isActive = true
+            trailingConstraint?.isActive = !isEditing
+            trailingConstraintEditingMode?.isActive = isEditing
         }
 
         if showAvatar {
