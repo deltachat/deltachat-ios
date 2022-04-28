@@ -250,11 +250,11 @@ class ChatListController: UITableViewController {
     private var isInitial = true
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
-            if isInitial {
-                isInitial = false
+            if !isInitial {
                 startTimer()
             }
-            refreshInBg()
+            handleChatListUpdate()
+            isInitial = false
         }
     }
 
@@ -442,8 +442,16 @@ class ChatListController: UITableViewController {
     }
 
     func handleChatListUpdate() {
-        tableView.reloadData()
-        handleEmptyStateLabel()
+        if Thread.isMainThread {
+            tableView.reloadData()
+            handleEmptyStateLabel()
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+                self.handleEmptyStateLabel()
+            }
+        }
     }
 
     private func handleEmptyStateLabel() {
@@ -473,7 +481,7 @@ class ChatListController: UITableViewController {
             else { return }
             
             if appDelegate.appIsInForeground() {
-                self.refreshInBg()
+                self.handleChatListUpdate()
             } else {
                 logger.warning("startTimer() must not be executed in background")
             }
