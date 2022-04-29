@@ -252,8 +252,8 @@ class ChatListController: UITableViewController {
         if navigationController?.visibleViewController == self {
             if !isInitial {
                 startTimer()
+                handleChatListUpdate()
             }
-            handleChatListUpdate()
             isInitial = false
         }
     }
