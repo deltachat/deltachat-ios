@@ -484,6 +484,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // (maybeNetwork() sets connectivity to DC_CONNECTIVITY_CONNECTING, when fetch is done, we're back at DC_CONNECTIVITY_CONNECTED)
             for _ in 0..<20 {
                 usleep(500_000)
+                self.pushToDebugArray(".")
                 if self.dcAccounts.doExitPerformFetch {
                     break
                 }
@@ -619,7 +620,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if values != nil, let values = values as? [String] {
             slidingValues = values.suffix(512)
         }
-        slidingValues.append(value+"/"+DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
+        var item = value
+        if value != "." {
+            item += "/" + DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970))
+        }
+        slidingValues.append(item)
         UserDefaults.standard.set(slidingValues, forKey: name)
     }
 
