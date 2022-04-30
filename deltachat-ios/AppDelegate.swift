@@ -14,7 +14,9 @@ let logger = SwiftyBeaver.self
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     private let dcAccounts = DcAccounts()
-    var appCoordinator: AppCoordinator!
+    lazy var appCoordinator: AppCoordinator = {
+        return AppCoordinator(window: window!, dcAccounts: dcAccounts)
+    }()
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
@@ -48,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // `didFinishLaunchingWithOptions` is _not_ called
     // when the app wakes up from "suspended" state
     // (app is in memory in the background but no code is executed, IO stopped)
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
@@ -107,7 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         installEventHandler()
         relayHelper = RelayHelper.setup(dcAccounts.getSelected())
-        appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)
         locationManager = LocationManager(dcAccounts: dcAccounts)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         notificationManager = NotificationManager(dcAccounts: dcAccounts)
@@ -147,6 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             increaseDebugCounter("notify-remote-launch")
             pushToDebugArray("📡'")
             performFetch(completionHandler: { (_) -> Void in })
+        } else {
+            appCoordinator.startUI()
         }
 
         if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {

@@ -79,6 +79,10 @@ class AppCoordinator {
         }
     }
 
+    func startUI() {
+        // HACK, just needed to construct the object
+    }
+
     func showTab(index: Int) {
         tabBarController.selectedIndex = index
     }
