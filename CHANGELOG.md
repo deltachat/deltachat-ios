@@ -1,5 +1,59 @@
 # Delta Chat iOS Changelog
 
+## v1.30.1
+2022-05
+
+* speed up loading of chat messages by a factor of 20
+* speed up finding the correct server after logging in
+* speed up marking messages as being seen and use fewer network data by batch processing
+* speed up messages deletion and use fewer network data for that
+* speed up message receiving a bit
+* speed up various parts by caching config values
+* speed up chat list loading massively
+* speed up checking for new messages in background
+* revamped welcome screen
+* archived+muted chats are no longer unarchived when new messages arrive;
+  this behavior is also known by other messengers
+* improve voice-over navigation in chat
+* add support for webxdc messages
+* fix: do not create empty contact requests with "setup changed" messages;
+  instead, send a "setup changed" message into all chats we share with the peer
+* fix an issue where the app crashes when trying to export a backup
+* fix outgoing messages appearing twice with Amazon SES
+* fix unwanted deletion of messages that have no Message-ID set or are duplicated otherwise
+* fix: assign replies from a different email address to the correct chat
+* fix: assign outgoing private replies to the correct chat
+* fix: ensure ephemeral timer is started eventually also on rare states
+* fix: do not try to use stale SMTP connections
+* fix: retry message sending automatically and do not wait for the next message being sent
+* fix a bug where sometimes the file extension of a long filename containing a dot was cropped
+* fix messages being treated as spam by placing small MIME-headers before the larger Autocrypt:-header
+* fix: keep track of QR code joins in database to survive restarts
+* fix: automatically accept chats with outgoing messages
+* fix connectivity view's "One moment..." message being stuck when there is no network
+* fix: select Chinese Traditional and Chinese Simplified accordingly
+* fix several issues when checking for new messages in background
+* fix: update chat when adding something from the share-extension
+* fix scroll-down button not always appearing as expected
+* fix: connect to notification service as soon as possible even if there is no network on initial startup
+* fix: disable zoom in connectivity view
+* fix layout of info-messages in dark-mode
+* fix: show download failures
+* fix: send locations in the background regardless of other sending activity
+* fix rare crashes when stopping IMAP and SMTP
+* fix correct message escaping consisting of a dot in SMTP protocol
+* fix rendering of quotes in QR code descriptions
+* fix: accessibility: do not stop voice-over output after sending a voice-message
+* fix wallpaper disappearing sometimes
+* fix app crash after providing camera permissions
+* fix: allow playing voice messages in background
+* fix some scrolling issues in chat view
+* fix multi-select message layout (time was sometimes truncated)
+* add finnish translation, update other translations
+* update provider database
+* update to core80
+
+
 ## v1.28.1
 2022-02
 
