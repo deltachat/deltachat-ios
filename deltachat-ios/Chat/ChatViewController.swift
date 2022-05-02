@@ -259,7 +259,7 @@ class ChatViewController: UITableViewController {
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
-    private lazy var keyboardManager: KeyboardManager = {
+    private lazy var keyboardManager: KeyboardManager? = {
         let manager = KeyboardManager()
         return manager
     }()
@@ -322,9 +322,8 @@ class ChatViewController: UITableViewController {
         definesPresentationContext = true
 
         // Binding to the tableView will enable interactive dismissal
-        keyboardManager.bind(to: tableView)
-
-        keyboardManager.on(event: .didChangeFrame) { [weak self] _ in
+        keyboardManager?.bind(to: tableView)
+        keyboardManager?.on(event: .didChangeFrame) { [weak self] _ in
             guard let self = self else { return }
             if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil && !self.isInitial {
                 self.scrollToBottom()
@@ -493,6 +492,7 @@ class ChatViewController: UITableViewController {
         audioController.stopAnyOngoingPlaying()
         messageInputBar.inputTextView.resignFirstResponder()
         wasInputBarFirstResponder = false
+        keyboardManager = nil
     }
 
     override func willMove(toParent parent: UIViewController?) {
