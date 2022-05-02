@@ -1134,7 +1134,7 @@ class ChatViewController: UITableViewController {
                 guard let self = self else { return }
                 UIAccessibility.post(notification: .screenChanged, argument: self.tableView.cellForRow(at: indexPath))
                 self.markSeenMessagesInVisibleArea()
-                // TODO: with #1549 merged we can add here scrollDownlButton visibility
+                self.updateScrollDownButtonVisibility()
             })
         } else {
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
