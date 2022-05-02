@@ -1075,7 +1075,7 @@ class ChatViewController: UITableViewController {
                 guard let self = self else { return }
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
-                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), animated: animated, focusWithVoiceOver: focusOnVoiceOver)
+                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), position: .bottom, animated: animated, focusWithVoiceOver: focusOnVoiceOver)
                 }
             }
         }
@@ -1127,9 +1127,9 @@ class ChatViewController: UITableViewController {
         }
     }
 
-    private func scrollToRow(at indexPath: IndexPath, animated: Bool, focusWithVoiceOver: Bool = true) {
+    private func scrollToRow(at indexPath: IndexPath, position: UITableView.ScrollPosition = .top, animated: Bool, focusWithVoiceOver: Bool = true) {
         if UIAccessibility.isVoiceOverRunning && focusWithVoiceOver {
-            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            self.tableView.scrollToRow(at: indexPath, at: position, animated: false)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [weak self] in
                 guard let self = self else { return }
                 UIAccessibility.post(notification: .screenChanged, argument: self.tableView.cellForRow(at: indexPath))
@@ -1137,7 +1137,7 @@ class ChatViewController: UITableViewController {
                 self.updateScrollDownButtonVisibility()
             })
         } else {
-            self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
+            self.tableView.scrollToRow(at: indexPath, at: position, animated: animated)
         }
     }
 
