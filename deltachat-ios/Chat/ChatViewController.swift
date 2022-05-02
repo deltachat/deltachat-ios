@@ -66,7 +66,7 @@ class ChatViewController: UITableViewController {
                              options: [.retryFailed]) { [weak self] (_, error, _, _) in
                 if let error = error {
                     logger.error("Error loading background image: \(error.localizedDescription)" )
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [weak self] in
                         self?.setDefaultBackgroundImage(view: view)
                     }
                 }
@@ -1547,7 +1547,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendTextMessage(text: String, quoteMessage: DcMsg?) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             let message = self.dcContext.newMessage(viewType: DC_MSG_TEXT)
             message.text = text
             if let quoteMessage = quoteMessage {
@@ -1611,7 +1612,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
                 ImageFormat.deleteImage(atPath: path)
@@ -1620,7 +1622,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendSticker(_ image: UIImage) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
                 ImageFormat.deleteImage(atPath: path)
@@ -1639,7 +1642,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendVoiceMessage(url: NSURL) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             let msg = self.dcContext.newMessage(viewType: DC_MSG_VOICE)
             msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
             self.dcContext.sendMessage(chatId: self.chatId, message: msg)
@@ -2071,7 +2075,8 @@ extension ChatViewController: UISearchResultsUpdating {
         debounceTimer?.invalidate()
         debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
             let searchText = searchController.searchBar.text ?? ""
-            DispatchQueue.global(qos: .userInteractive).async {
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                guard let self = self else { return }
                 let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
                 DispatchQueue.main.async { [weak self] in
 
