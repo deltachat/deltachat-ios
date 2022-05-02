@@ -325,7 +325,11 @@ class ChatViewController: UITableViewController {
         keyboardManager?.bind(to: tableView)
         keyboardManager?.on(event: .didChangeFrame) { [weak self] _ in
             guard let self = self else { return }
-            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil && !self.isInitial {
+            if self.isInitial {
+                self.isInitial = false
+                return
+            }
+            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
                 self.scrollToBottom()
             }
         }.on(event: .willChangeFrame) { [weak self] _ in
@@ -425,7 +429,6 @@ class ChatViewController: UITableViewController {
                 if finished {
                     guard let self = self else { return }
                     self.highlightedMsg = nil
-                    self.isInitial = false
                     self.updateScrollDownButtonVisibility()
                 }
             })
@@ -438,7 +441,6 @@ class ChatViewController: UITableViewController {
             }, completion: { [weak self] finished in
                 guard let self = self else { return }
                 if finished {
-                    self.isInitial = false
                 }
             })
         }
