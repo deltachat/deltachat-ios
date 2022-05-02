@@ -29,6 +29,8 @@
 "back" = "Wróć";
 "close" = "Zamknij";
 "forward" = "Przekaż";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Wyślij ponownie";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archiwizuj";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -402,9 +404,12 @@
 "part_of_total_used" = "%1$@ z %2$@ ";
 
 
+// welcome and login
+"welcome_chat_over_email" = "Rozmawiaj przez e-mail.";
+"scan_invitation_code" = "Zeskanuj kod zaproszenia";
 "welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
 "login_title" = "Zaloguj się";
-"login_header" = "Zaloguj się na swój serwer";
+"login_header" = "Zaloguj się na swoje konto e-mail";
 "login_explain" = "Zaloguj się przy użyciu istniejącego konta e-mail";
 "login_subheader" = "Dla znanych dostawców usług poczty elektronicznej poniższe ustawienia są ustawiane automatycznie. Czasami IMAP musi być włączony w interfejsie WWW. O pomoc należy zwrócić się do usługodawcy e-mail lub znajomych.";
 "login_no_servers_hint" = "Nie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
@@ -436,7 +441,7 @@
 "login_error_server" = "Wprowadź poprawny adres serwera / IP";
 "login_error_port" = "Podaj poprawny numer portu (1–65535)";
 "login_error_required_fields" = "Podaj ważny adres e-mail i hasło";
-"import_backup_title" = "Import kopii zapasowej";
+"import_backup_title" = "Przywróć z kopii zapasowej";
 "import_backup_ask" = "Delta Chat znalazł kopię zapasową w katalogu „%1$@.\n\nCzy chcesz zaimportować i używać wszystkich danych i ustawień z tej kopii zapasowej?";
 "import_backup_no_backup_found" = "Nie znaleziono kopii zapasowej.\n\nSkopiuj kopię zapasową do katalogu „%1$@ i spróbuj ponownie. Alternatywnie dotknij \"Uruchom komunikator\", aby rozpocząć normalny proces instalacji.";
 // Translators: %1$s will be replaced by the e-mail address
@@ -842,9 +847,5 @@
 
 
 // device messages for updates
-"update_1_24_android" = "1.24 w skrócie:\n\n• Zapisywanie dotknięć: wybór konta w lewym górnym rogu listy czatu\n• Zapisywanie kolejnych dotknięć: dotknij i przytrzymaj ikony aplikacji, aby bezpośrednio otwierać ostatnie czaty\n• Oszczędzaj transfer: pobierz duże pliki w razie potrzeby\n• Oszczędzaj nerwy: szybsze, nieblokujące dołączanie za pomocą kodów QR i nowe opcje kodów QR\n\nWięcej na 👉";
-"update_1_24_ios" = "1.24 w skrócie:\n\n• Rozpocznij wyszukiwanie na czacie z profilu czatu\n• Oszczędzaj transfer: pobierz duże pliki w razie potrzeby\n• Oszczędzaj nerwy: szybsze, nieblokujące dołączanie za pomocą kodów QR \n\nWięcej na 👉";
-"update_1_26" = "1.26 dopracowanie 💅\n\n• Po tym jak w 1.24 kody QR przestały się blokować, teraz również wyglądają dużo ładniej - na wszystkich platformach\n• Awatary i plakietki wyglądają podobnie na różnych platformach\n• Naprawiono wiele błędów";
 "update_1_28_android" = "1.28 Najważniejsze informacje:\n\n🔒 Szyfrowanie: Nowa eksperymentalna opcja do utrzymywania kontaktów, szyfrowania sekretnych i tekstowych wiadomości zaszyfrowanych na twoim urządzeniu. Dostępne tylko podczas tworzenia konta i importowania plików kopii zapasowych.\n\n📫 Zapisywanie do listy dyskusyjnej\n\n💫 Szybsza konfiguracja początkowa dla większej liczby serwerów e-mail i usprawnionych opcji sieciowych, aby zapobiec przypadkowej błędnej konfiguracji\n\n🐜 Prawdopodobnie naprawione zgłaszane przez użytkownika problemy";
 "update_1_28_ios_extra_line" = "… i już teraz możesz wybrać tapetę w „Ustawienia » Tło” :) ";
-
