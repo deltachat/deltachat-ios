@@ -1131,13 +1131,22 @@ class ChatViewController: UITableViewController {
 
     private func scrollToRow(at indexPath: IndexPath, position: UITableView.ScrollPosition = .top, animated: Bool, focusWithVoiceOver: Bool = true) {
         if UIAccessibility.isVoiceOverRunning && focusWithVoiceOver {
-            self.tableView.scrollToRow(at: indexPath, at: position, animated: false)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [weak self] in
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            self.markSeenMessagesInVisibleArea()
+            self.updateScrollDownButtonVisibility()
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
                 guard let self = self else { return }
-                UIAccessibility.post(notification: .screenChanged, argument: self.tableView.cellForRow(at: indexPath))
-                self.markSeenMessagesInVisibleArea()
-                self.updateScrollDownButtonVisibility()
-            })
+                // VoiceOver tends to jump and read out the top visible cell within the tableView if we
+                // don't force it to refocus the cell we're interested in. Posting multiple times a .layoutChanged
+                // notification doesn't cause VoiceOver to readout the cell mutliple times.
+                for _ in 1...4 {
+                    DispatchQueue.main.async {
+                        UIAccessibility.post(notification: .layoutChanged, argument: self.tableView.cellForRow(at: indexPath))
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                    }
+                    usleep(500_000)
+                }
+            }
         } else {
             self.tableView.scrollToRow(at: indexPath, at: position, animated: animated)
         }
