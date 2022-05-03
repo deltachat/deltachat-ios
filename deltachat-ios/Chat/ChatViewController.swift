@@ -441,6 +441,7 @@ class ChatViewController: UITableViewController {
             }, completion: { [weak self] finished in
                 guard let self = self else { return }
                 if finished {
+                    self.updateScrollDownButtonVisibility()
                 }
             })
         }
