@@ -234,9 +234,7 @@ class ChatViewController: UITableViewController {
                     let messageId = self.messageIds[indexPath.row]
                     self.setEditing(isEditing: true, selectedAtIndexPath: indexPath)
                     if UIAccessibility.isVoiceOverRunning {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
-                            UIAccessibility.post(notification: .layoutChanged, argument: self?.tableView.cellForRow(at: indexPath))
-                        })
+                        self.forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
                     }
                 }
             }
@@ -1138,21 +1136,27 @@ class ChatViewController: UITableViewController {
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             self.markSeenMessagesInVisibleArea()
             self.updateScrollDownButtonVisibility()
-            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                guard let self = self else { return }
-                // VoiceOver tends to jump and read out the top visible cell within the tableView if we
-                // don't force it to refocus the cell we're interested in. Posting multiple times a .layoutChanged
-                // notification doesn't cause VoiceOver to readout the cell mutliple times.
-                for _ in 1...4 {
-                    DispatchQueue.main.async {
-                        UIAccessibility.post(notification: .layoutChanged, argument: self.tableView.cellForRow(at: indexPath))
-                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-                    }
-                    usleep(500_000)
-                }
+            self.forceVoiceOverFocussingCell(at: indexPath) { [weak self] in
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             }
         } else {
             self.tableView.scrollToRow(at: indexPath, at: position, animated: animated)
+        }
+    }
+
+    // VoiceOver tends to jump and read out the top visible cell within the tableView if we
+    // don't force it to refocus the cell we're interested in. Posting multiple times a .layoutChanged
+    // notification doesn't cause VoiceOver to readout the cell mutliple times.
+    private func forceVoiceOverFocussingCell(at indexPath: IndexPath, postingFinished: (() -> Void)?) {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self = self else { return }
+            for _ in 1...4 {
+                DispatchQueue.main.async {
+                    UIAccessibility.post(notification: .layoutChanged, argument: self.tableView.cellForRow(at: indexPath))
+                    postingFinished?()
+                }
+                usleep(500_000)
+            }
         }
     }
 
