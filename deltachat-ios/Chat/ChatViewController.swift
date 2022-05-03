@@ -1078,7 +1078,10 @@ class ChatViewController: UITableViewController {
                 guard let self = self else { return }
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
-                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), position: .bottom, animated: animated, focusWithVoiceOver: focusOnVoiceOver)
+                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
+                                     position: .bottom,
+                                     animated: animated,
+                                     focusWithVoiceOver: focusOnVoiceOver)
                 }
             }
         }
