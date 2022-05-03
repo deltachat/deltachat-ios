@@ -84,7 +84,6 @@ open class InputTextView: UITextView {
     open var placeholder: String? = "Aa" {
         didSet {
             placeholderLabel.text = placeholder
-            accessibilityLabel = placeholder
         }
     }
     
