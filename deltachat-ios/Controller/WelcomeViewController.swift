@@ -94,8 +94,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         welcomeView.minContainerHeight = size.height - view.safeAreaInsets.top
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.scrollView.scrollToBottom(animated: true)
+        })
+     }
 
     override func viewDidDisappear(_ animated: Bool) {
         let nc = NotificationCenter.default

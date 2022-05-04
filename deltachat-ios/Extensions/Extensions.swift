@@ -124,3 +124,11 @@ extension UILabel {
         return size.height
     }
 }
+
+extension UIScrollView {
+    func scrollToBottom(animated: Bool) {
+        let bottomOffset = CGPoint(x: contentOffset.x,
+                                   y: contentSize.height - bounds.height + adjustedContentInset.bottom)
+        setContentOffset(bottomOffset, animated: animated)
+    }
+}
