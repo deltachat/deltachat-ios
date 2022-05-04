@@ -705,7 +705,6 @@
 "a11y_background_preview_label" = "Baggrundsvisning";
 "a11y_disappearing_messages_activated" = "Beskeder med tidsudløb aktiveret";
 
-
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

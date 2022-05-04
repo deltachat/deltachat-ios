@@ -584,7 +584,6 @@
 "a11y_message_context_menu_btn_label" = "چالاکییەکانی پەیام";
 "a11y_disappearing_messages_activated" = "پەیامە خۆشارەوەکان چالاک کرا";
 
-
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

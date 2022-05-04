@@ -688,7 +688,6 @@
 
 
 
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Foniniai pranešimai";
 "pref_background_notifications_rationale" = "Norėdami palaikyti ryšį su savo el. pašto serveriu ir gauti žinutes fone, kitame žingsnyje nepaisykite akumuliatoriaus optimizavimų (leiskite vykdyti programą fone).\n\nDelta Chat naudoja nedaug išteklių ir rūpinasi, kad neeikvotų jūsų akumuliatoriaus energijos.";

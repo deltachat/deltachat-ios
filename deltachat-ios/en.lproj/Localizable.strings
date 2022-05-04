@@ -835,7 +835,27 @@
 "a11y_background_preview_label" = "Background preview";
 "a11y_disappearing_messages_activated" = "Disappearing messages activated";
 
-
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Stop sharing location";
+"a11y_voice_message_hint_ios" = "After recording double-tap to send. To discard the recording scrub left-right with two fingers.";
+"login_error_no_internet_connection" = "No internet connection, login failed.";
+"share_account_not_configured" = "Account is not configured.";
+"cannot_play_audio_file" = "The audio file cannot be played.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "To take photos, capture videos or use the QR-Code scanner, open the system settings and enable \"Camera\".";
+"open_settings" = "Open Settings";
+// iOS device contact alert
+"import_device_contacts" = "Import device contacts";
+"import_device_contacts_hint" = "To chat with contacts from your device open Settings and enable Contacts.";
+// iOS notification settings
+"disabled_in_dc" = "Disabled in Delta Chat";
+"disabled_in_system_settings" = "Disabled in system settings";
+"bg_app_refresh_disabled" = "\"Background App Refresh\" disabled in system settings";
+// iOS connectivity view
+"delayed" = "Delayed";
+"notifications_avg_minutes" = "On average every %1$d minutes";
+"notifications_avg_hours" = "On average every %1$d hours";
+"last_check_at" = "Checked at %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -858,18 +878,5 @@
 
 "import_contacts" = "Import device contacts";
 "import_contacts_message" = "To chat with contacts from your device open Settings and enable Contacts.";
-"stop_sharing_location" = "Stop sharing location";
-"a11y_voice_message_hint_ios" = "After recording double-tap to send. To discard the recording scrub left-right with two fingers.";
-"login_error_no_internet_connection" = "No internet connection, can\'t log in to your server.";
-"share_account_not_configured" = "Account is not configured.";
 "cannot_play_unsupported_file_type" = "The audio file cannot be played.";
 
-"perm_ios_explain_access_to_camera_denied" = "To take photos, capture videos or use the QR-Code scanner, open the system settings and enable \"Camera\".";
-"open_settings" = "Open Settings";
-"disabled_in_dc" = "Disabled in Delta Chat";
-"disabled_in_system_settings" = "Disabled in system settings";
-"bg_app_refresh_disabled" = "\"Background App Refresh\" disabled in system settings";
-"delayed" = "Delayed";
-"notifications_avg_minutes" = "On average every %1$d minutes";
-"notifications_avg_hours" = "On average every %1$d hours";
-"last_check_at" = "Checked at %1$@";

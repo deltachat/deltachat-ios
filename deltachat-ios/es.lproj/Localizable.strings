@@ -835,7 +835,18 @@
 "a11y_background_preview_label" = "Previsualización del fondo";
 "a11y_disappearing_messages_activated" = "Desaparición de mensajes activada";
 
-
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Dejar de compartir ubicación";
+"a11y_voice_message_hint_ios" = "Después de grabar, toque dos veces para enviar. Para descartar la grabación, deslice de izquierda a derecha con dos dedos.";
+"login_error_no_internet_connection" = "No hay conexión a Internet, el inicio de sesión falló.";
+"share_account_not_configured" = "La cuenta no está configurada.";
+"cannot_play_audio_file" = "El archivo de audio no se puede reproducir.";
+"open_settings" = "Abrir configuración";
+// iOS device contact alert
+"import_device_contacts" = "Importar contactos del dispositivo";
+// iOS notification settings
+"disabled_in_dc" = "Deshabilitado en Delta Chat";
+"disabled_in_system_settings" = "Deshabilitado en la configuración del sistema";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

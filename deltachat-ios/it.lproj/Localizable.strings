@@ -835,7 +835,6 @@
 "a11y_background_preview_label" = "Anteprima sfondo";
 "a11y_disappearing_messages_activated" = "Messaggi che scompaiono attivati";
 
-
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -853,3 +852,4 @@
 // device messages for updates
 "update_1_28_android" = "1.28 In evidenza:\n\n🔒 Crittografia: Una nuova opzione sperimentale per mantenere i contatti, le chiavi crittografiche e i messaggi di testo crittografati sul tuo dispositivo. Disponibile solo per la creazione di account e l\'importazione di file di backup.\n\n📫 Scrivi nella mailing list\n\n💫 Configurazione iniziale più rapida per più server di posta elettronica e opzioni di rete semplificate per prevenire configurazioni errate accidentali\n\n🐜 Moooooolti problemi riportati dagli utenti risolti";
 "update_1_28_ios_extra_line" = "... e ora puoi selezionare uno sfondo in \"Impostazioni / Sfondo\" :)";
+

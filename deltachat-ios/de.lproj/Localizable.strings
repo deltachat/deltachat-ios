@@ -835,7 +835,27 @@
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";
 "a11y_disappearing_messages_activated" = "Verschwindende Nachrichten eingeschaltet";
 
-
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Teilen des Standorts beenden";
+"a11y_voice_message_hint_ios" = "Nach der Aufnahme zum Senden doppelt tippen. Um die Aufnahme zu verwerfen, mit zwei Fingern links-rechts hin- und herwischen.";
+"login_error_no_internet_connection" = "Keine Internetverbindung, Anmeldung fehlgeschlagen.";
+"share_account_not_configured" = "E-Mail-Konto nicht konfiguriert.";
+"cannot_play_audio_file" = "Audiodatei kann nicht abgespielt werden.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Um Fotos oder Videos aufzunehmen oder den QR-Code-Scanner zu verwenden, öffnen Sie die Systemeinstellungen und aktivieren Sie \"Kamera\".";
+"open_settings" = "Einstellungen öffnen";
+// iOS device contact alert
+"import_device_contacts" = "Kontakte vom Gerät importieren";
+"import_device_contacts_hint" = "Um mit Kontakten auf Ihrem Gerät zu chatten, öffnen Sie die Systemeinstellungen und aktivieren Sie \"Kontakte\".";
+// iOS notification settings
+"disabled_in_dc" = "Deaktiviert in Delta Chat";
+"disabled_in_system_settings" = "Deaktiviert in den Systemeinstellungen";
+"bg_app_refresh_disabled" = "\"App Hintergrundaktivität\" deaktiviert in den Systemeinstellungen";
+// iOS connectivity view
+"delayed" = "Verzögert";
+"notifications_avg_minutes" = "Im Mittel alle %1$d Minuten";
+"notifications_avg_hours" = "Im Mittel alle %1$d Stunden";
+"last_check_at" = "Überprüft um %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

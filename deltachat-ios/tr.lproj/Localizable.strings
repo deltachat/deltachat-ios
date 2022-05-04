@@ -835,7 +835,6 @@
 "a11y_background_preview_label" = "Arka plan önizlemesi";
 "a11y_disappearing_messages_activated" = "Kaybolan iletiler etkinleştirildi";
 
-
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
