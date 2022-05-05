@@ -167,7 +167,7 @@ class NewChatViewController: UITableViewController {
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
                 if let actionCell = cell as? ActionCell {
-                    actionCell.actionTitle = String.localized("import_contacts")
+                    actionCell.actionTitle = String.localized("import_device_contacts")
                 }
                 return cell
             }
@@ -356,8 +356,8 @@ extension NewChatViewController: ContactListDelegate {
 
     private func showSettingsAlert() {
         let alert = UIAlertController(
-            title: String.localized("import_contacts"),
-            message: String.localized("import_contacts_message"),
+            title: String.localized("import_device_contacts"),
+            message: String.localized("import_device_contacts_hint"),
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_settings"), style: .default) { _ in
