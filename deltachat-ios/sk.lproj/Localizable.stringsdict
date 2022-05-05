@@ -55,11 +55,11 @@
 			<key>one</key>
 			<string>%d čet</string>
 			<key>few</key>
-			<string>%d čety</string>
+			<string>%d konverzácie</string>
 			<key>many</key>
-			<string>%d četov</string>
+			<string>%d konverzácií</string>
 			<key>other</key>
-			<string>%d čety</string>
+			<string>%d konverzácia</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -179,7 +179,7 @@
 			<key>many</key>
 			<string>Odstrániť %d chaty? Už sa nebudú zobrazovať v zozname chatu, ich správy zostanú na serveri.</string>
 			<key>other</key>
-			<string>Odstrániť %d chaty? Už sa nebudú zobrazovať v zozname chatu, ich správy zostanú na serveri.</string>
+			<string>Odstrániť %d konverzácií? Už sa nebudú zobrazovať v zozname konverzácií, ich správy zostanú na serveri.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -233,13 +233,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d čet bol archivovaný</string>
+			<string>%d konverzácia bola archivovaná</string>
 			<key>few</key>
-			<string>%d čety boli archivované</string>
+			<string>%d konverzácie boli archivované</string>
 			<key>many</key>
-			<string>%d četov bolo archivovaných</string>
+			<string>%d konverzácií bolo archivovaných</string>
 			<key>other</key>
-			<string>%d čety boli archivované</string>
+			<string>%d konverzácií bolo archivovaných</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -253,13 +253,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%dčet bol zrušený z archívu</string>
+			<string>%d konverzácia bola vrátená z archívu</string>
 			<key>few</key>
-			<string>%dkonverzácie boli archivované</string>
+			<string>%d konverzácie boli vrátené z archívu</string>
 			<key>many</key>
-			<string>%dkonverzácie boli archivované</string>
+			<string>%d konverzácií bolo vrátených z archívu</string>
 			<key>other</key>
-			<string>%d konverzácie boli archivované</string>
+			<string>%d konverzácií bolo vrátených z archívu</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

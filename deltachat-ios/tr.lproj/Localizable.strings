@@ -835,6 +835,27 @@
 "a11y_background_preview_label" = "Arka plan önizlemesi";
 "a11y_disappearing_messages_activated" = "Kaybolan iletiler etkinleştirildi";
 
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Konum paylaşımını durdur";
+"a11y_voice_message_hint_ios" = "Kaydettikten sonra göndermek için iki kez dokunun. Kaydı atmak için iki parmakla sola-sağa fırçalayın.";
+"login_error_no_internet_connection" = "Internet bağlantısı yok; oturum açma başarısız.";
+"share_account_not_configured" = "Hesap yapılandırılmadı.";
+"cannot_play_audio_file" = "Ses dosyası oynatılamıyor.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Fotoğraflar çekmek, videolar yakalamak ya da QR Kod tarayıcısını kullanmak için sistem ayarlarını açın ve \"Kamera\"\'yı etkinleştirin.";
+"open_settings" = "Ayarlar\'ı Aç";
+// iOS device contact alert
+"import_device_contacts" = "Aygıt kişilerini içe aktar";
+"import_device_contacts_hint" = "Aygıtınızdan gelen kişilerle sohbet etmek için Ayarlar\'ı açın ve Kişiler\'i etkinleştirin.";
+// iOS notification settings
+"disabled_in_dc" = "Delta Chat\'ten etkisizleştirildi";
+"disabled_in_system_settings" = "Sistem ayarlarından etkisizleştirildi";
+"bg_app_refresh_disabled" = "\"Arka Planda Uygulama Yenileme\" sistem ayarlarından etkisizleştirildi";
+// iOS connectivity view
+"delayed" = "Gecikmeli";
+"notifications_avg_minutes" = "Ortalama olarak her %1$d dakikada bir";
+"notifications_avg_hours" = "Ortalama olarak her %1$d saatte bir";
+"last_check_at" = "Denetleme %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

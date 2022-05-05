@@ -44,8 +44,8 @@
 "profile" = "Profiel";
 "main_menu" = "Hoofdmenu";
 "start_chat" = "Gesprek beginnen";
-"show_full_message" = "Volledige bericht tonen…";
-"show_full_message_in_browser" = "Volledige bericht in browser tonen…";
+"show_full_message" = "Volledig bericht tonen…";
+"show_full_message_in_browser" = "Volledig bericht in browser tonen…";
 // this is shown as placeholder when something is loading at some places
 "loading" = "Bezig met laden…";
 "hide" = "Verbergen";
@@ -835,6 +835,27 @@
 "a11y_background_preview_label" = "Achtergrondvoorbeeld";
 "a11y_disappearing_messages_activated" = "Verdwijnende berichten zijn ingeschakeld";
 
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Stop locatiedeling";
+"a11y_voice_message_hint_ios" = "Dubbeltik op de opname om hem te versturen. Veeg met twee vingers van links naar rechts om de opname af te breken.";
+"login_error_no_internet_connection" = "Het inloggen is mislukt omdat er geen internetverbinding is.";
+"share_account_not_configured" = "Dit account is niet ingesteld.";
+"cannot_play_audio_file" = "Dit audiobestand kan niet worden afgespeeld.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Voor het maken van foto\'s, opnemen van video\'s en gebruik van de QR-codescanner is cameratoegang vereist. Open de systeeminstellingen en verleen deze toegang.";
+"open_settings" = "Open instellingen";
+// iOS device contact alert
+"import_device_contacts" = "Importeer lokale contactpersonen";
+"import_device_contacts_hint" = "Voor het voeren van gesprekken met lokale contactpersonen is contactpersoontoegang vereist. Open de systeeminstellingen en verleen deze toegang.";
+// iOS notification settings
+"disabled_in_dc" = "Uitgenschakeld in Delta Chat";
+"disabled_in_system_settings" = "Uitgeschakeld in systeeminstellingen";
+"bg_app_refresh_disabled" = "App op de achtergrond vernieuwen is uitgeschakeld in de systeeminstellingen";
+// iOS connectivity view
+"delayed" = "Vertraagd";
+"notifications_avg_minutes" = "Gemiddeld elke %1$d minuten";
+"notifications_avg_hours" = "Gemiddeld elke %1$d uur";
+"last_check_at" = "Gecontroleerd om %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
