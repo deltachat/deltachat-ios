@@ -2188,7 +2188,7 @@ extension ChatViewController: QLPreviewControllerDelegate {
 extension ChatViewController: AudioControllerDelegate {
     func onAudioPlayFailed() {
         let alert = UIAlertController(title: String.localized("error"),
-                                      message: String.localized("cannot_play_unsupported_file_type"),
+                                      message: String.localized("cannot_play_audio_file"),
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
