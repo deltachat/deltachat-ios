@@ -76,6 +76,7 @@ open class InputTextView: UITextView {
         label.text = "Aa"
         label.backgroundColor = .clear
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isAccessibilityElement = false
         return label
     }()
     

@@ -66,7 +66,7 @@ class ChatViewController: UITableViewController {
                              options: [.retryFailed]) { [weak self] (_, error, _, _) in
                 if let error = error {
                     logger.error("Error loading background image: \(error.localizedDescription)" )
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [weak self] in
                         self?.setDefaultBackgroundImage(view: view)
                     }
                 }
@@ -233,6 +233,9 @@ class ChatViewController: UITableViewController {
                     guard let self = self else { return }
                     let messageId = self.messageIds[indexPath.row]
                     self.setEditing(isEditing: true, selectedAtIndexPath: indexPath)
+                    if UIAccessibility.isVoiceOverRunning {
+                        self.forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
+                    }
                 }
             }
         )
@@ -254,7 +257,7 @@ class ChatViewController: UITableViewController {
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
-    private lazy var keyboardManager: KeyboardManager = {
+    private lazy var keyboardManager: KeyboardManager? = {
         let manager = KeyboardManager()
         return manager
     }()
@@ -317,11 +320,14 @@ class ChatViewController: UITableViewController {
         definesPresentationContext = true
 
         // Binding to the tableView will enable interactive dismissal
-        keyboardManager.bind(to: tableView)
-
-        keyboardManager.on(event: .didChangeFrame) { [weak self] _ in
+        keyboardManager?.bind(to: tableView)
+        keyboardManager?.on(event: .didChangeFrame) { [weak self] _ in
             guard let self = self else { return }
-            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil && !self.isInitial {
+            if self.isInitial {
+                self.isInitial = false
+                return
+            }
+            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
                 self.scrollToBottom()
             }
         }.on(event: .willChangeFrame) { [weak self] _ in
@@ -421,7 +427,6 @@ class ChatViewController: UITableViewController {
                 if finished {
                     guard let self = self else { return }
                     self.highlightedMsg = nil
-                    self.isInitial = false
                     self.updateScrollDownButtonVisibility()
                 }
             })
@@ -434,7 +439,7 @@ class ChatViewController: UITableViewController {
             }, completion: { [weak self] finished in
                 guard let self = self else { return }
                 if finished {
-                    self.isInitial = false
+                    self.updateScrollDownButtonVisibility()
                 }
             })
         }
@@ -488,6 +493,7 @@ class ChatViewController: UITableViewController {
         audioController.stopAnyOngoingPlaying()
         messageInputBar.inputTextView.resignFirstResponder()
         wasInputBarFirstResponder = false
+        keyboardManager = nil
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -843,7 +849,7 @@ class ChatViewController: UITableViewController {
         let message = dcContext.getMessage(id: self.messageIds[indexPath.row])
         self.draft.setQuote(quotedMsg: message)
         self.configureDraftArea(draft: self.draft)
-        self.messageInputBar.inputTextView.becomeFirstResponder()
+        focusInputTextView()
     }
 
     func markSeenMessagesInVisibleArea() {
@@ -1064,13 +1070,16 @@ class ChatViewController: UITableViewController {
         scrollToBottom(animated: true)
     }
     
-    private func scrollToBottom(animated: Bool) {
+    private func scrollToBottom(animated: Bool, focusOnVoiceOver: Bool = false) {
         if !messageIds.isEmpty {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
-                    self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: animated)
+                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
+                                     position: .bottom,
+                                     animated: animated,
+                                     focusWithVoiceOver: focusOnVoiceOver)
                 }
             }
         }
@@ -1081,12 +1090,12 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
                 let indexPath = IndexPath(row: markerMessageIndex, section: 0)
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                self.scrollToRow(at: indexPath, animated: false)
             } else {
                 // scroll to bottom
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
-                    self.tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: false)
+                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), animated: false)
                 }
             }
         }
@@ -1100,7 +1109,7 @@ class ChatViewController: UITableViewController {
             }
             let indexPath = IndexPath(row: index, section: 0)
 
-            if scrollToText {
+            if scrollToText && !UIAccessibility.isVoiceOverRunning {
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                 let cell = self.tableView.cellForRow(at: indexPath)
                 if let messageCell = cell as? BaseMessageCell {
@@ -1118,7 +1127,36 @@ class ChatViewController: UITableViewController {
                 }
             }
 
-            self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
+            self.scrollToRow(at: indexPath, animated: false)
+        }
+    }
+
+    private func scrollToRow(at indexPath: IndexPath, position: UITableView.ScrollPosition = .top, animated: Bool, focusWithVoiceOver: Bool = true) {
+        if UIAccessibility.isVoiceOverRunning && focusWithVoiceOver {
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            self.markSeenMessagesInVisibleArea()
+            self.updateScrollDownButtonVisibility()
+            self.forceVoiceOverFocussingCell(at: indexPath) { [weak self] in
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            }
+        } else {
+            self.tableView.scrollToRow(at: indexPath, at: position, animated: animated)
+        }
+    }
+
+    // VoiceOver tends to jump and read out the top visible cell within the tableView if we
+    // don't force it to refocus the cell we're interested in. Posting multiple times a .layoutChanged
+    // notification doesn't cause VoiceOver to readout the cell mutliple times.
+    private func forceVoiceOverFocussingCell(at indexPath: IndexPath, postingFinished: (() -> Void)?) {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self = self else { return }
+            for _ in 1...4 {
+                DispatchQueue.main.async {
+                    UIAccessibility.post(notification: .layoutChanged, argument: self.tableView.cellForRow(at: indexPath))
+                    postingFinished?()
+                }
+                usleep(500_000)
+            }
         }
     }
 
@@ -1154,6 +1192,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
+        messageInputBar.inputTextView.accessibilityLabel = String.localized("write_message_desktop")
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
@@ -1174,6 +1213,7 @@ class ChatViewController: UITableViewController {
 
     private func evaluateInputBar(draft: DraftModel) {
         messageInputBar.sendButton.isEnabled = draft.canSend()
+        messageInputBar.sendButton.accessibilityTraits = draft.canSend() ? .button : .notEnabled
     }
 
     private func configureInputBarItems() {
@@ -1517,7 +1557,9 @@ class ChatViewController: UITableViewController {
         emptyStateView.isHidden = true
 
         reloadData()
-        if wasLastSectionScrolledToBottom || message.isFromCurrentSender {
+        if UIAccessibility.isVoiceOverRunning && !message.isFromCurrentSender {
+            scrollToBottom(animated: false, focusOnVoiceOver: true)
+        } else if wasLastSectionScrolledToBottom || message.isFromCurrentSender {
             scrollToBottom(animated: true)
         } else {
             updateScrollDownButtonVisibility()
@@ -1525,7 +1567,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendTextMessage(text: String, quoteMessage: DcMsg?) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             let message = self.dcContext.newMessage(viewType: DC_MSG_TEXT)
             message.text = text
             if let quoteMessage = quoteMessage {
@@ -1535,11 +1578,20 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    private func focusInputTextView() {
+        self.messageInputBar.inputTextView.becomeFirstResponder()
+        if UIAccessibility.isVoiceOverRunning {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
+                UIAccessibility.post(notification: .layoutChanged, argument: self?.messageInputBar.inputTextView)
+            })
+        }
+    }
+
     private func stageDocument(url: NSURL) {
         keepKeyboard = true
         self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
         self.configureDraftArea(draft: self.draft)
-        self.messageInputBar.inputTextView.becomeFirstResponder()
+        self.focusInputTextView()
     }
 
     private func stageVideo(url: NSURL) {
@@ -1548,7 +1600,7 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
-            self.messageInputBar.inputTextView.becomeFirstResponder()
+            self.focusInputTextView()
         }
     }
 
@@ -1572,7 +1624,7 @@ class ChatViewController: UITableViewController {
                         self.draft.setAttachment(viewType: DC_MSG_IMAGE, path: pathInCachesDir)
                     }
                     self.configureDraftArea(draft: self.draft)
-                    self.messageInputBar.inputTextView.becomeFirstResponder()
+                    self.focusInputTextView()
                     ImageFormat.deleteImage(atPath: pathInCachesDir)
                 }
             }
@@ -1580,7 +1632,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
                 ImageFormat.deleteImage(atPath: path)
@@ -1589,7 +1642,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendSticker(_ image: UIImage) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
                 ImageFormat.deleteImage(atPath: path)
@@ -1608,7 +1662,8 @@ class ChatViewController: UITableViewController {
     }
 
     private func sendVoiceMessage(url: NSURL) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             let msg = self.dcContext.newMessage(viewType: DC_MSG_VOICE)
             msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
             self.dcContext.sendMessage(chatId: self.chatId, message: msg)
@@ -1897,6 +1952,7 @@ extension ChatViewController: MediaPickerDelegate {
 
     func onVoiceMessageRecorderClosed() {
         if UIAccessibility.isVoiceOverRunning {
+            UIAccessibility.post(notification: .announcement, argument: nil)
             // we need to wait a little bit, otherwise the  UIAccessibility notification is ignored and
             // the first accessibility element on the screen gets selected
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
@@ -1949,6 +2005,7 @@ extension ChatViewController: DraftPreviewDelegate {
         keepKeyboard = true
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
+        focusInputTextView()
     }
 
     func onCancelAttachment() {
@@ -1956,6 +2013,7 @@ extension ChatViewController: DraftPreviewDelegate {
         draft.clearAttachment()
         configureDraftArea(draft: draft)
         evaluateInputBar(draft: draft)
+        focusInputTextView()
     }
 
     func onAttachmentAdded() {
@@ -2037,7 +2095,8 @@ extension ChatViewController: UISearchResultsUpdating {
         debounceTimer?.invalidate()
         debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
             let searchText = searchController.searchBar.text ?? ""
-            DispatchQueue.global(qos: .userInteractive).async {
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                guard let self = self else { return }
                 let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
                 DispatchQueue.main.async { [weak self] in
 

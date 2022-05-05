@@ -48,6 +48,7 @@ public class ChatEditingBar: UIView, InputItem {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         view.imageView?.contentMode = .scaleAspectFit
+        view.accessibilityLabel = String.localized("delete")
         return view
     }()
 
@@ -58,6 +59,7 @@ public class ChatEditingBar: UIView, InputItem {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.imageView?.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
+        view.accessibilityLabel = String.localized("forward")
         return view
     }()
 
