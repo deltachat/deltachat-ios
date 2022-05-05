@@ -43,7 +43,9 @@
 * fix rare crashes when stopping IMAP and SMTP
 * fix correct message escaping consisting of a dot in SMTP protocol
 * fix rendering of quotes in QR code descriptions
-* fix: accessibility: do not stop voice-over output after sending a voice-message
+* fix: accessibility: do not stop VoiceOver output after sending a voice-message
+* various improvements for the VoiceOver navigation in a chat
+* fixed memory leaks in chats
 * fix wallpaper disappearing sometimes
 * fix app crash after providing camera permissions
 * fix: allow playing voice messages in background
