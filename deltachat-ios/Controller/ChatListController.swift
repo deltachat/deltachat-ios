@@ -435,7 +435,7 @@ class ChatListController: UITableViewController {
             navigationItem.setLeftBarButton(nil, animated: true)
            
         } else {
-            titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
+            titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("connectivity"))
             navigationItem.setLeftBarButton(nil, animated: true)
         }
         titleView.sizeToFit()
