@@ -94,8 +94,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         welcomeView.minContainerHeight = size.height - view.safeAreaInsets.top
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.scrollView.scrollToBottom(animated: true)
+        })
+     }
 
     override func viewDidDisappear(_ animated: Bool) {
         let nc = NotificationCenter.default
@@ -315,28 +318,18 @@ class WelcomeContentView: UIView {
     private var container = UIView()
 
     private var logoView: UIImageView = {
-        let image = #imageLiteral(resourceName: "dc_logo")
+        let image = #imageLiteral(resourceName: "background_intro")
         let view = UIImageView(image: image)
         return view
     }()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = String.localized("welcome_desktop")
+        label.text = String.localized("welcome_chat_over_email")
         label.textColor = DcColors.grayTextColor
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        return label
-    }()
-
-    private lazy var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = String.localized("welcome_intro1_message")
-        label.font = UIFont.systemFont(ofSize: 22, weight: .regular)
-        label.textColor = DcColors.grayTextColor
-        label.numberOfLines = 0
-        label.textAlignment = .center
         return label
     }()
 
@@ -364,7 +357,7 @@ class WelcomeContentView: UIView {
 
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
-        let title = String.localized("qrscan_title")
+        let title = String.localized("scan_invitation_code")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)
@@ -404,7 +397,7 @@ class WelcomeContentView: UIView {
 
         containerMinHeightConstraint.isActive = true
 
-        _ = [logoView, titleLabel, subtitleLabel].map {
+        _ = [logoView, titleLabel].map {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -412,16 +405,11 @@ class WelcomeContentView: UIView {
         let bottomLayoutGuide = UILayoutGuide()
         container.addLayoutGuide(bottomLayoutGuide)
         bottomLayoutGuide.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-        bottomLayoutGuide.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.55).isActive = true
-
-        subtitleLabel.topAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
-        subtitleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
-        subtitleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
-        subtitleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        bottomLayoutGuide.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.45).isActive = true
 
         titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: subtitleLabel.topAnchor, constant: -defaultSpacing).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
 
         logoView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -defaultSpacing).isActive = true
@@ -436,7 +424,7 @@ class WelcomeContentView: UIView {
 
         let buttonContainerGuide = UILayoutGuide()
         container.addLayoutGuide(buttonContainerGuide)
-        buttonContainerGuide.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor).isActive = true
+        buttonContainerGuide.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         buttonContainerGuide.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
 
         loginButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
@@ -457,11 +445,11 @@ class WelcomeContentView: UIView {
     }
 
     private func calculateLogoHeight() -> CGFloat {
-        let titleHeight = titleLabel.intrinsicContentSize.height
-        let subtitleHeight = subtitleLabel.intrinsicContentSize.height
-        let intrinsicHeight = subtitleHeight + titleHeight
-        let maxHeight: CGFloat = 100
-        return intrinsicHeight > maxHeight ? maxHeight : intrinsicHeight
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return  UIApplication.shared.statusBarOrientation.isLandscape ? UIScreen.main.bounds.height * 0.5 : UIScreen.main.bounds.width * 0.75
+        } else {
+            return 275
+        }
     }
 
     // MARK: - actions
