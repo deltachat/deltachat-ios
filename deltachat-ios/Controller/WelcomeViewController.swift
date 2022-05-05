@@ -357,7 +357,7 @@ class WelcomeContentView: UIView {
 
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
-        let title = String.localized("qrscan_title")
+        let title = String.localized("scan_invitation_code")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)
