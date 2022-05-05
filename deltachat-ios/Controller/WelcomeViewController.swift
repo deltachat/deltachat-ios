@@ -446,7 +446,7 @@ class WelcomeContentView: UIView {
 
     private func calculateLogoHeight() -> CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return  UIApplication.shared.statusBarOrientation.isLandscape ? 275 : UIScreen.main.bounds.height * 0.4
+            return  UIApplication.shared.statusBarOrientation.isLandscape ? UIScreen.main.bounds.height * 0.5 : UIScreen.main.bounds.width * 0.75
         } else {
             return 275
         }
