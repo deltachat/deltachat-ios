@@ -875,4 +875,4 @@
 "update_1_28_ios_extra_line" = "… and you can select a wallpaper at \"Settings / Background\" now :)";
 "update_1_30" = "Faster. More stable.\n\nFor 1.30 releases, we focused on speed and reliability, fixing dozens of bugs. Check our changelogs if your favorite one is fixed: https://get.delta.chat/#changelogs 🚀";
 
-"a11y_connectivity_hint" = "Tap to view connectivity details.";
+"a11y_connectivity_hint" = "Double tap to view connectivity details.";
