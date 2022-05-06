@@ -26,6 +26,7 @@ class ChatListController: UITableViewController {
         view.addGestureRecognizer(navTapGesture)
         view.isUserInteractionEnabled = true
         view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        view.accessibilityLabel = String.localized("a11y_connectivity_hint")
         return view
     }()
 
