@@ -111,8 +111,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         locationManager = LocationManager(dcAccounts: dcAccounts)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         notificationManager = NotificationManager(dcAccounts: dcAccounts)
-        dcAccounts.startIo()
         setStockTranslations()
+        dcAccounts.startIo()
 
         reachability.whenReachable = { reachability in
             // maybeNetwork() shall not be called in ui thread;
