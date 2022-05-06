@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- iOS specific untranslated strings -->
+    "a11y_connectivity_hint" = "Double tap to view connectivity details.";
 </resources>

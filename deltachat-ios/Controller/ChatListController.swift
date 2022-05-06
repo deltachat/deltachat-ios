@@ -26,6 +26,7 @@ class ChatListController: UITableViewController {
         view.addGestureRecognizer(navTapGesture)
         view.isUserInteractionEnabled = true
         view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        view.accessibilityTraits = .header
         return view
     }()
 
@@ -425,6 +426,7 @@ class ChatListController: UITableViewController {
 
     // MARK: updates
     private func updateTitle() {
+        titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
         if RelayHelper.sharedInstance.isForwarding() {
             titleView.text = String.localized("forward_to")
             if !isArchive {
@@ -436,6 +438,9 @@ class ChatListController: UITableViewController {
            
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
+            if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
+                titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
+            }
             navigationItem.setLeftBarButton(nil, animated: true)
         }
         titleView.sizeToFit()
