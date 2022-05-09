@@ -117,6 +117,11 @@ class DocumentGalleryController: UIViewController {
         self.dcContext.deleteMessage(msgId: msgId)
         self.tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+
+    func showWebxdcViewFor(message: DcMsg) {
+        let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
+        navigationController?.pushViewController(webxdcViewController, animated: true)
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -137,7 +142,12 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let msgId = fileMessageIds[indexPath.row]
-        showPreview(msgId: msgId)
+        let message = dcContext.getMessage(id: msgId)
+        if message.type == DC_MSG_WEBXDC {
+            showWebxdcViewFor(message: message)
+        } else {
+            showPreview(msgId: msgId)
+        }
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
