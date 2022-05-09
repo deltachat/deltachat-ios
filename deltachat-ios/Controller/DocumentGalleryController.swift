@@ -41,9 +41,16 @@ class DocumentGalleryController: UIViewController {
                 self?.redirectToMessage(of: indexPath)
             }
         )
+        let shareItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("menu_share"),
+            imageName: "square.and.arrow.up",
+            action: #selector(DocumentGalleryFileCell.share(_:)), onPerform: { [weak self] indexPath in
+                self?.shareAttachment(of: indexPath)
+            }
+        )
 
         let menu = ContextMenuProvider()
-        menu.setMenu([showInChatItem, deleteItem])
+        menu.setMenu([showInChatItem, deleteItem, shareItem])
         return menu
     }()
 
@@ -179,5 +186,16 @@ extension DocumentGalleryController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.appCoordinator.showChat(chatId: chatId, msgId: msgId, animated: false, clearViewControllerStack: true)
         }
+    }
+
+    func shareAttachment(of indexPath: IndexPath) {
+        let msgId = fileMessageIds[indexPath.row]
+        let message = dcContext.getMessage(id: msgId)
+        guard let fileURL = message.fileURL else { return }
+
+        let objectsToShare = [fileURL] as [Any]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.title = "Hello World!"
+        self.present(activityVC, animated: true, completion: nil)
     }
 }
