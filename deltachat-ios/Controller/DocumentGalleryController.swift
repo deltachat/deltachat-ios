@@ -225,6 +225,7 @@ extension DocumentGalleryController {
 
         activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [.copyToPasteboard]
+        activityVC.popoverPresentationController?.sourceView = self.view
         self.present(activityVC, animated: true, completion: nil)
     }
 }
