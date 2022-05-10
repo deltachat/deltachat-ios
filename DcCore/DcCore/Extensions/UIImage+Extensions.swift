@@ -28,9 +28,13 @@ public extension UIImage {
         return CGRect(x: 0.0, y: 0.0, width: CGFloat(actualWidth), height: CGFloat(actualHeight))
     }
 
-    func scaleDownImage(toMax: CGFloat) -> UIImage? {
+    func scaleDownImage(toMax: CGFloat, cornerRadius: CGFloat? = nil) -> UIImage? {
         let rect = getResizedRectangle(toMax: Float(toMax))
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        if let cornerRadius = cornerRadius {
+            UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).addClip()
+        }
+
         draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

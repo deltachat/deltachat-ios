@@ -169,7 +169,9 @@ class ShareAttachment {
                 if url.pathExtension == "xdc" {
                     let webxdcMsg = self.addDcMsg(url: url, viewType: DC_MSG_WEBXDC)
                     if self.imageThumbnail == nil {
-                        self.imageThumbnail = webxdcMsg.getWebxdcPreviewImage()?.scaleDownImage(toMax: self.thumbnailSize)
+                        self.imageThumbnail = webxdcMsg.getWebxdcPreviewImage()?
+                            .scaleDownImage(toMax: self.thumbnailSize,
+                                            cornerRadius: 10)
                         self.delegate?.onThumbnailChanged()
                     }
                 } else {
