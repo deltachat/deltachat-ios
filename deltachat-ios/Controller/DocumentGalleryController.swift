@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import LinkPresentation
 
 class DocumentGalleryController: UIViewController {
 
@@ -201,11 +202,61 @@ extension DocumentGalleryController {
     func shareAttachment(of indexPath: IndexPath) {
         let msgId = fileMessageIds[indexPath.row]
         let message = dcContext.getMessage(id: msgId)
+        let activityVC: UIActivityViewController
         guard let fileURL = message.fileURL else { return }
+        let objectsToShare: [Any]
+        if message.type == DC_MSG_WEBXDC {
+            let dict = message.getWebxdcInfoDict()
+            var previewImage: UIImage?
+            if let iconfilePath = dict["icon"] as? String {
+                let blob = message.getWebxdcBlob(filename: iconfilePath)
+                if !blob.isEmpty {
+                    previewImage = UIImage(data: blob)
+                }
+            }
 
-        let objectsToShare = [fileURL] as [Any]
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            let previewText = dict["name"] as? String ?? fileURL.lastPathComponent
+            objectsToShare = [WebxdcItemSource(title: previewText,
+                                               previewImage: previewImage,
+                                               url: fileURL)]
+        } else {
+            objectsToShare = [fileURL]
+        }
+
+        activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [.copyToPasteboard]
         self.present(activityVC, animated: true, completion: nil)
+    }
+}
+
+class WebxdcItemSource: NSObject, UIActivityItemSource {
+    var title: String
+    var url: URL
+    var previewImage: UIImage?
+
+    init(title: String, previewImage: UIImage?, url: URL) {
+        self.title = title
+        self.url = url
+        self.previewImage = previewImage
+        super.init()
+    }
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return title
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return url
+    }
+
+    @available(iOS 13.0, *)
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let metadata = LPLinkMetadata()
+        metadata.title = title
+        if let previewImage = previewImage {
+            metadata.iconProvider = NSItemProvider(object: previewImage)
+        }
+        metadata.originalURL = url
+        return metadata
     }
 }
