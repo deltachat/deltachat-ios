@@ -67,11 +67,36 @@ class DocumentGalleryFileCell: UITableViewCell {
 
     // MARK: - update
     func update(msg: DcMsg) {
+        if msg.type == DC_MSG_WEBXDC {
+            updateWebxdcMsg(msg: msg)
+        } else {
+            updateFileMsg(msg: msg)
+        }
+    }
+
+    private func updateFileMsg(msg: DcMsg) {
         if let fileUrl = msg.fileURL {
             generateThumbnailFor(url: fileUrl, placeholder: UIImage(named: "ic_attach_file_36pt")?.maskWithColor(color: DcColors.grayTextColor))
         }
         title.text = msg.filename
         subtitle.text = msg.getPrettyFileSize()
+    }
+
+    private func updateWebxdcMsg(msg: DcMsg) {
+        let dict = msg.getWebxdcInfoDict()
+        if let iconfilePath = dict["icon"] as? String {
+            let blob = msg.getWebxdcBlob(filename: iconfilePath)
+            if !blob.isEmpty {
+                fileImageView.image = UIImage(data: blob)?.sd_resizedImage(with: CGSize(width: 50, height: 50), scaleMode: .aspectFill)
+            }
+        }
+
+        title.text = dict["name"] as? String
+        guard let summary = dict["summary"] as? String, !summary.isEmpty else {
+            subtitle.text = "Webxdc"
+            return
+        }
+        subtitle.text = summary
     }
 
     private func generateThumbnailFor(url: URL, placeholder: UIImage?) {
@@ -86,13 +111,17 @@ class DocumentGalleryFileCell: UITableViewCell {
         }
     }
 
-    // needed for iOS 12 context men
+    // needed for iOS 12 context menu
     @objc func itemDelete(_ sender: Any) {
         self.performAction(#selector(DocumentGalleryFileCell.itemDelete(_:)), with: sender)
     }
 
     @objc func showInChat(_ sender: Any) {
         self.performAction(#selector(DocumentGalleryFileCell.showInChat(_:)), with: sender)
+    }
+
+    @objc func share(_ sender: Any) {
+        self.performAction(#selector(DocumentGalleryFileCell.share(_:)), with: sender)
     }
 
     func performAction(_ action: Selector, with sender: Any?) {
