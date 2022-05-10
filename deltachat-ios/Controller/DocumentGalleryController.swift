@@ -205,7 +205,7 @@ extension DocumentGalleryController {
 
         let objectsToShare = [fileURL] as [Any]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityVC.title = "Hello World!"
+        activityVC.excludedActivityTypes = [.copyToPasteboard]
         self.present(activityVC, animated: true, completion: nil)
     }
 }
