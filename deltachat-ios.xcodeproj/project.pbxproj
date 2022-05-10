@@ -91,6 +91,7 @@
 		3080A037277DE30100E74565 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A032277DE30000E74565 /* UITextView+Extensions.swift */; };
 		3080A038277DE30100E74565 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A033277DE30100E74565 /* UIView+AutoLayout.swift */; };
 		30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */; };
+		308850A0282A914F00204623 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */; };
 		30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AAD71A2762869600DE3DC1 /* SelectableCell.swift */; };
@@ -1376,6 +1377,7 @@
 				302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */,
 				3057029F24C6445000D84EFC /* EmptyStateLabel.swift in Sources */,
 				305702A224C6455400D84EFC /* TypeAlias.swift in Sources */,
+				308850A0282A914F00204623 /* DcMsg+Extension.swift in Sources */,
 				30152C9D25A5D95400377714 /* MessageLabelDelegate.swift in Sources */,
 				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,

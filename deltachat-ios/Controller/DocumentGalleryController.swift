@@ -207,14 +207,7 @@ extension DocumentGalleryController {
         let objectsToShare: [Any]
         if message.type == DC_MSG_WEBXDC {
             let dict = message.getWebxdcInfoDict()
-            var previewImage: UIImage?
-            if let iconfilePath = dict["icon"] as? String {
-                let blob = message.getWebxdcBlob(filename: iconfilePath)
-                if !blob.isEmpty {
-                    previewImage = UIImage(data: blob)
-                }
-            }
-
+            let previewImage = message.getWebxdcPreviewImage()
             let previewText = dict["name"] as? String ?? fileURL.lastPathComponent
             objectsToShare = [WebxdcItemSource(title: previewText,
                                                previewImage: previewImage,

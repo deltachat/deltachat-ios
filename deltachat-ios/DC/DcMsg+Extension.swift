@@ -20,4 +20,15 @@ extension DcMsg {
            }
         return [:]
     }
+
+    public func getWebxdcPreviewImage() -> UIImage? {
+        let dict = self.getWebxdcInfoDict()
+        if let iconfilePath = dict["icon"] as? String {
+            let blob = self.getWebxdcBlob(filename: iconfilePath)
+            if !blob.isEmpty {
+                return UIImage(data: blob)
+            }
+        }
+        return nil
+    }
 }
