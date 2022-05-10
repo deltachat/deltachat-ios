@@ -51,7 +51,7 @@ class DocumentGalleryController: UIViewController {
         )
 
         let menu = ContextMenuProvider()
-        menu.setMenu([showInChatItem, deleteItem, shareItem])
+        menu.setMenu([showInChatItem, shareItem, deleteItem])
         return menu
     }()
 
