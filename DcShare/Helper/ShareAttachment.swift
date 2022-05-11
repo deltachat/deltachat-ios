@@ -134,7 +134,7 @@ class ShareAttachment {
         item.loadItem(forTypeIdentifier: kUTTypeMovie as String, options: nil) { data, error in
             switch data {
             case let url as URL:
-                self.addDcMsg(url: url, viewType: DC_MSG_VIDEO)
+                _ = self.addDcMsg(url: url, viewType: DC_MSG_VIDEO)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     DispatchQueue.global(qos: .background).async {
@@ -166,7 +166,17 @@ class ShareAttachment {
         item.loadItem(forTypeIdentifier: typeIdentifier as String, options: nil) { data, error in
             switch data {
             case let url as URL:
-                self.addDcMsg(url: url, viewType: viewType)
+                if url.pathExtension == "xdc" {
+                    let webxdcMsg = self.addDcMsg(url: url, viewType: DC_MSG_WEBXDC)
+                    if self.imageThumbnail == nil {
+                        self.imageThumbnail = webxdcMsg.getWebxdcPreviewImage()?
+                            .scaleDownImage(toMax: self.thumbnailSize,
+                                            cornerRadius: 10)
+                        self.delegate?.onThumbnailChanged()
+                    }
+                } else {
+                    _ = self.addDcMsg(url: url, viewType: viewType)
+                }
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     self.generateThumbnailRepresentations(url: url)
@@ -180,10 +190,11 @@ class ShareAttachment {
         }
     }
 
-    private func addDcMsg(url: URL, viewType: Int32) {
+    private func addDcMsg(url: URL, viewType: Int32) -> DcMsg {
         let msg = dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: url.relativePath)
         self.messages.append(msg)
+        return msg
     }
 
     private func generateThumbnailRepresentations(url: URL) {
