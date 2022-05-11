@@ -6,9 +6,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     private var skipOauth = false
-    private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
-    var onProgressSuccess: VoidFunction? // not needed here
     var onLoginSuccess: (() -> Void)?
 
     private var oauth2Observer: NSObjectProtocol?
@@ -305,13 +303,11 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return button
     }()
 
-    private var initImportBackup: Bool
 
     // MARK: - constructor
-    init(dcAccounts: DcAccounts, editView: Bool, importBackup: Bool = false) {
+    init(dcAccounts: DcAccounts, editView: Bool) {
         self.editView = editView
         self.dcAccounts = dcAccounts
-        self.initImportBackup = importBackup
         self.dcContext = dcAccounts.getSelected()
 
         self.sections.append(basicSection)
@@ -339,9 +335,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         navigationItem.rightBarButtonItem = loginButton
         emailCell.setText(text: dcContext.addr ?? nil)
         passwordCell.setText(text: dcContext.mailPw ?? nil)
-        if initImportBackup {
-            restoreBackup()
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -362,9 +355,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     override func viewDidDisappear(_: Bool) {
 
         let nc = NotificationCenter.default
-        if let backupProgressObserver = self.backupProgressObserver {
-            nc.removeObserver(backupProgressObserver)
-        }
         if let configureProgressObserver = self.progressObserver {
             nc.removeObserver(configureProgressObserver)
         }
@@ -644,28 +634,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         }
     }
 
-    private func addProgressHudBackupListener() {
-        let nc = NotificationCenter.default
-        backupProgressObserver = nc.addObserver(
-            forName: dcNotificationImexProgress,
-            object: nil,
-            queue: nil
-        ) {
-            notification in
-            if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
-                    self.dcAccounts.startIo()
-                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
-                } else if ui["done"] as! Bool {
-                    self.dcAccounts.startIo()
-                    self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
-                } else {
-                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
-                }
-            }
-        }
-    }
-
     private func evaluateAdvancedSetup() {
         for cell in advancedSectionCells {
             if let textFieldCell = cell as? TextFieldCell {
@@ -689,38 +657,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                 }
             }
         }
-    }
-
-    private func restoreBackup() {
-        logger.info("restoring backup")
-        if dcContext.isConfigured() {
-            return
-        }
-        addProgressHudBackupListener()
-        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if !documents.isEmpty {
-            logger.info("looking for backup in: \(documents[0])")
-
-            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
-                logger.info("restoring backup: \(file)")
-                showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
-                dcAccounts.stopIo()
-                dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
-            }
-            else {
-                let alert = UIAlertController(
-                    title: String.localized("import_backup_title"),
-                    message: String.localizedStringWithFormat(
-                        String.localized("import_backup_no_backup_found"),
-                        "➔ Mac-Finder or iTunes ➔ iPhone ➔ " + String.localized("files") + " ➔ Delta Chat"), // iTunes was used up to Maverick 10.4
-                    preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-                present(alert, animated: true)
-            }
-        } else {
-            logger.error("no documents directory found")
-        }
-
     }
 
     private func handleLoginSuccess() {
