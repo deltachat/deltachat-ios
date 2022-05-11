@@ -26,7 +26,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private let tagSmtpPasswordCell = 10
     private let tagSmtpSecurityCell = 11
     private let tagCertCheckCell = 12
-    private let tagRestoreCell = 14
     private let tagViewLogCell = 15
 
     private let tagTextFieldEmail = 100
@@ -43,12 +42,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     let basicSection = 100
     let advancedSection = 200
-    let restoreSection = 300
     let folderSection = 400
     private var sections = [Int]()
 
     private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
-    private lazy var restoreCells: [UITableViewCell] = [restoreCell]
     private lazy var advancedSectionCells: [UITableViewCell] = [
         advancedShowCell,
         imapSecurityCell,
@@ -101,14 +98,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             [weak self] in
             self?.handleProviderInfoButton()
         }
-        return cell
-    }()
-
-    private lazy var restoreCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("import_backup_title")
-        cell.accessoryType = .disclosureIndicator
-        cell.tag = tagRestoreCell
         return cell
     }()
 
@@ -329,8 +318,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         self.sections.append(advancedSection)
         if editView {
             self.sections.append(folderSection)
-        } else {
-            self.sections.append(restoreSection)
         }
 
         super.init(style: .grouped)
@@ -394,8 +381,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if sections[section] == basicSection {
             return basicSectionCells.count
-        } else if sections[section] == restoreSection {
-            return restoreCells.count
         } else if sections[section] == folderSection {
             return folderCells.count
         } else {
@@ -447,8 +432,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         if sections[section] == basicSection {
             return basicSectionCells[row]
-        } else if sections[section] == restoreSection {
-            return restoreCells[row]
         } else if sections[section] == folderSection {
             return folderCells[row]
         } else {
@@ -466,9 +449,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                     _ = showOAuthAlertIfNeeded(emailAddress: emailAdress, handleCancel: nil)
                 }
             }
-        case tagRestoreCell:
-            tableView.reloadData() // otherwise the disclosureIndicator may stay selected
-            restoreBackup()
         case tagAdvancedCell:
             toggleAdvancedSection()
         case tagImapSecurityCell:
