@@ -316,10 +316,13 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return button
     }()
 
+    private var initImportBackup: Bool
+
     // MARK: - constructor
-    init(dcAccounts: DcAccounts, editView: Bool) {
+    init(dcAccounts: DcAccounts, editView: Bool, importBackup: Bool = false) {
         self.editView = editView
         self.dcAccounts = dcAccounts
+        self.initImportBackup = importBackup
         self.dcContext = dcAccounts.getSelected()
 
         self.sections.append(basicSection)
@@ -349,6 +352,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         navigationItem.rightBarButtonItem = loginButton
         emailCell.setText(text: dcContext.addr ?? nil)
         passwordCell.setText(text: dcContext.mailPw ?? nil)
+        if initImportBackup {
+            restoreBackup()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

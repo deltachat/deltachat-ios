@@ -26,6 +26,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             self.qrCodeReader = qrReader
             self.navigationController?.pushViewController(qrReader, animated: true)
         }
+        view.onImportBackup = { [weak self] in
+            guard let self = self else { return }
+            self.showAccountSetupController(importBackup: true)
+        }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -204,8 +208,8 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         }
     }
 
-    private func showAccountSetupController() {
-        let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
+    private func showAccountSetupController(importBackup: Bool = false) {
+        let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false, importBackup: importBackup)
         accountSetupController.onLoginSuccess = {
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.reloadDcContext()
@@ -334,7 +338,7 @@ class WelcomeContentView: UIView {
     }()
 
     private lazy var buttonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton /*, importBackupButton */])
+        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton, importBackupButton])
         stack.axis = .vertical
         stack.spacing = 15
         return stack
