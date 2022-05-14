@@ -137,7 +137,10 @@ class WebxdcViewController: WebViewViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = dcContext.getMessage(id: messageId).getWebxdcInfoDict()["name"] as? String
+        let msg = dcContext.getMessage(id: messageId)
+        let chatName = dcContext.getChat(chatId: msg.chatId).name
+        let webxdcName = msg.getWebxdcInfoDict()["name"] as? String ?? ""
+        self.title = webxdcName + " – " + chatName
     }
     
     override func willMove(toParent parent: UIViewController?) {
