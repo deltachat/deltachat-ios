@@ -4,6 +4,7 @@ import DcCore
 class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
+    private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
     var onProgressSuccess: VoidFunction?
 
@@ -25,6 +26,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             qrReader.delegate = self
             self.qrCodeReader = qrReader
             self.navigationController?.pushViewController(qrReader, animated: true)
+        }
+        view.onImportBackup = { [weak self] in
+            guard let self = self else { return }
+            self.restoreBackup()
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -94,10 +99,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         welcomeView.minContainerHeight = size.height - view.safeAreaInsets.top
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-        coordinator.animate(alongsideTransition: { [weak self] _ in
-            self?.scrollView.scrollToBottom(animated: true)
-        })
      }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -105,6 +106,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if let observer = self.progressObserver {
             nc.removeObserver(observer)
             self.progressObserver = nil
+        }
+        if let backupProgressObserver = self.backupProgressObserver {
+            nc.removeObserver(backupProgressObserver)
         }
     }
 
@@ -164,6 +168,18 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             appDelegate.registerForNotifications()
         }
         onProgressSuccess?()
+    }
+
+    private func handleBackupRestoreSuccess() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+            appDelegate.registerForNotifications()
+        }
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.reloadDcContext()
+        }
     }
 
     private func accountCreationErrorAlert() {
@@ -233,6 +249,57 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         }
 
         appDelegate.reloadDcContext()
+    }
+
+    private func restoreBackup() {
+        logger.info("restoring backup")
+        if dcContext.isConfigured() {
+            return
+        }
+        addProgressHudBackupListener()
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if !documents.isEmpty {
+            logger.info("looking for backup in: \(documents[0])")
+
+            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
+                logger.info("restoring backup: \(file)")
+                showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
+                dcAccounts.stopIo()
+                dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
+            } else {
+                let alert = UIAlertController(
+                    title: String.localized("import_backup_title"),
+                    message: String.localizedStringWithFormat(
+                        String.localized("import_backup_no_backup_found"),
+                        "➔ Mac-Finder or iTunes ➔ iPhone ➔ " + String.localized("files") + " ➔ Delta Chat"), // iTunes was used up to Maverick 10.4
+                    preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+                present(alert, animated: true)
+            }
+        } else {
+            logger.error("no documents directory found")
+        }
+    }
+
+    private func addProgressHudBackupListener() {
+        let nc = NotificationCenter.default
+        backupProgressObserver = nc.addObserver(
+            forName: dcNotificationImexProgress,
+            object: nil,
+            queue: nil
+        ) { notification in
+            if let ui = notification.userInfo {
+                if let error = ui["error"] as? Bool, error {
+                    self.dcAccounts.startIo()
+                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
+                } else if let done = ui["done"] as? Bool, done {
+                    self.dcAccounts.startIo()
+                    self.updateProgressAlertSuccess(completion: self.handleBackupRestoreSuccess)
+                } else {
+                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
+                }
+            }
+        }
     }
 }
 
@@ -334,7 +401,7 @@ class WelcomeContentView: UIView {
     }()
 
     private lazy var buttonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton /*, importBackupButton */])
+        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton, importBackupButton])
         stack.axis = .vertical
         stack.spacing = 15
         return stack

@@ -6,9 +6,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     private var skipOauth = false
-    private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
-    var onProgressSuccess: VoidFunction? // not needed here
     var onLoginSuccess: (() -> Void)?
 
     private var oauth2Observer: NSObjectProtocol?
@@ -26,7 +24,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private let tagSmtpPasswordCell = 10
     private let tagSmtpSecurityCell = 11
     private let tagCertCheckCell = 12
-    private let tagRestoreCell = 14
     private let tagViewLogCell = 15
 
     private let tagTextFieldEmail = 100
@@ -43,12 +40,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     let basicSection = 100
     let advancedSection = 200
-    let restoreSection = 300
     let folderSection = 400
     private var sections = [Int]()
 
     private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
-    private lazy var restoreCells: [UITableViewCell] = [restoreCell]
     private lazy var advancedSectionCells: [UITableViewCell] = [
         advancedShowCell,
         imapSecurityCell,
@@ -101,14 +96,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             [weak self] in
             self?.handleProviderInfoButton()
         }
-        return cell
-    }()
-
-    private lazy var restoreCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("import_backup_title")
-        cell.accessoryType = .disclosureIndicator
-        cell.tag = tagRestoreCell
         return cell
     }()
 
@@ -316,6 +303,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return button
     }()
 
+
     // MARK: - constructor
     init(dcAccounts: DcAccounts, editView: Bool) {
         self.editView = editView
@@ -326,8 +314,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         self.sections.append(advancedSection)
         if editView {
             self.sections.append(folderSection)
-        } else {
-            self.sections.append(restoreSection)
         }
 
         super.init(style: .grouped)
@@ -369,9 +355,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     override func viewDidDisappear(_: Bool) {
 
         let nc = NotificationCenter.default
-        if let backupProgressObserver = self.backupProgressObserver {
-            nc.removeObserver(backupProgressObserver)
-        }
         if let configureProgressObserver = self.progressObserver {
             nc.removeObserver(configureProgressObserver)
         }
@@ -388,8 +371,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if sections[section] == basicSection {
             return basicSectionCells.count
-        } else if sections[section] == restoreSection {
-            return restoreCells.count
         } else if sections[section] == folderSection {
             return folderCells.count
         } else {
@@ -441,8 +422,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         if sections[section] == basicSection {
             return basicSectionCells[row]
-        } else if sections[section] == restoreSection {
-            return restoreCells[row]
         } else if sections[section] == folderSection {
             return folderCells[row]
         } else {
@@ -460,9 +439,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                     _ = showOAuthAlertIfNeeded(emailAddress: emailAdress, handleCancel: nil)
                 }
             }
-        case tagRestoreCell:
-            tableView.reloadData() // otherwise the disclosureIndicator may stay selected
-            restoreBackup()
         case tagAdvancedCell:
             toggleAdvancedSection()
         case tagImapSecurityCell:
@@ -658,28 +634,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         }
     }
 
-    private func addProgressHudBackupListener() {
-        let nc = NotificationCenter.default
-        backupProgressObserver = nc.addObserver(
-            forName: dcNotificationImexProgress,
-            object: nil,
-            queue: nil
-        ) {
-            notification in
-            if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
-                    self.dcAccounts.startIo()
-                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
-                } else if ui["done"] as! Bool {
-                    self.dcAccounts.startIo()
-                    self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
-                } else {
-                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
-                }
-            }
-        }
-    }
-
     private func evaluateAdvancedSetup() {
         for cell in advancedSectionCells {
             if let textFieldCell = cell as? TextFieldCell {
@@ -703,38 +657,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                 }
             }
         }
-    }
-
-    private func restoreBackup() {
-        logger.info("restoring backup")
-        if dcContext.isConfigured() {
-            return
-        }
-        addProgressHudBackupListener()
-        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if !documents.isEmpty {
-            logger.info("looking for backup in: \(documents[0])")
-
-            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
-                logger.info("restoring backup: \(file)")
-                showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
-                dcAccounts.stopIo()
-                dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
-            }
-            else {
-                let alert = UIAlertController(
-                    title: String.localized("import_backup_title"),
-                    message: String.localizedStringWithFormat(
-                        String.localized("import_backup_no_backup_found"),
-                        "➔ Mac-Finder or iTunes ➔ iPhone ➔ " + String.localized("files") + " ➔ Delta Chat"), // iTunes was used up to Maverick 10.4
-                    preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-                present(alert, animated: true)
-            }
-        } else {
-            logger.error("no documents directory found")
-        }
-
     }
 
     private func handleLoginSuccess() {
