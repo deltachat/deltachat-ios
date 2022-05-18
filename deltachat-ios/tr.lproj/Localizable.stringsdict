@@ -141,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d sohbet silinsin mi? Artık sohbet listesinde gösterilmeyecek; iletileri sunucuda kalacak.</string>
+			<string>%d sohbet silinsin mi? O artık sohbet listesinde gösterilmeyecek; iletileri sunucuda kalacak.</string>
 			<key>other</key>
-			<string>%d sohbet silinsin mi? Artık sohbet listesinde gösterilmeyecek; iletileri sunucuda kalacak.</string>
+			<string>%d sohbet silinsin mi? Onlar artık sohbet listesinde gösterilmeyecek; iletileri sunucuda kalacak.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

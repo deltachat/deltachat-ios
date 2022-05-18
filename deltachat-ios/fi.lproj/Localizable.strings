@@ -525,11 +525,11 @@
 "pref_chats" = "Keskustelut";
 "pref_in_chat_sounds" = "Keskustelun äänet";
 "pref_message_text_size" = "Viestin fonttikoko";
-"pref_view_log" = "Näytä lok";
+"pref_view_log" = "Näytä loki";
 "pref_saved_log" = "Tallenna loki Lataukset-kansioon";
 "pref_save_log_failed" = "Lokin tallennus epäonnistui";
-"pref_log_header" = "Lok";
-"pref_other" = "Mu";
+"pref_log_header" = "Loki";
+"pref_other" = "Muu";
 "pref_backup" = "Varmuuskopiointi";
 "pref_backup_explain" = "Varmuuskopioi keskustelut ulkoiseen tallennustilaan";
 "pref_backup_export_explain" = "Varmuuskopion avulla voit helpommin siirtää asetuksesi uuteen Delta Chat -asennukseen tällä tai toisella laitteella.\n\nVarmuuskopio sisältää kaikki viestit, yhteystiedot ja keskustelut sekä Autocrypt-asetukset. Säilytä varmuuskopiota turvallisessa paikassa ja poista se heti kun mahdollista.";
@@ -835,6 +835,28 @@
 "a11y_background_preview_label" = "Esikatselu taustalla";
 "a11y_disappearing_messages_activated" = "Viestien katoaminen päällä";
 
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Lopeta sijainnin jakaminen";
+"a11y_voice_message_hint_ios" = "Nauhoittamisen jälkeen napauta kahdesti lähettääksesi. Hylätäksesi nauhoitteen pyyhkäise vasemmalta oikealle kahdella sormella.";
+"a11y_connectivity_hint" = "Napauta kahdesti nähdäksesi yksityiskohtia yhteydestä.";
+"login_error_no_internet_connection" = "Ei internet-yhteyttä, sisäänkirjaus epäonnistui.";
+"share_account_not_configured" = "Tiliä ei ole määritetty.";
+"cannot_play_audio_file" = "Äänitiedostoa ei voi toistaa.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Avaa järjestelmäasetukset ja kytke päälle \"Kamera\" ottaaksesi kuvia tai videoita tai käyttääksesi QR-koodinlukijaa.";
+"open_settings" = "Avaa asetukset";
+// iOS device contact alert
+"import_device_contacts" = "Tuo laitteen yhteystiedot";
+"import_device_contacts_hint" = "Avaa asetukset ja kytke päälle \"Yhteystiedot\" viestiäksesi laitteen yhteystietojen kanssa.";
+// iOS notification settings
+"disabled_in_dc" = "Kytketty pois Delta Chatissa";
+"disabled_in_system_settings" = "Kytketty pois järjestelmäasetuksissa";
+"bg_app_refresh_disabled" = "Taustasovelluksen päivitys kytketty pois järjestelmäasetuksissa";
+// iOS connectivity view
+"delayed" = "Viivästynyt";
+"notifications_avg_minutes" = "Keskimäärin%1$d minuutin välein";
+"notifications_avg_hours" = "Keskimäärin %1$d tunnin välein";
+"last_check_at" = "Tarkistettu %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -852,3 +874,5 @@
 // device messages for updates
 "update_1_28_android" = "1.28 Nostot:\n\n🔒Salaus: Uusi kokeellinen valinta yhteystietojen, salausavainten ja tekstiviestien säilyttämiseksi salattuina latteellasi. Saatavilla ainoastaan tilin luomisen ja varmuuskopioiden tuomisen yhteydessä.\n\n📫 Kirjoita sähköpostilistoille.\n\n💫 Nopeampi asetusten luonti monille sähköpostipalvelimille ja yksinkertaistetut verkkoasetukset virheellisten asetusten ehkäisemiseksi\n\n🐜 Paljon käyttäjien raportoimien ongelmien korjauksia.";
 "update_1_28_ios_extra_line" = "... ja nyt voit vaihtaa taustakuvan: \"Asetukset / Taustakuva\" :)";
+"update_1_30" = "Nopeampi. Vakaampi.\n\n1.30-versioissa keskityimme nopeuteen ja luotettavuuteen, ja korjasimme kasan bugeja ja virheitä. Tarkista muutoslokistamme korjasimmeko sinusta tärkeimmän: https://get.delta.chat/#changelogs 🚀";
+

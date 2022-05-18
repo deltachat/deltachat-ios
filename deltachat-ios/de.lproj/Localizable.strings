@@ -838,6 +838,7 @@
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Teilen des Standorts beenden";
 "a11y_voice_message_hint_ios" = "Nach der Aufnahme zum Senden doppelt tippen. Um die Aufnahme zu verwerfen, mit zwei Fingern links-rechts hin- und herwischen.";
+"a11y_connectivity_hint" = "Doppelt Tippen für Verbindungsdetails.";
 "login_error_no_internet_connection" = "Keine Internetverbindung, Anmeldung fehlgeschlagen.";
 "share_account_not_configured" = "E-Mail-Konto nicht konfiguriert.";
 "cannot_play_audio_file" = "Audiodatei kann nicht abgespielt werden.";

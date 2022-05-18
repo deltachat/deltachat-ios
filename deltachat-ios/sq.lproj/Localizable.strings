@@ -835,6 +835,7 @@
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Ndale tregimin e vendndodhjes";
 "a11y_voice_message_hint_ios" = "Pas regjistrimit, prekeni dy herë që të dërgohet. Për ta hedhur regjistrimin tej, fërkojeni majtas-djathtas me dy gishta.";
+"a11y_connectivity_hint" = "Prekeni dy herë që të shihni hollësi lidhjeje.";
 "login_error_no_internet_connection" = "S’ka lidhje internet, hyrja dështoi.";
 "share_account_not_configured" = "Llogaria s’është e formësuar.";
 "cannot_play_audio_file" = "Kartela audio s’luhet dot.";

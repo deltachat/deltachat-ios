@@ -12,7 +12,7 @@
 "default_value" = "Varsayılan (%1$@)";
 "default_value_as_above" = "Varsayılan (yukarıdakinin aynısı)";
 "custom" = "Özel";
-"none" = "Hiçbiri";
+"none" = "Yok";
 "automatic" = "Otomatik";
 "strict" = "Katı";
 "open" = "Aç";
@@ -114,7 +114,7 @@
 // "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Yakala";
 "switch_camera" = "Kamerayı Değiştir";
-"toggle_fullscreen" = "Tam Ekran Kipine Geç";
+"toggle_fullscreen" = "Tam Ekran Moduna Geç";
 "location" = "Konum";
 "gallery" = "Galeri";
 "images_and_videos" = "Görseller ve Videolar";
@@ -193,8 +193,8 @@
 "accept" = "Kabul Et";
 "menu_play" = "Oynat";
 "menu_pause" = "Duraklat";
-"menu_scroll_to_bottom" = "Alta Kaydır";
-"menu_scroll_to_top" = "Üste Kaydır";
+"menu_scroll_to_bottom" = "En Alta Kaydır";
+"menu_scroll_to_top" = "En Üste Kaydır";
 "menu_help" = "Yardım";
 "privacy_policy" = "Gizlilik İlkesi";
 "menu_select_all" = "Tümünü Seç";
@@ -216,7 +216,7 @@
 "device_talk" = "Aygıt İletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
 "device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Oluşturucuları, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için onu kullanır.";
-"device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak, elbette isterlerse, onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
+"device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir; ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak elbette isterlerse onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
 "edit_contact" = "Kişiyi Düzenle";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "Sohbeti Sabitle";
@@ -291,9 +291,9 @@
 "chat_unable_to_record_audio" = "Ses kaydedilemiyor.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Bir ileti gönderin. %1$@ Delta Chat kullanmıyorsa tamam.";
-"chat_new_broadcast_hint" = "Bir yayın listesinde, diğerleri sizinle olan özel sohbetlerinde ileti alacak.\n\nAlıcılar birbirlerinin farkında olmayacak.";
+"chat_new_broadcast_hint" = "Bir yayın listesinde, diğerleri sizinle olan özel sohbetlerinde ileti alacak.\n\nAlıcılar birbirinin farkında olmayacak.";
 "chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu grubu görecek.";
-"chat_record_slide_to_cancel" = "Vazgeçmek için kaydırın";
+"chat_record_slide_to_cancel" = "İptal etmek için kaydırın";
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
 "chat_no_chats_yet_title" = "Boş gelen kutusu.\nYeni bir sohbete başlamak için \"+\" simgesine basın.";
 "chat_no_chats_yet_hint" = "Diğer Delta Chat kullanıcılarıyla ve herhangi bir e-posta adresiyle sohbet edebilirsiniz.";
@@ -311,9 +311,9 @@
 "saved" = "Kaydedilen";
 "retry_send" = "İletiyi göndermeyi yeniden dene";
 // reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Yazamazsınız çünkü bu grupta değilsiniz. Katılmak için başka bir üyeye sorun.";
+"messaging_disabled_not_in_group" = "Yazamazsınız; çünkü bu grupta değilsiniz. Katılmak için başka bir üyeye sorun.";
 "messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir. Bu nedenle herhangi bir ileti yazamazsınız.";
-"messaging_disabled_mailing_list" = "Posta listelerinden gönderilen iletiler henüz desteklenmiyor";
+"messaging_disabled_mailing_list" = "Posta listelerine iletiler gönderme henüz desteklenmiyor";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -388,7 +388,7 @@
 "storage_on_domain" = "%1$@ Üzerinde Depolama";
 "connectivity" = "Bağlanabilirlik";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
-"connectivity_not_connected" = "Bağlı değil";
+"connectivity_not_connected" = "Bağlanmadı";
 // Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
 "connectivity_connecting" = "Bağlanıyor…";
 // Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
@@ -435,7 +435,7 @@
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "%1$@ denetleniyor";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
-"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta ile Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
+"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta Üzerinden Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
 "login_certificate_checks" = "Sertifika Denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";
@@ -476,7 +476,7 @@
 "pref_profile_info_headline" = "Profil Bilginiz";
 "pref_profile_photo" = "Profil Görseli";
 "pref_blocked_contacts" = "Engellenen Kişiler";
-"blocked_empty_hint" = "Kişileri engellerseniz, burada gösterilecekler.";
+"blocked_empty_hint" = "Kişileri engellerseniz, onlar burada gösterilecek.";
 "pref_password_and_account_settings" = "Parola ve Hesap";
 "pref_who_can_see_profile_explain" = "Diğer kullanıcılarla iletişim kurulurken; profil görseliniz, adınız ve imzanız iletilerinizle birlikte gönderilecek.";
 "pref_your_name" = "Adınız";
@@ -485,7 +485,7 @@
 // Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
 "pref_default_status_text" = "Delta Chat Messenger\'ımla gönderildi: https://delta.chat";
 "pref_enter_sends" = "Enter Tuşu Göndersin";
-"pref_enter_sends_explain" = "Enter tuşuna basmak metin iletileri gönderecek";
+"pref_enter_sends_explain" = "Enter tuşuna basma, metin iletileri gönderecek";
 "pref_outgoing_media_quality" = "Giden Ortam Kalitesi";
 "pref_outgoing_balanced" = "Dengeli";
 "pref_outgoing_worse" = "Daha kötü kalite, küçük boyut";
@@ -515,8 +515,8 @@
 "pref_incognito_keyboard" = "Gizlenen Klavye";
 // Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
 "pref_incognito_keyboard_explain" = "Kişiselleştirilen öğrenmeyi etkisizleştirmek için klavye iste";
-"pref_read_receipts" = "Okundu Bilgileri";
-"pref_read_receipts_explain" = "Okundu bilgileri etkisizleştirilirse, diğerlerinden gelen okundu bilgilerini göremeyeceksiniz.";
+"pref_read_receipts" = "Okunma Onayları";
+"pref_read_receipts_explain" = "Okunma onayları etkisizleştirilirse, diğerlerinden gelen okunma onaylarını göremeyeceksiniz.";
 "pref_manage_keys" = "Anahtarları Yönet";
 "pref_use_system_emoji" = "Sistem Emojisini Kullan";
 "pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
@@ -532,7 +532,7 @@
 "pref_other" = "Diğer";
 "pref_backup" = "Yedekleme";
 "pref_backup_explain" = "Sohbetleri Dış Depolamaya Yedekle";
-"pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardım eder.\n\nYedek, tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
+"pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardımcı olur.\n\nYedek; tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
 "pref_backup_export_start_button" = "Yedeklemeye Başla";
 "pref_backup_written_to_x" = "Yedek \"%1$@\" üzerine başarıyla yazıldı.";
 "pref_managekeys_menu_title" = "Anahtarları Yönet";
@@ -561,7 +561,7 @@
 "pref_show_emails_all" = "Tümü";
 "pref_experimental_features" = "Deneysel Özellikler";
 "pref_on_demand_location_streaming" = "İsteğe Bağlı Konum Akışı";
-"pref_developer_mode" = "Geliştirici Kipi";
+"pref_developer_mode" = "Geliştirici Modu";
 "pref_developer_mode_explain" = "Hata ayıklama seçeneklerini etkinleştirir ve uygulamayı daha az kararlı yapabilir. Yalnızca geliştiriciler içindir.";
 "pref_background_default" = "Varsayılan arka plan";
 "pref_background_default_color" = "Varsayılan renk";
@@ -606,9 +606,9 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri \"%2$@\" silmek istiyor musunuz?\n\n• Bu, tüm ortamları kapsar\n\n• İletiler görülse de görülmese de silinecek\n\n• \"Kaydedilen iletiler\" yerel silmeden atlanacak";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri \"%2$@\" silmek istiyor musunuz?\n\n⚠️ Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve \"Kaydedilen iletileri\" kapsar\n\n⚠️ Verileri sunucuda tutmak istiyorsanız bu işlevi kullanmayın\n\n⚠️ Delta Chat\'in dışında diğer e-posta istemcileri kullanıyorsanız bu işlevi kullanmayın";
+"autodel_server_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri \"%2$@\" silmek istiyor musunuz?\n\n⚠️ Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve \"Kaydedilen iletileri\" kapsar\n\n⚠️ Verileri sunucuda tutmak istiyorsanız bu işlevi kullanmayın\n\n⚠️ Delta Chat\'in dışında diğer e-posta istemcilerini kullanıyorsanız bu işlevi kullanmayın";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve \"Kaydedilen iletileri\" kapsar. Verileri sunucuda tutmak istiyorsanız ya da Delta Chat\'in dışında diğer e-posta istemcileri kullanıyorsanız bu işlevi kullanmayın.";
+"autodel_server_enabled_hint" = "Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve \"Kaydedilen iletileri\" kapsar. Verileri sunucuda tutmak istiyorsanız ya da Delta Chat\'in dışında diğer e-posta istemcilerini kullanıyorsanız bu işlevi kullanmayın.";
 "autodel_confirm" = "Anladım, tüm bu iletileri sil";
 "autodel_at_once" = "Bir kerede";
 "after_30_seconds" = "30 saniye sonra";
@@ -637,7 +637,7 @@
 "autocrypt_continue_transfer_please_enter_code" = "Lütfen diğer aygıtta görüntülenen ayarlama kodunu girin.";
 "autocrypt_continue_transfer_succeeded" = "Uçtan uca ayarlaması aktarıldı. Bu aygıt artık aynı ayarlamayla diğer aygıt gibi Autocrypt kullanmaya hazır.";
 "autocrypt_continue_transfer_retry" = "Yeniden dene";
-"autocrypt_bad_setup_code" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.\n\nAyarlama kodunu anımsamıyorsanız, diğer aygıttan yeni bir Autocrypt Ayarlama İletisi göndermeniz yeterli.";
+"autocrypt_bad_setup_code" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.\n\nAyarlama kodunu anımsamıyorsanız, diğer aygıttan yeni bir Autocrypt Ayarlama İletisi gönderin.";
 
 
 // system messages
@@ -648,14 +648,14 @@
 "systemmsg_member_removed" = "%1$@ üyesi kaldırıldı.";
 "systemmsg_group_left" = "Gruptan ayrılındı.";
 "systemmsg_read_receipt_subject" = "İleti açıldı";
-"systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunma güvencesi değildir.";
-"systemmsg_cannot_decrypt" = "Bu ileti şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderene iletiyi yeniden gönderip gönderemeyeceğini sormak zaten yardım edebilir.\n\n• Delta Chat\'i ya da başka bir e-posta programını bu ya da başka bir aygıta yeniden kurduysanız, oradan bir Autocrypt Ayarlama İletisi göndermek isteyebilirsiniz.";
+"systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunduğunun güvencesi değildir.";
+"systemmsg_cannot_decrypt" = "Bu iletinin şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderene iletiyi yeniden gönderip gönderemeyeceğini sormak zaten yardımcı olabilir.\n\n• Delta Chat\'i ya da başka bir e-posta programını bu ya da başka bir aygıta yeniden kurduysanız, oradan bir Autocrypt Ayarlama İletisi göndermek isteyebilirsiniz.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
 "systemmsg_action_by_me" = "Benim tarafımdan %1$@.";
 // Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
 "systemmsg_action_by_user" = "%2$@ tarafından %1$@.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
-"systemmsg_subject_for_new_contact" = "Şundan ileti: %1$@";
+"systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
 "systemmsg_failed_sending_to" = "%1$@ alıcısına ileti gönderme başarısız.";
 
 "systemmsg_ephemeral_timer_disabled" = "Kaybolan iletiler zamanlayıcısı etkisizleştirildi.";
@@ -676,34 +676,34 @@
 
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
 // %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️ Sağlayıcınızın depolaması aşılmak üzere, %1$@%% zaten kullanılıyor.\n\nDepolama 100%% kullanıldığında ileti alamayabilirsiniz.\n\n👉 Lütfen sağlayıcınızın web arabiriminden eski verileri silip silemeyeceğinizi denetleyin ve \"Ayarlar / Eski İletileri Sil\"i etkinleştirmeyi düşünün. Şu anki depolama kullanımınızı her zaman \"Ayarlar / Bağlanabilirlik\"ten denetleyebilirsiniz.";
+"devicemsg_storage_exceeding" = "⚠️ Sağlayıcınızın depolaması aşılmak üzere; %1$@%% zaten kullanılıyor.\n\nDepolama 100%% kullanıldığında ileti alamayabilirsiniz.\n\n👉 Lütfen sağlayıcınızın web arabiriminden eski verileri silip silemeyeceğinizi denetleyin ve \"Ayarlar / Eski İletileri Sil\"i etkinleştirmeyi düşünün. Şu anki depolama kullanımınızı her zaman \"Ayarlar / Bağlanabilirlik\"ten denetleyebilirsiniz.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Aygıtınızın tarihi ya da saati yanlış gibi görünüyor (%1$@).\n\nİletilerinizin doğru şekilde alındığından emin olmak için saatinizi ⏰🔧 ayarlayın.";
-"devicemsg_update_reminder" = "⚠️ Delta Chat sürümünüz eski olabilir.\n\nBu, sorunlara neden olabilir çünkü sohbet ortaklarınız daha yeni sürümleri kullanıyor - ve en yeni özellikleri kaybediyorsunuz 😳\nGüncelleştirmeler için lütfen https://get.delta.chat ya da uygulama mağazanızı denetleyin.";
+"devicemsg_update_reminder" = "⚠️ Delta Chat sürümünüz eski olabilir.\n\nBu, sorunlara neden olabilir; çünkü sohbet ortaklarınız daha yeni sürümleri kullanıyor - ve en yeni özellikleri kaybediyorsunuz 😳\nGüncelleştirmeler için lütfen https://get.delta.chat ya da uygulama mağazanızı denetleyin.";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Sürdürmek için lütfen sistem tanımlı sırrınızı girin.";
 
 // qr code stuff
-"qr_code" = "QR Kod";
-"load_qr_code_as_image" = "QR Kodu Görsel Olarak Yükle";
-"qrscan_title" = "QR Kod Tara";
-"qrscan_hint" = "Kameranızı QR kodun üzerine tutun.";
-"qrscan_failed" = "QR kod çözülemedi";
+"qr_code" = "QR Kodu";
+"load_qr_code_as_image" = "QR Kodunu Görsel Olarak Yükle";
+"qrscan_title" = "QR Kodu Tara";
+"qrscan_hint" = "Kameranızı QR kodunun üzerinde tutun.";
+"qrscan_failed" = "QR kodu çözülemedi";
 "qrscan_ask_join_group" = "\"%1$@\" grubuna katılmak istiyor musunuz?";
 "qrscan_fingerprint_mismatch" = "Taranan parmak izi, %1$@ için son görülenle eşleşmiyor.";
-"qrscan_no_addr_found" = "Bu QR kod bir parmak izi içeriyor ama e-posta adresi yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
-"qrscan_contains_text" = "Taranan QR kod metni:\n\n%1$@";
-"qrscan_contains_url" = "Taranan QR kod URL\'si:\n\n%1$@";
+"qrscan_no_addr_found" = "Bu QR kodu, bir parmak izi içeriyor; ama e-posta adresi yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
+"qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";
+"qrscan_contains_url" = "Taranan QR kodu URL\'si:\n\n%1$@";
 "qrscan_fingerprint_label" = "Parmak izi";
-"withdraw_verifycontact_explain" = "Bu QR kod, size ulaşmak için diğerleri tarafından taranabilir.\n\nQR kodu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
-"withdraw_verifygroup_explain" = "Bu QR kod, \"%1$@\" grubuna katılmak için diğerleri tarafından taranabilir.\n\nQR kodu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
-"withdraw_qr_code" = "QR Kodu Etkisizleştir";
+"withdraw_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
+"withdraw_verifygroup_explain" = "Bu QR kodu, \"%1$@\" grubuna katılmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
+"withdraw_qr_code" = "QR Kodunu Etkisizleştir";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
-"revive_verifycontact_explain" = "Bu QR kod, size ulaşmak için diğerleri tarafından taranmış olabilir.\n\nQR kod bu aygıtta etkin değil.";
+"revive_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
-"revive_verifygroup_explain" = "Bu QR kod, \"%1$@\" grubuna katılmak için diğerleri tarafından taranmış olabilir.\n\nQR kod bu aygıtta etkin değil.";
-"revive_qr_code" = "QR Kodu Etkinleştir";
+"revive_verifygroup_explain" = "Bu QR kodu, \"%1$@\" grubuna katılmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
+"revive_qr_code" = "QR Kodunu Etkinleştir";
 "qrshow_title" = "QR Davet Kodu";
 "qrshow_x_joining" = "%1$@ katılıyor.";
 "qrshow_x_verified" = "%1$@ doğrulandı.";
@@ -713,13 +713,13 @@
 "qrshow_join_group_hint" = "\"%1$@\" grubuna katılmak için bunu tarayın";
 "qrshow_join_contact_title" = "QR Davet Kodu";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
-"qrshow_join_contact_hint" = "%1$@ ile bir iletişim ayarlamak için bunu tarayın";
-"qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kod ayarlaması gerçekleştirilemiyor.";
+"qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
+"qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
 "qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?";
 "qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesap değiştir\" öğesini kullanın.";
 "qraccount_success_enter_name" = "Oturum açma başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
-"qraccount_qr_code_cannot_be_used" = "Taranan QR kod yeni bir hesap ayarlamak için kullanılamıyor.";
-"qraccount_use_on_new_install" = "Taranan QR kod yeni bir hesap ayarlamak içindir. QR kodu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";
+"qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir hesap ayarlamak için kullanılamıyor.";
+"qraccount_use_on_new_install" = "Taranan QR kodu, yeni bir hesap ayarlamak içindir. QR kodu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya davet etti.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
@@ -730,7 +730,7 @@
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
 "verified_group_explain" = "Doğrulanan gruplar (deneysel), etkin saldırılar karşısında güvenlik sağlar. Üyeler, diğer üyeler tarafından ikinci bir etkenle doğrulanır ve iletiler her zaman uçtan uca şifrelenir.";
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
-"mailto_dialog_header_select_chat" = "İletinin gönderileceği sohbeti seçin";
+"mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ zaten bir taslak ileti; onu değiştirmek istiyor musunuz?";
 "mailto_link_could_not_be_decoded" = "mailto bağlantısının kodu çözülemedi: %1$@";
@@ -752,7 +752,7 @@
 "perm_continue" = "Sürdür";
 "perm_explain_access_to_camera_denied" = "Fotoğraflar çekmek ya da videolar yakalamak için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Kamera\"yı etkinleştirin.";
 "perm_explain_access_to_mic_denied" = "Sesli iletiler göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Mikrofon\"u etkinleştirin.";
-"perm_explain_access_to_storage_denied" = "Dosyaları almak ya da göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";
+"perm_explain_access_to_storage_denied" = "Dosyalar almak ya da göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";
 "perm_explain_access_to_location_denied" = "Bir konum iliştirmek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
 
 // ImageEditorHud
@@ -837,12 +837,13 @@
 
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Konum paylaşımını durdur";
-"a11y_voice_message_hint_ios" = "Kaydettikten sonra göndermek için iki kez dokunun. Kaydı atmak için iki parmakla sola-sağa fırçalayın.";
+"a11y_voice_message_hint_ios" = "Kaydettikten sonra göndermek için çift dokunun. Kaydı atmak için iki parmakla sarın.";
+"a11y_connectivity_hint" = "Bağlanabilirlik ayrıntılarını görüntülemek için çift dokunun.";
 "login_error_no_internet_connection" = "Internet bağlantısı yok; oturum açma başarısız.";
 "share_account_not_configured" = "Hesap yapılandırılmadı.";
 "cannot_play_audio_file" = "Ses dosyası oynatılamıyor.";
 // iOS camera permission alert
-"perm_ios_explain_access_to_camera_denied" = "Fotoğraflar çekmek, videolar yakalamak ya da QR Kod tarayıcısını kullanmak için sistem ayarlarını açın ve \"Kamera\"\'yı etkinleştirin.";
+"perm_ios_explain_access_to_camera_denied" = "Fotoğraflar çekmek, videolar yakalamak ya da QR Kodu tarayıcısını kullanmak için sistem ayarlarını açın ve \"Kamera\"\'yı etkinleştirin.";
 "open_settings" = "Ayarlar\'ı Aç";
 // iOS device contact alert
 "import_device_contacts" = "Aygıt kişilerini içe aktar";
