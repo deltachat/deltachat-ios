@@ -228,7 +228,6 @@
 "unpin" = "Odepnij";
 "ConversationFragment_quoted_message_not_found" = "Nie znaleziono oryginalnej wiadomości";
 "reply_privately" = "Odpowiedz prywatnie ";
-
 "mute_for_one_hour" = "Wyłącz na 1 godzinę";
 "mute_for_two_hours" = "Wyłącz na 2 godziny";
 "mute_for_one_day" = "Wyłącz na 1 dzień";

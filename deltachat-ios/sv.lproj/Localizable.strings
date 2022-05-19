@@ -210,7 +210,6 @@
 "unpin" = "Lösgör";
 "ConversationFragment_quoted_message_not_found" = "Original meddelandet hittas inte";
 "reply_privately" = "Svara säkert";
-
 "mute_for_one_hour" = "Tysta 1 timma";
 "mute_for_two_hours" = "Tysta 2 timmar";
 "mute_for_one_day" = "Tysta 1 dag";

@@ -226,7 +226,6 @@
 "unpin" = "取消釘選";
 "ConversationFragment_quoted_message_not_found" = "找不到原始訊息";
 "reply_privately" = "私下回覆";
-
 "mute_for_one_hour" = "靜音1小時";
 "mute_for_two_hours" = "靜音2小時";
 "mute_for_one_day" = "靜音1天";

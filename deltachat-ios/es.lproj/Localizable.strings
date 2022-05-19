@@ -228,7 +228,6 @@
 "unpin" = "Desanclar";
 "ConversationFragment_quoted_message_not_found" = "Mensaje original no encontrado";
 "reply_privately" = "Responder en privado";
-
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 día";

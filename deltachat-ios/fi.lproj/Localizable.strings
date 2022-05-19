@@ -228,7 +228,6 @@
 "unpin" = "Irrota";
 "ConversationFragment_quoted_message_not_found" = "Alkuperäistä viestiä ei löydy";
 "reply_privately" = "Vastaa yksityisesti";
-
 "mute_for_one_hour" = "Mykistä 1 tunniksi";
 "mute_for_two_hours" = "Mykistä 2 tunniksi";
 "mute_for_one_day" = "Mykistä 1 päiväksi";

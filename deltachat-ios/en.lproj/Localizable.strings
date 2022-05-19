@@ -228,6 +228,7 @@
 "unpin" = "Unpin";
 "ConversationFragment_quoted_message_not_found" = "Original message not found";
 "reply_privately" = "Reply Privately";
+"source_code" = "Source Code";
 
 "mute_for_one_hour" = "Mute for 1 hour";
 "mute_for_two_hours" = "Mute for 2 hours";
@@ -837,7 +838,7 @@
 
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Stop sharing location";
-"a11y_voice_message_hint_ios" = "After recording double-tap to send. To discard the recording scrub left-right with two fingers.";
+"a11y_voice_message_hint_ios" = "After recording double-tap to send. To discard the recording scrub with two fingers.";
 "a11y_connectivity_hint" = "Double tap to view connectivity details.";
 "login_error_no_internet_connection" = "No internet connection, login failed.";
 "share_account_not_configured" = "Account is not configured.";
@@ -847,7 +848,7 @@
 "open_settings" = "Open Settings";
 // iOS device contact alert
 "import_device_contacts" = "Import device contacts";
-"import_device_contacts_hint" = "To chat with contacts from your device open Settings and enable Contacts.";
+"import_device_contacts_hint" = "To chat with contacts from your device open Settings and enable \"Contacts\".";
 // iOS notification settings
 "disabled_in_dc" = "Disabled in Delta Chat";
 "disabled_in_system_settings" = "Disabled in system settings";

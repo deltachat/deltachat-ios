@@ -225,7 +225,6 @@
 "unpin" = "Премахване от забодените";
 "ConversationFragment_quoted_message_not_found" = "Оригиналното съобщение не е открито";
 "reply_privately" = "Личен отговор";
-
 "mute_for_one_hour" = "Спиране на звука за 1 час";
 "mute_for_two_hours" = "Спиране на звука за 2 часа";
 "mute_for_one_day" = "Спиране на звука за 1 ден";

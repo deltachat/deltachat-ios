@@ -228,6 +228,7 @@
 "unpin" = "Desafixar";
 "ConversationFragment_quoted_message_not_found" = "Non se atopa a mensaxe orixinal";
 "reply_privately" = "Responder de xeito privado";
+"source_code" = "Código Fonte";
 
 "mute_for_one_hour" = "Acalar durante 1 h.";
 "mute_for_two_hours" = "Acalar durante 2 h.";
@@ -835,6 +836,28 @@
 "a11y_background_preview_label" = "Vista previa do fondo";
 "a11y_disappearing_messages_activated" = "Activada a desaparición de mensaxes";
 
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Deixar de compartir localización";
+"a11y_voice_message_hint_ios" = "Tras gravar, dobre toque para enviar. Para desbotar a gravación, rabuña con dous dedos.";
+"a11y_connectivity_hint" = "Dobre toque para ver detalles da conectividade.";
+"login_error_no_internet_connection" = "Sen conexión a internet, fallou o acceso.";
+"share_account_not_configured" = "A conta non está configurada.";
+"cannot_play_audio_file" = "Non se pode reproducir o ficheiro de audio.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Para facer fotos, vídeos ou usar o escáner de Códigos-QR, abre os axustes do sistema e activa \"Cámara\".";
+"open_settings" = "Abrir Axustes";
+// iOS device contact alert
+"import_device_contacts" = "Importar contactos desde o dispositivo";
+"import_device_contacts_hint" = "Para conversar con contactos do teu dispositivo abre os Axustes e activa \"Contactos\".";
+// iOS notification settings
+"disabled_in_dc" = "Desactivado en Delta Chat";
+"disabled_in_system_settings" = "Desactivado nos axustes do sistema";
+"bg_app_refresh_disabled" = "\"Actualización en segundo plano da app\" desactivado nos axustes do sistema";
+// iOS connectivity view
+"delayed" = "Con retraso";
+"notifications_avg_minutes" = "De media cada %1$d minutos";
+"notifications_avg_hours" = "De media cada %1$d horas";
+"last_check_at" = "Comprobado en %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

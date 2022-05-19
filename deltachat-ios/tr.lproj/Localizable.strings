@@ -228,6 +228,7 @@
 "unpin" = "Sabitleme";
 "ConversationFragment_quoted_message_not_found" = "Özgün ileti bulunamadı";
 "reply_privately" = "Özel Olarak Yanıtla";
+"source_code" = "Kaynak Kodu";
 
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
@@ -843,11 +844,11 @@
 "share_account_not_configured" = "Hesap yapılandırılmadı.";
 "cannot_play_audio_file" = "Ses dosyası oynatılamıyor.";
 // iOS camera permission alert
-"perm_ios_explain_access_to_camera_denied" = "Fotoğraflar çekmek, videolar yakalamak ya da QR Kodu tarayıcısını kullanmak için sistem ayarlarını açın ve \"Kamera\"\'yı etkinleştirin.";
+"perm_ios_explain_access_to_camera_denied" = "Fotoğraflar çekmek, videolar yakalamak ya da QR Kodu tarayıcısını kullanmak için sistem ayarlarını açın ve \"Kamera\"yı etkinleştirin.";
 "open_settings" = "Ayarlar\'ı Aç";
 // iOS device contact alert
 "import_device_contacts" = "Aygıt kişilerini içe aktar";
-"import_device_contacts_hint" = "Aygıtınızdan gelen kişilerle sohbet etmek için Ayarlar\'ı açın ve Kişiler\'i etkinleştirin.";
+"import_device_contacts_hint" = "Aygıtınızdan gelen kişilerle sohbet etmek için Ayarlar\'ı açın ve \"Kişiler\"i etkinleştirin.";
 // iOS notification settings
 "disabled_in_dc" = "Delta Chat\'ten etkisizleştirildi";
 "disabled_in_system_settings" = "Sistem ayarlarından etkisizleştirildi";

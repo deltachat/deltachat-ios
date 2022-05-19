@@ -219,7 +219,6 @@
 "unpin" = "Desfixa";
 "ConversationFragment_quoted_message_not_found" = "No s\'ha trobat el missatge original";
 "reply_privately" = "Respon en privat";
-
 "mute_for_one_hour" = "Silencia 1 hora";
 "mute_for_two_hours" = "Silencia 2 hores";
 "mute_for_one_day" = "Silencia 1 dia";

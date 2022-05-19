@@ -201,7 +201,6 @@
 "unpin" = "Løsn";
 "ConversationFragment_quoted_message_not_found" = "Oprindelig besked ikke fundet";
 "reply_privately" = "Svar privat";
-
 "mute_for_one_hour" = "Dæmp i 1 time";
 "mute_for_two_hours" = "Dæmp i 2 timer";
 "mute_for_one_day" = "Dæmp i 1 dag";

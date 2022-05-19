@@ -226,7 +226,6 @@
 "unpin" = "Відкрипити";
 "ConversationFragment_quoted_message_not_found" = "Первісне повідомлення не знайдено";
 "reply_privately" = "Відповісти приватно";
-
 "mute_for_one_hour" = "Відключити сповіщення на 1 годину";
 "mute_for_two_hours" = "Відключити сповіщення на 2 години";
 "mute_for_one_day" = "Відключити сповіщення на 1 день";

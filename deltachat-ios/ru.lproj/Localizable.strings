@@ -228,7 +228,6 @@
 "unpin" = "Открепить";
 "ConversationFragment_quoted_message_not_found" = "Оригинальное сообщение не найдено";
 "reply_privately" = "Ответить лично";
-
 "mute_for_one_hour" = "1 час";
 "mute_for_two_hours" = "На 2 часа";
 "mute_for_one_day" = "На 1 день";

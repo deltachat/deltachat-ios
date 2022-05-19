@@ -228,6 +228,7 @@
 "unpin" = "取消固定";
 "ConversationFragment_quoted_message_not_found" = "原消息未找到";
 "reply_privately" = "私下回复";
+"source_code" = "源代码";
 
 "mute_for_one_hour" = "静音 1 小时";
 "mute_for_two_hours" = "静音 2 小时";

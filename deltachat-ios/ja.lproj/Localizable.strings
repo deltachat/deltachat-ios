@@ -204,7 +204,6 @@
 "unpin" = "ピン留めを解除";
 "ConversationFragment_quoted_message_not_found" = "メッセージが見つかりません";
 "reply_privately" = "個別に返信する";
-
 "mute_for_one_hour" = "1時間停止する";
 "mute_for_two_hours" = "2時間停止する";
 "mute_for_one_day" = "24時間停止する";

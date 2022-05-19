@@ -200,7 +200,6 @@
 "unpin" = "Atsegti";
 "ConversationFragment_quoted_message_not_found" = "Pradinė žinutė nerasta";
 "reply_privately" = "Atsakyti privačiai";
-
 "mute_for_one_hour" = "Išjungti 1 valandai";
 "mute_for_two_hours" = "Išjungti 2 valandoms";
 "mute_for_one_day" = "Išjungti 1 dienai";

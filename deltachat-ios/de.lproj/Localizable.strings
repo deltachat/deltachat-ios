@@ -228,6 +228,7 @@
 "unpin" = "Loslösen";
 "ConversationFragment_quoted_message_not_found" = "Originalnachricht nicht gefunden";
 "reply_privately" = "Privat antworten";
+"source_code" = "Quelltext";
 
 "mute_for_one_hour" = "Stumm für 1 Stunde";
 "mute_for_two_hours" = "Stumm für 2 Stunden";
