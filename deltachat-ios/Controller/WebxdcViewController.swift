@@ -138,9 +138,13 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let msg = dcContext.getMessage(id: messageId)
+        let dict = msg.getWebxdcInfoDict()
+
+        let document = dict["document"] as? String ?? ""
+        let webxdcName = dict["name"] as? String ?? "ErrName" // name should not be empty
         let chatName = dcContext.getChat(chatId: msg.chatId).name
-        let webxdcName = msg.getWebxdcInfoDict()["name"] as? String ?? ""
-        self.title = webxdcName + " – " + chatName
+
+        self.title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
     }
     
     override func willMove(toParent parent: UIViewController?) {

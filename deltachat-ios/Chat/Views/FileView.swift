@@ -114,16 +114,17 @@ public class FileView: UIView {
                 fileImageView.image = UIImage(data: blob)?.sd_resizedImage(with: CGSize(width: 175, height: 175), scaleMode: .aspectFill)
             }
         }
+
+        let document = dict["document"] as? String ?? ""
+        let summary = dict["summary"] as? String ?? ""
+        let name = dict["name"] as? String ?? "ErrName" // name should not be empty
+
         fileTitle.numberOfLines = 1
         fileTitle.lineBreakMode = .byTruncatingTail
         fileTitle.font = UIFont.preferredBoldFont(for: .body)
         fileSubtitle.font = UIFont.preferredFont(forTextStyle: .body)
-        fileTitle.text = dict["name"] as? String
-        guard let summary = dict["summary"] as? String, !summary.isEmpty else {
-            fileSubtitle.text = "Webxdc"
-            return
-        }
-        fileSubtitle.text = summary
+        fileTitle.text = document.isEmpty ? name : "\(document) – \(name)"
+        fileSubtitle.text = summary.isEmpty ? "Webxdc" : summary
     }
 
     private func configureFile(message: DcMsg) {
