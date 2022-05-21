@@ -91,12 +91,12 @@ class DocumentGalleryFileCell: UITableViewCell {
             }
         }
 
-        title.text = dict["name"] as? String
-        guard let summary = dict["summary"] as? String, !summary.isEmpty else {
-            subtitle.text = "Webxdc"
-            return
-        }
-        subtitle.text = summary
+        let document = dict["document"] as? String ?? ""
+        let summary = dict["summary"] as? String ?? ""
+        let name = dict["name"] as? String ?? "ErrName" // name should not be empty
+
+        title.text = document.isEmpty ? name : "\(document) – \(name)"
+        subtitle.text = summary.isEmpty ? "Webxdc" : summary
     }
 
     private func generateThumbnailFor(url: URL, placeholder: UIImage?) {
