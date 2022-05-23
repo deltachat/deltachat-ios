@@ -13,7 +13,7 @@ class DocumentGalleryController: UIViewController {
         table.register(DocumentGalleryFileCell.self, forCellReuseIdentifier: DocumentGalleryFileCell.reuseIdentifier)
         table.dataSource = self
         table.delegate = self
-        table.rowHeight = 60
+        table.rowHeight = DocumentGalleryFileCell.cellHeight
         return table
     }()
 
@@ -177,6 +177,13 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
                 self?.contextMenu.actionProvider(indexPath: indexPath)
             }
         )
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+            tableView.rowHeight = DocumentGalleryFileCell.cellHeight
+        }
     }
 }
 

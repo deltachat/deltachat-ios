@@ -5,6 +5,14 @@ class DocumentGalleryFileCell: UITableViewCell {
 
     static let reuseIdentifier = "document_gallery_file_cell"
 
+    static var cellHeight: CGFloat {
+        let textHeight = UIFont.preferredFont(forTextStyle: .headline).pointSize + UIFont.preferredFont(forTextStyle: .subheadline).pointSize + 24
+        if textHeight > 74.5 {
+            return textHeight
+        }
+        return 74.5
+    }
+
     private let fileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -15,20 +23,19 @@ class DocumentGalleryFileCell: UITableViewCell {
         let stackView = UIStackView(arrangedSubviews: [title, subtitle])
         stackView.axis = NSLayoutConstraint.Axis.vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.clipsToBounds = true
         return stackView
     }()
 
     private lazy var title: UILabel = {
         let title = UILabel()
-        title.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        title.font = UIFont.preferredFont(forTextStyle: .headline)
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
 
     private lazy var subtitle: UILabel = {
         let subtitle = UILabel()
-        subtitle.font = UIFont.italicSystemFont(ofSize: 12)
+        subtitle.font = UIFont.preferredItalicFont(for: .subheadline)
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         return subtitle
     }()
