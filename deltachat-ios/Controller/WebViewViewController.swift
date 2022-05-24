@@ -9,6 +9,34 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         return view
     }()
 
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = String.localized("search")
+        searchController.searchBar.delegate = self
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.inputAccessoryView = acessoryViewContainer
+        searchController.searchBar.autocorrectionType = .yes
+        searchController.searchBar.keyboardType = .default
+        return searchController
+    }()
+
+    lazy var acessoryViewContainer: InputBarAccessoryView = {
+        let inputBar = InputBarAccessoryView()
+        inputBar.setMiddleContentView(searchAccessoryBar, animated: false)
+        inputBar.sendButton.isHidden = true
+        return inputBar
+    }()
+
+    public lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
+        let view = ChatSearchAccessoryBar()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isEnabled = false
+        return view
+    }()
+
     open var configuration: WKWebViewConfiguration {
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = false
@@ -54,5 +82,22 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        navigationItem.searchController = searchController
+        acessoryViewContainer.setLeftStackViewWidthConstant(to: 0, animated: false)
+        acessoryViewContainer.setRightStackViewWidthConstant(to: 0, animated: false)
+        acessoryViewContainer.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+    }
+}
+
+extension WebViewViewController: UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+    }
+}
+
+extension WebViewViewController: ChatSearchDelegate {
+    func onSearchPreviousPressed() {
+    }
+
+    func onSearchNextPressed() {
     }
 }
