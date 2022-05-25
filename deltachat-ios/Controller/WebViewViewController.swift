@@ -15,13 +15,13 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         searchController.searchBar.placeholder = String.localized("search")
         searchController.searchBar.delegate = self
         searchController.delegate = self
-        searchController.searchBar.inputAccessoryView = acessoryViewContainer
+        searchController.searchBar.inputAccessoryView = accessoryViewContainer
         searchController.searchBar.autocorrectionType = .yes
         searchController.searchBar.keyboardType = .default
         return searchController
     }()
 
-    lazy var acessoryViewContainer: InputBarAccessoryView = {
+    lazy var accessoryViewContainer: InputBarAccessoryView = {
         let inputBar = InputBarAccessoryView()
         inputBar.setMiddleContentView(searchAccessoryBar, animated: false)
         inputBar.sendButton.isHidden = true
@@ -108,9 +108,9 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         if allowSearch, #available(iOS 14.0, *) {
             navigationItem.searchController = searchController
         }
-        acessoryViewContainer.setLeftStackViewWidthConstant(to: 0, animated: false)
-        acessoryViewContainer.setRightStackViewWidthConstant(to: 0, animated: false)
-        acessoryViewContainer.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+        accessoryViewContainer.setLeftStackViewWidthConstant(to: 0, animated: false)
+        accessoryViewContainer.setRightStackViewWidthConstant(to: 0, animated: false)
+        accessoryViewContainer.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
     }
 
     private func initSearch() {
