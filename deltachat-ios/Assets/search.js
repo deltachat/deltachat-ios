@@ -2,12 +2,9 @@
 // We're using a global variable to store the number of occurrences
 var WKWebView_CurrentlySelected = -1;
 var WKWebView_SearchResultCount = 0;
-// var log = (s)=>webkit.messageHandlers.log.postMessage(s);
-
 
 // helper function, recursively searches in elements and their child nodes
 function WKWebView_HighlightAllOccurencesOfStringForElement(element,keyword) {
-    //log("WKWebView_HighlightAllOccurencesOfStringForElement called!");
     
     if (element) {
         if (element.nodeType == 3) {        // Text node
@@ -69,7 +66,6 @@ function WKWebView_jump(increment){
     el = document.getElementsByClassName("WKWebView_Highlight")[WKWebView_CurrentlySelected];
     el.style.backgroundColor="green";
     
-    
     el.scrollIntoView(true);
 }
 
@@ -78,6 +74,9 @@ function WKWebView_jump(increment){
 function WKWebView_HighlightAllOccurencesOfString(keyword) {
     WKWebView_RemoveAllHighlights();
     WKWebView_HighlightAllOccurencesOfStringForElement(document.body, keyword.toLowerCase());
+    if (WKWebView_SearchResultCount > 0) {
+        WKWebView_SearchNext()
+    }
 }
 
 // helper function, recursively removes the highlights in elements and their childs
