@@ -37,6 +37,8 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         return view
     }()
 
+    private var debounceTimer: Timer?
+
     open var configuration: WKWebViewConfiguration {
         let preferences = WKPreferences()
         let config = WKWebViewConfiguration()
@@ -92,17 +94,36 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         acessoryViewContainer.setRightStackViewWidthConstant(to: 0, animated: false)
         acessoryViewContainer.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
     }
+
+    func find(text: String) {
+        webView.highlightAllOccurencesOf(string: text)
+        webView.handleSearchResultCount { [weak self] result in
+            logger.debug("found \(result) elements")
+            self?.searchAccessoryBar.isEnabled = result > 0
+            self?.searchAccessoryBar.updateSearchResult(sum: result, position: 0)
+        }
+    }
 }
 
 extension WebViewViewController: UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        debounceTimer?.invalidate()
+        debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { [weak self] _ in
+            guard let self = self else { return }
+            let text = searchController.searchBar.text ?? ""
+            self.find(text: text)
+        }
     }
 }
 
 extension WebViewViewController: ChatSearchDelegate {
     func onSearchPreviousPressed() {
+        logger.debug("onSearchPrevious pressed")
+        self.webView.searchPrevious()
     }
 
     func onSearchNextPressed() {
+        logger.debug("onSearchNextPressed pressed")
+        self.webView.searchNext()
     }
 }
