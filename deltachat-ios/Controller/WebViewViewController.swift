@@ -25,6 +25,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         let inputBar = InputBarAccessoryView()
         inputBar.setMiddleContentView(searchAccessoryBar, animated: false)
         inputBar.sendButton.isHidden = true
+        inputBar.delegate = self
         return inputBar
     }()
 
@@ -35,6 +36,12 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         view.isEnabled = false
         return view
     }()
+
+    private lazy var keyboardManager: KeyboardManager? = {
+        let manager = KeyboardManager()
+        return manager
+    }()
+
 
     private var debounceTimer: Timer?
     private var initializedSearch = false
@@ -77,6 +84,14 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
+        keyboardManager?.bind(to: webView.scrollView)
+        keyboardManager?.on(event: .didHide) { [weak self] _ in
+            self?.webView.scrollView.contentInset.bottom = 0
+        }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        keyboardManager = nil
     }
 
     // MARK: - setup + configuration
@@ -87,6 +102,9 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        webView.scrollView.keyboardDismissMode = .interactive
+        webView.scrollView.contentInset.bottom = 0
+
         if allowSearch, #available(iOS 14.0, *) {
             navigationItem.searchController = searchController
         }
@@ -215,5 +233,12 @@ extension WebViewViewController: ChatSearchDelegate {
     func onSearchNextPressed() {
         logger.debug("onSearchNextPressed pressed")
         self.searchNext()
+    }
+}
+
+extension WebViewViewController: InputBarAccessoryViewDelegate {
+    func inputBar(_ inputBar: InputBarAccessoryView, didAdaptToKeyboard height: CGFloat) {
+        logger.debug("didAdaptToKeyboard: \(height)")
+        self.webView.scrollView.contentInset.bottom = height
     }
 }
