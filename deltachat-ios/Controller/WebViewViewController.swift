@@ -39,11 +39,14 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
 
     open var configuration: WKWebViewConfiguration {
         let preferences = WKPreferences()
-        preferences.javaScriptEnabled = false
-
-        let configuration = WKWebViewConfiguration()
-        configuration.preferences = preferences
-        return configuration
+        let config = WKWebViewConfiguration()
+        if #available(iOS 14.0, *) {
+            config.defaultWebpagePreferences.allowsContentJavaScript = false
+        } else {
+            preferences.javaScriptEnabled = false
+        }
+        config.preferences = preferences
+        return config
     }
 
     init() {
