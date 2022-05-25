@@ -93,6 +93,7 @@
 		30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */; };
 		308850A0282A914F00204623 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
+		309CB779283C09C400E7F65A /* WKWebView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309CB778283C09C400E7F65A /* WKWebView+Extensions.swift */; };
 		30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */; };
 		30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AAD71A2762869600DE3DC1 /* SelectableCell.swift */; };
 		30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */; };
@@ -365,6 +366,7 @@
 		3080A033277DE30100E74565 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOnDemandViewController.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
+		309CB778283C09C400E7F65A /* WKWebView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+Extensions.swift"; sourceTree = "<group>"; };
 		30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageCell.swift; sourceTree = "<group>"; };
 		30AAD71A2762869600DE3DC1 /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
@@ -624,6 +626,7 @@
 				302B84CD2397F6CD001C261F /* URL+Extension.swift */,
 				AE0AA957247834A400D42A7F /* Date+Extension.swift */,
 				AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */,
+				309CB778283C09C400E7F65A /* WKWebView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1412,6 +1415,7 @@
 				3080A027277DE12D00E74565 /* InputBarButtonItem.swift in Sources */,
 				AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */,
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
+				309CB779283C09C400E7F65A /* WKWebView+Extensions.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
