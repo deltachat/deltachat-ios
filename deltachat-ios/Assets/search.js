@@ -1,6 +1,6 @@
 
 // We're using a global variable to store the number of occurrences
-var currSelected = -1;
+var WKWebView_CurrentlySelected = -1;
 var WKWebView_SearchResultCount = 0;
 // var log = (s)=>webkit.messageHandlers.log.postMessage(s);
 
@@ -50,15 +50,15 @@ function WKWebView_SearchPrev(){
 }
 
 function WKWebView_jump(increment){
-    prevSelected = currSelected;
-    currSelected = currSelected + increment;
+    prevSelected = WKWebView_CurrentlySelected;
+    WKWebView_CurrentlySelected = WKWebView_CurrentlySelected + increment;
     
-    if (currSelected < 0){
-        currSelected = WKWebView_SearchResultCount + currSelected;
+    if (WKWebView_CurrentlySelected < 0){
+        WKWebView_CurrentlySelected = WKWebView_SearchResultCount + WKWebView_CurrentlySelected;
     }
     
-    if (currSelected >= WKWebView_SearchResultCount){
-        currSelected = currSelected - WKWebView_SearchResultCount;
+    if (WKWebView_CurrentlySelected >= WKWebView_SearchResultCount){
+        WKWebView_CurrentlySelected = WKWebView_CurrentlySelected - WKWebView_SearchResultCount;
     }
     
     prevEl = document.getElementsByClassName("WKWebView_Highlight")[prevSelected];
@@ -66,7 +66,7 @@ function WKWebView_jump(increment){
     if (prevEl){
         prevEl.style.backgroundColor="yellow";
     }
-    el = document.getElementsByClassName("WKWebView_Highlight")[currSelected];
+    el = document.getElementsByClassName("WKWebView_Highlight")[WKWebView_CurrentlySelected];
     el.style.backgroundColor="green";
     
     
@@ -109,7 +109,7 @@ function WKWebView_RemoveAllHighlightsForElement(element) {
 function WKWebView_RemoveAllHighlights() {
     
     WKWebView_SearchResultCount = 0;
-    currSelected = -1;
+    WKWebView_CurrentlySelected = -1;
     
     WKWebView_RemoveAllHighlightsForElement(document.body);
 }

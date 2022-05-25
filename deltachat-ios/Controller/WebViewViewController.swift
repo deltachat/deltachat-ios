@@ -15,7 +15,6 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         searchController.searchBar.placeholder = String.localized("search")
         searchController.searchBar.delegate = self
         searchController.delegate = self
-        searchController.searchResultsUpdater = self
         searchController.searchBar.inputAccessoryView = acessoryViewContainer
         searchController.searchBar.autocorrectionType = .yes
         searchController.searchBar.keyboardType = .default
@@ -38,6 +37,8 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     }()
 
     private var debounceTimer: Timer?
+    private var initializedSearch = false
+    open var allowSearch = false
 
     open var configuration: WKWebViewConfiguration {
         let preferences = WKPreferences()
@@ -78,7 +79,6 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         setupSubviews()
     }
 
-
     // MARK: - setup + configuration
     private func setupSubviews() {
         view.addSubview(webView)
@@ -87,7 +87,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        if #available(iOS 14.0, *) {
+        if allowSearch, #available(iOS 14.0, *) {
             navigationItem.searchController = searchController
         }
         acessoryViewContainer.setLeftStackViewWidthConstant(to: 0, animated: false)
@@ -95,23 +95,113 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         acessoryViewContainer.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
     }
 
-    func find(text: String) {
-        webView.highlightAllOccurencesOf(string: text)
-        webView.handleSearchResultCount { [weak self] result in
-            logger.debug("found \(result) elements")
-            self?.searchAccessoryBar.isEnabled = result > 0
-            self?.searchAccessoryBar.updateSearchResult(sum: result, position: 0)
+    private func initSearch() {
+        guard let path = Bundle.main.url(forResource: "search", withExtension: "js", subdirectory: "Assets") else {
+            logger.error("internal search js not found")
+            return
         }
+        do {
+            let data: Data = try Data(contentsOf: path)
+            let jsCode: String = String(decoding: data, as: UTF8.self)
+            // inject the search code
+            webView.evaluateJavaScript(jsCode, completionHandler: { _, error in
+                if let error = error {
+                    logger.error(error)
+                }
+            })
+        } catch {
+            logger.error("could not load javascript: \(error)")
+        }
+    }
+
+    private func find(text: String) {
+        highlightAllOccurencesOf(string: text)
+        updateAccessoryBar()
+    }
+
+    private func highlightAllOccurencesOf(string: String) {
+        // search function
+        let searchString = "WKWebView_HighlightAllOccurencesOfString('\(string)')"
+        // perform search
+        webView.evaluateJavaScript(searchString, completionHandler: { _, error in
+            if let error = error {
+                logger.error(error)
+            }
+        })
+    }
+
+    private func updateAccessoryBar() {
+        handleSearchResultCount { [weak self] result in
+            guard let self = self else { return }
+            logger.debug("found \(result) elements")
+            self.searchAccessoryBar.isEnabled = result > 0
+            self.handleCurrentlySelected { [weak self] position in
+                self?.searchAccessoryBar.updateSearchResult(sum: result, position: position == -1 ? 0 : position + 1)
+            }
+        }
+    }
+
+    private func handleSearchResultCount( completionHandler: @escaping (_ result: Int) -> Void) {
+        getInt(key: "WKWebView_SearchResultCount", completionHandler: completionHandler)
+    }
+
+    private func handleCurrentlySelected( completionHandler: @escaping (_ result: Int) -> Void) {
+        getInt(key: "WKWebView_CurrentlySelected", completionHandler: completionHandler)
+    }
+
+    private func getInt(key: String, completionHandler: @escaping (_ result: Int) -> Void) {
+        webView.evaluateJavaScript(key) { (result, error) in
+            if let error = error {
+                logger.error(error)
+            } else if result != nil,
+               let integerResult = result as? Int {
+                    completionHandler(integerResult)
+            }
+        }
+    }
+
+    private func removeAllHighlights() {
+        webView.evaluateJavaScript("WKWebView_RemoveAllHighlights()", completionHandler: nil)
+        updateAccessoryBar()
+    }
+
+    private func searchNext() {
+        webView.evaluateJavaScript("WKWebView_SearchNext()", completionHandler: nil)
+        updateAccessoryBar()
+    }
+
+    private func searchPrevious() {
+        webView.evaluateJavaScript("WKWebView_SearchPrev()", completionHandler: nil)
+        updateAccessoryBar()
     }
 }
 
-extension WebViewViewController: UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
+extension WebViewViewController: UISearchBarDelegate, UISearchControllerDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         debounceTimer?.invalidate()
         debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { [weak self] _ in
-            guard let self = self else { return }
-            let text = searchController.searchBar.text ?? ""
-            self.find(text: text)
+            logger.debug("search for \(searchText)")
+            if searchText.isEmpty {
+                self?.removeAllHighlights()
+            } else {
+                self?.find(text: searchText)
+            }
+        }
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let text = searchController.searchBar.text ?? ""
+        self.find(text: text)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.removeAllHighlights()
+    }
+
+    func willPresentSearchController(_ searchController: UISearchController) {
+        if !initializedSearch {
+            initializedSearch = true
+            initSearch()
         }
     }
 }
@@ -119,11 +209,11 @@ extension WebViewViewController: UISearchBarDelegate, UISearchControllerDelegate
 extension WebViewViewController: ChatSearchDelegate {
     func onSearchPreviousPressed() {
         logger.debug("onSearchPrevious pressed")
-        self.webView.searchPrevious()
+        self.searchPrevious()
     }
 
     func onSearchNextPressed() {
         logger.debug("onSearchNextPressed pressed")
-        self.webView.searchNext()
+        self.searchNext()
     }
 }
