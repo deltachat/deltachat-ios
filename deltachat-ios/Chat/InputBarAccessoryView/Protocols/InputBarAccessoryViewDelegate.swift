@@ -60,6 +60,13 @@ public protocol InputBarAccessoryViewDelegate: AnyObject {
     ///   - inputBar: The InputBarAccessoryView
     ///   - gesture: The gesture that was recognized
     func inputBar(_ inputBar: InputBarAccessoryView, didSwipeTextViewWith gesture: UISwipeGestureRecognizer)
+
+    /// Called when keyboard notifications have been processed by InputBarAccessoryView
+    ///
+    /// - Parameters:
+    ///   - inputBar: The InputBarAccessoryView
+    ///   - height: adapted keyboardHeight (without inputBar's intrinsic content size)
+    func inputBar(_ inputBar: InputBarAccessoryView, didAdaptToKeyboard height: CGFloat)
 }
 
 public extension InputBarAccessoryViewDelegate {
@@ -71,4 +78,7 @@ public extension InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {}
     
     func inputBar(_ inputBar: InputBarAccessoryView, didSwipeTextViewWith gesture: UISwipeGestureRecognizer) {}
+
+    func inputBar(_ inputBar: InputBarAccessoryView, didAdaptToKeyboard height: CGFloat) {}
+
 }
