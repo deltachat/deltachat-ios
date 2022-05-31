@@ -262,7 +262,10 @@ class WebxdcViewController: WebViewViewController {
     }
 
     @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: nil,
+        let msg = dcContext.getMessage(id: messageId)
+        let dict = msg.getWebxdcInfoDict()
+
+        let alert = UIAlertController(title: dict["name"] as? String ?? "ErrName",
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
