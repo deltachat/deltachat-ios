@@ -15,6 +15,19 @@ class WebxdcViewController: WebViewViewController {
     var dcContext: DcContext
     var webxdcUpdateObserver: NSObjectProtocol?
     
+    var sourceCodeUrl: String?
+    private lazy var moreButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image,
+                               style: .plain,
+                               target: self,
+                               action: #selector(moreButtonPressed))
+    }()
     
     // Block just everything, except of webxdc urls
     let blockRules = """
@@ -145,6 +158,10 @@ class WebxdcViewController: WebViewViewController {
         let chatName = dcContext.getChat(chatId: msg.chatId).name
 
         self.title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
+        if let sourceCode = dict["source_code_url"] as? String {
+            sourceCodeUrl = sourceCode
+            navigationItem.rightBarButtonItem = moreButton
+        }
     }
     
     override func willMove(toParent parent: UIViewController?) {
@@ -241,6 +258,24 @@ class WebxdcViewController: WebViewViewController {
                 self.lastSerial = maxSerial
             }
             webView.evaluateJavaScript("window.__webxdcUpdate(atob(\"\(statusUpdates.toBase64())\"))", completionHandler: nil)
+        }
+    }
+
+    @objc private func moreButtonPressed() {
+        let alert = UIAlertController(title: nil,
+                                      message: nil,
+                                      preferredStyle: .safeActionSheet)
+        let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil)
+        alert.addAction(sourceCodeAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func openUrl(_ action: UIAlertAction) {
+        if let sourceCodeUrl = sourceCodeUrl,
+           let url = URL(string: sourceCodeUrl) {
+            UIApplication.shared.open(url)
         }
     }
 }
