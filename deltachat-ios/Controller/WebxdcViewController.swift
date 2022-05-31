@@ -14,8 +14,9 @@ class WebxdcViewController: WebViewViewController {
     var messageId: Int
     var dcContext: DcContext
     var webxdcUpdateObserver: NSObjectProtocol?
-    
+    var webxdcName: String = ""
     var sourceCodeUrl: String?
+
     private lazy var moreButton: UIBarButtonItem = {
         let image: UIImage?
         if #available(iOS 13.0, *) {
@@ -154,7 +155,7 @@ class WebxdcViewController: WebViewViewController {
         let dict = msg.getWebxdcInfoDict()
 
         let document = dict["document"] as? String ?? ""
-        let webxdcName = dict["name"] as? String ?? "ErrName" // name should not be empty
+        webxdcName = dict["name"] as? String ?? "ErrName" // name should not be empty
         let chatName = dcContext.getChat(chatId: msg.chatId).name
 
         self.title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
@@ -263,10 +264,7 @@ class WebxdcViewController: WebViewViewController {
     }
 
     @objc private func moreButtonPressed() {
-        let msg = dcContext.getMessage(id: messageId)
-        let dict = msg.getWebxdcInfoDict()
-
-        let alert = UIAlertController(title: dict["name"] as? String ?? "ErrName",
+        let alert = UIAlertController(title: webxdcName,
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
