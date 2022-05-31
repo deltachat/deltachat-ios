@@ -269,7 +269,7 @@ class WebxdcViewController: WebViewViewController {
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil)
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         alert.addAction(sourceCodeAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
