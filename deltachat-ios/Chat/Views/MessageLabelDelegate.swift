@@ -72,7 +72,7 @@ public protocol MessageLabelDelegate: AnyObject {
     /// Triggered when a tap occurs on a bot command
     ///
     /// - Parameters:
-    ///   - mention: The selected bot command
+    ///   - command: The selected bot command
     func didSelectCommand(_ command: String)
 
     /// Triggered when a tap occurs on a custom regular expression
