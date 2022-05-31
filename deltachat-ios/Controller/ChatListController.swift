@@ -126,6 +126,7 @@ class ChatListController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startTimer()
+        refreshInBg() // at least required for sharing from DC -> DC
     }
 
     override func viewDidDisappear(_ animated: Bool) {
