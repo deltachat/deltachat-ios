@@ -125,6 +125,9 @@ class ContactDetailViewController: UITableViewController {
         updateHeader() // maybe contact name has been edited
         updateCellValues()
         tableView.reloadData()
+
+        // see comment in GroupChatDetailViewController.viewWillAppear()
+        AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
     }
 
     override func viewWillDisappear(_ animated: Bool) {

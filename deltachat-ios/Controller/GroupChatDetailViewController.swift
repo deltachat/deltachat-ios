@@ -218,6 +218,11 @@ class GroupChatDetailViewController: UIViewController {
         updateHeader()
         updateMediaCellValues()
         updateEphemeralTimerCellValue()
+
+        // when sharing to ourself in DocumentGalleryController,
+        // end of sharing is not easily catchable nor results in applicationWillEnterForeground();
+        // therefore, do the update here.
+        AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
     }
 
     
