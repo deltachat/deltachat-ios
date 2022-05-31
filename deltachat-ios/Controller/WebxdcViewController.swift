@@ -158,7 +158,8 @@ class WebxdcViewController: WebViewViewController {
         let chatName = dcContext.getChat(chatId: msg.chatId).name
 
         self.title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
-        if let sourceCode = dict["source_code_url"] as? String {
+        if let sourceCode = dict["source_code_url"] as? String,
+           !sourceCode.isEmpty {
             sourceCodeUrl = sourceCode
             navigationItem.rightBarButtonItem = moreButton
         }
