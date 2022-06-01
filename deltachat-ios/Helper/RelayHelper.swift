@@ -2,7 +2,7 @@ import Foundation
 import DcCore
 
 class RelayHelper {
-    static var sharedInstance: RelayHelper = RelayHelper()
+    static var shared: RelayHelper = RelayHelper()
     private static var dcContext: DcContext?
     var messageIds: [Int]?
 
@@ -17,7 +17,7 @@ class RelayHelper {
 
     class func setup(_ dcContext: DcContext) -> RelayHelper {
         RelayHelper.dcContext = dcContext
-        return sharedInstance
+        return shared
     }
 
     func setForwardMessage(messageId: Int) {

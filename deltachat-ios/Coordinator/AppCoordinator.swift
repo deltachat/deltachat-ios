@@ -116,7 +116,7 @@ class AppCoordinator {
     }
 
     func handleMailtoURL(_ url: URL) -> Bool {
-        if RelayHelper.sharedInstance.parseMailtoUrl(url) {
+        if RelayHelper.shared.parseMailtoUrl(url) {
             showTab(index: chatsTab)
             if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
                 rootController.popToRootViewController(animated: false)
@@ -128,7 +128,7 @@ class AppCoordinator {
         } else {
             logger.warning("Could not parse mailto: URL")
         }
-        RelayHelper.sharedInstance.finishMailto()
+        RelayHelper.shared.finishMailto()
         return false
     }
     

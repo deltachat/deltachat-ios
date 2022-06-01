@@ -117,7 +117,7 @@ class ChatListController: UITableViewController {
         navigationItem.titleView = titleView
         updateTitle()
 
-        if RelayHelper.sharedInstance.isForwarding() {
+        if RelayHelper.shared.isForwarding() {
             quitSearch(animated: false)
             tableView.scrollToTop()
         }
@@ -297,7 +297,7 @@ class ChatListController: UITableViewController {
 
     @objc func cancelButtonPressed() {
         // cancel forwarding
-        RelayHelper.sharedInstance.cancel()
+        RelayHelper.shared.cancel()
         updateTitle()
         refreshInBg()
     }
@@ -427,7 +427,7 @@ class ChatListController: UITableViewController {
     // MARK: updates
     private func updateTitle() {
         titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
-        if RelayHelper.sharedInstance.isForwarding() {
+        if RelayHelper.shared.isForwarding() {
             titleView.text = String.localized("forward_to")
             if !isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
@@ -502,7 +502,7 @@ class ChatListController: UITableViewController {
     }
 
     public func handleMailto() {
-        if let mailtoAddress = RelayHelper.sharedInstance.mailtoAddress {
+        if let mailtoAddress = RelayHelper.shared.mailtoAddress {
             // FIXME: the line below should work
             // var contactId = dcContext.lookupContactIdByAddress(mailtoAddress)
 
@@ -549,8 +549,8 @@ class ChatListController: UITableViewController {
             self.showNewChat(contactId: contactId)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            if RelayHelper.sharedInstance.isMailtoHandling() {
-                RelayHelper.sharedInstance.finishMailto()
+            if RelayHelper.shared.isMailtoHandling() {
+                RelayHelper.shared.finishMailto()
             }
         }))
         present(alert, animated: true, completion: nil)
