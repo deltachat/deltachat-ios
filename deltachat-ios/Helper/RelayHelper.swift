@@ -8,6 +8,7 @@ class RelayHelper {
 
     var mailtoDraft: String = ""
     var mailtoAddress: String?
+    var askToChatWithMailto: Bool = true
 
     private init() {
         guard RelayHelper.dcContext != nil else {
@@ -50,6 +51,7 @@ class RelayHelper {
     func finishMailto() {
         mailtoDraft = ""
         mailtoAddress = nil
+        askToChatWithMailto = true
     }
 
 

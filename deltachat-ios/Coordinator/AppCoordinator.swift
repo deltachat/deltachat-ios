@@ -121,7 +121,7 @@ class AppCoordinator {
             if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
                 rootController.popToRootViewController(animated: false)
                 if let controller = rootController.viewControllers.first as? ChatListController {
-                    controller.handleMailto()
+                    controller.handleMailto(askToChat: RelayHelper.shared.askToChatWithMailto)
                     return true
                 }
             }
