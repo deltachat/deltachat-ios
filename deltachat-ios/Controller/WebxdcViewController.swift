@@ -168,7 +168,9 @@ class WebxdcViewController: WebViewViewController {
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        if parent == nil {
+        let willBeRemoved = parent == nil
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = willBeRemoved
+        if willBeRemoved {
             // remove observer
             let nc = NotificationCenter.default
             if let webxdcUpdateObserver = webxdcUpdateObserver {
