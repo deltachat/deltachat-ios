@@ -372,7 +372,6 @@
 "media_preview" = "نمایش رسانه";
 "send_message" = "ارسال پیام";
 
-
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "پیام‌های ورودی";

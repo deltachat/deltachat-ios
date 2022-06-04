@@ -205,9 +205,9 @@
 "menu_view_profile" = "Profil anzeigen";
 "menu_zoom_in" = "Ansicht vergrößern";
 "menu_zoom_out" = "Ansicht verkleinern";
-"menu_save_log" = "Logdatei sichern";
+"menu_save_log" = "Logdatei speichern";
 "menu_more_options" = "Mehr Optionen";
-"menu_learn_spelling" = "Rechtschreibung lernen";
+"menu_learn_spelling" = "Schreibweise lernen";
 "menu_chat_audit_log" = "Chat-Überwachungsprotokoll";
 "jump_to_message" = "Zur Nachricht springen";
 "copy_json" = "JSON kopieren";
@@ -253,7 +253,9 @@
 "videochat_tap_to_open" = "Öffnen";
 "videochat_instance" = "Videochat-Instanz";
 "videochat_instance_placeholder" = "Videochat-Instanz";
+"videochat_instance_example" = "Beispiele: https://meet.jit.si/$ROOM oder basicwebrtc:https://your-server";
 "videochat_instance_explain" = "Wenn eine Videochat-Instanz definiert ist, können Sie einen Videochat von jedem Chat aus starten. Videochats erfordern beidseitig eine kompatible App oder einen kompatiblen Browser.\n\nBeispiele: https://meet.jit.si/$ROOM oder basicwebrtc:https://your-server";
+"videochat_instance_explain_2" = "Wenn Videochat eingeschaltet ist, können Sie einen Videochat von jedem Chat aus starten. Videochats erfordern beidseitig eine kompatible App oder einen kompatiblen Browser.";
 "videochat_instance_from_qr" = "\"%1$@\" verwenden, um andere zu Videochats einzuladen?\n\nWenn Sie diese Einstellung vornehmen, können Sie von jedem Chat aus einen Videochat starten. Dies überschreibt, falls vorhanden, die bisherige Einstellung zu Videochats.";
 "videochat_invitation" = "Videochat-Einladung";
 "videochat_invitation_body" = "Sie sind zu einem Videochat eingeladen, klicken Sie auf %1$@ , um teilzunehmen.";
@@ -310,6 +312,7 @@
 "saved_messages_explain" = "• Nachrichten zum Merken hierher weiterleiten\n\n• Notizen oder Sprachmemos machen\n\n• Medien zum Speichern einfügen";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Gespeichert";
+"save_as" = "Speichern unter";
 "retry_send" = "Nachricht erneut senden";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Sie können nicht schreiben, da Sie kein Mitglied dieser Gruppe sind. Bitten Sie ein anderes Mitglied, Sie hinzuzufügen.";
@@ -376,9 +379,12 @@
 "tab_map" = "Karte";
 "tab_gallery_empty_hint" = "In diesem Chat geteilte Bilder und Videos werden hier angezeigt.";
 "tab_docs_empty_hint" = "In diesem Chat geteilte Dokumente, Musik und Dateien werden hier angezeigt.";
+"tab_image_empty_hint" = "In diesem Chat geteilte Bilder werden hier angezeigt.";
+"tab_video_empty_hint" = "In diesem Chat geteilte Videos werden hier angezeigt.";
+"tab_audio_empty_hint" = "In diesem Chat geteilte Audiodateien und Sprachnachrichten werden hier angezeigt.";
+"tab_webxdc_empty_hint" = "In diesem Chat geteilte Webxdc werden hier angezeigt.";
 "media_preview" = "Medien-Vorschau";
 "send_message" = "Nachricht senden";
-
 
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view
@@ -552,6 +558,7 @@
 "pref_watch_sent_folder" = "Gesendet-Ordner beobachten";
 "pref_watch_mvbox_folder" = "DeltaChat-Ordner beobachten";
 "pref_send_copy_to_self" = "Kopie an mich selbst senden";
+"pref_send_copy_to_self_explain" = "Erforderlich bei Verwendung des E-Mail-Kontos auf mehreren Geräten.";
 "pref_auto_folder_moves" = "Autom. Verschieben in den DeltaChat-Ordner";
 "pref_auto_folder_moves_explain" = "Konversationen verschieben für einen übersichtlichen Posteingang";
 "pref_only_fetch_mvbox_title" = "Nur aus DeltaChat-Ordner lesen";
@@ -823,6 +830,17 @@
 "no_spellcheck_suggestions_found" = "Keine Rechtschreibvorschläge gefunden.";
 "show_window" = "Fenster anzeigen";
 "login_socks5_experimental_warning" = "Die Unterstützung von SOCKS5 ist derzeit experimentell. Die Verwendung erfolgt auf eigene Gefahr. Wenn Sie eine Adresse in das E-Mail-Feld eingeben, wird eine DNS-Suche durchgeführt, die nicht durch SOCKS5 getunnelt wird.";
+
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Tastaturbelegung";
+"switch_between_chats" = "Chats durchschalten";
+"scroll_messages" = "Nachrichten scrollen";
+// command to put the cursor to the search input field
+"focus_search_input" = "Suche aktivieren";
+// command to put the cursor to the message input field
+"focus_message_input" = "Eingabefeld aktivieren";
+"force_refresh_network" = "Neu Verbinden";
+"insert_newline" = "Neue Zeile einfügen";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Übertragungsstatus: Fehler";

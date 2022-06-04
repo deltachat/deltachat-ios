@@ -1,5 +1,7 @@
 NSCameraUsageDescription = "Delta Chat käyttää kameraa kuvien ja videoiden kuvaamiseen ja lähettämiseen sekä QR-koodien skannaamiseen.";
 NSContactsUsageDescription = "Delta Chat käyttää yhteystietojasi näyttämään listan sähköpostiosoitteista, joihin voit kirjoittaa. Delta Chatilla ei ole palvelimia, eikä yhteystietojasi lähetetä mihinkään.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat tarvitsee oikeuden sijainnin tarkasteluun jakaakseen sijaintisi sallimallasi aikavälillä.";
+NSLocationWhenInUseUsageDescription = "Delta Chat tarvitsee oikeuden sijainnin tarkasteluun jakaakseen sijaintisi sallimallasi aikavälillä.";
 NSMicrophoneUsageDescription = "Delta Chat käyttää mikrofonia ääniviestien ja äänellisten videoiden tallentamiseen ja lähettämiseen.";
 NSPhotoLibraryUsageDescription = "Delta Chat antaa sinun valita, mitkä kuvat kirjastostasi haluat lähettää.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat haluaa tallentaa kuvia kirjastoosi.";

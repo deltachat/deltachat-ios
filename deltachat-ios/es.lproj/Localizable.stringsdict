@@ -14,6 +14,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d min</string>
+			<key>many</key>
+			<string>%d min</string>
 			<key>other</key>
 			<string>%d min</string>
 		</dict>
@@ -30,6 +32,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d hora</string>
+			<key>many</key>
+			<string>%d horas</string>
 			<key>other</key>
 			<string>%d horas</string>
 		</dict>
@@ -46,6 +50,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d chat</string>
+			<key>many</key>
+			<string>%d chats</string>
 			<key>other</key>
 			<string>%d chats</string>
 		</dict>
@@ -62,6 +68,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d contacto</string>
+			<key>many</key>
+			<string>%d contactos</string>
 			<key>other</key>
 			<string>%d contactos</string>
 		</dict>
@@ -78,6 +86,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d mensaje</string>
+			<key>many</key>
+			<string>%d mensajes</string>
 			<key>other</key>
 			<string>%d mensajes</string>
 		</dict>
@@ -94,6 +104,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d miembro</string>
+			<key>many</key>
+			<string>%d miembros</string>
 			<key>other</key>
 			<string>%d miembros</string>
 		</dict>
@@ -110,6 +122,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d destinatario</string>
+			<key>many</key>
+			<string>%d destinatarios</string>
 			<key>other</key>
 			<string>%d destinatarios</string>
 		</dict>
@@ -126,6 +140,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>¿Enviar el  archivo a %s?</string>
+			<key>many</key>
+			<string>¿Enviar los siguientes %d archivos a %s?</string>
 			<key>other</key>
 			<string>¿Enviar los siguientes %d archivos a %s?</string>
 		</dict>
@@ -142,6 +158,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>¿Eliminar %d chat? No volverá a ser mostrado en la lista de chats, pero sus mensajes permanecerán en el servidor.</string>
+			<key>many</key>
+			<string>¿Eliminar %d chats? No volverán a ser mostrados en la lista de chats, pero sus mensajes permanecerán en el servidor.</string>
 			<key>other</key>
 			<string>¿Eliminar %d chats? No volverán a ser mostrados en la lista de chats, pero sus mensajes permanecerán en el servidor.</string>
 		</dict>
@@ -158,6 +176,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>¿Eliminar %d mensaje aquí y en el servidor?</string>
+			<key>many</key>
+			<string>¿Eliminar %d mensajes aquí y en el servidor?</string>
 			<key>other</key>
 			<string>¿Eliminar %d mensajes aquí y en el servidor?</string>
 		</dict>
@@ -174,6 +194,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>¿Eliminar %d mensaje?</string>
+			<key>many</key>
+			<string>¿Eliminar %d mensajes?</string>
 			<key>other</key>
 			<string>¿Eliminar %d mensajes?</string>
 		</dict>
@@ -190,6 +212,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d chat archivado</string>
+			<key>many</key>
+			<string>%d chats archivados</string>
 			<key>other</key>
 			<string>%d chats archivados</string>
 		</dict>
@@ -206,6 +230,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d chat des-archivado</string>
+			<key>many</key>
+			<string>%d chats des-archivados</string>
 			<key>other</key>
 			<string>%d chats des-archivados</string>
 		</dict>
@@ -222,6 +248,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d nuevo mensaje</string>
+			<key>many</key>
+			<string>%d nuevos mensajes</string>
 			<key>other</key>
 			<string>%d nuevos mensajes</string>
 		</dict>

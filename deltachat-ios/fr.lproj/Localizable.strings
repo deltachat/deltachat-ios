@@ -29,6 +29,8 @@
 "back" = "Retour";
 "close" = "Fermer";
 "forward" = "Faire suivre";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Renvoyer";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Archiver";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -226,6 +228,8 @@
 "unpin" = "Désépingler";
 "ConversationFragment_quoted_message_not_found" = "Le message original n\'a pas été trouvé";
 "reply_privately" = "Répondre en privé";
+"source_code" = "Code source";
+
 "mute_for_one_hour" = "Déactiver pour 1 heure";
 "mute_for_two_hours" = "Déactiver pour 2 heures";
 "mute_for_one_day" = "Déactiver pour 1 jour";
@@ -375,7 +379,6 @@
 "media_preview" = "Prévisualiser le fichier multimédia";
 "send_message" = "Envoyer message";
 
-
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Messages entrants";
@@ -401,6 +404,7 @@
 "part_of_total_used" = "%1$@ sur %2$@ utilisé";
 
 
+"scan_invitation_code" = "Scanner le code d\'invitation";
 "welcome_intro1_message" = "Le messager avec le plus large public au monde. Libre et indépendant.";
 "login_title" = "Connexion";
 "login_header" = "Connexion vers votre serveur";
@@ -829,6 +833,22 @@
 "a11y_background_preview_label" = "Aperçu de l\'arrière-plan";
 "a11y_disappearing_messages_activated" = "Messages éphémères activés";
 
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Arrêter de partager la géolocalisation";
+"a11y_connectivity_hint" = "Double-cliquez pour afficher les détails de la connectivité.";
+"login_error_no_internet_connection" = "Pas de connexion internet, connexion échouée.";
+"share_account_not_configured" = "Le compte n\'est pas configuré.";
+"cannot_play_audio_file" = "Le fichier audio ne peut être joué.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Pour prendre des photos, des vidéos ou utiliser le Scanner de QR-Code, ouvrez les paramètres système et activez \"Caméra\".";
+"open_settings" = "Ouvrir les paramètres";
+"import_device_contacts_hint" = "Pour discuter avec des contacts de votre appareils, ouvrez les paramètre et activez \"Contacts\".";
+// iOS notification settings
+"disabled_in_dc" = "Désactivé dans Delta Chat";
+"disabled_in_system_settings" = "Désactivé dans les paramètres système";
+"bg_app_refresh_disabled" = "\"Le rafraîchissement des applications en arrière-plan\" est désactivé dans les paramètres du système.";
+// iOS connectivity view
+"delayed" = "Retardé";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -846,3 +866,5 @@
 // device messages for updates
 "update_1_28_android" = "1.28 Changements marquants:\n\n🔒 Chiffrement: Une nouvelle option expérimentale pour garder vos contacts, vos secrets de chiffrement et vos messages texte chiffrés sur votre appareil. Disponible seulement lors de la création de compte et l\'import de fichiers de sauvegardes\n\n📫 Envoi de messages à une liste de distribution\n\n💫 Configuration initiale plus rapide pour davantage de serveurs mail et options réseaux éclaircies pour éviter d\'accidentelles mauvaises configurations\n\n🐜 Beaaaaaucoup de problèmes rapportés par les utilisateurs corrigés";
 "update_1_28_ios_extra_line" = "... et vous pouvez désormais sélectionner un arrière-plan dans \"Configuration / Arrière-plan\" :)";
+"update_1_30" = "Plus rapide. Plus stable.\n\nPour la version 1.30, nous nous sommes focalisés sur la vitesse et la fiabilité, pour fixer des dizaines de bogues. Vérifiez le journal des changements voir si votre bogue favori a été corrigé : https://get.delta.chat/#changelogs 🚀";
+

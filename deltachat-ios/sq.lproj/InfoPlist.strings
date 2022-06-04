@@ -1,5 +1,7 @@
 NSCameraUsageDescription = "Lejimi i përdorimi të kamerës ju bën të mundur të bëni foto dhe video.";
 NSContactsUsageDescription = "Lejimi i përdorimi të librit tuaj të adresave kamerës ju bën të mundur të bisedoni me kontakte prej pajisjes tuaj.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Që të mund t’u tregojë të tjerëve vendndodhjen tuaj, Delta Chat lyp lejen vendore, për aq kohë sa keni aktivizuar tregim vendndodhjeje.";
+NSLocationWhenInUseUsageDescription = "Që të mund t’u tregojë të tjerëve vendndodhjen tuaj, Delta Chat lyp lejen vendore, për aq kohë sa keni aktivizuar tregim vendndodhjeje.";
 NSMicrophoneUsageDescription = "Lejimi i përdorimi të mikrofonit ju bën të mundur të bëni incizoni audio.";
 NSPhotoLibraryUsageDescription = "Lejimi i përdorimi të fototekës tuaj ju bën të mundur të ngarkoni figura prej saj.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat dëshiron të ruajë figura në fototekën tuaj.";

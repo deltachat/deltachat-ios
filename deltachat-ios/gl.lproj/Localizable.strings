@@ -379,7 +379,6 @@
 "media_preview" = "Vista previa dos medios";
 "send_message" = "Enviar mensaxe";
 
-
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Mensaxes entrantes";

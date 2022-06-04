@@ -14,6 +14,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d min</string>
+			<key>many</key>
+			<string>%d min</string>
 			<key>other</key>
 			<string>%d min</string>
 		</dict>
@@ -29,6 +31,8 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
+			<string>%d horas</string>
+			<key>many</key>
 			<string>%d horas</string>
 			<key>other</key>
 			<string>%d horas</string>
@@ -46,6 +50,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d conversa</string>
+			<key>many</key>
+			<string>%d conversas</string>
 			<key>other</key>
 			<string>%d conversas</string>
 		</dict>
@@ -61,6 +67,8 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
+			<string>%d contatos</string>
+			<key>many</key>
 			<string>%d contatos</string>
 			<key>other</key>
 			<string>%d contatos</string>
@@ -78,6 +86,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d message</string>
+			<key>many</key>
+			<string>%d mensagens</string>
 			<key>other</key>
 			<string>%d mensagens</string>
 		</dict>
@@ -94,6 +104,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d participantes</string>
+			<key>many</key>
+			<string>%d membros</string>
 			<key>other</key>
 			<string>%d membros</string>
 		</dict>
@@ -110,6 +122,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d destinatário</string>
+			<key>many</key>
+			<string>%d destinatários</string>
 			<key>other</key>
 			<string>%d destinatários</string>
 		</dict>
@@ -126,6 +140,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Enviar o seguinte arquivo para %s?</string>
+			<key>many</key>
+			<string>Enviar os seguintes arquivos %d para %s?</string>
 			<key>other</key>
 			<string>Enviar os seguintes arquivos %d para %s?</string>
 		</dict>
@@ -142,6 +158,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Delete %d chat? It will no longer be shown in the chat list, its messages will remain on the server.</string>
+			<key>many</key>
+			<string>Apagar %d conversas? Elas não mais serão exibidas na lista, mas ficarão no servidor.</string>
 			<key>other</key>
 			<string>Apagar %d conversas? Elas não mais serão exibidas na lista, mas ficarão no servidor.</string>
 		</dict>
@@ -158,6 +176,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Delete %d message here and on the server?</string>
+			<key>many</key>
+			<string>Apagar %d mensagens aqui e no servidor?</string>
 			<key>other</key>
 			<string>Apagar %d mensagens aqui e no servidor?</string>
 		</dict>
@@ -174,6 +194,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Apagar %d mensagem?</string>
+			<key>many</key>
+			<string>Apagar %d mensagens?</string>
 			<key>other</key>
 			<string>Apagar %d mensagens?</string>
 		</dict>
@@ -190,6 +212,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d chat archived</string>
+			<key>many</key>
+			<string>%d conversas arquivadas</string>
 			<key>other</key>
 			<string>%d conversas arquivadas</string>
 		</dict>
@@ -206,6 +230,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d chat unarchived</string>
+			<key>many</key>
+			<string>%d conversas desarquivadas</string>
 			<key>other</key>
 			<string>%d conversas desarquivadas</string>
 		</dict>
@@ -221,6 +247,8 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
+			<string>%d novas mensagens</string>
+			<key>many</key>
 			<string>%d novas mensagens</string>
 			<key>other</key>
 			<string>%d novas mensagens</string>

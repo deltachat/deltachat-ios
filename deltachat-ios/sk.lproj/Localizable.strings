@@ -162,7 +162,7 @@
 "menu_archive_chat" = "Archivovať konverzáciu";
 "menu_unarchive_chat" = "Zrušiť archiváciu konverzácie";
 "menu_add_attachment" = "Pridať prílohu";
-"menu_leave_group" = "Opustit skupinu";
+"menu_leave_group" = "Opustiť skupinu";
 "menu_delete_chat" = "Odstrániť konverzáciu";
 "ask_delete_named_chat" = "Naozaj chcete položku odstrániť  \"%1$@\" ?";
 "menu_delete_messages" = "Odstrániť správy";
@@ -228,6 +228,8 @@
 "unpin" = "Uvoľniť";
 "ConversationFragment_quoted_message_not_found" = "Pôvodná správa sa nenašla";
 "reply_privately" = "Odpovedajte súkromne";
+"source_code" = "Zdrojový kód";
+
 "mute_for_one_hour" = "Stíšiť na 1 hodinu";
 "mute_for_two_hours" = "Stíšiť na 2 hodiny";
 "mute_for_one_day" = "Stíšiť na 1 deň";
@@ -361,7 +363,7 @@
 "change_group_image" = "Zmeniť skupinový obrázok";
 "group_create_button" = "Vytvorte skupinu";
 "group_please_enter_group_name" = "Zadajte názov skupiny.";
-"group_add_members" = "Pridajte členov";
+"group_add_members" = "Pridať členov";
 "group_self_not_in_group" = "Ak chcete vykonať túto akciu, musíte byť členom skupiny.";
 "profile_encryption" = "Šifrovanie";
 "profile_shared_chats" = "Zdieľané konverzácie";
@@ -376,7 +378,6 @@
 "tab_docs_empty_hint" = "Tu sa zobrazia dokumenty, hudba a ďalšie súbory zdieľané v tejto konverzácii.";
 "media_preview" = "Ukážka pre médiá";
 "send_message" = "Poslať správu";
-
 
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view

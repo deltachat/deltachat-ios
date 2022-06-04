@@ -228,6 +228,8 @@
 "unpin" = "Losmaken";
 "ConversationFragment_quoted_message_not_found" = "Geen oorspronkelijk bericht gevonden";
 "reply_privately" = "Privé beantwoorden";
+"source_code" = "Broncode";
+
 "mute_for_one_hour" = "1 uur lang uitschakelen";
 "mute_for_two_hours" = "2 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
@@ -251,7 +253,9 @@
 "videochat_tap_to_open" = "Druk om te openen";
 "videochat_instance" = "Videogespreksinstantie";
 "videochat_instance_placeholder" = "Mijn videogespreksinstantie";
+"videochat_instance_example" = "Voorbeeld: https://meet.jit.si/$KAMER of basicwebrtc:https://mijn-server";
 "videochat_instance_explain" = "Als je een videogespreksinstantie opgeeft, kun je een videogesprek starten vanuit elk één-op-ééngesprek. Voor videogesprekken hebben zowel jij als je gesprekspartner een compatibele app of webbrowser nodig.\n\nVoorbeelden: https://meet.jit.si/$KAMER of basicwebrtc:https://mijn-server";
+"videochat_instance_explain_2" = "Als je videogesprekken inschakelt, dan kun je een videogesprek starten vanuit elk één-op-ééngesprek. Voor videogesprekken hebben zowel jij als je gesprekspartner een compatibele app of webbrowser nodig.";
 "videochat_instance_from_qr" = "Wil je \"%1$@\" gebruiken om anderen uit te nodigen voor videogesprekken?\n\nNa het instellen kun je een videogesprek starten vanuit elk één-op-ééngesprek. Deze instelling vervangt de vorige videogespreksinstelling.";
 "videochat_invitation" = "Uitnodiging voor videogesprek";
 "videochat_invitation_body" = "Je bent uitgenodigd voor een videogesprek. Druk op %1$@ om deel te nemen.";
@@ -308,6 +312,7 @@
 "saved_messages_explain" = "• Stuur berichten door naar hier om ze snel terug te kunnen lezen\n\n• Maak aantekeningen of spraakopnamen\n\n• Voeg media toe om deze op te slaan";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Opgeslagen";
+"save_as" = "Opslaan als";
 "retry_send" = "Bericht opnieuw versturen";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Alleen leden kunnen berichten versturen aan deze groep. Vraag aan een lid om lid te worden.";
@@ -374,9 +379,12 @@
 "tab_map" = "Kaart";
 "tab_gallery_empty_hint" = "De in dit gesprek gedeelde afbeeldingen en video\'s verschijnen hier.";
 "tab_docs_empty_hint" = "De in dit gesprek gedeelde documenten, muziek en overige bestanden verschijnen hier.";
+"tab_image_empty_hint" = "De in dit gesprek gedeelde afbeeldingen verschijnen hier.";
+"tab_video_empty_hint" = "De in dit gesprek gedeelde video\'s verschijnen hier.";
+"tab_audio_empty_hint" = "De in dit gesprek gedeelde audiobestanden en spraakberichten verschijnen hier.";
+"tab_webxdc_empty_hint" = "De in dit gesprek gedeelde webxdc-inhoud verschijnt hier.";
 "media_preview" = "Mediavoorbeeld";
 "send_message" = "Bericht versturen";
-
 
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view
@@ -550,6 +558,7 @@
 "pref_watch_sent_folder" = "Map ‘Verzonden’ controleren op nieuwe berichten";
 "pref_watch_mvbox_folder" = "DeltaChat-map controleren op nieuwe berichten";
 "pref_send_copy_to_self" = "Kopie versturen naar mijzelf";
+"pref_send_copy_to_self_explain" = "Vereist bij gebruik van dit account op meerdere apparaten.";
 "pref_auto_folder_moves" = "Automatisch verplaatsen naar DeltaChat-map";
 "pref_auto_folder_moves_explain" = "Gesprekken worden verplaatst om je Postvak IN netjes te houden";
 "pref_only_fetch_mvbox_title" = "Alleen DeltaChat-map controleren";
@@ -821,6 +830,17 @@
 "no_spellcheck_suggestions_found" = "Geen suggesties gevonden.";
 "show_window" = "Venster tonen";
 "login_socks5_experimental_warning" = "De SOCKS5-ondersteuning is momenteel nog experimenteel - gebruik hiervan is op eigen risico. Als je een e-mailadres invoert, dan vindt er een dns-opzoeking plaats die niet wordt doorgesluisd via SOCKS5.";
+
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Sneltoetsen";
+"switch_between_chats" = "Wisselen van gesprek";
+"scroll_messages" = "Scrollen door berichten";
+// command to put the cursor to the search input field
+"focus_search_input" = "Zoekbalk focussen";
+// command to put the cursor to the message input field
+"focus_message_input" = "Invoerveld focussen";
+"force_refresh_network" = "Netwerk gedwongen vernieuwen";
+"insert_newline" = "Nieuwe regel invoegen";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Bezorgstatus: afleveren mislukt";

@@ -14,6 +14,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d min</string>
+			<key>many</key>
+			<string>%d mins</string>
 			<key>other</key>
 			<string>%d mins</string>
 		</dict>
@@ -30,6 +32,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d heure</string>
+			<key>many</key>
+			<string>%d heures</string>
 			<key>other</key>
 			<string>%d heures</string>
 		</dict>
@@ -46,6 +50,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d discussion</string>
+			<key>many</key>
+			<string>%d discussions</string>
 			<key>other</key>
 			<string>%d discussions</string>
 		</dict>
@@ -62,6 +68,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d contact</string>
+			<key>many</key>
+			<string>%d contacts</string>
 			<key>other</key>
 			<string>%d contacts</string>
 		</dict>
@@ -78,6 +86,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d message</string>
+			<key>many</key>
+			<string>%d messages</string>
 			<key>other</key>
 			<string>%d messages</string>
 		</dict>
@@ -94,6 +104,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d membre</string>
+			<key>many</key>
+			<string>%d membres</string>
 			<key>other</key>
 			<string>%d membres</string>
 		</dict>
@@ -110,6 +122,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d destinataire</string>
+			<key>many</key>
+			<string>%d destinataires</string>
 			<key>other</key>
 			<string>%d destinataires</string>
 		</dict>
@@ -126,6 +140,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Envoyer le fichier suivant à %s ?</string>
+			<key>many</key>
+			<string>Envoyer les %d fichiers suivants à %s ?</string>
 			<key>other</key>
 			<string>Envoyer les %d fichiers suivants à %s ?</string>
 		</dict>
@@ -142,6 +158,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Effacer %d tchats ?</string>
+			<key>many</key>
+			<string>Effacer %d discussions ? Elles ne seront plus montrées dans la liste de tchats, mais leurs messages resteront sur le serveur.</string>
 			<key>other</key>
 			<string>Effacer %d discussions ? Elles ne seront plus montrées dans la liste de tchats, mais leurs messages resteront sur le serveur.</string>
 		</dict>
@@ -158,6 +176,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Effacer %d messages ici et sur le serveur ?</string>
+			<key>many</key>
+			<string>Effacer %dmessages ici et sur le serveur ?</string>
 			<key>other</key>
 			<string>Effacer %dmessages ici et sur le serveur ?</string>
 		</dict>
@@ -174,6 +194,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Effacer %d message ?</string>
+			<key>many</key>
+			<string>Effacer %d messages ?</string>
 			<key>other</key>
 			<string>Effacer %d messages ?</string>
 		</dict>
@@ -190,6 +212,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string> %d discussion archivée</string>
+			<key>many</key>
+			<string>%d discussions archivées</string>
 			<key>other</key>
 			<string>%d discussions archivées</string>
 		</dict>
@@ -206,6 +230,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d discussion désarchivée</string>
+			<key>many</key>
+			<string>%d  discussions désarchivées</string>
 			<key>other</key>
 			<string>%d  discussions désarchivées</string>
 		</dict>
@@ -222,6 +248,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%dnouveaux messages</string>
+			<key>many</key>
+			<string>%d nouveaux messages</string>
 			<key>other</key>
 			<string>%d nouveaux messages</string>
 		</dict>

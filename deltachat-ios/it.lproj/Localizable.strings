@@ -228,6 +228,8 @@
 "unpin" = "Sblocca";
 "ConversationFragment_quoted_message_not_found" = "Messaggio originale non trovato";
 "reply_privately" = "Rispondi in Privato";
+"source_code" = "Codice Sorgente";
+
 "mute_for_one_hour" = "Silenzia per 1 ora";
 "mute_for_two_hours" = "Silenzia per 2 ore";
 "mute_for_one_day" = "Silenzia per 1 giorno";
@@ -251,7 +253,9 @@
 "videochat_tap_to_open" = "Tocca per Aprire";
 "videochat_instance" = "Istanza Video Chat";
 "videochat_instance_placeholder" = "La Tua Istanza Video Chat";
+"videochat_instance_example" = "Esempi: https://meet.jit.si/$ROOM o basicwebrtc:https://your-server";
 "videochat_instance_explain" = "Se viene definita un\'istanza video chat, è possibile avviare una video chat da ciascuna chat uno a uno. Le video chat richiedono un\'app compatibile o un browser compatibile da entrambe le parti.\n\nEsempi: https://meet.jit.si/$ROOM o basicwebrtc:https://your-server";
+"videochat_instance_explain_2" = "Se la video chat è abilitata, è possibile avviare una video chat da ogni chat. Le video chat richiedono un\'applicazione compatibile o un browser compatibile da entrambe le parti.";
 "videochat_instance_from_qr" = "Utilizzare \"%1$@\" per invitare altri alla video chat?\n\nUna volta impostato, è possibile avviare una video chat da ogni chat uno a uno. Ciò sostituirà l\'eventuale impostazione precedente per le video chat.";
 "videochat_invitation" = "Invito alla video chat";
 "videochat_invitation_body" = "Sei invitato a una video chat, fai clic %1$@ per partecipare.";
@@ -308,6 +312,7 @@
 "saved_messages_explain" = "• Inoltra i messaggi per trovarli facilmente\n\n• Memorizza note scritte o vocali\n\n• Allega oggetti per salvarli";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Salvato";
+"save_as" = "Salva Con Nome";
 "retry_send" = "Riprova l\'invio del messaggio";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Non puoi scrivere perché non sei in questo gruppo. Per partecipare, chiedi ad un altro membro.";
@@ -374,9 +379,12 @@
 "tab_map" = "Mappa";
 "tab_gallery_empty_hint" = "Immagini e video condivisi in questa chat vengono mostrati qui.";
 "tab_docs_empty_hint" = "Documenti, musica e altri file condivisi in questa chat vengono mostrati qui.";
+"tab_image_empty_hint" = "Le immagini condivise in questa chat saranno visualizzate qui.";
+"tab_video_empty_hint" = "I video condivisi in questa chat saranno visualizzati qui.";
+"tab_audio_empty_hint" = "I File Audio e i Messaggi Vocali condivisi in questa chat saranno visualizzati qui.";
+"tab_webxdc_empty_hint" = "I contenuti Webxdc condivisi in questa chat saranno visualizzati qui.";
 "media_preview" = "Anteprima dei Media";
 "send_message" = "Invia Messaggio";
-
 
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view
@@ -550,6 +558,7 @@
 "pref_watch_sent_folder" = "Controlla Cartella Inviata";
 "pref_watch_mvbox_folder" = "Controlla Cartella DeltaChat";
 "pref_send_copy_to_self" = "Auto-invia Copia";
+"pref_send_copy_to_self_explain" = "Richiesto quando si utilizza questo account su più dispositivi.";
 "pref_auto_folder_moves" = "Sposta nella Cartella DeltaChat";
 "pref_auto_folder_moves_explain" = "Le chat vengono spostate per evitare di riempire la cartella In Arrivo";
 "pref_only_fetch_mvbox_title" = "Recupera dalla Cartella DeltaChat";
@@ -821,6 +830,15 @@
 "no_spellcheck_suggestions_found" = "Nessun suggerimento ortografico trovato.";
 "show_window" = "Mostra Finestra";
 "login_socks5_experimental_warning" = "Il supporto SOCKS5 è attualmente sperimentale. Usatelo a vostro rischio e pericolo. Se si digita un indirizzo nel campo e-mail, ci sarà una ricerca DNS che non verrà trasferita tramite SOCKS5.";
+
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Scorciatoie Tastiera";
+"switch_between_chats" = "Passa da una Chat all\'altra";
+"scroll_messages" = "Scorri i Messaggi";
+// command to put the cursor to the message input field
+"focus_message_input" = "Focalizzazione Inserimento Messaggio";
+"force_refresh_network" = "Forza Aggiornamento Rete";
+"insert_newline" = "Inserisci Nuova Riga";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stato di consegna: Errore";

@@ -29,6 +29,8 @@
 "back" = "Voltar";
 "close" = "Fechar";
 "forward" = "Encaminhar";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Re-enviar";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Arquivar";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -226,6 +228,8 @@
 "unpin" = "Desafixar";
 "ConversationFragment_quoted_message_not_found" = "Mensagem original não encontrada";
 "reply_privately" = "Responder em privado";
+"source_code" = "Código Fonte";
+
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 dia";
@@ -375,7 +379,6 @@
 "media_preview" = "Pré-visualização.";
 "send_message" = "Enviar mensagem";
 
-
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Mensagens Recebidas";
@@ -401,6 +404,9 @@
 "part_of_total_used" = "%1$@ de %2$@ usado";
 
 
+// welcome and login
+"welcome_chat_over_email" = "Bate-papo por E-mail";
+"scan_invitation_code" = "Escanear Código De Convite";
 "welcome_intro1_message" = "O aplicativo com a maior base de usuários do mundo. Livre e independente.";
 "login_title" = "Acessar";
 "login_header" = "Acesse seu servidor";
@@ -435,7 +441,7 @@
 "login_error_server" = "Por favor, insira um servidor ou IP válido";
 "login_error_port" = "Por favor, insira uma porta válida (1-65535)";
 "login_error_required_fields" = "Por favor, insira e-mail e senha válidos";
-"import_backup_title" = "Importar becape";
+"import_backup_title" = "Importar da Cópia de Segurança";
 "import_backup_ask" = "Becape localizado em \"%1$@\".\n\nVocê quer importá-lo e usar seus dados e configurações?";
 "import_backup_no_backup_found" = "Becapes não localizados.\n\nCopie o becape para \"%1$@\" e tente de novo. Alternativamente, toque em \"comece a conversar\" para prosseguir normalmente.";
 // Translators: %1$s will be replaced by the e-mail address
@@ -540,7 +546,7 @@
 "pref_background_btn_default" = "Usar imagem padrão";
 "pref_background_btn_gallery" = "Selecionar da galeria";
 "pref_imap_folder_handling" = "Gerenciar pastas IMAP";
-"pref_imap_folder_warn_disable_defaults" = "Se você desabilitar esta opção, certifique-se que seu servidor e demais aplicativos estejam configurados de acordo.\n\nDo contrário não vai funcionar.";
+"pref_imap_folder_warn_disable_defaults" = "Se você mudar esta opção, certifique-se de que seu servidor e demais aplicativos estejam configurados de acordo.\n\nDo contrário, funcionalidades podem não funcionar.";
 "pref_watch_inbox_folder" = "Verificar a caixa de entrada";
 "pref_watch_sent_folder" = "Verificar a caixa de saída";
 "pref_watch_mvbox_folder" = "Verificar a pasta DeltaChat";
@@ -829,6 +835,28 @@
 "a11y_background_preview_label" = "Pré-visualização do fundo";
 "a11y_disappearing_messages_activated" = "Mensagens que desaparecem ativadas";
 
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Parar de compartilhar localização";
+"a11y_voice_message_hint_ios" = "Após a gravação, toque duas vezes para enviar. Para descartar a gravação, deslize com dois dedos.";
+"a11y_connectivity_hint" = "Toque duas vezes para ver os detalhes de conectividade.";
+"login_error_no_internet_connection" = "Sem conexão com a Internet, o registro falhou.";
+"share_account_not_configured" = "A conta não está configurada.";
+"cannot_play_audio_file" = "O arquivo de áudio não pode ser reproduzido.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Para tirar fotos, capturar vídeos ou usar o escâner de QR-Code, abra as configurações do sistema e ative \"Câmera\".";
+"open_settings" = "Abrir Configurações";
+// iOS device contact alert
+"import_device_contacts" = "Importar contatos do dispositivo";
+"import_device_contacts_hint" = "Para conversar com os contatos do seu dispositivo, abra as Configurações e ative \"Contatos\".";
+// iOS notification settings
+"disabled_in_dc" = "Desativado no Delta Chat";
+"disabled_in_system_settings" = "Desativado nas configurações do sistema";
+"bg_app_refresh_disabled" = "\"Atualização do Aplicativo em Segundo Plano\" desativada nas configurações do sistema";
+// iOS connectivity view
+"delayed" = "Atrasada";
+"notifications_avg_minutes" = "Em média, a cada %1$d minutos";
+"notifications_avg_hours" = "Em média, a cada %1$d horas";
+"last_check_at" = "Verificado em %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -846,3 +874,4 @@
 // device messages for updates
 "update_1_28_android" = "Destaques da 1.28:\n\n🔒 Criptografia: uma nova opção experimental para manter seus contatos, segredos de criptografia e mensagens de texto criptografadas em seu dispositivo. Disponível apenas na criação de conta e importação de arquivos de backup.\n\n📫 Escrever para lista de e-mails\n\n💫 Configuração inicial mais rápida para mais servidores de e-mail e opções de rede simplificadas para evitar configurações incorretas acidentais\n\n🐜 Muuuuuuitos problemas relatados por usuários corrigidos";
 "update_1_28_ios_extra_line" = "… e você pode selecionar um papel de parede em \"Configurações / Papel de Parede\" agora :)";
+

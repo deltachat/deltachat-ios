@@ -14,6 +14,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d min</string>
+			<key>many</key>
+			<string>%d min</string>
 			<key>other</key>
 			<string>%d min</string>
 		</dict>
@@ -30,6 +32,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d ora</string>
+			<key>many</key>
+			<string>%d ore</string>
 			<key>other</key>
 			<string>%d ore</string>
 		</dict>
@@ -46,6 +50,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d chat</string>
+			<key>many</key>
+			<string>%d chats</string>
 			<key>other</key>
 			<string>%d chats</string>
 		</dict>
@@ -62,6 +68,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d contatto</string>
+			<key>many</key>
+			<string>%d contatti</string>
 			<key>other</key>
 			<string>%d contatti</string>
 		</dict>
@@ -78,6 +86,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d messaggio</string>
+			<key>many</key>
+			<string>%d messaggi</string>
 			<key>other</key>
 			<string>%d messaggi</string>
 		</dict>
@@ -93,6 +103,8 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
+			<string>%d membri</string>
+			<key>many</key>
 			<string>%d membri</string>
 			<key>other</key>
 			<string>%d membri</string>
@@ -110,6 +122,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d destinatari</string>
+			<key>many</key>
+			<string>%d destinatari</string>
 			<key>other</key>
 			<string>%d destinatari</string>
 		</dict>
@@ -126,6 +140,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Invia il seguente file a %s?</string>
+			<key>many</key>
+			<string>Inviare i seguenti %d files a %s?</string>
 			<key>other</key>
 			<string>Inviare i seguenti %d files a %s?</string>
 		</dict>
@@ -142,6 +158,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Eliminare %d chat? Non verrà più mostrata nella lista delle chat, ma i messaggi rimarranno sul server.</string>
+			<key>many</key>
+			<string>Eliminare %d chat? Non verranno più mostrate nella lista delle chat, ma i messaggi rimarranno sul server.</string>
 			<key>other</key>
 			<string>Eliminare %d chat? Non verranno più mostrate nella lista delle chat, ma i messaggi rimarranno sul server.</string>
 		</dict>
@@ -158,6 +176,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Eliminare %d messaggio qui e sul sever?</string>
+			<key>many</key>
+			<string>Eliminare %d messaggi qui e sul sever?</string>
 			<key>other</key>
 			<string>Eliminare %d messaggi qui e sul sever?</string>
 		</dict>
@@ -173,6 +193,8 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
+			<string>Eliminare %d messaggi?</string>
+			<key>many</key>
 			<string>Eliminare %d messaggi?</string>
 			<key>other</key>
 			<string>Eliminare %d messaggi?</string>
@@ -190,6 +212,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d chat archiviata</string>
+			<key>many</key>
+			<string>%d chat archiviate</string>
 			<key>other</key>
 			<string>%d chat archiviate</string>
 		</dict>
@@ -206,6 +230,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d chat ripristinata</string>
+			<key>many</key>
+			<string>%d chat ripristinate</string>
 			<key>other</key>
 			<string>%d chat ripristinate</string>
 		</dict>
@@ -222,6 +248,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d nuovo messaggio</string>
+			<key>many</key>
+			<string>%d nuovi messaggi</string>
 			<key>other</key>
 			<string>%d nuovi messaggi</string>
 		</dict>

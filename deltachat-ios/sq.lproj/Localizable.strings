@@ -226,6 +226,8 @@
 "unpin" = "Çfiksoje";
 "ConversationFragment_quoted_message_not_found" = "S’u gjet mesazhi origjinal";
 "reply_privately" = "Përgjigjuni privatisht";
+"source_code" = "Kod Burim";
+
 "mute_for_one_hour" = "Heshtoji për 1 orë";
 "mute_for_two_hours" = "Heshtoji për 2 orë";
 "mute_for_one_day" = "Heshtoji për 1 ditë";
@@ -374,7 +376,6 @@
 "tab_docs_empty_hint" = "Dokumentet, muzika dhe kartela të tjera të dhëna në këtë fjalosje do të shfaqen këtu.";
 "media_preview" = "Paraparje media";
 "send_message" = "Dërgo mesazh";
-
 
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view

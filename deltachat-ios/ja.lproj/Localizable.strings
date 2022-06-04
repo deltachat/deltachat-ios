@@ -321,7 +321,6 @@
 "media_preview" = "メディアのプレビュー";
 "send_message" = "送る";
 
-
 "connectivity" = "接続性";
 // Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
 "connectivity_not_connected" = "未接続";

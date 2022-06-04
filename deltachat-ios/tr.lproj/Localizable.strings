@@ -253,7 +253,9 @@
 "videochat_tap_to_open" = "Açmak için Dokunun";
 "videochat_instance" = "Video Sohbeti Örneği";
 "videochat_instance_placeholder" = "Video Sohbeti Örneğiniz";
+"videochat_instance_example" = "Örnekler: https://meet.jit.si/$ROOM ya da basicwebrtc:https://your-server";
 "videochat_instance_explain" = "Bir video sohbeti örneği tanımlanırsa, her sohbetten video sohbeti başlatabilirsiniz. Video sohbetleri, her iki uçta da uyumlu bir uygulama ya da uyumlu bir tarayıcı gerektirir.\n\nÖrnekler: https://meet.jit.si/$ROOM ya da basicwebrtc:https://your-server";
+"videochat_instance_explain_2" = "Video sohbeti etkinleştirilirse, her sohbetten video sohbeti başlatabilirsiniz. Video sohbetleri, her iki uçta da uyumlu bir uygulama ya da uyumlu bir tarayıcı gerektirir.";
 "videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetine davet etmek için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Varsa bu, video sohbetleri için önceki ayarla değiştirilir.";
 "videochat_invitation" = "Video sohbeti daveti";
 "videochat_invitation_body" = "Bir video sohbetine davet edildiniz; katılmak için %1$@ öğesini tıklayın.";
@@ -310,6 +312,7 @@
 "saved_messages_explain" = "• Kolay erişim için iletileri buraya iletin\n\n• Notlar ya da sesli notlar alın\n\n• Onları kaydetmek için ortamlar iliştirin";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Kaydedilen";
+"save_as" = "Farklı Kaydet";
 "retry_send" = "İletiyi göndermeyi yeniden dene";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Yazamazsınız; çünkü bu grupta değilsiniz. Katılmak için başka bir üyeye sorun.";
@@ -343,7 +346,7 @@
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "%1$@ için yeniden sorma";
-"puny_code_warning_header" = "Şüpheli bağlantı algılandı";
+"puny_code_warning_header" = "Kuşkulu bağlantı algılandı";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "%1$@ bağlantısını ziyaret etmek istediğinizden emin misiniz?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
@@ -376,9 +379,12 @@
 "tab_map" = "Harita";
 "tab_gallery_empty_hint" = "Bu sohbette paylaşılan görseller ve videolar burada görüntülenecek.";
 "tab_docs_empty_hint" = "Bu sohbette paylaşılan belgeler, müzik ve diğer dosyalar burada görüntülenecek.";
+"tab_image_empty_hint" = "Bu sohbette paylaşılan görseller burada görüntülenecek.";
+"tab_video_empty_hint" = "Bu sohbette paylaşılan videolar burada görüntülenecek.";
+"tab_audio_empty_hint" = "Bu sohbette paylaşılan ses dosyaları ve sesli iletiler burada görüntülenecek.";
+"tab_webxdc_empty_hint" = "Bu sohbette paylaşılan Webxdc içeriği burada görüntülenecek.";
 "media_preview" = "Ortam Önizlemesi";
 "send_message" = "İleti Gönder";
-
 
 // Connectivity
 // Used as a headline for the "Inbox" eg. in the "Connectivity" view
@@ -552,6 +558,7 @@
 "pref_watch_sent_folder" = "Gönderilen Klasörünü İzle";
 "pref_watch_mvbox_folder" = "DeltaChat Klasörünü İzle";
 "pref_send_copy_to_self" = "Kendime Kopya Gönder";
+"pref_send_copy_to_self_explain" = "Bu hesap çoklu aygıtlarda kullanılırken gereklidir.";
 "pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Taşınsın";
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
 "pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
@@ -590,7 +597,7 @@
 "emoji_search_results" = "Arama Sonuçları";
 "emoji_not_found" = "Emoji bulunamadı";
 "emoji_recent" = "Son Kullanılan";
-"emoji_people" = "İnsanlar & Gövde";
+"emoji_people" = "İnsanlar & Beden";
 "emoji_nature" = "Hayvanlar & Doğa";
 "emoji_foods" = "Yiyecek & İçecek";
 "emoji_activity" = "Etkinlik";
@@ -642,8 +649,8 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "\"%1$@\" grup adı \"%2$@\" olarak değiştirildi.";
-"systemmsg_group_image_changed" = "Grup görseli değiştirildi.";
+"systemmsg_group_name_changed" = "\"%1$@\" grup adı \"%2$@\" olarak değişti.";
+"systemmsg_group_image_changed" = "Grup görseli değişti.";
 "systemmsg_group_image_deleted" = "Grup görseli silindi.";
 "systemmsg_member_added" = "%1$@ üyesi eklendi.";
 "systemmsg_member_removed" = "%1$@ üyesi kaldırıldı.";
@@ -720,7 +727,7 @@
 "qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesap değiştir\" öğesini kullanın.";
 "qraccount_success_enter_name" = "Oturum açma başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir hesap ayarlamak için kullanılamıyor.";
-"qraccount_use_on_new_install" = "Taranan QR kodu, yeni bir hesap ayarlamak içindir. QR kodu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";
+"qraccount_use_on_new_install" = "Taranan QR kodu, yeni bir hesap ayarlamak içindir. QR kodunu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya davet etti.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
@@ -728,7 +735,7 @@
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
+"contact_setup_changed" = "%1$@ için ayarlama değişti.";
 "verified_group_explain" = "Doğrulanan gruplar (deneysel), etkin saldırılar karşısında güvenlik sağlar. Üyeler, diğer üyeler tarafından ikinci bir etkenle doğrulanır ve iletiler her zaman uçtan uca şifrelenir.";
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
@@ -771,7 +778,7 @@
 
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Bu, resmî Delta Chat Masaüstü uygulamasıdır.";
-"about_licensed_under_desktop" = "Bu yazılım, GNU GPL sürüm 3 altında lisanslıdır ve kaynak kod GitHub\'da kullanılabilir.";
+"about_licensed_under_desktop" = "Bu yazılım, GNU GPL sürüm 3 altında lisanslıdır ve kaynak kodu GitHub\'da kullanılabilir.";
 "welcome_desktop" = "Delta Chat\'e hoş geldiniz";
 "login_known_accounts_title_desktop" = "Bilinen Hesaplar";
 "global_menu_preferences_language_desktop" = "Dil";
@@ -823,6 +830,17 @@
 "no_spellcheck_suggestions_found" = "Yazım önerileri bulunamadı.";
 "show_window" = "Pencereyi Göster";
 "login_socks5_experimental_warning" = "SOCKS5 desteği şu anda deneysel. Lütfen riski size ait olarak kullanın. E-posta alanına bir adres yazarsanız, SOCKS5 üzerinden tünellenmeyen DNS araması olacak.";
+
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Tuş Bağları";
+"switch_between_chats" = "Sohbetler Arasında Geçiş Yap";
+"scroll_messages" = "İletileri Kaydır";
+// command to put the cursor to the search input field
+"focus_search_input" = "Aramaya Odaklan";
+// command to put the cursor to the message input field
+"focus_message_input" = "İleti Girişine Odaklan";
+"force_refresh_network" = "Ağı Yenilemeye Zorla";
+"insert_newline" = "Yeni Satır Ekle";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Teslimat durumu: Hata";

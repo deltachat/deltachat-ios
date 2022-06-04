@@ -14,6 +14,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d min</string>
+			<key>many</key>
+			<string>%d min</string>
 			<key>other</key>
 			<string>%d min</string>
 		</dict>
@@ -30,6 +32,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d hora</string>
+			<key>many</key>
+			<string>%d horas</string>
 			<key>other</key>
 			<string>%d horas</string>
 		</dict>
@@ -46,6 +50,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d conversas</string>
+			<key>many</key>
+			<string>%d chats</string>
 			<key>other</key>
 			<string>%d chats</string>
 		</dict>
@@ -61,6 +67,8 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
+			<string>%d mensagens</string>
+			<key>many</key>
 			<string>%d mensagens</string>
 			<key>other</key>
 			<string>%d mensagens</string>
@@ -78,6 +86,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d membro</string>
+			<key>many</key>
+			<string>%d membros</string>
 			<key>other</key>
 			<string>%d membros</string>
 		</dict>
@@ -93,6 +103,8 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
+			<string>Apagar %d conversas? Elas não serão mais mostrados na lista, mas permanecerão no servidor.</string>
+			<key>many</key>
 			<string>Apagar %d conversas? Elas não serão mais mostrados na lista, mas permanecerão no servidor.</string>
 			<key>other</key>
 			<string>Apagar %d conversas? Elas não serão mais mostrados na lista, mas permanecerão no servidor.</string>
@@ -110,6 +122,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>Apagar %d mensagens aqui e no servidor?</string>
+			<key>many</key>
+			<string>Apagar %d mensagens aqui e no servidor?</string>
 			<key>other</key>
 			<string>Apagar %d mensagens aqui e no servidor?</string>
 		</dict>
@@ -126,6 +140,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d conversas arquivadas</string>
+			<key>many</key>
+			<string>%d conversas arquivadas</string>
 			<key>other</key>
 			<string>%d conversas arquivadas</string>
 		</dict>
@@ -141,6 +157,8 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
+			<string>%d conversas desarquivadas</string>
+			<key>many</key>
 			<string>%d conversas desarquivadas</string>
 			<key>other</key>
 			<string>%d conversas desarquivadas</string>
