@@ -1,5 +1,38 @@
 # Delta Chat iOS Changelog
 
+## UNRELEASED
+
+* multi-select in chat list: long-tap a chat and select more chats
+  for deletion, pinning or archiving
+* add 'reply privately' option to group chats
+* add search to full-message-views and help
+* make bot-commands such as /echo clickable
+* adapt document gallery view to system text size
+* cleanup series of webxdc-info-messages
+* show document and chat name in webxdc titles
+* add menu entry access the webxdc's source code
+* send normal messages with higher priority than read receipts
+* improve chat encryption info, make it easier to find contacts without keys
+* improve error reporting when creating a folder fails
+* allow mailto: links in webxdc
+* disable gesture to close webxdc to avoid confusion with gestures inside webxdc
+* info messages can be selected in multi-select
+* fix: make chat names always searchable
+* fix: do not reset database if backup cannot be decrypted
+* fix: do not add legacy info-messages on resending webxdc
+* fix: let "Only Fetch from DeltaChat Folder" ignore other folders
+* fix: Autocrypt Setup Messages updates own key immediately
+* fix: do not skip Sent and Spam folders on gmail
+* fix: cleanup read-receipts saved by gmail to the Sent folder
+* fix: handle decryption errors explicitly and don't get confused by encrypted mail attachments
+* fix: repair encrypted mails "mixed up" by Google Workspace "Append footer" function
+* fix: use same contact-color if email address differ only in upper-/lowercase
+* fix scroll-down button visibility
+* update provider database, add hermes.radio subdomains
+* update translations
+* update to core86
+
+
 ## v1.30.1
 2022-05
 
