@@ -558,7 +558,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setStockTranslations()
         locationManager.reloadDcContext()
         notificationManager.reloadDcContext()
-        RelayHelper.sharedInstance.cancel()
+        RelayHelper.shared.cancel()
         _ = RelayHelper.setup(dcAccounts.getSelected())
         if dcAccounts.getSelected().isConfigured() {
             appCoordinator.resetTabBarRootViewControllers()

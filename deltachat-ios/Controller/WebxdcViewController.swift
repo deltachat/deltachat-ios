@@ -201,12 +201,17 @@ class WebxdcViewController: WebViewViewController {
     }
     
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        // TODO: what about tel:// and mailto://
-        if let url = navigationAction.request.url,
-           url.scheme != INTERNALSCHEMA {
-            logger.debug("cancel loading: \(url)")
-            decisionHandler(.cancel)
-            return
+        // TODO: what about tel://
+        if let url = navigationAction.request.url {
+            if url.scheme == "mailto" {
+                askToChatWith(url: url)
+                decisionHandler(.cancel)
+                return
+            } else if url.scheme != INTERNALSCHEMA {
+                logger.debug("cancel loading: \(url)")
+                decisionHandler(.cancel)
+                return
+            }
         }
         logger.debug("loading: \(String(describing: navigationAction.request.url))")
         decisionHandler(.allow)
@@ -281,6 +286,31 @@ class WebxdcViewController: WebViewViewController {
            let url = URL(string: sourceCodeUrl) {
             UIApplication.shared.open(url)
         }
+    }
+
+    private func askToChatWith(url: URL) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let emailAddress = parseEmailAddress(from: url) else {
+            return
+        }
+
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), emailAddress),
+                                      message: nil,
+                                      preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+            RelayHelper.shared.askToChatWithMailto = false
+            _ = appDelegate.application(UIApplication.shared, open: url)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func parseEmailAddress(from url: URL) -> String? {
+        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
+           !urlComponents.path.isEmpty {
+             return RelayHelper.shared.splitString(urlComponents.path)[0]
+        }
+        return nil
     }
 }
 

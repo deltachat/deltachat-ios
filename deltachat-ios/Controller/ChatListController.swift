@@ -117,7 +117,7 @@ class ChatListController: UITableViewController {
         navigationItem.titleView = titleView
         updateTitle()
 
-        if RelayHelper.sharedInstance.isForwarding() {
+        if RelayHelper.shared.isForwarding() {
             quitSearch(animated: false)
             tableView.scrollToTop()
         }
@@ -297,7 +297,7 @@ class ChatListController: UITableViewController {
 
     @objc func cancelButtonPressed() {
         // cancel forwarding
-        RelayHelper.sharedInstance.cancel()
+        RelayHelper.shared.cancel()
         updateTitle()
         refreshInBg()
     }
@@ -427,7 +427,7 @@ class ChatListController: UITableViewController {
     // MARK: updates
     private func updateTitle() {
         titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
-        if RelayHelper.sharedInstance.isForwarding() {
+        if RelayHelper.shared.isForwarding() {
             titleView.text = String.localized("forward_to")
             if !isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
@@ -501,8 +501,8 @@ class ChatListController: UITableViewController {
         timer = nil
     }
 
-    public func handleMailto() {
-        if let mailtoAddress = RelayHelper.sharedInstance.mailtoAddress {
+    public func handleMailto(askToChat: Bool = true) {
+        if let mailtoAddress = RelayHelper.shared.mailtoAddress {
             // FIXME: the line below should work
             // var contactId = dcContext.lookupContactIdByAddress(mailtoAddress)
 
@@ -516,8 +516,11 @@ class ChatListController: UITableViewController {
 
             if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
                 showChat(chatId: dcContext.getChatIdByContactId(contactId: contactId), animated: false)
-            } else {
+            } else if askToChat {
                 askToChatWith(address: mailtoAddress)
+            } else {
+                // Attention: we should have already asked in a different view controller!
+                createAndShowNewChat(contactId: 0, email: mailtoAddress)
             }
         }
     }
@@ -537,25 +540,28 @@ class ChatListController: UITableViewController {
     }
 
     private func askToChatWith(address: String, contactId: Int = 0) {
-        var contactId = contactId
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
-            if contactId == 0 {
-                contactId = self.dcContext.createContact(name: nil, email: address)
-            }
-            self.showNewChat(contactId: contactId)
+            self.createAndShowNewChat(contactId: contactId, email: address)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            if RelayHelper.sharedInstance.isMailtoHandling() {
-                RelayHelper.sharedInstance.finishMailto()
+            if RelayHelper.shared.isMailtoHandling() {
+                RelayHelper.shared.finishMailto()
             }
         }))
         present(alert, animated: true, completion: nil)
     }
 
+    private func createAndShowNewChat(contactId: Int, email: String) {
+        var contactId = contactId
+        if contactId == 0 {
+            contactId = self.dcContext.createContact(name: nil, email: email)
+        }
+        self.showNewChat(contactId: contactId)
+    }
 
     private func askToChatWith(contactId: Int) {
         let dcContact = dcContext.getContact(id: contactId)

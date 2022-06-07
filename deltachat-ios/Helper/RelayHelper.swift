@@ -2,12 +2,13 @@ import Foundation
 import DcCore
 
 class RelayHelper {
-    static var sharedInstance: RelayHelper = RelayHelper()
+    static var shared: RelayHelper = RelayHelper()
     private static var dcContext: DcContext?
     var messageIds: [Int]?
 
     var mailtoDraft: String = ""
     var mailtoAddress: String?
+    var askToChatWithMailto: Bool = true
 
     private init() {
         guard RelayHelper.dcContext != nil else {
@@ -17,7 +18,7 @@ class RelayHelper {
 
     class func setup(_ dcContext: DcContext) -> RelayHelper {
         RelayHelper.dcContext = dcContext
-        return sharedInstance
+        return shared
     }
 
     func setForwardMessage(messageId: Int) {
@@ -50,6 +51,7 @@ class RelayHelper {
     func finishMailto() {
         mailtoDraft = ""
         mailtoAddress = nil
+        askToChatWithMailto = true
     }
 
 
