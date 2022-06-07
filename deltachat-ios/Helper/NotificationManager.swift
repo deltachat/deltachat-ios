@@ -10,6 +10,7 @@ public class NotificationManager {
 
     private let dcAccounts: DcAccounts
     private var dcContext: DcContext
+    private static let lock = NSObject()
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
@@ -25,6 +26,8 @@ public class NotificationManager {
     }
 
     public static func updateApplicationIconBadge(dcContext: DcContext, reset: Bool) {
+        objc_sync_enter(lock)
+        defer { objc_sync_exit(lock) }
         var unreadMessages = 0
         if !reset {
             unreadMessages = dcContext.getFreshMessages().count
