@@ -1900,7 +1900,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         if let text = messageInputBar.inputTextView.text, !text.isEmpty {
             return
         }
-        messageInputBar.inputTextView.text = command
+        messageInputBar.inputTextView.text = command + " "
     }
 
     @objc func urlTapped(url: URL, indexPath: IndexPath) {
