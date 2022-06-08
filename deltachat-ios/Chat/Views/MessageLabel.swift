@@ -146,6 +146,8 @@ open class MessageLabel: UILabel {
 
     open internal(set) var mentionAttributes: [NSAttributedString.Key: Any] = defaultAttributes
 
+    open internal(set) var commandAttributes: [NSAttributedString.Key: Any] = defaultAttributes
+
     open internal(set) var customAttributes: [NSRegularExpression: [NSAttributedString.Key: Any]] = [:]
 
     public func setAttributes(_ attributes: [NSAttributedString.Key: Any], detector: DetectorType) {
@@ -164,6 +166,8 @@ open class MessageLabel: UILabel {
             mentionAttributes = attributes
         case .hashtag:
             hashtagAttributes = attributes
+        case .command:
+            commandAttributes = attributes
         case .custom(let regex):
             customAttributes[regex] = attributes
         }
@@ -299,6 +303,8 @@ open class MessageLabel: UILabel {
             return mentionAttributes
         case .hashtag:
             return hashtagAttributes
+        case .command:
+            return commandAttributes
         case .custom(let regex):
             return customAttributes[regex] ?? MessageLabel.defaultAttributes
         }
@@ -494,6 +500,8 @@ open class MessageLabel: UILabel {
                 handleHashtag(match)
             case .mention:
                 handleMention(match)
+            case .command:
+                handleCommand(match)
             default:
                 handleCustom(pattern, match: match)
             }
@@ -527,6 +535,10 @@ open class MessageLabel: UILabel {
 
     private func handleMention(_ mention: String) {
         delegate?.didSelectMention(mention)
+    }
+
+    private func handleCommand(_ command: String) {
+        delegate?.didSelectCommand(command)
     }
 
     private func handleCustom(_ pattern: String, match: String) {

@@ -96,13 +96,14 @@ public class BaseMessageCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.font = UIFont.preferredFont(for: .body, weight: .regular)
         view.delegate = self
-        view.enabledDetectors = [.url, .phoneNumber]
+        view.enabledDetectors = [.url, .phoneNumber, .command]
         let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor,
             NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
             NSAttributedString.Key.underlineColor: DcColors.defaultTextColor ]
         view.label.setAttributes(attributes, detector: .url)
         view.label.setAttributes(attributes, detector: .phoneNumber)
+        view.label.setAttributes(attributes, detector: .command)
         view.isUserInteractionEnabled = true
         view.isAccessibilityElement = false
         return view
@@ -584,6 +585,13 @@ extension BaseMessageCell: MessageLabelDelegate {
     public func didSelectMention(_ mention: String) {}
 
     public func didSelectHashtag(_ hashtag: String) {}
+
+    public func didSelectCommand(_ command: String) {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            logger.debug("did select command \(command)")
+            baseDelegate?.commandTapped(command: command, indexPath: indexPath)
+        }
+    }
 
     public func didSelectCustom(_ pattern: String, match: String?) {}
 }

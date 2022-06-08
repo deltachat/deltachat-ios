@@ -1897,7 +1897,10 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
-        logger.debug("command tapped \(command)")
+        if let text = messageInputBar.inputTextView.text, !text.isEmpty {
+            return
+        }
+        messageInputBar.inputTextView.text = command + " "
     }
 
     @objc func urlTapped(url: URL, indexPath: IndexPath) {

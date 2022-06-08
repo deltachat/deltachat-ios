@@ -88,6 +88,8 @@ extension MultilineLabelCell: MessageLabelDelegate {
 
     public func didSelectHashtag(_ hashtag: String) {}
 
+    public func didSelectCommand(_ command: String) {}
+
     public func didSelectCustom(_ pattern: String, match: String?) {}
 }
 
