@@ -30,7 +30,7 @@ function WKWebView_HighlightAllOccurencesOfStringForElement(element,keyword) {
                 
             }
         } else if (element.nodeType == 1) { // Element node
-            if (element.style.display != "none" && element.nodeName.toLowerCase() != 'select') {
+            if (WKWebView_isElementVisible(element) && element.nodeName.toLowerCase() != 'select') {
                 for (var i=element.childNodes.length-1; i>=0; i--) {
                     WKWebView_HighlightAllOccurencesOfStringForElement(element.childNodes[i],keyword);
                 }
@@ -113,3 +113,13 @@ function WKWebView_RemoveAllHighlights() {
     WKWebView_RemoveAllHighlightsForElement(document.body);
 }
 
+function WKWebView_isElementVisible(element) {
+    var style = window.getComputedStyle(element);
+    var isvisible = style.width > "0" &&
+    style.height > "0" &&
+    style.opacity > "0" &&
+    style.display !=='none' &&
+    style.visibility !== 'hidden';
+    console.log("isElementVisible: ", element, isvisible);
+    return isvisible;
+}
