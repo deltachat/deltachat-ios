@@ -7,10 +7,10 @@ class DocumentGalleryFileCell: UITableViewCell {
 
     static var cellHeight: CGFloat {
         let textHeight = UIFont.preferredFont(forTextStyle: .headline).pointSize + UIFont.preferredFont(forTextStyle: .subheadline).pointSize + 24
-        if textHeight > 74.5 {
+        if textHeight > 60 {
             return textHeight
         }
-        return 74.5
+        return 60
     }
 
     private let fileImageView: UIImageView = {
@@ -23,6 +23,8 @@ class DocumentGalleryFileCell: UITableViewCell {
         let stackView = UIStackView(arrangedSubviews: [title, subtitle])
         stackView.axis = NSLayoutConstraint.Axis.vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillProportionally
+        stackView.contentMode = .center
         return stackView
     }()
 
