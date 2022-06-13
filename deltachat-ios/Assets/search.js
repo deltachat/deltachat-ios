@@ -64,7 +64,7 @@ function WKWebView_jump(increment){
         prevEl.style.backgroundColor="yellow";
     }
     el = document.getElementsByClassName("WKWebView_Highlight")[WKWebView_CurrentlySelected];
-    el.style.backgroundColor="green";
+    el.style.backgroundColor="orange";
     
     el.scrollIntoView(true);
 }
