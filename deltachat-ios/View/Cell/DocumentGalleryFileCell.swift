@@ -69,8 +69,8 @@ class DocumentGalleryFileCell: UITableViewCell {
         fileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         stackView.constraintToTrailingOf(fileImageView, paddingLeading: 12).isActive = true
         stackView.constraintAlignTrailingTo(contentView, paddingTrailing: 12).isActive = true
-        stackView.constraintAlignTopTo(contentView, paddingTop: 12).isActive = true
-        stackView.constraintAlignBottomTo(contentView, paddingBottom: 12).isActive = true
+        stackView.constraintAlignTopTo(contentView, paddingTop: 6).isActive = true
+        stackView.constraintAlignBottomTo(contentView, paddingBottom: 6).isActive = true
 
     }
 
