@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 protocol ContactCellDelegate: class {
-    func onAvatarTapped(at index: Int)
+    func onLongTap(at index: Int)
 }
 
 class ContactCell: UITableViewCell {
@@ -210,7 +210,20 @@ class ContactCell: UITableViewCell {
             mutedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
             locationStreamingIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2)
         ])
+
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongTap))
+        contentView.addGestureRecognizer(gestureRecognizer)
     }
+
+    @objc private func onLongTap(sender: UILongPressGestureRecognizer) {
+        if sender.state == UIGestureRecognizer.State.ended,
+           let tableView = self.superview as? UITableView,
+           let indexPath = tableView.indexPath(for: self) {
+            logger.debug("on long tapped!")
+            delegate?.onLongTap(at: indexPath.row)
+        }
+    }
+
 
     func setVerified(isVerified: Bool) {
         avatar.setVerified(isVerified)
