@@ -246,6 +246,7 @@ class ChatListController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         tableView.rowHeight = ContactCell.cellHeight
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     private var isInitial = true
@@ -296,10 +297,18 @@ class ChatListController: UITableViewController {
     }
 
     @objc func cancelButtonPressed() {
-        // cancel forwarding
-        RelayHelper.shared.cancel()
-        updateTitle()
-        refreshInBg()
+        if tableView.isEditing {
+            navigationItem.leftBarButtonItem = nil
+            if !isArchive {
+                navigationItem.rightBarButtonItem = newButton
+            }
+            tableView.setEditing(false, animated: true)
+        } else {
+            // cancel forwarding
+            RelayHelper.shared.cancel()
+            updateTitle()
+            refreshInBg()
+        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -342,6 +351,7 @@ class ChatListController: UITableViewController {
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
+                chatCell.delegate = self
                 return chatCell
             }
         case .contact:
@@ -364,6 +374,9 @@ class ChatListController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else {
             tableView.deselectRow(at: indexPath, animated: false)
+            return
+        }
+        if tableView.isEditing {
             return
         }
 
@@ -629,5 +642,16 @@ extension ChatListController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         tableView.scrollToTop()
         return true
+    }
+}
+
+
+extension ChatListController: ContactCellDelegate {
+    func onLongTap(at index: Int) {
+        if !tableView.isEditing {
+            tableView.setEditing(true, animated: true)
+            navigationItem.setLeftBarButton(cancelButton, animated: true)
+            navigationItem.setRightBarButton(nil, animated: true)
+        }
     }
 }
