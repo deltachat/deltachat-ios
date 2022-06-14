@@ -59,6 +59,14 @@ class ChatListController: UITableViewController {
         return label
     }()
 
+    private lazy var editingBar: ChatListEditingBar = {
+        let inputBar = ChatListEditingBar()
+        inputBar.translatesAutoresizingMaskIntoConstraints = false
+        return inputBar
+    }()
+
+    private var editingConstraints: NSLayoutConstraintSet?
+
     init(dcContext: DcContext, isArchive: Bool) {
         self.dcContext = dcContext
         self.isArchive = isArchive
@@ -298,11 +306,7 @@ class ChatListController: UITableViewController {
 
     @objc func cancelButtonPressed() {
         if tableView.isEditing {
-            navigationItem.leftBarButtonItem = nil
-            if !isArchive {
-                navigationItem.rightBarButtonItem = newButton
-            }
-            tableView.setEditing(false, animated: true)
+            self.setEditing(false, animated: true)
         } else {
             // cancel forwarding
             RelayHelper.shared.cancel()
@@ -435,6 +439,57 @@ class ChatListController: UITableViewController {
         deleteAction.backgroundColor = UIColor.systemRed
 
         return [archiveAction, pinAction, deleteAction]
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        if editing {
+            tableView.setEditing(true, animated: animated)
+            navigationItem.setLeftBarButton(cancelButton, animated: animated)
+            navigationItem.setRightBarButton(nil, animated: animated)
+            addEditingView(view: editingBar)
+            titleView.isUserInteractionEnabled = false
+        } else {
+            navigationItem.leftBarButtonItem = nil
+            if !isArchive {
+                navigationItem.setRightBarButton(newButton, animated: animated)
+            }
+            tableView.setEditing(false, animated: animated)
+            removeEditingView()
+            titleView.isUserInteractionEnabled = true
+        }
+    }
+
+    func addEditingView(view: UIView) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
+        else { return }
+
+        if !tabBarController.view.subviews.contains(view) {
+            tabBarController.tabBar.subviews.forEach { view in
+                view.isHidden = true
+            }
+
+            tabBarController.view.addSubview(view)
+            editingConstraints = NSLayoutConstraintSet(top: view.constraintAlignTopTo(tabBarController.tabBar),
+                                                      bottom: view.constraintAlignBottomTo(tabBarController.tabBar),
+                                                      left: view.constraintAlignLeadingTo(tabBarController.tabBar),
+                                                      right: view.constraintAlignTrailingTo(tabBarController.tabBar))
+            editingConstraints?.activate()
+        }
+    }
+
+    func removeEditingView() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
+        else { return }
+
+        editingBar.removeFromSuperview()
+        editingConstraints?.deactivate()
+        editingConstraints = nil
+        tabBarController.tabBar.subviews.forEach { view in
+            view.isHidden = false
+        }
     }
 
     // MARK: updates
@@ -645,13 +700,10 @@ extension ChatListController: UISearchBarDelegate {
     }
 }
 
-
 extension ChatListController: ContactCellDelegate {
     func onLongTap(at index: Int) {
         if !tableView.isEditing {
-            tableView.setEditing(true, animated: true)
-            navigationItem.setLeftBarButton(cancelButton, animated: true)
-            navigationItem.setRightBarButton(nil, animated: true)
+           setEditing(true, animated: true)
         }
     }
 }
