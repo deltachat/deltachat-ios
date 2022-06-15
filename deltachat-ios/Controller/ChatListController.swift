@@ -620,6 +620,25 @@ class ChatListController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    private func showDeleteMultipleChatConfirmationAlert() {
+        let selected = tableView.indexPathsForSelectedRows?.count ?? 0
+        if selected == 0 {
+            return
+        }
+        let alert = UIAlertController(
+            title: nil,
+            message: String.localized(stringID: "ask_delete_chat", count: selected),
+            preferredStyle: .safeActionSheet
+        )
+        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+            guard let self = self, let viewModel = self.viewModel else { return }
+            viewModel.deleteChats(indexPaths: self.tableView.indexPathsForSelectedRows)
+            self.setEditing(false, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
     private func askToChatWith(address: String, contactId: Int = 0) {
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
                                       message: nil,
@@ -729,8 +748,7 @@ extension ChatListController: ChatListEditingBarDelegate {
     }
 
     func onDeleteButtonPressed() {
-        viewModel?.deleteChats(indexPaths: tableView.indexPathsForSelectedRows)
-        setEditing(false, animated: true)
+        showDeleteMultipleChatConfirmationAlert()
     }
 
     func onArchiveButtonPressed() {
