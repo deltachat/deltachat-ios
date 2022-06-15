@@ -377,6 +377,15 @@ class ChatListController: UITableViewController {
         return viewModel?.titleForHeaderIn(section: section)
     }
 
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if !tableView.isEditing {
+            return indexPath
+        }
+
+        let cell = tableView.cellForRow(at: indexPath)
+        return cell == archiveCell ? nil : indexPath
+    }
+
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if tableView.isEditing,
            let viewModel = viewModel {
@@ -463,8 +472,10 @@ class ChatListController: UITableViewController {
             if let viewModel = viewModel {
                 editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
             }
+            archiveCell.selectionStyle = .none
         } else {
             removeEditingView()
+            archiveCell.selectionStyle = .default
         }
         updateTitle()
     }
@@ -527,7 +538,7 @@ class ChatListController: UITableViewController {
         if tableView.isEditing {
             navigationItem.setLeftBarButton(cancelButton, animated: true)
             navigationItem.setRightBarButton(nil, animated: true)
-        }  else {
+        } else {
             navigationItem.setLeftBarButton(nil, animated: true)
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
