@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 protocol ContactCellDelegate: class {
-    func onLongTap(at index: Int)
+    func onLongTap(at indexPath: IndexPath)
 }
 
 class ContactCell: UITableViewCell {
@@ -219,8 +219,7 @@ class ContactCell: UITableViewCell {
         if sender.state == UIGestureRecognizer.State.ended,
            let tableView = self.superview as? UITableView,
            let indexPath = tableView.indexPath(for: self) {
-            logger.debug("on long tapped!")
-            delegate?.onLongTap(at: indexPath.row)
+            delegate?.onLongTap(at: indexPath)
         }
     }
 

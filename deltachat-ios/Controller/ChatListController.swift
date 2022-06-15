@@ -702,9 +702,10 @@ extension ChatListController: UISearchBarDelegate {
 }
 
 extension ChatListController: ContactCellDelegate {
-    func onLongTap(at index: Int) {
+    func onLongTap(at indexPath: IndexPath) {
         if !tableView.isEditing {
-           setEditing(true, animated: true)
+            setEditing(true, animated: true)
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
     }
 }
