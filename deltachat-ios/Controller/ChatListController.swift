@@ -63,6 +63,7 @@ class ChatListController: UITableViewController {
         let editingBar = ChatListEditingBar()
         editingBar.translatesAutoresizingMaskIntoConstraints = false
         editingBar.delegate = self
+        editingBar.showArchive = !isArchive
         return editingBar
     }()
 
@@ -376,12 +377,20 @@ class ChatListController: UITableViewController {
         return viewModel?.titleForHeaderIn(section: section)
     }
 
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing,
+           let viewModel = viewModel {
+            editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+        }
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else {
             tableView.deselectRow(at: indexPath, animated: false)
             return
         }
         if tableView.isEditing {
+            editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
             return
         }
 
@@ -450,6 +459,9 @@ class ChatListController: UITableViewController {
             navigationItem.setRightBarButton(nil, animated: animated)
             addEditingView()
             titleView.isUserInteractionEnabled = false
+            if let viewModel = viewModel {
+                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+            }
         } else {
             navigationItem.leftBarButtonItem = nil
             if !isArchive {

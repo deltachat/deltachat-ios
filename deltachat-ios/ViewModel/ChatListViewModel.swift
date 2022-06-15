@@ -202,8 +202,9 @@ class ChatListViewModel: NSObject {
 
     func pinChatsToggle(indexPaths: [IndexPath]?) {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
+        let onlyPinnedChatsSelected = hasOnlyPinnedChatsSelected(chatIds: chatIds)
         for chatId in chatIds {
-            pinChatToggle(chatId: chatId)
+            pinChat(chatId: chatId, pinned: onlyPinnedChatsSelected)
         }
     }
 
@@ -225,9 +226,32 @@ class ChatListViewModel: NSObject {
 
     func pinChatToggle(chatId: Int) {
         let chat: DcChat = dcContext.getChat(chatId: chatId)
-        let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
+        let pinned = chat.visibility == DC_CHAT_VISIBILITY_PINNED
+        pinChat(chatId: chatId, pinned: pinned)
+    }
+
+    func pinChat(chatId: Int, pinned: Bool) {
         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
         updateChatList(notifyListener: false)
+    }
+
+    func hasOnlyPinnedChatsSelected(in indexPaths: [IndexPath]?) -> Bool {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        return hasOnlyPinnedChatsSelected(chatIds: chatIds)
+    }
+
+    func hasOnlyPinnedChatsSelected(chatIds: [Int]) -> Bool {
+        if chatIds.isEmpty {
+            return false
+        }
+
+        for chatId in chatIds {
+            let chat: DcChat = dcContext.getChat(chatId: chatId)
+            if chat.visibility != DC_CHAT_VISIBILITY_PINNED {
+                return false
+            }
+        }
+        return true
     }
 }
 
