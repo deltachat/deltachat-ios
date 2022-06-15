@@ -41,6 +41,9 @@ class ChatListViewModel: NSObject {
     private var searchResultsMessagesSection: ChatListSectionType = .messages
     private var searchResultSections: [ChatListSectionType] = []
 
+    private var isChatListUpdatePending = false
+    private var isEditing = false
+
     init(dcContext: DcContext, isArchive: Bool) {
         self.isArchive = isArchive
         self.dcContext = dcContext
@@ -56,7 +59,18 @@ class ChatListViewModel: NSObject {
             gclFlags |= DC_GCL_FOR_FORWARDING
         }
         self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        if notifyListener, let onChatListUpdate = onChatListUpdate {
+        if notifyListener {
+            handleOnChatListUpdate()
+        }
+    }
+
+    func handleOnChatListUpdate() {
+        if isEditing {
+            isChatListUpdatePending = true
+            return
+        }
+        isChatListUpdatePending = false
+        if let onChatListUpdate = onChatListUpdate {
             if Thread.isMainThread {
                 onChatListUpdate()
             } else {
@@ -253,9 +267,19 @@ class ChatListViewModel: NSObject {
         }
         return true
     }
-}
 
-private extension ChatListViewModel {
+    func setEditing(_ editing: Bool) {
+        isEditing = editing
+        if !isEditing && isChatListUpdatePending {
+            handleOnChatListUpdate()
+        }
+    }
+
+    func setPendingChatListUpdate() {
+        if isEditing {
+            isChatListUpdatePending = true
+        }
+    }
 
     // MARK: - avatarCellViewModel factory
     func makeChatCellViewModel(index: Int, searchText: String) -> AvatarCellViewModel {
@@ -348,15 +372,7 @@ private extension ChatListViewModel {
             // when search input field empty we show default chatList
             resetSearch()
         }
-        if let onChatListUpdate = onChatListUpdate {
-            if Thread.isMainThread {
-                onChatListUpdate()
-            } else {
-                DispatchQueue.main.async {
-                    onChatListUpdate()
-                }
-            }
-        }
+        handleOnChatListUpdate()
     }
 
     func filterAndUpdateList(searchText: String) {

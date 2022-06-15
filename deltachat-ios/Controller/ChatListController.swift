@@ -457,6 +457,7 @@ class ChatListController: UITableViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
+        viewModel?.setEditing(editing)
         if editing {
             addEditingView()
             if let viewModel = viewModel {
@@ -533,6 +534,10 @@ class ChatListController: UITableViewController {
     }
 
     func handleChatListUpdate() {
+        if tableView.isEditing {
+            viewModel?.setPendingChatListUpdate()
+            return
+        }
         if Thread.isMainThread {
             tableView.reloadData()
             handleEmptyStateLabel()
