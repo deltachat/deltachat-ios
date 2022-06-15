@@ -447,7 +447,7 @@ class ChatListController: UITableViewController {
             tableView.setEditing(true, animated: animated)
             navigationItem.setLeftBarButton(cancelButton, animated: animated)
             navigationItem.setRightBarButton(nil, animated: animated)
-            addEditingView(view: editingBar)
+            addEditingView()
             titleView.isUserInteractionEnabled = false
         } else {
             navigationItem.leftBarButtonItem = nil
@@ -460,21 +460,21 @@ class ChatListController: UITableViewController {
         }
     }
 
-    func addEditingView(view: UIView) {
+    func addEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
               let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
         else { return }
 
-        if !tabBarController.view.subviews.contains(view) {
+        if !tabBarController.view.subviews.contains(editingBar) {
             tabBarController.tabBar.subviews.forEach { view in
                 view.isHidden = true
             }
 
-            tabBarController.view.addSubview(view)
-            editingConstraints = NSLayoutConstraintSet(top: view.constraintAlignTopTo(tabBarController.tabBar),
-                                                      bottom: view.constraintAlignBottomTo(tabBarController.tabBar),
-                                                      left: view.constraintAlignLeadingTo(tabBarController.tabBar),
-                                                      right: view.constraintAlignTrailingTo(tabBarController.tabBar))
+            tabBarController.view.addSubview(editingBar)
+            editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tabBarController.tabBar),
+                                                      bottom: editingBar.constraintAlignBottomTo(tabBarController.tabBar),
+                                                      left: editingBar.constraintAlignLeadingTo(tabBarController.tabBar),
+                                                      right: editingBar.constraintAlignTrailingTo(tabBarController.tabBar))
             editingConstraints?.activate()
         }
     }
