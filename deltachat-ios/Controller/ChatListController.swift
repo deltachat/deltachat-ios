@@ -739,7 +739,9 @@ extension ChatListController: UISearchBarDelegate {
 extension ChatListController: ContactCellDelegate {
     func onLongTap(at indexPath: IndexPath) {
         if let searchActive = viewModel?.searchActive,
-           !searchActive && !tableView.isEditing {
+           !searchActive,
+           !RelayHelper.shared.isForwarding(),
+           !tableView.isEditing {
             setEditing(true, animated: true)
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
