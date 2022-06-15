@@ -1,7 +1,14 @@
 import UIKit
 
+public protocol ChatListEditingBarDelegate: class {
+    func onPinButtonPressed()
+    func onDeleteButtonPressed()
+    func onArchiveButtonPressed()
+}
 
 class ChatListEditingBar: UIView {
+
+    weak var delegate: ChatListEditingBarDelegate?
 
     private lazy var blurView: UIVisualEffectView = {
         var blurEffect = UIBlurEffect(style: .light)
@@ -92,5 +99,30 @@ class ChatListEditingBar: UIView {
             mainContentView.constraintAlignTrailingTo(self),
             mainContentView.constraintAlignBottomTo(self, paddingBottom: Utils.getSafeBottomLayoutInset())
         ])
+
+        let pinBtnGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pinButtonPressed))
+        pinBtnGestureRecognizer.numberOfTapsRequired = 1
+        pinButton.addGestureRecognizer(pinBtnGestureRecognizer)
+
+        let deleteBtnGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(deleteButtonPressed))
+        deleteBtnGestureRecognizer.numberOfTapsRequired = 1
+        deleteButton.addGestureRecognizer(deleteBtnGestureRecognizer)
+
+        let archiveBtnGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(archiveButtonPressed))
+        archiveBtnGestureRecognizer.numberOfTapsRequired = 1
+        archiveButton.addGestureRecognizer(archiveBtnGestureRecognizer)
     }
+
+    @objc func pinButtonPressed() {
+        delegate?.onPinButtonPressed()
+    }
+
+    @objc func deleteButtonPressed() {
+        delegate?.onDeleteButtonPressed()
+    }
+
+    @objc func archiveButtonPressed() {
+        delegate?.onArchiveButtonPressed()
+    }
+
 }

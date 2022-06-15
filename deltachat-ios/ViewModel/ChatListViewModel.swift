@@ -146,6 +146,18 @@ class ChatListViewModel: NSObject {
         }
     }
 
+    func chatIdsFor(indexPaths: [IndexPath]?) -> [Int] {
+        guard let indexPaths = indexPaths else { return [] }
+        var chatIds: [Int] = []
+        for indexPath in indexPaths {
+            guard let chatId = chatIdFor(section: indexPath.section, row: indexPath.row) else {
+                continue
+            }
+            chatIds.append(chatId)
+        }
+        return chatIds
+    }
+
     func msgIdFor(row: Int) -> Int? {
         if showSearchResults {
             return nil
@@ -172,6 +184,27 @@ class ChatListViewModel: NSObject {
             return searchText
         }
         return nil
+    }
+
+    func deleteChats(indexPaths: [IndexPath]?) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            deleteChat(chatId: chatId)
+        }
+    }
+
+    func archiveChatsToggle(indexPaths: [IndexPath]?) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            archiveChatToggle(chatId: chatId)
+        }
+    }
+
+    func pinChatsToggle(indexPaths: [IndexPath]?) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            pinChatToggle(chatId: chatId)
+        }
     }
 
     func deleteChat(chatId: Int) {

@@ -60,9 +60,10 @@ class ChatListController: UITableViewController {
     }()
 
     private lazy var editingBar: ChatListEditingBar = {
-        let inputBar = ChatListEditingBar()
-        inputBar.translatesAutoresizingMaskIntoConstraints = false
-        return inputBar
+        let editingBar = ChatListEditingBar()
+        editingBar.translatesAutoresizingMaskIntoConstraints = false
+        editingBar.delegate = self
+        return editingBar
     }()
 
     private var editingConstraints: NSLayoutConstraintSet?
@@ -705,5 +706,22 @@ extension ChatListController: ContactCellDelegate {
         if !tableView.isEditing {
            setEditing(true, animated: true)
         }
+    }
+}
+
+extension ChatListController: ChatListEditingBarDelegate {
+    func onPinButtonPressed() {
+        viewModel?.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
+        setEditing(false, animated: true)
+    }
+
+    func onDeleteButtonPressed() {
+        viewModel?.deleteChats(indexPaths: tableView.indexPathsForSelectedRows)
+        setEditing(false, animated: true)
+    }
+
+    func onArchiveButtonPressed() {
+        viewModel?.archiveChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
+        setEditing(false, animated: true)
     }
 }
