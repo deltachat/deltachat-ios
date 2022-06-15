@@ -473,7 +473,7 @@ class ChatListController: UITableViewController {
         }
     }
 
-    func addEditingView() {
+    private func addEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
               let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
         else { return }
@@ -492,7 +492,7 @@ class ChatListController: UITableViewController {
         }
     }
 
-    func removeEditingView() {
+    private func removeEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
               let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
         else { return }
