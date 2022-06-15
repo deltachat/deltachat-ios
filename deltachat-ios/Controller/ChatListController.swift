@@ -715,6 +715,7 @@ class ChatListController: UITableViewController {
 extension ChatListController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         viewModel?.beginSearch()
+        setEditing(false, animated: true)
         return true
     }
 
@@ -734,7 +735,8 @@ extension ChatListController: UISearchBarDelegate {
 
 extension ChatListController: ContactCellDelegate {
     func onLongTap(at indexPath: IndexPath) {
-        if !tableView.isEditing {
+        if let searchActive = viewModel?.searchActive,
+           !searchActive && !tableView.isEditing {
             setEditing(true, animated: true)
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
