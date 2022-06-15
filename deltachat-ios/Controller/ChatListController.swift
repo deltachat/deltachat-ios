@@ -381,6 +381,9 @@ class ChatListController: UITableViewController {
         if tableView.isEditing,
            let viewModel = viewModel {
             editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+            if tableView.indexPathsForSelectedRows == nil {
+                setEditing(false, animated: true)
+            }
         }
     }
 
