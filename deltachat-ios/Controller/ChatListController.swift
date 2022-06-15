@@ -456,24 +456,16 @@ class ChatListController: UITableViewController {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
         if editing {
-            tableView.setEditing(true, animated: animated)
-            navigationItem.setLeftBarButton(cancelButton, animated: animated)
-            navigationItem.setRightBarButton(nil, animated: animated)
             addEditingView()
-            titleView.isUserInteractionEnabled = false
             if let viewModel = viewModel {
                 editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
             }
         } else {
-            navigationItem.leftBarButtonItem = nil
-            if !isArchive {
-                navigationItem.setRightBarButton(newButton, animated: animated)
-            }
-            tableView.setEditing(false, animated: animated)
             removeEditingView()
-            titleView.isUserInteractionEnabled = true
         }
+        updateTitle()
     }
 
     private func addEditingView() {
@@ -512,22 +504,32 @@ class ChatListController: UITableViewController {
     private func updateTitle() {
         titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
         if RelayHelper.shared.isForwarding() {
+            // multi-select is not allowed during forwarding
             titleView.text = String.localized("forward_to")
             if !isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
         } else if isArchive {
             titleView.text = String.localized("chat_archived_chats_title")
-            navigationItem.setLeftBarButton(nil, animated: true)
-           
+            handleMultiSelectTitle()
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
             if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
                 titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
             }
-            navigationItem.setLeftBarButton(nil, animated: true)
+            handleMultiSelectTitle()
         }
         titleView.sizeToFit()
+    }
+
+    func handleMultiSelectTitle() {
+        if tableView.isEditing {
+            navigationItem.setLeftBarButton(cancelButton, animated: true)
+            navigationItem.setRightBarButton(nil, animated: true)
+        }  else {
+            navigationItem.setLeftBarButton(nil, animated: true)
+        }
+        titleView.isUserInteractionEnabled = !tableView.isEditing
     }
 
     func handleChatListUpdate() {
