@@ -34,6 +34,7 @@ class FullMessageViewController: WebViewViewController {
         self.dcContext = dcContext
         self.messageId = messageId
         super.init()
+        self.allowSearch = true
     }
 
     required init?(coder: NSCoder) {
