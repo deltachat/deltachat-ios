@@ -59,6 +59,16 @@ class ChatListController: UITableViewController {
         return label
     }()
 
+    private lazy var editingBar: ChatListEditingBar = {
+        let editingBar = ChatListEditingBar()
+        editingBar.translatesAutoresizingMaskIntoConstraints = false
+        editingBar.delegate = self
+        editingBar.showArchive = !isArchive
+        return editingBar
+    }()
+
+    private var editingConstraints: NSLayoutConstraintSet?
+
     init(dcContext: DcContext, isArchive: Bool) {
         self.dcContext = dcContext
         self.isArchive = isArchive
@@ -86,9 +96,6 @@ class ChatListController: UITableViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !isArchive {
-            navigationItem.rightBarButtonItem = newButton
-        }
         configureTableView()
         setupSubviews()
 
@@ -246,6 +253,7 @@ class ChatListController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
         tableView.rowHeight = ContactCell.cellHeight
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     private var isInitial = true
@@ -296,10 +304,14 @@ class ChatListController: UITableViewController {
     }
 
     @objc func cancelButtonPressed() {
-        // cancel forwarding
-        RelayHelper.shared.cancel()
-        updateTitle()
-        refreshInBg()
+        if tableView.isEditing {
+            self.setLongTapEditing(false)
+        } else {
+            // cancel forwarding
+            RelayHelper.shared.cancel()
+            updateTitle()
+            refreshInBg()
+        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -342,6 +354,7 @@ class ChatListController: UITableViewController {
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
+                chatCell.delegate = self
                 return chatCell
             }
         case .contact:
@@ -361,9 +374,32 @@ class ChatListController: UITableViewController {
         return viewModel?.titleForHeaderIn(section: section)
     }
 
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if !tableView.isEditing {
+            return indexPath
+        }
+
+        let cell = tableView.cellForRow(at: indexPath)
+        return cell == archiveCell ? nil : indexPath
+    }
+
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing,
+           let viewModel = viewModel {
+            editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+            if tableView.indexPathsForSelectedRows == nil {
+                setLongTapEditing(false)
+            }
+        }
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else {
             tableView.deselectRow(at: indexPath, animated: false)
+            return
+        }
+        if tableView.isEditing {
+            editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
             return
         }
 
@@ -424,29 +460,94 @@ class ChatListController: UITableViewController {
         return [archiveAction, pinAction, deleteAction]
     }
 
+    func setLongTapEditing(_ editing: Bool) {
+        tableView.setEditing(editing, animated: true)
+        viewModel?.setEditing(editing)
+        if editing {
+            addEditingView()
+            if let viewModel = viewModel {
+                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+            }
+            archiveCell.selectionStyle = .none
+        } else {
+            removeEditingView()
+            archiveCell.selectionStyle = .default
+        }
+        updateTitle()
+    }
+
+    private func addEditingView() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
+        else { return }
+
+        if !tabBarController.view.subviews.contains(editingBar) {
+            tabBarController.tabBar.subviews.forEach { view in
+                view.isHidden = true
+            }
+
+            tabBarController.view.addSubview(editingBar)
+            editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tabBarController.tabBar),
+                                                      bottom: editingBar.constraintAlignBottomTo(tabBarController.tabBar),
+                                                      left: editingBar.constraintAlignLeadingTo(tabBarController.tabBar),
+                                                      right: editingBar.constraintAlignTrailingTo(tabBarController.tabBar))
+            editingConstraints?.activate()
+        }
+    }
+
+    private func removeEditingView() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
+        else { return }
+
+        editingBar.removeFromSuperview()
+        editingConstraints?.deactivate()
+        editingConstraints = nil
+        tabBarController.tabBar.subviews.forEach { view in
+            view.isHidden = false
+        }
+    }
+
     // MARK: updates
     private func updateTitle() {
         titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
         if RelayHelper.shared.isForwarding() {
+            // multi-select is not allowed during forwarding
             titleView.text = String.localized("forward_to")
             if !isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
         } else if isArchive {
             titleView.text = String.localized("chat_archived_chats_title")
-            navigationItem.setLeftBarButton(nil, animated: true)
-           
+            handleMultiSelectTitle()
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
             if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
                 titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
             }
-            navigationItem.setLeftBarButton(nil, animated: true)
+            handleMultiSelectTitle()
         }
         titleView.sizeToFit()
     }
 
+    func handleMultiSelectTitle() {
+        if tableView.isEditing {
+            navigationItem.setLeftBarButton(cancelButton, animated: true)
+            navigationItem.setRightBarButton(nil, animated: true)
+        } else {
+            navigationItem.setLeftBarButton(nil, animated: true)
+            if !isArchive {
+                navigationItem.setRightBarButton(newButton, animated: true)
+            }
+        }
+        titleView.isUserInteractionEnabled = !tableView.isEditing
+    }
+
     func handleChatListUpdate() {
+        if tableView.isEditing {
+            viewModel?.setPendingChatListUpdate()
+            return
+        }
         if Thread.isMainThread {
             tableView.reloadData()
             handleEmptyStateLabel()
@@ -539,6 +640,25 @@ class ChatListController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    private func showDeleteMultipleChatConfirmationAlert() {
+        let selected = tableView.indexPathsForSelectedRows?.count ?? 0
+        if selected == 0 {
+            return
+        }
+        let alert = UIAlertController(
+            title: nil,
+            message: String.localized(stringID: "ask_delete_chat", count: selected),
+            preferredStyle: .safeActionSheet
+        )
+        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+            guard let self = self, let viewModel = self.viewModel else { return }
+            viewModel.deleteChats(indexPaths: self.tableView.indexPathsForSelectedRows)
+            self.setLongTapEditing(false)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
     private func askToChatWith(address: String, contactId: Int = 0) {
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), address),
                                       message: nil,
@@ -615,6 +735,7 @@ class ChatListController: UITableViewController {
 extension ChatListController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         viewModel?.beginSearch()
+        setLongTapEditing(false)
         return true
     }
 
@@ -629,5 +750,33 @@ extension ChatListController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         tableView.scrollToTop()
         return true
+    }
+}
+
+extension ChatListController: ContactCellDelegate {
+    func onLongTap(at indexPath: IndexPath) {
+        if let searchActive = viewModel?.searchActive,
+           !searchActive,
+           !RelayHelper.shared.isForwarding(),
+           !tableView.isEditing {
+            setLongTapEditing(true)
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
+    }
+}
+
+extension ChatListController: ChatListEditingBarDelegate {
+    func onPinButtonPressed() {
+        viewModel?.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
+        setLongTapEditing(false)
+    }
+
+    func onDeleteButtonPressed() {
+        showDeleteMultipleChatConfirmationAlert()
+    }
+
+    func onArchiveButtonPressed() {
+        viewModel?.archiveChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
+        setLongTapEditing(false)
     }
 }

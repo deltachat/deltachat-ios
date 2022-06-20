@@ -41,6 +41,9 @@ class ChatListViewModel: NSObject {
     private var searchResultsMessagesSection: ChatListSectionType = .messages
     private var searchResultSections: [ChatListSectionType] = []
 
+    private var isChatListUpdatePending = false
+    private var isEditing = false
+
     init(dcContext: DcContext, isArchive: Bool) {
         self.isArchive = isArchive
         self.dcContext = dcContext
@@ -56,7 +59,18 @@ class ChatListViewModel: NSObject {
             gclFlags |= DC_GCL_FOR_FORWARDING
         }
         self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)
-        if notifyListener, let onChatListUpdate = onChatListUpdate {
+        if notifyListener {
+            handleOnChatListUpdate()
+        }
+    }
+
+    func handleOnChatListUpdate() {
+        if isEditing {
+            isChatListUpdatePending = true
+            return
+        }
+        isChatListUpdatePending = false
+        if let onChatListUpdate = onChatListUpdate {
             if Thread.isMainThread {
                 onChatListUpdate()
             } else {
@@ -146,6 +160,18 @@ class ChatListViewModel: NSObject {
         }
     }
 
+    func chatIdsFor(indexPaths: [IndexPath]?) -> [Int] {
+        guard let indexPaths = indexPaths else { return [] }
+        var chatIds: [Int] = []
+        for indexPath in indexPaths {
+            guard let chatId = chatIdFor(section: indexPath.section, row: indexPath.row) else {
+                continue
+            }
+            chatIds.append(chatId)
+        }
+        return chatIds
+    }
+
     func msgIdFor(row: Int) -> Int? {
         if showSearchResults {
             return nil
@@ -174,6 +200,28 @@ class ChatListViewModel: NSObject {
         return nil
     }
 
+    func deleteChats(indexPaths: [IndexPath]?) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            deleteChat(chatId: chatId)
+        }
+    }
+
+    func archiveChatsToggle(indexPaths: [IndexPath]?) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            archiveChatToggle(chatId: chatId)
+        }
+    }
+
+    func pinChatsToggle(indexPaths: [IndexPath]?) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        let onlyPinnedChatsSelected = hasOnlyPinnedChatsSelected(chatIds: chatIds)
+        for chatId in chatIds {
+            pinChat(chatId: chatId, pinned: onlyPinnedChatsSelected)
+        }
+    }
+
     func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
@@ -192,13 +240,46 @@ class ChatListViewModel: NSObject {
 
     func pinChatToggle(chatId: Int) {
         let chat: DcChat = dcContext.getChat(chatId: chatId)
-        let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
+        let pinned = chat.visibility == DC_CHAT_VISIBILITY_PINNED
+        pinChat(chatId: chatId, pinned: pinned)
+    }
+
+    func pinChat(chatId: Int, pinned: Bool) {
         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
         updateChatList(notifyListener: false)
     }
-}
 
-private extension ChatListViewModel {
+    func hasOnlyPinnedChatsSelected(in indexPaths: [IndexPath]?) -> Bool {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        return hasOnlyPinnedChatsSelected(chatIds: chatIds)
+    }
+
+    func hasOnlyPinnedChatsSelected(chatIds: [Int]) -> Bool {
+        if chatIds.isEmpty {
+            return false
+        }
+
+        for chatId in chatIds {
+            let chat: DcChat = dcContext.getChat(chatId: chatId)
+            if chat.visibility != DC_CHAT_VISIBILITY_PINNED {
+                return false
+            }
+        }
+        return true
+    }
+
+    func setEditing(_ editing: Bool) {
+        isEditing = editing
+        if !isEditing && isChatListUpdatePending {
+            handleOnChatListUpdate()
+        }
+    }
+
+    func setPendingChatListUpdate() {
+        if isEditing {
+            isChatListUpdatePending = true
+        }
+    }
 
     // MARK: - avatarCellViewModel factory
     func makeChatCellViewModel(index: Int, searchText: String) -> AvatarCellViewModel {
@@ -291,15 +372,7 @@ private extension ChatListViewModel {
             // when search input field empty we show default chatList
             resetSearch()
         }
-        if let onChatListUpdate = onChatListUpdate {
-            if Thread.isMainThread {
-                onChatListUpdate()
-            } else {
-                DispatchQueue.main.async {
-                    onChatListUpdate()
-                }
-            }
-        }
+        handleOnChatListUpdate()
     }
 
     func filterAndUpdateList(searchText: String) {

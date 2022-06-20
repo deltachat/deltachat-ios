@@ -70,4 +70,14 @@ struct Utils {
         }
         return directoryURL.appendingPathComponent(identifier).appendingPathComponent(name)
     }
+
+    public static func getSafeBottomLayoutInset() -> CGFloat {
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.first
+            return window?.safeAreaInsets.bottom ?? 0
+        }
+        // iOS 11 and 12
+        let window = UIApplication.shared.keyWindow
+        return window?.safeAreaInsets.bottom ?? 0
+    }
 }
