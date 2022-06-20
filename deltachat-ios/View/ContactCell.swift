@@ -216,7 +216,7 @@ class ContactCell: UITableViewCell {
     }
 
     @objc private func onLongTap(sender: UILongPressGestureRecognizer) {
-        if sender.state == UIGestureRecognizer.State.ended,
+        if sender.state == UIGestureRecognizer.State.began,
            let tableView = self.superview as? UITableView,
            let indexPath = tableView.indexPath(for: self) {
             delegate?.onLongTap(at: indexPath)
