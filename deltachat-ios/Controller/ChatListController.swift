@@ -305,7 +305,7 @@ class ChatListController: UITableViewController {
 
     @objc func cancelButtonPressed() {
         if tableView.isEditing {
-            self.setEditing(false, animated: true)
+            self.setLongTapEditing(false)
         } else {
             // cancel forwarding
             RelayHelper.shared.cancel()
@@ -388,7 +388,7 @@ class ChatListController: UITableViewController {
            let viewModel = viewModel {
             editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
             if tableView.indexPathsForSelectedRows == nil {
-                setEditing(false, animated: true)
+                setLongTapEditing(false)
             }
         }
     }
@@ -460,9 +460,8 @@ class ChatListController: UITableViewController {
         return [archiveAction, pinAction, deleteAction]
     }
 
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        tableView.setEditing(editing, animated: animated)
+    func setLongTapEditing(_ editing: Bool) {
+        tableView.setEditing(editing, animated: true)
         viewModel?.setEditing(editing)
         if editing {
             addEditingView()
@@ -654,7 +653,7 @@ class ChatListController: UITableViewController {
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             guard let self = self, let viewModel = self.viewModel else { return }
             viewModel.deleteChats(indexPaths: self.tableView.indexPathsForSelectedRows)
-            self.setEditing(false, animated: true)
+            self.setLongTapEditing(false)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -736,7 +735,7 @@ class ChatListController: UITableViewController {
 extension ChatListController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         viewModel?.beginSearch()
-        setEditing(false, animated: true)
+        setLongTapEditing(false)
         return true
     }
 
@@ -760,7 +759,7 @@ extension ChatListController: ContactCellDelegate {
            !searchActive,
            !RelayHelper.shared.isForwarding(),
            !tableView.isEditing {
-            setEditing(true, animated: true)
+            setLongTapEditing(true)
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
     }
@@ -769,7 +768,7 @@ extension ChatListController: ContactCellDelegate {
 extension ChatListController: ChatListEditingBarDelegate {
     func onPinButtonPressed() {
         viewModel?.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
-        setEditing(false, animated: true)
+        setLongTapEditing(false)
     }
 
     func onDeleteButtonPressed() {
@@ -778,6 +777,6 @@ extension ChatListController: ChatListEditingBarDelegate {
 
     func onArchiveButtonPressed() {
         viewModel?.archiveChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
-        setEditing(false, animated: true)
+        setLongTapEditing(false)
     }
 }
