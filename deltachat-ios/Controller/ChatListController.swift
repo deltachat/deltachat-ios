@@ -96,9 +96,6 @@ class ChatListController: UITableViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !isArchive {
-            navigationItem.rightBarButtonItem = newButton
-        }
         configureTableView()
         setupSubviews()
 
@@ -540,6 +537,9 @@ class ChatListController: UITableViewController {
             navigationItem.setRightBarButton(nil, animated: true)
         } else {
             navigationItem.setLeftBarButton(nil, animated: true)
+            if !isArchive {
+                navigationItem.setRightBarButton(newButton, animated: true)
+            }
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
     }
