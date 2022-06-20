@@ -774,7 +774,9 @@ class ChatViewController: UITableViewController {
     }
 
     private func updateScrollDownButtonVisibility() {
-        messageInputBar.scrollDownButton.isHidden = isLastRowVisible(checkTopCellPostion: true, checkBottomCellPosition: true, allowPartialVisibility: true)
+        messageInputBar.scrollDownButton.isHidden = messageIds.isEmpty || isLastRowVisible(checkTopCellPostion: true,
+                                                                                           checkBottomCellPosition: true,
+                                                                                           allowPartialVisibility: true)
     }
 
     private func configureContactRequestBar() {
