@@ -168,8 +168,7 @@ class ContextMenuProvider {
                         filters: [(Array<ContextMenuItem>.Element) throws -> Bool]? = nil) -> UIMenu {
 
         var children: [UIMenuElement] = []
-        var menuItems = filter(filters, in: menu)
-        menuItems = filter(filters, in: menuItems)
+        let menuItems = filter(filters, in: menu)
         for item in menuItems {
             // we only support 1 submenu layer for now
             if var subMenus = item.children {
