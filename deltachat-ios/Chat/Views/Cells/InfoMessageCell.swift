@@ -3,6 +3,8 @@ import DcCore
 
 class InfoMessageCell: UITableViewCell {
 
+    private var showSelectionBackground: Bool
+
     private lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
         container.image = UIImage(color: DcColors.systemMessageBackgroundColor)
@@ -23,6 +25,7 @@ class InfoMessageCell: UITableViewCell {
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.showSelectionBackground = false
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         clipsToBounds = false
         backgroundColor = .clear
@@ -48,7 +51,6 @@ class InfoMessageCell: UITableViewCell {
             messageBackgroundContainer.constraintAlignBottomTo(messageLabel, paddingBottom: -6),
             messageBackgroundContainer.constraintAlignTrailingTo(messageLabel, paddingTrailing: -6)
         ])
-        selectionStyle = .none
     }
 
     func update(text: String?, weight: UIFont.Weight? = nil) {
@@ -70,10 +72,22 @@ class InfoMessageCell: UITableViewCell {
         super.prepareForReuse()
         messageLabel.text = nil
         messageLabel.attributedText = nil
+        showSelectionBackground = false
     }
 
+    public override func setSelected(_ selected: Bool, animated: Bool) {
+         super.setSelected(selected, animated: animated)
+         if selected && showSelectionBackground {
+             selectedBackgroundView?.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.5)
+         } else {
+             selectedBackgroundView?.backgroundColor = .clear
+         }
+     }
 }
 
 extension InfoMessageCell: SelectableCell {
-    public func showSelectionBackground(_ show: Bool) {}
+    public func showSelectionBackground(_ show: Bool) {
+        selectionStyle = show ? .default : .none
+        showSelectionBackground = show
+    }
 }

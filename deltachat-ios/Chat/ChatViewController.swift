@@ -703,6 +703,7 @@ class ChatViewController: UITableViewController {
         let message = dcContext.getMessage(id: id)
         if message.isInfo {
             let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
+            cell.showSelectionBackground(tableView.isEditing)
             cell.update(text: message.text)
             return cell
         }
@@ -879,8 +880,12 @@ class ChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if let cell = tableView.cellForRow(at: indexPath) as? SelectableCell {
-            cell.showSelectionBackground(tableView.isEditing)
+        let tableViewCell = tableView.cellForRow(at: indexPath)
+        if let selectableCell = tableViewCell as? SelectableCell,
+           !(tableView.isEditing &&
+             tableViewCell as? InfoMessageCell != nil &&
+             messageIds[indexPath.row] <= DC_MSG_ID_LAST_SPECIAL) {
+            selectableCell.showSelectionBackground(tableView.isEditing)
             return indexPath
         }
         return nil
@@ -1803,10 +1808,8 @@ class ChatViewController: UITableViewController {
         if tableView.isEditing {
             if tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false {
                 tableView.deselectRow(at: indexPath, animated: false)
-            } else {
-                if let cell = tableView.cellForRow(at: indexPath) as? SelectableCell {
-                    cell.showSelectionBackground(true)
-                }
+            } else if let cell = tableView.cellForRow(at: indexPath) as? SelectableCell {
+                cell.showSelectionBackground(true)
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
             handleEditingBar()
