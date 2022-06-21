@@ -82,7 +82,7 @@ class ChatListEditingBar: UIView {
             button.setImage(UIImage(systemName: imageName), for: .normal)
             button.tintColor = .systemBlue
         } else {
-            button.setTitle(description, for: .normal)
+            button.setTitle(imageDescription, for: .normal)
             button.setTitleColor(.systemBlue, for: .normal)
         }
         button.accessibilityLabel = description
