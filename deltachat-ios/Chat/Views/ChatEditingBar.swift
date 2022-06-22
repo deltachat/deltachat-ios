@@ -35,7 +35,7 @@ public class ChatEditingBar: UIView, InputItem {
         return view
     }()
 
-    private lazy var deleteButton: UIButton = {
+    public lazy var deleteButton: UIButton = {
         let view = UIButton()
 
         if #available(iOS 13.0, *) {
@@ -52,7 +52,7 @@ public class ChatEditingBar: UIView, InputItem {
         return view
     }()
 
-    private lazy var forwardButton: UIButton = {
+    public lazy var forwardButton: UIButton = {
         let view = UIButton()
         view.tintColor = .systemBlue
         view.setImage( #imageLiteral(resourceName: "ic_forward_white_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
