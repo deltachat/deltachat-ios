@@ -156,13 +156,18 @@ class ChatViewController: UITableViewController {
     private lazy var contextMenu: ContextMenuProvider = {
         let dcChat = dcContext.getChat(chatId: chatId)
         let config = ContextMenuProvider()
-        if #available(iOS 13.0, *), dcChat.canSend {
-            let mainMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, forwardItem, infoItem, copyItem, replyPrivatelyItem, deleteItem])
-            config.setMenu([mainMenu, selectMoreItem])
-        } else if dcChat.canSend {
-            config.setMenu([forwardItem, infoItem, copyItem, replyPrivatelyItem, deleteItem, selectMoreItem])
+        if #available(iOS 13.0, *) {
+            let menuItems = [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem]
+            if dcChat.canSend {
+                let mainMenu = ContextMenuProvider.ContextMenuItem(submenuitems: menuItems)
+                config.setMenu([mainMenu, selectMoreItem])
+            } else {
+                config.setMenu(menuItems)
+            }
+        } else if dcChat.canSend { // iOS pre 13
+            config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
         } else {
-            config.setMenu([forwardItem, infoItem, copyItem, replyPrivatelyItem, deleteItem])
+            config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
         }
         return config
     }()
