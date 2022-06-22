@@ -237,7 +237,7 @@ class ChatViewController: UITableViewController {
     private lazy var replyItem: ContextMenuProvider.ContextMenuItem = {
         return ContextMenuProvider.ContextMenuItem(
             title: String.localized("notify_reply_button"),
-            imageName: "ic_reply",
+            imageName: "arrowshape.turn.up.left.fill",
             action: #selector(BaseMessageCell.messageReply),
             onPerform: { indexPath in
                 DispatchQueue.main.async { [weak self] in
@@ -250,7 +250,7 @@ class ChatViewController: UITableViewController {
     private lazy var replyPrivatelyItem: ContextMenuProvider.ContextMenuItem = {
         return ContextMenuProvider.ContextMenuItem(
             title: String.localized("reply_privately"),
-            imageName: "arrow.triangle.branch",
+            imageName: "arrowshape.turn.up.left",
             action: #selector(BaseMessageCell.messageReplyPrivately),
             onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
