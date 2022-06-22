@@ -460,13 +460,14 @@ class ChatListController: UITableViewController {
         return [archiveAction, pinAction, deleteAction]
     }
 
-    func setLongTapEditing(_ editing: Bool) {
+    func setLongTapEditing(_ editing: Bool, initialIndexPath: [IndexPath]? = nil) {
         tableView.setEditing(editing, animated: true)
         viewModel?.setEditing(editing)
         if editing {
             addEditingView()
             if let viewModel = viewModel {
-                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows) ||
+                                           viewModel.hasOnlyPinnedChatsSelected(in: initialIndexPath)
             }
             archiveCell.selectionStyle = .none
         } else {
@@ -759,7 +760,7 @@ extension ChatListController: ContactCellDelegate {
            !searchActive,
            !RelayHelper.shared.isForwarding(),
            !tableView.isEditing {
-            setLongTapEditing(true)
+            setLongTapEditing(true, initialIndexPath: [indexPath])
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
     }
