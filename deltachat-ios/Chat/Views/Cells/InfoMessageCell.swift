@@ -4,6 +4,8 @@ import DcCore
 class InfoMessageCell: UITableViewCell {
 
     private var showSelectionBackground: Bool
+    private var trailingConstraint: NSLayoutConstraint?
+    private var trailingConstraintEditingMode: NSLayoutConstraint?
 
     private lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
@@ -43,14 +45,18 @@ class InfoMessageCell: UITableViewCell {
         contentView.addConstraints([
             messageLabel.constraintAlignTopTo(contentView, paddingTop: 12),
             messageLabel.constraintAlignBottomTo(contentView, paddingBottom: 12),
-            messageLabel.constraintAlignLeadingMaxTo(contentView, paddingLeading: 50),
-            messageLabel.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 50),
-            messageLabel.constraintCenterXTo(contentView),
+            messageLabel.constraintAlignLeadingMaxTo(contentView, paddingLeading: 55),
+            messageLabel.constraintCenterXTo(contentView, priority: .defaultLow),
             messageBackgroundContainer.constraintAlignLeadingTo(messageLabel, paddingLeading: -6),
             messageBackgroundContainer.constraintAlignTopTo(messageLabel, paddingTop: -6),
             messageBackgroundContainer.constraintAlignBottomTo(messageLabel, paddingBottom: -6),
             messageBackgroundContainer.constraintAlignTrailingTo(messageLabel, paddingTrailing: -6)
         ])
+
+        trailingConstraint = messageLabel.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 55)
+        trailingConstraintEditingMode = messageLabel.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 10)
+        trailingConstraint?.isActive = !isEditing
+        trailingConstraintEditingMode?.isActive = isEditing
     }
 
     func update(text: String?, weight: UIFont.Weight? = nil) {
@@ -66,6 +72,8 @@ class InfoMessageCell: UITableViewCell {
         corners.formUnion(.topRight)
         corners.formUnion(.bottomRight)
         messageBackgroundContainer.update(rectCorners: corners, color: DcColors.systemMessageBackgroundColor)
+        trailingConstraint?.isActive = !isEditing
+        trailingConstraintEditingMode?.isActive = isEditing
     }
 
     override func prepareForReuse() {
@@ -73,6 +81,23 @@ class InfoMessageCell: UITableViewCell {
         messageLabel.text = nil
         messageLabel.attributedText = nil
         showSelectionBackground = false
+    }
+    
+    public override func willTransition(to state: UITableViewCell.StateMask) {
+        super.willTransition(to: state)
+        // while the content view gets intended by the appearance of the edit control,
+        // we're adapting the the padding of the messages on the left side of the screen
+        if state == .showingEditControl {
+            if trailingConstraint?.isActive ?? false {
+                trailingConstraint?.isActive = false
+                trailingConstraintEditingMode?.isActive = true
+            }
+        } else {
+            if trailingConstraintEditingMode?.isActive ?? false {
+                trailingConstraintEditingMode?.isActive = false
+                trailingConstraint?.isActive = true
+            }
+        }
     }
 
     public override func setSelected(_ selected: Bool, animated: Bool) {
