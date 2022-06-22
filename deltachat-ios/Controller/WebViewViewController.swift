@@ -3,9 +3,10 @@ import WebKit
 
 class WebViewViewController: UIViewController, WKNavigationDelegate {
 
-    public lazy var webView: WKWebView = {
-        let view = WKWebView(frame: .zero, configuration: configuration)
+    public lazy var webView: WebView = {
+        let view = WebView(frame: .zero, configuration: configuration)
         view.navigationDelegate = self
+        view.searchAccessoryBar = accessoryViewContainer
         return view
     }()
 
@@ -147,6 +148,31 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
             }
         })
     }
+    
+    private func focusWebView() {
+        // search function
+        let focus = "WKWebview_Focus()"
+        // perform search
+        webView.evaluateJavaScript(focus, completionHandler: { [weak self] _, error in
+            if let error = error {
+                logger.error(error)
+            } else {
+                self?.webView.becomeFirstResponder()
+            }
+        })
+    }
+    
+    private func resignWebViewFocus() {
+        // search function
+        let resignFocus = "WKWebview_ResignFocus()"
+        // perform search
+        webView.evaluateJavaScript(resignFocus, completionHandler: { [weak self] _, error in
+            if let error = error {
+                logger.error(error)
+            }
+            self?.webView.resignFirstResponder()
+        })
+    }
 
     private func updateAccessoryBar() {
         handleSearchResultCount { [weak self] result in
@@ -210,10 +236,17 @@ extension WebViewViewController: UISearchBarDelegate, UISearchControllerDelegate
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let text = searchController.searchBar.text ?? ""
         self.find(text: text)
+        focusWebView()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.removeAllHighlights()
+        removeAllHighlights()
+        resignWebViewFocus()
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        logger.debug("searchBarTextDidEndEditing -> webView.becomeFirstResponder()")
+        focusWebView()
     }
 
     func willPresentSearchController(_ searchController: UISearchController) {

@@ -74,8 +74,43 @@ function WKWebView_jump(increment){
 function WKWebView_HighlightAllOccurencesOfString(keyword) {
     WKWebView_RemoveAllHighlights();
     WKWebView_HighlightAllOccurencesOfStringForElement(document.body, keyword.toLowerCase());
+    WKWebView_HandleFocus();
+}
+
+// ensures the webview can become the first reponder by adding a hidden contentEditable div
+function WKWebView_HandleFocus() {
+    var searchFocusDiv = document.getElementById("WKWebView_SearchFocus");
     if (WKWebView_SearchResultCount > 0) {
-        WKWebView_SearchNext()
+        if (searchFocusDiv == null) {
+            searchFocusDiv = document.createElement("div");
+            searchFocusDiv.setAttribute("contenteditable", "true");
+            searchFocusDiv.id="WKWebView_SearchFocus";
+            searchFocusDiv.style.height = "0";
+            searchFocusDiv.style.width = "0";
+            searchFocusDiv.style.overflow = "hidden";
+            searchFocusDiv.style.outline = "0px solid transparent";
+            document.body.appendChild(searchFocusDiv);
+        }
+        WKWebView_SearchNext();
+    } /*else {
+        if (searchFocusDiv != null) {
+            searchFocusDiv.parentNode.removeChild(searchFocusDiv);
+        }
+    }*/
+}
+
+function WKWebview_Focus() {
+    console.log("WKWebview_Focus_WebView");
+    document.getElementById("WKWebView_SearchFocus").focus();
+    var el = document.getElementsByClassName("WKWebView_Highlight")[WKWebView_CurrentlySelected];
+    el.scrollIntoView(true);
+}
+
+function WKWebview_ResignFocus() {
+    console.log("WKWebview_Focus_WebView");
+    var searchFocusDiv = document.getElementById("WKWebView_SearchFocus");
+    if (searchFocusDiv != null) {
+        searchFocusDiv.parentNode.removeChild(searchFocusDiv);
     }
 }
 
@@ -120,6 +155,5 @@ function WKWebView_isElementVisible(element) {
     style.opacity > "0" &&
     style.display !=='none' &&
     style.visibility !== 'hidden';
-    console.log("isElementVisible: ", element, isvisible);
     return isvisible;
 }
