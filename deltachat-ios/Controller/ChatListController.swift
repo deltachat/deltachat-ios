@@ -460,6 +460,11 @@ class ChatListController: UITableViewController {
         return [archiveAction, pinAction, deleteAction]
     }
 
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        viewModel?.setEditing(editing)
+    }
+
     func setLongTapEditing(_ editing: Bool, initialIndexPath: [IndexPath]? = nil) {
         tableView.setEditing(editing, animated: true)
         viewModel?.setEditing(editing)
