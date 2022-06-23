@@ -157,14 +157,13 @@ class ChatViewController: UITableViewController {
         let dcChat = dcContext.getChat(chatId: chatId)
         let config = ContextMenuProvider()
         if #available(iOS 13.0, *) {
-            let menuItems = [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem]
             if dcChat.canSend {
-                let mainMenu = ContextMenuProvider.ContextMenuItem(submenuitems: menuItems)
+                let mainMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
                 config.setMenu([mainMenu, selectMoreItem])
             } else {
-                config.setMenu(menuItems)
+                config.setMenu([replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
             }
-        } else if dcChat.canSend { // iOS pre 13
+        } else if dcChat.canSend { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
             config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
         } else {
             config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
@@ -1719,7 +1718,6 @@ class ChatViewController: UITableViewController {
         } else if isGroupChat && !message.isFromCurrentSender {
             UIMenuController.shared.menuItems = contextMenu.menuItems
         } else {
-            // filter out replyPrivatelyItem
             UIMenuController.shared.menuItems = contextMenu.getMenuItems(filters: [ { $0.action != self.replyPrivatelyItem.action } ])
         }
         UIMenuController.shared.update()
