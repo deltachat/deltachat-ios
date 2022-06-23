@@ -154,11 +154,29 @@ class ChatViewController: UITableViewController {
     }()
 
     private lazy var contextMenu: ContextMenuProvider = {
-        let copyItem = ContextMenuProvider.ContextMenuItem(
-        title: String.localized("global_menu_edit_copy_desktop"),
-        imageName: "doc.on.doc",
-        action: #selector(BaseMessageCell.messageCopy),
-        onPerform: { [weak self] indexPath in
+        let dcChat = dcContext.getChat(chatId: chatId)
+        let config = ContextMenuProvider()
+        if #available(iOS 13.0, *) {
+            if dcChat.canSend {
+                let mainMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
+                config.setMenu([mainMenu, selectMoreItem])
+            } else {
+                config.setMenu([replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
+            }
+        } else if dcChat.canSend { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
+            config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
+        } else {
+            config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
+        }
+        return config
+    }()
+
+    private lazy var copyItem: ContextMenuProvider.ContextMenuItem = {
+        return ContextMenuProvider.ContextMenuItem(
+            title: String.localized("global_menu_edit_copy_desktop"),
+            imageName: "doc.on.doc",
+            action: #selector(BaseMessageCell.messageCopy),
+            onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
                 let id = self.messageIds[indexPath.row]
                 let msg = self.dcContext.getMessage(id: id)
@@ -171,8 +189,10 @@ class ChatViewController: UITableViewController {
                 }
             }
         )
+    }()
 
-        let infoItem = ContextMenuProvider.ContextMenuItem(
+    private lazy var infoItem: ContextMenuProvider.ContextMenuItem = {
+        return ContextMenuProvider.ContextMenuItem(
             title: String.localized("info"),
             imageName: "info",
             action: #selector(BaseMessageCell.messageInfo),
@@ -185,8 +205,10 @@ class ChatViewController: UITableViewController {
                 }
             }
         )
+    }()
 
-        let deleteItem = ContextMenuProvider.ContextMenuItem(
+    private lazy var deleteItem: ContextMenuProvider.ContextMenuItem = {
+        return ContextMenuProvider.ContextMenuItem(
             title: String.localized("delete"),
             imageName: "trash",
             isDestructive: true,
@@ -200,8 +222,10 @@ class ChatViewController: UITableViewController {
                 }
             }
         )
+    }()
 
-        let forwardItem = ContextMenuProvider.ContextMenuItem(
+    private lazy var forwardItem: ContextMenuProvider.ContextMenuItem = {
+        return ContextMenuProvider.ContextMenuItem(
             title: String.localized("forward"),
             imageName: "ic_forward_white_36pt",
             action: #selector(BaseMessageCell.messageForward),
@@ -212,10 +236,12 @@ class ChatViewController: UITableViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         )
+    }()
 
-        let replyItem = ContextMenuProvider.ContextMenuItem(
+    private lazy var replyItem: ContextMenuProvider.ContextMenuItem = {
+        return ContextMenuProvider.ContextMenuItem(
             title: String.localized("notify_reply_button"),
-            imageName: "ic_reply",
+            imageName: "arrowshape.turn.up.left.fill",
             action: #selector(BaseMessageCell.messageReply),
             onPerform: { indexPath in
                 DispatchQueue.main.async { [weak self] in
@@ -223,8 +249,22 @@ class ChatViewController: UITableViewController {
                 }
             }
         )
+    }()
 
-        let selectMoreItem = ContextMenuProvider.ContextMenuItem(
+    private lazy var replyPrivatelyItem: ContextMenuProvider.ContextMenuItem = {
+        return ContextMenuProvider.ContextMenuItem(
+            title: String.localized("reply_privately"),
+            imageName: "arrowshape.turn.up.left",
+            action: #selector(BaseMessageCell.messageReplyPrivately),
+            onPerform: { [weak self] indexPath in
+                guard let self = self else { return }
+                self.replyPrivatelyToMessage(at: indexPath)
+            }
+        )
+    }()
+
+    private lazy var selectMoreItem: ContextMenuProvider.ContextMenuItem = {
+        return ContextMenuProvider.ContextMenuItem(
             title: String.localized("select_more"),
             imageName: "checkmark.circle",
             action: #selector(BaseMessageCell.messageSelectMore),
@@ -239,19 +279,6 @@ class ChatViewController: UITableViewController {
                 }
             }
         )
-
-        let dcChat = dcContext.getChat(chatId: chatId)
-        let config = ContextMenuProvider()
-        if #available(iOS 13.0, *), dcChat.canSend {
-            let mainContextMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, forwardItem, infoItem, copyItem, deleteItem])
-            config.setMenu([mainContextMenu, selectMoreItem])
-        } else if dcChat.canSend {
-            config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
-        } else {
-            config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
-        }
-
-        return config
     }()
 
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
@@ -450,8 +477,6 @@ class ChatViewController: UITableViewController {
             messageInputBar.inputTextView.text = RelayHelper.shared.mailtoDraft
             RelayHelper.shared.finishMailto()
         }
-
-        prepareContextMenu()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -834,7 +859,7 @@ class ChatViewController: UITableViewController {
                                             completionHandler(true)
                                         })
         if #available(iOS 13.0, *) {
-            action.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "ic_reply_black" : "ic_reply")
+            action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?.sd_tintedImage(with: DcColors.defaultInverseColor)
             action.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.25)
         } else {
             action.image = UIImage(named: "ic_reply_black")
@@ -852,6 +877,16 @@ class ChatViewController: UITableViewController {
         self.draft.setQuote(quotedMsg: message)
         self.configureDraftArea(draft: self.draft)
         focusInputTextView()
+    }
+
+    func replyPrivatelyToMessage(at indexPath: IndexPath) {
+        let msgId = self.messageIds[indexPath.row]
+        let message = dcContext.getMessage(id: msgId)
+        let privateChatId = dcContext.createChatByContactId(contactId: message.fromContactId)
+        let replyMsg: DcMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
+        replyMsg.quoteMessage = message
+        dcContext.setDraft(chatId: privateChatId, message: replyMsg)
+        showChat(chatId: privateChatId)
     }
 
     func markSeenMessagesInVisibleArea() {
@@ -1673,14 +1708,27 @@ class ChatViewController: UITableViewController {
     }
 
     // MARK: - Context menu
-    private func prepareContextMenu() {
-        UIMenuController.shared.menuItems = contextMenu.menuItems
+    private func prepareContextMenu(for message: DcMsg, isHidden: Bool) {
+        if #available(iOS 13.0, *) {
+            return
+        }
+
+        if isHidden {
+            UIMenuController.shared.menuItems = nil
+        } else if isGroupChat && !message.isFromCurrentSender {
+            UIMenuController.shared.menuItems = contextMenu.menuItems
+        } else {
+            UIMenuController.shared.menuItems = contextMenu.getMenuItems(filters: [ { $0.action != self.replyPrivatelyItem.action } ])
+        }
         UIMenuController.shared.update()
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         let messageId = messageIds[indexPath.row]
-        return !(dcContext.getMessage(id: messageId).isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER)
+        let message = dcContext.getMessage(id: messageId)
+        let isHidden = message.isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
+        prepareContextMenu(for: message, isHidden: isHidden)
+        return !isHidden
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
@@ -1727,7 +1775,15 @@ class ChatViewController: UITableViewController {
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
             actionProvider: { [weak self] _ in
-                self?.contextMenu.actionProvider(indexPath: indexPath)
+                guard let self = self else {
+                    return nil
+                }
+                if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
+                    return self.contextMenu.actionProvider(indexPath: indexPath)
+                } else {
+                    return self.contextMenu.actionProvider(indexPath: indexPath,
+                                                           filters: [ { $0.action != self.replyPrivatelyItem.action } ])
+                }
             }
         )
     }

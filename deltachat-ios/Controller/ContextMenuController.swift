@@ -137,15 +137,42 @@ class ContextMenuProvider {
             .map({ return UIMenuItem(title: $0.title!, action: $0.action!) })
     }
 
+    private func filter(_ filters: [(Array<ContextMenuItem>.Element) throws -> Bool]?, in items: [ContextMenuItem]) -> [ContextMenuItem] {
+        guard let filters = filters else {
+            return items
+        }
+
+        var items = items
+        for filter in filters {
+            do {
+                items = try items.filter(filter)
+            } catch {
+                logger.warning("applied context menu item filter is invalid")
+            }
+        }
+        return items
+    }
+
+    public func getMenuItems(filters: [(Array<ContextMenuItem>.Element) throws -> Bool]) -> [UIMenuItem] {
+        return filter(filters, in: menu)
+            .filter({ $0.title != nil && $0.action != nil })
+            .map({ return UIMenuItem(title: $0.title!, action: $0.action!) })
+    }
+
     // iOS13+ action menu
     @available(iOS 13, *)
-    func actionProvider(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, indexPath: IndexPath) -> UIMenu {
+    func actionProvider(title: String = "",
+                        image: UIImage? = nil,
+                        identifier: UIMenu.Identifier? = nil,
+                        indexPath: IndexPath,
+                        filters: [(Array<ContextMenuItem>.Element) throws -> Bool]? = nil) -> UIMenu {
 
         var children: [UIMenuElement] = []
-
-        for item in menu {
+        let menuItems = filter(filters, in: menu)
+        for item in menuItems {
             // we only support 1 submenu layer for now
-            if let subMenus = item.children {
+            if var subMenus = item.children {
+                subMenus = filter(filters, in: subMenus)
                 var submenuChildren: [UIMenuElement] = []
                 for submenuItem in subMenus {
                     submenuChildren.append(generateUIAction(item: submenuItem, indexPath: indexPath))
