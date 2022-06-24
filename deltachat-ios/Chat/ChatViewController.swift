@@ -1713,7 +1713,7 @@ class ChatViewController: UITableViewController {
     }
 
     // MARK: - Context menu
-    private func prepareContextMenu(for message: DcMsg, isHidden: Bool) {
+    private func prepareContextMenu(isHidden: Bool) {
         if #available(iOS 13.0, *) {
             return
         }
@@ -1728,9 +1728,8 @@ class ChatViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         let messageId = messageIds[indexPath.row]
-        let message = dcContext.getMessage(id: messageId)
-        let isHidden = message.isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
-        prepareContextMenu(for: message, isHidden: isHidden)
+        let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
+        prepareContextMenu(isHidden: isHidden)
         return !isHidden
     }
 
