@@ -1877,15 +1877,7 @@ class ChatViewController: UITableViewController {
     func handleEditingBar() {
         if let indexPaths = tableView.indexPathsForSelectedRows,
            !indexPaths.isEmpty {
-            var hasInfoMessageSelected = false
-            for indexPath in indexPaths {
-                if dcContext.getMessage(id: messageIds[indexPath.row]).isInfo {
-                    hasInfoMessageSelected = true
-                    break
-                }
-            }
             editingBar.isEnabled = true
-            editingBar.forwardButton.isHidden = hasInfoMessageSelected
         } else {
             editingBar.isEnabled = false
         }
