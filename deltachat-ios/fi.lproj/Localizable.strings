@@ -90,7 +90,6 @@
 "last_seen_unknown" = "Nähty viimeksi: ei tiedossa";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "Minä";
 "draft" = "Luonnos";
 "image" = "Kuva";
@@ -654,7 +653,7 @@
 "systemmsg_group_image_deleted" = "Ryhmän kuva poistettu";
 "systemmsg_member_added" = "Jäsen %1$@ lisätty";
 "systemmsg_member_removed" = "Jäsen %1$@ poistettu";
-"systemmsg_group_left" = "Poistuit ryhmästä.";
+"systemmsg_group_left" = "Poistuttiin ryhmästä.";
 "systemmsg_read_receipt_subject" = "Viesti avattu";
 "systemmsg_read_receipt_body" = "Lähettämäsi viesti \"%1$@\" näytettiin vastaanottajan näytöllä.\n\nTämä ei takaa, että sisältö luettiin.";
 "systemmsg_cannot_decrypt" = "Viestin salausta ei voi purkaa.\n\n• Pyydä lähettäjää lähettämään viesti uudelleen.\n\n• Jos asensit Delta Chatin tai toisen sähköpostisovelluksen uudelleen tälle tai toiselle laitteelle, Autocrypt-asetusviestin lähettäminen siitä sovelluksesta voi auttaa.";

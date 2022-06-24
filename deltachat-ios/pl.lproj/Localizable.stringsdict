@@ -115,11 +115,11 @@
 			<key>one</key>
 			<string>%d członek</string>
 			<key>few</key>
-			<string>%dczłonków </string>
+			<string>%d członków </string>
 			<key>many</key>
-			<string>%dczłonków</string>
+			<string>%d członków</string>
 			<key>other</key>
-			<string>%dczłonka</string>
+			<string>%d członków</string>
 		</dict>
 	</dict>
 	<key>n_recipients</key>

@@ -84,7 +84,6 @@
 "last_seen_unknown" = "마지막 접속: 알 수 없음";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "나";
 "draft" = "임시 저장";
 "image" = "이미지";

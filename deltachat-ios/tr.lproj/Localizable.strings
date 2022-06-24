@@ -90,7 +90,6 @@
 "last_seen_unknown" = "Son görülme: Bilinmeyen";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "Ben";
 "draft" = "Taslak";
 "image" = "Görsel";

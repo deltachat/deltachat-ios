@@ -88,7 +88,6 @@
 "last_seen_unknown" = "آخرین زمان مشاهده: نامشخص";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "من";
 "draft" = "پیش‌نویس";
 "image" = "تصویر";

@@ -90,7 +90,6 @@
 "last_seen_unknown" = "Visto por última vez: Desconocido";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "Yo";
 "draft" = "Borrador";
 "image" = "Imagen";

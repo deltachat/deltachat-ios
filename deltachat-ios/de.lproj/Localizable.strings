@@ -90,6 +90,7 @@
 "last_seen_unknown" = "Zuletzt gesehen: Unbekannt";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
 
 "self" = "Ich";
 "draft" = "Entwurf";

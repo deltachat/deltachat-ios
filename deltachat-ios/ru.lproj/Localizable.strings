@@ -90,7 +90,6 @@
 "last_seen_unknown" = "Последний раз был(а): Неизвестно";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "Я";
 "draft" = "Черновик";
 "image" = "Изображение";
@@ -228,6 +227,8 @@
 "unpin" = "Открепить";
 "ConversationFragment_quoted_message_not_found" = "Оригинальное сообщение не найдено";
 "reply_privately" = "Ответить лично";
+"source_code" = "Исходный код";
+
 "mute_for_one_hour" = "1 час";
 "mute_for_two_hours" = "На 2 часа";
 "mute_for_one_day" = "На 1 день";
@@ -251,7 +252,9 @@
 "videochat_tap_to_open" = "Нажмите, чтобы открыть.";
 "videochat_instance" = "Инстанс видеочатов";
 "videochat_instance_placeholder" = "Ваш инстанс видеочатов";
+"videochat_instance_example" = "Примеры: https://meet.jit.si/$ROOM или basicwebrtc:https://your-server";
 "videochat_instance_explain" = "Если инстанс видеочатов определён, вы можете начинать видеочат из каждого чата. Видеочаты требуют совместимого приложения или совместимого браузера на обоих концах.\n\nПримеры: https://meet.jit.si/$ROOM или basicwebrtc:https://your-server";
+"videochat_instance_explain_2" = "Если видеочат включён, вы можете начать его из любого чата. Для видеочата требуется совместимое приложение или совместимый браузер у обоих участников.";
 "videochat_instance_from_qr" = "Использовать \"%1$@\" чтобы приглашать других в видеочаты?\n\nНастроив один раз, вы можете начинать видеочат из каждого чата. Это заменит предыдущие настройки видеочатов, если они были.";
 "videochat_invitation" = "Приглашение в видеочат";
 "videochat_invitation_body" = "Вы приглашены в видеочат, нажмите %1$@, чтобы присоединиться.";
@@ -308,6 +311,7 @@
 "saved_messages_explain" = "• Пересылайте сообщения сюда для быстрого доступа\n\n• Делайте текстовые или голосовые заметки\n\n• Прикрепляйте медиафайлы, чтобы сохранить их";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Сохранено";
+"save_as" = "Сохранить как…";
 "retry_send" = "Повторить отправку сообщения";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Вы не можете писать, потому что вы не в этой группе. Чтобы присоединиться, попросите другого участника.";
@@ -374,6 +378,10 @@
 "tab_map" = "Карта";
 "tab_gallery_empty_hint" = "Здесь будут отображены совместные фото и видео файлы которыми поделились в этом чате.";
 "tab_docs_empty_hint" = "Здесь будут отображены совместные документы, музыка и другие файлы которыми поделились в этом чате.";
+"tab_image_empty_hint" = "Изображения, размещённые в этом чате, будут отображаться здесь.";
+"tab_video_empty_hint" = "Видео, размещённые в этом чате, будут отображаться здесь.";
+"tab_audio_empty_hint" = "Аудиофайлы и голосовые сообщения, размещённые в этом чате, будут отображаться здесь.";
+"tab_webxdc_empty_hint" = "Содержимое Webxdc, размещённое в этом чате, будет отображаться здесь.";
 "media_preview" = "Предпросмотр медиафайлов";
 "send_message" = "Отправить сообщение";
 
@@ -549,6 +557,7 @@
 "pref_watch_sent_folder" = "Следить за папкой Исходящие";
 "pref_watch_mvbox_folder" = "Следить за папкой DeltaChat";
 "pref_send_copy_to_self" = "Отправлять копию себе";
+"pref_send_copy_to_self_explain" = "Требуется при использовании этого аккаунта на нескольких устройствах.";
 "pref_auto_folder_moves" = "Автоматически Перемещать в папку DeltaChat";
 "pref_auto_folder_moves_explain" = "Сообщения чатов переносятся, чтобы избежать путаницы в папке «Входящие»";
 "pref_only_fetch_mvbox_title" = "Загружать только из папки DeltaChat";
@@ -820,6 +829,17 @@
 "no_spellcheck_suggestions_found" = "Предложений по правописанию не найдено. ";
 "show_window" = "Показать Окно";
 "login_socks5_experimental_warning" = "Поддержка SOCKS5 в настоящее время экспериментальная. Используйте на свой риск. Если вы введете адрес электронной почты, DNS-запросы, которые не туннелируются через SOCKS5, не будут произведены.";
+
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Привязка кнопок";
+"switch_between_chats" = "Переключение между чатами";
+"scroll_messages" = "Прокрутка сообщений";
+// command to put the cursor to the search input field
+"focus_search_input" = "Фокус на поиск";
+// command to put the cursor to the message input field
+"focus_message_input" = "Фокус на ввод сообщения";
+"force_refresh_network" = "Принудительное обновление сети";
+"insert_newline" = "Вставить новую строку";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Статус доставки: Ошибка";

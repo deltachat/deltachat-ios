@@ -85,7 +85,6 @@
 "last_month" = "El mes passat";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-
 "self" = "Jo";
 "draft" = "Esborrany";
 "image" = "Imatge";
