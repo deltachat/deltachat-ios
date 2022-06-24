@@ -1720,10 +1720,8 @@ class ChatViewController: UITableViewController {
 
         if isHidden {
             UIMenuController.shared.menuItems = nil
-        } else if isGroupChat && !message.isFromCurrentSender {
-            UIMenuController.shared.menuItems = contextMenu.menuItems
         } else {
-            UIMenuController.shared.menuItems = contextMenu.getMenuItems(filters: [ { $0.action != self.replyPrivatelyItem.action } ])
+            UIMenuController.shared.menuItems = contextMenu.menuItems
         }
         UIMenuController.shared.update()
     }
