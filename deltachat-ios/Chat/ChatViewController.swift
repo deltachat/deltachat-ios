@@ -1773,7 +1773,7 @@ class ChatViewController: UITableViewController {
     @available(iOS 13, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
-        if tableView.isEditing || dcContext.getMessage(id: messageId).isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
+        if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
         return UIContextMenuConfiguration(
@@ -1783,7 +1783,10 @@ class ChatViewController: UITableViewController {
                 guard let self = self else {
                     return nil
                 }
-                if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
+                if self.dcContext.getMessage(id: messageId).isInfo {
+                    return self.contextMenu.actionProvider(indexPath: indexPath,
+                                                           filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
+                } else if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
                     return self.contextMenu.actionProvider(indexPath: indexPath)
                 } else {
                     return self.contextMenu.actionProvider(indexPath: indexPath,
