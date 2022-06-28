@@ -44,7 +44,7 @@ class SettingsVideoChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return String.localized("videochat_instance_explain")
+        return String.localized("videochat_instance_explain_2") + "\n\n" + String.localized("videochat_instance_example")
     }
 
     override func viewWillDisappear(_ animated: Bool) {
