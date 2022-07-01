@@ -390,7 +390,7 @@ class ChatListController: UITableViewController {
             if tableView.indexPathsForSelectedRows == nil {
                 setLongTapEditing(false)
             } else {
-                updateMultiSelectSelectionCount()
+                updateTitle()
             }
         }
     }
@@ -402,7 +402,7 @@ class ChatListController: UITableViewController {
         }
         if tableView.isEditing {
             editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
-            updateMultiSelectSelectionCount()
+            updateTitle()
             return
         }
 
@@ -541,7 +541,8 @@ class ChatListController: UITableViewController {
 
     func handleMultiSelectTitle() {
         if tableView.isEditing {
-            updateMultiSelectSelectionCount()
+            let cnt = tableView.indexPathsForSelectedRows?.count ?? 1
+            titleView.text = String.localized(stringID: "n_selected", count: cnt)
             navigationItem.setLeftBarButton(cancelButton, animated: true)
             navigationItem.setRightBarButton(nil, animated: true)
         } else {
@@ -551,12 +552,6 @@ class ChatListController: UITableViewController {
             }
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
-    }
-
-    func updateMultiSelectSelectionCount() {
-        let cnt = tableView.indexPathsForSelectedRows?.count ?? 1
-        titleView.text = String.localized(stringID: "n_selected", count: cnt)
-        titleView.sizeToFit()
     }
 
     func handleChatListUpdate() {
