@@ -1713,26 +1713,23 @@ class ChatViewController: UITableViewController {
     }
 
     // MARK: - Context menu
-    private func prepareContextMenu(for message: DcMsg, isHidden: Bool) {
+    private func prepareContextMenu(isHidden: Bool) {
         if #available(iOS 13.0, *) {
             return
         }
 
         if isHidden {
             UIMenuController.shared.menuItems = nil
-        } else if isGroupChat && !message.isFromCurrentSender {
-            UIMenuController.shared.menuItems = contextMenu.menuItems
         } else {
-            UIMenuController.shared.menuItems = contextMenu.getMenuItems(filters: [ { $0.action != self.replyPrivatelyItem.action } ])
+            UIMenuController.shared.menuItems = contextMenu.menuItems
         }
         UIMenuController.shared.update()
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         let messageId = messageIds[indexPath.row]
-        let message = dcContext.getMessage(id: messageId)
-        let isHidden = message.isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
-        prepareContextMenu(for: message, isHidden: isHidden)
+        let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
+        prepareContextMenu(isHidden: isHidden)
         return !isHidden
     }
 
@@ -1773,7 +1770,7 @@ class ChatViewController: UITableViewController {
     @available(iOS 13, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
-        if tableView.isEditing || dcContext.getMessage(id: messageId).isInfo || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
+        if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
         return UIContextMenuConfiguration(
@@ -1783,7 +1780,10 @@ class ChatViewController: UITableViewController {
                 guard let self = self else {
                     return nil
                 }
-                if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
+                if self.dcContext.getMessage(id: messageId).isInfo {
+                    return self.contextMenu.actionProvider(indexPath: indexPath,
+                                                           filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
+                } else if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
                     return self.contextMenu.actionProvider(indexPath: indexPath)
                 } else {
                     return self.contextMenu.actionProvider(indexPath: indexPath,
@@ -1877,15 +1877,7 @@ class ChatViewController: UITableViewController {
     func handleEditingBar() {
         if let indexPaths = tableView.indexPathsForSelectedRows,
            !indexPaths.isEmpty {
-            var hasInfoMessageSelected = false
-            for indexPath in indexPaths {
-                if dcContext.getMessage(id: messageIds[indexPath.row]).isInfo {
-                    hasInfoMessageSelected = true
-                    break
-                }
-            }
             editingBar.isEnabled = true
-            editingBar.forwardButton.isHidden = hasInfoMessageSelected
         } else {
             editingBar.isEnabled = false
         }
