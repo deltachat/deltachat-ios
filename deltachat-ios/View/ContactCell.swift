@@ -219,8 +219,6 @@ class ContactCell: UITableViewCell {
         if sender.state == UIGestureRecognizer.State.began,
            let tableView = self.superview as? UITableView,
            let indexPath = tableView.indexPath(for: self) {
-            let generator = UIImpactFeedbackGenerator(style: .medium)
-            generator.impactOccurred()
             delegate?.onLongTap(at: indexPath)
         }
     }

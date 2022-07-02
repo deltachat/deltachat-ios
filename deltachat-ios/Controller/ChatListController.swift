@@ -765,6 +765,7 @@ extension ChatListController: ContactCellDelegate {
            !searchActive,
            !RelayHelper.shared.isForwarding(),
            !tableView.isEditing {
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             setLongTapEditing(true, initialIndexPath: [indexPath])
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
