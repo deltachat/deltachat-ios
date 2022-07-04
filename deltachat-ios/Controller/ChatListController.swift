@@ -445,13 +445,15 @@ class ChatListController: UITableViewController {
         let archiveActionTitle: String = String.localized(archived ? "unarchive" : "archive")
 
         let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _ in
-            self?.viewModel?.archiveChatToggle(chatId: chatId)
+            self?.viewModel?.archiveChatToggle(chatId: chatId, notifyListener: true)
+            self?.setEditing(false, animated: true)
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _ in
-            self?.viewModel?.pinChatToggle(chatId: chat.id)
+            self?.viewModel?.pinChatToggle(chatId: chat.id, notifyListerner: true)
+            self?.setEditing(false, animated: true)
         }
         pinAction.backgroundColor = UIColor.systemGreen
 
@@ -465,6 +467,7 @@ class ChatListController: UITableViewController {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
         viewModel?.setEditing(editing)
     }
 
@@ -555,8 +558,8 @@ class ChatListController: UITableViewController {
     }
 
     func handleChatListUpdate() {
-        if tableView.isEditing {
-            viewModel?.setPendingChatListUpdate()
+        if let viewModel = viewModel, viewModel.isEditing {
+            viewModel.setPendingChatListUpdate()
             return
         }
         if Thread.isMainThread {
