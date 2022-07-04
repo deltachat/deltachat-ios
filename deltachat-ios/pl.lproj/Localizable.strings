@@ -253,7 +253,6 @@
 "videochat_instance" = "Instancja czatu wideo";
 "videochat_instance_placeholder" = "Twoja instancja czatu wideo";
 "videochat_instance_example" = "Przykład: https://meet.jit.si/$ROOM lub basicwebrtc:https://your-server";
-"videochat_instance_explain" = "Jeśli zdefiniowano instancję czatu wideo, możesz rozpocząć rozmowę wideo z każdego czatu indywidualnego. Czaty wideo wymagają kompatybilnej aplikacji lub kompatybilnej przeglądarki po obu stronach.\n\nPrzykłady: https://meet.jit.si/$ROOM lub basicwebrtc:https://your-server";
 "videochat_instance_explain_2" = "Jeśli czat wideo jest włączony, możesz rozpocząć rozmowę wideo z każdego czatu indywidualnego. Czaty wideo wymagają kompatybilnej aplikacji lub kompatybilnej przeglądarki po obu stronach.";
 "videochat_instance_from_qr" = "Czy użyć „%1$@”, aby zaprosić innych do czatów wideo?\n\nPo ustawieniu możesz rozpocząć czat wideo z każdego czatu indywidualnego. Spowoduje to zastąpienie poprzedniego ustawienia czatów wideo, jeśli takie istnieją.";
 "videochat_invitation" = "Zaproszenie do czatu wideo";
@@ -371,7 +370,6 @@
 "profile_shared_chats" = "Wspólne czaty";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupa";
-"tab_members" = "Członkowie";
 "tab_gallery" = "Galeria";
 "tab_docs" = "Dokumenty";
 "tab_links" = "Linki";
@@ -527,7 +525,6 @@
 "pref_use_system_emoji" = "Użyj emoji systemowych";
 "pref_use_system_emoji_explain" = "Wyłącza wbudowaną obsługę emoji Delta Chat";
 "pref_app_access" = "Dostęp do aplikacji";
-"pref_communication" = "Komunikacja";
 "pref_chats" = "Czaty";
 "pref_in_chat_sounds" = "Dźwięki w czacie";
 "pref_message_text_size" = "Rozmiar czcionki w wiadomości";
@@ -553,9 +550,7 @@
 "pref_background_btn_gallery" = "Wybierz z galerii";
 "pref_imap_folder_handling" = "Obsługa folderów IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Jeśli wyłączysz tę opcję, upewnij się, że twój serwer i inni klienci są odpowiednio skonfigurowani.\n\nW przeciwnym razie wszystko może w ogóle nie działać.";
-"pref_watch_inbox_folder" = "Oglądaj katalog Skrzynka odbiorcza";
 "pref_watch_sent_folder" = "Oglądaj katalog Wysłane";
-"pref_watch_mvbox_folder" = "Oglądaj folder DeltaChat";
 "pref_send_copy_to_self" = "Wyślij kopię do siebie";
 "pref_send_copy_to_self_explain" = "Wymagane kiedy korzystasz z tego konta na wielu urządzeniach.";
 "pref_auto_folder_moves" = "Automatyczne przenoszenie do folderu DeltaChat";
@@ -580,7 +575,6 @@
 "up_to_x" = "Do %1$@";
 "up_to_x_most_worse_quality_images" = "Do %1$@, większość obrazów gorszej jakości.";
 "up_to_x_most_balanced_quality_images" = "Do %1$@, obrazy o najbardziej zrównoważonej jakości";
-"no_limit" = "Bez limitu";
 "download_failed" = "Pobieranie nie udane";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "Wiadomość %1$@";
@@ -856,6 +850,3 @@
 "perm_enable_bg_already_done" = "Pozwolono już Delta Chat na odbieranie wiadomości w tle.\n\nJeśli wiadomości nadal nie docierają w tle, sprawdź też ustawienia systemu.";
 
 
-// device messages for updates
-"update_1_28_android" = "1.28 Najważniejsze informacje:\n\n🔒 Szyfrowanie: Nowa eksperymentalna opcja do utrzymywania kontaktów, szyfrowania sekretnych i tekstowych wiadomości zaszyfrowanych na twoim urządzeniu. Dostępne tylko podczas tworzenia konta i importowania plików kopii zapasowych.\n\n📫 Zapisywanie do listy dyskusyjnej\n\n💫 Szybsza konfiguracja początkowa dla większej liczby serwerów e-mail i usprawnionych opcji sieciowych, aby zapobiec przypadkowej błędnej konfiguracji\n\n🐜 Prawdopodobnie naprawione zgłaszane przez użytkownika problemy";
-"update_1_28_ios_extra_line" = "… i już teraz możesz wybrać tapetę w „Ustawienia » Tło” :) ";

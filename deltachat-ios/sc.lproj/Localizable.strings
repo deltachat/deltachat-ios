@@ -191,7 +191,6 @@
 "videochat_tap_to_open" = "Toca pro abèrrere";
 "videochat_instance" = "Istàntzia de vìdeu-tzarrada";
 "videochat_instance_placeholder" = "S\'istàntzia de vìdeu-tzarrada tua";
-"videochat_instance_explain" = "Si benit definida un\'istàntzia de vìdeu-tzarrada, podes fàghere incumentzare una vìdeu-tzarrada dae cada tzarrada unu-a-unu. Sas vìdeu-tzarradas tenent bisòngiu de un\'aplicatzione cumpatìbile o de unu navigadore web cumpatìbile dae ambas alas..\n\nEsèmpios: https://meet.jit.si/$ROOM o basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "Cheres impreare \"%1$@\" pro invitare calicun\'àteru a sa vìdeu-tzarrada?\n\nA pustis de s\'impostatzione, podes fàghere incumentzare una vìdeu-tzarrada dae cada tzarrada unu-a-unu. Custu at a remplasare sas impostatziones antepostas pro sas vìdeu-tzarradas, si bi nde fiant.";
 "videochat_invitation" = "Invitu a sa vìdeu-tzarrada";
 "videochat_invitation_body" = "Ses invitadu a una vìdeu-tzarrada. Incarca %1$@ pro bi pigare parte.";
@@ -268,7 +267,6 @@
 "profile_shared_chats" = "Tzarradas cumpartzidas";
 "tab_contact" = "Cuntatu";
 "tab_group" = "Grupu";
-"tab_members" = "Membros";
 "tab_gallery" = "Galleria";
 "tab_docs" = "Documentos";
 "tab_links" = "Ligàmenes";
@@ -380,7 +378,6 @@
 "pref_use_system_emoji" = "Imprea sas emoji de sistema";
 "pref_use_system_emoji_explain" = "Istuda su suportu de sas emoji incorporadu in Delta Chat";
 "pref_app_access" = "Atzessu a s\'aplicatzione";
-"pref_communication" = "Comunicatzione";
 "pref_chats" = "Tzarradas";
 "pref_in_chat_sounds" = "Sonos in sa tzarrada";
 "pref_message_text_size" = "Mannària de sos caràteres in sos messàgios";
@@ -406,9 +403,7 @@
 "pref_background_btn_gallery" = "Ischerta dae sa galleria";
 "pref_imap_folder_handling" = "Amministratzione de sa cartella IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Si disabìlitas custa opztione assegura·ti chi su serbidore tuo e totu sos àteros clientes siant cunfigurados in sa matessi manera\n\nSi nono sas cosas diant pòdere non funtzionare pro nudda.";
-"pref_watch_inbox_folder" = "Pòmpia sa cartella de intrada";
 "pref_watch_sent_folder" = "Pòmpia sa cartella de sos imbiados";
-"pref_watch_mvbox_folder" = "Pòmpia sa cartella DeltaChat";
 "pref_send_copy_to_self" = "Imbia·ti·nche una còpia";
 "pref_auto_folder_moves" = "Tramudòngios automàticos a sa cartella DeltaChat";
 "pref_auto_folder_moves_explain" = "Sos arresonos de sas tzarradas benint tramudados pro evitare su prenamentu de sa cartella de intrada";

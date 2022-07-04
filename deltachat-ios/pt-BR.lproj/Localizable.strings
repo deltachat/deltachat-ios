@@ -253,7 +253,6 @@
 "videochat_instance" = "Instância de conversa de vídeo";
 "videochat_instance_placeholder" = "Sua instância de conversa de vídeo";
 "videochat_instance_example" = "Exemplos: https://meet.jit.si/$ROOM o basicwebrtc:https://your-server";
-"videochat_instance_explain" = "Se uma instância de chat de vídeo for definida, você pode iniciar um chat de vídeo para cada conversa individual. Os chats de vídeo requerem um aplicativo ou navegador compatível para os dois interlocutores.\n \nExemplos: https://meet.jit.si/$ROOM ou basicwebrtc:https://seu-servidor";
 "videochat_instance_explain_2" = "Se o video chat estiver habilitado, você pode iniciar uma ligação de video a partir de cada chat. Os bate-papos de vídeo exigem um aplicativo compatível ou um navegador compatível nos dos lados.";
 "videochat_instance_from_qr" = "Use \"%1$@\" para convidar outros para a conversas de vídeo?\n\nUma vez configurado, você pode iniciar uma conversa de vídeo para cada conversa um-para-um. Isto irá substituir os ajustes prévios para conversas de vídeo, caso existam.";
 "videochat_invitation" = "Convite para conversa de vídeo";
@@ -371,7 +370,6 @@
 "profile_shared_chats" = "Conversas compartilhadas";
 "tab_contact" = "Contato";
 "tab_group" = "Grupo";
-"tab_members" = "Membros";
 "tab_gallery" = "Galeria";
 "tab_docs" = "Documentos";
 "tab_links" = "Links";
@@ -527,7 +525,6 @@
 "pref_use_system_emoji" = "Usar emojis do sistema";
 "pref_use_system_emoji_explain" = "Desabilitar emojis do Delta Chat";
 "pref_app_access" = "Acesso do aplicativo";
-"pref_communication" = "Comunicação";
 "pref_chats" = "Conversas";
 "pref_in_chat_sounds" = "Sons da conversa";
 "pref_message_text_size" = "Tamanho da fonte de mensagens";
@@ -553,9 +550,7 @@
 "pref_background_btn_gallery" = "Selecionar da galeria";
 "pref_imap_folder_handling" = "Gerenciar pastas IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Se você mudar esta opção, certifique-se de que seu servidor e demais aplicativos estejam configurados de acordo.\n\nDo contrário, funcionalidades podem não funcionar.";
-"pref_watch_inbox_folder" = "Verificar a caixa de entrada";
 "pref_watch_sent_folder" = "Verificar a caixa de saída";
-"pref_watch_mvbox_folder" = "Verificar a pasta DeltaChat";
 "pref_send_copy_to_self" = "Enviar cópia para mim";
 "pref_send_copy_to_self_explain" = "Necessário ao utilizar esta conta em múltiplos dispositivos.";
 "pref_auto_folder_moves" = "Mover automaticamente para a pasta DeltaChat";
@@ -580,7 +575,6 @@
 "up_to_x" = "Até %1$@";
 "up_to_x_most_worse_quality_images" = "Até %1$@, imagens de pior qualidade";
 "up_to_x_most_balanced_quality_images" = "Até %1$@, imagens de qualidade equilibrada";
-"no_limit" = "Sem limite";
 "download_failed" = "Falha no Download";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "Mensagem de %1$@";
@@ -890,6 +884,4 @@
 
 
 // device messages for updates
-"update_1_28_android" = "Destaques da 1.28:\n\n🔒 Criptografia: uma nova opção experimental para manter seus contatos, segredos de criptografia e mensagens de texto criptografadas em seu dispositivo. Disponível apenas na criação de conta e importação de arquivos de backup.\n\n📫 Escrever para lista de e-mails\n\n💫 Configuração inicial mais rápida para mais servidores de e-mail e opções de rede simplificadas para evitar configurações incorretas acidentais\n\n🐜 Muuuuuuitos problemas relatados por usuários corrigidos";
-"update_1_28_ios_extra_line" = "… e você pode selecionar um papel de parede em \"Configurações / Papel de Parede\" agora :)";
 

@@ -182,7 +182,6 @@
 "videochat_tap_to_open" = "Trykk for å åpne";
 "videochat_instance" = "Videochatteinstans";
 "videochat_instance_placeholder" = "Din videochatteinstans";
-"videochat_instance_explain" = "Hvis en videochatteinstans er definert, kan dere starte videochat med hverandre en-til-en. Videochat trenger en kompatibel nettleser i begge ender.\n\nEksempel: https://meet.jit.si/$ROOM eller basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "Bruk \"%1$@\" til å invitere andre til videochatter?\n\nNår satt, kan dere starte videochatter til hverandre en-til-en. Dette vil erstatte, eventuelle, tidligere innstillinger for videochatter.";
 "videochat_invitation" = "Videochatinvitasjon";
 "videochat_invitation_body" = "Du er invitert til en videochat, klikk %1$@ for å bli med.";
@@ -234,7 +233,6 @@
 "profile_shared_chats" = "Delte sludringer";
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
-"tab_members" = "Medlemmer";
 "tab_gallery" = "Galleri";
 "tab_docs" = "Dokumenter";
 "media_preview" = "Forhåndsvisning av medier";
@@ -295,7 +293,6 @@
 "pref_use_system_emoji" = "Bruk systemets emoji";
 "pref_use_system_emoji_explain" = "Slå av innebygd emoji-støtte i Delta Chat";
 "pref_app_access" = "Programtilgang";
-"pref_communication" = "Kommunikasjon";
 "pref_chats" = "Sludringer";
 "pref_in_chat_sounds" = "Merknader i programmet";
 "pref_message_text_size" = "Skriftstørrelse i meldinger";

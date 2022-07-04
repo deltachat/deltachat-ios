@@ -285,7 +285,6 @@
 "profile_shared_chats" = "Obrolan terbagi";
 "tab_contact" = "Kontak";
 "tab_group" = "Grup";
-"tab_members" = "Anggota";
 "tab_gallery" = "Galeri";
 "tab_docs" = "Dokumen";
 "tab_links" = "Tautan";
@@ -389,7 +388,6 @@
 "pref_use_system_emoji" = "Gunakan emoji sistem";
 "pref_use_system_emoji_explain" = "Matikan dukungan emoji Delta Chat yang ada";
 "pref_app_access" = "Akes Aplikasi";
-"pref_communication" = "Komunikasi";
 "pref_chats" = "Obrolan";
 "pref_in_chat_sounds" = "Suara dalam obrolan";
 "pref_message_text_size" = "Ukuran huruf pesan";
@@ -413,7 +411,6 @@
 "pref_background" = "Latar belakang";
 "pref_background_btn_default" = "Menggunakan gambar default";
 "pref_background_btn_gallery" = "Pilih dari galeri";
-"pref_watch_mvbox_folder" = "Saksikan berkas DeltaChat";
 "pref_send_copy_to_self" = "Kirim salinan ke saya";
 "pref_auto_folder_moves" = "Perpindahan otomatis ke berkas DeltaChat";
 "pref_auto_folder_moves_explain" = "Percakapan dipindahkan untuk menghindari memenuhi kotak masuk";

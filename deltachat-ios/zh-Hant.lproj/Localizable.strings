@@ -248,7 +248,6 @@
 "videochat_tap_to_open" = "點擊以開啟";
 "videochat_instance" = "視訊通話服務商";
 "videochat_instance_placeholder" = "你的視訊通話服務商";
-"videochat_instance_explain" = "如果你已經定義了視訊通話服務商，你可以在每個聊天室內開啟視訊通話。視訊通話必須要雙方有一個相容的應用程式或是瀏覽器。\n\n例如：https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "要使用\"%1$@\"來邀請其他人加入視訊通話嗎？\n\n一旦設定完成，你可以在每個聊天室內開啟視訊通話。這將會取代先前的視訊通話設定。";
 "videochat_invitation" = "視訊通話邀請";
 "videochat_invitation_body" = "你被邀請至視訊電話，點擊%1$@以加入。";
@@ -315,7 +314,6 @@
 "profile_shared_chats" = "共享的對話";
 "tab_contact" = "聯絡人";
 "tab_group" = "群組";
-"tab_members" = "成員";
 "tab_gallery" = "相簿";
 "tab_docs" = "文件";
 "tab_links" = "連結";
@@ -403,7 +401,6 @@
 "pref_use_system_emoji" = "使用系統的表情符號";
 "pref_use_system_emoji_explain" = "停用 Delta Chat 內建的表情符號";
 "pref_app_access" = "App 存取";
-"pref_communication" = "通訊";
 "pref_chats" = "對話";
 "pref_in_chat_sounds" = "對話內的音效";
 "pref_message_text_size" = "訊息的字型大小";
@@ -427,9 +424,7 @@
 "pref_background_btn_gallery" = "從相簿中挑選";
 "pref_imap_folder_handling" = "處理 IMAP 資料夾";
 "pref_imap_folder_warn_disable_defaults" = "如果關閉本選項的話，請務必確定你的伺服器和其它客戶端應用程式都使用相同的設定，否則很可能不能運作。";
-"pref_watch_inbox_folder" = "監看收件匣";
 "pref_watch_sent_folder" = "監看送件匣";
-"pref_watch_mvbox_folder" = "監看 DeltaChat 資料夾";
 "pref_auto_folder_moves" = "自動搬移到 DeltaChat 資料夾";
 "pref_auto_folder_moves_explain" = "搬移對話以避免塞爆收件匣";
 "pref_show_emails" = "顯示傳統email";

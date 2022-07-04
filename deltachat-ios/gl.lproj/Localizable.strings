@@ -90,6 +90,8 @@
 "last_seen_unknown" = "Última conexión: Descoñecido";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+
 "self" = "Eu";
 "draft" = "Borrador";
 "image" = "Imaxe";
@@ -252,7 +254,8 @@
 "videochat_tap_to_open" = "Toca para abrir";
 "videochat_instance" = "Instancia para video chat";
 "videochat_instance_placeholder" = "A túa instancia para video chat";
-"videochat_instance_explain" = "Se está definida unha instancia de video chat podes iniciar o chat desde calquera conversa un-a-un. Os chats de vídeo requiren unha app ou navegador compatibles para as participantes.\n\nExemplos: https://meet.jit.si/$ROOM ou basicwebrtc:https://your-server";
+"videochat_instance_example" = "Exemplos: https://meet.jit.si/$ROOM ou basicwebrtc:https://your-server";
+"videochat_instance_explain_2" = "Se o chat por vídeo está activado, podes iniciar o chat de vídeo desde cada chat. Os chats de vídeo requiren unha app compatible ou un navegador compatible nos dous extremos.";
 "videochat_instance_from_qr" = "¿Usar \"%1$@\" para convidar a outras a chats de vídeo?\n\nUnha vez establecido podes iniciar o chat desde a conversa un-a-un. Esto restablece o axuste anterior para video chats se existise.";
 "videochat_invitation" = "Convite a chat de vídeo";
 "videochat_invitation_body" = "Convidáronte a un chat de vídeo, preme %1$@ para unirte.";
@@ -309,6 +312,7 @@
 "saved_messages_explain" = "• Reenvía aquí as mensaxes para un acceso rápido\n\n• Toma notas de texto ou voz\n\n• Anexa medios para gardalos";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Gardado";
+"save_as" = "Gardar com";
 "retry_send" = "Reintentar o envío da mensaxe";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Non podes escribir porque non estás no grupo. Para unirte, solicítallo a outro membro.";
@@ -368,13 +372,16 @@
 "profile_shared_chats" = "Conversas compartidas";
 "tab_contact" = "Contacto";
 "tab_group" = "Grupo";
-"tab_members" = "Membros";
 "tab_gallery" = "Galería";
 "tab_docs" = "Docs";
 "tab_links" = "Ligazóns";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "As imaxes e vídeos compartidos nesta conversa móstranse aquí.";
 "tab_docs_empty_hint" = "Aquí están os documentos, música e outros ficheiros compartidos na conversa.";
+"tab_image_empty_hint" = "As imaxes compartidas neste chat serán visibles aquí.";
+"tab_video_empty_hint" = "Os vídeos compartidos neste chat serán visibles aquí.";
+"tab_audio_empty_hint" = "Os ficheiros de Audio e de Mensaxes de Voz compartidos neste chat serán mostrados aquí.";
+"tab_webxdc_empty_hint" = "Contido Webxdc compartido neste chat será mostrado aquí.";
 "media_preview" = "Vista previa dos medios";
 "send_message" = "Enviar mensaxe";
 
@@ -520,7 +527,6 @@
 "pref_use_system_emoji" = "Utilizar emoji do sistema";
 "pref_use_system_emoji_explain" = "Desactivar o soporte interno para emoji de Delta Chat";
 "pref_app_access" = "Acceso a app";
-"pref_communication" = "Comunicación";
 "pref_chats" = "Conversas";
 "pref_in_chat_sounds" = "Sons na conversa";
 "pref_message_text_size" = "Tamaño da letra na mensaxe";
@@ -546,10 +552,9 @@
 "pref_background_btn_gallery" = "Escoller na galería";
 "pref_imap_folder_handling" = "Xestión cartafol IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Se desactivas esta opción, asegúrate de que o servidor e os teus outros clientes están configurados de xeito acorde.\n\nSe non, algo podería fallar.";
-"pref_watch_inbox_folder" = "Vixiar cartafol de Entrada";
 "pref_watch_sent_folder" = "Vixiar cartafol Enviados";
-"pref_watch_mvbox_folder" = "Vixiar cartafol DeltaChat";
 "pref_send_copy_to_self" = "Enviar copia a ti mesmo";
+"pref_send_copy_to_self_explain" = "Requerido se utilizas esta conta en varios dispositivos.";
 "pref_auto_folder_moves" = "Mover automáticamente ao cartafol DeltaChat";
 "pref_auto_folder_moves_explain" = "As conversas móvense do cartafol de Entrada para evitar saturalo.";
 "pref_only_fetch_mvbox_title" = "Obter só desde cartafol DeltaChat";
@@ -572,7 +577,6 @@
 "up_to_x" = "Ata %1$@";
 "up_to_x_most_worse_quality_images" = "Ata %1$@, a maioría de imaxes da peor calidade";
 "up_to_x_most_balanced_quality_images" = "Ata %1$@, a maioría de imaxes de calidade equilibrada";
-"no_limit" = "Sen límite";
 "download_failed" = "Fallou a descarga";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ mensaxe";
@@ -822,6 +826,17 @@
 "show_window" = "Mostrar xanela";
 "login_socks5_experimental_warning" = "O soporte para SOCKS5 aínda é experimental. Úsao baixo a túa responsabilidade. Se escribes un enderezo no campo do email realizará unha busca DNS que non pasará a través de SOCKS5.";
 
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Atallos";
+"switch_between_chats" = "Cambiar entre Chats";
+"scroll_messages" = "Desprazar as mensaxes";
+// command to put the cursor to the search input field
+"focus_search_input" = "Foco na Busca";
+// command to put the cursor to the message input field
+"focus_message_input" = "Foco en Escribir mensaxe";
+"force_refresh_network" = "Foco en Actualizar rede";
+"insert_newline" = "Inserir nova liña";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Estado da entrega: Fallo";
 "a11y_encryption_padlock" = "Cadeado do cifrado";
@@ -871,7 +886,5 @@
 
 
 // device messages for updates
-"update_1_28_android" = "Destacado en 1.28:\n\n🔒 Cifrado: unha nova opción experimental para gardar contactos, chaves de cifrado e mensaxes de texto cifrados no teu dispositivo. Só dispoñible cando creas a conta e importas ficheiros de copia de apoio.\n\n📫 Escribir a listas de correo\n\n💫 Configuración inicial máis rápida para servidores de email e opcións de rede simplificadas para evitar problemas de configuración\n\n🐜Mais un looooote de problemiñas que as usuarias nos comentaron";
-"update_1_28_ios_extra_line" = "...e podes elexir o tapiz en \"Axustes / Fondo\" :)";
 "update_1_30" = "Máis rápido. Máis estable.\n\nNa versión 1.30 poñemos o foco na velocidade e fiabilidade, arranxando dúcias de problemiñas. Mira o rexistro de cambios se algún que ti vises foi arranxado: https://get.delta.chat/#changelogs 🚀";
 

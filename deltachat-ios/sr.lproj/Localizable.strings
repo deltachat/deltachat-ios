@@ -174,7 +174,6 @@
 "profile_shared_chats" = "Дељена ћаскања";
 "tab_contact" = "Контакт";
 "tab_group" = "Група";
-"tab_members" = "Чланови";
 "tab_gallery" = "Галерија";
 "tab_docs" = "Документи";
 "media_preview" = "Преглед медијума";
@@ -232,7 +231,6 @@
 "pref_use_system_emoji" = "Користи системски емоџи";
 "pref_use_system_emoji_explain" = "Искључи уграђене Delta Chat-ове емоџије";
 "pref_app_access" = "Приступ апликацији";
-"pref_communication" = "Комуникација";
 "pref_chats" = "Ћаскања";
 "pref_in_chat_sounds" = "Звуци ћаскања";
 "pref_message_text_size" = "Величина фонта поруке";

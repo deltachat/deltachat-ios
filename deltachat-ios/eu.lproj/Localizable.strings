@@ -227,7 +227,6 @@
 "profile_shared_chats" = "Partekatutako txatak";
 "tab_contact" = "Kontaktua";
 "tab_group" = "Taldea";
-"tab_members" = "Kideak";
 "tab_gallery" = "Galeria";
 "tab_docs" = "Dokumentuak";
 "tab_links" = "Estekak";
@@ -327,7 +326,6 @@
 "pref_use_system_emoji" = "Erabili sistemako emojiak";
 "pref_use_system_emoji_explain" = "Desgaitu Delta Chat-en barne emoji euskarria";
 "pref_app_access" = "Aplikazio sarbidea";
-"pref_communication" = "Komunikazioa";
 "pref_chats" = "Txatak";
 "pref_in_chat_sounds" = "Txat bitarteko soinuak";
 "pref_message_text_size" = "Mezuen letra tamaina";
@@ -353,9 +351,7 @@
 "pref_background_btn_gallery" = "Hautatu galeriatik";
 "pref_imap_folder_handling" = "IMAP karpeten kudeaketa";
 "pref_imap_folder_warn_disable_defaults" = "Aukera hau desaktibatuz gero, egiaztatu zure zerbitzaria eta beste bezeroen konfigurazioa bat datorrela.\n\nBestela agian gauzak ez dabiltza.";
-"pref_watch_inbox_folder" = "Begiztatu sarrera karpeta";
 "pref_watch_sent_folder" = "Begiztatu bidalitakoak karpeta";
-"pref_watch_mvbox_folder" = "Begiztatu DeltaChat karpeta";
 "pref_send_copy_to_self" = "Bidali kopia norberari";
 "pref_auto_folder_moves" = "Automatikoki mugitzen du DeltaChat karpetara";
 "pref_auto_folder_moves_explain" = "Txat elkarrizketak lekuz aldatzen dira sarrera ontzian enbarazu ez egiteko";

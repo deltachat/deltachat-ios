@@ -250,7 +250,6 @@
 "videochat_tap_to_open" = "Toca para abrir";
 "videochat_instance" = "Instancia de videollamada";
 "videochat_instance_placeholder" = "Tu instancia de videollamada";
-"videochat_instance_explain" = "Si una instancia de videollamada esta definida, puedes iniciar una videollamada desde el chat individual. La videollamada requiere una app o navegador compatible en ambos usuarios.\n\nEjemplos: https://meet.jit.si/$ROOM o basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "¿Usa \"%1$@\" para invitar a otros a la videollamada?\n\nUna vez configurado, puedes iniciar una videollamada desde el chat individual. Esto reemplaza la configuración previa de videollamadas. Si la hubiera.";
 "videochat_invitation" = "Invitación a videollamada";
 "videochat_invitation_body" = "Fuiste invitado a una videollamada, click en %1$@ para unirse.";
@@ -366,7 +365,6 @@
 "profile_shared_chats" = "Chats compartidos";
 "tab_contact" = "Contacto";
 "tab_group" = "Grupo";
-"tab_members" = "Miembros";
 "tab_gallery" = "Galería";
 "tab_docs" = "Documentos";
 "tab_links" = "Enlaces";
@@ -518,7 +516,6 @@
 "pref_use_system_emoji" = "Usar emoji del sistema";
 "pref_use_system_emoji_explain" = "Deshabilitar el soporte de emoji integrado de Delta Chat";
 "pref_app_access" = "Acceso a la aplicación";
-"pref_communication" = "Comunicación";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Sonidos en el chat";
 "pref_message_text_size" = "Tamaño de texto del mensaje";
@@ -544,9 +541,7 @@
 "pref_background_btn_gallery" = "Seleccionar de la galería";
 "pref_imap_folder_handling" = "Manejo de carpetas IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Si deshabilita esta opción, asegúrese de que su servidor y sus otros clientes estén configurados en consecuencia.\n\nDe lo contrario, las cosas pueden no funcionar en absoluto.";
-"pref_watch_inbox_folder" = "Monitorear Bandeja de Entrada";
 "pref_watch_sent_folder" = "Monitorear carpeta Enviados";
-"pref_watch_mvbox_folder" = "Monitorear carpeta DeltaChat";
 "pref_send_copy_to_self" = "Enviar autocopia";
 "pref_auto_folder_moves" = "Mover automáticamente a la carpeta DeltaChat";
 "pref_auto_folder_moves_explain" = "Las conversaciones son movidas para evitar saturar la Bandeja de entrada";
@@ -570,7 +565,6 @@
 "up_to_x" = "Hasta %1$@";
 "up_to_x_most_worse_quality_images" = "Hasta %1$@, la mayoría de imágenes de peor calidad";
 "up_to_x_most_balanced_quality_images" = "Hasta %1$@, la mayoría de imágenes de calidad balanceada";
-"no_limit" = "Sin límite";
 "download_failed" = "Descarga fallida";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "Mensaje de %1$@";
@@ -859,7 +853,5 @@
 
 
 // device messages for updates
-"update_1_28_android" = "1.28 Aspectos destacados:\n\n🔒 Cifrado: una nueva opción experimental para mantener sus contactos, secretos de cifrado y mensajes de texto cifrados en su dispositivo. Solo disponible en la creación de cuentas e importación de archivos de copia de seguridad.\n\n📫 Escribir en listas de correo\n\n💫 Configuración inicial más rápida para más servidores de correo electrónico y opciones de red optimizadas para evitar errores de configuración accidentales\n\n🐜 Se corrigieron muuuuuchos problemas informados por los usuarios";
-"update_1_28_ios_extra_line" = "… y puedes seleccionar un fondo de pantalla en \"Configuración / Fondo\" ahora :)";
 "update_1_30" = "Más rápido. Más estable.\n\nPara las versiones 1.30, nos enfocamos en la velocidad y la confiabilidad, solucionando docenas de errores. Consulte nuestros registros de cambios para ver si su favorito está arreglado: https://get.delta.chat/#changelogs 🚀";
 

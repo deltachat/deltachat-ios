@@ -135,7 +135,6 @@
 "profile_encryption" = "Šifriranje";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupa";
-"tab_members" = "Članovi";
 "tab_gallery" = "Galerija";
 "tab_map" = "Mapa";
 "media_preview" = "Prikaz medija";
@@ -180,7 +179,6 @@
 "pref_use_system_emoji" = "Koristi emotikone sustava";
 "pref_use_system_emoji_explain" = "Onemogući ugrađenu Delta Chat podršku za emotikone";
 "pref_app_access" = "Pristup aplikaciji";
-"pref_communication" = "Komunikacija";
 "pref_chats" = "Razgovori";
 "pref_in_chat_sounds" = "Zvuk unutar razgovora";
 "pref_message_text_size" = "Veličina fonta poruke";

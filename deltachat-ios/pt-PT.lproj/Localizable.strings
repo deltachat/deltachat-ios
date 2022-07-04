@@ -231,7 +231,6 @@
 "pref_use_system_emoji" = "Utilizar o emoji do sistema";
 "pref_use_system_emoji_explain" = "Desactivar o suporte integrado de emojis no Delta Chat";
 "pref_app_access" = "Acesso à App";
-"pref_communication" = "Comunicação";
 "pref_chats" = "chats";
 "pref_in_chat_sounds" = "Sons na chat";
 "pref_message_text_size" = "Tamanho do texto das mensagens";
@@ -252,9 +251,7 @@
 "pref_background" = "Fundo";
 "pref_imap_folder_handling" = "Manipulação da pasta do IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Se desabilitar esta opção, verifique se seu servidor e seus outros clientes estão configurados adequadamente. \n\ncaso contrário, as coisas podem não funcionar.";
-"pref_watch_inbox_folder" = "Ver a caixa de entrada";
 "pref_watch_sent_folder" = "Ver a pasta de enviados";
-"pref_watch_mvbox_folder" = "Ver a pasta do Delta Chat";
 "pref_auto_folder_moves" = "Mover pasta automaticamente para o Delta Chat";
 "pref_auto_folder_moves_explain" = "As chats de chat são movidas para evitar atravancar da pasta Inbox";
 "pref_show_emails" = "Exibir e-mails comuns";

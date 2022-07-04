@@ -233,7 +233,6 @@
 "videochat_tap_to_open" = "Tryck för att öppna";
 "videochat_instance" = "Videochattinstans";
 "videochat_instance_placeholder" = "Din videochattinstans";
-"videochat_instance_explain" = "Om en videochattinstans har definierats kan du starta en videochatt från varje en-till-en-chatt. Videochattar kräver en kompatibel app eller en kompatibel webbläsare i båda ändar.\n\nExempel: https://meet.jit.si/$ROOM or basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "Vill du använda \"%1$@\" för att bjuda in andra till videochattar?\n\nNär det väl är inställt kan du starta en videochatt från vilken en-till-en-chatt som helst. Detta ersätter den tidigare inställningen för eventuella videochattar.";
 "videochat_invitation" = "Videochattinbjudan";
 "videochat_invitation_body" = "Du är inbjuden till en videochatt, klicka på %1$@ för att ansluta.";
@@ -318,7 +317,6 @@
 "profile_shared_chats" = "Delade chattar";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupp";
-"tab_members" = "Medlemmar";
 "tab_gallery" = "Galleri";
 "tab_docs" = "Dokument";
 "tab_links" = "Länkar";
@@ -423,7 +421,6 @@
 "pref_use_system_emoji" = "Använd systemets emojier";
 "pref_use_system_emoji_explain" = "Inaktivera Delta Chat\'s inbyggda emojier";
 "pref_app_access" = "Programåtkomst";
-"pref_communication" = "Kommunikation";
 "pref_chats" = "Chattar";
 "pref_in_chat_sounds" = "Ljud i konversationer";
 "pref_message_text_size" = "Teckenstorlek för meddelanden";
@@ -449,9 +446,7 @@
 "pref_background_btn_gallery" = "Välj från galleriet";
 "pref_imap_folder_handling" = "IMAP mapphantering";
 "pref_imap_folder_warn_disable_defaults" = "Om du inaktiverar det här alternativet, tillse att servern och dina andra klienter är konfigurerade i enlighet med detta.\n\nAnnars kanske saker och ting inte fungerar alls.";
-"pref_watch_inbox_folder" = "Övervaka mappen \"Inkorg\"";
 "pref_watch_sent_folder" = "Övervaka mappen \"Skickat\"";
-"pref_watch_mvbox_folder" = "Övervaka mappen \"DeltaChat\"";
 "pref_send_copy_to_self" = "Skicka kopia till mig själv";
 "pref_auto_folder_moves" = "Flyttas automatiskt till DeltaChat-mappen";
 "pref_auto_folder_moves_explain" = "Chattkonversationer flyttas automatiskt för att undvika att inkorgen belamras";

@@ -90,6 +90,8 @@
 "last_seen_unknown" = "Nähty viimeksi: ei tiedossa";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+
 "self" = "Minä";
 "draft" = "Luonnos";
 "image" = "Kuva";
@@ -113,7 +115,7 @@
 // "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
 "capture" = "Kuvaa";
 "switch_camera" = "Vaihda kamera";
-"toggle_fullscreen" = "Kytke koko näytön tila";
+"toggle_fullscreen" = "Koko näytön tila";
 "location" = "Sijainti";
 "gallery" = "Galleria";
 "images_and_videos" = "Kuvat ja videot";
@@ -253,7 +255,6 @@
 "videochat_instance" = "Videokeskustelun tarjoaja";
 "videochat_instance_placeholder" = "Videokeskustelusi tarjoaja";
 "videochat_instance_example" = "Esimerkkejä: https://meet.jit.si/$ROOM tai basicwebrtc:https://sinun-palvelimesi";
-"videochat_instance_explain" = "Jos videokeskustelun tarjoaja määritellään, voit aloittaa videokeskustelun mistä tahansa keskustelusta. Videokeskustelu vaatii molemmilta yhteensopivan sovelluksen tai selaimen.\n\nEsimerkkejä: https://meet.jit.si/$ROOM tai basicwebrtc:https://sinun-palvelimesi";
 "videochat_instance_explain_2" = "Jos videokeskustelu on kytketty päälle, voit aloittaa videokeskustelun mistä tahansa keskustelusta. Videokeskustelu vaatii molemmilta yhteensopivan sovelluksen tai selaimen.";
 "videochat_instance_from_qr" = "Käytä \"%1$@\" videokeskustelupyyntöihin?\n\nTämän jälkeen voit aloittaa videokeskustelun mistä tahansa keskustelusta. Tämä korvaa edellisen videokeskusteluasetuksen, jos sellainen on.";
 "videochat_invitation" = "Videokeskustelukutsu";
@@ -371,7 +372,6 @@
 "profile_shared_chats" = "Jaetut keskustelut";
 "tab_contact" = "Yhteystieto";
 "tab_group" = "Ryhmä";
-"tab_members" = "Jäsenet";
 "tab_gallery" = "Galleria";
 "tab_docs" = "Asiakirjat";
 "tab_links" = "Linkit";
@@ -527,7 +527,6 @@
 "pref_use_system_emoji" = "Käytä järjestelmän emojeja";
 "pref_use_system_emoji_explain" = "Kytke pois Delta Chatin sisäänrakennettu emoji-tuki";
 "pref_app_access" = "Pääsy sovellukseen";
-"pref_communication" = "Viestintä";
 "pref_chats" = "Keskustelut";
 "pref_in_chat_sounds" = "Keskustelun äänet";
 "pref_message_text_size" = "Viestin fonttikoko";
@@ -553,9 +552,7 @@
 "pref_background_btn_gallery" = "Valitse galleriasta";
 "pref_imap_folder_handling" = "IMAP-kansioiden käsittely";
 "pref_imap_folder_warn_disable_defaults" = "Jos poistat tämän asetuksen käytöstä, varmista, että palvelimessasi ja muissa asiakasohjelmissasi on oikeat asetukset.\n\nMuuten ne eivät ehkä toimi ollenkaan.";
-"pref_watch_inbox_folder" = "Tarkkaile Saapuneet-kansiota";
 "pref_watch_sent_folder" = "Tarkkaile Lähetetyt-kansiota";
-"pref_watch_mvbox_folder" = "Tarkkaile DeltaChat-kansiota";
 "pref_send_copy_to_self" = "Lähetä kopio itselle";
 "pref_send_copy_to_self_explain" = "Vaaditaan käytettäessä tiliä usealla laitteella.";
 "pref_auto_folder_moves" = "Siirrä automaattisesti DeltaChat-kansioon";
@@ -580,7 +577,6 @@
 "up_to_x" = "Korkeintaan %1$@";
 "up_to_x_most_worse_quality_images" = "Korkeintaan %1$@, suurin osa alhaisen laadun kuvista";
 "up_to_x_most_balanced_quality_images" = "Korkeintaan %1$@, suurin osa tasapainoisen laadun kuvista";
-"no_limit" = "Ei rajaa";
 "download_failed" = "Lataus epäonnistui";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ viesti";
@@ -890,7 +886,5 @@
 
 
 // device messages for updates
-"update_1_28_android" = "1.28 Nostot:\n\n🔒Salaus: Uusi kokeellinen valinta yhteystietojen, salausavainten ja tekstiviestien säilyttämiseksi salattuina latteellasi. Saatavilla ainoastaan tilin luomisen ja varmuuskopioiden tuomisen yhteydessä.\n\n📫 Kirjoita sähköpostilistoille.\n\n💫 Nopeampi asetusten luonti monille sähköpostipalvelimille ja yksinkertaistetut verkkoasetukset virheellisten asetusten ehkäisemiseksi\n\n🐜 Paljon käyttäjien raportoimien ongelmien korjauksia.";
-"update_1_28_ios_extra_line" = "... ja nyt voit vaihtaa taustakuvan: \"Asetukset / Taustakuva\" :)";
 "update_1_30" = "Nopeampi. Vakaampi.\n\n1.30-versioissa keskityimme nopeuteen ja luotettavuuteen, ja korjasimme kasan bugeja ja virheitä. Tarkista muutoslokistamme korjasimmeko sinusta tärkeimmän: https://get.delta.chat/#changelogs 🚀";
 

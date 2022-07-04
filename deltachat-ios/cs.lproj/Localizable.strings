@@ -212,7 +212,6 @@
 "videochat_tap_to_open" = "Otevři stiskem";
 "videochat_instance" = "Připravený video hovor";
 "videochat_instance_placeholder" = "Tvůj připravený video hovor";
-"videochat_instance_explain" = "Pokud je video hovor připravený, lze video spustit z každého hovoru jeden na jednoho. Video vyžaduje na obou koncích prohlížeč, který podporuje video přenos.\n\nNapř. https://meet.jit.si/$ROOM or basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "Použít \"%1$@\" k pozvání na video hovory?\n\nPokud nastaveno, můžete začít video hovor v každém hovoru jeden na jednoho. Toto nahradí jakékoli předchzí nastavení video hovorů.";
 "videochat_invitation" = "Výzva k video hovoru";
 "videochat_invitation_body" = "Jste vyzváni k video hovoru, připojte se stiskem %1$@";
@@ -293,7 +292,6 @@
 "profile_shared_chats" = "Sdílené hovory";
 "tab_contact" = "Kontakt";
 "tab_group" = "Skupina";
-"tab_members" = "Členové";
 "tab_gallery" = "Galerie";
 "tab_docs" = "Dokumenty";
 "tab_links" = "Odkazy";
@@ -407,7 +405,6 @@
 "pref_use_system_emoji" = "Použij systémové smajlíky";
 "pref_use_system_emoji_explain" = "Vypni vestavěné smajlíky Data Chatu";
 "pref_app_access" = "Přístup aplikace";
-"pref_communication" = "Komunikace";
 "pref_chats" = "Hovory";
 "pref_in_chat_sounds" = "Zvuky v rámci hovoru";
 "pref_message_text_size" = "Velikost písma zprávy";
@@ -433,9 +430,7 @@
 "pref_background_btn_gallery" = "Vyber z galerie";
 "pref_imap_folder_handling" = "Používání složky IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Při vypnutí této možnosti se ujisti, že server a tvé ostatní klientské aplikace mají odpovídající nastavení.\n\nJinak může vše přestat fungovat.";
-"pref_watch_inbox_folder" = "Sleduj Příchozí složku";
 "pref_watch_sent_folder" = "Sleduj Odchozí složku";
-"pref_watch_mvbox_folder" = "Sleduj DeltaChat složku";
 "pref_send_copy_to_self" = "Posílat si kopie";
 "pref_auto_folder_moves" = "Samočinně přesouvat do složky DeltaChat ";
 "pref_auto_folder_moves_explain" = "Zprávy hovorů jsou přesouvány aby nezahlcovali Příchozí složku";

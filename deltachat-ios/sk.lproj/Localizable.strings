@@ -252,7 +252,6 @@
 "videochat_tap_to_open" = "Otvoríte klepnutím";
 "videochat_instance" = "Inštancia videohovoru";
 "videochat_instance_placeholder" = "Vaša inštancia videohovoru";
-"videochat_instance_explain" = "Ak je definovaná inštancia videohovoru, môžete začať videohovor z každej jednotlivej konverzácie. Videohovory vyžadujú na oboch stranách kompatibilnú aplikáciu alebo kompatibilný prehliadač. \n\n Príklady: https://meet.jit.si/$ROOM alebo basicwebrtc:https://váš-server";
 "videochat_instance_from_qr" = "Použiť „%1$@“ na odoslanie pozvánky na videohovor?\n\nPo nastavení môžete začať videohovor z každej jednotlivej konverzácie. Toto nahradí predchádzajúce nastavenie pre videohovory, ak existujú.";
 "videochat_invitation" = "Pozvánka na videohovor";
 "videochat_invitation_body" = "Ste pozvaní na videohovor, kliknutím %1$@ sa pripojíte.";
@@ -368,7 +367,6 @@
 "profile_shared_chats" = "Zdieľané konverzácie";
 "tab_contact" = "Kontakt";
 "tab_group" = "Skupina";
-"tab_members" = "Členovia";
 "tab_gallery" = "Galéria";
 "tab_docs" = "Dokumentácia";
 "tab_links" = "Odkazy";
@@ -520,7 +518,6 @@
 "pref_use_system_emoji" = "Používajte systémové emodži";
 "pref_use_system_emoji_explain" = "Vypnite vstavanú podporu emodži v aplikácii Delta Chat";
 "pref_app_access" = "Prístup k aplikácii";
-"pref_communication" = "Komunikácia";
 "pref_chats" = "Konverzácie";
 "pref_in_chat_sounds" = "Zvuky v konverzáciách";
 "pref_message_text_size" = "Veľkosť písma správy";
@@ -546,9 +543,7 @@
 "pref_background_btn_gallery" = "Vyberte z galérie";
 "pref_imap_folder_handling" = "Spracovanie priečinka IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Ak túto možnosť zakážete, uistite sa, že váš server a ostatní klienti sú zodpovedajúcim spôsobom nakonfigurovaní.\n\nV opačnom prípade nemusí fungovať vôbec.";
-"pref_watch_inbox_folder" = "Sledujte priečinok Doručená pošta";
 "pref_watch_sent_folder" = "Pozrieť priečinok Odoslané";
-"pref_watch_mvbox_folder" = "Sledovať priečinok DeltaChat";
 "pref_send_copy_to_self" = "Odoslať kópiu sebe";
 "pref_auto_folder_moves" = "Automaticky presúvať do priečinka DeltaChat";
 "pref_auto_folder_moves_explain" = "Konverzácie sa presunú, aby sa predišlo preplneniu doručenej pošty";
@@ -572,7 +567,6 @@
 "up_to_x" = "Až do %1$@";
 "up_to_x_most_worse_quality_images" = "Až do %1$@, väčšina obrázkov v horšej kvalite";
 "up_to_x_most_balanced_quality_images" = "Až do %1$@, väčšina obrázkov vo vyváženej kvalite";
-"no_limit" = "Žiadny limit";
 "download_failed" = "Sťahovanie zlyhalo";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ správa";
@@ -870,6 +864,6 @@
 "perm_enable_bg_already_done" = "Službe Delta Chat ste už povolili príjem správ na pozadí.\n\nAk správy stále neprichádzajú na pozadí, skontrolujte tiež svoje systémové nastavenia.";
 
 
-"update_1_28_ios_extra_line" = "… a teraz môžete vybrať pozadie v ponuke \"Nastavenia / Pozadie\" :)";
+// device messages for updates
 "update_1_30" = "Rýchlejší. Stabilnejší.\n\nVo vydaní 1.30 sme sa zamerali na rýchlosť a spoľahlivosť, opravili sme desiatky chýb. Prečítajte si prehľad o zmenách a pozrite sa, či sme opravili vašu obľúbenú chybu: https://get.delta.chat/#changelogs 🚀";
 

@@ -247,7 +247,6 @@
 "videochat_tap_to_open" = "Натиснете, за да отворите";
 "videochat_instance" = "Сървър за видеочат";
 "videochat_instance_placeholder" = "Вашият сървър за видеочат";
-"videochat_instance_explain" = "Ако има дефиниран сървър за видеочат, можете да започвате видеочат от всеки чат. Видеочатовете изискват съвместимо приложение или съвместим браузър от двете страни.\n\nПримери: https://meet.jit.si/$ROOM или basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "Да се използва ли \"%1$@\" за поканване на други към видеочатове?\n\nСлед като тази настройка бъде зададена, ще можете да започвате видеочат от всеки чат. Тя ще замени предишната настройка за видеочатове, ако има такава.";
 "videochat_invitation" = "Покана за видеочат";
 "videochat_invitation_body" = "Поканени сте във видеочат, натиснете върху%1$@, за да се присъедините";
@@ -357,7 +356,6 @@
 "profile_shared_chats" = "Споделени чатове";
 "tab_contact" = "Контакт";
 "tab_group" = "Група";
-"tab_members" = "Членове";
 "tab_gallery" = "Галерия";
 "tab_docs" = "Документи";
 "tab_links" = "Връзки";
@@ -504,7 +502,6 @@
 "pref_use_system_emoji" = "Да се използва Emoji на системата";
 "pref_use_system_emoji_explain" = "Изключване на вградената поддръжка за Emoji на Delta Chat";
 "pref_app_access" = "Достъп до приложението";
-"pref_communication" = "Комуникация";
 "pref_chats" = "Чатове";
 "pref_in_chat_sounds" = "Вътрешни за чата звуци";
 "pref_message_text_size" = "Размер на шрифта на съобщението";
@@ -530,9 +527,7 @@
 "pref_background_btn_gallery" = "Избор от галерията";
 "pref_imap_folder_handling" = "Обработка на папките на IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Ако забраните тази опция, се уверете, че Вашият сървър и другите Ви клиенти са конфигурирани по съответен начин.\n\nВ противен случай е възможно нещата въобще да не работят.";
-"pref_watch_inbox_folder" = "Наблюдаване на папката \"Входящи\"";
 "pref_watch_sent_folder" = "Наблюдаване на папката \"Изпратени\"";
-"pref_watch_mvbox_folder" = "Наблюдаване на папката \"DeltaChat\"";
 "pref_send_copy_to_self" = "Изпращане на копие до себе си";
 "pref_auto_folder_moves" = "Автоматично преместване в папката DeltaChat";
 "pref_auto_folder_moves_explain" = "Разговорите в чата са преместени, за да се избегне претрупване на папката \"Входящи\"";
@@ -552,7 +547,6 @@
 "up_to_x" = "До %1$@";
 "up_to_x_most_worse_quality_images" = "До %1$@, повечето от които изображения с по-лошо качество";
 "up_to_x_most_balanced_quality_images" = "До %1$@, повечето от които изображения с балансирано качество";
-"no_limit" = "Без ограничение";
 "download_failed" = "Неуспешно сваляне";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ съобщение";

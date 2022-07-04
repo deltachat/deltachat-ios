@@ -227,7 +227,6 @@
 "videochat_tap_to_open" = "タップして開く";
 "videochat_instance" = "ビデオ通話サーバー";
 "videochat_instance_placeholder" = "選んだビデオ通話サーバー";
-"videochat_instance_explain" = "ビデオ通話サーバーが入力されたらチャットでビデオ通話を開始することができます。互換性のあるブラウザ又はアプリが必要です。\n\n例えば　https://meet.jit.si/$ROOM 或いは basicwebrtc:https://your-server";
 "videochat_instance_from_qr" = "%1$@で他人をビデオ通話に招待しますか？設定次第に各チャットからビデオ通話を開始することができます。以前の設定も置き換えます。";
 "videochat_invitation" = "ビデオ通話に招待";
 "videochat_invitation_body" = "ビデオ通話に招待されて、%1$@で参加";
@@ -311,7 +310,6 @@
 "profile_shared_chats" = "共有チャット";
 "tab_contact" = "連絡先";
 "tab_group" = "グループ";
-"tab_members" = "メンバー";
 "tab_gallery" = "画像";
 "tab_docs" = "文章";
 "tab_links" = "リンク";
@@ -433,7 +431,6 @@
 "pref_use_system_emoji" = "システムの絵文字を使う";
 "pref_use_system_emoji_explain" = "Delta Chat独自の絵文字機能を無効にする";
 "pref_app_access" = "アプリのアクセス";
-"pref_communication" = "通信";
 "pref_chats" = "チャット";
 "pref_in_chat_sounds" = "着信音";
 "pref_message_text_size" = "文字の大きさ";
@@ -456,9 +453,7 @@
 "pref_background" = "背景";
 "pref_background_btn_default" = "デフォルトの画像を使う";
 "pref_background_btn_gallery" = "ギャラリーから選ぶ";
-"pref_watch_inbox_folder" = "受信トレイを監視する";
 "pref_watch_sent_folder" = "送信トレイを監視する";
-"pref_watch_mvbox_folder" = "DeltaChatフォルダを監視する";
 "pref_send_copy_to_self" = "自分にコピーを送る";
 "pref_auto_folder_moves" = "DeltaChatフォルダに自動で移動する";
 "pref_auto_folder_moves_explain" = "チャットは受信箱の邪魔にならないように移動されます。";

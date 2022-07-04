@@ -252,7 +252,6 @@
 "videochat_tap_to_open" = "Appuyez pour ouvrir";
 "videochat_instance" = "Instance de discussion vidéo";
 "videochat_instance_placeholder" = "Votre instance de discussion vidéo";
-"videochat_instance_explain" = "Si une instance de discussion vidéo est définie, vous pouvez démarrer une discussion vidéo depuis chaque discussion privée. Une discussion vidéo nécessite une application compatible ou un navigateur web compatible des deux côtés.\n\nExemples : https://meet.jit.si/$ROOM ou basicwebrtc:https://votre-serveur";
 "videochat_instance_from_qr" = "Utiliser « %1$@ » pour inviter les autres à des discussions vidéos ?\n\nUne fois configuré, vous pouvez démarrer une discussion vidéo depuis chaque discussion privée. Ceci va remplacer la précédente configuration pour les discussions vidéos, s\'il y en a une.";
 "videochat_invitation" = "Invitation de discussion vidéo";
 "videochat_invitation_body" = "Vous êtes invité à une discussion vidéo, cliquez sur %1$@ pour la rejoindre.";
@@ -368,7 +367,6 @@
 "profile_shared_chats" = "Discussions partagées";
 "tab_contact" = "Contact";
 "tab_group" = "Groupe";
-"tab_members" = "Membres";
 "tab_gallery" = "Gallerie";
 "tab_docs" = "Documents";
 "tab_links" = "Liens";
@@ -406,7 +404,7 @@
 "scan_invitation_code" = "Scanner le code d\'invitation";
 "welcome_intro1_message" = "Le messager avec le plus large public au monde. Libre et indépendant.";
 "login_title" = "Connexion";
-"login_header" = "Connexion vers votre serveur";
+"login_header" = "Se connecter au compte";
 "login_explain" = "Se connecter avec un compte de courriel existant.";
 "login_subheader" = "Pour les fournisseurs de courriel connus, des paramètres supplémentaires sont automatiquement configurés. Parfois, IMAP doit être activé dans l\'interface Web. Consultez votre fournisseur de courriel ou vos amis pour obtenir de l\'aide.";
 "login_no_servers_hint" = "Il n\'y a pas de serveur Delta Chat, vos données restent sur votre appareil !";
@@ -518,7 +516,6 @@
 "pref_use_system_emoji" = "Utiliser les émojis système";
 "pref_use_system_emoji_explain" = "Désactiver la prise en charge des émojis intégrés de Delta Chat";
 "pref_app_access" = "Accès à l\'application";
-"pref_communication" = "Communication";
 "pref_chats" = "Discussions";
 "pref_in_chat_sounds" = "Sons de messages entrants";
 "pref_message_text_size" = "Taille de police des messages";
@@ -544,9 +541,7 @@
 "pref_background_btn_gallery" = "Sélectionner depuis la galerie";
 "pref_imap_folder_handling" = "Gestion de dossier IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Si vous désactivez cette option, assurez-vous que votre serveur et vos autres clients sont configurés en conséquence.\n\nSinon les choses pourraient ne pas fonctionner du tout.";
-"pref_watch_inbox_folder" = "Regarder le dossier Boîte de réception";
 "pref_watch_sent_folder" = "Regarder le dossier Messages envoyés";
-"pref_watch_mvbox_folder" = "Regarder le dossier DeltaChat";
 "pref_send_copy_to_self" = "M\'envoyer une copie";
 "pref_auto_folder_moves" = "Déplacer automatiquement vers le dossier DeltaChat";
 "pref_auto_folder_moves_explain" = "Les discussions sont déplacées pour éviter d\'encombrer le dossier Boîte de réception";
@@ -570,7 +565,6 @@
 "up_to_x" = "Jusqu\'à %1$@";
 "up_to_x_most_worse_quality_images" = "Jusqu\'à %1$@, plus mauvaise qualité d\'image";
 "up_to_x_most_balanced_quality_images" = "Jusqu\'à %1$@, qualité d\'image raisonnable ";
-"no_limit" = "Pas de limite";
 "download_failed" = "Échec du téléchargement";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ message";
@@ -863,7 +857,5 @@
 
 
 // device messages for updates
-"update_1_28_android" = "1.28 Changements marquants:\n\n🔒 Chiffrement: Une nouvelle option expérimentale pour garder vos contacts, vos secrets de chiffrement et vos messages texte chiffrés sur votre appareil. Disponible seulement lors de la création de compte et l\'import de fichiers de sauvegardes\n\n📫 Envoi de messages à une liste de distribution\n\n💫 Configuration initiale plus rapide pour davantage de serveurs mail et options réseaux éclaircies pour éviter d\'accidentelles mauvaises configurations\n\n🐜 Beaaaaaucoup de problèmes rapportés par les utilisateurs corrigés";
-"update_1_28_ios_extra_line" = "... et vous pouvez désormais sélectionner un arrière-plan dans \"Configuration / Arrière-plan\" :)";
 "update_1_30" = "Plus rapide. Plus stable.\n\nPour la version 1.30, nous nous sommes focalisés sur la vitesse et la fiabilité, pour fixer des dizaines de bogues. Vérifiez le journal des changements voir si votre bogue favori a été corrigé : https://get.delta.chat/#changelogs 🚀";
 

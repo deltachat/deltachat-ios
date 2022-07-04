@@ -29,6 +29,8 @@
 "back" = "Enrere";
 "close" = "Tanca";
 "forward" = "Reenvia";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Torna-ho a enviar";
 // In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
 "archive" = "Arxiva";
 // In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
@@ -83,8 +85,13 @@
 "this_month" = "Aquest mes";
 "last_week" = "La setmana passada";
 "last_month" = "El mes passat";
+// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Vist per darrer cop a les %1$@";
+"last_seen_unknown" = "Vist per darrer cop: Ves a saber";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+
 "self" = "Jo";
 "draft" = "Esborrany";
 "image" = "Imatge";
@@ -139,6 +146,8 @@
 "menu_new_contact" = "Contacte nou";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Grup nou";
+// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+"new_group_or_subject" = "Grup o Tema nou";
 "menu_new_verified_group" = "Nou grup verificat";
 // consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
 "broadcast_list" = "Llista de difusió";
@@ -166,6 +175,7 @@
 "menu_copy_link_to_clipboard" = "Enllaç de còpia";
 "menu_copy_text_to_clipboard" = "Copia el text";
 "menu_copy_image_to_clipboard" = "Copia la imatge";
+"menu_copy_email_to_clipboard" = "Copia l\'email";
 "paste_from_clipboard" = "Enganxa des del porta-retalls";
 "menu_forward" = "Reenvia el missatge";
 "menu_reply" = "Respon el missatge";
@@ -207,6 +217,7 @@
 "device_talk" = "Missatges del dispositiu";
 "device_talk_subtitle" = "Missatges generats localment";
 "device_talk_explain" = "Els missatges d\'aquest xat són generats localment per la vostra app de Delta Chat. Els seus creadors els usen per informar-vos d\'actualitzacions de l\'app i problemes durant el seu ús.";
+"device_talk_welcome_message" = "Benvingut a Delta Chat! – Delta Chat te la pinta d\'altres apps de missatgeria, però no comporta un control centralitzat, ni un seguiment o una venda teva ni dels teus amics, col·legues o família a una corporació.\n\nTecnicament, Delta Chat és una aplicació de  correu electrònic amb una interfície de xat moderna. Per dir-ho així, correu electrònic en un vestit nou 👻\n\nUseu Delta Chat amb qualsevol dels milers de milions de persones: només us cal la seva adreça de correu electrònic. Als destinataris no els cal instal·lar-se Delta Chat, visitar webs o donar-se d\'alta enlloc - tot i que, només faltaria, si volen, els podeu adreçar a 👉 https://get.delta.chat";
 "edit_contact" = "Edita el contacte";
 // Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
 "pin_chat" = "Fixa el xat";
@@ -218,6 +229,8 @@
 "unpin" = "Desfixa";
 "ConversationFragment_quoted_message_not_found" = "No s\'ha trobat el missatge original";
 "reply_privately" = "Respon en privat";
+"source_code" = "Codi Font";
+
 "mute_for_one_hour" = "Silencia 1 hora";
 "mute_for_two_hours" = "Silencia 2 hores";
 "mute_for_one_day" = "Silencia 1 dia";
@@ -241,6 +254,7 @@
 "videochat_tap_to_open" = "Toca per obrir-ho";
 "videochat_instance" = "Instància de vídeo xat";
 "videochat_instance_placeholder" = "La vostra instància de vídeo xat";
+"videochat_instance_example" = "Exemples: https://meet.jit.si/$ROOM o basicwebrtc:https://your-server";
 "videochat_invitation" = "Invitació a un vídeo xat";
 "videochat_invitation_body" = "Heu sigut convidats a un vídeo xat, cliqueu %1$@ per unir-vos-hi.";
 
@@ -275,6 +289,8 @@
 "chat_please_enter_message" = "Si us plau, escriviu un missatge";
 "chat_camera_unavailable" = "Càmera no disponible.";
 "chat_unable_to_record_audio" = "No es pot gravar so.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Envieu un missatge. No hi fa pas res si %1$@ no fa servir Delta Chat.";
 "chat_new_broadcast_hint" = "En una llista de difusió, els altres reben els missatges en els seus xats privats amb vostè.\n\nEls destinataris no podran veure\'s entre ells.";
 "chat_new_group_hint" = "Escriviu el primer missatge i així els altres podran respondre a tot el grup.\n\n• No patiu si hi ha membres que no fan servir Delta Chat.\n\n• El lliurament del primer missatge pot trigar una estona.";
 "chat_record_slide_to_cancel" = "Llisca per cancel·lar";
@@ -292,9 +308,41 @@
 "saved_messages" = "Missatges desats";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Desat";
+"save_as" = "Desa com";
+"retry_send" = "Torna a provar d\'enviar el missatge";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "No hi podeu escriure perquè no sou en aquest grup. Per ser-hi, demaneu-ho a un altre membre.";
+"messaging_disabled_device_chat" = "Aquest xat només té missatges generats localment. A més no hi podeu escriure cap missatge.";
+"messaging_disabled_mailing_list" = "L\'enviament de missatges a una llista de correu encara no funciona";
+"cannot_display_unsuported_file_type" = "Aquest tipus de fitxer: %1$@ no es pot mostrar";
+"attachment_failed_to_load" = "La càrrega de l\'adjunt ha fallat";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Bloqueja la gravació";
+
+// mailing lists
+"mailing_list" = "Llista de correu";
+"mailing_list_profile_info" = "Els canvis al nom i la imatge de la llista de correu només s\'aplicaran en aquest dispositiu.";
+
+// webxdc
+// "Start..." button for an app
+"start_app" = "Comença...";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Si us plau accepteu primer el requeriment del xat.";
+
 // map
 "filter_map_on_time" = "Mostra les ubicacions al llarg del temps";
 "show_location_traces" = "Mostra el rastre";
+"add_poi" = "Envia el punt d\'interès";
+
+// chat audit log
+"chat_audit_log_empty_message" = "Els missatges de sistema d\'aquest xat es mostraran aquí";
+"chat_audit_log_title" = "Registre de l\'auditoria del xat per %1$@";
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "No em tornis a demanar per %1$@";
+"puny_code_warning_header" = "S\'ha detectat un enllaç sospitós";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Esteu segur de voler visitar %1$@?";
 // search
 "search" = "Busca";
 "search_explain" = "Busca als xats, contactes i missatges";
@@ -304,14 +352,49 @@
 // create/edit groups, contact/group profile
 "group_name" = "Nom del grup";
 "group_avatar" = "Imatge del grup";
+"remove_group_image" = "Esborra la imatge del grup";
+"change_group_image" = "Canvia la imatge del grup";
 "group_create_button" = "Crea el grup";
 "group_please_enter_group_name" = "Si us plau, poseu nom al grup.";
 "group_add_members" = "Afegiu-hi membres";
 "group_self_not_in_group" = "Has de ser membre del grup per poder fer això.";
 "profile_encryption" = "Encriptació";
+"profile_shared_chats" = "Xats compartits";
 "tab_contact" = "Contacte";
+"tab_group" = "Grup";
 "tab_gallery" = "Galeria";
+"tab_docs" = "Docs";
+"tab_links" = "Enllaços";
+"tab_map" = "Mapa";
 "media_preview" = "Previsualització multimèdia";
+"send_message" = "Envia el missatge";
+
+// Connectivity
+// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Missatges entrants";
+// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Missatges sortints";
+"connectivity" = "Connectivitat";
+// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+"connectivity_not_connected" = "Desconnectat";
+// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_connecting" = "Connectant...";
+// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+"connectivity_updating" = "Actualitzant...";
+// Shown eg. in the setting if the app is "Connected"
+"connectivity_connected" = "Connectat";
+"sending" = "Enviant...";
+"last_msg_sent_successfully" = "Últim missatge enviat bé.";
+"not_supported_by_provider" = "No suportat pel vostre proveïdor.";
+// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+"messages" = "Missatges";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ de %2$@ usats";
+
+
+// welcome and login
+"welcome_chat_over_email" = "Xateja via Email";
+"scan_invitation_code" = "Escaneja el Codi d\'Invitació";
 "welcome_intro1_message" = "El programa de missatgeria amb més usuaris del món. Gratuït i independent.";
 "login_title" = "Identifiqueu-vos";
 "login_header" = "Identifiqueu-vos al vostre servidor";
@@ -329,6 +412,8 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Seguretat SMTP";
 "login_auth_method" = "Mètode d\'autorització";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
 "login_info_oauth2_title" = "Voleu continuar amb la configuració simplificada?";
 "login_info_oauth2_text" = "L’adreça d\'e-mail que heu introduït admet una configuració simplificada. (OAuth2).\n\nEn el pas següent, permeteu que Delta Chat actuï com a xat amb l\'aplicació de correu electrònic..\n\nNo hi ha servidors de Delta Chat, les vostres dades romanen al vostre dispositiu!";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";
@@ -340,6 +425,7 @@
 "import_backup_no_backup_found" = "No s\'han trobat còpies de seguretat.\n\nCopieu la còpia de seguretat a \"%1$@\" i torneu-ho a provar. Com a alternativa, premeu \"Comença a escriure\" per encetar el procés de configuració habitual.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "No es pot iniciar la sessió com a \"%1$@\". Comproveu que l\'adreça electrònica i la contrasenya són correctes.";
+"add_account" = "Afegeix un compte";
 // share and forward messages
 // Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
 "forward_to" = "Reenvia a ...";
@@ -389,7 +475,6 @@
 "pref_use_system_emoji" = "Useu emojis de sistema";
 "pref_use_system_emoji_explain" = "Deshabilita el suport de sèrie per emoticones a Delta Chat";
 "pref_app_access" = "Accés a l\'aplicació";
-"pref_communication" = "Comunicació";
 "pref_chats" = "Xats";
 "pref_in_chat_sounds" = "Sons d\'entrada";
 "pref_message_text_size" = "Mida de la font del missatge";
@@ -412,9 +497,7 @@
 "pref_background_btn_gallery" = "Tria de la galeria";
 "pref_imap_folder_handling" = "Gestió de carpetes IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Si desactiveu aquesta opció, assegureu-vos que el vostre servidor i els altres programes estiguin configurats de la mateixa manera.\n\nAltrament podeu tenir problemes de funcionament.";
-"pref_watch_inbox_folder" = "Mostra la safata d\'entrada";
 "pref_watch_sent_folder" = "Mostra la safata de sortida";
-"pref_watch_mvbox_folder" = "Mostra la safata DeltaChat";
 "pref_auto_folder_moves" = "Moure automàticament a la carpeta de Delta Chat";
 "pref_auto_folder_moves_explain" = "Les converses de xat s\'han mogut per no atapeir la safata d’entrada";
 "pref_show_emails" = "Mostra els e-mails clàssics";

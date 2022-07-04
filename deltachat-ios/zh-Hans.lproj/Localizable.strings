@@ -90,6 +90,8 @@
 "last_seen_unknown" = "最后见到时间：未知";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+
 "self" = "我";
 "draft" = "草稿";
 "image" = "图像";
@@ -253,7 +255,6 @@
 "videochat_instance" = "视频聊天实例";
 "videochat_instance_placeholder" = "您的视频聊天实例";
 "videochat_instance_example" = "示例： https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
-"videochat_instance_explain" = "定义了视频聊天实例后，您可以在聊天里发起视频聊天。视频聊天的两端都需要有兼容的应用或兼容的浏览器。\n\n示例: https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
 "videochat_instance_explain_2" = "如启用视频聊天，你可以从每个聊天启动一个视频聊天。视频聊天需要双方均装有兼容的应用或浏览器";
 "videochat_instance_from_qr" = "使用“%1$@”邀请其他人加入视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置（如果有的话）。";
 "videochat_invitation" = "视频聊天邀请";
@@ -371,7 +372,6 @@
 "profile_shared_chats" = "共有聊天";
 "tab_contact" = "联系人";
 "tab_group" = "群组";
-"tab_members" = "成员";
 "tab_gallery" = "图库";
 "tab_docs" = "文档";
 "tab_links" = "链接";
@@ -527,7 +527,6 @@
 "pref_use_system_emoji" = "使用系统 emoji";
 "pref_use_system_emoji_explain" = "关闭 Delta Chat 内置 emoji 支持";
 "pref_app_access" = "应用程序访问";
-"pref_communication" = "通讯";
 "pref_chats" = "聊天";
 "pref_in_chat_sounds" = "聊天音";
 "pref_message_text_size" = "消息字体大小";
@@ -553,9 +552,7 @@
 "pref_background_btn_gallery" = "从图库中选择";
 "pref_imap_folder_handling" = "IMAP 文件夹处理";
 "pref_imap_folder_warn_disable_defaults" = "若要更改此选项，请您务必调整服务器以及其他客户端的相应设置。\n\n否则软件可能无法正常工作。";
-"pref_watch_inbox_folder" = "监视收件箱文件夹";
 "pref_watch_sent_folder" = "监视已发送文件夹";
-"pref_watch_mvbox_folder" = "监视 DeltaChat 文件夹";
 "pref_send_copy_to_self" = "给自己发送副本";
 "pref_send_copy_to_self_explain" = "当在多台设备上使用此账户时，这是必需的";
 "pref_auto_folder_moves" = "自动移动至 DeltaChat 文件夹";
@@ -580,7 +577,6 @@
 "up_to_x" = "%1$@ 以下";
 "up_to_x_most_worse_quality_images" = "%1$@ 以下，图像质量最差";
 "up_to_x_most_balanced_quality_images" = "%1$@ 以下，图像质量最均衡";
-"no_limit" = "无限制";
 "download_failed" = "下载失败";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ 消息";
@@ -890,7 +886,5 @@
 
 
 // device messages for updates
-"update_1_28_android" = "1.28 版主要变化：\n\n🔒 加密：一个新的实验性选项，可以在你的设备上保加密存你的联系人、加密信息和短信。仅在帐户创建和导入备份文件时可用。\n\n📫写信给邮件列表\n\n💫更快地对更多电子邮件服务器进行初始化设置，简化网络选项以防止意外的错误配置\n\n🐜 修复了许多用户报告的问题";
-"update_1_28_ios_extra_line" = "… 另外，你现在可以在“设置/背景”处选择壁纸了 :)";
 "update_1_30" = "更快。更稳定。\n\n对于 1.30 版本，我们专注于速度和可靠性，修复了几十个 bug。查看我们的更新记录，了解你曾遇到的 bug 是否已经修复： https://get.delta.chat/#changelogs 🚀";
 

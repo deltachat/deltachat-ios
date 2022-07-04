@@ -139,7 +139,6 @@
 "profile_encryption" = "التعمية";
 "tab_contact" = "للاتصال";
 "tab_group" = "الفريق";
-"tab_members" = "الأعضاء";
 "tab_gallery" = "المعرض";
 "tab_docs" = "المستندات";
 "tab_links" = "الروابط";
@@ -191,7 +190,6 @@
 "pref_use_system_emoji" = "استخدام الرموز التعبيرية بالنظام";
 "pref_use_system_emoji_explain" = " Delta Chat تعطيل الرموز التعبيرية المدمجة في ";
 "pref_app_access" = "دخول البرنامج";
-"pref_communication" = "التواصل";
 "pref_chats" = "المحادثات";
 "pref_in_chat_sounds" = "أصوات خلال الدردش";
 "pref_message_text_size" = "حجم الخط في الرسائل";

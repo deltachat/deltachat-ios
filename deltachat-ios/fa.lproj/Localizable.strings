@@ -361,7 +361,6 @@
 "profile_shared_chats" = "گفتگوهای اشتراک گذاری شده";
 "tab_contact" = "مخاطب";
 "tab_group" = "گروه";
-"tab_members" = "اعضا";
 "tab_gallery" = "گالری";
 "tab_docs" = "اسناد";
 "tab_links" = "لینک‌ها";
@@ -507,7 +506,6 @@
 "pref_use_system_emoji" = "استفاده از شکلک‌های سیستم";
 "pref_use_system_emoji_explain" = "غیرفعال کردن شکلک‌های داخلی دلتاچت";
 "pref_app_access" = "دسترسی نرم‌افزار";
-"pref_communication" = "ارتباط";
 "pref_chats" = "گفتگوها";
 "pref_in_chat_sounds" = "صداهای مربوط به گفتگو";
 "pref_message_text_size" = "اندازه نوشته‌های پیام";
@@ -532,9 +530,7 @@
 "pref_background_btn_gallery" = "انتخاب از گالری";
 "pref_imap_folder_handling" = "IMAP نحوه مدیریت پوشه ";
 "pref_imap_folder_warn_disable_defaults" = "اگر این گزینه را غیر فعال می‌کنید از اینکه سرور شما و حساب‌هایتان هم بر این اساس تنظیم شده باشند.\n\n در غیر این صورت ممکن است هیچ چیز کار نکند. ";
-"pref_watch_inbox_folder" = "پوشه صندوق ورودی را نگاه کن";
 "pref_watch_sent_folder" = "پوشه ارسال شده‌ها را نگاه کن";
-"pref_watch_mvbox_folder" = "پوشه دلتاچت را نگاه کن";
 "pref_send_copy_to_self" = "ارسال رونوشت به خودم";
 "pref_auto_folder_moves" = "انتقال خودکار به پوشه دلتاچت";
 "pref_auto_folder_moves_explain" = "گفتگوها برای جلوگیری از پر شدن صندوق ورودی جابجا شده‌اند";
@@ -558,7 +554,6 @@
 "up_to_x" = "تا سقف %1$@";
 "up_to_x_most_worse_quality_images" = "تا سقف %1$@، بدترین کیفیت تصویر";
 "up_to_x_most_balanced_quality_images" = "تا سقف %1$@، متعادل‌ترین کیفیت تصویر";
-"no_limit" = "بدون محدودیت";
 "download_failed" = "بارگیری ناموفق";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "پیام %1$@ ";
@@ -823,5 +818,3 @@
 "perm_enable_bg_already_done" = "قبلا اجازه دسترسی به فعالیت در پس زمینه را به دلتاچت داده‌اید. \n\n اگر پیام‌ها هنوز هم در شرایط پس زمینه نمی‌آمد لطفا تنظیمات سیستم را نیز بررسی نمایید. ";
 
 
-// device messages for updates
-"update_1_28_ios_extra_line" = "...و اکنون می‌توانید از بخش «تنظیمات/ پس‌زمینه » یک پس زمینه انتخاب کنید :)";

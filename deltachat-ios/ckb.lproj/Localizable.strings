@@ -283,7 +283,6 @@
 "profile_shared_chats" = "وتووێژە هاوبەشکراوەکان";
 "tab_contact" = "بەردەنگ";
 "tab_group" = "کۆڕ";
-"tab_members" = "ئەندامان";
 "tab_gallery" = "پیشانگە";
 "tab_docs" = "بەڵگەکان";
 "tab_links" = "بەستەرەکان";
@@ -379,7 +378,6 @@
 "pref_use_system_emoji" = "بەکارهێنانی وێنۆچکەکانی سیستەم";
 "pref_use_system_emoji_explain" = "ئیمۆجییە ناوخۆییەکانی دێڵتا چات، ناچالاک دەبێتەوە.";
 "pref_app_access" = "ڕێگەپێدان";
-"pref_communication" = "پێوەندی";
 "pref_chats" = "وتووێژەکان";
 "pref_in_chat_sounds" = "دەنگەکانی نێو-وتووێژی";
 "pref_message_text_size" = "قەبارەی فۆنتی پەیامەکان";
@@ -398,9 +396,7 @@
 "pref_background" = "پشتخان";
 "pref_background_btn_default" = "بەکارهێنانی وێنەی بنەڕەتی";
 "pref_background_btn_gallery" = "هەڵبژاردن لە پیشانگا";
-"pref_watch_inbox_folder" = "دیتنی بوخچەی وەرگیراوەکان";
 "pref_watch_sent_folder" = "دیتنی بوخچەی هەنێردراوەکان";
-"pref_watch_mvbox_folder" = "دیتنی بوخچەی دێڵتاچات";
 "pref_send_copy_to_self" = "هەناردنی ڕوونووسێک بۆ خۆت";
 "pref_auto_folder_moves" = "هەناردنی خۆکار بۆ بوخچەی دێڵتاچات";
 "pref_show_emails" = "پیشاندانی ئیمەیلە کلاسیکەکان";

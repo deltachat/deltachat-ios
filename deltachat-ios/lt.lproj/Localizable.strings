@@ -223,7 +223,6 @@
 "videochat_tap_to_open" = "Bakstelėkite norėdami atverti";
 "videochat_instance" = "Vaizdo pokalbio egzempliorius";
 "videochat_instance_placeholder" = "Jūsų vaizdo pokalbio egzempliorius";
-"videochat_instance_explain" = "Jei yra apibrėžtas vaizdo pokalbių egzempliorius, kiekviename pokalbyje galite pradėti vaizdo pokalbį. Vaizdo pokalbiai reikalauja, kad abi pusės turėtų suderinamą programėlę arba suderinamą naršyklę.\n\nPavyzdžiai: https://meet.jit.si/$ROOM arba basicwebrtc:https://jūsų-serveris";
 "videochat_invitation" = "Pakvietimas į vaizdo pokalbį";
 "videochat_invitation_body" = "Jūs esate kviečiami į vaizdo pokalbį. Spustelėkite %1$@ jei norite prisijungti.";
 
@@ -300,7 +299,6 @@
 "profile_shared_chats" = "Bendrinami pokalbiai";
 "tab_contact" = "Adresatas";
 "tab_group" = "Grupė";
-"tab_members" = "Dalyviai";
 "tab_gallery" = "Galerija";
 "tab_docs" = "Dokumentai";
 "tab_links" = "Nuorodos";
@@ -433,7 +431,6 @@
 "pref_use_system_emoji" = "Naudoti sistemos šypsniukus";
 "pref_use_system_emoji_explain" = "Išjungti Delta Chat įtaisytąjį šypsniukų palaikymą";
 "pref_app_access" = "Prieiga prie programėlės";
-"pref_communication" = "Bendravimas";
 "pref_chats" = "Pokalbiai";
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
 "pref_message_text_size" = "Žinučių šrifto dydis";
@@ -459,9 +456,7 @@
 "pref_background_btn_gallery" = "Pasirinkti iš galerijos";
 "pref_imap_folder_handling" = "IMAP aplanko apdorojimas";
 "pref_imap_folder_warn_disable_defaults" = "Jeigu išjungiate šį parametrą, įsitikinkite, kad jūsų serveris ir kiti klientai yra sukonfigūruoti atitinkamai.\n\nPriešingu atveju, tai gali iš viso neveikti.";
-"pref_watch_inbox_folder" = "Stebėti gautųjų aplanką";
 "pref_watch_sent_folder" = "Stebėti išsiųstųjų aplanką";
-"pref_watch_mvbox_folder" = "Stebėti DeltaChat aplanką";
 "pref_send_copy_to_self" = "Siųsti kopiją sau pačiam";
 "pref_auto_folder_moves" = "Automatiniai perkėlimai į DeltaChat aplanką";
 "pref_auto_folder_moves_explain" = "Pokalbiai yra perkeliami, kad nebūtų sujauktas Gautųjų aplankas";
@@ -480,7 +475,6 @@
 "up_to_x" = "Iki %1$@";
 "up_to_x_most_worse_quality_images" = "Iki %1$@, iš esmės, blogos kokybės paveikslus";
 "up_to_x_most_balanced_quality_images" = "Iki %1$@, iš esmės, subalansuotos kokybės paveikslus";
-"no_limit" = "Be ribos";
 "download_failed" = "Atsiuntimas nepavyko";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ žinutė";

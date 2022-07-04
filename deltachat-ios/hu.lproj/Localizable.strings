@@ -166,7 +166,6 @@
 "profile_encryption" = "Titkosítás";
 "tab_contact" = "Névjegy";
 "tab_group" = "Csoport";
-"tab_members" = "Tagok";
 "tab_gallery" = "Galéria";
 "tab_docs" = "Dokumentumok";
 "tab_links" = "Linkek";
@@ -222,7 +221,6 @@
 "pref_use_system_emoji" = "Rendszer emojik használata";
 "pref_use_system_emoji_explain" = "A Delta Chat beépített emoji-támogatásának letiltása";
 "pref_app_access" = "Alkalmazás hozzáférés";
-"pref_communication" = "Kommunikáció";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
 "pref_message_text_size" = "Üzenetek betűmérete";

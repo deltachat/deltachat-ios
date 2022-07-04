@@ -90,6 +90,8 @@
 "last_seen_unknown" = "Laatst gezien: onbekend";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+
 "self" = "Ik";
 "draft" = "Concept";
 "image" = "Afbeelding";
@@ -253,7 +255,6 @@
 "videochat_instance" = "Videogespreksinstantie";
 "videochat_instance_placeholder" = "Mijn videogespreksinstantie";
 "videochat_instance_example" = "Voorbeeld: https://meet.jit.si/$KAMER of basicwebrtc:https://mijn-server";
-"videochat_instance_explain" = "Als je een videogespreksinstantie opgeeft, kun je een videogesprek starten vanuit elk één-op-ééngesprek. Voor videogesprekken hebben zowel jij als je gesprekspartner een compatibele app of webbrowser nodig.\n\nVoorbeelden: https://meet.jit.si/$KAMER of basicwebrtc:https://mijn-server";
 "videochat_instance_explain_2" = "Als je videogesprekken inschakelt, dan kun je een videogesprek starten vanuit elk één-op-ééngesprek. Voor videogesprekken hebben zowel jij als je gesprekspartner een compatibele app of webbrowser nodig.";
 "videochat_instance_from_qr" = "Wil je \"%1$@\" gebruiken om anderen uit te nodigen voor videogesprekken?\n\nNa het instellen kun je een videogesprek starten vanuit elk één-op-ééngesprek. Deze instelling vervangt de vorige videogespreksinstelling.";
 "videochat_invitation" = "Uitnodiging voor videogesprek";
@@ -371,7 +372,6 @@
 "profile_shared_chats" = "Gedeelde gesprekken";
 "tab_contact" = "Contactpersoon";
 "tab_group" = "Groep";
-"tab_members" = "Deelnemers";
 "tab_gallery" = "Galerij";
 "tab_docs" = "Documenten";
 "tab_links" = "Links";
@@ -527,7 +527,6 @@
 "pref_use_system_emoji" = "Systeememoji gebruiken";
 "pref_use_system_emoji_explain" = "Schakel Delta Chat\'s ingebouwde emoji-ondersteuning uit";
 "pref_app_access" = "App-toegang";
-"pref_communication" = "Communicatie";
 "pref_chats" = "Gesprekken";
 "pref_in_chat_sounds" = "Gespreksgeluiden";
 "pref_message_text_size" = "Tekstgrootte van berichten";
@@ -553,9 +552,7 @@
 "pref_background_btn_gallery" = "Kiezen uit galerij";
 "pref_imap_folder_handling" = "IMAP-mappen controleren";
 "pref_imap_folder_warn_disable_defaults" = "Als je deze optie uitschakelt, zorg er dan voor dat je server en overige clients goed ingesteld zijn.\n\nAls dat niet zo is, dan werkt het misschien helemaal niet.";
-"pref_watch_inbox_folder" = "Postvak IN controleren op nieuwe berichten";
 "pref_watch_sent_folder" = "Map ‘Verzonden’ controleren op nieuwe berichten";
-"pref_watch_mvbox_folder" = "DeltaChat-map controleren op nieuwe berichten";
 "pref_send_copy_to_self" = "Kopie versturen naar mijzelf";
 "pref_send_copy_to_self_explain" = "Vereist bij gebruik van dit account op meerdere apparaten.";
 "pref_auto_folder_moves" = "Automatisch verplaatsen naar DeltaChat-map";
@@ -580,7 +577,6 @@
 "up_to_x" = "Tot %1$@";
 "up_to_x_most_worse_quality_images" = "Tot %1$@ - lage afbeeldingskwaliteit";
 "up_to_x_most_balanced_quality_images" = "Tot %1$@ - redelijke afbeeldingskwaliteit";
-"no_limit" = "Onbeperkt";
 "download_failed" = "Het downloaden is mislukt";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ bericht";
@@ -890,7 +886,5 @@
 
 
 // device messages for updates
-"update_1_28_android" = "1.28 Uitgelicht:\n\n🔒 Versleuteling: er is een nieuwe, experimentele optie beschikbaar voor het versleutelen van je contactpersonen, inloggegevens en tekstberichten op je apparaat zelf. Let op: deze optie is alléén beschikbaar tijdens het toevoegen van een account en het importeren van back-upbestanden.\n\n📫 Schrijf berichten aan een mailinglijst\n\n💫 Snellere initiële instelmethode voor meer e-mailservers en vereenvoudigde netwerkopties om onopzettelijke instellingen te voorkomen\n\n🐜 Héél véél gemelde problemen opgelost!";
-"update_1_28_ios_extra_line" = "…en je kunt voortaan een achtergrond kiezen via ‘Instellingen → Achtergrond’. :)";
 "update_1_30" = "Sneller en stabieler. Dát zijn de kernpunten van versie 1.30.\n\n We hebben ruim 15 bugs opgelost. Neem het wijzigingslog door om te zien of er eentje tussenstaat waar je last van had: https://get.delta.chat/#changelogs 🚀";
 

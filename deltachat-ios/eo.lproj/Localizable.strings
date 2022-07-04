@@ -216,7 +216,6 @@
 "profile_shared_chats" = "Kunhavigitaj babiloj";
 "tab_contact" = "Kontakto";
 "tab_group" = "Grupo";
-"tab_members" = "Anoj";
 "tab_gallery" = "Galerio";
 "tab_docs" = "Dokumentoj";
 "tab_links" = "Ligiloj";
@@ -292,7 +291,6 @@
 "pref_use_system_emoji" = "Uzi sisteman emoĝiaron";
 "pref_use_system_emoji_explain" = "Malebligi emoĝiaron de Delta Chat";
 "pref_app_access" = "Aliro al aplikaĵo";
-"pref_communication" = "Komunikado";
 "pref_chats" = "Interparoloj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
 "pref_message_text_size" = "Mesaĝa tipargrando";
@@ -313,9 +311,7 @@
 "pref_background_btn_default" = "Uzi defaŭltan bildon";
 "pref_background_btn_gallery" = "Elekti el galerio";
 "pref_imap_folder_handling" = "IMAP dosieruja traktado";
-"pref_watch_inbox_folder" = "Kontroli ricevujon";
 "pref_watch_sent_folder" = "Kontroli senditujon";
-"pref_watch_mvbox_folder" = "Kontroli DeltaChat dosierujon";
 "pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";
 "autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
