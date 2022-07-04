@@ -530,30 +530,33 @@ class ChatListController: UITableViewController {
             }
         } else if isArchive {
             titleView.text = String.localized("chat_archived_chats_title")
-            handleMultiSelectTitle()
+            if !handleMultiSelectionTitle() {
+                navigationItem.setLeftBarButton(nil, animated: true)
+            }
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
+            if !handleMultiSelectionTitle() {
+                navigationItem.setLeftBarButton(nil, animated: true)
+                navigationItem.setRightBarButton(newButton, animated: true)
+            }
             if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
                 titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
             }
-            handleMultiSelectTitle()
         }
+        titleView.isUserInteractionEnabled = !tableView.isEditing
         titleView.sizeToFit()
     }
 
-    func handleMultiSelectTitle() {
-        if tableView.isEditing {
-            let cnt = tableView.indexPathsForSelectedRows?.count ?? 1
-            titleView.text = String.localized(stringID: "n_selected", count: cnt)
-            navigationItem.setLeftBarButton(cancelButton, animated: true)
-            navigationItem.setRightBarButton(nil, animated: true)
-        } else {
-            navigationItem.setLeftBarButton(nil, animated: true)
-            if !isArchive {
-                navigationItem.setRightBarButton(newButton, animated: true)
-            }
+    func handleMultiSelectionTitle() -> Bool {
+        if !tableView.isEditing {
+            return false
         }
-        titleView.isUserInteractionEnabled = !tableView.isEditing
+        titleView.accessibilityHint = nil
+        let cnt = tableView.indexPathsForSelectedRows?.count ?? 1
+        titleView.text = String.localized(stringID: "n_selected", count: cnt)
+        navigationItem.setLeftBarButton(cancelButton, animated: true)
+        navigationItem.setRightBarButton(nil, animated: true)
+        return true
     }
 
     func handleChatListUpdate() {
