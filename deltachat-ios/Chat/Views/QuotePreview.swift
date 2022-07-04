@@ -32,7 +32,10 @@ public class QuotePreview: DraftPreview {
             compactView = draft.attachment != nil
             calculateQuoteHeight(compactView: compactView)
             if let quoteMessage = draft.quoteMessage {
-                quoteView.setImagePreview(quoteMessage.image)
+                let isWebxdc = quoteMessage.type == DC_MSG_WEBXDC
+                let quoteImage = isWebxdc ? quoteMessage.getWebxdcPreviewImage() : quoteMessage.image
+                quoteView.setImagePreview(quoteImage)
+                quoteView.setRoundedCorners(isWebxdc)
                 if quoteMessage.isForwarded {
                     quoteView.senderTitle.text = String.localized("forwarded_message")
                     quoteView.senderTitle.textColor = DcColors.unknownSender
