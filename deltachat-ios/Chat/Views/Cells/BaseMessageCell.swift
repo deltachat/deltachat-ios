@@ -431,7 +431,10 @@ public class BaseMessageCell: UITableViewCell {
             quoteView.quote.text = quoteText
 
             if let quoteMsg = msg.quoteMessage {
-                quoteView.setImagePreview(quoteMsg.image)
+                let isWebxdc = quoteMsg.type == DC_MSG_WEBXDC
+                let quoteImage = isWebxdc ? quoteMsg.getWebxdcPreviewImage() : quoteMsg.image
+                quoteView.setImagePreview(quoteImage)
+                quoteView.setRoundedCorners(isWebxdc)
                 if quoteMsg.isForwarded {
                     quoteView.senderTitle.text = String.localized("forwarded_message")
                     quoteView.senderTitle.textColor = DcColors.unknownSender

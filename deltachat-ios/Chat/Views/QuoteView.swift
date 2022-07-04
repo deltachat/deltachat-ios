@@ -111,6 +111,9 @@ public class QuoteView: UIView {
         } else {
             imageWidthConstraint?.constant = 0
         }
+    }
 
+    public func setRoundedCorners(_ isRounded: Bool) {
+        imagePreview.layer.cornerRadius = isRounded ? 4 : 0
     }
 }
