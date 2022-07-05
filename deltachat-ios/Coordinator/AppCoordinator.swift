@@ -142,7 +142,10 @@ class AppCoordinator {
     }
 
     func initializeRootController() {
-        if dcAccounts.getSelected().isConfigured() {
+        let context = dcAccounts.getSelected()
+        if(true || !context.isOpen()) {
+            presentClosedAccountController()
+        } else if context.isConfigured() {
             presentTabBarController()
         } else {
             presentWelcomeController()
@@ -153,6 +156,12 @@ class AppCoordinator {
         // (according to https://learnui.design/blog/ios-font-size-guidelines.html )
         // (it would be a bit nicer, if we would query the system font and pass it to chatlist, but well :)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
+    }
+    
+    func presentClosedAccountController() {
+        loginNavController.setViewControllers([ClosedAccountErrorViewController(dcAccounts: dcAccounts)], animated: true)
+        window.rootViewController = loginNavController
+        window.makeKeyAndVisible()
     }
 
     func presentWelcomeController() {
