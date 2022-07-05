@@ -42,7 +42,7 @@ class ChatListViewModel: NSObject {
     private var searchResultSections: [ChatListSectionType] = []
 
     private var isChatListUpdatePending = false
-    private var isEditing = false
+    private(set) var isEditing = false
 
     init(dcContext: DcContext, isArchive: Bool) {
         self.isArchive = isArchive
@@ -235,18 +235,18 @@ class ChatListViewModel: NSObject {
         if !isArchivedBefore {
             NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         }
-        updateChatList(notifyListener: false)
+        updateChatList(notifyListener: true)
     }
 
     func pinChatToggle(chatId: Int) {
         let chat: DcChat = dcContext.getChat(chatId: chatId)
         let pinned = chat.visibility == DC_CHAT_VISIBILITY_PINNED
-        pinChat(chatId: chatId, pinned: pinned)
+        pinChat(chatId: chatId, pinned: pinned, notifyListener: true)
     }
 
-    func pinChat(chatId: Int, pinned: Bool) {
+    func pinChat(chatId: Int, pinned: Bool, notifyListener: Bool = false) {
         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
-        updateChatList(notifyListener: false)
+        updateChatList(notifyListener: notifyListener)
     }
 
     func hasOnlyPinnedChatsSelected(in indexPaths: [IndexPath]?) -> Bool {
