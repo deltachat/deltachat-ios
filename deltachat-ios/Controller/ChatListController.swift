@@ -445,14 +445,14 @@ class ChatListController: UITableViewController {
         let archiveActionTitle: String = String.localized(archived ? "unarchive" : "archive")
 
         let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _ in
-            self?.viewModel?.archiveChatToggle(chatId: chatId, notifyListener: true)
+            self?.viewModel?.archiveChatToggle(chatId: chatId)
             self?.setEditing(false, animated: true)
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _ in
-            self?.viewModel?.pinChatToggle(chatId: chat.id, notifyListerner: true)
+            self?.viewModel?.pinChatToggle(chatId: chat.id)
             self?.setEditing(false, animated: true)
         }
         pinAction.backgroundColor = UIColor.systemGreen

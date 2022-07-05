@@ -228,20 +228,20 @@ class ChatListViewModel: NSObject {
         INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
     }
 
-    func archiveChatToggle(chatId: Int, notifyListener: Bool = false) {
+    func archiveChatToggle(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
         let isArchivedBefore = chat.isArchived
         dcContext.archiveChat(chatId: chatId, archive: !isArchivedBefore)
         if !isArchivedBefore {
             NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         }
-        updateChatList(notifyListener: notifyListener)
+        updateChatList(notifyListener: true)
     }
 
-    func pinChatToggle(chatId: Int, notifyListerner: Bool = false) {
+    func pinChatToggle(chatId: Int) {
         let chat: DcChat = dcContext.getChat(chatId: chatId)
         let pinned = chat.visibility == DC_CHAT_VISIBILITY_PINNED
-        pinChat(chatId: chatId, pinned: pinned, notifyListener: notifyListerner)
+        pinChat(chatId: chatId, pinned: pinned, notifyListener: true)
     }
 
     func pinChat(chatId: Int, pinned: Bool, notifyListener: Bool = false) {
