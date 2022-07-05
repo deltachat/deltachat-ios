@@ -560,7 +560,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         notificationManager.reloadDcContext()
         RelayHelper.shared.cancel()
         _ = RelayHelper.setup(dcAccounts.getSelected())
-        if dcAccounts.getSelected().isConfigured() {
+        
+        let context = dcAccounts.getSelected()
+        if !context.isOpen() {
+            appCoordinator.presentClosedAccountController()
+        } else if context.isConfigured() {
             appCoordinator.resetTabBarRootViewControllers()
         } else {
             appCoordinator.presentWelcomeController()

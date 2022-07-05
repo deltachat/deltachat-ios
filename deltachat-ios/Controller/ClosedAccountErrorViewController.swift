@@ -97,7 +97,7 @@ class ClosedAccountErrorViewController: UIViewController {
         }
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.appCoordinator.initializeRootController()
+            appDelegate.reloadDcContext()
         }
     }
     
