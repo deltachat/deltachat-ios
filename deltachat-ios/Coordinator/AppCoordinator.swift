@@ -143,7 +143,7 @@ class AppCoordinator {
 
     func initializeRootController() {
         let context = dcAccounts.getSelected()
-        if(true || !context.isOpen()) {
+        if !context.isOpen() {
             presentClosedAccountController()
         } else if context.isConfigured() {
             presentTabBarController()
@@ -159,8 +159,7 @@ class AppCoordinator {
     }
     
     func presentClosedAccountController() {
-        loginNavController.setViewControllers([ClosedAccountErrorViewController(dcAccounts: dcAccounts)], animated: true)
-        window.rootViewController = loginNavController
+        window.rootViewController = ClosedAccountErrorViewController(dcAccounts: dcAccounts)
         window.makeKeyAndVisible()
     }
 

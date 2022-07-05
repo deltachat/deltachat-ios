@@ -33,10 +33,11 @@ class ClosedAccountErrorViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Error: Account is closed"
-        label.textColor = DcColors.grayTextColor
+        label.textColor = .red
         label.textAlignment = .center
         label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -45,8 +46,10 @@ class ClosedAccountErrorViewController: UIViewController {
         label.text = "This should not happen, please report it to the developers"
         label.textColor = DcColors.grayTextColor
         label.textAlignment = .center
-        label.numberOfLines = 1
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -55,26 +58,70 @@ class ClosedAccountErrorViewController: UIViewController {
         label.text = "Anyways: just kill and restart the app this should fix the error."
         label.textColor = DcColors.grayTextColor
         label.textAlignment = .center
-        label.numberOfLines = 1
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    private lazy var tryFixButton: UIButton = {
+       let button = UIButton()
+        button.setTitle("Experimental: Try Fixing it without restart", for: .normal)
+        button.addTarget(self, action: #selector(tryFix), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = DcColors.primary
+        return button
+    }()
+    
+    @objc
+    private func tryFix() {
+//        dcAccounts.stopIo()
+//        dcAccounts.closeDatabase()
+//        dcAccounts.openDatabase()
+        let accountIds = dcAccounts.getAll()
+        for accountId in accountIds {
+            let dcContext = dcAccounts.get(id: accountId)
+            if !dcContext.isOpen() {
+                do {
+                    let secret = try KeychainManager.getAccountSecret(accountID: accountId)
+                    if !dcContext.open(passphrase: secret) {
+                        logger.error("Failed to open database for account \(accountId)")
+                    }
+                } catch KeychainError.unhandledError(let message, let status) {
+                    logger.error("Keychain error. \(message). Error status: \(status)")
+                } catch {
+                    logger.error("\(error)")
+                }
+            }
+        }
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appCoordinator.initializeRootController()
+        }
+    }
     
     private func setupSubviews() {
         view.addSubview(titleLabel)
         view.addSubview(errorDescription1)
         view.addSubview(errorDescription2)
+        view.addSubview(tryFixButton)
         
-        let qrDefaultWidth = view.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75)
-        qrDefaultWidth.priority = UILayoutPriority(500)
-        qrDefaultWidth.isActive = true
-        let qrMinWidth = view.widthAnchor.constraint(lessThanOrEqualToConstant: 260)
-        qrMinWidth.priority = UILayoutPriority(999)
-        qrMinWidth.isActive = true
-        view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.05).isActive = true
-        view.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        view.addConstraints([
+            titleLabel.constraintAlignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 50),
+            errorDescription1.constraintToBottomOf(titleLabel, paddingTop: 6),
+            errorDescription2.constraintToBottomOf(errorDescription1, paddingTop: 7),
+            titleLabel.constraintAlignLeadingTo(view),
+            titleLabel.constraintAlignTrailingTo(view),
+            errorDescription1.constraintAlignLeadingTo(view),
+            errorDescription1.constraintAlignTrailingTo(view),
+            errorDescription2.constraintAlignLeadingTo(view),
+            errorDescription2.constraintAlignTrailingTo(view),
+            tryFixButton.constraintToBottomOf(errorDescription2, paddingTop: 5),
+            tryFixButton.constraintCenterXTo(view),
+        ])
+        
+
     }
     
     
