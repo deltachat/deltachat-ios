@@ -595,6 +595,9 @@ public class DcContext {
     }
 
     public var displaynameAndAddr: String {
+        if !isOpen() {
+            return "(closed context)"
+        }
         var ret = addr ?? ""
         if let displayname = displayname {
             ret = "\(displayname) (\(ret))"
