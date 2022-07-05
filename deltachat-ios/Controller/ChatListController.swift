@@ -472,8 +472,7 @@ class ChatListController: UITableViewController {
     }
 
     func setLongTapEditing(_ editing: Bool, initialIndexPath: [IndexPath]? = nil) {
-        tableView.setEditing(editing, animated: true)
-        viewModel?.setEditing(editing)
+        setEditing(editing, animated: true)
         if editing {
             addEditingView()
             if let viewModel = viewModel {
