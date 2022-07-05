@@ -236,6 +236,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         // remove only unconfigured and make sure, there is another account
         // (normally, both checks are not needed, however, some resilience wrt future program-flow-changes seems to be reasonable here)
         let selectedAccount = dcAccounts.getSelected()
+        if !selectedAccount.isOpen() {
+            // prevent wrong return value of dc_is_configured / isConfigured
+            return
+        }
+        
         if !selectedAccount.isConfigured() {
             _ = dcAccounts.remove(id: selectedAccount.id)
             if self.dcAccounts.getAll().isEmpty {
