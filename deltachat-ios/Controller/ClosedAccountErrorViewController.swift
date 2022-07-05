@@ -10,7 +10,26 @@ import Foundation
 import UIKit
 import DcCore
 
-class ClosedAccountErrorView: UIView {
+
+class ClosedAccountErrorViewController: UIViewController {
+    private let dcAccounts: DcAccounts
+    private let dcContext: DcContext
+    
+    private lazy var hasOtherAccounts: Bool = {
+        return dcAccounts.getAll().count >= 2
+    }()
+   
+    init(dcAccounts: DcAccounts) {
+        self.dcAccounts = dcAccounts
+        self.dcContext = dcAccounts.getSelected()
+        super.init(nibName: nil, bundle: nil)
+        title = "Closed Account Error"
+    }
+    
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Error: Account is closed"
@@ -42,59 +61,20 @@ class ClosedAccountErrorView: UIView {
     }()
     
     
-    public init () {
-        super.init(frame: .infinite)
-        
-        addSubview(titleLabel)
-        addSubview(errorDescription1)
-        addSubview(errorDescription2)
-        
-        backgroundColor = DcColors.defaultBackgroundColor
-    }
-    
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class ClosedAccountErrorViewController: UIViewController {
-    private let dcAccounts: DcAccounts
-    private let dcContext: DcContext
-    
-    private lazy var hasOtherAccounts: Bool = {
-        return dcAccounts.getAll().count >= 2
-    }()
-    
-    private lazy var closedAccountErrorView: ClosedAccountErrorView = {
-        let view2 = ClosedAccountErrorView()
-        view2.translatesAutoresizingMaskIntoConstraints = false
-        return view2
-    }()
-   
-    init(dcAccounts: DcAccounts) {
-        self.dcAccounts = dcAccounts
-        self.dcContext = dcAccounts.getSelected()
-        super.init(nibName: nil, bundle: nil)
-        title = "Closed Account Error"
-    }
-    
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Error: Account is closed"
-        label.textColor = DcColors.grayTextColor
-        label.textAlignment = .center
-        label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        return label
-    }()
-    
     private func setupSubviews() {
-        view.addSubview(closedAccountErrorView)
         view.addSubview(titleLabel)
+        view.addSubview(errorDescription1)
+        view.addSubview(errorDescription2)
+        
+        let qrDefaultWidth = view.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75)
+        qrDefaultWidth.priority = UILayoutPriority(500)
+        qrDefaultWidth.isActive = true
+        let qrMinWidth = view.widthAnchor.constraint(lessThanOrEqualToConstant: 260)
+        qrMinWidth.priority = UILayoutPriority(999)
+        qrMinWidth.isActive = true
+        view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.05).isActive = true
+        view.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
     
     
