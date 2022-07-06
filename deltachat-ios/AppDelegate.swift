@@ -72,22 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        let accountIds = dcAccounts.getAll()
-        for accountId in accountIds {
-            let dcContext = dcAccounts.get(id: accountId)
-            if !dcContext.isOpen() {
-                do {
-                    let secret = try KeychainManager.getAccountSecret(accountID: accountId)
-                    if !dcContext.open(passphrase: secret) {
-                        logger.error("Failed to open database for account \(accountId)")
-                    }
-                } catch KeychainError.unhandledError(let message, let status) {
-                    logger.error("Keychain error. \(message). Error status: \(status)")
-                } catch {
-                    logger.error("\(error)")
-                }
-            }
-        }
+        openAccounts(dcAccounts)
 
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
            fatalError("Could not initialize a new account.")
@@ -204,6 +189,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
 
             AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
+        }
+    }
+
+    func openAccounts(_ dcAccounts: DcAccounts) {
+        let accountIds = dcAccounts.getAll()
+        for accountId in accountIds {
+            let dcContext = dcAccounts.get(id: accountId)
+            if !dcContext.isOpen() {
+                do {
+                    let secret = try KeychainManager.getAccountSecret(accountID: accountId)
+                    if !dcContext.open(passphrase: secret) {
+                        logger.error("Failed to open database for account \(accountId)")
+                    }
+                } catch KeychainError.unhandledError(let message, let status) {
+                    logger.error("Keychain error. \(message). Error status: \(status)")
+                } catch {
+                    logger.error("\(error)")
+                }
+            }
         }
     }
 
@@ -409,6 +413,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
         pushToDebugArray("📡")
+        openAccounts(dcAccounts)
         performFetch(completionHandler: completionHandler)
     }
 
@@ -425,6 +430,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("➡️ Notifications: performFetchWithCompletionHandler")
         increaseDebugCounter("notify-local-wakeup")
         pushToDebugArray("🏠")
+        openAccounts(dcAccounts)
         performFetch(completionHandler: completionHandler)
     }
 
