@@ -174,6 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appFullyInitialized = true
     }
 
+    public var accountCreationQrCode: String = ""
     // `open` is called when an url should be opened by Delta Chat.
     // we currently use that for handling oauth2 and for handing openpgp4fpr.
     //
@@ -187,6 +188,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // }
 
         switch url.scheme?.lowercased() {
+        case "dcaccount":
+            _ = self.dcAccounts.add()
+            accountCreationQrCode = url.absoluteString
+            reloadDcContext()
+            return true
         case "openpgp4fpr":
             // Hack to format url properly
             let urlString = url.absoluteString

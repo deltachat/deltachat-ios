@@ -59,7 +59,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private var qrCodeReader: QrCodeReaderController?
     weak var progressAlert: UIAlertController?
-
+    
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
@@ -89,6 +89,16 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             navigationItem.leftBarButtonItem = cancelButton
         }
         navigationItem.rightBarButtonItem = moreButton
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            if !appDelegate.accountCreationQrCode.isEmpty {
+                self.handleQrCode(appDelegate.accountCreationQrCode)
+            }
+            appDelegate.accountCreationQrCode = ""
+        }
+        super.viewDidAppear(animated)
     }
 
     override func viewDidLayoutSubviews() {
@@ -339,7 +349,11 @@ extension WelcomeViewController: QrCodeReaderDelegate {
 
         alert.addAction(okAction)
         alert.addAction(qrCancelAction)
-        qrCodeReader?.present(alert, animated: true)
+        if qrCodeReader != nil {
+            qrCodeReader?.present(alert, animated: true)
+        } else {
+            self.present(alert, animated: true)
+        }
     }
 
     private func qrErrorAlert() {
