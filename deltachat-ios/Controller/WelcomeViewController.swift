@@ -205,11 +205,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let newContextId = dcAccounts.addClosedAccount()
         _ = dcAccounts.remove(id: lastContextId)
         _ = dcAccounts.select(id: newContextId)
-        let selected = dcAccounts.getSelected()
+        dcContext = dcAccounts.getSelected()
         do {
-            let secret = try KeychainManager.getAccountSecret(accountID: selected.id)
-            guard selected.open(passphrase: secret) else {
-                logger.error("Failed to open account database for account \(selected.id)")
+            let secret = try KeychainManager.getAccountSecret(accountID: dcContext.id)
+            guard dcContext.open(passphrase: secret) else {
+                logger.error("Failed to open account database for account \(dcContext.id)")
                 return
             }
             showAccountSetupController()
