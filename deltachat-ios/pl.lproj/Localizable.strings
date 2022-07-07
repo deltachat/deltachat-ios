@@ -90,6 +90,8 @@
 "last_seen_unknown" = "Ostatnio widziano: nie wiadomo";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+
 "self" = "Ja";
 "draft" = "Szkic";
 "image" = "Obraz";
@@ -760,7 +762,10 @@
 "ImageEditorHud_draw_anywhere_to_blur" = "Rysuj gdziekolwiek, aby rozmyć";
 "ImageEditorHud_add_text" = "Dodaj tekst";
 "ImageEditorHud_blur" = "Rozmycie";
+"ImageEditorHud_brush_marker" = "Marker";
+"ImageEditorHud_brush_highlight" = "Podkreślacz";
 "ImageEditorHud_crop" = "Przytnij";
+"ImageEditorHud_flip" = "Odwróć";
 "ImageEditorHud_rotate" = "Obróć";
 
 // dc_str_* resources
@@ -823,6 +828,13 @@
 
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Przypisanie klawiszy";
+"switch_between_chats" = "Przełącz się między czatami";
+"scroll_messages" = "Przewiń wiadomości";
+// command to put the cursor to the search input field
+"focus_search_input" = "Szukaj";
+// command to put the cursor to the message input field
+"focus_message_input" = "Wpisz wiadomość";
+"force_refresh_network" = "Wymuś odświeżenie sieci";
 "insert_newline" = "Wstaw nową linię";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
@@ -833,9 +845,32 @@
 "a11y_delivery_status_delivered" = "Status dostawy: Dostarczone";
 "a11y_delivery_status_read" = "Status dostawy: Przeczytane";
 "a11y_delivery_status_invalid" = "Nieprawidłowy status dostawy";
+"a11y_message_context_menu_btn_label" = "Działania na wiadomości";
 "a11y_background_preview_label" = "Podgląd tła";
 "a11y_disappearing_messages_activated" = "Aktywowano znikające wiadomości";
 
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Zatrzymaj udostępnianie lokalizacji";
+"a11y_voice_message_hint_ios" = "Po nagraniu dotknij dwukrotnie, aby wysłać. Aby odrzucić nagranie, przeciągnij dwoma palcami.";
+"a11y_connectivity_hint" = "Naciśnij dwukrotnie, aby wyświetlić szczegóły połączenia.";
+"login_error_no_internet_connection" = "Brak połączenia internetowego, logowanie nie powiodło się.";
+"share_account_not_configured" = "Konto nie jest skonfigurowane.";
+"cannot_play_audio_file" = "Nie można odtworzyć pliku audio.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Aby robić zdjęcia, nagrywać filmy lub używać skanera kodów QR, otwórz ustawienia systemowe i włącz „Aparat”.";
+"open_settings" = "Otwórz ustawienia";
+// iOS device contact alert
+"import_device_contacts" = "Importuj kontakty z urządzenia";
+"import_device_contacts_hint" = "Aby rozmawiać z kontaktami ze swojego urządzenia, otwórz ustawienia i włącz „Kontakty”.";
+// iOS notification settings
+"disabled_in_dc" = "Wyłącz w Delta Chat";
+"disabled_in_system_settings" = "Wyłącz w ustawieniach systemu";
+"bg_app_refresh_disabled" = "„Odświeżanie aplikacji w tle” wyłączone w ustawieniach systemu";
+// iOS connectivity view
+"delayed" = "Opóźniony";
+"notifications_avg_minutes" = "Średnio co %1$d min.";
+"notifications_avg_hours" = "Średnio co %1$d godz.";
+"last_check_at" = "Sprawdzono o %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -849,4 +884,6 @@
 "perm_enable_bg_reminder_title" = "Dotknij tutaj, aby odbierać wiadomości, podczas gdy Delta Chat działa w tle.";
 "perm_enable_bg_already_done" = "Pozwolono już Delta Chat na odbieranie wiadomości w tle.\n\nJeśli wiadomości nadal nie docierają w tle, sprawdź też ustawienia systemu.";
 
+
+// device messages for updates
 

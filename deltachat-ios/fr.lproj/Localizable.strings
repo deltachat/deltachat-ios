@@ -90,6 +90,8 @@
 "last_seen_unknown" = "Vu·e pour la dernière fois : inconnu";
 // Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
 // Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+
 "self" = "Moi";
 "draft" = "Brouillon";
 "image" = "Image";
@@ -177,7 +179,7 @@
 "paste_from_clipboard" = "Coller depuis le presse-papiers";
 "menu_forward" = "Faire suivre le message";
 "menu_reply" = "Répondre au message";
-"menu_mute" = "Déactiver les notifications";
+"menu_mute" = "Désactiver les notifications";
 "menu_unmute" = "Réactiver";
 "menu_export_attachment" = "Exporter le fichier joint";
 "menu_export_attachments" = "Exporter les pièces-jointes";
@@ -308,6 +310,7 @@
 "saved_messages_explain" = "• Transférez les messages ici pour un accès facile\n\n• Prenez des notes, des mémos vocaux\n\n• Joignez des fichiers pour les sauvegarder";
 // this "Saved" should match the "Saved" from "Saved messages"
 "saved" = "Sauvegardés";
+"save_as" = "Sauvegarder";
 "retry_send" = "Réessayer d\'envoyer le message";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Vous ne pouvez pas écrire car vous ne faites pas partie de ce groupe. Pour le rejoindre, demandez à un membre.";

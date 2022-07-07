@@ -88,7 +88,7 @@
 "menu_copy_to_clipboard" = "Copiar para área de transferência";
 "menu_forward" = "Reencaminhar mensagem";
 "menu_reply" = "Responder";
-"menu_mute" = "Calar";
+"menu_mute" = "Silenciar notificações";
 "menu_unmute" = "Falar";
 "menu_export_attachment" = "Exportar anexo";
 "menu_all_media" = "Todos os arquivos de mídia";
