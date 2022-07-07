@@ -101,9 +101,9 @@ class ChatListController: UITableViewController {
 
         // update messages - for new messages, do not reuse or modify strings but create new ones.
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
-        let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-        msg.text = String.localized("update_1_30")
-        dcContext.addDeviceMessage(label: "update_1_30a_ios", msg: msg)
+        //let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
+        //msg.text = String.localized("update_1_30")
+        //dcContext.addDeviceMessage(label: "update_1_30a_ios", msg: msg)
     }
 
     override func willMove(toParent parent: UIViewController?) {
