@@ -30,6 +30,8 @@
 		30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */; };
 		30E8F24B2449CF6500CE2C90 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */; };
 		30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24C2449D30200CE2C90 /* DcColors.swift */; };
+		78A8733F287766FA00690A0B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A8733E287766FA00690A0B /* libc++.tbd */; };
+		78A873412877679B00690A0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A873402877679B00690A0B /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		30E8F24C2449D30200CE2C90 /* DcColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcColors.swift; sourceTree = "<group>"; };
+		78A8733E287766FA00690A0B /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
+		78A873402877679B00690A0B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78A873412877679B00690A0B /* SystemConfiguration.framework in Frameworks */,
+				78A8733F287766FA00690A0B /* libc++.tbd in Frameworks */,
 				30421959243DE6AD00516852 /* libdeltachat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +155,8 @@
 		30421957243DE61400516852 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78A873402877679B00690A0B /* SystemConfiguration.framework */,
+				78A8733E287766FA00690A0B /* libc++.tbd */,
 				30421958243DE61400516852 /* libdeltachat.a */,
 			);
 			name = Frameworks;

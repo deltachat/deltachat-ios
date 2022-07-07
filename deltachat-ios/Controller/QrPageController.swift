@@ -30,7 +30,7 @@ class QrPageController: UIPageViewController {
 
     private lazy var qrSegmentControl: UISegmentedControl = {
         let control = UISegmentedControl(
-            items: [String.localized("qrshow_title"), String.localized("qrscan_title")]
+            items: [String.localized("qrshow_title"), String.localized("qrscan_title"), "qrshow_backup"]
         )
         control.tintColor = DcColors.primary
         control.addTarget(self, action: #selector(qrSegmentControlChanged), for: .valueChanged)
@@ -85,10 +85,13 @@ class QrPageController: UIPageViewController {
         if sender.selectedSegmentIndex == 0 {
             let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
             setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
-        } else {
+        } else if sender.selectedSegmentIndex == 1 {
             let qrCodeReaderController = makeQRReader()
             self.qrCodeReaderController = qrCodeReaderController
             setViewControllers([qrCodeReaderController], direction: .forward, animated: false, completion: nil)
+        } else {
+            let qrController = QrViewBackupController(dcContext: dcContext, qrCodeHint: qrCodeHint)
+            setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
         }
     }
 
@@ -102,6 +105,13 @@ class QrPageController: UIPageViewController {
     // MARK: - update
     private func updateHintTextIfNeeded() {
         for case let qrViewController as QrViewController in self.viewControllers ?? [] {
+            let newHint = qrCodeHint
+            if qrCodeHint != qrViewController.qrCodeHint {
+                qrViewController.qrCodeHint = newHint
+            }
+        }
+        
+        for case let qrViewController as QrViewBackupController in self.viewControllers ?? [] {
             let newHint = qrCodeHint
             if qrCodeHint != qrViewController.qrCodeHint {
                 qrViewController.qrCodeHint = newHint
