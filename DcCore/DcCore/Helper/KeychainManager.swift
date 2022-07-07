@@ -15,6 +15,11 @@ public class KeychainManager {
     private static let sharedKeychainGroup = "\(KcM.teamId).group.chat.delta.ios"
 
     public static func getAccountSecret(accountID: Int) throws -> String {
+        if let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? Int,
+           buildVersion <= 74 {
+            upgradeAccountSecret(id: accountID)
+        }
+
         do {
             return try queryAccountSecret(id: accountID)
         } catch KeychainError.noPassword {
@@ -38,6 +43,32 @@ public class KeychainManager {
     private static func createRandomPassword() -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXZY1234567890"
         return String((0..<36).map { _ in letters.randomElement()! })
+    }
+
+    private static func upgradeAccountSecret(id: Int) {
+        let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                                    kSecAttrAccount as String: "\(id)",
+                                    kSecMatchLimit as String: kSecMatchLimitOne,
+                                    kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
+                                    kSecReturnAttributes as String: true,
+                                    kSecReturnData as String: true,
+                                    kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked]
+        var item: CFTypeRef?
+        let status = SecItemCopyMatching(query as CFDictionary, &item)
+        if status == errSecSuccess {
+            let attributes: [String: Any] = [kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock]
+            let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+            switch status {
+            case errSecSuccess:
+                print("successfully upgraded access policy upgrade for account \(id).")
+            case errSecItemNotFound:
+                print("no access policy upgrade for account \(id) needed.")
+            case errSecInteractionNotAllowed:
+                print("Keychain not yet available. (\(status))")
+            default:
+                print("Failed to upgrade access policy for account id \(id) (\(status))")
+            }
+        }
     }
 
     private static func addAccountSecret(id: Int) throws -> String {
@@ -64,7 +95,8 @@ public class KeychainManager {
                                     kSecMatchLimit as String: kSecMatchLimitOne,
                                     kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
                                     kSecReturnAttributes as String: true,
-                                    kSecReturnData as String: true]
+                                    kSecReturnData as String: true,
+                                    kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock]
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         switch status {
