@@ -3,6 +3,7 @@ import DcCore
 
 class QrPageController: UIPageViewController {
     private let dcContext: DcContext
+    private let dcAccounts: DcAccounts
     var progressObserver: NSObjectProtocol?
     var qrCodeReaderController: QrCodeReaderController?
 
@@ -30,7 +31,7 @@ class QrPageController: UIPageViewController {
 
     private lazy var qrSegmentControl: UISegmentedControl = {
         let control = UISegmentedControl(
-            items: [String.localized("qrshow_title"), String.localized("qrscan_title"), "qrshow_backup"]
+            items: [String.localized("qrshow_title"), String.localized("qrscan_title")]
         )
         control.tintColor = DcColors.primary
         control.addTarget(self, action: #selector(qrSegmentControlChanged), for: .valueChanged)
@@ -38,8 +39,9 @@ class QrPageController: UIPageViewController {
         return control
     }()
 
-    init(dcContext: DcContext) {
+    init(dcContext: DcContext, dcAccounts: DcAccounts) {
         self.dcContext = dcContext
+        self.dcAccounts = dcAccounts
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
     }
 
@@ -54,7 +56,7 @@ class QrPageController: UIPageViewController {
         delegate = self
         navigationItem.titleView = qrSegmentControl
 
-        let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
+        let qrController = QrViewBackupController(dcContext: dcContext, dcAccounts: dcAccounts, qrCodeHint: qrCodeHint)
         setViewControllers(
             [qrController],
             direction: .forward,
@@ -83,15 +85,12 @@ class QrPageController: UIPageViewController {
     // MARK: - actions
     @objc private func qrSegmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
+            let qrController = QrViewBackupController(dcContext: dcContext, dcAccounts: dcAccounts, qrCodeHint: qrCodeHint)
             setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
-        } else if sender.selectedSegmentIndex == 1 {
+        } else {
             let qrCodeReaderController = makeQRReader()
             self.qrCodeReaderController = qrCodeReaderController
             setViewControllers([qrCodeReaderController], direction: .forward, animated: false, completion: nil)
-        } else {
-            let qrController = QrViewBackupController(dcContext: dcContext, qrCodeHint: qrCodeHint)
-            setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
         }
     }
 
@@ -104,13 +103,6 @@ class QrPageController: UIPageViewController {
 
     // MARK: - update
     private func updateHintTextIfNeeded() {
-        for case let qrViewController as QrViewController in self.viewControllers ?? [] {
-            let newHint = qrCodeHint
-            if qrCodeHint != qrViewController.qrCodeHint {
-                qrViewController.qrCodeHint = newHint
-            }
-        }
-        
         for case let qrViewController as QrViewBackupController in self.viewControllers ?? [] {
             let newHint = qrCodeHint
             if qrCodeHint != qrViewController.qrCodeHint {
@@ -139,19 +131,21 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         if viewController is QrViewController {
             return nil
         }
-        return QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
+        
+        return makeQRReader()
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if viewController is QrViewController {
+        if viewController is QrViewBackupController {
             return makeQRReader()
         }
+
         return nil
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            if previousViewControllers.first is QrViewController {
+            if previousViewControllers.first is QrViewBackupController {
                 qrSegmentControl.selectedSegmentIndex = 1
             } else {
                 qrSegmentControl.selectedSegmentIndex = 0

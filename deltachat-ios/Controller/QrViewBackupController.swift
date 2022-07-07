@@ -6,10 +6,12 @@ import SDWebImageSVGKitPlugin
 class QrViewBackupController: UIViewController {
 
     private let dcContext: DcContext
+    private let dcAccounts: DcAccounts
+    private let dcBackupSender: DcBackupSender?
     var onDismissed: (() -> Void)?
     
     private lazy var qrContentView: UIImageView = {
-        let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
+        let svg = dcBackupSender?.qr_code(context: dcContext)
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -19,15 +21,24 @@ class QrViewBackupController: UIViewController {
 
     var qrCodeHint: String {
         willSet {
-            let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
+            let svg = dcBackupSender?.qr_code(context: dcContext)
             qrContentView.image = getQrImage(svg: svg)
             qrContentView.accessibilityHint = newValue
         }
     }
     private let chatId: Int
 
-    init(dcContext: DcContext, chatId: Int? = 0, qrCodeHint: String?) {
+    init(dcContext: DcContext, dcAccounts: DcAccounts, chatId: Int? = 0, qrCodeHint: String?) {
         self.dcContext = dcContext
+        self.dcAccounts = dcAccounts
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if !documents.isEmpty {
+            self.dcAccounts.stopIo() // TODO: start again
+            self.dcBackupSender = self.dcContext.send_backup(directory: documents[0], passphrase: nil)
+        } else {
+            logger.error("document directory not found")
+            self.dcBackupSender = nil
+        }
         self.chatId = chatId ?? 0
         self.qrCodeHint = qrCodeHint ?? ""
         super.init(nibName: nil, bundle: nil)

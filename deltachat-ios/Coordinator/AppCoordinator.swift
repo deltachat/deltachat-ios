@@ -33,7 +33,7 @@ class AppCoordinator {
     }()
 
     private func createQrNavigationController() -> UINavigationController {
-        let root = QrPageController(dcContext: dcAccounts.getSelected())
+        let root = QrPageController(dcContext: dcAccounts.getSelected(), dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
