@@ -192,6 +192,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
+        logger.info("➡️ applicationProtectedDataDidBecomeAvailable")
+    }
+
+    func applicationProtectedDataWillBecomeUnavailable(_ application: UIApplication) {
+        logger.info("➡️ applicationProtectedDataWillBecomeUnavailable")
+    }
+
     func openAccounts(_ dcAccounts: DcAccounts) {
         let accountIds = dcAccounts.getAll()
         for accountId in accountIds {
