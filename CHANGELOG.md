@@ -1,7 +1,11 @@
 # Delta Chat iOS Changelog
 
-## UNRELEASED
+## v1.31.0 Testflight
+2022-07
 
+* experimental "Automatic E-mail Address Porting" (AEAP):
+  You can configure a new address now, and when receivers get messages
+  they will automatically recognize your moving to a new address
 * multi-select in chat list: long-tap a chat and select more chats
   for deletion, pinning or archiving
 * add 'reply privately' option to group chats
@@ -15,6 +19,9 @@
 * improve chat encryption info, make it easier to find contacts without keys
 * improve error reporting when creating a folder fails
 * allow mailto: links in webxdc
+* combine read receipts and webxdc updates and avoid sending too many messages
+* message lines starting with `>` are sent as quotes to non-Delta-Chat clients
+* support IMAP ID extension that is required by some providers
 * disable gesture to close webxdc to avoid confusion with gestures inside webxdc
 * info messages can be selected in multi-select
 * fix: make chat names always searchable
@@ -28,9 +35,13 @@
 * fix: repair encrypted mails "mixed up" by Google Workspace "Append footer" function
 * fix: use same contact-color if email address differ only in upper-/lowercase
 * fix scroll-down button visibility
+* fix: allow DeltaChat folder being hidden
+* fix: cleanup read receipts storage
+* fix: mailing list: remove square-brackets only for first name
+* fix: do not use footers from mailinglists as the contact status
 * update provider database, add hermes.radio subdomains
 * update translations
-* update to core86
+* update to core88
 
 
 ## v1.30.1
