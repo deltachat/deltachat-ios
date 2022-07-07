@@ -15,8 +15,8 @@ public class KeychainManager {
     private static let sharedKeychainGroup = "\(KcM.teamId).group.chat.delta.ios"
 
     public static func getAccountSecret(accountID: Int) throws -> String {
-        if let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? Int,
-           buildVersion <= 74 {
+        if let sharedUserDefaults = UserDefaults.shared,
+            !sharedUserDefaults.bool(forKey: "\(UserDefaults.upgradedKeychainEntry)\(accountID)") {
             upgradeAccountSecret(id: accountID)
         }
 
@@ -46,27 +46,49 @@ public class KeychainManager {
     }
 
     private static func upgradeAccountSecret(id: Int) {
-        let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+        // 1. search the keychain entry
+        let searchQuery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrAccount as String: "\(id)",
                                     kSecMatchLimit as String: kSecMatchLimitOne,
                                     kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
                                     kSecReturnAttributes as String: true,
                                     kSecReturnData as String: true,
-                                    kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked]
+                                    kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked as String]
         var item: CFTypeRef?
-        let status = SecItemCopyMatching(query as CFDictionary, &item)
+        let status = SecItemCopyMatching(searchQuery as CFDictionary, &item)
         if status == errSecSuccess {
-            let attributes: [String: Any] = [kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock]
-            let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
-            switch status {
+            // 2. create an upgrade query
+            let updateQuery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                                              kSecAttrAccount as String: "\(id)",
+                                              kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
+                                              kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked as String]
+
+            // 3. create a dictionary, containing the updated keychain properties and the secret for authorization
+            guard let existingItem = item as? [String: AnyObject],
+                  let passwordData = existingItem[kSecValueData as String] as? Data
+            else {
+                print("Failed to upgrade access policy for account id \(id).")
+                return
+            }
+            let updatedAttributes: [String: Any] = [ kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock,
+                                                     kSecValueData as String: passwordData ]
+
+            // 4. update
+            let updateStatus = SecItemUpdate(updateQuery as CFDictionary, updatedAttributes as CFDictionary)
+
+            switch updateStatus {
             case errSecSuccess:
                 print("successfully upgraded access policy upgrade for account \(id).")
+                UserDefaults.shared?.set(true, forKey: "\(UserDefaults.upgradedKeychainEntry)\(id)")
             case errSecItemNotFound:
                 print("no access policy upgrade for account \(id) needed.")
+                UserDefaults.shared?.set(true, forKey: "\(UserDefaults.upgradedKeychainEntry)\(id)")
             case errSecInteractionNotAllowed:
-                print("Keychain not yet available. (\(status))")
+                print("Keychain not yet available (\(status)).")
+            case errSecAuthFailed:
+                print("Authentication failed")
             default:
-                print("Failed to upgrade access policy for account id \(id) (\(status))")
+                print("Failed to upgrade access policy for account id \(id) (\(status)).")
             }
         }
     }
