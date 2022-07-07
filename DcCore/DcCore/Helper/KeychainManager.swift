@@ -46,6 +46,7 @@ public class KeychainManager {
           kSecAttrAccount as String: "\(id)",
           kSecClass: kSecClassGenericPassword,
           kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
+          kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
         ] as CFDictionary
 
         let status = SecItemAdd(keychainItemQuery, nil)
