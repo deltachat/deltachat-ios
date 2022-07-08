@@ -538,9 +538,9 @@ class ChatListController: UITableViewController {
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(nil, animated: true)
                 navigationItem.setRightBarButton(newButton, animated: true)
-            }
-            if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
-                titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
+                if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
+                    titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
+                }
             }
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
