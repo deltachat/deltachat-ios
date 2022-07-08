@@ -233,10 +233,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     @objc private func cancelButtonPressed() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         // take a bit care on account removal:
-        // remove only unconfigured and make sure, there is another account
+        // remove only openend and unconfigured and make sure, there is another account
         // (normally, both checks are not needed, however, some resilience wrt future program-flow-changes seems to be reasonable here)
         let selectedAccount = dcAccounts.getSelected()
-        if !selectedAccount.isConfigured() {
+        if selectedAccount.isOpen() && !selectedAccount.isConfigured() {
             _ = dcAccounts.remove(id: selectedAccount.id)
             if self.dcAccounts.getAll().isEmpty {
                 _ = self.dcAccounts.add()

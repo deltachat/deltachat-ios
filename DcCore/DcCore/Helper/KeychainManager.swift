@@ -46,6 +46,7 @@ public class KeychainManager {
           kSecAttrAccount as String: "\(id)",
           kSecClass: kSecClassGenericPassword,
           kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
+          kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
         ] as CFDictionary
 
         let status = SecItemAdd(keychainItemQuery, nil)
@@ -66,10 +67,14 @@ public class KeychainManager {
                                     kSecReturnData as String: true]
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
-        guard status != errSecItemNotFound else {
+        switch status {
+        case errSecSuccess:
+            break
+        case errSecItemNotFound:
             throw KeychainError.noPassword
-        }
-        guard status == errSecSuccess else {
+        case errSecInteractionNotAllowed:
+            throw KeychainError.unhandledError(message: "Keychain not yet available.", status: status)
+        default:
             throw KeychainError.unhandledError(message: "Unknown error while querying secret for account \(id):",
                                                status: status)
         }

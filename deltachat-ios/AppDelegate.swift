@@ -207,6 +207,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
+        logger.info("➡️ applicationProtectedDataDidBecomeAvailable")
+    }
+
+    func applicationProtectedDataWillBecomeUnavailable(_ application: UIApplication) {
+        logger.info("⬅️ applicationProtectedDataWillBecomeUnavailable")
+    }
+
     static func emitMsgsChangedIfShareExtensionWasUsed() {
         if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
             userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
