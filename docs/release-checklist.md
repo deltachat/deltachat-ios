@@ -11,13 +11,13 @@ on the command-line:
    $ ./scripts/tx-pull-translations.sh
 
 3. update local help:
-   $ ./scripts/create-local-help.py
+   $ ./scripts/create-local-help.sh
 
 4. a) update CHANGELOG.md
       from https://github.com/deltachat/deltachat-core-rust/blob/master/CHANGELOG.md
       and https://github.com/deltachat/deltachat-ios/pulls?q=is%3Apr+is%3Aclosed+sort%3Aupdated-desc
    b) add used core version to CHANGELOG.md
-   c) add a device message to ConversationListActivity::onCreate()
+   c) add a device message to ChatListController::viewDidLoad()
       or remove the old one
 
 in Xcode:
