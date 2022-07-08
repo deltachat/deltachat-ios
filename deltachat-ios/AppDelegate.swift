@@ -212,7 +212,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationProtectedDataWillBecomeUnavailable(_ application: UIApplication) {
-        logger.info("➡️ applicationProtectedDataWillBecomeUnavailable")
+        logger.info("⬅️ applicationProtectedDataWillBecomeUnavailable")
     }
 
     static func emitMsgsChangedIfShareExtensionWasUsed() {
