@@ -518,7 +518,6 @@ class ChatViewController: UITableViewController {
         audioController.stopAnyOngoingPlaying()
         messageInputBar.inputTextView.resignFirstResponder()
         wasInputBarFirstResponder = false
-        keyboardManager = nil
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -532,6 +531,12 @@ class ChatViewController: UITableViewController {
             setupObservers()
         }
      }
+
+    override func didMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            keyboardManager = nil
+        }
+    }
 
     private func setupObservers() {
         let nc = NotificationCenter.default
