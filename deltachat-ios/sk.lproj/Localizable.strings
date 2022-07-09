@@ -31,9 +31,9 @@
 "forward" = "Vpred";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Znovu poslať";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archivovať";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Zrušiť archiváciu";
 "mute" = "Stíšiť";
 "ephemeral_messages" = "Miznúce správy";
@@ -46,12 +46,12 @@
 "start_chat" = "Začať konverzáciu";
 "show_full_message" = "Zobraziť celú správu ...";
 "show_full_message_in_browser" = "Zobraziť celú správu v internetovom prehliadači...";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "Načítam…";
 "hide" = "Skryť";
 "activate" = "Zapnúť";
 "load_remote_content" = "Načítať vzdialené obrázky";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Na sledovanie vás možno použiť obrázky nadiaľku.\n\nToto nastavenie tiež umožňuje načítať písma a ďalší obsah. Aj keď je vypnutá, stále sa vám môžu zobrazovať vložené alebo uložené obrázky.\n\nNačítať vzdialené obrázky?";
 "always" = "Vždy";
 "once" = "Raz";
@@ -63,7 +63,7 @@
 "done" = "Hotovo";
 "undo" = "Vrátiť späť";
 "offline" = "Offline";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Ďalšie";
 "error" = "Chyba";
 "error_x" = "Chyba: %1$@";
@@ -77,7 +77,7 @@
 "password" = "Heslo";
 "existing_password" = "Existujúce heslo";
 "now" = "Teraz";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Nebezpečenstvo";
 "today" = "Dnes";
 "yesterday" = "Včera";
@@ -85,32 +85,32 @@
 "this_month" = "Tento mesiac";
 "last_week" = "Minulý týždeň";
 "last_month" = "Minulý mesiac";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Naposledy videné o%1$@";
 "last_seen_unknown" = "Naposledy videné: Neznáme";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Ja";
 "draft" = "Návrh";
 "image" = "Obrázok";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Odpovedať";
 "gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Nálepka";
 "images" = "Snímky";
 "audio" = "Zvuk";
 "voice_message" = "Hlasová správa";
 "forwarded" = "Preposlané";
 "forwarded_message" = "Preposlaná správa";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Preposlal %1$@";
 "video" = "Video";
 "documents" = "Dokumenty";
 "contact" = "Kontakt";
 "verified_contact" = "Overený kontakt";
 "camera" = "Fotoaparát";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Zachytiť";
 "switch_camera" = "Prepnúť fotoaparát";
 "toggle_fullscreen" = "Prepnúť režim zobrazenia na celú obrazovku";
@@ -144,10 +144,10 @@
 "menu_new_contact" = "Nový kontakt";
 "menu_new_chat" = "Nová konverzácia";
 "menu_new_group" = "Nová skupina";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "Nová Skupina alebo Predmet ";
 "menu_new_verified_group" = "Nová overená skupina";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Zoznam Rozosielania";
 "broadcast_lists" = "Zoznamy Rozosielania";
 "new_broadcast_list" = "Nový Zoznam Rozosielania";
@@ -182,10 +182,10 @@
 "menu_export_attachment" = "Exportovať prílohu";
 "menu_export_attachments" = "Exportovať príloh";
 "menu_all_media" = "Všetky médiá";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Zobraziť v konverzácií";
 "menu_share" = "Zdieľam";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Blokovať";
 "menu_block_contact" = "Blokovať kontakt";
 "menu_unblock_contact" = "Odblokovať kontakt";
@@ -217,13 +217,13 @@
 "device_talk_explain" = "Správy v tejto konverzácií sú generované lokálne vašou aplikáciou Delta Chat. Jeho tvorcovia ho používajú na informovanie o aktualizáciách aplikácií a problémoch počas používania.";
 "device_talk_welcome_message" = "Vitajte na chatu Delta! - Delta Chat vyzerá a vyzerá ako iné populárne aplikácie pre komunikáciu, nezahŕňa však centralizované riadenie, sledovanie ani predaj vašich priateľov, kolegov alebo rodiny veľkým organizáciám.\n\nTechnicky je Delta Chat e-mailová aplikácia s moderným rozhraním pre chat. . Ak budete chcieť, pošlite e-mail v novom šate 👻\n\nPoužite program Delta Chat s kýmkoľvek z miliárd ľudí: stačí použiť jeho e-mailovú adresu. Príjemcovia nemusia inštalovať Delta Chat, navštevovať webové stránky alebo sa kdekoľvek registrovať - samozrejme, ak sa im páči, môžete ich odkázať na 👉 https://get.delta.chat";
 "edit_contact" = "Upraviť kontakt";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Pripnúť konverzáciu";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Odopnúť konverzáciu";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Pripnúť";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Uvoľniť";
 "ConversationFragment_quoted_message_not_found" = "Pôvodná správa sa nenašla";
 "reply_privately" = "Odpovedajte súkromne";
@@ -269,9 +269,9 @@
 "cannot_delete_contacts_in_use" = "Nie je možné odstrániť kontakty s prebiehajúcimi rozhovormi.";
 "ask_start_chat_with" = "Písať si s %1$@?";
 "ask_delete_value" = "Odstrániť %1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Odstrániť %1$@ zo skupiny?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Odstrániť %1$@ zo zoznamu rozosielania?";
 "open_url_confirmation" = "Chcete otvoriť tento odkaz?";
 
@@ -306,7 +306,7 @@
 "archive_empty_hint" = "Po archivovaní konverzácií sa zobrazia tu.";
 "saved_messages" = "Uložené správy";
 "saved_messages_explain" = "• Preposielajte správy sem, aby ste k nim mali ľahký prístup\n\n• Robte si poznámky alebo hlasové poznámky\n\n• Pripojte médiá, aby ste ich uložili";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Uložené";
 "retry_send" = "Skúste správu odoslať znova";
 // reasons for a disabled message composer
@@ -377,25 +377,25 @@
 "send_message" = "Poslať správu";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Prichádzajúce Správy";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Odchádzajúce Správy";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "Dáta o %1$@";
 "connectivity" = "Pripojenie";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Nepripojené";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Pripájam sa…";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Aktualizujem…";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Pripojené";
 "sending" = "Odosielam...";
 "last_msg_sent_successfully" = "Posledná správa odoslaná úspešne.";
 "not_supported_by_provider" = "Nie je podporovaná vaším poskytovateľom.";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Správy";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ z %2$@využitých ";
@@ -459,7 +459,7 @@
 "configuration_failed_with_error" = "Konfigurácia zlyhala. Chyba: %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Poslať ďalej ...";
 "share_multiple_attachments" = "Poslať %1$d súbory do vybranej konverzácie?\n\nSúbory sa odosielajú bez zmeny v pôvodnej veľkosti, napr. obrázky a videá nie sú prekódované.";
 "share_multiple_attachments_multiple_chats" = "Poslať %1$d súbor(y) do %2$d konverzácií?\n\nSúbory sa odosielajú neupravené v pôvodnej veľkosti, napr. obrázky a videá nie sú prekódované.";
@@ -477,9 +477,9 @@
 "pref_password_and_account_settings" = "Heslo a účet";
 "pref_who_can_see_profile_explain" = "Pri komunikácii s ostatnými používateľmi sa vedľa vašich správ zobrazí váš profilový obrázok a meno. Už odoslané informácie nemožno vymazať ani odstrániť.";
 "pref_your_name" = "Vaše meno";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Text v podpise";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Odoslané pomocou Delta Chat Messenger-a: https://delta.chat";
 "pref_enter_sends" = "Zadajte odoslanie kľúča";
 "pref_enter_sends_explain" = "Textové správy sa odošlú po stlačení Enteru";
@@ -488,7 +488,7 @@
 "pref_outgoing_worse" = "Horšia kvalita, malé rozmery";
 "pref_vibrate" = "Vibrovať";
 "pref_screen_security" = "Zabezpečenie obrazovky";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Požiadajte o blokovanie snímok obrazovky v zozname posledných položiek a v aplikácii";
 "pref_screen_security_please_restart_hint" = "Ak chcete použiť nastavenie zabezpečenia obrazovky, reštartujte aplikáciu.";
 "pref_notifications" = "Oznámenia";
@@ -503,14 +503,14 @@
 "pref_privacy" = "Ochrana osobných údajov";
 "pref_chats_and_media" = "Konverzácie a médiá";
 "pref_system_default" = "Predvolené nastavenie";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Svetlo";
 "pref_dark_theme" = "Tma";
 "pref_appearance" = "Vzhľad";
 "pref_theme" = "Motív";
 "pref_language" = "Jazyk";
 "pref_incognito_keyboard" = "Inkognito klávesnica";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Požiadajte o klávesnicu, aby deaktivovala prispôsobené učenie";
 "pref_read_receipts" = "Prečítajte si potvrdenia";
 "pref_read_receipts_explain" = "Ak sú potvrdenia o prečítaní zakázané, neuvidíte potvrdenia o prečítaní od ostatných.";
@@ -643,9 +643,9 @@
 "systemmsg_read_receipt_subject" = "Správa otvorená";
 "systemmsg_read_receipt_body" = "%1$@ Správa, ktorú ste poslali, sa zobrazila na obrazovke príjemcu.\n\nZaručujeme, že obsah nebol prečítaný.";
 "systemmsg_cannot_decrypt" = "Túto správu nie je možné dešifrovať.\n\n• Už by mohlo pomôcť jednoducho odpovedať na túto správu a požiadať odosielateľa, aby správu odoslal znova.\n\n• V prípade, že ste na ňu znova nainštalovali program Delta Chat alebo iný e-mailový program alebo iné zariadenie, z ktorého budete pravdepodobne chcieť odoslať správu o nastavení automatického šifrovania.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ mnou.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@od%2$@.";
 "systemmsg_unknown_sender_for_chat" = "Neznámy odosielateľ pre túto konverzáciu. Ďalšie informácie nájdete v časti „Informácie“.";
 "systemmsg_subject_for_new_contact" = "Správa od %1$@";
@@ -668,7 +668,7 @@
 "systemmsg_chat_protection_enabled" = "Ochrana konverzácií je zapnutá.";
 
 "devicemsg_self_deleted" = "Odstránili ste konverzáciu \"Uložené správy\".\n\nℹ️ Aby ste využili funkciu \"Uložené správy\" znova, vytvorte novú konverzáciu so sebou.";
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Úložisko vašeho poskytovateľa čoskoro prekročí limit, už%1$@%%  sú využité.\n\n Je možné, že nebudete môcť prijímať správy, ak bude úložisko 100 %% využité.\n\n👉 Prosím skontrolujte, či môžete vo webovom rozhraní poskytovateľa vymazať staré údaje, a zvážte aktiváciu „Nastavenia / Odstrániť Staré Správy“. Aktuálne využitie úložiska si môžete kedykoľvek skontrolovať v časti „Nastavenia / Pripojenie“. ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "Zdá sa, že dátum alebo čas vášho zariadenia je nepresný (%1$@).\n\nUpravte si hodiny ⏰🔧, aby ste zaistili správne prijímanie správ. ";

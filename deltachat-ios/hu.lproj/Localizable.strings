@@ -25,7 +25,7 @@
 "one_moment" = "Egy pillanat...";
 "done" = "Kész";
 "undo" = "Visszavonás";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Tovább";
 "error" = "Hiba";
 "error_x" = "Hiba: %1$@";
@@ -43,8 +43,8 @@
 "this_month" = "Ebben a hónapban";
 "last_week" = "Múlt héten";
 "last_month" = "Múlt hónapban";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Én";
 "draft" = "Piszkozat";
 "image" = "Kép";
@@ -136,7 +136,7 @@
 "ask_leave_group" = "Biztosan ki akarsz lépni a csoportból?";
 "ask_forward" = "Továbbítod az üzenetet %1$@ részére?";
 "ask_start_chat_with" = "Beszélgetést indítasz %1$@ partnerrel?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Kiveszed a csoportból %1$@ partnert?";
 // contact list
 "contacts_title" = "Kontaktok";
@@ -184,18 +184,18 @@
 "login_smtp_port" = "SMTP port";
 "import_backup_title" = "Biztonsági mentés importálása";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Továbbítás…";
 "pref_profile_info_headline" = "Profilod adatai";
 "pref_profile_photo" = "Profilkép";
 "pref_blocked_contacts" = "Letiltott partnerek";
 "pref_your_name" = "Neved";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "A Delta Chat Messengeremmel küldtem: https://delta.chat";
 "pref_enter_sends" = "Küldés \"enterrel\"";
 "pref_vibrate" = "Rezgés";
 "pref_screen_security" = "Képernyőbiztonság";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Képernyőképek készítésének blokkolása a futó alkalmazások listájában és az alkalmazáson belül";
 "pref_notifications" = "Értesítések";
 "pref_notifications_show" = "Megjelenítés";
@@ -206,14 +206,14 @@
 "pref_privacy" = "Privacy";
 "pref_chats_and_media" = "Csevegések és média";
 "pref_system_default" = "Alapbeállítás";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Világos";
 "pref_dark_theme" = "Sötét";
 "pref_appearance" = "Megjelenés";
 "pref_theme" = "Sötét";
 "pref_language" = "Nyelv";
 "pref_incognito_keyboard" = "Inkognitó billentyűzet";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása)";
 "pref_read_receipts" = "Olvasási nyugták";
 "pref_read_receipts_explain" = "Ha az olvasási nyugták le vannak tiltva, te sem fogod látni mások olvasási nyugtáit.";

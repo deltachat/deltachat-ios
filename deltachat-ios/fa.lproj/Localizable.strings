@@ -29,9 +29,9 @@
 "back" = "بازگشت";
 "close" = "بستن";
 "forward" = "هدایت";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "بایگانی";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "خروج از بایگانی";
 "mute" = "سکوت";
 "ephemeral_messages" = "پیام‌های ناپدید شونده";
@@ -44,12 +44,12 @@
 "start_chat" = "شروع گفتگو";
 "show_full_message" = "نمایش پیام کامل...";
 "show_full_message_in_browser" = "نمایش پیام کامل در مرورگر";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "در حال بارگیری...";
 "hide" = "مخفی کردن";
 "activate" = "فعال کردن";
 "load_remote_content" = "بارگیری تصاویر از بیرون";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "تصاویر مربوط به نشانی‌های اینترنتی دیگر می‌توانند برای ردیابی شما استفاده شوند. \n\n این تنظیمات همچنین برای بارگیری فونت‌ها و دیگر محتواها استفاده می‌شوند. اگر غیرفعال باشد ممکن است همچنان تصاویر درون پیام و تصاویر بارگیری شده را ببینید. \n\n آيا تصاویر خارجی بارگیری شوند؟";
 "always" = "همیشه";
 "once" = "همین یک بار";
@@ -61,7 +61,7 @@
 "done" = "انجام شد";
 "undo" = "واگرد";
 "offline" = "آفلاین";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "بعدی";
 "error" = "خطا";
 "error_x" = "خطا: %1$@";
@@ -75,7 +75,7 @@
 "password" = "رمزعبور";
 "existing_password" = "رمزعبور موجود";
 "now" = "اکنون";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "خطر";
 "today" = "امروز";
 "yesterday" = "دیروز";
@@ -83,32 +83,32 @@
 "this_month" = "این ماه";
 "last_week" = "هفته گذشته";
 "last_month" = "ماه گذشته";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "آخرین بار در %1$@ دیده شده";
 "last_seen_unknown" = "آخرین زمان مشاهده: نامشخص";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "من";
 "draft" = "پیش‌نویس";
 "image" = "تصویر";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "پاسخ";
 "gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "استیکر";
 "images" = "تصاویر";
 "audio" = "صدا";
 "voice_message" = "پیام صوتی";
 "forwarded" = "هدایت";
 "forwarded_message" = "پیام هدایت شده";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "توسط %1$@ هدایت شده است";
 "video" = "فیلم";
 "documents" = "اسناد";
 "contact" = "مخاطب";
 "verified_contact" = "مخاطب تایید شده. ";
 "camera" = "دوربین";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "گرفتن";
 "switch_camera" = "تغییر دوربین";
 "toggle_fullscreen" = "تغییر وضعیت تمام صفحه";
@@ -142,10 +142,10 @@
 "menu_new_contact" = "مخاطب جدید";
 "menu_new_chat" = "گفتگوی جدید";
 "menu_new_group" = "گروه جدید";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "گروه یا عنوان جدید";
 "menu_new_verified_group" = "گروه تایید شده جدید";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "لیست Broadcast";
 "broadcast_lists" = "لیست‌های Broadcast";
 "new_broadcast_list" = "لیست Broadcast جدید";
@@ -180,10 +180,10 @@
 "menu_export_attachment" = "صادر کردن ضمیمه";
 "menu_export_attachments" = "صادر کردن ضمیمه";
 "menu_all_media" = "همه رسانه‌ها";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "نمایش در گفتگو";
 "menu_share" = "اشتراک";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "مسدود کردن";
 "menu_block_contact" = "انسداد مخاطب";
 "menu_unblock_contact" = "لغو انسداد مخاطب";
@@ -214,13 +214,13 @@
 "device_talk_subtitle" = "پیام‌های  داخلی";
 "device_talk_explain" = "پیام‌ها در این گفتگو به صورت داخلی و توسط نرم‌افزار دلتاچت تولید شده‌اند. سازنده‌ها از این محل برای اعلان به روز‌رسانی‌ها و مشکلات پیش آمده حین کار استفاده می‌کنند. ";
 "edit_contact" = "ویرایش مخاطب";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "سنجاق کردن گفتگو";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "سنجاق برداری از گفتگو";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "سنجاق‌کردن";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "سنجاق برداری";
 "ConversationFragment_quoted_message_not_found" = "پیام اصلی یافت نشد";
 "reply_privately" = "پاسخ دادن به صورت خصوصی";
@@ -264,9 +264,9 @@
 "cannot_delete_contacts_in_use" = "نمی‌توان مخاطبین گفتگو‌های فعال را حذف کرد. ";
 "ask_start_chat_with" = "گفتگو با %1$@؟";
 "ask_delete_value" = "پاک کردن %1$@؟";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "حذف %1$@ از گروه؟";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "آيا%1$@ از لیست Broadcast پاک شود؟ ";
 "open_url_confirmation" = "آیا می‌خواهید این لینک را باز کنید؟";
 
@@ -300,7 +300,7 @@
 "archive_empty_hint" = "اگر گفتگوها را بایگانی کنید در اینجا نمایش داده می‌شوند. ";
 "saved_messages" = "پیام‌های ذخیره شده. ";
 "saved_messages_explain" = "برای دسترسی راحت‌تر پیام‌ها را به اینجا هدایت کنید\n\n• می‌توانید یادداشت متنی یا صوتی تهیه کنید\n\n• برای ذخیره رسانه‌ آن را ضمیمه کنید. ";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "ذخیره شد";
 "retry_send" = "برای ارسال پیام دوباره تلاش کنید. ";
 // reasons for a disabled message composer
@@ -371,25 +371,25 @@
 "send_message" = "ارسال پیام";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "پیام‌های ورودی";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "پیام‌های خروجی";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "ذخیره کردن در %1$@";
 "connectivity" = "اتصالات";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "متصل نیست";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "در حال اتصال";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "درحال به روز رسانی...";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "متصل شد";
 "sending" = "در حال ارسال...";
 "last_msg_sent_successfully" = "آخرین پیام با موفقیت ارسال شد.";
 "not_supported_by_provider" = "ارائه دهنده شما از این پشتیبانی نمی‌کند";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "پیام‌ها";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
@@ -448,7 +448,7 @@
 "configuration_failed_with_error" = "پیکربندی ناموفق. خطا:‌%1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "هدایت به...";
 "share_multiple_attachments" = "ارسال %1$dفابل به گفتگوی انتخاب شده؟ n/n/ فایل‌ها بدون تغییر و در اندازه اصلی ارسال شده و تصاویر و فیلم ها فشرده نمی‌شوند.";
 "share_multiple_attachments_multiple_chats" = "ارسال  %1$dفایل به %2$d گفتگو؟n/n/ فایل‌(ها) بدون تغییر ارسال می‌شوند به این معنا که تصاویر و فیلم‌ها فشرده نمی‌شوند. ";
@@ -466,9 +466,9 @@
 "pref_password_and_account_settings" = "رمزعبور و حساب کاربری";
 "pref_who_can_see_profile_explain" = "وقتی با دیگر کاربران گفتگو می‌کنید تصویر پروفایل و اسم شما در کنار پیام‌ها نمایش داده می‌شوند. اطلاعاتی که تا کنون ارسال شده‌اند قابل حذف نیستند. ";
 "pref_your_name" = "اسم شما";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "متن امضا";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_enter_sends" = "ورود کلیدهای ارسال";
 "pref_enter_sends_explain" = "فشاردادن کلید اینتر پیام‌ها را ارسال می‌کند";
 "pref_outgoing_media_quality" = "کیفیت رسانه خروجی";
@@ -476,7 +476,7 @@
 "pref_outgoing_worse" = "بدترین‌ کیفیت، حجم کم";
 "pref_vibrate" = "لرزش";
 "pref_screen_security" = "امنیت صفحه";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "درخواست مسدود کردن عکس گرفتن از صفحه در لیست اخیر و درون نرم‌افزار";
 "pref_screen_security_please_restart_hint" = "برای اعمال کردن تنظیمات امنیت صفحه لطفا نرم‌افزار را بسته و دوباره باز کنید.";
 "pref_notifications" = "اعلان‌ها";
@@ -491,14 +491,14 @@
 "pref_privacy" = "حریم خصوصی";
 "pref_chats_and_media" = "گفتگوها و رسانه";
 "pref_system_default" = "پیش‌فرض سیستم";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "روشن";
 "pref_dark_theme" = "تاریک";
 "pref_appearance" = "ظاهر";
 "pref_theme" = "قالب";
 "pref_language" = "زبان";
 "pref_incognito_keyboard" = "صفحه کلید ناشناس";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "درخواست دهید که صفحه کلید رفتارهای شخصی شما را یاد نگیرد";
 "pref_read_receipts" = "رسید خوانده شدن";
 "pref_read_receipts_explain" = "اگر رسید خوانده شدن غیرفعال باشد، نمی‌توانید اعلام خوانده شدن توسط دیگران را ببینید.";
@@ -630,9 +630,9 @@
 "systemmsg_read_receipt_subject" = "پیام باز شد";
 "systemmsg_read_receipt_body" = "پیام\"%1$@\" که ارسال کرده بودید در ثفحه گیرنده نمایش داده شد\n\n. تضمینی وجود ندارد که محتوای پیام را خوانده باشد. ";
 "systemmsg_cannot_decrypt" = "این پیام را نمی‌توان رمزگشایی کرد.\n\n• ممکن است بهتر باشد که به همین پیام پاسخ داده و از ارسال کننده بخواهید دوباره آن را بفرستد. \n\n• اگر دوباره دلتاچت را نصب کرده‌اید یا از یک ایمیل دیگر هم روی این دستگاه یا دستگاه دیگر استفاده می‌کنید ممکن است لازم باشد یک پیام تنظیمات خودرمز از آن دستگاه ارسال کنید. ";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@توسط من";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@توسط%2$@";
 "systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از%1$@";
@@ -654,7 +654,7 @@
 "systemmsg_chat_protection_disabled" = "محافظت از گفنگو غیرفعال شد.";
 "systemmsg_chat_protection_enabled" = "محافظت از گفتگو فعال شد.";
 
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 // %1%s will be replaced by date and time in some human-readable format
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".

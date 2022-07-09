@@ -31,13 +31,13 @@
 "forward" = "İlet";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Yeniden Gönder";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arşivle";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Arşivleme";
 "mute" = "Sessize Al";
 "ephemeral_messages" = "Kaybolan İletiler";
-"ephemeral_messages_hint" = "Bu ayarlar, Delta Chat\'i kullanan tüm sohbet üyelerine uygulanır. Ancak onlar iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
+"ephemeral_messages_hint" = "Delta Chat\'i kullanıyorlarsa, bu sohbetin tüm üyelerine uygulanır; ancak onlar iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";
@@ -46,13 +46,13 @@
 "start_chat" = "Sohbete Başla";
 "show_full_message" = "Tam İletiyi Göster…";
 "show_full_message_in_browser" = "Tam İletiyi Tarayıcıda Göster…";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "Yükleniyor…";
 "hide" = "Gizle";
 "activate" = "Etkinleştir";
 "load_remote_content" = "Uzak Görselleri Yükle";
-// possible answers to the question are: Never, Always, Once
-"load_remote_content_ask" = "Uzak görseller sizi izlemek için kullanılabilir.\n\nAyar, yazı tiplerinin ve diğer içeriğin de yüklenmesine izin verir. Etkisizleştirildiyse bile katıştırılan ya da önbelleklenen görselleri hâlâ görebilirsiniz.\n\nUzak görseller yüklensin mi?";
+// Possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Uzak görseller sizi izleyebilir.\n\nBu ayar, yazı tiplerini ve diğer içeriği de yükler. Etkisizleştirilirse, katıştırılan ya da önbelleklenen görselleri görebilirsiniz.\n\nUzak görseller yüklensin mi?";
 "always" = "Her zaman";
 "once" = "Bir kez";
 "show_password" = "Parolayı Göster";
@@ -63,7 +63,7 @@
 "done" = "Bitti";
 "undo" = "Geri Al";
 "offline" = "Çevrimdışı";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Sonraki";
 "error" = "Hata";
 "error_x" = "Hata: %1$@";
@@ -77,7 +77,7 @@
 "password" = "Parola";
 "existing_password" = "Varolan Parola";
 "now" = "Şimdi";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Tehlikeli";
 "today" = "Bugün";
 "yesterday" = "Dün";
@@ -85,34 +85,34 @@
 "this_month" = "Bu ay";
 "last_week" = "Geçen hafta";
 "last_month" = "Geçen ay";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Son görülme %1$@";
 "last_seen_unknown" = "Son görülme: Bilinmeyen";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
 
 "self" = "Ben";
 "draft" = "Taslak";
 "image" = "Görsel";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Yanıt";
-"gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+"gif" = "GIF";
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Çıkartma";
 "images" = "Görseller";
 "audio" = "Ses";
 "voice_message" = "Sesli İleti";
 "forwarded" = "İletildi";
 "forwarded_message" = "İletilen İleti";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "%1$@ tarafından iletildi";
 "video" = "Video";
 "documents" = "Belgeler";
 "contact" = "Kişi";
 "verified_contact" = "Doğrulanan Kişi";
 "camera" = "Kamera";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Yakala";
 "switch_camera" = "Kamerayı Değiştir";
 "toggle_fullscreen" = "Tam Ekran Moduna Geç";
@@ -146,10 +146,10 @@
 "menu_new_contact" = "Yeni Kişi";
 "menu_new_chat" = "Yeni Sohbet";
 "menu_new_group" = "Yeni Grup";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "Yeni Grup ya da Konu";
 "menu_new_verified_group" = "Yeni Doğrulanan Grup";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Yayın Listesi";
 "broadcast_lists" = "Yayın Listeleri";
 "new_broadcast_list" = "Yeni Yayın Listesi";
@@ -184,10 +184,10 @@
 "menu_export_attachment" = "İlişiği Dışa Aktar";
 "menu_export_attachments" = "İlişikleri Dışa Aktar";
 "menu_all_media" = "Tüm Ortamlar";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Sohbette Göster";
 "menu_share" = "Paylaş";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Engelle";
 "menu_block_contact" = "Kişiyi Engelle";
 "menu_unblock_contact" = "Kişiyi Engelleme";
@@ -216,16 +216,16 @@
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt İletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
-"device_talk_explain" = "Bu sohbetteki iletiler, Delta Chat uygulamanız tarafından yerel olarak oluşturulur. Oluşturucuları, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için onu kullanır.";
+"device_talk_explain" = "Bu sohbetteki iletiler, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için aygıtınızda oluşturulur.";
 "device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir; ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak elbette isterlerse onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
 "edit_contact" = "Kişiyi Düzenle";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Sohbeti Sabitle";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Sohbeti Sabitleme";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Sabitle";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Sabitleme";
 "ConversationFragment_quoted_message_not_found" = "Özgün ileti bulunamadı";
 "reply_privately" = "Özel Olarak Yanıtla";
@@ -247,16 +247,16 @@
 
 "videochat" = "Video Sohbeti";
 "videochat_invite_user_to_videochat" = "%1$@ bir video sohbetine davet edilsin mi?";
-"videochat_invite_user_hint" = "Bu, her iki uçta da uyumlu bir uygulama ya da uyumlu bir tarayıcı gerektirir.";
+"videochat_invite_user_hint" = "Bu, her iki uçta da uyumlu bir uygulama ya da tarayıcı gerektirir.";
 "videochat_contact_invited_hint" = "%1$@ video sohbetine davet etti.";
-"videochat_you_invited_hint" = "Video sohbetine davet ettiniz.";
+"videochat_you_invited_hint" = "Bir video sohbeti daveti gönderdiniz.";
 "videochat_tap_to_join" = "Katılmak için Dokunun";
 "videochat_tap_to_open" = "Açmak için Dokunun";
 "videochat_instance" = "Video Sohbeti Örneği";
 "videochat_instance_placeholder" = "Video Sohbeti Örneğiniz";
 "videochat_instance_example" = "Örnekler: https://meet.jit.si/$ROOM ya da basicwebrtc:https://your-server";
-"videochat_instance_explain_2" = "Video sohbeti etkinleştirilirse, her sohbetten video sohbeti başlatabilirsiniz. Video sohbetleri, her iki uçta da uyumlu bir uygulama ya da uyumlu bir tarayıcı gerektirir.";
-"videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetine davet etmek için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Varsa bu, video sohbetleri için önceki ayarla değiştirilir.";
+"videochat_instance_explain_2" = "Etkinleştirilirse, her sohbetten video sohbeti başlatabilirsiniz. Her iki uçta da uyumlu bir uygulama ya da bir tarayıcı gerektirir.";
+"videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetlerine davet etmek için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Bu, video sohbetleri için herhangi bir önceki ayarın yerini alır.";
 "videochat_invitation" = "Video sohbeti daveti";
 "videochat_invitation_body" = "Bir video sohbetine davet edildiniz; katılmak için %1$@ öğesini tıklayın.";
 
@@ -266,16 +266,16 @@
 "ask_forward" = "İletiler %1$@ alıcısına iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
-"ask_block_contact" = "Bu kişi engellensin mi? Artık bu kişiden gelen iletileri almayacaksınız.";
-"ask_unblock_contact" = "Bu kişi engellenmesin mi? Bir kez daha bu kişiden gelen iletileri alabileceksiniz.";
-"ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
-"ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü kişiler ve sistemin adres defterinden gelen kişiler kalıcı olarak silinemez.";
+"ask_block_contact" = "Bu kişi engellensin mi? Artık ondan gelen iletileri almayacaksınız.";
+"ask_unblock_contact" = "Bu kişi engellenmesin mi? Bundan sonra ondan gelen iletileri alabileceksiniz.";
+"ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
+"ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü ve sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "cannot_delete_contacts_in_use" = "Sohbetlerin sürdüğü kişiler silinemez.";
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
 "ask_delete_value" = "%1$@ silinsin mi?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ gruptan kaldırılsın mı?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "%1$@ yayın listesinden kaldırılsın mı?";
 "open_url_confirmation" = "Bu bağlantıyı açmak istiyor musunuz?";
 
@@ -293,7 +293,7 @@
 "chat_camera_unavailable" = "Kamera kullanım dışı.";
 "chat_unable_to_record_audio" = "Ses kaydedilemiyor.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Bir ileti gönderin. %1$@ Delta Chat kullanmıyorsa tamam.";
+"chat_new_one_to_one_hint" = "%1$@ alıcısına bir ileti gönderin; Delta Chat olmadan bile onu alabilir.";
 "chat_new_broadcast_hint" = "Bir yayın listesinde, diğerleri sizinle olan özel sohbetlerinde ileti alacak.\n\nAlıcılar birbirinin farkında olmayacak.";
 "chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu grubu görecek.";
 "chat_record_slide_to_cancel" = "İptal etmek için kaydırın";
@@ -306,17 +306,17 @@
 "chat_archived_label" = "Arşivlendi";
 "chat_request_label" = "İstek";
 "chat_no_messages" = "İleti yok.";
-"chat_self_talk_subtitle" = "Kendime gönderdiğim iletiler";
-"archive_empty_hint" = "Sohbetleri arşivlerseniz, onlar burada gösterilecek.";
+"chat_self_talk_subtitle" = "Kendime İletiler";
+"archive_empty_hint" = "Arşivlenen sohbetler burada görünecek.";
 "saved_messages" = "Kaydedilen İletiler";
 "saved_messages_explain" = "• Kolay erişim için iletileri buraya iletin\n\n• Notlar ya da sesli notlar alın\n\n• Onları kaydetmek için ortamlar iliştirin";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Kaydedilen";
 "save_as" = "Farklı Kaydet";
 "retry_send" = "İletiyi göndermeyi yeniden dene";
 // reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Yazamazsınız; çünkü bu grupta değilsiniz. Katılmak için başka bir üyeye sorun.";
-"messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir. Bu nedenle herhangi bir ileti yazamazsınız.";
+"messaging_disabled_not_in_group" = "Bir ileti göndermek için bu grupta olmalısınız. Katılmak için başka bir üyeye sorun.";
+"messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir; yazma etkisiz.";
 "messaging_disabled_mailing_list" = "Posta listelerine iletiler gönderme henüz desteklenmiyor";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
@@ -325,7 +325,7 @@
 
 // mailing lists
 "mailing_list" = "Posta Listesi";
-"mailing_list_profile_info" = "Posta listesi adındaki ve görselindeki değişiklikler yalnızca bu aygıta uygulanır.";
+"mailing_list_profile_info" = "Posta listesi adındaki ve görselindeki değişiklikler yalnızca bu aygıtta uygulanır.";
 
 // webxdc
 // "Start..." button for an app
@@ -339,9 +339,9 @@
 "add_poi" = "İlgi çekici noktayı gönder";
 
 // chat audit log
-"chat_audit_log_empty_message" = "Bu sohbetin sistem iletileri burada görünecek";
+"chat_audit_log_empty_message" = "Bu sohbet için sistem iletileri burada görünür";
 "chat_audit_log_title" = "%1$@ için Sohbet Denetim Günlüğü";
-"chat_audit_log_description" = "Bu görünüm, yalnızca sistem ve bilgi iletilerini gösterir. Birçok normal ileti arasında kaydırmadan son sohbetteki eylemleri bulmak için kullanışlıdır.";
+"chat_audit_log_description" = "Yalnızca sistem ve bilgi iletilerini gösterir; birçok ileti arasında kaydırmadan son sohbet eylemlerini bulmak için kullanışlıdır.";
 
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -350,7 +350,7 @@
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "%1$@ bağlantısını ziyaret etmek istediğinizden emin misiniz?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "Farklı abecelerden benzer görünen karakterleri kullanarak karakterleri yanlış temsil edebilecek bir bağlantı izlediniz. %1$@ etiketli bağlantıyı izlemek, Latin olmayan karakterler için normal olan %2$@ dönüşümüyle sonuçlanacak. Böyle karakterleri beklemediyseniz, bu bağlantı zararlı olabilir";
+"puny_code_warning_description" = "Farklı abecelerden benzer görünen karakterleri kullanarak karakterleri yanlış temsil edebilecek bir bağlantı izlediniz. Aşağıdaki %1$@ etiketli bağlantıyı izlemek, Latin olmayan karakterler için normal olan %2$@ dönüşümüyle sonuçlanacak. Böyle karakterleri beklemediyseniz, bu bağlantı zararlı olabilir.";
 
 
 // search
@@ -376,35 +376,35 @@
 "tab_docs" = "Belgeler";
 "tab_links" = "Bağlantılar";
 "tab_map" = "Harita";
-"tab_gallery_empty_hint" = "Bu sohbette paylaşılan görseller ve videolar burada görüntülenecek.";
-"tab_docs_empty_hint" = "Bu sohbette paylaşılan belgeler, müzik ve diğer dosyalar burada görüntülenecek.";
-"tab_image_empty_hint" = "Bu sohbette paylaşılan görseller burada görüntülenecek.";
-"tab_video_empty_hint" = "Bu sohbette paylaşılan videolar burada görüntülenecek.";
-"tab_audio_empty_hint" = "Bu sohbette paylaşılan ses dosyaları ve sesli iletiler burada görüntülenecek.";
-"tab_webxdc_empty_hint" = "Bu sohbette paylaşılan Webxdc içeriği burada görüntülenecek.";
+"tab_gallery_empty_hint" = "Bu sohbette paylaşılan görseller ve videolar burada görünecek.";
+"tab_docs_empty_hint" = "Bu sohbette paylaşılan belgeler, müzik ve diğer dosyalar burada görünecek.";
+"tab_image_empty_hint" = "Bu sohbette paylaşılan görseller burada görünecek.";
+"tab_video_empty_hint" = "Bu sohbette paylaşılan videolar burada görünecek.";
+"tab_audio_empty_hint" = "Bu sohbette paylaşılan ses dosyaları ve sesli iletiler burada görünecek.";
+"tab_webxdc_empty_hint" = "Bu sohbette paylaşılan Webxdc içeriği burada görünecek.";
 "media_preview" = "Ortam Önizlemesi";
 "send_message" = "İleti Gönder";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Gelen İletiler";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Giden İletiler";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "%1$@ Üzerinde Depolama";
 "connectivity" = "Bağlanabilirlik";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Bağlanmadı";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Bağlanıyor…";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Güncelleştiriliyor…";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Bağlandı";
 "sending" = "Gönderiliyor…";
 "last_msg_sent_successfully" = "Son ileti başarıyla gönderildi.";
 "not_supported_by_provider" = "Sağlayıcınız tarafından desteklenmiyor.";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "İletiler";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ / %2$@ kullanıldı";
@@ -468,10 +468,10 @@
 "configuration_failed_with_error" = "Yapılandırma başarısız. Hata: %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "İlet…";
-"share_multiple_attachments" = "%1$d dosya seçilen sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir; ör. görseller ve videolar yeniden kodlanmaz.";
-"share_multiple_attachments_multiple_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir; ör. görseller ve videolar yeniden kodlanmaz.";
+"share_multiple_attachments" = "%1$d dosya seçilen sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir (ör. görseller ve videolar yeniden kodlanmaz).";
+"share_multiple_attachments_multiple_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir (ör. görseller ve videolar yeniden kodlanmaz).";
 "share_text_multiple_chats" = "Bu metin %1$d sohbete gönderilsin mi?\n\n\"%2$@\"";
 "share_abort" = "Eksik izinlerden dolayı paylaşımdan vazgeçildi.";
 
@@ -482,13 +482,13 @@
 "pref_profile_info_headline" = "Profil Bilginiz";
 "pref_profile_photo" = "Profil Görseli";
 "pref_blocked_contacts" = "Engellenen Kişiler";
-"blocked_empty_hint" = "Kişileri engellerseniz, onlar burada gösterilecek.";
+"blocked_empty_hint" = "Engellenen kişiler burada görünecek.";
 "pref_password_and_account_settings" = "Parola ve Hesap";
 "pref_who_can_see_profile_explain" = "Diğer kullanıcılarla iletişim kurulurken; profil görseliniz, adınız ve imzanız iletilerinizle birlikte gönderilecek.";
 "pref_your_name" = "Adınız";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "İmza Metni";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Delta Chat Messenger\'ımla gönderildi: https://delta.chat";
 "pref_enter_sends" = "Enter Tuşu Göndersin";
 "pref_enter_sends_explain" = "Enter tuşuna basma, metin iletileri gönderecek";
@@ -497,7 +497,7 @@
 "pref_outgoing_worse" = "Daha kötü kalite, küçük boyut";
 "pref_vibrate" = "Titret";
 "pref_screen_security" = "Ekran Güvenliği";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Yeni listesinde ve uygulamanın içinde ekran görüntülerinin engellenmesini iste";
 "pref_screen_security_please_restart_hint" = "Ekran güvenliği ayarını uygulamak için lütfen uygulamayı yeniden başlatın.";
 "pref_notifications" = "Bildirimler";
@@ -512,14 +512,14 @@
 "pref_privacy" = "Gizlilik";
 "pref_chats_and_media" = "Sohbetler ve Ortamlar";
 "pref_system_default" = "Sistem varsayılanı";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Açık";
 "pref_dark_theme" = "Koyu";
 "pref_appearance" = "Görünüm";
 "pref_theme" = "Tema";
 "pref_language" = "Dil";
 "pref_incognito_keyboard" = "Gizlenen Klavye";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Kişiselleştirilen öğrenmeyi etkisizleştirmek için klavye iste";
 "pref_read_receipts" = "Okunma Onayları";
 "pref_read_receipts_explain" = "Okunma onayları etkisizleştirilirse, diğerlerinden gelen okunma onaylarını göremeyeceksiniz.";
@@ -555,7 +555,7 @@
 "pref_watch_sent_folder" = "Gönderilen Klasörünü İzle";
 "pref_send_copy_to_self" = "Kendime Kopya Gönder";
 "pref_send_copy_to_self_explain" = "Bu hesap çoklu aygıtlarda kullanılırken gereklidir.";
-"pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Taşınsın";
+"pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Olarak Taşı";
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
 "pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
 "pref_only_fetch_mvbox_explain" = "Diğer klasörleri yoksay. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
@@ -653,9 +653,9 @@
 "systemmsg_read_receipt_subject" = "İleti açıldı";
 "systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunduğunun güvencesi değildir.";
 "systemmsg_cannot_decrypt" = "Bu iletinin şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderene iletiyi yeniden gönderip gönderemeyeceğini sormak zaten yardımcı olabilir.\n\n• Delta Chat\'i ya da başka bir e-posta programını bu ya da başka bir aygıta yeniden kurduysanız, oradan bir Autocrypt Ayarlama İletisi göndermek isteyebilirsiniz.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "Benim tarafımdan %1$@.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%2$@ tarafından %1$@.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
@@ -678,10 +678,10 @@
 "systemmsg_chat_protection_enabled" = "Sohbet koruması etkinleştirildi.";
 
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️ Sağlayıcınızın depolaması aşılmak üzere; %1$@%% zaten kullanılıyor.\n\nDepolama 100%% kullanıldığında ileti alamayabilirsiniz.\n\n👉 Lütfen sağlayıcınızın web arabiriminden eski verileri silip silemeyeceğinizi denetleyin ve \"Ayarlar / Eski İletileri Sil\"i etkinleştirmeyi düşünün. Şu anki depolama kullanımınızı her zaman \"Ayarlar / Bağlanabilirlik\"ten denetleyebilirsiniz.";
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ Sağlayıcınızın depolama alanı tükenmek üzere: %1$@%% zaten kullanılıyor.\n\nDepolama alanı dolarsa iletileri alamayabilirsiniz.\n\n👉 Lütfen sağlayıcınızın web arabiriminden eski verileri silip silemeyeceğinizi denetleyin ve \"Ayarlar / Eski İletileri Sil\"i etkinleştirmeyi düşünün. Şu anki depolama alanı kullanımınızı herhangi bir zamanda \"Ayarlar / Bağlanabilirlik\"ten denetleyebilirsiniz.";
 // %1%s will be replaced by date and time in some human-readable format
-"devicemsg_bad_time" = "⚠️ Aygıtınızın tarihi ya da saati yanlış gibi görünüyor (%1$@).\n\nİletilerinizin doğru şekilde alındığından emin olmak için saatinizi ⏰🔧 ayarlayın.";
+"devicemsg_bad_time" = "⚠️ Aygıtınızdaki tarih ya da saat yanlış görünüyor (%1$@).\n\nİletilerinizin doğru şekilde alınmasını sağlamak için saatinizi ⏰🔧 ayarlayın.";
 "devicemsg_update_reminder" = "⚠️ Delta Chat sürümünüz eski olabilir.\n\nBu, sorunlara neden olabilir; çünkü sohbet ortaklarınız daha yeni sürümleri kullanıyor - ve en yeni özellikleri kaybediyorsunuz 😳\nGüncelleştirmeler için lütfen https://get.delta.chat ya da uygulama mağazanızı denetleyin.";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".

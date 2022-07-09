@@ -29,9 +29,9 @@
 "back" = "ត្រឡប់មកវិញ";
 "close" = "បិទ";
 "forward" = "ទៅមុខ";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "ទុកក្នុងប័ណ្ណសារ";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "ផ្តល់ឱ្យចេញពីប័ណ្ណសារ";
 "mute" = "ធ្វើឲ្យមិនឃើញមិនលឺ";
 "ephemeral_messages" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈ";
@@ -44,12 +44,12 @@
 "start_chat" = "ចាប់ផ្តើមសន្ទនា";
 "show_full_message" = "បង្ហាញសារទាំងស្រុង…";
 "show_full_message_in_browser" = "បង្ហាញសារពេញលេញ នៅក្នុងកម្មវិធីរុករក…";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "កំពុងផ្ទុក…";
 "hide" = "លាក់";
 "activate" = "ធ្វើឲ្យសកម្ម";
 "load_remote_content" = "ផ្ទុករូបភាពពីខាងក្រៅ";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "រូបភាពពីខាងក្រៅអាចប្រើបានប្រើដើម្បីតាមដានអ្នក។\n\nការកំណត់នេះក៏អនុញ្ញាតឱ្យផ្ទុកពុម្ពអក្សរនិងមាតិកាផ្សេងទៀត។ ទោះបីជាវាត្រូវបានបិទក៏ដោយអ្នកនៅតែអាចមើលឃើញរូបភាពដែលបានបង្កប់ឬលាក់ទុក។\n\nផ្ទុករូបភាពពីខាងក្រៅ?";
 "always" = "ជារហូត";
 "once" = "ម្តង";
@@ -61,7 +61,7 @@
 "done" = "រួចរាល់";
 "undo" = "ធ្វើឡើងវិញ";
 "offline" = "ក្រៅបណ្តាញ";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "បន្ទាប់";
 "error" = "កំហុស";
 "error_x" = "កំហុស: %1$@";
@@ -75,7 +75,7 @@
 "password" = "ពាក្យសម្ងាត់";
 "existing_password" = "ពាក្យសម្ងាត់ដែលមានស្រាប់";
 "now" = "ឥឡូវនេះ";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "ភយន្តរាយ";
 "today" = "ថ្ងៃនេះ";
 "yesterday" = "ម្សិលមិញ";
@@ -83,29 +83,29 @@
 "this_month" = "ខែ​នេះ";
 "last_week" = "ស​ប្តា​ហ៍​មុន";
 "last_month" = "ខែមុន";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "ខ្ញុំ";
 "draft" = "ពង្រាង";
 "image" = "រូបភាព";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "ចម្លើយតប";
 "gif" = "រូបភាពចលនា";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "ស្លាក";
 "images" = "រូបភាព";
 "audio" = "សម្លេង";
 "voice_message" = "សារជាសម្លេង";
 "forwarded" = "បានបញ្ជូនបន្ត";
 "forwarded_message" = "សារដែលបានបញ្ជូនបន្ត";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "បញ្ជូនបន្តពី %1$@";
 "video" = "វីដេអូ";
 "documents" = "ឯកសារ";
 "contact" = "ទំនាក់ទំនង";
 "verified_contact" = "ទំនាក់ទំនងដែលបានផ្ទៀងផ្ទាត់";
 "camera" = "កាមេរ៉ា";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "ចាប់យក";
 "switch_camera" = "ប្តូរកាមេរ៉ា";
 "toggle_fullscreen" = "បិទបើករបៀបពេញអេក្រង់";
@@ -140,7 +140,7 @@
 "menu_new_chat" = "សន្ទនាថ្មី";
 "menu_new_group" = "ក្រុមថ្មី";
 "menu_new_verified_group" = "ក្រុមដែលបានកំណត់ថ្មី";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "បញ្ជីចាក់ផ្សាយ";
 "broadcast_lists" = "បញ្ជីចាក់ផ្សាយ";
 "new_broadcast_list" = "បញ្ជីចាក់ផ្សាយថ្មី";
@@ -174,10 +174,10 @@
 "menu_export_attachment" = "នាំចេញឯកសារភ្ជាប់";
 "menu_export_attachments" = "នាំចេញ ឯកសារភ្ជាប់";
 "menu_all_media" = "ប្រព័ន្ធផ្សព្វផ្សាយទាំងអស់";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "បង្ហាញនៅក្នុងសន្ទនា";
 "menu_share" = "ចែករំលែក";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "រារាំង";
 "menu_block_contact" = "រារាំងទំនាក់ទំនង";
 "menu_unblock_contact" = "មិនរារាំងទំនាក់ទំនង";
@@ -209,13 +209,13 @@
 "device_talk_explain" = "សារក្នុងការសន្ទនានេះ បានបង្កើតទិនេះដោយ សា Delta Chat ។ អ្នកបង្កើតវា ប្រើវាដើម្បីជូនដំណឹងពីការធ្វើបច្ចុប្បន្នភាពកម្មវិធី និងបញ្ហាកំឡុងពេលប្រើ។";
 "device_talk_welcome_message" = "ស្វាគមន៍មកកាន់ សា Delta Chat ! - សា Delta Chat មើលទៅដូចកម្មវិធីសន្ទនាពេញនិយមផ្សេងទៀតដែរ ប៉ុន្តែមិនជាប់ស្មុគស្មាញនឹងការត្រួតត្រាជាកណ្តាល តាមដាន រឺលក់អ្នក មិត្តភក្តិ មិត្តរួមការងារ រឺគ្រួសារ ទៅឲ្យអង្គការធំ។\n\nបច្ចេកទេស សា Delta Chat គឺ កម្មវិធីអុីម៉ែលជាមួយនឹងចំណុចប្រទាក់ការសន្ទនាទាន់សម័យ។ អ្នកនឹងត្រូវការតែអុីម៉េលតែប៉ុណ្ណោះ! 👻\n\nប្រើប្រាស់សាហារីសង្ឃ ជាមួយនរណាម្នាក់ក្នុងចំណោមមនុស្សរាប់ពាន់លានអ្នក: ដោយគ្រាន់តែប្រើអស័យដ្ឋានអុីម៉េលរបស់ពួកគេ។ អ្នកទទួលបានសារដោយមិនតម្រូវបញ្ជូលកម្មវិធី សា Delta Chat ទស្សនាគេហទំព័រ ឬចុះឈ្មោះសិននៅកន្លែងណាក៏បាន - ទោះបីជា ការពិតប្រសិនបើពួកគេចូលចិត្ត អ្នកអាចចង្អុរពួកគេទៅកាន់ 👉 https://get.delta.chat";
 "edit_contact" = "កែសម្រួល ទំនាក់ទំនង";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "ខ្ទាស់សន្ទនា";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "ដកខ្ទាស់សន្ទនា";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "ខ្ទាស់";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "ដកខ្ទាស់";
 "ConversationFragment_quoted_message_not_found" = "រកមិនឃើញសារដើម";
 "reply_privately" = "ឆ្លើយតបដោយឯកជន";
@@ -259,9 +259,9 @@
 "cannot_delete_contacts_in_use" = "មិនអាចលុបទំនាក់ទំនងដែលកំពុងបន្តសន្ទនា";
 "ask_start_chat_with" = "សន្ទនាជាមួយ %1$@?";
 "ask_delete_value" = "លុប %1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "លុប %1$@ ពីក្រុមសន្ទនានេះ?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "លុប %1$@ ពីបញ្ជីចាក់ផ្សាយ?";
 "open_url_confirmation" = "តើអ្នកចង់បើកតំណនេះ?";
 
@@ -294,7 +294,7 @@
 "archive_empty_hint" = "ប្រសិនបើអ្នករក្សាទុកប័ណ្ណសារសន្ទនា សារនឹងបង្ហាញនៅទីនេះ។";
 "saved_messages" = "សារដែលបានរក្សាទុករួចហើយ";
 "saved_messages_explain" = "• បញ្ជូនសារនៅទីនេះដើម្បីងាយស្រួលចូល\n\n• កត់សម្គាល់ រឺកំណត់ត្រាសម្លេង\n\n• ភ្ជាប់ឯកសារដើម្បីរក្សាទុក។";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "រក្សាទុកហើយ";
 "retry_send" = "ព្យាយាមម្តងទៀតដើម្បីផ្ញើសារ";
 // reasons for a disabled message composer
@@ -359,25 +359,25 @@
 "send_message" = "ផ្ញើ​សារ";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "សារចូល";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "សារចេញ";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "ទំហំផ្ទុកនៅលើ %1$@";
 "connectivity" = "ការតភ្ជាប់និងសេវាកម្ម";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "មិនបានតភ្ជាប់";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "កំពុងស្វែងរកការតភ្ជាប់…";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "កំពុងធ្វើបច្ចុប្បន្នភាព…";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "បានតភ្ជាប់";
 "sending" = "កំពុងបញ្ជូន…";
 "last_msg_sent_successfully" = "បានផ្ញើសារចុងក្រោយដោយជោគជ័យ។";
 "not_supported_by_provider" = "មិនត្រូវបានគាំទ្រ ដោយកម្មវិធីផ្តល់សេវារបស់អ្នកទេ។";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "សារ";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "បានប្រើ %1$@ នៃ %2$@";
@@ -438,7 +438,7 @@
 "configuration_failed_with_error" = "ការកំណត់រចនាសម្ព័ន្ឌ បរាជ័យ។ កំហុស៖ %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "បញ្ជូនទៅ…";
 "share_multiple_attachments" = "ផ្ញើ ឯកសារ %1$d  ទៅការសន្ទនាដែលបានជ្រើសរើស?\n\nឯកសារដែលបានផ្ញើហើយ មិនកែប្រែបានក្នុងទំហំដើមរបស់វា។ នេះ​មានន័យថា រូបភាព និងវីដេអូមិនត្រូវបានថតទុកទេ។";
 "share_multiple_attachments_multiple_chats" = "ផ្ញើឯកសារ %1$d ទៅ សន្ទនា %2$d?\n\nឯកសារដែលបានផ្ញើហើយ មិនកែប្រែបានក្នុងទំហំដើមរបស់វា។ នេះ​មានន័យថា រូបភាព និងវីដេអូមិនត្រូវបានថតទុកទេ។";
@@ -456,9 +456,9 @@
 "pref_password_and_account_settings" = "ពាក្យសម្ងាត់ និងគណនី";
 "pref_who_can_see_profile_explain" = "រូបភាពទិន្ន័យផ្ទាល់ខ្លួនរបស់អ្នក និងឈ្មោះនឹងត្រូវបានបង្ហាញនៅក្បែរសាររបស់អ្នក នៅពេល ទនំាក់ទំនងជាមួយអ្នកប្រើប្រាស់ផ្សេងទៀត។ ដំណឹងដែលបានផ្ញើរួចមិនអាចលុបចោល ឬដកចេញបានទេ។";
 "pref_your_name" = "ឈ្មោះរបស់អ្នក";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "ហត្ថលេខាជាអក្សរ";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "បានផ្ញើជាមួយ សាហារីរសង្ឃ ( https://delta.chat )។ សូមទាញយកកម្មវិធីសាហារីរសង្ឃ​ទីនេះ៖ https://forum.sangham.net/index.php?action=tpmod;dl=item757";
 "pref_enter_sends" = "គ្រាប់​ចុច​ បញ្ចូលធ្វើឱ្យផ្ញើសារ";
 "pref_enter_sends_explain" = "ចុច គ្រាប់​ចុច​ បញ្ចូល (Enter key) នឹងផ្ញើអត្ថបទសារ។";
@@ -467,7 +467,7 @@
 "pref_outgoing_worse" = "គុណភាពកាន់តែអាក្រក់ ទំហំតូច";
 "pref_vibrate" = "ញ័រ";
 "pref_screen_security" = "សុវត្ថិភាពអេក្រង់";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "ស្នើសុំរារាំងរូបថតអេក្រង់ នៅក្នុងបញ្ជីបច្ចុប្បន្ន និងខាងក្នុងកម្មវិធី។";
 "pref_screen_security_please_restart_hint" = "ដើម្បីកំណត់សុវត្ថិភាពអេក្រង់ សូមចាប់ផ្តើមកម្មវិធីឡើងវិញ។";
 "pref_notifications" = "ការជូនដំណឹង";
@@ -482,14 +482,14 @@
 "pref_privacy" = "ភាពឯកជន";
 "pref_chats_and_media" = "សន្ទនា និងប្រពន្ធ័សម្លេង";
 "pref_system_default" = "លំនាំដើមប្រព័ន្ធ";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "ពន្លឺ";
 "pref_dark_theme" = "ងងឹត";
 "pref_appearance" = "រូបរាង";
 "pref_theme" = "ស្បែក";
 "pref_language" = "ភាសា";
 "pref_incognito_keyboard" = "ក្តារចុចអនាមិក";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "ស្នើសុំក្តារចុចដើម្បីបិទការរៀនផ្ទាល់ខ្លួនបាន";
 "pref_read_receipts" = "អានវិក័យបត្រ";
 "pref_read_receipts_explain" = "ប្រសិនបើអានវិក័យបត្តិ ត្រូវបានបិទ អ្នកមិនអាចឃើញ អានវិក័យវត្រពីអ្នកផ្សេងទៀតទេ។";
@@ -617,9 +617,9 @@
 "systemmsg_read_receipt_subject" = "សារត្រូវបានបើក";
 "systemmsg_read_receipt_body" = "\"%1$@\" សារដែលអ្នកបានផ្ញើត្រូវបានបង្ហាញនៅលើ អេក្រង់របស់អ្នកទទួល\n\nនេះមិនមែនជាការធានាថា មាតិកាត្រួវបានអានទេ។";
 "systemmsg_cannot_decrypt" = "សារនេះមិនអាចត្រូវបានឌិគ្រីប\n\n• វាអាចជួយឆ្លើយតបជំនួសសារនេះ និងសួរអ្នកផ្ញើដើម្បីផ្ញើសារម្តងទៀត\n\n• ក្នុងករណីអ្នកបានតម្លើងសា Delta Chat ម្តងទៀត ឬកម្មវិធីអុីម៉េលមួយទៀត លើឧបករណ៍នេះ ឬឧបករណ៍មួយផ្សេងទៀត អ្នកប្រហែលជាចង់ផ្ញើ សារការតម្លើងអ៊ិនគ្រីបស្វ័យប្រវត្តិ  (ផ្ញើនិងទទួលដោយសម្ងាត់) ពីទីនោះ។";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ ដោយខ្ញុំ";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ ដោយ %2$@";
 "systemmsg_unknown_sender_for_chat" = "មិនស្គាល់អ្នកផ្ញើការសន្ទនានេះ។ មើល \'ពត៌មាន\' សម្រាប់ពត៌មានលំអិត";
 "systemmsg_subject_for_new_contact" = "សារពី %1$@";
@@ -642,7 +642,7 @@
 "systemmsg_chat_protection_enabled" = "ការការពារសន្ទនាត្រូវបានបើក";
 
 "devicemsg_self_deleted" = "អ្នកបានលុប \"សារដែលបានរក្សាទុក\" សន្ទនា។\n\nℹ️ ដើម្បីប្រើមុខងារ \"សារដែលបានរក្សាទុក\" ជាថ្មីម្តងទៀត សូមបង្កើតសន្ទនាថ្មីជាមួយខ្លួនអ្នក។";
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️️ឃ្លាំងផ្ទុករបស់កម្មវិធីផ្តល់សេវាឲ្យអ្នក ជិតអស់ហើយត្រូវបានប្រើ %1$@%% រួចហើយ។\n\n អ្នកប្រហែលជាមិនអាចទទួលបានសារទេនៅពេលប្រើទំហំផ្ទុក ១០០%% ។\n\n👉 សូមពិនិត្យមើលថាតើ អ្នកអាចលុបទិន្នន័យចាស់នៅក្នុងចំណុចប្រទាក់គេហទំព័ររបស់កម្មវិធីផ្តល់សេវាកម្មហើយពិចារណាបើក \"ការកំណត់ / លុបសារចាស់ \"។ អ្នកអាចពិនិត្យមើលការប្រើប្រាស់ទំហំផ្ទុកបច្ចុប្បន្នរបស់អ្នកបានគ្រប់ពេលនៅ \"ការកំណត់ / ការតភ្ជាប់និងសេវាកម្ម\" ។";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ កាលបរិច្ឆេទ ឬពេលវេលានៃឧបករណ៍របស់អ្នកហាក់ដូចជាមិនត្រឹមត្រូវ (%1$@)។\n\n កែតម្រូវនាឡិការបស់អ្នក ⏰🔧 ដើម្បីធានាថា សាររបស់អ្នកត្រូវបានទទួលត្រឹមត្រូវ។";

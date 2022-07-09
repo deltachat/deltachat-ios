@@ -20,9 +20,9 @@
 "back" = "Reen";
 "close" = "Fermi";
 "forward" = "Plusendi";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arĥivi";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Malarĥivi";
 "mute" = "Muta sciigoj";
 "ephemeral_messages" = "Memviŝontaj mesaĝoj";
@@ -38,7 +38,7 @@
 "one_moment" = "Unu momenton…";
 "done" = "Farita";
 "undo" = "Malfari";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Sekva";
 "error" = "Eraro";
 "error_x" = "Eraro: %1$@";
@@ -51,7 +51,7 @@
 "bad_email_address" = "Malbona retadreso.";
 "password" = "Pasvorto";
 "now" = "Nun";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Danĝero";
 "today" = "Hodiaŭ";
 "yesterday" = "Hieraŭ";
@@ -59,8 +59,8 @@
 "this_month" = "Ĉi-monate";
 "last_week" = "Pasint-semajne";
 "last_month" = "Pasint-monate";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Mi";
 "draft" = "Malneto";
 "image" = "Bildo";
@@ -144,13 +144,13 @@
 "device_talk_explain" = "Mesaĝoj en tiu ĉi babilo estas surloke generataj de via Delta Chat apo. Ĝiaj kreintoj uzas ilin por informi pri apaj ĝisdatigoj kaj problemoj dum uzado.";
 "device_talk_welcome_message" = "Bonvenon al Delta Chat! – Delta Chat aspektas kvazaŭ aliaj popularaj mesaĝiloj, sed al ĝi mankas centra regado, sekvado de kaj perfido al vi, viaj amikoj, kolegoj kaj familianoj je la servo de grandaj organizoj.\n\nVere, Delta Chat estas retpoŝta aplikaĵo kun moderna babila interfaco. Alivorte, retpoŝto kun novaj vestaĵoj 👻\n\nUzu Delta Chat-on kun iu ajn el miliardoj da homoj: simple uzu la retadreson. Ricevantoj ne devas instali Delta Chat-on, viziti retejojn aŭ registriĝi ie ajn - sed, kompreneble, se ili volas, vi povas atentigi ilin al 👉 https://get.delta.chat";
 "edit_contact" = "Redakti kontakton";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Alpingli babilon";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Depingli babilon";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Alpingli";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Depingli";
 "mute_for_one_hour" = "Silentigi por 1 horo";
 "mute_for_two_hours" = "Silentigi por 2 horoj";
@@ -171,7 +171,7 @@
 "ask_forward" = "Plusendi mesaĝojn al %1$@?";
 "cannot_delete_contacts_in_use" = "Ne eblas forigi kontaktojn kun aktualaj babiloj.";
 "ask_start_chat_with" = "Babili kun %1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Forigi %1$@el la grupo?";
 // contact list
 "contacts_title" = "Kontaktoj";
@@ -250,7 +250,7 @@
 "delete_account" = "Forigi konton";
 "delete_account_ask" = "Ĉu vi certas, ke vi volas forigi ĉiujn datumojn de vi konto?";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Plusendi al…";
 "share_abort" = "Kunhavigado ĉesis pro manko de permesoj.";
 
@@ -259,13 +259,13 @@
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
 "pref_password_and_account_settings" = "Pasvorto kaj konto";
 "pref_your_name" = "Via nomo";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Sendita per mia Delta Chat mesaĝilo: https://delta.chat";
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";
 "pref_enter_sends_explain" = "Premado de la Eniga klavo sendos mesaĝojn";
 "pref_vibrate" = "Vibrado";
 "pref_screen_security" = "Ekrana sekureco";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Neebligi ekrankopiojn en la listo de ĵus uzitaj aplikaĵoj kaj ene de la aplikaĵo mem";
 "pref_notifications" = "Sciigoj";
 "pref_notifications_show" = "Montri";
@@ -276,14 +276,14 @@
 "pref_privacy" = "Privateco";
 "pref_chats_and_media" = "Interparoloj kaj aŭdvidaĵoj";
 "pref_system_default" = "Sistema defaŭlto";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Hela";
 "pref_dark_theme" = "Malhela";
 "pref_appearance" = "Aspekto";
 "pref_theme" = "Etoso";
 "pref_language" = "Lingvo";
 "pref_incognito_keyboard" = "Inkognita klavaro";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Peti al la klavaro malŝalti personan lernadon";
 "pref_read_receipts" = "Legokonfirmoj";
 "pref_read_receipts_explain" = "Se legokonfirmoj ne estas ŝaltitaj, vi ne vidos aliulajn legokonfirmojn.";

@@ -1,5 +1,7 @@
 NSCameraUsageDescription = "Al permitir el acceso a la cámara podrás tomar fotos y videos.";
 NSContactsUsageDescription = "Al permitir acceder a tu libreta de direcciones podrás chatear con los contactos de tu dispositivo.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat necesita permiso para poder compartir tu ubicación mientras el compartimiento de ubicación está habilitado.";
+NSLocationWhenInUseUsageDescription = "Delta Chat necesita permiso para poder compartir tu ubicación mientras el compartimiento de ubicación está habilitado.";
 NSMicrophoneUsageDescription = "Al permitir el acceso al micrófono podrás grabar audio.";
 NSPhotoLibraryUsageDescription = "Al permitir el acceso a la galería de fotos podrás subir tus imágenes desde allí.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat quiere guardar imágenes en tu galería";

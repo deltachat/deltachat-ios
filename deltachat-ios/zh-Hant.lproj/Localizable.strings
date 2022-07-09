@@ -29,9 +29,9 @@
 "back" = "返回";
 "close" = "關閉";
 "forward" = "轉發";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "封存";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "取消封存";
 "mute" = "靜音";
 "ephemeral_messages" = "自動銷毀訊息";
@@ -44,12 +44,12 @@
 "start_chat" = "開始對話";
 "show_full_message" = "顯示完整訊息⋯";
 "show_full_message_in_browser" = "在瀏覽器中顯示完整訊息⋯";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "載入中⋯";
 "hide" = "隱藏";
 "activate" = "啟用";
 "load_remote_content" = "載入遠端圖片";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "遠端圖檔可以用來追蹤你。\n\n這個設定也會同時載入字體和其他內容。即使這個設定被關閉，你依然還是會看到嵌入或快取圖檔。\n\n要載入遠端圖檔嗎？";
 "always" = "永遠";
 "once" = "僅一次";
@@ -61,7 +61,7 @@
 "done" = "完成";
 "undo" = "復原";
 "offline" = "離線";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "下一個";
 "error" = "錯誤";
 "error_x" = "錯誤: %1$@";
@@ -75,7 +75,7 @@
 "password" = "密碼";
 "existing_password" = "既有密碼";
 "now" = "現在";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "注意";
 "today" = "今天";
 "yesterday" = "昨天";
@@ -83,32 +83,32 @@
 "this_month" = "本月";
 "last_week" = "上週";
 "last_month" = "上個月";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "最後上線時間：%1$@";
 "last_seen_unknown" = "最後上線時間：未知";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "我";
 "draft" = "草稿";
 "image" = "圖片";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "回覆";
 "gif" = "GIF";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "貼圖";
 "images" = "圖片";
 "audio" = "音訊";
 "voice_message" = "語音訊息";
 "forwarded" = "已轉發";
 "forwarded_message" = "轉發的訊息";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "由%1$@轉發";
 "video" = "影片";
 "documents" = "文件";
 "contact" = "聯絡人";
 "verified_contact" = "驗證過的聯絡人";
 "camera" = "相機";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "拍攝";
 "switch_camera" = "切換相機";
 "toggle_fullscreen" = "切換全螢幕模式";
@@ -142,10 +142,10 @@
 "menu_new_contact" = "新增聯絡人";
 "menu_new_chat" = "新增對話";
 "menu_new_group" = "新增群組";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "新增群組或主題";
 "menu_new_verified_group" = "新增已驗證群組";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "廣播列表";
 "broadcast_lists" = "廣播列表";
 "new_broadcast_list" = "新增廣播列表";
@@ -180,10 +180,10 @@
 "menu_export_attachment" = "另存附件";
 "menu_export_attachments" = "另存附件";
 "menu_all_media" = "所有媒體";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "在對話中顯示";
 "menu_share" = "分享";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "封鎖";
 "menu_block_contact" = "封鎖聯絡人";
 "menu_unblock_contact" = "解除封鎖聯絡人";
@@ -215,13 +215,13 @@
 "device_talk_explain" = "這個聊天室內的訊息是由 Delta Chat 軟體在本地產生的。開發者會在這裡發送軟體更新和使用幫助。";
 "device_talk_welcome_message" = "歡迎使用 Delta Chat！Delta Chat 看起來就如同大部分的聊天軟體一樣，但並沒有集中式的控制，且不會追蹤或販賣你、或與你有關人士的資料給大公司。\n\n嚴格來說，Delta Chat 是一款擁有聊天界面的電子郵件軟體；簡單來說就是幫電子郵件穿上新衣啦👻\n\n使用 Delta Chat 來跟全世界的人溝通，全程只需要他們的電郵地址。對方不需要安裝 Delta Chat、造訪網頁或額外註冊帳號 - 但如果他們想要的話，你也可以透過這個連結來分享給他們 👉 https://get.delta.chat";
 "edit_contact" = "編輯聯絡人";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "釘選聯絡人";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "取消釘選聯絡人";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "釘選";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "取消釘選";
 "ConversationFragment_quoted_message_not_found" = "找不到原始訊息";
 "reply_privately" = "私下回覆";
@@ -265,9 +265,9 @@
 "cannot_delete_contacts_in_use" = "無法刪除聊天室內的聯絡人。";
 "ask_start_chat_with" = "要和%1$@開始對話嗎？";
 "ask_delete_value" = "刪除%1$@？";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "要把%1$@移出群組嗎？";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "將%1$@自廣播列表中移除？";
 // contact list
 "contacts_title" = "聯絡人清單";
@@ -350,7 +350,7 @@
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "無法登入 %1$@。請確定 email 帳號和密碼是否正確。 ";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "轉發給...";
 "share_abort" = "共享失敗。權限不足。";
 
@@ -363,9 +363,9 @@
 "pref_blocked_contacts" = "已封鎖的聯絡人";
 "pref_who_can_see_profile_explain" = "你的名字和大頭照在通訊的過程中，會提供給對方看到。已傳送的資訊無法被刪除或移除。";
 "pref_your_name" = "你的名字";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "簽名檔";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "使用 Delta Chat 傳送: https://delta.chat";
 "pref_enter_sends" = "換行鍵送出訊息";
 "pref_enter_sends_explain" = "按下換行鍵就送出訊息";
@@ -374,7 +374,7 @@
 "pref_outgoing_worse" = "低品質";
 "pref_vibrate" = "振動";
 "pref_screen_security" = "螢幕安全性";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "要求系統在本通訊軟體中及應用程式列表中禁止擷圖";
 "pref_screen_security_please_restart_hint" = "請重新啟動本 app 以啟用螢幕安全設定。";
 "pref_notifications" = "通知設定";
@@ -386,14 +386,14 @@
 "pref_privacy" = "隱私權設定";
 "pref_chats_and_media" = "對話和媒體設定";
 "pref_system_default" = "系統預設";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "亮色";
 "pref_dark_theme" = "暗色";
 "pref_appearance" = "外觀";
 "pref_theme" = "佈景主題";
 "pref_language" = "語言";
 "pref_incognito_keyboard" = "保密鍵盤";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "要求系統關閉鍵盤的個人化學習設定";
 "pref_read_receipts" = "收執回條設定";
 "pref_read_receipts_explain" = "關掉收執回條的話，就無法知道對方是否已讀訊息。";
@@ -459,9 +459,9 @@
 "systemmsg_read_receipt_subject" = "收執回條";
 "systemmsg_read_receipt_body" = "這是訊息 %1$@ 的收執回條，表示本訊息已經顯示在收件人的裝置上了，但不代表收件人已讀。";
 "systemmsg_cannot_decrypt" = "本訊息無法解密。\n\n請試著回覆本訊息，並請發送者重發一遍。\n\n如果你曾經在本裝置或其它裝置重新安裝 Delta Chat 或其它郵件軟體的話，請重新發送AutoCrypt設定訊息。";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "我%1$@";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%2$@%1$@";
 "qrscan_title" = "掃描QR Code";
 "qrscan_hint" = "請將相機對準 QR Code";

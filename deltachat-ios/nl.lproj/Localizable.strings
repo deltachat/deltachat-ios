@@ -31,9 +31,9 @@
 "forward" = "Doorsturen";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Opnieuw versturen";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archiveren";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "De-archiveren";
 "mute" = "Negeren";
 "ephemeral_messages" = "Verdwijnende berichten";
@@ -46,12 +46,12 @@
 "start_chat" = "Gesprek beginnen";
 "show_full_message" = "Volledig bericht tonen…";
 "show_full_message_in_browser" = "Volledig bericht in browser tonen…";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "Bezig met laden…";
 "hide" = "Verbergen";
 "activate" = "Inschakelen";
 "load_remote_content" = "Externe afbeeldingen laden";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Externe afbeeldingen kunnen worden gebruikt om je gedrag te volgen.\n\nDeze instelling staat tevens toe om andere externe inhoud, zoals lettertypen, te laden, en zelfs na uitschakeling kunnen er ingesloten of gecachte afbeeldingen worden getoond.\n\nWeet je het zeker?";
 "always" = "Altijd";
 "once" = "Eenmalig";
@@ -63,7 +63,7 @@
 "done" = "Klaar";
 "undo" = "Ongedaan maken";
 "offline" = "Offline";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Volgende";
 "error" = "Fout";
 "error_x" = "Fout: %1$@";
@@ -77,7 +77,7 @@
 "password" = "Wachtwoord";
 "existing_password" = "Bestaand wachtwoord";
 "now" = "Nu";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Gevarenzone";
 "today" = "Vandaag";
 "yesterday" = "Gisteren";
@@ -85,34 +85,34 @@
 "this_month" = "Deze maand";
 "last_week" = "Vorige week";
 "last_month" = "Vorige maand";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Laatst gezien om %1$@";
 "last_seen_unknown" = "Laatst gezien: onbekend";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
 
 "self" = "Ik";
 "draft" = "Concept";
 "image" = "Afbeelding";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Antwoord";
 "gif" = "GIF";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
 "images" = "Afbeeldingen";
 "audio" = "Audio";
 "voice_message" = "Spraakbericht";
 "forwarded" = "Doorgestuurd";
 "forwarded_message" = "Bericht doorgestuurd";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Doorgestuurd door %1$@";
 "video" = "Video";
 "documents" = "Documenten";
 "contact" = "Contactpersoon";
 "verified_contact" = "Goedgekeurd contactpersoon";
 "camera" = "Camera";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Vastleggen";
 "switch_camera" = "Andere camera";
 "toggle_fullscreen" = "Beeldvullende modus aan/uit";
@@ -146,10 +146,10 @@
 "menu_new_contact" = "Nieuw contactpersoon";
 "menu_new_chat" = "Nieuw gesprek";
 "menu_new_group" = "Nieuwe groep";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "Nieuwe groep of onderwerp";
 "menu_new_verified_group" = "Nieuwe goedgekeurde groep";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Verzendlijst";
 "broadcast_lists" = "Verzendlijsten";
 "new_broadcast_list" = "Nieuwe verzendlijst";
@@ -184,10 +184,10 @@
 "menu_export_attachment" = "Bijlage exporteren";
 "menu_export_attachments" = "Bijlagen exporteren";
 "menu_all_media" = "Alle media";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Tonen in bijbehorend gesprek";
 "menu_share" = "Delen";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Blokkeren";
 "menu_block_contact" = "Contactpersoon blokkeren";
 "menu_unblock_contact" = "Contactpersoon deblokkeren";
@@ -219,13 +219,13 @@
 "device_talk_explain" = "Berichten in dit gesprek worden geplaatst door de app zelf. Zo blijf je op de hoogte van app-updates en gebruiksproblemen.";
 "device_talk_welcome_message" = "Welkom bij Delta Chat! Delta Chat lijkt heel erg op andere chatapps, maar is toch écht anders! Zo is er geen centraal beheer, wordt je niet gevolgd en worden jouw gegevens of die van je vrienden/familie niet verkocht aan bedrijven.\n\nTechnisch gesproken is het een e-mailapp in een modern jasje (of moderne jurk 👻).\n\nGebruik Delta Chat om te communiceren met iedereen die een e-mailadres heeft. Ontvangers hoeven het niet te installeren, naar een website te gaan of ergens te registreren. Maar als ze dat willen, kun je ze natuurlijk altíjd doorverwijzen naar 👉 https://get.delta.chat";
 "edit_contact" = "Contactpersoon bewerken";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Gesprek vastmaken";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Gesprek losmaken";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Vastmaken";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Losmaken";
 "ConversationFragment_quoted_message_not_found" = "Geen oorspronkelijk bericht gevonden";
 "reply_privately" = "Privé beantwoorden";
@@ -273,9 +273,9 @@
 "cannot_delete_contacts_in_use" = "Contactpersonen waarmee je nog gesprekken voert kunnen niet worden verwijderd.";
 "ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
 "ask_delete_value" = "Wil je %1$@ verwijderen?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Wil je %1$@ verwijderen van de verzendlijst?";
 "open_url_confirmation" = "Weet je zeker dat je deze link wilt openen?";
 
@@ -310,7 +310,7 @@
 "archive_empty_hint" = "Gearchiveerde gesprekken worden hier getoond.";
 "saved_messages" = "Opgeslagen berichten";
 "saved_messages_explain" = "• Stuur berichten door naar hier om ze snel terug te kunnen lezen\n\n• Maak aantekeningen of spraakopnamen\n\n• Voeg media toe om deze op te slaan";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Opgeslagen";
 "save_as" = "Opslaan als";
 "retry_send" = "Bericht opnieuw versturen";
@@ -386,25 +386,25 @@
 "send_message" = "Bericht versturen";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Inkomende berichten";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Uitgaande berichten";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "Opslag op %1$@";
 "connectivity" = "Verbindingen";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Niet verbonden";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Bezig met verbinden…";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Bezig met bijwerken…";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Verbonden";
 "sending" = "Bezig met versturen…";
 "last_msg_sent_successfully" = "Het laatste bericht is verstuurd.";
 "not_supported_by_provider" = "Wordt niet ondersteund door je provider.";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Berichten";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ van %2$@ in gebruik";
@@ -468,7 +468,7 @@
 "configuration_failed_with_error" = "Het instellen is mislukt. Foutmelding: %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Doorsturen naar…";
 "share_multiple_attachments" = "Wil je %1$d bestanden delen in het gekozen gesprek?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
 "share_multiple_attachments_multiple_chats" = "Wil je %1$d bestand(en) delen in %2$d gesprekken?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
@@ -486,9 +486,9 @@
 "pref_password_and_account_settings" = "Wachtwoord en account";
 "pref_who_can_see_profile_explain" = "Je profielfoto, -naam en handtekening worden getoond in gesprekken, naast je berichten.";
 "pref_your_name" = "Je naam";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Handtekeningtekst";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Verstuurd met mijn Delta Chat-berichtenapp: https://delta.chat";
 "pref_enter_sends" = "Versturen met Enter-toets";
 "pref_enter_sends_explain" = "Druk op de Enter-toets om tekstberichten te versturen";
@@ -497,7 +497,7 @@
 "pref_outgoing_worse" = "Lagere kwaliteit, kleinere bestanden";
 "pref_vibrate" = "Trillen";
 "pref_screen_security" = "Schermbeveiliging";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Geen schermfoto\'s tonen op de ‘recent’-lijst en binnen de app";
 "pref_screen_security_please_restart_hint" = "Herstart de app om de wijzigingen toe te passen.";
 "pref_notifications" = "Meldingen";
@@ -512,14 +512,14 @@
 "pref_privacy" = "Privacy";
 "pref_chats_and_media" = "Gesprekken en media";
 "pref_system_default" = "Systeemstandaard";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Licht";
 "pref_dark_theme" = "Donker";
 "pref_appearance" = "Uiterlijk";
 "pref_theme" = "Thema";
 "pref_language" = "Taal";
 "pref_incognito_keyboard" = "Incognito-toetsenbord";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Verzoek het toetsenbord om geen persoonlijke woorden op te nemen";
 "pref_read_receipts" = "Leesbevestigingen";
 "pref_read_receipts_explain" = "Als je leesbevestigingen uitschakelt, dan zie je geen leesbevestigingen van anderen.";
@@ -653,9 +653,9 @@
 "systemmsg_read_receipt_subject" = "Leesbevestiging";
 "systemmsg_read_receipt_body" = "Het door jou verstuurde bericht, “%1$@”, heeft het scherm van de ontvanger bereikt.\n\nDit betekent echter niet dat het ook gelezen is.";
 "systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd op dit of een ander apparaat, verstuur het instelbericht dan opnieuw.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ door mij.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ door %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Dit gesprek bevat een onbekende afzender. Zie ‘Informatie’ voor meer informatie.";
 "systemmsg_subject_for_new_contact" = "Bericht van %1$@";
@@ -678,8 +678,8 @@
 "systemmsg_chat_protection_enabled" = "Gespreksbeveiliging is ingeschakeld.";
 
 "devicemsg_self_deleted" = "Je hebt het gesprek ‘Opgeslagen berichten’ verwijderd.\n\nℹ️ Als je weer gebruik wilt maken van deze functie, begin dan een nieuw gesprek met jezelf.";
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️ De opslagruimte die je provider je biedt is bijna overschreden - momenteel heb je %1$@%% ervan in gebruik.\n\nAls je 100%% van de ruimte verbruikt hebt, kun je mogelijk geen berichten meer ontvangen.\n\n👉 Kijk of je oude gegevens kunt verwijderen in de webclient van je provider. Overweeg ook ‘Instellingen --> Oude berichten verwijderen’ in te schakelen. Je kunt je huidige gebruik te allen tijde bekijken in ‘Instellingen --> Verbindingen’.";
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ De opslagruimte die je provider je biedt is bijna overschreden - momenteel heb je %1$@%% ervan in gebruik.\n\nAls je alle ruimte verbruikt hebt, kun je mogelijk geen berichten meer ontvangen.\n\n👉 Kijk of je oude gegevens kunt verwijderen in de webclient van je provider. Overweeg ook ‘Instellingen --> Oude berichten verwijderen’ in te schakelen. Je kunt je huidige gebruik te allen tijde bekijken in ‘Instellingen --> Verbindingen’.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ De datum en tijd van je apparaat lijken niet te kloppen (%1$@).\n\nVerzet je klok ⏰🔧 om er zeker van te zijn dat je berichten kunt ontvangen.";
 "devicemsg_update_reminder" = "⚠️ Je versie van Delta Chat is mogelijk verouderd.\n\nDit kan problemen veroorzaken aangezien je gesprekspartners nieuwe versies gebruiken. Bovendien mis je hierdoor enkele nieuwe functies. 😳\nGa naar https://get.delta.chat of de appwinkel van je apparaat om te controleren op updates.";

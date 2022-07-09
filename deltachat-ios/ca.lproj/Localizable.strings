@@ -31,9 +31,9 @@
 "forward" = "Reenvia";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Torna-ho a enviar";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arxiva";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Treu de l\'arxiu";
 "mute" = "Emmudeix";
 "ephemeral_messages" = "Missatges efímers";
@@ -46,12 +46,12 @@
 "start_chat" = "Inicia un xat";
 "show_full_message" = "Mostra el missatge sencer...";
 "show_full_message_in_browser" = "Mostra el missatge sencer al navegador...";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "Carregant...";
 "hide" = "Amaga";
 "activate" = "Activa-ho";
 "load_remote_content" = "Carrega les imatges remotes";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Les imatges remotes es poden usar per rastrejar-te.\n\nEl paràmetre també permet la càrrega de fonts i altres continguts. Fins i tot si és deshabilitat, encara podríeu veure imatges incrustades o en memòria catxè.\n\nCàrrega d\'imatges remotes?";
 "always" = "Sempre";
 "once" = "Una vegada";
@@ -63,7 +63,7 @@
 "done" = "Fet";
 "undo" = "Desfés";
 "offline" = "En desconnexió";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Següent";
 "error" = "Error";
 "error_x" = "Error: %1$@";
@@ -77,7 +77,7 @@
 "password" = "Contrasenya";
 "existing_password" = "Contrasenya existent";
 "now" = "Ara";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Perill";
 "today" = "Avui";
 "yesterday" = "Ahir";
@@ -85,34 +85,34 @@
 "this_month" = "Aquest mes";
 "last_week" = "La setmana passada";
 "last_month" = "El mes passat";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Vist per darrer cop a les %1$@";
 "last_seen_unknown" = "Vist per darrer cop: Ves a saber";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
 
 "self" = "Jo";
 "draft" = "Esborrany";
 "image" = "Imatge";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Respon";
 "gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Adhesiu";
 "images" = "Imatges";
 "audio" = "Àudio";
 "voice_message" = "Missatge de veu";
 "forwarded" = "Reenviat";
 "forwarded_message" = "Missatge reenviat";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Reenviat per %1$@";
 "video" = "Vídeo";
 "documents" = "Documents";
 "contact" = "Contacte";
 "verified_contact" = "Contacte verificat";
 "camera" = "Càmera";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Captura";
 "switch_camera" = "Canvia la càmera";
 "toggle_fullscreen" = "Alterna el mode de pantalla completa";
@@ -146,10 +146,10 @@
 "menu_new_contact" = "Contacte nou";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Grup nou";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "Grup o Tema nou";
 "menu_new_verified_group" = "Nou grup verificat";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Llista de difusió";
 "broadcast_lists" = "Llistes de difusió";
 "new_broadcast_list" = "Nova llista de difusió";
@@ -184,10 +184,10 @@
 "menu_export_attachment" = "Exporta l\'adjunt";
 "menu_export_attachments" = "Exporta els adjunts";
 "menu_all_media" = "Tots els multimèdia";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Mostra al xat";
 "menu_share" = "Comparteix";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloqueja";
 "menu_block_contact" = "Bloca el contacte";
 "menu_unblock_contact" = "Desbloca el contacte";
@@ -219,13 +219,13 @@
 "device_talk_explain" = "Els missatges d\'aquest xat són generats localment per la vostra app de Delta Chat. Els seus creadors els usen per informar-vos d\'actualitzacions de l\'app i problemes durant el seu ús.";
 "device_talk_welcome_message" = "Benvingut a Delta Chat! – Delta Chat te la pinta d\'altres apps de missatgeria, però no comporta un control centralitzat, ni un seguiment o una venda teva ni dels teus amics, col·legues o família a una corporació.\n\nTecnicament, Delta Chat és una aplicació de  correu electrònic amb una interfície de xat moderna. Per dir-ho així, correu electrònic en un vestit nou 👻\n\nUseu Delta Chat amb qualsevol dels milers de milions de persones: només us cal la seva adreça de correu electrònic. Als destinataris no els cal instal·lar-se Delta Chat, visitar webs o donar-se d\'alta enlloc - tot i que, només faltaria, si volen, els podeu adreçar a 👉 https://get.delta.chat";
 "edit_contact" = "Edita el contacte";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fixa el xat";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Desfixa el xat";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Fixa";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desfixa";
 "ConversationFragment_quoted_message_not_found" = "No s\'ha trobat el missatge original";
 "reply_privately" = "Respon en privat";
@@ -270,9 +270,9 @@
 "cannot_delete_contacts_in_use" = "No es poden esborrar els contactes amb xats actius.";
 "ask_start_chat_with" = "Voleu xatejar amb %1$@?";
 "ask_delete_value" = "Voleu esborrar %1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Voleu eliminar %1$@ del grup?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Voleu eliminar %1$@ de la llista de difusió?";
 "open_url_confirmation" = "Voleu obrir aquest enllaç?";
 
@@ -306,7 +306,7 @@
 "chat_self_talk_subtitle" = "Missatges enviats a mi mateix/a";
 "archive_empty_hint" = "Si arxiveu xats, els voreu aquí.";
 "saved_messages" = "Missatges desats";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Desat";
 "save_as" = "Desa com";
 "retry_send" = "Torna a provar d\'enviar el missatge";
@@ -370,23 +370,23 @@
 "send_message" = "Envia el missatge";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Missatges entrants";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Missatges sortints";
 "connectivity" = "Connectivitat";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Desconnectat";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Connectant...";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Actualitzant...";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Connectat";
 "sending" = "Enviant...";
 "last_msg_sent_successfully" = "Últim missatge enviat bé.";
 "not_supported_by_provider" = "No suportat pel vostre proveïdor.";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Missatges";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usats";
@@ -427,7 +427,7 @@
 "login_error_cannot_login" = "No es pot iniciar la sessió com a \"%1$@\". Comproveu que l\'adreça electrònica i la contrasenya són correctes.";
 "add_account" = "Afegeix un compte";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Reenvia a ...";
 "share_abort" = "S\'ha avortat la compartició per falta de permisos.";
 
@@ -440,15 +440,15 @@
 "pref_blocked_contacts" = "Contactes bloquejats";
 "pref_who_can_see_profile_explain" = "La vostra imatge de perfil i el vostre nom es mostraran en els missatges que envieu als altres usuaris. La informació que ja s\'hagi enviat no es pot eliminar ni esborrar.";
 "pref_your_name" = "El vostre nom";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Signatura";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Enviat amb Delta Chat: https://delta.chat";
 "pref_enter_sends" = "La tecla \"Intro\" envia";
 "pref_enter_sends_explain" = "Els missatges s\'enviaran prement la tecla \"Intro\"";
 "pref_vibrate" = "Vibració";
 "pref_screen_security" = "Seguretat de la pantalla";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Demana de bloquejar les captures de pantalla al llistat de recents i dins de l\'app ";
 "pref_screen_security_please_restart_hint" = "Per fer efectiva la configuració de seguretat de la pantalla, torneu a iniciar l’aplicació.";
 "pref_notifications" = "Notificacions";
@@ -460,14 +460,14 @@
 "pref_privacy" = "Privacitat";
 "pref_chats_and_media" = "Xats i multimèdia";
 "pref_system_default" = "Per defecte del sistema";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Clar";
 "pref_dark_theme" = "Fosc";
 "pref_appearance" = "Aspecte";
 "pref_theme" = "Plantilla";
 "pref_language" = "Idioma";
 "pref_incognito_keyboard" = "Teclat d\'incògnit";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Sol·licita al teclat que deshabiliti l\'aprenentatge personalitzat";
 "pref_read_receipts" = "Confirmació de lectura";
 "pref_read_receipts_explain" = "Si desactiveu la confirmació de lectura dels vostres missatges, tampoc no rebreu la dels altres usuaris.";
@@ -532,9 +532,9 @@
 "systemmsg_read_receipt_subject" = "Confirmació de lectura";
 "systemmsg_read_receipt_body" = "Confirmació de lectura del missatge \"%1$@\".\n\nVol dir que el missatge s\'ha mostrat al dispositiu del receptor, no necessàriament que s\'hagi llegit.";
 "systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Proveu de respondre\'l i demanar-li al remitent que us el torni a enviar.\n\n• Si heu reinstal·lat Delta Chat o un altre gestor de correu en aquest dispositiu o en algun altre, proveu d\'enviar un missatge de configuració Autocrypt des d\'allà.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ per mi.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ per %2$@.";
 "qrscan_title" = "Escaneja codi QR";
 "qrscan_hint" = "Poseu la càmera davant del codi QR";

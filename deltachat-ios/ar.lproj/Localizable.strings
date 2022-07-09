@@ -33,7 +33,7 @@
 "one_moment" = "لحظة…";
 "done" = "تم";
 "undo" = "ألغ";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "التالي";
 "error" = "خطأ";
 "error_x" = "خطأ: %1$@";
@@ -42,7 +42,7 @@
 "email_address" = "عنوان البريد الإلكتروني";
 "password" = "الكلمة السرية";
 "now" = "الآن";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "خطر";
 "today" = "اليوم";
 "yesterday" = "البارحة";
@@ -102,7 +102,7 @@
 "menu_mute" = "كتم الإشعارات";
 "menu_unmute" = "إلغاء الكتم.";
 "menu_all_media" = "جميع الوسائط";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "إظهار في المحادثة";
 "menu_share" = "شارك";
 "menu_play" = "شغّل";
@@ -169,7 +169,7 @@
 "pref_blocked_contacts" = "المراسلون المحبوسون";
 "pref_password_and_account_settings" = "الكلمة السرية والحساب";
 "pref_your_name" = "اسمك";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "التوقيع";
 "pref_enter_sends" = "مفتاح الدخول يقوم بالإرسا";
 "pref_vibrate" = "إهتز";
@@ -181,7 +181,7 @@
 "pref_privacy" = "الخصوصية";
 "pref_chats_and_media" = "الدردشة والوسائط";
 "pref_system_default" = "افتراضيات النظام";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "فاتح";
 "pref_dark_theme" = "داكن";
 "pref_appearance" = "المظهر";

@@ -31,9 +31,9 @@
 "forward" = "Reenviar";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Reenviar";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arquivar";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Desarquivar";
 "mute" = "Acalar";
 "ephemeral_messages" = "Desaparición das mensaxes";
@@ -46,12 +46,12 @@
 "start_chat" = "Inciar chat";
 "show_full_message" = "Mostrar mensaxe completa…";
 "show_full_message_in_browser" = "Mostrar mensaxe completa no navegador…";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "Cargando…";
 "hide" = "Ocultar";
 "activate" = "Activar";
 "load_remote_content" = "Cargar imaxes remotas";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "As imaxes remotas poden ser utilizadas para rastrexarte.\n\nO axuste tamén permite cargar tipografías e outro contido. Incluso estando desactivado, é posible ver as imaxes gardadas na caché.\n\nCargar imaxes remotas?";
 "always" = "Sempre";
 "once" = "Unha vez";
@@ -63,7 +63,7 @@
 "done" = "Feito";
 "undo" = "Desfacer";
 "offline" = "Sen conexión";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Seguinte";
 "error" = "Fallo";
 "error_x" = "Fallo: %1$@";
@@ -77,7 +77,7 @@
 "password" = "Contrasinal";
 "existing_password" = "Contrasinal actual";
 "now" = "Agora";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Perigo";
 "today" = "Hoxe";
 "yesterday" = "Onte";
@@ -85,34 +85,34 @@
 "this_month" = "Este mes";
 "last_week" = "Última semana";
 "last_month" = "Último mes";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Última conexión: %1$@";
 "last_seen_unknown" = "Última conexión: Descoñecido";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
 
 "self" = "Eu";
 "draft" = "Borrador";
 "image" = "Imaxe";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Resposta";
 "gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Adhesivo";
 "images" = "Imaxes";
 "audio" = "Audio";
 "voice_message" = "Mensaxe de voz";
 "forwarded" = "Reenviada";
 "forwarded_message" = "Mensaxe reenviado";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Reenviado por %1$@";
 "video" = "Vídeo";
 "documents" = "Documentos";
 "contact" = "Contacto";
 "verified_contact" = "Contacto verificado";
 "camera" = "Cámara";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capturar";
 "switch_camera" = "Cambiar de cámara";
 "toggle_fullscreen" = "Activar modo de pantalla completa";
@@ -146,10 +146,10 @@
 "menu_new_contact" = "Novo contacto";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "Novo Grupo ou Asunto";
 "menu_new_verified_group" = "Novo grupo verificado";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista de difusión";
 "broadcast_lists" = "Listas de difusión";
 "new_broadcast_list" = "Nova lista de difusión";
@@ -184,10 +184,10 @@
 "menu_export_attachment" = "Exportar anexo";
 "menu_export_attachments" = "Exportar anexos";
 "menu_all_media" = "Todos os medios";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Mostrar na conversa";
 "menu_share" = "Compartir";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloquear";
 "menu_block_contact" = "Bloquear contacto";
 "menu_unblock_contact" = "Desbloquear contacto";
@@ -219,13 +219,13 @@
 "device_talk_explain" = "As mensaxes de esta conversa xéranse localmente na túa app Delta Chat. Os creadores utilízanas para informar acerca de actualizacións e problemas durante a utilización.";
 "device_talk_welcome_message" = "Benvida a Delta Chat! – Delta Chat ten o aspecto de outras apps de mensaxería, pero non implica que teña un control centralizado, rastrexo ou que te venda a ti, aos teus amigos, colegas ou familia as megacorporacións.\n\nTécnicamente, Delta Chat é unha aplicación de correo electrónico cunha interface moderna de mensaxería. O correo travestido, se así o prefires 👻\n\nUtiliza Delta Chat con millóns de persoas: simplemente utiliza o seu enderezo de correo electrónico. Os correspondentes non precisan instalar Delta Chat, visitar sitios web ou rexistrarse en ningún lugar - claro que, por suposto, se queren, podes convidalos a  👉 https://get.delta.chat";
 "edit_contact" = "Editar contacto";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fixar conversa";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Desafixar conversa";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Fixar";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desafixar";
 "ConversationFragment_quoted_message_not_found" = "Non se atopa a mensaxe orixinal";
 "reply_privately" = "Responder de xeito privado";
@@ -273,9 +273,9 @@
 "cannot_delete_contacts_in_use" = "Non podes eliminar contactos con conversas activas.";
 "ask_start_chat_with" = "Conversa con %1$@?";
 "ask_delete_value" = "Eliminar %1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Eliminar  %1$@ do grupo?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Eliminar %1$@ da lista de difusión?";
 "open_url_confirmation" = "Queres abrir esta ligazón?";
 
@@ -310,7 +310,7 @@
 "archive_empty_hint" = "Se arquivas os chats, aparecerán aquí.";
 "saved_messages" = "Mensaxes gardadas";
 "saved_messages_explain" = "• Reenvía aquí as mensaxes para un acceso rápido\n\n• Toma notas de texto ou voz\n\n• Anexa medios para gardalos";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Gardado";
 "save_as" = "Gardar com";
 "retry_send" = "Reintentar o envío da mensaxe";
@@ -386,25 +386,25 @@
 "send_message" = "Enviar mensaxe";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Mensaxes entrantes";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mensaxes saíntes";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "Almacenar en %1$@";
 "connectivity" = "Conectividade";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Non conectado";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Conectando…";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Actualizando…";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Conectado";
 "sending" = "Enviando...";
 "last_msg_sent_successfully" = "Enviouse correctamente a última mensaxe.";
 "not_supported_by_provider" = "O teu provedor non ten soporte";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mensaxes";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Utilizado %1$@ de %2$@";
@@ -468,7 +468,7 @@
 "configuration_failed_with_error" = "Fallou a configuración. Erro: %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Reenviar a…";
 "share_multiple_attachments" = "Enviar %1$d ficheiro á conversa seleccionada?\n\nOs ficheiros terán o mesmo tamaño que o orixinal, ex. as imaxes e vídeos non se recodifican.";
 "share_multiple_attachments_multiple_chats" = "Enviar %1$d ficheiro(s) a %2$d conversas?\n\nOs ficheiros terán o mesmo tamaño, ex. imaxes e vídeos non se recodifican.";
@@ -486,9 +486,9 @@
 "pref_password_and_account_settings" = "Contrasinal e conta";
 "pref_who_can_see_profile_explain" = "A túa foto de perfil e nome móstranse xunto coas túas mensaxes ao comunicarte con outras persoas. A información xa enviada non se pode agochar o borrar.";
 "pref_your_name" = "O teu nome";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Texto de firma";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Enviado con mensaxería Delta Chat: https://delta.chat";
 "pref_enter_sends" = "A tecla Enter envía";
 "pref_enter_sends_explain" = "Ao premer Enter enviarás a mensaxe";
@@ -497,7 +497,7 @@
 "pref_outgoing_worse" = "Menor calidade, tamaño pequeno";
 "pref_vibrate" = "Vibrar";
 "pref_screen_security" = "Seguridade da pantalla";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Solicitar bloqueo de captura de pantalla para a lista de recentes e dentro da app";
 "pref_screen_security_please_restart_hint" = "Para aplicar o axuste de seguridade da pantalla debes reiniciar a app.";
 "pref_notifications" = "Notificacións";
@@ -512,14 +512,14 @@
 "pref_privacy" = "Intimidade";
 "pref_chats_and_media" = "Conversas e medios";
 "pref_system_default" = "Por omsión no sistema";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Claro";
 "pref_dark_theme" = "Escuro";
 "pref_appearance" = "Aspecto";
 "pref_theme" = "Decorado";
 "pref_language" = "Idioma";
 "pref_incognito_keyboard" = "Teclado incógnito";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Solicitar que o teclado non aprenda palabras escritas";
 "pref_read_receipts" = "Confirmación de lectura";
 "pref_read_receipts_explain" = "Se a confirmación de lectura está desactivada, non poderás ver as confirmacións dos demais.";
@@ -653,9 +653,9 @@
 "systemmsg_read_receipt_subject" = "Mensaxe aberta";
 "systemmsg_read_receipt_body" = "A mensaxe \"%1$@\" que enviaches mostrouse na pantalla do correspondente.\n\nNon hai garantía de que o contido fose lido.";
 "systemmsg_cannot_decrypt" = "Esta mensaxe non se pode descifrar.\n\n• Podería axudar que respondas a mensaxe pedindo ao remitente que a volte a enviar.\n\n• En caso dunha reinstalación Delta Chat ou outro programa de correo en este ou outro dispositivo igual debes enviar unha Mensaxe de Configuración Autocrypt desde alí.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ por min.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ por %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Remitente descoñecido para esta convers. Mira en \'info\' para saber máis.";
 "systemmsg_subject_for_new_contact" = "Mensaxe de %1$@";
@@ -678,7 +678,7 @@
 "systemmsg_chat_protection_enabled" = "Protección do chat activada.";
 
 "devicemsg_self_deleted" = "Eliminaches o chat \"Mensaxes gardadas\".\n\nℹ️ Para usar \"Mensaxes gardadas\" de novo, crea un novo chat contigo mesmo.";
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ A almacenaxe do teu provedor vaise esgotar, xa utilizaches %1$@ %%.\n\nPode que non recibas mensaxes cando a almacenaxe chegue a 100%% utilizado.\n\n👉 Mira se podes eliminar datos antigos na interface web do teu provedor e pensa se debes activar \"Axustes / Eliminar Mensaxes Antigas\". Podes ver a almacenaxe actual utilizada en \"Axustes / Conectividade\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ A hora ou data no teu dispositivo poderían ser incorrectas (%1$@).\n\nAxusta o reloxio ⏰🔧 para asegurar que as túas mensaxes son recibidas correctamente.";

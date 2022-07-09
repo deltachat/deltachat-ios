@@ -23,9 +23,9 @@
 "back" = "Forrige";
 "close" = "Lukk";
 "forward" = "Videresend";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arkiver";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Fjern fra arkiv";
 "mute" = "Demp";
 "ephemeral_messages" = "Forsvinnende meldinger";
@@ -42,7 +42,7 @@
 "one_moment" = "Et øyeblikk…";
 "done" = "Ferdig";
 "undo" = "Angre";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Neste";
 "error" = "Feil";
 "error_x" = "Feil: %1$@";
@@ -56,7 +56,7 @@
 "password" = "Passord";
 "existing_password" = "Eksisterende passord";
 "now" = "Nå";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Fare";
 "today" = "I dag";
 "yesterday" = "I går";
@@ -64,8 +64,8 @@
 "this_month" = "Denne måneden";
 "last_week" = "Forrige uken";
 "last_month" = "Forrige måneden";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Meg";
 "draft" = "Kladd";
 "image" = "Bilde";
@@ -151,13 +151,13 @@
 "device_talk_explain" = "Meldinger i denne chatten blir generert lokalt av Delta Chat-appen. Produsentene bruker den for å informere om appoppdateringer og problemer under bruk.";
 "device_talk_welcome_message" = "Velkommen til Delta Chat! – Delta Chat ser ut og føles som andre populære messenger-apper, men involverer ikke sentralisert kontroll, sporing eller salg av deg, venner, kolleger eller familie til store organisasjoner.\n\nTeknisk er Delta Chat en e-postapplikasjon med et moderne chattegrensesnitt. E-post i en nye klær hvis du vil 👻\n\nBruk Delta Chat med hvem som helst av milliarder av mennesker: bare bruk e-postadressen deres. Mottakere trenger ikke installere Delta Chat, besøke nettsteder eller registrere seg noen steder – men selvfølgelig, hvis de vil, kan du peke dem til 👉 https://get.delta.chat";
 "edit_contact" = "Rediger kontakt";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fest chat";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Løsne chat";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Fest";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Løsn";
 "mute_for_one_hour" = "Demp i 1 time";
 "mute_for_two_hours" = "Demp i 2 timer";
@@ -197,7 +197,7 @@
 "ask_delete_contact" = "Slett kontakter %1$@?\n\nKontakter med pågående chatter og kontakter fra systemets adressebok, kan ikke slettes permanent.";
 "cannot_delete_contacts_in_use" = "Kan ikke slette kontakter med pågående chatter.";
 "ask_start_chat_with" = "Begynn å sludre med %1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Fjern %1$@ fra gruppen?";
 // contact list
 "contacts_title" = "Kontakter";
@@ -253,21 +253,21 @@
 "import_backup_title" = "Importer sikkerhetskopi";
 "import_backup_no_backup_found" = "Fant ingen sikkerhetskopier.\n\nKopier sikkerhetskopien til %1$@ og prøv igjen. Alternativt, trykk \"Start meldingsforsendelse\" for normal oppsettsprosess.";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Videresend til…";
 "pref_profile_info_headline" = "Din profilinfo";
 "pref_profile_photo" = "Profilbilde";
 "pref_blocked_contacts" = "Blokkerte kontakter";
 "pref_password_and_account_settings" = "Kontoinnstillinger";
 "pref_your_name" = "Mitt navn";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Signaturtekst";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Sendt med Delta Chat: https://delta.chat";
 "pref_enter_sends" = "Send med \"Enter\"";
 "pref_vibrate" = "Vibrer";
 "pref_screen_security" = "Skjermsikkerhet";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Blokker skjermbilder i sist brukte-liste og i programmet";
 "pref_notifications" = "Merknader";
 "pref_notifications_show" = "Vis";
@@ -278,14 +278,14 @@
 "pref_privacy" = "Personvern";
 "pref_chats_and_media" = "Sludringer og medier";
 "pref_system_default" = "System standard";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Lys";
 "pref_dark_theme" = "Mørk";
 "pref_appearance" = "Utseende";
 "pref_theme" = "Tema";
 "pref_language" = "Språk";
 "pref_incognito_keyboard" = "Inkognito-tastatur";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Be tastatur om å slå av lærefunksjon";
 "pref_read_receipts" = "Meldingskvitteringer";
 "pref_read_receipts_explain" = "Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.";
@@ -333,9 +333,9 @@
 "systemmsg_read_receipt_subject" = "Meldingskvittering";
 "systemmsg_read_receipt_body" = "Dette er en meldingskvittering for meldingen \"%1$@\".\n\nDenne meldingskvitteringen bekrefter bare at meldingen ble vist på mottakerens enhet. Det finnes ingen garanti for at mottakeren har lest meldingsinnholdet.";
 "systemmsg_cannot_decrypt" = "Denne meldingen kan ikke dekrypteres.\n\n• Det kan hjelpe å svare på denne meldingen og spørre avsenderen om å sende den igjen.\n\n• I fall du har reinstallert Delta Chat eller et annet e-postprogram på denne eller en annen enhet, kan du sende en Autocrypt-oppsettsmelding derfra.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ av meg.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ av %2$@.";
 // qr code stuff
 "qr_code" = "QR-kode";

@@ -34,8 +34,8 @@
 "this_month" = "Este mês";
 "last_week" = "Semana passada";
 "last_month" = "Mês passado";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Eu";
 "draft" = "Rascunho";
 "image" = "Imagem";
@@ -186,7 +186,7 @@
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "Não é possível fazer o login como \"%1$@\". Por favor, verifique se o endereço de email e a palavra-chave estão corretos.";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Reencaminhar ...";
 // preferences
 "pref_using_custom" = "Utilizando personalizado %1$@";
@@ -196,15 +196,15 @@
 "pref_blocked_contacts" = "Bloquear contactos";
 "pref_who_can_see_profile_explain" = "A sua foto e nome de perfil serão mostrados ao lado das suas mensagens ao comunicar com outros utilizadores. As informações já enviadas não podem ser excluídas ou removidas";
 "pref_your_name" = "O seu nome";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Informação do estado";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Enviado com meu Delta Chat Messenger: https://delta.chat";
 "pref_enter_sends" = "Tecla ENTER para enviar";
 "pref_enter_sends_explain" = "Pressionar a tecla ENTER enviará mensagens de texto";
 "pref_vibrate" = "Vibrar";
 "pref_screen_security" = "Segurança do ecrã";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Bloquear capturas de ecrã na lista atualizada e no aplicativo";
 "pref_screen_security_please_restart_hint" = "Para aplicar a configuração de segurança do ecrã, reinicie o aplicativo.";
 "pref_notifications" = "Notificações";
@@ -216,14 +216,14 @@
 "pref_privacy" = "Privacidade";
 "pref_chats_and_media" = "chats e mídia";
 "pref_system_default" = "Configuração por omissão";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Luz";
 "pref_dark_theme" = "Escuro";
 "pref_appearance" = "Aparência";
 "pref_theme" = "Tema";
 "pref_language" = "Língua";
 "pref_incognito_keyboard" = "Teclado incognito";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Desligar aprendizagem automática no teclado";
 "pref_read_receipts" = "Ler recibos";
 "pref_read_receipts_explain" = "Se as confirmações de leitura estiverem desactivadas, não poderá ver os recibos de leitura de outras pessoas.";
@@ -285,9 +285,9 @@
 "systemmsg_read_receipt_subject" = "Ler recibos";
 "systemmsg_read_receipt_body" = "Este é um recibo de confirmação de leitura da mensagem \"%1$@\".\n\nEsta mensagem foi exibida no dispositivo do destinatário, não necessariamente que o conteúdo foi lido.";
 "systemmsg_cannot_decrypt" = "Esta mensagem não pode ser descriptada.\n\n • Talvez seja útil simplesmente responder a esta mensagem e solicitar que o remetente envie a mensagem novamente.\n\n • Caso você tenha re-instalado o Delta Chat ou outro programa de e-mail neste ou noutro dispositivo poderá querer enviar uma mensagem de configuração Autocrypt do dispositvo.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ por mim.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ por %2$@.";
 "qrscan_title" = "Fazer scan do código QR";
 "qrscan_hint" = "Coloque sua câmera sobre o código QR";

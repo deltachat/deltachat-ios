@@ -25,9 +25,9 @@
 "back" = "گەڕانەوە";
 "close" = "داخستن";
 "forward" = "بڵاو کردنەوە";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "ئەرشیڤ کردن";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "دەرهێنان لە ئەرشیڤ";
 "mute" = "بێدەنگ کردن";
 "ephemeral_messages" = "ئەو پەیامانەی بزر دەبن";
@@ -48,7 +48,7 @@
 "done" = "ئەنجام بوو";
 "undo" = "گەڕاندنەوە";
 "offline" = "دەرهێڵ";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "پاشوو";
 "error" = "هەڵە";
 "error_x" = "هەڵە: %1$@";
@@ -62,7 +62,7 @@
 "password" = "تێپەڕوشە";
 "existing_password" = "دووپات کردنەوەی تێپەڕوشە";
 "now" = "ئێستا";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "مەترسی";
 "today" = "ئەمڕۆ";
 "yesterday" = "دوێنێ";
@@ -70,19 +70,19 @@
 "this_month" = "ئەم مانگە";
 "last_week" = "حەوتەی ڕابردوو";
 "last_month" = "مانگی ڕابردوو";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "من";
 "draft" = "ڕەشنووس";
 "image" = "وێنە";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "وەڵام دانەوە";
 "gif" = "گیف";
 "images" = "وێنەکان";
 "audio" = "دەنگ";
 "voice_message" = "پەیامی دەنگی";
 "forwarded_message" = "پەیامی هاوبەشکراو";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "هاوبەشکراو لە لایەن%1$@";
 "video" = "ڤیدیۆ";
 "documents" = "بەڵگەکان";
@@ -145,10 +145,10 @@
 "menu_unmute" = "دەنگدار کردن";
 "menu_export_attachment" = "هەناردە کردنی پێوەلکاو";
 "menu_all_media" = "هەموو ڕەنگاڵەکان";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "لە نێو وتووێژەکەدا پیشانی بدە";
 "menu_share" = "هاوبەش کردن";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "ئاستەنگ کردن";
 "menu_block_contact" = "ئاستەنگ کردنی بەردەنگ";
 "menu_unblock_contact" = "لابردنی ئاستەنگ";
@@ -172,13 +172,13 @@
 "device_talk_explain" = "پەیامەکانی نێو ئەم وتووێژە بە شێوازی ناوخۆیی لەلایەن نەرمامێری دێڵتاچاتەکەتەوە درووست کراون. درووستکەرانی نەرمامێرەکە کەڵکی لێ دەگرن بۆ ئاگادار کردنەوەی بەکارهێنەران سەبارەت بە وەشانە نوێکانی نەرمامێرەکە و کێشە و گرفتەکانی.";
 "device_talk_welcome_message" = "بەخێر بێن بۆ دێڵتا چات! ڕواڵەت و بەکارهێنانی دێڵتا چات هەر وەکوو نەرمامێرە پەیامنێرە باوەکانی دیکەیە، بەڵام کۆنترۆڵی ناوەندی لەسەر نییە، شوێنی ئێوە و هاوڕێ و هاوکار و بنەماڵەکانتان ناگرێت و زانیارییەکانتان نافرۆشێت بە ڕێکخراوەکان.\n\n لەڕاستیدا دێڵتاچات نەرمامێرێکی ئیمەیلییە بە ڕواڵەتێکی مۆدەڕنەوە. ئیمەیل بە جل و بەرگێکی نوێوە ئەگەر پێتان خۆش بێت\n\n👻 لە دێڵتا چات بۆ پێوەندی گرتن لەگەڵ هەرکەسێک کە دەتانەوێت کەڵک بگرن: بەس ئیمەلەکەیان بەکار بێنن. ئیدی وەرگرەکان پێویست ناکات دێڵتا چات دابمەرزێنن یان سەردانی ماڵپەڕێک بکەن یان لە شوێنێک ببن بە ئەندام-هەڵبەت ئەگەر پێیان خۆش بوو دەتوانن ئەم نەرمامێرەیان پێ بناسێنن👈https://get.delta.chat";
 "edit_contact" = "دەستکاری بەردەنگ";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "دەرزیلەکردنی چات";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "لابردنی دەرزیلە";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "دەرزیلە بکە";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "دەرزیلە لابە";
 "ConversationFragment_quoted_message_not_found" = "پەیامە ڕەسەنەکە نەدۆزرایەوە";
 "reply_privately" = "وەڵامدانەوەی نهێنی";
@@ -221,7 +221,7 @@
 "cannot_delete_contacts_in_use" = "ناتوانیت ئەو بەردەنگانەی وتووێژی چالاکتان هەیە بسڕیتەوە.";
 "ask_start_chat_with" = "وتووێژ لەگەڵ %1$@؟";
 "ask_delete_value" = "%1$@دەسڕیتەوە؟";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@لە کۆڕ دەخەیتەدەر؟";
 "open_url_confirmation" = "دەتەوێت ئەم بەستەرە بکەیتەوە؟";
 
@@ -251,7 +251,7 @@
 "chat_self_talk_subtitle" = "ئەو پەیامانەی ناردوومن بۆ خۆم";
 "saved_messages" = "کانگای نامەکان";
 "saved_messages_explain" = "• پەیامەکان بنێرە ئێرە تاکوو بەئاسانی لەبەردەست بن\n\n• ڕەشنووسی دەق یان دەنگی دابنە\n\n• ڕەنگاڵە پەیوەست بکە تاکوو پاشەکەوت بکرێن";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "پاشەکەوت کرا";
 "retry_send" = "دیسان هەوڵ بدەوە بۆ هەناردنی پەیامەکە";
 // reasons for a disabled message composer
@@ -329,7 +329,7 @@
 "delete_account_explain_with_name" = "هەموو داتاکانی هەژماری \"%1$@\" لەسەر ئەم ئامێرەدا دەسڕدرێتەوە؛ هەموو ڕێکخستنەکانی شفرەی ئەمسەر-ئەوسەر و هەموو بەردەنگ و وتووێژ و پەیام و ڕەنگاڵەکان و ئیدی ناگەڕێنەوە.";
 "try_connect_now" = "هەوڵدان بۆ گرێدان";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "هەناردن بۆ...";
 "share_multiple_attachments" = "%1$dپەڕگە دەنێریت بە ئەو وتووێژە؟n\n فایلەکان بەبێ دەستکاری و هەر بە قەبارەی خۆیانەوە دەنێردرێن. بۆنموونە، وێنە و ڤیدیۆکان دیسان شفرە ناکرێنەوە.";
 "share_text_multiple_chats" = "ئەم دەقە دەنێریت بۆ %1$d وتووێژ؟n\n\"%2$@\"";
@@ -342,7 +342,7 @@
 "blocked_empty_hint" = "ئەگەر هەژمارێک ئاستەنگ بکەیت، لێرەدا پیشان دەدرێت.";
 "pref_password_and_account_settings" = "هەژمار و تێپەڕوشە";
 "pref_your_name" = "ناو";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "دەقی واژۆ";
 "pref_enter_sends" = "کلیلی \"ئینتەر\" بنێرێت";
 "pref_enter_sends_explain" = "دەستنان بە کلیلی \"ئینتەر\"دا، پەیامەکان دەنێرێت.";
@@ -363,14 +363,14 @@
 "pref_privacy" = "پاراستنی تاکەکەسی";
 "pref_chats_and_media" = "وتووێژ و ڕەنگاڵەکان";
 "pref_system_default" = "بنەڕەتی سیستەم";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "ڕووناک";
 "pref_dark_theme" = "تاریک";
 "pref_appearance" = "ڕوواڵەت";
 "pref_theme" = "ڕووکار";
 "pref_language" = "زمان";
 "pref_incognito_keyboard" = "تەختەکلیلی شاراوە";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "داخوازی بۆ ئەوەی کە تەختەکلیلەکە فێربوون و لەبەرگرتنەوەی نووسراوەکانت ناچالاک بکات.";
 "pref_read_receipts" = "وەرگرنامەی خوێندنەوە";
 "pref_read_receipts_explain" = "ئەگەر \"وەرگرنامەی خوێندن\" ناچالاک بێت، ئیدی تۆش نایبینیت کە ئاخۆ کەسانی دی پەیامەکەتیان خوێندووەتەوە یان نا.";
@@ -459,9 +459,9 @@
 "systemmsg_member_added" = "%1$@ زیاد کرا بە کۆڕ.";
 "systemmsg_member_removed" = "ئەندامی %1$@ سڕدرایەوە.";
 "systemmsg_read_receipt_subject" = "پەیامەکە کرایەوە";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ لەلایەن منەوە.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ لەلایەن %2$@.";
 "systemmsg_unknown_sender_for_chat" = "پەیامنێری ئەم وتووێژە نەناسراوە. بۆ وردەکاری زۆرتر سەیری \'زانیارییەکان\' بکە.";
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";

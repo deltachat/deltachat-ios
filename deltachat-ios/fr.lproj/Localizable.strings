@@ -31,13 +31,13 @@
 "forward" = "Faire suivre";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Renvoyer";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archiver";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Désarchiver";
 "mute" = "Sourdine";
 "ephemeral_messages" = "Messages éphémères";
-"ephemeral_messages_hint" = "Ces paramètres s\'appliquent à tous les participants utilisant Delta Chat. Cependant, ils peuvent copier, enregistrer et faire suivre des messages ou utiliser un autre client de messagerie.";
+"ephemeral_messages_hint" = "Ces paramètres s\'appliquent à tous les participants utilisant Delta Chat; ils peuvent copier, enregistrer et faire suivre des messages ou utiliser un autre client de e-mail.";
 "save" = "Sauvegarder";
 "chat" = "Discussion";
 "media" = "Média";
@@ -46,12 +46,12 @@
 "start_chat" = "Commencer la discussion";
 "show_full_message" = "Montrer le message complet...";
 "show_full_message_in_browser" = "Afficher le message complet dans le navigateur";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "Chargement...";
 "hide" = "Cacher";
 "activate" = "Activer";
 "load_remote_content" = "Charger les images distantes";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Les images distantes peuvent être utilisées pour vous pister. Ce paramètre autorise également le chargement de polices ou d\'autres contenus. S\'il est désactivé, vous pouvez tout de même voir les images ancrées ou en cache. Souhaitez-vous charger les images distantes ?";
 "always" = "Toujours";
 "once" = "Une fois";
@@ -63,7 +63,7 @@
 "done" = "Fait";
 "undo" = "Annuler";
 "offline" = "Hors ligne";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Suivant";
 "error" = "Erreur";
 "error_x" = "Erreur : %1$@";
@@ -77,7 +77,7 @@
 "password" = "Mot de passe";
 "existing_password" = "Mot de passe existant";
 "now" = "Maintenant";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Attention";
 "today" = "Aujourd\'hui";
 "yesterday" = "Hier";
@@ -85,34 +85,34 @@
 "this_month" = "Ce mois-ci";
 "last_week" = "La semaine dernière";
 "last_month" = "Le mois dernier";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Vu·e pour la dernière fois à %1$@";
 "last_seen_unknown" = "Vu·e pour la dernière fois : inconnu";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
 
 "self" = "Moi";
 "draft" = "Brouillon";
 "image" = "Image";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Réponse";
 "gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Vignette";
 "images" = "Images";
 "audio" = "Son";
 "voice_message" = "Message vocal";
 "forwarded" = "Transféré";
 "forwarded_message" = "Message transféré";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Transféré par %1$@";
 "video" = "Vidéo";
 "documents" = "Documents";
 "contact" = "Contact";
 "verified_contact" = "Contact vérifié";
 "camera" = "Caméra";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Enregistrer";
 "switch_camera" = "Changer de caméra";
 "toggle_fullscreen" = "Activer le plein écran";
@@ -146,10 +146,10 @@
 "menu_new_contact" = "Nouveau contact";
 "menu_new_chat" = "Nouvelle discussion";
 "menu_new_group" = "Nouveau groupe";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "Nouveau groupe ou sujet.";
 "menu_new_verified_group" = "Nouveau groupe vérifié";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Liste de diffusion";
 "broadcast_lists" = "Listes de diffusion";
 "new_broadcast_list" = "Nouvelle liste de diffusion";
@@ -184,10 +184,10 @@
 "menu_export_attachment" = "Exporter le fichier joint";
 "menu_export_attachments" = "Exporter les pièces-jointes";
 "menu_all_media" = "Tous les médias";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Montrer dans la discussion";
 "menu_share" = "Partager";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloquer";
 "menu_block_contact" = "Bloquer ce contact";
 "menu_unblock_contact" = "Débloquer ce contact";
@@ -219,13 +219,13 @@
 "device_talk_explain" = "Les messages dans cette discussion sont générés localement par votre application Delta Chat. Ses créateurs l\'utilise pour informer des mises à jour et problèmes rencontrés lors de l\'utilisation.";
 "device_talk_welcome_message" = "Bienvenue sur Delta Chat ! - Delta Chat ressemble à d\'autres applications de messagerie populaires, mais n\'implique pas un contrôle centralisé, le traçage ou la revente de vos données, de vos amis, collègues ou famille à de grandes organisations. Techniquement, Delta Chat est une application de messagerie électronique avec une interface de tchate moderne. Un courriel retoiletté si vous voulez 👻\n\nUtilisez Delta Chat avec n\'importe qui parmi des milliards de personnes : utilisez simplement leur adresse électronique. Les destinataires n\'ont pas besoin d\'installer Delta Chat, de visiter des sites web ou de s\'inscrire où que ce soit - cependant, bien sûr, s\'ils le souhaitent, vous pouvez les diriger vers 👉 https://get.delta.chat";
 "edit_contact" = "Mettre à jour le contact";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Épingler le tchate ";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Désépingler le tchate ";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Épingler";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Désépingler";
 "ConversationFragment_quoted_message_not_found" = "Le message original n\'a pas été trouvé";
 "reply_privately" = "Répondre en privé";
@@ -254,6 +254,8 @@
 "videochat_tap_to_open" = "Appuyez pour ouvrir";
 "videochat_instance" = "Instance de discussion vidéo";
 "videochat_instance_placeholder" = "Votre instance de discussion vidéo";
+"videochat_instance_example" = "Exemples : https://meet.jit.si/$ROOM ou basicwebrtc:https://your-server";
+"videochat_instance_explain_2" = "Si vous avez activé les discussions vidéo, vous pouvez démarrer une conversation vidéo dans chacune de vos discussions. Il faut que chaque participant-e ait une application ou un navigateur compatibles pour pouvoir utiliser cette option.";
 "videochat_instance_from_qr" = "Utiliser « %1$@ » pour inviter les autres à des discussions vidéos ?\n\nUne fois configuré, vous pouvez démarrer une discussion vidéo depuis chaque discussion privée. Ceci va remplacer la précédente configuration pour les discussions vidéos, s\'il y en a une.";
 "videochat_invitation" = "Invitation de discussion vidéo";
 "videochat_invitation_body" = "Vous êtes invité à une discussion vidéo, cliquez sur %1$@ pour la rejoindre.";
@@ -271,9 +273,9 @@
 "cannot_delete_contacts_in_use" = "Impossible d\'effacer des contacts ayant une discussion active.";
 "ask_start_chat_with" = "Discuter avec %1$@ ?";
 "ask_delete_value" = "Effacer %1$@ ?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Retirer %1$@ du groupe ?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Retirer %1$@ de la liste de diffusion ?";
 "open_url_confirmation" = "Voulez-vous ouvrir ce lien ?";
 
@@ -308,7 +310,7 @@
 "archive_empty_hint" = "Les discussions archivées apparaîtront ici.";
 "saved_messages" = "Messages sauvegardés";
 "saved_messages_explain" = "• Transférez les messages ici pour un accès facile\n\n• Prenez des notes, des mémos vocaux\n\n• Joignez des fichiers pour les sauvegarder";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Sauvegardés";
 "save_as" = "Sauvegarder";
 "retry_send" = "Réessayer d\'envoyer le message";
@@ -376,38 +378,44 @@
 "tab_map" = "Carte";
 "tab_gallery_empty_hint" = "Les images et vidéos partagées dans ce tchat seront affichées ici.";
 "tab_docs_empty_hint" = "Les documents, musiques et autres fichiers partagés dans ce chat seront affichés ici.";
+"tab_image_empty_hint" = "Les images partagées dans cette discussion seront affichées ici.";
+"tab_video_empty_hint" = "Les vidéos partagées dans cette discussion seront affichées ici.";
+"tab_audio_empty_hint" = "Les fichiers audio et messages vocaux partagés dans cette discussion seront affichés ici.";
+"tab_webxdc_empty_hint" = "Les contenus Webxdc partagés dans cette discussion seront affichés ici.";
 "media_preview" = "Prévisualiser le fichier multimédia";
 "send_message" = "Envoyer message";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Messages entrants";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Messages sortants";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "Espace de stockage sur %1$@";
 "connectivity" = "Connectivité";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Non connecté";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Connexion...";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Mise à jour...";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Connecté";
 "sending" = "Envoi...";
 "last_msg_sent_successfully" = "Dernier message envoyé avec succés.";
 "not_supported_by_provider" = "Non pris en charge par votre fournisseur de mail.";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Messages";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ sur %2$@ utilisé";
 
 
+// welcome and login
+"welcome_chat_over_email" = "Messagerie instantanée par courriel.";
 "scan_invitation_code" = "Scanner le code d\'invitation";
 "welcome_intro1_message" = "Le messager avec le plus large public au monde. Libre et indépendant.";
 "login_title" = "Connexion";
-"login_header" = "Se connecter au compte";
+"login_header" = "Se connecter au compte courriel";
 "login_explain" = "Se connecter avec un compte de courriel existant.";
 "login_subheader" = "Pour les fournisseurs de courriel connus, des paramètres supplémentaires sont automatiquement configurés. Parfois, IMAP doit être activé dans l\'interface Web. Consultez votre fournisseur de courriel ou vos amis pour obtenir de l\'aide.";
 "login_no_servers_hint" = "Il n\'y a pas de serveur Delta Chat, vos données restent sur votre appareil !";
@@ -439,7 +447,7 @@
 "login_error_server" = "Entre un serveur / adresse IP valide";
 "login_error_port" = "Entrez un port valide (1-65535)";
 "login_error_required_fields" = "Entrez une adresse email et un mot de passe valides";
-"import_backup_title" = "Importer une sauvegarde";
+"import_backup_title" = "Rétablir une sauvegarde";
 "import_backup_ask" = "Sauvegarde trouvée sur \"%1$@\".\n\nVoulez-vous importer et en utiliser toutes les données et paramètres ?";
 "import_backup_no_backup_found" = "Aucune sauvegarde trouvée.\n\nCopiez le fichier de sauvegarde vers \"%1$@\" et essayez à nouveau. Ou bien, appuyez sur \"Démarrage communication\" pour suivre le processus normal de configuration.";
 // Translators: %1$s will be replaced by the e-mail address
@@ -460,7 +468,7 @@
 "configuration_failed_with_error" = "Échec de la configuration. Erreur : %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Transférer à …";
 "share_multiple_attachments" = "Envoyer %1$d fichiers à la discussion sélectionnée ?\n\nLes fichiers sont envoyés sans modification, à leur taille originale, ie. les images et les vidéos ne sont pas réencodées.";
 "share_multiple_attachments_multiple_chats" = "Envoyer %1$d fichier(s) à %2$d discussions ?\n\nLes fichiers sont envoyés sans modification, à leur taille originale, ie. les images et les vidéos ne sont pas réencodées.";
@@ -478,9 +486,9 @@
 "pref_password_and_account_settings" = "Mot de passe et compte";
 "pref_who_can_see_profile_explain" = "Votre image de profil, votre nom et votre signature seront envoyés avec vos messages lorsque vous communiquerez avec d\'autres utilisateurs.";
 "pref_your_name" = "Votre nom";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Signature";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Envoyé depuis Delta Chat: https://delta.chat";
 "pref_enter_sends" = "Entrer les envois de clés";
 "pref_enter_sends_explain" = "Appuyez sur la touche Entrée pour envoyer des messages texte";
@@ -489,7 +497,7 @@
 "pref_outgoing_worse" = "Pire qualité, taille réduite";
 "pref_vibrate" = "Vibrer";
 "pref_screen_security" = "Écran de sécurité";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Demande de blocage des captures d\'écran dans la liste des captures récentes et à l\'intérieur de l\'application";
 "pref_screen_security_please_restart_hint" = "Pour appliquer les paramètres de sécurité de l\'écran, veuillez redémarrer l\'application.";
 "pref_notifications" = "Notifications";
@@ -504,14 +512,14 @@
 "pref_privacy" = "Vie privée";
 "pref_chats_and_media" = "Discussions et fichiers multimédia";
 "pref_system_default" = "Valeur par défaut du système";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Clair";
 "pref_dark_theme" = "Foncé";
 "pref_appearance" = "Apparence";
 "pref_theme" = "Thème";
 "pref_language" = "Langage";
 "pref_incognito_keyboard" = "Clavier anonyme";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Demande clavier pour désactiver l\'apprentissage personnalisé";
 "pref_read_receipts" = "Accusés de lecture";
 "pref_read_receipts_explain" = "Si les accusés de lecture sont désactivés, vous ne pourrez pas voir les accusés de lecture des autres.";
@@ -543,9 +551,10 @@
 "pref_background_btn_default" = "Utilisez l\'image par défaut";
 "pref_background_btn_gallery" = "Sélectionner depuis la galerie";
 "pref_imap_folder_handling" = "Gestion de dossier IMAP";
-"pref_imap_folder_warn_disable_defaults" = "Si vous désactivez cette option, assurez-vous que votre serveur et vos autres clients sont configurés en conséquence.\n\nSinon les choses pourraient ne pas fonctionner du tout.";
+"pref_imap_folder_warn_disable_defaults" = "Si vous désactivez cette option, assurez-vous que votre serveur et vos autres clients sont configurés en conséquence.\n\nSinon des choses pourraient ne pas fonctionner du tout.";
 "pref_watch_sent_folder" = "Regarder le dossier Messages envoyés";
 "pref_send_copy_to_self" = "M\'envoyer une copie";
+"pref_send_copy_to_self_explain" = "Obligatoire pour utiliser ce compte sur plusieurs appareils.";
 "pref_auto_folder_moves" = "Déplacer automatiquement vers le dossier DeltaChat";
 "pref_auto_folder_moves_explain" = "Les discussions sont déplacées pour éviter d\'encombrer le dossier Boîte de réception";
 "pref_only_fetch_mvbox_title" = "Ne consulter que le dossier DeltaChat";
@@ -644,9 +653,9 @@
 "systemmsg_read_receipt_subject" = "Accusé de lecture";
 "systemmsg_read_receipt_body" = "Ceci est un accusé de lecture pour le message \"%1$@\".\n\nCela signifie que le message a été affiché sur l\'appareil du destinataire, pas forcément que le contenu ait été lu.";
 "systemmsg_cannot_decrypt" = "Ce message ne peut pas être déchiffré.\n\n• Il peut déjà être utile de simplement répondre à ce message et demander à l\'expéditeur de l\'envoyer à nouveau.\n\n• Au cas où vous auriez réinstallé Delta Chat ou un autre programme de messagerie sur cet appareil ou un autre, vous voudrez peut-être envoyer un message de configuration d\'Autocrypt depuis ce dernier.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ par moi.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ sur %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Expéditeur inconnu de cette discussion. Voir « Info » pour plus de détails.";
 "systemmsg_subject_for_new_contact" = "Message de %1$@";
@@ -669,7 +678,7 @@
 "systemmsg_chat_protection_enabled" = "Protection de la discussion activée.";
 
 "devicemsg_self_deleted" = "Vous avez supprimé la discussion \"Message enregistrés\".\n\nℹ️ Pour de nouveau utiliser la fonctionnalité \"Message enregistrés\", commencez une nouvelle discussion avec vous-même.";
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ L\'espace de stockage de votre fournisseur va bientôt être excédé, %1$@ sur %% est utilisé.\n\nous ne serez peut-être plus capable de recevoir des messages quand l\'espace de stockage est 100%% utilisé.\n\n👉 Vérifier s\'il vous plaît que vous pouvez supprimer d\'ancienne données depuis l\'interface web de votre fournisseur et considérez d\'activer \"Paramètres / Supprimer les messages anciens\". Vous pouvez jetez un coup d\'oeil à l\'utilisation courante de votre espace de stockage à tout moment depuis \"Paramètres / Connectivité\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Le temps ou date sur votre appareil semble être décalé (%1$@).\n\nAjustez votre horloge ⏰🔧 pour s\'assurer que vos messages soient bien reçus.";
@@ -817,6 +826,17 @@
 "show_window" = "Afficher la fenêtre";
 "login_socks5_experimental_warning" = "Le support de SOCK5 est actuellement expérimental. Utilisez le à vos risques et périls. Si vous saisissez une adresse de courriel, une requête DNS sera effectuée sans passer par SOCK5.";
 
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Raccourcis clavier";
+"switch_between_chats" = "Naviguer entre les discussions";
+"scroll_messages" = "Faire défiler les messages";
+// command to put the cursor to the search input field
+"focus_search_input" = "Focaliser la recherche";
+// command to put the cursor to the message input field
+"focus_message_input" = "Focaliser la saisie de message";
+"force_refresh_network" = "Forcer la recharge du réseau";
+"insert_newline" = "Insérer nouvelle ligne";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "État de la livraison : Erreur";
 "a11y_encryption_padlock" = "Cadenas de chiffrement";
@@ -830,21 +850,27 @@
 "a11y_disappearing_messages_activated" = "Messages éphémères activés";
 
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
-"stop_sharing_location" = "Arrêter de partager la géolocalisation";
+"stop_sharing_location" = "Arrêter de partager la localisation";
+"a11y_voice_message_hint_ios" = "Après l\'enregistrement, poussez deux fois pour envoyer. Pour le supprimer, balayez l\'écran avec deux doigts.";
 "a11y_connectivity_hint" = "Double-cliquez pour afficher les détails de la connectivité.";
-"login_error_no_internet_connection" = "Pas de connexion internet, connexion échouée.";
+"login_error_no_internet_connection" = "Pas de connexion Internet, connexion échouée.";
 "share_account_not_configured" = "Le compte n\'est pas configuré.";
-"cannot_play_audio_file" = "Le fichier audio ne peut être joué.";
+"cannot_play_audio_file" = "Le fichier audio ne peut pas être joué.";
 // iOS camera permission alert
-"perm_ios_explain_access_to_camera_denied" = "Pour prendre des photos, des vidéos ou utiliser le Scanner de QR-Code, ouvrez les paramètres système et activez \"Caméra\".";
+"perm_ios_explain_access_to_camera_denied" = "Pour prendre des photos, des vidéos ou utiliser le scanneur de QR-Code, ouvrez les paramètres du système et activez \"Appareil photo\".";
 "open_settings" = "Ouvrir les paramètres";
+// iOS device contact alert
+"import_device_contacts" = "Importer les contacts de l\'appareil";
 "import_device_contacts_hint" = "Pour discuter avec des contacts de votre appareils, ouvrez les paramètre et activez \"Contacts\".";
 // iOS notification settings
 "disabled_in_dc" = "Désactivé dans Delta Chat";
 "disabled_in_system_settings" = "Désactivé dans les paramètres système";
-"bg_app_refresh_disabled" = "\"Le rafraîchissement des applications en arrière-plan\" est désactivé dans les paramètres du système.";
+"bg_app_refresh_disabled" = "\"La recharge des applications en arrière-plan\" est désactivé dans les paramètres du système.";
 // iOS connectivity view
 "delayed" = "Retardé";
+"notifications_avg_minutes" = "Toutes les %1$d minutes en moyenne";
+"notifications_avg_hours" = "Toutes les %1$d heures en moyenne";
+"last_check_at" = "Dernièrement vu à %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -860,5 +886,5 @@
 
 
 // device messages for updates
-"update_1_30" = "Plus rapide. Plus stable.\n\nPour la version 1.30, nous nous sommes focalisés sur la vitesse et la fiabilité, pour fixer des dizaines de bogues. Vérifiez le journal des changements voir si votre bogue favori a été corrigé : https://get.delta.chat/#changelogs 🚀";
+"update_1_30" = "Plus rapide. Plus stable.\n\nPour la version 1.30, nous avons focalisés sur la vitesse et la fiabilité, en réglant des douzaines de bogues. Vérifiez dans notre journal des changements si votre bogue favori était corrigé : https://get.delta.chat/#changelogs 🚀";
 

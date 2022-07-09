@@ -29,9 +29,9 @@
 "back" = "Tilbage";
 "close" = "Luk";
 "forward" = "Videresend";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arkivér";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Fortryd arkivering";
 "mute" = "Udsæt";
 "ephemeral_messages" = "Beskeder med tidsudløb";
@@ -56,7 +56,7 @@
 "done" = "Færdig";
 "undo" = "Fortryd";
 "offline" = "Offline";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Næste";
 "error" = "Fejl";
 "error_x" = "Fejl: %1$@";
@@ -70,7 +70,7 @@
 "password" = "Adgangskode";
 "existing_password" = "Eksisterende adgangskode";
 "now" = "Nu";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Fare";
 "today" = "I dag";
 "yesterday" = "I går";
@@ -78,22 +78,22 @@
 "this_month" = "Denne måned";
 "last_week" = "Sidste uge";
 "last_month" = "Sidste måned";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Mig";
 "draft" = "Kladde";
 "image" = "Billede";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Svar";
 "gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Klistermærker";
 "images" = "Billeder";
 "audio" = "Lyd";
 "voice_message" = "Tale besked";
 "forwarded" = "Videresendt";
 "forwarded_message" = "Videresendt besked";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Videresendt af %1$@";
 "video" = "Video";
 "documents" = "Dokumenter";
@@ -161,10 +161,10 @@
 "menu_export_attachment" = "Eksporter vedhæftning";
 "menu_export_attachments" = "Eksporter vedhæftninger";
 "menu_all_media" = "Alle medier";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Vis i chat";
 "menu_share" = "Del";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloker";
 "menu_block_contact" = "Bloker kontakt";
 "menu_unblock_contact" = "Fjern blokering af kontakt";
@@ -191,13 +191,13 @@
 "device_talk_explain" = "Beskederne i denne chat er blevet generated lokalt af din Delta Chat app. Skaberne af appen bruger dette til at informere om app-opdateringer og problemer under brug.";
 "device_talk_welcome_message" = "Velkommen til Delta Chat! - Delta Chat ser ud og føles som andre populære messenger apps men kontrolleres ikke fra centralt hold, tracker ikke eller sælger ikke dine, dine venners, dine kollegaers og din families oplysninger til store organisationer.\n\nTeknisk set er Delta Chat en email-klient med et moderne chat interface. E-mail i nye klæder om man vil. 👻\n\nBrug Delta Chat med hvem som helst ud af milliarder af mennesker: brug blot deres email-adresse. Modtagerne behøver ikke at installere Delta Chat, besøge websider eller melde sig ind nogen steder - men, selvfølgelig, hvis du vil kan du henvise dem til 👉https://get.delta.chat";
 "edit_contact" = "Rediger kontakt";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fastgør chat";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Løsn samtale";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Fastgør";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Løsn";
 "ConversationFragment_quoted_message_not_found" = "Oprindelig besked ikke fundet";
 "reply_privately" = "Svar privat";
@@ -241,7 +241,7 @@
 "cannot_delete_contacts_in_use" = "Kan ikke slette kontakter med igangværende samtaler.";
 "ask_start_chat_with" = "Samtale med %1$@?";
 "ask_delete_value" = "Slet 1%1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Fjern %1$@ fra gruppe?";
 "open_url_confirmation" = "Vil du åbne dette link?";
 
@@ -271,7 +271,7 @@
 "chat_self_talk_subtitle" = "Beskeder sendt til mig selv";
 "saved_messages" = "Gemte beskeder";
 "saved_messages_explain" = "Videresend beskeder her for at have nem adgang\n\n Tage notater eller voicememoer \n\n Vedhæft filer for at gemme dem";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Gemt";
 "retry_send" = "Forsøg igen at sende besked";
 // reasons for a disabled message composer
@@ -313,20 +313,20 @@
 "send_message" = "Send besked";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Indkommende beskeder";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Udgående beskeder";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Ikke forbundet";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Forbinder...";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Opdaterer...";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Forbundet";
 "sending" = "Sender...";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Beskeder";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ af %2$@ brugt";
@@ -385,7 +385,7 @@
 "configuration_failed_with_error" = "Konfiguration mislykkedes. Fejl: %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Videresend til …";
 "share_multiple_attachments" = "Send %1$d filer til den valgte samtale?\n\nFilerne bliver sendt umodificeret i deres originale størrelse, f.eks. billeder og videoer bliver ikke ændret.";
 "share_multiple_attachments_multiple_chats" = "Send %1$d file(er) til %2$d samtaler?\n\nFilerne bliver sendt umodificeret i deres originale størrelse, f.eks. billeder og videoer bliver ikke ændret.";
@@ -403,9 +403,9 @@
 "pref_password_and_account_settings" = "Adgangskode og konto";
 "pref_who_can_see_profile_explain" = "Profilbillede og navn vises sammen med beskeder, når der kommunikeres med andre brugere. Allerede sendt information kan ikke slettes eller fjernes.";
 "pref_your_name" = "Dit navn";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Underskrift tekst";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Sendt med Delta Chat Messenger: https://delta.chat";
 "pref_enter_sends" = "Enter tast sender";
 "pref_enter_sends_explain" = "Tryk på enter tast vil sende tekst beskeden";
@@ -414,7 +414,7 @@
 "pref_outgoing_worse" = "Dårligere kvalitet mindre størrelse";
 "pref_vibrate" = "Vibrer";
 "pref_screen_security" = "Skærmsikkerhed";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Forespørgsel om at blokere skærmbilleder i seneste liste og i programmet";
 "pref_screen_security_please_restart_hint" = "Genstart programmet for at anvende skærm sikkerhed.";
 "pref_notifications" = "Notifikationer";
@@ -429,14 +429,14 @@
 "pref_privacy" = "Privatliv";
 "pref_chats_and_media" = "Samtaler og medie";
 "pref_system_default" = "Systemstandard";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Lys";
 "pref_dark_theme" = "Mørk";
 "pref_appearance" = "Udseende";
 "pref_theme" = "Tema";
 "pref_language" = "Sprog";
 "pref_incognito_keyboard" = "Inkognito tastatur";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Anmod tastatur om at deaktivere personlig indlæring";
 "pref_read_receipts" = "Kvittering for læsning";
 "pref_read_receipts_explain" = "Hvis læst kvittering er deaktiveret vil læst kvittering fra andre ikke blive vist.";
@@ -552,9 +552,9 @@
 "systemmsg_read_receipt_subject" = "Besked åbnet";
 "systemmsg_read_receipt_body" = "Beskeden \"%1$@\" du har sendt blev vist på modtagerens skærm.\n\nDette er ikke en garanti for at indholdet blev læst.";
 "systemmsg_cannot_decrypt" = "Denne besked kan ikke dekrypteres.\n\n• Det kan måske hjælpe at svare på beskeden og bede afsender sende beskeden igen.\n\n• I tilfælde at Delta Chat eller andet e-mail program på denne enhed eller en anden er blevet gen-installeret bør der sendes en Autocrypt opsætning besked derfra.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ af mig.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ af %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Ukent afsender af denne chat. Se \'info\' for flere detaljer.";
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";

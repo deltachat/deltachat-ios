@@ -20,9 +20,9 @@
 "back" = "Atzera";
 "close" = "Itxi";
 "forward" = "Birbidali";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Artxibatu";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Berreskuratu artxibotik";
 "mute" = "Isilarazi";
 "ephemeral_messages" = "Mezuen desagerpena";
@@ -38,7 +38,7 @@
 "one_moment" = "Unetxo bat...";
 "done" = "Egina";
 "undo" = "Desegin";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Hurrengoa";
 "error" = "Errorea";
 "error_x" = "Errorea: %1$@";
@@ -52,7 +52,7 @@
 "password" = "Pasahitza";
 "existing_password" = "Oraingo pasahitza";
 "now" = "Orain";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Arriskua";
 "today" = "Gaur";
 "yesterday" = "Atzo";
@@ -60,8 +60,8 @@
 "this_month" = "Hilabete honetan";
 "last_week" = "Azken astea";
 "last_month" = "Azken hilabetea";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Ni";
 "draft" = "Zirriborroa";
 "image" = "Irudia";
@@ -145,13 +145,13 @@
 "device_talk_explain" = "Txat honetako mezuak zure Delta Chat aplikazioak sortu ditu lokalki. Egileek aplikazioaren eguneraketei buruz eta erabileran arazoei buruz informatzeko erabiltzen dute.";
 "device_talk_welcome_message" = "Ongi etorri Delta Chat-era! Delta Chat beste bat bateko mezularitza aplikazioen itxura du, baina ez du kontrol zentralizaturik, ez dizu jarraitzen edo saltzen, ez zu ez zure lagunak, lankideak edo familia elkarte handi bati.\n\nTeknikoki, Delta Chat e-mail aplikazio bat da interfaze berri batekin. E-maila jantzi berri batekin esan genezake 👻\n\nErabili Delta Chat milaka miloika pertsonekin,  erabili bere e-mail helbidea eta kitto. Hartzaileek ez dute zertan Delta Chat instalatu behar, ez webguneak bisitatu edo izena eman inon. Hala ere, jakina, instalatu nahi badute hona bideratu ditzakezu 👉 https://get.delta.chat";
 "edit_contact" = "Editatu kontaktua";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Finkatu txata";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Desfinkatu txata";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Finkatu";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desfinkatu";
 "mute_for_one_hour" = "Mututu ordubete";
 "mute_for_two_hours" = "Mututu 2 ordu";
@@ -177,7 +177,7 @@
 "ask_delete_contact" = "Ezabatu %1$@ kontaktua behin betiko?\n\nAbian dauden txatak dituzten kontaktuak eta sistemaren helbide liburuan dauden kontaktuak ezin dira behin betiko ezabatu.";
 "cannot_delete_contacts_in_use" = "Ezin dira txatak abian dituzten kontaktuak ezabatu";
 "ask_start_chat_with" = "Txateatu %1$@ erabiltzailearekin?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Kendu %1$@ taldetik?";
 // contact list
 "contacts_title" = "Kontaktuak";
@@ -274,7 +274,7 @@
 "delete_account" = "Ezabatu kontua";
 "delete_account_ask" = "Ziur al zaude zure kontuaren datuak ezabatu nahi dituzula?";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Birbidali honi …";
 "share_abort" = "Partekatzea eten da baimenak falta direlako.";
 
@@ -288,9 +288,9 @@
 "pref_password_and_account_settings" = "Pasahitza eta kontua";
 "pref_who_can_see_profile_explain" = "Zure profileko argazkia eta izena zure mezuekin batera erakutsiko dira beste erabiltzaileekin komunikatzen zarenean. Informazioa behin bidalita ezin da ezabatu edo kendu.";
 "pref_your_name" = "Zure izena";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Sinaduraren testua";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Delta Chat mezulariarekin bidalita: https://delta.chat";
 "pref_enter_sends" = "Enter teklarekin bidali";
 "pref_enter_sends_explain" = "Enter tekla sakatzeak mezua bidaliko du";
@@ -299,7 +299,7 @@
 "pref_outgoing_worse" = "Kalitate txarragoa, tamaina txikia";
 "pref_vibrate" = "Bibratu";
 "pref_screen_security" = "Pantaila segurtasuna";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Eskatu pantaila-argazkiak blokeatzea azkenak zerrendan eta aplikazio barruan.";
 "pref_screen_security_please_restart_hint" = "Pantailaren segurtasun ezarpenak aplikatzeko berrabiarazi aplikazioa.";
 "pref_notifications" = "Jakinarazpenak";
@@ -311,14 +311,14 @@
 "pref_privacy" = "Pribatutasuna";
 "pref_chats_and_media" = "Txatak eta multimedia";
 "pref_system_default" = "Sisteman lehenetsia";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Argia";
 "pref_dark_theme" = "Iluna";
 "pref_appearance" = "Itxura";
 "pref_theme" = "Azala";
 "pref_language" = "Hizkuntza";
 "pref_incognito_keyboard" = "Teklatu pribatua";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Eskatu teklatuari pertsonalizatutako ikasketa desgaitzea";
 "pref_read_receipts" = "Irakurragiriak";
 "pref_read_receipts_explain" = "Irakurragiriak desgaituta badaude, ezin izango dituzu besteen irakurragiriak ikusi.";
@@ -405,9 +405,9 @@
 "systemmsg_read_receipt_subject" = "Irakurragiria";
 "systemmsg_read_receipt_body" = "Hau \"%1$@\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
 "systemmsg_cannot_decrypt" = "Ezin da mezu hau deszifratu.\n\n• Mezuari erantzun diezaiokezu eta berriro bidaltzea eskatu.\n\n• Delta Chat berrinstalatu baduzu edo beste posta programa bat instalatu baduzu gailu honetan edo beste batean, AutoCrypt ezarpen mezua handik hona birbidaltzen saiatu zaitezke.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "Nik: %1$@";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%2$@(e)k: %1$@";
 // qr code stuff
 "qr_code" = "QR kodea";

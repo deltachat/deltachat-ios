@@ -20,9 +20,9 @@
 "back" = "மீண்டும்";
 "close" = "நெருக்கமான";
 "forward" = "முன்னோக்கு";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "காப்பகத்தை";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "மீட்டெடுக்கலாம்";
 "mute" = "ஓசையற்ற";
 "ephemeral_messages" = "காணாமல் போகும் செய்திகள்";
@@ -35,7 +35,7 @@
 "never" = "எப்போதும் இல்லை";
 "one_moment" = "ஒரு நிமிடம் காத்திருக்கவும் ...";
 "done" = "முடிந்தது";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "அடுத்தது";
 "error" = "பிழை";
 "error_x" = "பிழை: %1$@";
@@ -44,13 +44,13 @@
 "bad_email_address" = "தவறான மின் அஞ்சல் முகவரி";
 "password" = "கடவுச்சொல்";
 "now" = "இப்போது";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "ஆபத்து";
 "today" = "இன்று";
 "yesterday" = "நேற்று";
 "this_week" = "இந்த வாரம்";
 "this_month" = "இந்த மாதம்";
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "நான்";
 "draft" = "வரைவு";
 "image" = "படம்";
@@ -157,12 +157,12 @@
 "pref_blocked_contacts" = "தடுக்கபட்ட தொடர்புகள்";
 "pref_password_and_account_settings" = "கணக்கு அமைப்புகள்";
 "pref_your_name" = "எனது பெயர்";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "என்னுடைய Delta Chat செயலியில் இருந்து அனுப்பி உள்ளேன் : https://delta.chat";
 "pref_enter_sends" = "\"enter\" மூலம் அனுப்பவும்";
 "pref_vibrate" = "அதிர்வு உண்டாக்கு";
 "pref_screen_security" = "திரை பாதுகாப்பு";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "அண்மை பட்டியல் மற்றும் மென்பொருளுக்கு உள்ளே திரையை படம் எடுப்பதை தடுக்கவும்";
 "pref_notifications" = "அறிவிப்புகள்";
 "pref_notifications_show" = "காட்டு";
@@ -173,14 +173,14 @@
 "pref_privacy" = "தனியுரிமை";
 "pref_chats_and_media" = "அரட்டைகள் மற்றும் ஊடகங்கள்";
 "pref_system_default" = "கருவி இயல்புநிலை";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "வெளிச்சமிக்க";
 "pref_dark_theme" = "இருள்கொண்ட";
 "pref_appearance" = "தோற்றம்";
 "pref_theme" = "நிறவடிவமைப்பு";
 "pref_language" = "மொழி";
 "pref_incognito_keyboard" = "மறைநிலை விசைப்பலகை";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "தனிப்பயனாக்கப்பட்ட கற்றலை முடக்க விசைப்பலகை கோருங்கள்";
 "pref_read_receipts" = "ரசீதுகளைப் படியுங்கள்";
 "pref_read_receipts_explain" = "வாசிப்பு ரசீதுகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து வாசிப்பு ரசீதுகளை நீங்கள் ";

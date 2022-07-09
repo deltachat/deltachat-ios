@@ -29,9 +29,9 @@
 "back" = "前へ";
 "close" = "閉じる";
 "forward" = "転送";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "アーカイブ";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "元に戻す";
 "mute" = "ミュート";
 "ephemeral_messages" = "消えるメッセージ";
@@ -44,11 +44,11 @@
 "start_chat" = "チャットを開始する";
 "show_full_message" = "メッセージ全体を表示";
 "show_full_message_in_browser" = "ブラウザにフルメッセージを表示";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "読み込み中";
 "hide" = "非表示";
 "load_remote_content" = "リモート画像を読み込む";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "リモート画像で追跡ができる。\n\nこの設定はフォントや他のコンテツを読み込むことも許可する。無効にしても埋め込まれた画像やキャッシュされた画像を表示されます。\n\nリモート画像を読み込む？";
 "always" = "常に";
 "once" = "一回のみ";
@@ -60,7 +60,7 @@
 "done" = "完了";
 "undo" = "元に戻す";
 "offline" = "オフライン";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "次へ";
 "error" = "エラー";
 "error_x" = "エラー：%1$@";
@@ -74,7 +74,7 @@
 "password" = "パスワード";
 "existing_password" = "既存のパスワード";
 "now" = "現在";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "危険";
 "today" = "今日";
 "yesterday" = "昨日";
@@ -82,12 +82,12 @@
 "this_month" = "今月";
 "last_week" = "先週";
 "last_month" = "先月";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "自分";
 "draft" = "下書き";
 "image" = "画像";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "返信";
 "gif" = "Gif";
 "images" = "画像";
@@ -95,14 +95,14 @@
 "voice_message" = "音声メッセージ";
 "forwarded" = "転送された";
 "forwarded_message" = "転送されたメッセージ";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "%1$@が転送しました";
 "video" = "動画";
 "documents" = "文章";
 "contact" = "連絡先";
 "verified_contact" = "確認済みの連絡先";
 "camera" = "カメラ";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "撮影";
 "switch_camera" = "カメラを切り替える";
 "toggle_fullscreen" = "フルスクリーン";
@@ -165,10 +165,10 @@
 "menu_unmute" = "ミュート解除";
 "menu_export_attachment" = "添付ファイルのエクスポート";
 "menu_all_media" = "全ての写真･動画･音楽";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "チャットに表示";
 "menu_share" = "共有";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "ブロック";
 "menu_block_contact" = "拒否する";
 "menu_unblock_contact" = "拒否を解除";
@@ -194,13 +194,13 @@
 "device_talk_subtitle" = "ローカルで生成されたメッセージ";
 "device_talk_explain" = "このチャットのメッセージはアプリで生成されます。アプリ開発者はアップデートや問題点をお知らせするために使用しています。";
 "edit_contact" = "連絡先を編集";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "チャットをピン留め";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "チャットのピン留めを解除";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "ピン留め";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "ピン留めを解除";
 "ConversationFragment_quoted_message_not_found" = "メッセージが見つかりません";
 "reply_privately" = "個別に返信する";
@@ -244,7 +244,7 @@
 "cannot_delete_contacts_in_use" = "チャット中の連絡先は削除できません。";
 "ask_start_chat_with" = "%1$@とチャットしますか";
 "ask_delete_value" = "%1$@を削除しますか？";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@をグループから排除しますか";
 "open_url_confirmation" = "このリンクを開きますか？";
 
@@ -274,7 +274,7 @@
 "chat_self_talk_subtitle" = "自分に送ったメッセージ";
 "saved_messages" = "保存したメッセージ";
 "saved_messages_explain" = "ここにメッセージを転送しておけば、簡単にアクセスできます。メモやボイスメモも保存できます。メディアを添付して保存します。";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "保存しました";
 "retry_send" = "メッセージの配信を再試行します";
 // reasons for a disabled message composer
@@ -320,13 +320,13 @@
 "send_message" = "送る";
 
 "connectivity" = "接続性";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "未接続";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "接続中";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "アップデート中";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "接続済み";
 "welcome_intro1_message" = "世界で最も大衆的なメッセンジャーです。自由に使えて独立している。";
 "login_title" = "ログイン";
@@ -373,7 +373,7 @@
 "configuration_failed_with_error" = "設定失敗。エラー：%1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "転送";
 "share_multiple_attachments" = "%1$dをチャットに送りますか。\n\nファイルは圧縮されずに送られます。";
 "share_multiple_attachments_multiple_chats" = "%1$dつのファイルを%2$d個のチャットに送りますか。\n\nファイルは圧縮されずに送られます。";
@@ -391,9 +391,9 @@
 "pref_password_and_account_settings" = "パスワードとアカウント";
 "pref_who_can_see_profile_explain" = "アイコン画像や名前は他のユーザーに連絡するとメッセージとともに表示されます。既に送信された情報を削除することができます。";
 "pref_your_name" = "あなたの名前";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "署名";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_enter_sends" = "エンターキーで送信";
 "pref_enter_sends_explain" = "エンターキーを押すとテキストメッセージが送信されます";
 "pref_outgoing_media_quality" = "送信する画像や映像の画質";
@@ -401,7 +401,7 @@
 "pref_outgoing_worse" = "低画質・サイズが小さい";
 "pref_vibrate" = "振動";
 "pref_screen_security" = "画面セキュリティ";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "アプリ内や「最近使ったアプリ」でスクリーンショットを禁止する";
 "pref_screen_security_please_restart_hint" = "画面のセキュリティ設定を適用してアプリを再起動してください。";
 "pref_notifications" = "通知";
@@ -416,14 +416,14 @@
 "pref_privacy" = "機密保護";
 "pref_chats_and_media" = "チャットと写真･動画･音楽";
 "pref_system_default" = "システム既定";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "白";
 "pref_dark_theme" = "黒";
 "pref_appearance" = "外観";
 "pref_theme" = "見た目";
 "pref_language" = "言語";
 "pref_incognito_keyboard" = "シークレットキーボード";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "予測入力を無効にする";
 "pref_read_receipts" = "既読通知";
 "pref_read_receipts_explain" = "既読通知を無効にすると、相手の既読通知も受け取れません。";
@@ -523,9 +523,9 @@
 "systemmsg_member_removed" = "%1$@が退会されました。";
 "systemmsg_group_left" = "グループを退会しました。";
 "systemmsg_read_receipt_subject" = "既読";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "自分から%1$@";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%2$@から%1$@";
 "systemmsg_subject_for_new_contact" = "%1$@さんからのメッセージ";
 "systemmsg_failed_sending_to" = "%1$@さんへのメッセージ送信に失敗しました。";

@@ -20,9 +20,9 @@
 "back" = "Geri";
 "close" = "Bağla";
 "forward" = "Başqasına göndərmə";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arxivləşmə";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Arxivdən çıxarma";
 "mute" = "Səssiz";
 "ephemeral_messages" = "Yox olan mesajlar";
@@ -53,8 +53,8 @@
 "this_month" = "Bu ay";
 "last_week" = "Keçən həftə";
 "last_month" = "Keçən ay";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Mənə";
 "draft" = "Laihə";
 "image" = "Şəkil";
@@ -155,7 +155,7 @@
 "ask_delete_contacts" = "Kontaktları silmək? Bu əməliyyat seçilmiş kontaktları daimi olaraq silməyəcək. \n\n Sistem kontakt kitabından davam edən söhbətlər və kontaktlar ilə əlaqə saxlanıla bilməz.";
 "cannot_delete_contacts_in_use" = "Davam edən çatlarla kontakt silinmir.";
 "ask_start_chat_with" = "%1$@ ilə çat? ";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ qrupdan silmək? ";
 // contact list
 "contacts_title" = "Kontaktlar";
@@ -241,7 +241,7 @@
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = " \"%1$@\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "İrəli ...";
 "share_abort" = "İcazə olmadığına görə göndərmə kəsildi";
 
@@ -254,9 +254,9 @@
 "pref_blocked_contacts" = "Bloklanmış kontaktlar";
 "pref_who_can_see_profile_explain" = "Digər istifadəçilərlə ünsiyyət qurarkən profil şəkliniz və adınız mesajlarınızla birlikdə göstərilir. Zatən göndərilən məlumat silinməyəcək. ";
 "pref_your_name" = "Adın";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Yazını mətni";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Delta Chat Messenger-lə göndərdim : https://delta.chat";
 "pref_enter_sends" = "Enter açarı ilə göndərmək";
 "pref_enter_sends_explain" = "Enter düyməsini basaraq mətn mesajları göndərəcək";
@@ -265,7 +265,7 @@
 "pref_outgoing_worse" = "Daha pis keyfiyyət, kiçik ölçülü";
 "pref_vibrate" = "Vibrasiya";
 "pref_screen_security" = "Ekran təhlükəsizliyi";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Son proqramlar siyahısında və proqramın daxilində ekran çəkməyi qadağan etmə";
 "pref_screen_security_please_restart_hint" = "Ekranın təhlükəsizlik tənzimləmələrini tətbiq etmək üçün proqramı yenidən başladın.";
 "pref_notifications" = "Bildirişlər";
@@ -276,14 +276,14 @@
 "pref_silent" = "Səssiz";
 "pref_privacy" = "Gizlilik";
 "pref_chats_and_media" = "Çatlar və faillar";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Açıq";
 "pref_dark_theme" = "Tünd";
 "pref_appearance" = "Görünüş";
 "pref_theme" = "Tema";
 "pref_language" = "Dillər";
 "pref_incognito_keyboard" = "Məxfi klaviatura";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Klaviaturanın personal öyrənməyini söndürmək";
 "pref_read_receipts" = "Qəbul olunanları oxuyun";
 "pref_read_receipts_explain" = "Bildirişlər aradan qaldırılırsa, başqalarının oxuduğu bildirişləri görə bilməyəcəksiniz.";
@@ -353,9 +353,9 @@
 "systemmsg_group_left" = "Qrup buraxdı.";
 "systemmsg_read_receipt_subject" = "Qəbul olunanları oxuyun";
 "systemmsg_cannot_decrypt" = "Bu mesaj şifresi çözülə bilməz. \n\n • Bu mesaja yalnız cavab vermək və göndərənin mesajı yenidən göndərməsini xahiş edə bilər. \n\n • Bu barədə Delta Chat və ya başqa bir e-poçt proqramını yenidən quraşdırdığınız halda oradan Autocrypt Kurulum Mesajı göndərmək istədiyiniz başqa bir qurğudan istifadə edə bilərsiniz.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ məndən. ";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ ilə %2$@.";
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";

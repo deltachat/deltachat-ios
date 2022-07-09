@@ -31,9 +31,9 @@
 "forward" = "Eteenpäin";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Lähetä uudelleen";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arkistoi";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Poista arkistosta";
 "mute" = "Mykistä";
 "ephemeral_messages" = "Katoavat viestit";
@@ -46,12 +46,12 @@
 "start_chat" = "Aloita keskustelu";
 "show_full_message" = "Näytä koko viesti...";
 "show_full_message_in_browser" = "Näytä koko viesti selaimessa...";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "Ladataan...";
 "hide" = "Piilota";
 "activate" = "Aktivoi";
 "load_remote_content" = "Lataa etäkuvat";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Etäkuvien avulla sinua voidaan seurata.\n\nAsetus mahdollistaa myös fonttien ja muun sisällön lataamisen. Voit nähdä upotettuja kuvia, vaikka asetus olisi pois.\n\nLataa etäkuvat?";
 "always" = "Aina";
 "once" = "Kerran";
@@ -63,7 +63,7 @@
 "done" = "Valmis";
 "undo" = "Peru";
 "offline" = "Ei verkkoyhteyttä";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Seuraava";
 "error" = "Virhe";
 "error_x" = "Virhe: %1$@";
@@ -77,7 +77,7 @@
 "password" = "Salasana";
 "existing_password" = "Vanha salasana";
 "now" = "Heti";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Varoitus";
 "today" = "Tänään";
 "yesterday" = "Eilen";
@@ -85,34 +85,34 @@
 "this_month" = "Tässä kuussa";
 "last_week" = "Viime viikolla";
 "last_month" = "Viime kuussa";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Nähty viimeksi %1$@";
 "last_seen_unknown" = "Nähty viimeksi: ei tiedossa";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
 
 "self" = "Minä";
 "draft" = "Luonnos";
 "image" = "Kuva";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Vastaus";
 "gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Tarra";
 "images" = "Kuvat";
 "audio" = "Äänite";
 "voice_message" = "Ääniviesti";
 "forwarded" = "Välitetty";
 "forwarded_message" = "Välitetty viesti";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Välittäjä: %1$@";
 "video" = "Video";
 "documents" = "Asiakirjat";
 "contact" = "Yhteyshenkilö";
 "verified_contact" = "Varmistettu yhteyshenkilö";
 "camera" = "Kamera";
-// "capture" here means "start a video recording" or "take a photo"; eg. the description of the "shutter button" in the camera controls
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Kuvaa";
 "switch_camera" = "Vaihda kamera";
 "toggle_fullscreen" = "Koko näytön tila";
@@ -146,10 +146,10 @@
 "menu_new_contact" = "Uusi yhteystieto";
 "menu_new_chat" = "Uusi keskustelu";
 "menu_new_group" = "Uusi ryhmä";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "Uusi ryhmä tai aihe";
 "menu_new_verified_group" = "Uusi varmistettu ryhmä";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Kuulutuslista";
 "broadcast_lists" = "Kuulutuslistat";
 "new_broadcast_list" = "Uusi kuulutuslista";
@@ -184,10 +184,10 @@
 "menu_export_attachment" = "Vie liite";
 "menu_export_attachments" = "Vie liitteet";
 "menu_all_media" = "Kaikki media";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Näytä keskustelussa";
 "menu_share" = "Jaa";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Estä";
 "menu_block_contact" = "Estä yhteystieto";
 "menu_unblock_contact" = "Salli yhteystieto";
@@ -219,13 +219,13 @@
 "device_talk_explain" = "Viestit tässä keskustelussa luodaan paikallisesti Delta Chat -sovelluksessa. Kehittäjät ilmoittavat niiden avulla sovelluksen päivityksistä ja mahdollisista ongelmista.";
 "device_talk_welcome_message" = "Tervetuloa Delta Chatiin! – Delta Chat näyttää ja tuntuu samalta kuin suositut pikaviestintäsovellukset, kuitenkin ilman keskitettyä kontrollia, seurantaa tai käyttäjien tietojen myymistä isoille yrityksille.\n\nTeknisesti Delta Chat on sähköpostisovellus nykyaikaisella pikaviestikäyttöliittymällä. Sähköposti uusissa vaatteissa, jos niin voi sanoa 👻\n\nDelta Chat toimii miljardien ihmisten kanssa: lähetä vain viesti heidän sähköpostiosoitteeseensa. Viestien vastaanottajien ei tarvitse asentaa Delta Chatia, käydä nettisivustoilla tai liittyä mihinkään - paitsi jos he haluavat. Silloin voit ohjata heidät osoitteeseen 👉 https://get.delta.chat";
 "edit_contact" = "Muokkaa yhteystietoa";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Kiinnitä keskustelu";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Irrota keskustelu";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Kiinnitä";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Irrota";
 "ConversationFragment_quoted_message_not_found" = "Alkuperäistä viestiä ei löydy";
 "reply_privately" = "Vastaa yksityisesti";
@@ -273,9 +273,9 @@
 "cannot_delete_contacts_in_use" = "Aktiivisten keskustelujen yhteystietoja ei voi poistaa.";
 "ask_start_chat_with" = "Aloita keskustelu yhteystiedon %1$@ kanssa?";
 "ask_delete_value" = "Poista %1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Poista %1$@ ryhmästä?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Poista %1$@ kuulutuslistalta?";
 "open_url_confirmation" = "Haluatko avata tämän linkin?";
 
@@ -310,7 +310,7 @@
 "archive_empty_hint" = "Arkistoimasi keskustelut näkyvät täällä";
 "saved_messages" = "Tallennetut viestit";
 "saved_messages_explain" = "• Välitä viestejä tänne helppoa pääsyä varten\n\n• Kirjoita tai äänitä muistiinpanoja\n\n• Liitä mediaa tallentaaksesi ne";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Tallennettu";
 "save_as" = "Tallenna nimellä";
 "retry_send" = "Yritä uudelleen lähettääksesi viestin";
@@ -386,25 +386,25 @@
 "send_message" = "Lähetä viesti";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Saapuvat viestit";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Lähtevät viestit";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "Tallennustila palvelimella %1$@";
 "connectivity" = "Yhteys";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Ei yhdistetty";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Yhdistetään...";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Päivitetään...";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Yhdistetty";
 "sending" = "Lähetetään";
 "last_msg_sent_successfully" = "Viimeinen viesti lähetetty onnistuneesti.";
 "not_supported_by_provider" = "Palveluntarjoajasi ei tue tätä.";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Viestit";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ / %2$@ käytössä";
@@ -468,7 +468,7 @@
 "configuration_failed_with_error" = "Asetusten luominen epäonnistui. Virhe: %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Välitä yhteystiedolle...";
 "share_multiple_attachments" = "Lähetä %1$d tiedostoa valittuun keskusteluun?\n\nTiedostot lähetetään muokkaamattomina ja alkuperäisen kokoisina, kuvia tai videoita ei pakata uudelleen.";
 "share_multiple_attachments_multiple_chats" = "Lähetä %1$d tiedosto(a) %2$d keskusteluun?\n\nTiedostot lähetetään muokkaamattomina ja alkuperäisen kokoisina, kuvia ja videoita ei pakata uudelleen.";
@@ -486,9 +486,9 @@
 "pref_password_and_account_settings" = "Salasana ja tili";
 "pref_who_can_see_profile_explain" = "Profiilikuvasi, nimesi ja allekirjoituksesi lähetetään yhdessä viestiesi kanssa muille käyttäjille.";
 "pref_your_name" = "Nimesi";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Allekirjoitus";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Lähetetty Delta Chat -sovelluksesta: https://delta.chat";
 "pref_enter_sends" = "Enter-näppäin lähettää";
 "pref_enter_sends_explain" = "Enter-näppäimen painaminen lähettää viestin";
@@ -497,7 +497,7 @@
 "pref_outgoing_worse" = "Huonompi laatu, pienempi koko";
 "pref_vibrate" = "Värinä";
 "pref_screen_security" = "Näytön turvallisuus";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Pyydä järjestelmää estämään näyttökuvien tallentaminen sovelluksessa ja \"viimeiset\"-näkymässä.";
 "pref_screen_security_please_restart_hint" = "Näyttölukon käyttöönotto vaatii sovelluksen uudelleenkäynnistyksen.";
 "pref_notifications" = "Ilmoitukset";
@@ -512,14 +512,14 @@
 "pref_privacy" = "Yksityisyys";
 "pref_chats_and_media" = "Keskustelut ja media";
 "pref_system_default" = "Järjestelmän oletus";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "Vaalea";
 "pref_dark_theme" = "Tumma";
 "pref_appearance" = "Ulkonäkö";
 "pref_theme" = "Teema";
 "pref_language" = "Kieli";
 "pref_incognito_keyboard" = "Näppäimistön yksityisyys";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Pyydä näppäimistöä kytkemään yksilöity oppiminen pois päältä";
 "pref_read_receipts" = "Lukukuittaukset";
 "pref_read_receipts_explain" = "Jos lukukuittaukset kytketään pois, et näe kuittauksia myöskään muilta";
@@ -653,9 +653,9 @@
 "systemmsg_read_receipt_subject" = "Viesti avattu";
 "systemmsg_read_receipt_body" = "Lähettämäsi viesti \"%1$@\" näytettiin vastaanottajan näytöllä.\n\nTämä ei takaa, että sisältö luettiin.";
 "systemmsg_cannot_decrypt" = "Viestin salausta ei voi purkaa.\n\n• Pyydä lähettäjää lähettämään viesti uudelleen.\n\n• Jos asensit Delta Chatin tai toisen sähköpostisovelluksen uudelleen tälle tai toiselle laitteelle, Autocrypt-asetusviestin lähettäminen siitä sovelluksesta voi auttaa.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ minun toimestani.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ käyttäjän %2$@ toimesta.";
 "systemmsg_unknown_sender_for_chat" = "Tuntematon lähettäjä. Katso \"lisätietoja\".";
 "systemmsg_subject_for_new_contact" = "Viesti lähettäjältä %1$@";
@@ -678,7 +678,7 @@
 "systemmsg_chat_protection_enabled" = "Keskustelusuojaus käytössä";
 
 "devicemsg_self_deleted" = "Poistit \"Tallennetut viestit\" -keskustelun.\n\nℹ️ Käyttääksesi \"Tallennetut viestit\" -ominaisuutta jälleen, aloita uusi keskustelu itsesi kanssa.";
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Palveluntarjoajasi tallennuskiintiö ylitetään pian, käytössä on jo %1$@ / %%.\n\nEt välttämättä enää voi vastaanottaa viestejäsi, kun 100 %% on käytössä.\n\n👉 Kokeile poistaa viestejä palveluntarjoajasi internetkäyttöliittymästä. Kannattaa myös ehkä kytkeä päälle \"Asetukset / Poista vanhat viestit\". Voit tarkistaa tämän hetkisen tallennustilan käytön \"Asetukset / Yhteys\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Laitteesi päivämäärä tai aika vaikuttaa olevan väärässä (%1$@).\n\nAseta kellonaika ⏰🔧 varmistaaksesi, että viestin vastaanottaminen onnistuu.";

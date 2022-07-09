@@ -31,9 +31,9 @@
 "forward" = "Përpara";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Ridërgoje";
-// In the meaning of "To archive", "Put a chat to the archive". This string does not mean "The Archive".
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arkivoje";
-// In the meaning of "To unarchive", "Remove a chat from the archive", opposite of the previous string
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Çarkivoje";
 "mute" = "Heshtoje";
 "ephemeral_messages" = "Mesazhe që zhduken";
@@ -46,12 +46,12 @@
 "start_chat" = "Nisni fjalosje";
 "show_full_message" = "Shfaq mesazhin e plotë…";
 "show_full_message_in_browser" = "Shfaq mesazh të plotë në shfletues…";
-// this is shown as placeholder when something is loading at some places
+// Placeholder text when something is loading
 "loading" = "Po ngarkohet…";
 "hide" = "Fshihe";
 "activate" = "Aktivizoje";
 "load_remote_content" = "Ngarko figura të largëta";
-// possible answers to the question are: Never, Always, Once
+// Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Figurat e largëta mund të përdoren për t’ju ndjekur.\n\nRregullimi lejon gjithashtu të ngarkohen shkronja dhe lëndë tjetër. Edhe nëse është e çaktivizuar, prapë mund të shihni figura të trupëzuara ose të ruajtura në fshehtinë.\n\nTë ngarkohen figura të largëta?";
 "always" = "Përherë";
 "once" = "Vetëm njëherë";
@@ -63,7 +63,7 @@
 "done" = "U bë";
 "undo" = "Zhbëje";
 "offline" = "Jo në linjë";
-// Translators: used eg. for the next view, could also be "continue" or so. as used in iOS headers, the string should be as short as possible, though.
+// For the next view or as "continue". Should be as short as possible.
 "next" = "Pasuesja";
 "error" = "Gabim";
 "error_x" = "Gabim: %1$@";
@@ -77,7 +77,7 @@
 "password" = "Fjalëkalim";
 "existing_password" = "Fjalëkalimi ekzistues";
 "now" = "Tani";
-// Translators: used as a headline in sections with actions that cannot be undone. could also be "Caution" or "Cave" or so.
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Rrezik";
 "today" = "Sot";
 "yesterday" = "Dje";
@@ -85,27 +85,27 @@
 "this_month" = "Këtë muaj";
 "last_week" = "Javën e shkuar";
 "last_month" = "Muajin e shkuar";
-// the placeholder will be replaced by a date or time, resulting eg. in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Parë së fundi më %1$@";
 "last_seen_unknown" = "Parë së fundi më: S’dihet";
-// Translators: show beside messages that are "N minutes old". prefer a short string, prefer abbreviations if they're well-known
-// Translators: show beside messages that are "N hours old". prefer a short string, prefer abbreviations if they're well-known
-// short title, used for "N Chats Selected" or "N Messages Selected", however, requires a shorter form, eg. "N Selected" in english
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
 
 "self" = "Unë";
 "draft" = "Skicë";
 "image" = "Figurë";
-// Translators: Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Përgjigje";
 "gif" = "Gif";
-// "Stickers" as known from other messengers, please pick up the wording from there; in some languages, "Sticker" in english is just fine.
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Ngjitës";
 "images" = "Figura";
 "audio" = "Audio";
 "voice_message" = "Mesazh zanor";
 "forwarded" = "Përcjellë";
 "forwarded_message" = "Mesazhi u përcoll";
-// %1$s will be replaced by the name or the e-mail address of the person who has forwarded the message
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Përcjellë nga %1$@";
 "video" = "Video";
 "documents" = "Dokumente";
@@ -144,10 +144,10 @@
 "menu_new_contact" = "Kontakt i ri";
 "menu_new_chat" = "Fjalosje e re";
 "menu_new_group" = "Grup i ri";
-// "Subject" here must be the same wording as used in the e-mail context, so. eg. "Betreff" in german (the idea is to help people coming from the e-mail context)
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "Grup ose Subjekt i Ri";
 "menu_new_verified_group" = "Grup i ri i verifikuar";
-// consider keeping the term "broadcast"; check how these lists are called eg. on whatsapp in the destination language
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Listë Transmetimi";
 "broadcast_lists" = "Lista Transmetimi";
 "new_broadcast_list" = "Listë e Re Transmetimi";
@@ -182,10 +182,10 @@
 "menu_export_attachment" = "Eksporto bashkëngjitje";
 "menu_export_attachments" = "Eksporto Bashkëngjitje";
 "menu_all_media" = "Krejt mediat";
-// menu entry that opens eg. a gallery image or a document in the chat at the correct position
+// Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Shfaqe në fjalosje";
 "menu_share" = "Ndajeni me të tjerë";
-// this is the action "to block sth." usually a mailing list or a contact. this is NOT "a large solid piece of hard material" :)
+// Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bllokoje";
 "menu_block_contact" = "Bllokoje kontaktin";
 "menu_unblock_contact" = "Zhbllokoje kontaktin";
@@ -217,13 +217,13 @@
 "device_talk_explain" = "Mesazhet në këtë fjalosje prodhohen lokalisht nga aplikacioni juaj Delta Chat. Krijuesit e tij e përdorin për t’ju bërë të ditur përditësime dhe probleme gjatë përdorimit.";
 "device_talk_welcome_message" = "Mirë se vini te Delta Chat! – Delta Chat duket si aplikacione të tjerë popullorë për shkëmbim mesazhesh, por nuk përmban kontroll të centralizuar, s’ju gjurmon apo shet te ente të mëdha ju, shokët tuaj, kolegët apo familjen tuaj.\n\nTeknikisht, Delta Chat është një aplikacion email me një ndërfaqe moderne. Email me rroba të reja, nëse doni kështu 👻\n\nPërdoreni Delta Chat-in me cilindo prej miliarda vetash: thjesht përdorni adresat e tyre email. Marrësit s’ka nevojë të instalojnë Delta Chat-in, të vizitojnë sajte apo të regjistrohen diku - por sigurisht, nëse duan, mund t’i drejtoni te 👉 https://get.delta.chat";
 "edit_contact" = "Përpunoni kontaktin";
-// Translators: "Pin" here is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fiksojeni bisedën";
-// Translators: this is the opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Hiqeni bisedën nga e fiksuar";
-// Translators: this is the verb for pinning, making sth. sticky. this is NOT the appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Fiksoje";
-// Translators: this is the opposite of "Pin", removing the sticky-state from sth.
+// Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Çfiksoje";
 "ConversationFragment_quoted_message_not_found" = "S’u gjet mesazhi origjinal";
 "reply_privately" = "Përgjigjuni privatisht";
@@ -271,9 +271,9 @@
 "cannot_delete_contacts_in_use" = "S\’mund të fshihen kontakte me fjalosje në zhvillim e sipër.";
 "ask_start_chat_with" = "Të bisedohet me %1$@?";
 "ask_delete_value" = "Të fshihet %1$@?";
-// Translators: %1$s will be replaces by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Të hiqet %1$@ nga grupi?";
-// Translators: %1$s will be replaced by a comma separated list of names
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Të hiqen %1$@ prej liste transmetimi?";
 "open_url_confirmation" = "Doni të hapet kjo lidhje?";
 
@@ -308,7 +308,7 @@
 "archive_empty_hint" = "Nëse arkivoni fjalosje, ato do të shfaqen këtu.";
 "saved_messages" = "Mesazhe të ruajtur";
 "saved_messages_explain" = "• Përcillini mesazhet këtu për përdorim të lehtë\n\n• Mbani shënime ose kujtesa zanore\n\n• Bashkëngjitni media për t’i ruajtur";
-// this "Saved" should match the "Saved" from "Saved messages"
+// Should match "Saved" from "Saved messages"
 "saved" = "Të ruajtur";
 "save_as" = "Ruaje Si";
 "retry_send" = "Riprovo të dërgosh mesazhin";
@@ -384,25 +384,25 @@
 "send_message" = "Dërgo mesazh";
 
 // Connectivity
-// Used as a headline for the "Inbox" eg. in the "Connectivity" view
+// Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Mesazhe të Marrë";
-// Used as a headline for the "Outbox" eg. in the "Connectivity" view
+// Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mesazhe të Dërguar";
-// Used as a headline in the "Connectivity" view. The placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "Depozitim në %1$@";
 "connectivity" = "Aftësi lidhjeje";
-// Shown eg. in the title bar if the app is "Not connected"; as there is very few room, try to be as short as possible.
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "I palidhur";
-// Shown eg. in the title bar if the app is "Connecting"; as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Po lidhet…";
-// Shown eg. in the title bar if the app is "Updating" (eg. getting new/old message, sync things); as there is very few room, try to be as short as possible. Note that the three dots are a single character (…), not three (...)
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Po përditësohet…";
-// Shown eg. in the setting if the app is "Connected"
+// Shown in the setting if the app is "Connected"
 "connectivity_connected" = "I lidhur";
 "sending" = "Po dërgohet…";
 "last_msg_sent_successfully" = "Mesazhi i fundit i dërguar me sukses.";
 "not_supported_by_provider" = "I pambuluar nga furnizuesi juaj i shërbimit";
-// Used as a subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed or so.
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mesazhe";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ nga %2$@ gjithsej";
@@ -466,7 +466,7 @@
 "configuration_failed_with_error" = "Formësimi dështoi. Gabim: %1$@";
 
 // share and forward messages
-// Translators: Title shown above a chat/contact list; the user selects the recipient of the messages he wants to forward to
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Përcilljani …";
 "share_multiple_attachments" = "Të dërgohen %1$d kartela te fjalosja e përzgjedhur?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale, p.sh., figurat dhe videot nuk rikodohen.";
 "share_multiple_attachments_multiple_chats" = "Doni të dërgohet %1$d kartelë(a) te 2 %2$d fjalosje?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale, p.sh., figura dhe video nuk rikodohen.";
@@ -484,9 +484,9 @@
 "pref_password_and_account_settings" = "Fjalëkalim dhe llogari";
 "pref_who_can_see_profile_explain" = "Fotoja dhe emri juaj i profilit do të shfaqen tok me mesazhet, kur komunikoni me përdorues të tjerë. Informacioni i dërguar tashmë s\’mund të fshihet apo të hiqet.";
 "pref_your_name" = "Emri juaj";
-// Translators: The value entered here is visible only to recipients who DO NOT use Deltachat, so its not a "Status" but the last line in the E-Mail.
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Tekst nënshkrimi";
-// Translators: The URL should not be localized, it is not clear which language the receiver prefers and the language will be detected on the server
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_default_status_text" = "Dërguar me Delta Chat Messenger: https://delta.chat";
 "pref_enter_sends" = "Tasti Enter dërgon";
 "pref_enter_sends_explain" = "Shtypja e tastit Enter do të dërgojë mesazhe tekst";
@@ -495,7 +495,7 @@
 "pref_outgoing_worse" = "Cilësia më e ulët, madhësi e vogël";
 "pref_vibrate" = "Dridhu";
 "pref_screen_security" = "Siguri ekrani";
-// Translators: The wording must indicate that we can't guarantee that, its a System flag that we set. But the System in question must honor it.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Kërko të bllokohen foto ekrani në lista të freskëta dhe brenda aplikacionit";
 "pref_screen_security_please_restart_hint" = "QË të hyjnë në fuqi rregullimet mbi sigurinë e ekranit, ju lutemi, rinisni aplikacionin.";
 "pref_notifications" = "Njoftime";
@@ -510,14 +510,14 @@
 "pref_privacy" = "Privatësi";
 "pref_chats_and_media" = "Fjalosje dhe media";
 "pref_system_default" = "Parazgjedhje sistemi";
-// Translators: "light" in the meaning "opposite of dark"
+// Translators: as in "opposite of dark"
 "pref_light_theme" = "E çelët";
 "pref_dark_theme" = "E errët";
 "pref_appearance" = "Dukje";
 "pref_theme" = "Temë";
 "pref_language" = "Gjuhë";
 "pref_incognito_keyboard" = "Mos ruaj gjë";
-// Translators: Keep in mind that this is a Request - it must be clear in the wording that this cannot be enforced.
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Kërkoji tastierës të çaktivizojë nxënie të personalizuar";
 "pref_read_receipts" = "Lexoni dëftesa";
 "pref_read_receipts_explain" = "Nëse leximi i dëftesave është i çaktivizuar, s\’do të jeni në gjendje të shihni mesazh \"Lexoni dëftesa\" prej të tjerësh";
@@ -650,9 +650,9 @@
 "systemmsg_read_receipt_subject" = "Dëftesë leximi";
 "systemmsg_read_receipt_body" = "Kjo është dëftesë leximi për mesazhin \"%1$@\".\n\nDo të thotë që mesazhi u shfaq te pajisja e marrësit, jo domosdo që lënda u lexua.";
 "systemmsg_cannot_decrypt" = "Ky mesazh s\’mund të shfshehtëzohet.\n\n• Mundet që të ndihmojë dërgimi thjesht i një përgjigjeje këtij mesazhi dhe t\’i kërkohet dërguesit ta ridërgojë mesazhin.\n\n• Në rast se ri-instaluat Delta Chat-in apo një tjetër program email-esh në këtë apo në një tjetër pajisje, mund të donit të dërgonit një Mesazh Rregullimi Autocrypt-i që prej andej.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed).
+// Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ nga unë.";
-// Translators: %1$s will be replaced by sth. as "member xy added" (trailing full-stop removed). %2$s will be replaced by the name/addr of the person who did this action.
+// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
 "systemmsg_action_by_user" = "%1$@ nga %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
 "systemmsg_subject_for_new_contact" = "Mesazh nga %1$@";
@@ -675,7 +675,7 @@
 "systemmsg_chat_protection_enabled" = "Mbrojtja e fjalosjes u aktivizua.";
 
 "devicemsg_self_deleted" = "Fshitë fjalosjen “Mesazhe të ruajtur”.\n\nℹ️ Që të përdorni sërish veçorinë “Mesazhe të ruajtur”, krijoni një fjalosje të re me veten tuaj.";
-// %1$s will be replaced by the number of storage already used, sth. as '500 MB'. CAVE: if you want to use a simple the percent sign, type in two, so eg. %1$s %%
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Po mbaron depozita e shërbimit tuaj, përdoren tashmë %1$@%%.\n\nKur depozita është 100%% e përdorur, mund të mos jeni në gjendje të merrni mesazhe.\n\n👉 Ju lutemi, shihni se mos mund të fshini të dhëna të vjetra që nga ndërfaqja web e furnizuesit të shërbimit dhe shihni mundësinë të aktivizoni “Rregullime / Fshi Mesazhe të Vjetër”. Se sa depozitë është aktualisht e përdorur mund ta kontrolloni kurdo, që nga \"Rregullime / Lidhje\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Data ose koha e pajisjes tuaj duket të jetë e pasaktë (%1$@).\n\nRregulloni sahatin tuaj ⏰🔧 që të garantohet se mesazhet tuaj merren saktë.";
