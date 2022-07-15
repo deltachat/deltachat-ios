@@ -572,6 +572,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
                     guard let self = self else { return }
                     appDelegate.locationManager.disableLocationStreamingInAllChats()
                     _ = self.dcAccounts.remove(id: selectedAccountId)
+                    KeychainManager.deleteAccountSecret(id: selectedAccountId)
                     INInteraction.delete(with: "\(selectedAccountId)", completion: nil)
                     if self.dcAccounts.getAll().isEmpty {
                         _ = self.dcAccounts.add()

@@ -35,6 +35,20 @@ public class KeychainManager {
         return status == errSecSuccess || status == errSecItemNotFound
     }
 
+    /**
+     * Tries to deletes the secret for a given account id, errors will be ignored
+     */
+    public static func deleteAccountSecret(id: Int) {
+        let query = [
+          kSecValueData: createRandomPassword().data(using: .utf8)!,
+          kSecAttrAccount as String: "\(id)",
+          kSecClass: kSecClassGenericPassword,
+          kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
+          kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
+        ] as CFDictionary
+        _ = SecItemDelete(query)
+    }
+
     private static func createRandomPassword() -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXZY1234567890"
         return String((0..<36).map { _ in letters.randomElement()! })
