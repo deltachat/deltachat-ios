@@ -711,6 +711,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_SETUP_CONTACT_QR_DESC, localizationKey: "qrshow_join_contact_hint")
         dcContext.setStockTranslation(id: DC_STR_SECURE_JOIN_GROUP_QR_DESC, localizationKey: "qrshow_join_group_hint")
         dcContext.setStockTranslation(id: DC_STR_NOT_CONNECTED, localizationKey: "connectivity_not_connected")
+        dcContext.setStockTranslation(id: DC_STR_AEAP_ADDR_CHANGED, localizationKey: "aeap_addr_changed")
+        dcContext.setStockTranslation(id: DC_STR_AEAP_EXPLANATION_AND_LINK, localizationKey: "aeap_explanation")
     }
 
     func appIsInForeground() -> Bool {
