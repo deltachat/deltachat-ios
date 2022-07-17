@@ -482,17 +482,33 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             return // handle case when either email or pw fields are empty
         }
 
-        let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress, handleCancel: loginButtonPressed)
-        // if canceled we will run this method again but this time oAuthStarted will be false
+        func loginButtonPressedContinue() {
+            let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress, handleCancel: loginButtonPressed)
+            // if canceled we will run this method again but this time oAuthStarted will be false
 
-        if oAuthStarted {
-            // the loginFlow will be handled by oAuth2
-            return
+            if oAuthStarted {
+                // the loginFlow will be handled by oAuth2
+                return
+            }
+
+            let password = passwordCell.getText() ?? "" // empty passwords are ok -> for oauth there is no password needed
+
+            login(emailAddress: emailAddress, password: password)
         }
 
-        let password = passwordCell.getText() ?? "" // empty passwords are ok -> for oauth there is no password needed
-
-        login(emailAddress: emailAddress, password: password)
+        if dcContext.isConfigured(),
+           let oldAddress = dcContext.getConfig("configured_addr"),
+           oldAddress != emailAddress {
+            let msg = String.localizedStringWithFormat(String.localized("aeap_explanation"), oldAddress, emailAddress)
+            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .default, handler: { _ in
+                loginButtonPressedContinue()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            loginButtonPressedContinue()
+        }
     }
 
     private func updateProviderInfo() {
