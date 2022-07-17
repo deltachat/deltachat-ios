@@ -350,7 +350,7 @@
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "¿Estás seguro de que quieres visitar %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "Siguió un enlace que podría estar tergiversando caracteres al usar caracteres de diferentes alfabetos con un aspecto similar. Seguir el enlace etiquetado %1$@ conducirá a %2$@, que es normal para caracteres no latinos. Si no esperaba tales caracteres, este enlace podría ser dañino";
+"puny_code_warning_description" = "Siguió un enlace que podría estar tergiversando caracteres al usar caracteres de diferentes alfabetos con un aspecto similar. Seguir el enlace etiquetado %1$@ conducirá a %2$@, que es normal para caracteres no latinos. Si no esperaba tales caracteres, este enlace podría ser dañino.";
 
 
 // search
@@ -384,6 +384,10 @@
 "tab_webxdc_empty_hint" = "El contenido de Webxdc compartido en este chat se mostrará aquí.";
 "media_preview" = "Vista previa de multimedia";
 "send_message" = "Enviar mensaje";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ cambió su dirección de %2$@ a %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "Has cambiado tu dirección de correo electrónico de %1$@ a %2$@.\n\nSi ahora envías un mensaje a un grupo verificado, los contactos de éste sustituirán automáticamente la antigua por tu nueva dirección.\n\nEs muy recomendable que configures tu antiguo proveedor de correo electrónico para que reenvíe todos los mensajes a tu nueva dirección. De lo contrario, podrías perderte los mensajes de los contactos que aún no han recibido tu nueva dirección.";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -521,7 +525,7 @@
 "pref_incognito_keyboard" = "Teclado incógnito";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Solicitar al teclado deshabilitar el aprendizaje personalizado";
-"pref_read_receipts" = "Recibos de leer";
+"pref_read_receipts" = "Recibos de lectura";
 "pref_read_receipts_explain" = "Si los recibos de lectura están deshabilitados, no podrá ver los recibos de lectura de otros.";
 "pref_manage_keys" = "Administrar claves";
 "pref_use_system_emoji" = "Usar emoji del sistema";
@@ -651,7 +655,7 @@
 "systemmsg_member_removed" = "Miembro %1$@ eliminado.";
 "systemmsg_group_left" = "Grupo abandonado.";
 "systemmsg_read_receipt_subject" = "Recibo de lectura";
-"systemmsg_read_receipt_body" = "El \"%1$@\" mensaje se mostró en el dispositivo del destinatario, pero no necesariamente que se leyó el contenido.";
+"systemmsg_read_receipt_body" = "El mensaje \"%1$@\" se mostró en el dispositivo del destinatario, pero no necesariamente que se leyó el contenido.";
 "systemmsg_cannot_decrypt" = "Este mensaje no puede ser descifrado.\n\n• Es posible que sea útil simplemente responderlo y pedirle al remitente que lo envíe nuevamente.\n\n• En caso de que haya reinstalado Delta Chat u otro programa de correo en este u otro dispositivo, puede que quiera enviar un Mensaje de Configuración de Autocrypt desde allí.";
 // Translators: %1$s will be replaced by sth. as "ACTION by me".
 "systemmsg_action_by_me" = "%1$@ por mi.";
@@ -682,7 +686,7 @@
 "devicemsg_storage_exceeding" = "⚠️ El almacenamiento de tu proveedor está por excederse, ya tienes %1$@%% en uso.\n\nQuizás no puedas recibir mensajes cuando el almacenamiento esté al 100%% de uso.\n\n👉 Por favor chequea si puedes eliminar los datos antiguos en la página web del proveedor y considera habilitar \"Ajustes / Eliminar mensajes antiguos\". Puedes chequear tu almacenamiento actual en cualquier momento en \"Ajustes / Conectividad\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Fecha y hora de tu dispositivo parecen ser inexactas (%1$@).\n\nAjusta tu reloj ⏰🔧 para asegurarte que los mensajes sean recibidos correctamente.";
-"devicemsg_update_reminder" = "⚠️ Tu versión de Delta Chat puede ser desactualizada.\n\nEso puede crear problems porque tus contactos usan nuevas versiones - y tú te estás perdiendo las últimas novedades 😳\nChequea https://get.delta.chat o tu tienda de aplicaciones para actualizaciones.";
+"devicemsg_update_reminder" = "⚠️ Tu versión de Delta Chat puede estar desactualizada.\n\nEso puede crear problemas porque tus contactos usan nuevas versiones - y tú te estás perdiendo las últimas novedades 😳\nChequea https://get.delta.chat o tu tienda de aplicaciones para actualizaciones.";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
 "enter_system_secret_to_continue" = "Ingrese su secreto del sistema para continuar.";

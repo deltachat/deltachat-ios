@@ -37,7 +37,7 @@
 "unarchive" = "Dearchivieren";
 "mute" = "Stumm";
 "ephemeral_messages" = "Verschwindende Nachrichten";
-"ephemeral_messages_hint" = "Diese Einstellungen gelten für alle Gruppenmitglieder, die Delta Chat verwenden. Nachrichten können jedoch kopiert, gespeichert und weitergeleitet werden oder es können andere E-Mail-Clients verwenden werden.";
+"ephemeral_messages_hint" = "Gilt für alle Gruppenmitglieder, die Delta Chat verwenden. Nachrichten können kopiert, gespeichert und weitergeleitet werden oder es können andere E-Mail-Clients verwendet werden.";
 "save" = "Speichern";
 "chat" = "Chat";
 "media" = "Medien";
@@ -97,7 +97,7 @@
 "image" = "Bild";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Antwort";
-"gif" = "Gif";
+"gif" = "GIF";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
 "images" = "Bilder";
@@ -255,7 +255,7 @@
 "videochat_instance" = "Videochat-Instanz";
 "videochat_instance_placeholder" = "Videochat-Instanz";
 "videochat_instance_example" = "Beispiele: https://meet.jit.si/$ROOM oder basicwebrtc:https://your-server";
-"videochat_instance_explain_2" = "Wenn Videochat eingeschaltet ist, können Sie einen Videochat von jedem Chat aus starten. Videochats erfordern beidseitig eine kompatible App oder einen kompatiblen Browser.";
+"videochat_instance_explain_2" = "Wenn aktiv, können Sie einen Videochat aus jedem Chat starten. Videochats erfordern beidseitig eine kompatible App oder einen kompatiblen Browser.";
 "videochat_instance_from_qr" = "\"%1$@\" verwenden, um andere zu Videochats einzuladen?\n\nWenn Sie diese Einstellung vornehmen, können Sie von jedem Chat aus einen Videochat starten. Dies überschreibt, falls vorhanden, die bisherige Einstellung zu Videochats.";
 "videochat_invitation" = "Videochat-Einladung";
 "videochat_invitation_body" = "Sie sind zu einem Videochat eingeladen, klicken Sie auf %1$@ , um teilzunehmen.";
@@ -306,8 +306,8 @@
 "chat_archived_label" = "Archiviert";
 "chat_request_label" = "Anfrage";
 "chat_no_messages" = "Keine Nachrichten.";
-"chat_self_talk_subtitle" = "Nachrichten, die ich mir selber geschickt habe";
-"archive_empty_hint" = "Wenn Sie Chats archivieren, werden diese hier angezeigt.";
+"chat_self_talk_subtitle" = "Nachrichten an mich selbst";
+"archive_empty_hint" = "Archivierte Chats werden hier angezeigt.";
 "saved_messages" = "Gespeicherte Nachrichten";
 "saved_messages_explain" = "• Nachrichten zum Merken hierher weiterleiten\n\n• Notizen oder Sprachmemos machen\n\n• Medien zum Speichern einfügen";
 // Should match "Saved" from "Saved messages"
@@ -377,13 +377,17 @@
 "tab_links" = "Links";
 "tab_map" = "Karte";
 "tab_gallery_empty_hint" = "In diesem Chat geteilte Bilder und Videos werden hier angezeigt.";
-"tab_docs_empty_hint" = "In diesem Chat geteilte Dokumente, Musik und Dateien werden hier angezeigt.";
+"tab_docs_empty_hint" = "In diesem Chat geteilte Dokumente und Dateien werden hier angezeigt.";
 "tab_image_empty_hint" = "In diesem Chat geteilte Bilder werden hier angezeigt.";
 "tab_video_empty_hint" = "In diesem Chat geteilte Videos werden hier angezeigt.";
 "tab_audio_empty_hint" = "In diesem Chat geteilte Audiodateien und Sprachnachrichten werden hier angezeigt.";
 "tab_webxdc_empty_hint" = "In diesem Chat geteilte Webxdc werden hier angezeigt.";
 "media_preview" = "Medien-Vorschau";
 "send_message" = "Nachricht senden";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ hat die E-Mail-Adresse von %2$@ nach %3$@ geändert";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "Sie haben Ihre E-Mail-Adresse von %1$@ auf %2$@ geändert.\n\nWenn Sie jetzt eine Nachricht an eine verifizierte Gruppe senden, wird dort automatisch die alte durch die neue Adresse ersetzt.\n\nEs wird dringend empfohlen, Ihren alten E-Mail-Anbieter so einzurichten, dass er alle E-Mails an Ihre neue E-Mail-Adresse weiterleitet. Andernfalls könnten Sie Nachrichten von Kontakten verpassen, die Ihre neue E-Mail-Adresse noch nicht erhalten haben.";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view

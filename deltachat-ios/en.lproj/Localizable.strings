@@ -377,13 +377,17 @@
 "tab_links" = "Links";
 "tab_map" = "Map";
 "tab_gallery_empty_hint" = "Images and videos shared in this chat will appear here.";
-"tab_docs_empty_hint" = "Documents, music, and other files shared in this chat will appear here.";
+"tab_docs_empty_hint" = "Documents and other files shared in this chat will appear here.";
 "tab_image_empty_hint" = "Images shared in this chat will appear here.";
 "tab_video_empty_hint" = "Videos shared in this chat will appear here.";
-"tab_audio_empty_hint" = "Audio Files and Voice Messages shared in this chat will appear here.";
+"tab_audio_empty_hint" = "Audio files and voice messages shared in this chat will appear here.";
 "tab_webxdc_empty_hint" = "Webxdc content shared in this chat will appear here.";
 "media_preview" = "Media Preview";
 "send_message" = "Send Message";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ changed their address from %2$@ to %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "You changed your email address from %1$@ to %2$@.\n\nIf you now send a message to a verified group, contacts there will automatically replace the old with your new address.\n\nIt\'s highly advised to set up your old email provider to forward all emails to your new email address. Otherwise you might miss messages of contacts who did not get your new address yet.";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -719,7 +723,7 @@
 "qrshow_join_contact_hint" = "Scan to chat with %1$@";
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
 "qraccount_ask_create_and_login" = "Create new e-mail address on \"%1$@\" and log in there?";
-"qraccount_ask_create_and_login_another" = "Create new e-mail address on \"%1$@\" and log in there?\n\nYour existing account will not be deleted. Use the \"Switch account\" item to switch between your accounts.";
+"qraccount_ask_create_and_login_another" = "Create new e-mail address on \"%1$@\" and log in there?\n\nYour existing account will not be deleted. Use the \"Switch Account\" item to switch between your accounts.";
 "qraccount_success_enter_name" = "Login successful—your e-mail address is %1$@\n\nIf you like, you can now enter a name and an profile image that will be displayed to people you write to.";
 "qraccount_qr_code_cannot_be_used" = "The scanned QR code cannot be used to set up a new account.";
 "qraccount_use_on_new_install" = "The scanned QR code is for setting up a new account. You can scan the QR code when setting up a new Delta Chat installation.";
@@ -755,7 +759,7 @@
 "perm_continue" = "Continue";
 "perm_explain_access_to_camera_denied" = "To take photos or capture videos, go to the app settings, select \"Permissions\", and enable \"Camera\".";
 "perm_explain_access_to_mic_denied" = "To send audio messages, go to the app settings, select \"Permissions\", and enable \"Microphone\".";
-"perm_explain_access_to_storage_denied" = "To recieve or send files, go to the app settings, select \"Permissions\", and enable \"Storage\".";
+"perm_explain_access_to_storage_denied" = "To receive or send files, go to the app settings, select \"Permissions\", and enable \"Storage\".";
 "perm_explain_access_to_location_denied" = "To attach a location, go to the app settings, select \"Permissions\", and enable \"Location\".";
 
 // ImageEditorHud

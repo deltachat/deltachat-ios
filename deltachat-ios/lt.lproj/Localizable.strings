@@ -307,7 +307,6 @@
 "tab_docs_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami dokumentai, muzika ir kiti failai.";
 "media_preview" = "Medijos peržiūra";
 "send_message" = "Siųsti žinutę";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Gaunamosios žinutės";

@@ -384,6 +384,10 @@
 "tab_webxdc_empty_hint" = "De in dit gesprek gedeelde webxdc-inhoud verschijnt hier.";
 "media_preview" = "Mediavoorbeeld";
 "send_message" = "Bericht versturen";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ heeft zijn/haar adres veranderd van %2$@ naar %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "Je hebt je e-mailadres veranderd van %1$@ naar %2$@.\n\nAls je een bericht stuurt aan een goedgekeurde groep, dan zien contactpersonen in de groep je nieuwe adres.\n\nWel raden we aan om bij je oude provider in te stellen dat je e-mails wilt doorsturen naar je nieuwe adres, anders missen sommige contactpersonen mogelijk je berichten.";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view

@@ -369,7 +369,6 @@
 "tab_docs_empty_hint" = "اسناد، آهنگ‌ها و دیگر فایل‌هایی که در این گفتگو به اشتراک گذاشته شده باشند در اینجا نمایش داده خواهند شد. ";
 "media_preview" = "نمایش رسانه";
 "send_message" = "ارسال پیام";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "پیام‌های ورودی";

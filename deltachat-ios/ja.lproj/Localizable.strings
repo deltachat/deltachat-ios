@@ -318,7 +318,6 @@
 "tab_docs_empty_hint" = "このチャットで共有されたドキュメントや音楽などがここに表示されます。";
 "media_preview" = "メディアのプレビュー";
 "send_message" = "送る";
-
 "connectivity" = "接続性";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "未接続";

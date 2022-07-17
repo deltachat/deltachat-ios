@@ -384,6 +384,10 @@
 "tab_webxdc_empty_hint" = "Содержимое Webxdc-приложения, размещённые в этом чате, будут отображаться здесь.";
 "media_preview" = "Предпросмотр медиафайлов";
 "send_message" = "Отправить сообщение";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ изменила свой адрес с %2$@ на %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "Вы изменили свой адрес электронной почты с %1$@ на %2$@.\n\nЕсли теперь вы отправите сообщение в проверенную группу, контакты там автоматически заменят старый адрес на ваш новый.\n\nНастоятельно рекомендуется настроить вашего старого поставщика услуг электронной почты на пересылку всех писем на ваш новый адрес электронной почты. В противном случае вы можете пропустить сообщения контактов, которые еще не получили ваш новый адрес.";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view

@@ -52,7 +52,7 @@
 "activate" = "Activer";
 "load_remote_content" = "Charger les images distantes";
 // Possible answers to the question are: Never, Always, Once
-"load_remote_content_ask" = "Les images distantes peuvent être utilisées pour vous pister. Ce paramètre autorise également le chargement de polices ou d\'autres contenus. S\'il est désactivé, vous pouvez tout de même voir les images ancrées ou en cache. Souhaitez-vous charger les images distantes ?";
+"load_remote_content_ask" = "Les images distantes peuvent être utilisées pour vous pister. Ce paramètre autorise également le chargement de police d\'écriture ou d\'autres contenus. S\'il est désactivé, vous pouvez tout de même voir les images ancrées ou en cache. Souhaitez-vous charger les images distantes ?";
 "always" = "Toujours";
 "once" = "Une fois";
 "show_password" = "Afficher le mot de passe";
@@ -216,7 +216,7 @@
 "title_share_location" = "Partager la position avec tous les membres du groupe";
 "device_talk" = "Messages de l\'appareil";
 "device_talk_subtitle" = "Messages générés localement";
-"device_talk_explain" = "Les messages dans cette discussion sont générés localement par votre application Delta Chat. Ses créateurs l\'utilise pour informer des mises à jour et problèmes rencontrés lors de l\'utilisation.";
+"device_talk_explain" = "Les messages dans cette discussion sont générés localement pour informer à propos des mises à jour et des problèmes rencontrés lors de l\'utilisation.";
 "device_talk_welcome_message" = "Bienvenue sur Delta Chat ! - Delta Chat ressemble à d\'autres applications de messagerie populaires, mais n\'implique pas un contrôle centralisé, le traçage ou la revente de vos données, de vos amis, collègues ou famille à de grandes organisations. Techniquement, Delta Chat est une application de messagerie électronique avec une interface de tchate moderne. Un courriel retoiletté si vous voulez 👻\n\nUtilisez Delta Chat avec n\'importe qui parmi des milliards de personnes : utilisez simplement leur adresse électronique. Les destinataires n\'ont pas besoin d\'installer Delta Chat, de visiter des sites web ou de s\'inscrire où que ce soit - cependant, bien sûr, s\'ils le souhaitent, vous pouvez les diriger vers 👉 https://get.delta.chat";
 "edit_contact" = "Mettre à jour le contact";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
@@ -249,14 +249,14 @@
 "videochat_invite_user_to_videochat" = "Inviter %1$@ à une discussion vidéo ?";
 "videochat_invite_user_hint" = "Cela requiert une application compatible ou un navigateur compatible des deux côtés.";
 "videochat_contact_invited_hint" = "%1$@ est invité à une discussion vidéo.";
-"videochat_you_invited_hint" = "Vous êtes invité à une discussion vidéo.";
+"videochat_you_invited_hint" = "Vous avez envoyez une invitation de discussion de vidéo.";
 "videochat_tap_to_join" = "Appuyez pour rejoindre";
 "videochat_tap_to_open" = "Appuyez pour ouvrir";
 "videochat_instance" = "Instance de discussion vidéo";
 "videochat_instance_placeholder" = "Votre instance de discussion vidéo";
 "videochat_instance_example" = "Exemples : https://meet.jit.si/$ROOM ou basicwebrtc:https://your-server";
-"videochat_instance_explain_2" = "Si vous avez activé les discussions vidéo, vous pouvez démarrer une conversation vidéo dans chacune de vos discussions. Il faut que chaque participant-e ait une application ou un navigateur compatibles pour pouvoir utiliser cette option.";
-"videochat_instance_from_qr" = "Utiliser « %1$@ » pour inviter les autres à des discussions vidéos ?\n\nUne fois configuré, vous pouvez démarrer une discussion vidéo depuis chaque discussion privée. Ceci va remplacer la précédente configuration pour les discussions vidéos, s\'il y en a une.";
+"videochat_instance_explain_2" = "Lorsque activé, vous pouvez démarrer une discussion de vidéo dans chacune de vos conversations. Nécessite une application ou un navigateur compatible des deux côtés.";
+"videochat_instance_from_qr" = "Utiliser « %1$@ » pour inviter les autres à des discussions de vidéo ?\n\nUne fois configuré, vous pouvez démarrer une discussion vidéo de chaque discussion privée. Ceci va remplacer la précédente configuration pour les discussions vidéos, s\'il y en a une.";
 "videochat_invitation" = "Invitation de discussion vidéo";
 "videochat_invitation_body" = "Vous êtes invité à une discussion vidéo, cliquez sur %1$@ pour la rejoindre.";
 
@@ -268,7 +268,7 @@
 "ask_export_attachment" = "Exporter une pièce jointe ? L\'exportation des pièces jointes permettra à toute autre application sur votre appareil d\'y accéder. Continuer ?";
 "ask_block_contact" = "Bloquer ce contact ? Vous ne recevrez plus ses messages.";
 "ask_unblock_contact" = "Débloquer ce contact ? Vous recevrez à nouveau ses messages.";
-"ask_delete_contacts" = "Effacer ces contacts? Cela supprimera définitivement les contacts sélectionnés.\n\nLes contacts avec des conversations en cours et ceux venant du carnet d\'adresses du système ne peuvent pas être définitivement effacés.";
+"ask_delete_contacts" = "Effacer ces contacts?\n\nLes contacts avec des conversations en cours et ceux venant du carnet d\'adresses du système ne peuvent pas être définitivement effacés.";
 "ask_delete_contact" = "Supprimer le contact %1$@ ?\n\nLes contacts dans les discussions en cours et les contacts du carnet d\'adresses du système ne peuvent pas être supprimés définitivement.";
 "cannot_delete_contacts_in_use" = "Impossible d\'effacer des contacts ayant une discussion active.";
 "ask_start_chat_with" = "Discuter avec %1$@ ?";
@@ -316,7 +316,7 @@
 "retry_send" = "Réessayer d\'envoyer le message";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Vous ne pouvez pas écrire car vous ne faites pas partie de ce groupe. Pour le rejoindre, demandez à un membre.";
-"messaging_disabled_device_chat" = "Cette discussion contient des messages générés localement. Par conséquent, vous ne pouvez pas écrire le moindre message.";
+"messaging_disabled_device_chat" = "Cette discussion contient des messages générés localement. Par conséquent, l\'écriture est désactivée.";
 "messaging_disabled_mailing_list" = "Envoyer des messages dans des listes de diffusion n\'est pas encore possible";
 "cannot_display_unsuported_file_type" = "Impossible d\'afficher ce type de fichier : %1$@";
 "attachment_failed_to_load" = "Échec du chargement de la pièce jointe";
@@ -350,7 +350,7 @@
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Voulez-vous vraiment visiter %1$@ ?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "Vous avez cliqué sur un lien qui pourait avoir des caractères mal représentés du à l\'utilisation de caractères similaires provenant d\'alphabets différents. Suivre le lien marqué comme %1$@ aménera à %2$@ qui est le lien avec des caractères latins normaux. Si vous ne vous attendez pas à de tel caractères ce lien est potentiellement dangereux";
+"puny_code_warning_description" = "Ce lien pourait avoir des caractères mal représentés dû à l\'utilisation de caractères similaires des alphabets différents. Suivre le lien marqué %1$@ aménera à %2$@ qui est normale avec des caractères non-latins. Si vous ne vous attendez pas à de tel caractères ce lien est potentiellement dangereux";
 
 
 // search
@@ -384,6 +384,10 @@
 "tab_webxdc_empty_hint" = "Les contenus Webxdc partagés dans cette discussion seront affichés ici.";
 "media_preview" = "Prévisualiser le fichier multimédia";
 "send_message" = "Envoyer message";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ a changé son adresse de %2$@ à %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "Vous avez changé votre adresse e-mail de %1$@ à %2$@.\n\nSi vous envoyez maintenant un message à un groupe vérifié, les contacts de ce groupe remplaceront automatiquement l\'ancienne adresse par la nouvelle.\n\nIl est fortement conseillé de configurer votre ancien fournisseur d\'e-mail pour qu\'il transfère tous les e-mails à votre nouvelle adresse. Sinon, vous risquez de manquer des messages de contacts qui n\'ont pas encore reçu votre nouvelle adresse.";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -470,8 +474,8 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Transférer à …";
-"share_multiple_attachments" = "Envoyer %1$d fichiers à la discussion sélectionnée ?\n\nLes fichiers sont envoyés sans modification, à leur taille originale, ie. les images et les vidéos ne sont pas réencodées.";
-"share_multiple_attachments_multiple_chats" = "Envoyer %1$d fichier(s) à %2$d discussions ?\n\nLes fichiers sont envoyés sans modification, à leur taille originale, ie. les images et les vidéos ne sont pas réencodées.";
+"share_multiple_attachments" = "Envoyer %1$d fichiers à la discussion sélectionnée ?\n\nLes fichiers sont envoyés sans modification, à leur taille originale (ie. les images et les vidéos ne sont pas réencodées).";
+"share_multiple_attachments_multiple_chats" = "Envoyer %1$d fichier(s) à %2$d discussions ?\n\nLes fichiers sont envoyés sans modification, à leur taille originale (ie. les images et les vidéos ne sont pas réencodées).";
 "share_text_multiple_chats" = "Envoyer ce texte à %1$d discussions ?\n\n« %2$@ »";
 "share_abort" = "Partage annulé en raison de permissions manquantes.";
 

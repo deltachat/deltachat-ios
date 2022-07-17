@@ -357,7 +357,6 @@
 "tab_docs_empty_hint" = "ឯកសារ និងសំលេងដែលបានចែករំលែកនៅក្នុងការសន្ទនានេះ បង្ហាញនៅទីនេះ។";
 "media_preview" = "ការមើលប្រព័ន្ធផ្សព្វផ្សាយជាមុន";
 "send_message" = "ផ្ញើ​សារ";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "សារចូល";

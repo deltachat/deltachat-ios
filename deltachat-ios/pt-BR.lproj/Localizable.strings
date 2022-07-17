@@ -384,6 +384,10 @@
 "tab_webxdc_empty_hint" = "O conteúdo Webxdc compartilhado neste chat será exibido aqui.";
 "media_preview" = "Pré-visualização.";
 "send_message" = "Enviar mensagem";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ mudou seu endereço de %2$@ para %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "Você mudou seu endereço de e-mail de %1$@ para %2$@.\n\nSe você agora enviar uma mensagem para um grupo verificado, os contatos lá substituirão automaticamente o antigo por seu novo endereço.\n\nÉ altamente recomendável configurar seu antigo provedor de e-mail para encaminhar todos os e-mails para seu novo endereço de e-mail. Caso contrário, você pode perder mensagens de contatos que ainda não receberam seu novo endereço.";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -755,7 +759,7 @@
 "perm_continue" = "Continuar";
 "perm_explain_access_to_camera_denied" = "O Delta Chat precisa acessar sua câmera para tirar fotos e gravar vídeos, mas o acesso foi negado. Por favor, habilite a câmera nas configurações de permissões do aplicativo.";
 "perm_explain_access_to_mic_denied" = "O Delta Chat precisa acessar seu microfone para que você possa enviar mensagens de voz, mas o acesso foi negado. Por favor, habilite o microfone nas configurações de permissões do aplicativo.";
-"perm_explain_access_to_storage_denied" = "O Delta Chat precisa acessar seu armazenamento para que você possa enviar e salvar fotos, vídeos, músicas e outras mídias, mas o acesso foi negado. Por favor, habilite o seu acesso nas configurações de permissões do aplicativo.";
+"perm_explain_access_to_storage_denied" = "Para receber o enviar arquivos, vai nas configurações do aplicativo, escolhe \"Permissões\", e ativar \"Armazenamento\".";
 "perm_explain_access_to_location_denied" = "O Delta Chat precisa acessar sua localização para que você possa enviá-la, mas o acesso foi negado. Por favor, habilite o seu acesso nas configurações de permissões do aplicativo.";
 
 // ImageEditorHud

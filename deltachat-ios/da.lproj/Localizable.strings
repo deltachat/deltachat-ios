@@ -311,7 +311,6 @@
 "tab_docs_empty_hint" = "Dokumenter, musik og andre filer delt i denne samtale vises her.";
 "media_preview" = "Medie forhåndsvisning";
 "send_message" = "Send besked";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Indkommende beskeder";

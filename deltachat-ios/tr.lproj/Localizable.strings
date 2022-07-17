@@ -37,7 +37,7 @@
 "unarchive" = "Arşivleme";
 "mute" = "Sessize Al";
 "ephemeral_messages" = "Kaybolan İletiler";
-"ephemeral_messages_hint" = "Delta Chat\'i kullanıyorlarsa, bu sohbetin tüm üyelerine uygulanır; ancak onlar iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
+"ephemeral_messages_hint" = "Delta Chat\'i kullanıyorlarsa, bu sohbetin tüm üyelerine uygulanır; onlar iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";
@@ -263,13 +263,13 @@
 // get confirmations
 "ask_leave_group" = "Bu gruptan ayrılmak istediğinizden emin misiniz?";
 "ask_delete_message" = "Bu iletiyi silmek istediğinizden emin misiniz?";
-"ask_forward" = "İletiler %1$@ alıcısına iletilsin mi?";
+"ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
 "ask_block_contact" = "Bu kişi engellensin mi? Artık ondan gelen iletileri almayacaksınız.";
-"ask_unblock_contact" = "Bu kişi engellenmesin mi? Bundan sonra ondan gelen iletileri alabileceksiniz.";
+"ask_unblock_contact" = "Bu kişi engellenmesin mi? Artık ondan gelen iletileri alabileceksiniz.";
 "ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
-"ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü ve sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
+"ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "cannot_delete_contacts_in_use" = "Sohbetlerin sürdüğü kişiler silinemez.";
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
 "ask_delete_value" = "%1$@ silinsin mi?";
@@ -293,7 +293,7 @@
 "chat_camera_unavailable" = "Kamera kullanım dışı.";
 "chat_unable_to_record_audio" = "Ses kaydedilemiyor.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "%1$@ alıcısına bir ileti gönderin; Delta Chat olmadan bile onu alabilir.";
+"chat_new_one_to_one_hint" = "%1$@ kişisine bir ileti gönderin; Delta Chat olmadan bile onu alabilir.";
 "chat_new_broadcast_hint" = "Bir yayın listesinde, diğerleri sizinle olan özel sohbetlerinde ileti alacak.\n\nAlıcılar birbirinin farkında olmayacak.";
 "chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu grubu görecek.";
 "chat_record_slide_to_cancel" = "İptal etmek için kaydırın";
@@ -316,7 +316,7 @@
 "retry_send" = "İletiyi göndermeyi yeniden dene";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Bir ileti göndermek için bu grupta olmalısınız. Katılmak için başka bir üyeye sorun.";
-"messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir; yazma etkisiz.";
+"messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir; yazma etkisizleştirilir.";
 "messaging_disabled_mailing_list" = "Posta listelerine iletiler gönderme henüz desteklenmiyor";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
@@ -377,13 +377,17 @@
 "tab_links" = "Bağlantılar";
 "tab_map" = "Harita";
 "tab_gallery_empty_hint" = "Bu sohbette paylaşılan görseller ve videolar burada görünecek.";
-"tab_docs_empty_hint" = "Bu sohbette paylaşılan belgeler, müzik ve diğer dosyalar burada görünecek.";
+"tab_docs_empty_hint" = "Bu sohbette paylaşılan belgeler ve diğer dosyalar burada görünecek.";
 "tab_image_empty_hint" = "Bu sohbette paylaşılan görseller burada görünecek.";
 "tab_video_empty_hint" = "Bu sohbette paylaşılan videolar burada görünecek.";
 "tab_audio_empty_hint" = "Bu sohbette paylaşılan ses dosyaları ve sesli iletiler burada görünecek.";
 "tab_webxdc_empty_hint" = "Bu sohbette paylaşılan Webxdc içeriği burada görünecek.";
 "media_preview" = "Ortam Önizlemesi";
 "send_message" = "İleti Gönder";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@, %2$@ adresini %3$@ olarak değiştirdi";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "%1$@ e-posta adresinizi %2$@ olarak değiştirdiniz.\n\nŞimdi bir doğrulanan gruba ileti gönderirseniz, oradaki kişiler yeni adresinizle eskisini otomatik olarak değiştirecek.\n\nTüm e-postaları yeni e-posta adresinize iletmek için eski e-posta sağlayıcınızı ayarlamanız önemle önerilir. Yoksa henüz yeni adresinizi almamış olan kişilerin iletilerini kaçırabilirsiniz.";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -394,13 +398,13 @@
 "storage_on_domain" = "%1$@ Üzerinde Depolama";
 "connectivity" = "Bağlanabilirlik";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
-"connectivity_not_connected" = "Bağlanmadı";
+"connectivity_not_connected" = "Bağlı değil";
 // Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "Bağlanıyor…";
 // Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "Güncelleştiriliyor…";
 // Shown in the setting if the app is "Connected"
-"connectivity_connected" = "Bağlandı";
+"connectivity_connected" = "Bağlı";
 "sending" = "Gönderiliyor…";
 "last_msg_sent_successfully" = "Son ileti başarıyla gönderildi.";
 "not_supported_by_provider" = "Sağlayıcınız tarafından desteklenmiyor.";
@@ -417,7 +421,7 @@
 "login_title" = "Oturum Aç";
 "login_header" = "E-Posta Hesabınıza Oturum Açın";
 "login_explain" = "Varolan bir e-posta hesabıyla oturum açın";
-"login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'nin web ayarlarından etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
+"login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'in web ayarlarından etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
 "login_no_servers_hint" = "Delta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
 "login_inbox" = "Gelen Kutusu";
 "login_imap_login" = "IMAP Oturum Açma Adı";
@@ -455,7 +459,7 @@
 // TLS certificate checks
 "accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
 "used_settings" = "Kullanılan ayarlar:";
-"switch_account" = "Hesap Değiştir";
+"switch_account" = "Hesabı Değiştir";
 "add_account" = "Hesap Ekle";
 "delete_account" = "Hesabı Sil";
 "delete_account_ask" = "Hesap verilerinizi silmek istediğinizden emin misiniz?";
@@ -484,7 +488,7 @@
 "pref_blocked_contacts" = "Engellenen Kişiler";
 "blocked_empty_hint" = "Engellenen kişiler burada görünecek.";
 "pref_password_and_account_settings" = "Parola ve Hesap";
-"pref_who_can_see_profile_explain" = "Diğer kullanıcılarla iletişim kurulurken; profil görseliniz, adınız ve imzanız iletilerinizle birlikte gönderilecek.";
+"pref_who_can_see_profile_explain" = "Profil görseliniz, adınız ve imzanız diğer kullanıcılarla iletişim kurulurken iletilerinizle birlikte gönderilecek.";
 "pref_your_name" = "Adınız";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "İmza Metni";
@@ -558,7 +562,7 @@
 "pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Olarak Taşı";
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
 "pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
-"pref_only_fetch_mvbox_explain" = "Diğer klasörleri yoksay. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
+"pref_only_fetch_mvbox_explain" = "Diğer klasörleri yok sayar. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
 "pref_show_emails" = "Klasik E-Postaları Göster";
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
@@ -644,8 +648,8 @@
 
 
 // system messages
-"systemmsg_group_name_changed" = "\"%1$@\" grup adı \"%2$@\" olarak değişti.";
-"systemmsg_group_image_changed" = "Grup görseli değişti.";
+"systemmsg_group_name_changed" = "\"%1$@\" grup adı \"%2$@\" olarak değiştirildi.";
+"systemmsg_group_image_changed" = "Grup görseli değiştirildi.";
 "systemmsg_group_image_deleted" = "Grup görseli silindi.";
 "systemmsg_member_added" = "%1$@ üyesi eklendi.";
 "systemmsg_member_removed" = "%1$@ üyesi kaldırıldı.";
@@ -659,7 +663,7 @@
 "systemmsg_action_by_user" = "%2$@ tarafından %1$@.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
-"systemmsg_failed_sending_to" = "%1$@ alıcısına ileti gönderme başarısız.";
+"systemmsg_failed_sending_to" = "%1$@ kişisine ileti gönderme başarısız.";
 
 "systemmsg_ephemeral_timer_disabled" = "Kaybolan iletiler zamanlayıcısı etkisizleştirildi.";
 "systemmsg_ephemeral_timer_enabled" = "Kaybolan iletiler zamanlayıcısı %1$@ s\'ye ayarlandı.";
@@ -719,7 +723,7 @@
 "qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
 "qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?";
-"qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesap değiştir\" öğesini kullanın.";
+"qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
 "qraccount_success_enter_name" = "Oturum açma başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir hesap ayarlamak için kullanılamıyor.";
 "qraccount_use_on_new_install" = "Taranan QR kodu, yeni bir hesap ayarlamak içindir. QR kodunu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";
@@ -730,7 +734,7 @@
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "%1$@ için ayarlama değişti.";
+"contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
 "verified_group_explain" = "Doğrulanan gruplar (deneysel), etkin saldırılar karşısında güvenlik sağlar. Üyeler, diğer üyeler tarafından ikinci bir etkenle doğrulanır ve iletiler her zaman uçtan uca şifrelenir.";
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
@@ -876,8 +880,8 @@
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Arka Plan Bildirimleri";
-"pref_background_notifications_explain" = "Sunucunuza bir arka plan bağlantısı kullanır ve pil iyileştirmelerinin yoksayılmasını gerektirir.";
-"pref_background_notifications_rationale" = "E-posta sunucunuza bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yoksayın.\n\nDelta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
+"pref_background_notifications_explain" = "Sunucunuza bir arka plan bağlantısı kullanır ve pil iyileştirmelerinin yok sayılmasını gerektirir.";
+"pref_background_notifications_rationale" = "E-posta sunucunuza bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yok sayın.\n\nDelta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Güvenilir Arka Plan Bağlantısı";
 "pref_reliable_service_explain" = "Kalıcı bir bildirim gerektirir";
