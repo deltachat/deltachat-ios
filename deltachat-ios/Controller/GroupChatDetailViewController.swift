@@ -310,7 +310,13 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func updateHeader() {
-        groupHeader.updateDetails(title: chat.name, subtitle: nil)
+        var subtitle: String?
+        if chat.isMailinglist {
+            let addr = chat.getMailinglistAddr()
+            subtitle = addr.isEmpty ? nil : addr
+        }
+        groupHeader.updateDetails(title: chat.name, subtitle: subtitle)
+
         if let img = chat.profileImage {
             groupHeader.setImage(img)
         } else {
