@@ -887,6 +887,13 @@ public class DcChat {
         return DcUtils.copyAndFreeArray(inputArray: dc_get_chat_contacts(dcContext.contextPointer, UInt32(id)))
     }
 
+    public func getMailinglistAddr() -> String {
+        guard let cString = dc_chat_get_mailinglist_addr(chatPointer) else { return "" }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public lazy var profileImage: UIImage? = {
         guard let cString = dc_chat_get_profile_image(chatPointer) else { return nil }
         let filename = String(cString: cString)
