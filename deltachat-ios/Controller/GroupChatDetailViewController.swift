@@ -87,17 +87,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var groupHeader: ContactDetailHeader = {
         let header = ContactDetailHeader()
-        header.updateDetails(
-            title: chat.name,
-            subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.getContactIds(dcContext).count)
-        )
-        if let img = chat.profileImage {
-            header.setImage(img)
-        } else {
-            header.setBackupImage(name: chat.name, color: chat.color)
-        }
         header.onAvatarTap = showGroupAvatarIfNeeded
-        header.setVerified(isVerified: chat.isProtected)
         header.showMuteButton(show: chat.isMuted)
         header.showSearchButton(show: true)
         header.onSearchButtonTapped = showSearch
