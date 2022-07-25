@@ -1,5 +1,18 @@
 # Delta Chat iOS Changelog
 
+## UNRELEASED
+2022-07
+
+* AEAP: show confirmation dialog before changing e-mail address
+* AEAP: add a device message after changing e-mail address
+* AEAP replaces e-mail addresses only in verified groups for now
+* fix: handle updates for not yet downloaded webxdc instances
+* fix: better information on several configuration and non-delivery errors
+* fix accessibility hint in multi-select chat list title
+* update translations, revise english source
+* update to core90
+
+
 ## v1.31.0 Testflight
 2022-07
 
