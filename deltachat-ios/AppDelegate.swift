@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var notifyToken: String?
     var applicationInForeground: Bool = false
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    private var pendingAppInitialization = true;
+    private var appFullyInitialized = false
 
     // purpose of `bgIoTimestamp` is to block rapidly subsequent calls to remote- or local-wakeups:
     //
@@ -51,8 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // when the app wakes up from "suspended" state
     // (app is in memory in the background but no code is executed, IO stopped)
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        pendingAppInitialization = true;
-        logger.info("➡️ didFinishLaunchingWithOptions")
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
@@ -60,26 +58,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
 
+        let console = ConsoleDestination()
+        console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format
+        logger.addDestination(console)
+
+        logger.info("➡️ didFinishLaunchingWithOptions")
+
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
         let svgCoder = SDImageSVGKCoder.shared
         SDImageCodersManager.shared.addCoder(svgCoder)
-
-        let console = ConsoleDestination()
-        console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format
-        logger.addDestination(console)
 
         dcAccounts.logger = DcLogger()
         dcAccounts.openDatabase()
         migrateToDcAccounts()
 
         self.launchOptions = launchOptions
-        finishAppInitialization()
+        continueDidFinishLaunchingWithOptions()
         return true
     }
 
     // finishes the app initialization which depends on the successful access to the keychain
-    func finishAppInitialization() {
+    func continueDidFinishLaunchingWithOptions() {
         if let sharedUserDefaults = UserDefaults.shared, !sharedUserDefaults.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
             // we can assume a fresh install (UserDefaults are deleted on app removal)
             // -> reset the keychain (which survives removals of the app) in case the app was removed and reinstalled.
@@ -171,7 +171,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         launchOptions = nil
-        pendingAppInitialization = false
+        appFullyInitialized = true
     }
 
     // `open` is called when an url should be opened by Delta Chat.
@@ -223,8 +223,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
         logger.info("➡️ applicationProtectedDataDidBecomeAvailable")
-        if pendingAppInitialization {
-            finishAppInitialization()
+        if !appFullyInitialized {
+            continueDidFinishLaunchingWithOptions()
         }
     }
 
