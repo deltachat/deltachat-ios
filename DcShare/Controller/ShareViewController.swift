@@ -90,7 +90,7 @@ class ShareViewController: SLComposeServiceViewController {
                 if !dcContext.open(passphrase: secret) {
                     logger.error("Failed to open database.")
                 }
-            } catch KeychainError.unhandledError(let message, let status) {
+            } catch KeychainError.unhandledError(let message, let status), KeychainError.accessError(let message, let status) {
                 logger.error("KeychainError. \(message). Error status: \(status)")
             } catch {
                 logger.error("\(error)")

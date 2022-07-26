@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var notifyToken: String?
     var applicationInForeground: Bool = false
+    private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
 
     // purpose of `bgIoTimestamp` is to block rapidly subsequent calls to remote- or local-wakeups:
     //
@@ -49,13 +50,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // when the app wakes up from "suspended" state
     // (app is in memory in the background but no code is executed, IO stopped)
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        logger.info("➡️ didFinishLaunchingWithOptions")
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
 
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
-        
+
+        let webPCoder = SDImageWebPCoder.shared
+        SDImageCodersManager.shared.addCoder(webPCoder)
+        let svgCoder = SDImageSVGKCoder.shared
+        SDImageCodersManager.shared.addCoder(svgCoder)
+
         let console = ConsoleDestination()
         console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format
         logger.addDestination(console)
@@ -64,6 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcAccounts.openDatabase()
         migrateToDcAccounts()
 
+        self.launchOptions = launchOptions
+        finishAppInitialization()
+        return true
+    }
+
+    // finishes the app initialization which depends on the successful access to the keychain
+    func finishAppInitialization() {
         if let sharedUserDefaults = UserDefaults.shared, !sharedUserDefaults.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
             // we can assume a fresh install (UserDefaults are deleted on app removal)
             // -> reset the keychain (which survives removals of the app) in case the app was removed and reinstalled.
@@ -81,6 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     if !dcContext.open(passphrase: secret) {
                         logger.error("Failed to open database for account \(accountId)")
                     }
+                } catch KeychainError.accessError(let message, let status) {
+                    logger.error("Keychain error. \(message). Error status: \(status)")
+                    return
                 } catch KeychainError.unhandledError(let message, let status) {
                     logger.error("Keychain error. \(message). Error status: \(status)")
                 } catch {
@@ -92,8 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
            fatalError("Could not initialize a new account.")
         }
-
-        logger.info("➡️ didFinishLaunchingWithOptions")
 
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else {
@@ -153,11 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             registerForNotifications()
         }
 
-        let webPCoder = SDImageWebPCoder.shared
-        SDImageCodersManager.shared.addCoder(webPCoder)
-        let svgCoder = SDImageSVGKCoder.shared
-        SDImageCodersManager.shared.addCoder(svgCoder)
-        return true
+        launchOptions = nil
     }
 
     // `open` is called when an url should be opened by Delta Chat.
@@ -209,6 +220,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
         logger.info("➡️ applicationProtectedDataDidBecomeAvailable")
+        if launchOptions != nil {
+            finishAppInitialization()
+        }
     }
 
     func applicationProtectedDataWillBecomeUnavailable(_ application: UIApplication) {

@@ -3,6 +3,7 @@ import Security
 
 public enum KeychainError: Error {
     case noPassword
+    case accessError(message: String, status: OSStatus)
     case unhandledError(message: String, status: OSStatus)
 }
 
@@ -86,7 +87,7 @@ public class KeychainManager {
         case errSecItemNotFound:
             throw KeychainError.noPassword
         case errSecInteractionNotAllowed:
-            throw KeychainError.unhandledError(message: "Keychain not yet available.", status: status)
+            throw KeychainError.accessError(message: "Keychain not yet available.", status: status)
         default:
             throw KeychainError.unhandledError(message: "Unknown error while querying secret for account \(id):",
                                                status: status)
