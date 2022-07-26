@@ -204,6 +204,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let lastContextId = dcAccounts.getSelected().id
         let newContextId = dcAccounts.addClosedAccount()
         _ = dcAccounts.remove(id: lastContextId)
+        KeychainManager.deleteAccountSecret(id: lastContextId)
         _ = dcAccounts.select(id: newContextId)
         dcContext = dcAccounts.getSelected()
         do {
@@ -238,6 +239,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let selectedAccount = dcAccounts.getSelected()
         if selectedAccount.isOpen() && !selectedAccount.isConfigured() {
             _ = dcAccounts.remove(id: selectedAccount.id)
+            KeychainManager.deleteAccountSecret(id: selectedAccount.id)
             if self.dcAccounts.getAll().isEmpty {
                 _ = self.dcAccounts.add()
             }
