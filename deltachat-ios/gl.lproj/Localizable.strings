@@ -384,6 +384,11 @@
 "tab_webxdc_empty_hint" = "Contido Webxdc compartido neste chat será mostrado aquí.";
 "media_preview" = "Vista previa dos medios";
 "send_message" = "Enviar mensaxe";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ cambiou o seu enderezo de %2$@ a %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "Cambiaches o teu enderezo de email de %1$@ a %2$@.\n\nSe envías unha mensaxe a un grupo verificado os contactos cambiarán automáticamente o enderezo antigo polo novo.\n\nÉ moi recomendable que configures o email antigo para que che reenvíe todo o correo ao novo enderezo. De non facelo poderías perder mensaxes de contactos que aínda non coñezan o teu novo enderezo.";
+
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Mensaxes entrantes";

@@ -29,6 +29,8 @@
 "back" = "بازگشت";
 "close" = "بستن";
 "forward" = "هدایت";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "ارسال مجدد";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "بایگانی";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -88,6 +90,8 @@
 "last_seen_unknown" = "آخرین زمان مشاهده: نامشخص";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+
 "self" = "من";
 "draft" = "پیش‌نویس";
 "image" = "تصویر";
@@ -224,6 +228,8 @@
 "unpin" = "سنجاق برداری";
 "ConversationFragment_quoted_message_not_found" = "پیام اصلی یافت نشد";
 "reply_privately" = "پاسخ دادن به صورت خصوصی";
+"source_code" = "کد منبع";
+
 "mute_for_one_hour" = "ساکت کردن به مدت۱ ساعت";
 "mute_for_two_hours" = "ساکت کردن به مدت ۲ ساعت";
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
@@ -247,6 +253,7 @@
 "videochat_tap_to_open" = "برای باز کردن ضربه بزنید. ";
 "videochat_instance" = "جلسه تماس تصویری";
 "videochat_instance_placeholder" = "جلسه تماس تصویری شما";
+"videochat_instance_explain_2" = "در صورت فعال‌سازی می‌توانید یک مکالمه تصویری را در هر گفتگو شروع کنید. نیازمند نرم‌افزار مورد نیاز یا مرورگر در هر دو طرف است. ";
 "videochat_instance_from_qr" = "می‌خواهید از \"%1$@\" برای دعوت دیگران به گفتگوی تصویری استفاده کنید؟/n/n وقتی تعیین شد، می‌توانید در هر گفتگوی فرد به فرد یک مکالمه تصویری شروع کنید. این کار، تنظیمات قبلی تماس تصویری(در صورت وجود تنظیمات قبلی) را تغییر می‌دهد.";
 "videochat_invitation" = "دعوت به مکالمه تصویری.";
 "videochat_invitation_body" = "شما به مکالمه تصویری دعوت شده اید برای پیوستن%1$@ را بزنید.";
@@ -302,6 +309,7 @@
 "saved_messages_explain" = "برای دسترسی راحت‌تر پیام‌ها را به اینجا هدایت کنید\n\n• می‌توانید یادداشت متنی یا صوتی تهیه کنید\n\n• برای ذخیره رسانه‌ آن را ضمیمه کنید. ";
 // Should match "Saved" from "Saved messages"
 "saved" = "ذخیره شد";
+"save_as" = "ذخیره به عنوان";
 "retry_send" = "برای ارسال پیام دوباره تلاش کنید. ";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "نمی‌توانید بنویسید چرا که در این گروه نیستید. برای عضو شدن از یکی از اعضا درخواست کنید. ";
@@ -367,8 +375,16 @@
 "tab_map" = "نقشه";
 "tab_gallery_empty_hint" = "عکس‌ها و فیلم‌هایی که در این گفتگو به اشتراک گذاشته شده‌اند در اینجا نمایش داده خواهد شد. ";
 "tab_docs_empty_hint" = "اسناد، آهنگ‌ها و دیگر فایل‌هایی که در این گفتگو به اشتراک گذاشته شده باشند در اینجا نمایش داده خواهند شد. ";
+"tab_image_empty_hint" = "تصاوری که در این گفتگو اشتراک گذاری شده‌ باشند در اینجا نمایش داده می‌شوند. ";
+"tab_video_empty_hint" = "فیلم‌هایی که در این گفتگو اشتراک گذاری شده باشند در اینجا نمایش داده می‌شوند. ";
+"tab_audio_empty_hint" = "فایل‌ها و پیام‌های صوتی که در این گفتگو اشتراک گذاری شده‌‌اند در اینجا نمایش داده می‌شوند.";
+"tab_webxdc_empty_hint" = "محتوای Webxdc اشتراک گذاری شده در این گفتگو در اینجا نمایش داده می‌شود. ";
 "media_preview" = "نمایش رسانه";
 "send_message" = "ارسال پیام";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "مخاطب %1$@ نشانی خود را از %2$@ به %3$@ تغییر داده است.  ";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "پیام‌های ورودی";
@@ -394,6 +410,9 @@
 "part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
 
 
+// welcome and login
+"welcome_chat_over_email" = "گفتگو از طریق رایانامه";
+"scan_invitation_code" = "اسکن کردن کد دعوت";
 "welcome_intro1_message" = "پیام‌رسانی با وسیع‌ترین طیف مخاطبین در جهان. آزاد و مستقل. ";
 "login_title" = "ورود";
 "login_header" = "به سرور خود وارد شوید";
@@ -449,7 +468,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "هدایت به...";
-"share_multiple_attachments" = "ارسال %1$dفابل به گفتگوی انتخاب شده؟ n/n/ فایل‌ها بدون تغییر و در اندازه اصلی ارسال شده و تصاویر و فیلم ها فشرده نمی‌شوند.";
+"share_multiple_attachments" = "ارسال %1$dفایل به گفتگوی انتخاب شده؟ n/n/ فایل‌ها بدون تغییر و در اندازه اصلی ارسال شده و تصاویر و فیلم ها فشرده نمی‌شوند.";
 "share_multiple_attachments_multiple_chats" = "ارسال  %1$dفایل به %2$d گفتگو؟n/n/ فایل‌(ها) بدون تغییر ارسال می‌شوند به این معنا که تصاویر و فیلم‌ها فشرده نمی‌شوند. ";
 "share_text_multiple_chats" = "ارسال این متن به %1$d گفتگو؟n/n/ \"%2$@\"";
 "share_abort" = "اشتراک گذاری به دلیل نبود مجوز‌ها متوقف شد.";
@@ -531,6 +550,7 @@
 "pref_imap_folder_warn_disable_defaults" = "اگر این گزینه را غیر فعال می‌کنید از اینکه سرور شما و حساب‌هایتان هم بر این اساس تنظیم شده باشند.\n\n در غیر این صورت ممکن است هیچ چیز کار نکند. ";
 "pref_watch_sent_folder" = "پوشه ارسال شده‌ها را نگاه کن";
 "pref_send_copy_to_self" = "ارسال رونوشت به خودم";
+"pref_send_copy_to_self_explain" = "درصورت استفاده از این حساب در چند دستگاه مورد نیاز است. ";
 "pref_auto_folder_moves" = "انتقال خودکار به پوشه دلتاچت";
 "pref_auto_folder_moves_explain" = "گفتگوها برای جلوگیری از پر شدن صندوق ورودی جابجا شده‌اند";
 "pref_only_fetch_mvbox_title" = "فقط پوشه دلتاچت را بررسی کن";
@@ -691,7 +711,6 @@
 "qrshow_join_contact_hint" = "برای ارتباط با %1$@ این را اسکن کنید.";
 "qrshow_join_contact_no_connection_toast" = "اتصال اینترنت نیست. نمیتوان نصب کد کیوآر را انجام داد. ";
 "qraccount_ask_create_and_login" = "ایجاد ایمیل جدید روی \"%1$@\" و ورود در آن‌جا؟";
-"qraccount_ask_create_and_login_another" = "ایجاد آدرس ایمیل جدید روی \"%1$@\" وارد شدن به آن؟/n/n حساب فعلی شما پاک نمی‌شود. از بخش \"تغییر حساب کاربری\" برای جابجایی بین حساب‌ها استفاده کنید";
 "qraccount_success_enter_name" = "ورود موفق—آدرس ایمیل شما %1$@است.\n\n اگر دوست دارید می‌توانید اکنون یک اسم وارد کرده و تصویر نمایه‌ای که هنگام نوشتن برای دیگران نشان داده می‌شود را انتخاب نمایید. ";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه اندازی اکانت جدید استفاده کرد. ";
 "qraccount_use_on_new_install" = "کد کیوآر اسکن شده برای راه اندازی یک اکانت جدید است. می‌توانید در حال تنظیم یک دلتاچت تازه نصب شده کیوآر  را اسکن کنید.";
@@ -791,6 +810,17 @@
 "show_window" = "نمایش پنجره";
 "login_socks5_experimental_warning" = "پشتیبانی از قابلیت SOCKS5 هنوز آزمایشی است. لطفا در صورت استفاده،‌خطرات را بپذیرید. اگر یک آدرس را در بخش رایانامه وارد کنید همچنان  DNS lookup  رخ می‌دهد که ممکن است از طریق SOCKS5 صورت نگیرد. ";
 
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "کلیدهای میانبر";
+"switch_between_chats" = "جابجا شدن میان گفتگوها";
+"scroll_messages" = "حرکت کردن میان پیام‌ها";
+// command to put the cursor to the search input field
+"focus_search_input" = "تمرکز نشانگر بر بخش جستجو";
+// command to put the cursor to the message input field
+"focus_message_input" = "تمرکز نشانگر بر بخش پیام";
+"force_refresh_network" = "تازه کردن اجباری شبکه";
+"insert_newline" = "افزودن خط جدید";
+
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "وضعیت ارسال: خطا";
 "a11y_encryption_padlock" = "قفل رمزگذاری";
@@ -803,6 +833,28 @@
 "a11y_background_preview_label" = "نمایش پس زمینه";
 "a11y_disappearing_messages_activated" = "پیام‌های ناپدید شونده فعال شدند";
 
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "توقف اشتراک موقعیت مکانی";
+"a11y_voice_message_hint_ios" = "پس از ضبط کردن برای ارسال دوبار ضربه بزنید. برای حذف و رد ضبط کردن با دو انگشت خود بکشید. ";
+"a11y_connectivity_hint" = "برای مشاهده اطلاعات اتصال دوبار ضربه بزنید";
+"login_error_no_internet_connection" = "بدون اتصال اینترنت. ورود ناموفق";
+"share_account_not_configured" = "حساب تنظیم نشده است";
+"cannot_play_audio_file" = "امکان پخش کردن فایل صوتی وجود ندارد";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "برای عکس یا فیلم گرفتن یا اسکن کردن کد کیو آر، وارد تنظیمات سیستم شده و دسترسی به دوربین را فعال کنید. ";
+"open_settings" = "تنظیمات را باز کنید";
+// iOS device contact alert
+"import_device_contacts" = "وارد کردن مخاطبین";
+"import_device_contacts_hint" = "برای شروع گفتگو با مخاطبین دستگاه خود، تنظیمات را باز کرده و دسترسی به مخاطبین را روشن کنید. ";
+// iOS notification settings
+"disabled_in_dc" = "در دلتاچت غیر فعال شده است. ";
+"disabled_in_system_settings" = "در تنظیمات سیستم غیر فعال شده است. ";
+"bg_app_refresh_disabled" = "گزینه «Background App Refresh» در تنظیمات سیستم غیر فعال شده است. ";
+// iOS connectivity view
+"delayed" = "دارای تاخیر";
+"notifications_avg_minutes" = "به صورت متوسط هر%1$d دقیقه";
+"notifications_avg_hours" = "به صورت متوسط هر %1$d ساعت";
+"last_check_at" = "بررسی شده در %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -815,5 +867,8 @@
 "pref_reliable_service_explain" = "به یک اعلان دائمی احتیاج دارد.";
 "perm_enable_bg_reminder_title" = "برای دریافت پیام‌ها به صورت پس زمینه در دلتاچت این جا را ضربه بزنید. ";
 "perm_enable_bg_already_done" = "قبلا اجازه دسترسی به فعالیت در پس زمینه را به دلتاچت داده‌اید. \n\n اگر پیام‌ها هنوز هم در شرایط پس زمینه نمی‌آمد لطفا تنظیمات سیستم را نیز بررسی نمایید. ";
+
+
+// device messages for updates
 
 
