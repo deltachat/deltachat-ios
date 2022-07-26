@@ -40,7 +40,6 @@ public class KeychainManager {
      */
     public static func deleteAccountSecret(id: Int) {
         let query = [
-          kSecValueData: createRandomPassword().data(using: .utf8)!,
           kSecAttrAccount as String: "\(id)",
           kSecClass: kSecClassGenericPassword,
           kSecAttrAccessGroup as String: KcM.sharedKeychainGroup as AnyObject,
