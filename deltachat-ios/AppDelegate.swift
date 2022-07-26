@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var notifyToken: String?
     var applicationInForeground: Bool = false
+    private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    private var appFullyInitialized = false
 
     // purpose of `bgIoTimestamp` is to block rapidly subsequent calls to remote- or local-wakeups:
     //
@@ -55,15 +57,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
         DBDebugToolkit.setupCrashReporting()
-        
+
         let console = ConsoleDestination()
         console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format
         logger.addDestination(console)
+
+        logger.info("➡️ didFinishLaunchingWithOptions")
+
+        let webPCoder = SDImageWebPCoder.shared
+        SDImageCodersManager.shared.addCoder(webPCoder)
+        let svgCoder = SDImageSVGKCoder.shared
+        SDImageCodersManager.shared.addCoder(svgCoder)
 
         dcAccounts.logger = DcLogger()
         dcAccounts.openDatabase()
         migrateToDcAccounts()
 
+        self.launchOptions = launchOptions
+        continueDidFinishLaunchingWithOptions()
+        return true
+    }
+
+    // finishes the app initialization which depends on the successful access to the keychain
+    func continueDidFinishLaunchingWithOptions() {
         if let sharedUserDefaults = UserDefaults.shared, !sharedUserDefaults.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
             // we can assume a fresh install (UserDefaults are deleted on app removal)
             // -> reset the keychain (which survives removals of the app) in case the app was removed and reinstalled.
@@ -81,6 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     if !dcContext.open(passphrase: secret) {
                         logger.error("Failed to open database for account \(accountId)")
                     }
+                } catch KeychainError.accessError(let message, let status) {
+                    logger.error("Keychain error. \(message). Error status: \(status)")
+                    return
                 } catch KeychainError.unhandledError(let message, let status) {
                     logger.error("Keychain error. \(message). Error status: \(status)")
                 } catch {
@@ -92,8 +111,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
            fatalError("Could not initialize a new account.")
         }
-
-        logger.info("➡️ didFinishLaunchingWithOptions")
 
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else {
@@ -153,11 +170,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             registerForNotifications()
         }
 
-        let webPCoder = SDImageWebPCoder.shared
-        SDImageCodersManager.shared.addCoder(webPCoder)
-        let svgCoder = SDImageSVGKCoder.shared
-        SDImageCodersManager.shared.addCoder(svgCoder)
-        return true
+        launchOptions = nil
+        appFullyInitialized = true
     }
 
     // `open` is called when an url should be opened by Delta Chat.
@@ -209,6 +223,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
         logger.info("➡️ applicationProtectedDataDidBecomeAvailable")
+        if !appFullyInitialized {
+            continueDidFinishLaunchingWithOptions()
+        }
     }
 
     func applicationProtectedDataWillBecomeUnavailable(_ application: UIApplication) {
