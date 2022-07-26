@@ -213,7 +213,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                 logger.error("Failed to open account database for account \(dcContext.id)")
                 return
             }
-            showAccountSetupController()
+            self.navigationItem.title = "Add encrypted account"
         } catch KeychainError.unhandledError(let message, let status) {
             logger.error("Keychain error. Failed to create encrypted account. \(message). Error status: \(status)")
         } catch {
