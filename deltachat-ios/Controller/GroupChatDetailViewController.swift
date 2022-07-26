@@ -87,17 +87,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var groupHeader: ContactDetailHeader = {
         let header = ContactDetailHeader()
-        header.updateDetails(
-            title: chat.name,
-            subtitle: String.localizedStringWithFormat(String.localized("n_members"), chat.getContactIds(dcContext).count)
-        )
-        if let img = chat.profileImage {
-            header.setImage(img)
-        } else {
-            header.setBackupImage(name: chat.name, color: chat.color)
-        }
         header.onAvatarTap = showGroupAvatarIfNeeded
-        header.setVerified(isVerified: chat.isProtected)
         header.showMuteButton(show: chat.isMuted)
         header.showSearchButton(show: true)
         header.onSearchButtonTapped = showSearch
@@ -320,7 +310,13 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func updateHeader() {
-        groupHeader.updateDetails(title: chat.name, subtitle: nil)
+        var subtitle: String?
+        if chat.isMailinglist {
+            let addr = chat.getMailinglistAddr()
+            subtitle = addr.isEmpty ? nil : addr
+        }
+        groupHeader.updateDetails(title: chat.name, subtitle: subtitle)
+
         if let img = chat.profileImage {
             groupHeader.setImage(img)
         } else {
