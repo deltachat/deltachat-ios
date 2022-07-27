@@ -105,9 +105,10 @@ class ChatListController: UITableViewController {
         msg.text = "1.32 Highlights:\n\n"
             +   "• Multi-select in chat List\n"
             +   "• Reply privately\n"
-            +   "• Search in full message views\n"
+            +   "• Search in full message view\n"
+            +   "• Search in help\n"
             +   "• Improve overall accessibility ✨"
-        dcContext.addDeviceMessage(label: "update_1_32h_ios", msg: msg)
+        dcContext.addDeviceMessage(label: "update_1_32j_ios", msg: msg)
     }
 
     override func willMove(toParent parent: UIViewController?) {
