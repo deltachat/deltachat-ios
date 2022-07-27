@@ -186,11 +186,11 @@ extension QrPageController: QrCodeReaderDelegate {
             let nameAndAddress = dcContext.getContact(id: qrParsed.id).nameNAddr
             let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), nameAndAddress)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
                 let chatId = self.dcContext.createChatByContactId(contactId: qrParsed.id)
                 self.showChat(chatId: chatId)
             }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
         case DC_QR_TEXT:
@@ -203,12 +203,12 @@ extension QrPageController: QrCodeReaderDelegate {
             let url = qrParsed.text1 ?? ""
             let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_url"), url)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: String.localized("open"), style: .default, handler: { _ in
                 if let url = URL(string: url) {
                     UIApplication.shared.open(url)
                 }
             }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
         case DC_QR_ACCOUNT:
