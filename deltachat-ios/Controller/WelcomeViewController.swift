@@ -42,7 +42,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelAccountCreation))
     }()
 
     private lazy var moreButton: UIBarButtonItem = {
@@ -92,7 +92,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         }
         navigationItem.rightBarButtonItem = moreButton
         if let accountCode = accountCode {
-            createAccountFromQRCode(qrCode: accountCode)
+            handleQrCode(accountCode)
         }
     }
 
@@ -243,7 +243,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         self.navigationController?.pushViewController(accountSetupController, animated: true)
     }
 
-    @objc private func cancelButtonPressed() {
+    @objc private func cancelAccountCreation() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         // take a bit care on account removal:
         // remove only openend and unconfigured and make sure, there is another account
@@ -347,7 +347,13 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("cancel"),
             style: .cancel,
             handler: { [weak self] _ in
-                self?.dismissQRReader()
+                guard let self = self else { return }
+                self.dismissQRReader()
+                // if an injected accountCode exists, the WelcomeViewController was only opened to handle that
+                // cancelling the action should also dismiss the whole controller
+                if self.accountCode != nil {
+                    self.cancelAccountCreation()
+                }
             }
         )
 
@@ -367,7 +373,14 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [weak self] _ in
-                self?.qrCodeReader?.startSession()
+                guard let self = self else { return }
+                if self.accountCode != nil {
+                    // if an injected accountCode exists, the WelcomeViewController was only opened to handle that
+                    // if the action failed the whole controller should be dismissed
+                    self.cancelAccountCreation()
+                } else {
+                    self.qrCodeReader?.startSession()
+                }
             }
         )
         alert.addAction(okAction)

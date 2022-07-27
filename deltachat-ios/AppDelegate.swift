@@ -188,7 +188,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         switch url.scheme?.lowercased() {
         case "dcaccount":
-            self.reloadDcContext(accountCode: url.absoluteString)
+            appCoordinator.handleQRCode(url.absoluteString)
             return true
         case "openpgp4fpr":
             // Hack to format url properly
@@ -196,10 +196,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                            .replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
                            .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
 
-            self.appCoordinator.handleQRCodeForCurrentAccount(urlString)
+            appCoordinator.handleQRCode(urlString)
             return true
         case "mailto":
-            return self.appCoordinator.handleMailtoURL(url)
+            return appCoordinator.handleMailtoURL(url)
         default:
             return false
         }

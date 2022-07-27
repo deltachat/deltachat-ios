@@ -212,18 +212,8 @@ extension QrPageController: QrCodeReaderDelegate {
             present(alert, animated: true, completion: nil)
 
         case DC_QR_ACCOUNT:
-            if let domain = qrParsed.text1 {
-                let title = String.localizedStringWithFormat(String.localized("qraccount_ask_create_and_login_another"), domain)
-                let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
-                    guard let self = self else { return }
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        _ = self.dcAccounts.add()
-                        appDelegate.reloadDcContext(accountCode: code)
-                    }
-                }))
-                present(alert, animated: true)
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.appCoordinator.presentWelcomeController(accountCode: code)
             }
 
         case DC_QR_WEBRTC_INSTANCE:

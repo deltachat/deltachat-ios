@@ -132,12 +132,16 @@ class AppCoordinator {
         return false
     }
 
-    func handleQRCodeForCurrentAccount(_ code: String) {
-        showTab(index: qrTab)
-        if let navController = self.tabBarController.selectedViewController as? UINavigationController,
-           let topViewController = navController.topViewController,
-            let qrPageController = topViewController as? QrPageController {
-            qrPageController.handleQrCode(code)
+    func handleQRCode(_ code: String) {
+        if code.lowercased().starts(with: "dcaccount:") {
+            presentWelcomeController(accountCode: code)
+        } else {
+            showTab(index: qrTab)
+            if let navController = self.tabBarController.selectedViewController as? UINavigationController,
+               let topViewController = navController.topViewController,
+                let qrPageController = topViewController as? QrPageController {
+                qrPageController.handleQrCode(code)
+            }
         }
     }
 
