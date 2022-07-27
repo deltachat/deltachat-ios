@@ -174,7 +174,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appFullyInitialized = true
     }
 
-    public var accountCreationQrCode: String = ""
     // `open` is called when an url should be opened by Delta Chat.
     // we currently use that for handling oauth2 and for handing openpgp4fpr.
     //
