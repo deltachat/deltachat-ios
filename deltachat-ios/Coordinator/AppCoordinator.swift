@@ -131,8 +131,8 @@ class AppCoordinator {
         RelayHelper.shared.finishMailto()
         return false
     }
-    
-    func handleQRCode(_ code: String) {
+
+    func handleQRCodeForCurrentAccount(_ code: String) {
         showTab(index: qrTab)
         if let navController = self.tabBarController.selectedViewController as? UINavigationController,
            let topViewController = navController.topViewController,

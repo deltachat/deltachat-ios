@@ -197,7 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                            .replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
                            .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
 
-            self.appCoordinator.handleQRCode(urlString)
+            self.appCoordinator.handleQRCodeForCurrentAccount(urlString)
             return true
         case "mailto":
             return self.appCoordinator.handleMailtoURL(url)
