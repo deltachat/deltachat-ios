@@ -103,7 +103,7 @@ class ChatListController: UITableViewController {
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
         let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         msg.text = "1.32 Highlights:\n\n"
-            +   "• Multi-select in chat List\n"
+            +   "• Multi-select in chat list\n"
             +   "• Reply privately\n"
             +   "• Search in full message view\n"
             +   "• Search in help\n"
