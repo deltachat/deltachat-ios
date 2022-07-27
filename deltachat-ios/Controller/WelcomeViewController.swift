@@ -328,7 +328,9 @@ extension WelcomeViewController: QrCodeReaderDelegate {
     }
 
     private func confirmAccountCreationAlert(accountDomain domain: String, qrCode: String) {
-        let title = String.localizedStringWithFormat(String.localized("qraccount_ask_create_and_login"), domain)
+        let title = String.localizedStringWithFormat(
+            String.localized(dcAccounts.getAll().count > 1 ? "qraccount_ask_create_and_login_another" : "qraccount_ask_create_and_login"),
+            domain)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
         let okAction = UIAlertAction(
