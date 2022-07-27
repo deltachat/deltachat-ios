@@ -154,20 +154,21 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let accountId = dcAccounts.getSelected().id
 
         if accountId != 0 {
-            self.dcContext = dcAccounts.get(id: accountId)
+            dcContext = dcAccounts.get(id: accountId)
+            addProgressAlertListener(dcAccounts: self.dcAccounts,
+                                     progressName: dcNotificationConfigureProgress,
+                                     onSuccess: self.handleLoginSuccess)
+            showProgressAlert(title: String.localized("login_header"), dcContext: self.dcContext)
             DispatchQueue.global().async { [weak self] in
                 guard let self = self else { return }
                 let success = self.dcContext.setConfigFromQR(qrCode: qrCode)
                 DispatchQueue.main.async {
                     if success {
-                        self.addProgressAlertListener(dcAccounts: self.dcAccounts,
-                                                      progressName: dcNotificationConfigureProgress,
-                                                      onSuccess: self.handleLoginSuccess)
-                        self.showProgressAlert(title: String.localized("login_header"), dcContext: self.dcContext)
                         self.dcAccounts.stopIo()
                         self.dcContext.configure()
                     } else {
-                        self.accountCreationErrorAlert()
+                        self.updateProgressAlert(error: self.dcContext.lastErrorString,
+                                                 completion: self.accountCode != nil ? self.cancelAccountCreation : nil)
                     }
                 }
             }
@@ -192,13 +193,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.reloadDcContext()
         }
-    }
-
-    private func accountCreationErrorAlert() {
-        let title = dcContext.lastErrorString
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
-        present(alert, animated: true)
     }
 
     @objc private func moreButtonPressed() {
