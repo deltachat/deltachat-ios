@@ -33,7 +33,7 @@ class AppCoordinator {
     }()
 
     private func createQrNavigationController() -> UINavigationController {
-        let root = QrPageController(dcContext: dcAccounts.getSelected())
+        let root = QrPageController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
@@ -155,8 +155,8 @@ class AppCoordinator {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
     }
 
-    func presentWelcomeController() {
-        loginNavController.setViewControllers([WelcomeViewController(dcAccounts: dcAccounts)], animated: true)
+    func presentWelcomeController(accountCode: String? = nil) {
+        loginNavController.setViewControllers([WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode)], animated: true)
         window.rootViewController = loginNavController
         window.makeKeyAndVisible()
 

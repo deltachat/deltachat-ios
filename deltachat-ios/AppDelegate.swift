@@ -189,9 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         switch url.scheme?.lowercased() {
         case "dcaccount":
-            _ = self.dcAccounts.add()
-            accountCreationQrCode = url.absoluteString
-            reloadDcContext()
+            self.reloadDcContext(accountCode: url.absoluteString)
             return true
         case "openpgp4fpr":
             // Hack to format url properly
@@ -585,7 +583,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    func reloadDcContext() {
+    /// - Parameters:
+    ///   - accountCode: optional string representation of dcaccounts: url, used to setup a new account
+    func reloadDcContext(accountCode: String? = nil) {
         setStockTranslations()
         locationManager.reloadDcContext()
         notificationManager.reloadDcContext()
@@ -594,7 +594,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if dcAccounts.getSelected().isConfigured() {
             appCoordinator.resetTabBarRootViewControllers()
         } else {
-            appCoordinator.presentWelcomeController()
+            appCoordinator.presentWelcomeController(accountCode: accountCode)
         }
     }
 

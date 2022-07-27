@@ -4,6 +4,7 @@ import DcCore
 class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
+    private let accountCode: String?
     private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
     var onProgressSuccess: VoidFunction?
@@ -59,10 +60,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private var qrCodeReader: QrCodeReaderController?
     weak var progressAlert: UIAlertController?
-    
-    init(dcAccounts: DcAccounts) {
+
+    init(dcAccounts: DcAccounts, accountCode: String? = nil) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
+        self.accountCode = accountCode
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
         onProgressSuccess = { [weak self] in
@@ -89,16 +91,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             navigationItem.leftBarButtonItem = cancelButton
         }
         navigationItem.rightBarButtonItem = moreButton
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            if !appDelegate.accountCreationQrCode.isEmpty {
-                self.handleQrCode(appDelegate.accountCreationQrCode)
-            }
-            appDelegate.accountCreationQrCode = ""
+        if let accountCode = accountCode {
+            createAccountFromQRCode(qrCode: accountCode)
         }
-        super.viewDidAppear(animated)
     }
 
     override func viewDidLayoutSubviews() {
@@ -160,14 +155,21 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
         if accountId != 0 {
             self.dcContext = dcAccounts.get(id: accountId)
-            let success = dcContext.setConfigFromQR(qrCode: qrCode)
-            if success {
-                addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
-                showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
-                dcAccounts.stopIo()
-                dcContext.configure()
-            } else {
-                accountCreationErrorAlert()
+            DispatchQueue.global().async { [weak self] in
+                guard let self = self else { return }
+                let success = self.dcContext.setConfigFromQR(qrCode: qrCode)
+                DispatchQueue.main.async {
+                    if success {
+                        self.addProgressAlertListener(dcAccounts: self.dcAccounts,
+                                                      progressName: dcNotificationConfigureProgress,
+                                                      onSuccess: self.handleLoginSuccess)
+                        self.showProgressAlert(title: String.localized("login_header"), dcContext: self.dcContext)
+                        self.dcAccounts.stopIo()
+                        self.dcContext.configure()
+                    } else {
+                        self.accountCreationErrorAlert()
+                    }
+                }
             }
         }
     }

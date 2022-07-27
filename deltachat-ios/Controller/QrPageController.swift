@@ -3,6 +3,7 @@ import DcCore
 
 class QrPageController: UIPageViewController {
     private let dcContext: DcContext
+    private let dcAccounts: DcAccounts
     var progressObserver: NSObjectProtocol?
     var qrCodeReaderController: QrCodeReaderController?
 
@@ -38,8 +39,9 @@ class QrPageController: UIPageViewController {
         return control
     }()
 
-    init(dcContext: DcContext) {
-        self.dcContext = dcContext
+    init(dcAccounts: DcAccounts) {
+        self.dcAccounts = dcAccounts
+        self.dcContext = dcAccounts.getSelected()
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
     }
 
@@ -210,9 +212,19 @@ extension QrPageController: QrCodeReaderDelegate {
             present(alert, animated: true, completion: nil)
 
         case DC_QR_ACCOUNT:
-            let alert = UIAlertController(title: String.localized("qraccount_use_on_new_install"), message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
-            present(alert, animated: true)
+            if let domain = qrParsed.text1 {
+                let title = String.localizedStringWithFormat(String.localized("qraccount_ask_create_and_login_another"), domain)
+                let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
+                    guard let self = self else { return }
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        _ = self.dcAccounts.add()
+                        appDelegate.reloadDcContext(accountCode: code)
+                    }
+                }))
+                present(alert, animated: true)
+            }
 
         case DC_QR_WEBRTC_INSTANCE:
             guard let domain = qrParsed.text1 else { return }
