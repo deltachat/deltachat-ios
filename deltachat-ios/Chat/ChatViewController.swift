@@ -153,6 +153,13 @@ class ChatViewController: UITableViewController {
         return UIBarButtonItem(customView: initialsBadge)
     }()
 
+    private lazy var cancelButton: UIBarButtonItem = {
+        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+                                          target: self,
+                                          action: #selector(onCancelPressed))
+        return button
+    }()
+
     private lazy var contextMenu: ContextMenuProvider = {
         let dcChat = dcContext.getChat(chatId: chatId)
         let config = ContextMenuProvider()
@@ -179,14 +186,7 @@ class ChatViewController: UITableViewController {
             onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
                 let id = self.messageIds[indexPath.row]
-                let msg = self.dcContext.getMessage(id: id)
-
-                let pasteboard = UIPasteboard.general
-                if msg.type == DC_MSG_TEXT || msg.type == DC_MSG_VIDEOCHAT_INVITATION {
-                    pasteboard.string = msg.text
-                } else {
-                    pasteboard.string = msg.summary(chars: 10000000)
-                }
+                self.copyToClipboard(ids: [id])
             }
         )
     }()
@@ -836,11 +836,14 @@ class ChatViewController: UITableViewController {
             messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+            self.navigationItem.setLeftBarButton(cancelButton, animated: true)
+
         } else {
             messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
             messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
+            self.navigationItem.setLeftBarButton(nil, animated: true)
         }
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
@@ -1904,6 +1907,47 @@ class ChatViewController: UITableViewController {
             view.image = UIImage(named: "background_light")
         }
     }
+
+    private func copyToClipboard(ids: [Int]) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = nil
+        var stringsToCopy = ""
+
+        if ids.count > 1 {
+            let sortedIds = ids.sorted()
+            var lastSenderId: Int = -1
+            for id in sortedIds {
+                let msg = self.dcContext.getMessage(id: id)
+                var textToCopy: String?
+                if msg.type == DC_MSG_TEXT || msg.type == DC_MSG_VIDEOCHAT_INVITATION, let msgText = msg.text {
+                    textToCopy = msgText
+                } else if let msgSummary = msg.summary(chars: 10000000) {
+                    textToCopy = msgSummary
+                }
+
+                if let textToCopy = textToCopy {
+                    if lastSenderId != msg.fromContactId {
+                        let lastSender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
+                        stringsToCopy.append("\(lastSender):\n")
+                        lastSenderId = msg.fromContactId
+                    }
+                    stringsToCopy.append("\(textToCopy)\n\n")
+                }
+            }
+
+            if stringsToCopy.hasSuffix("\n\n") {
+                stringsToCopy.removeLast(2)
+            }
+        } else {
+            let msg = self.dcContext.getMessage(id: ids[0])
+            if msg.type == DC_MSG_TEXT || msg.type == DC_MSG_VIDEOCHAT_INVITATION, let msgText = msg.text {
+                stringsToCopy.append("\(msgText)")
+            } else if let msgSummary = msg.summary(chars: 10000000) {
+                stringsToCopy.append("\(msgSummary)")
+            }
+        }
+        pasteboard.string = stringsToCopy
+    }
 }
 
 // MARK: - BaseMessageCellDelegate
@@ -2125,8 +2169,16 @@ extension ChatViewController: ChatEditingDelegate {
         }
     }
 
-    func onCancelPressed() {
+    @objc func onCancelPressed() {
         setEditing(isEditing: false)
+    }
+
+    func onCopyPressed() {
+        if let rows = tableView.indexPathsForSelectedRows {
+            let ids = rows.compactMap { messageIds[$0.row] }
+            copyToClipboard(ids: ids)
+            setEditing(isEditing: false)
+        }
     }
 }
 

@@ -5,6 +5,7 @@ public protocol ChatEditingDelegate: class {
     func onDeletePressed()
     func onForwardPressed()
     func onCancelPressed()
+    func onCopyPressed()
 }
 
 public class ChatEditingBar: UIView, InputItem {
@@ -25,9 +26,15 @@ public class ChatEditingBar: UIView, InputItem {
 
     weak var delegate: ChatEditingDelegate?
 
-    private lazy var cancelButton: UIButton = {
+    private lazy var copyButton: UIButton = {
         let view = UIButton()
-        view.setTitle(String.localized("cancel"), for: .normal)
+        if #available(iOS 13.0, *) {
+            view.setImage(UIImage(systemName: "doc.on.doc"), for: .normal)
+            view.tintColor = .systemBlue
+        } else {
+            view.setTitle(String.localized("copy"), for: .normal)
+            view.setTitleColor(.systemBlue, for: .normal)
+        }
         view.setTitleColor(.systemBlue, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.imageView?.contentMode = .scaleAspectFit
@@ -64,7 +71,7 @@ public class ChatEditingBar: UIView, InputItem {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [cancelButton, forwardButton, deleteButton])
+        let view = UIStackView(arrangedSubviews: [copyButton, forwardButton, deleteButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .center
@@ -97,11 +104,11 @@ public class ChatEditingBar: UIView, InputItem {
             mainContentView.constraintAlignTrailingTo(self),
             deleteButton.constraintHeightTo(36),
             forwardButton.constraintHeightTo(26),
-            cancelButton.constraintHeightTo(36),
+            copyButton.constraintHeightTo(36)
         ])
 
-        let cancelGestureListener = UITapGestureRecognizer(target: self, action: #selector(onCancelPressed))
-        cancelButton.addGestureRecognizer(cancelGestureListener)
+        let copyButtonGestureListener = UITapGestureRecognizer(target: self, action: #selector(onCopyPressed))
+        copyButton.addGestureRecognizer(copyButtonGestureListener)
 
         let forwardGestureListener = UITapGestureRecognizer(target: self, action: #selector(onForwardPressed))
         forwardButton.addGestureRecognizer(forwardGestureListener)
@@ -110,8 +117,8 @@ public class ChatEditingBar: UIView, InputItem {
         deleteButton.addGestureRecognizer(deleteGestureListener)
     }
 
-    @objc func onCancelPressed() {
-        delegate?.onCancelPressed()
+    @objc func onCopyPressed() {
+        delegate?.onCopyPressed()
     }
 
     @objc func onForwardPressed() {
