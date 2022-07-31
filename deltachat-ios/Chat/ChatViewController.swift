@@ -1712,8 +1712,15 @@ class ChatViewController: UITableViewController {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             let msg = self.dcContext.newMessage(viewType: DC_MSG_VOICE)
+            if let quoteMessage =  self.draft.quoteMessage {
+                msg.quoteMessage = quoteMessage
+            }
             msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
             self.dcContext.sendMessage(chatId: self.chatId, message: msg)
+            DispatchQueue.main.async {
+                self.draft.setQuote(quotedMsg: nil)
+                self.draftArea.quotePreview.cancel()
+            }
         }
     }
 
