@@ -552,7 +552,6 @@ class ChatViewController: UITableViewController {
         ) { [weak self] notification in
             guard let self = self else { return }
             if let ui = notification.userInfo {
-                let dcChat = self.dcContext.getChat(chatId: self.chatId)
                 if dcChat.canSend, let id = ui["message_id"] as? Int, id > 0 {
                     let msg = self.dcContext.getMessage(id: id)
                     if msg.isInfo,
@@ -1219,7 +1218,6 @@ class ChatViewController: UITableViewController {
 
     private func showEmptyStateView(_ show: Bool) {
         if show {
-            let dcChat = dcContext.getChat(chatId: chatId)
             if dcChat.isGroup {
                 if dcChat.isBroadcast {
                     emptyStateView.text = String.localized("chat_new_broadcast_hint")
