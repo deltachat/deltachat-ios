@@ -425,6 +425,10 @@ public class DcContext {
         dc_delete_msgs(contextPointer, msgIds.compactMap { UInt32($0) }, Int32(msgIds.count))
     }
 
+    public func resendMessages(msgIds: [Int]) {
+        dc_resend_msgs(contextPointer, msgIds.compactMap { UInt32($0) }, Int32(msgIds.count))
+    }
+
     public func forwardMessage(with msgId: Int, to chat: Int) {
         dc_forward_msgs(contextPointer, [UInt32(msgId)], 1, UInt32(chat))
     }

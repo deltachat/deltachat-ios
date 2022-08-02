@@ -6,6 +6,7 @@ public protocol ChatEditingDelegate: class {
     func onForwardPressed()
     func onCancelPressed()
     func onCopyPressed()
+    func onMorePressed()
 }
 
 public class ChatEditingBar: UIView, InputItem {
@@ -19,12 +20,30 @@ public class ChatEditingBar: UIView, InputItem {
 
     public var isEnabled: Bool {
         willSet(newValue) {
+            if !newValue {
+                moreButton.isEnabled = newValue
+            }
             deleteButton.isEnabled = newValue
             forwardButton.isEnabled = newValue
         }
     }
 
     weak var delegate: ChatEditingDelegate?
+
+    public lazy var moreButton: UIButton = {
+        let view = UIButton()
+        if #available(iOS 13.0, *) {
+            view.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        } else {
+            view.setImage(UIImage(named: "ic_more"), for: .normal)
+        }
+        view.tintColor = .systemBlue
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        view.imageView?.contentMode = .scaleAspectFit
+        view.accessibilityLabel = String.localized("resend")
+        return view
+    }()
 
     private lazy var copyButton: UIButton = {
         let view = UIButton()
@@ -71,7 +90,7 @@ public class ChatEditingBar: UIView, InputItem {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [copyButton, forwardButton, deleteButton])
+        let view = UIStackView(arrangedSubviews: [copyButton, forwardButton, deleteButton, moreButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .center
@@ -104,11 +123,15 @@ public class ChatEditingBar: UIView, InputItem {
             mainContentView.constraintAlignTrailingTo(self),
             deleteButton.constraintHeightTo(36),
             forwardButton.constraintHeightTo(26),
-            copyButton.constraintHeightTo(36)
+            copyButton.constraintHeightTo(36),
+            moreButton.constraintHeightTo(36)
         ])
 
         let copyButtonGestureListener = UITapGestureRecognizer(target: self, action: #selector(onCopyPressed))
         copyButton.addGestureRecognizer(copyButtonGestureListener)
+
+        let moreBtnGestureListener = UITapGestureRecognizer(target: self, action: #selector(onMorePressed))
+        moreButton.addGestureRecognizer(moreBtnGestureListener)
 
         let forwardGestureListener = UITapGestureRecognizer(target: self, action: #selector(onForwardPressed))
         forwardButton.addGestureRecognizer(forwardGestureListener)
@@ -119,6 +142,10 @@ public class ChatEditingBar: UIView, InputItem {
 
     @objc func onCopyPressed() {
         delegate?.onCopyPressed()
+    }
+
+    @objc func onMorePressed() {
+        delegate?.onMorePressed()
     }
 
     @objc func onForwardPressed() {
