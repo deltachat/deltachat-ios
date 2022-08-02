@@ -1327,6 +1327,9 @@ class ChatViewController: UITableViewController {
     }
 
     @objc private func chatProfilePressed() {
+        if tableView.isEditing {
+            return
+        }
         showChatDetail(chatId: chatId)
     }
 
