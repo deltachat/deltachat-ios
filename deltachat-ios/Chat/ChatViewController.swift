@@ -160,8 +160,16 @@ class ChatViewController: UITableViewController {
         return button
     }()
 
+    private lazy var titleView: ChatTitleView = {
+       return ChatTitleView()
+    }()
+
+    private lazy var dcChat: DcChat = {
+        let chat = dcContext.getChat(chatId: chatId)
+        return chat
+    }()
+
     private lazy var contextMenu: ContextMenuProvider = {
-        let dcChat = dcContext.getChat(chatId: chatId)
         let config = ContextMenuProvider()
         if #available(iOS 13.0, *) {
             if dcChat.canSend {
@@ -289,7 +297,6 @@ class ChatViewController: UITableViewController {
         return manager
     }()
 
-    var showCustomNavBar = true
     var highlightedMsg: Int?
 
     private lazy var mediaPicker: MediaPicker? = {
@@ -370,7 +377,6 @@ class ChatViewController: UITableViewController {
         }
         configureEmptyStateView()
 
-        let dcChat = dcContext.getChat(chatId: chatId)
         if dcChat.canSend {
             configureUIForWriting()
         } else if dcChat.isContactRequest {
@@ -436,9 +442,8 @@ class ChatViewController: UITableViewController {
         super.viewWillAppear(animated)
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
-        if showCustomNavBar {
-            updateTitle(chat: dcContext.getChat(chatId: chatId))
-        }
+        updateTitle()
+
         tableView.becomeFirstResponder()
         if activateSearch {
             activateSearch = false
@@ -563,9 +568,7 @@ class ChatViewController: UITableViewController {
                         self.updateScrollDownButtonVisibility()
                     }
                 }
-                if self.showCustomNavBar {
-                    self.updateTitle(chat: dcChat)
-                }
+                self.updateTitle()
             }
         }
 
@@ -581,7 +584,7 @@ class ChatViewController: UITableViewController {
                             self.insertMessage(self.dcContext.getMessage(id: id))
                         }
                     }
-                    self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
+                    self.updateTitle()
                 }
             }
         }
@@ -592,13 +595,13 @@ class ChatViewController: UITableViewController {
         ) { [weak self] notification in
             guard let self = self else { return }
             if let ui = notification.userInfo, self.chatId == ui["chat_id"] as? Int {
-                let dcChat = self.dcContext.getChat(chatId: self.chatId)
-                if dcChat.canSend {
+                self.dcChat = self.dcContext.getChat(chatId: self.chatId)
+                if self.dcChat.canSend {
                     if self.messageInputBar.isHidden {
                         self.configureUIForWriting()
                         self.messageInputBar.isHidden = false
                     }
-                } else if !dcChat.isContactRequest {
+                } else if !self.dcChat.isContactRequest {
                     if !self.messageInputBar.isHidden {
                         self.messageInputBar.isHidden = true
                     }
@@ -611,7 +614,7 @@ class ChatViewController: UITableViewController {
             object: nil, queue: OperationQueue.main
         ) { [weak self] _ in
             guard let self = self else { return }
-            self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
+            self.updateTitle()
         }
 
         nc.addObserver(self,
@@ -649,16 +652,14 @@ class ChatViewController: UITableViewController {
         coordinator.animate(
             alongsideTransition: { [weak self] _ in
                 guard let self = self else { return }
-                if self.showCustomNavBar {
-                    self.navigationItem.setRightBarButton(self.badgeItem, animated: true)
-                }
+                self.navigationItem.setRightBarButton(self.badgeItem, animated: true)
                 if lastSectionVisibleBeforeTransition {
                     self.scrollToBottom(animated: false)
                 }
             },
             completion: {[weak self] _ in
                 guard let self = self else { return }
-                self.updateTitle(chat: self.dcContext.getChat(chatId: self.chatId))
+                self.updateTitle()
                 if lastSectionVisibleBeforeTransition {
                     DispatchQueue.main.async { [weak self] in
                         self?.reloadData()
@@ -836,14 +837,12 @@ class ChatViewController: UITableViewController {
             messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
-            self.navigationItem.setLeftBarButton(cancelButton, animated: true)
 
         } else {
             messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
             messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
-            self.navigationItem.setLeftBarButton(nil, animated: true)
         }
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
@@ -856,7 +855,6 @@ class ChatViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        let dcChat = dcContext.getChat(chatId: chatId)
         if !dcChat.canSend || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION {
             return nil
         }
@@ -937,12 +935,15 @@ class ChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             handleEditingBar()
+            updateTitle()
+
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             handleEditingBar()
+            updateTitle()
             return
         }
         let messageId = messageIds[indexPath.row]
@@ -988,45 +989,51 @@ class ChatViewController: UITableViewController {
         return corners
     }
 
-    private func updateTitle(chat: DcChat) {
-        let titleView =  ChatTitleView()
+    private func updateTitle() {
+        if tableView.isEditing {
+            navigationItem.titleView = nil
+            let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
+            navigationItem.title = String.localized(stringID: "n_selected", count: cnt)
+            self.navigationItem.setLeftBarButton(cancelButton, animated: true)
+        } else {
+            var subtitle = ""
+            let chatContactIds = dcChat.getContactIds(dcContext)
+            if dcChat.isMailinglist {
+                subtitle = String.localized("mailing_list")
+            } else if dcChat.isBroadcast {
+                subtitle = String.localized(stringID: "n_recipients", count: chatContactIds.count)
+            } else if dcChat.isGroup {
+                subtitle = String.localized(stringID: "n_members", count: chatContactIds.count)
+            } else if dcChat.isDeviceTalk {
+                subtitle = String.localized("device_talk_subtitle")
+            } else if dcChat.isSelfTalk {
+                subtitle = String.localized("chat_self_talk_subtitle")
+            } else if chatContactIds.count >= 1 {
+                subtitle = dcContext.getContact(id: chatContactIds[0]).email
+            }
 
-        var subtitle = ""
-        let chatContactIds = chat.getContactIds(dcContext)
-        if chat.isMailinglist {
-            subtitle = String.localized("mailing_list")
-        } else if chat.isBroadcast {
-            subtitle = String.localized(stringID: "n_recipients", count: chatContactIds.count)
-        } else if chat.isGroup {
-            subtitle = String.localized(stringID: "n_members", count: chatContactIds.count)
-        } else if chat.isDeviceTalk {
-            subtitle = String.localized("device_talk_subtitle")
-        } else if chat.isSelfTalk {
-            subtitle = String.localized("chat_self_talk_subtitle")
-        } else if chatContactIds.count >= 1 {
-            subtitle = dcContext.getContact(id: chatContactIds[0]).email
+            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle)
+            navigationItem.titleView = titleView
+            self.navigationItem.setLeftBarButton(nil, animated: true)
         }
 
-        titleView.updateTitleView(title: chat.name, subtitle: subtitle)
-        navigationItem.titleView = titleView
-
-        if let image = chat.profileImage {
+        if let image = dcChat.profileImage {
             initialsBadge.setImage(image)
         } else {
-            initialsBadge.setName(chat.name)
-            initialsBadge.setColor(chat.color)
+            initialsBadge.setName(dcChat.name)
+            initialsBadge.setColor(dcChat.color)
         }
-        initialsBadge.setVerified(chat.isProtected)
+        initialsBadge.setVerified(dcChat.isProtected)
 
         var rightBarButtonItems = [badgeItem]
-        if chat.isSendingLocations {
+        if dcChat.isSendingLocations {
             rightBarButtonItems.append(locationStreamingItem)
         }
-        if chat.isMuted {
+        if dcChat.isMuted {
             rightBarButtonItems.append(muteItem)
         }
 
-        if dcContext.getChatEphemeralTimer(chatId: chat.id) > 0 {
+        if dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0 {
             rightBarButtonItems.append(ephemeralMessageItem)
         }
 
@@ -1884,6 +1891,7 @@ class ChatViewController: UITableViewController {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
             handleEditingBar()
+            updateTitle()
             return true
         }
         return false
@@ -1905,6 +1913,7 @@ class ChatViewController: UITableViewController {
         if let indexPath = selectedAtIndexPath {
             _ = handleSelection(indexPath: indexPath)
         }
+        self.updateTitle()
     }
 
     private func setDefaultBackgroundImage(view: UIImageView) {
