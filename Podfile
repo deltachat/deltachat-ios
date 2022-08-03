@@ -6,6 +6,7 @@ target 'deltachat-ios' do
   # ignore all warnings from all dependencies
   inhibit_all_warnings!
 
+  pod 'Swifter'
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
   # pod 'openssl-ios-bitcode'
