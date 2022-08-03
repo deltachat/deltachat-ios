@@ -200,6 +200,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return true
         case "mailto":
             return appCoordinator.handleMailtoURL(url)
+        case "chat.delta.deeplink":
+            return appCoordinator.handleDeepLinkURL(url)
         default:
             return false
         }

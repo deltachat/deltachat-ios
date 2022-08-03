@@ -102,7 +102,7 @@ class AppCoordinator {
         return false
     }
 
-    func showChat(chatId: Int, msgId: Int? = nil, animated: Bool = true, clearViewControllerStack: Bool = false) {
+    func showChat(chatId: Int, msgId: Int? = nil, openHighlightedMsg: Bool = false, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
 
         if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
@@ -110,9 +110,43 @@ class AppCoordinator {
                 rootController.popToRootViewController(animated: false)
             }
             if let controller = rootController.viewControllers.first as? ChatListController {
-                controller.showChat(chatId: chatId, highlightedMsg: msgId, animated: animated)
+                controller.showChat(chatId: chatId, highlightedMsg: msgId, openHighlightedMsg: openHighlightedMsg, animated: animated)
             }
         }
+    }
+
+    func handleDeepLinkURL(_ url: URL) -> Bool {
+        guard let parameters = url.queryParameters else {
+            logger.error("Missing parameters in URL \(url)")
+            return false
+        }
+
+        let accountId = Int(parameters["accountId"] ?? "-1") ?? -1
+        let chatId = Int(parameters["chatId"] ?? "-1") ?? -1
+        let messageId = Int(parameters["msgId"] ?? "-1") ?? -1
+
+        if !"\(url)".starts(with: "chat.delta.deeplink://webxdc?") ||
+           messageId == -1 ||
+           chatId == -1 ||
+           accountId == -1 {
+            return false
+        }
+
+        if dcAccounts.getSelected().id != accountId {
+            if !dcAccounts.select(id: accountId) {
+                return false
+            }
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+            appDelegate.reloadDcContext()
+        }
+
+        let dcContext = dcAccounts.getSelected()
+        let dcMsg = dcContext.getMessage(id: messageId)
+        if dcMsg.type == DC_MSG_WEBXDC {
+            showChat(chatId: chatId, msgId: messageId, openHighlightedMsg: true, animated: false, clearViewControllerStack: true)
+            return true
+        }
+        return false
     }
 
     func handleMailtoURL(_ url: URL) -> Bool {

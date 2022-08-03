@@ -298,6 +298,7 @@ class ChatViewController: UITableViewController {
     }()
 
     var highlightedMsg: Int?
+    var openHighlightedMsg = false
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(navigationController: navigationController)
@@ -311,10 +312,11 @@ class ChatViewController: UITableViewController {
         return view
     }()
 
-    init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
+    init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil, openHighlightedMsg: Bool = false) {
         self.dcContext = dcContext
         self.chatId = chatId
         self.highlightedMsg = highlightedMsg
+        self.openHighlightedMsg = openHighlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
     }
@@ -453,12 +455,19 @@ class ChatViewController: UITableViewController {
         }
 
         if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+            if openHighlightedMsg {
+                let message = dcContext.getMessage(id: msgId)
+                if message.type == DC_MSG_WEBXDC {
+                    showWebxdcViewFor(message: message)
+                }
+            }
             UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
                 self?.scrollToMessage(msgId: msgId, animated: false)
             }, completion: { [weak self] finished in
                 if finished {
                     guard let self = self else { return }
                     self.highlightedMsg = nil
+                    self.openHighlightedMsg = false
                     self.updateScrollDownButtonVisibility()
                 }
             })
