@@ -17,6 +17,11 @@ class WebxdcViewController: WebViewViewController {
     var webxdcName: String = ""
     var sourceCodeUrl: String?
 
+    private lazy var shortcutManager: ShortcutManager = {
+        let manager = ShortcutManager(dcContext: dcContext)
+        return manager
+    }()
+
     private lazy var moreButton: UIBarButtonItem = {
         let image: UIImage?
         if #available(iOS 13.0, *) {
@@ -159,10 +164,11 @@ class WebxdcViewController: WebViewViewController {
         let chatName = dcContext.getChat(chatId: msg.chatId).name
 
         self.title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
+        navigationItem.rightBarButtonItem = moreButton
+
         if let sourceCode = dict["source_code_url"] as? String,
            !sourceCode.isEmpty {
             sourceCodeUrl = sourceCode
-            navigationItem.rightBarButtonItem = moreButton
         }
     }
     
@@ -274,11 +280,19 @@ class WebxdcViewController: WebViewViewController {
         let alert = UIAlertController(title: webxdcName,
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
-        let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
+        let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home"), style: .default, handler: addToHomeScreen(_:))
+        alert.addAction(addToHomescreenAction)
+        if sourceCodeUrl != nil {
+            let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
+            alert.addAction(sourceCodeAction)
+        }
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        alert.addAction(sourceCodeAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private func addToHomeScreen(_ action: UIAlertAction) {
+        shortcutManager.showShortcutLandingPage(messageId: messageId)
     }
 
     private func openUrl(_ action: UIAlertAction) {
