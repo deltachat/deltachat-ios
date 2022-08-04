@@ -104,13 +104,19 @@ class AppCoordinator {
 
     func showChat(chatId: Int, msgId: Int? = nil, openHighlightedMsg: Bool = false, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
-
-        if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
-            if clearViewControllerStack {
-                rootController.popToRootViewController(animated: false)
-            }
-            if let controller = rootController.viewControllers.first as? ChatListController {
-                controller.showChat(chatId: chatId, highlightedMsg: msgId, openHighlightedMsg: openHighlightedMsg, animated: animated)
+        if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
+           let chatListViewController = rootController.viewControllers.first as? ChatListController {
+            if let msgId = msgId, openHighlightedMsg {
+                let dcContext = dcAccounts.getSelected()
+                let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: msgId)
+                let webxdcVC = WebxdcViewController(dcContext: dcContext, messageId: msgId)
+                let controllers: [UIViewController] = [chatListViewController, chatVC, webxdcVC]
+                rootController.setViewControllers(controllers, animated: animated)
+            } else {
+                if clearViewControllerStack {
+                    rootController.popToRootViewController(animated: false)
+                }
+                chatListViewController.showChat(chatId: chatId, highlightedMsg: msgId, animated: animated)
             }
         }
     }

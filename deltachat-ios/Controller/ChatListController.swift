@@ -732,11 +732,11 @@ class ChatListController: UITableViewController {
         navigationController?.pushViewController(newChatVC, animated: true)
     }
 
-    func showChat(chatId: Int, highlightedMsg: Int? = nil, openHighlightedMsg: Bool = false, animated: Bool = true) {
+    func showChat(chatId: Int, highlightedMsg: Int? = nil, animated: Bool = true) {
         if searchController.isActive {
             searchController.searchBar.resignFirstResponder()
         }
-        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg, openHighlightedMsg: openHighlightedMsg)
+        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
         navigationController?.pushViewController(chatVC, animated: animated)
     }
 
