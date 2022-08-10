@@ -176,7 +176,6 @@ public class ShortcutManager {
                 var element = document.getElementById('redirect');
                 var event = document.createEvent('MouseEvents');
                 event.initEvent('click', true, true, document.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
-                document.body.style.backgroundColor = '#FFFFFF';
                 setTimeout(function() { element.dispatchEvent(event); }, 25);
             } else {
                  var div = document.createElement('div');
