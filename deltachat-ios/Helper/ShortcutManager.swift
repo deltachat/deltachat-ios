@@ -39,6 +39,26 @@ public class ShortcutManager {
         }
     }()
 
+    private lazy var scaledDownLogo: UIImage? = {
+        return UIImage(named: "dc_logo")?.scaleDownImage(toMax: 160)
+    }()
+
+    public lazy var landscapeSplashBase64: String = {
+        let image = scaledDownLogo?
+            .generateSplash(backgroundColor: DcColors.chatBackgroundColor, isPortrait: false)?
+            .jpegData(compressionQuality: 0)?
+            .base64EncodedString() ?? ""
+        return image
+    }()
+
+    public lazy var portraitSplashBase64: String = {
+        let image = scaledDownLogo?
+            .generateSplash(backgroundColor: DcColors.chatBackgroundColor, isPortrait: true)?
+            .jpegData(compressionQuality: 0)?
+            .base64EncodedString() ?? ""
+        return image
+    }()
+
     func showShortcutLandingPage(messageId: Int) {
         let message = dcContext.getMessage(id: messageId)
         if message.type != DC_MSG_WEBXDC {
@@ -92,12 +112,6 @@ public class ShortcutManager {
         UIApplication.shared.open(shortcutUrl)
     }
 
-    /**
-     TODO: evaluate if we really want to have a startup page, if se it seems we have to generate them for all possible device resolutions:
-     https://stackoverflow.com/questions/4687698/multiple-apple-touch-startup-image-resolutions-for-ios-web-app-esp-for-ipad
-     <link rel="apple-touch-startup-image" media="(orientation: landscape)" href="data:image/jpeg;base64,\(lSplashBase64)"/>
-     <link rel="apple-touch-startup-image" media="(orientation: portrait)" href="data:image/jpeg;base64,\(pSplashBase64)"/>
-     */
     private func htmlFor(title: String, urlToRedirect: URL, iconBase64: String) -> String {
         return """
         <html>
@@ -108,6 +122,8 @@ public class ShortcutManager {
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
         <meta name="apple-mobile-web-app-title" content="\(title)">
+        <link rel="apple-touch-startup-image" media="(orientation: landscape)" href="data:image/jpeg;base64,\(landscapeSplashBase64)"/>
+        <link rel="apple-touch-startup-image" media="(orientation: portrait)" href="data:image/jpeg;base64,\(portraitSplashBase64)"/>
         <link rel="apple-touch-icon-precomposed" href="data:image/jpeg;base64,\(iconBase64)"/>
         </head>
         <body>
