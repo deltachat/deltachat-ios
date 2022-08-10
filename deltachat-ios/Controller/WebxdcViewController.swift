@@ -17,10 +17,7 @@ class WebxdcViewController: WebViewViewController {
     var webxdcName: String = ""
     var sourceCodeUrl: String?
 
-    private lazy var shortcutManager: ShortcutManager = {
-        let manager = ShortcutManager(dcContext: dcContext)
-        return manager
-    }()
+    private var shortcutManager: ShortcutManager?
 
     private lazy var moreButton: UIBarButtonItem = {
         let image: UIImage?
@@ -170,6 +167,7 @@ class WebxdcViewController: WebViewViewController {
            !sourceCode.isEmpty {
             sourceCodeUrl = sourceCode
         }
+        self.shortcutManager = ShortcutManager(dcContext: dcContext)
     }
     
     override func willMove(toParent parent: UIViewController?) {
@@ -182,6 +180,7 @@ class WebxdcViewController: WebViewViewController {
             if let webxdcUpdateObserver = webxdcUpdateObserver {
                 nc.removeObserver(webxdcUpdateObserver)
             }
+            shortcutManager = nil
         } else {
             addObserver()
         }
@@ -292,7 +291,7 @@ class WebxdcViewController: WebViewViewController {
     }
 
     private func addToHomeScreen(_ action: UIAlertAction) {
-        shortcutManager.showShortcutLandingPage(messageId: messageId)
+        shortcutManager?.showShortcutLandingPage(messageId: messageId)
     }
 
     private func openUrl(_ action: UIAlertAction) {
