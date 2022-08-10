@@ -85,7 +85,9 @@ public class ShortcutManager {
             return
         }
         server["/s"] = { _ in
-            return .movedPermanently("data:text/html;base64,\(base64)")
+            var headers = ["Location": "data:text/html;base64,\(base64)"]
+            headers["Cache-Control"] = "no-store"
+            return .raw(301, "Moved Permanently", headers, nil)
         }
 
         var attempts = 0
