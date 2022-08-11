@@ -2,6 +2,10 @@ import UIKit
 import DcCore
 import QuickLook
 
+protocol WebxdcSelectorDelegate: AnyObject {
+    func onWebxdcSelected(msgId: Int)
+}
+
 class WebxdcSelector: UIViewController {
 
     private let dcContext: DcContext
@@ -11,6 +15,7 @@ class WebxdcSelector: UIViewController {
 
     // MARK: - subview specs
     private let gridDefaultSpacing: CGFloat = 5
+    weak var delegate: WebxdcSelectorDelegate?
 
     private lazy var gridLayout: GridCollectionViewFlowLayout = {
         let layout = GridCollectionViewFlowLayout()
@@ -128,9 +133,9 @@ extension WebxdcSelector: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let msgId = mediaMessageIds[indexPath.row]
-        // TODO: implement callback
+        delegate?.onWebxdcSelected(msgId: msgId)
         collectionView.deselectItem(at: indexPath, animated: true)
-        UIMenuController.shared.setMenuVisible(false, animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

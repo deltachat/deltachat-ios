@@ -1486,7 +1486,8 @@ class ChatViewController: UITableViewController {
 
     private func showWebxdcSelector() {
         let msgIds = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
-        let webxdcSelector = WebxdcSelector(context: dcContext, mediaMessageIds: msgIds)
+        let webxdcSelector = WebxdcSelector(context: dcContext, mediaMessageIds: msgIds.reversed())
+        webxdcSelector.delegate = self
         navigationController?.present(webxdcSelector, animated: true)
     }
 
@@ -2396,5 +2397,24 @@ extension ChatViewController: UITextViewDelegate {
 extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
         sendSticker(image)
+    }
+}
+
+
+extension ChatViewController: WebxdcSelectorDelegate {
+    func onWebxdcSelected(msgId: Int) {
+        keepKeyboard = true
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let message = self.dcContext.getMessage(id: msgId)
+            if let filename = message.fileURL {
+                let nsdata = NSData(contentsOf: filename)
+                guard let data = nsdata as? Data else { return }
+                let url = FileHelper.saveData(data: data, suffix: "xdc", directory: .cachesDirectory)
+                self.draft.setAttachment(viewType: DC_MSG_WEBXDC, path: url)
+                self.configureDraftArea(draft: self.draft)
+                self.focusInputTextView()
+            }
+        }
     }
 }

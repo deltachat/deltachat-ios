@@ -73,7 +73,7 @@ extension ImageFormat {
            let data = image.sd_imageData() {
             let format = ImageFormat.get(from: data)
             if format != .unknown {
-                return ImageFormat.saveImage(data: data, name: name, suffix: format.rawValue, directory: directory)
+                return FileHelper.saveData(data: data, name: name, suffix: format.rawValue, directory: directory)
             }
         }
         let suffix = image.isTransparent() ? "png" : "jpg"
