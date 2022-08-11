@@ -21,6 +21,8 @@
 		30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */; };
 		3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */; };
 		3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3022E6C022E8768800763272 /* InfoPlist.strings */; };
+		30238CFB28A501C300EF14AC /* WebxdcSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30238CFA28A501C300EF14AC /* WebxdcSelector.swift */; };
+		30238CFD28A5028300EF14AC /* WebxdcGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30238CFC28A5028300EF14AC /* WebxdcGridCell.swift */; };
 		302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302589FE2452FA280086C1CD /* ShareAttachment.swift */; };
 		30260CA7238F02F700D8D52C /* MultilineTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */; };
 		302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AC265E237F1807002A943F /* AvatarHelper.swift */; };
@@ -265,6 +267,8 @@
 		3022E6D022E8769D00763272 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6D122E8769E00763272 /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3022E6D322E876A100763272 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		30238CFA28A501C300EF14AC /* WebxdcSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebxdcSelector.swift; sourceTree = "<group>"; };
+		30238CFC28A5028300EF14AC /* WebxdcGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebxdcGridCell.swift; sourceTree = "<group>"; };
 		302589FE2452FA280086C1CD /* ShareAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAttachment.swift; sourceTree = "<group>"; };
 		30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldCell.swift; sourceTree = "<group>"; };
 		302B84C42396627F001C261F /* RelayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayHelper.swift; sourceTree = "<group>"; };
@@ -871,6 +875,7 @@
 			isa = PBXGroup;
 			children = (
 				AE0AA951247800E700D42A7F /* GalleryCell.swift */,
+				30238CFC28A5028300EF14AC /* WebxdcGridCell.swift */,
 				AE8DD450249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift */,
 			);
 			path = Cell;
@@ -939,6 +944,7 @@
 				302D5453268B84CB00A8B271 /* SettingsVideoChatViewController.swift */,
 				30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */,
 				AE8F503424753DFE007FEE0B /* GalleryViewController.swift */,
+				30238CFA28A501C300EF14AC /* WebxdcSelector.swift */,
 				30734325249A280B00BF9AD1 /* MediaQualityController.swift */,
 				30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */,
 				AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */,
@@ -1413,6 +1419,7 @@
 				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,
 				3080A037277DE30100E74565 /* UITextView+Extensions.swift in Sources */,
 				3080A027277DE12D00E74565 /* InputBarButtonItem.swift in Sources */,
+				30238CFB28A501C300EF14AC /* WebxdcSelector.swift in Sources */,
 				AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */,
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
 				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
@@ -1452,6 +1459,7 @@
 				B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */,
 				AEE700252438E0E500D6992E /* ProgressAlertHandler.swift in Sources */,
 				30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */,
+				30238CFD28A5028300EF14AC /* WebxdcGridCell.swift in Sources */,
 				306C32322445CDE9001D89F3 /* DcLogger.swift in Sources */,
 				3080A036277DE30100E74565 /* NSMutableAttributedString+Extensions.swift in Sources */,
 				307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */,

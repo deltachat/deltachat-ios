@@ -1340,6 +1340,7 @@ class ChatViewController: UITableViewController {
         let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
         let documentAction = UIAlertAction(title: String.localized("files"), style: .default, handler: documentActionPressed(_:))
+        let webxdcAction = UIAlertAction(title: String.localized("webxdcs"), style: .default, handler: webxdcButtonPressed(_:))
         let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),
@@ -1348,6 +1349,7 @@ class ChatViewController: UITableViewController {
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
+        alert.addAction(webxdcAction)
         alert.addAction(documentAction)
         alert.addAction(voiceMessageAction)
 
@@ -1482,6 +1484,12 @@ class ChatViewController: UITableViewController {
         }
     }
 
+    private func showWebxdcSelector() {
+        let msgIds = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
+        let webxdcSelector = WebxdcSelector(context: dcContext, mediaMessageIds: msgIds)
+        navigationController?.present(webxdcSelector, animated: true)
+    }
+
     private func showDocumentLibrary() {
         mediaPicker?.showDocumentLibrary()
     }
@@ -1530,6 +1538,10 @@ class ChatViewController: UITableViewController {
         let nav = UINavigationController(rootViewController: betterPreviewController)
         nav.modalPresentationStyle = .fullScreen
         navigationController?.present(nav, animated: true)
+    }
+
+    private func webxdcButtonPressed(_ action: UIAlertAction) {
+        showWebxdcSelector()
     }
 
     private func documentActionPressed(_ action: UIAlertAction) {
