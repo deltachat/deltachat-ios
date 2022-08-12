@@ -11,6 +11,8 @@ class WebxdcSelector: UIViewController {
     private let dcContext: DcContext
     // MARK: - data
     private var mediaMessageIds: [Int]
+    private var deduplicatedMessageHashes: [String : Int]
+    private var deduplicatedMessageIds: [Int]
     private var items: [Int: GalleryItem] = [:]
 
     // MARK: - subview specs
@@ -49,7 +51,10 @@ class WebxdcSelector: UIViewController {
        init(context: DcContext, mediaMessageIds: [Int]) {
         self.dcContext = context
         self.mediaMessageIds = mediaMessageIds
+        self.deduplicatedMessageHashes = [:]
+        self.deduplicatedMessageIds = []
         super.init(nibName: nil, bundle: nil)
+        deduplicateWebxdcs()
     }
 
     required init?(coder: NSCoder) {
@@ -86,12 +91,38 @@ class WebxdcSelector: UIViewController {
 
         emptyStateView.addCenteredTo(parentView: view)
     }
+
+    func deduplicateWebxdcs() {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self = self else { return }
+            for id in self.mediaMessageIds {
+                guard let filename = self.dcContext.getMessage(id: id).fileURL else { continue }
+                if let hash = try? NSData(contentsOf: filename).sha1() {
+                    DispatchQueue.main.async {
+                        if self.deduplicatedMessageHashes[hash] == nil {
+                            self.deduplicatedMessageHashes[hash] = id
+                            self.deduplicatedMessageIds.append(id)
+                            self.grid.reloadItems(at: [IndexPath(row: self.deduplicatedMessageIds.count - 1, section: 0)])
+                        }
+                    }
+                }
+            }
+
+            DispatchQueue.main.async {
+                if !self.deduplicatedMessageIds.isEmpty {
+                    self.grid.reloadData()
+                } else {
+                    self.emptyStateView.isHidden = false
+                }
+            }
+        }
+    }
 }
 
 extension WebxdcSelector: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { if items[$0.row] == nil {
-            let message = dcContext.getMessage(id: mediaMessageIds[$0.row])
+            let message = dcContext.getMessage(id: deduplicatedMessageIds[$0.row])
             let item = GalleryItem(msg: message)
             items[$0.row] = item
         }}
@@ -106,7 +137,7 @@ extension WebxdcSelector: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mediaMessageIds.count
+        return deduplicatedMessageIds.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -116,7 +147,7 @@ extension WebxdcSelector: UICollectionViewDataSource, UICollectionViewDelegate {
             return UICollectionViewCell()
         }
 
-        let msgId = mediaMessageIds[indexPath.row]
+        let msgId = deduplicatedMessageIds[indexPath.row]
         var item: GalleryItem
         if let galleryItem = items[indexPath.row] {
             item = galleryItem
@@ -132,7 +163,7 @@ extension WebxdcSelector: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let msgId = mediaMessageIds[indexPath.row]
+        let msgId = deduplicatedMessageIds[indexPath.row]
         delegate?.onWebxdcSelected(msgId: msgId)
         collectionView.deselectItem(at: indexPath, animated: true)
         self.dismiss(animated: true, completion: nil)
