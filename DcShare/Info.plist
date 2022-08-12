@@ -40,6 +40,7 @@ ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.audio" ||
 ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.movie" ||
 ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text" ||
 ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url"
+ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.vcard"
 ).@count == $extensionItem.attachments.@count
 ).@count &gt;= 1</string>
 		</dict>
