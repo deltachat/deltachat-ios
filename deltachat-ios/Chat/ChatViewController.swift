@@ -1488,6 +1488,12 @@ class ChatViewController: UITableViewController {
         let msgIds = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
         let webxdcSelector = WebxdcSelector(context: dcContext, mediaMessageIds: msgIds.reversed())
         webxdcSelector.delegate = self
+        if #available(iOS 15.0, *) {
+            if let sheet = webxdcSelector.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 20
+            }
+        }
         navigationController?.present(webxdcSelector, animated: true)
     }
 
