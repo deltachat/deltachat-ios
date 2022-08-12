@@ -11,7 +11,7 @@ class WebxdcSelector: UIViewController {
     private let dcContext: DcContext
     // MARK: - data
     private var mediaMessageIds: [Int]
-    private var deduplicatedMessageHashes: [String : Int]
+    private var deduplicatedMessageHashes: [String: Int]
     private var deduplicatedMessageIds: [Int]
     private var items: [Int: GalleryItem] = [:]
 

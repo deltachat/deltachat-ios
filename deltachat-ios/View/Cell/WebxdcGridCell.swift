@@ -13,6 +13,8 @@ class WebxdcGridCell: UICollectionViewCell {
         view.clipsToBounds = true
         view.isAccessibilityElement = false
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 6
+        view.clipsToBounds = true
         return view
     }()
 
@@ -22,7 +24,7 @@ class WebxdcGridCell: UICollectionViewCell {
         label.font = UIFont.preferredFont(for: .caption1, weight: .light)
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultInverseColor
-        label.backgroundColor = DcColors.defaultBackgroundColor
+        label.backgroundColor = DcColors.defaultTransparentBackgroundColor
         return label
     }()
 
@@ -46,15 +48,15 @@ class WebxdcGridCell: UICollectionViewCell {
 
     private func setupSubviews() {
         contentView.addSubview(imageView)
-        contentView.addSubview(descriptionLabel)
+        imageView.addSubview(descriptionLabel)
         addConstraints([
             imageView.constraintAlignLeadingToAnchor(contentView.leadingAnchor),
             imageView.constraintAlignTrailingToAnchor(contentView.trailingAnchor),
-            imageView.constraintAlignTopToAnchor( contentView.topAnchor),
+            imageView.constraintAlignTopToAnchor(contentView.topAnchor),
+            imageView.constraintAlignBottomToAnchor(contentView.bottomAnchor),
             descriptionLabel.constraintAlignLeadingTo(imageView),
-            descriptionLabel.constraintToBottomOf(imageView),
-            descriptionLabel.constraintAlignTrailingTo(imageView),
-            descriptionLabel.constraintAlignBottomToAnchor(contentView.bottomAnchor),
+            descriptionLabel.constraintAlignTrailingMaxTo(imageView),
+            descriptionLabel.constraintAlignBottomTo(imageView),
         ])
     }
 
