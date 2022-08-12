@@ -72,7 +72,7 @@ class WebxdcGridCell: UICollectionViewCell {
     override var isSelected: Bool {
         willSet {
             // to provide visual feedback on select events
-            contentView.backgroundColor = newValue ? DcColors.primary : .white
+            contentView.backgroundColor = newValue ? DcColors.primary : DcColors.defaultBackgroundColor
             imageView.alpha = newValue ? 0.75 : 1.0
         }
     }
