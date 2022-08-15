@@ -1382,7 +1382,22 @@ class ChatViewController: UITableViewController {
             }))
         present(alert, animated: true, completion: nil)
     }
-    
+
+    private func showMoreMenu() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("resend"), style: .default, handler: onResendActionPressed(_:)))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func onResendActionPressed(_ action: UIAlertAction) {
+        if let rows = tableView.indexPathsForSelectedRows {
+            let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
+            dcContext.resendMessages(msgIds: selectedMsgIds)
+            setEditing(isEditing: false)
+        }
+    }
+
     private func askToDeleteChat() {
         let title = String.localized(stringID: "ask_delete_chat", count: 1)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
@@ -1905,6 +1920,20 @@ class ChatViewController: UITableViewController {
         } else {
             editingBar.isEnabled = false
         }
+        evaluateMoreButton()
+    }
+
+    func evaluateMoreButton() {
+        if let rows = tableView.indexPathsForSelectedRows {
+            let ids = rows.compactMap { messageIds[$0.row] }
+            for msgId in ids {
+                if !dcContext.getMessage(id: msgId).isFromCurrentSender {
+                    editingBar.moreButton.isEnabled = false
+                    return
+                }
+            }
+            editingBar.moreButton.isEnabled = true
+        }
     }
 
     func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
@@ -2176,6 +2205,10 @@ extension ChatViewController: ChatEditingDelegate {
             let messageIdsToDelete = rows.compactMap { messageIds[$0.row] }
             askToDeleteMessages(ids: messageIdsToDelete)
         }
+    }
+
+    func onMorePressed() {
+        showMoreMenu()
     }
 
     func onForwardPressed() {
