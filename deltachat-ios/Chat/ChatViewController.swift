@@ -552,7 +552,7 @@ class ChatViewController: UITableViewController {
         ) { [weak self] notification in
             guard let self = self else { return }
             if let ui = notification.userInfo {
-                if dcChat.canSend, let id = ui["message_id"] as? Int, id > 0 {
+                if self.dcChat.canSend, let id = ui["message_id"] as? Int, id > 0 {
                     let msg = self.dcContext.getMessage(id: id)
                     if msg.isInfo,
                        let parent = msg.parent,
