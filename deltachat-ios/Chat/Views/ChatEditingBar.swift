@@ -21,6 +21,7 @@ public class ChatEditingBar: UIView, InputItem {
         willSet(newValue) {
             deleteButton.isEnabled = newValue
             forwardButton.isEnabled = newValue
+            copyButton.isEnabled = newValue
         }
     }
 
