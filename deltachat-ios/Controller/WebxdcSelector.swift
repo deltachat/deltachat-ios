@@ -117,6 +117,11 @@ class WebxdcSelector: UIViewController {
             }
         }
     }
+    
+    @objc func cancelAction() {
+        logger.debug("cancel Action")
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension WebxdcSelector: UICollectionViewDataSourcePrefetching {

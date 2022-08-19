@@ -1488,13 +1488,20 @@ class ChatViewController: UITableViewController {
         let msgIds = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
         let webxdcSelector = WebxdcSelector(context: dcContext, mediaMessageIds: msgIds.reversed())
         webxdcSelector.delegate = self
+        let webxdcSelectorNavigationController = UINavigationController(rootViewController: webxdcSelector)
         if #available(iOS 15.0, *) {
-            if let sheet = webxdcSelector.sheetPresentationController {
+            if let sheet = webxdcSelectorNavigationController.sheetPresentationController {
                 sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 20
             }
         }
-        navigationController?.present(webxdcSelector, animated: true)
+        let leftBarBtn = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+                                                            target: webxdcSelector,
+                                              action: #selector(webxdcSelector.cancelAction))
+        webxdcSelectorNavigationController.navigationBar.topItem?.setLeftBarButton(leftBarBtn, animated: false)
+
+        self.present(webxdcSelectorNavigationController, animated: true)
+        //navigationController?.present(webxdcSelector, animated: true)
     }
 
     private func showDocumentLibrary() {
