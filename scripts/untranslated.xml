@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- iOS specific untranslated strings -->
-    "a11y_connectivity_hint" = "Double tap to view connectivity details.";
+    <string name ="a11y_connectivity_hint">Double tap to view connectivity details.</string>
+    <string name ="webxdcs">Apps</string>
+    <string name ="webxdc_empty_hint">Webxdc apps you have received or sent will appear here. You can tap on files to select downloaded apps.</string>
 </resources>
