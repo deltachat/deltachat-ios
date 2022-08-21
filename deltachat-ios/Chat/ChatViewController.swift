@@ -1349,8 +1349,8 @@ class ChatViewController: UITableViewController {
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
-        alert.addAction(webxdcAction)
         alert.addAction(documentAction)
+        alert.addAction(webxdcAction)
         alert.addAction(voiceMessageAction)
 
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
