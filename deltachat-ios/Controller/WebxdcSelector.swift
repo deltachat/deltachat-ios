@@ -4,6 +4,7 @@ import QuickLook
 
 protocol WebxdcSelectorDelegate: AnyObject {
     func onWebxdcSelected(msgId: Int)
+    func onWebxdcFromFilesSelected(url: NSURL)
 }
 
 class WebxdcSelector: UIViewController {
@@ -48,7 +49,28 @@ class WebxdcSelector: UIViewController {
         return label
     }()
 
-       init(context: DcContext, mediaMessageIds: [Int]) {
+    private lazy var leftBarBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+                                                             target: self,
+                                               action: #selector(cancelAction))
+        return btn
+    }()
+
+    private lazy var rightBarBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: String.localized("files"),
+                                  style: .plain,
+                                  target: self,
+                                  action: #selector(filesAction))
+        return btn
+    }()
+
+    private lazy var mediaPicker: MediaPicker? = {
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self
+        return mediaPicker
+    }()
+
+    init(context: DcContext, mediaMessageIds: [Int]) {
         self.dcContext = context
         self.mediaMessageIds = mediaMessageIds
         self.deduplicatedMessageHashes = [:]
@@ -66,6 +88,8 @@ class WebxdcSelector: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         title = String.localized("webxdcs")
+        navigationItem.setLeftBarButton(leftBarBtn, animated: false)
+        navigationItem.setRightBarButton(rightBarBtn, animated: false)
         if mediaMessageIds.isEmpty {
             emptyStateView.isHidden = false
         }
@@ -119,8 +143,11 @@ class WebxdcSelector: UIViewController {
     }
     
     @objc func cancelAction() {
-        logger.debug("cancel Action")
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc func filesAction() {
+        mediaPicker?.showDocumentLibrary()
     }
 }
 
@@ -210,5 +237,14 @@ private extension WebxdcSelector {
         }
         let containerWidth = view.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right - 2 * gridDefaultSpacing
         gridLayout.containerWidth = containerWidth
+    }
+}
+
+extension WebxdcSelector: MediaPickerDelegate {
+    func onImageSelected(image: UIImage) {}
+
+    func onDocumentSelected(url: NSURL) {
+        delegate?.onWebxdcFromFilesSelected(url: url)
+        dismiss(animated: true)
     }
 }

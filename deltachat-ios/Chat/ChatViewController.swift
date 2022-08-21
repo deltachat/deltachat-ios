@@ -1495,13 +1495,8 @@ class ChatViewController: UITableViewController {
                 sheet.preferredCornerRadius = 20
             }
         }
-        let leftBarBtn = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
-                                                            target: webxdcSelector,
-                                              action: #selector(webxdcSelector.cancelAction))
-        webxdcSelectorNavigationController.navigationBar.topItem?.setLeftBarButton(leftBarBtn, animated: false)
 
         self.present(webxdcSelectorNavigationController, animated: true)
-        //navigationController?.present(webxdcSelector, animated: true)
     }
 
     private func showDocumentLibrary() {
@@ -2415,6 +2410,10 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
 
 
 extension ChatViewController: WebxdcSelectorDelegate {
+    func onWebxdcFromFilesSelected(url: NSURL) {
+        onDocumentSelected(url: url)
+    }
+
     func onWebxdcSelected(msgId: Int) {
         keepKeyboard = true
         DispatchQueue.main.async { [weak self] in
