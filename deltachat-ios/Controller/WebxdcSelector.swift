@@ -44,7 +44,7 @@ class WebxdcSelector: UIViewController {
 
     private lazy var emptyStateView: EmptyStateLabel = {
         let label = EmptyStateLabel()
-        label.text = String.localized("tab_gallery_empty_hint")
+        label.text = String.localized("webxdc_empty_hint")
         label.isHidden = true
         return label
     }()
