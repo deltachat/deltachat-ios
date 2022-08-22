@@ -25,6 +25,7 @@ class WebxdcGridCell: UICollectionViewCell {
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultInverseColor
         label.backgroundColor = DcColors.defaultTransparentBackgroundColor
+        label.textAlignment = .center
         return label
     }()
 
@@ -48,15 +49,17 @@ class WebxdcGridCell: UICollectionViewCell {
 
     private func setupSubviews() {
         contentView.addSubview(imageView)
-        imageView.addSubview(descriptionLabel)
+        contentView.addSubview(descriptionLabel)
         addConstraints([
             imageView.constraintAlignLeadingToAnchor(contentView.leadingAnchor),
             imageView.constraintAlignTrailingToAnchor(contentView.trailingAnchor),
             imageView.constraintAlignTopToAnchor(contentView.topAnchor),
-            imageView.constraintAlignBottomToAnchor(contentView.bottomAnchor),
-            descriptionLabel.constraintAlignLeadingTo(imageView),
-            descriptionLabel.constraintAlignTrailingMaxTo(imageView),
-            descriptionLabel.constraintAlignBottomTo(imageView),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
+            descriptionLabel.constraintAlignTrailingMaxTo(contentView),
+            descriptionLabel.constraintCenterXTo(contentView),
+            descriptionLabel.widthAnchor.constraint(lessThanOrEqualTo: imageView.widthAnchor),
+            descriptionLabel.constraintAlignBottomTo(contentView),
+            descriptionLabel.constraintToBottomOf(imageView),
         ])
     }
 
@@ -72,7 +75,6 @@ class WebxdcGridCell: UICollectionViewCell {
     override var isSelected: Bool {
         willSet {
             // to provide visual feedback on select events
-            contentView.backgroundColor = newValue ? DcColors.primary : DcColors.defaultBackgroundColor
             imageView.alpha = newValue ? 0.75 : 1.0
         }
     }
