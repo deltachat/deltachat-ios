@@ -3,5 +3,5 @@
     <!-- iOS specific untranslated strings -->
     <string name ="a11y_connectivity_hint">Double tap to view connectivity details.</string>
     <string name ="webxdcs">Apps</string>
-    <string name ="webxdc_empty_hint">Webxdc apps you have received or sent will appear here. You can tap on files to select downloaded apps.</string>
+    <string name ="webxdc_empty_hint">Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.</string>
 </resources>
