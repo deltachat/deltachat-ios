@@ -126,16 +126,14 @@ class WebxdcSelector: UIViewController {
                         if self.deduplicatedMessageHashes[hash] == nil {
                             self.deduplicatedMessageHashes[hash] = id
                             self.deduplicatedMessageIds.append(id)
-                            self.grid.reloadItems(at: [IndexPath(row: self.deduplicatedMessageIds.count - 1, section: 0)])
+                            self.grid.insertItems(at: [IndexPath(row: self.deduplicatedMessageIds.count - 1, section: 0)])
                         }
                     }
                 }
             }
 
             DispatchQueue.main.async {
-                if !self.deduplicatedMessageIds.isEmpty {
-                    self.grid.reloadData()
-                } else {
+                if self.deduplicatedMessageIds.isEmpty {
                     self.emptyStateView.isHidden = false
                 }
             }
