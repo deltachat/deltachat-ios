@@ -80,7 +80,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         let documentPicker: UIDocumentPickerViewController
         if #available(iOS 15.0, *) {
             let types = [UTType.pdf, UTType.text, UTType.rtf, UTType.spreadsheet, UTType.vCard, UTType.zip, UTType.image, UTType.data]
-            documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: types)
+            documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
         } else {
             let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage, kUTTypeData]
             documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
