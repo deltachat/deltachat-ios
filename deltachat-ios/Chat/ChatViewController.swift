@@ -2411,7 +2411,11 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
 
 extension ChatViewController: WebxdcSelectorDelegate {
     func onWebxdcFromFilesSelected(url: NSURL) {
-        onDocumentSelected(url: url)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.tableView.becomeFirstResponder()
+            self.onDocumentSelected(url: url)
+        }
     }
 
     func onWebxdcSelected(msgId: Int) {
