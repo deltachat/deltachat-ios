@@ -12,6 +12,8 @@ class GalleryItem: ContextMenuItem {
         return msg.fileURL
     }
 
+    var description: String?
+
     var thumbnailImage: UIImage? {
         get {
             if let fileUrl = self.fileUrl {
@@ -51,6 +53,9 @@ class GalleryItem: ContextMenuItem {
         } else {
             loadThumbnail()
         }
+        if msg.viewtype == .webxdc {
+            description = msg.getWebxdcInfoDict()["name"] as? String ?? "ErrName"
+        }
     }
 
     private func loadThumbnail() {
@@ -62,6 +67,8 @@ class GalleryItem: ContextMenuItem {
             loadImageThumbnail(from: url)
         case .video:
             loadVideoThumbnail(from: url)
+        case .webxdc:
+            loadWebxdcThumbnail(from: msg)
         default:
             safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
         }
@@ -82,6 +89,17 @@ class GalleryItem: ContextMenuItem {
             if let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url) {
                 DispatchQueue.main.async { [weak self] in
                     self?.thumbnailImage = thumbnailImage
+                }
+            }
+        }
+    }
+
+    private func loadWebxdcThumbnail(from message: DcMsg) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let image = message.getWebxdcPreviewImage()
+            if let image = image {
+                DispatchQueue.main.async { [weak self] in
+                    self?.thumbnailImage = image
                 }
             }
         }
