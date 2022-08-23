@@ -24,7 +24,7 @@ class WebxdcSelector: UIViewController {
         let layout = GridCollectionViewFlowLayout()
         layout.minimumLineSpacing = gridDefaultSpacing
         layout.minimumInteritemSpacing = gridDefaultSpacing
-        layout.format = .rect(ratio: 1.2)
+        layout.format = .rect(ratio: 1.3)
         return layout
     }()
 

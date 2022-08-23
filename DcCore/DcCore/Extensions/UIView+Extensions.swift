@@ -119,6 +119,21 @@ public extension UIView {
         return constraint
     }
 
+    func constraintAlignBottomMaxTo(_ view: UIView, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(
+            item: self,
+            attribute: .bottom,
+            relatedBy: .lessThanOrEqual,
+            toItem: view,
+            attribute: .bottom,
+            multiplier: 1.0,
+            constant: -paddingBottom)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        return constraint
+    }
+
     func constraintAlignLeadingTo(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,

@@ -7,6 +7,14 @@ class WebxdcGridCell: UICollectionViewCell {
 
     weak var item: GalleryItem?
 
+    private var font: UIFont {
+        let regularFont = UIFont.preferredFont(forTextStyle: .subheadline)
+        if regularFont.pointSize > 28 {
+            return UIFont.systemFont(ofSize: 28)
+        }
+        return regularFont
+    }
+
     private lazy var imageView: SDAnimatedImageView = {
         let view = SDAnimatedImageView()
         view.contentMode = .scaleAspectFill
@@ -21,7 +29,7 @@ class WebxdcGridCell: UICollectionViewCell {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(for: .caption1, weight: .light)
+        label.font = font
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultInverseColor
         label.backgroundColor = DcColors.defaultTransparentBackgroundColor
@@ -58,8 +66,8 @@ class WebxdcGridCell: UICollectionViewCell {
             descriptionLabel.constraintAlignTrailingMaxTo(contentView),
             descriptionLabel.constraintCenterXTo(contentView),
             descriptionLabel.widthAnchor.constraint(lessThanOrEqualTo: imageView.widthAnchor),
-            descriptionLabel.constraintAlignBottomTo(contentView),
-            descriptionLabel.constraintToBottomOf(imageView),
+            descriptionLabel.constraintToBottomOf(imageView, paddingTop: 4),
+            descriptionLabel.constraintAlignBottomMaxTo(contentView)
         ])
     }
 
@@ -76,6 +84,13 @@ class WebxdcGridCell: UICollectionViewCell {
         willSet {
             // to provide visual feedback on select events
             imageView.alpha = newValue ? 0.75 : 1.0
+        }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory {
+                descriptionLabel.font = font
         }
     }
 }
