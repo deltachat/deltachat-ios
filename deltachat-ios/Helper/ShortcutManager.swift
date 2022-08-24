@@ -148,7 +148,7 @@ public class ShortcutManager {
             .appContainer {
               padding-top: 0px;
               text-align: center;
-              display: flex;
+              display: block;
               justify-content: center;
               align-items: center;
             }
@@ -174,9 +174,15 @@ public class ShortcutManager {
                 -webkit-text-size-adjust: none;
             }
             .previewImage {
-                height: 60px;
-                width: 60px;
+                height: 90px;
+                width: 90px;
                 padding: .5rem .5rem .5rem .5rem;
+            }
+            .webxdcName {
+                text-align: center;
+                font-size: 19pt;
+                font-family: -apple-system, sans-serif;
+                -webkit-text-size-adjust: none;
             }
             .iconImage {
                 height: 20px;
@@ -220,6 +226,7 @@ public class ShortcutManager {
                  appContainer.appendChild(img);
                  var header = document.createElement('h1');
                  header.append('\(title)');
+                 header.classList.add("webxdcName");
                  appContainer.appendChild(header);
                  document.body.appendChild(appContainer);
 
