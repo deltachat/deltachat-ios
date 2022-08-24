@@ -249,7 +249,7 @@ function convertAndroidToIOS(stringsXMLArray, appleStrings) {
 
   for (entry of stringsXMLArray) {
     allElements = parseXMLAndAppend(allElements, entry)
-    console.log("parsed " + allElements.parsed.length + " after reading " + entry + " for Localizable.strings and " + allElements.parsedPlurals.size + " entries for Localizable.stringsdict");
+    console.log("parsed " + allElements.parsed.length + " for Localizable.strings and " + allElements.parsedPlurals.size + " entries for Localizable.stringsdict" + " after reading " + entry);
   }
 
   let iosFormatted = toLocalizableStrings(allElements.parsed);
