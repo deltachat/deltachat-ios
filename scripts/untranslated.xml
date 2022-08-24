@@ -4,4 +4,6 @@
     <string name ="a11y_connectivity_hint">Double tap to view connectivity details.</string>
     <string name ="webxdcs">Apps</string>
     <string name ="webxdc_empty_hint">Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.</string>
+    <string name ="shortcut_share_btn">Click the share button</string>
+    <string name ="shortcut_add_to_home_description">Select - Add to Home Screen - to add the app to your home screen.</string>
 </resources>
