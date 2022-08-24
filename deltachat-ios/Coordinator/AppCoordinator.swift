@@ -144,6 +144,15 @@ class AppCoordinator {
             }
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
             appDelegate.reloadDcContext()
+        } else {
+            // check if webxdc is already opened
+            if let navController = self.tabBarController.selectedViewController as? UINavigationController,
+               let topViewController = navController.topViewController,
+               let webxdcController = topViewController as? WebxdcViewController,
+               webxdcController.messageId == messageId {
+                // do nothing, the app shows the correct view
+                return true
+            }
         }
 
         let dcContext = dcAccounts.getSelected()
