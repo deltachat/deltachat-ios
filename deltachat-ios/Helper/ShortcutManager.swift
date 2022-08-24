@@ -131,7 +131,7 @@ public class ShortcutManager {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="apple-mobile-web-app-title" content="\(title)">
         <link rel="apple-touch-startup-image" media="(orientation: landscape)" href="data:image/jpeg;base64,\(landscapeSplashBase64)"/>
         <link rel="apple-touch-startup-image" media="(orientation: portrait)" href="data:image/jpeg;base64,\(portraitSplashBase64)"/>
