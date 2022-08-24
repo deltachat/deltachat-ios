@@ -144,6 +144,7 @@ class WebxdcViewController: WebViewViewController {
     init(dcContext: DcContext, messageId: Int) {
         self.dcContext = dcContext
         self.messageId = messageId
+        self.shortcutManager = ShortcutManager(dcContext: dcContext, messageId: messageId)
         super.init()
     }
     
@@ -167,7 +168,6 @@ class WebxdcViewController: WebViewViewController {
            !sourceCode.isEmpty {
             sourceCodeUrl = sourceCode
         }
-        self.shortcutManager = ShortcutManager(dcContext: dcContext)
     }
     
     override func willMove(toParent parent: UIViewController?) {
@@ -291,7 +291,7 @@ class WebxdcViewController: WebViewViewController {
     }
 
     private func addToHomeScreen(_ action: UIAlertAction) {
-        shortcutManager?.showShortcutLandingPage(messageId: messageId)
+        shortcutManager?.showShortcutLandingPage()
     }
 
     private func openUrl(_ action: UIAlertAction) {

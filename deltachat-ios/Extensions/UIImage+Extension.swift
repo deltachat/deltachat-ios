@@ -58,7 +58,7 @@ extension UIImage {
         backgroundColor.setFill()
         UIRectFill(rect)
         let horizontalPadding = (rect.width - self.size.width) / 2
-        let verticalPadding = (rect.height - self.size.height) / 2
+        let verticalPadding = (rect.height - self.size.height) / 2 + UIApplication.shared.statusBarFrame.height
         self.draw(in: CGRect(horizontalPadding, verticalPadding, self.size.width, self.size.height))
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

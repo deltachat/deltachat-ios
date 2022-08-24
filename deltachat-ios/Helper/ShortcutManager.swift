@@ -3,6 +3,7 @@ import UIKit
 import SafariServices
 import Swifter
 import DcCore
+import SDWebImage
 
 public class ShortcutManager {
 
@@ -13,10 +14,12 @@ public class ShortcutManager {
 
     private let defaultPort: UInt16 = 8200
     private var localPort: UInt16 = 8200
-    var dcContext: DcContext
+    private let dcContext: DcContext
+    private let messageId: Int
 
-    public init(dcContext: DcContext) {
+    public init(dcContext: DcContext, messageId: Int) {
         self.dcContext = dcContext
+        self.messageId = messageId
     }
 
     deinit {
@@ -40,13 +43,19 @@ public class ShortcutManager {
     }()
 
     private lazy var scaledDownLogo: UIImage? = {
-        return UIImage(named: "dc_logo")?.scaleDownImage(toMax: 160)
+        let msg = dcContext.getMessage(id: messageId)
+        return msg.getWebxdcPreviewImage()?
+            .scaleDownImage(toMax: 160)?
+            .sd_roundedCornerImage(withRadius: 12,
+                                   corners: SDRectCorner.allCorners,
+                                   borderWidth: 0,
+                                   borderColor: nil)
     }()
 
     public lazy var landscapeSplashBase64: String = {
         let image = scaledDownLogo?
             .generateSplash(backgroundColor: DcColors.chatBackgroundColor, isPortrait: false)?
-            .jpegData(compressionQuality: 0)?
+            .pngData()?
             .base64EncodedString() ?? ""
         return image
     }()
@@ -54,12 +63,12 @@ public class ShortcutManager {
     public lazy var portraitSplashBase64: String = {
         let image = scaledDownLogo?
             .generateSplash(backgroundColor: DcColors.chatBackgroundColor, isPortrait: true)?
-            .jpegData(compressionQuality: 0)?
+            .pngData()?
             .base64EncodedString() ?? ""
         return image
     }()
 
-    func showShortcutLandingPage(messageId: Int) {
+    func showShortcutLandingPage() {
         let message = dcContext.getMessage(id: messageId)
         if message.type != DC_MSG_WEBXDC {
             return
@@ -71,7 +80,7 @@ public class ShortcutManager {
         }
 
         let infoDict = message.getWebxdcInfoDict()
-        let iconData = message.getWebxdcPreviewImage()?.jpegData(compressionQuality: 0) ?? UIImage(named: "appicon")?.pngData() ?? nil
+        let iconData = scaledDownLogo?.pngData() ?? UIImage(named: "appicon")?.pngData() ?? nil
         guard let name = infoDict["name"] as? String else {
             // TODO: use a default name?!
             return
@@ -143,6 +152,19 @@ public class ShortcutManager {
               justify-content: center;
               align-items: center;
             }
+            .screenshotWrapper {
+              padding-top: 0px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100vw;
+              height: 100vh;
+              position: relative;
+            }
+            .screenshotImage {
+              width: 160px;
+              height: 160px;
+            }
             div {
                 padding: 1rem 1rem 1rem 1rem;
             }
@@ -154,7 +176,6 @@ public class ShortcutManager {
             .previewImage {
                 height: 60px;
                 width: 60px;
-                border-radius: 8px;
                 padding: .5rem .5rem .5rem .5rem;
             }
             .iconImage {
@@ -171,8 +192,15 @@ public class ShortcutManager {
             }
          </style>
          <script type="text/javascript">
-
             if (window.navigator.standalone) {
+                var appContainer = document.createElement('div');
+                appContainer.classList.add("screenshotWrapper");
+                var img = document.createElement('img');
+                img.src = "data:image/png;base64,\(iconBase64)";
+                img.classList.add("screenshotImage");
+                appContainer.appendChild(img);
+                document.body.appendChild(appContainer);
+
                 var element = document.getElementById('redirect');
                 var event = document.createEvent('MouseEvents');
                 event.initEvent('click', true, true, document.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
