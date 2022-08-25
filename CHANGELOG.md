@@ -13,8 +13,6 @@
 * fix accessibility hint in multi-select chat list title
 * update translations, revise english source
 * update to core90
-* register on system for `dcaccount:` scheme
-
 
 ## v1.31.0 Testflight
 2022-07
