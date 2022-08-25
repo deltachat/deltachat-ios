@@ -187,16 +187,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // }
 
         switch url.scheme?.lowercased() {
+        case "dcaccount":
+            appCoordinator.handleQRCode(url.absoluteString)
+            return true
         case "openpgp4fpr":
             // Hack to format url properly
             let urlString = url.absoluteString
                            .replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
                            .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
 
-            self.appCoordinator.handleQRCode(urlString)
+            appCoordinator.handleQRCode(urlString)
             return true
         case "mailto":
-            return self.appCoordinator.handleMailtoURL(url)
+            return appCoordinator.handleMailtoURL(url)
         default:
             return false
         }
@@ -579,7 +582,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    func reloadDcContext() {
+    /// - Parameters:
+    ///   - accountCode: optional string representation of dcaccounts: url, used to setup a new account
+    func reloadDcContext(accountCode: String? = nil) {
         setStockTranslations()
         locationManager.reloadDcContext()
         notificationManager.reloadDcContext()
@@ -588,7 +593,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if dcAccounts.getSelected().isConfigured() {
             appCoordinator.resetTabBarRootViewControllers()
         } else {
-            appCoordinator.presentWelcomeController()
+            appCoordinator.presentWelcomeController(accountCode: accountCode)
         }
     }
 

@@ -14,7 +14,6 @@
 * update translations, revise english source
 * update to core90
 
-
 ## v1.31.0 Testflight
 2022-07
 

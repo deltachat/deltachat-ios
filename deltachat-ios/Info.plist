@@ -29,6 +29,7 @@
 			<array>
 				<string>chat.delta</string>
 				<string>openpgp4fpr</string>
+				<string>dcaccount</string>
 			</array>
 		</dict>
 		<dict>

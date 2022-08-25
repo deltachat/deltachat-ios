@@ -3,6 +3,7 @@ import DcCore
 
 class QrPageController: UIPageViewController {
     private let dcContext: DcContext
+    private let dcAccounts: DcAccounts
     var progressObserver: NSObjectProtocol?
     var qrCodeReaderController: QrCodeReaderController?
 
@@ -38,8 +39,9 @@ class QrPageController: UIPageViewController {
         return control
     }()
 
-    init(dcContext: DcContext) {
-        self.dcContext = dcContext
+    init(dcAccounts: DcAccounts) {
+        self.dcAccounts = dcAccounts
+        self.dcContext = dcAccounts.getSelected()
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
     }
 
@@ -184,11 +186,11 @@ extension QrPageController: QrCodeReaderDelegate {
             let nameAndAddress = dcContext.getContact(id: qrParsed.id).nameNAddr
             let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), nameAndAddress)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
                 let chatId = self.dcContext.createChatByContactId(contactId: qrParsed.id)
                 self.showChat(chatId: chatId)
             }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
         case DC_QR_TEXT:
@@ -201,18 +203,18 @@ extension QrPageController: QrCodeReaderDelegate {
             let url = qrParsed.text1 ?? ""
             let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_url"), url)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: String.localized("open"), style: .default, handler: { _ in
                 if let url = URL(string: url) {
                     UIApplication.shared.open(url)
                 }
             }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
 
         case DC_QR_ACCOUNT:
-            let alert = UIAlertController(title: String.localized("qraccount_use_on_new_install"), message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
-            present(alert, animated: true)
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.appCoordinator.presentWelcomeController(accountCode: code)
+            }
 
         case DC_QR_WEBRTC_INSTANCE:
             guard let domain = qrParsed.text1 else { return }

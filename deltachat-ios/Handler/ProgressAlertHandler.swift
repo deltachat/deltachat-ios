@@ -6,7 +6,7 @@ protocol ProgressAlertHandler: UIViewController {
     var progressObserver: NSObjectProtocol? { get set } // set to nil in viewDidDisappear
     func showProgressAlert(title: String, dcContext: DcContext)
     func updateProgressAlertValue(value: Int?)
-    func updateProgressAlert(error: String?)
+    func updateProgressAlert(error: String?, completion: VoidFunction?)
     func updateProgressAlertSuccess(completion: VoidFunction?)
     func addProgressAlertListener(dcAccounts: DcAccounts, progressName: Notification.Name, onSuccess: @escaping VoidFunction)
 }
@@ -39,7 +39,7 @@ extension ProgressAlertHandler {
         }
     }
 
-    func updateProgressAlert(error message: String?) {
+    func updateProgressAlert(error message: String?, completion onComplete: VoidFunction? = nil) {
         DispatchQueue.main.async(execute: {
             // CAVE: show the new alert in the dismiss-done-handler of the previous one -
             // otherwise we get the error "Attempt to present <UIAlertController: ...> while a presentation is in progress."
@@ -47,7 +47,9 @@ extension ProgressAlertHandler {
             // (when animated is true, that works also sequentially, however better not rely on that, also we do not want an animation here)
             self.progressAlert?.dismiss(animated: false) {
                 let errorAlert = UIAlertController(title: String.localized("error"), message: message, preferredStyle: .alert)
-                errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                    onComplete?()
+                }))
                 // sometimes error messages are not shown and we get the same error as above
                 // as a workaround we disable animated here as well
                 self.present(errorAlert, animated: false, completion: nil)

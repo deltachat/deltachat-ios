@@ -4,6 +4,7 @@ import DcCore
 class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
+    private let accountCode: String?
     private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
     var onProgressSuccess: VoidFunction?
@@ -41,7 +42,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelAccountCreation))
     }()
 
     private lazy var moreButton: UIBarButtonItem = {
@@ -60,9 +61,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private var qrCodeReader: QrCodeReaderController?
     weak var progressAlert: UIAlertController?
 
-    init(dcAccounts: DcAccounts) {
+    init(dcAccounts: DcAccounts, accountCode: String? = nil) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
+        self.accountCode = accountCode
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
         onProgressSuccess = { [weak self] in
@@ -89,6 +91,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             navigationItem.leftBarButtonItem = cancelButton
         }
         navigationItem.rightBarButtonItem = moreButton
+        if let accountCode = accountCode {
+            handleQrCode(accountCode)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -149,15 +154,23 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let accountId = dcAccounts.getSelected().id
 
         if accountId != 0 {
-            self.dcContext = dcAccounts.get(id: accountId)
-            let success = dcContext.setConfigFromQR(qrCode: qrCode)
-            if success {
-                addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationConfigureProgress, onSuccess: handleLoginSuccess)
-                showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
-                dcAccounts.stopIo()
-                dcContext.configure()
-            } else {
-                accountCreationErrorAlert()
+            dcContext = dcAccounts.get(id: accountId)
+            addProgressAlertListener(dcAccounts: self.dcAccounts,
+                                     progressName: dcNotificationConfigureProgress,
+                                     onSuccess: self.handleLoginSuccess)
+            showProgressAlert(title: String.localized("login_header"), dcContext: self.dcContext)
+            DispatchQueue.global().async { [weak self] in
+                guard let self = self else { return }
+                let success = self.dcContext.setConfigFromQR(qrCode: qrCode)
+                DispatchQueue.main.async {
+                    if success {
+                        self.dcAccounts.stopIo()
+                        self.dcContext.configure()
+                    } else {
+                        self.updateProgressAlert(error: self.dcContext.lastErrorString,
+                                                 completion: self.accountCode != nil ? self.cancelAccountCreation : nil)
+                    }
+                }
             }
         }
     }
@@ -180,13 +193,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.reloadDcContext()
         }
-    }
-
-    private func accountCreationErrorAlert() {
-        let title = dcContext.lastErrorString
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
-        present(alert, animated: true)
     }
 
     @objc private func moreButtonPressed() {
@@ -231,7 +237,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         self.navigationController?.pushViewController(accountSetupController, animated: true)
     }
 
-    @objc private func cancelButtonPressed() {
+    @objc private func cancelAccountCreation() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         // take a bit care on account removal:
         // remove only openend and unconfigured and make sure, there is another account
@@ -316,7 +322,9 @@ extension WelcomeViewController: QrCodeReaderDelegate {
     }
 
     private func confirmAccountCreationAlert(accountDomain domain: String, qrCode: String) {
-        let title = String.localizedStringWithFormat(String.localized("qraccount_ask_create_and_login"), domain)
+        let title = String.localizedStringWithFormat(
+            String.localized(dcAccounts.getAll().count > 1 ? "qraccount_ask_create_and_login_another" : "qraccount_ask_create_and_login"),
+            domain)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
         let okAction = UIAlertAction(
@@ -333,13 +341,23 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("cancel"),
             style: .cancel,
             handler: { [weak self] _ in
-                self?.dismissQRReader()
+                guard let self = self else { return }
+                self.dismissQRReader()
+                // if an injected accountCode exists, the WelcomeViewController was only opened to handle that
+                // cancelling the action should also dismiss the whole controller
+                if self.accountCode != nil {
+                    self.cancelAccountCreation()
+                }
             }
         )
 
         alert.addAction(okAction)
         alert.addAction(qrCancelAction)
-        qrCodeReader?.present(alert, animated: true)
+        if qrCodeReader != nil {
+            qrCodeReader?.present(alert, animated: true)
+        } else {
+            self.present(alert, animated: true)
+        }
     }
 
     private func qrErrorAlert() {
@@ -349,7 +367,14 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [weak self] _ in
-                self?.qrCodeReader?.startSession()
+                guard let self = self else { return }
+                if self.accountCode != nil {
+                    // if an injected accountCode exists, the WelcomeViewController was only opened to handle that
+                    // if the action failed the whole controller should be dismissed
+                    self.cancelAccountCreation()
+                } else {
+                    self.qrCodeReader?.startSession()
+                }
             }
         )
         alert.addAction(okAction)
