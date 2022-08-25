@@ -893,4 +893,4 @@
 "update_1_30" = "Faster. More stable.\n\nFor 1.30 releases, we focused on speed and reliability, fixing dozens of bugs. Check our changelogs if your favorite one is fixed: https://get.delta.chat/#changelogs 🚀";
 
 "webxdcs" = "Apps";
-"webxdc_empty_hint" = "Webxdc apps you have received or sent will appear here. You can tap on files to select downloaded apps.";
+"webxdc_empty_hint" = "Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.";

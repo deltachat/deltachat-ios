@@ -2,11 +2,11 @@ var fs = require('fs');
 
 function parseAndroid(data) {
 
-  const rgxKeyValue = /<string name="(.*)">(.*)<\/string>/;
+  const rgxKeyValue = /<string name\s*=\s*"(.*)"\s*>(.*)<\/string>/;
   const rgxCommentBlock = /<!-- ?(.*?) ?-->/;
   const rgxCommentStart = /<!-- ?(.*)/;
   const rgxCommentEnd = /(.*?) ?-->/;
-  const rgxPluralsStart = /<plurals name="(.*)">/;
+  const rgxPluralsStart = /<plurals name\s*=\s*"(.*)"\s*>/;
   const rgxPluralsEnd = /\s<\/plurals>/
 
   let lines = data.trim().split('\n');
@@ -249,7 +249,7 @@ function convertAndroidToIOS(stringsXMLArray, appleStrings) {
 
   for (entry of stringsXMLArray) {
     allElements = parseXMLAndAppend(allElements, entry)
-    console.log("parsed " + allElements.parsed.length + " entries of " + entry + " for Localizable.strings and " + allElements.parsedPlurals.size + " entries for Localizable.stringsdict");
+    console.log("parsed " + allElements.parsed.length + " for Localizable.strings and " + allElements.parsedPlurals.size + " entries for Localizable.stringsdict" + " after reading " + entry);
   }
 
   let iosFormatted = toLocalizableStrings(allElements.parsed);
