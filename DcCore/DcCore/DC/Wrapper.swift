@@ -76,9 +76,9 @@ public class DcAccounts {
         return dc_accounts_remove_account(accountsPointer, UInt32(id)) == 1
     }
 
-    public func getEventEmitter() -> DcAccountsEventEmitter {
+    public func getEventEmitter() -> DcEventEmitter {
         let eventEmitterPointer = dc_accounts_get_event_emitter(accountsPointer)
-        return DcAccountsEventEmitter(eventEmitterPointer: eventEmitterPointer)
+        return DcEventEmitter(eventEmitterPointer: eventEmitterPointer)
     }
 
     public func openDatabase() {
@@ -721,7 +721,7 @@ public class DcContext {
 }
 
 
-public class DcAccountsEventEmitter {
+public class DcEventEmitter {
     private var eventEmitterPointer: OpaquePointer?
 
     // takes ownership of specified pointer
@@ -730,12 +730,12 @@ public class DcAccountsEventEmitter {
     }
 
     public func getNextEvent() -> DcEvent? {
-        guard let eventPointer = dc_accounts_get_next_event(eventEmitterPointer) else { return nil }
+        guard let eventPointer = dc_get_next_event(eventEmitterPointer) else { return nil }
         return DcEvent(eventPointer: eventPointer)
     }
 
     deinit {
-        dc_accounts_event_emitter_unref(eventEmitterPointer)
+        dc_event_emitter_unref(eventEmitterPointer)
     }
 }
 
