@@ -894,3 +894,6 @@
 
 "webxdcs" = "Apps";
 "webxdc_empty_hint" = "Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.";
+"shortcut_share_btn" = "Click the share button";
+"shortcut_add_to_home_description" = "Select 'Add to Home Screen' to add the app to your home screen";
+"add_to_home" = "Add to Home Screen";

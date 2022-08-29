@@ -238,7 +238,7 @@ extension WebViewViewController: ChatSearchDelegate {
 
 extension WebViewViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didAdaptToKeyboard height: CGFloat) {
-        logger.debug("didAdaptToKeyboard: \(height)")
+        // logger.debug("didAdaptToKeyboard: \(height)")
         self.webView.scrollView.contentInset.bottom = height
     }
 }
