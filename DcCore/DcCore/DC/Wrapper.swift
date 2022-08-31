@@ -1413,6 +1413,7 @@ public class DcLot {
 
 public class DcBackupSender {
   private var dcBackupSenderPointer: OpaquePointer?
+  private var dcContextPointer: OpaquePointer?
   
   // takes ownership of specified pointer
   public init(_ dcBackupSenderPointer: OpaquePointer) {
@@ -1422,10 +1423,11 @@ public class DcBackupSender {
 
   deinit {
       print(">>>> 💙 deinit DcBackupSender")
-      dc_backup_sender_unref(dcBackupSenderPointer)
+      dc_backup_sender_done(dcContextPointer, dcBackupSenderPointer)
   }
 
   public func qr_code(context: DcContext) -> String? {
+    self.dcContextPointer = context.contextPointer
     guard let cString = dc_backup_sender_qr(context.contextPointer, dcBackupSenderPointer) else { return nil }
     let swiftString = String(cString: cString)
     dc_str_unref(cString)
