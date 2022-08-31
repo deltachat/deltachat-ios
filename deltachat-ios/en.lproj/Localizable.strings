@@ -896,3 +896,5 @@
 "webxdc_empty_hint" = "Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.";
 "shortcut_share_btn" = "Click the share button";
 "shortcut_add_to_home_description" = "Select - Add to Home Screen - to add the app to your home screen.";
+"setup_new_device" = "Link Device";
+"scan_to_transfer" = "Scan this QR code to transfer your account to a new device.";

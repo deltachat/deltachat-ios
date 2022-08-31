@@ -132,6 +132,7 @@
 		7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7837B63F21E54DC600CDE126 /* .swiftlint.yml */; };
 		785BE16821E247F1003BE98C /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BE16721E247F1003BE98C /* MessageInfoViewController.swift */; };
 		789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */; };
+		78A8733D2877608200690A0B /* QrBackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8733C2877608200690A0B /* QrBackupViewController.swift */; };
 		78E45E3A21D3CFBC00D4B15E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E3921D3CFBC00D4B15E /* SettingsController.swift */; };
 		78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
 		78ED838321D5379000243125 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED838221D5379000243125 /* TextFieldCell.swift */; };
@@ -409,6 +410,7 @@
 		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
 		787D6699229F2237000A7A9D /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "deltachat-ios/libraries/deltachat-core-rust/target/universal/debug/libdeltachat.a"; sourceTree = "<group>"; };
 		789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeReaderController.swift; sourceTree = "<group>"; };
+		78A8733C2877608200690A0B /* QrBackupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrBackupViewController.swift; sourceTree = "<group>"; };
 		78C7036A21D46752005D4525 /* deltachat-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deltachat-ios.entitlements"; sourceTree = "<group>"; };
 		78E45E3921D3CFBC00D4B15E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -941,6 +943,7 @@
 				789E879521D6CB58003ED1C5 /* QrCodeReaderController.swift */,
 				AECEF03D244F2D55006C90DA /* QrPageController.swift */,
 				30149D9222F21129003C12B5 /* QrViewController.swift */,
+				78A8733C2877608200690A0B /* QrBackupViewController.swift */,
 				B21005DA23383664004C70C5 /* SettingsClassicViewController.swift */,
 				30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */,
 				78E45E3921D3CFBC00D4B15E /* SettingsController.swift */,
@@ -1497,6 +1500,7 @@
 				30653081254358B10093E196 /* QuoteView.swift in Sources */,
 				3067AAC62667F3FE00525036 /* ImageFormat.swift in Sources */,
 				30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */,
+				78A8733D2877608200690A0B /* QrBackupViewController.swift in Sources */,
 				30EF7308252F6A3300E2C54A /* PaddingTextView.swift in Sources */,
 				30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */,
 				3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */,

@@ -12,5 +12,6 @@ typedef dc_msg_t dc_msg_t;
 typedef dc_lot_t dc_lot_t;
 typedef dc_array_t dc_array_t;
 typedef dc_chatlist_t dc_chatlist_t;
+typedef dc_backup_sender_t dc_backup_sender_t;
 
 #endif /* wrapper_h */

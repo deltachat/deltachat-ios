@@ -6,4 +6,6 @@
     <string name ="webxdc_empty_hint">Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.</string>
     <string name ="shortcut_share_btn">Click the share button</string>
     <string name ="shortcut_add_to_home_description">Select - Add to Home Screen - to add the app to your home screen.</string>
+    <string name="setup_new_device">Link Device</string>
+    <string name="scan_to_transfer">Scan this QR code to transfer your account to a new device.</string>
 </resources>

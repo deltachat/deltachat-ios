@@ -316,6 +316,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
         let lot = dcContext.checkQR(qrCode: code)
         if let domain = lot.text1, lot.state == DC_QR_ACCOUNT {
             confirmAccountCreationAlert(accountDomain: domain, qrCode: code)
+        } else if lot.state == DC_QR_BACKUP {
+            confirmSetupNewDeviceAlert(qrCode: code)
         } else {
             qrErrorAlert()
         }
@@ -358,6 +360,33 @@ extension WelcomeViewController: QrCodeReaderDelegate {
         } else {
             self.present(alert, animated: true)
         }
+    }
+
+    private func confirmSetupNewDeviceAlert(qrCode: String) {
+        triggerLocalNetworkPrivacyAlert()
+        let alert = UIAlertController(title: String.localized("setup_new_device"),
+                                      message: "Set up the account from the other device here? Data on the other device are not altered.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: String.localized("ok"),
+            style: .default,
+            handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.dismissQRReader()
+                self.addProgressHudBackupListener()
+                self.showProgressAlert(title: String.localized("setup_new_device"), dcContext: self.dcContext)
+                self.dcAccounts.stopIo()
+                self.dcContext.receiveBackup(qrCode: qrCode)
+            }
+        ))
+        alert.addAction(UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { [weak self] _ in
+                self?.dismissQRReader()
+            }
+        ))
+        qrCodeReader?.present(alert, animated: true)
     }
 
     private func qrErrorAlert() {
@@ -451,7 +480,7 @@ class WelcomeContentView: UIView {
 
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
-        let title = String.localized("scan_invitation_code")
+        let title = String.localized("qrscan_title")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)

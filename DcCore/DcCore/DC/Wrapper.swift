@@ -554,6 +554,15 @@ public class DcContext {
     public func imex(what: Int32, directory: String, passphrase: String? = nil) {
         dc_imex(contextPointer, what, directory, passphrase)
     }
+  
+    public func send_backup(directory: String, passphrase: String? = nil) -> DcBackupSender? {
+      guard let dcBackupSenderPointer = dc_send_backup(contextPointer, directory, passphrase) else { return nil }
+      return DcBackupSender(dcBackupSenderPointer)
+    }
+
+    public func receiveBackup(qrCode: String, passphrase: String? = nil) {
+        dc_receive_backup(contextPointer, qrCode, passphrase)
+    }
 
     public func imexHasBackup(filePath: String) -> String? {
         var file: String?
@@ -1400,6 +1409,29 @@ public class DcLot {
     public var id: Int {
         return Int(dc_lot_get_id(dcLotPointer))
     }
+}
+
+public class DcBackupSender {
+  private var dcBackupSenderPointer: OpaquePointer?
+  
+  // takes ownership of specified pointer
+  public init(_ dcBackupSenderPointer: OpaquePointer) {
+      print(">>>> 💙 init DcBackupSender")
+      self.dcBackupSenderPointer = dcBackupSenderPointer
+  }
+
+  deinit {
+      print(">>>> 💙 deinit DcBackupSender")
+      dc_backup_sender_unref(dcBackupSenderPointer)
+  }
+
+  public func qr_code(context: DcContext) -> String? {
+    guard let cString = dc_backup_sender_qr(context.contextPointer, dcBackupSenderPointer) else { return nil }
+    let swiftString = String(cString: cString)
+    dc_str_unref(cString)
+    return swiftString
+    
+  }
 }
 
 public class DcProvider {

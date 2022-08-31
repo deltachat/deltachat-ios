@@ -131,6 +131,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         if viewController is QrViewController {
             return nil
         }
+        
         return QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
     }
 
@@ -138,6 +139,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         if viewController is QrViewController {
             return makeQRReader()
         }
+
         return nil
     }
 
@@ -211,7 +213,7 @@ extension QrPageController: QrCodeReaderDelegate {
             }))
             present(alert, animated: true, completion: nil)
 
-        case DC_QR_ACCOUNT:
+        case DC_QR_ACCOUNT, DC_QR_BACKUP:
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.appCoordinator.presentWelcomeController(accountCode: code)
             }

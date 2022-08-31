@@ -30,6 +30,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case videoChat = 15
         case connectivity = 16
         case selectBackground = 17
+        case qrCodeBackup = 18
     }
 
     private var dcContext: DcContext
@@ -188,6 +189,13 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    private lazy var qrCodeBackupCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.qrCodeBackup.rawValue
+        cell.actionTitle = String.localized("setup_new_device")
+        return cell
+    }()
+
     private lazy var advancedCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.advanced.rawValue
@@ -226,6 +234,9 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    private var qrCodeBackupRunning = false
+    private var qrBackupViewController: QrBackupViewController?
+
     private lazy var sections: [SectionConfigs] = {
         var appNameAndVersion = "Delta Chat"
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -233,8 +244,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         }
         let profileSection = SectionConfigs(
             headerTitle: String.localized("pref_profile_info_headline"),
-            footerTitle: nil,
-            cells: [profileCell, switchAccountCell]
+            footerTitle: "Link another device to this account",
+            cells: [profileCell, switchAccountCell, qrCodeBackupCell]
         )
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
@@ -367,6 +378,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
+        case .qrCodeBackup: showQRBackupViewController()
         case .advanced: showAdvancedDialog()
         case .switchAccount: showSwitchAccountMenu()
         case .help: showHelp()
@@ -393,6 +405,15 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func showQRBackupViewController() {
+        qrBackupViewController = QrBackupViewController(dcAccounts: dcAccounts)
+        guard let qrBackupViewController = qrBackupViewController else {
+            return
+        }
+        qrBackupViewController.delegate = self
+        navigationController?.pushViewController(qrBackupViewController, animated: true)
     }
 
     @objc private func handleNotificationToggle(_ sender: UISwitch) {
@@ -735,5 +756,34 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
         DBDebugToolkit.add(DBCustomVariable(name: "", value: info))
         DBDebugToolkit.showMenu()
+    }
+}
+
+extension SettingsViewController: QrBackupViewControllerDelegate {
+    func onBackupFinished(sender: QrBackupViewController) {
+        qrCodeBackupRunning = false
+        logger.debug(">>>> onBackupFinished qrCodeBackupRunning \(qrCodeBackupRunning)")
+        if let qrBackupViewController = qrBackupViewController,
+        sender !== qrBackupViewController {
+            logger.debug(">>>> onBackupFinished starting new Backup for different VC")
+            qrBackupViewController.startBackup()
+        } else {
+            logger.debug(">>>> onBackupFinished no new qrBackup")
+        }
+    }
+
+    func onBackupStarted() {
+        qrCodeBackupRunning = true
+        logger.debug(">>>> onBackupStarted qrCodeBackupRunning \(qrCodeBackupRunning)")
+    }
+
+    func isPreviousBackupRunning() -> Bool {
+        logger.debug(">>>> isPreviousBackupRunning \(qrCodeBackupRunning)")
+        return qrCodeBackupRunning
+    }
+
+    func onDismissed() {
+        logger.debug(">>>> onDismissed: nil qrBackupViewController")
+        qrBackupViewController = nil
     }
 }
