@@ -334,13 +334,7 @@ class ContactCell: UITableViewCell {
                 setBackupImage(name: chat.name, color: chat.color)
             }
             setVerified(isVerified: chat.isProtected)
-            var recentlySeen = false
-            if !chat.isSelfTalk && !chat.isGroup && !chat.isDeviceTalk && !chat.isMailinglist {
-                let contacts = chat.getContactIds(cellViewModel.dcContext)
-                if contacts.count == 1 {
-                    recentlySeen = cellViewModel.dcContext.getContact(id: contacts[0]).wasSeenRecently
-                }
-            }
+            let recentlySeen = DcUtils.showRecentlySeen(context: cellViewModel.dcContext, chat: chat)
             avatar.setRecentlySeen(recentlySeen)
             setTimeLabel(chatData.summary.timestamp)
             setStatusIndicators(unreadCount: chatData.unreadMessages,

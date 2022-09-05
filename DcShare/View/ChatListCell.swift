@@ -107,13 +107,7 @@ class ChatListCell: UITableViewCell {
                 setBackupImage(name: chat.name, color: chat.color)
             }
             subtitleLabel.attributedText = nil
-            var recentlySeen = false
-            if !chat.isSelfTalk && !chat.isGroup && !chat.isDeviceTalk && !chat.isMailinglist {
-                let contactIds = chat.getContactIds(cellViewModel.dcContext)
-                if contactIds.count == 1 {
-                    recentlySeen = cellViewModel.dcContext.getContact(id: contactIds[0]).wasSeenRecently
-                }
-            }
+            let recentlySeen = DcUtils.showRecentlySeen(context: cellViewModel.dcContext, chat: chat)
             avatar.setRecentlySeen(recentlySeen)
 
         case .contact(let contactData):

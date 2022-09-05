@@ -1024,13 +1024,7 @@ class ChatViewController: UITableViewController {
         }
         initialsBadge.setVerified(dcChat.isProtected)
 
-        var recentlySeen = false
-        if !dcChat.isSelfTalk && !dcChat.isGroup && !dcChat.isMailinglist && !dcChat.isDeviceTalk {
-            let contactIds = dcChat.getContactIds(dcContext)
-            if contactIds.count == 1 {
-                recentlySeen = dcContext.getContact(id: contactIds[0]).wasSeenRecently
-            }
-        }
+        let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
         initialsBadge.setRecentlySeen(recentlySeen)
 
         var rightBarButtonItems = [badgeItem]
