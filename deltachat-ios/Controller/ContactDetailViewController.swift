@@ -12,6 +12,7 @@ class ContactDetailViewController: UITableViewController {
         headerCell.onAvatarTap = showContactAvatarIfNeeded
         headerCell.onMuteButtonTapped = toggleMuteChat
         headerCell.onSearchButtonTapped = showSearch
+        headerCell.setRecentlySeen(viewModel.contact.wasSeenRecently)
         return headerCell
     }()
 
