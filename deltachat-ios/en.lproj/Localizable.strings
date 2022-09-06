@@ -896,3 +896,5 @@
 "webxdc_empty_hint" = "Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.";
 "shortcut_share_btn" = "Click the share button";
 "shortcut_add_to_home_description" = "Select - Add to Home Screen - to add the app to your home screen.";
+"connectivity_low_data_mode" = "Low Data Mode: background message fetching is disabled.";
+"connectivity_low_battery_mode" = "Low Power Mode: background message fetching is disabled.";

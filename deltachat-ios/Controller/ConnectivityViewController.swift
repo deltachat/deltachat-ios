@@ -1,9 +1,12 @@
 import UIKit
 import DcCore
+import Network
 
 class ConnectivityViewController: WebViewViewController {
     private let dcContext: DcContext
     private var connectivityChangedObserver: NSObjectProtocol?
+    private var connectivityMonitor: AnyObject?
+    private var isLowDataMode: Bool = false
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -22,6 +25,20 @@ class ConnectivityViewController: WebViewViewController {
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
+
+        if #available(iOS 13.0, *) {
+            let monitor = NWPathMonitor()
+            monitor.pathUpdateHandler = { [weak self] path in
+                guard let self = self else { return }
+                self.isLowDataMode = path.isConstrained
+                DispatchQueue.main.async {
+                    self.loadHtml()
+                }
+            }
+            isLowDataMode = monitor.currentPath.isConstrained
+            monitor.start(queue: DispatchQueue.global(qos: .background))
+            self.connectivityMonitor = monitor
+        }
     }
 
     // called everytime the view will appear
@@ -39,6 +56,10 @@ class ConnectivityViewController: WebViewViewController {
     override func viewDidDisappear(_ animated: Bool) {
         if let connectivityChangedObserver = self.connectivityChangedObserver {
             NotificationCenter.default.removeObserver(connectivityChangedObserver)
+        }
+
+        if #available(iOS 13.0, *) {
+            (connectivityMonitor as? NWPathMonitor)?.cancel()
         }
     }
 
@@ -83,6 +104,18 @@ class ConnectivityViewController: WebViewViewController {
             return "<span class=\"red dot\"></span>"
                 .appending(title)
                 .appending(String.localized("connectivity_not_connected"))
+        }
+
+        if isLowDataMode {
+            return "<span class=\"red dot\"></span>"
+                .appending(title)
+                .appending(String.localized("connectivity_low_data_mode"))
+        }
+
+        if ProcessInfo.processInfo.isLowPowerModeEnabled {
+            return "<span class=\"red dot\"></span>"
+                .appending(title)
+                .appending(String.localized("connectivity_low_battery_mode"))
         }
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
