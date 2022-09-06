@@ -1024,6 +1024,9 @@ class ChatViewController: UITableViewController {
         }
         initialsBadge.setVerified(dcChat.isProtected)
 
+        let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
+        initialsBadge.setRecentlySeen(recentlySeen)
+
         var rightBarButtonItems = [badgeItem]
         if dcChat.isSendingLocations {
             rightBarButtonItems.append(locationStreamingItem)

@@ -1311,6 +1311,10 @@ public class DcContact {
         return Int64(dc_contact_get_last_seen(contactPointer))
     }
 
+    public var wasSeenRecently: Bool {
+        return dc_contact_was_seen_recently(contactPointer) == 1
+    }
+
     public var status: String {
         guard let cString = dc_contact_get_status(contactPointer) else { return "" }
         let swiftString = String(cString: cString)

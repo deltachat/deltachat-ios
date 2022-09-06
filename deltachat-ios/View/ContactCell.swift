@@ -334,6 +334,8 @@ class ContactCell: UITableViewCell {
                 setBackupImage(name: chat.name, color: chat.color)
             }
             setVerified(isVerified: chat.isProtected)
+            let recentlySeen = DcUtils.showRecentlySeen(context: cellViewModel.dcContext, chat: chat)
+            avatar.setRecentlySeen(recentlySeen)
             setTimeLabel(chatData.summary.timestamp)
             setStatusIndicators(unreadCount: chatData.unreadMessages,
                                 status: chatData.summary.state,
@@ -352,6 +354,7 @@ class ContactCell: UITableViewCell {
                 avatar.setColor(contact.color)
             }
             setVerified(isVerified: contact.isVerified)
+            avatar.setRecentlySeen(contact.wasSeenRecently)
             setStatusIndicators(unreadCount: 0,
                                 status: 0,
                                 visibility: 0,
@@ -369,6 +372,7 @@ class ContactCell: UITableViewCell {
                 avatar.setColor(contact.color)
             }
             setVerified(isVerified: false)
+            avatar.setRecentlySeen(false)
             setStatusIndicators(unreadCount: 0,
             status: 0,
             visibility: 0,

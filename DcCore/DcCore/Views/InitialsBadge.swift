@@ -37,6 +37,15 @@ public class InitialsBadge: UIView {
         return imgView
     }()
 
+    private var recentlySeenView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = DcColors.checkmarkGreen
+        view.clipsToBounds = true
+        view.isHidden = true
+        return view
+    }()
+
     private var imageView: UIImageView = {
         let imageViewContainer = UIImageView()
         imageViewContainer.clipsToBounds = true
@@ -94,10 +103,17 @@ public class InitialsBadge: UIView {
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
         addSubview(verifiedView)
+        addSubview(recentlySeenView)
         let imgViewConstraints = [verifiedView.constraintAlignBottomTo(self, paddingBottom: -verificationViewPadding),
                                   verifiedView.constraintAlignTrailingTo(self, paddingTrailing: -verificationViewPadding),
                                   verifiedView.constraintAlignTopTo(self, paddingTop: radius + verificationViewPadding),
-                                  verifiedView.constraintAlignLeadingTo(self, paddingLeading: radius + verificationViewPadding)]
+                                  verifiedView.constraintAlignLeadingTo(self, paddingLeading: radius + verificationViewPadding),
+                                  recentlySeenView.constraintAlignBottomTo(self),
+                                  recentlySeenView.constraintAlignLeadingTo(self),
+                                  recentlySeenView.constraintHeightTo(radius / 2),
+                                  recentlySeenView.constraintWidthTo(radius / 2)
+        ]
+        recentlySeenView.layer.cornerRadius = radius / 4
         addConstraints(imgViewConstraints)
     }
 
@@ -132,6 +148,10 @@ public class InitialsBadge: UIView {
 
     public func setVerified(_ verified: Bool) {
         verifiedView.isHidden = !verified
+    }
+
+    public func setRecentlySeen(_ seen: Bool) {
+        recentlySeenView.isHidden = !seen
     }
 
     public func reset() {

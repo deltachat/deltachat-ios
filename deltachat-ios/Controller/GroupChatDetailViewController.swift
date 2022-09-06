@@ -92,6 +92,7 @@ class GroupChatDetailViewController: UIViewController {
         header.showSearchButton(show: true)
         header.onSearchButtonTapped = showSearch
         header.onMuteButtonTapped = toggleMuteChat
+        header.setRecentlySeen(false)
         return header
     }()
 

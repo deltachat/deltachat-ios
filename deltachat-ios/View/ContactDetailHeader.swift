@@ -128,6 +128,10 @@ class ContactDetailHeader: UIView {
         avatar.setImage(image)
     }
 
+    func setRecentlySeen(_ seen: Bool) {
+        avatar.setRecentlySeen(seen)
+    }
+
     func resetBackupImage() {
         avatar.setColor(UIColor.clear)
         avatar.setName("")

@@ -107,6 +107,8 @@ class ChatListCell: UITableViewCell {
                 setBackupImage(name: chat.name, color: chat.color)
             }
             subtitleLabel.attributedText = nil
+            let recentlySeen = DcUtils.showRecentlySeen(context: cellViewModel.dcContext, chat: chat)
+            avatar.setRecentlySeen(recentlySeen)
 
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
@@ -116,6 +118,7 @@ class ChatListCell: UITableViewCell {
             } else {
                 setBackupImage(name: cellViewModel.title, color: contact.color)
             }
+            avatar.setRecentlySeen(contact.wasSeenRecently)
             subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes,
                                                                          fontSize: subtitleLabel.font.pointSize)
         default:
