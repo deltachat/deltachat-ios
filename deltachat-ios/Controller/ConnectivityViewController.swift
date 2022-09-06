@@ -5,6 +5,7 @@ import Network
 class ConnectivityViewController: WebViewViewController {
     private let dcContext: DcContext
     private var connectivityChangedObserver: NSObjectProtocol?
+    private var lowPowerModeObserver: NSObjectProtocol?
     private var connectivityMonitor: AnyObject?
     private var isLowDataMode: Bool = false
 
@@ -31,9 +32,7 @@ class ConnectivityViewController: WebViewViewController {
             monitor.pathUpdateHandler = { [weak self] path in
                 guard let self = self else { return }
                 self.isLowDataMode = path.isConstrained
-                DispatchQueue.main.async {
-                    self.loadHtml()
-                }
+                self.loadHtml()
             }
             isLowDataMode = monitor.currentPath.isConstrained
             monitor.start(queue: DispatchQueue.global(qos: .background))
@@ -50,12 +49,21 @@ class ConnectivityViewController: WebViewViewController {
                                                      queue: nil) { [weak self] _ in
                                                         self?.loadHtml()
                                                      }
+        lowPowerModeObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSProcessInfoPowerStateDidChange,
+                                                                      object: nil,
+                                                                      queue: nil) { [weak self] _ in
+                                                                         self?.loadHtml()
+                                                                      }
         loadHtml()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if let connectivityChangedObserver = self.connectivityChangedObserver {
             NotificationCenter.default.removeObserver(connectivityChangedObserver)
+        }
+
+        if let lowPowerModeObserver = self.lowPowerModeObserver {
+            NotificationCenter.default.removeObserver(lowPowerModeObserver)
         }
 
         if #available(iOS 13.0, *) {
@@ -181,46 +189,49 @@ class ConnectivityViewController: WebViewViewController {
     }
 
     private func loadHtml() {
-        // `UIApplication.shared` needs to be called from main thread
-        var hasNotifyToken = false
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            hasNotifyToken = appDelegate.notifyToken != nil
-        }
-        let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
-
-        // do the remaining things in background thread
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            var html = self.dcContext.getConnectivityHtml()
-                .replacingOccurrences(of: "</style>", with:
-                    """
-                    body {
-                        font-size: 13pt;
-                        font-family: -apple-system, sans-serif;
-                        padding: 0 .5rem .5rem .5rem;
-                        -webkit-text-size-adjust: none;
-                    }
-
-                    .disabled {
-                        background-color: #aaaaaa;
-                    }
-
-                    @media (prefers-color-scheme: dark) {
-                      body {
-                        background-color: black !important;
-                        color: #eee;
-                      }
-                    }
-                    </style>
-                    """)
-
-            let notificationStatus = self.getNotificationStatus(hasNotifyToken: hasNotifyToken, backgroundRefreshStatus: backgroundRefreshStatus)
-            if let range = html.range(of: "</ul>") {
-                html = html.replacingCharacters(in: range, with: "<li>" + notificationStatus + "</li></ul>")
+            // `UIApplication.shared` needs to be called from main thread
+            var hasNotifyToken = false
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                hasNotifyToken = appDelegate.notifyToken != nil
             }
+            let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
 
-            DispatchQueue.main.async {
-                self.webView.loadHTMLString(html, baseURL: nil)
+            // do the remaining things in background thread
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                guard let self = self else { return }
+                var html = self.dcContext.getConnectivityHtml()
+                    .replacingOccurrences(of: "</style>", with:
+                        """
+                        body {
+                            font-size: 13pt;
+                            font-family: -apple-system, sans-serif;
+                            padding: 0 .5rem .5rem .5rem;
+                            -webkit-text-size-adjust: none;
+                        }
+
+                        .disabled {
+                            background-color: #aaaaaa;
+                        }
+
+                        @media (prefers-color-scheme: dark) {
+                          body {
+                            background-color: black !important;
+                            color: #eee;
+                          }
+                        }
+                        </style>
+                        """)
+
+                let notificationStatus = self.getNotificationStatus(hasNotifyToken: hasNotifyToken, backgroundRefreshStatus: backgroundRefreshStatus)
+                if let range = html.range(of: "</ul>") {
+                    html = html.replacingCharacters(in: range, with: "<li>" + notificationStatus + "</li></ul>")
+                }
+
+                DispatchQueue.main.async {
+                    self.webView.loadHTMLString(html, baseURL: nil)
+                }
             }
         }
     }
