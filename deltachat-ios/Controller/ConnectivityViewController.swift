@@ -121,7 +121,7 @@ class ConnectivityViewController: WebViewViewController {
         }
 
         if ProcessInfo.processInfo.isLowPowerModeEnabled {
-            return "<span class=\"red dot\"></span>"
+            return "<span class=\"disabled dot\"></span>"
                 .appending(title)
                 .appending(String.localized("connectivity_low_battery_mode"))
         }
