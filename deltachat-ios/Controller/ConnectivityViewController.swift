@@ -123,7 +123,7 @@ class ConnectivityViewController: WebViewViewController {
         if ProcessInfo.processInfo.isLowPowerModeEnabled {
             return "<span class=\"disabled dot\"></span>"
                 .appending(title)
-                .appending(String.localized("connectivity_low_battery_mode"))
+                .appending(String.localized("connectivity_low_power_mode"))
         }
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]

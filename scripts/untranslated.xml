@@ -6,6 +6,6 @@
     <string name ="webxdc_empty_hint">Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.</string>
     <string name ="shortcut_share_btn">Click the share button</string>
     <string name ="shortcut_add_to_home_description">Select - Add to Home Screen - to add the app to your home screen.</string>
-    <string name="connectivity_low_data_mode">Low Data Mode: background message fetching is disabled.</string>
-    <string name="connectivity_low_power_mode">Disabled by system's \"Low Power Mode\"".</string>
+    <string name="connectivity_low_data_mode">Disabled by system's \"Low Data Mode\".</string>
+    <string name="connectivity_low_power_mode">Disabled by system's \"Low Power Mode\".</string>
 </resources>
