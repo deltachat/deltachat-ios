@@ -2409,6 +2409,9 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
         sendSticker(image)
     }
+    func onImageDragAndDropped(image: UIImage) {
+        onImageSelected(image: image)
+    }
 }
 
 
