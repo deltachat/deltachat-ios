@@ -230,7 +230,6 @@
 "ConversationFragment_quoted_message_not_found" = "Первісне повідомлення не знайдено";
 "reply_privately" = "Відповісти приватно";
 "source_code" = "Вихідний код";
-
 "mute_for_one_hour" = "Відключити сповіщення на 1 годину";
 "mute_for_two_hours" = "Відключити сповіщення на 2 години";
 "mute_for_one_day" = "Відключити сповіщення на 1 день";
@@ -648,37 +647,54 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Назву групи змінено з «%1$@» на «%2$@».";
+// deprecated
 "systemmsg_group_image_changed" = "Зображення групи змінено.";
+// deprecated
 "systemmsg_group_image_deleted" = "Зображення групи видалено.";
+// deprecated
 "systemmsg_member_added" = "Додано учасника %1$@.";
+// deprecated
 "systemmsg_member_removed" = "Видалено учасника %1$@.";
+// deprecated
 "systemmsg_group_left" = "Ви залишили групу.";
 "systemmsg_read_receipt_subject" = "Сповіщення про прочитання.";
 "systemmsg_read_receipt_body" = "Це підтвердження того, що повідомлення «%1$@» було відкрито на пристрої одержувача. Дане підтвердження не означає, що повідомлення було прочитано.";
 "systemmsg_cannot_decrypt" = "Це повідомлення не може бути розшифроване.\n\n• Можливо, має сенс просто відповісти на нього і попросити відправника повторно відправити повідомлення.\n\n• У випадку, якщо Ви переустановили Delta Chat або іншу поштову програму на цьому або іншому пристрої, Ви, можливо, захочете відправити повідомлення з параметрами Autocrypt звідти.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ мною.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ користувачем %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Невідомий відправник для цього чату. Дивіться \"Інформацію\" для деталей.";
 "systemmsg_subject_for_new_contact" = "Повідомлення від %1$@";
 "systemmsg_failed_sending_to" = "Неможлива надіслати повідомлення до %1$@.";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "Вимкнено таймер зникнення повідомлень";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "Таймер зникнення повідомлень встановлено на %1$@ с.";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "Таймер зникнення повідомлень встановлено на 1 хвилину.";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "Таймер зникнення повідомлень встановлено на 1 годину.";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "Таймер зникнення повідомлень встановлено на 1 день.";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "Таймер зникнення повідомлень встановлено на 1 тиждень.";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "Таймер зникнення повідомлень встановлено на 4 тижні.";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "Таймер повідомлень, що зникають встановлено на %1$@ хвилин.";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "Таймер повідомлень, що зникають встановлено на %1$@ годин.";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "Таймер повідомлень, що зникають встановлено на %1$@ днів.";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "Таймер повідомлень, що зникають встановлено на %1$@ тижнів.";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "Захист чату вимкнено.";
+// deprecated
 "systemmsg_chat_protection_enabled" = "Захист чату увімкнено.";
 
 "devicemsg_self_deleted" = "Ви видалили чат \"Збережені повідомлення\".\n\nℹ️ Аби використовувати функцію \"Збережені повідомлення\" знову, створіть новий чат самі із собою.";

@@ -230,7 +230,6 @@
 "ConversationFragment_quoted_message_not_found" = "Non se atopa a mensaxe orixinal";
 "reply_privately" = "Responder de xeito privado";
 "source_code" = "Código Fonte";
-
 "mute_for_one_hour" = "Acalar durante 1 h.";
 "mute_for_two_hours" = "Acalar durante 2 h.";
 "mute_for_one_day" = "Acalar durante 1 día";
@@ -648,37 +647,54 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Nome do grupo cambiado de \"%1$@\" a \"%2$@\".";
+// deprecated
 "systemmsg_group_image_changed" = "Cambiouse a imaxe do grupo.";
+// deprecated
 "systemmsg_group_image_deleted" = "Imaxe do grupo borrada.";
+// deprecated
 "systemmsg_member_added" = "Engadeuse a %1$@.";
+// deprecated
 "systemmsg_member_removed" = "Eliminouse a %1$@.";
+// deprecated
 "systemmsg_group_left" = "Saír do Grupo.";
 "systemmsg_read_receipt_subject" = "Mensaxe aberta";
 "systemmsg_read_receipt_body" = "A mensaxe \"%1$@\" que enviaches mostrouse na pantalla do correspondente.\n\nNon hai garantía de que o contido fose lido.";
 "systemmsg_cannot_decrypt" = "Esta mensaxe non se pode descifrar.\n\n• Podería axudar que respondas a mensaxe pedindo ao remitente que a volte a enviar.\n\n• En caso dunha reinstalación Delta Chat ou outro programa de correo en este ou outro dispositivo igual debes enviar unha Mensaxe de Configuración Autocrypt desde alí.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ por min.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ por %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Remitente descoñecido para esta convers. Mira en \'info\' para saber máis.";
 "systemmsg_subject_for_new_contact" = "Mensaxe de %1$@";
 "systemmsg_failed_sending_to" = "Fallou o envío para %1$@.";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "Desactivada a caducidade para as mensaxes.";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "As mensaxes desparecerán após %1$@ s.";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "As mensaxes desparecerán após 1 minuto.";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "As mensaxes desparecerán após 1 hora.";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "As mensaxes desaparecerán após 1 día.";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "As mensaxes desaparecerán após 1 semana.";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "As mensaxes desaparecerán após 4 semanas.";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "As mensaxes desaparecerán após %1$@ minutos.";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "As mensaxes desaparecerán após %1$@ horas.";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "As mensaxes desaparecerán após %1$@ días.";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "As mensaxes desaparecerán após %1$@ semanas.";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "Protección do chat desactivada.";
+// deprecated
 "systemmsg_chat_protection_enabled" = "Protección do chat activada.";
 
 "devicemsg_self_deleted" = "Eliminaches o chat \"Mensaxes gardadas\".\n\nℹ️ Para usar \"Mensaxes gardadas\" de novo, crea un novo chat contigo mesmo.";

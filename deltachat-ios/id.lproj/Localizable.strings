@@ -467,17 +467,22 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Nama grup diganti dari \"%1$@\" ke \"%2$@\".";
+// deprecated
 "systemmsg_group_image_changed" = "Gambar grup telah diubah.";
+// deprecated
 "systemmsg_group_image_deleted" = "Gambar grup telah dihapus.";
+// deprecated
 "systemmsg_member_added" = "Member %1$@ telah ditambahkan.";
+// deprecated
 "systemmsg_member_removed" = "Member %1$@ telah dikeluarkan.";
 "systemmsg_read_receipt_subject" = "Pesan dibuka";
 "systemmsg_read_receipt_body" = "Pesan \"%1$@\" yang Anda kirimkan tampak di layar penerima.\n\nIni bukan jaminan kalau isinya dibaca.";
 "systemmsg_cannot_decrypt" = "Pesan ini tidak bisa dienkripsi.\n\n• Ada baiknya menjawab pesan ini dan meminta pengirimnya untuk kirim ulang.\n\n• Dalam kasus Anda menginstal ulang Delta Chat atau program surel lain di perangkat ini atau perangkat lain, sebaiknya Anda mengirim Pengaturan Pesan Autocrypt dari sana.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ oleh saya.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ oleh %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";

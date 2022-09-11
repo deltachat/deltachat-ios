@@ -345,17 +345,23 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Qrupun adı \"%1$@\" - dən \"%2$@\" - yə deyişildi.";
+// deprecated
 "systemmsg_group_image_changed" = "Qrup şəkili dəyişildi. ";
+// deprecated
 "systemmsg_group_image_deleted" = "Qrupun şəkili silindi. ";
+// deprecated
 "systemmsg_member_added" = "Üzv %1$@ əlavə olundu. ";
+// deprecated
 "systemmsg_member_removed" = "%1$@ üzv silindi. ";
+// deprecated
 "systemmsg_group_left" = "Qrup buraxdı.";
 "systemmsg_read_receipt_subject" = "Qəbul olunanları oxuyun";
 "systemmsg_cannot_decrypt" = "Bu mesaj şifresi çözülə bilməz. \n\n • Bu mesaja yalnız cavab vermək və göndərənin mesajı yenidən göndərməsini xahiş edə bilər. \n\n • Bu barədə Delta Chat və ya başqa bir e-poçt proqramını yenidən quraşdırdığınız halda oradan Autocrypt Kurulum Mesajı göndərmək istədiyiniz başqa bir qurğudan istifadə edə bilərsiniz.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ məndən. ";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ ilə %2$@.";
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";

@@ -252,15 +252,21 @@
 "autocrypt_continue_transfer_title" = "Порука поставки за аутошфровање";
 "autocrypt_continue_transfer_retry" = "Покушај поново";
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Назив групе је измењен из „%1$@“ у „%2$@“.";
+// deprecated
 "systemmsg_group_image_changed" = "Слика групе је промењена.";
+// deprecated
 "systemmsg_group_image_deleted" = "Слика групе је обрисана.";
+// deprecated
 "systemmsg_member_added" = "Члан %1$@ је додат.";
+// deprecated
 "systemmsg_member_removed" = "Члан %1$@ је уклоњен.";
+// deprecated
 "systemmsg_group_left" = "Група напуштена.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ од мене.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ од стране %2$@.";
 // qr code stuff
 "qr_code" = "Бар-кôд";

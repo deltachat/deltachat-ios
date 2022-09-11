@@ -230,6 +230,8 @@
 "ConversationFragment_quoted_message_not_found" = "Original message not found";
 "reply_privately" = "Reply Privately";
 "source_code" = "Source Code";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Add to Home Screen";
 
 "mute_for_one_hour" = "Mute for 1 hour";
 "mute_for_two_hours" = "Mute for 2 hours";
@@ -648,38 +650,121 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Group name changed from \"%1$@\" to \"%2$@\".";
+// deprecated
 "systemmsg_group_image_changed" = "Group image changed.";
+// deprecated
 "systemmsg_group_image_deleted" = "Group image deleted.";
+// deprecated
 "systemmsg_member_added" = "Member %1$@ added.";
+// deprecated
 "systemmsg_member_removed" = "Member %1$@ removed.";
+// deprecated
 "systemmsg_group_left" = "Group left.";
 "systemmsg_read_receipt_subject" = "Message opened";
 "systemmsg_read_receipt_body" = "The \"%1$@\" message you sent was displayed on the screen of the recipient.\n\nThis is no guarantee the content was read.";
 "systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• In case you re-installed Delta Chat or another e-mail program on this or another device you may want to send an Autocrypt Setup Message from there.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ by me.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ by %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Unknown sender for this chat. See \'info\' for more details.";
 "systemmsg_subject_for_new_contact" = "Message from %1$@";
 "systemmsg_failed_sending_to" = "Failed to send message to %1$@.";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "Disappearing messages timer disabled.";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "Disappearing messages timer set to %1$@ s.";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "Disappearing messages timer set to 1 minute.";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "Disappearing messages timer set to 1 hour.";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "Disappearing messages timer set to 1 day.";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "Disappearing messages timer set to 1 week.";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "Disappearing messages timer set to 4 weeks.";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "Disappearing messages timer set to %1$@ minutes.";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "Disappearing messages timer set to %1$@ hours.";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "Disappearing messages timer set to %1$@ days.";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "Disappearing messages timer set to %1$@ weeks.";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "Chat protection disabled.";
+// deprecated
 "systemmsg_chat_protection_enabled" = "Chat protection enabled.";
+
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "You changed the group name from \"%1$@\" to \"%2$@\".";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Group name changed from \"%1$@\" to \"%2$@\" by %3$@.";
+"group_image_changed_by_you" = "You changed the group image.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Group image changed by %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "You added member %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Member %1$@ added by %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "You removed member %1$@.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Member %1$@ removed by %2$@.";
+"group_left_by_you" = "You left the group.";
+// %1$s will be replaced by name and address of the contact
+"group_left_by_other" = "Group left by %1$@.";
+"group_image_deleted_by_you" = "You deleted the group image.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Group image deleted by %1$@.";
+"location_enabled_by_you" = "You enabled location streaming.";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "Location streaming enabled by %1$@.";
+"ephemeral_timer_disabled_by_you" = "You disabled disappearing messages timer.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Disappearing messages timer disabled by %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "You set disappearing messages timer to %1$@ s";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Disappearing messages timer set to %1$@ s by %2$@.";
+"ephemeral_timer_1_minute_by_you" = "You set disappearing messages timer to 1 minute.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Disappearing messages timer set to 1 minute by %1$@.";
+"ephemeral_timer_1_hour_by_you" = "You set disappearing messages timer to 1 hour.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Disappearing messages timer set to 1 hour by %1$@.";
+"ephemeral_timer_1_day_by_you" = "You set disappearing messages timer to 1 day.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Disappearing messages timer set to 1 day by %1$@.";
+"ephemeral_timer_1_week_by_you" = "You set disappearing messages timer to 1 week.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Disappearing messages timer set to 1 week by %1$@.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "You set disappearing messages timer to %1$@ minutes.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Disappearing messages timer set to %1$@ minutes by %2$@.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "You set disappearing messages timer to %1$@ hours.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Disappearing messages timer set to %1$@ hours by %2$@.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "You set disappearing messages timer to %1$@ days.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Disappearing messages timer set to %1$@ days by %2$@.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "You set disappearing messages timer to %1$@ weeks.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Disappearing messages timer set to %1$@ weeks by %2$@.";
+"protection_enabled_by_you" = "You enabled chat protection.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Chat protection enabled by %1$@.";
+"protection_disabled_by_you" = "You disabled chat protection.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Chat protection disabled by %1$@.";
 
 "devicemsg_self_deleted" = "You deleted the \"Saved messages\" chat.\n\nℹ️ To use the \"Saved messages\" feature again, create a new chat with yourself.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%

@@ -395,18 +395,24 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da.";
+// deprecated
 "systemmsg_group_image_changed" = "Taldearen irudia aldatuta.";
+// deprecated
 "systemmsg_group_image_deleted" = "Taldearen irudia ezabatuta.";
+// deprecated
 "systemmsg_member_added" = "%1$@ kidea gehituta.";
+// deprecated
 "systemmsg_member_removed" = "%1$@ kidea kenduta.";
+// deprecated
 "systemmsg_group_left" = "Taldetik aterata.";
 "systemmsg_read_receipt_subject" = "Irakurragiria";
 "systemmsg_read_receipt_body" = "Hau \"%1$@\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
 "systemmsg_cannot_decrypt" = "Ezin da mezu hau deszifratu.\n\n• Mezuari erantzun diezaiokezu eta berriro bidaltzea eskatu.\n\n• Delta Chat berrinstalatu baduzu edo beste posta programa bat instalatu baduzu gailu honetan edo beste batean, AutoCrypt ezarpen mezua handik hona birbidaltzen saiatu zaitezke.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "Nik: %1$@";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%2$@(e)k: %1$@";
 // qr code stuff
 "qr_code" = "QR kodea";

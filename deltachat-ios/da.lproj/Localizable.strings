@@ -542,37 +542,54 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Gruppenavn ændret fra \"%1$@\" til \"%2$@\".";
+// deprecated
 "systemmsg_group_image_changed" = "Gruppebillede ændret.";
+// deprecated
 "systemmsg_group_image_deleted" = "Gruppebillede slettet.";
+// deprecated
 "systemmsg_member_added" = "Medlem %1$@ tilføjet.";
+// deprecated
 "systemmsg_member_removed" = "Medlem %1$@ fjernet.";
+// deprecated
 "systemmsg_group_left" = "Gruppe forladt.";
 "systemmsg_read_receipt_subject" = "Besked åbnet";
 "systemmsg_read_receipt_body" = "Beskeden \"%1$@\" du har sendt blev vist på modtagerens skærm.\n\nDette er ikke en garanti for at indholdet blev læst.";
 "systemmsg_cannot_decrypt" = "Denne besked kan ikke dekrypteres.\n\n• Det kan måske hjælpe at svare på beskeden og bede afsender sende beskeden igen.\n\n• I tilfælde at Delta Chat eller andet e-mail program på denne enhed eller en anden er blevet gen-installeret bør der sendes en Autocrypt opsætning besked derfra.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ af mig.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ af %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Ukent afsender af denne chat. Se \'info\' for flere detaljer.";
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";
 "systemmsg_failed_sending_to" = "Mislykket forsøg på afsendelse af besked til %1$@.";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "Tidsudløb for beskeder er deaktiveret.";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "Tidsudløb for beskeder sat til %1$@ s.";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "Tidsudløb for beskeder sat til 1 minut.";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "Tidsudløb for beskeder sat til 1 time.";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "Tidsudløb for beskeder sat til 1 dag.";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "Tidsudløb for beskeder sat til 1 uge.";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "Tidsudløb for beskeder sat til 4 uger.";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "Beskeder sat til at udløbe efter %1$@ minutter.";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "Beskeder sat til at udløbe efter %1$@ timer.";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "Beskeder sat til at udløbe efter %1$@ dage.";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "Beskeder sat til at udløbe efter %1$@ uger.";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "Chat-beskyttelse slået fra.";
+// deprecated
 "systemmsg_chat_protection_enabled" = "Chat-beskyttelse sluttet til.";
 
 // qr code stuff

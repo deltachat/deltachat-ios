@@ -186,9 +186,9 @@
 "pref_backup" = "బ్యాకప్";
 "pref_managekeys_export_secret_keys" = "రహస్య కీలను ఎగుమతి చెయి";
 "pref_background" = "చాట్ నేపధ్యం";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ నా‌ ద్వరా";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ చే %2$@.";
 "qrscan_fingerprint_label" = "ఫింగర్‌ప్రింట్స్";
 "notify_reply_button" = "జవాబు";

@@ -607,37 +607,54 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "ឈ្មោះក្រុមត្រូវបានប្តូរពី \"%1$@\" ទៅកាន់ \"%2$@\"";
+// deprecated
 "systemmsg_group_image_changed" = "រូបភាពក្រុមត្រូវបានប្តូរ";
+// deprecated
 "systemmsg_group_image_deleted" = "រូបភាពក្រុមត្រូវបានលុប";
+// deprecated
 "systemmsg_member_added" = "សមាជិក %1$@ ត្រូវបានបន្ថែម";
+// deprecated
 "systemmsg_member_removed" = "សមាជិក %1$@ ត្រូវបានយកចេញ";
+// deprecated
 "systemmsg_group_left" = "អ្នកត្រូវបានចាកចេញពីក្រុម";
 "systemmsg_read_receipt_subject" = "សារត្រូវបានបើក";
 "systemmsg_read_receipt_body" = "\"%1$@\" សារដែលអ្នកបានផ្ញើត្រូវបានបង្ហាញនៅលើ អេក្រង់របស់អ្នកទទួល\n\nនេះមិនមែនជាការធានាថា មាតិកាត្រួវបានអានទេ។";
 "systemmsg_cannot_decrypt" = "សារនេះមិនអាចត្រូវបានឌិគ្រីប\n\n• វាអាចជួយឆ្លើយតបជំនួសសារនេះ និងសួរអ្នកផ្ញើដើម្បីផ្ញើសារម្តងទៀត\n\n• ក្នុងករណីអ្នកបានតម្លើងសា Delta Chat ម្តងទៀត ឬកម្មវិធីអុីម៉េលមួយទៀត លើឧបករណ៍នេះ ឬឧបករណ៍មួយផ្សេងទៀត អ្នកប្រហែលជាចង់ផ្ញើ សារការតម្លើងអ៊ិនគ្រីបស្វ័យប្រវត្តិ  (ផ្ញើនិងទទួលដោយសម្ងាត់) ពីទីនោះ។";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ ដោយខ្ញុំ";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ ដោយ %2$@";
 "systemmsg_unknown_sender_for_chat" = "មិនស្គាល់អ្នកផ្ញើការសន្ទនានេះ។ មើល \'ពត៌មាន\' សម្រាប់ពត៌មានលំអិត";
 "systemmsg_subject_for_new_contact" = "សារពី %1$@";
 "systemmsg_failed_sending_to" = "បានបរាបានក្នុងការផ្ញើសារទៅ %1$@";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "បានបិទបាត់កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈ";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ វិនាទី។";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ ១នាទី។";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ ១ម៉ោង។";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ ១ថ្ងៃ។";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ ១សប្តាហ៍។";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ ៤សប្តាហ៍";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ នាទី។";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ ម៉ោង។";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ ថ្ងៃ។";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈបាន កំណត់ទៅ %1$@ ថ្ងៃ។";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "ការការពារសន្ទនាត្រូវបានបិទ";
+// deprecated
 "systemmsg_chat_protection_enabled" = "ការការពារសន្ទនាត្រូវបានបើក";
 
 "devicemsg_self_deleted" = "អ្នកបានលុប \"សារដែលបានរក្សាទុក\" សន្ទនា។\n\nℹ️ ដើម្បីប្រើមុខងារ \"សារដែលបានរក្សាទុក\" ជាថ្មីម្តងទៀត សូមបង្កើតសន្ទនាថ្មីជាមួយខ្លួនអ្នក។";

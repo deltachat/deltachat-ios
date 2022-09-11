@@ -228,7 +228,6 @@
 "ConversationFragment_quoted_message_not_found" = "Pôvodná správa sa nenašla";
 "reply_privately" = "Odpovedajte súkromne";
 "source_code" = "Zdrojový kód";
-
 "mute_for_one_hour" = "Stíšiť na 1 hodinu";
 "mute_for_two_hours" = "Stíšiť na 2 hodiny";
 "mute_for_one_day" = "Stíšiť na 1 deň";
@@ -633,37 +632,54 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Názov skupiny sa zmenil z „%1$@“ na „%2$@“.";
+// deprecated
 "systemmsg_group_image_changed" = "Skupinový obrázok sa zmenil.";
+// deprecated
 "systemmsg_group_image_deleted" = "Skupinový obrázok bol odstránený.";
+// deprecated
 "systemmsg_member_added" = "Člen %1$@ pridaný.";
+// deprecated
 "systemmsg_member_removed" = "Člen %1$@ bol odstránený.";
+// deprecated
 "systemmsg_group_left" = "Skupina odišla.";
 "systemmsg_read_receipt_subject" = "Správa otvorená";
 "systemmsg_read_receipt_body" = "%1$@ Správa, ktorú ste poslali, sa zobrazila na obrazovke príjemcu.\n\nZaručujeme, že obsah nebol prečítaný.";
 "systemmsg_cannot_decrypt" = "Túto správu nie je možné dešifrovať.\n\n• Už by mohlo pomôcť jednoducho odpovedať na túto správu a požiadať odosielateľa, aby správu odoslal znova.\n\n• V prípade, že ste na ňu znova nainštalovali program Delta Chat alebo iný e-mailový program alebo iné zariadenie, z ktorého budete pravdepodobne chcieť odoslať správu o nastavení automatického šifrovania.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ mnou.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@od%2$@.";
 "systemmsg_unknown_sender_for_chat" = "Neznámy odosielateľ pre túto konverzáciu. Ďalšie informácie nájdete v časti „Informácie“.";
 "systemmsg_subject_for_new_contact" = "Správa od %1$@";
 "systemmsg_failed_sending_to" = "Správu sa nepodarilo odoslať %1$@ .";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "Časovač zmiznutia správ je deaktivovaný.";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "Časovač zmiznutia správ nastavený na %1$@ s.";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "Časovač zmiznutia správ bol nastavený na 1 minútu.";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "Časovač zmiznutia správ bol nastavený na 1 hodinu.";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "Časovač zmiznutia správ nastavený na 1 deň.";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "Časovač zmiznutia správ nastavený na 1 týždeň.";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "Časovač zmiznutia správ nastavený na 4 týždne.";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "Časovač zmiznutia správ bol nastavený na %1$@ minúty.";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "Časovač zmiznutia správ bol nastavený na %1$@ hodiny.";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "Časovač zmiznutia správ nastavený na %1$@ dni.";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "Časovač zmiznutia správ nastavený na %1$@ týždne.";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "Ochrana konverzácií je vypnutá.";
+// deprecated
 "systemmsg_chat_protection_enabled" = "Ochrana konverzácií je zapnutá.";
 
 "devicemsg_self_deleted" = "Odstránili ste konverzáciu \"Uložené správy\".\n\nℹ️ Aby ste využili funkciu \"Uložené správy\" znova, vytvorte novú konverzáciu so sebou.";

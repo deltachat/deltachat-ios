@@ -37,7 +37,7 @@
 "unarchive" = "解档";
 "mute" = "静音";
 "ephemeral_messages" = "消息定时销毁";
-"ephemeral_messages_hint" = "这些设置适用于所有使用 Delta Chat 的参与者。 但是，他们可能会复制、保存和转发消息或者使用其他的电子邮件客户端。";
+"ephemeral_messages_hint" = "这些设置适用于所有使用 Delta Chat 的聊天成员。 他们仍然可以复制、保存和转发消息，或者使用其他的电子邮件客户端。";
 "save" = "保存";
 "chat" = "聊天";
 "media" = "媒体";
@@ -230,7 +230,6 @@
 "ConversationFragment_quoted_message_not_found" = "原消息未找到";
 "reply_privately" = "私下回复";
 "source_code" = "源代码";
-
 "mute_for_one_hour" = "静音 1 小时";
 "mute_for_two_hours" = "静音 2 小时";
 "mute_for_one_day" = "静音 1 天";
@@ -256,7 +255,7 @@
 "videochat_instance_placeholder" = "您的视频聊天实例";
 "videochat_instance_example" = "示例： https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
 "videochat_instance_explain_2" = "如启用视频聊天，你可以从每个聊天启动一个视频聊天。视频聊天需要双方均装有兼容的应用或浏览器";
-"videochat_instance_from_qr" = "使用“%1$@”邀请其他人加入视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置（如果有的话）。";
+"videochat_instance_from_qr" = "使用“%1$@”邀请其他人加入视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置。";
 "videochat_invitation" = "视频聊天邀请";
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
 
@@ -387,7 +386,7 @@
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ 将邮箱从 %2$@ 更改为 %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
-"aeap_explanation" = "你将邮箱从 %1$@ 改为了 %2$@。\n\n如果你现在发送一条消息到已验证的群组，那里的联系人将自动用你的新邮箱替换旧邮箱。\n\n我们建议你配置旧邮箱将所有邮件转发到新邮箱。否则，你可能收不到还不知道你新邮箱的联系人发过来的消息。";
+"aeap_explanation" = "你将邮箱从 %1$@ 改为了 %2$@。\n\n如果你现在发送一条消息到已验证的群组，那里的联系人将自动用你的新邮箱替换旧邮箱。\n\n我们建议你将旧邮箱配置为转发所有邮件到新邮箱。否则，你可能收不到还不知道你新邮箱的联系人发过来的消息。";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -396,7 +395,7 @@
 "outgoing_messages" = "传出消息";
 // Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
 "storage_on_domain" = "%1$@ 上的存储";
-"connectivity" = "连接性";
+"connectivity" = "连接状态";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "未连接";
 // Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
@@ -474,8 +473,8 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "转发给…";
-"share_multiple_attachments" = "发送 %1$d 个文件到所选聊天？\n\n文件将以未经修改的、保持原大小的方式发送，例如：图像和视频不会被重新编码。";
-"share_multiple_attachments_multiple_chats" = "发送 %1$d 个文件到 %2$d 个聊天？\n\n文件将以未经修改的、保持原大小的方式发送，例如：图像和视频不会被重新编码。";
+"share_multiple_attachments" = "发送 %1$d 个文件到所选聊天？\n\n文件将以原样发送（例如：图像和视频不会被重新编码）。";
+"share_multiple_attachments_multiple_chats" = "发送 %1$d 个文件到 %2$d 个聊天？\n\n文件将以原样发送（例如：图像和视频不会被重新编码）。";
 "share_text_multiple_chats" = "发送这段文字到 %1$d 个聊天？\n\n\"%2$@“";
 "share_abort" = "由于缺少权限，分享中止。";
 
@@ -644,46 +643,63 @@
 "autocrypt_continue_transfer_please_enter_code" = "请输入另一台设备上显示的设置码。";
 "autocrypt_continue_transfer_succeeded" = "端到端设置已传输。此设备已准备好用与另一台设备相同的设置来使用 Autocrypt 了。";
 "autocrypt_continue_transfer_retry" = "重试";
-"autocrypt_bad_setup_code" = "错误的设置码，请重试。\n\n如果您不记得设置码，从另一台设备发送一个新的 Autocrypt 设置消息即可。";
+"autocrypt_bad_setup_code" = "错误的设置码，请重试。\n\n如果您忘记了设置码，从另一台设备发送一个新的 Autocrypt 设置消息即可。";
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "已更改群组名称：从“%1$@”更改为\"%2$@\"";
+// deprecated
 "systemmsg_group_image_changed" = "已更改群组图像";
+// deprecated
 "systemmsg_group_image_deleted" = "已删除群组图像";
+// deprecated
 "systemmsg_member_added" = "已添加成员 %1$@";
+// deprecated
 "systemmsg_member_removed" = "已移除成员 %1$@ ";
+// deprecated
 "systemmsg_group_left" = "已离开群组";
 "systemmsg_read_receipt_subject" = "消息已被打开";
 "systemmsg_read_receipt_body" = "您发送的“%1$@”消息已在接收者的屏幕上显示过。\n\n这并不保证内容已被阅读。";
 "systemmsg_cannot_decrypt" = "此消息无法解密。\n\n• 简单回复此消息并要求发送者重发该消息可能会有所帮助。\n\n• 如果您在此设备或其他设备上重新安装了 Delta Chat 或其他电子邮件程序，则可能需要从别处发送 Autocrypt 设置消息。";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "我 %1$@。";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%2$@ %1$@。";
 "systemmsg_unknown_sender_for_chat" = "此聊天发送者未知。查看“信息”来获取更多详情。";
 "systemmsg_subject_for_new_contact" = "来自 %1$@ 的消息";
 "systemmsg_failed_sending_to" = "发送消息给 %1$@ 失败。";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "已禁用消息定时销毁计时器";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "设置消息定时销毁计时器为 %1$@ 秒";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "设置消息定时销毁计时器为 1 分钟";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "设置消息定时销毁计时器为 1 小时";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "设置消息定时销毁计时器为 1 天";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "设置消息定时销毁计时器为 1 周";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "设置消息定时销毁计时器为 4 周";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "设置消息定时销毁计时器为 %1$@ 分钟";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "设置消息定时销毁计时器为 %1$@ 小时";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "设置消息定时销毁计时器为 %1$@ 天";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "设置消息定时销毁计时器为 %1$@ 周";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "已禁用聊天保护";
+// deprecated
 "systemmsg_chat_protection_enabled" = "已启用聊天保护";
 
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️邮件服务商提供的存储空间快满了，已使用 %1$@%%。\n\n当存储用量达到 100%% 时，您可能无法接收消息。\n\n👉请检查是否可以在提供商的网页界面上删除旧数据；您还可以考虑启用“设置/删除旧消息”。您可以随时在“设置/连接性”中查看当前的存储使用情况。";
+"devicemsg_storage_exceeding" = "⚠️邮件服务商提供的存储空间快满了，已使用 %1$@%%。\n\n如果存储空间用光，您可能无法接收消息。\n\n👉请检查是否可以在提供商的网页界面上删除旧数据，或考虑启用“设置/删除旧消息”。您可以在“设置/连接状态”中查看当前的存储使用情况。";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟⏰🔧以确保能正确接收信息。";
 "devicemsg_update_reminder" = "⚠️您的 Delta Chat 版本可能过时了。\n\n这可能会在您的聊天伙伴使用更新的版本时造成问题。并且您缺失了最新功能😳\n请浏览 https://get.delta.chat 或应用商店来获取更新。";
@@ -720,7 +736,7 @@
 "qrshow_join_group_hint" = "扫描此处来加入群组\"%1$@\"。";
 "qrshow_join_contact_title" = "邀请二维码";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
-"qrshow_join_contact_hint" = "扫描此处来建立联系人 %1$@。";
+"qrshow_join_contact_hint" = "扫描此处来与 %1$@ 聊天。";
 "qrshow_join_contact_no_connection_toast" = "没有互联网连接，无法进行二维码设置。";
 "qraccount_ask_create_and_login" = "在“%1$@”创建新的电子邮件地址并在那登录？";
 "qraccount_ask_create_and_login_another" = "在“%1$@”创建新的电子邮件地址并在那登录？\n\n已存在账户不会被删除。使用“切换账户”来在账户之间切换。";
@@ -880,8 +896,8 @@
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "后台通知";
-"pref_background_notifications_explain" = "使用与服务器的后台连接。需要忽略电池优化。";
-"pref_background_notifications_rationale" = "要保持与您的电子邮件服务器的连接并在后台接收消息，请在下一步中忽略电池优化。\n\nDelta Chat 仅使用少量的资源并且会注意不去耗尽电池电量。";
+"pref_background_notifications_explain" = "使用到服务器的后台连接。需要忽略电池优化。";
+"pref_background_notifications_rationale" = "要保持到电子邮件服务器的连接并在后台接收消息，请在下一步中忽略电池优化。\n\nDelta Chat 仅使用少量的资源并且会注意不去耗尽电池电量。";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "可靠后台连接";
 "pref_reliable_service_explain" = "需要一个永久通知";

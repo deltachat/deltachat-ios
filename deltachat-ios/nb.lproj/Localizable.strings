@@ -324,18 +324,24 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Gruppenavn endret fra \"%1$@\" til \"%2$@\".";
+// deprecated
 "systemmsg_group_image_changed" = "Gruppebilde endret.";
+// deprecated
 "systemmsg_group_image_deleted" = "Gruppebilde slettet.";
+// deprecated
 "systemmsg_member_added" = "Medlem %1$@ lagt til.";
+// deprecated
 "systemmsg_member_removed" = "Medlem %1$@ fjernet.";
+// deprecated
 "systemmsg_group_left" = "Gruppe oppløst.";
 "systemmsg_read_receipt_subject" = "Meldingskvittering";
 "systemmsg_read_receipt_body" = "Dette er en meldingskvittering for meldingen \"%1$@\".\n\nDenne meldingskvitteringen bekrefter bare at meldingen ble vist på mottakerens enhet. Det finnes ingen garanti for at mottakeren har lest meldingsinnholdet.";
 "systemmsg_cannot_decrypt" = "Denne meldingen kan ikke dekrypteres.\n\n• Det kan hjelpe å svare på denne meldingen og spørre avsenderen om å sende den igjen.\n\n• I fall du har reinstallert Delta Chat eller et annet e-postprogram på denne eller en annen enhet, kan du sende en Autocrypt-oppsettsmelding derfra.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ av meg.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ av %2$@.";
 // qr code stuff
 "qr_code" = "QR-kode";

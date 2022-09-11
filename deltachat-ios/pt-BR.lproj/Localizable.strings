@@ -230,7 +230,6 @@
 "ConversationFragment_quoted_message_not_found" = "Mensagem original não encontrada";
 "reply_privately" = "Responder em privado";
 "source_code" = "Código Fonte";
-
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 dia";
@@ -648,37 +647,54 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Nome do grupo alterado de \"%1$@\" para \"%2$@\".";
+// deprecated
 "systemmsg_group_image_changed" = "Avatar do grupo modificado.";
+// deprecated
 "systemmsg_group_image_deleted" = "Avatar do grupo apagado.";
+// deprecated
 "systemmsg_member_added" = "Participante %1$@ adicionado.";
+// deprecated
 "systemmsg_member_removed" = "Participante %1$@ removido.";
+// deprecated
 "systemmsg_group_left" = "Grupo abandonado.";
 "systemmsg_read_receipt_subject" = "Confirmação de leitura";
 "systemmsg_read_receipt_body" = "Confirmação de recebimento da mensagem \"%1$@\".\n\nEsta confirmação somente assegura que a mensagem foi exibida no aparelho do destinatário, mas não há garantia de que ele tenha lido o seu conteúdo.";
 "systemmsg_cannot_decrypt" = "Impossível descriptografar esta mensagem.\n\n• Pode resolver pedir que ela seja reenviada.\n\n• Caso você tenha reinstalado o Delta Chat ou outro programa de e-mail, neste ou noutro dispositivo, será necessário enviar uma \"mensagem de configuração do Autocrypt\".";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ por mim.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ por %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Remetente desconhecido para esta conversa. Veja \'informações\' para mais detalhes.";
 "systemmsg_subject_for_new_contact" = "Mensagem de %1$@";
 "systemmsg_failed_sending_to" = "Falha ao enviar mensagem para %1$@.";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "Temporizador de desaparecimento de mensagens desativado.";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "Temporizador de desaparecimento de mensagens definido para %1$@ s.";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "Temporizador de desaparecimento de mensagens definido para 1 minuto.";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "Temporizador de desaparecimento de mensagens definido para 1 hora.";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "Temporizador de desaparecimento de mensagens definido para 1 dia.";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "Temporizador de desaparecimento de mensagens definido para 1 semana.";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "Temporizador de desaparecimento de mensagens definido para 4 semanas.";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "Temporizador de mensagens que desaparecem definido para %1$@ minutos.";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "Temporizador de mensagens que desaparecem definido para %1$@ horas.";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "Temporizador de mensagens que desaparecem definido para %1$@ dias.";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "Temporizador de mensagens que desaparecem definido para %1$@ semanas.";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "Proteção da conversa desligada.";
+// deprecated
 "systemmsg_chat_protection_enabled" = "Proteção da conversa ligada.";
 
 "devicemsg_self_deleted" = "Você excluiu o bate-papo \"Mensagens salvas\".\n\nℹ️ Para usar o recurso \"Mensagens salvas\" novamente, crie um novo bate-papo com você mesmo. ";

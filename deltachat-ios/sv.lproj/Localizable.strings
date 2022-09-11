@@ -495,29 +495,42 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Gruppnamnet ändrades från \"%1$@\" till \"%2$@\".";
+// deprecated
 "systemmsg_group_image_changed" = "Gruppbilden ändrades.";
+// deprecated
 "systemmsg_group_image_deleted" = "Gruppbilden togs bort.";
+// deprecated
 "systemmsg_member_added" = "Medlemmen %1$@ lades till.";
+// deprecated
 "systemmsg_member_removed" = "Medlemmen %1$@ togs bort.";
+// deprecated
 "systemmsg_group_left" = "Grupp lämnade.";
 "systemmsg_read_receipt_subject" = "Meddelande öppnat";
 "systemmsg_read_receipt_body" = "\"%1$@\" meddelandet du skickade visades på mottagarens skärm.\n\nDet är ingen garanti för att innehållet har lästs.";
 "systemmsg_cannot_decrypt" = "Meddelandet kan inte avkrypteras.\n\n• Det kanske kan hjälpa, att svara på detta meddelande och be avsändaren skicka det igen.\n\n• Ifall du har ominstallerat Delta Chat eller något annat e-postprogram på denna eller någon annan enhet, kanske du behöver skicka ett nytt Autocryp inställningsmeddelande därifrån.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ av mig.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ av %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
 "systemmsg_failed_sending_to" = "Kunde inte skicka meddelande till %1$@.";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "Tiduret för meddelandeborttagning är inaktiverat.";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "Tiduret för meddelandeborttagning är satt till %1$@ s.";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "Tiduret för meddelandeborttagning är satt till 1 minut.";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "Tiduret för meddelandeborttagning är satt till 1 timma.";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "Tiduret för meddelandeborttagning är satt till 1 dag.";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "Tiduret för meddelandeborttagning är satt till 1 vecka.";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "Tiduret för meddelandeborttagning är satt till 4 veckor.";
 // qr code stuff
 "qr_code" = "QR-kod";

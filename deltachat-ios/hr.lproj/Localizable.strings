@@ -189,9 +189,11 @@
 "pref_show_emails_all" = "Sve";
 "pref_background_default" = "Zadana pozadina";
 "pref_background_default_color" = "Zadana boja";
+// deprecated
 "systemmsg_member_added" = "Član %1$@ dodan.";
+// deprecated
 "systemmsg_member_removed" = "Član %1$@ uklonjen.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ od %2$@.";
 // qr code stuff
 "qr_code" = "QR kod";

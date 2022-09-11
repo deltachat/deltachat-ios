@@ -230,7 +230,6 @@
 "ConversationFragment_quoted_message_not_found" = "No s\'ha trobat el missatge original";
 "reply_privately" = "Respon en privat";
 "source_code" = "Codi Font";
-
 "mute_for_one_hour" = "Silencia 1 hora";
 "mute_for_two_hours" = "Silencia 2 hores";
 "mute_for_one_day" = "Silencia 1 dia";
@@ -522,18 +521,24 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "Nom del grup \"%1$@\" canviat a \"%2$@\".";
+// deprecated
 "systemmsg_group_image_changed" = "Imatge de grup canviada.";
+// deprecated
 "systemmsg_group_image_deleted" = "Imatge de grup eliminada.";
+// deprecated
 "systemmsg_member_added" = "Membre %1$@ afegit.";
+// deprecated
 "systemmsg_member_removed" = "Membre %1$@ eliminat.";
+// deprecated
 "systemmsg_group_left" = "Deixa el grup.";
 "systemmsg_read_receipt_subject" = "Confirmació de lectura";
 "systemmsg_read_receipt_body" = "Confirmació de lectura del missatge \"%1$@\".\n\nVol dir que el missatge s\'ha mostrat al dispositiu del receptor, no necessàriament que s\'hagi llegit.";
 "systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Proveu de respondre\'l i demanar-li al remitent que us el torni a enviar.\n\n• Si heu reinstal·lat Delta Chat o un altre gestor de correu en aquest dispositiu o en algun altre, proveu d\'enviar un missatge de configuració Autocrypt des d\'allà.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "%1$@ per mi.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%1$@ per %2$@.";
 "qrscan_title" = "Escaneja codi QR";
 "qrscan_hint" = "Poseu la càmera davant del codi QR";

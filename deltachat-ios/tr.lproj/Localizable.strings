@@ -230,7 +230,6 @@
 "ConversationFragment_quoted_message_not_found" = "Özgün ileti bulunamadı";
 "reply_privately" = "Özel Olarak Yanıtla";
 "source_code" = "Kaynak Kodu";
-
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
@@ -648,37 +647,54 @@
 
 
 // system messages
+// deprecated
 "systemmsg_group_name_changed" = "\"%1$@\" grup adı \"%2$@\" olarak değiştirildi.";
+// deprecated
 "systemmsg_group_image_changed" = "Grup görseli değiştirildi.";
+// deprecated
 "systemmsg_group_image_deleted" = "Grup görseli silindi.";
+// deprecated
 "systemmsg_member_added" = "%1$@ üyesi eklendi.";
+// deprecated
 "systemmsg_member_removed" = "%1$@ üyesi kaldırıldı.";
+// deprecated
 "systemmsg_group_left" = "Gruptan ayrılındı.";
 "systemmsg_read_receipt_subject" = "İleti açıldı";
 "systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunduğunun güvencesi değildir.";
 "systemmsg_cannot_decrypt" = "Bu iletinin şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderene iletiyi yeniden gönderip gönderemeyeceğini sormak zaten yardımcı olabilir.\n\n• Delta Chat\'i ya da başka bir e-posta programını bu ya da başka bir aygıta yeniden kurduysanız, oradan bir Autocrypt Ayarlama İletisi göndermek isteyebilirsiniz.";
-// Translators: %1$s will be replaced by sth. as "ACTION by me".
+// deprecated
 "systemmsg_action_by_me" = "Benim tarafımdan %1$@.";
-// Translators: %1$s will be replaced by an action and %2$s will be replaced by the name/addr of the person who did it, as "ACTION by MEMBER".
+// deprecated
 "systemmsg_action_by_user" = "%2$@ tarafından %1$@.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
 "systemmsg_failed_sending_to" = "%1$@ kişisine ileti gönderme başarısız.";
 
+// deprecated
 "systemmsg_ephemeral_timer_disabled" = "Kaybolan iletiler zamanlayıcısı etkisizleştirildi.";
+// deprecated
 "systemmsg_ephemeral_timer_enabled" = "Kaybolan iletiler zamanlayıcısı %1$@ s\'ye ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_minute" = "Kaybolan iletiler zamanlayıcısı 1 dakikaya ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_hour" = "Kaybolan iletiler zamanlayıcısı 1 saate ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_day" = "Kaybolan iletiler zamanlayıcısı 1 güne ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_week" = "Kaybolan iletiler zamanlayıcısı 1 haftaya ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_four_weeks" = "Kaybolan iletiler zamanlayıcısı 4 haftaya ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_minutes" = "Kaybolan iletiler zamanlayıcısı %1$@ dakikaya ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_hours" = "Kaybolan iletiler zamanlayıcısı %1$@ saate ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_days" = "Kaybolan iletiler zamanlayıcısı %1$@ güne ayarlandı.";
+// deprecated
 "systemmsg_ephemeral_timer_weeks" = "Kaybolan iletiler zamanlayıcısı %1$@ haftaya ayarlandı.";
-
-// Translators: Protection disabled/enabled messages may be displayed together with a "big shield" and may be suffixed by systemmsg_action_by_user or systemmsg_action_by_me
+// deprecated
 "systemmsg_chat_protection_disabled" = "Sohbet koruması etkisizleştirildi.";
+// deprecated
 "systemmsg_chat_protection_enabled" = "Sohbet koruması etkinleştirildi.";
 
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";

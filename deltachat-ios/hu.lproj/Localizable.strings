@@ -233,10 +233,15 @@
 "pref_background_btn_gallery" = "Galériából";
 "pref_show_emails_all" = "Mind";
 "autocrypt_continue_transfer_retry" = "Újra";
+// deprecated
 "systemmsg_group_image_changed" = "A csoportkép megváltozott.";
+// deprecated
 "systemmsg_group_image_deleted" = "A csoportkép törölve.";
+// deprecated
 "systemmsg_member_added" = "%1$@ hozzáadva a csoporthoz.";
+// deprecated
 "systemmsg_member_removed" = "%1$@ eltávolítva a csoportból.";
+// deprecated
 "systemmsg_group_left" = "Kiléptél a csoportból.";
 // qr code stuff
 "qr_code" = "QR-kód";
