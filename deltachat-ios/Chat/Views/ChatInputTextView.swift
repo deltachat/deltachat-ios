@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import MobileCoreServices
 
 public class ChatInputTextView: InputTextView {
 
@@ -23,7 +24,7 @@ public class ChatInputTextView: InputTextView {
 
 extension ChatInputTextView: UIDropInteractionDelegate {
     public func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: UIImage.self)
+        return  session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String, kUTTypeText as String])
     }
 
     public func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
@@ -31,9 +32,21 @@ extension ChatInputTextView: UIDropInteractionDelegate {
     }
 
     public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
-        session.loadObjects(ofClass: UIImage.self) { imageItems in
-            if let images = imageItems as? [UIImage] {
-                self.imagePasteDelegate?.onImageDragAndDropped(image: images[0])
+        if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String]) {
+            session.loadObjects(ofClass: UIImage.self) { [weak self] imageItems in
+                if let images = imageItems as? [UIImage] {
+                    self?.imagePasteDelegate?.onImageDragAndDropped(image: images[0])
+                }
+            }
+        } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeText as String]) {
+            session.loadObjects(ofClass: String.self) { [weak self] stringItems in
+                if let isEmpty = self?.text.isEmpty, isEmpty {
+                    self?.text = stringItems[0]
+                } else {
+                    var updatedText = self?.text
+                    updatedText?.append(" \(stringItems[0]) ")
+                    self?.text = updatedText
+                }
             }
         }
     }
