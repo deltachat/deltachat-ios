@@ -1265,7 +1265,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
         messageInputBar.inputTextView.delegate = self
-        messageInputBar.inputTextView.imagePasteDelegate = self
+        messageInputBar.inputTextView.textViewPasteDelegate = self
         messageInputBar.onScrollDownButtonPressed = scrollToBottom
     }
 
@@ -2411,6 +2411,10 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
     }
     func onImageDragAndDropped(image: UIImage) {
         stageImage(image)
+    }
+
+    func onVideoDragAndDropped(url: URL) {
+        stageVideo(url: url as NSURL)
     }
 }
 
