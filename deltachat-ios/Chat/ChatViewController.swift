@@ -1722,7 +1722,7 @@ class ChatViewController: UITableViewController {
                     }
                     self.configureDraftArea(draft: self.draft)
                     self.focusInputTextView()
-                    ImageFormat.deleteImage(atPath: pathInCachesDir)
+                    FileHelper.deleteFile(atPath: pathInCachesDir)
                 }
             }
         }
@@ -1733,7 +1733,7 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
-                ImageFormat.deleteImage(atPath: path)
+                FileHelper.deleteFile(atPath: path)
             }
         }
     }
@@ -1743,7 +1743,7 @@ class ChatViewController: UITableViewController {
             guard let self = self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
-                ImageFormat.deleteImage(atPath: path)
+                FileHelper.deleteFile(atPath: path)
             }
         }
     }
