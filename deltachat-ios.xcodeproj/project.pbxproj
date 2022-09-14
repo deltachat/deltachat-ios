@@ -103,6 +103,8 @@
 		30B2BD02278F1C1900889AA4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011E8042787365D00214221 /* KeychainManager.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */; };
+		30C67BE428D0EB4A0090E162 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C67BE328D0EB4A0090E162 /* FileType.swift */; };
+		30C67BE728D0EC0E0090E162 /* Swime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C67BE628D0EC0E0090E162 /* Swime.swift */; };
 		30DAF71C275901610073C154 /* SettingsBackgroundSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */; };
 		30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348DE24F3F819005C93D1 /* ChatTableView.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
@@ -380,6 +382,8 @@
 		30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEphemeralMessageController.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
 		30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSearchAccessoryBar.swift; sourceTree = "<group>"; };
+		30C67BE328D0EB4A0090E162 /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileType.swift; sourceTree = "<group>"; };
+		30C67BE628D0EC0E0090E162 /* Swime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swime.swift; sourceTree = "<group>"; };
 		30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBackgroundSelectionController.swift; sourceTree = "<group>"; };
 		30E348DE24F3F819005C93D1 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
@@ -705,6 +709,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		30C67BE528D0EBCB0090E162 /* swime */ = {
+			isa = PBXGroup;
+			children = (
+				30C67BE328D0EB4A0090E162 /* FileType.swift */,
+				30C67BE628D0EC0E0090E162 /* Swime.swift */,
+			);
+			path = swime;
+			sourceTree = "<group>";
+		};
 		30E8F2112447285600CE2C90 /* DcShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -971,6 +984,8 @@
 		AE851AC2227C695000ED86F0 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				30C67BE528D0EBCB0090E162 /* swime */,
+				30238CFE28A5554C00EF14AC /* FileHelper.swift */,
 				3067AAC52667F3FE00525036 /* ImageFormat.swift */,
 				305702A024C6453700D84EFC /* TypeAlias.swift */,
 				AEACE2E21FB32B5C00DCDD78 /* Constants.swift */,
@@ -986,7 +1001,6 @@
 				21D6C9392606190600D0755A /* NotificationManager.swift */,
 				302D544F268B6B2300A8B271 /* MessageUtils.swift */,
 				3011E8042787365D00214221 /* KeychainManager.swift */,
-				30238CFE28A5554C00EF14AC /* FileHelper.swift */,
 				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
 			);
 			path = Helper;
@@ -1427,6 +1441,7 @@
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
 				AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,
+				30C67BE428D0EB4A0090E162 /* FileType.swift in Sources */,
 				3080A037277DE30100E74565 /* UITextView+Extensions.swift in Sources */,
 				3080A027277DE12D00E74565 /* InputBarButtonItem.swift in Sources */,
 				30238CFB28A501C300EF14AC /* WebxdcSelector.swift in Sources */,
@@ -1467,6 +1482,7 @@
 				303492CB257A814200A523D0 /* DraftArea.swift in Sources */,
 				AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */,
 				B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */,
+				30C67BE728D0EC0E0090E162 /* Swime.swift in Sources */,
 				AEE700252438E0E500D6992E /* ProgressAlertHandler.swift in Sources */,
 				30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */,
 				30238CFD28A5028300EF14AC /* WebxdcGridCell.swift in Sources */,
