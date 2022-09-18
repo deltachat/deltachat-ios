@@ -724,7 +724,7 @@
 "location_enabled_by_you" = "Sie haben Standortübertragung aktiviert.";
 // %1$s will be replaced by name and address of the contact
 "location_enabled_by_other" = "Standortübertragung aktiviert von %1$@.";
-"ephemeral_timer_disabled_by_you" = "Sie haben Verschwindende Nachrichten ausgeschaltet.";
+"ephemeral_timer_disabled_by_you" = "Sie haben verschwindende Nachrichten ausgeschaltet.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_disabled_by_other" = "Verschwindende Nachrichten ausgeschaltet von %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to

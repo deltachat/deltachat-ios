@@ -36,7 +36,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Ripristina";
 "mute" = "Silenzia";
-"ephemeral_messages" = "Messaggi che Scompaiono";
+"ephemeral_messages" = "Messaggi a Scomparsa";
 "ephemeral_messages_hint" = "Queste impostazioni si applicano a tutti i partecipanti che utilizzano Delta Chat. Tuttavia, possono copiare, salvare e inoltrare messaggi o utilizzare altri client e-mail.";
 "save" = "Salva";
 "chat" = "Chat";
@@ -230,6 +230,9 @@
 "ConversationFragment_quoted_message_not_found" = "Messaggio originale non trovato";
 "reply_privately" = "Rispondi in Privato";
 "source_code" = "Codice Sorgente";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Aggiungi alla Schermata Home";
+
 "mute_for_one_hour" = "Silenzia per 1 ora";
 "mute_for_two_hours" = "Silenzia per 2 ore";
 "mute_for_one_day" = "Silenzia per 1 giorno";
@@ -671,31 +674,97 @@
 "systemmsg_failed_sending_to" = "Impossibile inviare il messaggio a %1$@.";
 
 // deprecated
-"systemmsg_ephemeral_timer_disabled" = "Timer scomparsa messaggi disabilitato.";
+"systemmsg_ephemeral_timer_disabled" = "Timer messaggi a scomparsa disabilitato.";
 // deprecated
-"systemmsg_ephemeral_timer_enabled" = "Il timer per la scomparsa dei messaggi è impostato su %1$@ s.";
+"systemmsg_ephemeral_timer_enabled" = "Timer messaggi a scomparsa impostato su %1$@ s.";
 // deprecated
-"systemmsg_ephemeral_timer_minute" = "Il timer per la scomparsa dei messaggi è impostato su 1 minuto.";
+"systemmsg_ephemeral_timer_minute" = "Timer messaggi a scomparsa impostato su 1 minuto.";
 // deprecated
-"systemmsg_ephemeral_timer_hour" = "Il timer per la scomparsa dei messaggi è impostato su 1 ora.";
+"systemmsg_ephemeral_timer_hour" = "Timer messaggi a scomparsa impostato su 1 ora.";
 // deprecated
-"systemmsg_ephemeral_timer_day" = "Il timer per la scomparsa dei messaggi è impostato su 1 giorno.";
+"systemmsg_ephemeral_timer_day" = "Timer messaggi a scomparsa impostato su 1 giorno.";
 // deprecated
-"systemmsg_ephemeral_timer_week" = "Il timer per la scomparsa dei messaggi è impostato su 1 settimana.";
+"systemmsg_ephemeral_timer_week" = "Timer messaggi a scomparsa impostato su 1 settimana.";
 // deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Il timer per la scomparsa dei messaggi è impostato su 4 settimane.";
+"systemmsg_ephemeral_timer_four_weeks" = "Timer messaggi a scomparsa impostato su 4 settimane.";
 // deprecated
-"systemmsg_ephemeral_timer_minutes" = "Timer di scomparsa dei messaggi impostato su %1$@ minuti.";
+"systemmsg_ephemeral_timer_minutes" = "Timer messaggi a scomparsa impostato su %1$@ minuti.";
 // deprecated
-"systemmsg_ephemeral_timer_hours" = "Timer di scomparsa dei messaggi impostato su %1$@ ore.";
+"systemmsg_ephemeral_timer_hours" = "Timer messaggi a scomparsa impostato su %1$@ ore.";
 // deprecated
-"systemmsg_ephemeral_timer_days" = "Timer di scomparsa dei messaggi impostato su %1$@ giorni.";
+"systemmsg_ephemeral_timer_days" = "Timer messaggi a scomparsa impostato su %1$@ giorni.";
 // deprecated
-"systemmsg_ephemeral_timer_weeks" = "Timer di scomparsa dei messaggi impostato su %1$@ settimane.";
+"systemmsg_ephemeral_timer_weeks" = "Timer messaggi a scomparsa impostato su %1$@ settimane.";
 // deprecated
 "systemmsg_chat_protection_disabled" = "Protezione chat disattivata.";
 // deprecated
 "systemmsg_chat_protection_enabled" = "Protezione chat abilitata.";
+
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Hai cambiato il nome del gruppo da \"%1$@\" a \"%2$@\".";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Nome gruppo cambiato da \"%1$@\" a \"%2$@\" da %3$@.";
+"group_image_changed_by_you" = "Hai cambiato l\'immagine del gruppo.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Immagine del gruppo cambiata da %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Hai aggiunto un membro %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Membro %1$@ aggiunto da %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Hai rimosso il membro %1$@.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Membro %1$@ rimosso da %2$@.";
+"group_left_by_you" = "Hai lasciato il gruppo.";
+// %1$s will be replaced by name and address of the contact
+"group_left_by_other" = "Gruppo lasciato da %1$@.";
+"group_image_deleted_by_you" = "Hai eliminato l\'immagine del gruppo.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Immagine gruppo eliminata da %1$@.";
+"location_enabled_by_you" = "Hai abilitato la trasmissione della posizione.";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "Trasmissione della posizione abilitato da %1$@.";
+"ephemeral_timer_disabled_by_you" = "Hai disabilitato il timer dei messaggi a scomparsa.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Timer messaggi a scomparsa disabilitato da %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ s";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Timer messaggi a scomparsa impostato su %1$@ s da %2$@.";
+"ephemeral_timer_1_minute_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 minuto.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Timer messaggi a scomparsa impostato su 1 minuto da %1$@.";
+"ephemeral_timer_1_hour_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 ora.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Timer messaggi a scomparsa impostato su 1 ora da %1$@.";
+"ephemeral_timer_1_day_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 giorno.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Timer messaggi a scomparsa impostato su 1 giorno da %1$@.";
+"ephemeral_timer_1_week_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 settimana.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Timer messaggi a scomparsa impostato su 1 settimana da %1$@.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ minuti.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Timer messaggi a scomparsa impostato su %1$@ minuti da %2$@.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Hai impostato il timer dei messaggi a scomparsa su  %1$@ ore.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Timer messaggi a scomparsa impostato su %1$@ ore da %2$@.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ giorni.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Timer messaggi a scomparsa impostato su %1$@ giorni da %2$@.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ settimane.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Timer messaggi a scomparsa impostato su %1$@ settimane da %2$@.";
+"protection_enabled_by_you" = "Hai abilitato la protezione chat.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Protezione chat abilitata da %1$@.";
+"protection_disabled_by_you" = "Hai disabilitato la protezione chat.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Protezione chat disabilitata da %1$@.";
 
 "devicemsg_self_deleted" = "Hai eliminato la chat \"Messaggi salvati\".\n\nℹ️ Per utilizzare nuovamente la funzione \"Messaggi salvati\", crea una nuova chat con te stesso.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%

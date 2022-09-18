@@ -230,6 +230,9 @@
 "ConversationFragment_quoted_message_not_found" = "Geen oorspronkelijk bericht gevonden";
 "reply_privately" = "Privé beantwoorden";
 "source_code" = "Broncode";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Toevoegen aan startscherm";
+
 "mute_for_one_hour" = "1 uur lang uitschakelen";
 "mute_for_two_hours" = "2 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
@@ -567,7 +570,7 @@
 "pref_show_emails_accepted_contacts" = "Van goedgekeurde contactpersonen";
 "pref_show_emails_all" = "Alles";
 "pref_experimental_features" = "Experimentele functies";
-"pref_on_demand_location_streaming" = "Locatie continue doorgeven (op verzoek)";
+"pref_on_demand_location_streaming" = "Locatie delen (op verzoek)";
 "pref_developer_mode" = "Ontwikkelaarsmodus";
 "pref_developer_mode_explain" = "Schakelt foutopsporingspoties in die de app mogelijk minder stabiel maken. Alléén voor ontwikkelaars.";
 "pref_background_default" = "Standaardachtergrond";
@@ -696,6 +699,72 @@
 "systemmsg_chat_protection_disabled" = "Gespreksbeveiliging is uitgeschakeld.";
 // deprecated
 "systemmsg_chat_protection_enabled" = "Gespreksbeveiliging is ingeschakeld.";
+
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Je hebt de groepsnaam gewijzigd. Oude naam: “%1$@” - Nieuwe naam: “%2$@”";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "De groepsnaam is gewijzigd door %3$@. Oude naam: “%1$@” - Nieuwe naam: “%2$@”";
+"group_image_changed_by_you" = "Je hebt de groepsafbeelding gewijzigd.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "De groepsafbeelding is gewijzigd door %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Je hebt ‘%1$@’ toegevoegd.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "‘%1$@’ is toegevoegd door %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Je hebt ‘%1$@’ verwijderd.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "‘%1$@’ is verwijderd door %2$@.";
+"group_left_by_you" = "Je hebt de groep verlaten.";
+// %1$s will be replaced by name and address of the contact
+"group_left_by_other" = "De groep is verlaten door %1$@.";
+"group_image_deleted_by_you" = "Je hebt de groepsafbeelding verwijderd.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "De groepsafbeelding is verwijderd door %1$@.";
+"location_enabled_by_you" = "Je hebt locatiedeling ingeschakeld.";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "Locatiedeling is ingeschakeld door %1$@.";
+"ephemeral_timer_disabled_by_you" = "Je hebt de tijdklok van verdwijnende berichten uitgeschakeld.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "De tijdklok van verdwijnende berichten is uitgeschakeld door %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ sec.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ sec.";
+"ephemeral_timer_1_minute_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 minuut.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 minuut.";
+"ephemeral_timer_1_hour_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 uur.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 uur.";
+"ephemeral_timer_1_day_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 dag.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 dag.";
+"ephemeral_timer_1_week_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 week.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 week.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ minuten.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ minuten.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ uur.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ uur.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ dagen.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ dagen.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ weken.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ weken.";
+"protection_enabled_by_you" = "Je hebt gespreksbeveiliging ingeschakeld.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Gespreksbeveiliging is ingeschakeld door %1$@.";
+"protection_disabled_by_you" = "Je hebt gespreksbeveiliging uitgeschakeld.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Gespreksbeveiliging is uitgeschakeld door %1$@.";
 
 "devicemsg_self_deleted" = "Je hebt het gesprek ‘Opgeslagen berichten’ verwijderd.\n\nℹ️ Als je weer gebruik wilt maken van deze functie, begin dan een nieuw gesprek met jezelf.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%

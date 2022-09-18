@@ -230,6 +230,9 @@
 "ConversationFragment_quoted_message_not_found" = "Оригинальное сообщение не найдено";
 "reply_privately" = "Ответить лично";
 "source_code" = "Исходный код";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Добавить на главный экран";
+
 "mute_for_one_hour" = "1 час";
 "mute_for_two_hours" = "На 2 часа";
 "mute_for_one_day" = "На 1 день";
@@ -696,6 +699,72 @@
 "systemmsg_chat_protection_disabled" = "Защита чата отключена.";
 // deprecated
 "systemmsg_chat_protection_enabled" = "Защита чата включена";
+
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Вы изменили название группы с «%1$@» на «%2$@».";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "%3$@ изменил название группы с «%1$@» на «%2$@».";
+"group_image_changed_by_you" = "Вы изменили изображение группы.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Изображение группы изменено %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Вы добавили участника %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Участник %1$@ добавлен %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Вы удалили участника %1$@.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Участник %1$@ удален %2$@.";
+"group_left_by_you" = "Вы вышли из группы.";
+// %1$s will be replaced by name and address of the contact
+"group_left_by_other" = "%1$@ вышел из группы.";
+"group_image_deleted_by_you" = "Вы удалили изображение группы.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Изображение группы удалено %1$@.";
+"location_enabled_by_you" = "Вы включили трансляцию местоположения.";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "%1$@ включил трансляцию местоположения.";
+"ephemeral_timer_disabled_by_you" = "Вы отключили таймер исчезающих сообщений.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Таймер исчезающих сообщений отключен %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Вы установили таймер исчезающих сообщений в %1$@ с";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "%2$@ установил таймер исчезающих сообщений в %1$@ с";
+"ephemeral_timer_1_minute_by_you" = "Вы установили таймер исчезающих сообщений на 1 минуту.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "%1$@ установил таймер исчезающих сообщений на одну минуту.";
+"ephemeral_timer_1_hour_by_you" = "Вы установили таймер исчезающих сообщений на 1 час.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "%1$@ установил таймер исчезающих сообщений на 1 час.";
+"ephemeral_timer_1_day_by_you" = "Вы установили таймер исчезающих сообщений на 1 день.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "%1$@ установил таймер исчезающих сообщений на 1 день.";
+"ephemeral_timer_1_week_by_you" = "Вы установили таймер исчезающих сообщений на 1 неделю.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "%1$@ установил таймер исчезающих сообщений на 1 неделю.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Вы установили таймер исчезающих сообщений в %1$@ минут.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "%2$@ установил таймер исчезающих сообщений в %1$@ минут.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Вы установили таймер исчезающих сообщений на %1$@ часов.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "%2$@ установил таймер исчезающих сообщений на %1$@ часов.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Вы установили таймер исчезающих сообщений на %1$@ дней.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "%2$@ установил таймер исчезающих сообщений на %1$@ дней.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Вы установили таймер исчезающих сообщений на %1$@ недель.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "%2$@ установил таймер исчезающих сообщений на %1$@ недель.";
+"protection_enabled_by_you" = "Вы включили защиту чата.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "%1$@ включил защиту чата.";
+"protection_disabled_by_you" = "Вы отключили защиту чата.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "%1$@ отключил защиту чата.";
 
 "devicemsg_self_deleted" = "Вы удалили чат \"Сохраненные сообщения\".\n\nℹ️ Чтобы снова использовать функцию \"Сохраненные сообщения\", создайте новый чат с самим собой.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%

@@ -230,6 +230,9 @@
 "ConversationFragment_quoted_message_not_found" = "Özgün ileti bulunamadı";
 "reply_privately" = "Özel Olarak Yanıtla";
 "source_code" = "Kaynak Kodu";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Ana Ekrana Ekle";
+
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
@@ -696,6 +699,72 @@
 "systemmsg_chat_protection_disabled" = "Sohbet koruması etkisizleştirildi.";
 // deprecated
 "systemmsg_chat_protection_enabled" = "Sohbet koruması etkinleştirildi.";
+
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "\"%1$@\" grup adını \"%2$@\" olarak değiştirdiniz.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "\"%1$@\" grup adı %3$@ tarafından \"%2$@\" olarak değiştirildi.";
+"group_image_changed_by_you" = "Grup görselini değiştirdiniz.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Grup görseli %1$@ tarafından değiştirildi.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "%1$@ üyesini eklediniz.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "%1$@ üyesi %2$@ tarafından eklendi.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "%1$@ üyesini kaldırdınız.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "%1$@ üyesi %2$@ tarafından kaldırıldı.";
+"group_left_by_you" = "Gruptan ayrıldınız.";
+// %1$s will be replaced by name and address of the contact
+"group_left_by_other" = "%1$@ tarafından gruptan ayrılındı.";
+"group_image_deleted_by_you" = "Grup görselini sildiniz.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Grup görseli %1$@ tarafından silindi.";
+"location_enabled_by_you" = "Konum akışını etkinleştirdiniz.";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "Konum akışı %1$@ tarafından etkinleştirildi.";
+"ephemeral_timer_disabled_by_you" = "Kaybolan iletiler zamanlayıcısını etkisizleştirdiniz.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Kaybolan iletiler zamanlayıcısı %1$@ tarafından etkisizleştirildi.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ s\'ye ayarladınız.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Kaybolan iletiler zamanlayıcısı %2$@ tarafından %1$@ s\'ye ayarlandı.";
+"ephemeral_timer_1_minute_by_you" = "Kaybolan iletiler zamanlayıcısını 1 dakikaya ayarladınız.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Kaybolan iletiler zamanlayıcısı %1$@ tarafından 1 dakikaya ayarlandı.";
+"ephemeral_timer_1_hour_by_you" = "Kaybolan iletiler zamanlayıcısını 1 saate ayarladınız.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Kaybolan iletiler zamanlayıcısı %1$@ tarafından 1 saate ayarlandı.";
+"ephemeral_timer_1_day_by_you" = "Kaybolan iletiler zamanlayıcısını 1 güne ayarladınız.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Kaybolan iletiler zamanlayıcısı %1$@ tarafından 1 güne ayarlandı.";
+"ephemeral_timer_1_week_by_you" = "Kaybolan iletiler zamanlayıcısını 1 haftaya ayarladınız.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Kaybolan iletiler zamanlayıcısı %1$@ tarafından 1 haftaya ayarlandı.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ dakikaya ayarladınız.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Kaybolan iletiler zamanlayıcısı %2$@ tarafından %1$@ dakikaya ayarlandı.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ saate ayarladınız.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Kaybolan iletiler zamanlayıcısı %2$@ tarafından %1$@ saate ayarlandı.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ güne ayarladınız.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Kaybolan iletiler zamanlayıcısı %2$@ tarafından %1$@ güne ayarlandı.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ haftaya ayarladınız.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Kaybolan iletiler zamanlayıcısı %2$@ tarafından %1$@ haftaya ayarlandı.";
+"protection_enabled_by_you" = "Sohbet korumasını etkinleştirdiniz.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Sohbet koruması %1$@ tarafından etkinleştirildi.";
+"protection_disabled_by_you" = "Sohbet korumasını etkisizleştirdiniz.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Sohbet koruması %1$@ tarafından etkisizleştirildi.";
 
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
