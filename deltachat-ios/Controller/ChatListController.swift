@@ -535,17 +535,57 @@ class ChatListController: UITableViewController {
         }
     }
     
+    lazy var accountButtonAvatar: InitialsBadge = {
+        let badge = InitialsBadge(size: 42)
+        badge.setColor(UIColor.lightGray)
+        badge.isAccessibilityElement = false
+        return badge
+    }()
+    
+    private let accountButtonUnreadMessageCounter: MessageCounter = {
+        let view = MessageCounter(count: 0, size: 20)
+        view.backgroundColor = DcColors.unreadBadge
+        view.isHidden = true
+        return view
+    }()
+
+
     private lazy var accountButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(showSwitchAccountMenu))
+        // let button = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(showSwitchAccountMenu))
         
-       // todo make pretty
+        // todo make pretty
         
+        let rect = CGRect(x: 0, y: 0, width: 70, height: 50)
+        let myView = UIView(frame: rect)
+        
+        myView.addSubview(accountButtonAvatar)
+        myView.addSubview(accountButtonUnreadMessageCounter)
+        
+        // this line is only to visualize the rect bounds for visual debugging
+        // myView.backgroundColor = .blue
+        
+        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(showSwitchAccountMenu))
+        myView.addGestureRecognizer(tapGestureRecognizer)
+        
+        
+        let button = UIBarButtonItem(customView: myView)
         return button
     }()
     
     private func updateAccountButton() {
         let unreadCount = getUnreadCounterOfOtherAccounts()
-        accountButton.title = "Account" + (unreadCount == 0 ? "" : " [" + String(unreadCount) + "]")
+        // accountButton.title = "Account" + (unreadCount == 0 ? "" : " [" + String(unreadCount) + "]")
+        accountButtonUnreadMessageCounter.setCount(unreadCount)
+        accountButtonUnreadMessageCounter.isHidden = unreadCount == 0
+        
+        let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
+        accountButtonAvatar.setColor(contact.color)
+        accountButtonAvatar.setName(contact.displayName)
+        if let image = contact.profileImage {
+            accountButtonAvatar.setImage(image)
+        }
+        
+        
     }
     
     private func getUnreadCounterOfOtherAccounts() -> Int {
