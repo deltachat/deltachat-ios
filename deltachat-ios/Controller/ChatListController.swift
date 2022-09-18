@@ -4,6 +4,7 @@ import DcCore
 class ChatListController: UITableViewController {
     var viewModel: ChatListViewModel?
     let dcContext: DcContext
+    private let dcAccounts: DcAccounts
     var isArchive: Bool
 
     private let chatCellReuseIdentifier = "chat_cell"
@@ -13,6 +14,7 @@ class ChatListController: UITableViewController {
     private var msgChangedObserver: NSObjectProtocol?
     private var msgsNoticedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
+    private var incomingMsgAnyAccountObserver: NSObjectProtocol?
     private var chatModifiedObserver: NSObjectProtocol?
     private var contactsChangedObserver: NSObjectProtocol?
     private var connectivityChangedObserver: NSObjectProtocol?
@@ -69,8 +71,9 @@ class ChatListController: UITableViewController {
 
     private var editingConstraints: NSLayoutConstraintSet?
 
-    init(dcContext: DcContext, isArchive: Bool) {
+    init(dcContext: DcContext, dcAccounts: DcAccounts, isArchive: Bool) {
         self.dcContext = dcContext
+        self.dcAccounts = dcAccounts
         self.isArchive = isArchive
         super.init(style: .grouped)
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
@@ -185,6 +188,12 @@ class ChatListController: UITableViewController {
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
+        incomingMsgAnyAccountObserver = nc.addObserver(
+            forName: dcNotificationIncomingAnyAccount,
+            object: nil,
+            queue: nil) { [weak self] _ in
+                self?.updateAccountButton()
+            }
         chatModifiedObserver = nc.addObserver(
             forName: dcNotificationChatModified,
             object: nil,
@@ -221,6 +230,9 @@ class ChatListController: UITableViewController {
         }
         if let incomingMsgObserver = self.incomingMsgObserver {
             nc.removeObserver(incomingMsgObserver)
+        }
+        if let incomingMsgAnyAccountObserver = self.incomingMsgAnyAccountObserver {
+            nc.removeObserver(incomingMsgAnyAccountObserver)
         }
         if let msgsNoticedObserver = self.msgsNoticedObserver {
             nc.removeObserver(msgsNoticedObserver)
@@ -522,6 +534,62 @@ class ChatListController: UITableViewController {
             view.isHidden = false
         }
     }
+    
+    private lazy var accountButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(showSwitchAccountMenu))
+        
+       // todo make pretty
+        
+        return button
+    }()
+    
+    private func updateAccountButton() {
+        let unreadCount = getUnreadCounterOfOtherAccounts()
+        accountButton.title = "Account" + (unreadCount == 0 ? "" : " [" + String(unreadCount) + "]")
+    }
+    
+    private func getUnreadCounterOfOtherAccounts() -> Int {
+        var unreadCount = 0
+        let selectedAccountId = dcAccounts.getSelected().id
+        
+        for accountId in dcAccounts.getAll() {
+            if accountId == selectedAccountId {
+                continue
+            }
+            unreadCount += dcAccounts.get(id: accountId).getFreshMessages().count
+        }
+        
+        return unreadCount
+    }
+    
+    @objc private func showSwitchAccountMenu() {
+        let accountIds = dcAccounts.getAll()
+        let selectedAccountId = dcAccounts.getSelected().id
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        let prefs = UserDefaults.standard
+        // switch account
+        let menu = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
+        for accountId in accountIds {
+            let account = dcAccounts.get(id: accountId)
+            
+            let newMessages = account.getFreshMessages().count
+            let messageBadge = newMessages == 0 ? "" : " [" + String(newMessages) + "]"
+            
+            var title = account.displaynameAndAddr
+            title = (selectedAccountId==accountId ? "✔︎ " : "") + title + messageBadge
+            menu.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                prefs.setValue(selectedAccountId, forKey: Constants.Keys.lastSelectedAccountKey)
+                _ = self.dcAccounts.select(id: accountId)
+                appDelegate.reloadDcContext()
+            }))
+        }
+
+
+        menu.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(menu, animated: true, completion: nil)
+    }
 
     // MARK: updates
     private func updateTitle() {
@@ -549,6 +617,9 @@ class ChatListController: UITableViewController {
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
         titleView.sizeToFit()
+        
+        navigationItem.setLeftBarButton(accountButton, animated: false)
+        updateAccountButton()
     }
 
     func handleMultiSelectionTitle() -> Bool {
@@ -741,7 +812,7 @@ class ChatListController: UITableViewController {
     }
 
     public func showArchive(animated: Bool) {
-        let controller = ChatListController(dcContext: dcContext, isArchive: true)
+        let controller = ChatListController(dcContext: dcContext, dcAccounts: dcAccounts, isArchive: true)
         navigationController?.pushViewController(controller, animated: animated)
     }
 
