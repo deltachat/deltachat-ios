@@ -279,7 +279,7 @@ class WebxdcViewController: WebViewViewController {
         let alert = UIAlertController(title: webxdcName,
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
-        let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home"), style: .default, handler: addToHomeScreen(_:))
+        let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default, handler: addToHomeScreen(_:))
         alert.addAction(addToHomescreenAction)
         if sourceCodeUrl != nil {
             let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
