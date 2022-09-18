@@ -214,7 +214,7 @@ public class ShortcutManager {
             } else {
                  var div = document.createElement('div');
                  var header = document.createElement('h2');
-                 header.append('\(String.localized("add_to_home"))');
+                 header.append('\(String.localized("add_to_home_screen"))');
                  div.appendChild(header);
                  document.body.appendChild(div);
 
