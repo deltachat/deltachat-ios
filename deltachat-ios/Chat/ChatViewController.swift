@@ -143,7 +143,7 @@ class ChatViewController: UITableViewController {
 
     private lazy var initialsBadge: InitialsBadge = {
         let badge: InitialsBadge
-        badge = InitialsBadge(size: 28, accessibilityLabel: String.localized("menu_view_profile"))
+        badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("menu_view_profile"))
         badge.setLabelFont(UIFont.systemFont(ofSize: 14))
         badge.accessibilityTraits = .button
         return badge
