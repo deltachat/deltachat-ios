@@ -380,7 +380,6 @@
 "tab_image_empty_hint" = "Les images partagées dans cette discussion seront affichées ici.";
 "tab_video_empty_hint" = "Les vidéos partagées dans cette discussion seront affichées ici.";
 "tab_audio_empty_hint" = "Les fichiers audio et messages vocaux partagés dans cette discussion seront affichés ici.";
-"tab_webxdc_empty_hint" = "Les contenus Webxdc partagés dans cette discussion seront affichés ici.";
 "media_preview" = "Prévisualiser le fichier multimédia";
 "send_message" = "Envoyer message";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.

@@ -383,7 +383,6 @@
 "tab_image_empty_hint" = "Изображения, размещённые в этом чате, будут отображаться здесь.";
 "tab_video_empty_hint" = "Видео, размещённые в этом чате, будут отображаться здесь.";
 "tab_audio_empty_hint" = "Аудиофайлы и голосовые сообщения, размещённые в этом чате, будут отображаться здесь.";
-"tab_webxdc_empty_hint" = "Содержимое Webxdc-приложения, размещённые в этом чате, будут отображаться здесь.";
 "media_preview" = "Предпросмотр медиафайлов";
 "send_message" = "Отправить сообщение";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.

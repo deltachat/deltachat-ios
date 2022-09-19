@@ -380,7 +380,6 @@
 "tab_image_empty_hint" = "Tässä keskustelussa jaetut kuvat näkyvät tässä.";
 "tab_video_empty_hint" = "Tässä keskustelussa jaetut videot näkyvät tässä.";
 "tab_audio_empty_hint" = "Tässä keskustelussa jaetut äänitiedostot ja -viestit näkyvät tässä.";
-"tab_webxdc_empty_hint" = "Tässä keskustelussa jaettu webxdc-sisältö näkyy tässä.";
 "media_preview" = "Median esikatselu";
 "send_message" = "Lähetä viesti";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.

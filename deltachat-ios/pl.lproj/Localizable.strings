@@ -380,7 +380,6 @@
 "tab_image_empty_hint" = "Tutaj  będą wyświetlane zdjęcia udostępnione w tym czacie.";
 "tab_video_empty_hint" = "Tutaj będą wyświetlane filmy udostępnione w tym czacie.";
 "tab_audio_empty_hint" = "Tutaj będą wyświetlane pliki dźwiękowe i wiadomości głosowe udostępnione w tym czacie.";
-"tab_webxdc_empty_hint" = "Tutaj będzie wyświetlona treść Webxdc udostępniona na tym czacie.";
 "media_preview" = "Podgląd multimediów";
 "send_message" = "Wyślij wiadomość";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.

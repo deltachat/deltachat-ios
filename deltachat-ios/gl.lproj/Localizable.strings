@@ -383,7 +383,6 @@
 "tab_image_empty_hint" = "As imaxes compartidas neste chat serán visibles aquí.";
 "tab_video_empty_hint" = "Os vídeos compartidos neste chat serán visibles aquí.";
 "tab_audio_empty_hint" = "Os ficheiros de Audio e de Mensaxes de Voz compartidos neste chat serán mostrados aquí.";
-"tab_webxdc_empty_hint" = "Contido Webxdc compartido neste chat será mostrado aquí.";
 "media_preview" = "Vista previa dos medios";
 "send_message" = "Enviar mensaxe";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.

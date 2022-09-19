@@ -383,7 +383,6 @@
 "tab_image_empty_hint" = "De in dit gesprek gedeelde afbeeldingen verschijnen hier.";
 "tab_video_empty_hint" = "De in dit gesprek gedeelde video\'s verschijnen hier.";
 "tab_audio_empty_hint" = "De in dit gesprek gedeelde audiobestanden en spraakberichten verschijnen hier.";
-"tab_webxdc_empty_hint" = "De in dit gesprek gedeelde webxdc-inhoud verschijnt hier.";
 "media_preview" = "Mediavoorbeeld";
 "send_message" = "Bericht versturen";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
