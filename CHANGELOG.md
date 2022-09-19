@@ -1,5 +1,7 @@
 # Delta Chat iOS Changelog
 
+* bigger chat avatar in chatview
+
 ## v1.32.0
 2022-07
 
