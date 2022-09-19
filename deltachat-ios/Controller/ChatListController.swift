@@ -654,12 +654,11 @@ class ChatListController: UITableViewController {
                     titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
                 }
             }
+            navigationItem.setLeftBarButton(accountButton, animated: false)
+            updateAccountButton()
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
         titleView.sizeToFit()
-        
-        navigationItem.setLeftBarButton(accountButton, animated: false)
-        updateAccountButton()
     }
 
     func handleMultiSelectionTitle() -> Bool {
