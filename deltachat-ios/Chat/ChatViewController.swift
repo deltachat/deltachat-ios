@@ -1343,7 +1343,7 @@ class ChatViewController: UITableViewController {
         let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
         let documentAction = UIAlertAction(title: String.localized("files"), style: .default, handler: documentActionPressed(_:))
-        let webxdcAction = UIAlertAction(title: String.localized("webxdcs"), style: .default, handler: webxdcButtonPressed(_:))
+        let webxdcAction = UIAlertAction(title: String.localized("webxdc_apps"), style: .default, handler: webxdcButtonPressed(_:))
         let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),

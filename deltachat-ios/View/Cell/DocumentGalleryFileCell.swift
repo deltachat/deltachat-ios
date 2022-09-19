@@ -105,7 +105,7 @@ class DocumentGalleryFileCell: UITableViewCell {
         let name = dict["name"] as? String ?? "ErrName" // name should not be empty
 
         title.text = document.isEmpty ? name : "\(document) – \(name)"
-        subtitle.text = summary.isEmpty ? "Webxdc" : summary
+        subtitle.text = summary.isEmpty ? String.localized("webxdc_app") : summary
     }
 
     private func generateThumbnailFor(url: URL, placeholder: UIImage?) {

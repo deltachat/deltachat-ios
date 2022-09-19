@@ -60,7 +60,7 @@ class DocumentGalleryController: UIViewController {
         self.fileMessageIds = fileMessageIds
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
-        self.title = String.localized("files")
+        self.title = String.localized("files_and_webxdx_apps")
     }
 
     required init?(coder: NSCoder) {

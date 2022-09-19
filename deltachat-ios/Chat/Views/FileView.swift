@@ -124,7 +124,7 @@ public class FileView: UIView {
         fileTitle.font = UIFont.preferredBoldFont(for: .body)
         fileSubtitle.font = UIFont.preferredFont(forTextStyle: .body)
         fileTitle.text = document.isEmpty ? name : "\(document) – \(name)"
-        fileSubtitle.text = summary.isEmpty ? "Webxdc" : summary
+        fileSubtitle.text = summary.isEmpty ? String.localized("webxdc_app") : summary
     }
 
     private func configureFile(message: DcMsg) {

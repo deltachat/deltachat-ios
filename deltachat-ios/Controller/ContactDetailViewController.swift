@@ -79,7 +79,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var documentsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("files")
+        cell.textLabel?.text = String.localized("files_and_webxdx_apps")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
