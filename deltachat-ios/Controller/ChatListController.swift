@@ -536,7 +536,7 @@ class ChatListController: UITableViewController {
     }
     
     lazy var accountButtonAvatar: InitialsBadge = {
-        let badge = InitialsBadge(size: 42)
+        let badge = InitialsBadge(size: 40)
         badge.setColor(UIColor.lightGray)
         badge.isAccessibilityElement = false
         return badge
