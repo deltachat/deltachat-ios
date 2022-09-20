@@ -276,7 +276,7 @@ class WebxdcViewController: WebViewViewController {
     }
 
     @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: webxdcName,
+        let alert = UIAlertController(title: webxdcName + " – " + String.localized("webxdc_app"),
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default, handler: addToHomeScreen(_:))
