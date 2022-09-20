@@ -5,7 +5,7 @@ import AVFoundation
 import DcCore
 import SDWebImage
 
-class ChatViewController: UITableViewController {
+class ChatViewController: UITableViewController, UITableViewDropDelegate {
     var dcContext: DcContext
     let outgoingAvatarOverlap: CGFloat = 17.5
     let loadCount = 30
@@ -28,6 +28,12 @@ class ChatViewController: UITableViewController {
     lazy var draft: DraftModel = {
         let draft = DraftModel(dcContext: dcContext, chatId: chatId)
         return draft
+    }()
+
+    private lazy var dropInteraction: ChatDropInteraction = {
+        let dropInteraction = ChatDropInteraction()
+        dropInteraction.delegate = self
+        return dropInteraction
     }()
 
     // search related
@@ -393,6 +399,8 @@ class ChatViewController: UITableViewController {
         messageInputBar.inputTextView.text = draft.text
         configureDraftArea(draft: draft, animated: false)
         tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.dragInteractionEnabled = true
+        tableView.dropDelegate = self
     }
 
     private func getTopInsetHeight() -> CGFloat {
@@ -1267,6 +1275,7 @@ class ChatViewController: UITableViewController {
         messageInputBar.inputTextView.delegate = self
         messageInputBar.inputTextView.textViewPasteDelegate = self
         messageInputBar.onScrollDownButtonPressed = scrollToBottom
+        messageInputBar.inputTextView.setDropInteractionDelegate(delegate: self)
     }
 
     private func evaluateInputBar(draft: DraftModel) {
@@ -1798,6 +1807,21 @@ class ChatViewController: UITableViewController {
         let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
         prepareContextMenu(isHidden: isHidden)
         return !isHidden
+    }
+
+    @objc(tableView:canHandleDropSession:)
+    func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
+        return self.dropInteraction.dropInteraction(canHandle: session)
+    }
+
+    @objc
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        return UITableViewDropProposal(operation: .copy)
+    }
+
+    @objc(tableView:performDropWithCoordinator:)
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        return self.dropInteraction.dropInteraction(performDrop: coordinator.session)
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
@@ -2414,17 +2438,6 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
         sendSticker(image)
     }
-    func onImageDragAndDropped(image: UIImage) {
-        stageImage(image)
-    }
-
-    func onVideoDragAndDropped(url: NSURL) {
-        stageVideo(url: url)
-    }
-
-    func onFileDragAndDropped(url: NSURL) {
-        stageDocument(url: url)
-    }
 }
 
 
@@ -2450,6 +2463,30 @@ extension ChatViewController: WebxdcSelectorDelegate {
                 self.configureDraftArea(draft: self.draft)
                 self.focusInputTextView()
             }
+        }
+    }
+}
+
+extension ChatViewController: ChatDropInteractionDelegate {
+    func onImageDragAndDropped(image: UIImage) {
+        stageImage(image)
+    }
+
+    func onVideoDragAndDropped(url: NSURL) {
+        stageVideo(url: url)
+    }
+
+    func onFileDragAndDropped(url: NSURL) {
+        stageDocument(url: url)
+    }
+
+    func onTextDragAndDropped(text: String) {
+        if messageInputBar.inputTextView.text.isEmpty {
+            messageInputBar.inputTextView.text = text
+        } else {
+            var updatedText = messageInputBar.inputTextView.text
+            updatedText?.append(" \(text) ")
+            messageInputBar.inputTextView.text = updatedText
         }
     }
 }

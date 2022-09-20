@@ -103,6 +103,7 @@
 		30B2BD02278F1C1900889AA4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011E8042787365D00214221 /* KeychainManager.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */; };
+		30CE137828D9C40800158DF4 /* ChatDropInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */; };
 		30DAF71C275901610073C154 /* SettingsBackgroundSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */; };
 		30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348DE24F3F819005C93D1 /* ChatTableView.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
@@ -380,6 +381,7 @@
 		30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEphemeralMessageController.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
 		30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSearchAccessoryBar.swift; sourceTree = "<group>"; };
+		30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDropInteraction.swift; sourceTree = "<group>"; };
 		30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBackgroundSelectionController.swift; sourceTree = "<group>"; };
 		30E348DE24F3F819005C93D1 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
@@ -988,6 +990,7 @@
 				302D544F268B6B2300A8B271 /* MessageUtils.swift */,
 				3011E8042787365D00214221 /* KeychainManager.swift */,
 				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
+				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1417,6 +1420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
+				30CE137828D9C40800158DF4 /* ChatDropInteraction.swift in Sources */,
 				3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */,
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
 				303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */,
