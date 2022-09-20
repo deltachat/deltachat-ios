@@ -1702,6 +1702,7 @@ class ChatViewController: UITableViewController {
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.focusInputTextView()
+            FileHelper.deleteFile(atPath: url.relativePath)
         }
     }
 
