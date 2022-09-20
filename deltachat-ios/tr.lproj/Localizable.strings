@@ -121,6 +121,11 @@
 "images_and_videos" = "Görseller ve Videolar";
 "file" = "Dosya";
 "files" = "Dosyalar";
+// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "Özel Uygulama";
+// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Özel Uygulamalar";
+"files_and_webxdx_apps" = "Dosyalar ve Özel Uygulamalar";
 "unknown" = "Bilinmeyen";
 
 "green" = "Yeşil";
@@ -383,6 +388,7 @@
 "tab_image_empty_hint" = "Bu sohbette paylaşılan görseller burada görünecek.";
 "tab_video_empty_hint" = "Bu sohbette paylaşılan videolar burada görünecek.";
 "tab_audio_empty_hint" = "Bu sohbette paylaşılan ses dosyaları ve sesli iletiler burada görünecek.";
+"tab_webxdc_empty_hint" = "Bu sohbette paylaşılan özel uygulamalar burada görünecek.";
 "media_preview" = "Ortam Önizlemesi";
 "send_message" = "İleti Gönder";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
