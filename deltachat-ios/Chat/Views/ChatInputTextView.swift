@@ -32,11 +32,11 @@ public class ChatInputTextView: InputTextView {
 
 extension ChatInputTextView: UIDropInteractionDelegate {
     public func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
-        dropInteraction.dropInteraction(canHandle: session)
+        return dropInteraction.dropInteraction(canHandle: session)
     }
 
     public func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
-        dropInteraction.dropInteraction(sessionDidUpdate: session)
+        return dropInteraction.dropInteraction(sessionDidUpdate: session)
     }
 
     public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
