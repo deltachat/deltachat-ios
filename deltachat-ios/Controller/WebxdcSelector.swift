@@ -87,7 +87,7 @@ class WebxdcSelector: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        title = String.localized("webxdcs")
+        title = String.localized("webxdc_apps")
         navigationItem.setLeftBarButton(leftBarBtn, animated: false)
         navigationItem.setRightBarButton(rightBarBtn, animated: false)
         if mediaMessageIds.isEmpty {
