@@ -1686,9 +1686,13 @@ class ChatViewController: UITableViewController {
 
     private func stageDocument(url: NSURL) {
         keepKeyboard = true
-        self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
-        self.configureDraftArea(draft: self.draft)
-        self.focusInputTextView()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
+            self.configureDraftArea(draft: self.draft)
+            self.focusInputTextView()
+            FileHelper.deleteFile(atPath: url.relativePath)
+        }
     }
 
     private func stageVideo(url: NSURL) {
@@ -2413,8 +2417,12 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
         stageImage(image)
     }
 
-    func onVideoDragAndDropped(url: URL) {
-        stageVideo(url: url as NSURL)
+    func onVideoDragAndDropped(url: NSURL) {
+        stageVideo(url: url)
+    }
+
+    func onFileDragAndDropped(url: NSURL) {
+        stageDocument(url: url)
     }
 }
 

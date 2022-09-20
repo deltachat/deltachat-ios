@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import MobileCoreServices
+import UniformTypeIdentifiers
 
 public class ChatInputTextView: InputTextView {
 
@@ -24,7 +25,20 @@ public class ChatInputTextView: InputTextView {
 
 extension ChatInputTextView: UIDropInteractionDelegate {
     public func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
-        return  session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String, kUTTypeText as String, kUTTypeMovie as String, kUTTypeVideo as String])
+        if #available(iOS 14.0, *) {
+            return  session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
+                UTType.image.identifier,
+                UTType.video.identifier,
+                UTType.movie.identifier,
+                UTType.text.identifier,
+                UTType.item.identifier])
+        }
+        return session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
+            kUTTypeImage as String,
+            kUTTypeText as String,
+            kUTTypeMovie as String,
+            kUTTypeVideo as String,
+            kUTTypeItem as String])
     }
 
     public func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
@@ -32,36 +46,77 @@ extension ChatInputTextView: UIDropInteractionDelegate {
     }
 
     public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
-        if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String]) {
-            session.loadObjects(ofClass: UIImage.self) { [weak self] imageItems in
-                if let images = imageItems as? [UIImage] {
-                    self?.textViewPasteDelegate?.onImageDragAndDropped(image: images[0])
-                }
+        if #available(iOS 15.0, *) {
+            if session.hasItemsConforming(toTypeIdentifiers: [UTType.image.identifier]) {
+               loadImageObjects(session: session)
+            } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.movie.identifier, UTType.video.identifier]) {
+                loadFileObjects(session: session, isVideo: true)
+            } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.item.identifier]) {
+                loadFileObjects(session: session)
+            } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.text.identifier]) {
+                loadTextObjects(session: session)
             }
-        } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeMovie as String, kUTTypeVideo as String]) {
-            session.loadObjects(ofClass: NSData.self) { [weak self] videoItems in
-                if let videos = videoItems as? [NSData] {
-                    let video = videos[0] as Data
-                    if let mimeType = Swime.mimeType(data: video) {
-                        DispatchQueue.global().async { [weak self] in
-                            if let fileName = FileHelper.saveData(data: video, name: "tmp_dragAndDrop", suffix: mimeType.ext, directory: .cachesDirectory) {
-                                DispatchQueue.main.async {
-                                    self?.textViewPasteDelegate?.onVideoDragAndDropped(url: URL(fileURLWithPath: fileName))
-                                }
-                            }
-                        }
+        } else {
+            if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String]) {
+               loadImageObjects(session: session)
+            } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeMovie as String, kUTTypeVideo as String]) {
+                loadFileObjects(session: session, isVideo: true)
+            } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeItem as String]) {
+                loadFileObjects(session: session)
+            } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeText as String]) {
+                loadTextObjects(session: session)
+            }
+        }
+    }
+
+    private func loadImageObjects(session: UIDropSession) {
+        session.loadObjects(ofClass: UIImage.self) { [weak self] imageItems in
+            if let images = imageItems as? [UIImage], !images.isEmpty {
+                self?.textViewPasteDelegate?.onImageDragAndDropped(image: images[0])
+            }
+        }
+    }
+
+    private func loadFileObjects(session: UIDropSession, isVideo: Bool = false) {
+        if session.items.isEmpty {
+            return
+        }
+        let item: UIDragItem = session.items[0]
+        item.itemProvider.loadFileRepresentation(forTypeIdentifier: kUTTypeItem as String) { [weak self] (url, error) in
+            guard let url = url else {
+                if let error = error {
+                    logger.error("error loading file \(error)")
+                }
+                return
+            }
+            DispatchQueue.global().async { [weak self] in
+                let nsdata = NSData(contentsOf: url)
+                guard let data = nsdata as? Data else { return }
+                let name = url.deletingPathExtension().lastPathComponent
+                guard let fileName = FileHelper.saveData(data: data,
+                                                         name: name,
+                                                         suffix: url.pathExtension,
+                                                         directory: .cachesDirectory) else { return }
+                DispatchQueue.main.async {
+                    if isVideo {
+                        self?.textViewPasteDelegate?.onVideoDragAndDropped(url: NSURL(fileURLWithPath: fileName))
+                    } else {
+                        self?.textViewPasteDelegate?.onFileDragAndDropped(url: NSURL(fileURLWithPath: fileName))
                     }
                 }
             }
-        } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeText as String]) {
-            session.loadObjects(ofClass: String.self) { [weak self] stringItems in
-                if let isEmpty = self?.text.isEmpty, isEmpty {
-                    self?.text = stringItems[0]
-                } else {
-                    var updatedText = self?.text
-                    updatedText?.append(" \(stringItems[0]) ")
-                    self?.text = updatedText
-                }
+        }
+    }
+
+    private func loadTextObjects(session: UIDropSession) {
+        session.loadObjects(ofClass: String.self) { [weak self] stringItems in
+            guard !stringItems.isEmpty else { return }
+            if let isEmpty = self?.text.isEmpty, isEmpty {
+                self?.text = stringItems[0]
+            } else {
+                var updatedText = self?.text
+                updatedText?.append(" \(stringItems[0]) ")
+                self?.text = updatedText
             }
         }
     }
@@ -70,5 +125,6 @@ extension ChatInputTextView: UIDropInteractionDelegate {
 public protocol ChatInputTextViewPasteDelegate: class {
     func onImagePasted(image: UIImage)
     func onImageDragAndDropped(image: UIImage)
-    func onVideoDragAndDropped(url: URL)
+    func onVideoDragAndDropped(url: NSURL)
+    func onFileDragAndDropped(url: NSURL)
 }
