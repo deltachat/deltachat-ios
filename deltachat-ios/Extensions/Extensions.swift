@@ -1,8 +1,6 @@
 import UIKit
 import Foundation
 import CommonCrypto
-import UniformTypeIdentifiers
-import MobileCoreServices
 
 extension Dictionary {
     func percentEscaped() -> String {
