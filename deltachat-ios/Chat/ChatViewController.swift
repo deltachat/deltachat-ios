@@ -1271,7 +1271,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
         messageInputBar.inputTextView.delegate = self
-        messageInputBar.inputTextView.textViewPasteDelegate = self
+        messageInputBar.inputTextView.imagePasteDelegate = self
         messageInputBar.onScrollDownButtonPressed = scrollToBottom
         messageInputBar.inputTextView.setDropInteractionDelegate(delegate: self)
     }

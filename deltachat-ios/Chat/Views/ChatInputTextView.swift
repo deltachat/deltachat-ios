@@ -5,7 +5,7 @@ import UniformTypeIdentifiers
 
 public class ChatInputTextView: InputTextView {
 
-    public weak var textViewPasteDelegate: ChatInputTextViewPasteDelegate?
+    public weak var imagePasteDelegate: ChatInputTextViewPasteDelegate?
     private lazy var dropInteraction: ChatDropInteraction = {
         return ChatDropInteraction()
     }()
@@ -26,7 +26,7 @@ public class ChatInputTextView: InputTextView {
         guard let image = UIPasteboard.general.image else {
             return super.paste(sender)
         }
-        textViewPasteDelegate?.onImagePasted(image: image)
+        imagePasteDelegate?.onImagePasted(image: image)
     }
 }
 
