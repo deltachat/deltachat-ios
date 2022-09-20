@@ -144,22 +144,3 @@ extension NSData {
          return hexBytes.joined()
     }
 }
-
-extension NSData: NSItemProviderReading {
-    public static var readableTypeIdentifiersForItemProvider: [String] {
-        return [kUTTypePDF as String,
-                kUTTypeText as String,
-                kUTTypeRTF as String,
-                kUTTypeSpreadsheet as String,
-                kUTTypeVCard as String,
-                kUTTypeZipArchive as String,
-                kUTTypeImage as String,
-                kUTTypeMovie as String,
-                kUTTypeVideo as String,
-                kUTTypeData as String]
-    }
-
-    public static func object(withItemProviderData data: Data, typeIdentifier: String) throws -> Self {
-        return NSData(data: data) as! Self
-    }
-}
