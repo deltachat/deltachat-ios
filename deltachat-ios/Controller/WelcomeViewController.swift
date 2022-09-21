@@ -579,10 +579,9 @@ class WelcomeContentView: UIView {
 
 extension WelcomeViewController: MediaPickerDelegate {
     func onDocumentSelected(url: NSURL) {
-        logger.debug("onDocumentsSelected: \(String(describing: url.relativePath))")
         // ensure we can access folders outside of the app's sandbox
-        let shouldStopAccessing = url.startAccessingSecurityScopedResource()
-        if shouldStopAccessing {
+        let isSecurityScopedResource = url.startAccessingSecurityScopedResource()
+        if isSecurityScopedResource {
             securityScopedResource = url
         }
 
