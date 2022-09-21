@@ -265,28 +265,37 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             return
         }
         addProgressHudBackupListener()
-        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if !documents.isEmpty {
-            logger.info("looking for backup in: \(documents[0])")
 
-            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
-                logger.info("restoring backup: \(file)")
-                showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
-                dcAccounts.stopIo()
-                dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
-            } else {
-                let alert = UIAlertController(
-                    title: String.localized("import_backup_title"),
-                    message: String.localizedStringWithFormat(
-                        String.localized("import_backup_no_backup_found"),
-                        "➔ Mac-Finder or iTunes ➔ iPhone ➔ " + String.localized("files") + " ➔ Delta Chat"), // iTunes was used up to Maverick 10.4
-                    preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-                present(alert, animated: true)
-            }
+        if let documentsDirectory = ensureDcDocFolderExists(),
+           let file = dcContext.imexHasBackup(filePath: documentsDirectory.relativePath) {
+            logger.info("restoring backup: \(file)")
+            showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
+            dcAccounts.stopIo()
+            dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
         } else {
-            logger.error("no documents directory found")
+            let alert = UIAlertController(
+                title: String.localized("import_backup_title"),
+                message: String.localizedStringWithFormat(
+                    String.localized("import_backup_no_backup_found"),
+                    "➔ Mac-Finder or iTunes ➔ iPhone ➔ " + String.localized("files") + " ➔ Delta Chat"), // iTunes was used up to Maverick 10.4
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+            present(alert, animated: true)
         }
+    }
+
+    private func ensureDcDocFolderExists() -> URL? {
+        let fileManager = FileManager.default
+        guard let documentsDirectory = try? fileManager.url(for: .documentDirectory,
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: true) else { return nil }
+
+        let emptyHiddenFileURL = documentsDirectory.appendingPathComponent(".Move your backup here")
+        if !fileManager.fileExists(atPath: emptyHiddenFileURL.relativePath) {
+            fileManager.createFile(atPath: emptyHiddenFileURL.relativePath, contents: nil)
+        }
+        return documentsDirectory
     }
 
     private func addProgressHudBackupListener() {
