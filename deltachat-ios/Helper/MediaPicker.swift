@@ -9,9 +9,13 @@ protocol MediaPickerDelegate: class {
     func onVoiceMessageRecorded(url: NSURL)
     func onVoiceMessageRecorderClosed()
     func onDocumentSelected(url: NSURL)
+    func onSelectionCancelled()
 }
 
 extension MediaPickerDelegate {
+    func onImageSelected(image: UIImage) {
+        logger.debug("image selected")
+    }
     func onImageSelected(url: NSURL) {
         logger.debug("image selected: ", url.path ?? "unknown")
     }
@@ -26,6 +30,9 @@ extension MediaPickerDelegate {
     }
     func onDocumentSelected(url: NSURL) {
         logger.debug("document selected: \(url)")
+    }
+    func onSelectionCancelled() {
+        logger.debug("media selection cancelled")
     }
 }
 
@@ -75,15 +82,22 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         }
     }
 
-    func showDocumentLibrary() {
-        // TODO: instead of adding kUTTypeData, we probably should implement a Document provider for webxdc's https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/FileProvider.html#//apple_ref/doc/uid/TP40014214-CH18
+    func showDocumentLibrary(selectFolder: Bool = false) {
         let documentPicker: UIDocumentPickerViewController
-        if #available(iOS 15.0, *) {
-            let types = [UTType.pdf, UTType.text, UTType.rtf, UTType.spreadsheet, UTType.vCard, UTType.zip, UTType.image, UTType.data]
-            documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
+        if selectFolder {
+            if #available(iOS 15.0, *) {
+                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.folder], asCopy: false)
+            } else {
+                documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeFolder] as [String], in: .open)
+            }
         } else {
-            let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage, kUTTypeData]
-            documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+            if #available(iOS 15.0, *) {
+                let types = [UTType.pdf, UTType.text, UTType.rtf, UTType.spreadsheet, UTType.vCard, UTType.zip, UTType.image, UTType.data]
+                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
+            } else {
+                let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage, kUTTypeData]
+                documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+            }
         }
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
@@ -210,5 +224,9 @@ extension MediaPicker: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         let url = urls[0] as NSURL
         self.delegate?.onDocumentSelected(url: url)
+    }
+
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        self.delegate?.onSelectionCancelled()
     }
 }
