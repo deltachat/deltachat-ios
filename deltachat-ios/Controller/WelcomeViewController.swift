@@ -585,8 +585,8 @@ extension WelcomeViewController: MediaPickerDelegate {
             securityScopedResource = url
         }
 
-        if let path = url.relativePath, let filePath = dcContext.imexHasBackup(filePath: path) {
-            importBackup(at: filePath)
+        if let selectedBackupFilePath = url.relativePath {
+             importBackup(at: selectedBackupFilePath)
         } else {
             onSelectionCancelled()
             securityScopedResource = nil

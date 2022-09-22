@@ -86,9 +86,9 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         let documentPicker: UIDocumentPickerViewController
         if selectFolder {
             if #available(iOS 15.0, *) {
-                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.folder], asCopy: false)
+                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.archive], asCopy: false)
             } else {
-                documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeFolder] as [String], in: .open)
+                documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeArchive] as [String], in: .open)
             }
         } else {
             if #available(iOS 15.0, *) {
