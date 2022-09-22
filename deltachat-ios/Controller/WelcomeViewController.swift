@@ -119,8 +119,13 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             nc.removeObserver(observer)
             self.progressObserver = nil
         }
+        removeBackupProgressObserver()
+    }
+
+    private func removeBackupProgressObserver() {
         if let backupProgressObserver = self.backupProgressObserver {
-            nc.removeObserver(backupProgressObserver)
+            NotificationCenter.default.removeObserver(backupProgressObserver)
+            self.backupProgressObserver = nil
         }
     }
 
