@@ -324,6 +324,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                         KeychainManager.deleteAccountSecret(id: accountId)
                         _ = self.dcAccounts.add()
                         self.dcContext = self.dcAccounts.getSelected()
+                        self.navigationItem.title = String.localized(self.canCancel ? "add_account" : "welcome_desktop")
                     }
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
                     self.securityScopedResource?.stopAccessingSecurityScopedResource()
