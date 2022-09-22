@@ -266,6 +266,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let lastSelectedAccountId = UserDefaults.standard.integer(forKey: Constants.Keys.lastSelectedAccountKey)
         if lastSelectedAccountId != 0 {
             _ = dcAccounts.select(id: lastSelectedAccountId)
+            dcAccounts.startIo()
         }
 
         appDelegate.reloadDcContext()
