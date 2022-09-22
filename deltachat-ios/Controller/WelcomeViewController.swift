@@ -313,13 +313,21 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             forName: dcNotificationImexProgress,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if let error = ui["error"] as? Bool, error {
-                    self.dcAccounts.startIo()
+                    if self.dcContext.isConfigured() {
+                        let accountId = self.dcContext.id
+                        _ = self.dcAccounts.remove(id: accountId)
+                        KeychainManager.deleteAccountSecret(id: accountId)
+                        _ = self.dcAccounts.add()
+                        self.dcContext = self.dcAccounts.getSelected()
+                    }
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
                     self.securityScopedResource?.stopAccessingSecurityScopedResource()
                     self.securityScopedResource = nil
+                    self.removeBackupProgressObserver()
                 } else if let done = ui["done"] as? Bool, done {
                     self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleBackupRestoreSuccess)
