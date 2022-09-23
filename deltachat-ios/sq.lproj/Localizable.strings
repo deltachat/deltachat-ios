@@ -119,6 +119,11 @@
 "images_and_videos" = "Figura dhe video";
 "file" = "Kartelë";
 "files" = "Kartela";
+// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "Aplikacion Privat";
+// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Aplikacione Private";
+"files_and_webxdx_apps" = "Kartela dhe Aplikacione Private";
 "unknown" = "E panjohur";
 
 "green" = "E gjelbër";
@@ -228,6 +233,9 @@
 "ConversationFragment_quoted_message_not_found" = "S’u gjet mesazhi origjinal";
 "reply_privately" = "Përgjigjuni privatisht";
 "source_code" = "Kod Burim";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Shtoje te Skena e Kreut";
+
 "mute_for_one_hour" = "Heshtoji për 1 orë";
 "mute_for_two_hours" = "Heshtoji për 2 orë";
 "mute_for_one_day" = "Heshtoji për 1 ditë";
@@ -378,6 +386,7 @@
 "tab_image_empty_hint" = "Figurat e dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_video_empty_hint" = "Videot e dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_audio_empty_hint" = "Kartelat Audio dhe Mesazhet Zanore të dhëna në këtë fjalosje do të shfaqen këtu.";
+"tab_webxdc_empty_hint" = "Këtu do të shfaqen aplikacione private të përbashkët në këtë fjalosje ";
 "media_preview" = "Paraparje media";
 "send_message" = "Dërgo mesazh";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -693,6 +702,72 @@
 // deprecated
 "systemmsg_chat_protection_enabled" = "Mbrojtja e fjalosjes u aktivizua.";
 
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "E ndryshuat emrin e grupit nga “%1$@” në “%2$@”.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Emri i grupit u ndryshua nga “%1$@” në “%2$@” nga %3$@.";
+"group_image_changed_by_you" = "Ndryshuat figurën e grupit";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Figura e grupit u ndryshua nga %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Shtuat anëtarin %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Anëtari %1$@ u shtua nga %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Hoqët anëtarin %1$@.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Anëtari %1$@ u hoq nga %2$@.";
+"group_left_by_you" = "E braktisët grupin.";
+// %1$s will be replaced by name and address of the contact
+"group_left_by_other" = "Grupi u braktis nga %1$@.";
+"group_image_deleted_by_you" = "Fshitë figurën e grupit.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Figura e grupit u fshi nga %1$@.";
+"location_enabled_by_you" = "Aktivizuat dhënie vendndodhjeje";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "Dhënie vendndodhjeje aktivizuar nga %1$@.";
+"ephemeral_timer_disabled_by_you" = "Çaktivizuat kohëmatësin e zhdukjes së mesazheve.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Kohëmatësi i zhdukjes së mesazheve u çaktivizua nga %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ s";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ s nga %2$@.";
+"ephemeral_timer_1_minute_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 minutë.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 minutë nga %1$@.";
+"ephemeral_timer_1_hour_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 orë.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 orë nga %1$@.";
+"ephemeral_timer_1_day_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 ditë.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 ditë nga %1$@.";
+"ephemeral_timer_1_week_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 javë.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 javë nga %1$@.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ minuta.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ minuta nga %2$@.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ orë.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ orë nga %2$@.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ ditë.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ ditë nga %2$@.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ javë.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ javë nga %2$@.";
+"protection_enabled_by_you" = "Aktivizuat mbrojtje fjalosjeje.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Mbrojtje fjalosjeje aktivizuar nga %1$@.";
+"protection_disabled_by_you" = "Çaktivizuat mbrojtje fjalosjeje.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Mbrojtje fjalosjeje çaktivizuar nga %1$@.";
+
 "devicemsg_self_deleted" = "Fshitë fjalosjen “Mesazhe të ruajtur”.\n\nℹ️ Që të përdorni sërish veçorinë “Mesazhe të ruajtur”, krijoni një fjalosje të re me veten tuaj.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Po mbaron depozita e shërbimit tuaj, përdoren tashmë %1$@%%.\n\nKur depozita është 100%% e përdorur, mund të mos jeni në gjendje të merrni mesazhe.\n\n👉 Ju lutemi, shihni se mos mund të fshini të dhëna të vjetra që nga ndërfaqja web e furnizuesit të shërbimit dhe shihni mundësinë të aktivizoni “Rregullime / Fshi Mesazhe të Vjetër”. Se sa depozitë është aktualisht e përdorur mund ta kontrolloni kurdo, që nga \"Rregullime / Lidhje\".";
@@ -842,6 +917,8 @@
 "show_window" = "Shfaq Dritare";
 "login_socks5_experimental_warning" = "Mbulimi për SOCKS5 aktualisht është eksperimental. Ju lutemi, përdoreni duke pasur parasysh rrezikun. Nëse shtypni një adresë te fusha e email-it, do të ketë kërkim DNS që nuk do të kalohet përmes SOCKS5.";
 
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Kombinim tastesh";
 "switch_between_chats" = "Kaloni nga një Fjalosje në tjetrën";
 "scroll_messages" = "Rrëshqitni nëpër Mesazhe";
 // command to put the cursor to the search input field

@@ -569,7 +569,7 @@
 "pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Olarak Taşı";
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
 "pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
-"pref_only_fetch_mvbox_explain" = "Diğer klasörleri yok sayar. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
+"pref_only_fetch_mvbox_explain" = "Diğer klasörleri yoksayar. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
 "pref_show_emails" = "Klasik E-Postaları Göster";
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
@@ -970,8 +970,8 @@
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Arka Plan Bildirimleri";
-"pref_background_notifications_explain" = "Sunucunuza bir arka plan bağlantısı kullanır ve pil iyileştirmelerinin yok sayılmasını gerektirir.";
-"pref_background_notifications_rationale" = "E-posta sunucunuza bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yok sayın.\n\nDelta Chat, kaynakların en azını kullanır ve pilinizi boşaltmamaya özen gösterir.";
+"pref_background_notifications_explain" = "Sunucunuza bir arka plan bağlantısı kullanır ve pil iyileştirmelerinin yoksayılmasını gerektirir.";
+"pref_background_notifications_rationale" = "E-posta sunucunuza bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yoksayın.\n\nDelta Chat, az kaynak kullanır ve pilinizi boşaltmamaya özen gösterir.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "Güvenilir Arka Plan Bağlantısı";
 "pref_reliable_service_explain" = "Kalıcı bir bildirim gerektirir";
