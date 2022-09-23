@@ -987,8 +987,8 @@
 // device messages for updates
 "update_1_30" = "Faster. More stable.\n\nFor 1.30 releases, we focused on speed and reliability, fixing dozens of bugs. Check our changelogs if your favorite one is fixed: https://get.delta.chat/#changelogs 🚀";
 
-"webxdc_empty_hint" = "Received or sent apps will appear here. Tap \"Files\" to select downloaded apps.";
-"shortcut_share_btn" = "Click the share button";
-"shortcut_add_to_home_description" = "Select - Add to Home Screen - to add the app to your home screen.";
+"webxdc_selector_empty_hint" = "Private apps received or sent in any chat will appear here. \"Files\" shows private apps just downloaded.";
+"shortcut_step1_tap_share_btn" = "Click the share button";
+"shortcut_step2_tap_add_to_home_screen" = "Select \"Add to Home Screen\" to add the app to your home screen.";
 "connectivity_low_data_mode" = "Disabled by system's \"Low Data Mode\".";
 "connectivity_low_power_mode" = "Disabled by system's \"Low Power Mode\".";

@@ -236,7 +236,7 @@ public class ShortcutManager {
                  img.src = "data:image/png;base64,\(shareIconBase64)";
                  img.classList.add("iconImage");
                  div.appendChild(img);
-                 var node = document.createTextNode("\(String.localized("shortcut_share_btn"))");
+                 var node = document.createTextNode("\(String.localized("shortcut_step1_tap_share_btn"))");
                  div.appendChild(node);
                  document.body.appendChild(div);
 
@@ -246,7 +246,7 @@ public class ShortcutManager {
                  img.src = "data:image/png;base64,\(addToHomeIconBase64)";
                  img.classList.add("iconImage");
                  div.appendChild(img);
-                 var node = document.createTextNode("\(String.localized("shortcut_add_to_home_description"))");
+                 var node = document.createTextNode("\(String.localized("shortcut_step2_tap_add_to_home_screen").replacingOccurrences(of: "\"", with: " - "))");
                  div.appendChild(node);
 
                  document.body.appendChild(div);
