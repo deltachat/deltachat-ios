@@ -277,14 +277,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if dcContext.isConfigured() {
             return
         }
-        addProgressHudBackupListener()
-
-        if let documentsDirectory = ensureDcDocFolderExists(),
-           let filePath = dcContext.imexHasBackup(filePath: documentsDirectory.relativePath) {
-            importBackup(at: filePath)
-        } else {
-            mediaPicker?.showDocumentLibrary(selectFolder: true)
-        }
+        mediaPicker?.showDocumentLibrary(selectFolder: true)
     }
 
     private func importBackup(at filepath: String) {
@@ -292,20 +285,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
         dcAccounts.stopIo()
         dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: filepath)
-    }
-
-    private func ensureDcDocFolderExists() -> URL? {
-        let fileManager = FileManager.default
-        guard let documentsDirectory = try? fileManager.url(for: .documentDirectory,
-                                                            in: .userDomainMask,
-                                                            appropriateFor: nil,
-                                                            create: true) else { return nil }
-
-        let emptyHiddenFileURL = documentsDirectory.appendingPathComponent(".Move your backup here")
-        if !fileManager.fileExists(atPath: emptyHiddenFileURL.relativePath) {
-            fileManager.createFile(atPath: emptyHiddenFileURL.relativePath, contents: nil)
-        }
-        return documentsDirectory
     }
 
     private func addProgressHudBackupListener() {
@@ -601,21 +580,14 @@ extension WelcomeViewController: MediaPickerDelegate {
         }
 
         if let selectedBackupFilePath = url.relativePath {
-             importBackup(at: selectedBackupFilePath)
+            addProgressHudBackupListener()
+            importBackup(at: selectedBackupFilePath)
         } else {
             onSelectionCancelled()
-            securityScopedResource = nil
         }
     }
 
     func onSelectionCancelled() {
-        let alert = UIAlertController(
-            title: String.localized("import_backup_title"),
-            message: String.localizedStringWithFormat(
-                String.localized("import_backup_no_backup_found"),
-                "➔ Mac-Finder or iTunes ➔ iPhone ➔ " + String.localized("files") + " ➔ Delta Chat"), // iTunes was used up to Maverick 10.4
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-        present(alert, animated: true)
+        securityScopedResource = nil
     }
 }
