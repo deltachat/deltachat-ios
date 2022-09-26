@@ -989,3 +989,4 @@
 
 "connectivity_low_data_mode" = "Disabled by system's \"Low Data Mode\".";
 "connectivity_low_power_mode" = "Disabled by system's \"Low Power Mode\".";
+"add_encrypted_account" = "Add encrypted account";

@@ -4,4 +4,5 @@
     <string name ="a11y_connectivity_hint">Double tap to view connectivity details.</string>
     <string name="connectivity_low_data_mode">Disabled by system's \"Low Data Mode\".</string>
     <string name="connectivity_low_power_mode">Disabled by system's \"Low Power Mode\".</string>
+    <string name="add_encrypted_account">Add encrypted account</string>
 </resources>

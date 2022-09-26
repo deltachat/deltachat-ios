@@ -555,15 +555,6 @@ public class DcContext {
         dc_imex(contextPointer, what, directory, passphrase)
     }
 
-    public func imexHasBackup(filePath: String) -> String? {
-        var file: String?
-        if let cString = dc_imex_has_backup(contextPointer, filePath) {
-            file = String(cString: cString)
-            dc_str_unref(cString)
-        }
-        return file
-    }
-
     public func isSendingLocationsToChat(chatId: Int) -> Bool {
         return dc_is_sending_locations_to_chat(contextPointer, UInt32(chatId)) == 1
     }

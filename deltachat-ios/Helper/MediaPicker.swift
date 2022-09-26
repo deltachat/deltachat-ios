@@ -12,6 +12,9 @@ protocol MediaPickerDelegate: class {
 }
 
 extension MediaPickerDelegate {
+    func onImageSelected(image: UIImage) {
+        logger.debug("image selected")
+    }
     func onImageSelected(url: NSURL) {
         logger.debug("image selected: ", url.path ?? "unknown")
     }
@@ -75,15 +78,22 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         }
     }
 
-    func showDocumentLibrary() {
-        // TODO: instead of adding kUTTypeData, we probably should implement a Document provider for webxdc's https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/FileProvider.html#//apple_ref/doc/uid/TP40014214-CH18
+    func showDocumentLibrary(selectFolder: Bool = false) {
         let documentPicker: UIDocumentPickerViewController
-        if #available(iOS 15.0, *) {
-            let types = [UTType.pdf, UTType.text, UTType.rtf, UTType.spreadsheet, UTType.vCard, UTType.zip, UTType.image, UTType.data]
-            documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
+        if selectFolder {
+            if #available(iOS 15.0, *) {
+                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.archive], asCopy: false)
+            } else {
+                documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeArchive] as [String], in: .open)
+            }
         } else {
-            let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage, kUTTypeData]
-            documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+            if #available(iOS 15.0, *) {
+                let types = [UTType.pdf, UTType.text, UTType.rtf, UTType.spreadsheet, UTType.vCard, UTType.zip, UTType.image, UTType.data]
+                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
+            } else {
+                let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage, kUTTypeData]
+                documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+            }
         }
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false

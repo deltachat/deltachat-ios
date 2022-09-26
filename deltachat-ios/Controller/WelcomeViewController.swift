@@ -8,6 +8,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
     var onProgressSuccess: VoidFunction?
+    private var securityScopedResource: NSURL?
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -56,6 +57,12 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                                style: .plain,
                                target: self,
                                action: #selector(moreButtonPressed))
+    }()
+
+    private lazy var mediaPicker: MediaPicker? = {
+        let mediaPicker = MediaPicker(navigationController: navigationController)
+        mediaPicker.delegate = self
+        return mediaPicker
     }()
 
     private var qrCodeReader: QrCodeReaderController?
@@ -112,8 +119,13 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             nc.removeObserver(observer)
             self.progressObserver = nil
         }
+        removeBackupProgressObserver()
+    }
+
+    private func removeBackupProgressObserver() {
         if let backupProgressObserver = self.backupProgressObserver {
-            nc.removeObserver(backupProgressObserver)
+            NotificationCenter.default.removeObserver(backupProgressObserver)
+            self.backupProgressObserver = nil
         }
     }
 
@@ -219,7 +231,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                 logger.error("Failed to open account database for account \(dcContext.id)")
                 return
             }
-            self.navigationItem.title = "Add encrypted account"
+            self.navigationItem.title = String.localized("add_encrypted_account")
         } catch KeychainError.unhandledError(let message, let status) {
             logger.error("Keychain error. Failed to create encrypted account. \(message). Error status: \(status)")
         } catch {
@@ -254,6 +266,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let lastSelectedAccountId = UserDefaults.standard.integer(forKey: Constants.Keys.lastSelectedAccountKey)
         if lastSelectedAccountId != 0 {
             _ = dcAccounts.select(id: lastSelectedAccountId)
+            dcAccounts.startIo()
         }
 
         appDelegate.reloadDcContext()
@@ -264,29 +277,14 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if dcContext.isConfigured() {
             return
         }
-        addProgressHudBackupListener()
-        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if !documents.isEmpty {
-            logger.info("looking for backup in: \(documents[0])")
+        mediaPicker?.showDocumentLibrary(selectFolder: true)
+    }
 
-            if let file = dcContext.imexHasBackup(filePath: documents[0]) {
-                logger.info("restoring backup: \(file)")
-                showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
-                dcAccounts.stopIo()
-                dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: file)
-            } else {
-                let alert = UIAlertController(
-                    title: String.localized("import_backup_title"),
-                    message: String.localizedStringWithFormat(
-                        String.localized("import_backup_no_backup_found"),
-                        "➔ Mac-Finder or iTunes ➔ iPhone ➔ " + String.localized("files") + " ➔ Delta Chat"), // iTunes was used up to Maverick 10.4
-                    preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-                present(alert, animated: true)
-            }
-        } else {
-            logger.error("no documents directory found")
-        }
+    private func importBackup(at filepath: String) {
+        logger.info("restoring backup: \(filepath)")
+        showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
+        dcAccounts.stopIo()
+        dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: filepath)
     }
 
     private func addProgressHudBackupListener() {
@@ -295,14 +293,25 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             forName: dcNotificationImexProgress,
             object: nil,
             queue: nil
-        ) { notification in
+        ) { [weak self] notification in
+            guard let self = self else { return }
             if let ui = notification.userInfo {
                 if let error = ui["error"] as? Bool, error {
-                    self.dcAccounts.startIo()
+                    if self.dcContext.isConfigured() {
+                        let accountId = self.dcContext.id
+                        _ = self.dcAccounts.remove(id: accountId)
+                        KeychainManager.deleteAccountSecret(id: accountId)
+                        _ = self.dcAccounts.add()
+                        self.dcContext = self.dcAccounts.getSelected()
+                        self.navigationItem.title = String.localized(self.canCancel ? "add_account" : "welcome_desktop")
+                    }
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
+                    self.stopAccessingSecurityScopedResource()
+                    self.removeBackupProgressObserver()
                 } else if let done = ui["done"] as? Bool, done {
                     self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleBackupRestoreSuccess)
+                    self.stopAccessingSecurityScopedResource()
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
                 }
@@ -384,6 +393,11 @@ extension WelcomeViewController: QrCodeReaderDelegate {
     private func dismissQRReader() {
         self.navigationController?.popViewController(animated: true)
         self.qrCodeReader = nil
+    }
+
+    private func stopAccessingSecurityScopedResource() {
+        self.securityScopedResource?.stopAccessingSecurityScopedResource()
+        self.securityScopedResource = nil
     }
 }
 
@@ -558,4 +572,21 @@ class WelcomeContentView: UIView {
      @objc private func importBackupButtonPressed(_ sender: UIButton) {
          onImportBackup?()
      }
+}
+
+extension WelcomeViewController: MediaPickerDelegate {
+    func onDocumentSelected(url: NSURL) {
+        // ensure we can access folders outside of the app's sandbox
+        let isSecurityScopedResource = url.startAccessingSecurityScopedResource()
+        if isSecurityScopedResource {
+            securityScopedResource = url
+        }
+
+        if let selectedBackupFilePath = url.relativePath {
+            addProgressHudBackupListener()
+            importBackup(at: selectedBackupFilePath)
+        } else {
+            stopAccessingSecurityScopedResource()
+        }
+    }
 }
