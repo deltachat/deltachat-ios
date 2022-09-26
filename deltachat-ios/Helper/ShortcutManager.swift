@@ -236,7 +236,7 @@ public class ShortcutManager {
                  img.src = "data:image/png;base64,\(shareIconBase64)";
                  img.classList.add("iconImage");
                  div.appendChild(img);
-                 var node = document.createTextNode("\(String.localized("shortcut_step1_tap_share_btn"))");
+                 var node = document.createTextNode("\(String.localized("shortcut_step1_tap_share_btn").replacingOccurrences(of: "\"", with: " - "))");
                  div.appendChild(node);
                  document.body.appendChild(div);
 
