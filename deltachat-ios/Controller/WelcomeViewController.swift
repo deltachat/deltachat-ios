@@ -306,14 +306,12 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                         self.navigationItem.title = String.localized(self.canCancel ? "add_account" : "welcome_desktop")
                     }
                     self.updateProgressAlert(error: ui["errorMessage"] as? String)
-                    self.securityScopedResource?.stopAccessingSecurityScopedResource()
-                    self.securityScopedResource = nil
+                    self.stopAccessingSecurityScopedResource()
                     self.removeBackupProgressObserver()
                 } else if let done = ui["done"] as? Bool, done {
                     self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleBackupRestoreSuccess)
-                    self.securityScopedResource?.stopAccessingSecurityScopedResource()
-                    self.securityScopedResource = nil
+                    self.stopAccessingSecurityScopedResource()
                 } else {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
                 }
@@ -395,6 +393,11 @@ extension WelcomeViewController: QrCodeReaderDelegate {
     private func dismissQRReader() {
         self.navigationController?.popViewController(animated: true)
         self.qrCodeReader = nil
+    }
+
+    private func stopAccessingSecurityScopedResource() {
+        self.securityScopedResource?.stopAccessingSecurityScopedResource()
+        self.securityScopedResource = nil
     }
 }
 
@@ -583,11 +586,7 @@ extension WelcomeViewController: MediaPickerDelegate {
             addProgressHudBackupListener()
             importBackup(at: selectedBackupFilePath)
         } else {
-            onSelectionCancelled()
+            stopAccessingSecurityScopedResource()
         }
-    }
-
-    func onSelectionCancelled() {
-        securityScopedResource = nil
     }
 }

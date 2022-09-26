@@ -9,7 +9,6 @@ protocol MediaPickerDelegate: class {
     func onVoiceMessageRecorded(url: NSURL)
     func onVoiceMessageRecorderClosed()
     func onDocumentSelected(url: NSURL)
-    func onSelectionCancelled()
 }
 
 extension MediaPickerDelegate {
@@ -30,9 +29,6 @@ extension MediaPickerDelegate {
     }
     func onDocumentSelected(url: NSURL) {
         logger.debug("document selected: \(url)")
-    }
-    func onSelectionCancelled() {
-        logger.debug("media selection cancelled")
     }
 }
 
@@ -224,9 +220,5 @@ extension MediaPicker: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         let url = urls[0] as NSURL
         self.delegate?.onDocumentSelected(url: url)
-    }
-
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        self.delegate?.onSelectionCancelled()
     }
 }
