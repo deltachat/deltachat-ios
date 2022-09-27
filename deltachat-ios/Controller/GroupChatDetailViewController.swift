@@ -452,7 +452,7 @@ class GroupChatDetailViewController: UIViewController {
         if let url = chat.profileImageURL {
             let previewController = PreviewController(dcContext: dcContext, type: .single(url))
             previewController.customTitle = self.title
-            present(previewController, animated: true, completion: nil)
+            navigationController?.pushViewController(previewController, animated: true)
         }
     }
 }
