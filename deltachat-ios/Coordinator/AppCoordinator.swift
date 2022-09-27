@@ -235,6 +235,12 @@ class AppCoordinator {
     }
 
     func resetTabBarRootViewControllers() {
+        self.tabBarController.viewControllers?.forEach { controller in
+            if let navController = controller as? UINavigationController {
+                navController.popToRootViewController(animated: false)
+                navController.viewControllers[0].willMove(toParent: nil)
+            }
+        }
         self.tabBarController.setViewControllers([createQrNavigationController(),
                                                   createChatsNavigationController(),
                                                   createSettingsNavigationController()], animated: false)
