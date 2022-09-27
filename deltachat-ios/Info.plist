@@ -30,6 +30,7 @@
 				<string>chat.delta</string>
 				<string>openpgp4fpr</string>
 				<string>dcaccount</string>
+				<string>dclogin</string>
 			</array>
 		</dict>
 		<dict>

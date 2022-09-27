@@ -187,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // }
 
         switch url.scheme?.lowercased() {
-        case "dcaccount":
+        case "dcaccount", "dclogin":
             appCoordinator.handleQRCode(url.absoluteString)
             return true
         case "openpgp4fpr":

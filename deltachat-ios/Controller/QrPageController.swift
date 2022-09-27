@@ -211,7 +211,7 @@ extension QrPageController: QrCodeReaderDelegate {
             }))
             present(alert, animated: true, completion: nil)
 
-        case DC_QR_ACCOUNT:
+        case DC_QR_ACCOUNT, DC_QR_LOGIN:
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.appCoordinator.presentWelcomeController(accountCode: code)
             }

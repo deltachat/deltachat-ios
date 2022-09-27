@@ -324,16 +324,21 @@ extension WelcomeViewController: QrCodeReaderDelegate {
     func handleQrCode(_ code: String) {
         let lot = dcContext.checkQR(qrCode: code)
         if let domain = lot.text1, lot.state == DC_QR_ACCOUNT {
-            confirmAccountCreationAlert(accountDomain: domain, qrCode: code)
+            let title = String.localizedStringWithFormat(
+                String.localized(dcAccounts.getAll().count > 1 ? "qraccount_ask_create_and_login_another" : "qraccount_ask_create_and_login"),
+                domain)
+            confirmQrAccountAlert(title: title, qrCode: code)
+        } else if let email = lot.text1, lot.state == DC_QR_LOGIN {
+            let title = String.localizedStringWithFormat(
+                String.localized(dcAccounts.getAll().count > 1 ? "qrlogin_ask_login_another" : "qrlogin_ask_login"),
+                email)
+            confirmQrAccountAlert(title: title, qrCode: code)
         } else {
             qrErrorAlert()
         }
     }
 
-    private func confirmAccountCreationAlert(accountDomain domain: String, qrCode: String) {
-        let title = String.localizedStringWithFormat(
-            String.localized(dcAccounts.getAll().count > 1 ? "qraccount_ask_create_and_login_another" : "qraccount_ask_create_and_login"),
-            domain)
+    private func confirmQrAccountAlert(title: String, qrCode: String) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
 
         let okAction = UIAlertAction(
@@ -371,7 +376,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
 
     private func qrErrorAlert() {
         let title = String.localized("qraccount_qr_code_cannot_be_used")
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: dcContext.lastErrorString, preferredStyle: .alert)
         let okAction = UIAlertAction(
             title: String.localized("ok"),
             style: .default,
