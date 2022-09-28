@@ -1553,10 +1553,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func showMediaGallery(currentIndex: Int, msgIds: [Int]) {
-        let betterPreviewController = PreviewController(dcContext: dcContext, type: .multi(msgIds, currentIndex))
-        let nav = UINavigationController(rootViewController: betterPreviewController)
-        nav.modalPresentationStyle = .fullScreen
-        navigationController?.present(nav, animated: true)
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds, currentIndex))
+        navigationController?.pushViewController(previewController, animated: true)
     }
 
     private func webxdcButtonPressed(_ action: UIAlertAction) {
@@ -2241,9 +2239,7 @@ extension ChatViewController: DraftPreviewDelegate {
                     previewController.setEditing(true, animated: true)
                     previewController.delegate = self
                 }
-                let nav = UINavigationController(rootViewController: previewController)
-                nav.modalPresentationStyle = .fullScreen
-                navigationController?.present(nav, animated: true)
+                navigationController?.pushViewController(previewController, animated: true)
             }
         }
     }

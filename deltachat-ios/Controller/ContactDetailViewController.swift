@@ -495,12 +495,12 @@ class ContactDetailViewController: UITableViewController {
             if let url = chat.profileImageURL {
                 let previewController = PreviewController(dcContext: viewModel.context, type: .single(url))
                 previewController.customTitle = chat.name
-                present(previewController, animated: true, completion: nil)
+                navigationController?.pushViewController(previewController, animated: true)
             }
         } else if let url = viewModel.contact.profileImageURL {
             let previewController = PreviewController(dcContext: viewModel.context, type: .single(url))
             previewController.customTitle = viewModel.contact.displayName
-            present(previewController, animated: true, completion: nil)
+            navigationController?.pushViewController(previewController, animated: true)
         }
     }
 

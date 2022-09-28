@@ -305,7 +305,7 @@ private extension GalleryViewController {
 
         let previewController = PreviewController(dcContext: dcContext, type: .multi(mediaMessageIds, index))
         previewController.delegate = self
-        present(previewController, animated: true, completion: nil)
+        navigationController?.pushViewController(previewController, animated: true)
     }
 
     func redirectToMessage(of indexPath: IndexPath) {

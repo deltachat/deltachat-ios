@@ -194,7 +194,7 @@ extension DocumentGalleryController {
             return
         }
         let previewController = PreviewController(dcContext: dcContext, type: .multi(fileMessageIds, index))
-        present(previewController, animated: true, completion: nil)
+        navigationController?.pushViewController(previewController, animated: true)
     }
 
     func redirectToMessage(of indexPath: IndexPath) {

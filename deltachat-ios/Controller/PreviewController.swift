@@ -13,11 +13,6 @@ class PreviewController: QLPreviewController {
     var customTitle: String?
     var dcContext: DcContext
 
-    private lazy var doneButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: String.localized("done"), style: .done, target: self, action: #selector(doneButtonPressed(_:)))
-        return button
-    }()
-
     init(dcContext: DcContext, type: PreviewType) {
         self.previewType = type
         self.dcContext = dcContext
@@ -33,20 +28,6 @@ class PreviewController: QLPreviewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if navigationController?.isBeingPresented ?? false {
-            /* QLPreviewController comes with a done-button by default. But if is embedded in UINavigationContrller we need to set a done-button manually.
-            */
-            navigationItem.leftBarButtonItem = doneButtonItem
-        }
-    }
-
-    // MARK: - actions
-    @objc private func doneButtonPressed(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
     }
 }
 
