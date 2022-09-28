@@ -147,6 +147,8 @@ open class InputBarAccessoryView: UIView {
         let inputTextView = ChatInputTextView()
         inputTextView.translatesAutoresizingMaskIntoConstraints = false
         inputTextView.inputBarAccessoryView = self
+        let dropInteraction = UIDropInteraction(delegate: inputTextView)
+        inputTextView.addInteraction(dropInteraction)
         return inputTextView
     }()
     

@@ -1,9 +1,18 @@
 import Foundation
 import UIKit
+import MobileCoreServices
+import UniformTypeIdentifiers
 
 public class ChatInputTextView: InputTextView {
 
     public weak var imagePasteDelegate: ChatInputTextViewPasteDelegate?
+    private lazy var dropInteraction: ChatDropInteraction = {
+        return ChatDropInteraction()
+    }()
+
+    public func setDropInteractionDelegate(delegate: ChatDropInteractionDelegate) {
+        dropInteraction.delegate = delegate
+    }
 
     // MARK: - Image Paste Support
     open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
@@ -21,6 +30,19 @@ public class ChatInputTextView: InputTextView {
     }
 }
 
+extension ChatInputTextView: UIDropInteractionDelegate {
+    public func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        return dropInteraction.dropInteraction(canHandle: session)
+    }
+
+    public func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        return dropInteraction.dropInteraction(sessionDidUpdate: session)
+    }
+
+    public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        dropInteraction.dropInteraction(performDrop: session)
+    }
+}
 
 public protocol ChatInputTextViewPasteDelegate: class {
     func onImagePasted(image: UIImage)

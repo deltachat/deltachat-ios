@@ -56,4 +56,31 @@ public class FileHelper {
             return nil
         }
     }
+
+    public static func deleteFile(atPath: String?) {
+        if Thread.isMainThread {
+            DispatchQueue.global(qos: .background).async {
+                deleteFile(atPath)
+            }
+        } else {
+            deleteFile(atPath)
+        }
+    }
+
+    private static func deleteFile(_ atPath: String?) {
+        guard let atPath = atPath else {
+            return
+        }
+
+        let fileManager = FileManager.default
+        if !fileManager.fileExists(atPath: atPath) {
+            return
+        }
+
+        do {
+            try fileManager.removeItem(atPath: atPath)
+        } catch {
+            print("err: \(error.localizedDescription)")
+        }
+    }
 }
