@@ -182,7 +182,8 @@ class AppCoordinator {
     }
 
     func handleQRCode(_ code: String) {
-        if code.lowercased().starts(with: "dcaccount:") {
+        if code.lowercased().starts(with: "dcaccount:")
+           || code.lowercased().starts(with: "dclogin:") {
             presentWelcomeController(accountCode: code)
         } else {
             showTab(index: qrTab)
