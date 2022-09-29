@@ -27,6 +27,8 @@
 "back" = "Atgal";
 "close" = "Užverti";
 "forward" = "Persiųsti";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Siųsti iš naujo";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archyvuoti";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -86,6 +88,8 @@
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Atsakymas";
 "gif" = "Gif";
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
+"sticker" = "Lipdukas";
 "images" = "Paveikslai";
 "audio" = "Garso įrašai";
 "voice_message" = "Balso žinutė";
@@ -200,6 +204,7 @@
 "unpin" = "Atsegti";
 "ConversationFragment_quoted_message_not_found" = "Pradinė žinutė nerasta";
 "reply_privately" = "Atsakyti privačiai";
+"source_code" = "Pirminis kodas";
 "mute_for_one_hour" = "Išjungti 1 valandai";
 "mute_for_two_hours" = "Išjungti 2 valandoms";
 "mute_for_one_day" = "Išjungti 1 dienai";
@@ -267,11 +272,15 @@
 "saved_messages_explain" = "• Persiųskite žinutes čia, kad lengvai jas pasiektumėte\n\n• Rašykitės pastabas ar įrašinėkite balso žinutes\n\n• Pridėkite mediją, norėdami ją išsaugoti";
 // Should match "Saved" from "Saved messages"
 "saved" = "Įrašyta";
+"save_as" = "Įrašyti kaip";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Jūs negalite rašyti, nes nesate šioje grupėje. Norėdami prisijungti, paprašykite kito nario.";
 "messaging_disabled_device_chat" = "Šiame pokalbyje yra vietiniu lygmeniu sukurtos žinutės. Štai kodėl negalite rašyti jokių žinučių.";
 "cannot_display_unsuported_file_type" = "Nepavyksta atvaizduoti šio failo tipo: %1$@";
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";
+// webxdc
+// "Start..." button for an app
+"start_app" = "Pradėti…";
 // chat audit log
 "chat_audit_log_empty_message" = "Čia atsiras šio pokalbio sisteminės žinutės";
 "chat_audit_log_title" = "Pokalbio audito žurnalas, skirtas %1$@";
@@ -305,6 +314,9 @@
 "tab_map" = "Žemėlapis";
 "tab_gallery_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami paveikslai ir vaizdo įrašai.";
 "tab_docs_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami dokumentai, muzika ir kiti failai.";
+"tab_image_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti paveikslai.";
+"tab_video_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti vaizdo įrašai.";
+"tab_audio_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti garso įrašų failai ir balso žinutės.";
 "media_preview" = "Medijos peržiūra";
 "send_message" = "Siųsti žinutę";
 // Connectivity
@@ -574,6 +586,9 @@
 // deprecated
 "systemmsg_chat_protection_enabled" = "Pokalbio apsauga įjungta.";
 
+"group_image_deleted_by_you" = "Jūs ištrynėte grupės paveikslą.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "%1$@ ištrynė grupės paveikslą.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Atrodo, kad jūsų įrenginyje yra nustatyta netiksli data ar laikas (%1$@).\n\nSuderinkite savo laikrodį ⏰🔧 kad užtikrintumėte, jog žinutės bus gaunamos teisingai.";
 // qr code stuff
@@ -676,6 +691,7 @@
 "autocrypt_incorrect_desktop" = "Neteisingas sąrankos kodas. Bandykite dar kartą.";
 "create_chat_error_desktop" = "Nepavyko sukurti pokalbio.";
 "forget_login_confirmation_desktop" = "Ištrinti šį prisijungimą? Viskas bus ištrinta, įskaitant jūsų ištisinę sąranką, adresatus, pokalbius, žinutes ir mediją. Šis veiksmas yra galutinis ir negalės būti panaikintas.";
+"account_info_hover_tooltip_desktop2" = "El. paštas: %1$@\nDydis: %2$@\nPaskyros Id: %3$@";
 "message_detail_sent_desktop" = "išsiųsta";
 "message_detail_received_desktop" = "gauta";
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
@@ -694,6 +710,13 @@
 "a11y_background_preview_label" = "Fono peržiūra";
 "a11y_disappearing_messages_activated" = "Išnykstančios žinutės aktyvuotos";
 
+"login_error_no_internet_connection" = "Nėra interneto ryšio, nepavyko prisijungti.";
+"share_account_not_configured" = "Paskyra nėra sukonfigūruota.";
+"cannot_play_audio_file" = "Garso įrašo failas negali būti atkurtas.";
+"open_settings" = "Atverti nustatymus";
+// iOS notification settings
+"disabled_in_dc" = "Išjungta Delta Chat programėlėje";
+"disabled_in_system_settings" = "Išjungta sistemos nustatymuose";
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!

@@ -965,6 +965,11 @@
 "notifications_avg_minutes" = "平均每 %1$d 分钟";
 "notifications_avg_hours" = "平均每 %1$d 小时";
 "last_check_at" = "检查于 %1$@";
+// iOS webxdc selector
+"webxdc_selector_empty_hint" = "任何聊天中接收或发送的私人文件都会出现在这里。“文件”显示私人应用刚被下载。";
+// iOS webxdc shortcut page
+"shortcut_step1_tap_share_btn" = "单机分享按钮";
+"shortcut_step2_tap_add_to_home_screen" = "选择“添加到主屏”将应用添加到主屏幕。";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

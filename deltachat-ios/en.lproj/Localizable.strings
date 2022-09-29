@@ -817,6 +817,10 @@
 "qraccount_success_enter_name" = "Login successful—your e-mail address is %1$@\n\nIf you like, you can now enter a name and an profile image that will be displayed to people you write to.";
 "qraccount_qr_code_cannot_be_used" = "The scanned QR code cannot be used to set up a new account.";
 "qraccount_use_on_new_install" = "The scanned QR code is for setting up a new account. You can scan the QR code when setting up a new Delta Chat installation.";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login" = "Log into \"%1$@\"?";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login_another" = "Log into \"%1$@\"?\n\nYour existing account will not be deleted. Use the \"Switch Account\" item to switch between your accounts.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ invited you to join this group.\n\nWaiting for the device of %2$@ to reply…";
 // placeholder will be replaced by the name of the inviter.

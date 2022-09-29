@@ -121,6 +121,11 @@
 "images_and_videos" = "تصاویر و فیلم‌ها";
 "file" = "پوشه";
 "files" = "فایل‌ها";
+// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "نرم‌افزار خصوصی";
+// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "نرم‌افزارهای خصوصی";
+"files_and_webxdx_apps" = "فایل‌ها و نرم‌افزارهای خصوصی";
 "unknown" = "ناشناس";
 
 "green" = "سبز";
@@ -229,6 +234,9 @@
 "ConversationFragment_quoted_message_not_found" = "پیام اصلی یافت نشد";
 "reply_privately" = "پاسخ دادن به صورت خصوصی";
 "source_code" = "کد منبع";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "افزودن به صفحه خانه";
+
 "mute_for_one_hour" = "ساکت کردن به مدت۱ ساعت";
 "mute_for_two_hours" = "ساکت کردن به مدت ۲ ساعت";
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
@@ -377,6 +385,7 @@
 "tab_image_empty_hint" = "تصاوری که در این گفتگو اشتراک گذاری شده‌ باشند در اینجا نمایش داده می‌شوند. ";
 "tab_video_empty_hint" = "فیلم‌هایی که در این گفتگو اشتراک گذاری شده باشند در اینجا نمایش داده می‌شوند. ";
 "tab_audio_empty_hint" = "فایل‌ها و پیام‌های صوتی که در این گفتگو اشتراک گذاری شده‌‌اند در اینجا نمایش داده می‌شوند.";
+"tab_webxdc_empty_hint" = "نرم‌افزارهای خصوصی، که در این گفتگو به اشتراک گذاشته شده‌اند در اینجا نمایش داده می‌شوند. ";
 "media_preview" = "نمایش رسانه";
 "send_message" = "ارسال پیام";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -688,6 +697,21 @@
 // deprecated
 "systemmsg_chat_protection_enabled" = "محافظت از گفتگو فعال شد.";
 
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "شما نام گروه را از «%1$@» به «%2$@»  تغییر دادید. ";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "نام گروه توسط %3$@ از «%1$@» به «%2$@ » تغییر کرد. ";
+"group_image_changed_by_you" = "شما تصویر گروه را تغییر دادید. ";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "تصویر گروه توسط %1$@ تغییر کرد. ";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "شما %1$@ را به عنوان عضو جدید اضافه کردید. ";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "عضو جدید با نام %1$@ توسط %2$@ افزوده شد. ";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "شما عضویت %1$@ را حذف کردید.  ";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "عضویت %1$@ توسط %2$@ حذف شد. ";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 // %1%s will be replaced by date and time in some human-readable format
 
