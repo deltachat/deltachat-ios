@@ -1,10 +1,10 @@
 import UIKit
 import DcCore
 
-class ChatListController: UITableViewController {
+class ChatListController: UITableViewController, AccountSwitcherHandler {
     var viewModel: ChatListViewModel?
     let dcContext: DcContext
-    private let dcAccounts: DcAccounts
+    internal let dcAccounts: DcAccounts
     var isArchive: Bool
 
     private let chatCellReuseIdentifier = "chat_cell"
@@ -551,8 +551,6 @@ class ChatListController: UITableViewController {
 
 
     private lazy var accountButton: UIBarButtonItem = {
-        // let button = UIBarButtonItem(title: "Account", style: .plain, target: self, action: #selector(showSwitchAccountMenu))
-        
         // todo make pretty
         
         let rect = CGRect(x: 0, y: 0, width: 70, height: 50)
@@ -564,7 +562,7 @@ class ChatListController: UITableViewController {
         // this line is only to visualize the rect bounds for visual debugging
         // myView.backgroundColor = .blue
         
-        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(showSwitchAccountMenu))
+        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(showSwitchAccount))
         myView.addGestureRecognizer(tapGestureRecognizer)
         
         
@@ -602,33 +600,8 @@ class ChatListController: UITableViewController {
         return unreadCount
     }
     
-    @objc private func showSwitchAccountMenu() {
-        let accountIds = dcAccounts.getAll()
-        let selectedAccountId = dcAccounts.getSelected().id
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-        let prefs = UserDefaults.standard
-        // switch account
-        let menu = UIAlertController(title: String.localized("switch_account"), message: nil, preferredStyle: .safeActionSheet)
-        for accountId in accountIds {
-            let account = dcAccounts.get(id: accountId)
-            
-            let newMessages = account.getFreshMessages().count
-            let messageBadge = newMessages == 0 ? "" : " [" + String(newMessages) + "]"
-            
-            var title = account.displaynameAndAddr
-            title = (selectedAccountId==accountId ? "✔︎ " : "") + title + messageBadge
-            menu.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
-                prefs.setValue(selectedAccountId, forKey: Constants.Keys.lastSelectedAccountKey)
-                _ = self.dcAccounts.select(id: accountId)
-                appDelegate.reloadDcContext()
-            }))
-        }
-
-
-        menu.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(menu, animated: true, completion: nil)
+    @objc private func showSwitchAccount() {
+        showSwitchAccountMenu()
     }
 
     // MARK: updates
