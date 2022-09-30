@@ -189,12 +189,6 @@
 "pref_show_emails_all" = "Sve";
 "pref_background_default" = "Zadana pozadina";
 "pref_background_default_color" = "Zadana boja";
-// deprecated
-"systemmsg_member_added" = "Član %1$@ dodan.";
-// deprecated
-"systemmsg_member_removed" = "Član %1$@ uklonjen.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ od %2$@.";
 // qr code stuff
 "qr_code" = "QR kod";
 "qrscan_fingerprint_label" = "Otisak prsta";
@@ -229,3 +223,5 @@
 "name_desktop" = "Ime";
 "message_detail_sent_desktop" = "poslano";
 "message_detail_received_desktop" = "primljeno";
+// device messages for updates
+

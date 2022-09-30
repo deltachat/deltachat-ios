@@ -655,56 +655,12 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Nome do grupo alterado de \"%1$@\" para \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Avatar do grupo modificado.";
-// deprecated
-"systemmsg_group_image_deleted" = "Avatar do grupo apagado.";
-// deprecated
-"systemmsg_member_added" = "Participante %1$@ adicionado.";
-// deprecated
-"systemmsg_member_removed" = "Participante %1$@ removido.";
-// deprecated
-"systemmsg_group_left" = "Grupo abandonado.";
 "systemmsg_read_receipt_subject" = "Confirmação de leitura";
 "systemmsg_read_receipt_body" = "Confirmação de recebimento da mensagem \"%1$@\".\n\nEsta confirmação somente assegura que a mensagem foi exibida no aparelho do destinatário, mas não há garantia de que ele tenha lido o seu conteúdo.";
 "systemmsg_cannot_decrypt" = "Impossível descriptografar esta mensagem.\n\n• Pode resolver pedir que ela seja reenviada.\n\n• Caso você tenha reinstalado o Delta Chat ou outro programa de e-mail, neste ou noutro dispositivo, será necessário enviar uma \"mensagem de configuração do Autocrypt\".";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ por mim.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ por %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Remetente desconhecido para esta conversa. Veja \'informações\' para mais detalhes.";
 "systemmsg_subject_for_new_contact" = "Mensagem de %1$@";
 "systemmsg_failed_sending_to" = "Falha ao enviar mensagem para %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Temporizador de desaparecimento de mensagens desativado.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Temporizador de desaparecimento de mensagens definido para %1$@ s.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Temporizador de desaparecimento de mensagens definido para 1 minuto.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Temporizador de desaparecimento de mensagens definido para 1 hora.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Temporizador de desaparecimento de mensagens definido para 1 dia.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Temporizador de desaparecimento de mensagens definido para 1 semana.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Temporizador de desaparecimento de mensagens definido para 4 semanas.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Temporizador de mensagens que desaparecem definido para %1$@ minutos.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Temporizador de mensagens que desaparecem definido para %1$@ horas.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Temporizador de mensagens que desaparecem definido para %1$@ dias.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Temporizador de mensagens que desaparecem definido para %1$@ semanas.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Proteção da conversa desligada.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Proteção da conversa ligada.";
-
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Você mudou o nome do grupo de \"%1$@\" para \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.

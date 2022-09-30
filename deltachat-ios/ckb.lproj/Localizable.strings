@@ -452,52 +452,10 @@
 "autocrypt_continue_transfer_title" = "پەیامی ڕێکخستنی ئۆتۆکریپت";
 "autocrypt_continue_transfer_retry" = "دیسان هەوڵدانەوە";
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "ناوی کۆڕ لە \"%1$@\" گۆڕا بۆ \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "وێنەی کۆڕ گۆڕا.";
-// deprecated
-"systemmsg_group_image_deleted" = "وێنەی کۆڕ سڕاوە.";
-// deprecated
-"systemmsg_member_added" = "%1$@ زیاد کرا بە کۆڕ.";
-// deprecated
-"systemmsg_member_removed" = "ئەندامی %1$@ سڕدرایەوە.";
 "systemmsg_read_receipt_subject" = "پەیامەکە کرایەوە";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ لەلایەن منەوە.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ لەلایەن %2$@.";
 "systemmsg_unknown_sender_for_chat" = "پەیامنێری ئەم وتووێژە نەناسراوە. بۆ وردەکاری زۆرتر سەیری \'زانیارییەکان\' بکە.";
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";
 "systemmsg_failed_sending_to" = "هەناردنی پەیام بۆ %1$@ سەرنەکەوت";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "دەمژمێری پەیامە خۆشارەوەکان ناچالاک کرا.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "دەمژمێری پەیام خۆشارەوەکان لەسەر %1$@ چرکە ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "دەمژمێری پەیام خۆشارەوەکان لەسەر 1  خولەک ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "دەمژمێری پەیام خۆشارەوەکان لەسەر 1 سەعات ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "دەمژمێری پەیام خۆشارەوەکان لەسەر 1 ڕۆژ ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "دەمژمێری پەیام خۆشارەوەکان لەسەر 1 حەوتە ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "دەمژمێری پەیام خۆشارەوەکان لەسەر 4 ڕۆژ ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "دەمژمێری پەیام خۆشارەوەکان لەسەر%1$@ خولەک ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "دەمژمێری پەیام خۆشارەوەکان لەسەر %1$@ سەعات ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "دەمژمێری پەیام خۆشارەوەکان لەسەر %1$@ ڕۆژ ڕێکخرا.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "دەمژمێری پەیام خۆشارەوەکان لەسەر %1$@ حەوتە ڕێکخرا.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "پاراستنی وتووێژ ناچالاک کرا.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "پاراستنی وتووێژ چالاک کرا.";
-
 // qr code stuff
 "qr_code" = "کۆدی QR";
 "load_qr_code_as_image" = "کۆدی QR وەکوو وێنەیەک بار بکە.";
@@ -602,4 +560,6 @@
 "perm_enable_bg_reminder_title" = "بۆ وەرگرتنی پەیامەکان لەو کاتانەدا کە دێڵتا چات لە پشتخانەوەیە، لێرە کرتە بکە.";
 "perm_enable_bg_already_done" = "تۆ ئێستا ڕێگەت بە دێڵتا چات دا کە لە پشتخانەوە پەیامەکان وەربگرێت.\n\n ئەگەر هێشتا لە پشخاندا پەیامەکان نایەن، سەرنجێکیش لە ڕێکخستنەکانی سیستەم بدەوە.";
 
+
+// device messages for updates
 

@@ -655,56 +655,12 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Nome del gruppo modificato da \"%1$@\" a \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Immagine gruppo cambiata.";
-// deprecated
-"systemmsg_group_image_deleted" = "Immagine gruppo eliminata.";
-// deprecated
-"systemmsg_member_added" = "Membro %1$@ aggiunto.";
-// deprecated
-"systemmsg_member_removed" = "Membro %1$@ rimosso.";
-// deprecated
-"systemmsg_group_left" = "Gruppo abbandonato.";
 "systemmsg_read_receipt_subject" = "Ricevuta di lettura";
 "systemmsg_read_receipt_body" = "Questa è una ricevuta di lettura del messaggio \"%1$@\".\n\nCiò significa che il messaggio è stato mostrato nel dispositivo del destinatario, ma non necessariamente che il contenuto è stato letto.";
 "systemmsg_cannot_decrypt" = "Questo messaggio non può essere decrittato.\n\n• Potrebbe essere sufficiente rispondere a questo messaggio e chiedere al mittente di rispedirlo.\n\n• Se hai reinstallato Delta Chat o usi un altro client email dovresti inviare un Messaggio di configurazione Autocrypt dal dispositivo originario.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ da me.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ da %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Mittente sconosciuto per questa chat. Vedi \'info\' per maggiori dettagli.";
 "systemmsg_subject_for_new_contact" = "Messaggio da %1$@";
 "systemmsg_failed_sending_to" = "Impossibile inviare il messaggio a %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Timer messaggi a scomparsa disabilitato.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Timer messaggi a scomparsa impostato su %1$@ s.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Timer messaggi a scomparsa impostato su 1 minuto.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Timer messaggi a scomparsa impostato su 1 ora.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Timer messaggi a scomparsa impostato su 1 giorno.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Timer messaggi a scomparsa impostato su 1 settimana.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Timer messaggi a scomparsa impostato su 4 settimane.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Timer messaggi a scomparsa impostato su %1$@ minuti.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Timer messaggi a scomparsa impostato su %1$@ ore.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Timer messaggi a scomparsa impostato su %1$@ giorni.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Timer messaggi a scomparsa impostato su %1$@ settimane.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Protezione chat disattivata.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Protezione chat abilitata.";
-
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Hai cambiato il nome del gruppo da \"%1$@\" a \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -817,6 +773,10 @@
 "qraccount_success_enter_name" = "Accesso completato—il tuo indirizzo email è %1$@\n\nSe vuoi, puoi inserire un nome e un\'immagine profilo che verranno mostrati a chi ti scrive.";
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo account.";
 "qraccount_use_on_new_install" = "Il codice QR scansionato serve a creare un nuovo account. Puoi scansionare il codice quando configuri una nuova installazione di Delta Chat.";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login" = "Accedere a \"%1$@\"?";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login_another" = "Accedere a \"%1$@\"?\n\nIl tuo account esistente non verrà cancellato. Usa la voce \"Cambia Account\" per passare da un account all\'altro.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";
 // placeholder will be replaced by the name of the inviter.
@@ -985,5 +945,4 @@
 
 
 // device messages for updates
-"update_1_30" = "Più veloce. Più stabile.\n\nPer la versione 1.30 abbiamo puntato su velocità e affidabilità, risolvendo decine di problemi. Controlla nei nostri elenchi delle modifiche se il tuo preferito è risolto: https://get.delta.chat/#changelogs 🚀";
 

@@ -467,27 +467,30 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Nama grup diganti dari \"%1$@\" ke \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Gambar grup telah diubah.";
-// deprecated
-"systemmsg_group_image_deleted" = "Gambar grup telah dihapus.";
-// deprecated
-"systemmsg_member_added" = "Member %1$@ telah ditambahkan.";
-// deprecated
-"systemmsg_member_removed" = "Member %1$@ telah dikeluarkan.";
 "systemmsg_read_receipt_subject" = "Pesan dibuka";
 "systemmsg_read_receipt_body" = "Pesan \"%1$@\" yang Anda kirimkan tampak di layar penerima.\n\nIni bukan jaminan kalau isinya dibaca.";
 "systemmsg_cannot_decrypt" = "Pesan ini tidak bisa dienkripsi.\n\n• Ada baiknya menjawab pesan ini dan meminta pengirimnya untuk kirim ulang.\n\n• Dalam kasus Anda menginstal ulang Delta Chat atau program surel lain di perangkat ini atau perangkat lain, sebaiknya Anda mengirim Pengaturan Pesan Autocrypt dari sana.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ oleh saya.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ oleh %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
 "systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
-
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Nama grup diganti dari \"%1$@\" ke \"%2$@\" oleh saya.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Nama grup diganti dari \"%1$@\" ke \"%2$@\" oleh %3$@.";
+"group_image_changed_by_you" = "Gambar grup telah diubah oleh saya.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Gambar grup telah diubah oleh %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Member %1$@ telah ditambahkan oleh saya.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Member %1$@ telah ditambahkan oleh %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Member %1$@ telah dikeluarkan oleh saya.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Member %1$@ telah dikeluarkan oleh %2$@.";
+"group_image_deleted_by_you" = "Gambar grup telah dihapus oleh saya.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Gambar grup telah dihapus oleh %1$@.";
 // qr code stuff
 "qr_code" = "Kode QR";
 "load_qr_code_as_image" = "Muat kode QR sebagai gambar";
@@ -596,4 +599,6 @@
 "a11y_delivery_status_invalid" = "Status pengiriman tidak valid";
 "a11y_background_preview_label" = "Pratampil latar belakang";
 
+
+// device messages for updates
 

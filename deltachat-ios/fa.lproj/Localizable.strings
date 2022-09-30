@@ -647,56 +647,12 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "اسم گروه از \"%1$@\" به \"%2$@\" تغییر کرد. ";
-// deprecated
-"systemmsg_group_image_changed" = "تصویر گروه تغییر کرد.";
-// deprecated
-"systemmsg_group_image_deleted" = "تصویر گروه حذف شد.";
-// deprecated
-"systemmsg_member_added" = "%1$@ عضو شد.";
-// deprecated
-"systemmsg_member_removed" = "عضویت %1$@حذف شد. ";
-// deprecated
-"systemmsg_group_left" = "گروه ترک شد. ";
 "systemmsg_read_receipt_subject" = "پیام باز شد";
 "systemmsg_read_receipt_body" = "پیام\"%1$@\" که ارسال کرده بودید در ثفحه گیرنده نمایش داده شد\n\n. تضمینی وجود ندارد که محتوای پیام را خوانده باشد. ";
 "systemmsg_cannot_decrypt" = "این پیام را نمی‌توان رمزگشایی کرد.\n\n• ممکن است بهتر باشد که به همین پیام پاسخ داده و از ارسال کننده بخواهید دوباره آن را بفرستد. \n\n• اگر دوباره دلتاچت را نصب کرده‌اید یا از یک ایمیل دیگر هم روی این دستگاه یا دستگاه دیگر استفاده می‌کنید ممکن است لازم باشد یک پیام تنظیمات خودرمز از آن دستگاه ارسال کنید. ";
-// deprecated
-"systemmsg_action_by_me" = "%1$@توسط من";
-// deprecated
-"systemmsg_action_by_user" = "%1$@توسط%2$@";
 "systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از%1$@";
 "systemmsg_failed_sending_to" = "ارسال ناموفق پیام به %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "زمان سنج پیام های ناپدید شونده غیرفعال شد.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "زمان‌سنج پیام ناپدید شونده روی %1$@ثانیه تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "زمان سنج پیام های ناپدید شونده برای 1 دقیقه تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "زمان سنج پیام های ناپدید شونده برای 1 ساعت تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "زمان سنج پیام های ناپدید شونده برای 1 روز تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "زمان سنج پیام های ناپدید شونده برای 1 هفته تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "زمان سنج پیام های ناپدید شونده برای 4 هفته تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "زمان‌سنج پیام‌های ناپدید شونده روی %1$@ دقیقه تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "زمان‌سنج پیام ناپدید شونده روی %1$@ ساعت تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "زمان‌سنج پیام ناپدید شونده روی %1$@ روز تنظیم شد.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "زمان‌سنج پیام ناپدید شونده روی %1$@ هفته تنظیم شد.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "محافظت از گفنگو غیرفعال شد.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "محافظت از گفتگو فعال شد.";
-
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "شما نام گروه را از «%1$@» به «%2$@»  تغییر دادید. ";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -712,6 +668,10 @@
 "remove_member_by_you" = "شما عضویت %1$@ را حذف کردید.  ";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "عضویت %1$@ توسط %2$@ حذف شد. ";
+"group_left_by_you" = "شما گروه را ترک کردید.";
+"group_image_deleted_by_you" = "شما تصویر گروه را حذف کردید.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "تصویر گروه توسط %1$@ حذف شد.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 // %1%s will be replaced by date and time in some human-readable format
 
@@ -909,5 +869,4 @@
 
 
 // device messages for updates
-
 

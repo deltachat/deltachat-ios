@@ -495,43 +495,49 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Gruppnamnet ändrades från \"%1$@\" till \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Gruppbilden ändrades.";
-// deprecated
-"systemmsg_group_image_deleted" = "Gruppbilden togs bort.";
-// deprecated
-"systemmsg_member_added" = "Medlemmen %1$@ lades till.";
-// deprecated
-"systemmsg_member_removed" = "Medlemmen %1$@ togs bort.";
-// deprecated
-"systemmsg_group_left" = "Grupp lämnade.";
 "systemmsg_read_receipt_subject" = "Meddelande öppnat";
 "systemmsg_read_receipt_body" = "\"%1$@\" meddelandet du skickade visades på mottagarens skärm.\n\nDet är ingen garanti för att innehållet har lästs.";
 "systemmsg_cannot_decrypt" = "Meddelandet kan inte avkrypteras.\n\n• Det kanske kan hjälpa, att svara på detta meddelande och be avsändaren skicka det igen.\n\n• Ifall du har ominstallerat Delta Chat eller något annat e-postprogram på denna eller någon annan enhet, kanske du behöver skicka ett nytt Autocryp inställningsmeddelande därifrån.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ av mig.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ av %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
 "systemmsg_failed_sending_to" = "Kunde inte skicka meddelande till %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Tiduret för meddelandeborttagning är inaktiverat.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Tiduret för meddelandeborttagning är satt till %1$@ s.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Tiduret för meddelandeborttagning är satt till 1 minut.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Tiduret för meddelandeborttagning är satt till 1 timma.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Tiduret för meddelandeborttagning är satt till 1 dag.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Tiduret för meddelandeborttagning är satt till 1 vecka.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Tiduret för meddelandeborttagning är satt till 4 veckor.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Gruppnamnet ändrades från \"%1$@\" till \"%2$@\" av mig.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Gruppnamnet ändrades från \"%1$@\" till \"%2$@\" av %3$@.";
+"group_image_changed_by_you" = "Gruppbilden ändrades av mig.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Gruppbilden ändrades av %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Medlemmen %1$@ lades till av mig.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Medlemmen %1$@ lades till av %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Medlemmen %1$@ togs bort av mig.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Medlemmen %1$@ togs bort av %2$@.";
+"group_image_deleted_by_you" = "Gruppbilden togs bort av mig.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Gruppbilden togs bort av %1$@.";
+"ephemeral_timer_disabled_by_you" = "Tiduret för meddelandeborttagning är inaktiverat av mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Tiduret för meddelandeborttagning är inaktiverat av %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Tiduret för meddelandeborttagning är satt till %1$@ s av mig.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Tiduret för meddelandeborttagning är satt till %1$@ s av %2$@.";
+"ephemeral_timer_1_minute_by_you" = "Tiduret för meddelandeborttagning är satt till 1 minut av mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Tiduret för meddelandeborttagning är satt till 1 minut av %1$@.";
+"ephemeral_timer_1_hour_by_you" = "Tiduret för meddelandeborttagning är satt till 1 timma av mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Tiduret för meddelandeborttagning är satt till 1 timma av %1$@.";
+"ephemeral_timer_1_day_by_you" = "Tiduret för meddelandeborttagning är satt till 1 dag av mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Tiduret för meddelandeborttagning är satt till 1 dag av %1$@.";
+"ephemeral_timer_1_week_by_you" = "Tiduret för meddelandeborttagning är satt till 1 vecka av mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Tiduret för meddelandeborttagning är satt till 1 vecka av %1$@.";
 // qr code stuff
 "qr_code" = "QR-kod";
 "qrscan_title" = "Skanna QR-kod";
@@ -653,4 +659,6 @@
 "perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
 "perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";
 
+
+// device messages for updates
 

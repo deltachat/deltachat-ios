@@ -655,56 +655,12 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Gruppenname von \"%1$@\" zu \"%2$@\" geändert.";
-// deprecated
-"systemmsg_group_image_changed" = "Gruppenbild geändert.";
-// deprecated
-"systemmsg_group_image_deleted" = "Gruppenbild gelöscht.";
-// deprecated
-"systemmsg_member_added" = "%1$@ hinzugefügt.";
-// deprecated
-"systemmsg_member_removed" = "%1$@ entfernt.";
-// deprecated
-"systemmsg_group_left" = "Gruppe verlassen.";
 "systemmsg_read_receipt_subject" = "Empfangsbestätigung";
 "systemmsg_read_receipt_body" = "Ihre Nachricht \"%1$@\" wurde auf dem Empfangsgerät angezeigt.\n\nDas ist keine Garantie dafür, dass sie auch gelesen wurde.";
 "systemmsg_cannot_decrypt" = "Diese Nachricht kann nicht entschlüsselt werden.\n\n• Es könnte bereits helfen, einfach auf diese Nachricht zu antworten und die/den AbsenderIn zu bitten, die Nachricht erneut zu senden.\n\n• Falls Delta Chat oder ein anderes E-Mail-Programm auf diesem oder einem anderen Gerät neu installiert wurde, kann von dort aus eine Autocrypt Setup-Nachricht gesendet werden.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ von mir.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ von %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Absender ist für diesen Chat unbekannt. Siehe \"Info\" für weitere Details,";
 "systemmsg_subject_for_new_contact" = "Nachricht von %1$@";
 "systemmsg_failed_sending_to" = "Nachricht senden an %1$@ fehlgeschlagen.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Verschwindende Nachrichten ausgeschaltet.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Ablaufzeit verschwindender Nachrichten auf %1$@ s festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Ablaufzeit verschwindender Nachrichten auf 1 Minute festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Ablaufzeit verschwindender Nachrichten auf 1 Stunde festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Ablaufzeit verschwindender Nachrichten auf 1 Tag festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Ablaufzeit verschwindender Nachrichten auf 1 Woche festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Ablaufzeit verschwindender Nachrichten auf 4 Wochen festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Minuten festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Stunden festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Tage festgelegt.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen festgelegt.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Chat-Absicherung ausgeschaltet.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Chat-Absicherung eingeschaltet.";
-
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Sie haben den Gruppennamen von \"%1$@\" zu \"%2$@\" geändert.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -989,5 +945,4 @@
 
 
 // device messages for updates
-"update_1_30" = "Schneller. Stabiler.\n\nFür die Version 1.30 haben wir uns auf Geschwindigkeit und Zuverlässigkeit konzentriert und Dutzende Fehler behoben. Ist Ihr Lieblingsfehler dabei? Details im Changelog: https://get.delta.chat/#changelogs 🚀";
 

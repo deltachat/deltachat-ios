@@ -503,55 +503,71 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Názen skupiny změněn z \"%1$@\" na \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Obrázek skupiny změněn.";
-// deprecated
-"systemmsg_group_image_deleted" = "Obrázek skupiny smazán.";
-// deprecated
-"systemmsg_member_added" = "Člen %1$@ byl přidán.";
-// deprecated
-"systemmsg_member_removed" = "Člen %1$@ byl odebrán.";
-// deprecated
-"systemmsg_group_left" = "Skupina opuštěna.";
 "systemmsg_read_receipt_subject" = "Zpráva otevřena";
 "systemmsg_read_receipt_body" = "Odeslaná zpráva \"%1$@\" byla příjemci zobrazena na jeho přístroji.\n\nNicméně přečtení obsahu není zaručeno.";
 "systemmsg_cannot_decrypt" = "Zprávu nelze dešifrovat.\n\n• Může pomoct jednoduchá odpověď odesílateli s požadavkem o znovuzaslání zprávy.\n\n• Pokud jde o novou instalaci Delta Chatu či jiného e-mailového programu na tomto nebo jiném zařízení, může být nutné poslat si z nich Nastavení Autocryptu.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ ode mě.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ od %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Neznámý odesilatel v tomto hovoru. Více najdeš v Popisu.";
 "systemmsg_subject_for_new_contact" = "Zpráva od %1$@";
 "systemmsg_failed_sending_to" = "Odeslání zprávy pro %1$@ selhalo.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Časovač samomazacích zpráv je vypnut.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Časovač samomazacích zpráv je na %1$@ s. ";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Časovač samomazacích zpráv na 1 minutu.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Časovač samomazacích zpráv na 1 hodinu.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Časovač samomazacích zpráv na 1 den.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Časovač samomazacích zpráv na 1 týden.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Časovač samomazacích zpráv na 4 týdny.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Samomazací zprávy vyprší po %1$@ minutách.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Samomazací zprávy vyprší po %1$@ hodinách.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Samomazací zprávy vyprší po %1$@ dnech.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Samomazací zprávy vyprší po %1$@ týdnech.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Ochrana rozhovoru vypnuta.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Ochrana rozhovoru zapnuta.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Názen skupiny změněn z \"%1$@\" na \"%2$@\" ode mě.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Názen skupiny změněn z \"%1$@\" na \"%2$@\" od %3$@.";
+"group_image_changed_by_you" = "Obrázek skupiny změněn ode mě.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Obrázek skupiny změněn od %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Člen %1$@ byl přidán ode mě.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Člen %1$@ byl přidán od %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Člen %1$@ byl odebrán ode mě.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Člen %1$@ byl odebrán od %2$@.";
+"group_image_deleted_by_you" = "Obrázek skupiny smazán ode mě.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Obrázek skupiny smazán od %1$@.";
+"ephemeral_timer_disabled_by_you" = "Časovač samomazacích zpráv je vypnut ode mě.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Časovač samomazacích zpráv je vypnut od %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Časovač samomazacích zpráv je na %1$@ s ode mě.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Časovač samomazacích zpráv je na %1$@ s od %2$@.";
+"ephemeral_timer_1_minute_by_you" = "Časovač samomazacích zpráv na 1 minutu ode mě.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Časovač samomazacích zpráv na 1 minutu od %1$@.";
+"ephemeral_timer_1_hour_by_you" = "Časovač samomazacích zpráv na 1 hodinu ode mě.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Časovač samomazacích zpráv na 1 hodinu od %1$@.";
+"ephemeral_timer_1_day_by_you" = "Časovač samomazacích zpráv na 1 den ode mě.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Časovač samomazacích zpráv na 1 den od %1$@.";
+"ephemeral_timer_1_week_by_you" = "Časovač samomazacích zpráv na 1 týden ode mě.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Časovač samomazacích zpráv na 1 týden od %1$@.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Samomazací zprávy vyprší po %1$@ minutách ode mě.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Samomazací zprávy vyprší po %1$@ minutách od %2$@.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Samomazací zprávy vyprší po %1$@ hodinách ode mě.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Samomazací zprávy vyprší po %1$@ hodinách od %2$@.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Samomazací zprávy vyprší po %1$@ dnech ode mě.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Samomazací zprávy vyprší po %1$@ dnech od %2$@.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Samomazací zprávy vyprší po %1$@ týdnech ode mě.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Samomazací zprávy vyprší po %1$@ týdnech od %2$@.";
+"protection_enabled_by_you" = "Ochrana rozhovoru zapnuta ode mě.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Ochrana rozhovoru zapnuta od %1$@.";
+"protection_disabled_by_you" = "Ochrana rozhovoru vypnuta ode mě.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Ochrana rozhovoru vypnuta od %1$@.";
 
 // qr code stuff
 "qr_code" = "QR kód";
@@ -682,4 +698,6 @@
 "perm_enable_bg_reminder_title" = "Stiskni zde a přijímání zpráv bude probíhat při chodu Delta Chatu na pozadí.";
 "perm_enable_bg_already_done" = "Přijímání zpráv na pozadí je Delta Chatu již povoleno.\n\nV případě nepřicházení nových zpráv si prosím zkontroluj své systémové nastavení.";
 
+
+// device messages for updates
 

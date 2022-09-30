@@ -521,25 +521,27 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Nom del grup \"%1$@\" canviat a \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Imatge de grup canviada.";
-// deprecated
-"systemmsg_group_image_deleted" = "Imatge de grup eliminada.";
-// deprecated
-"systemmsg_member_added" = "Membre %1$@ afegit.";
-// deprecated
-"systemmsg_member_removed" = "Membre %1$@ eliminat.";
-// deprecated
-"systemmsg_group_left" = "Deixa el grup.";
 "systemmsg_read_receipt_subject" = "Confirmació de lectura";
 "systemmsg_read_receipt_body" = "Confirmació de lectura del missatge \"%1$@\".\n\nVol dir que el missatge s\'ha mostrat al dispositiu del receptor, no necessàriament que s\'hagi llegit.";
 "systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Proveu de respondre\'l i demanar-li al remitent que us el torni a enviar.\n\n• Si heu reinstal·lat Delta Chat o un altre gestor de correu en aquest dispositiu o en algun altre, proveu d\'enviar un missatge de configuració Autocrypt des d\'allà.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ per mi.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ per %2$@.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Nom del grup \"%1$@\" canviat a \"%2$@\" per mi.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Nom del grup \"%1$@\" canviat a \"%2$@\" per %3$@.";
+"group_image_changed_by_you" = "Imatge de grup canviada per mi.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Imatge de grup canviada per %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Membre %1$@ afegit per mi.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Membre %1$@ afegit per %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Membre %1$@ eliminat per mi.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Membre %1$@ eliminat per %2$@.";
+"group_image_deleted_by_you" = "Imatge de grup eliminada per mi.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Imatge de grup eliminada per %1$@.";
 "qrscan_title" = "Escaneja codi QR";
 "qrscan_hint" = "Poseu la càmera davant del codi QR";
 "qrscan_ask_join_group" = "Voleu unir-vos al grup \"%1$@\"?";
@@ -625,3 +627,5 @@
 "menu.view.developer.open.log.folder" = "Obre la carpeta de registre";
 "menu.view.developer.open.current.log.file" = "Obre el fitxer de registre actual";
 "perm_enable_bg_reminder_title" = "Prem aquí per rebre missatges mentre Delta Chat és en segon pla.";
+// device messages for updates
+

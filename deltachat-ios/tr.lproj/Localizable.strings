@@ -426,7 +426,7 @@
 "scan_invitation_code" = "Davet Kodunu Tara";
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsız.";
 "login_title" = "Oturum Aç";
-"login_header" = "E-Posta Hesabınıza Oturum Açın";
+"login_header" = "E-Posta Hesabınızda Oturum Açın";
 "login_explain" = "Varolan bir e-posta hesabıyla oturum açın";
 "login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'in web ayarlarından etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
 "login_no_servers_hint" = "Delta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
@@ -655,56 +655,12 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "\"%1$@\" grup adı \"%2$@\" olarak değiştirildi.";
-// deprecated
-"systemmsg_group_image_changed" = "Grup görseli değiştirildi.";
-// deprecated
-"systemmsg_group_image_deleted" = "Grup görseli silindi.";
-// deprecated
-"systemmsg_member_added" = "%1$@ üyesi eklendi.";
-// deprecated
-"systemmsg_member_removed" = "%1$@ üyesi kaldırıldı.";
-// deprecated
-"systemmsg_group_left" = "Gruptan ayrılındı.";
 "systemmsg_read_receipt_subject" = "İleti açıldı";
 "systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunduğunun güvencesi değildir.";
 "systemmsg_cannot_decrypt" = "Bu iletinin şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderene iletiyi yeniden gönderip gönderemeyeceğini sormak zaten yardımcı olabilir.\n\n• Delta Chat\'i ya da başka bir e-posta programını bu ya da başka bir aygıta yeniden kurduysanız, oradan bir Autocrypt Ayarlama İletisi göndermek isteyebilirsiniz.";
-// deprecated
-"systemmsg_action_by_me" = "Benim tarafımdan %1$@.";
-// deprecated
-"systemmsg_action_by_user" = "%2$@ tarafından %1$@.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
 "systemmsg_failed_sending_to" = "%1$@ kişisine ileti gönderme başarısız.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Kaybolan iletiler zamanlayıcısı etkisizleştirildi.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Kaybolan iletiler zamanlayıcısı %1$@ sn olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Kaybolan iletiler zamanlayıcısı 1 dakika olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Kaybolan iletiler zamanlayıcısı 1 saat olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Kaybolan iletiler zamanlayıcısı 1 gün olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Kaybolan iletiler zamanlayıcısı 1 hafta olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Kaybolan iletiler zamanlayıcısı 4 hafta olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Kaybolan iletiler zamanlayıcısı %1$@ dakika olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Kaybolan iletiler zamanlayıcısı %1$@ saat olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Kaybolan iletiler zamanlayıcısı %1$@ gün olarak ayarlandı.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Kaybolan iletiler zamanlayıcısı %1$@ hafta olarak ayarlandı.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Sohbet koruması etkisizleştirildi.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Sohbet koruması etkinleştirildi.";
-
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "\"%1$@\" grup adını \"%2$@\" olarak değiştirdiniz.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -812,11 +768,15 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
-"qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?";
-"qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
+"qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada oturum açılsın mı?";
+"qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
 "qraccount_success_enter_name" = "Oturum açma başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir hesap ayarlamak için kullanılamıyor.";
 "qraccount_use_on_new_install" = "Taranan QR kodu, yeni bir hesap ayarlamak içindir. QR kodunu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login" = "\"%1$@\" üzerinde oturum açılsın mı?";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login_another" = "\"%1$@\" üzerinde oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya davet etti.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
@@ -985,5 +945,4 @@
 
 
 // device messages for updates
-"update_1_30" = "Daha hızlı. Daha kararlı.\n\n1.30 sürümleri için hıza ve güvenilirliğe odaklandık, düzinelerce hata düzeltildi. Favorilerinizden biri düzeltildiyse değişiklik günlüklerimizi denetleyin: https://get.delta.chat/#changelogs 🚀";
 

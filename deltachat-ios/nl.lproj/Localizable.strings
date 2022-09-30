@@ -655,56 +655,12 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Groepsnaam gewijzigd van \"%1$@\" in \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Groepsafbeelding gewijzigd.";
-// deprecated
-"systemmsg_group_image_deleted" = "Groepsafbeelding verwijderd.";
-// deprecated
-"systemmsg_member_added" = "‘%1$@’ is toegevoegd.";
-// deprecated
-"systemmsg_member_removed" = "‘%1$@’ is verwijderd.";
-// deprecated
-"systemmsg_group_left" = "Groep verlaten.";
 "systemmsg_read_receipt_subject" = "Leesbevestiging";
 "systemmsg_read_receipt_body" = "Het door jou verstuurde bericht, “%1$@”, heeft het scherm van de ontvanger bereikt.\n\nDit betekent echter niet dat het ook gelezen is.";
 "systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd op dit of een ander apparaat, verstuur het instelbericht dan opnieuw.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ door mij.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ door %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Dit gesprek bevat een onbekende afzender. Zie ‘Informatie’ voor meer informatie.";
 "systemmsg_subject_for_new_contact" = "Bericht van %1$@";
 "systemmsg_failed_sending_to" = "Het bericht kan niet worden verstuurd aan %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "De tijdklok van verdwijnende berichten is uitgeschakeld.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "De tijdklok van verdwijnende berichten is ingesteld op %1$@ sec.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "De tijdklok van verdwijnende berichten is ingesteld op 1 minuut.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "De tijdklok van verdwijnende berichten is ingesteld op 1 uur.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "De tijdklok van verdwijnende berichten is ingesteld op 1 dag.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "De tijdklok van verdwijnende berichten is ingesteld op 1 week.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "De tijdklok van verdwijnende berichten is ingesteld op 4 weken.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "De tijdklok van verdwijnende berichten is ingesteld op %1$@ minuten.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "De tijdklok van verdwijnende berichten is ingesteld op %1$@ uur.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "De tijdklok van verdwijnende berichten is ingesteld op %1$@ dagen.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "De tijdklok van verdwijnende berichten is ingesteld op %1$@ weken.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Gespreksbeveiliging is uitgeschakeld.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Gespreksbeveiliging is ingeschakeld.";
-
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Je hebt de groepsnaam gewijzigd. Oude naam: “%1$@” - Nieuwe naam: “%2$@”";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -817,6 +773,10 @@
 "qraccount_success_enter_name" = "Het inloggen is gelukt - je e-mailadres is ‘%1$@’.\n\nAls je wilt, kun je een naam en profielafbeelding opgeven die worden getoond aan de mensen waarmee je communiceert.";
 "qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
 "qraccount_use_on_new_install" = "De gescande QR-code is voor het instellen van een nieuw account. Je kunt deze direct scannen na het (opnieuw) installeren van Delta Chat.";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login" = "Inloggen als ‘%1$@’?";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login_another" = "Wil je inloggen als ‘%1$@’?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ heeft je uitgenodigd voor deze groep.\n\nEr wordt gewacht op antwoord van het apparaat %2$@…";
 // placeholder will be replaced by the name of the inviter.
@@ -985,5 +945,4 @@
 
 
 // device messages for updates
-"update_1_30" = "Sneller en stabieler. Dát zijn de kernpunten van versie 1.30.\n\n We hebben ruim 15 bugs opgelost. Neem het wijzigingslog door om te zien of er eentje tussenstaat waar je last van had: https://get.delta.chat/#changelogs 🚀";
 

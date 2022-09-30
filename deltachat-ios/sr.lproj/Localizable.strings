@@ -251,23 +251,24 @@
 "autocrypt_asm_subject" = "Порука поставки за аутошфровање";
 "autocrypt_continue_transfer_title" = "Порука поставки за аутошфровање";
 "autocrypt_continue_transfer_retry" = "Покушај поново";
-// system messages
-// deprecated
-"systemmsg_group_name_changed" = "Назив групе је измењен из „%1$@“ у „%2$@“.";
-// deprecated
-"systemmsg_group_image_changed" = "Слика групе је промењена.";
-// deprecated
-"systemmsg_group_image_deleted" = "Слика групе је обрисана.";
-// deprecated
-"systemmsg_member_added" = "Члан %1$@ је додат.";
-// deprecated
-"systemmsg_member_removed" = "Члан %1$@ је уклоњен.";
-// deprecated
-"systemmsg_group_left" = "Група напуштена.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ од мене.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ од стране %2$@.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Назив групе је измењен из „%1$@“ у „%2$@“ од мене.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Назив групе је измењен из „%1$@“ у „%2$@“ од стране %3$@.";
+"group_image_changed_by_you" = "Слика групе је промењена од мене.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Слика групе је промењена од стране %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Члан %1$@ је додат од мене.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Члан %1$@ је додат од стране %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Члан %1$@ је уклоњен од мене.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Члан %1$@ је уклоњен од стране %2$@.";
+"group_image_deleted_by_you" = "Слика групе је обрисана од мене.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Слика групе је обрисана од стране %1$@.";
 // qr code stuff
 "qr_code" = "Бар-кôд";
 "qrscan_title" = "Очитај бар-кôд";
@@ -308,3 +309,5 @@
 "save_desktop" = "Сачувај";
 "name_desktop" = "Име";
 "export_backup_desktop" = "Извези резервну копију";
+// device messages for updates
+

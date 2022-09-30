@@ -186,10 +186,6 @@
 "pref_backup" = "బ్యాకప్";
 "pref_managekeys_export_secret_keys" = "రహస్య కీలను ఎగుమతి చెయి";
 "pref_background" = "చాట్ నేపధ్యం";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ నా‌ ద్వరా";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ చే %2$@.";
 "qrscan_fingerprint_label" = "ఫింగర్‌ప్రింట్స్";
 "notify_reply_button" = "జవాబు";
 "notify_new_message" = "కొత్త సందేశం";
@@ -216,3 +212,5 @@
 "remove_desktop" = "తొలగించు";
 "save_desktop" = "భద్రపరుచు";
 "export_backup_desktop" = "బ్యాకప్ ఎగుమతి చెయి";
+// device messages for updates
+

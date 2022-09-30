@@ -646,55 +646,71 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Zmieniono nazwę grupy z \"%1$@\" na \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Zmieniono obraz grupy.";
-// deprecated
-"systemmsg_group_image_deleted" = "Usunięto obraz grupy.";
-// deprecated
-"systemmsg_member_added" = "Dodano członka %1$@";
-// deprecated
-"systemmsg_member_removed" = "Usunięto członka %1$@";
-// deprecated
-"systemmsg_group_left" = "Grupa opuszczona.";
 "systemmsg_read_receipt_subject" = "Potwierdzenie odczytu";
 "systemmsg_read_receipt_body" = "To jest potwierdzenie odczytu dla wiadomości ”%1$@„.\n\nTo potwierdzenie odczytu tylko informuje, że wiadomość została wyświetlona na urządzeniu odbiorcy. Nie ma gwarancji, że odbiorca przeczytał treść wiadomości.";
 "systemmsg_cannot_decrypt" = "Tej wiadomości nie można odszyfrować.\n\n• Możesz teraz pomóc odpowiadając po prostu na tą wiadomość i poprosić nadawcę o ponowne wysłanie wiadomości.\n\n• W przypadku ponownego zainstalowania Delta Chat lub innego programu mailowego na tym lub innym urządzeniu, może być konieczne wysłanie stąd klucza automatycznego szyfrowania.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ przeze mnie.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ przez %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Nieznany nadawca tego czatu. Więcej szczegółów znajdziesz w sekcji „Informacje”.";
 "systemmsg_subject_for_new_contact" = "Wiadomość od %1$@";
 "systemmsg_failed_sending_to" = "Nie udało się wysłać wiadomości do %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Wyłączono zegar znikających wiadomości.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Ustawiono zegar znikających wiadomości na %1$@ s.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Ustawiono zegar znikających wiadomości na 1 minutę.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Ustawiono zegar znikających wiadomości na 1 godzinę.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Ustawiono zegar znikających wiadomości na 1 dzień.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Ustawiono zegar znikających wiadomości na 1 tydzień.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Ustawiono zegar znikających wiadomości na 4 tygodnie.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Ustawiono zegar znikających wiadomości na czas %1$@ minut.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Ustawiono zegar znikających wiadomości na czas %1$@ godzin.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Ustawiono zegar znikających wiadomości na czas %1$@ dni.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Ustawiono zegar znikających wiadomości na czas %1$@ tygodni.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Ochrona czatu wyłączona.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Ochrona czatu włączona.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Zmieniono nazwę grupy z \"%1$@\" na \"%2$@\" przeze mnie.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Zmieniono nazwę grupy z \"%1$@\" na \"%2$@\" przez %3$@.";
+"group_image_changed_by_you" = "Zmieniono obraz grupy przeze mnie.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Zmieniono obraz grupy przez %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Dodano członka %1$@ przeze mnie.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Dodano członka %1$@ przez %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Usunięto członka %1$@ przeze mnie.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Usunięto członka %1$@ przez %2$@.";
+"group_image_deleted_by_you" = "Usunięto obraz grupy przeze mnie.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Usunięto obraz grupy przez %1$@.";
+"ephemeral_timer_disabled_by_you" = "Wyłączono zegar znikających wiadomości przeze mnie.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Wyłączono zegar znikających wiadomości przez %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Ustawiono zegar znikających wiadomości na %1$@ s przeze mnie.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Ustawiono zegar znikających wiadomości na %1$@ s przez %2$@.";
+"ephemeral_timer_1_minute_by_you" = "Ustawiono zegar znikających wiadomości na 1 minutę przeze mnie.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Ustawiono zegar znikających wiadomości na 1 minutę przez %1$@.";
+"ephemeral_timer_1_hour_by_you" = "Ustawiono zegar znikających wiadomości na 1 godzinę przeze mnie.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Ustawiono zegar znikających wiadomości na 1 godzinę przez %1$@.";
+"ephemeral_timer_1_day_by_you" = "Ustawiono zegar znikających wiadomości na 1 dzień przeze mnie.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Ustawiono zegar znikających wiadomości na 1 dzień przez %1$@.";
+"ephemeral_timer_1_week_by_you" = "Ustawiono zegar znikających wiadomości na 1 tydzień przeze mnie.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Ustawiono zegar znikających wiadomości na 1 tydzień przez %1$@.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Ustawiono zegar znikających wiadomości na czas %1$@ minut przeze mnie.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Ustawiono zegar znikających wiadomości na czas %1$@ minut przez %2$@.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Ustawiono zegar znikających wiadomości na czas %1$@ godzin przeze mnie.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Ustawiono zegar znikających wiadomości na czas %1$@ godzin przez %2$@.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Ustawiono zegar znikających wiadomości na czas %1$@ dni przeze mnie.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Ustawiono zegar znikających wiadomości na czas %1$@ dni przez %2$@.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Ustawiono zegar znikających wiadomości na czas %1$@ tygodni przeze mnie.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Ustawiono zegar znikających wiadomości na czas %1$@ tygodni przez %2$@.";
+"protection_enabled_by_you" = "Ochrona czatu włączona przeze mnie.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Ochrona czatu włączona przez %1$@.";
+"protection_disabled_by_you" = "Ochrona czatu wyłączona przeze mnie.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Ochrona czatu wyłączona przez %1$@.";
 
 "devicemsg_self_deleted" = "Usunięto czat „Zapisane wiadomości”.\n\nℹ️ Aby ponownie użyć funkcji „Zapisane wiadomości”, utwórz nowy czat ze sobą.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%

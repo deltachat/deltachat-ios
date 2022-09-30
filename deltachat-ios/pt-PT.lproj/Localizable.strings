@@ -276,25 +276,27 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Imagem do grupo modificada.";
-// deprecated
-"systemmsg_group_image_deleted" = "Imagem do grupo apagada.";
-// deprecated
-"systemmsg_member_added" = "Membro %1$@ adicionado.";
-// deprecated
-"systemmsg_member_removed" = "Membro %1$@ removido.";
-// deprecated
-"systemmsg_group_left" = "Saíu do grupo.";
 "systemmsg_read_receipt_subject" = "Ler recibos";
 "systemmsg_read_receipt_body" = "Este é um recibo de confirmação de leitura da mensagem \"%1$@\".\n\nEsta mensagem foi exibida no dispositivo do destinatário, não necessariamente que o conteúdo foi lido.";
 "systemmsg_cannot_decrypt" = "Esta mensagem não pode ser descriptada.\n\n • Talvez seja útil simplesmente responder a esta mensagem e solicitar que o remetente envie a mensagem novamente.\n\n • Caso você tenha re-instalado o Delta Chat ou outro programa de e-mail neste ou noutro dispositivo poderá querer enviar uma mensagem de configuração Autocrypt do dispositvo.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ por mim.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ por %2$@.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por %3$@.";
+"group_image_changed_by_you" = "Imagem do grupo modificada por mim.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Imagem do grupo modificada por %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Membro %1$@ adicionado por mim.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Membro %1$@ adicionado por %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Membro %1$@ removido por mim.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Membro %1$@ removido por %2$@.";
+"group_image_deleted_by_you" = "Imagem do grupo apagada por mim.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Imagem do grupo apagada por %1$@.";
 "qrscan_title" = "Fazer scan do código QR";
 "qrscan_hint" = "Coloque sua câmera sobre o código QR";
 "qrscan_ask_join_group" = "Quer se juntar-se ao grupo \"%1$@\"?";
@@ -379,3 +381,5 @@
 "menu.view.developer.open.log.folder" = "Abrir pasta de Log";
 "menu.view.developer.open.current.log.file" = "Abrir o aqrquio do log actual";
 "perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens mesmo que o Delta Chat esteja em segundo plano.";
+// device messages for updates
+

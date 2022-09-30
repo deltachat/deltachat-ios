@@ -655,56 +655,12 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Nombre de grupo cambiado de \"%1$@\" a \"%2$@\"";
-// deprecated
-"systemmsg_group_image_changed" = "Imagen de grupo cambiada.";
-// deprecated
-"systemmsg_group_image_deleted" = "Imagen de grupo eliminada.";
-// deprecated
-"systemmsg_member_added" = "Miembro %1$@ añadido.";
-// deprecated
-"systemmsg_member_removed" = "Miembro %1$@ eliminado.";
-// deprecated
-"systemmsg_group_left" = "Grupo abandonado.";
 "systemmsg_read_receipt_subject" = "Recibo de lectura";
 "systemmsg_read_receipt_body" = "El mensaje \"%1$@\" que enviaste se mostró en la pantalla del destinatario.\n\nEsto no garantiza que el contenido haya sido leído.";
 "systemmsg_cannot_decrypt" = "Este mensaje no puede ser descifrado.\n\n• Es posible que sea útil simplemente responderlo y pedirle al remitente que lo envíe nuevamente.\n\n• En caso de que haya reinstalado Delta Chat u otro programa de correo en este u otro dispositivo, puede que quiera enviar un Mensaje de Configuración de Autocrypt desde allí.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ por mi.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ por %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Remitente desconocido. Mira \"info\" para más detalles.";
 "systemmsg_subject_for_new_contact" = "Mensaje de %1$@";
 "systemmsg_failed_sending_to" = "Falla en enviar el mensaje a %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Temporizador de mensajes borrados desactivado.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Temporizador del borrado de mensajes dispuesto en %1$@ s.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Temporizador de borrado de mensaje dispuesto en 1 minuto.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Temporizador de borrado de mensaje dispuesto en 1 hora.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Temporizador de borrado de mensaje dispuesto en 1 día.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Temporizador de borrado de mensaje dispuesto en 1 semana.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Temporizador de borrado de mensaje dispuesto en 4 semanas.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Temporizador de mensajes borrados dispuesto en %1$@ minutos.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Temporizador de mensajes borrados dispuesto a %1$@ horas.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Temporizador de mensajes borrados dispuestos en %1$@ días.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Temporizador de mensajes borrados dispuestos para %1$@ semanas.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Protección de chat desactivada.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Protección de chat activada.";
-
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Cambiaste el nombre del grupo de \"%1$@\" a \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -980,5 +936,4 @@
 
 
 // device messages for updates
-"update_1_30" = "Más rápido. Más estable.\n\nPara las versiones 1.30, nos enfocamos en la velocidad y la confiabilidad, solucionando docenas de errores. Consulte nuestros registros de cambios para ver si su favorito está arreglado: https://get.delta.chat/#changelogs 🚀";
 

@@ -611,55 +611,71 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Името на групата е променено от \"%1$@\" на \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Изображението на групата е променено.";
-// deprecated
-"systemmsg_group_image_deleted" = "Изображението на глупата е изтрито.";
-// deprecated
-"systemmsg_member_added" = "Добавен е членът %1$@";
-// deprecated
-"systemmsg_member_removed" = "Членът %1$@ е премахнат";
-// deprecated
-"systemmsg_group_left" = "Напуснахте групата.";
 "systemmsg_read_receipt_subject" = "Съобщението е отворено";
 "systemmsg_read_receipt_body" = "Съобщението \"%1$@\", което изпратихте, беше показано на екрана на получателя.\n\nТова не е гаранция, че съдържанието му е прочетено.";
 "systemmsg_cannot_decrypt" = "Това съобщение не може да бъде декриптирано.\n\n• Вероятно вече имате средство за помощ - може просто да отговорите на това съобщение и да поискате от подателя да го изпрати отново.\n\n• В случай, че сте преинсталирали Delta Chat или друга програма за електронна поща на това или друго устройство, бихте могли да изпратите съобщение за настройка на Autocrypt от там.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ от мен";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ от %2$@";
 "systemmsg_unknown_sender_for_chat" = "Неизвестен подател за този чат. Вижте \"информация\" за повече подробности.";
 "systemmsg_subject_for_new_contact" = "Съобщение от %1$@";
 "systemmsg_failed_sending_to" = "Неуспешно изпращане на съобщение до %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Таймерът на изчезващите съобщения е деактивиран.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Таймерът на изчезващите съобщение е установен на %1$@сек.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Таймерът на изчезващите съобщения е установен на 1 минута.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Таймерът на изчезващите съобщения е установен на 1 час.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Таймерът на изчезващите съобщения е установен на 1 ден.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Таймерът на изчезващите съобщения е установен на 1 седмица.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Таймерът на изчезващите съобщения е установен на 4 седмици.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Таймерът на изчезващите съобщения е установен на %1$@ минути.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Таймерът на изчезващите съобщения е установен на %1$@ часа.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Таймерът на изчезващите съобщения е установен на %1$@ дни.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Таймерът на изчезващите съобщения е установен на %1$@ седмици.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Защитата на чата е изключена.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Защитата на чата е включена.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Името на групата е променено от \"%1$@\" на \"%2$@\" от мен";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Името на групата е променено от \"%1$@\" на \"%2$@\" от %3$@";
+"group_image_changed_by_you" = "Изображението на групата е променено от мен";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Изображението на групата е променено от %1$@";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Добавен е членът %1$@ от мен";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Добавен е членът %1$@ от %2$@";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Членът %1$@ е премахнат от мен";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Членът %1$@ е премахнат от %2$@";
+"group_image_deleted_by_you" = "Изображението на глупата е изтрито от мен";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Изображението на глупата е изтрито от %1$@";
+"ephemeral_timer_disabled_by_you" = "Таймерът на изчезващите съобщения е деактивиран от мен";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Таймерът на изчезващите съобщения е деактивиран от %1$@";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Таймерът на изчезващите съобщение е установен на %1$@сек от мен";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Таймерът на изчезващите съобщение е установен на %1$@сек от %2$@";
+"ephemeral_timer_1_minute_by_you" = "Таймерът на изчезващите съобщения е установен на 1 минута от мен";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Таймерът на изчезващите съобщения е установен на 1 минута от %1$@";
+"ephemeral_timer_1_hour_by_you" = "Таймерът на изчезващите съобщения е установен на 1 час от мен";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Таймерът на изчезващите съобщения е установен на 1 час от %1$@";
+"ephemeral_timer_1_day_by_you" = "Таймерът на изчезващите съобщения е установен на 1 ден от мен";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Таймерът на изчезващите съобщения е установен на 1 ден от %1$@";
+"ephemeral_timer_1_week_by_you" = "Таймерът на изчезващите съобщения е установен на 1 седмица от мен";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Таймерът на изчезващите съобщения е установен на 1 седмица от %1$@";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Таймерът на изчезващите съобщения е установен на %1$@ минути от мен";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Таймерът на изчезващите съобщения е установен на %1$@ минути от %2$@";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Таймерът на изчезващите съобщения е установен на %1$@ часа от мен";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Таймерът на изчезващите съобщения е установен на %1$@ часа от %2$@";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Таймерът на изчезващите съобщения е установен на %1$@ дни от мен";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Таймерът на изчезващите съобщения е установен на %1$@ дни от %2$@";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Таймерът на изчезващите съобщения е установен на %1$@ седмици от мен";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Таймерът на изчезващите съобщения е установен на %1$@ седмици от %2$@";
+"protection_enabled_by_you" = "Защитата на чата е включена от мен";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Защитата на чата е включена от %1$@";
+"protection_disabled_by_you" = "Защитата на чата е изключена от мен";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Защитата на чата е изключена от %1$@";
 
 "devicemsg_self_deleted" = "Изтрихте чата \"Записани съобщения\".\n\nℹ️ За да използвате възможността \"Записани съобщения\" отново, създайте нов чат със себе си.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -826,4 +842,6 @@
 "perm_enable_bg_reminder_title" = "Докоснете тук, за да получавате съобщения, докато Delta Chat е във фонов режим.";
 "perm_enable_bg_already_done" = "Вече разрешихте Delta Chat да получава съобщения във фонов режим.\n\nАко съобщенията все още не пристигат във фонов режим, моля проверете Вашите системни настройки.";
 
+
+// device messages for updates
 

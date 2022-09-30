@@ -542,55 +542,71 @@
 
 
 // system messages
-// deprecated
-"systemmsg_group_name_changed" = "Gruppenavn ændret fra \"%1$@\" til \"%2$@\".";
-// deprecated
-"systemmsg_group_image_changed" = "Gruppebillede ændret.";
-// deprecated
-"systemmsg_group_image_deleted" = "Gruppebillede slettet.";
-// deprecated
-"systemmsg_member_added" = "Medlem %1$@ tilføjet.";
-// deprecated
-"systemmsg_member_removed" = "Medlem %1$@ fjernet.";
-// deprecated
-"systemmsg_group_left" = "Gruppe forladt.";
 "systemmsg_read_receipt_subject" = "Besked åbnet";
 "systemmsg_read_receipt_body" = "Beskeden \"%1$@\" du har sendt blev vist på modtagerens skærm.\n\nDette er ikke en garanti for at indholdet blev læst.";
 "systemmsg_cannot_decrypt" = "Denne besked kan ikke dekrypteres.\n\n• Det kan måske hjælpe at svare på beskeden og bede afsender sende beskeden igen.\n\n• I tilfælde at Delta Chat eller andet e-mail program på denne enhed eller en anden er blevet gen-installeret bør der sendes en Autocrypt opsætning besked derfra.";
-// deprecated
-"systemmsg_action_by_me" = "%1$@ af mig.";
-// deprecated
-"systemmsg_action_by_user" = "%1$@ af %2$@.";
 "systemmsg_unknown_sender_for_chat" = "Ukent afsender af denne chat. Se \'info\' for flere detaljer.";
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";
 "systemmsg_failed_sending_to" = "Mislykket forsøg på afsendelse af besked til %1$@.";
-
-// deprecated
-"systemmsg_ephemeral_timer_disabled" = "Tidsudløb for beskeder er deaktiveret.";
-// deprecated
-"systemmsg_ephemeral_timer_enabled" = "Tidsudløb for beskeder sat til %1$@ s.";
-// deprecated
-"systemmsg_ephemeral_timer_minute" = "Tidsudløb for beskeder sat til 1 minut.";
-// deprecated
-"systemmsg_ephemeral_timer_hour" = "Tidsudløb for beskeder sat til 1 time.";
-// deprecated
-"systemmsg_ephemeral_timer_day" = "Tidsudløb for beskeder sat til 1 dag.";
-// deprecated
-"systemmsg_ephemeral_timer_week" = "Tidsudløb for beskeder sat til 1 uge.";
-// deprecated
-"systemmsg_ephemeral_timer_four_weeks" = "Tidsudløb for beskeder sat til 4 uger.";
-// deprecated
-"systemmsg_ephemeral_timer_minutes" = "Beskeder sat til at udløbe efter %1$@ minutter.";
-// deprecated
-"systemmsg_ephemeral_timer_hours" = "Beskeder sat til at udløbe efter %1$@ timer.";
-// deprecated
-"systemmsg_ephemeral_timer_days" = "Beskeder sat til at udløbe efter %1$@ dage.";
-// deprecated
-"systemmsg_ephemeral_timer_weeks" = "Beskeder sat til at udløbe efter %1$@ uger.";
-// deprecated
-"systemmsg_chat_protection_disabled" = "Chat-beskyttelse slået fra.";
-// deprecated
-"systemmsg_chat_protection_enabled" = "Chat-beskyttelse sluttet til.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Gruppenavn ændret fra \"%1$@\" til \"%2$@\" af mig.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Gruppenavn ændret fra \"%1$@\" til \"%2$@\" af %3$@.";
+"group_image_changed_by_you" = "Gruppebillede ændret af mig.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Gruppebillede ændret af %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Medlem %1$@ tilføjet af mig.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Medlem %1$@ tilføjet af %2$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Medlem %1$@ fjernet af mig.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Medlem %1$@ fjernet af %2$@.";
+"group_image_deleted_by_you" = "Gruppebillede slettet af mig.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Gruppebillede slettet af %1$@.";
+"ephemeral_timer_disabled_by_you" = "Tidsudløb for beskeder er deaktiveret af mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Tidsudløb for beskeder er deaktiveret af %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Tidsudløb for beskeder sat til %1$@ s af mig.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Tidsudløb for beskeder sat til %1$@ s af %2$@.";
+"ephemeral_timer_1_minute_by_you" = "Tidsudløb for beskeder sat til 1 minut af mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Tidsudløb for beskeder sat til 1 minut af %1$@.";
+"ephemeral_timer_1_hour_by_you" = "Tidsudløb for beskeder sat til 1 time af mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Tidsudløb for beskeder sat til 1 time af %1$@.";
+"ephemeral_timer_1_day_by_you" = "Tidsudløb for beskeder sat til 1 dag af mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Tidsudløb for beskeder sat til 1 dag af %1$@.";
+"ephemeral_timer_1_week_by_you" = "Tidsudløb for beskeder sat til 1 uge af mig.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Tidsudløb for beskeder sat til 1 uge af %1$@.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Beskeder sat til at udløbe efter %1$@ minutter af mig.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Beskeder sat til at udløbe efter %1$@ minutter af %2$@.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Beskeder sat til at udløbe efter %1$@ timer af mig.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Beskeder sat til at udløbe efter %1$@ timer af %2$@.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Beskeder sat til at udløbe efter %1$@ dage af mig.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Beskeder sat til at udløbe efter %1$@ dage af %2$@.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Beskeder sat til at udløbe efter %1$@ uger af mig.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Beskeder sat til at udløbe efter %1$@ uger af %2$@.";
+"protection_enabled_by_you" = "Chat-beskyttelse sluttet til af mig.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Chat-beskyttelse sluttet til af %1$@.";
+"protection_disabled_by_you" = "Chat-beskyttelse slået fra af mig.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Chat-beskyttelse slået fra af %1$@.";
 
 // qr code stuff
 "qr_code" = "QR kode";
@@ -726,4 +742,6 @@
 "perm_enable_bg_reminder_title" = "Tryk her for at modtage beskeder når Delta Chat er i baggrunden.";
 "perm_enable_bg_already_done" = "Du har allerede tilladt Delta Chat at modtage beskeder i baggrunden.\n\nHvis beskeder ikke ankommer i baggrunden, undersøg dine systemindstillinger.";
 
+
+// device messages for updates
 
