@@ -536,9 +536,9 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
     }
     
     lazy var accountButtonAvatar: InitialsBadge = {
-        let badge = InitialsBadge(size: 40)
-        badge.setColor(UIColor.lightGray)
-        badge.isAccessibilityElement = false
+        let badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("switch_account"))
+        badge.setLabelFont(UIFont.systemFont(ofSize: 14))
+        badge.accessibilityTraits = .button
         return badge
     }()
     
@@ -551,23 +551,14 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
 
 
     private lazy var accountButton: UIBarButtonItem = {
-        // todo make pretty
-        
-        let rect = CGRect(x: 0, y: 0, width: 70, height: 50)
-        let myView = UIView(frame: rect)
-        
-        myView.addSubview(accountButtonAvatar)
-        myView.addSubview(accountButtonUnreadMessageCounter)
-        
-        // this line is only to visualize the rect bounds for visual debugging
-        // myView.backgroundColor = .blue
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 37, height: 37))
+        containerView.addSubview(accountButtonAvatar)
+        containerView.addSubview(accountButtonUnreadMessageCounter)
         
         let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(showSwitchAccount))
-        myView.addGestureRecognizer(tapGestureRecognizer)
+        containerView.addGestureRecognizer(tapGestureRecognizer)
         
-        
-        let button = UIBarButtonItem(customView: myView)
-        return button
+        return UIBarButtonItem(customView: containerView)
     }()
     
     private func updateAccountButton() {

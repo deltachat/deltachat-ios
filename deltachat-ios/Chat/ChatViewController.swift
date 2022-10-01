@@ -1022,6 +1022,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             self.navigationItem.setLeftBarButton(nil, animated: true)
         }
 
+
         if let image = dcChat.profileImage {
             initialsBadge.setImage(image)
         } else {
