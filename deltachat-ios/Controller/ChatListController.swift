@@ -549,7 +549,6 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
         return view
     }()
 
-
     private lazy var accountButton: UIBarButtonItem = {
         let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 37, height: 37))
         containerView.addSubview(accountButtonAvatar)
@@ -563,7 +562,6 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
     
     private func updateAccountButton() {
         let unreadCount = getUnreadCounterOfOtherAccounts()
-        // accountButton.title = "Account" + (unreadCount == 0 ? "" : " [" + String(unreadCount) + "]")
         accountButtonUnreadMessageCounter.setCount(unreadCount)
         accountButtonUnreadMessageCounter.isHidden = unreadCount == 0
         
@@ -573,8 +571,6 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
         if let image = contact.profileImage {
             accountButtonAvatar.setImage(image)
         }
-        
-        
     }
     
     private func getUnreadCounterOfOtherAccounts() -> Int {
