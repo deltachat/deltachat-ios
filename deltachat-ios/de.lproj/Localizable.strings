@@ -689,9 +689,9 @@
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_disabled_by_other" = "Verschwindende Nachrichten ausgeschaltet von %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
-"ephemeral_timer_seconds_by_you" = "Sie haben die Ablaufzeit verschwindender Nachrichten auf %1$@ s gesetzt.";
+"ephemeral_timer_seconds_by_you" = "Sie haben die Ablaufzeit verschwindender Nachrichten auf %1$@ Sekunden gesetzt.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
-"ephemeral_timer_seconds_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ s gesetzt von %2$@.";
+"ephemeral_timer_seconds_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Sekunden gesetzt von %2$@.";
 "ephemeral_timer_1_minute_by_you" = "Sie haben die Ablaufzeit verschwindender Nachrichten auf 1 Minute gesetzt.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_1_minute_by_other" = "Ablaufzeit verschwindender Nachrichten auf 1 MInute gesetzt von %1$@.";
