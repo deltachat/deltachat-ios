@@ -48,13 +48,13 @@ class ContactDetailHeader: UIView {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.layer.cornerRadius = 16
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.layer.cornerRadius = 20
         button.layer.borderColor = DcColors.colorDisabled.cgColor
         button.layer.borderWidth = 1
         button.layer.masksToBounds = true
-        button.constraintHeightTo(32).isActive = true
-        button.constraintWidthTo(32).isActive = true
+        button.constraintHeightTo(40).isActive = true
+        button.constraintWidthTo(40).isActive = true
         return button
     }()
 
@@ -64,12 +64,16 @@ class ContactDetailHeader: UIView {
         button.addTarget(self, action: #selector(muteBtnTapped), for: .touchUpInside)
         button.backgroundColor = DcColors.profileCellBackgroundColor
         button.setImage(UIImage(named: "volume_on")?.sd_tintedImage(with: .systemBlue), for: .normal)
-        button.layer.cornerRadius = 16
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.layer.cornerRadius = 20
         button.layer.borderColor = DcColors.colorDisabled.cgColor
         button.layer.borderWidth = 1
         button.layer.masksToBounds = true
-        button.constraintHeightTo(32).isActive = true
-        button.constraintWidthTo(32).isActive = true
+        button.constraintHeightTo(40).isActive = true
+        button.constraintWidthTo(40).isActive = true
         return button
     }()
 
