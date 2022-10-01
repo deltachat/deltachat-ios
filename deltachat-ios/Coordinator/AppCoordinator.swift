@@ -235,12 +235,17 @@ class AppCoordinator {
     }
 
     func resetTabBarRootViewControllers() {
+        // call `willMove()` for the root view controllers of each tab, after popping to root.
+        // this is not always done by `setViewControllers()` the documentation is vague on this point:
+        // <https://developer.apple.com/documentation/uikit/uitabbarcontroller/1621177-setviewcontrollers>
+        // (calling `willMove()` is needed eg. to remove observers - otherwise we have a memory leak)
         self.tabBarController.viewControllers?.forEach { controller in
             if let navController = controller as? UINavigationController {
                 navController.popToRootViewController(animated: false)
                 navController.viewControllers[0].willMove(toParent: nil)
             }
         }
+
         self.tabBarController.setViewControllers([createQrNavigationController(),
                                                   createChatsNavigationController(),
                                                   createSettingsNavigationController()], animated: false)
