@@ -3,6 +3,7 @@ import UserNotifications
 
 public let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
 public let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
+public let dcNotificationIncomingAnyAccount = Notification.Name(rawValue: "EventIncomingMsgAnyAccount")
 public let dcNotificationImexProgress = Notification.Name(rawValue: "dcNotificationImexProgress")
 public let dcNotificationConfigureProgress = Notification.Name(rawValue: "MrEventConfigureProgress")
 public let dcNotificationSecureInviterProgress = Notification.Name(rawValue: "MrEventSecureInviterProgress")
@@ -152,10 +153,17 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_INCOMING_MSG:
+            let nc = NotificationCenter.default
+            DispatchQueue.main.async {
+                nc.post(name: dcNotificationIncomingAnyAccount,
+                        object: nil,
+                        userInfo: nil)
+            }
+            
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
-            let nc = NotificationCenter.default
+            
             let userInfo = [
                 "message_id": Int(data2),
                 "chat_id": Int(data1),
