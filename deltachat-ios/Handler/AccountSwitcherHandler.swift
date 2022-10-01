@@ -1,11 +1,3 @@
-//
-//  AccountSwitcherHandler.swift
-//  deltachat-ios
-//
-//  Created by bb on 30.09.22.
-//  Copyright © 2022 Jonas Reinsch. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import DcCore
