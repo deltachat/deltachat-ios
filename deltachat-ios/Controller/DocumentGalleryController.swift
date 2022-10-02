@@ -55,12 +55,12 @@ class DocumentGalleryController: UIViewController {
         return menu
     }()
 
-    init(context: DcContext, chatId: Int, fileMessageIds: [Int]) {
+    init(context: DcContext, chatId: Int, fileMessageIds: [Int], hasWebxdc: Bool) {
         self.dcContext = context
         self.fileMessageIds = fileMessageIds
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
-        self.title = String.localized("files_and_webxdx_apps")
+        self.title = String.localized(hasWebxdc ? "files_and_webxdx_apps" : "files")
     }
 
     required init?(coder: NSCoder) {

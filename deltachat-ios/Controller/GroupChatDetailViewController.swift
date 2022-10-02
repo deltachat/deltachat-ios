@@ -61,6 +61,10 @@ class GroupChatDetailViewController: UIViewController {
         )
     }
 
+    private lazy var hasWebxdc: Bool = {
+        return dcContext.hasWebxdc(chatId: chatId)
+    }()
+
     // stores contactIds
     private var groupMemberIds: [Int] = []
     
@@ -134,7 +138,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var documentsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("files_and_webxdx_apps")
+        cell.textLabel?.text = String.localized(hasWebxdc ? "files_and_webxdx_apps" : "files")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -422,7 +426,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func showDocuments() {
         let messageIds: [Int] = documentItemMessageIds.reversed()
-        let fileGalleryController = DocumentGalleryController(context: dcContext, chatId: chatId, fileMessageIds: messageIds)
+        let fileGalleryController = DocumentGalleryController(context: dcContext, chatId: chatId, fileMessageIds: messageIds, hasWebxdc: hasWebxdc)
         navigationController?.pushViewController(fileGalleryController, animated: true)    }
 
     private func showGallery() {
