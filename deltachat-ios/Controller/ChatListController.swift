@@ -105,12 +105,11 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
         // update messages - for new messages, do not reuse or modify strings but create new ones.
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
         let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-        msg.text = "1.32 Highlights: ✨\n\n"
-            +   "• Multi-select in chat list\n"
-            +   "• Reply privately\n"
-            +   "• Search in full message view\n"
-            +   "• Search in help"
-        dcContext.addDeviceMessage(label: "update_1_32m_ios", msg: msg)
+        msg.text = "Some 1.34 Highlights:\n\n"
+            + "🤗 Friendlier contact lists: Ordered by last seen and contacts seen within 10 minutes are marked by a dot 🟢\n\n"
+            + "🔘 New account selector atop of the chat list\n\n"
+            + "☝️ Drag'n'Drop: Eg. long tap an image in the system's gallery and navigate to the desired chat using a ✌️ second finger"
+        dcContext.addDeviceMessage(label: "update_1_34d_ios", msg: msg)
     }
 
     override func willMove(toParent parent: UIViewController?) {

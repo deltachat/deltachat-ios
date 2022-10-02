@@ -1776,13 +1776,13 @@
 				CODE_SIGN_ENTITLEMENTS = DcShare/DcShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 75;
+				CURRENT_PROJECT_VERSION = 76;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DcShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.32.0;
+				MARKETING_VERSION = 1.34.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcShare;
@@ -1801,13 +1801,13 @@
 				CODE_SIGN_ENTITLEMENTS = DcShare/DcShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 75;
+				CURRENT_PROJECT_VERSION = 76;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DcShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.32.0;
+				MARKETING_VERSION = 1.34.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcShare;
 				PRODUCT_NAME = "Delta Chat";
@@ -1941,7 +1941,7 @@
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 75;
+				CURRENT_PROJECT_VERSION = 76;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1958,7 +1958,7 @@
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
 				);
-				MARKETING_VERSION = 1.32.0;
+				MARKETING_VERSION = 1.34.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -2015,7 +2015,7 @@
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 75;
+				CURRENT_PROJECT_VERSION = 76;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -2032,7 +2032,7 @@
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
 				);
-				MARKETING_VERSION = 1.32.0;
+				MARKETING_VERSION = 1.34.0;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
