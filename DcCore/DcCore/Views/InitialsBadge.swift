@@ -40,7 +40,7 @@ public class InitialsBadge: UIView {
     private var recentlySeenView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = DcColors.checkmarkGreen
+        view.backgroundColor = DcColors.recentlySeenDot
         view.clipsToBounds = true
         view.isHidden = true
         return view
@@ -110,10 +110,10 @@ public class InitialsBadge: UIView {
                                   verifiedView.constraintAlignLeadingTo(self, paddingLeading: radius + verificationViewPadding),
                                   recentlySeenView.constraintAlignBottomTo(self),
                                   recentlySeenView.constraintAlignLeadingTo(self),
-                                  recentlySeenView.constraintHeightTo(radius / 2),
-                                  recentlySeenView.constraintWidthTo(radius / 2)
+                                  recentlySeenView.constraintHeightTo(radius * 0.6),
+                                  recentlySeenView.constraintWidthTo(radius * 0.6)
         ]
-        recentlySeenView.layer.cornerRadius = radius / 4
+        recentlySeenView.layer.cornerRadius = radius * 0.3
         addConstraints(imgViewConstraints)
     }
 

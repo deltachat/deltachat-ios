@@ -19,6 +19,7 @@ public struct DcColors {
     public static let profileCellBackgroundColor = UIColor.themeColor(light: white, dark: actionCellBackgroundDark)
     public static let chatBackgroundColor = UIColor.themeColor(light: .white, dark: .black)
     public static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))
+    public static let recentlySeenDot = UIColor(hexString: "34c759")
     public static let unreadBadge = UIColor(hexString: "3792fc")
     public static let defaultTextColor = UIColor.themeColor(light: .darkText, dark: .white)
     public static let grayTextColor = UIColor.themeColor(light: .darkGray, dark: coreDark05)
