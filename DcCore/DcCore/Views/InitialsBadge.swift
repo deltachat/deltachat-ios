@@ -2,7 +2,6 @@ import UIKit
 
 public class InitialsBadge: UIView {
 
-    private let verificationViewPadding: CGFloat = 2
     private let size: CGFloat
 
     var leadingImageAnchorConstraint: NSLayoutConstraint?
@@ -53,22 +52,11 @@ public class InitialsBadge: UIView {
         return imageViewContainer
     }()
 
-    public var cornerRadius: CGFloat {
-        get {
-            return layer.cornerRadius
-        }
-        set {
-            layer.cornerRadius = newValue
-            imageView.layer.cornerRadius = newValue
-        }
-    }
-
     public convenience init(name: String, color: UIColor, size: CGFloat, accessibilityLabel: String? = nil) {
         self.init(size: size, accessibilityLabel: accessibilityLabel)
         setName(name)
         setColor(color)
     }
-
 
     public convenience init (image: UIImage, size: CGFloat, accessibilityLabel: String? = nil) {
         self.init(size: size, accessibilityLabel: accessibilityLabel)
@@ -104,12 +92,12 @@ public class InitialsBadge: UIView {
 
         addSubview(verifiedView)
         addSubview(recentlySeenView)
-        let imgViewConstraints = [verifiedView.constraintAlignBottomTo(self, paddingBottom: -verificationViewPadding),
-                                  verifiedView.constraintAlignTrailingTo(self, paddingTrailing: -verificationViewPadding),
-                                  verifiedView.constraintAlignTopTo(self, paddingTop: radius + verificationViewPadding),
-                                  verifiedView.constraintAlignLeadingTo(self, paddingLeading: radius + verificationViewPadding),
+        let imgViewConstraints = [verifiedView.constraintAlignTopTo(self, paddingTop: radius * 0.15),
+                                  verifiedView.constraintAlignTrailingTo(self, paddingTrailing: radius * -0.1),
+                                  verifiedView.constraintHeightTo(radius * 0.8),
+                                  verifiedView.constraintWidthTo(radius * 0.8),
                                   recentlySeenView.constraintAlignBottomTo(self),
-                                  recentlySeenView.constraintAlignLeadingTo(self),
+                                  recentlySeenView.constraintAlignTrailingTo(self),
                                   recentlySeenView.constraintHeightTo(radius * 0.6),
                                   recentlySeenView.constraintWidthTo(radius * 0.6)
         ]
