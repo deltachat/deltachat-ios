@@ -272,6 +272,10 @@ public class DcContext {
         return messageIds
     }
 
+    public func hasWebxdc(chatId: Int) -> Bool {
+        return !getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).isEmpty
+    }
+
     @discardableResult
     public func createChatByContactId(contactId: Int) -> Int {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))

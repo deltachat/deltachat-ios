@@ -79,7 +79,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var documentsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("files_and_webxdx_apps")
+        cell.textLabel?.text = String.localized(viewModel.hasWebxdc ? "files_and_webxdx_apps" : "files")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -470,7 +470,7 @@ class ContactDetailViewController: UITableViewController {
 
     private func showDocuments() {
         let messageIds: [Int] = viewModel.documentItemMessageIds.reversed()
-        let fileGalleryController = DocumentGalleryController(context: viewModel.context, chatId: viewModel.chatId, fileMessageIds: messageIds)
+        let fileGalleryController = DocumentGalleryController(context: viewModel.context, chatId: viewModel.chatId, fileMessageIds: messageIds, hasWebxdc: viewModel.hasWebxdc)
         navigationController?.pushViewController(fileGalleryController, animated: true)
     }
 

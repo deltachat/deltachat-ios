@@ -135,6 +135,10 @@ class ContactDetailViewModel {
         )
     }
 
+    lazy var hasWebxdc: Bool = {
+        return context.hasWebxdc(chatId: chatId)
+    }()
+
     var numberOfSections: Int {
         return sections.count
     }
