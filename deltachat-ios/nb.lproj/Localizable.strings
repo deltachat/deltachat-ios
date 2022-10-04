@@ -396,5 +396,3 @@
 "autocrypt_key_transfer_desktop" = "Autocrypt-nøkkeloverføring";
 "initiate_key_transfer_desktop" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
 "export_backup_desktop" = "Eksporter sikkerhetskopi";
-// device messages for updates
-

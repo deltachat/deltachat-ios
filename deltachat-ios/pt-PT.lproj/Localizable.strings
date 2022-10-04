@@ -381,5 +381,3 @@
 "menu.view.developer.open.log.folder" = "Abrir pasta de Log";
 "menu.view.developer.open.current.log.file" = "Abrir o aqrquio do log actual";
 "perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens mesmo que o Delta Chat esteja em segundo plano.";
-// device messages for updates
-

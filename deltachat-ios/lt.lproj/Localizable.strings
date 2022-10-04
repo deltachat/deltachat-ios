@@ -156,6 +156,7 @@
 "menu_copy_link_to_clipboard" = "Kopijuoti nuorodą";
 "menu_copy_text_to_clipboard" = "Kopijuoti tekstą";
 "menu_copy_image_to_clipboard" = "Kopijuoti paveikslą";
+"menu_copy_email_to_clipboard" = "Kopijuoti el. paštą";
 "paste_from_clipboard" = "Įdėti iš iškarpinės";
 "menu_forward" = "Persiųsti žinutę";
 "menu_reply" = "Atsakyti į žinutę";
@@ -688,6 +689,4 @@
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";
 "perm_enable_bg_already_done" = "Jūs jau leidote Delta Chat gauti žinutes fone.\n\nJei žinutės vis tiek nepristatomos fone, patikrinkite taip pat savo sistemos nustatymus.";
 
-
-// device messages for updates
 
