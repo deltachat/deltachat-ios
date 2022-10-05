@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v1.34.0
+## v1.34.1
 2022-10
 
 * show the currently selected account in the chatlist;
@@ -24,6 +24,7 @@
   allowing easy access and integration
 * add a webxdc selector to the "Attach" menu (the paperclip in message view)
 * bigger avatar in message view title
+* larger, easier to tap search and mute buttons in profiles
 * fix: show gallery's "back" button on iOS 16
 * fix: mark "group image changed" as system message on receiver side
 * fix: improved error handling for account setup from QR code
