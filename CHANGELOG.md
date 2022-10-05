@@ -4,7 +4,7 @@
 2022-10
 
 * show the currently selected account in the chatlist;
-  a tap on it shows the new, improved account selector dialog
+  a tap on it shows the account selector dialog
 * show a "recently seen" dot on avatars if the contact was seen within ten minutes
 * order contact and members lists by "last seen"
 * support drag'n'drop to delta chat: eg. long tap an image from the system gallery
