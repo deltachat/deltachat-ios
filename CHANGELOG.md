@@ -75,7 +75,7 @@
 * message lines starting with `>` are sent as quotes to non-Delta-Chat clients
 * support IMAP ID extension that is required by some providers
 * disable gesture to close webxdc to avoid confusion with gestures inside webxdc
-* show webxdc app icon in quoted webxdc messages
+* show webxdc icon in quoted webxdc messages
 * info messages can be selected in multi-select
 * fix: make chat names always searchable
 * fix: do not reset database if backup cannot be decrypted
