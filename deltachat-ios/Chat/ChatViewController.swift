@@ -255,7 +255,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             title: String.localized("notify_reply_button"),
             imageName: "arrowshape.turn.up.left.fill",
             action: #selector(BaseMessageCell.messageReply),
-            onPerform: { indexPath in
+            onPerform: { [weak self] indexPath in
+                self?.keepKeyboard = true
                 DispatchQueue.main.async { [weak self] in
                     self?.replyToMessage(at: indexPath)
                 }
