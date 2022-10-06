@@ -544,6 +544,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
      }
 
     override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         if parent == nil {
             keyboardManager = nil
         }
