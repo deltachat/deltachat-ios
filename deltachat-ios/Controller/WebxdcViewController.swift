@@ -62,24 +62,37 @@ class WebxdcViewController: WebViewViewController {
         
         let script = """
         window.webxdc = (() => {
-          let setUpdateListenerPromise = null
           var log = (s)=>webkit.messageHandlers.log.postMessage(s);
         
           var update_listener = () => {};
 
-          window.__webxdcUpdate = async (lastSerial) => {
+          let should_run_again = false;
+          let running = false;
+          let lastSerial = 0;
+          window.__webxdcUpdate = async () => {
+            if (running) {
+                should_run_again = true
+                return
+            }
+            if (should_run_again) {
+                should_run_again = false
+            }
+            running = true;
             try {
-                const updates = await fetch("webxdc-update.json?"+lastSerial).then((response) => response.json())
+                var updates = await fetch("webxdc-update.json?"+lastSerial).then((response) => response.json())
                 updates.forEach((update) => {
                   update_listener(update);
+                  if (lastSerial < update["max_serial"]){
+                    lastSerial = update["max_serial"]
+                  }
                 });
             } catch (e) {
                 log("json error: "+ e.message)
             } finally {
-              if (setUpdateListenerPromise) {
-                 setUpdateListenerPromise()
-                 setUpdateListenerPromise = null
-              }
+                running = false;
+                if (should_run_again) {
+                    window.__webxdcUpdate()
+                }
             }
           }
 
@@ -90,11 +103,7 @@ class WebxdcViewController: WebViewViewController {
         
             setUpdateListener: (cb, serial) => {
                 update_listener = cb
-                const promise = new Promise((res, _rej) => {
-                   setUpdateListenerPromise = res
-                })
-                webkit.messageHandlers.setUpdateListener.postMessage(typeof serial === "undefined" ? 0 : parseInt(serial));
-                return promise
+                return window.__webxdcUpdate()
             },
 
             getAllUpdates: () => {
@@ -266,18 +275,8 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
-    var lastSerial: Int?
     private func updateWebxdc() {
-        if let lastSerial = lastSerial {
-            let statusUpdates = dcContext.getWebxdcStatusUpdates(msgId: messageId, lastKnownSerial: lastSerial)
-            if let data: Data = statusUpdates.data(using: .utf8),
-               let array = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [Any],
-               let first = array.first as? [String: Any],
-               let maxSerial = first["max_serial"] as? Int {
-                self.lastSerial = maxSerial
-            }
-            webView.evaluateJavaScript("window.__webxdcUpdate(\(String(lastSerial)))", completionHandler: nil)
-        }
+        webView.evaluateJavaScript("window.__webxdcUpdate()", completionHandler: nil)
     }
 
     @objc private func moreButtonPressed() {
@@ -336,14 +335,6 @@ extension WebxdcViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let handler = WebxdcHandler(rawValue: message.name)
         switch handler {
-        case .setUpdateListener:
-            guard let lastKnownSerial = message.body as? Int else {
-                logger.error("could not convert param \(message.body) to int")
-                return
-            }
-            lastSerial = lastKnownSerial
-            updateWebxdc()
-            
         case .log:
             guard let msg = message.body as? String else {
                 logger.error("could not convert param \(message.body) to string")
