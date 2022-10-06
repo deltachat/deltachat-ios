@@ -392,9 +392,28 @@ extension WebxdcViewController: WKURLSchemeHandler {
                 data = dcMsg.getWebxdcBlob(filename: file)
             }
             let mimeType = DcUtils.getMimeTypeForPath(path: file)
-            let response = URLResponse(url: url, mimeType: mimeType, expectedContentLength: data.count, textEncodingName: nil)
-            
-            urlSchemeTask.didReceive(response)
+            if !data.isEmpty {
+                urlSchemeTask.didReceive(HTTPURLResponse(
+                    url: url,
+                    statusCode: 200,
+                    httpVersion: "HTTP/1.1",
+                    headerFields: [
+                        "Content-Type": mimeType,
+                        "Content-Length": "\(data.count)"
+                    ]
+                )!)
+            } else {
+                // error response if data is empty
+                urlSchemeTask.didReceive(HTTPURLResponse(
+                    url: url,
+                    statusCode: 404,
+                    httpVersion: "HTTP/1.1",
+                    headerFields: [
+                        "Content-Type": mimeType,
+                        "Content-Length": "\(data.count)"
+                    ]
+                )!)
+            }
             urlSchemeTask.didReceive(data)
             urlSchemeTask.didFinish()
         } else {
