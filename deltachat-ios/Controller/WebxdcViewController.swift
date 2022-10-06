@@ -55,6 +55,11 @@ class WebxdcViewController: WebViewViewController {
     """
     
     lazy var webxdcbridge: String = {
+        let addr = dcContext.addr?
+            .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let displayname = (dcContext.displayname ?? dcContext.addr)?
+            .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        
         let script = """
         window.webxdc = (() => {
           let setUpdateListenerPromise = null
@@ -79,9 +84,9 @@ class WebxdcViewController: WebViewViewController {
           }
 
           return {
-            selfAddr: atob("\((dcContext.addr ?? "unknown").toBase64())"),
+            selfAddr: decodeURI("\((addr ?? "unknown"))"),
         
-            selfName: atob("\((dcContext.displayname ?? dcContext.addr ?? "unknown").toBase64())"),
+            selfName: decodeURI("\((displayname ?? "unknown"))"),
         
             setUpdateListener: (cb, serial) => {
                 update_listener = cb
