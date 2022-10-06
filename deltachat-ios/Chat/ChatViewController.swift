@@ -535,16 +535,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         if parent == nil {
-            // logger.debug("chat observer: remove")
+            logger.debug(">>> ChatViewController - chat observer: remove")
             removeObservers()
             draft.save(context: dcContext)
         } else {
-            // logger.debug("chat observer: setup")
+            logger.debug(">>> ChatViewController - chat observer: setup")
             setupObservers()
         }
      }
 
     override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         if parent == nil {
             keyboardManager = nil
         }
@@ -559,6 +560,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         ) { [weak self] notification in
             guard let self = self else { return }
             if let ui = notification.userInfo {
+                logger.debug(">>> msgChangedObserver: \(String(describing: ui["message_id"]))")
                 if self.dcChat.canSend, let id = ui["message_id"] as? Int, id > 0 {
                     let msg = self.dcContext.getMessage(id: id)
                     if msg.isInfo,
@@ -584,10 +586,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         ) { [weak self] notification in
             guard let self = self else { return }
             if let ui = notification.userInfo {
+                logger.debug(">>> incomingMsgObserver: \(String(describing: ui["chat_id"])) \(String(describing: ui["messageId"]))")
                 if self.chatId == ui["chat_id"] as? Int {
                     if let id = ui["message_id"] as? Int {
                         if id > 0 {
                             self.insertMessage(self.dcContext.getMessage(id: id))
+                        } else {
+                            logger.debug(">>> messageId \(id) is not > 0, message not inserted")
                         }
                     }
                     self.updateTitle()
@@ -1644,6 +1649,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             // new outgoing message
             if msg.state != DC_STATE_OUT_DRAFT,
                msg.chatId == chatId {
+                logger.debug(">>> updateMessage: outgoing message \(msg.id)")
                 if let newMsgMarkerIndex = messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
                     messageIds.remove(at: newMsgMarkerIndex)
                 }
@@ -1653,11 +1659,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 // webxdc draft got updated
                 draft.draftMsg = msg
                 configureDraftArea(draft: draft, animated: false)
+            } else {
+                logger.debug(">>> updateMessage: unhandled message \(msg.id) - msg.chatId: \(msg.chatId) vs. chatId: \(chatId) - msg.state: \(msg.state)")
             }
         }
     }
 
     func insertMessage(_ message: DcMsg) {
+        logger.debug(">>> insertMessage \(message.id)")
         markSeenMessage(id: message.id)
         let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
         messageIds.append(message.id)
