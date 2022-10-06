@@ -67,9 +67,9 @@ class WebxdcViewController: WebViewViewController {
         
           var update_listener = () => {};
 
-          window.__webxdcUpdate = (updateString) => {
+          window.__webxdcUpdate = async (lastSerial) => {
             try {
-                var updates = JSON.parse(updateString);
+                const updates = await fetch("webxdc-update.json?"+lastSerial).then((response) => response.json())
                 updates.forEach((update) => {
                   update_listener(update);
                 });
@@ -276,7 +276,7 @@ class WebxdcViewController: WebViewViewController {
                let maxSerial = first["max_serial"] as? Int {
                 self.lastSerial = maxSerial
             }
-            webView.evaluateJavaScript("window.__webxdcUpdate(atob(\"\(statusUpdates.toBase64())\"))", completionHandler: nil)
+            webView.evaluateJavaScript("window.__webxdcUpdate(\(String(lastSerial)))", completionHandler: nil)
         }
     }
 
@@ -371,6 +371,18 @@ extension WebxdcViewController: WKScriptMessageHandler {
 extension WebxdcViewController: WKURLSchemeHandler {
     func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
         if let url = urlSchemeTask.request.url, let scheme = url.scheme, scheme == INTERNALSCHEMA {
+            if url.path == "/webxdc-update.json" || url.path == "webxdc-update.json" {
+                let lastKnownSerial = Int(url.query ?? "0") ?? 0
+                let data = Data(
+                    dcContext.getWebxdcStatusUpdates(msgId: messageId, lastKnownSerial: lastKnownSerial).utf8)
+                let response = URLResponse(url: url, mimeType: "application/json", expectedContentLength: data.count, textEncodingName: "utf-8")
+                
+                urlSchemeTask.didReceive(response)
+                urlSchemeTask.didReceive(data)
+                urlSchemeTask.didFinish()
+                return
+            }
+
             let file = url.path
             let dcMsg = dcContext.getMessage(id: messageId)
             var data: Data
