@@ -64,6 +64,13 @@ class ShareViewController: SLComposeServiceViewController {
         return imageView
     }()
 
+    lazy var initialsBadge: InitialsBadge = {
+        let view = InitialsBadge(name: "", color: UIColor.clear, size: 28)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -79,9 +86,6 @@ class ShareViewController: SLComposeServiceViewController {
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
 
-    }
-
-    override func presentationAnimationDidFinish() {
         dcAccounts.logger = logger
         dcAccounts.openDatabase()
         let accountIds = dcAccounts.getAll()
@@ -129,18 +133,23 @@ class ShareViewController: SLComposeServiceViewController {
             logger.debug("selected chatID: \(String(describing: selectedChatId))")
         }
 
+        let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
+        let title = dcContext.displayname ?? String.localized("pref_your_name")
+        initialsBadge.setName(title)
+        initialsBadge.setColor(contact.color)
+        if let image = contact.profileImage {
+            initialsBadge.setImage(image)
+        }
+
         guard let chatId = selectedChatId else {
             cancel()
             return
         }
-
         selectedChat = dcContext.getChat(chatId: chatId)
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
         }
-        reloadConfigurationItems()
-        validateContent()
     }
 
     override func loadPreviewView() -> UIView! {
@@ -160,6 +169,15 @@ class ShareViewController: SLComposeServiceViewController {
             target: self,
             action: #selector(appendPostTapped))
         item.rightBarButtonItem? = button
+
+        let cancelButton = UIBarButtonItem(
+            title: String.localized("cancel"),
+            style: .done,
+            target: self,
+            action: #selector(onCancelPressed))
+
+        let avatarItem = UIBarButtonItem(customView: initialsBadge)
+        item.leftBarButtonItems = [avatarItem, cancelButton]
     }
 
     /// Invoked when the user wants to post.
@@ -211,6 +229,10 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func didSelectCancel() {
         quit()
+    }
+
+    @objc func onCancelPressed() {
+        cancel()
     }
 }
 
