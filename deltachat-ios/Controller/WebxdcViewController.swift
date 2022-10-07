@@ -74,12 +74,10 @@ class WebxdcViewController: WebViewViewController {
                 should_run_again = true
                 return
             }
-            if (should_run_again) {
-                should_run_again = false
-            }
+            should_run_again = false
             running = true;
             try {
-                var updates = await fetch("webxdc-update.json?"+lastSerial).then((response) => response.json())
+                const updates = await fetch("webxdc-update.json?"+lastSerial).then((response) => response.json())
                 updates.forEach((update) => {
                   update_listener(update);
                   if (lastSerial < update["max_serial"]){
@@ -91,7 +89,7 @@ class WebxdcViewController: WebViewViewController {
             } finally {
                 running = false;
                 if (should_run_again) {
-                    window.__webxdcUpdate()
+                    await window.__webxdcUpdate()
                 }
             }
           }
