@@ -98,12 +98,17 @@
 		30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */; };
 		308850A0282A914F00204623 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
+		309D14DA28F482D300F7BA29 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961862346125000C80F33 /* NSAttributedString+Extensions.swift */; };
 		30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */; };
 		30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AAD71A2762869600DE3DC1 /* SelectableCell.swift */; };
 		30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */; };
 		30B2BD02278F1C1900889AA4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011E8042787365D00214221 /* KeychainManager.swift */; };
 		30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */; };
 		30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */; };
+		30C7D5EC28F47E620078D24C /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C7D5EA28F47E610078D24C /* InitialsBadge.swift */; };
+		30C7D5EE28F47E620078D24C /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C7D5EB28F47E620078D24C /* MessageCounter.swift */; };
+		30C7D5F028F47F4F0078D24C /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C7D5EA28F47E610078D24C /* InitialsBadge.swift */; };
+		30C7D5F128F4808C0078D24C /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C7D5EB28F47E620078D24C /* MessageCounter.swift */; };
 		30CE137828D9C40800158DF4 /* ChatDropInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */; };
 		30DAF71C275901610073C154 /* SettingsBackgroundSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */; };
 		30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348DE24F3F819005C93D1 /* ChatTableView.swift */; };
@@ -122,7 +127,6 @@
 		30EF7324252FF15F00E2C54A /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF7323252FF15F00E2C54A /* MessageLabel.swift */; };
 		30F4E2942859213400ACA0D8 /* ChatListEditingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F4E2932859213300ACA0D8 /* ChatListEditingBar.swift */; };
 		30F8817624DA97DA0023780E /* BackgroundContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8817524DA97DA0023780E /* BackgroundContainer.swift */; };
-		30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F9B9EB235F2116006E7ACF /* MessageCounter.swift */; };
 		30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB6F824D1C1000066C48D /* ChatViewController.swift */; };
 		30FDB71F24D8170E0066C48D /* TextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB71E24D8170E0066C48D /* TextMessageCell.swift */; };
 		30FDB72124D838240066C48D /* BaseMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB72024D838240066C48D /* BaseMessageCell.swift */; };
@@ -383,6 +387,8 @@
 		30B0ACF924AB5B99004D5E29 /* SettingsEphemeralMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEphemeralMessageController.swift; sourceTree = "<group>"; };
 		30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateCheckController.swift; sourceTree = "<group>"; };
 		30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSearchAccessoryBar.swift; sourceTree = "<group>"; };
+		30C7D5EA28F47E610078D24C /* InitialsBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
+		30C7D5EB28F47E620078D24C /* MessageCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDropInteraction.swift; sourceTree = "<group>"; };
 		30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBackgroundSelectionController.swift; sourceTree = "<group>"; };
 		30E348DE24F3F819005C93D1 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
@@ -401,7 +407,6 @@
 		30F4BFED252E3E020006B9B3 /* PaddingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextView.swift; sourceTree = "<group>"; };
 		30F4E2932859213300ACA0D8 /* ChatListEditingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListEditingBar.swift; sourceTree = "<group>"; };
 		30F8817524DA97DA0023780E /* BackgroundContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundContainer.swift; sourceTree = "<group>"; };
-		30F9B9EB235F2116006E7ACF /* MessageCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		30FDB6F824D1C1000066C48D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		30FDB71E24D8170E0066C48D /* TextMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageCell.swift; sourceTree = "<group>"; };
 		30FDB72024D838240066C48D /* BaseMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessageCell.swift; sourceTree = "<group>"; };
@@ -1002,6 +1007,8 @@
 			children = (
 				AE406EEE240FA454005F7022 /* Cell */,
 				3057029A24C6441300D84EFC /* EmptyStateLabel.swift */,
+				30C7D5EA28F47E610078D24C /* InitialsBadge.swift */,
+				30C7D5EB28F47E620078D24C /* MessageCounter.swift */,
 				AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */,
 				B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */,
 				70B8882D2091B8550074812E /* ContactCell.swift */,
@@ -1014,7 +1021,6 @@
 				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
 				AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */,
 				AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */,
-				30F9B9EB235F2116006E7ACF /* MessageCounter.swift */,
 				305FE03523A81B4C0053BE90 /* EmptyStateLabel.swift */,
 				AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */,
 				AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */,
@@ -1397,6 +1403,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C7D5F128F4808C0078D24C /* MessageCounter.swift in Sources */,
+				30C7D5F028F47F4F0078D24C /* InitialsBadge.swift in Sources */,
 				3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */,
 				302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */,
 				3057029F24C6445000D84EFC /* EmptyStateLabel.swift in Sources */,
@@ -1405,6 +1413,7 @@
 				30238D0028A557E800EF14AC /* FileHelper.swift in Sources */,
 				30152C9D25A5D95400377714 /* MessageLabelDelegate.swift in Sources */,
 				30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */,
+				309D14DA28F482D300F7BA29 /* NSAttributedString+Extensions.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
 				30B2BD02278F1C1900889AA4 /* KeychainManager.swift in Sources */,
 				30152C9A25A5D92200377714 /* DetectorType.swift in Sources */,
@@ -1490,6 +1499,7 @@
 				305702A124C6453700D84EFC /* TypeAlias.swift in Sources */,
 				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
+				30C7D5EC28F47E620078D24C /* InitialsBadge.swift in Sources */,
 				302D5450268B6B2300A8B271 /* MessageUtils.swift in Sources */,
 				30149D9322F21129003C12B5 /* QrViewController.swift in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
@@ -1511,6 +1521,7 @@
 				3080A035277DE30100E74565 /* String+Extensions.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
+				30C7D5EE28F47E620078D24C /* MessageCounter.swift in Sources */,
 				30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */,
 				305501742798CDE1008FD5CA /* WebxdcViewController.swift in Sources */,
 				3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */,
@@ -1554,7 +1565,6 @@
 				3080A01B277DDB8A00E74565 /* InputPlugin.swift in Sources */,
 				304F769525DD237B0094B5E2 /* WebViewViewController.swift in Sources */,
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
-				30F9B9EC235F2116006E7ACF /* MessageCounter.swift in Sources */,
 				304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */,
 				AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */,
 				3080A028277DE12D00E74565 /* InputBarSendButton.swift in Sources */,
