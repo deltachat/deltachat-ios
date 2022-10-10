@@ -551,8 +551,9 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
         accountButtonAvatar.setUnreadMessageCount(getUnreadCounterOfOtherAccounts())
         
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
+        let title = dcContext.displayname ?? dcContext.addr ?? ""
         accountButtonAvatar.setColor(contact.color)
-        accountButtonAvatar.setName(contact.displayName)
+        accountButtonAvatar.setName(title)
         if let image = contact.profileImage {
             accountButtonAvatar.setImage(image)
         }
