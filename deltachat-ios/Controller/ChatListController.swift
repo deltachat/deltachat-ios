@@ -69,6 +69,19 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
         return editingBar
     }()
 
+    private lazy var accountButtonAvatar: InitialsBadge = {
+        let badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("switch_account"))
+        badge.setLabelFont(UIFont.systemFont(ofSize: 14))
+        badge.accessibilityTraits = .button
+        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(accountButtonTapped))
+        badge.addGestureRecognizer(tapGestureRecognizer)
+        return badge
+    }()
+
+    private lazy var accountButton: UIBarButtonItem = {
+        return UIBarButtonItem(customView: accountButtonAvatar)
+    }()
+
     private var editingConstraints: NSLayoutConstraintSet?
 
     init(dcContext: DcContext, dcAccounts: DcAccounts, isArchive: Bool) {
@@ -534,35 +547,8 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
         }
     }
     
-    lazy var accountButtonAvatar: InitialsBadge = {
-        let badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("switch_account"))
-        badge.setLabelFont(UIFont.systemFont(ofSize: 14))
-        badge.accessibilityTraits = .button
-        return badge
-    }()
-    
-    private let accountButtonUnreadMessageCounter: MessageCounter = {
-        let view = MessageCounter(count: 0, size: 20)
-        view.backgroundColor = DcColors.unreadBadge
-        view.isHidden = true
-        return view
-    }()
-
-    private lazy var accountButton: UIBarButtonItem = {
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 37, height: 37))
-        containerView.addSubview(accountButtonAvatar)
-        containerView.addSubview(accountButtonUnreadMessageCounter)
-        
-        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(showSwitchAccount))
-        containerView.addGestureRecognizer(tapGestureRecognizer)
-        
-        return UIBarButtonItem(customView: containerView)
-    }()
-    
     private func updateAccountButton() {
-        let unreadCount = getUnreadCounterOfOtherAccounts()
-        accountButtonUnreadMessageCounter.setCount(unreadCount)
-        accountButtonUnreadMessageCounter.isHidden = unreadCount == 0
+        accountButtonAvatar.setUnreadMessageCount(getUnreadCounterOfOtherAccounts())
         
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
         accountButtonAvatar.setColor(contact.color)
@@ -586,7 +572,7 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
         return unreadCount
     }
     
-    @objc private func showSwitchAccount() {
+    @objc private func accountButtonTapped() {
         showSwitchAccountMenu()
     }
 
