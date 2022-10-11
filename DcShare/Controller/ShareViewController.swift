@@ -134,7 +134,7 @@ class ShareViewController: SLComposeServiceViewController {
         }
 
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
-        let title = dcContext.displayname ?? String.localized("pref_your_name")
+        let title = dcContext.displayname ?? dcContext.addr ?? ""
         initialsBadge.setName(title)
         initialsBadge.setColor(contact.color)
         if let image = contact.profileImage {
