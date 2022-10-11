@@ -28,7 +28,6 @@
 		30B2BD04278F207000889AA4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2BD03278F207000889AA4 /* KeychainManager.swift */; };
 		30E8F2212447357500CE2C90 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2202447357500CE2C90 /* DatabaseHelper.swift */; };
 		30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */; };
-		30E8F24B2449CF6500CE2C90 /* InitialsBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */; };
 		30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24C2449D30200CE2C90 /* DcColors.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +66,6 @@
 		30B2BD03278F207000889AA4 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		30E8F2202447357500CE2C90 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialsBadge.swift; sourceTree = "<group>"; };
 		30E8F24C2449D30200CE2C90 /* DcColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +112,6 @@
 		30421933243DE0F200516852 /* DcCore */ = {
 			isa = PBXGroup;
 			children = (
-				30E8F2492449CF2F00CE2C90 /* Views */,
 				30421977243F1AF400516852 /* Helper */,
 				3042195E243E255000516852 /* Extensions */,
 				3042194B243DE15D00516852 /* DC */,
@@ -178,14 +175,6 @@
 				30E8F24C2449D30200CE2C90 /* DcColors.swift */,
 			);
 			path = Helper;
-			sourceTree = "<group>";
-		};
-		30E8F2492449CF2F00CE2C90 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				30E8F24A2449CF6500CE2C90 /* InitialsBadge.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,7 +317,6 @@
 				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
 				30B2BD04278F207000889AA4 /* KeychainManager.swift in Sources */,
 				30421952243DE15D00516852 /* wrapper.c in Sources */,
-				30E8F24B2449CF6500CE2C90 /* InitialsBadge.swift in Sources */,
 				30E8F2212447357500CE2C90 /* DatabaseHelper.swift in Sources */,
 				3042195D243E23F100516852 /* DcUtils.swift in Sources */,
 				30421964243F0B8400516852 /* String+Extensions.swift in Sources */,

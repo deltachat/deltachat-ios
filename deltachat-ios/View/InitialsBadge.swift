@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 public class InitialsBadge: UIView {
 
@@ -51,6 +52,13 @@ public class InitialsBadge: UIView {
         imageViewContainer.translatesAutoresizingMaskIntoConstraints = false
         return imageViewContainer
     }()
+    
+    private lazy var unreadMessageCounter: MessageCounter = {
+        let view = MessageCounter(count: 0, size: 20)
+        view.backgroundColor = DcColors.unreadBadge
+        view.isHidden = true
+        return view
+    }()
 
     public convenience init(name: String, color: UIColor, size: CGFloat, accessibilityLabel: String? = nil) {
         self.init(size: size, accessibilityLabel: accessibilityLabel)
@@ -92,6 +100,7 @@ public class InitialsBadge: UIView {
 
         addSubview(verifiedView)
         addSubview(recentlySeenView)
+        addSubview(unreadMessageCounter)
         let imgViewConstraints = [verifiedView.constraintAlignTopTo(self, paddingTop: radius * 0.15),
                                   verifiedView.constraintAlignTrailingTo(self, paddingTrailing: radius * -0.1),
                                   verifiedView.constraintHeightTo(radius * 0.8),
@@ -99,7 +108,9 @@ public class InitialsBadge: UIView {
                                   recentlySeenView.constraintAlignBottomTo(self),
                                   recentlySeenView.constraintAlignTrailingTo(self),
                                   recentlySeenView.constraintHeightTo(radius * 0.6),
-                                  recentlySeenView.constraintWidthTo(radius * 0.6)
+                                  recentlySeenView.constraintWidthTo(radius * 0.6),
+                                  unreadMessageCounter.constraintAlignTopTo(self),
+                                  unreadMessageCounter.constraintAlignTrailingTo(self, paddingTrailing: -8)
         ]
         recentlySeenView.layer.cornerRadius = radius * 0.3
         addConstraints(imgViewConstraints)
@@ -140,6 +151,11 @@ public class InitialsBadge: UIView {
 
     public func setRecentlySeen(_ seen: Bool) {
         recentlySeenView.isHidden = !seen
+    }
+    
+    public func setUnreadMessageCount(_ messageNo: Int) {
+        unreadMessageCounter.setCount(messageNo)
+        unreadMessageCounter.isHidden = messageNo == 0
     }
 
     public func reset() {
