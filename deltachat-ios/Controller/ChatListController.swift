@@ -574,7 +574,17 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
     }
     
     @objc private func accountButtonTapped() {
-        showSwitchAccountMenu()
+        //showSwitchAccountMenu()
+        let viewController = AccountSwitchViewController()
+        let accountSwitchNavigationController = UINavigationController(rootViewController: viewController)
+        if #available(iOS 15.0, *) {
+            if let sheet = accountSwitchNavigationController.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 20
+            }
+        }
+
+        self.present(accountSwitchNavigationController, animated: true)
     }
 
     // MARK: updates
