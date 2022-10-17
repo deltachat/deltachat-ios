@@ -574,8 +574,7 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
     }
     
     @objc private func accountButtonTapped() {
-        //showSwitchAccountMenu()
-        let viewController = AccountSwitchViewController()
+        let viewController = AccountSwitchViewController(dcAccounts: dcAccounts)
         let accountSwitchNavigationController = UINavigationController(rootViewController: viewController)
         if #available(iOS 15.0, *) {
             if let sheet = accountSwitchNavigationController.sheetPresentationController {
