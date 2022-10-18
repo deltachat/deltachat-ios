@@ -241,7 +241,7 @@ class AccountCell: UITableViewCell {
             accountAvatar.constraintCenterYTo(contentView),
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
             accountName.constraintAlignTopToAnchor(margins.topAnchor),
-            accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 10),
+            accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 14),
             accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
             accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
             stateIndicator.constraintCenterYTo(contentView),
@@ -263,6 +263,8 @@ class AccountCell: UITableViewCell {
         if let image = contact.profileImage {
             accountAvatar.setImage(image)
         }
+
+        accountAvatar.setUnreadMessageCount(dcContext.getFreshMessages().count)
         accountName.text = title
         if showAccountDeletion {
             showDeleteIndicator()
