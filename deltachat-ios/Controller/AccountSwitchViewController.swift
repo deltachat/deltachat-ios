@@ -94,13 +94,8 @@ class AccountSwitchViewController: UITableViewController {
             return
         }
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        if let row = accountIds.firstIndex(of: previousAccountId) {
-            let index = IndexPath(row: row, section: accountSection)
-            let previouslySelectedCell = tableView.cellForRow(at: index)
-            previouslySelectedCell?.accessoryType = .none
-        }
-        cell.accessoryType = .checkmark
         _ = self.dcAccounts.select(id: accountId)
+        tableView.reloadData()
         reloadAndExit(appDelegate: appDelegate, previousAccountId: previousAccountId)
     }
 
@@ -213,19 +208,10 @@ class AccountCell: UITableViewCell {
     var selectedAccount: Int?
     var accountId: Int?
 
-    public lazy var deleteButton: UIButton = {
-        let view = UIButton()
-        if #available(iOS 13.0, *) {
-            view.setImage(UIImage(systemName: "trash"), for: .normal)
-            view.tintColor = .systemRed
-        } else {
-            view.setTitle(String.localized("delete"), for: .normal)
-            view.setTitleColor(.systemRed, for: .normal)
-        }
+    public lazy var stateIndicator: UIImageView = {
+        let view: UIImageView = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = true
-        view.imageView?.contentMode = .scaleAspectFit
-        view.accessibilityLabel = String.localized("delete")
+        view.contentMode = .scaleAspectFit
         return view
     }()
 
@@ -249,7 +235,7 @@ class AccountCell: UITableViewCell {
     func setupSubviews() {
         contentView.addSubview(accountAvatar)
         contentView.addSubview(accountName)
-        contentView.addSubview(deleteButton)
+        contentView.addSubview(stateIndicator)
         let margins = contentView.layoutMarginsGuide
         contentView.addConstraints([
             accountAvatar.constraintCenterYTo(contentView),
@@ -258,12 +244,12 @@ class AccountCell: UITableViewCell {
             accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 10),
             accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
             accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
-            deleteButton.constraintCenterYTo(contentView),
-            deleteButton.constraintToTrailingOf(accountName),
-            deleteButton.constraintAlignTrailingToAnchor(margins.trailingAnchor)
+            stateIndicator.constraintCenterYTo(contentView),
+            stateIndicator.constraintToTrailingOf(accountName),
+            stateIndicator.constraintAlignTrailingToAnchor(margins.trailingAnchor)
         ])
         backgroundColor = .clear
-        deleteButton.isHidden = true
+        stateIndicator.isHidden = true
     }
 
     public func updateCell(selectedAccount: Int, showAccountDeletion: Bool, dcContext: DcContext) {
@@ -279,15 +265,42 @@ class AccountCell: UITableViewCell {
         }
         accountName.text = title
         if showAccountDeletion {
-            accessoryType = .none
+            showDeleteIndicator()
         } else {
             if selectedAccount == accountId {
-                accessoryType = .checkmark
+                showSelectedIndicator()
             } else {
-                accessoryType = .none
+                stateIndicator.image = nil
+                stateIndicator.isHidden = true
             }
         }
-        deleteButton.isHidden = !showAccountDeletion
+    }
+
+    private func showDeleteIndicator() {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "trash")
+        } else {
+            image = UIImage(named: "")
+        }
+        stateIndicator.image = image
+        stateIndicator.tintColor = .systemRed
+        stateIndicator.accessibilityLabel = String.localized("delete")
+        stateIndicator.isHidden = false
+
+    }
+
+    private func showSelectedIndicator() {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "checkmark")
+        } else {
+            image = UIImage(named: "")
+        }
+        stateIndicator.image = image
+        stateIndicator.tintColor = .systemBlue
+        stateIndicator.accessibilityLabel = ""
+        stateIndicator.isHidden = false
     }
 
     override func prepareForReuse() {
@@ -295,5 +308,6 @@ class AccountCell: UITableViewCell {
         accountAvatar.reset()
         accountName.text = nil
         accountId = -1
+        stateIndicator.image = nil
     }
 }
