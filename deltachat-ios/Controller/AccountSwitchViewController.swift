@@ -26,9 +26,10 @@ class AccountSwitchViewController: UITableViewController {
         return btn
     }()
 
-    private lazy var addAccountCell: AccountCell = {
-        let cell = AccountCell()
+    private lazy var addAccountCell: ActionCell = {
+        let cell = ActionCell()
         cell.tag = -1
+        cell.actionTitle = String.localized("add_account")
         return cell
     }()
 
@@ -101,6 +102,12 @@ class AccountSwitchViewController: UITableViewController {
                 dismiss(animated: true)
                 return
             }
+            if let row = accountIds.firstIndex(of: selectedAccountId) {
+                let index = IndexPath(row: row, section: accountSection)
+                let previouslySelectedCell = tableView.cellForRow(at: index)
+                previouslySelectedCell?.accessoryType = .none
+            }
+            cell.accessoryType = .checkmark
             _ = self.dcAccounts.select(id: accountId)
         } else {
             _ = self.dcAccounts.add()
@@ -108,7 +115,9 @@ class AccountSwitchViewController: UITableViewController {
 
         appDelegate.reloadDcContext()
         prefs.setValue(selectedAccountId, forKey: Constants.Keys.lastSelectedAccountKey)
-        dismiss(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.dismiss(animated: true)
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -158,19 +167,28 @@ class AccountCell: UITableViewCell {
         return label
     }()
 
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     func setupSubviews() {
         contentView.addSubview(accountAvatar)
         contentView.addSubview(accountName)
         let margins = contentView.layoutMarginsGuide
-        addConstraints([
-            accountAvatar.constraintAlignTopToAnchor(margins.topAnchor),
+        contentView.addConstraints([
+            accountAvatar.constraintCenterYTo(contentView),
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
-            accountAvatar.constraintAlignBottomToAnchor(margins.bottomAnchor),
             accountName.constraintAlignTopToAnchor(margins.topAnchor),
-            accountName.constraintToTrailingOf(accountAvatar),
+            accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 10),
             accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
             accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32)
         ])
+        backgroundColor = .clear
     }
 
     public func updateCell(selectedAccount: Int, dcContext: DcContext) {
