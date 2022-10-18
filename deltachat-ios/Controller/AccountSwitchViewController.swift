@@ -1,4 +1,5 @@
 import UIKit
+import Intents
 import DcCore
 
 class AccountSwitchViewController: UITableViewController {
@@ -6,7 +7,6 @@ class AccountSwitchViewController: UITableViewController {
     private let dcAccounts: DcAccounts
     private let accountSection = 0
     private let addSection = 1
-    private let addAccountTag = -1
 
     private lazy var accountIds: [Int] = {
         return dcAccounts.getAll()
@@ -28,7 +28,6 @@ class AccountSwitchViewController: UITableViewController {
 
     private lazy var addAccountCell: ActionCell = {
         let cell = ActionCell()
-        cell.tag = -1
         cell.actionTitle = String.localized("add_account")
         return cell
     }()
@@ -53,6 +52,7 @@ class AccountSwitchViewController: UITableViewController {
         tableView.register(AccountCell.self, forCellReuseIdentifier: AccountCell.reuseIdentifier)
         tableView.rowHeight = AccountCell.cellHeight
         tableView.separatorStyle = .none
+        tableView.delegate = self
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -85,6 +85,45 @@ class AccountSwitchViewController: UITableViewController {
         return addAccountCell
     }
 
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        if action == #selector(AccountCell.onDeletePressed(_:)) {
+            deleteAccount(accountId: accountIds[indexPath.row])
+        }
+    }
+
+    func deleteAccount(accountId: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        let prefs = UserDefaults.standard
+        let confirm1 = UIAlertController(title: String.localized("delete_account_ask"), message: nil, preferredStyle: .safeActionSheet)
+        confirm1.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            let account = self.dcAccounts.get(id: accountId)
+            let confirm2 = UIAlertController(title: account.displaynameAndAddr,
+                message: String.localized("forget_login_confirmation_desktop"), preferredStyle: .alert)
+            confirm2.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+                guard let self = self else { return }
+                appDelegate.locationManager.disableLocationStreamingInAllChats()
+                _ = self.dcAccounts.remove(id: accountId)
+                KeychainManager.deleteAccountSecret(id: accountId)
+                INInteraction.delete(with: "\(accountId)", completion: nil)
+                if self.dcAccounts.getAll().isEmpty {
+                    _ = self.dcAccounts.add()
+                } else {
+                    let lastSelectedAccountId = prefs.integer(forKey: Constants.Keys.lastSelectedAccountKey)
+                    if lastSelectedAccountId != 0 {
+                        _ = self.dcAccounts.select(id: lastSelectedAccountId)
+                    }
+                }
+                appDelegate.reloadDcContext()
+            }))
+            confirm2.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            self.present(confirm2, animated: true, completion: nil)
+        }))
+        confirm1.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        self.present(confirm1, animated: true, completion: nil)
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else {
             safe_fatalError()
@@ -97,7 +136,7 @@ class AccountSwitchViewController: UITableViewController {
         let prefs = UserDefaults.standard
 
         if indexPath.section == accountSection {
-            let accountId = cell.tag
+            let accountId = accountIds[indexPath.row]
             if selectedAccountId == accountId {
                 dismiss(animated: true)
                 return
@@ -159,6 +198,25 @@ class AccountCell: UITableViewCell {
         return avatar
     }()
 
+    var selectedAccount: Int?
+    var accountId: Int?
+
+    public lazy var deleteButton: UIButton = {
+        let view = UIButton()
+        if #available(iOS 13.0, *) {
+            view.setImage(UIImage(systemName: "trash"), for: .normal)
+            view.tintColor = .systemRed
+        } else {
+            view.setTitle(String.localized("delete"), for: .normal)
+            view.setTitleColor(.systemRed, for: .normal)
+        }
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        view.imageView?.contentMode = .scaleAspectFit
+        view.accessibilityLabel = String.localized("delete")
+        return view
+    }()
+
     lazy var accountName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -179,6 +237,7 @@ class AccountCell: UITableViewCell {
     func setupSubviews() {
         contentView.addSubview(accountAvatar)
         contentView.addSubview(accountName)
+        contentView.addSubview(deleteButton)
         let margins = contentView.layoutMarginsGuide
         contentView.addConstraints([
             accountAvatar.constraintCenterYTo(contentView),
@@ -186,13 +245,34 @@ class AccountCell: UITableViewCell {
             accountName.constraintAlignTopToAnchor(margins.topAnchor),
             accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 10),
             accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
-            accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32)
+            accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
+            deleteButton.constraintCenterYTo(contentView),
+            deleteButton.constraintToTrailingOf(accountName),
+            deleteButton.constraintAlignTrailingToAnchor(margins.trailingAnchor)
         ])
         backgroundColor = .clear
+
+        let deleteGestureListener = UITapGestureRecognizer(target: self, action: #selector(onDeletePressed(_:)))
+        deleteButton.addGestureRecognizer(deleteGestureListener)
+        deleteButton.isHidden = true
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        self.deleteButton.isHidden = !editing
+        if let selectedAccount = selectedAccount,
+           let accountId = accountId,
+           accountId == selectedAccount,
+           !editing {
+            accessoryType = .checkmark
+        } else {
+            accessoryType = .none
+        }
     }
 
     public func updateCell(selectedAccount: Int, dcContext: DcContext) {
         let accountId = dcContext.id
+        self.accountId = accountId
+        self.selectedAccount = selectedAccount
         let title = dcContext.displayname ?? dcContext.addr ?? ""
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
         accountAvatar.setColor(contact.color)
@@ -210,14 +290,24 @@ class AccountCell: UITableViewCell {
                 accessoryType = .none
             }
         }
-        
-        tag = accountId
+        deleteButton.isHidden = !isEditing
+    }
+
+
+    @objc func onDeletePressed(_ sender: Any?) {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            // Trigger action in tableView delegate (UITableViewController)
+            tableView.delegate?.tableView?(tableView,
+                                           performAction: #selector(AccountCell.onDeletePressed(_:)),
+                                           forRowAt: indexPath,
+                                           withSender: sender)
+        }
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         accountAvatar.reset()
         accountName.text = nil
-        tag = -1
+        accountId = -1
     }
 }
