@@ -246,7 +246,9 @@ class AccountCell: UITableViewCell {
             accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
             stateIndicator.constraintCenterYTo(contentView),
             stateIndicator.constraintToTrailingOf(accountName),
-            stateIndicator.constraintAlignTrailingToAnchor(margins.trailingAnchor)
+            stateIndicator.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 14),
+            stateIndicator.constraintHeightTo(24),
+            stateIndicator.constraintWidthTo(24)
         ])
         backgroundColor = .clear
         stateIndicator.isHidden = true
