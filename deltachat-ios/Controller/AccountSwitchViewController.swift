@@ -30,6 +30,7 @@ class AccountSwitchViewController: UITableViewController {
     private lazy var addAccountCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("add_account")
+        cell.backgroundColor = .clear
         return cell
     }()
 
