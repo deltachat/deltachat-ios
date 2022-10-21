@@ -1,6 +1,6 @@
 import UIKit
 import DcCore
-class MediaQualitySettingVC: UITableViewController {
+class DownloadOnDemandViewController: UITableViewController {
 
     private var dcContext: DcContext
 
@@ -9,16 +9,16 @@ class MediaQualitySettingVC: UITableViewController {
     private lazy var staticCells: [UITableViewCell] = {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = MediaQualitySettingVC.getValString(val: $0)
+            cell.textLabel?.text = DownloadOnDemandViewController.getValString(val: $0)
             return cell
         })
     }()
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
-        self.options = [Int(DC_MEDIA_QUALITY_BALANCED), Int(DC_MEDIA_QUALITY_WORSE)]
+        self.options = [0, 40960, 163840, 655360, 5242880, 26214400]
         super.init(style: .grouped)
-        self.title = String.localized("pref_outgoing_media_quality")
+        self.title = String.localized("auto_download_messages")
         hidesBottomBarWhenPushed = true
     }
 
@@ -31,11 +31,19 @@ class MediaQualitySettingVC: UITableViewController {
     }
 
     static func getValString(val: Int) -> String {
-        switch Int32(val) {
-        case DC_MEDIA_QUALITY_BALANCED:
-            return String.localized("pref_outgoing_balanced")
-        case DC_MEDIA_QUALITY_WORSE:
-            return String.localized("pref_outgoing_worse")
+        switch val {
+        case 0:
+            return String.localized("pref_show_emails_all")
+        case 40960:
+            return String.localizedStringWithFormat(String.localized("up_to_x"), "40 KiB")
+        case 163840:
+            return String.localizedStringWithFormat(String.localized("up_to_x_most_worse_quality_images"), "160 KiB")
+        case 655360:
+            return String.localizedStringWithFormat(String.localized("up_to_x_most_balanced_quality_images"), "640 KiB")
+        case 5242880:
+            return String.localizedStringWithFormat(String.localized("up_to_x"), "5 MiB")
+        case 26214400:
+            return String.localizedStringWithFormat(String.localized("up_to_x"), "25 MiB")
         default:
             return "Err"
         }
@@ -54,18 +62,20 @@ class MediaQualitySettingVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
 
-        let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: dcContext.getConfigInt("media_quality"), section: 0))
-        oldSelectedCell?.accessoryType = .none
+        if let lastSelectedIndex = options.index(of: dcContext.getConfigInt("download_limit")) {
+            let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: lastSelectedIndex, section: 0))
+            oldSelectedCell?.accessoryType = .none
+        }
 
         let newSelectedCell = tableView.cellForRow(at: IndexPath.init(row: indexPath.row, section: 0))
         newSelectedCell?.accessoryType = .checkmark
 
-        dcContext.setConfigInt("media_quality", indexPath.row)
+        dcContext.setConfigInt("download_limit", options[indexPath.row])
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = staticCells[indexPath.row]
-        if options[indexPath.row] == dcContext.getConfigInt("media_quality") {
+        if options[indexPath.row] == dcContext.getConfigInt("download_limit") {
             cell.accessoryType = .checkmark
         }
         return cell

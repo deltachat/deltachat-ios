@@ -4,6 +4,6 @@ This folder is for settings that have their own dedicated View to change them.
 
 ## Naming
 
-Class names should end with `SettingVC`, where `VC` is short for view controller, that way you can quickly see what it is in other places in the code
+Class names should end with `ViewController`\*, file names should be equal to classnames.
 
-File names should be short and neither contain Settings nor controller, those words are redundant because the group/folder already tells what it is.
+\* per convention, view controller should end with the string ViewController, even if this is long

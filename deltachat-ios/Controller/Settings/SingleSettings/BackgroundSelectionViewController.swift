@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import DcCore
 
-class BackgroundSelectionSettingVC: UIViewController, MediaPickerDelegate {
+class BackgroundSelectionViewController: UIViewController, MediaPickerDelegate {
 
     private let dcContext: DcContext
 

@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class ProfileSettingsPage: UITableViewController, MediaPickerDelegate {
+class ProfileSettingsViewController: UITableViewController, MediaPickerDelegate {
     private let dcContext: DcContext
     private let dcAccounts: DcAccounts
 
@@ -163,7 +163,7 @@ class ProfileSettingsPage: UITableViewController, MediaPickerDelegate {
 }
 
 
-extension ProfileSettingsPage: UITextFieldDelegate {
+extension ProfileSettingsViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

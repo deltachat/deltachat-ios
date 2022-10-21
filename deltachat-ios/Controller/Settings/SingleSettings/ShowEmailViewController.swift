@@ -1,6 +1,6 @@
 import UIKit
 import DcCore
-class ShowEmailSettingVC: UITableViewController {
+class ShowEmailViewController: UITableViewController {
 
     var dcContext: DcContext
 
@@ -9,7 +9,7 @@ class ShowEmailSettingVC: UITableViewController {
     var staticCells: [UITableViewCell] {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = ShowEmailSettingVC.getValString(val: $0)
+            cell.textLabel?.text = ShowEmailViewController.getValString(val: $0)
             return cell
         })
     }

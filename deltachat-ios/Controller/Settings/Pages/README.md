@@ -5,6 +5,6 @@ This group is for settings pages that combine multiple settings on one page.
 
 ## Naming
 
-Class names should end with `SettingsPage` so they can be identified as what they are over the whole project.
+Class names should end with `ViewController`\*, file names should be equal to classnames.
 
-File names should not contain `Settings`, `Controller`, nor `Page` because the group/folder already tells what it is.
+\* per convention, view controller should end with the string ViewController, even if this is long

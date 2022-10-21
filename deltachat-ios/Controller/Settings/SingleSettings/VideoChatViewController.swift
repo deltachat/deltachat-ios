@@ -1,6 +1,6 @@
 import UIKit
 import DcCore
-class VideoChatSettingVC: UITableViewController {
+class VideoChatViewController: UITableViewController {
 
     private var dcContext: DcContext
 
