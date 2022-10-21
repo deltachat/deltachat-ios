@@ -27,7 +27,7 @@ class SettingsVideoChatViewController: UITableViewController {
     private let defaultOptions = [
         PredefinedVideoChatOptionCell(label: "Jitsi", url: "https://meet.jit.si/$ROOM"),
         PredefinedVideoChatOptionCell(label: "Systemli", url: "https://meet.systemli.org/$ROOM"),
-        PredefinedVideoChatOptionCell(label: "autistici", url: "https://vc.autistici.org/$ROOM"),
+        PredefinedVideoChatOptionCell(label: "Autistici", url: "https://vc.autistici.org/$ROOM"),
     ]
     
     private lazy var offCell: UITableViewCell = {
