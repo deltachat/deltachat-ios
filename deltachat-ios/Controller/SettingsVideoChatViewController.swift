@@ -30,6 +30,12 @@ class SettingsVideoChatViewController: UITableViewController {
         PredefinedVideoChatOptionCell(label: "autistici", url: "https://vc.autistici.org/$ROOM"),
     ]
     
+    private lazy var offCell: UITableViewCell = {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "off")
+        cell.textLabel?.text = String.localized("off")
+        return cell
+    }()
+    
     private lazy var customInstanceCell: TextFieldCell = {
         let cell = TextFieldCell.makeConfigCell(labelID: String.localized("custom"),
                                                 placeholderID: String.localized("videochat_instance_placeholder"))
@@ -44,7 +50,7 @@ class SettingsVideoChatViewController: UITableViewController {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(style: .grouped)
-        self.updateSelected()
+        self.updateSelected(selectedCustom: false)
         self.title = String.localized("videochat_instance")
         hidesBottomBarWhenPushed = true
     }
@@ -60,7 +66,7 @@ class SettingsVideoChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.defaultOptions.count + 1
+        return self.defaultOptions.count + 2
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,16 +74,20 @@ class SettingsVideoChatViewController: UITableViewController {
         dcContext.setConfig("ui.custom_webrtc_instance", customInstanceCell.getText())
         
         var newInstance: String?
-        if indexPath.row < self.defaultOptions.count {
-            newInstance = self.defaultOptions[indexPath.row].url
+        var selectedCustom = false
+        if indexPath.row == 0 {
+            newInstance = ""
+            self.view.endEditing(true)
+        } else if indexPath.row <= self.defaultOptions.count {
+            newInstance = self.defaultOptions[indexPath.row-1].url
             self.view.endEditing(true)
         } else {
             newInstance = customInstanceCell.getText()
+            selectedCustom = true
         }
+        
         dcContext.setConfig("webrtc_instance", newInstance)
-        
-        updateSelected()
-        
+        updateSelected(selectedCustom: selectedCustom)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -86,37 +96,50 @@ class SettingsVideoChatViewController: UITableViewController {
         let newInstance = customInstanceCell.getText()
         dcContext.setConfig("ui.custom_webrtc_instance", newInstance)
         dcContext.setConfig("webrtc_instance", newInstance)
-        updateSelected()
+        // force select custom
+        updateSelected(selectedCustom: true)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row < self.defaultOptions.count {
-            return self.defaultOptions[indexPath.row]
+        if indexPath.row == 0 {
+            return offCell
+        } else if indexPath.row <= self.defaultOptions.count {
+            return self.defaultOptions[indexPath.row-1]
         } else {
             return customInstanceCell
         }
     }
-   
-    private var isCustom = true
     
-    func updateSelected() {
+    var isCustom = false
+    func updateSelected(selectedCustom: Bool) {
+        self.isCustom = false
+        var notDefault = true
         let currentUrl = dcContext.getConfig("webrtc_instance")
         // set selection
         for option in self.defaultOptions {
             if option.url == currentUrl {
                 option.accessoryType = .checkmark
-                self.isCustom = false
+                notDefault = false
             } else {
                 option.accessoryType = .none
             }
         }
         
-        if self.isCustom {
-            customInstanceCell.accessoryType = .checkmark
-            customInstanceCell.textField.text = currentUrl
+        if notDefault {
+            if (currentUrl?.isEmpty) != nil || selectedCustom {
+                self.offCell.accessoryType = .none
+                customInstanceCell.accessoryType = .checkmark
+                customInstanceCell.textField.text = currentUrl
+                self.isCustom = true
+            } else {
+                self.offCell.accessoryType = .checkmark
+                customInstanceCell.accessoryType = .none
+                customInstanceCell.textField.text = dcContext.getConfig("ui.custom_webrtc_instance")
+            }
         } else {
             customInstanceCell.accessoryType = .none
             customInstanceCell.textField.text = dcContext.getConfig("ui.custom_webrtc_instance")
+            self.offCell.accessoryType = .none
         }
     }
 
@@ -125,9 +148,10 @@ class SettingsVideoChatViewController: UITableViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        dcContext.setConfig("ui.custom_webrtc_instance", customInstanceCell.getText())
+        let customTextField = customInstanceCell.getText()
+        dcContext.setConfig("ui.custom_webrtc_instance", customTextField)
         if self.isCustom {
-            dcContext.setConfig("webrtc_instance", customInstanceCell.getText())
+            dcContext.setConfig("webrtc_instance", customTextField)
         }
     }
 }
