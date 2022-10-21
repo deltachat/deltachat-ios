@@ -354,9 +354,9 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         tableView.deselectRow(at: indexPath, animated: false)
 
         switch cellTag {
-        case .profile: showEditSettingsController()
+        case .profile: showProfileSettingsController()
         case .showArchive: showArchivedCharts()
-        case .showEmails: showClassicMail()
+        case .showEmails: showEmail()
         case .blockedContacts: showBlockedContacts()
         case .autodel: showAutodelOptions()
         case .mediaQuality: showMediaQuality()
@@ -551,17 +551,17 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     // MARK: - coordinator
-    private func showEditSettingsController() {
+    private func showProfileSettingsController() {
         let editController = ProfileSettingsViewController(dcAccounts: dcAccounts)
         navigationController?.pushViewController(editController, animated: true)
     }
 
-    private func showClassicMail() {
-        let settingsClassicViewController = ShowEmailViewController(dcContext: dcContext)
-        navigationController?.pushViewController(settingsClassicViewController, animated: true)
+    private func showEmail() {
+        let showEmailViewController = ShowEmailViewController(dcContext: dcContext)
+        navigationController?.pushViewController(showEmailViewController, animated: true)
     }
 
-    private func  showMediaQuality() {
+    private func showMediaQuality() {
         let mediaQualityController = MediaQualityViewController(dcContext: dcContext)
         navigationController?.pushViewController(mediaQualityController, animated: true)
     }
