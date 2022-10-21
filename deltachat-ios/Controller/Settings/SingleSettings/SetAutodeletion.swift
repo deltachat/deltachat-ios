@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class SettingsAutodelSetController: UITableViewController {
+class SetAutodeletionSettingVC: UITableViewController {
 
     var dcContext: DcContext
 
@@ -34,7 +34,7 @@ class SettingsAutodelSetController: UITableViewController {
     }()
 
     private lazy var autodelOptions: [Options] = {
-        return fromServer ? SettingsAutodelSetController.autodelServerOptions : SettingsAutodelSetController.autodelDeviceOptions
+        return fromServer ? SetAutodeletionSettingVC.autodelServerOptions : SetAutodeletionSettingVC.autodelDeviceOptions
     }()
 
     var fromServer: Bool
@@ -80,7 +80,7 @@ class SettingsAutodelSetController: UITableViewController {
 
     static public func getSummary(_ dcContext: DcContext, fromServer: Bool) -> String {
         let val = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
-        let options = fromServer ? SettingsAutodelSetController.autodelServerOptions : SettingsAutodelSetController.autodelDeviceOptions
+        let options = fromServer ? SetAutodeletionSettingVC.autodelServerOptions : SetAutodeletionSettingVC.autodelDeviceOptions
         for option in options {
             if option.value == val {
                 return String.localized(option.descr)

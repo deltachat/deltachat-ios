@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class SettingsAutodelOverviewController: UITableViewController {
+class AutodeletionOverviewSettingVC: UITableViewController {
 
     var dcContext: DcContext
 
@@ -19,7 +19,7 @@ class SettingsAutodelOverviewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.autodelDevice.rawValue
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
+        cell.textLabel?.text = SetAutodeletionSettingVC.getSummary(dcContext, fromServer: false)
         return cell
     }()
 
@@ -27,7 +27,7 @@ class SettingsAutodelOverviewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.autodelServer.rawValue
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
+        cell.textLabel?.text = SetAutodeletionSettingVC.getSummary(dcContext, fromServer: true)
         return cell
     }()
 
@@ -61,8 +61,8 @@ class SettingsAutodelOverviewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData() // needed to update footer
-        autodelDeviceCell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: false)
-        autodelServerCell.textLabel?.text = SettingsAutodelSetController.getSummary(dcContext, fromServer: true)
+        autodelDeviceCell.textLabel?.text = SetAutodeletionSettingVC.getSummary(dcContext, fromServer: false)
+        autodelServerCell.textLabel?.text = SetAutodeletionSettingVC.getSummary(dcContext, fromServer: true)
     }
 
     // MARK: - Table view data source
@@ -103,11 +103,11 @@ class SettingsAutodelOverviewController: UITableViewController {
 
         switch cellTag {
         case .autodelDevice:
-            let controller = SettingsAutodelSetController(dcContext: dcContext, fromServer: false)
+            let controller = SetAutodeletionSettingVC(dcContext: dcContext, fromServer: false)
             navigationController?.pushViewController(controller, animated: true)
 
         case .autodelServer:
-            let controller = SettingsAutodelSetController(dcContext: dcContext, fromServer: true)
+            let controller = SetAutodeletionSettingVC(dcContext: dcContext, fromServer: true)
             navigationController?.pushViewController(controller, animated: true)
         }
 

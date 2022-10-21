@@ -68,7 +68,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         cell.tag = CellTags.showEmails.rawValue
         cell.textLabel?.text = String.localized("pref_show_emails")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
+        cell.detailTextLabel?.text = ShowEmailSettingVC.getValString(val: dcContext.showEmails)
         return cell
     }()
 
@@ -104,7 +104,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         cell.tag = CellTags.mediaQuality.rawValue
         cell.textLabel?.text = String.localized("pref_outgoing_media_quality")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
+        cell.detailTextLabel?.text = MediaQualitySettingVC.getValString(val: dcContext.getConfigInt("media_quality"))
         return cell
     }()
 
@@ -113,7 +113,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         cell.tag = CellTags.downloadOnDemand.rawValue
         cell.textLabel?.text = String.localized("auto_download_messages")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(val: dcContext.getConfigInt("download_limit"))
+        cell.detailTextLabel?.text = DownloadOnDemandSettingVC.getValString(val: dcContext.getConfigInt("download_limit"))
         return cell
     }()
 
@@ -540,9 +540,9 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     // MARK: - updates
     private func updateCells() {
         profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
-        showEmailsCell.detailTextLabel?.text = SettingsClassicViewController.getValString(val: dcContext.showEmails)
-        mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
-        downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(
+        showEmailsCell.detailTextLabel?.text = ShowEmailSettingVC.getValString(val: dcContext.showEmails)
+        mediaQualityCell.detailTextLabel?.text = MediaQualitySettingVC.getValString(val: dcContext.getConfigInt("media_quality"))
+        downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandSettingVC.getValString(
             val: dcContext.getConfigInt("download_limit"))
         videoChatInstanceCell.detailTextLabel?.text = dcContext.getConfig("webrtc_instance")
         autodelCell.detailTextLabel?.text = autodelSummary()
@@ -552,27 +552,27 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
     // MARK: - coordinator
     private func showEditSettingsController() {
-        let editController = EditSettingsController(dcAccounts: dcAccounts)
+        let editController = ProfileSettingsPage(dcAccounts: dcAccounts)
         navigationController?.pushViewController(editController, animated: true)
     }
 
     private func showClassicMail() {
-        let settingsClassicViewController = SettingsClassicViewController(dcContext: dcContext)
+        let settingsClassicViewController = ShowEmailSettingVC(dcContext: dcContext)
         navigationController?.pushViewController(settingsClassicViewController, animated: true)
     }
 
     private func  showMediaQuality() {
-        let mediaQualityController = MediaQualityController(dcContext: dcContext)
+        let mediaQualityController = MediaQualitySettingVC(dcContext: dcContext)
         navigationController?.pushViewController(mediaQualityController, animated: true)
     }
 
     private func showDownloadOnDemand() {
-        let downloadOnDemandViewController = DownloadOnDemandViewController(dcContext: dcContext)
+        let downloadOnDemandViewController = DownloadOnDemandSettingVC(dcContext: dcContext)
         navigationController?.pushViewController(downloadOnDemandViewController, animated: true)
     }
 
     private func showVideoChatInstance() {
-        let videoInstanceController = SettingsVideoChatViewController(dcContext: dcContext)
+        let videoInstanceController = VideoChatSettingVC(dcContext: dcContext)
         navigationController?.pushViewController(videoInstanceController, animated: true)
     }
 
@@ -587,7 +587,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private func showAutodelOptions() {
-        let settingsAutodelOverviewController = SettingsAutodelOverviewController(dcContext: dcContext)
+        let settingsAutodelOverviewController = AutodeletionOverviewSettingVC(dcContext: dcContext)
         navigationController?.pushViewController(settingsAutodelOverviewController, animated: true)
     }
 
@@ -600,7 +600,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private func selectBackground() {
-        navigationController?.pushViewController(SettingsBackgroundSelectionController(dcContext: dcContext), animated: true)
+        navigationController?.pushViewController(BackgroundSelectionSettingVC(dcContext: dcContext), animated: true)
     }
 
     public static func showDebugToolkit(dcContext: DcContext) {
