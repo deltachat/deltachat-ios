@@ -93,7 +93,7 @@ class AccountSwitchViewController: UITableViewController {
         if section == addSection {
             let guide = self.view.safeAreaLayoutGuide
             let controllerHeight = guide.layoutFrame.size.height
-            let contentHeight = CGFloat(accountIds.count + 1) * AccountCell.cellHeight + view.safeAreaInsets.vertical
+            let contentHeight = CGFloat(accountIds.count + 1) * AccountCell.cellHeight + (view.safeAreaInsets.vertical / 2)
             let diff = controllerHeight - contentHeight
             if diff > 12 {
                 return diff
@@ -291,18 +291,18 @@ class AccountCell: UITableViewCell {
         let margins = contentView.layoutMarginsGuide
         contentView.addConstraints([
             backgroundContainer.constraintAlignTopToAnchor(contentView.topAnchor, paddingTop: 0.5),
-            backgroundContainer.constraintAlignTrailingToAnchor(contentView.trailingAnchor, paddingTrailing: 4),
-            backgroundContainer.constraintAlignLeadingToAnchor(contentView.leadingAnchor, paddingLeading: 4),
+            backgroundContainer.constraintAlignTrailingToAnchor(contentView.trailingAnchor, paddingTrailing: 8),
+            backgroundContainer.constraintAlignLeadingToAnchor(contentView.leadingAnchor, paddingLeading: 8),
             backgroundContainer.constraintAlignBottomToAnchor(contentView.bottomAnchor, paddingBottom: 0.5),
             accountAvatar.constraintCenterYTo(contentView),
-            accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
+            accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor, paddingLeading: 4),
             accountName.constraintAlignTopToAnchor(margins.topAnchor),
             accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 20),
             accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
             accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
             stateIndicator.constraintCenterYTo(contentView),
             stateIndicator.constraintToTrailingOf(accountName),
-            stateIndicator.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 14),
+            stateIndicator.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 16),
             stateIndicator.constraintHeightTo(24),
             stateIndicator.constraintWidthTo(24)
         ])
