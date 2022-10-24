@@ -214,7 +214,7 @@
 "menu_save_log" = "Logdatei speichern";
 "menu_more_options" = "Mehr Optionen";
 "menu_learn_spelling" = "Schreibweise lernen";
-"menu_chat_audit_log" = "Chat-Überwachungsprotokoll";
+"menu_chat_audit_log" = "Chat-Ereignisprotokoll";
 "jump_to_message" = "Zur Nachricht springen";
 "copy_json" = "JSON kopieren";
 "replace_draft" = "Entwurf ersetzen";
@@ -323,7 +323,7 @@
 "retry_send" = "Nachricht erneut senden";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Sie können nicht schreiben, da Sie kein Mitglied dieser Gruppe sind. Bitten Sie ein anderes Mitglied, Sie hinzuzufügen.";
-"messaging_disabled_device_chat" = "Dieser Chat entält lokal generierte Nachrichten. Sie können hier keine Nachrichten schreiben.";
+"messaging_disabled_device_chat" = "Dieser Chat enthält lokal generierte Nachrichten. Sie können hier keine Nachrichten schreiben.";
 "messaging_disabled_mailing_list" = "Das Senden von Nachrichten in Mailinglisten wird noch nicht unterstützt.";
 "cannot_display_unsuported_file_type" = "Kann diesen Dateityp nicht anzeigen: %1$@";
 "attachment_failed_to_load" = "Kann Anhang nicht laden";
@@ -347,7 +347,7 @@
 
 // chat audit log
 "chat_audit_log_empty_message" = "Systemmeldungen dieses Chats werden hier angezeigt.";
-"chat_audit_log_title" = "Chat-Überwachungsprotokoll für %1$@";
+"chat_audit_log_title" = "Chat-Ereignisprotokoll für %1$@";
 "chat_audit_log_description" = "Diese Ansicht zeigt nur System- und Infomeldungen. Nützlich, um die letzten Chat-Aktionen zu finden, ohne durch viele normale Nachrichten zu scrollen.";
 
 // punycode warning / labeled links

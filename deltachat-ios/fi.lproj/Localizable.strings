@@ -121,6 +121,11 @@
 "images_and_videos" = "Kuvat ja videot";
 "file" = "Tiedosto";
 "files" = "Tiedostot";
+// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "Yksityinen sovellus";
+// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Yksityiset sovellukset";
+"files_and_webxdx_apps" = "Tiedostot ja yksityiset sovellukset";
 "unknown" = "Tuntematon";
 
 "green" = "Vihreä";
@@ -230,6 +235,9 @@
 "ConversationFragment_quoted_message_not_found" = "Alkuperäistä viestiä ei löydy";
 "reply_privately" = "Vastaa yksityisesti";
 "source_code" = "Lähdekoodi";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Lisää aloitusnäytölle";
+
 "mute_for_one_hour" = "Mykistä 1 tunniksi";
 "mute_for_two_hours" = "Mykistä 2 tunniksi";
 "mute_for_one_day" = "Mykistä 1 päiväksi";
@@ -380,6 +388,7 @@
 "tab_image_empty_hint" = "Tässä keskustelussa jaetut kuvat näkyvät tässä.";
 "tab_video_empty_hint" = "Tässä keskustelussa jaetut videot näkyvät tässä.";
 "tab_audio_empty_hint" = "Tässä keskustelussa jaetut äänitiedostot ja -viestit näkyvät tässä.";
+"tab_webxdc_empty_hint" = "Keskustelussa jaetut yksityiset sovellukset näkyvät tässä.";
 "media_preview" = "Median esikatselu";
 "send_message" = "Lähetä viesti";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -667,9 +676,15 @@
 "remove_member_by_you" = "Jäsen %1$@ poistettu minun toimestani.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Jäsen %1$@ poistettu käyttäjän %2$@ toimesta.";
+"group_left_by_you" = "Poistuit ryhmästä.";
+// %1$s will be replaced by name and address of the contact
+"group_left_by_other" = "%1$@ poistui ryhmästä.";
 "group_image_deleted_by_you" = "Ryhmän kuva poistettu minun toimestani.";
 // %1$s will be replaced by name and address of the contact
 "group_image_deleted_by_other" = "Ryhmän kuva poistettu käyttäjän %1$@ toimesta.";
+"location_enabled_by_you" = "Aloitit sijainnin jakamisen.";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "%1$@ aloitti sijainnin jakamisen.";
 "ephemeral_timer_disabled_by_you" = "Katoavien viestien ajastin poistettiin minun toimestani.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_disabled_by_other" = "Katoavien viestien ajastin poistettiin käyttäjän %1$@ toimesta.";
@@ -758,6 +773,10 @@
 "qraccount_success_enter_name" = "Kirjautuminen onnistui - sähköpostiosoitteesa on %1$@\n\nVoit nyt halutessasi antaa nimen ja profiilikuvan, jotka näytetään muille kirjoittaessasi heille.";
 "qraccount_qr_code_cannot_be_used" = "Uutta tiliä ei voida luoda skannatulla QR-koodilla.";
 "qraccount_use_on_new_install" = "Skannattu QR-koodi on käytössä uuden tilin luomiseksi. Voit skannata QR-koodin uuden Delta Chat -asennuksen yhteydessä.";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login" = "Haluatko kirjautua osoitteella \"%1$@\"?";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login_another" = "Haluatko kirjautua osoitteella \"%1$@\"?\n\nNykyistä tiliäsi ei poisteta. Käytä \"Vaihda tiliä\" -kohtaa vaihtaaksesi tiliesi välillä.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ kutsui sinut tähän ryhmään.\n\nOdotetaan vastausta yhteystiedon %2$@ laitteelta...";
 // placeholder will be replaced by the name of the inviter.
@@ -906,6 +925,11 @@
 "notifications_avg_minutes" = "Keskimäärin%1$d minuutin välein";
 "notifications_avg_hours" = "Keskimäärin %1$d tunnin välein";
 "last_check_at" = "Tarkistettu %1$@";
+// iOS webxdc selector
+"webxdc_selector_empty_hint" = "Kaikissa keskusteluissa jaetut yksityiset sovellukset näkyvät tässä. \"Tiedostot\" näyttää ladatut yksityiset sovellukset.";
+// iOS webxdc shortcut page
+"shortcut_step1_tap_share_btn" = "Napauta jakamispainiketta.";
+"shortcut_step2_tap_add_to_home_screen" = "Valitse \"Lisää aloitusnäytölle\" lisätäksesi sovelluksen puhelimesi aloitusnäytölle.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
