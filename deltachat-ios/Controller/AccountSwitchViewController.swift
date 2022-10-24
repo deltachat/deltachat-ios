@@ -82,7 +82,7 @@ class AccountSwitchViewController: UITableViewController {
 
             let selectedAccountId = dcAccounts.getSelected().id
             cell.updateCell(selectedAccount: selectedAccountId,
-                            showAccountDeletion: showAccountDeletion,
+                            showAccountDeletion: showAccountDeletion, corners: configureCellStyle(for: indexPath),
                             dcContext: dcAccounts.get(id: accountIds[indexPath.row]))
             return cell
         }
@@ -134,6 +134,25 @@ class AccountSwitchViewController: UITableViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.dismiss(animated: true)
         }
+    }
+
+    func configureCellStyle(for indexPath: IndexPath) -> UIRectCorner {
+        var corners: UIRectCorner = []
+        if indexPath.section == addSection {
+            return []
+        }
+
+        if indexPath.row == 0 {
+            corners.formUnion(.topLeft)
+            corners.formUnion(.topRight)
+        }
+
+        if accountIds.count == indexPath.row + 1 {
+            corners.formUnion(.bottomLeft)
+            corners.formUnion(.bottomRight)
+        }
+
+        return corners
     }
 
     func deleteAccount(accountId: Int) {
@@ -246,6 +265,15 @@ class AccountCell: UITableViewCell {
         return label
     }()
 
+    private lazy var backgroundContainer: BackgroundContainer = {
+        let container = BackgroundContainer()
+        container.image = UIImage(color: DcColors.accountSwitchBackgroundColor)
+        container.contentMode = .scaleToFill
+        container.clipsToBounds = true
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         setupSubviews()
@@ -256,11 +284,16 @@ class AccountCell: UITableViewCell {
     }
 
     func setupSubviews() {
+        contentView.addSubview(backgroundContainer)
         contentView.addSubview(accountAvatar)
         contentView.addSubview(accountName)
         contentView.addSubview(stateIndicator)
         let margins = contentView.layoutMarginsGuide
         contentView.addConstraints([
+            backgroundContainer.constraintAlignTopToAnchor(contentView.topAnchor, paddingTop: 0.5),
+            backgroundContainer.constraintAlignTrailingToAnchor(contentView.trailingAnchor, paddingTrailing: 4),
+            backgroundContainer.constraintAlignLeadingToAnchor(contentView.leadingAnchor, paddingLeading: 4),
+            backgroundContainer.constraintAlignBottomToAnchor(contentView.bottomAnchor, paddingBottom: 0.5),
             accountAvatar.constraintCenterYTo(contentView),
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
             accountName.constraintAlignTopToAnchor(margins.topAnchor),
@@ -277,7 +310,7 @@ class AccountCell: UITableViewCell {
         stateIndicator.isHidden = true
     }
 
-    public func updateCell(selectedAccount: Int, showAccountDeletion: Bool, dcContext: DcContext) {
+    public func updateCell(selectedAccount: Int, showAccountDeletion: Bool, corners: UIRectCorner, dcContext: DcContext) {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
@@ -301,6 +334,8 @@ class AccountCell: UITableViewCell {
                 stateIndicator.isHidden = true
             }
         }
+
+        backgroundContainer.update(rectCorners: corners, color: DcColors.accountSwitchBackgroundColor)
     }
 
     private func showDeleteIndicator() {
@@ -332,6 +367,7 @@ class AccountCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        backgroundContainer.prepareForReuse()
         accountAvatar.reset()
         accountName.text = nil
         accountId = -1
