@@ -168,7 +168,9 @@ class AccountSwitchViewController: UITableViewController {
             confirm2.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
                 guard let self = self else { return }
                 appDelegate.locationManager.disableLocationStreamingInAllChats()
+                self.dcAccounts.stopIo()
                 _ = self.dcAccounts.remove(id: accountId)
+                self.dcAccounts.startIo()
                 KeychainManager.deleteAccountSecret(id: accountId)
                 INInteraction.delete(with: "\(accountId)", completion: nil)
                 if self.dcAccounts.getAll().isEmpty {
@@ -179,7 +181,7 @@ class AccountSwitchViewController: UITableViewController {
                         _ = self.dcAccounts.select(id: lastSelectedAccountId)
                     }
                 }
-                appDelegate.reloadDcContext()
+                self.reloadAndExit(appDelegate: appDelegate, previousAccountId: 0)
             }))
             confirm2.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             self.present(confirm2, animated: true, completion: nil)
