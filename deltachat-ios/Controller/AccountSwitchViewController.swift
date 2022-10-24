@@ -190,11 +190,11 @@ class AccountCell: UITableViewCell {
 
     static let reuseIdentifier = "accountCell_reuse_identifier"
     static var cellHeight: CGFloat {
-        let textHeight = UIFont.preferredFont(forTextStyle: .headline).pointSize + UIFont.preferredFont(forTextStyle: .subheadline).pointSize + 24
-        if textHeight > 74.5 {
+        let textHeight = UIFont.preferredFont(forTextStyle: .body).pointSize + 24
+        if textHeight > 54 {
             return textHeight
         }
-        return 74.5
+        return 54
     }
 
     var isLargeText: Bool {
@@ -202,7 +202,7 @@ class AccountCell: UITableViewCell {
     }
 
     lazy var accountAvatar: InitialsBadge = {
-        let avatar = InitialsBadge(size: 52, accessibilityLabel: "")
+        let avatar = InitialsBadge(size: 37, accessibilityLabel: "")
         return avatar
     }()
 
@@ -242,7 +242,7 @@ class AccountCell: UITableViewCell {
             accountAvatar.constraintCenterYTo(contentView),
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
             accountName.constraintAlignTopToAnchor(margins.topAnchor),
-            accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 14),
+            accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 20),
             accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
             accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
             stateIndicator.constraintCenterYTo(contentView),
