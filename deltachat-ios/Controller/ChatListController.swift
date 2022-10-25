@@ -6,6 +6,7 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
     let dcContext: DcContext
     internal let dcAccounts: DcAccounts
     var isArchive: Bool
+    private var accountSwitchTransitioningDelegate: PartialScreenModalTransitioningDelegate!
 
     private let chatCellReuseIdentifier = "chat_cell"
     private let deadDropCellReuseIdentifier = "deaddrop_cell"
@@ -581,6 +582,10 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
                 sheet.detents = [.medium()]
                 sheet.preferredCornerRadius = 20
             }
+        } else {
+            accountSwitchTransitioningDelegate = PartialScreenModalTransitioningDelegate(from: self, to: accountSwitchNavigationController)
+            accountSwitchNavigationController.modalPresentationStyle = .custom
+            accountSwitchNavigationController.transitioningDelegate = accountSwitchTransitioningDelegate
         }
 
         self.present(accountSwitchNavigationController, animated: true)

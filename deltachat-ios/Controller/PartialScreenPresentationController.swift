@@ -4,7 +4,7 @@ import UIKit
 class PartialScreenPresentationController: UIPresentationController {
     let blurEffectView: UIVisualEffectView
     var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
-    @objc func dismiss(){
+    @objc func dismiss() {
         self.presentedViewController.dismiss(animated: true, completion: nil)
     }
     
@@ -18,19 +18,20 @@ class PartialScreenPresentationController: UIPresentationController {
            self.blurEffectView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-   override var frameOfPresentedViewInContainerView: CGRect{
+   override var frameOfPresentedViewInContainerView: CGRect {
        guard let containerView = self.containerView else {
            return CGRect()
        }
-       return CGRect(origin: CGPoint(x: 0, y: containerView.frame.height / 2),
+       return CGRect(origin: CGPoint(x: 0,
+                                     y: containerView.frame.height / 2),
                      size: CGSize(width: containerView.frame.width,
-                                  height:containerView.frame.height / 2))
+                                  height: containerView.frame.height / 2))
    }
 
    override func dismissalTransitionWillBegin() {
-       self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
+       self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
            self.blurEffectView.alpha = 0
-       }, completion: { (UIViewControllerTransitionCoordinatorContext) in
+       }, completion: { _ in
            self.blurEffectView.removeFromSuperview()
        })
    }
@@ -38,10 +39,8 @@ class PartialScreenPresentationController: UIPresentationController {
    override func presentationTransitionWillBegin() {
        self.blurEffectView.alpha = 0
        self.containerView?.addSubview(blurEffectView)
-       self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
+       self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
            self.blurEffectView.alpha = 1
-       }, completion: { (UIViewControllerTransitionCoordinatorContext) in
-
        })
    }
 
@@ -56,5 +55,16 @@ class PartialScreenPresentationController: UIPresentationController {
        self.presentedView?.frame = frameOfPresentedViewInContainerView
        blurEffectView.frame = containerView!.bounds
    }
+}
+
+final class PartialScreenModalTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+
+    init(from presented: UIViewController, to presenting: UIViewController) {
+        super.init()
+    }
+
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return PartialScreenPresentationController(presentedViewController: presented, presenting: presenting)
+    }
     
 }
