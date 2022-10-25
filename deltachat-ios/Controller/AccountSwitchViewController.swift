@@ -345,7 +345,7 @@ class AccountCell: UITableViewCell {
         if #available(iOS 13.0, *) {
             image = UIImage(systemName: "trash")
         } else {
-            image = UIImage(named: "")
+            image = UIImage(named: "ic_trash")
         }
         stateIndicator.image = image
         stateIndicator.tintColor = .systemRed
@@ -359,7 +359,7 @@ class AccountCell: UITableViewCell {
         if #available(iOS 13.0, *) {
             image = UIImage(systemName: "checkmark")
         } else {
-            image = UIImage(named: "")
+            image = UIImage(named: "ic_checkmark")
         }
         stateIndicator.image = image
         stateIndicator.tintColor = .systemBlue
