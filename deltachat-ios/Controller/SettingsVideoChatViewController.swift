@@ -2,18 +2,17 @@ import UIKit
 import DcCore
 
 class PredefinedVideoChatOptionCell: UITableViewCell {
-    
+
     public var url: String
-    
+
     init(label: String, url: String) {
         self.url = url
         super.init(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: label)
         self.textLabel?.text = label
         self.detailTextLabel?.text = url
         self.detailTextLabel?.textColor = .lightGray
-        
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -29,13 +28,13 @@ class SettingsVideoChatViewController: UITableViewController {
         PredefinedVideoChatOptionCell(label: "Systemli", url: "https://meet.systemli.org/$ROOM"),
         PredefinedVideoChatOptionCell(label: "Autistici", url: "https://vc.autistici.org/$ROOM"),
     ]
-    
+
     private lazy var offCell: UITableViewCell = {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "off")
         cell.textLabel?.text = String.localized("off")
         return cell
     }()
-    
+
     private lazy var customInstanceCell: TextFieldCell = {
         let cell = TextFieldCell.makeConfigCell(labelID: String.localized("custom"),
                                                 placeholderID: String.localized("videochat_instance_placeholder"))
@@ -58,7 +57,7 @@ class SettingsVideoChatViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -90,7 +89,7 @@ class SettingsVideoChatViewController: UITableViewController {
         updateSelected(selectedCustom: selectedCustom)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
     // called when editing the value of the custom field or clicking on it
     @objc private func setCustom(_ textField: UITextField) {
         let newInstance = customInstanceCell.getText()
@@ -109,7 +108,7 @@ class SettingsVideoChatViewController: UITableViewController {
             return customInstanceCell
         }
     }
-    
+
     var isCustom = false
     func updateSelected(selectedCustom: Bool) {
         self.isCustom = false
@@ -124,7 +123,7 @@ class SettingsVideoChatViewController: UITableViewController {
                 option.accessoryType = .none
             }
         }
-        
+
         if notDefault {
             if (currentUrl?.isEmpty) != nil || selectedCustom {
                 self.offCell.accessoryType = .none
