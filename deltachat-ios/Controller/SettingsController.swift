@@ -122,7 +122,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         cell.tag = CellTags.videoChat.rawValue
         cell.textLabel?.text = String.localized("videochat_instance")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = dcContext.getConfig("webrtc_instance")
         return cell
     }()
 
@@ -544,7 +543,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         mediaQualityCell.detailTextLabel?.text = MediaQualityController.getValString(val: dcContext.getConfigInt("media_quality"))
         downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(
             val: dcContext.getConfigInt("download_limit"))
-        videoChatInstanceCell.detailTextLabel?.text = dcContext.getConfig("webrtc_instance")
+        videoChatInstanceCell.detailTextLabel?.text = SettingsVideoChatViewController.getValString(val: dcContext.getConfig("webrtc_instance") ?? "")
         autodelCell.detailTextLabel?.text = autodelSummary()
         connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: dcContext,
                                                                                connectedString: String.localized("connectivity_connected"))

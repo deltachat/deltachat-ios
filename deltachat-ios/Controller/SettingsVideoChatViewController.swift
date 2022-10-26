@@ -1,8 +1,17 @@
 import UIKit
 import DcCore
 
-class PredefinedVideoChatOptionCell: UITableViewCell {
+private class PredefinedOption {
+    public var label: String
+    public var url: String
 
+    init(label: String, url: String) {
+        self.label = label
+        self.url = url
+    }
+}
+
+private class PredefinedOptionCell: UITableViewCell {
     public var url: String
 
     init(label: String, url: String) {
@@ -18,21 +27,27 @@ class PredefinedVideoChatOptionCell: UITableViewCell {
     }
 }
 
-
 class SettingsVideoChatViewController: UITableViewController {
-
     private var dcContext: DcContext
 
-    private let defaultOptions = [
-        PredefinedVideoChatOptionCell(label: "Jitsi", url: "https://meet.jit.si/$ROOM"),
-        PredefinedVideoChatOptionCell(label: "Systemli", url: "https://meet.systemli.org/$ROOM"),
-        PredefinedVideoChatOptionCell(label: "Autistici", url: "https://vc.autistici.org/$ROOM"),
+    private static let predefinedOptions = [
+        PredefinedOption(label: "Jitsi", url: "https://meet.jit.si/$ROOM"),
+        PredefinedOption(label: "Systemli", url: "https://meet.systemli.org/$ROOM"),
+        PredefinedOption(label: "Autistici", url: "https://vc.autistici.org/$ROOM"),
     ]
 
     private lazy var offCell: UITableViewCell = {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "off")
         cell.textLabel?.text = String.localized("off")
         return cell
+    }()
+
+    private lazy var predefinedCells: [PredefinedOptionCell] = {
+        var ret: [PredefinedOptionCell] = []
+        for option in SettingsVideoChatViewController.predefinedOptions {
+            ret.append(PredefinedOptionCell(label: option.label, url: option.url))
+        }
+        return ret
     }()
 
     private lazy var customInstanceCell: TextFieldCell = {
@@ -58,6 +73,15 @@ class SettingsVideoChatViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    static func getValString(val: String) -> String {
+        for option in predefinedOptions {
+            if option.url == val {
+                return option.label
+            }
+        }
+        return val
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,7 +89,7 @@ class SettingsVideoChatViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.defaultOptions.count + 2
+        return self.predefinedCells.count + 2
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -77,8 +101,8 @@ class SettingsVideoChatViewController: UITableViewController {
         if indexPath.row == 0 {
             newInstance = ""
             self.view.endEditing(true)
-        } else if indexPath.row <= self.defaultOptions.count {
-            newInstance = self.defaultOptions[indexPath.row-1].url
+        } else if indexPath.row <= self.predefinedCells.count {
+            newInstance = self.predefinedCells[indexPath.row-1].url
             self.view.endEditing(true)
         } else {
             newInstance = customInstanceCell.getText()
@@ -102,8 +126,8 @@ class SettingsVideoChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             return offCell
-        } else if indexPath.row <= self.defaultOptions.count {
-            return self.defaultOptions[indexPath.row-1]
+        } else if indexPath.row <= self.predefinedCells.count {
+            return self.predefinedCells[indexPath.row-1]
         } else {
             return customInstanceCell
         }
@@ -115,7 +139,7 @@ class SettingsVideoChatViewController: UITableViewController {
         var notDefault = true
         let currentUrl = dcContext.getConfig("webrtc_instance")
         // set selection
-        for option in self.defaultOptions {
+        for option in self.predefinedCells {
             if option.url == currentUrl {
                 option.accessoryType = .checkmark
                 notDefault = false
