@@ -111,6 +111,8 @@
 		30C7D5F128F4808C0078D24C /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C7D5EB28F47E620078D24C /* MessageCounter.swift */; };
 		30CE137828D9C40800158DF4 /* ChatDropInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */; };
 		30DAF71C275901610073C154 /* SettingsBackgroundSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */; };
+		30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */; };
+		30DDCBEB28FCA21800465D22 /* AccountSwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDCBEA28FCA21800465D22 /* AccountSwitchViewController.swift */; };
 		30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348DE24F3F819005C93D1 /* ChatTableView.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
 		30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E424F6647D005C93D1 /* FileTextCell.swift */; };
@@ -391,6 +393,8 @@
 		30C7D5EB28F47E620078D24C /* MessageCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDropInteraction.swift; sourceTree = "<group>"; };
 		30DAF71B275901610073C154 /* SettingsBackgroundSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBackgroundSelectionController.swift; sourceTree = "<group>"; };
+		30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialScreenPresentationController.swift; sourceTree = "<group>"; };
+		30DDCBEA28FCA21800465D22 /* AccountSwitchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSwitchViewController.swift; sourceTree = "<group>"; };
 		30E348DE24F3F819005C93D1 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
 		30E348E424F6647D005C93D1 /* FileTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTextCell.swift; sourceTree = "<group>"; };
@@ -925,6 +929,8 @@
 		AE851AC0227C693B00ED86F0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				30DDCBEA28FCA21800465D22 /* AccountSwitchViewController.swift */,
+				30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */,
 				3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */,
 				AE18F28B228C17630007B1BE /* AccountSetup */,
 				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
@@ -1474,6 +1480,7 @@
 				30F4E2942859213400ACA0D8 /* ChatListEditingBar.swift in Sources */,
 				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
+				30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */,
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
 				AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */,
@@ -1548,6 +1555,7 @@
 				AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */,
 				30F8817624DA97DA0023780E /* BackgroundContainer.swift in Sources */,
 				3067AA4C2666310E00525036 /* ChatInputTextView.swift in Sources */,
+				30DDCBEB28FCA21800465D22 /* AccountSwitchViewController.swift in Sources */,
 				3080A02C277DE26000E74565 /* NSConstraintLayoutSet.swift in Sources */,
 				3080A038277DE30100E74565 /* UIView+AutoLayout.swift in Sources */,
 				30B0ACFA24AB5B99004D5E29 /* SettingsEphemeralMessageController.swift in Sources */,
