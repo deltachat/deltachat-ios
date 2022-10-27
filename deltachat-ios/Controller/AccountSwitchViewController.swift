@@ -20,10 +20,17 @@ class AccountSwitchViewController: UITableViewController {
         return btn
     }()
 
-    private lazy var cancelButton: UIBarButtonItem = {
+    private lazy var cancelEditButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(barButtonSystemItem: .cancel,
                                   target: self,
-                                  action: #selector(cancelAction))
+                                  action: #selector(cancelEditAction))
+        return btn
+    }()
+
+    private lazy var doneButton: UIBarButtonItem = {
+        let btn = UIBarButtonItem(barButtonSystemItem: .done,
+                                  target: self,
+                                  action: #selector(doneAction))
         return btn
     }()
 
@@ -52,6 +59,7 @@ class AccountSwitchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.setLeftBarButton(editButton, animated: false)
+        navigationItem.setRightBarButton(doneButton, animated: false)
     }
 
     private func setupSubviews() {
@@ -201,16 +209,25 @@ class AccountSwitchViewController: UITableViewController {
 
     @objc private func editAction() {
         logger.debug("edit Action")
-        navigationItem.setLeftBarButton(cancelButton, animated: false)
+        title = String.localized("delete_account")
+        navigationItem.setLeftBarButton(nil, animated: true)
+        navigationItem.setRightBarButton(cancelEditButton, animated: true)
         showAccountDeletion = true
         tableView.reloadData()
     }
 
-    @objc private func cancelAction() {
+    @objc private func cancelEditAction() {
         logger.debug("cancel Action")
+        title = String.localized("switch_account")
         navigationItem.setLeftBarButton(editButton, animated: false)
+        navigationItem.setRightBarButton(doneButton, animated: false)
         showAccountDeletion = false
         tableView.reloadData()
+    }
+
+    @objc private func doneAction() {
+        logger.debug("done Action")
+        dismiss(animated: true)
     }
 }
 
