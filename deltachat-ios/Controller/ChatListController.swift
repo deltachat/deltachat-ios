@@ -608,14 +608,13 @@ class ChatListController: UITableViewController, AccountSwitcherHandler {
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
             if !handleMultiSelectionTitle() {
-                navigationItem.setLeftBarButton(nil, animated: true)
+                navigationItem.setLeftBarButton(accountButton, animated: false)
+                updateAccountButton()
                 navigationItem.setRightBarButton(newButton, animated: true)
                 if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
                     titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
                 }
             }
-            navigationItem.setLeftBarButton(accountButton, animated: false)
-            updateAccountButton()
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
         titleView.sizeToFit()
