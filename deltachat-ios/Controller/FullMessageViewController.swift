@@ -12,7 +12,6 @@ class FullMessageViewController: WebViewViewController {
     }
 
     var messageId: Int
-    var dcContext: DcContext
     private var loadContentOnce = false
 
     // Block just everything :)
@@ -31,9 +30,8 @@ class FullMessageViewController: WebViewViewController {
     
 
     init(dcContext: DcContext, messageId: Int) {
-        self.dcContext = dcContext
         self.messageId = messageId
-        super.init()
+        super.init(dcContext: dcContext)
         self.allowSearch = true
     }
 

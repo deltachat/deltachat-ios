@@ -591,7 +591,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
     }
 
     private func showHelp() {
-        navigationController?.pushViewController(HelpViewController(), animated: true)
+        navigationController?.pushViewController(HelpViewController(dcContext: dcContext), animated: true)
     }
 
     private func showConnectivity() {

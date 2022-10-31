@@ -3,20 +3,10 @@ import DcCore
 import Network
 
 class ConnectivityViewController: WebViewViewController {
-    private let dcContext: DcContext
     private var connectivityChangedObserver: NSObjectProtocol?
     private var lowPowerModeObserver: NSObjectProtocol?
     private var connectivityMonitor: AnyObject?
     private var isLowDataMode: Bool = false
-
-    init(dcContext: DcContext) {
-        self.dcContext = dcContext
-        super.init()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     // called only once after loading
     override func viewDidLoad() {

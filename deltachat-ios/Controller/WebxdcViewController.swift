@@ -12,7 +12,6 @@ class WebxdcViewController: WebViewViewController {
     let INTERNALSCHEMA = "webxdc"
     
     var messageId: Int
-    var dcContext: DcContext
     var webxdcUpdateObserver: NSObjectProtocol?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
@@ -154,10 +153,9 @@ class WebxdcViewController: WebViewViewController {
     
     
     init(dcContext: DcContext, messageId: Int) {
-        self.dcContext = dcContext
         self.messageId = messageId
         self.shortcutManager = ShortcutManager(dcContext: dcContext, messageId: messageId)
-        super.init()
+        super.init(dcContext: dcContext)
     }
     
     required init?(coder: NSCoder) {
@@ -221,7 +219,7 @@ class WebxdcViewController: WebViewViewController {
         // TODO: what about tel://
         if let url = navigationAction.request.url {
             if url.scheme == "mailto" {
-                askToChatWith(url: url)
+                openChatFor(url: url)
                 decisionHandler(.cancel)
                 return
             } else if url.scheme != INTERNALSCHEMA {
@@ -301,31 +299,6 @@ class WebxdcViewController: WebViewViewController {
            let url = URL(string: sourceCodeUrl) {
             UIApplication.shared.open(url)
         }
-    }
-
-    private func askToChatWith(url: URL) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let emailAddress = parseEmailAddress(from: url) else {
-            return
-        }
-
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), emailAddress),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-            RelayHelper.shared.askToChatWithMailto = false
-            _ = appDelegate.application(UIApplication.shared, open: url)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func parseEmailAddress(from url: URL) -> String? {
-        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
-           !urlComponents.path.isEmpty {
-             return RelayHelper.shared.splitString(urlComponents.path)[0]
-        }
-        return nil
     }
 }
 
