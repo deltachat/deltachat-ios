@@ -62,12 +62,15 @@ class AccountSwitchViewController: UITableViewController {
         navigationItem.setRightBarButton(doneButton, animated: false)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.bounces = tableView.contentSize.height > tableView.safeAreaLayoutGuide.layoutFrame.height
+    }
+
     private func setupSubviews() {
         title = String.localized("switch_account")
         tableView.register(AccountCell.self, forCellReuseIdentifier: AccountCell.reuseIdentifier)
         tableView.rowHeight = AccountCell.cellHeight
         tableView.separatorStyle = .singleLine
-        tableView.bounces = false
         tableView.delegate = self
     }
 
