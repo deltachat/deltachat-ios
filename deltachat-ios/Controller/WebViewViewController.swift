@@ -47,7 +47,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     private var debounceTimer: Timer?
     private var initializedSearch = false
     open var allowSearch = false
-     var dcContext: DcContext
+    var dcContext: DcContext
 
     open var configuration: WKWebViewConfiguration {
         let preferences = WKPreferences()
