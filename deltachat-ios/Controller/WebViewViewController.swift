@@ -215,10 +215,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         // workaround:
         let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: emailAddress)
         let index = contacts.firstIndex(where: { dcContext.getContact(id: $0).email == emailAddress }) ?? -1
-        var contactId = 0
-        if index >= 0 {
-            contactId = contacts[index]
-        }
+        let contactId = index >= 0 ? contacts[index] : 0
 
         if contactId == 0 {
             let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), emailAddress),
