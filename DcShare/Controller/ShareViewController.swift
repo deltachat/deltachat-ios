@@ -64,6 +64,13 @@ class ShareViewController: SLComposeServiceViewController {
         return imageView
     }()
 
+    lazy var initialsBadge: InitialsBadge = {
+        let view = InitialsBadge(name: "", color: UIColor.clear, size: 28)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -79,51 +86,69 @@ class ShareViewController: SLComposeServiceViewController {
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
 
-    }
-
-    override func presentationAnimationDidFinish() {
         dcAccounts.logger = logger
         dcAccounts.openDatabase()
-        if !dcContext.isOpen() {
-            do {
-                let secret = try KeychainManager.getAccountSecret(accountID: dcContext.id)
-                if !dcContext.open(passphrase: secret) {
-                    logger.error("Failed to open database.")
+        let accountIds = dcAccounts.getAll()
+        for accountId in accountIds {
+            let dcContext = dcAccounts.get(id: accountId)
+            if !dcContext.isOpen() {
+                do {
+                    let secret = try KeychainManager.getAccountSecret(accountID: dcContext.id)
+                    if !dcContext.open(passphrase: secret) {
+                        logger.error("Failed to open database.")
+                    }
+                } catch KeychainError.unhandledError(let message, let status), KeychainError.accessError(let message, let status) {
+                    logger.error("KeychainError. \(message). Error status: \(status)")
+                } catch {
+                    logger.error("\(error)")
                 }
-            } catch KeychainError.unhandledError(let message, let status), KeychainError.accessError(let message, let status) {
-                logger.error("KeychainError. \(message). Error status: \(status)")
-            } catch {
-                logger.error("\(error)")
             }
         }
+
+        if #available(iOSApplicationExtension 13.0, *) {
+            if let intent = self.extensionContext?.intent as? INSendMessageIntent,
+               let identifiers = intent.conversationIdentifier?.split(separator: "."),
+               let contextId = Int(identifiers[0]),
+               let chatId = Int(identifiers[1]) {
+                if accountIds.contains(contextId) {
+                    dcContext = dcAccounts.get(id: contextId)
+                    selectedChatId = chatId
+                } else {
+                    logger.error("invalid INSendMessageIntent \(contextId) doesn't exist")
+                    cancel()
+                    return
+                }
+            }
+        }
+
         isAccountConfigured = dcContext.isOpen() && dcContext.isConfigured()
-
-        if isAccountConfigured {
-            if #available(iOSApplicationExtension 13.0, *) {
-                if let intent = self.extensionContext?.intent as? INSendMessageIntent,
-                   let identifiers = intent.conversationIdentifier?.split(separator: ".") {
-                    let contextId = Int(identifiers[0])
-                    let chatId = Int(identifiers[1])
-                    if dcContext.id == contextId {
-                        selectedChatId = chatId
-                    }
-               }
-            }
-
-            if selectedChatId == nil {
-                selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
-            }
-            if let chatId = selectedChatId {
-                selectedChat = dcContext.getChat(chatId: chatId)
-            }
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let self = self else { return }
-                self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
-            }
-            reloadConfigurationItems()
-            validateContent()
-        } else {
+        if !isAccountConfigured {
+            logger.error("selected context \(dcContext.id) is not configured")
             cancel()
+            return
+        }
+
+        if selectedChatId == nil {
+            selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+            logger.debug("selected chatID: \(String(describing: selectedChatId))")
+        }
+
+        let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
+        let title = dcContext.displayname ?? dcContext.addr ?? ""
+        initialsBadge.setName(title)
+        initialsBadge.setColor(contact.color)
+        if let image = contact.profileImage {
+            initialsBadge.setImage(image)
+        }
+
+        guard let chatId = selectedChatId else {
+            cancel()
+            return
+        }
+        selectedChat = dcContext.getChat(chatId: chatId)
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
         }
     }
 
@@ -144,6 +169,15 @@ class ShareViewController: SLComposeServiceViewController {
             target: self,
             action: #selector(appendPostTapped))
         item.rightBarButtonItem? = button
+
+        let cancelButton = UIBarButtonItem(
+            title: String.localized("cancel"),
+            style: .done,
+            target: self,
+            action: #selector(onCancelPressed))
+
+        let avatarItem = UIBarButtonItem(customView: initialsBadge)
+        item.leftBarButtonItems = [avatarItem, cancelButton]
     }
 
     /// Invoked when the user wants to post.
@@ -176,9 +210,8 @@ class ShareViewController: SLComposeServiceViewController {
     override func configurationItems() -> [Any]! {
         let item = SLComposeSheetConfigurationItem()
         if isAccountConfigured {
-            logger.debug("configurationItems")
             // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
-
+            // TODO: discuss if we want to add an item for the account selection.
 
             item?.title = String.localized("forward_to")
             item?.value = selectedChat?.name
@@ -196,6 +229,10 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func didSelectCancel() {
         quit()
+    }
+
+    @objc func onCancelPressed() {
+        cancel()
     }
 }
 
