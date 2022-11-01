@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class ChatListController: UITableViewController, AccountSwitcherHandler {
+class ChatListController: UITableViewController {
     var viewModel: ChatListViewModel?
     let dcContext: DcContext
     internal let dcAccounts: DcAccounts

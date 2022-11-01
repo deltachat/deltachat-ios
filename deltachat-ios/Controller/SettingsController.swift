@@ -3,7 +3,7 @@ import DcCore
 import DBDebugToolkit
 import Intents
 
-internal final class SettingsViewController: UITableViewController, ProgressAlertHandler, AccountSwitcherHandler {
+internal final class SettingsViewController: UITableViewController, ProgressAlertHandler {
 
     private struct SectionConfigs {
         let headerTitle: String?
@@ -26,10 +26,9 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case autodel = 11
         case mediaQuality = 12
         case downloadOnDemand = 13
-        case switchAccount = 14
-        case videoChat = 15
-        case connectivity = 16
-        case selectBackground = 17
+        case videoChat = 14
+        case connectivity = 15
+        case selectBackground = 16
     }
 
     private var dcContext: DcContext
@@ -194,14 +193,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var switchAccountCell: ActionCell = {
-        let cell = ActionCell()
-        cell.tag = CellTags.switchAccount.rawValue
-        cell.actionTitle = String.localized("switch_account")
-        cell.selectionStyle = .default
-        return cell
-    }()
-
     private lazy var helpCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.help.rawValue
@@ -233,7 +224,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         let profileSection = SectionConfigs(
             headerTitle: String.localized("pref_profile_info_headline"),
             footerTitle: nil,
-            cells: [profileCell, switchAccountCell]
+            cells: [profileCell]
         )
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
@@ -367,7 +358,6 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
         case .advanced: showAdvancedDialog()
-        case .switchAccount: showSwitchAccountMenu()
         case .help: showHelp()
         case .connectivity: showConnectivity()
         case .selectBackground: selectBackground()
