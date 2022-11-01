@@ -67,6 +67,7 @@ class AccountSwitchViewController: UITableViewController {
         tableView.register(AccountCell.self, forCellReuseIdentifier: AccountCell.reuseIdentifier)
         tableView.rowHeight = AccountCell.cellHeight
         tableView.separatorStyle = .singleLine
+        tableView.bounces = false
         tableView.delegate = self
     }
 
@@ -112,15 +113,19 @@ class AccountSwitchViewController: UITableViewController {
             }
             return 12
         }
-        return 0
+        return CGFloat.leastNormalMagnitude
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == addSection {
-            let view = UIView()
-            return view
-        }
-        return nil
+        return  UIView()
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return  UIView()
     }
 
     func selectAccount(previousAccountId: Int, accountId: Int, cell: UITableViewCell) {
