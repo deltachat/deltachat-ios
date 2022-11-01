@@ -4,8 +4,8 @@ import DcCore
 
 class HelpViewController: WebViewViewController {
 
-    override init() {
-        super.init()
+    override init(dcContext: DcContext) {
+        super.init(dcContext: dcContext)
         self.allowSearch = true
     }
 

@@ -1,5 +1,6 @@
 import UIKit
 import WebKit
+import DcCore
 
 class WebViewViewController: UIViewController, WKNavigationDelegate {
 
@@ -46,6 +47,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     private var debounceTimer: Timer?
     private var initializedSearch = false
     open var allowSearch = false
+    var dcContext: DcContext
 
     open var configuration: WKWebViewConfiguration {
         let preferences = WKPreferences()
@@ -59,7 +61,8 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         return config
     }
 
-    init() {
+    init(dcContext: DcContext) {
+        self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
     }
@@ -69,6 +72,13 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let url = navigationAction.request.url {
+            if url.scheme == "mailto" {
+                openChatFor(url: url)
+                decisionHandler(.cancel)
+                return
+            }
+        }
         if navigationAction.navigationType == .linkActivated,
            let url = navigationAction.request.url,
             url.host != nil,
@@ -191,6 +201,44 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     private func searchPrevious() {
         webView.evaluateJavaScript("WKWebView_SearchPrev()", completionHandler: nil)
         updateAccessoryBar()
+    }
+
+    func openChatFor(url: URL) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let emailAddress = parseEmailAddress(from: url) else {
+            return
+        }
+
+        // FIXME: lookupContactIdByAddress is still broken
+        // let contactId = dcContext.lookupContactIdByAddress(emailAddress)
+
+        // workaround:
+        let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: emailAddress)
+        let index = contacts.firstIndex(where: { dcContext.getContact(id: $0).email == emailAddress }) ?? -1
+        let contactId = index >= 0 ? contacts[index] : 0
+
+        if contactId == 0 {
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), emailAddress),
+                                          message: nil,
+                                          preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                RelayHelper.shared.askToChatWithMailto = false
+                _ = appDelegate.application(UIApplication.shared, open: url)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            RelayHelper.shared.askToChatWithMailto = false
+            _ = appDelegate.application(UIApplication.shared, open: url)
+        }
+    }
+
+    private func parseEmailAddress(from url: URL) -> String? {
+        if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
+           !urlComponents.path.isEmpty {
+             return RelayHelper.shared.splitString(urlComponents.path)[0]
+        }
+        return nil
     }
 }
 
