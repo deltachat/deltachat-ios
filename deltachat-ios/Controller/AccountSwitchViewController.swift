@@ -62,6 +62,10 @@ class AccountSwitchViewController: UITableViewController {
         navigationItem.setRightBarButton(doneButton, animated: false)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.bounces = tableView.contentSize.height > tableView.safeAreaLayoutGuide.layoutFrame.height
+    }
+
     private func setupSubviews() {
         title = String.localized("switch_account")
         tableView.register(AccountCell.self, forCellReuseIdentifier: AccountCell.reuseIdentifier)
@@ -112,15 +116,19 @@ class AccountSwitchViewController: UITableViewController {
             }
             return 12
         }
-        return 0
+        return CGFloat.leastNormalMagnitude
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == addSection {
-            let view = UIView()
-            return view
-        }
-        return nil
+        return  UIView()
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return  UIView()
     }
 
     func selectAccount(previousAccountId: Int, accountId: Int, cell: UITableViewCell) {
