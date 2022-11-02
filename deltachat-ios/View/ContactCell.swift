@@ -54,6 +54,7 @@ class ContactCell: UITableViewCell {
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         label.font = UIFont.preferredFont(for: .body, weight: .medium)
         label.adjustsFontForContentSizeCategory = true
+        label.isAccessibilityElement = false
         return label
     }()
 
@@ -65,6 +66,7 @@ class ContactCell: UITableViewCell {
         view.image = #imageLiteral(resourceName: "pinned_chatlist").withRenderingMode(.alwaysTemplate)
         view.isHidden = true
         view.contentMode = .scaleAspectFit
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -76,6 +78,7 @@ class ContactCell: UITableViewCell {
         view.image = #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
         view.isHidden = true
         view.contentMode = .scaleAspectFit
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -86,6 +89,7 @@ class ContactCell: UITableViewCell {
         label.textColor = DcColors.middleGray
         label.textAlignment = .right
         label.setContentHuggingPriority(.defaultHigh, for: NSLayoutConstraint.Axis.horizontal)
+        label.isAccessibilityElement = false
         return label
     }()
 
@@ -93,6 +97,7 @@ class ContactCell: UITableViewCell {
         let view = LocationStreamingIndicator(height: 16)
         view.isHidden = true
         view.contentMode = .scaleAspectFit
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -102,12 +107,14 @@ class ContactCell: UITableViewCell {
         label.lineBreakMode = .byTruncatingTail
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
+        label.isAccessibilityElement = false
         return label
     }()
 
     private lazy var deliveryStatusIndicator: UIImageView = {
         let view = UIImageView()
         view.isHidden = true
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -122,6 +129,7 @@ class ContactCell: UITableViewCell {
     private let unreadMessageCounter: MessageCounter = {
         let view = MessageCounter(count: 0, size: 20)
         view.isHidden = true
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -158,6 +166,7 @@ class ContactCell: UITableViewCell {
         label.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -4).isActive = true
         label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        label.isAccessibilityElement = false
         return view
     }
     private func configureCompressionPriority() {
@@ -176,6 +185,7 @@ class ContactCell: UITableViewCell {
 
     private func setupSubviews() {
         let margin: CGFloat = 10
+        isAccessibilityElement = true
 
         avatar.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(avatar)
@@ -311,18 +321,24 @@ class ContactCell: UITableViewCell {
 
         // subtitle
         subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
+        var unreadMessages = 0
+        var isContactRequest = false
+        var isArchived = false
 
         switch cellViewModel.type {
         case .chat(let chatData):
             let chat = cellViewModel.dcContext.getChat(chatId: chatData.chatId)
-
+            unreadMessages = chatData.unreadMessages
+            isContactRequest = chat.isContactRequest
+            let visibility = chat.visibility
+            isArchived = visibility == DC_CHAT_VISIBILITY_ARCHIVED
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.unreadMessages > 0 {
                 titleLabel.attributedText = cellViewModel.title.bold(fontSize: titleLabel.font.pointSize)
             } else {
                 titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
             }
-            if chat.visibility == DC_CHAT_VISIBILITY_PINNED {
+            if visibility == DC_CHAT_VISIBILITY_PINNED {
                 backgroundColor = DcColors.deaddropBackground
             } else {
                 backgroundColor = DcColors.contactCellBackgroundColor
@@ -339,10 +355,10 @@ class ContactCell: UITableViewCell {
             setTimeLabel(chatData.summary.timestamp)
             setStatusIndicators(unreadCount: chatData.unreadMessages,
                                 status: chatData.summary.state,
-                                visibility: chat.visibility,
+                                visibility: visibility,
                                 isLocationStreaming: chat.isSendingLocations,
                                 isMuted: chat.isMuted,
-                                isContactRequest: chat.isContactRequest)
+                                isContactRequest: isContactRequest)
 
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
@@ -381,5 +397,13 @@ class ContactCell: UITableViewCell {
             isContactRequest: false)
         }
 
+        accessibilityLabel = """
+                              \(titleLabel.text ?? "")
+                              \(isContactRequest ?  String.localized("chat_request_label") : "")
+                              \(isArchived ? String.localized("chat_archived_label") : "")
+                              \(unreadMessages > 0 ? String.localized(stringID: "n_messages", count: unreadMessages) : "")
+                              \(timeLabel.text ?? "")
+                              \(subtitleLabel.text ?? "")
+                            """
     }
 }
