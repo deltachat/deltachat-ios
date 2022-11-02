@@ -255,7 +255,8 @@ class AccountCell: UITableViewCell {
     }
 
     lazy var accountAvatar: InitialsBadge = {
-        let avatar = InitialsBadge(size: 37, accessibilityLabel: "")
+        let avatar = InitialsBadge(size: 37)
+        avatar.isAccessibilityElement = false
         return avatar
     }()
 
@@ -328,8 +329,16 @@ class AccountCell: UITableViewCell {
             accountAvatar.setImage(image)
         }
 
-        accountAvatar.setUnreadMessageCount(dcContext.getFreshMessages().count)
+        let unreadMessages = dcContext.getFreshMessages().count
+        accountAvatar.setUnreadMessageCount(unreadMessages)
+
         accountName.text = title
+        if unreadMessages > 0 {
+            accountName.accessibilityLabel = "\(title): \(String.localized(stringID: "n_messages", count: unreadMessages))"
+        } else {
+            accountName.accessibilityLabel = title
+        }
+
         if showAccountDeletion {
             showDeleteIndicator()
         } else {

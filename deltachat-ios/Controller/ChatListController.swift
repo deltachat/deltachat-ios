@@ -549,8 +549,14 @@ class ChatListController: UITableViewController {
     }
     
     private func updateAccountButton() {
-        accountButtonAvatar.setUnreadMessageCount(getUnreadCounterOfOtherAccounts())
-        
+        let unreadMessages = getUnreadCounterOfOtherAccounts()
+        accountButtonAvatar.setUnreadMessageCount(unreadMessages)
+        if unreadMessages > 0 {
+            accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account")): \(String.localized(stringID: "n_messages", count: unreadMessages))"
+        } else {
+            accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account"))"
+        }
+
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
         let title = dcContext.displayname ?? dcContext.addr ?? ""
         accountButtonAvatar.setColor(contact.color)
