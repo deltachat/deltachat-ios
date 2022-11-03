@@ -654,7 +654,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     private func showEphemeralMessagesController() {
-        let ephemeralMessagesController = SettingsEphemeralMessageController(dcContext: dcContext, chatId: chatId)
+        let ephemeralMessagesController = EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId)
         navigationController?.pushViewController(ephemeralMessagesController, animated: true)
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 import DcCore
-class MediaQualityController: UITableViewController {
+class MediaQualityViewController: UITableViewController {
 
     private var dcContext: DcContext
 
@@ -9,7 +9,7 @@ class MediaQualityController: UITableViewController {
     private lazy var staticCells: [UITableViewCell] = {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = MediaQualityController.getValString(val: $0)
+            cell.textLabel?.text = MediaQualityViewController.getValString(val: $0)
             return cell
         })
     }()

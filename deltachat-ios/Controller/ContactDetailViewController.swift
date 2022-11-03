@@ -403,7 +403,7 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showEphemeralMessagesController() {
-        let ephemeralMessagesController = SettingsEphemeralMessageController(dcContext: viewModel.context, chatId: viewModel.chatId)
+        let ephemeralMessagesController = EphemeralMessagesViewController(dcContext: viewModel.context, chatId: viewModel.chatId)
         navigationController?.pushViewController(ephemeralMessagesController, animated: true)
     }
 
