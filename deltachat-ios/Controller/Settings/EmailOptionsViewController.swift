@@ -1,6 +1,6 @@
 import UIKit
 import DcCore
-class SettingsClassicViewController: UITableViewController {
+class EmailOptionsViewController: UITableViewController {
 
     var dcContext: DcContext
 
@@ -9,7 +9,7 @@ class SettingsClassicViewController: UITableViewController {
     var staticCells: [UITableViewCell] {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = SettingsClassicViewController.getValString(val: $0)
+            cell.textLabel?.text = EmailOptionsViewController.getValString(val: $0)
             return cell
         })
     }

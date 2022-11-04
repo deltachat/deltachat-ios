@@ -27,7 +27,7 @@ private class PredefinedOptionCell: UITableViewCell {
     }
 }
 
-class SettingsVideoChatViewController: UITableViewController {
+class VideoChatInstanceViewController: UITableViewController {
     private var dcContext: DcContext
 
     private static let predefinedOptions = [
@@ -44,7 +44,7 @@ class SettingsVideoChatViewController: UITableViewController {
 
     private lazy var predefinedCells: [PredefinedOptionCell] = {
         var ret: [PredefinedOptionCell] = []
-        for option in SettingsVideoChatViewController.predefinedOptions {
+        for option in VideoChatInstanceViewController.predefinedOptions {
             ret.append(PredefinedOptionCell(label: option.label, url: option.url))
         }
         return ret

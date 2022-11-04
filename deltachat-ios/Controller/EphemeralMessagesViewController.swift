@@ -1,6 +1,6 @@
 import UIKit
 import DcCore
-class SettingsEphemeralMessageController: UITableViewController {
+class EphemeralMessagesViewController: UITableViewController {
 
     var dcContext: DcContext
     var chatId: Int
@@ -23,7 +23,7 @@ class SettingsEphemeralMessageController: UITableViewController {
     private var staticCells: [UITableViewCell] {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = SettingsEphemeralMessageController.getValString(val: $0)
+            cell.textLabel?.text = EphemeralMessagesViewController.getValString(val: $0)
             return cell
         })
     }
