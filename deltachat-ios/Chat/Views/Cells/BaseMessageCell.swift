@@ -116,6 +116,7 @@ public class BaseMessageCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.isHidden = true
         view.isUserInteractionEnabled = true
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -378,9 +379,10 @@ public class BaseMessageCell: UITableViewCell {
             trailingConstraintEditingMode?.isActive = isEditing
         }
 
+        let senderName = msg.getSenderName(fromContact)
         if showAvatar {
             avatarView.isHidden = false
-            avatarView.setName(msg.getSenderName(fromContact))
+            avatarView.setName(senderName)
             avatarView.setColor(fromContact.color)
             if let profileImage = fromContact.profileImage {
                 avatarView.setImage(profileImage)
@@ -452,11 +454,35 @@ public class BaseMessageCell: UITableViewCell {
         }
 
         messageLabel.attributedText = MessageUtils.getFormattedSearchResultMessage(messageText: msg.text,
-                                                                                       searchText: searchText,
-                                                                                       highlight: highlight)
+                                                                                   searchText: searchText,
+                                                                                   highlight: highlight)
 
         messageLabel.delegate = self
+        accessibilityCustomActions = configureAccessibilityActions(senderName: senderName,
+                                                                   isCurrentSender: msg.isFromCurrentSender,
+                                                                   isGroupChat: dcContext.getChat(chatId: msg.chatId).isGroup)
         accessibilityLabel = configureAccessibilityString(message: msg)
+    }
+
+    func configureAccessibilityActions(senderName: String, isCurrentSender: Bool, isGroupChat: Bool) -> [UIAccessibilityCustomAction] {
+        var actions = [
+            UIAccessibilityCustomAction(name: "\(senderName): \(String.localized("profile"))", target: self, selector: #selector(profileSelected(_:))),
+            UIAccessibilityCustomAction(name: String.localized("menu_reply"), target: self, selector: #selector(messageReply(_:))),
+            UIAccessibilityCustomAction(name: String.localized("reply_privately"), target: self, selector: #selector(messageReplyPrivately(_:))),
+            UIAccessibilityCustomAction(name: String.localized("forward"), target: self, selector: #selector(messageForward(_:))),
+            UIAccessibilityCustomAction(name: String.localized("info"), target: self, selector: #selector(messageInfo(_:))),
+            UIAccessibilityCustomAction(name: String.localized("global_menu_edit_copy_desktop"), target: self, selector: #selector(messageCopy(_:))),
+            UIAccessibilityCustomAction(name: String.localized("delete"), target: self, selector: #selector(messageDelete(_:))),
+        ]
+
+        if !isGroupChat || isCurrentSender {
+            actions = actions.filter({
+                    $0.selector != #selector(messageReplyPrivately(_:)) &&
+                    $0.selector != #selector(profileSelected(_:))
+                })
+        }
+
+        return actions
     }
 
     func configureAccessibilityString(message: DcMsg) -> String {
@@ -555,6 +581,10 @@ public class BaseMessageCell: UITableViewCell {
 
     @objc func messageSelectMore(_ sender: Any?) {
         self.performAction(#selector(BaseMessageCell.messageSelectMore(_:)), with: sender)
+    }
+
+    @objc func profileSelected(_ sender: Any?) {
+        self.performAction(#selector(BaseMessageCell.profileSelected(_:)), with: sender)
     }
 
     func performAction(_ action: Selector, with sender: Any?) {

@@ -887,8 +887,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             action.image = UIImage(named: "ic_reply_black")
             action.backgroundColor = .systemBlue
         }
-        action.image?.accessibilityTraits = .button
-        action.image?.accessibilityLabel = String.localized("menu_reply")
+        action.accessibilityElements = nil
         let configuration = UISwipeActionsConfiguration(actions: [action])
 
         return configuration
@@ -1843,6 +1842,28 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        if UIAccessibility.isVoiceOverRunning {
+            switch action {
+            case #selector(BaseMessageCell.messageForward(_:)):
+                forwardItem.onPerform?(indexPath)
+            case #selector(BaseMessageCell.messageInfo(_:)):
+                infoItem.onPerform?(indexPath)
+            case #selector(BaseMessageCell.messageDelete(_:)):
+                deleteItem.onPerform?(indexPath)
+            case #selector(BaseMessageCell.messageCopy(_:)):
+                copyItem.onPerform?(indexPath)
+            case #selector(BaseMessageCell.messageReply(_:)):
+                replyItem.onPerform?(indexPath)
+            case #selector(BaseMessageCell.messageReplyPrivately(_:)):
+                replyPrivatelyItem.onPerform?(indexPath)
+            case #selector(BaseMessageCell.profileSelected(_:)):
+                // this action is only available from VoiceOver, it's the same as avatarTapped for non-VoiceOver users
+                avatarTapped(indexPath: indexPath)
+            default: break
+            }
+            return
+        }
+
         // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
         contextMenu.performAction(action: action, indexPath: indexPath)
     }
