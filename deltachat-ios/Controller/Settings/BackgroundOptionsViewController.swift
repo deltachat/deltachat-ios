@@ -1,8 +1,11 @@
 import Foundation
 import UIKit
 import DcCore
+import CropViewController
+import MobileCoreServices
+import Photos
 
-class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
+class BackgroundOptionsViewController: UIViewController, BgPickerDelegate {
 
     private let dcContext: DcContext
 
@@ -80,10 +83,10 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
         return view
     }()
 
-    private lazy var mediaPicker: MediaPicker = {
-        let mediaPicker = MediaPicker(navigationController: navigationController)
-        mediaPicker.delegate = self
-        return mediaPicker
+    private lazy var bgPicker: BgPicker = {
+        let picker = BgPicker(navigationController: navigationController)
+        picker.delegate = self
+        return picker
     }()
 
     init(dcContext: DcContext) {
@@ -135,7 +138,7 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
     }
 
     @objc private func onSelectBackgroundImage() {
-        mediaPicker.showPhotoGallery()
+        bgPicker.showBackgroundPicker()
     }
 
     @objc private func onDefaultSelected() {
@@ -154,12 +157,60 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
 
     // MARK: MediaPickerDelegate
     func onImageSelected(image: UIImage) {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let cropViewController = CropViewController(image: image)
+        cropViewController.delegate = self
+        cropViewController.aspectRatioLockEnabled = true
+        cropViewController.resetAspectRatioEnabled = false
+        cropViewController.aspectRatioPreset = .presetCustom
+        cropViewController.customAspectRatio = screenSize.size
+        present(cropViewController, animated: true, completion: nil)
+    }
+
+}
+
+extension BackgroundOptionsViewController: CropViewControllerDelegate {
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        // 'image' is the newly cropped version of the original image
         if let path = ImageFormat.saveImage(image: image, name: Constants.backgroundImageName) {
             UserDefaults.standard.set(URL(fileURLWithPath: path).lastPathComponent, forKey: Constants.Keys.backgroundImageName)
             UserDefaults.standard.synchronize()
             backgroundContainer.sd_setImage(with: URL(fileURLWithPath: path), placeholderImage: nil, options: .refreshCached, completed: nil)
         } else {
             logger.error("failed to save background image")
+        }
+        cropViewController.dismiss(animated: true)
+    }
+}
+
+protocol BgPickerDelegate: class {
+    func onImageSelected(image: UIImage)
+}
+
+class BgPicker: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    private weak var navigationController: UINavigationController?
+    weak var delegate: BgPickerDelegate?
+    
+    init(navigationController: UINavigationController?) {
+        // it does not make sense to give nil here, but it makes construction easier
+        self.navigationController = navigationController
+    }
+    
+    func showBackgroundPicker() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.mediaTypes = [kUTTypeImage as String]
+            imagePickerController.allowsEditing = false
+            navigationController?.present(imagePickerController, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let image = info[.originalImage] as? UIImage {
+            picker.dismiss(animated: true, completion: nil)
+            self.delegate?.onImageSelected(image: image)
         }
     }
 }
