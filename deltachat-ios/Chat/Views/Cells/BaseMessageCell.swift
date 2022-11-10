@@ -257,6 +257,9 @@ public class BaseMessageCell: UITableViewCell {
         let messageLabelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         messageLabelGestureRecognizer.numberOfTapsRequired = 1
         messageLabel.addGestureRecognizer(messageLabelGestureRecognizer)
+        
+        let messageLabelGestureRecognizerLongTap = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
+        messageLabel.addGestureRecognizer(messageLabelGestureRecognizer)
 
         let quoteViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onQuoteTapped))
         quoteViewGestureRecognizer.numberOfTapsRequired = 1
@@ -268,11 +271,22 @@ public class BaseMessageCell: UITableViewCell {
     open func handleTapGesture(_ gesture: UIGestureRecognizer) {
         guard gesture.state == .ended else { return }
         let touchLocation = gesture.location(in: messageLabel)
-        let isHandled = messageLabel.label.handleGesture(touchLocation)
+        let isHandled = messageLabel.label.handleGesture(touchLocation, isLongPress: false)
         if !isHandled, let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             self.baseDelegate?.textTapped(indexPath: indexPath)
         }
     }
+    
+    @objc
+    open func handleLongPressGesture(_ gesture: UIGestureRecognizer) {
+        guard gesture.state == .ended else { return }
+        let touchLocation = gesture.location(in: messageLabel)
+        let isHandled = messageLabel.label.handleGesture(touchLocation, isLongPress: true)
+        if !isHandled, let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            self.baseDelegate?.textTapped(indexPath: indexPath)
+        }
+    }
+    
 
     @objc func onAvatarTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {

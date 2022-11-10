@@ -452,21 +452,25 @@ open class MessageLabel: UILabel {
 
     }
 
-  open func handleGesture(_ touchLocation: CGPoint) -> Bool {
+    open func handleGesture(_ touchLocation: CGPoint, isLongPress: Bool) -> Bool {
 
         guard let index = stringIndex(at: touchLocation) else { return false }
 
         for (detectorType, ranges) in rangesForDetectors {
             for (range, value) in ranges {
                 if range.contains(index) {
-                    handleGesture(for: detectorType, value: value)
+                    if isLongPress {
+                        handleLongPressGesture(for: detectorType, value: value)
+                    } else {
+                        handleGesture(for: detectorType, value: value)
+                    }
                     return true
                 }
             }
         }
         return false
     }
-
+    
     /// swiftlint:disable cyclomatic_complexity
     private func handleGesture(for detectorType: DetectorType, value: NewMessageTextCheckingType) {
         switch value {
@@ -505,6 +509,16 @@ open class MessageLabel: UILabel {
             default:
                 handleCustom(pattern, match: match)
             }
+        }
+    }
+    private func handleLongPressGesture(for detectorType: DetectorType, value: NewMessageTextCheckingType) {
+        switch value {
+        case let .link(url):
+            guard let url = url else { return }
+            // handleURL(url)
+            print("long press url", url)
+        default:
+            return
         }
     }
     // swiftlint:enable cyclomatic_complexity

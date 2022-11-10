@@ -55,7 +55,7 @@ class MultilineLabelCell: UITableViewCell {
     open func handleTapGesture(_ gesture: UIGestureRecognizer) {
         guard gesture.state == .ended else { return }
         let touchLocation = gesture.location(in: label)
-        let isHandled = label.handleGesture(touchLocation)
+        let isHandled = label.handleGesture(touchLocation, isLongPress: false)
         if !isHandled {
             logger.info("status: tapped outside urls or phone numbers")
         }
