@@ -15,6 +15,7 @@ class WebxdcViewController: WebViewViewController {
     var webxdcUpdateObserver: NSObjectProtocol?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
+    private var allowInternet: Bool = false
 
     private var shortcutManager: ShortcutManager?
 
@@ -170,6 +171,7 @@ class WebxdcViewController: WebViewViewController {
         let document = dict["document"] as? String ?? ""
         webxdcName = dict["name"] as? String ?? "ErrName" // name should not be empty
         let chatName = dcContext.getChat(chatId: msg.chatId).name
+        self.allowInternet = dict["internet_access"] as? Bool ?? false
 
         self.title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
         navigationItem.rightBarButtonItem = moreButton
@@ -234,7 +236,11 @@ class WebxdcViewController: WebViewViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadRestrictedHtml()
+        if allowInternet {
+            loadHtml()
+        } else {
+            loadRestrictedHtml()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
