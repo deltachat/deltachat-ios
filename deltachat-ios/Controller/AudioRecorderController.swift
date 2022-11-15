@@ -46,10 +46,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = 0.0
         view.contentMode = UIView.ContentMode.scaleAspectFit
+        view.isAccessibilityElement = true
+        view.accessibilityLabel = """
+            \(String.localized("perm_required_title"))
+            \(String.localized("perm_explain_access_to_mic_denied"))
+            """
         return view
     }()
-
-    var navigationTitle: NSString?
 
     lazy var cancelButton: UIBarButtonItem = {
         let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
@@ -112,9 +115,14 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationController?.toolbar.isTranslucent = true
         self.navigationController?.navigationBar.isTranslucent = true
 
-        self.navigationItem.title = String.localized("voice_message")
-        self.navigationItem.leftBarButtonItem = cancelButton
-        self.navigationItem.rightBarButtonItem = doneButton
+        if UIAccessibility.isVoiceOverRunning {
+            self.navigationItem.leftBarButtonItem = doneButton
+        } else {
+            self.navigationItem.title = String.localized("voice_message")
+            self.navigationItem.leftBarButtonItem = cancelButton
+            self.navigationItem.rightBarButtonItem = doneButton
+        }
+
         waveFormView.frame = self.view.bounds
         self.view.addSubview(waveFormView)
         self.view.addSubview(noRecordingPermissionView)
@@ -152,13 +160,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         validateMicrophoneAccess()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if UIAccessibility.isVoiceOverRunning {
-            UIAccessibility.post(notification: .layoutChanged, argument: self.doneButton)
-        }
-     }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -193,7 +194,9 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                 let normalizedValue: Float = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
                 waveFormView.waveColor = highlightedTintColor
                 waveFormView.update(withLevel: CGFloat(normalizedValue))
-                self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
+                if !UIAccessibility.isVoiceOverRunning {
+                    self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
+                }
             } else {
                 waveFormView.waveColor = normalTintColor
                 waveFormView.update(withLevel: 0)
@@ -292,6 +295,10 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                     self.waveFormView.alpha = granted ? 1.0 : 0.0
                     self.doneButton.isEnabled = granted
 
+                    if UIAccessibility.isVoiceOverRunning && !granted {
+                        self.navigationItem.leftBarButtonItem = self.cancelButton
+                    }
+
                     if self.isFirstUsage {
                         if !granted {
                             self.setToolbarItems([self.flexItem, self.startRecordingButton, self.flexItem], animated: true)
@@ -308,5 +315,12 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                 }
             }
         })
+    }
+
+    override func setToolbarItems(_ toolbarItems: [UIBarButtonItem]?, animated: Bool) {
+        if UIAccessibility.isVoiceOverRunning {
+            return
+        }
+        super.setToolbarItems(toolbarItems, animated: animated)
     }
 }
