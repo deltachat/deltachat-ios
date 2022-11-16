@@ -7,6 +7,35 @@ class InfoMessageCell: UITableViewCell {
     private var trailingConstraint: NSLayoutConstraint?
     private var trailingConstraintEditingMode: NSLayoutConstraint?
 
+    // icon image height and width (square icon)
+    public var imageSize: CGFloat {
+        get {
+            return imageHeightConstraint?.constant ?? 0
+        }
+        set {
+            imageHeightConstraint?.constant = newValue
+        }
+    }
+
+    private var imageHeightConstraint: NSLayoutConstraint?
+
+    private lazy var iconView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+
+    private lazy var contentContainerView: UIStackView = {
+        let container = UIStackView(arrangedSubviews: [iconView, messageLabel])
+        container.axis = .horizontal
+        container.distribution = .fill
+        container.spacing = 6
+        container.alignment = .center
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+
     private lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
         container.image = UIImage(color: DcColors.systemMessageBackgroundColor)
@@ -40,32 +69,37 @@ class InfoMessageCell: UITableViewCell {
 
     func setupSubviews() {
         contentView.addSubview(messageBackgroundContainer)
-        contentView.addSubview(messageLabel)
-
+        contentView.addSubview(contentContainerView)
         contentView.addConstraints([
-            messageLabel.constraintAlignTopTo(contentView, paddingTop: 12),
-            messageLabel.constraintAlignBottomTo(contentView, paddingBottom: 12),
-            messageLabel.constraintAlignLeadingMaxTo(contentView, paddingLeading: 55),
-            messageLabel.constraintCenterXTo(contentView, priority: .defaultLow),
-            messageBackgroundContainer.constraintAlignLeadingTo(messageLabel, paddingLeading: -6),
-            messageBackgroundContainer.constraintAlignTopTo(messageLabel, paddingTop: -6),
-            messageBackgroundContainer.constraintAlignBottomTo(messageLabel, paddingBottom: -6),
-            messageBackgroundContainer.constraintAlignTrailingTo(messageLabel, paddingTrailing: -6)
+            contentContainerView.constraintAlignTopTo(contentView, paddingTop: 12, priority: .defaultLow),
+            contentContainerView.constraintAlignBottomTo(contentView, paddingBottom: 12, priority: .defaultLow),
+            contentContainerView.constraintAlignLeadingMaxTo(contentView, paddingLeading: 55),
+            contentContainerView.constraintCenterXTo(contentView, priority: .defaultLow),
+            messageBackgroundContainer.constraintAlignLeadingTo(contentContainerView, paddingLeading: -10),
+            messageBackgroundContainer.constraintAlignTopTo(contentContainerView, paddingTop: -6),
+            messageBackgroundContainer.constraintAlignBottomTo(contentContainerView, paddingBottom: -6),
+            messageBackgroundContainer.constraintAlignTrailingTo(contentContainerView, paddingTrailing: -10),
+            iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor),
         ])
 
+        imageHeightConstraint = iconView.constraintHeightTo(0, priority: .required)
+        imageSize = UIFont.preferredFont(for: .subheadline, weight: .medium).pointSize
+        imageHeightConstraint?.isActive = true
         trailingConstraint = messageLabel.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 55)
         trailingConstraintEditingMode = messageLabel.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 10)
         trailingConstraint?.isActive = !isEditing
         trailingConstraintEditingMode?.isActive = isEditing
     }
 
-    func update(text: String?, weight: UIFont.Weight? = nil) {
+    func update(text: String?, weight: UIFont.Weight? = nil, image: UIImage? = nil) {
         messageLabel.text = text
         if let weight = weight {
             messageLabel.font = UIFont.preferredFont(for: .subheadline, weight: weight)
         } else {
             messageLabel.font =  UIFont.preferredFont(for: .subheadline, weight: .medium)
         }
+        iconView.image = image
+        iconView.isHidden = image == nil
         var corners: UIRectCorner = []
         corners.formUnion(.topLeft)
         corners.formUnion(.bottomLeft)
@@ -76,11 +110,20 @@ class InfoMessageCell: UITableViewCell {
         trailingConstraintEditingMode?.isActive = isEditing
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.preferredContentSizeCategory !=
+            traitCollection.preferredContentSizeCategory &&
+            !iconView.isHidden {
+            imageSize = UIFont.preferredFont(for: .subheadline, weight: .medium).pointSize
+        }
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
         messageLabel.text = nil
         messageLabel.attributedText = nil
         showSelectionBackground = false
+        iconView.image = nil
     }
     
     public override func willTransition(to state: UITableViewCell.StateMask) {
