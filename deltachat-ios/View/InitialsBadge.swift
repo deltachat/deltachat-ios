@@ -57,6 +57,7 @@ public class InitialsBadge: UIView {
         let view = MessageCounter(count: 0, size: 20)
         view.backgroundColor = DcColors.unreadBadge
         view.isHidden = true
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -162,6 +163,7 @@ public class InitialsBadge: UIView {
         verifiedView.isHidden = true
         imageView.image = nil
         label.text = nil
+        accessibilityLabel = nil
     }
     
     public func asImage() -> UIImage? {

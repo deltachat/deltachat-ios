@@ -13,6 +13,7 @@ class MessageCounter: UIView {
         label.textAlignment = NSTextAlignment.center
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isAccessibilityElement = false
         return label
     }()
 
