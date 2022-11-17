@@ -397,13 +397,11 @@ class ContactCell: UITableViewCell {
             isContactRequest: false)
         }
 
-        accessibilityLabel = """
-                              \(titleLabel.text ?? "")
-                              \(isContactRequest ?  String.localized("chat_request_label") : "")
-                              \(isArchived ? String.localized("chat_archived_label") : "")
-                              \(unreadMessages > 0 ? String.localized(stringID: "n_messages", count: unreadMessages) : "")
-                              \(timeLabel.text ?? "")
-                              \(subtitleLabel.text ?? "")
-                            """
+        accessibilityLabel = (titleLabel.text != nil ? ((titleLabel.text ?? "")+"\n") : "")
+            + (isContactRequest ? (String.localized("chat_request_label")+"\n") : "")
+            + (isArchived ? (String.localized("chat_archived_label")+"\n") : "")
+            + (unreadMessages > 0 ? (String.localized(stringID: "n_messages", count: unreadMessages)+"\n") : "")
+            + (timeLabel.text != nil ? ((timeLabel.text ?? "")+"\n") : "")
+            + (subtitleLabel.text != nil ? ((subtitleLabel.text ?? "")+"\n") : "")
     }
 }
