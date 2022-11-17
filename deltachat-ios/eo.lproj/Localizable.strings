@@ -2,8 +2,10 @@
 "app_name" = "Delta Chat";
 "ok" = "Bone";
 "cancel" = "Nuligi";
+"clear_search" = "Forviŝi Serĉon";
 "yes" = "Jes";
 "no" = "Ne";
+"select" = "Elekti";
 "on" = "Ŝaltita";
 "off" = "Malŝaltita";
 "def" = "Defaŭlta";
@@ -12,6 +14,10 @@
 "automatic" = "Aŭtomata";
 "strict" = "Strikta";
 "open" = "Malferma";
+"download" = "Elŝuti";
+"downloading" = "Elŝutado...";
+"join" = "Aliĝi";
+"rejoin" = "Realiĝi";
 "delete" = "Forigi";
 "info" = "Informoj";
 "update" = "Ĝisdatigi";
@@ -20,6 +26,8 @@
 "back" = "Reen";
 "close" = "Fermi";
 "forward" = "Plusendi";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Resendi";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arĥivi";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -29,8 +37,15 @@
 "save" = "Konservi";
 "chat" = "Babilo";
 "media" = "Aŭdovidaĵoj";
+"profile" = "Profilo";
 "main_menu" = "Ĉefa menuo";
-"start_chat" = "Komenci babilon";
+"start_chat" = "Komenci Babiladon";
+// Placeholder text when something is loading
+"loading" = "Ŝarĝado...";
+"hide" = "Kaŝi";
+"activate" = "Aktivigi";
+"always" = "Ĉiam";
+"once" = "Unufoje";
 "show_password" = "Montri pasvorton";
 "hide_password" = "Kaŝi pasvorton";
 "not_now" = "Ne nun";
@@ -50,6 +65,7 @@
 "email_address" = "Retadreso";
 "bad_email_address" = "Malbona retadreso.";
 "password" = "Pasvorto";
+"existing_password" = "Estanta Pasvorto";
 "now" = "Nun";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Danĝero";
@@ -64,19 +80,25 @@
 "self" = "Mi";
 "draft" = "Malneto";
 "image" = "Bildo";
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Respondi";
 "gif" = "Gif";
 "images" = "Bildoj";
 "audio" = "Sonaĵo";
 "voice_message" = "Voĉmesaĝo";
+"forwarded" = "Plusendita";
 "forwarded_message" = "Plusendita mesaĝo";
 "video" = "Filmo";
 "documents" = "Dokumentoj";
 "contact" = "Kontakto";
 "verified_contact" = "Kontrolita kontakto";
 "camera" = "Fotilo";
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
+"capture" = "Kapti";
 "location" = "Loko";
 "gallery" = "Galerio";
 "file" = "Dosiero";
+"files" = "Dosieroj";
 "unknown" = "Nekonata";
 
 "green" = "Verda";
@@ -88,6 +110,7 @@
 "magenta" = "Malva";
 "white" = "Blanka";
 
+"extra_small" = "Ege malgranda";
 "small" = "Malgranda";
 "normal" = "Normala";
 "large" = "Granda";
@@ -100,7 +123,14 @@
 "menu_new_contact" = "Nova kontakto";
 "menu_new_chat" = "Nova babilo";
 "menu_new_group" = "Nova grupo";
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
+"new_group_or_subject" = "Nova Grupo aŭ Temo";
 "menu_new_verified_group" = "Nova kontrolita grupo.";
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
+"broadcast_list" = "Elsenda Listo";
+"broadcast_lists" = "Elsendaj Listoj";
+"new_broadcast_list" = "Nova Elsenda Listo";
+"add_recipients" = "Aldoni Ricevantojn";
 "menu_send" = "Sendi";
 "menu_toggle_keyboard" = "Baskuligi emoĝian klavaron";
 "menu_edit_group" = "Redakti grupon";
@@ -113,9 +143,13 @@
 "menu_leave_group" = "Forlasi grupon";
 "menu_delete_chat" = "Forigi babilon";
 "menu_delete_messages" = "Forigi mesaĝojn";
+"delete_contact" = "Forviŝi Kontakton";
 "menu_delete_location" = "Ĉu forigi tiun ĉi lokon?";
 "menu_message_details" = "Mesaĝ-detaloj";
 "menu_copy_to_clipboard" = "Kopii al tondujo";
+"menu_copy_link_to_clipboard" = "Kopii Ligilon";
+"menu_copy_text_to_clipboard" = "Kopii Tekston";
+"menu_copy_image_to_clipboard" = "Kopii Bildon";
 "menu_forward" = "Plusendi mesaĝon";
 "menu_reply" = "Respondi al mesaĝo";
 "menu_mute" = "Silentigi sciigojn";
@@ -123,8 +157,11 @@
 "menu_export_attachment" = "Eksporti aldonaĵon";
 "menu_all_media" = "Ĉiuj aŭvidaĵoj";
 "menu_share" = "Kunhavigi";
+// Verb "to block sth." usually a mailing list or a contact, not a noun
+"block" = "Bloki";
 "menu_block_contact" = "Bloki kontakton";
 "menu_unblock_contact" = "Malbloki kontakton";
+"accept" = "Akcepti";
 "menu_play" = "Ludi";
 "menu_pause" = "Paŭzigi";
 "menu_scroll_to_bottom" = "Rulumi al la malsupro";

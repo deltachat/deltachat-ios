@@ -926,7 +926,7 @@
 "notifications_avg_hours" = "Im Mittel alle %1$d Stunden";
 "last_check_at" = "Überprüft um %1$@";
 // iOS webxdc selector
-"webxdc_selector_empty_hint" = "Empfange oder gesendete Private Apps werden hier angezeigt. Unter \"Dateien\" können Sie auf heruntergeladene Apps zugreifen.";
+"webxdc_selector_empty_hint" = "Empfangene oder gesendete Private Apps werden hier angezeigt. Unter \"Dateien\" können Sie auf heruntergeladene Private Apps zugreifen.";
 // iOS webxdc shortcut page
 "shortcut_step1_tap_share_btn" = "\"Teilen\" anklicken";
 "shortcut_step2_tap_add_to_home_screen" = "\"Zum Home-Bildschirm\" auswählen, um die App zum Startbildschirm hinzuzufügen";

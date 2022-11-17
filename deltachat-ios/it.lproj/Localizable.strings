@@ -624,7 +624,7 @@
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Questo include email, media e \"Messaggi salvati\" in tutte le cartelle del server. Non utilizzare questa funzione se desideri mantenere i dati sul server o se stai utilizzando altri client di posta elettronica oltre a Delta Chat.";
 "autodel_confirm" = "Ho capito, elimina tutti i messaggi";
-"autodel_at_once" = "Una volta";
+"autodel_at_once" = "Subito";
 "after_30_seconds" = "Dopo 30 secondi";
 "after_1_minute" = "Dopo 1 minuto";
 "after_5_minutes" = "Dopo 5 minuti";

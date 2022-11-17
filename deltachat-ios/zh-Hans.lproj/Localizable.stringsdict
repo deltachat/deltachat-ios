@@ -97,7 +97,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 名收信人 </string>
+			<string>%d 位接收者</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>
@@ -139,7 +139,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>删除 %d 个聊天？这个（些）聊天将不再显示在聊天列表中，但它（们）的消息仍将保留于服务器。</string>
+			<string>删除 %d 个聊天？被删除的聊天不会再显示在聊天列表中；聊天消息仍将保留于服务器。</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

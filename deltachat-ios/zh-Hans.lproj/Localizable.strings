@@ -37,7 +37,7 @@
 "unarchive" = "解档";
 "mute" = "静音";
 "ephemeral_messages" = "消息定时销毁";
-"ephemeral_messages_hint" = "这些设置适用于所有使用 Delta Chat 的聊天成员。 他们仍然可以复制、保存和转发消息，或者使用其他的电子邮件客户端。";
+"ephemeral_messages_hint" = "对本聊天内使用 Delta Chat 的成员有效；不过，这些成员还是能够保存、复制和转发消息，以及使用其他的电子邮件客户端。";
 "save" = "保存";
 "chat" = "聊天";
 "media" = "媒体";
@@ -66,7 +66,7 @@
 // For the next view or as "continue". Should be as short as possible.
 "next" = "下一步";
 "error" = "错误";
-"error_x" = "错误： %1$@";
+"error_x" = "错误：%1$@";
 "no_app_to_handle_data" = "无法找到用于处理此类数据的应用程序。";
 "no_browser_installed" = "没有安装浏览器。";
 "file_not_found" = "无法找到 %1$@。";
@@ -152,13 +152,13 @@
 "menu_new_chat" = "新建聊天";
 "menu_new_group" = "新建群组";
 // Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "新群组或邮件主题";
+"new_group_or_subject" = "新建群组或邮件主题";
 "menu_new_verified_group" = "新建已验证群组";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "广播列表";
 "broadcast_lists" = "广播列表";
 "new_broadcast_list" = "新建广播列表";
-"add_recipients" = "添加收信人";
+"add_recipients" = "添加接收者";
 "menu_send" = "发送";
 "menu_toggle_keyboard" = "切换 emoji 键盘";
 "menu_edit_group" = "编辑群组";
@@ -253,17 +253,17 @@
 "file_saved_to" = "文件已保存到 “%1$@”。";
 
 "videochat" = "视频聊天";
-"videochat_invite_user_to_videochat" = "邀请 %1$@ 进行视频聊天？";
-"videochat_invite_user_hint" = "这需要两端都具有兼容的应用或兼容的浏览器。";
-"videochat_contact_invited_hint" = "%1$@ 被邀请参加视频聊天。";
-"videochat_you_invited_hint" = "您被邀请参加视频聊天。";
+"videochat_invite_user_to_videochat" = "邀请 %1$@ 参加视频聊天？";
+"videochat_invite_user_hint" = "需要双方均装有兼容的应用或浏览器。";
+"videochat_contact_invited_hint" = "%1$@ 发出了视频聊天邀请。";
+"videochat_you_invited_hint" = "您发出了视频聊天邀请。";
 "videochat_tap_to_join" = "点击来加入";
 "videochat_tap_to_open" = "点击来打开";
 "videochat_instance" = "视频聊天实例";
 "videochat_instance_placeholder" = "您的视频聊天实例";
 "videochat_instance_example" = "示例： https://meet.jit.si/$ROOM 或 basicwebrtc:https://your-server";
-"videochat_instance_explain_2" = "如启用视频聊天，你可以从每个聊天启动一个视频聊天。视频聊天需要双方均装有兼容的应用或浏览器";
-"videochat_instance_from_qr" = "使用“%1$@”邀请其他人加入视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置。";
+"videochat_instance_explain_2" = "启用视频聊天后，您便可以在所有聊天中发起视频聊天。需要双方均装有兼容的应用或浏览器。";
+"videochat_instance_from_qr" = "使用“%1$@”邀请其他人参加视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置。";
 "videochat_invitation" = "视频聊天邀请";
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
 
@@ -272,7 +272,7 @@
 "ask_delete_message" = "您确定要删除这条消息吗？";
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
-"ask_export_attachment" = "导出附件？导出附件将允许您设备上的任意应用程序访问它们。\n\n是否继续？";
+"ask_export_attachment" = "导出附件将允许您设备上的其他应用程序访问这些附件。\n\n是否继续？";
 "ask_block_contact" = "屏蔽此联系人？您将不再收到此联系人的消息。";
 "ask_unblock_contact" = "取消屏蔽此联系人？您将再次能收到此联系人的消息。";
 "ask_delete_contacts" = "删除联系人？\n\n仍有在进行中的聊天的联系人和在系统通讯录中的联系人无法被永久删除。";
@@ -300,9 +300,9 @@
 "chat_camera_unavailable" = "相机不可用。";
 "chat_unable_to_record_audio" = "无法录制音频。";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "发一条消息。即使 %1$@ 不使用 Delta Chat 也没问题。";
-"chat_new_broadcast_hint" = "在广播列表中，其他人会在与你的私人聊天中收到消息。\n\n收信人之间不会知道彼此的存在。";
-"chat_new_group_hint" = "撰写第一条消息以允许其他人在此群组内回复。\n\n• 即使有成员不使用 Delta Chat 也没问题。\n\n• 发送第一条消息可能需要一些时间。";
+"chat_new_one_to_one_hint" = "发一条消息给 %1$@。即使对方不使用 Delta Chat 也没问题。";
+"chat_new_broadcast_hint" = "使用广播列表时，其他人会在与你的私人聊天中收到消息。\n\n接收者之间不会知道彼此的存在。";
+"chat_new_group_hint" = "在您发出第一条消息后，其他人才会看到此群组。";
 "chat_record_slide_to_cancel" = "滑动来取消";
 "chat_record_explain" = "按住来录制语音消息，松开来发送";
 "chat_no_chats_yet_title" = "收件箱为空。\n按“+”来开始新聊天。";
@@ -314,7 +314,7 @@
 "chat_request_label" = "请求";
 "chat_no_messages" = "没有消息。";
 "chat_self_talk_subtitle" = "发给自己的消息";
-"archive_empty_hint" = "被您归档的聊天将显示于此。";
+"archive_empty_hint" = "被归档的聊天将显示于此。";
 "saved_messages" = "保存的消息";
 "saved_messages_explain" = "• 转发消息于此以便于访问\n\n• 做笔记或语音备忘录\n\n• 附加媒体以保存它们";
 // Should match "Saved" from "Saved messages"
@@ -322,8 +322,8 @@
 "save_as" = "另存为";
 "retry_send" = "尝试重发消息";
 // reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "您无法编写消息，因为您不在此群组中。要加入，请询问其他成员。";
-"messaging_disabled_device_chat" = "此聊天包含本地生成的消息。您不能在这里编写消息。";
+"messaging_disabled_not_in_group" = "您必须在此群组之中才能发送消息。要加入，请询问其他成员。";
+"messaging_disabled_device_chat" = "此聊天用于本地生成的消息。您不能在这里编写消息。";
 "messaging_disabled_mailing_list" = "尚不支持在邮件列表中发送消息";
 "cannot_display_unsuported_file_type" = "无法显示此类文件：%1$@";
 "attachment_failed_to_load" = "加载附件失败";
@@ -348,7 +348,7 @@
 // chat audit log
 "chat_audit_log_empty_message" = "此聊天的系统消息会出现在这里";
 "chat_audit_log_title" = "%1$@ 的聊天审计日志";
-"chat_audit_log_description" = "此视图只显示系统消息和信息消息。可用于查找最后聊天操作而无需滚动许多普通消息。";
+"chat_audit_log_description" = "仅显示系统消息和信息类消息。可用于查找最后的聊天操作而无需滚动许多普通消息。";
 
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -357,7 +357,7 @@
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "您确定要访问 %1$@ 吗？";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "你将被转到一个链接，该链接可能通过使用来自不同字母表的相似字符来错误地表示字符。打开标记为 %1$@ 的链接将把你带到以 ascii 码编码的 %2$@。如果这样的字符出乎你的意料，那么这个链接可能是有害的";
+"puny_code_warning_description" = "你将被转到一个链接，该链接可能通过使用来自不同字母表的相似字符对自己进行了伪装。打开标记为 %1$@ 的链接将把你带到以 ascii 码编码的 %2$@ 。如果这样的字符出乎你的意料，那么这个链接可能是有害的。";
 
 
 // search
@@ -372,7 +372,7 @@
 "remove_group_image" = "移除群组图像";
 "change_group_image" = "更改群组图像";
 "group_create_button" = "创建群组";
-"group_please_enter_group_name" = "请为群组输入名称。";
+"group_please_enter_group_name" = "请为群组输入一个名称。";
 "group_add_members" = "添加成员";
 "group_self_not_in_group" = "为了执行此操作，您必须是群组成员。";
 "profile_encryption" = "加密";
@@ -394,15 +394,15 @@
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ 将邮箱从 %2$@ 更改为 %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
-"aeap_explanation" = "你将邮箱从 %1$@ 改为了 %2$@。\n\n如果你现在发送一条消息到已验证的群组，那里的联系人将自动用你的新邮箱替换旧邮箱。\n\n我们建议你将旧邮箱配置为转发所有邮件到新邮箱。否则，你可能收不到还不知道你新邮箱的联系人发过来的消息。";
+"aeap_explanation" = "你将邮箱从 %1$@ 改为了 %2$@。\n\n如果你现在发送一条消息到已验证群组，那里的联系人将自动用你的新邮箱替换旧邮箱。\n\n我们建议你将旧邮箱配置为转发所有邮件到新邮箱。否则，你可能收不到还不知道你新邮箱的联系人发过来的消息。";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
-"incoming_messages" = "传入消息";
+"incoming_messages" = "消息接收";
 // Headline for the "Outbox" eg. in the "Connectivity" view
-"outgoing_messages" = "传出消息";
+"outgoing_messages" = "消息发送";
 // Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
-"storage_on_domain" = "%1$@ 上的存储";
+"storage_on_domain" = "%1$@ 上的存储空间";
 "connectivity" = "连接状态";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "未连接";
@@ -418,7 +418,7 @@
 // Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "消息";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
-"part_of_total_used" = "已使用 %1$@ GB，共 %2$@ GB";
+"part_of_total_used" = "已使用 %1$@，共 %2$@";
 
 
 // welcome and login
@@ -472,7 +472,7 @@
 "delete_account_ask" = "您确定要删除您的账户数据吗？";
 "delete_account_explain_with_name" = "此设备上“%1$@”的所有帐户数据都将被删除，包括您的端到端加密设置、联系人、聊天、消息及媒体。 此操作无法撤消。";
 "unconfigured_account" = "未配置的账户";
-"unconfigured_account_hint" = "打开账户配置它";
+"unconfigured_account_hint" = "打开账户来配置它";
 "try_connect_now" = "立即尝试连接";
 "sync_all" = "同步所有";
 // Translations: %1$s will be replaced by a more detailed error message
@@ -495,7 +495,7 @@
 "pref_blocked_contacts" = "已屏蔽的联系人";
 "blocked_empty_hint" = "被您屏蔽的联系人将显示于此。";
 "pref_password_and_account_settings" = "密码和账户";
-"pref_who_can_see_profile_explain" = "在与其他用户交流时，您的个人资料图片和名称将与您的消息一起显示。 已经发送的信息不能被删除或者移除。";
+"pref_who_can_see_profile_explain" = "在与其他用户交流时，您的个人资料图片和名称将与您的消息一起发送。";
 "pref_your_name" = "您的名称";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "签名档";
@@ -533,7 +533,7 @@
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "请求键盘禁用个性化学习";
 "pref_read_receipts" = "已读回执";
-"pref_read_receipts_explain" = "如果禁用已读回执，您将无法看到其他人的已读回执。";
+"pref_read_receipts_explain" = "禁用已读回执后，您将无法看到其他人的已读回执。";
 "pref_manage_keys" = "管理密钥";
 "pref_use_system_emoji" = "使用系统 emoji";
 "pref_use_system_emoji_explain" = "关闭 Delta Chat 内置 emoji 支持";
@@ -548,7 +548,7 @@
 "pref_other" = "其他";
 "pref_backup" = "备份";
 "pref_backup_explain" = "将聊天备份至外部存储";
-"pref_backup_export_explain" = "备份可帮助您在此设备或另一台设备上设置新安装的本应用。\n\n备份将包含所有消息、联系人、聊天以及端到端的 Autocrypt 设置。请将备份文件保存在安全的地方或尽快将其删除。";
+"pref_backup_export_explain" = "备份可帮助您在此设备或另一台设备上设置全新安装的本应用。\n\n备份将包含所有消息、联系人、聊天以及端到端的 Autocrypt 设置。请将备份文件保存在安全的地方，或尽快将其删除。";
 "pref_backup_export_start_button" = "开始备份";
 "pref_backup_written_to_x" = "备份已成功写入到“%1$@”。";
 "pref_managekeys_menu_title" = "管理密钥";
@@ -565,7 +565,7 @@
 "pref_imap_folder_warn_disable_defaults" = "若要更改此选项，请您务必调整服务器以及其他客户端的相应设置。\n\n否则软件可能无法正常工作。";
 "pref_watch_sent_folder" = "监视已发送文件夹";
 "pref_send_copy_to_self" = "给自己发送副本";
-"pref_send_copy_to_self_explain" = "当在多台设备上使用此账户时，这是必需的";
+"pref_send_copy_to_self_explain" = "在多台设备上使用此账户时，这是必需的。";
 "pref_auto_folder_moves" = "自动移动至 DeltaChat 文件夹";
 "pref_auto_folder_moves_explain" = "移动聊天对话以免弄乱收件箱";
 "pref_only_fetch_mvbox_title" = "只从 DeltaChat 文件夹获取";
@@ -638,12 +638,12 @@
 
 // autocrypt
 "autocrypt" = "Autocrypt";
-"autocrypt_explain" = "Autocrypt 是一种用于自动端到端电子邮件加密的全新开放规范。\n\n您的端到端设置会根据需要自动创建并且您可以使用 Autocrypt 设置消息在设备之间传输此设置。";
+"autocrypt_explain" = "Autocrypt 是一种用于自动端到端电子邮件加密的全新开放规范。\n\n您的端到端设置会根据需要自动创建；之后您可以使用 Autocrypt 设置消息在设备间传输此设置。";
 "autocrypt_send_asm_title" = "发送 Autocrypt 设置消息";
 "autocrypt_send_asm_explain_before" = "Autocrypt 设置消息安全地共享您的端到端设置至其他兼容 Autocrypt 的应用程序。\n\n该设置将通过在此显示的、必须在另一台设备上输入的设置码进行加密。";
 "autocrypt_send_asm_button" = "发送 Autocrypt 设置消息";
 "autocrypt_send_asm_explain_after" = "您的设置已发送给您自己。切换到另一台设备并打开该设置消息。 您将被要求输入设置码。 输入以下数字：\n\n%1$@";
-"autocrypt_prefer_e2ee" = "优先端到端加密";
+"autocrypt_prefer_e2ee" = "优先使用端到端加密";
 "autocrypt_asm_subject" = "Autocrypt 设置消息";
 "autocrypt_asm_general_body" = "这是用于在客户端之间传输端到端设置的 Autocrypt 设置消息。\n\n要解密并使用您的设置，请在兼容 Autocrypt 的客户端中打开本消息，然后输入生成设备上显示的设置码。";
 "autocrypt_asm_click_body" = "这是用于在客户端之间传输端到端设置的 Autocrypt 设置消息。\n\n要解密并使用您的设置，请点击本消息。";
@@ -657,32 +657,32 @@
 // system messages
 "systemmsg_read_receipt_subject" = "消息已被打开";
 "systemmsg_read_receipt_body" = "您发送的“%1$@”消息已在接收者的屏幕上显示过。\n\n这并不保证内容已被阅读。";
-"systemmsg_cannot_decrypt" = "此消息无法解密。\n\n• 简单回复此消息并要求发送者重发该消息可能会有所帮助。\n\n• 如果您在此设备或其他设备上重新安装了 Delta Chat 或其他电子邮件程序，则可能需要从别处发送 Autocrypt 设置消息。";
+"systemmsg_cannot_decrypt" = "此消息无法解密。\n\n• 回复此消息并要求发送者重发该消息可能会有所帮助。\n\n• 如果您在此设备或其他设备上重新安装了 Delta Chat 或其他电子邮件程序，则可能需要从别处发送 Autocrypt 设置消息。";
 "systemmsg_unknown_sender_for_chat" = "此聊天发送者未知。查看“信息”来获取更多详情。";
 "systemmsg_subject_for_new_contact" = "来自 %1$@ 的消息";
 "systemmsg_failed_sending_to" = "发送消息给 %1$@ 失败。";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
-"group_name_changed_by_you" = "你将群名称从 \"%1$@\"改为了\"%2$@\"。";
+"group_name_changed_by_you" = "你已将群组名称从“%1$@”更改为“%2$@”";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
-"group_name_changed_by_other" = "%3$@已将群名称从\"%1$@\"改为了\"%2$@\"";
-"group_image_changed_by_you" = "你更改了群图片";
+"group_name_changed_by_other" = "%3$@已将群组名称从“%1$@”更改为“%2$@”";
+"group_image_changed_by_you" = "你更改了群组图像";
 // %1$s will be replaced by name and address of the contact who did the action
-"group_image_changed_by_other" = "%1$@ 更改了群图片 ";
+"group_image_changed_by_other" = "%1$@ 更改了群组图像";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "你添加了成员 %1$@";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
 "add_member_by_other" = "%2$@ 添加了成员 %1$@";
 // %1$s will be replaced by name and address of the contact removed from the group
-"remove_member_by_you" = "你删除了成员 %1$@";
+"remove_member_by_you" = "你移除了成员 %1$@";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
-"remove_member_by_other" = "%2$@ 删除了成员 %1$@";
-"group_left_by_you" = "你离开了群";
+"remove_member_by_other" = "%2$@ 移除了成员 %1$@";
+"group_left_by_you" = "你退出了群组";
 // %1$s will be replaced by name and address of the contact
-"group_left_by_other" = "%1$@ 退群了";
-"group_image_deleted_by_you" = "你删除了群图片";
+"group_left_by_other" = "%1$@ 退出了群组";
+"group_image_deleted_by_you" = "你删除了群组图像";
 // %1$s will be replaced by name and address of the contact
-"group_image_deleted_by_other" = "%1$@ 删除了群图片";
-"location_enabled_by_you" = "你启用了位置流";
+"group_image_deleted_by_other" = "%1$@ 删除了群组图像";
+"location_enabled_by_you" = "你开启了位置流";
 // %1$s will be replaced by name and address of the contact
 "location_enabled_by_other" = "%1$@ 开启了位置流";
 "ephemeral_timer_disabled_by_you" = "你禁用了消息定时销毁计时器";
@@ -731,7 +731,7 @@
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️邮件服务商提供的存储空间快满了，已使用 %1$@%%。\n\n如果存储空间用光，您可能无法接收消息。\n\n👉请检查是否可以在提供商的网页界面上删除旧数据，或考虑启用“设置/删除旧消息”。您可以在“设置/连接状态”中查看当前的存储使用情况。";
 // %1%s will be replaced by date and time in some human-readable format
-"devicemsg_bad_time" = "⚠️设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟⏰🔧以确保能正确接收信息。";
+"devicemsg_bad_time" = "⚠️设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟⏰🔧以确保能够正确接收消息。";
 "devicemsg_update_reminder" = "⚠️您的 Delta Chat 版本可能过时了。\n\n这可能会在您的聊天伙伴使用更新的版本时造成问题。并且您缺失了最新功能😳\n请浏览 https://get.delta.chat 或应用商店来获取更新。";
 
 // Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
@@ -750,12 +750,12 @@
 "qrscan_contains_url" = "已扫描到的二维码 URL：\n\n%1$@";
 "qrscan_fingerprint_label" = "指纹";
 "withdraw_verifycontact_explain" = "其他人可以扫描此二维码与您联系。\n\n您可以在此处停用二维码并通过再次扫描来重新激活它。";
-"withdraw_verifygroup_explain" = "其他人可以扫描此二维码加入群组 \"%1$@\".\n\n您可以在此处停用二维码并通过再次扫描来重新激活它。";
+"withdraw_verifygroup_explain" = "其他人可以扫描此二维码加入群组 “%1$@”。\n\n您可以在此处停用二维码并通过再次扫描来重新激活它。";
 "withdraw_qr_code" = "停用二维码";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
-"revive_verifycontact_explain" = "其他人可能会扫描此二维码以与您联系。\n\n此二维码在此设备上不活动。";
+"revive_verifycontact_explain" = "其他人可扫描此二维码以与您联系。\n\n此设备上的二维码未激活。";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
-"revive_verifygroup_explain" = "其他人可扫描此二维码加入群组 \"%1$@\".\n\n此设备上的二维码未激活。";
+"revive_verifygroup_explain" = "其他人可扫描此二维码加入群组“%1$@”。\n\n此设备上的二维码未激活。";
 "revive_qr_code" = "激活二维码";
 "qrshow_title" = "邀请二维码";
 "qrshow_x_joining" = "%1$@ 加入。";
@@ -763,20 +763,20 @@
 "qrshow_x_has_joined_group" = "%1$@ 已加入群组。";
 "qrshow_join_group_title" = "邀请二维码";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
-"qrshow_join_group_hint" = "扫描此处来加入群组\"%1$@\"。";
+"qrshow_join_group_hint" = "扫描此处来加入群组“%1$@”";
 "qrshow_join_contact_title" = "邀请二维码";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "扫描此处来与 %1$@ 聊天。";
 "qrshow_join_contact_no_connection_toast" = "没有互联网连接，无法进行二维码设置。";
-"qraccount_ask_create_and_login" = "在“%1$@”创建新的电子邮件地址并在那登录？";
-"qraccount_ask_create_and_login_another" = "在“%1$@”创建新的电子邮件地址并在那登录？\n\n已存在账户不会被删除。使用“切换账户”来在账户之间切换。";
+"qraccount_ask_create_and_login" = "在“%1$@”创建新的电子邮件地址并登录？";
+"qraccount_ask_create_and_login_another" = "在“%1$@”创建新的电子邮件地址并登录？\n\n已存在的账户不会被删除。使用“切换账户”来在账户之间切换。";
 "qraccount_success_enter_name" = "登录成功——电子邮件地址是 %1$@\n\n如果您愿意，您现在可以去设置一个名称和个人资料图片。它们将显示给您发消息到的人。";
 "qraccount_qr_code_cannot_be_used" = "无法使用扫描到的二维码建立新账户。";
 "qraccount_use_on_new_install" = "扫描到的二维码是用于设置新帐户的。设置新的 Delta Chat 安装时，您可以扫描此二维码。";
 // the placeholder will be replaced by the e-mail address of the account
 "qrlogin_ask_login" = "登录 \"%1$@\"吗？";
 // the placeholder will be replaced by the e-mail address of the account
-"qrlogin_ask_login_another" = "登录“%1$@“吗？\n\n你现有的账户不会被删除。使用“切换账户”项目在不同账户间进行切换。";
+"qrlogin_ask_login_another" = "登录“%1$@“吗？\n\n你现有的账户不会被删除。使用“切换账户”来在不同账户间进行切换。";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ 邀请你加入此群组。\n\n等待 %2$@ 设备回复…";
 // placeholder will be replaced by the name of the inviter.
@@ -911,22 +911,22 @@
 "share_account_not_configured" = "账户未配置。";
 "cannot_play_audio_file" = "无法播放音频文件。";
 // iOS camera permission alert
-"perm_ios_explain_access_to_camera_denied" = "要拍照、拍摄视频或使用二维码扫描仪，请打开系统设置并启用“相机”。";
+"perm_ios_explain_access_to_camera_denied" = "要拍照、拍摄视频或扫描二维码，请打开系统设置并启用“相机”。";
 "open_settings" = "打开设置";
 // iOS device contact alert
 "import_device_contacts" = "导入设备联系人";
 "import_device_contacts_hint" = "要与你设备中的联系人聊天，请打开“设置”并启用“联系人”。";
 // iOS notification settings
 "disabled_in_dc" = "在 Delta Chat 中被禁用";
-"disabled_in_system_settings" = "在系统设置中禁用";
-"bg_app_refresh_disabled" = "在系统设置中禁用了“后台应用刷新”";
+"disabled_in_system_settings" = "在系统设置中被禁用";
+"bg_app_refresh_disabled" = "“后台应用刷新”在系统设置中被禁用";
 // iOS connectivity view
 "delayed" = "延迟";
 "notifications_avg_minutes" = "平均每 %1$d 分钟";
 "notifications_avg_hours" = "平均每 %1$d 小时";
 "last_check_at" = "检查于 %1$@";
 // iOS webxdc selector
-"webxdc_selector_empty_hint" = "任何聊天中接收或发送的私人文件都会出现在这里。“文件”显示私人应用刚被下载。";
+"webxdc_selector_empty_hint" = "任何聊天中接收或发送的私人应用都会出现在这里。“文件”显示刚下载的私人应用。";
 // iOS webxdc shortcut page
 "shortcut_step1_tap_share_btn" = "点击分享按钮";
 "shortcut_step2_tap_add_to_home_screen" = "选择“添加到主屏幕”来将应用添加到主屏幕。";
@@ -939,9 +939,9 @@
 "pref_background_notifications_rationale" = "要保持到电子邮件服务器的连接并在后台接收消息，请在下一步中忽略电池优化。\n\nDelta Chat 仅使用少量的资源并且会注意不去耗尽电池电量。";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "可靠后台连接";
-"pref_reliable_service_explain" = "需要一个永久通知";
+"pref_reliable_service_explain" = "需要一个持久通知";
 "perm_enable_bg_reminder_title" = "点击此处以在 Delta Chat 处于后台时接收消息。";
-"perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n如果在后台时消息仍没到达，请检查系统设置。";
+"perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
 
 
 // device messages for updates
