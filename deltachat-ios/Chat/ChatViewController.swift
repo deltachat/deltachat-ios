@@ -746,7 +746,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if message.isInfo {
             let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
             cell.showSelectionBackground(tableView.isEditing)
-            cell.update(text: message.text)
+            if let parent = message.parent, parent.type == DC_MSG_WEBXDC {
+                cell.update(text: message.text, image: parent.getWebxdcPreviewImage())
+            } else {
+                cell.update(text: message.text)
+            }
             return cell
         }
 
