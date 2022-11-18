@@ -746,7 +746,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if message.isInfo {
             let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
             cell.showSelectionBackground(tableView.isEditing)
-            if message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent, parent.type == DC_MSG_WEBXDC {
+            if message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent {
                 cell.update(text: message.text, image: parent.getWebxdcPreviewImage())
             } else {
                 cell.update(text: message.text)
@@ -973,7 +973,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
-        } else if message.isInfo, message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent, parent.type == DC_MSG_WEBXDC {
+        } else if message.isInfo, message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent {
             scrollToMessage(msgId: parent.id)
         }
         _ = handleUIMenu()
