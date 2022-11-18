@@ -1,5 +1,28 @@
 # Delta Chat iOS Changelog
 
+## v1.34.5
+2022-11
+
+* improve account switcher: use the icon atop the chatlist to switch, add and edit accounts
+* allow removal of references contacts from the "New Chat" list
+* show icon beside webxdc info messages
+* show more debug info in message info, improve logging
+* add default video chat instances
+* VoiceOver: read out unread messages in account switch button and account switch view controller
+* VoiceOver: improve order of read out content in chatlist
+* fix muted VoiceOver after recording voice message
+* fix: support mailto:-links in full-message-view
+* fix direct share usage with multiple accounts
+* fix emojis in webxdc
+* fix potential busy loop freeze when marking messages as seen
+* fix: suppress welcome messages after account import
+* fix: apply language changes to all accounts
+* fix chatlist's multi-edit "Cancel" button
+* fix webxdc icons if the webxdc uses the phaser library
+* update translations and local help
+* update to core101
+
+
 ## v1.34.1
 2022-10
 
