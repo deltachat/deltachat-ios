@@ -1207,6 +1207,10 @@ public class DcMsg {
         return dc_msg_is_info(messagePointer) == 1
     }
 
+    public var infoType: Int32 {
+        return dc_msg_get_info_type(messagePointer)
+    }
+
     public var isSetupMessage: Bool {
         return dc_msg_is_setupmessage(messagePointer) == 1
     }
