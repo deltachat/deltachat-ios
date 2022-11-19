@@ -40,7 +40,7 @@ in Xcode:
 on https://appstoreconnect.apple.com :
 
 7. for a **Testflight release**, open "My Apps/Delta Chat/TestFlight/iOS"
-   a) fill out compliance info, status should be "Ready to Submit" then
+   a) status becomes "Ready to Submit" automatically after some minutes
    b) select "open-testing-group" on the left, scroll down to "Builds" section
    c) click "+" and select the version made "Ready to submit" above
    d) make sure the credentials shown on the next page are working
