@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v1.34.5
+## v1.34.6
 2022-11
 
 * improve account switcher: use the icon atop the chatlist to switch, add and edit accounts
@@ -18,7 +18,7 @@
 * fix: suppress welcome messages after account import
 * fix: apply language changes to all accounts
 * fix chatlist's multi-edit "Cancel" button
-* fix webxdc icons if the webxdc uses the phaser library
+* fix images for webxdc using the phaser library
 * update translations and local help
 * update to core101
 
