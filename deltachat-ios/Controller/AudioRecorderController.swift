@@ -115,13 +115,9 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationController?.toolbar.isTranslucent = true
         self.navigationController?.navigationBar.isTranslucent = true
 
-        if UIAccessibility.isVoiceOverRunning {
-            self.navigationItem.leftBarButtonItem = doneButton
-        } else {
-            self.navigationItem.title = String.localized("voice_message")
-            self.navigationItem.leftBarButtonItem = cancelButton
-            self.navigationItem.rightBarButtonItem = doneButton
-        }
+        self.navigationItem.title = String.localized("voice_message")
+        self.navigationItem.leftBarButtonItem = cancelButton
+        self.navigationItem.rightBarButtonItem = doneButton
 
         waveFormView.frame = self.view.bounds
         self.view.addSubview(waveFormView)
@@ -160,6 +156,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         validateMicrophoneAccess()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UIAccessibility.isVoiceOverRunning {
+            UIAccessibility.post(notification: .layoutChanged, argument: self.doneButton)
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -194,9 +197,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                 let normalizedValue: Float = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
                 waveFormView.waveColor = highlightedTintColor
                 waveFormView.update(withLevel: CGFloat(normalizedValue))
-                if !UIAccessibility.isVoiceOverRunning {
-                    self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
-                }
+                self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
             } else {
                 waveFormView.waveColor = normalTintColor
                 waveFormView.update(withLevel: 0)
@@ -295,10 +296,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                     self.waveFormView.alpha = granted ? 1.0 : 0.0
                     self.doneButton.isEnabled = granted
 
-                    if UIAccessibility.isVoiceOverRunning && !granted {
-                        self.navigationItem.leftBarButtonItem = self.cancelButton
-                    }
-
                     if self.isFirstUsage {
                         if !granted {
                             self.setToolbarItems([self.flexItem, self.startRecordingButton, self.flexItem], animated: true)
@@ -317,10 +314,4 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         })
     }
 
-    override func setToolbarItems(_ toolbarItems: [UIBarButtonItem]?, animated: Bool) {
-        if UIAccessibility.isVoiceOverRunning {
-            return
-        }
-        super.setToolbarItems(toolbarItems, animated: animated)
-    }
 }
