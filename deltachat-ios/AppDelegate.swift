@@ -4,7 +4,6 @@ import SwiftyBeaver
 import UIKit
 import UserNotifications
 import DcCore
-import DBDebugToolkit
 import SDWebImageWebPCoder
 import Intents
 import SDWebImageSVGKitPlugin
@@ -54,9 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // explicitly ignore SIGPIPE to avoid crashes, see https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
-
-        DBDebugToolkit.setup(with: []) // empty array will override default device shake trigger
-        DBDebugToolkit.setupCrashReporting()
 
         let console = ConsoleDestination()
         console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format

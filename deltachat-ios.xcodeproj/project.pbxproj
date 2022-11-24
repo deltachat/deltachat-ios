@@ -112,6 +112,7 @@
 		30DAF71C275901610073C154 /* BackgroundOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAF71B275901610073C154 /* BackgroundOptionsViewController.swift */; };
 		30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */; };
 		30DDCBEB28FCA21800465D22 /* AccountSwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDCBEA28FCA21800465D22 /* AccountSwitchViewController.swift */; };
+		30DED713292EE4280040835D /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DED712292EE4280040835D /* LogViewController.swift */; };
 		30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348DE24F3F819005C93D1 /* ChatTableView.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
 		30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E424F6647D005C93D1 /* FileTextCell.swift */; };
@@ -393,6 +394,7 @@
 		30DAF71B275901610073C154 /* BackgroundOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundOptionsViewController.swift; sourceTree = "<group>"; };
 		30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialScreenPresentationController.swift; sourceTree = "<group>"; };
 		30DDCBEA28FCA21800465D22 /* AccountSwitchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSwitchViewController.swift; sourceTree = "<group>"; };
+		30DED712292EE4280040835D /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		30E348DE24F3F819005C93D1 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
 		30E348E424F6647D005C93D1 /* FileTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTextCell.swift; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 				AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */,
 				AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */,
 				AE57C083255310BB003CFE70 /* ContextMenuController.swift */,
+				30DED712292EE4280040835D /* LogViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1263,7 +1266,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/DBDebugToolkit/DBDebugToolkit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1277,7 +1279,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DBDebugToolkit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSiriWaveformView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1445,6 +1446,7 @@
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
 				30CE137828D9C40800158DF4 /* ChatDropInteraction.swift in Sources */,
 				3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */,
+				30DED713292EE4280040835D /* LogViewController.swift in Sources */,
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
 				303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */,
 				3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */,
