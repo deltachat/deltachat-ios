@@ -2023,7 +2023,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func copyToClipboard(ids: [Int]) {
         let pasteboard = UIPasteboard.general
-        pasteboard.string = nil
+        pasteboard.string = ""
         var stringsToCopy = ""
 
         if ids.count > 1 {
