@@ -45,6 +45,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
      }
 
     private weak var navigationController: UINavigationController?
+    private var accountRecorderTransitionDelegate: PartialScreenModalTransitioningDelegate?
     weak var delegate: MediaPickerDelegate?
 
     init(navigationController: UINavigationController?) {
@@ -58,7 +59,20 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         // audioRecorderController.maximumRecordDuration = 1200
         let audioRecorderNavController = UINavigationController(rootViewController: audioRecorderController)
 
-        navigationController?.present(audioRecorderNavController, animated: true, completion: nil)
+        if #available(iOS 15.0, *) {
+            if let sheet = audioRecorderNavController.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 20
+            }
+        } else {
+            if let shownViewController = navigationController?.visibleViewController {
+                accountRecorderTransitionDelegate = PartialScreenModalTransitioningDelegate(from: shownViewController, to: audioRecorderNavController)
+                audioRecorderNavController.modalPresentationStyle = .custom
+                audioRecorderNavController.transitioningDelegate = accountRecorderTransitionDelegate
+            }
+        }
+
+        navigationController?.present(audioRecorderNavController, animated: true)
     }
 
     func showPhotoVideoLibrary() {
@@ -213,6 +227,7 @@ extension MediaPicker: AudioRecorderControllerDelegate {
 
     func didClose() {
         self.delegate?.onVoiceMessageRecorderClosed()
+        accountRecorderTransitionDelegate = nil
     }
 }
 
