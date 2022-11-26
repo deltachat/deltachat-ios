@@ -2,7 +2,6 @@ PODS:
   - CocoaLumberjack (3.7.2):
     - CocoaLumberjack/Core (= 3.7.2)
   - CocoaLumberjack/Core (3.7.2)
-  - DBDebugToolkit (0.6.0)
   - libwebp (1.2.0):
     - libwebp/demux (= 1.2.0)
     - libwebp/mux (= 1.2.0)
@@ -31,7 +30,6 @@ PODS:
   - SwiftyBeaver (1.9.4)
 
 DEPENDENCIES:
-  - DBDebugToolkit
   - ReachabilitySwift
   - SCSiriWaveformView
   - SDWebImage (~> 5.9.1)
@@ -46,7 +44,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - CocoaLumberjack
-    - DBDebugToolkit
     - libwebp
     - ReachabilitySwift
     - SCSiriWaveformView
@@ -70,7 +67,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
-  DBDebugToolkit: 03eb3483da4daf03b853b83ade5a8da9c8b7aff4
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
@@ -83,6 +79,6 @@ SPEC CHECKSUMS:
   SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
   SwiftyBeaver: 576177b2c5c94b3aedd5993914e91271a0524e88
 
-PODFILE CHECKSUM: 6972a504404994ab0cbfd625f32d2cca6958bb1f
+PODFILE CHECKSUM: 71221735c21ab13bc8d56c5fb5434a4f49d224b8
 
 COCOAPODS: 1.11.2
