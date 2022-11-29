@@ -1,6 +1,5 @@
 import UIKit
 import DcCore
-import DBDebugToolkit
 import Intents
 
 internal final class SettingsViewController: UITableViewController, ProgressAlertHandler {
@@ -428,6 +427,11 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         present(askAlert, animated: true, completion: nil)
     }
 
+    private func showLogViewController() {
+        let controller = LogViewController(dcContext: dcContext)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
     private func showExperimentalDialog() {
         let alert = UIAlertController(title: String.localized("pref_experimental_features"), message: nil, preferredStyle: .safeActionSheet)
 
@@ -500,7 +504,7 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
         let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
-            SettingsViewController.showDebugToolkit(dcContext: self.dcContext)
+            self.showLogViewController()
         })
         alert.addAction(logAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -592,66 +596,4 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         navigationController?.pushViewController(BackgroundOptionsViewController(dcContext: dcContext), animated: true)
     }
 
-    public static func showDebugToolkit(dcContext: DcContext) {
-        var info = ""
-
-        let systemVersion = UIDevice.current.systemVersion
-        info += "iosVersion=\(systemVersion)\n"
-
-        let notifyEnabled = !UserDefaults.standard.bool(forKey: "notifications_disabled")
-        info += "notify-enabled=\(notifyEnabled)\n"
-
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            info += "notify-token=\(appDelegate.notifyToken ?? "<unset>")\n"
-        }
-
-        for name in ["notify-remote-launch", "notify-remote-receive", "notify-local-wakeup"] {
-            let cnt = UserDefaults.standard.integer(forKey: name + "-count")
-
-            let startDbl = UserDefaults.standard.double(forKey: name + "-start")
-            let startStr = startDbl==0.0 ? "" : " since " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: startDbl)
-
-            let timestampDbl = UserDefaults.standard.double(forKey: name + "-last")
-            let timestampStr = timestampDbl==0.0 ? "" : ", last " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampDbl)
-
-            info += "\(name)=\(cnt)x\(startStr)\(timestampStr)\n"
-        }
-
-        info += "notify-timestamps="
-        if let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double] {
-            for currTimestamp in timestamps {
-                info += DateUtils.getExtendedAbsTimeSpanString(timeStamp: currTimestamp) + " "
-            }
-        }
-        info += "\n"
-
-        info += "notify-fetch-info2="
-        if let infos = UserDefaults.standard.array(forKey: "notify-fetch-info2")  as? [String] {
-            for currInfo in infos {
-                info += currInfo
-                    .replacingOccurrences(of: "📡", with: "\n📡")
-                    .replacingOccurrences(of: "🏠", with: "\n🏠") + " "
-            }
-        }
-        info += "\n"
-
-        var val = "?"
-        switch UIApplication.shared.backgroundRefreshStatus {
-        case .restricted: val = "restricted"
-        case .available: val = "available"
-        case .denied: val = "denied"
-        }
-        info += "backgroundRefreshStatus=\(val)\n"
-
-        #if DEBUG
-        info += "DEBUG=1\n"
-        #else
-        info += "DEBUG=0\n"
-        #endif
-
-        info += "\n" + dcContext.getInfo()
-
-        DBDebugToolkit.add(DBCustomVariable(name: "", value: info))
-        DBDebugToolkit.showMenu()
-    }
 }

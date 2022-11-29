@@ -449,7 +449,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             showCertCheckOptions()
         case tagViewLogCell:
             tableView.deselectRow(at: indexPath, animated: false)
-            SettingsViewController.showDebugToolkit(dcContext: dcContext)
+            showLogViewController()
         default:
             break
         }
@@ -735,6 +735,12 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     // MARK: - coordinator
+
+    private func showLogViewController() {
+        let controller = LogViewController(dcContext: dcContext)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
     private func showCertCheckOptions() {
         let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
         navigationController?.pushViewController(certificateCheckController, animated: true)
