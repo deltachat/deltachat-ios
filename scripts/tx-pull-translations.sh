@@ -31,7 +31,7 @@ IOS_TRANSLATIONS=( $(find .. -name Localizable.strings) )
 
 mkdir $TMP_ANDROID_TRANSLATIONS
 cd $TMP_ANDROID_TRANSLATIONS
-tx pull --all --source
+tx pull -f
 cd ..
 for (( i=0; i<${#IOS_TRANSLATIONS[@]}; i++ )) {
     LANG_DIR=`echo ${IOS_TRANSLATIONS[i]} | awk -F '.lproj' '{print $1}' | rev | cut -d '/' -f1 | rev`
