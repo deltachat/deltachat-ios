@@ -1,11 +1,11 @@
 [main]
-host = https://www.transifex.com
-lang_map = nl_NL:nl, ja_JP:ja, pt_BR:pt-BR, pt:pt-PT, zh_CN:zh-Hans, zh_TW:zh-Hant
+host     = https://www.transifex.com
+lang_map = pt: pt-PT, zh_CN: zh-Hans, zh_TW: zh-Hant, nl_NL: nl, ja_JP: ja, pt_BR: pt-BR
 
-[delta-chat-app.stringsxml]
-file_filter = tmpAndroidTranslations/<lang>/strings.xml
+[o:delta-chat:p:delta-chat-app:r:stringsxml]
+file_filter  = tmpAndroidTranslations/<lang>/strings.xml
+source_file  = tmpAndroidTranslations/en/strings.xml
+source_lang  = en
+type         = ANDROID
 minimum_perc = 0
-source_file = tmpAndroidTranslations/en/strings.xml
-source_lang = en
-type = ANDROID
 
