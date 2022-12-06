@@ -11,7 +11,6 @@ target 'deltachat-ios' do
   pod 'SwiftFormat/CLI'
   # pod 'openssl-ios-bitcode'
   pod 'ReachabilitySwift'
-  pod 'SwiftyBeaver'
   pod 'SCSiriWaveformView'
   pod 'SDWebImage', '~> 5.9.1'
   pod 'SDWebImageWebPCoder'

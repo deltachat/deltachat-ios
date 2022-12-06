@@ -1274,7 +1274,6 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework",
 				"${BUILT_PRODUCTS_DIR}/SVGKit/SVGKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1287,7 +1286,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageWebPCoder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVGKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swifter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2001,8 +1999,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickTableViewController/QuickTableViewController.framework/Headers\"",
 					"-isystem",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
-					"-isystem",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver/SwiftyBeaver.framework/Headers\"",
 					"-iframework",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ALCameraViewController\"",
 					"-iframework",
@@ -2017,8 +2013,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickTableViewController\"",
 					"-iframework",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
-					"-iframework",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver\"",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta;
@@ -2075,8 +2069,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickTableViewController/QuickTableViewController.framework/Headers\"",
 					"-isystem",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
-					"-isystem",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver/SwiftyBeaver.framework/Headers\"",
 					"-iframework",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ALCameraViewController\"",
 					"-iframework",
@@ -2091,8 +2083,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickTableViewController\"",
 					"-iframework",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
-					"-iframework",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyBeaver\"",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta;
