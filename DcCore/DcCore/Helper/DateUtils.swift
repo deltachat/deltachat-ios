@@ -90,4 +90,12 @@ public class DateUtils {
             return localDate
         }
     }
+
+    public static func getTimestamp() -> String {
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "HH:mm:ss:SSS"
+        return formatter.string(from: now)
+    }
 }

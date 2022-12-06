@@ -70,7 +70,6 @@
 		3067AA4C2666310E00525036 /* ChatInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067AA4B2666310E00525036 /* ChatInputTextView.swift */; };
 		3067AAC62667F3FE00525036 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067AAC52667F3FE00525036 /* ImageFormat.swift */; };
 		3067AAC72667F3FE00525036 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067AAC52667F3FE00525036 /* ImageFormat.swift */; };
-		306C32322445CDE9001D89F3 /* DcLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C32312445CDE9001D89F3 /* DcLogger.swift */; };
 		30703B6D27AA80FF00BDADE6 /* WebxdcCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30703B6C27AA80FF00BDADE6 /* WebxdcCell.swift */; };
 		30734326249A280B00BF9AD1 /* MediaQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30734325249A280B00BF9AD1 /* MediaQualityViewController.swift */; };
 		307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A82CB25B8D26700748B57 /* ChatEditingBar.swift */; };
@@ -116,6 +115,8 @@
 		30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348DE24F3F819005C93D1 /* ChatTableView.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
 		30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E424F6647D005C93D1 /* FileTextCell.swift */; };
+		30E6E35A293FEEA70093871E /* SimpleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E6E359293FEEA70093871E /* SimpleLogger.swift */; };
+		30E6E35B293FF9F30093871E /* SimpleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E6E359293FEEA70093871E /* SimpleLogger.swift */; };
 		30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E83EFC289BF32C0035614C /* ShortcutManager.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
 		30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E8F2142447285600CE2C90 /* MainInterface.storyboard */; };
@@ -356,7 +357,6 @@
 		30653080254358B10093E196 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		3067AA4B2666310E00525036 /* ChatInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputTextView.swift; sourceTree = "<group>"; };
 		3067AAC52667F3FE00525036 /* ImageFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFormat.swift; sourceTree = "<group>"; };
-		306C32312445CDE9001D89F3 /* DcLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcLogger.swift; sourceTree = "<group>"; };
 		30703B6C27AA80FF00BDADE6 /* WebxdcCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebxdcCell.swift; sourceTree = "<group>"; };
 		30734325249A280B00BF9AD1 /* MediaQualityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaQualityViewController.swift; sourceTree = "<group>"; };
 		307A82CB25B8D26700748B57 /* ChatEditingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEditingBar.swift; sourceTree = "<group>"; };
@@ -398,6 +398,7 @@
 		30E348DE24F3F819005C93D1 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
 		30E348E424F6647D005C93D1 /* FileTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTextCell.swift; sourceTree = "<group>"; };
+		30E6E359293FEEA70093871E /* SimpleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLogger.swift; sourceTree = "<group>"; };
 		30E83EFC289BF32C0035614C /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
 		30E8F2102447285600CE2C90 /* Delta Chat.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Delta Chat.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E8F2122447285600CE2C90 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -595,7 +596,6 @@
 			isa = PBXGroup;
 			children = (
 				304219D82440734A00516852 /* DcMsg+Extension.swift */,
-				306C32312445CDE9001D89F3 /* DcLogger.swift */,
 			);
 			path = DC;
 			sourceTree = "<group>";
@@ -996,6 +996,7 @@
 				3011E8042787365D00214221 /* KeychainManager.swift */,
 				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
 				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
+				30E6E359293FEEA70093871E /* SimpleLogger.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1432,6 +1433,7 @@
 				30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */,
 				3067AAC72667F3FE00525036 /* ImageFormat.swift in Sources */,
 				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,
+				30E6E35B293FF9F30093871E /* SimpleLogger.swift in Sources */,
 				3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */,
 				30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */,
 				30152C9725A5D91900377714 /* MessageLabel.swift in Sources */,
@@ -1500,7 +1502,6 @@
 				AEE700252438E0E500D6992E /* ProgressAlertHandler.swift in Sources */,
 				30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */,
 				30238CFD28A5028300EF14AC /* WebxdcGridCell.swift in Sources */,
-				306C32322445CDE9001D89F3 /* DcLogger.swift in Sources */,
 				3080A036277DE30100E74565 /* NSMutableAttributedString+Extensions.swift in Sources */,
 				307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */,
 				30703B6D27AA80FF00BDADE6 /* WebxdcCell.swift in Sources */,
@@ -1533,6 +1534,7 @@
 				3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */,
 				3080A035277DE30100E74565 /* String+Extensions.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
+				30E6E35A293FEEA70093871E /* SimpleLogger.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				30C7D5EE28F47E620078D24C /* MessageCounter.swift in Sources */,
 				30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */,
