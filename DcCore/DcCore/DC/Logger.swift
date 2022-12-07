@@ -1,8 +1,8 @@
 import Foundation
 public protocol Logger {
-    func verbose(_ message: String)
-    func debug(_ message: String)
-    func info(_ message: String)
-    func warning(_ message: String)
-    func error(_ message: String)
+    func verbose(_ message: Any...)
+    func debug(_ message: Any...)
+    func info(_ message: Any...)
+    func warning(_ message: Any...)
+    func error(_ message: Any...)
 }

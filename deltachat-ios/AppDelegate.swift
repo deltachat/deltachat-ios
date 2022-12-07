@@ -1,6 +1,5 @@
 import AudioToolbox
 import Reachability
-import SwiftyBeaver
 import UIKit
 import UserNotifications
 import DcCore
@@ -8,7 +7,7 @@ import SDWebImageWebPCoder
 import Intents
 import SDWebImageSVGKitPlugin
 
-let logger = SwiftyBeaver.self
+let logger = SimpleLogger()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -54,10 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // setupCrashReporting() may create an additional handler, but we do not want to rely on that
         signal(SIGPIPE, SIG_IGN)
 
-        let console = ConsoleDestination()
-        console.format = "$DHH:mm:ss.SSS$d $C$L$c $M" // see https://docs.swiftybeaver.com/article/20-custom-format
-        logger.addDestination(console)
-
         logger.info("➡️ didFinishLaunchingWithOptions")
 
         let webPCoder = SDImageWebPCoder.shared
@@ -65,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let svgCoder = SDImageSVGKCoder.shared
         SDImageCodersManager.shared.addCoder(svgCoder)
 
-        dcAccounts.logger = DcLogger()
+        dcAccounts.logger = SimpleLogger()
         dcAccounts.openDatabase()
         migrateToDcAccounts()
 

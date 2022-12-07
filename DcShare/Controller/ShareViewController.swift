@@ -9,28 +9,6 @@ import SDWebImage
 
 class ShareViewController: SLComposeServiceViewController {
 
-    class SimpleLogger: Logger {
-        func verbose(_ message: String) {
-            print("ShareViewController", "verbose", message)
-        }
-
-        func debug(_ message: String) {
-            print("ShareViewController", "debug", message)
-        }
-
-        func info(_ message: String) {
-            print("ShareViewController", "info", message)
-        }
-
-        func warning(_ message: String) {
-            print("ShareViewController", "warning", message)
-        }
-
-        func error(_ message: String) {
-            print("ShareViewController", "error", message)
-        }
-    }
-
     let logger = SimpleLogger()
     let dcAccounts: DcAccounts = DcAccounts()
     lazy var dcContext: DcContext = {
