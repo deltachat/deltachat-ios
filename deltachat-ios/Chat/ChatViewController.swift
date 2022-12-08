@@ -575,16 +575,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             guard let self = self else { return }
             if let ui = notification.userInfo {
                 logger.debug(">>> msgChangedObserver: \(String(describing: ui["message_id"]))")
-                if self.dcChat.canSend, let id = ui["message_id"] as? Int, id > 0 {
-                    let msg = self.dcContext.getMessage(id: id)
-                    if msg.isInfo,
-                       let parent = msg.parent,
-                       parent.type == DC_MSG_WEBXDC {
-                        self.refreshMessages()
-                    } else {
-                        self.updateMessage(msg)
-                    }
-                } else {
+                if let id = ui["chat_id"] as? Int, id == 0  || // deleted messages or batch insert
+                    id == self.chatId {
                     self.refreshMessages()
                     DispatchQueue.main.async {
                         self.updateScrollDownButtonVisibility()
