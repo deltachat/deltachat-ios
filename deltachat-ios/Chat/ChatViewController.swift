@@ -16,7 +16,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     var ephemeralTimerModifiedObserver: NSObjectProtocol?
     private var isInitial = true
     private var isVisibleToUser: Bool = false
-    private var keepKeyboard: Bool = false
+    private var keepKeyboard: AtomicBoolean = AtomicBoolean(initialValue: false)
     private var wasInputBarFirstResponder = false
 
     lazy var isGroupChat: Bool = {
@@ -256,7 +256,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             imageName: "arrowshape.turn.up.left.fill",
             action: #selector(BaseMessageCell.messageReply),
             onPerform: { [weak self] indexPath in
-                self?.keepKeyboard = true
+                self?.keepKeyboard.set(value: true)
                 DispatchQueue.main.async { [weak self] in
                     self?.replyToMessage(at: indexPath)
                 }
@@ -881,7 +881,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         let action = UIContextualAction(style: .normal, title: nil,
                                         handler: { [weak self] (_, _, completionHandler) in
-                                            self?.keepKeyboard = true
+                                            self?.keepKeyboard.set(value: true)
                                             self?.replyToMessage(at: indexPath)
                                             completionHandler(true)
                                         })
@@ -1711,7 +1711,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func stageDocument(url: NSURL) {
-        keepKeyboard = true
+        keepKeyboard.set(value: true)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
@@ -1722,7 +1722,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func stageVideo(url: NSURL) {
-        keepKeyboard = true
+        keepKeyboard.set(value: true)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
@@ -1733,7 +1733,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func stageImage(url: NSURL) {
-        keepKeyboard = true
+        keepKeyboard.set(value: true)
         DispatchQueue.global().async { [weak self] in
             if let image = ImageFormat.loadImageFrom(url: url as URL) {
                 self?.stageImage(image)
@@ -2196,7 +2196,7 @@ extension ChatViewController: MediaPickerDelegate {
 // MARK: - MessageInputBarDelegate
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        keepKeyboard = true
+        keepKeyboard.set(value: true)
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if let filePath = draft.attachment, let viewType = draft.viewType {
@@ -2227,14 +2227,14 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 // MARK: - DraftPreviewDelegate
 extension ChatViewController: DraftPreviewDelegate {
     func onCancelQuote() {
-        keepKeyboard = true
+        keepKeyboard.set(value: true)
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
         focusInputTextView()
     }
 
     func onCancelAttachment() {
-        keepKeyboard = true
+        keepKeyboard.set(value: true)
         draft.clearAttachment()
         configureDraftArea(draft: draft)
         evaluateInputBar(draft: draft)
@@ -2433,11 +2433,11 @@ extension ChatViewController: AudioControllerDelegate {
 // MARK: - UITextViewDelegate
 extension ChatViewController: UITextViewDelegate {
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        if keepKeyboard {
+        if keepKeyboard.get() {
             DispatchQueue.main.async { [weak self] in
                 self?.messageInputBar.inputTextView.becomeFirstResponder()
             }
-            keepKeyboard = false
+            self.keepKeyboard.set(value: false)
             return false
         }
         return true
@@ -2462,7 +2462,7 @@ extension ChatViewController: WebxdcSelectorDelegate {
     }
 
     func onWebxdcSelected(msgId: Int) {
-        keepKeyboard = true
+        keepKeyboard.set(value: true)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             let message = self.dcContext.getMessage(id: msgId)
