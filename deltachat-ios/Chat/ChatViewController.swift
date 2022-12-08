@@ -18,6 +18,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: AtomicBoolean = AtomicBoolean(initialValue: false)
     private var wasInputBarFirstResponder = false
+    private var lastTextViewShouldEndEditingUpdate: Double = 0
 
     lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -366,11 +367,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 self.isInitial = false
                 return
             }
+            logger.debug(">>>> .didChangeFrame")
             if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
                 self.scrollToBottom()
             }
         }.on(event: .willChangeFrame) { [weak self] _ in
             guard let self = self else { return }
+            logger.debug(">>>> .willChangeFrame")
             if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil  && !self.isInitial {
                 self.scrollToBottom()
             }
@@ -390,6 +393,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             messageInputBar.isHidden = true
         }
         loadMessages()
+    }
+
+    private func adaptContentInset() {
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.messageInputBar.keyboardHeight, right: 0)
+        logger.debug(">>>> adaptContentInset \(self.messageInputBar.keyboardHeight)")
+    }
+
+    private func resetContentInset() {
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        logger.debug(">>>> resetContentInset \(0)")
+
     }
 
     private func configureUIForWriting() {
@@ -818,11 +832,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
         updateScrollDownButtonVisibility()
+        resetContentInset()
     }
 
     override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
         updateScrollDownButtonVisibility()
+        resetContentInset()
     }
 
     private func updateScrollDownButtonVisibility() {
@@ -1149,6 +1165,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
     
     private func scrollToBottom(animated: Bool, focusOnVoiceOver: Bool = false) {
+        logger.debug(">>>> scrollToBottom animated \(animated)")
         if !messageIds.isEmpty {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -2196,6 +2213,7 @@ extension ChatViewController: MediaPickerDelegate {
 // MARK: - MessageInputBarDelegate
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        logger.debug(">>>> inputbar didPressSendbuttonWith text \(text)")
         keepKeyboard.set(value: true)
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -2434,6 +2452,15 @@ extension ChatViewController: AudioControllerDelegate {
 extension ChatViewController: UITextViewDelegate {
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         if keepKeyboard.get() {
+            logger.debug(">>>>> textViewShouldEndEditing - keep keyboard")
+            let now = Double(Date().timeIntervalSince1970)
+            logger.debug(">>>> debounce time: \(lastTextViewShouldEndEditingUpdate - now)")
+            if now - lastTextViewShouldEndEditingUpdate < 0.5 {
+                return false
+            }
+
+            lastTextViewShouldEndEditingUpdate = now
+            adaptContentInset()
             DispatchQueue.main.async { [weak self] in
                 self?.messageInputBar.inputTextView.becomeFirstResponder()
             }
