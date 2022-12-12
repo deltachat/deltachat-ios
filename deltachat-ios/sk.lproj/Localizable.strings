@@ -90,6 +90,8 @@
 "last_seen_unknown" = "Naposledy videné: Neznáme";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+
 "self" = "Ja";
 "draft" = "Návrh";
 "image" = "Obrázok";
@@ -119,6 +121,11 @@
 "images_and_videos" = "Obrázky a videá";
 "file" = "Súbor";
 "files" = "Súbory";
+// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "Súkromná aplikácia";
+// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Súkromné aplikácie";
+"files_and_webxdx_apps" = "Súbory a súkromné aplikácie";
 "unknown" = "Neznáme";
 
 "green" = "Zelená";
@@ -228,6 +235,9 @@
 "ConversationFragment_quoted_message_not_found" = "Pôvodná správa sa nenašla";
 "reply_privately" = "Odpovedajte súkromne";
 "source_code" = "Zdrojový kód";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Pridať na domovskú obrazovku";
+
 "mute_for_one_hour" = "Stíšiť na 1 hodinu";
 "mute_for_two_hours" = "Stíšiť na 2 hodiny";
 "mute_for_one_day" = "Stíšiť na 1 deň";
@@ -251,6 +261,8 @@
 "videochat_tap_to_open" = "Otvoríte klepnutím";
 "videochat_instance" = "Inštancia videohovoru";
 "videochat_instance_placeholder" = "Vaša inštancia videohovoru";
+"videochat_instance_example" = "Príklady: https://meet.jit.si/$MIESTNOST alebo basicwebrtc:https://vas-server";
+"videochat_instance_explain_2" = "Ak to zapnete, môžete začať video rozhovor z každej konverzácie. Vyžaduje kompatibilnú aplikáciu alebo prehliadač na oboch stranách.";
 "videochat_instance_from_qr" = "Použiť „%1$@“ na odoslanie pozvánky na videohovor?\n\nPo nastavení môžete začať videohovor z každej jednotlivej konverzácie. Toto nahradí predchádzajúce nastavenie pre videohovory, ak existujú.";
 "videochat_invitation" = "Pozvánka na videohovor";
 "videochat_invitation_body" = "Ste pozvaní na videohovor, kliknutím %1$@ sa pripojíte.";
@@ -307,6 +319,7 @@
 "saved_messages_explain" = "• Preposielajte správy sem, aby ste k nim mali ľahký prístup\n\n• Robte si poznámky alebo hlasové poznámky\n\n• Pripojte médiá, aby ste ich uložili";
 // Should match "Saved" from "Saved messages"
 "saved" = "Uložené";
+"save_as" = "Uložiť ako";
 "retry_send" = "Skúste správu odoslať znova";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Nemôžete písať, pretože nie ste v tejto skupine. Ak sa chcete pripojiť, požiadajte iného člena.";
@@ -355,9 +368,9 @@
 
 // create/edit groups, contact/group profile
 "group_name" = "Názov skupiny";
-"group_avatar" = "Skupinový obrázok";
-"remove_group_image" = "Odstrániť skupinový obrázok";
-"change_group_image" = "Zmeniť skupinový obrázok";
+"group_avatar" = "Obrázok skupiny";
+"remove_group_image" = "Odstrániť obrázok skupin";
+"change_group_image" = "Zmeniť obrázok skupiny";
 "group_create_button" = "Vytvorte skupinu";
 "group_please_enter_group_name" = "Zadajte názov skupiny.";
 "group_add_members" = "Pridať členov";
@@ -370,10 +383,16 @@
 "tab_docs" = "Dokumentácia";
 "tab_links" = "Odkazy";
 "tab_map" = "Mapa";
-"tab_gallery_empty_hint" = "Tu sa zobrazia obrázky a videá zdieľané v tejto konverzácii.";
-"tab_docs_empty_hint" = "Tu sa zobrazia dokumenty, hudba a ďalšie súbory zdieľané v tejto konverzácii.";
+"tab_gallery_empty_hint" = "Tu sú zobrazené obrázky a videá zdieľané v rámci tejto konverzácie.";
+"tab_docs_empty_hint" = "Tu sú zobrazené dokumenty, hudba a ďalšie súbory zdieľané v rámci tejto konverzácie.";
+"tab_image_empty_hint" = "Tu sú zobrazené obrázky zdieľané v rámci tejto konverzácie.";
+"tab_video_empty_hint" = "Tu sú zobrazené videá zdieľané v rámci tejto konverzácie.";
+"tab_audio_empty_hint" = "Tu sú zobrazené zvukové súbory a hlasové správy zdieľané v rámci tejto konverzácie.";
+"tab_webxdc_empty_hint" = "Tu sú zobrazené súkromné aplikácie zdieľané v rámci tejto konverzácie.";
 "media_preview" = "Ukážka pre médiá";
-"send_message" = "Poslať správu";
+"send_message" = "Odoslanie správy";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ zmenil(a) svoju adresu z %2$@ na %3$@";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Prichádzajúce Správy";
@@ -543,6 +562,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Ak túto možnosť zakážete, uistite sa, že váš server a ostatní klienti sú zodpovedajúcim spôsobom nakonfigurovaní.\n\nV opačnom prípade nemusí fungovať vôbec.";
 "pref_watch_sent_folder" = "Pozrieť priečinok Odoslané";
 "pref_send_copy_to_self" = "Odoslať kópiu sebe";
+"pref_send_copy_to_self_explain" = "Vyžaduje sa, ak používate tento účet na viacerých zariadeniach.";
 "pref_auto_folder_moves" = "Automaticky presúvať do priečinka DeltaChat";
 "pref_auto_folder_moves_explain" = "Konverzácie sa presunú, aby sa predišlo preplneniu doručenej pošty";
 "pref_only_fetch_mvbox_title" = "Prijímať iba z priečinka DeltaChat";
@@ -642,9 +662,9 @@
 "group_name_changed_by_you" = "Názov skupiny sa zmenil z „%1$@“ na „%2$@“ mnou.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Názov skupiny sa zmenil z „%1$@“ na „%2$@“ od %3$@.";
-"group_image_changed_by_you" = "Skupinový obrázok sa zmenil mnou.";
+"group_image_changed_by_you" = "Zmenili ste obrázok skupiny.";
 // %1$s will be replaced by name and address of the contact who did the action
-"group_image_changed_by_other" = "Skupinový obrázok sa zmenil od %1$@.";
+"group_image_changed_by_other" = "Obrázok skupiny zmenil(a) %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "Člen %1$@ pridaný mnou.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
@@ -653,9 +673,15 @@
 "remove_member_by_you" = "Člen %1$@ bol odstránený mnou.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Člen %1$@ bol odstránený od %2$@.";
-"group_image_deleted_by_you" = "Skupinový obrázok bol odstránený mnou.";
+"group_left_by_you" = "Opustili ste skupinu";
 // %1$s will be replaced by name and address of the contact
-"group_image_deleted_by_other" = "Skupinový obrázok bol odstránený od %1$@.";
+"group_left_by_other" = "Skupinu opustil(a) %1$@.";
+"group_image_deleted_by_you" = "Odstránili ste obrázok skupiny.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Obrázok skupiny odstránil(a) %1$@.";
+"location_enabled_by_you" = "Zapli ste vysielanie vašej polohy.";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "%1$@ povolil(a) vysielanie svojej polohy.";
 "ephemeral_timer_disabled_by_you" = "Časovač zmiznutia správ je deaktivovaný mnou.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_disabled_by_other" = "Časovač zmiznutia správ je deaktivovaný od %1$@.";
@@ -744,6 +770,8 @@
 "qraccount_success_enter_name" = "Prihlásenie bolo úspešné - vaša e-mailová adresa je %1$@\n\nlf chcete, teraz môžete zadať meno a profilový obrázok, ktoré sa zobrazia ľuďom, s ktorými si píšete.";
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na založenie nového účtu.";
 "qraccount_use_on_new_install" = "Naskenovaný QR kód slúži na založenie nového účtu. QR kód môžete naskenovať pri nastavovaní novej inštalácie Delta Chat.";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login" = "Prihlásiť sa na \"%1$@\"?";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ vás pozval, aby ste sa pripojili k tejto skupine.\n\nČaká sa na odpoveď zo zariadenia používateľa %2$@...";
 // placeholder will be replaced by the name of the inviter.
@@ -829,7 +857,7 @@
 "name_desktop" = "Názov";
 "autocrypt_key_transfer_desktop" = "Autocryptujte prenos kľúčov";
 "initiate_key_transfer_desktop" = "Správa o nastavení automatického šifrovania bezpečne zdieľa vaše komplexné nastavenie s inými aplikáciami kompatibilnými s automatickým šifrovaním. Nastavenie bude šifrované tu zobrazeným nastavovacím kódom a musí byť zadané na druhom zariadení.";
-"select_group_image_desktop" = "Vyberte skupinový obrázok";
+"select_group_image_desktop" = "Vyberte obrázok skupiny";
 "imex_progress_title_desktop" = "Priebeh zálohovania";
 "export_backup_desktop" = "Exportovať zálohu";
 "show_key_transfer_message_desktop" = "Váš kľúč vám bol odoslaný. Prepnite na druhé zariadenie a otvorte správu o nastavení. Mala by vám prísť požiadavka na kód. Zadajte nasledujúce číslice:";
@@ -846,6 +874,17 @@
 "no_spellcheck_suggestions_found" = "Neboli nájdené žiadne návrhy opravy preklepov.";
 "show_window" = "Zobraziť okno";
 "login_socks5_experimental_warning" = "Podpora SOCKS5 je momentálne experimentálna. Prosím, používajte na vlastné riziko. Ak zadáte adresu do poľa e-mail, vykoná sa vyhľadávanie DNS, ktoré nebude tunelované cez SOCKS5.";
+
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Klávesové skratky";
+"switch_between_chats" = "Prepínanie medzi konverzáciami";
+"scroll_messages" = "Posúvanie správ";
+// command to put the cursor to the search input field
+"focus_search_input" = "Aktivovať vyhľadávanie";
+// command to put the cursor to the message input field
+"focus_message_input" = "Aktivovať pole pre vstup";
+"force_refresh_network" = "Vynútiť obnovenie siete";
+"insert_newline" = "Vloženie nového riadka";
 
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stav doručenia: Chyba";
@@ -881,6 +920,9 @@
 "notifications_avg_minutes" = "V priemere každých %1$d minút";
 "notifications_avg_hours" = "V priemere každých %1$d hodín";
 "last_check_at" = "Skontrolované %1$@";
+// iOS webxdc shortcut page
+"shortcut_step1_tap_share_btn" = "Kliknite na tlačidlo pre zdieľanie";
+"shortcut_step2_tap_add_to_home_screen" = "Vyberte \"Pridať na domovskú obrazovku\" pre pridanie aplikácie na domovskú obrazovku.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 

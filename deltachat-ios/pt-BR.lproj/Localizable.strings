@@ -689,9 +689,9 @@
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_disabled_by_other" = "Temporizador de desaparecimento de mensagens desativado por %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
-"ephemeral_timer_seconds_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para %1$@ s";
+"ephemeral_timer_seconds_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para %1$@ segundos";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
-"ephemeral_timer_seconds_by_other" = "Temporizador de desaparecimento de mensagens definido para %1$@ s por %2$@.";
+"ephemeral_timer_seconds_by_other" = "Temporizador de desaparecimento de mensagens definido a %1$@ s por %2$@.";
 "ephemeral_timer_1_minute_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para 1 minuto.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_1_minute_by_other" = "Temporizador de desaparecimento de mensagens definido para 1 minuto por %1$@.";
@@ -773,6 +773,10 @@
 "qraccount_success_enter_name" = "Entrada bem-sucedida - seu endereço de e-mail é %1$@\n\nSe desejar, agora você pode inserir um nome e uma imagem do perfil que será exibida para as pessoas para quem você escrever.";
 "qraccount_qr_code_cannot_be_used" = "O código QR lido não pode ser usado para configurar uma nova conta.";
 "qraccount_use_on_new_install" = "O código QR digitalizado é para configurar uma nova conta. Você pode ler o código QR ao configurar uma nova instalação Delta Chat.";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login" = "Conectar-se em \"%1$@\"?";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login_another" = "Conectar-se em \"%1$@\"?\n\nSua conta existente não será excluída. Use a opção \"Mudar conta\" para alternar entre suas contas.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@te convidou para entrar neste grupo.\n\nEsperando o dispositivo de %2$@ responder...";
 // placeholder will be replaced by the name of the inviter.
@@ -921,6 +925,11 @@
 "notifications_avg_minutes" = "Em média, a cada %1$d minutos";
 "notifications_avg_hours" = "Em média, a cada %1$d horas";
 "last_check_at" = "Verificado em %1$@";
+// iOS webxdc selector
+"webxdc_selector_empty_hint" = "Os aplicativos privados recebidos ou enviados em qualquer bate-papo aparecerão aqui. \"Arquivos\" mostra os aplicativos privados que acabaaram de baixar.";
+// iOS webxdc shortcut page
+"shortcut_step1_tap_share_btn" = "Clique no botão Compartilhar";
+"shortcut_step2_tap_add_to_home_screen" = "Selecione \"Adicionar à tela inicial\" para adicionar o aplicativo à sua tela inicial.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -934,4 +943,7 @@
 "perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens enquanto o Delta Chat estiver em segundo plano.";
 "perm_enable_bg_already_done" = "Você já permitiu que o Delta Chat receba mensagens em segundo plano.\n\nSe as mensagens ainda não chegarem em segundo plano, verifique também as configurações do sistema.";
 
+
+// device messages for updates
+"update_1_34_android" = "O que há de novo em 1.34?\n\n 🤗 Listas de contatos mais intuitivas: Ordenado pela última vez visto e contatos vistos em 10 minutos são marcados por um ponto 🟢\n\n📑 Novas páginas em perfis de chat: \"Audio\" e \"Aplicativos Privados\"\n\n🖼 Se alguém lhe enviar um \"Applicativo privado\" (por exemplo, de https://webxdc.org ), você pode adicionar-lo à tela inicial";
 
