@@ -25,12 +25,12 @@ Check the Changelog (for TestFlight builds) at the bottom to see what's included
 You need to install [rustup](https://rustup.rs/) with rust, as well as [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation).
 
 ```bash
-$ git clone git@github.com:deltachat/deltachat-ios.git
-$ cd deltachat-ios
-$ git submodule update --init --recursive
+git clone git@github.com:deltachat/deltachat-ios.git
+cd deltachat-ios
+git submodule update --init --recursive
 # Make sure the correct rust version is installed
-$ rustup toolchain install `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`
-$ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
+rustup toolchain install `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`
+open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
 ```
 
 This should open Xcode. Then make sure that at the top left in Xcode there is *deltachat-ios* selected as scheme (see screenshot below).
