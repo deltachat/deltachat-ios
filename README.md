@@ -22,7 +22,19 @@ Check the Changelog (for TestFlight builds) at the bottom to see what's included
 
 ## How to build with Xcode
 
-You need to install [rustup](https://rustup.rs/) with rust, as well as [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation).
+### Install [rustup](https://rustup.rs)
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+### Install [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation)
+
+```bash
+cargo install cargo-lipo
+```
+
+### Setup workspace
 
 ```bash
 git clone git@github.com:deltachat/deltachat-ios.git
