@@ -42,10 +42,15 @@ cd deltachat-ios
 git submodule update --init --recursive
 # Make sure the correct rust version is installed
 rustup toolchain install `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`
-open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
 ```
 
-This should open Xcode. Then make sure that at the top left in Xcode there is *deltachat-ios* selected as scheme (see screenshot below).
+To run the project, open `deltachat-ios.xcworkspace` (**not** the 'xcodeproj' file).
+
+```bash
+open deltachat-ios.xcworkspace
+```
+
+This should open Xcode. Then make sure to select the *deltachat-ios* scheme at the top left (see screenshot below).
 
 ![Screenshot](docs/images/screenshot_scheme_selection.png)
 
