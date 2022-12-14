@@ -1,5 +1,22 @@
 # Delta Chat iOS Changelog
 
+## v1.34.7
+2022-12
+
+* show audio recorder on half screen
+* prevent From:-forgery attacks
+* disable Autocrypt & Authres-checking for mailing lists because they don't work well with mailing lists
+* small speedups
+* improve logging
+* fix crash on copy message with iOS 14.8
+* fix detection of "All mail", "Trash", "Junk" etc folders
+* fix reactions on partially downloaded messages by fetching messages sequentially
+* fix a bug where one malformed message blocked receiving any further messages
+* fix: set read/write timeouts for IMAP over SOCKS5
+* update translations
+* update to core103
+
+
 ## v1.34.6
 2022-11
 
