@@ -22,18 +22,35 @@ Check the Changelog (for TestFlight builds) at the bottom to see what's included
 
 ## How to build with Xcode
 
-You need to install [rustup](https://rustup.rs/) with rust, as well as [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation).
+### Install [rustup](https://rustup.rs)
 
 ```bash
-$ git clone git@github.com:deltachat/deltachat-ios.git
-$ cd deltachat-ios
-$ git submodule update --init --recursive
-# Make sure the correct rust version is installed
-$ rustup toolchain install `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`
-$ open deltachat-ios.xcworkspace # do not: open deltachat-ios.xcodeproj
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-This should open Xcode. Then make sure that at the top left in Xcode there is *deltachat-ios* selected as scheme (see screenshot below).
+### Install [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation)
+
+```bash
+cargo install cargo-lipo
+```
+
+### Setup workspace
+
+```bash
+git clone git@github.com:deltachat/deltachat-ios.git
+cd deltachat-ios
+git submodule update --init --recursive
+# Make sure the correct rust version is installed
+rustup toolchain install `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`
+```
+
+To run the project, open `deltachat-ios.xcworkspace` (**not** the 'xcodeproj' file).
+
+```bash
+open deltachat-ios.xcworkspace
+```
+
+This should open Xcode. Then make sure to select the *deltachat-ios* scheme at the top left (see screenshot below).
 
 ![Screenshot](docs/images/screenshot_scheme_selection.png)
 
