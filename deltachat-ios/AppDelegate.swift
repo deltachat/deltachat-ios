@@ -371,11 +371,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let tokenString = tokenParts.joined()
 
-        #if DEBUG
-        let endpoint = "https://sandbox.notifications.delta.chat/register"
-        #else
         let endpoint = "https://notifications.delta.chat/register"
-        #endif
 
         logger.info("Notifications: POST token: \(tokenString) to \(endpoint)")
 
