@@ -41,7 +41,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 채팅</string>
+			<string>%d개의 채팅</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -153,7 +153,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 메시지를 여기 그리고 서버에서 삭제하시겠습니까?</string>
+			<string>%d개의 메시지를 이 곳과 서버에서 삭제하시겠습니까?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
@@ -167,7 +167,35 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 메시지를 삭제하시겠습니까?</string>
+			<string>%d개의 메시지를 삭제하시겠습니까?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d개의 채팅이 보관됨</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d개의 채팅이 보관되지 않음</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

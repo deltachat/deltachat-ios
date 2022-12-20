@@ -1,0 +1,7 @@
+NSCameraUsageDescription = "Delta Chat은 카메라를 사용하여 사진과 비디오를 찍고 전송하고 QR 코드를 스캔합니다.";
+NSContactsUsageDescription = "Delta Chat 은 연락처를 사용하여 쓸 수 있는 이메일 주소 목록을 표시합니다. Delta Chat 에는 서버가 없으며 연락처는 아무 곳에도 전송되지 않습니다.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat 에서는 위치 공유를 사용하도록 설정한 기간 동안 사용자의 위치를 공유할 수 있는 권한이 필요합니다.";
+NSLocationWhenInUseUsageDescription = "Delta Chat 에서는 위치 공유를 사용하도록 설정한 기간 동안 사용자의 위치를 공유할 수 있는 권한이 필요합니다.";
+NSMicrophoneUsageDescription = "Delta Chat 은 마이크를 사용하여 음성 메시지와 비디오를 소리와 함께 녹음하고 전송합니다.";
+NSPhotoLibraryUsageDescription = "Delta Chat 을 통해 라이브러리에서 보낼 사진을 선택할 수 있습니다.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat 에서 사진 라이브러리에 이미지를 저장하려고 합니다.";
