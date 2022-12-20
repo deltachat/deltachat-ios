@@ -1086,7 +1086,6 @@
 			buildConfigurationList = 7A9FB1521FB061E2001FEA36 /* Build configuration list for PBXNativeTarget "deltachat-ios" */;
 			buildPhases = (
 				58C9D79942D26B7F8F210DA1 /* [CP] Check Pods Manifest.lock */,
-				787D6698229F20B8000A7A9D /* ShellScript */,
 				7A9FB13C1FB061E2001FEA36 /* Sources */,
 				7A9FB13D1FB061E2001FEA36 /* Frameworks */,
 				7A9FB13E1FB061E2001FEA36 /* Resources */,
@@ -1371,23 +1370,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\"\n";
-		};
-		787D6698229F20B8000A7A9D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# The $PATH used by XCode likely won't contain Cargo, fix that.\n# This assumes a default `rustup` setup.\n export PATH=\"$HOME/.cargo/bin:$PATH\"\n\n export CFLAGS_x86_64_apple_darwin=\"-I /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include\"\n\n# new location for system libraries on macOS 11\nos_ver=$(sw_vers -productVersion)\n  \nif [[ \"$os_ver\" == 11.* ]]; then\n    export LIBRARY_PATH=\"/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib\"\nfi\n\n# ensure all targets are installed\n rustup target add aarch64-apple-ios x86_64-apple-ios --toolchain `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`\n\n# --xcode-integ determines --release and --targets from XCode's env vars.\n# Depending your setup, specify the rustup toolchain explicitly.\nRUSTFLAGS=\"-C lto=on -C embed-bitcode=yes\" \\\n cargo +`cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain` lipo --release --manifest-path deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/Cargo.toml\n";
 		};
 		78BB0FE6A8C17A549A144EDE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
