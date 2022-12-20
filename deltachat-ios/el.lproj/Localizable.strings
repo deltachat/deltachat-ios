@@ -1,0 +1,949 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "Εντάξει";
+"cancel" = "Ακύρωση";
+"clear_search" = "Αναζήτηση";
+"yes" = "Ναι";
+"no" = "Όχι";
+"select" = "Επιλογή";
+"on" = "Ενεργοποιημένο";
+"off" = "Απενεργοποιημένο";
+"def" = "Προεπιλογή";
+"default_value" = "Προεπιλογή(%1$@)";
+"default_value_as_above" = "Προκαθορισμένο (Ίδιο με το παραπάνω)";
+"custom" = "Προσαρμογή";
+"none" = "Κανένα";
+"automatic" = "Αυτόματα";
+"strict" = "Αυστηρός";
+"open" = "Άνοιγμα";
+"download" = "Λήψη";
+"downloading" = "Λήψη...";
+"open_attachment" = "Άνοιγμα Συνημένου";
+"join" = "Μπες";
+"rejoin" = "Επανασύνδεση";
+"delete" = "Διαγραφή";
+"info" = "Πληροφορίες";
+"update" = "Ενημέρωση";
+"emoji" = "Emoji";
+"attachment" = "Συνημένο";
+"back" = "Πίσω";
+"close" = "Κλείσιμο";
+"forward" = "Προώθηση";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Επανάληψη Αποστολής";
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
+"archive" = "Αρχειοθέτηση";
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
+"unarchive" = "Αποαρχειοθ";
+"mute" = "Σίγαση";
+"ephemeral_messages" = "Μηνύματα που εξαφανίζονται";
+"ephemeral_messages_hint" = "Ισχύει για όλα τα μέλη της συνομιλίας αν χρησιμοποιούν Delta Chat: έχουν την δυνατότητα αντιγραφής, αποθήκευσης, και κοινοποίησης μηνυμάτων ή χρήση άλλων  e-mail πελατών.";
+"save" = "Αποθήκευση";
+"chat" = "Συνομιλία";
+"media" = "Πολυμέσα";
+"profile" = "Προφίλ";
+"main_menu" = "Κύριο Μενού";
+"start_chat" = "Ξεκινήστε Συνομιλία";
+"show_full_message" = "Εμφάνιση Πλήρους Μηνύματος";
+"show_full_message_in_browser" = "Εμφάνιση Πλήρους Μηνύματος στο Πρόγραμμα Περιήγησης";
+// Placeholder text when something is loading
+"loading" = "Φόρτωση…";
+"hide" = "Απόκρυψη";
+"activate" = "Ενεργοποίηση";
+"load_remote_content" = "Φόρτωση Εικόνας";
+// Possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Εικόνες μπορούν να σας εντοπίσουν.\n\nΑυτή η ρύθμιση μπορεί να φορτώσει γραμματοσειρές και αλλά περιεχόμενα. Αν απενεργοποιηθεί, ενδέχεται να εμφανιστούν ενσωματωμένες ή προσωρινές εικόνες.\n\nΦόρτωση εικόνων;";
+"always" = "Πάντα";
+"once" = "Μία φορά";
+"show_password" = "Εμφάνιση Κωδικού";
+"hide_password" = "Απόκριψη Κωδικού";
+"not_now" = "Όχι τώρα";
+"never" = "Ποτέ";
+"one_moment" = "Μια στιγμή...";
+"done" = "Τέλος";
+"undo" = "Αναίρεση";
+"offline" = "Εκτός Σύνδεσης";
+// For the next view or as "continue". Should be as short as possible.
+"next" = "Επόμενο";
+"error" = "Σφάλμα";
+"error_x" = "Σφάλμα: %1$@";
+"no_app_to_handle_data" = "Αδυναμία εύρεσης κατάλληλης εφαρμογής για την διαχείρηση του συγκεκριμένου τύπου δεδομένων.";
+"no_browser_installed" = "Δεν υπάρχει εγκατεστημένος φυλλομετρητής";
+"file_not_found" = "Αδυναμία Εύρεσης %1$@.";
+"copied_to_clipboard" = "Αντιγράφηκε στο πρόχειρο";
+"contacts_headline" = "Επαφές";
+"email_address" = "Διεύθυνση E-mail";
+"bad_email_address" = "Κακή διεύθυνση e-mail.";
+"password" = "Συνθηματικό";
+"existing_password" = "Υπάρχον Κωδικός";
+"now" = "Τώρα";
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
+"danger" = "Προσοχή";
+"today" = "Σήμερα";
+"yesterday" = "Χθες";
+"this_week" = "Αυτήν την εβδομάδα";
+"this_month" = "Αυτόν το μήνα";
+"last_week" = "Προηγούμενη εβδομάδα";
+"last_month" = "Προηγούμενος μήνας";
+// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Τελευταία προβολή στις %1$@";
+"last_seen_unknown" = "Τελευταία προβολή: Άγνωστο";
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+
+"self" = "Εγώ";
+"draft" = "Πρόχειρο";
+"image" = "Εικόνα";
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Απάντηση";
+"gif" = "GIF";
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
+"sticker" = "Αυτοκόλλητο";
+"images" = "Εικόνες";
+"audio" = "Ήχοι";
+"voice_message" = "Μήνυμα φωνής";
+"forwarded" = "Κοινοποίηση";
+"forwarded_message" = "Κοινοποίηση Μηνύματος";
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+"forwarded_by" = "Κοινοποίηση από %1$@";
+"video" = "Βίντεο";
+"documents" = "Αρχεία";
+"contact" = "Επαφή";
+"verified_contact" = "Επαληθευμένη Επαφή";
+"camera" = "Κάμερα";
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
+"capture" = "Λήψη";
+"switch_camera" = "Αλλαγή κάμερας";
+"toggle_fullscreen" = "Εναλλαγή Λειτουργίας Πλήρους Οθόνης";
+"location" = "Τοποθεσία";
+"gallery" = "Πινακοθήκη";
+"images_and_videos" = "Εικόνες και Βίντεο";
+"file" = "Αρχείο";
+"files" = "Αρχεία";
+// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "Ιδιωτική Εφαρμογή";
+// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Ιδιωτικές Εφαρμογές";
+"files_and_webxdx_apps" = "Αρχεία και Ιδιωτικές Εφαρμογές";
+"unknown" = "Άγνωστο";
+
+"green" = "Πράσινο";
+"red" = "Κόκκινο";
+"blue" = "Μπλε";
+"orange" = "Πορτοκαλί";
+"cyan" = "Γαλάζιο";
+"purple" = "Μωβ";
+"magenta" = "Φούξια";
+"white" = "Λευκό";
+
+"zoom" = "Μεγέθυνση";
+"extra_small" = "Πολύ μικρό";
+"small" = "Μικρό";
+"normal" = "Κανονικό";
+"large" = "Μεγάλο";
+"extra_large" = "Πολύ μεγάλο";
+
+"fast" = "Γρήγορο";
+"slow" = "Αργό";
+
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Νέα Επαφή";
+"menu_new_chat" = "Νέα Συνομιλία";
+"menu_new_group" = "Νέα ομάδα";
+// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
+"new_group_or_subject" = "Νέα Ομάδα ή Θέμα";
+"menu_new_verified_group" = "Νέα Επαληθευμένη Ομάδα";
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
+"broadcast_list" = "Λίστα Μέσων";
+"broadcast_lists" = "Λίστες Μέσων";
+"new_broadcast_list" = "Νέα Λίστα Μέσων";
+"add_recipients" = "Προσθήκη Παραλήπτη";
+"menu_send" = "Αποστολή";
+"menu_toggle_keyboard" = "Εναλλαγή πληκτρολογίου emoji";
+"menu_edit_group" = "Επεξεργασία ομάδας";
+"menu_group_name_and_image" = "Όνομα Ομάδας και Εικόνα";
+"menu_show_map" = "Εμφάνιση Xάρτη";
+"menu_show_global_map" = "Εμφάνιση όλων των Τοποθεσιών";
+"menu_archive_chat" = "Αρχείο Συνομιλίας";
+"menu_unarchive_chat" = "Κατάργηση Αρχειοθέτησης Συνομιλίας";
+"menu_add_attachment" = "Προσθήκη συνημμένου";
+"menu_leave_group" = "Αποχώρηση απ\' την ομάδα";
+"menu_delete_chat" = "Διαγραφή Συνομιλίας";
+"ask_delete_named_chat" = "Είστε σίγουρος ότι θέλετε να διαγράψετε \"%1$@\";";
+"menu_delete_messages" = "Διαγραφή Μηνυμάτων";
+"delete_contact" = "Διαγραφή Επαφής";
+"menu_delete_location" = "Διαγραφή αυτής της τοποθεσίας;";
+"menu_message_details" = "Στοιχεία μηνύματος";
+"menu_copy_to_clipboard" = "Αντιγραφή στο πρόχειρο";
+"menu_copy_selection_to_clipboard" = "Αντιγραφή Επιλεγμένων";
+"menu_copy_link_to_clipboard" = "Αντιγραφή Συνδέσμου";
+"menu_copy_text_to_clipboard" = "Αντιγραφή κειμένου";
+"menu_copy_image_to_clipboard" = "Αντιγραφή Εικόνας";
+"menu_copy_email_to_clipboard" = "Αντιγραφή E-Mail";
+"paste_from_clipboard" = "Επικόλληση από το Πρόχειρο";
+"menu_forward" = "Προώθηση μηνύματος";
+"menu_reply" = "Απάντηση στο μήνυμα";
+"menu_mute" = "Σίγαση ειδοποιήσεων";
+"menu_unmute" = "Αποσίγαση";
+"menu_export_attachment" = "Εξαγωγή Συνημμένου";
+"menu_export_attachments" = "Εξαγωγή Συνημμένων";
+"menu_all_media" = "Όλα τα πολυμέσα";
+// Command to jump to the original message corresponding to a gallery image or document
+"show_in_chat" = "Εμφάνιση στη Συνομιλία";
+"menu_share" = "Μοιράσου";
+// Verb "to block sth." usually a mailing list or a contact, not a noun
+"block" = "Φραγή";
+"menu_block_contact" = "Αποκλεισμός Επαφής";
+"menu_unblock_contact" = "Ξεμπλοκάρισμα Επαφής";
+"accept" = "Αποδοχή";
+"menu_play" = "Αναπαραγωγή";
+"menu_pause" = "Παύση";
+"menu_scroll_to_bottom" = "Πήγαινε στο τέρμα";
+"menu_scroll_to_top" = "Μετακίνηση στην Κορυφή";
+"menu_help" = "Βοήθεια";
+"privacy_policy" = "Πολιτική Απορρήτου";
+"menu_select_all" = "Επιλογή όλων";
+"select_more" = "Επιλογή Περισσότερων";
+"menu_edit_name" = "Επεξεργασία Ονόματος";
+"menu_settings" = "Ρυθμίσεις";
+"menu_advanced" = "Για προχωρημένους";
+"menu_view_profile" = "Εμφάνιση Προφίλ";
+"menu_zoom_in" = "Μεγέθυνση";
+"menu_zoom_out" = "Σμίκρυνση";
+"menu_save_log" = "Αποθήκευση";
+"menu_more_options" = "Περισσότερες Επιλογές";
+"menu_learn_spelling" = "Μάθε Ορθογραφία";
+"menu_chat_audit_log" = "Αρχείο Καταγραφής Ελέγχου Συνομιλίας";
+"jump_to_message" = "Μετακίνηση στη Συνομιλία";
+"copy_json" = "Αντιγραφή JSON";
+"replace_draft" = "Αντικατάσταση Σχεδίου";
+"title_share_location" = "Διαμοιρασμός τοποθεσίας με όλα τα μέλη της ομάδας";
+"device_talk" = "Μηνύματα Συσκευής";
+"device_talk_subtitle" = "Τοπικά Μηνύματα";
+"device_talk_explain" = "Τα μηνύματα σε αυτήν τη συνομιλία δημιουργούνται στη συσκευή σας για την ενημέρωση σχετικά με ενημερώσεις και προβλήματα κατά τη χρήση της εφαρμογής";
+"device_talk_welcome_message" = "Καλώς ήρθατε στο Delta Chat! – Το Delta Chat μοιάζει με άλλες δημοφιλείς εφαρμογές επικοινωνίας, αλλά δεν περιλαμβάνει κεντρικό έλεγχο, παρακολούθηση ή πώληση σε εσάς, φίλους, συναδέλφους ή την οικογένειά σας σε μεγάλους οργανισμούς.\n\nΤεχνικά, το Delta Chat είναι μια εφαρμογή ηλεκτρονικού ταχυδρομείου με σύγχρονη διεπαφή συνομιλίας. E-mail με νέο φόρεμα 👻\n\nΧρησιμοποιήστε το Delta Chat με οποιονδήποτε από τα δισεκατομμύρια άτομα: απλώς χρησιμοποιήστε τη διεύθυνση ηλεκτρονικού ταχυδρομείου τους. Οι παραλήπτες δεν χρειάζεται να εγκαταστήσουν το Delta Chat, να επισκεφτούν ιστότοπους ή να εγγραφούν οπουδήποτε - ωστόσο, φυσικά, αν θέλουν, μπορείτε να τους υποδείξετε στο 👉 https://get.delta.chat";
+"edit_contact" = "Επεξεργασία Επαφής";
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+"pin_chat" = "Καρφίτσωμα Συνομιλίας";
+// Opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Ξεκαρφίτσωμα Συνομιλίας";
+// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+"pin" = "Καρφίτσωμα";
+// Opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin" = "Ξεκαρφίτσωμα";
+"ConversationFragment_quoted_message_not_found" = "Το αρχικό μήνυμα δεν βρέθηκε";
+"reply_privately" = "Ιδιωτική Απάντηση";
+"source_code" = "Πηγαίος Κώδικας";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Προσθήκη στην κεντρική οθόνη";
+
+"mute_for_one_hour" = "Σίγαση για 1 ώρα";
+"mute_for_two_hours" = "Σίγαση για 2 ώρες";
+"mute_for_one_day" = "Σίγαση για 1 ημέρα";
+"mute_for_seven_days" = "Σίγαση για 7 ημέρες";
+"mute_forever" = "Μόνιμη Σίγαση";
+
+"share_location_for_5_minutes" = "Για 5 λεπτά";
+"share_location_for_30_minutes" = "Για 30 λεπτά";
+"share_location_for_one_hour" = "Για 1 ώρα";
+"share_location_for_two_hours" = "Για 2 ώρες";
+"share_location_for_six_hours" = "Για 6 ώρες";
+
+"file_saved_to" = "Αποθήκευση στο \"%1$@\".";
+
+"videochat" = "Βιντεοκλήση";
+"videochat_invite_user_to_videochat" = "Πρόσκληση %1$@ σε βιντεοκλήση;";
+"videochat_invite_user_hint" = "Αυτό απαιτεί μια συμβατή εφαρμογή ή πρόγραμμα περιήγησης και στις δύο άκρες.";
+"videochat_contact_invited_hint" = "%1$@ καλέστηκε σε βινετοκλήση.";
+"videochat_you_invited_hint" = "Στείλατε πρόσκληση σε βινετοκλήση.";
+"videochat_tap_to_join" = "Πατήστε για Συμμετοχή";
+"videochat_tap_to_open" = "Πατήστε για Άνοιγμα";
+"videochat_instance" = "Παρουσία στη Βιντεοκλήση";
+"videochat_instance_placeholder" = "Η παρουσία σας στη βιντεοκλήση";
+"videochat_instance_example" = "Παράδειγμα: https://meet.jit.si/$ROOM ή basicwebrtc:https://your-server";
+"videochat_instance_explain_2" = "Αν είναι ενεργοποιημένο, μπορείτε να ξεκινήσετε μια συνομιλία μέσω βίντεο από κάθε συνομιλία. Απαιτεί μια συμβατή εφαρμογή ή ένα πρόγραμμα περιήγησης και στα δύο άκρα.";
+"videochat_instance_from_qr" = "Χρήση \"%1$@\" για να προσκαλέσετε άλλους στη βιντεοκλήση;\n\nΑφού ρυθμιστεί, μπορείτε να ξεκινήσετε μια συνομιλία μέσω βίντεο από κάθε συνομιλία. Αυτό αντικαθιστά οποιαδήποτε προηγούμενη ρύθμιση για συνομιλίες μέσω βίντεο.";
+"videochat_invitation" = "Πρόσκληση Βιντεοκλήσης";
+"videochat_invitation_body" = "Έχετε προσκληθεί σε βινετοκλήση, πατήστε %1$@ για να συμμετέχετε";
+
+// get confirmations
+"ask_leave_group" = "Είστε σίγουρος/-η ότι θέλετε να βγείτε από αυτή την ομάδα;";
+"ask_delete_message" = "Είστε σίγουρος/-η ότι θέλετε να διαγράψετε αυτό το μήνυμα;";
+"ask_forward" = "Κοινοποίηση μηνύματος στο %1$@;";
+"ask_forward_multiple" = "Κοινοποίηση μηνύματος σε %1$d συνομιλίες;";
+"ask_export_attachment" = "Η εξαγωγή συνημμένων θα επιτρέψει σε άλλες εφαρμογές της συσκευής σας να έχουν πρόσβαση σε αυτά.\n\nΣυνέχεια;";
+"ask_block_contact" = "Αποκλεισμός αυτής της επαφής; Δεν θα λαμβάνετε πλέον μηνύματα από αυτούς.";
+"ask_unblock_contact" = "Κατάργηση αποκλεισμού αυτής της επαφής; Θα μπορείτε να λαμβάνετε μηνύματα από αυτούς.";
+"ask_delete_contacts" = "Διαγραφή επαφών;\n\nΟι επαφές με συνομιλίες που βρίσκονται σε εξέλιξη ή από το βιβλίο διευθύνσεων του συστήματος δεν μπορούν να διαγραφούν οριστικά.";
+"ask_delete_contact" = "Διαγραφή επαφής %1$@;\n\nΟι επαφές με συνομιλίες που βρίσκονται σε εξέλιξη ή από το βιβλίο διευθύνσεων του συστήματος δεν μπορούν να διαγραφούν οριστικά.";
+"cannot_delete_contacts_in_use" = "Δεν μπορούν αν διαγραφούν επαφές με συνομιλίες που βρίσκονται σε εξέλιξη.";
+"ask_start_chat_with" = "Συνομιλία με %1$@;";
+"ask_delete_value" = "Διαφραφή %1$@;";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_members" = "Αφαίρεση του/της %1$@ από την ομάδα;";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_broadcast" = "Αφαίρεση %1$@ από την λίστα εκπομπών;";
+"open_url_confirmation" = "Θέλετε να ανοίξετε αυτό τον σύνδεσμό;";
+
+
+// contact list
+"contacts_title" = "Επαφές";
+"contacts_enter_name_or_email" = "Εισάγετε όνομα ή διεύθυνση e-mail";
+"contacts_type_email_above" = "Εισάγετε την διεύθυνση e-mail παραπάνω";
+"contacts_empty_hint" = "Δεν υπάρχουν επαφές.";
+
+
+// chatlist and chat view
+"chat_archived_chats_title" = "Αρχειοθετημένες Συνομιλίες";
+"chat_please_enter_message" = "Εισάγετε ένα μήνυμα.";
+"chat_camera_unavailable" = "Η κάμερα δεν είναι διαθέσιμη.";
+"chat_unable_to_record_audio" = "Αδυναμία εγγραφής ήχου.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Στείλτε ένα μήνυμα σε %1$@, και μπορούν να το λάβουν ακόμη και χωρίς Delta Chat.";
+"chat_new_broadcast_hint" = "Σε μια λίστα εκπομπών, άλλοι θα λαμβάνουν μηνύματα στις ιδιωτικές συνομιλίες τους μαζί σας.\n\nΟι παραλήπτες δεν θα γνωρίζουν ο ένας τον άλλον.";
+"chat_new_group_hint" = "Οι άλλοι θα δουν αυτήν την ομάδα μόνο αφού στείλετε ένα πρώτο μήνυμα.";
+"chat_record_slide_to_cancel" = "Σύρε για ακύρωση";
+"chat_record_explain" = "Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα φωνητικό μήνυμα, άφησε το κουμπί για αποστολή";
+"chat_no_chats_yet_title" = "Αδειάστε τα εισερχόμενα.\nΠατήστε \"+\" για να ξεκινήσετε μια νέα συνομιλία.";
+"chat_no_chats_yet_hint" = "Μπορείτε να συνομιλήσετε με άλλους χρήστες του Delta Chat και με οποιαδήποτε διεύθυνση e-mail.";
+"chat_all_archived" = "Όλες οι συνομιλίες αρχειοθετήθηκαν.\nΠατήστε \"+\" για να ξεκινήσετε μια νέα συνομιλία.";
+"chat_share_with_title" = "Μοιράσου με";
+"chat_input_placeholder" = "Μήνυμα";
+"chat_archived_label" = "Αρχειοθετημένα";
+"chat_request_label" = "Αίτημα";
+"chat_no_messages" = "Κανένα μήνυμα.";
+"chat_self_talk_subtitle" = "Μηνύματα προς τον εαυτό σας";
+"archive_empty_hint" = "Οι αρχειοθετημένες συνομιλίες θα εμφανίζονται εδώ.";
+"saved_messages" = "Αποθηκευμένα Μηνύματα";
+"saved_messages_explain" = "• Προώθηση μηνυμάτων εδώ για εύκολη πρόσβαση\n\n• Κρατήστε σημειώσεις ή φωνητικά σημειώματα\n\n• Επισυνάψτε μέσα για να τα αποθηκεύσετε";
+// Should match "Saved" from "Saved messages"
+"saved" = "Αποθηκεύτηκε";
+"save_as" = "Αποθήκευση ως";
+"retry_send" = "Ξαναπροσπαθήστε να στείλετε μήνυμα";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Πρέπει να είστε σε αυτήν την ομάδα για να δημοσιεύσετε ένα μήνυμα. Για να συμμετέχετε, ζητήστε από ένα άλλο μέλος.";
+"messaging_disabled_device_chat" = "Αυτή η συνομιλία περιέχει μηνύματα που δημιουργούνται τοπικά. Η γραφή είναι απενεργοποιημένη.";
+"messaging_disabled_mailing_list" = "Η αποστολή μηνυμάτων σε λίστες αλληλογραφίας δεν υποστηρίζεται ακόμη";
+"cannot_display_unsuported_file_type" = "Δεν είναι δυνατή η εμφάνιση αυτού του τύπου αρχείου: %1$@";
+"attachment_failed_to_load" = "Αποτυχία φόρτωσης συνημμένου";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Κλείδωμα Εγγραφής";
+
+// mailing lists
+"mailing_list" = "Λίστα Αλληλογραφίας";
+"mailing_list_profile_info" = "Οι αλλαγές στο όνομα και την εικόνα της λίστας αλληλογραφίας ισχύουν μόνο σε αυτήν τη συσκευή.";
+
+// webxdc
+// "Start..." button for an app
+"start_app" = "Εκκίνηση…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Αποδεχτείτε πρώτα το αίτημα συνομιλίας.";
+
+// map
+"filter_map_on_time" = "Εμφάνιση τοποθεσιών σε χρονικό πλαίσιο";
+"show_location_traces" = "Εμφάνιση ιχνών";
+"add_poi" = "Αποστολή σημείου ενδιαφέροντος";
+
+// chat audit log
+"chat_audit_log_empty_message" = "Τα μηνύματα συστήματος για αυτήν τη συνομιλία εμφανίζονται εδώ";
+"chat_audit_log_title" = "Καταγραφή ελέγχου συνομιλίας για %1$@";
+"chat_audit_log_description" = "Εμφανίζει μόνο μηνύματα συστήματος και πληροφοριών. Είναι χρήσιμο για την εύρεση των τελευταίων ενεργειών συνομιλίας χωρίς κύλιση σε πολλά μηνύματα.";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Μην ξαναρωτήθω για %1$@";
+"puny_code_warning_header" = "Εντοπίστηκε ύποπτος σύνδεσμος";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Είστε σίγουροι ότι θέλετε να επισκεφθείτε %1$@;";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Αυτός ο σύνδεσμος μπορεί να παραποιεί χαρακτήρες με παρόμοια εμφάνιση από διαφορετικά αλφάβητα. Ακολουθώντας τον σύνδεσμο με την ετικέτα %1$@ θα οδηγήσει σε %2$@ κάτι που είναι φυσιολογικό για μη λατινικούς χαρακτήρες. Αν δεν περιμένατε τέτοιους χαρακτήρες, αυτός ο σύνδεσμος θα μπορούσε να είναι επιβλαβής.";
+
+
+// search
+"search" = "Αναζήτηση";
+"search_explain" = "Αναζήτηση για συνομιλίες, επαφές, και μηνύματα";
+"search_no_result_for_x" = "Δε βρέθηκαν αποτελέσματα για \"%1$@\"";
+
+
+// create/edit groups, contact/group profile
+"group_name" = "Όνομα ομάδας";
+"group_avatar" = "Εικόνα Ομάδας";
+"remove_group_image" = "Αφαίρεση φωτογραφίας ομάδας;";
+"change_group_image" = "Αλλαγή Εικόνας Ομάδας";
+"group_create_button" = "Δημιουργία ομάδας";
+"group_please_enter_group_name" = "Εισάγετε ένα όνομα για αυτή την ομάδα.";
+"group_add_members" = "Προσθήκη μελών";
+"group_self_not_in_group" = "Πρέπει να είστε μέλος της ομάδας για να εκτελέσετε αυτήν την ενέργεια.";
+"profile_encryption" = "Κρυπτογράφηση";
+"profile_shared_chats" = "Κοινόχρηστες συνομιλίες";
+"tab_contact" = "Επαφή";
+"tab_group" = "Ομάδα";
+"tab_gallery" = "Εικόνα ή βίντεο";
+"tab_docs" = "Έγγραφα";
+"tab_links" = "Σύνδεσμοι";
+"tab_map" = "Χάρτης";
+"tab_gallery_empty_hint" = "Οι εικόνες και τα βίντεο που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
+"tab_docs_empty_hint" = "Έγγραφα και άλλα αρχεία που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
+"tab_image_empty_hint" = "Οι εικόνες που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
+"tab_video_empty_hint" = "Τα βίντεο που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
+"tab_audio_empty_hint" = "Τα αρχεία ήχου και τα φωνητικά μηνύματα που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
+"tab_webxdc_empty_hint" = "Οι ιδιωτικές εφαρμογές που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
+"media_preview" = "Προεπισκόπιση";
+"send_message" = "Αποστολή μηνύματος";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ άλλαξαν την διεύθυνσή τους από %2$@ σε %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "Αλλάξατε την διεύθυνσή σας από %1$@ σε %2$@.\n\nΤώρα, εάν στείλετε ένα μήνυμα σε μια επαληθευμένη ομάδα, οι επαφές εκεί θα αντικαταστήσουν αυτόματα την παλιά με τη νέα σας διεύθυνση.\n\nΣυνιστάται ιδιαίτερα να ρυθμίσετε τον παλιό σας πάροχο email ώστε να προωθεί όλα τα μηνύματα ηλεκτρονικού ταχυδρομείου στη νέα σας διεύθυνση ηλεκτρονικού ταχυδρομείου. Διαφορετικά, ενδέχεται να χάσετε μηνύματα επαφών που δεν έχουν λάβει ακόμη τη νέα σας διεύθυνση.";
+
+// Connectivity
+// Headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Εισερχόμενα Μηνύματα";
+// Headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Εξερχόμενα Μηνύματα";
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Αποθήκευση στο %1$@";
+"connectivity" = "Συνδεσιμότητα";
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
+"connectivity_not_connected" = "Μη συνδεδεμένο";
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_connecting" = "Συνδέεται…";
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_updating" = "Ενημέρωση…";
+// Shown in the setting if the app is "Connected"
+"connectivity_connected" = "Συνδεδεμένο";
+"sending" = "Στέλνεται…";
+"last_msg_sent_successfully" = "Το τελευταίο μήνυμα στάλθηκε με επιτυχία.";
+"not_supported_by_provider" = "Δεν υποστηρίζεται από τον πάροχο σας.";
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+"messages" = "Μηνύματα";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ από %2$@ χρησιμοποιείται";
+
+
+// welcome and login
+"welcome_chat_over_email" = "Συνομιλία μέσω E-Mail.";
+"scan_invitation_code" = "Σάρωση Κωδικού Πρόσκλησης";
+"welcome_intro1_message" = "Ο αγγελιοφόρος με το ευρύτερο κοινό στον κόσμο. Ελεύθερος και ανεξάρτητος.";
+"login_title" = "Σύνδεση";
+"login_header" = "Συνδεθείτε στον λογαριασμό σας E-Mail";
+"login_explain" = "Συνδεθείτε με έναν υπάρχοντα λογαριασμό e-mail";
+"login_subheader" = "Για γνωστούς παρόχους email ρυθμίζονται αυτόματα πρόσθετες ρυθμίσεις. Μερικές φορές το IMAP πρέπει να είναι ενεργοποιημένο στις ρυθμίσεις Ιστού. Συμβουλευτείτε τον πάροχο e-mail ή τους φίλους σας για βοήθεια.";
+"login_no_servers_hint" = "Δεν υπάρχουν διακομιστές Delta Chat, τα δεδομένα σας παραμένουν στη συσκευή σας.";
+"login_inbox" = "Εισερχόμενα";
+"login_imap_login" = "Όνομα Σύνδεσης IMAP";
+"login_imap_server" = "Διακομιστής IMAP";
+"login_imap_port" = "Θύρα IMAP";
+"login_imap_security" = "Ασφάλεια IMAP";
+"login_outbox" = "Εξερχόμενα";
+"login_smtp_login" = "Όνομα σύνδεσης SMTP";
+"login_smtp_password" = "Κωδικός πρόσβασης SMTP";
+"login_smtp_server" = "Διακομιστής SMTP";
+"login_smtp_port" = "Θύρα SMTP";
+"login_smtp_security" = "Ασφάλεια SMTP";
+"login_auth_method" = "Μέθοδος Πιστοποίησης";
+// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"login_socks5" = "SOCKS5";
+"login_socks5_use_socks5" = "Χρήση SOCKS5";
+"login_socks5_host" = "SOCKS5 Κεντρικός";
+"login_socks5_port" = "Θύρα SOCKS5";
+"login_socks5_user" = "Χρήστης SOCKS5";
+"login_socks5_password" = "Κωδικός SOCKS5";
+// Translators: %1$s will be replaced by an e-mail address
+"login_oauth2_checking_addr" = "Έλεγχος %1$@";
+"login_info_oauth2_title" = "Συνέχεια με την απλοποιημένη ρύθμιση;";
+"login_info_oauth2_text" = "Η εισαγόμενη διεύθυνση e-mail υποστηρίζει μια απλοποιημένη ρύθμιση (OAuth 2.0).\n\nΣτο επόμενο βήμα, επιτρέψτε στο Delta Chat να λειτουργεί ως η εφαρμογή Chat μέσω ηλεκτρονικού ταχυδρομείου.\n\nΔεν υπάρχουν διακομιστές Delta Chat, τα δεδομένα σας παραμένει στη συσκευή σας.";
+"login_certificate_checks" = "Έλεγχοι Πιστοποιητικών";
+"login_error_mail" = "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση e-mail";
+"login_error_server" = "Εισαγάγετε έναν έγκυρο διακομιστή / διεύθυνση IP";
+"login_error_port" = "Εισαγάγετε μια έγκυρη θύρα (1–65535)";
+"login_error_required_fields" = "Εισαγάγετε μια έγκυρη διεύθυνση e-mail και έναν κωδικό πρόσβασης";
+"import_backup_title" = "Επαναφορά από το Aντίγραφο Aσφαλείας";
+"import_backup_ask" = "Το αντίγραφο ασφαλείας βρέθηκε στο \"%1$@\".\n\nΘέλετε να εισαγάγετε και να χρησιμοποιήσετε όλα τα δεδομένα και τις ρυθμίσεις από αυτό;";
+"import_backup_no_backup_found" = "Δεν βρέθηκαν αντίγραφα ασφαλείας.\n\nΑντιγράψτε το αντίγραφο ασφαλείας στο \"%1$@\" και δοκιμάστε ξανά. Εναλλακτικά, πατήστε \"Έναρξη μηνυμάτων\" για να συνεχίσετε με την κανονική διαδικασία εγκατάστασης.";
+// Translators: %1$s will be replaced by the e-mail address
+"login_error_cannot_login" = "Δεν είναι δυνατή η είσοδος ως \"%1$@\". Ελέγξτε εάν η διεύθυνση e-mail και ο κωδικός πρόσβασης είναι σωστά.";
+// TLS certificate checks
+"accept_invalid_certificates" = "Αποδοχή μη έγκυρων πιστοποιητικών";
+"used_settings" = "Χρησιμοποιούμενες ρυθμίσεις:";
+"switch_account" = "Αλλαγή λογαριασμού";
+"add_account" = "Προσθήκη Λογαριασμού";
+"delete_account" = "Διαγραφή Λογαριασμού";
+"delete_account_ask" = "Είστε βέβαιοι ότι θέλετε να διαγράψετε τα δεδομένα του λογαριασμού σας;";
+"delete_account_explain_with_name" = "Όλα τα δεδομένα λογαριασμού του \"%1$@\" σε αυτήν τη συσκευή θα διαγραφούν, συμπεριλαμβανομένων των ρυθμίσεων κρυπτογράφησης από άκρο σε άκρο, των επαφών, των συνομιλιών, των μηνυμάτων και των πολυμέσων. Αυτή η πράξη δε μπορεί να αναιρεθεί.";
+"unconfigured_account" = "Μη διαμορφωμένος λογαριασμός";
+"unconfigured_account_hint" = "Ανοίξτε λογαριασμό για να τον διαμορφώσετε.";
+"try_connect_now" = "Προσπαθήστε να συνδεθείτε τώρα";
+"sync_all" = "Συγχρονισμός Όλων";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Η διαμόρφωση απέτυχε. Λάθος: %1$@";
+
+// share and forward messages
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
+"forward_to" = "Κοινοποίηση σε...";
+"share_multiple_attachments" = "Αποστολή %1$d αρχείων στην επιλεγμένη συνομιλία;\n\nΤα αρχεία αποστέλλονται χωρίς τροποποίηση στο αρχικό τους μέγεθος (π.χ. οι εικόνες και τα βίντεο δεν κωδικοποιούνται εκ νέου).";
+"share_multiple_attachments_multiple_chats" = "Αποστολή %1$d αρχείου(-ων) σε %2$d συνομιλίες;\n\nΤα αρχεία αποστέλλονται χωρίς τροποποίηση στο αρχικό τους μέγεθος (π.χ. οι εικόνες και τα βίντεο δεν κωδικοποιούνται εκ νέου).";
+"share_text_multiple_chats" = "Αποστολή αυτού του κειμένου σε %1$d συνομιλίες;\n\n\"%2$@\"";
+"share_abort" = "Η κοινή χρήση ματαιώθηκε λόγω έλλειψης αδειών.";
+
+
+// preferences
+"pref_using_custom" = "Χρήση προσαρμοσμένου: %1$@";
+"pref_using_default" = "Χρήση προεπιλογής: %1$@";
+"pref_profile_info_headline" = "Πληροφορίες Προφίλ";
+"pref_profile_photo" = "Εικόνα Προφίλ";
+"pref_blocked_contacts" = "Αποκλεισμένες Επαφές";
+"blocked_empty_hint" = "Οι αποκλεισμένες επαφές θα εμφανίζονται εδώ.";
+"pref_password_and_account_settings" = "Κωδικός και Λογαριασμός";
+"pref_who_can_see_profile_explain" = "Η εικόνα του προφίλ, το όνομα και η υπογραφή σας θα αποστέλλονται μαζί με τα μηνύματά σας κατά την επικοινωνία με άλλους χρήστες.";
+"pref_your_name" = "Το όνομά σου";
+// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+"pref_default_status_label" = "Υπογραφή";
+// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
+"pref_default_status_text" = "Στάλθηκε με το Delta Chat Messenger μου: https://delta.chat";
+"pref_enter_sends" = "Το Enter στέλνει";
+"pref_enter_sends_explain" = "Τα μηνύματα θα στέλνονται με το πάτημα του Enter";
+"pref_outgoing_media_quality" = "Ποιότητα Εξερχόμενων Μέσων";
+"pref_outgoing_balanced" = "Ισορροπημένο";
+"pref_outgoing_worse" = "Χειρότερη ποιότητα, μικρό μέγεθος";
+"pref_vibrate" = "Δόνηση";
+"pref_screen_security" = "Ασφάλεια οθόνης";
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
+"pref_screen_security_explain" = "Να μην επιτρέπεται η καταγραφή της οθόνης (screenshots) στη λίστα με τα πρόσφατα και μέσα στην εφαρμογή";
+"pref_screen_security_please_restart_hint" = "Για να εφαρμόσετε τη ρύθμιση ασφάλειας οθόνης, επανεκκινήστε την εφαρμογή.";
+"pref_notifications" = "Ειδοποιήσεις";
+"pref_notifications_show" = "Εμφάνιση";
+"pref_notifications_priority" = "Προτεραιότητα";
+"pref_notifications_explain" = "Ενεργοποιήστε τις ειδοποιήσεις συστήματος για νέα μηνύματα";
+"pref_show_notification_content" = "Εμφάνιση περιεχομένου μηνύματος στην ειδοποίηση";
+"pref_show_notification_content_explain" = "Εμφανίζει τον αποστολέα και τις πρώτες λέξεις του μηνύματος στις ειδοποιήσεις";
+"pref_led_color" = "Χρώμα LED";
+"pref_sound" = "Ήχος";
+"pref_silent" = "Σε σίγαση";
+"pref_privacy" = "Ιδιωτικότητα";
+"pref_chats_and_media" = "Συνομιλίες και Πολυμέσα";
+"pref_system_default" = "Προκαθορισμένο του συστήματος";
+// Translators: as in "opposite of dark"
+"pref_light_theme" = "Φωτεινό";
+"pref_dark_theme" = "Σκοτεινό";
+"pref_appearance" = "Εμφάνιση";
+"pref_theme" = "Θέμα";
+"pref_language" = "Γλώσσα";
+"pref_incognito_keyboard" = "Κρυφό πληκτρολόγιο";
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
+"pref_incognito_keyboard_explain" = "Αίτηση πληκτρολογίου για να απενεργοποιηθεί η προσωποποιημένη εκμάθηση";
+"pref_read_receipts" = "Αποδεικτικά ανάγνωσης";
+"pref_read_receipts_explain" = "Αν τα αποδεικτικά ανάγνωσης είναι απενεργοποιημένα, δε θα μπορείς να δεις αποδεικτικά ανάγνωσης από άλλους/ες.";
+"pref_manage_keys" = "Διαχείριση Κλειδιών";
+"pref_use_system_emoji" = "Χρήση emoji συστήματος";
+"pref_use_system_emoji_explain" = "Απενεργοποίηση της ενσωματωμένης υποστήριξης για emoji του Delta Chat";
+"pref_app_access" = "Πρόσβαση εφαρμογής";
+"pref_chats" = "Συνομιλίες";
+"pref_in_chat_sounds" = "Ήχοι μέσα στη συνομιλία";
+"pref_message_text_size" = "Μέγεθος γραμματοσειράς μηνύματος";
+"pref_view_log" = "Προβολή Αρχείου Καταγραφής";
+"pref_saved_log" = "ΤΟ αρχείο καταγραφής αποθηκεύτηκε στο φάκελο \"Λήψεις\".";
+"pref_save_log_failed" = "Αποτυχία αποθήκευσης του αρχείου καταγραφής";
+"pref_log_header" = "Αρχείο Καταγραφής";
+"pref_other" = "Άλλο";
+"pref_backup" = "Αντίγραφο Ασφαλείας";
+"pref_backup_explain" = "Δημιουργία αντίγραφου ασφαλείας συνομιλιών στην εξωτερική μνήμη";
+"pref_backup_export_explain" = "Ένα αντίγραφο ασφαλείας σάς βοηθά να ρυθμίσετε μια νέα εγκατάσταση σε αυτήν ή σε άλλη συσκευή.\n\nΤο αντίγραφο ασφαλείας θα περιέχει όλα τα μηνύματα, τις επαφές και τις συνομιλίες και τη ρύθμιση αυτόματης κρυπτογράφησης από άκρο σε άκρο. Φυλάξτε το αρχείο αντιγράφου ασφαλείας σε ασφαλές μέρος ή διαγράψτε το το συντομότερο δυνατό.";
+"pref_backup_export_start_button" = "Ξεκινήστε τη δημιουργία αντιγράφου ασφαλείας";
+"pref_backup_written_to_x" = "Το αντίγραφο ασφαλείας γράφτηκε με επιτυχία στο \"%1$@\".";
+"pref_managekeys_menu_title" = "Διαχείριση Κλειδιών";
+"pref_managekeys_export_secret_keys" = "Εξαγωγή Μυστικών Κλειδιών";
+"pref_managekeys_export_explain" = "Εξαγωγή μυστικών κλειδιών στο \"%1$@\";";
+"pref_managekeys_import_secret_keys" = "Εισαγωγή Μυστικών Κλειδιών";
+"pref_managekeys_import_explain" = "Εισαγωγή μυστικών κλειδιών από το \"%1$@\";\n\n• Τα υπάρχοντα μυστικά κλειδιά δεν θα διαγραφούν\n\n• Το κλειδί που εισήχθη τελευταία θα χρησιμοποιηθεί ως το νέο προεπιλεγμένο κλειδί, εκτός εάν έχει τη λέξη \"legacy\" στο όνομα του αρχείου του.";
+"pref_managekeys_secret_keys_exported_to_x" = "Τα μυστικά κλειδιά γράφτηκαν με επιτυχία στο \"%1$@\".";
+"pref_managekeys_secret_keys_imported_from_x" = "Τα μυστικά κλειδιά εισήχθησαν από το \"%1$@\".";
+"pref_background" = "Ταπετσαρία συνομιλίας";
+"pref_background_btn_default" = "Χρήση προκαθορισμένου";
+"pref_background_btn_gallery" = "Επιλογή";
+"pref_imap_folder_handling" = "Χειρισμός Φακέλων IMAP";
+"pref_imap_folder_warn_disable_defaults" = "Εάν αλλάξετε αυτήν την επιλογή, βεβαιωθείτε ότι ο διακομιστής σας και οι άλλοι πελάτες σας έχουν διαμορφωθεί ανάλογα.\n\nΔιαφορετικά, τα πράγματα ενδέχεται να μην λειτουργούν καθόλου.";
+"pref_watch_sent_folder" = "Παρακολουθήστε τον Απεσταλμένο Φάκελο";
+"pref_send_copy_to_self" = "Αποστολή Αντιγράφου στον Εαυτό";
+"pref_send_copy_to_self_explain" = "Απαιτείται κατά τη χρήση αυτού του λογαριασμού σε πολλές συσκευές.";
+"pref_auto_folder_moves" = "Μετακίνηση αυτόματα στον φάκελο DeltaChat";
+"pref_auto_folder_moves_explain" = "Οι συνομιλίες συνομιλίας μετακινούνται για να αποφευχθεί η ακαταστασία των Εισερχομένων";
+"pref_only_fetch_mvbox_title" = "Λήψη μόνο από τον φάκελο DeltaChat";
+"pref_only_fetch_mvbox_explain" = "Αγνοήστε άλλους φακέλους. Απαιτεί τον διακομιστή σας να μετακινήσει μηνύματα συνομιλίας στο φάκελο DeltaChat.";
+"pref_show_emails" = "Εμφάνιση κλασικών E-Mails";
+"pref_show_emails_no" = "Όχι, μόνο συνομιλίες";
+"pref_show_emails_accepted_contacts" = "Για αποδεκτές επαφές";
+"pref_show_emails_all" = "Όλα";
+"pref_experimental_features" = "Πειραματικά Χαρακτηριστικά";
+"pref_on_demand_location_streaming" = "Ροή τοποθεσίας κατ\' απαίτηση";
+"pref_developer_mode" = "Λειτουργία για Προγραμματιστές";
+"pref_developer_mode_explain" = "Ενεργοποιεί τις επιλογές εντοπισμού σφαλμάτων και μπορεί να κάνει την εφαρμογή λιγότερο σταθερή. Μόνο για προγραμματιστές.";
+"pref_background_default" = "Προεπιλεγμένο φόντο";
+"pref_background_default_color" = "Προεπιλεγμένο χρώμα";
+"pref_background_custom_image" = "Προσαρμοσμένη εικόνα";
+"pref_background_custom_color" = "Προσαρμοσμένο χρώμα";
+"export_aborted" = "Η εξαγωγή ματαιώθηκε.";
+"auto_download_messages" = "Αυτόματη Λήψη Μηνυμάτων";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Μέχρι και %1$@";
+"up_to_x_most_worse_quality_images" = "Έως και %1$@, τις περισσότερες εικόνες χειρότερης ποιότητας";
+"up_to_x_most_balanced_quality_images" = "Έως %1$@, εικόνες πιο ισορροπημένης ποιότητας";
+"download_failed" = "Αποτυχία Λήψης";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ μήνυμα";
+// %1$s will be replaced by human-readable date and time
+"download_max_available_until" = "Μέγιστη διαθέσιμη λήψη μέχρι %1$@";
+"profile_image_select" = "Επιλογή Εικόνας Προφίλ";
+"select_your_new_profile_image" = "Επιλογή Νέας Εικόνας Προφίλ";
+"profile_image_delete" = "Διαγραφή Εικόνας Προφίλ";
+"pref_show_tray_icon" = "Εμφάνιση Εικονιδίου Δίσκου";
+"pref_edit_profile" = "Επεξεργασία Προφίλ";
+
+// Emoji picker and categories
+"emoji_search_results" = "Αποτελέσματα Αναζήτησης";
+"emoji_not_found" = "Δεν βρέθηκε emoji";
+"emoji_recent" = "Χρησιμοποιήθηκαν Πρόσφατα";
+"emoji_people" = "Άνθρωποι & Σώμα";
+"emoji_nature" = "Ζώα & Φύση";
+"emoji_foods" = "Τρόφιμα & Ποτά";
+"emoji_activity" = "Δραστηριότητα";
+"emoji_places" = "Ταξίδια & Μέρη";
+"emoji_objects" = "Αντικείμενα";
+"emoji_symbols" = "Σύμβολα";
+"emoji_flags" = "Σημαίες";
+
+
+// automatically delete message
+"delete_old_messages" = "Διαγραφή Παλιών Μηνυμάτων";
+"autodel_device_title" = "Διαγραφή Μηνυμάτων από Συσκευή";
+"autodel_server_title" = "Διαγραφή Μηνυμάτων από Διακομιστή";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Θέλετε να διαγράψετε %1$d μηνύματα τώρα και όλα τα πρόσφατα ληφθέντα μηνύματα \"%2$@\" στο μέλλον;\n\n• Αυτό περιλαμβάνει όλα τα μέσα\n\n• Τα μηνύματα θα διαγραφούν είτε εμφανίστηκαν είτε όχι\n\n• \"Αποθηκευμένα μηνύματα \" θα παραλειφθεί από την τοπική διαγραφή";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_server_ask" = "Θέλετε να διαγράψετε %1$d μηνύματα τώρα και όλα τα πρόσφατα ληφθέντα μηνύματα \"%2$@\" στο μέλλον;\n\n⚠️ Αυτό περιλαμβάνει μηνύματα ηλεκτρονικού ταχυδρομείου, πολυμέσα και τα \"Αποθηκευμένα μηνύματα\" σε όλους τους φακέλους διακομιστή\n\n⚠️ Μην χρησιμοποιείτε αυτήν τη λειτουργία εάν θέλετε να διατηρήσετε δεδομένα στο διακομιστή\n\n⚠️ Μην χρησιμοποιείτε αυτήν τη λειτουργία εάν χρησιμοποιείτε άλλους πελάτες ηλεκτρονικού ταχυδρομείου εκτός από το Delta Chat";
+// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+"autodel_server_enabled_hint" = "Αυτό περιλαμβάνει e-mail, πολυμέσα και \"Αποθηκευμένα μηνύματα\" σε όλους τους φακέλους διακομιστή. Μην χρησιμοποιείτε αυτήν τη λειτουργία εάν θέλετε να διατηρήσετε δεδομένα στο διακομιστή ή εάν χρησιμοποιείτε άλλα προγράμματα-πελάτες ηλεκτρονικού ταχυδρομείου εκτός από το Delta Chat.";
+"autodel_confirm" = "Καταλαβαίνω, διαγράψτε όλα αυτά τα μηνύματα";
+"autodel_at_once" = "Με τη μία";
+"after_30_seconds" = "Μετά από 30 δευτερόλεπτα";
+"after_1_minute" = "Μετά από 1 λεπτό";
+"after_5_minutes" = "Μετά από 5 λεπτά";
+"after_30_minutes" = "Μετά από 30 λεπτά";
+"autodel_after_1_hour" = "Μετά από 1 ώρα";
+"autodel_after_1_day" = "Μετά από 1 μέρα";
+"autodel_after_1_week" = "Μετά από 1 εβδομάδα";
+"autodel_after_4_weeks" = "Μετά από 4 εβδομάδες";
+"after_5_weeks" = "Μετά από 5 εβδομάδες";
+"autodel_after_1_year" = "Μετά από 1 χρόνο";
+
+// autocrypt
+"autocrypt" = "Αυτόματη κρυπτογράφηση";
+"autocrypt_explain" = "Η αυτόματη κρυπτογράφηση είναι μια νέα και ανοιχτή προδιαγραφή για αυτόματη κρυπτογράφηση ηλεκτρονικού ταχυδρομείου από άκρο σε άκρο.\n\nΗ ρύθμιση από άκρο σε άκρο δημιουργείται αυτόματα ανάλογα με τις ανάγκες και μπορείτε να τη μεταφέρετε μεταξύ συσκευών με τα Μηνύματα ρύθμισης αυτόματης κρυπτογράφησης.";
+"autocrypt_send_asm_title" = "Αποστολή μηνύματος ρύθμισης αυτόματης κρυπτογράφησης";
+"autocrypt_send_asm_explain_before" = "Ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης κοινοποιεί με ασφάλεια τη ρύθμισή σας από άκρο σε άκρο με άλλες εφαρμογές συμβατές με την Αυτόματη κρυπτογράφηση.\n\nΗ ρύθμιση θα κρυπτογραφηθεί από έναν κωδικό ρύθμισης που εμφανίζεται εδώ και θα πρέπει να πληκτρολογηθεί στην άλλη συσκευή.";
+"autocrypt_send_asm_button" = "Αποστολή μηνύματος ρύθμισης αυτόματης κρυπτογράφησης";
+"autocrypt_send_asm_explain_after" = "Η ρύθμισή σας έχει σταλεί στον εαυτό σας. Μεταβείτε στην άλλη συσκευή και ανοίξτε το μήνυμα ρύθμισης. Θα πρέπει να σας ζητηθεί κωδικός ρύθμισης. Εισαγάγετε τα ακόλουθα ψηφία:\n\n%1$@";
+"autocrypt_prefer_e2ee" = "Προτιμήστε την κρυπτογράφηση από άκρο σε άκρο";
+"autocrypt_asm_subject" = "Μήνυμα ρύθμισης αυτόματης κρυπτογράφησης";
+"autocrypt_asm_general_body" = "Αυτό είναι το μήνυμα ρύθμισης αυτόματης κρυπτογράφησης που χρησιμοποιείται για τη μεταφορά της ρύθμισής σας από άκρο σε άκρο μεταξύ πελατών.\n\nΓια να αποκρυπτογραφήσετε και να χρησιμοποιήσετε τη ρύθμισή σας, ανοίξτε το μήνυμα σε ένα πρόγραμμα-πελάτη συμβατό με Αυτόματη κρυπτογράφηση και εισαγάγετε τον κωδικό ρύθμισης που παρουσιάζεται στη συσκευή δημιουργίας.";
+"autocrypt_asm_click_body" = "Αυτό είναι το μήνυμα ρύθμισης αυτόματης κρυπτογράφησης που χρησιμοποιείται για τη μεταφορά της ρύθμισής σας από άκρο σε άκρο μεταξύ πελατών.\n\nΓια να αποκρυπτογραφήσετε και να χρησιμοποιήσετε τη ρύθμισή σας, πατήστε ή κάντε κλικ σε αυτό το μήνυμα.";
+"autocrypt_continue_transfer_title" = "Μήνυμα ρύθμισης αυτόματης κρυπτογράφησης";
+"autocrypt_continue_transfer_please_enter_code" = "Εισαγάγετε τον κωδικό ρύθμισης που εμφανίζεται στην άλλη συσκευή.";
+"autocrypt_continue_transfer_succeeded" = "Η ρύθμιση από άκρο σε άκρο μεταφέρθηκε. Αυτή η συσκευή είναι τώρα έτοιμη να χρησιμοποιήσει την Αυτόματη κρυπτογράφηση με την ίδια ρύθμιση με την άλλη συσκευή.";
+"autocrypt_continue_transfer_retry" = "Επανάληψη";
+"autocrypt_bad_setup_code" = "Εσφαλμένος κωδικός εγκατάστασης. Δοκιμάστε ξανά.\n\nΕάν δεν θυμάστε τον κωδικό ρύθμισης, στείλτε ένα νέο μήνυμα ρύθμισης αυτόματης κρυπτογράφησης από την άλλη συσκευή.";
+
+
+// system messages
+"systemmsg_read_receipt_subject" = "Το μήνυμα ανοίχτηκε";
+"systemmsg_read_receipt_body" = "Το μήνυμα \"%1$@\" που στείλατε εμφανίστηκε στην οθόνη του παραλήπτη.\n\nΑυτό δεν αποτελεί εγγύηση για την ανάγνωση του περιεχομένου.";
+"systemmsg_cannot_decrypt" = "Αυτό το μήνυμα δεν μπορεί να αποκρυπτογραφηθεί.\n\n• Μπορεί ήδη να σας βοηθήσει να απαντήσετε απλώς σε αυτό το μήνυμα και να ζητήσετε από τον αποστολέα να στείλει ξανά το μήνυμα.\n\n• Σε περίπτωση που εγκαταστήσατε ξανά το Delta Chat ή άλλο πρόγραμμα e-mail σε αυτήν ή σε άλλη συσκευή μπορεί να θέλετε να στείλετε ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης από εκεί.";
+"systemmsg_unknown_sender_for_chat" = "Άγνωστος αποστολέας για αυτήν τη συνομιλία. Δείτε \"πληροφορίες\" για περισσότερες λεπτομέρειες.";
+"systemmsg_subject_for_new_contact" = "Μήνυμα από τον/την %1$@";
+"systemmsg_failed_sending_to" = "Αποτυχία αποστολής μηνύματος σε %1$@.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Αλλάξατε το όνομα της ομάδας από \"%1$@\" σε \"%2$@\".";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Το όνομα της ομάδας άλλαξε από \"%1$@\" σε \"%2$@\" από %3$@.";
+"group_image_changed_by_you" = "Άλλαξες το εικονίδιο της ομάδας.";
+// %1$s will be replaced by name and address of the contact who did the action
+"group_image_changed_by_other" = "Ο/Η %1$@ άλλαξε το εικονίδιο της ομάδας.";
+// %1$s will be replaced by name and address of the contact added to the group
+"add_member_by_you" = "Πρόσθεσες τον/την %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+"add_member_by_other" = "Ο/Η %2$@ πρόσθεσε τον/την %1$@.";
+// %1$s will be replaced by name and address of the contact removed from the group
+"remove_member_by_you" = "Αφαίρεσες τον/την %1$@.";
+// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+"remove_member_by_other" = "Ο/Η %2$@ αφαίρεσε τον/την %1$@.";
+"group_left_by_you" = "Έφυγες απ\' την ομάδα.";
+// %1$s will be replaced by name and address of the contact
+"group_left_by_other" = "Ο/Η %1$@ έφυγε απ\' την ομαδα.";
+"group_image_deleted_by_you" = "Διαγράψατε την εικόνα της ομάδας.";
+// %1$s will be replaced by name and address of the contact
+"group_image_deleted_by_other" = "Η εικόνα ομάδας διαγράφηκε από %1$@.";
+"location_enabled_by_you" = "Ενεργοποιήσατε την αναμετάδωση τοποθεσίας.";
+// %1$s will be replaced by name and address of the contact
+"location_enabled_by_other" = "Η αναμετάδωση τοποθεσίας ενεργοποιήθηκε από %1$@.";
+"ephemeral_timer_disabled_by_you" = "Απενεργοποίησες τα μηνύματα που εξαφανίζονται.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "Ο/Η %1$@ απενεργοποίησε τα μηνύματα που εξαφανίζονται.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ δευτερόλεπτα.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ δευτερόλεπτα.";
+"ephemeral_timer_1_minute_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 λεπτό.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 λεπτό.";
+"ephemeral_timer_1_hour_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 ώρα.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 ώρα.";
+"ephemeral_timer_1_day_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 ημέρα.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 ημέρα.";
+"ephemeral_timer_1_week_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 εβδομάδα.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 εβδομάδα.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@  λεπτά.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ λεπτά.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ ώρες.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ ώρες.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ ημέρες.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ ημέρες.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ εβδομάδες.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ εβδομάδες.";
+"protection_enabled_by_you" = "Ενεργοποιήσατε την προστασία συνομιλίας.";
+// %1$s will be replaced by name and address of the contact
+"protection_enabled_by_other" = "Η προστασία συνομιλίας ενεργοποιήθηκε από %1$@.";
+"protection_disabled_by_you" = "Απενεργοποιήσατε την προστασία συνομιλίας.";
+// %1$s will be replaced by name and address of the contact
+"protection_disabled_by_other" = "Η προστασία συνομιλίας απενεργοποιήθηκε από %1$@.";
+
+"devicemsg_self_deleted" = "Διαγράψατε τη συνομιλία \"Αποθηκευμένα μηνύματα\".\n\nℹ️ Για να χρησιμοποιήσετε ξανά τη λειτουργία \"Αποθηκευμένα μηνύματα\", δημιουργήστε μια νέα συνομιλία με τον εαυτό σας.";
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ Ο αποθηκευτικός χώρος του παρόχου σας πρόκειται να εξαντληθεί: %1$@ %% χρησιμοποιούνται ήδη.\n\nΕνδέχεται να μην μπορείτε να λαμβάνετε μηνύματα εάν ο χώρος αποθήκευσης είναι πλήρης.\n\n👉 Ελέγξτε εάν μπορείτε να διαγράψετε παλιά δεδομένα στη διεπαφή ιστού του παρόχου και εξετάστε το ενδεχόμενο ενεργοποίηση \"Ρυθμίσεις / Διαγραφή παλαιών μηνυμάτων\". Μπορείτε να ελέγξετε την τρέχουσα χρήση αποθηκευτικού χώρου ανά πάσα στιγμή στις \"Ρυθμίσεις / Συνδεσιμότητα\".";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Η ημερομηνία ή η ώρα στη συσκευή σας φαίνεται να είναι μην είναι ακριβής (%1$@).\n\nΠροσαρμόστε το ρολόι σας ⏰🔧 για να βεβαιωθείτε ότι τα μηνύματά σας λαμβάνονται σωστά.";
+"devicemsg_update_reminder" = "⚠️ Η έκδοση Delta Chat μπορεί να είναι παλιά.\n\nΑυτό μπορεί να προκαλέσει προβλήματα επειδή οι συνεργάτες συνομιλίας σας χρησιμοποιούν νεότερες εκδόσεις - και δεν έχετε τις πιο πρόσφατες λειτουργίες 😳\nΕλέγξτε τη https://get.delta.chat ή το κατάστημα εφαρμογών σας για ενημερώσεις .";
+
+// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+"enter_system_secret_to_continue" = "Εισαγάγετε το μυστικό που έχει οριστεί από το σύστημά σας για να συνεχίσετε.";
+
+// qr code stuff
+"qr_code" = "Κωδικός QR";
+"load_qr_code_as_image" = "Φορτώστε τον κωδικό QR ως εικόνα";
+"qrscan_title" = "Σκανάρισμα κωδικού QR";
+"qrscan_hint" = "Κρατήστε την κάμερά σας πάνω από τον κωδικό QR.";
+"qrscan_failed" = "Αδυναμια αποκωδικοποίησης του κωδικού QR";
+"qrscan_ask_join_group" = "Θέλετε να συμμετέχετε στην ομάδα \"%1$@\";";
+"qrscan_fingerprint_mismatch" = "Το δακτυλικό αποτύπωμα δεν ταιριάζει με το τελευταίο που είδαμε για %1$@.";
+"qrscan_no_addr_found" = "Αυτός ο κωδικός QR περιέχει δακτυλικό αποτύπωμα αλλά όχι διεύθυνση e-mail.\n\nΓια επαλήθευση εκτός ζώνης, δημιουργήστε πρώτα μια κρυπτογραφημένη σύνδεση με τον παραλήπτη.";
+"qrscan_contains_text" = "Σαρωμένο κείμενο κωδικού QR:\n\n%1$@";
+"qrscan_contains_url" = "Διεύθυνση URL σαρωμένου κωδικού QR:\n\n%1$@";
+"qrscan_fingerprint_label" = "Δακτυλικό αποτύπωμα";
+"withdraw_verifycontact_explain" = "Αυτός ο κωδικός QR μπορεί να σαρωθεί από άλλους για να επικοινωνήσουν μαζί σας.\n\nΜπορείτε να απενεργοποιήσετε τον κωδικό QR εδώ και να τον ξαναενεργοποιήσετε ξανασαρώνοντάς τον.";
+"withdraw_verifygroup_explain" = "Αυτός ο κωδικός QR μπορεί να σαρωθεί από άλλους για να συμμετάσχουν στην ομάδα \"%1$@\".\n\nΜπορείτε να απενεργοποιήσετε τον κωδικό QR εδώ και να τον ξαναενεργοποιήσετε ξανασαρώνοντάς τον.";
+"withdraw_qr_code" = "Απενεργοποίηση του κωδικού QR";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifycontact_explain" = "Αυτός ο κωδικός QR θα μπορούσε να σαρωθεί από άλλους για να επικοινωνήσουν μαζί σας.\n\nΟ κωδικός QR δεν είναι ενεργός σε αυτήν τη συσκευή.";
+// "could" in the meaning of "possible at some point in the past, but no longer possible today"
+"revive_verifygroup_explain" = "Αυτός ο κωδικός QR θα μπορούσε να σαρωθεί από άλλους για να συμμετάσχουν στην ομάδα \"%1$@\".\n\nΟ κωδικός QR δεν είναι ενεργός σε αυτήν τη συσκευή.";
+"revive_qr_code" = "Ενεργοποίηση του κωδικού QR";
+"qrshow_title" = "Κωδικός Πρόσκλησης QR";
+"qrshow_x_joining" = "%1$@ συνδέθηκε.";
+"qrshow_x_verified" = "%1$@ επαληθεύτηκε.";
+"qrshow_x_has_joined_group" = "%1$@ εντάχθηκε στην ομάδα.";
+"qrshow_join_group_title" = "Κωδικός Πρόσκλησης QR";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
+"qrshow_join_group_hint" = "Σάρωση για συμμετοχή στην ομάδα \"%1$@\"";
+"qrshow_join_contact_title" = "Κωδικός Πρόσκλησης QR";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+"qrshow_join_contact_hint" = "Σάρωση για συνομιλία με %1$@";
+"qrshow_join_contact_no_connection_toast" = "Δεν υπάρχει σύνδεση στο διαδίκτυο, δεν είναι δυνατή η ρύθμιση κωδικού QR.";
+"qraccount_ask_create_and_login" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;";
+"qraccount_ask_create_and_login_another" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
+"qraccount_success_enter_name" = "Επιτυχής σύνδεση—η διεύθυνση e-mail σας είναι %1$@\n\nΑν θέλετε, μπορείτε τώρα να εισαγάγετε ένα όνομα και μια εικόνα προφίλ που θα εμφανίζονται στα άτομα στα οποία γράφετε.";
+"qraccount_qr_code_cannot_be_used" = "Ο σαρωμένος κωδικός QR δεν μπορεί να χρησιμοποιηθεί για τη δημιουργία νέου λογαριασμού.";
+"qraccount_use_on_new_install" = "Ο σαρωμένος κωδικός QR προορίζεται για τη δημιουργία νέου λογαριασμού. Μπορείτε να σαρώσετε τον κωδικό QR όταν ρυθμίζετε μια νέα εγκατάσταση Delta Chat.";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login" = "Σύνδεση στο \"%1$@\";";
+// the placeholder will be replaced by the e-mail address of the account
+"qrlogin_ask_login_another" = "Σύνδεση στο \"%1$@\";\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
+// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ σας προσκάλεσε να συμμετάσχετε σε αυτήν την ομάδα.\n\nΑναμονή για απάντηση από τη συσκευή του %2$@…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "%1$@ απάντησε, αναμονή για να προστεθεί στην ομάδα…";
+"contact_verified" = "%1$@ επαληθεύτηκε.";
+"contact_not_verified" = "Αδυναμία επαλήθευσης %1$@.";
+// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+"contact_setup_changed" = "Άλλαξε η ρύθμιση για %1$@.";
+"verified_group_explain" = "Οι επαληθευμένες ομάδες (πειραματικές) παρέχουν ασφάλεια έναντι ενεργών επιθέσεων. Τα μέλη επαληθεύονται με έναν δεύτερο παράγοντα από άλλα μέλη και τα μηνύματα είναι πάντα κρυπτογραφημένα από άκρο σε άκρο.";
+"copy_qr_data_success" = "Αντιγράφηκε το QR url στο πρόχειρο";
+"mailto_dialog_header_select_chat" = "Επιλέξτε συνομιλία για να στείλετε το μήνυμα";
+// first placeholder is the name of the chat
+"confirm_replace_draft" = "%1$@ έχει ήδη ένα πρόχειρο μήνυμα, θέλετε να το αντικαταστήσετε;";
+"mailto_link_could_not_be_decoded" = "Αδυναμία αποκωδικοποίησης του συνδέσμου mailto: %1$@";
+
+// notifications 
+"notify_dismiss" = "Απόρριψη";
+"notify_reply_button" = "Απάντηση";
+"notify_new_message" = "Νέο μήνυμα";
+"notify_background_connection_enabled" = "Η σύνδεση στο παρασκήνιο ενεργοποιήθηκε";
+"notify_priority_high" = "Υψηλή";
+"notify_priority_max" = "Μέγιστη";
+"notify_name_and_message" = "Όνομα και μήνυμα";
+"notify_name_only" = "Μόνο όνομα";
+"notify_no_name_or_message" = "Χωρίς όνομα ή μήνυμα";
+
+
+// permissions
+"perm_required_title" = "Χρειάζονται δικαιώματα πρόσβασης";
+"perm_continue" = "Συνέχεια";
+"perm_explain_access_to_camera_denied" = "Για να τραβήξετε φωτογραφίες ή να τραβήξετε βίντεο, μεταβείτε στις ρυθμίσεις της εφαρμογής, επιλέξτε \"Άδειες\" και ενεργοποιήστε την \"Κάμερα\".";
+"perm_explain_access_to_mic_denied" = "Για να στείλετε μηνύματα ήχου, μεταβείτε στις ρυθμίσεις της εφαρμογής, επιλέξτε \"Άδειες\" και ενεργοποιήστε το \"Μικρόφωνο\".";
+"perm_explain_access_to_storage_denied" = "Για να λάβετε ή να στείλετε αρχεία, μεταβείτε στις ρυθμίσεις της εφαρμογής, επιλέξτε \"Άδειες\" και ενεργοποιήστε την \"Αποθήκευση\".";
+"perm_explain_access_to_location_denied" = "Για να επισυνάψετε μια τοποθεσία, μεταβείτε στις ρυθμίσεις της εφαρμογής, επιλέξτε \"Άδειες\" και ενεργοποιήστε την \"Τοποθεσία\".";
+
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Ζωγράφισε οπουδήποτε για να θολώσεις";
+"ImageEditorHud_add_text" = "Σύνταξη κειμένου";
+"ImageEditorHud_blur" = "Θόλωμα";
+"ImageEditorHud_brush_marker" = "Μαρκαδόρος";
+"ImageEditorHud_brush_highlight" = "Υπογράμμιση";
+"ImageEditorHud_crop" = "Περικοπή";
+"ImageEditorHud_flip" = "Εναλλαγή";
+"ImageEditorHud_rotate" = "Περιστροφή";
+
+// dc_str_* resources
+"encrypted_message" = "Κρυπτογραφημένο μήνυμα";
+
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"about_offical_app_desktop" = "Αυτή είναι η επίσημη εφαρμογή Delta Chat Desktop.";
+"about_licensed_under_desktop" = "Αυτό το λογισμικό έχει άδεια χρήσης σύμφωνα με την GNU GPL έκδοση 3 και ο πηγαίος κώδικας είναι διαθέσιμος στο GitHub.";
+"welcome_desktop" = "Καλώς ήρθατε στο Delta Chat";
+"login_known_accounts_title_desktop" = "Γνωστοί Λογαριασμοί";
+"global_menu_preferences_language_desktop" = "Γλώσσα";
+"global_menu_file_desktop" = "Αρχείο";
+"global_menu_file_quit_desktop" = "Κλείσιμο";
+"global_menu_edit_desktop" = "Eπεξεργασία";
+"global_menu_edit_undo_desktop" = "Αναίρεση";
+"global_menu_edit_redo_desktop" = "Επανάληψη";
+"global_menu_edit_cut_desktop" = "Αποκοπή";
+"global_menu_edit_copy_desktop" = "Αντιγραφή";
+"global_menu_edit_paste_desktop" = "Επικόλληση";
+"global_menu_view_desktop" = "Εμφάνιση";
+"global_menu_view_floatontop_desktop" = "Μετακίνηση στην κορυφή";
+"global_menu_view_developer_desktop" = "Προγραμματιστής";
+"global_menu_view_developer_tools_desktop" = "Εργαλεία Προγραμματιστή";
+"global_menu_help_desktop" = "Βοήθεια";
+"global_menu_help_learn_desktop" = "Μάθετε περισσότερα για το Delta Chat";
+"global_menu_help_contribute_desktop" = "Συνεισφέρετε στο GitHub";
+"global_menu_help_report_desktop" = "Αναφέρετε ένα πρόβλημα";
+"global_menu_help_about_desktop" = "Για το Delta Chat";
+"global_menu_file_open_desktop" = "Ανοίξτε το Delta Chat";
+"global_menu_minimize_to_tray" = "Ελαχιστοποίηση";
+"no_chat_selected_suggestion_desktop" = "Επιλέξτε μια συνομιλία ή δημιουργήστε μια νέα συνομιλία";
+"write_message_desktop" = "Γράψτε ένα μήνυμα";
+"encryption_info_title_desktop" = "Πληροφορίες Κρυπτογράφησης";
+"delete_message_desktop" = "Διαγραφή μηνύματος";
+"more_info_desktop" = "Περισσότερες πληροφορίες";
+"timestamp_format_m_desktop" = "MMM D";
+"encryption_info_desktop" = "Εμφάνιση Πληροφοριών Κρυπτογράφησης";
+"remove_desktop" = "Αφαίρεση";
+"save_desktop" = "Αποθήκευση";
+"name_desktop" = "Όνομα";
+"autocrypt_key_transfer_desktop" = "Αυτόματη κρυπτογράφηση μεταφοράς κλειδιού";
+"initiate_key_transfer_desktop" = "Ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης μοιράζεται με ασφάλεια τις ρυθμίσεις σας από άκρο σε άκρο με άλλες εφαρμογές συμβατές με την αυτόματη κρυπτογράφηση. Η εγκατάσταση θα κρυπτογραφηθεί από έναν κωδικό ρύθμισης που εμφανίζεται εδώ και πρέπει να πληκτρολογηθεί στην άλλη συσκευή.";
+"select_group_image_desktop" = "Επιλέξτε Εικόνας Ομάδας";
+"imex_progress_title_desktop" = "Δημιουργία Αντιγράφων Ασφαλείας";
+"export_backup_desktop" = "Εξαγωγή Αντιγράφων Ασφαλείας";
+"show_key_transfer_message_desktop" = "Το κλειδί σας έχει σταλεί στον εαυτό σας. Μεταβείτε στην άλλη συσκευή και ανοίξτε το μήνυμα ρύθμισης. Θα πρέπει να σας ζητηθεί κωδικός ρύθμισης. Εισαγάγετε τα ακόλουθα ψηφία:";
+"autocrypt_correct_desktop" = "Η ρύθμιση αυτόματης κρυπτογράφησης μεταφέρθηκε.";
+"autocrypt_incorrect_desktop" = "Λανθασμένος κωδικός ρύθμισης. Παρακαλώ προσπαθησε ξανά.";
+"create_chat_error_desktop" = "Αδυναμία δημιουργίας συνομιλίας.";
+"forget_login_confirmation_desktop" = "Διαγραφή αυτής της σύνδεσης; Τα πάντα θα διαγραφούν, συμπεριλαμβανομένων των ρυθμίσεων από άκρο σε άκρο, επαφών, συνομιλιών, μηνυμάτων και πολυμέσων. Αυτή η πράξη δε μπορεί να αναιρεθεί.";
+"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nΜέγεθος: %2$@\n Αναγνωριστικό Λογαριασμού: %3$@";
+"message_detail_sent_desktop" = "Στάλθηκε";
+"message_detail_received_desktop" = "Παραλήφθηκε";
+"menu.view.developer.open.log.folder" = "Άνοιγμα του φακέλου καταγραφής";
+"menu.view.developer.open.current.log.file" = "Άνοιγμα του τρέχον αρχείου καταγραφής";
+"explain_desktop_minimized_disabled_tray_pref" = "Το εικονίδιο του δίσκου δεν μπορεί να απενεργοποιηθεί καθώς το Delta Chat ξεκίνησε με την επιλογή --ελαχιστοποιημένη.";
+"no_spellcheck_suggestions_found" = "Δεν βρέθηκαν προτάσεις ορθογραφίας.";
+"show_window" = "Εμφάνιση παραθύρου";
+"login_socks5_experimental_warning" = "Η SOCKS5 υποστήριξη είναι αυτή τη στιγμή πειραματική. Παρακαλούμε χρησιμοποιήστε με δική σας ευθύνη. Εάν πληκτρολογήσετε μια διεύθυνση στο πεδίο ηλεκτρονικού ταχυδρομείου, θα υπάρξει αναζήτηση DNS που δεν θα περάσει στο SOCKS5.";
+
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Keybindings";
+"switch_between_chats" = "Εναλλαγή μεταξύ συνομιλιών";
+"scroll_messages" = "Κύλιση Μηνυμάτων";
+// command to put the cursor to the search input field
+"focus_search_input" = "Εστίαση Αναζήτησης";
+// command to put the cursor to the message input field
+"focus_message_input" = "Εστίαση Εισαγωγής Μηνύματος";
+"force_refresh_network" = "Αναγκαστική Ανανέωση Δικτύου";
+"insert_newline" = "Εισαγωγή Νέας Γραμμής";
+
+// accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
+"a11y_delivery_status_error" = "Κατάσταση παράδοσης: Σφάλμα";
+"a11y_encryption_padlock" = "Λουκέτο κρυπτογράφησης";
+"a11y_delivery_status_sending" = "Κατάσταση παράδοσης: Αποστολή";
+"a11y_delivery_status_draft" = "Κατάσταση παράδοσης: Πρόχειρο";
+"a11y_delivery_status_delivered" = "Κατάσταση παράδοσης: Παραδόθηκε";
+"a11y_delivery_status_read" = "Κατάσταση παράδοσης: Διαβάστηκε";
+"a11y_delivery_status_invalid" = "Μη έγκυρη κατάσταση παράδοσης";
+"a11y_message_context_menu_btn_label" = "Ενέργειες μηνυμάτων";
+"a11y_background_preview_label" = "Προεπισκόπηση φόντου";
+"a11y_disappearing_messages_activated" = "Τα εξαφανιζόμενα μηνύματα ενεργοποιήθηκαν";
+
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Διακοπή κοινής χρήσης τοποθεσίας";
+"a11y_voice_message_hint_ios" = "Μετά την εγγραφή, πατήστε δύο φορές για αποστολή. Για να απορρίψετε την εγγραφή, τρίψτε με δύο δάχτυλα.";
+"a11y_connectivity_hint" = "Πατήστε δύο φορές για να δείτε λεπτομέρειες συνδεσιμότητας.";
+"login_error_no_internet_connection" = "Δεν υπάρχει σύνδεση στο Διαδίκτυο, η σύνδεση απέτυχε.";
+"share_account_not_configured" = "Ο λογαριασμός δεν έχει ρυθμιστεί.";
+"cannot_play_audio_file" = "Δεν είναι δυνατή η αναπαραγωγή του αρχείου ήχου.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Για να τραβήξετε φωτογραφίες, να τραβήξετε βίντεο ή να χρησιμοποιήσετε το σαρωτή QR-Code, ανοίξτε τις ρυθμίσεις συστήματος και ενεργοποιήστε την \"Κάμερα\".";
+"open_settings" = "Άνοιγμα Ρυθμίσεων";
+// iOS device contact alert
+"import_device_contacts" = "Εισαγωγή επαφών από συσκευή";
+"import_device_contacts_hint" = "Για να συνομιλήσετε με επαφές από τη συσκευή σας, ανοίξτε τις Ρυθμίσεις και ενεργοποιήστε τις \"Επαφές\".";
+// iOS notification settings
+"disabled_in_dc" = "Απενεργοποιήθηκε στο Delta Chat";
+"disabled_in_system_settings" = "Απενεργοποιήθηκε στις ρυθμίσεις συστήματος";
+"bg_app_refresh_disabled" = "Η \"Ανανέωση εφαρμογών στο παρασκήνιο\" απενεργοποιήθηκε στις ρυθμίσεις συστήματος";
+// iOS connectivity view
+"delayed" = "Καθυστέρηση";
+"notifications_avg_minutes" = "Κατά μέσο όρο κάθε %1$d λεπτά";
+"notifications_avg_hours" = "Κατά μέσο όρο κάθε %1$d ώρες";
+"last_check_at" = "Έλεγχος στις %1$@";
+// iOS webxdc selector
+"webxdc_selector_empty_hint" = "Οι ιδιωτικές εφαρμογές που λαμβάνονται ή αποστέλλονται σε οποιαδήποτε συνομιλία θα εμφανίζονται εδώ. Το \"Αρχεία\" εμφανίζει ιδιωτικές εφαρμογές που μόλις κατεβάσατε.";
+// iOS webxdc shortcut page
+"shortcut_step1_tap_share_btn" = "Κάντε κλικ στο κουμπί κοινής χρήσης";
+"shortcut_step2_tap_add_to_home_screen" = "Επιλέξτε \"Προσθήκη στην αρχική οθόνη\" για να προσθέσετε την εφαρμογή στην αρχική σας οθόνη.";
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+
+
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"pref_background_notifications" = "Ειδοποιήσεις Παρασκηνίου";
+"pref_background_notifications_explain" = "Χρησιμοποιεί μια σύνδεση στο παρασκήνιο με τον διακομιστή σας και απαιτεί αγνοημένες βελτιστοποιήσεις μπαταρίας.";
+"pref_background_notifications_rationale" = "Για να διατηρήσετε τη σύνδεση με τον διακομιστή e-mail σας και να λαμβάνετε μηνύματα στο παρασκήνιο, αγνοήστε τις βελτιστοποιήσεις μπαταρίας στο επόμενο βήμα.\n\nΤο Delta Chat χρησιμοποιεί λίγους πόρους και φροντίζει να μην εξαντλήσει την μπαταρία σας.";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"pref_reliable_service" = "Αξιόπιστη σύνδεση στο παρασκήνιο";
+"pref_reliable_service_explain" = "Απαιτεί μία μόνιμη ειδοποίηση";
+"perm_enable_bg_reminder_title" = "Πατήστε εδώ για να λαμβάνετε μηνύματα ενώ το Delta Chat είναι στο παρασκήνιο.";
+"perm_enable_bg_already_done" = "Επιτρέψατε ήδη στο Delta Chat να λαμβάνει μηνύματα στο παρασκήνιο.\n\nΕάν τα μηνύματα εξακολουθούν να μην φτάνουν στο παρασκήνιο, ελέγξτε τις ρυθμίσεις του συστήματός σας.";
+
+
+// device messages for updates
+"update_1_34_android" = "Τι νέο υπάρχει στο 1.34;\n\n🤗 Φιλικότερες λίστες επαφών: Ταξινόμηση κατά την τελευταία εμφάνιση και οι επαφές που εμφανίστηκαν εντός 10 λεπτών επισημαίνονται με μια τελεία \n\n📑 Νέες σελίδες στα προφίλ συνομιλίας: \"Ήχος\" και \"Ιδιωτικές εφαρμογές\"\n\n🖼️ Εάν κάποιος σας στείλει μια \"Ιδιωτική εφαρμογή\" (π.χ. από https://webxdc.org ), μπορείτε να την προσθέσετε στην αρχική οθόνη";
+
