@@ -379,10 +379,9 @@ public class BaseMessageCell: UITableViewCell {
             trailingConstraintEditingMode?.isActive = isEditing
         }
 
-        let senderName = msg.getSenderName(fromContact)
         if showAvatar {
             avatarView.isHidden = false
-            avatarView.setName(senderName)
+            avatarView.setName(msg.getSenderName(fromContact))
             avatarView.setColor(fromContact.color)
             if let profileImage = fromContact.profileImage {
                 avatarView.setImage(profileImage)
