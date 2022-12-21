@@ -458,31 +458,7 @@ public class BaseMessageCell: UITableViewCell {
                                                                                    highlight: highlight)
 
         messageLabel.delegate = self
-        accessibilityCustomActions = configureAccessibilityActions(senderName: senderName,
-                                                                   isCurrentSender: msg.isFromCurrentSender,
-                                                                   isGroupChat: dcContext.getChat(chatId: msg.chatId).isGroup)
         accessibilityLabel = configureAccessibilityString(message: msg)
-    }
-
-    func configureAccessibilityActions(senderName: String, isCurrentSender: Bool, isGroupChat: Bool) -> [UIAccessibilityCustomAction] {
-        var actions = [
-            UIAccessibilityCustomAction(name: "\(senderName): \(String.localized("profile"))", target: self, selector: #selector(profileSelected(_:))),
-            UIAccessibilityCustomAction(name: String.localized("menu_reply"), target: self, selector: #selector(messageReply(_:))),
-            UIAccessibilityCustomAction(name: String.localized("reply_privately"), target: self, selector: #selector(messageReplyPrivately(_:))),
-            UIAccessibilityCustomAction(name: String.localized("forward"), target: self, selector: #selector(messageForward(_:))),
-            UIAccessibilityCustomAction(name: String.localized("info"), target: self, selector: #selector(messageInfo(_:))),
-            UIAccessibilityCustomAction(name: String.localized("global_menu_edit_copy_desktop"), target: self, selector: #selector(messageCopy(_:))),
-            UIAccessibilityCustomAction(name: String.localized("delete"), target: self, selector: #selector(messageDelete(_:))),
-        ]
-
-        if !isGroupChat || isCurrentSender {
-            actions = actions.filter({
-                    $0.selector != #selector(messageReplyPrivately(_:)) &&
-                    $0.selector != #selector(profileSelected(_:))
-                })
-        }
-
-        return actions
     }
 
     func configureAccessibilityString(message: DcMsg) -> String {
@@ -581,10 +557,6 @@ public class BaseMessageCell: UITableViewCell {
 
     @objc func messageSelectMore(_ sender: Any?) {
         self.performAction(#selector(BaseMessageCell.messageSelectMore(_:)), with: sender)
-    }
-
-    @objc func profileSelected(_ sender: Any?) {
-        self.performAction(#selector(BaseMessageCell.profileSelected(_:)), with: sender)
     }
 
     func performAction(_ action: Selector, with sender: Any?) {
