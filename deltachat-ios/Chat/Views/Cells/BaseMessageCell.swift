@@ -116,6 +116,7 @@ public class BaseMessageCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         view.isHidden = true
         view.isUserInteractionEnabled = true
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -452,8 +453,8 @@ public class BaseMessageCell: UITableViewCell {
         }
 
         messageLabel.attributedText = MessageUtils.getFormattedSearchResultMessage(messageText: msg.text,
-                                                                                       searchText: searchText,
-                                                                                       highlight: highlight)
+                                                                                   searchText: searchText,
+                                                                                   highlight: highlight)
 
         messageLabel.delegate = self
         accessibilityLabel = configureAccessibilityString(message: msg)

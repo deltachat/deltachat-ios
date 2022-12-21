@@ -46,10 +46,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = 0.0
         view.contentMode = UIView.ContentMode.scaleAspectFit
+        view.isAccessibilityElement = true
+        view.accessibilityLabel = """
+            \(String.localized("perm_required_title"))
+            \(String.localized("perm_explain_access_to_mic_denied"))
+            """
         return view
     }()
-
-    var navigationTitle: NSString?
 
     lazy var cancelButton: UIBarButtonItem = {
         let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
@@ -115,6 +118,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationItem.title = String.localized("voice_message")
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = doneButton
+
         waveFormView.frame = self.view.bounds
         self.view.addSubview(waveFormView)
         self.view.addSubview(noRecordingPermissionView)
@@ -157,7 +161,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         if UIAccessibility.isVoiceOverRunning {
             UIAccessibility.post(notification: .layoutChanged, argument: self.doneButton)
         }
-     }
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -309,4 +313,5 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
             }
         })
     }
+
 }

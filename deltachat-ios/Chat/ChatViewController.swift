@@ -887,8 +887,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             action.image = UIImage(named: "ic_reply_black")
             action.backgroundColor = .systemBlue
         }
-        action.image?.accessibilityTraits = .button
-        action.image?.accessibilityLabel = String.localized("menu_reply")
+        action.accessibilityElements = nil
         let configuration = UISwipeActionsConfiguration(actions: [action])
 
         return configuration
@@ -1843,6 +1842,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+
         // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
         contextMenu.performAction(action: action, indexPath: indexPath)
     }
