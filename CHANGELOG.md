@@ -1,6 +1,23 @@
 # Delta Chat iOS Changelog
 
-## v1.34.7
+## v1.34.8
+2022-12
+
+* If a classical-email-user sends an email to a group and adds new recipients,
+  the new recipients will become group members
+* treat attached PGP keys from classical-email-user as a signal to prefer mutual encryption
+* treat encrypted or signed messages from classical-email-user as a signal to prefer mutual encryption
+* VoiceOver: improve navigating through messages
+* fix migration of old databases
+* fix: send ephemeral timer change messages only of the chat is already known by other members
+* fix: use relative paths to database and avoid problems eg. on migration to other devices or paths
+* fix read/write timeouts for IMAP over SOCKS5
+* fix: do not send "group name changes" if no character was modified
+* add Greek translation, update other translations
+* update to core104
+
+
+## v1.34.7 Testflight
 2022-12
 
 * show audio recorder on half screen
@@ -17,7 +34,7 @@
 * update to core103
 
 
-## v1.34.6
+## v1.34.6 Testflight
 2022-11
 
 * improve account switcher: use the icon atop the chatlist to switch, add and edit accounts

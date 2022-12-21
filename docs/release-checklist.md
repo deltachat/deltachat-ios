@@ -33,9 +33,10 @@ in Xcode:
       (codesign may ask for a password, this _may_ be empty and "Enter" will do)
    c) on success, a dialog with all releases on the machine is shown;
       select the most recent,
-      then "Distribute App/App Store Connect/Next/Upload",
+      then "Distribute App/App Store Connect/Next/Upload/Next";
       leave default options (Strip symbols: yes, Upload symbols: yes,
-      Automatically manage signing), in the summary, click "Upload" again
+      Manage Version and Build Number: yes, Automatically manage signing);
+      in the summary, click "Upload" again
 
 on https://appstoreconnect.apple.com :
 
