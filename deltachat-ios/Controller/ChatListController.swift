@@ -40,11 +40,6 @@ class ChatListController: UITableViewController {
         return searchController
     }()
 
-    private lazy var archiveCell: ActionCell = {
-        let actionCell = ActionCell()
-        return actionCell
-    }()
-
     private lazy var newButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
         button.tintColor = DcColors.primary
@@ -376,11 +371,7 @@ class ChatListController: UITableViewController {
         switch cellData.type {
         case .chat(let chatData):
             let chatId = chatData.chatId
-            if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                archiveCell.actionTitle = dcContext.getChat(chatId: chatId).name
-                archiveCell.backgroundColor = DcColors.chatBackgroundColor
-                return archiveCell
-            } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
+            if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
                 chatCell.delegate = self
@@ -407,9 +398,17 @@ class ChatListController: UITableViewController {
         if !tableView.isEditing {
             return indexPath
         }
+        guard let viewModel = viewModel else {
+            return nil
+        }
 
-        let cell = tableView.cellForRow(at: indexPath)
-        return cell == archiveCell ? nil : indexPath
+        let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
+        switch cellData.type {
+        case .chat(let chatData):
+            return chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK ? nil : indexPath
+        default:
+            return indexPath
+        }
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -508,10 +507,8 @@ class ChatListController: UITableViewController {
                 editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows) ||
                                            viewModel.hasOnlyPinnedChatsSelected(in: initialIndexPath)
             }
-            archiveCell.selectionStyle = .none
         } else {
             removeEditingView()
-            archiveCell.selectionStyle = .default
         }
         updateTitle()
     }
