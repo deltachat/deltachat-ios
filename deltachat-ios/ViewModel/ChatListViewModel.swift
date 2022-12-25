@@ -244,6 +244,12 @@ class ChatListViewModel: NSObject {
         pinChat(chatId: chatId, pinned: pinned, notifyListener: true)
     }
 
+    func archiveLinkPositionToggle(chatId: Int) {
+        let archiveLinkBottom = dcContext.getConfigBool("archive_link_bottom")
+        dcContext.setConfigBool("archive_link_bottom", !archiveLinkBottom)
+        self.dcContext.setChatVisibility(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK), visibility: DC_CHAT_VISIBILITY_NORMAL)
+    }
+
     func pinChat(chatId: Int, pinned: Bool, notifyListener: Bool = false) {
         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
         updateChatList(notifyListener: notifyListener)

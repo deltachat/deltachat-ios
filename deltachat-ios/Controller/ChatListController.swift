@@ -461,14 +461,22 @@ class ChatListController: UITableViewController {
 
         guard let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else {
             return []
-        }
-
-        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
-            return []
             // returning nil may result in a default delete action,
             // see https://forums.developer.apple.com/thread/115030
         }
+
         let chat = dcContext.getChat(chatId: chatId)
+
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+            let archiveLinkBottom = dcContext.getConfigBool("archive_link_bottom")
+            let positionAction = UITableViewRowAction(style: .destructive, title: archiveLinkBottom ? "Move up" : "Move down") { [weak self] _, _ in
+                self?.viewModel?.archiveLinkPositionToggle(chatId: chat.id)
+                self?.setEditing(false, animated: true)
+            }
+            positionAction.backgroundColor = UIColor.lightGray
+            return [positionAction]
+        }
+
         let archived = chat.isArchived
         let archiveActionTitle: String = String.localized(archived ? "unarchive" : "archive")
 
