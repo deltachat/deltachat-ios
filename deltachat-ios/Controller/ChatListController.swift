@@ -261,7 +261,7 @@ class ChatListController: UITableViewController {
     
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
-        navigationItem.backButtonTitle = isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
+        navigationItem.backButtonTitle = isArchive ? String.localized("chat_archived_label") : String.localized("pref_chats")
     }
 
     @objc
@@ -612,7 +612,7 @@ class ChatListController: UITableViewController {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
         } else if isArchive {
-            titleView.text = String.localized("chat_archived_chats_title")
+            titleView.text = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(nil, animated: true)
             }
