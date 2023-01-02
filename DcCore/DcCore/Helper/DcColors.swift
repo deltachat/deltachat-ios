@@ -21,6 +21,7 @@ public struct DcColors {
     public static let checkmarkGreen = UIColor.themeColor(light: UIColor.rgb(red: 112, green: 177, blue: 92))
     public static let recentlySeenDot = UIColor(hexString: "34c759")
     public static let unreadBadge = UIColor(hexString: "3792fc")
+    public static let unreadBadgeMuted = UIColor.themeColor(light: UIColor.init(hexString: "b6b6bb"), dark: UIColor.init(hexString: "3b3b3b"))
     public static let defaultTextColor = UIColor.themeColor(light: .darkText, dark: .white)
     public static let grayTextColor = UIColor.themeColor(light: .darkGray, dark: coreDark05)
     public static let coreDark05 = UIColor.init(hexString: "EFEFEF") // naming according to DC Android
