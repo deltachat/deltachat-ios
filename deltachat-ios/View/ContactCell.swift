@@ -334,7 +334,9 @@ class ContactCell: UITableViewCell {
             let visibility = chat.visibility
             isArchived = visibility == DC_CHAT_VISIBILITY_ARCHIVED
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
-            if chatData.unreadMessages > 0 {
+            if chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                titleLabel.text = cellViewModel.title
+            } else if chatData.unreadMessages > 0 {
                 titleLabel.attributedText = cellViewModel.title.bold(fontSize: titleLabel.font.pointSize)
             } else {
                 titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
