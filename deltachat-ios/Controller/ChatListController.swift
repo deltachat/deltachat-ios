@@ -325,7 +325,21 @@ class ChatListController: UITableViewController {
             stopTimer()
         }
     }
-    
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0, indexPath.row == 0, let cellData = viewModel?.cellDataFor(section: 0, row: 0) {
+            switch cellData.type {
+            case .chat(let chatData):
+                if chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                    return ContactCell.cellHeight * 0.7
+                }
+            default:
+                break
+            }
+        }
+        return ContactCell.cellHeight
+    }
+
     // MARK: - actions
     @objc func didPressNewChat() {
         showNewChatController()
