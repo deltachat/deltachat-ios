@@ -41,7 +41,7 @@ git clone git@github.com:deltachat/deltachat-ios.git
 cd deltachat-ios
 git submodule update --init --recursive
 # Make sure the correct rust version is installed
-rustup toolchain install `cat deltachat-ios/libraries/deltachat-core-rust/rust-toolchain`
+rustup toolchain install `cat deltachat-ios/rust-toolchain`
 ```
 
 To run the project, open `deltachat-ios.xcworkspace` (**not** the 'xcodeproj' file).
