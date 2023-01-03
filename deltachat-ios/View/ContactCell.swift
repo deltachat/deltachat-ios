@@ -336,6 +336,10 @@ class ContactCell: UITableViewCell {
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
             if chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK {
                 titleLabel.text = cellViewModel.title
+                // for archived links, move unread counter to top line (bottom line is not used)
+                // this hack is also the reason we do not reuse the archive-link together with the normal chats
+                bottomlineStackView.removeArrangedSubview(unreadMessageCounter)
+                toplineStackView.addArrangedSubview(unreadMessageCounter)
             } else if chatData.unreadMessages > 0 {
                 titleLabel.attributedText = cellViewModel.title.bold(fontSize: titleLabel.font.pointSize)
             } else {

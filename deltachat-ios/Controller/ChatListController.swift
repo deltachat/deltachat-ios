@@ -40,6 +40,10 @@ class ChatListController: UITableViewController {
         return searchController
     }()
 
+    private lazy var archiveCell: ContactCell = {
+        return ContactCell()
+    }()
+
     private lazy var newButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
         button.tintColor = DcColors.primary
@@ -371,8 +375,12 @@ class ChatListController: UITableViewController {
         switch cellData.type {
         case .chat(let chatData):
             let chatId = chatData.chatId
-            if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
-                // default chatCell
+            if chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                let chatCell = archiveCell
+                chatCell.updateCell(cellViewModel: cellData)
+                chatCell.delegate = self
+                return chatCell
+            } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
                 chatCell.updateCell(cellViewModel: cellData)
                 chatCell.delegate = self
                 return chatCell
