@@ -55,6 +55,11 @@ class ChatListController: UITableViewController {
         return button
     }()
 
+    private lazy var markArchivedReadButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: String.localized("mark_as_read_short"), style: .plain, target: self, action: #selector(markArchivedReadPressed))
+        return button
+    }()
+
     private lazy var emptyStateLabel: EmptyStateLabel = {
         let label = EmptyStateLabel()
         label.isHidden = true
@@ -368,6 +373,10 @@ class ChatListController: UITableViewController {
         }
     }
 
+    @objc func markArchivedReadPressed() {
+        dcContext.marknoticedChat(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK))
+    }
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory !=
             traitCollection.preferredContentSizeCategory {
@@ -641,6 +650,7 @@ class ChatListController: UITableViewController {
             titleView.text = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(nil, animated: true)
+                navigationItem.setRightBarButton(markArchivedReadButton, animated: true)
             }
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
