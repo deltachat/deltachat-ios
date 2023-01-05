@@ -40,9 +40,8 @@ class ChatListController: UITableViewController {
         return searchController
     }()
 
-    private lazy var archiveCell: ActionCell = {
-        let actionCell = ActionCell()
-        return actionCell
+    private lazy var archiveCell: ContactCell = {
+        return ContactCell()
     }()
 
     private lazy var newButton: UIBarButtonItem = {
@@ -103,6 +102,18 @@ class ChatListController: UITableViewController {
                 }
                 self.handleChatListUpdate()
             }
+        }
+        if #available(iOS 13.0, *) {
+            // use the same background color as for cells and esp. the first archive-link cell
+            // to make things appear less outstanding.
+            //
+            // TODO: this initally also sets the color of the "navigation area",
+            // however, when opening+closing a chat, it is a blurry grey.
+            // the inconsistency seems to be releated to the line
+            //   navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+            // in ChatViewController.swift - removing this, the color is preserved at the cost of more flickering ...
+            // this needs more love :)
+            self.view.backgroundColor = UIColor.systemBackground
         }
     }
 
@@ -266,7 +277,7 @@ class ChatListController: UITableViewController {
     
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
-        navigationItem.backButtonTitle = isArchive ? String.localized("chat_archived_chats_title") : String.localized("pref_chats")
+        navigationItem.backButtonTitle = isArchive ? String.localized("chat_archived_label") : String.localized("pref_chats")
     }
 
     @objc
@@ -326,7 +337,21 @@ class ChatListController: UITableViewController {
             stopTimer()
         }
     }
-    
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0, indexPath.row == 0, let cellData = viewModel?.cellDataFor(section: 0, row: 0) {
+            switch cellData.type {
+            case .chat(let chatData):
+                if chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                    return ContactCell.cellHeight * 0.7
+                }
+            default:
+                break
+            }
+        }
+        return ContactCell.cellHeight
+    }
+
     // MARK: - actions
     @objc func didPressNewChat() {
         showNewChatController()
@@ -377,11 +402,11 @@ class ChatListController: UITableViewController {
         case .chat(let chatData):
             let chatId = chatData.chatId
             if chatId == DC_CHAT_ID_ARCHIVED_LINK {
-                archiveCell.actionTitle = dcContext.getChat(chatId: chatId).name
-                archiveCell.backgroundColor = DcColors.chatBackgroundColor
-                return archiveCell
+                let chatCell = archiveCell
+                chatCell.updateCell(cellViewModel: cellData)
+                chatCell.delegate = self
+                return chatCell
             } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
-                // default chatCell
                 chatCell.updateCell(cellViewModel: cellData)
                 chatCell.delegate = self
                 return chatCell
@@ -407,9 +432,17 @@ class ChatListController: UITableViewController {
         if !tableView.isEditing {
             return indexPath
         }
+        guard let viewModel = viewModel else {
+            return nil
+        }
 
-        let cell = tableView.cellForRow(at: indexPath)
-        return cell == archiveCell ? nil : indexPath
+        let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
+        switch cellData.type {
+        case .chat(let chatData):
+            return chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK ? nil : indexPath
+        default:
+            return indexPath
+        }
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -508,10 +541,8 @@ class ChatListController: UITableViewController {
                 editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows) ||
                                            viewModel.hasOnlyPinnedChatsSelected(in: initialIndexPath)
             }
-            archiveCell.selectionStyle = .none
         } else {
             removeEditingView()
-            archiveCell.selectionStyle = .default
         }
         updateTitle()
     }
@@ -607,7 +638,7 @@ class ChatListController: UITableViewController {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
         } else if isArchive {
-            titleView.text = String.localized("chat_archived_chats_title")
+            titleView.text = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(nil, animated: true)
             }

@@ -252,11 +252,12 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool, isContactRequest: Bool) {
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool, isContactRequest: Bool, isArchiveLink: Bool) {
+        unreadMessageCounter.backgroundColor = isMuted || isArchiveLink ? DcColors.unreadBadgeMuted : DcColors.unreadBadge
+
         if isLargeText {
             unreadMessageCounter.setCount(unreadCount)
             unreadMessageCounter.isHidden = unreadCount == 0 || isContactRequest
-            unreadMessageCounter.backgroundColor = isMuted ? .gray : .red
             pinnedIndicator.isHidden = true
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = true
@@ -266,14 +267,14 @@ class ContactCell: UITableViewCell {
 
         if visibility == DC_CHAT_VISIBILITY_ARCHIVED {
             pinnedIndicator.isHidden = true
-            unreadMessageCounter.isHidden = true
+            unreadMessageCounter.setCount(unreadCount)
+            unreadMessageCounter.isHidden = isContactRequest || unreadCount <= 0
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = false
         } else if unreadCount > 0 {
             pinnedIndicator.isHidden = !(visibility == DC_CHAT_VISIBILITY_PINNED)
             unreadMessageCounter.setCount(unreadCount)
             unreadMessageCounter.isHidden = isContactRequest
-            unreadMessageCounter.backgroundColor = isMuted ? .gray : DcColors.unreadBadge
             deliveryStatusIndicator.isHidden = true
             archivedIndicator.isHidden = true
         } else {
@@ -333,7 +334,13 @@ class ContactCell: UITableViewCell {
             let visibility = chat.visibility
             isArchived = visibility == DC_CHAT_VISIBILITY_ARCHIVED
             // text bold if chat contains unread messages - otherwise hightlight search results if needed
-            if chatData.unreadMessages > 0 {
+            if chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK {
+                titleLabel.text = cellViewModel.title
+                // for archived links, move unread counter to top line (bottom line is not used)
+                // this hack is also the reason we do not reuse the archive-link together with the normal chats
+                bottomlineStackView.removeArrangedSubview(unreadMessageCounter)
+                toplineStackView.addArrangedSubview(unreadMessageCounter)
+            } else if chatData.unreadMessages > 0 {
                 titleLabel.attributedText = cellViewModel.title.bold(fontSize: titleLabel.font.pointSize)
             } else {
                 titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
@@ -358,7 +365,8 @@ class ContactCell: UITableViewCell {
                                 visibility: visibility,
                                 isLocationStreaming: chat.isSendingLocations,
                                 isMuted: chat.isMuted,
-                                isContactRequest: isContactRequest)
+                                isContactRequest: isContactRequest,
+                                isArchiveLink: chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK)
 
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
@@ -376,7 +384,8 @@ class ContactCell: UITableViewCell {
                                 visibility: 0,
                                 isLocationStreaming: false,
                                 isMuted: false,
-                                isContactRequest: false)
+                                isContactRequest: false,
+                                isArchiveLink: false)
         case .profile:
             let contact = cellViewModel.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
             titleLabel.text = cellViewModel.title
@@ -394,7 +403,8 @@ class ContactCell: UITableViewCell {
             visibility: 0,
             isLocationStreaming: false,
             isMuted: false,
-            isContactRequest: false)
+            isContactRequest: false,
+            isArchiveLink: false)
         }
 
         accessibilityLabel = (titleLabel.text != nil ? ((titleLabel.text ?? "")+"\n") : "")
