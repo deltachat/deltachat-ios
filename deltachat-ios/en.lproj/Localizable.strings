@@ -46,6 +46,10 @@
 "start_chat" = "Start Chat";
 "show_full_message" = "Show Full Message…";
 "show_full_message_in_browser" = "Show Full Message in Browser…";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Mark All as Read";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Read";
 // Placeholder text when something is loading
 "loading" = "Loading…";
 "hide" = "Hide";
@@ -676,8 +680,9 @@
 "remove_member_by_you" = "You removed member %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Member %1$@ removed by %2$@.";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "You left the group.";
-// %1$s will be replaced by name and address of the contact
+// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Group left by %1$@.";
 "group_image_deleted_by_you" = "You deleted the group image.";
 // %1$s will be replaced by name and address of the contact

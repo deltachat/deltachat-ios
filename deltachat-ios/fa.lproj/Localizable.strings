@@ -668,8 +668,9 @@
 "remove_member_by_you" = "شما عضویت %1$@ را حذف کردید.  ";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "عضویت %1$@ توسط %2$@ حذف شد. ";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "شما گروه را ترک کردید.";
-// %1$s will be replaced by name and address of the contact
+// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "ترک گروه توسط %1$@.";
 "group_image_deleted_by_you" = "شما تصویر گروه را حذف کردید.";
 // %1$s will be replaced by name and address of the contact

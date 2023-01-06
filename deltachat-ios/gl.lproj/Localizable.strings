@@ -676,8 +676,9 @@
 "remove_member_by_you" = "Eliminaches a %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%1$@ eliminado por %2$@.";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "Saíches do grupo";
-// %1$s will be replaced by name and address of the contact
+// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ deixou o grupo.";
 "group_image_deleted_by_you" = "Eliminaches a imaxe do grupo";
 // %1$s will be replaced by name and address of the contact

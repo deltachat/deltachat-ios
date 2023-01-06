@@ -676,8 +676,9 @@
 "remove_member_by_you" = "Hai rimosso il membro %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Membro %1$@ rimosso da %2$@.";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "Hai lasciato il gruppo.";
-// %1$s will be replaced by name and address of the contact
+// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Gruppo lasciato da %1$@.";
 "group_image_deleted_by_you" = "Hai eliminato l\'immagine del gruppo.";
 // %1$s will be replaced by name and address of the contact

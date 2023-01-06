@@ -673,8 +673,9 @@
 "remove_member_by_you" = "Člen %1$@ bol odstránený mnou.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Člen %1$@ bol odstránený od %2$@.";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "Opustili ste skupinu";
-// %1$s will be replaced by name and address of the contact
+// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Skupinu opustil(a) %1$@.";
 "group_image_deleted_by_you" = "Odstránili ste obrázok skupiny.";
 // %1$s will be replaced by name and address of the contact

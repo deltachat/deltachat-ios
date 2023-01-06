@@ -676,8 +676,9 @@
 "remove_member_by_you" = "Αφαίρεσες τον/την %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Ο/Η %2$@ αφαίρεσε τον/την %1$@.";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "Έφυγες απ\' την ομάδα.";
-// %1$s will be replaced by name and address of the contact
+// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Ο/Η %1$@ έφυγε απ\' την ομαδα.";
 "group_image_deleted_by_you" = "Διαγράψατε την εικόνα της ομάδας.";
 // %1$s will be replaced by name and address of the contact

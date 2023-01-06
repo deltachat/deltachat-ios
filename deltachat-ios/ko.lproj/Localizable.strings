@@ -654,6 +654,7 @@
 "remove_member_by_you" = "%1$@를 멤버에서 제거함.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@가 %1$@를 멤버에서 제거함.";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "그룹을 나갔습니다.";
 "group_image_deleted_by_you" = "그룹 이미지를 지움.";
 // %1$s will be replaced by name and address of the contact

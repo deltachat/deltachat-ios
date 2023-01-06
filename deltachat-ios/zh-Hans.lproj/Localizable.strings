@@ -676,8 +676,9 @@
 "remove_member_by_you" = "你移除了成员 %1$@";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ 移除了成员 %1$@";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "你退出了群组";
-// %1$s will be replaced by name and address of the contact
+// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ 退出了群组";
 "group_image_deleted_by_you" = "你删除了群组图像";
 // %1$s will be replaced by name and address of the contact

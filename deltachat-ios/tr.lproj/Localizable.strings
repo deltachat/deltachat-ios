@@ -676,8 +676,9 @@
 "remove_member_by_you" = "%1$@ üyesini kaldırdınız.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ tarafından %1$@ üyesi kaldırıldı.";
+// "left" in the meaning of "exited"
 "group_left_by_you" = "Gruptan ayrıldınız.";
-// %1$s will be replaced by name and address of the contact
+// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ tarafından gruptan ayrılındı.";
 "group_image_deleted_by_you" = "Grup görselini sildiniz.";
 // %1$s will be replaced by name and address of the contact
