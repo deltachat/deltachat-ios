@@ -900,8 +900,8 @@ extension ChatListController: ContactCellDelegate {
            !searchActive,
            !RelayHelper.shared.isForwarding(),
            !tableView.isEditing {
-            let chatId = viewModel?.chatIdFor(section: indexPath.section, row: indexPath.row)
-            if chatId != Int(DC_CHAT_ID_ARCHIVED_LINK) {
+            guard let chatList = viewModel?.chatList else { return }
+            if chatList.getChatId(index: indexPath.row) != Int(DC_CHAT_ID_ARCHIVED_LINK) {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 setLongTapEditing(true, initialIndexPath: [indexPath])
                 tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
