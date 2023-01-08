@@ -27,7 +27,7 @@ class ChatListViewModel: NSObject {
         return searchActive && searchText.containsCharacters()
     }
 
-    private var chatList: DcChatlist!
+    var chatList: DcChatlist!
 
     // for search filtering
     private var searchText: String = ""

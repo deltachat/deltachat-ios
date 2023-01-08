@@ -542,6 +542,11 @@ class ChatListController: UITableViewController {
         viewModel?.setEditing(editing)
     }
 
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard let viewModel = viewModel, let chatList = viewModel.chatList else { return false }
+        return chatList.getChatId(index: indexPath.row) != DC_CHAT_ID_ARCHIVED_LINK
+    }
+
     func setLongTapEditing(_ editing: Bool, initialIndexPath: [IndexPath]? = nil) {
         setEditing(editing, animated: true)
         if editing {
@@ -895,9 +900,12 @@ extension ChatListController: ContactCellDelegate {
            !searchActive,
            !RelayHelper.shared.isForwarding(),
            !tableView.isEditing {
-            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-            setLongTapEditing(true, initialIndexPath: [indexPath])
-            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            guard let chatList = viewModel?.chatList else { return }
+            if chatList.getChatId(index: indexPath.row) != Int(DC_CHAT_ID_ARCHIVED_LINK) {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                setLongTapEditing(true, initialIndexPath: [indexPath])
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            }
         }
     }
 }
