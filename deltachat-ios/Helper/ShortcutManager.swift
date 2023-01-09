@@ -81,13 +81,12 @@ public class ShortcutManager {
 
         let infoDict = message.getWebxdcInfoDict()
         let iconData = scaledDownLogo?.pngData() ?? UIImage(named: "appicon")?.pngData() ?? nil
-        guard let name = infoDict["name"] as? String else {
-            // TODO: use a default name?!
-            return
-        }
+        let document = infoDict["document"] as? String ?? ""
+        let webxdcName = infoDict["name"] as? String ?? "ErrName" // name should not be empty
+        let iconTitle = document.isEmpty ? webxdcName : document
 
         let iconBase64 = iconData?.base64EncodedString() ?? ""
-        let html = htmlFor(title: name,
+        let html = htmlFor(title: iconTitle,
                            urlToRedirect: deepLinkUrl,
                            iconBase64: iconBase64)
         guard let base64 = html.data(using: .utf8)?.base64EncodedString() else {
