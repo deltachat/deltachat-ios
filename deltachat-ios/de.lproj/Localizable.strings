@@ -554,7 +554,7 @@
 "pref_backup_explain" = "Chats auf externem Speicher speichern";
 "pref_backup_export_explain" = "Ein Backup hilft bei einer Neuinstallation auf diesem oder einem anderen Gerät.\n\nDas Backup enthält alle Nachrichten, Kontakte und Chats sowie die Ende-zu-Ende Autocrypt-Einstellungen. Das Backup bitte an einem sicheren Ort aufbewahren oder es so bald wie möglich löschen.";
 "pref_backup_export_start_button" = "Backup starten";
-"pref_backup_written_to_x" = "Backup nach %1$@ erfolgreich";
+"pref_backup_written_to_x" = "Backup nach \"%1$@\" erfolgreich.";
 "pref_managekeys_menu_title" = "Schlüssel verwalten";
 "pref_managekeys_export_secret_keys" = "Exportiere geheime Schlüssel";
 "pref_managekeys_export_explain" = "Geheime Schlüssel nach \"%1$@\" exportieren?";
