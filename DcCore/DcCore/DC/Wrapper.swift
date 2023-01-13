@@ -545,6 +545,10 @@ public class DcContext {
         dc_set_chat_profile_image(contextPointer, UInt32(chatId), path)
     }
 
+    public func wasDeviceMsgEverAdded(label: String) -> Bool {
+        return dc_was_device_msg_ever_added(contextPointer, label) != 0
+    }
+
     @discardableResult
     public func addDeviceMessage(label: String?, msg: DcMsg) -> Int {
         return Int(dc_add_device_msg(contextPointer, label, msg.cptr))
