@@ -134,6 +134,14 @@ class ChatListController: UITableViewController {
 
         // update messages - for new messages, do not reuse or modify strings but create new ones.
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
+        if dcContext.wasDeviceMsgEverAdded(label: "update_1_34d_ios") {
+            let msg2 = dcContext.newMessage(viewType: DC_MSG_TEXT)
+            msg2.text = "Some 1.34 Highlights:\n\n"
+                + "🗄️ More handy and common \"Archive\" in 1.34.10: "
+                + "\"Unread counters\" and moving things into view fixes issues with chats that stay in archive.\n\n"
+                + "For other recent bugfixes, see https://get.delta.chat/#changelogs"
+            dcContext.addDeviceMessage(label: "update_1_34_10a_ios", msg: msg2)
+        }
         let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         msg.text = "Some 1.34 Highlights:\n\n"
             + "🤗 Friendlier contact lists: Ordered by last seen and contacts seen within 10 minutes are marked by a dot 🟢\n\n"
