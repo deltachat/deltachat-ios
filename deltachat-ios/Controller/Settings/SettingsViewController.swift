@@ -285,9 +285,16 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
             guard let self = self else { return }
 
             self.progressAlert?.dismiss(animated: true) {
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.reloadDcContext()
-                }
+                let alert = UIAlertController(
+                    title: String.localized("export_backup_desktop"),
+                    message: String.localizedStringWithFormat(String.localized("pref_backup_written_to_x"), "\(String.localized("Files")) ➔ Delta Chat"),
+                    preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.reloadDcContext()
+                    }
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
