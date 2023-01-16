@@ -49,7 +49,7 @@ on https://appstoreconnect.apple.com :
 
    OR
 
-8. for a **Reguar release**, open "My Apps/Delta Chat iOS/iOS App+ (first item)"
+8. for a **Regular release**, open "My Apps/Delta Chat iOS/iOS App+ (first item)"
    a) enter the version number (without leading "v")
    b) fill out "what's new", use CHANGELOG.md as a template
    c) select a build
