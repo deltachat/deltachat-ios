@@ -118,6 +118,9 @@ class ContactDetailViewModel {
     }
 
     var galleryItemMessageIds: [Int] {
+        if chatId == 0 {
+            return []
+        }
         return context.getChatMedia(
             chatId: chatId,
             messageType: DC_MSG_IMAGE,
@@ -127,6 +130,9 @@ class ContactDetailViewModel {
     }
 
     var documentItemMessageIds: [Int] {
+        if chatId == 0 {
+            return []
+        }
         return context.getChatMedia(
             chatId: chatId,
             messageType: DC_MSG_FILE,
