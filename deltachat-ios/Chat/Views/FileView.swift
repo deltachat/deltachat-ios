@@ -98,7 +98,7 @@ public class FileView: UIView {
     public func configure(message: DcMsg) {
         if message.type == DC_MSG_WEBXDC {
            configureWebxdc(message: message)
-        } else if message.type == DC_MSG_FILE {
+        } else if message.type == DC_MSG_FILE || message.isUnsupportedMediaFile {
             configureFile(message: message)
         } else {
             logger.error("Configuring message failed")

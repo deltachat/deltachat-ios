@@ -1167,6 +1167,11 @@ public class DcMsg {
         return nil
     }
 
+    public var isUnsupportedMediaFile: Bool {
+        let fileMime = filemime
+        return filemime == "audio/ogg"
+    }
+
     public var filename: String? {
         if let cString = dc_msg_get_filename(messagePointer) {
             let str = String(cString: cString)
