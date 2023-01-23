@@ -372,14 +372,29 @@ extension WebxdcViewController: WKURLSchemeHandler {
             }
             let mimeType = DcUtils.getMimeTypeForPath(path: file)
             let statusCode = (data.isEmpty ? 404 : 200)
+
+            var headerFields = [
+                "Content-Type": mimeType,
+                "Content-Length": "\(data.count)",
+            ]
+
+            if !self.allowInternet {
+                headerFields["Content-Security-Policy"] = """
+                    default-src 'self';
+                    style-src 'self' 'unsafe-inline' blob: ;
+                    font-src 'self' data: blob: ;
+                    script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ;
+                    connect-src 'self' data: blob: ;
+                    img-src 'self' data: blob: ;
+                    webrtc 'block' ;
+                    """
+            }
+
             guard let response = HTTPURLResponse(
                 url: url,
                 statusCode: statusCode,
                 httpVersion: "HTTP/1.1",
-                headerFields: [
-                    "Content-Type": mimeType,
-                    "Content-Length": "\(data.count)"
-                ]
+                headerFields: headerFields
             ) else {
                 return
             }
