@@ -132,6 +132,17 @@ class WebxdcViewController: WebViewViewController {
         contentController.add(self, name: WebxdcHandler.setUpdateListener.rawValue)
         contentController.add(self, name: WebxdcHandler.log.rawValue)
         
+        let scriptSource = """
+            window.RTCPeerConnection = ()=>{};
+            RTCPeerConnection = ()=>{};
+            try {
+                window.webkitRTCPeerConnection = ()=>{};
+                webkitRTCPeerConnection = ()=>{};
+            } catch (e){}
+            """
+        let script = WKUserScript(source: scriptSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        contentController.addUserScript(script)
+
         config.userContentController = contentController
         config.setURLSchemeHandler(self, forURLScheme: INTERNALSCHEMA)
         
