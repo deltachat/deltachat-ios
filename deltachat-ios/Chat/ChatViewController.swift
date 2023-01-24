@@ -775,10 +775,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         case DC_MSG_WEBXDC:
                 cell = tableView.dequeueReusableCell(withIdentifier: "webxdc", for: indexPath) as? WebxdcCell ?? WebxdcCell()
         case DC_MSG_AUDIO, DC_MSG_VOICE:
-            let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(withIdentifier: "audio",
-                                                                                      for: indexPath) as? AudioMessageCell ?? AudioMessageCell()
-            audioController.update(audioMessageCell, with: message.id)
-            cell = audioMessageCell
+            if message.isUnsupportedMediaFile {
+                cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
+            } else {
+                let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(
+                    withIdentifier: "audio",
+                    for: indexPath) as? AudioMessageCell ?? AudioMessageCell()
+                audioController.update(audioMessageCell, with: message.id)
+                cell = audioMessageCell
+            }
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
