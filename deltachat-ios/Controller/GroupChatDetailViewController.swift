@@ -21,6 +21,7 @@ class GroupChatDetailViewController: UIViewController {
         case archiveChat
         case leaveGroup
         case deleteChat
+        case copyToClipboard
     }
 
     private var chatOptions: [ChatOption]
@@ -121,6 +122,12 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
+    private lazy var copyToClipboardCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("menu_copy_to_clipboard")
+        cell.actionColor = SystemColor.blue.uiColor
+        return cell
+    }()
 
     private lazy var deleteChatCell: ActionCell = {
         let cell = ActionCell()
@@ -294,7 +301,7 @@ class GroupChatDetailViewController: UIViewController {
         if chat.isMailinglist {
             self.chatOptions = [.gallery, .documents]
             self.memberManagementRows = 0
-            self.chatActions = [.archiveChat, .deleteChat]
+            self.chatActions = [.archiveChat, .copyToClipboard, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else if chat.isBroadcast {
             self.chatOptions = [.gallery, .documents]
@@ -539,6 +546,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return leaveGroupCell
             case .deleteChat:
                 return deleteChatCell
+            case .copyToClipboard:
+                return copyToClipboardCell
             }
         }
         // should never get here
@@ -585,6 +594,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             case .deleteChat:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showDeleteChatConfirmationAlert()
+            case .copyToClipboard:
+                tableView.deselectRow(at: indexPath, animated: false)
+                let pasteboard = UIPasteboard.general
+                pasteboard.string = chat.getMailinglistAddr()
+
             }
         }
     }
