@@ -25,7 +25,7 @@ class ContactCell: UITableViewCell {
     private let imgSize: CGFloat = 20
 
     lazy var toplineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, mutedIndicator, pinnedIndicator, timeLabel, locationStreamingIndicator])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedIndicator, spacerView, mutedIndicator, pinnedIndicator, timeLabel, locationStreamingIndicator])
         stackView.axis = .horizontal
         stackView.alignment = .firstBaseline
         stackView.spacing = 4
@@ -51,11 +51,30 @@ class ContactCell: UITableViewCell {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
-        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
         label.font = UIFont.preferredFont(for: .body, weight: .medium)
         label.adjustsFontForContentSizeCategory = true
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         label.isAccessibilityElement = false
         return label
+    }()
+
+    private lazy var verifiedIndicator: UIImageView = {
+        let imgView = UIImageView()
+        let img = UIImage(named: "verified")
+        imgView.isHidden = true
+        imgView.image = img
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        imgView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        imgView.isAccessibilityElement = false
+        return imgView
+    }()
+
+    private lazy var spacerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
+        view.isAccessibilityElement = false
+        return view
     }()
 
     lazy var pinnedIndicator: UIImageView = {
@@ -216,6 +235,8 @@ class ContactCell: UITableViewCell {
         verticalStackView.axis = .vertical
 
         toplineStackView.addConstraints([
+            verifiedIndicator.constraintHeightTo(titleLabel.font.pointSize * 0.95),
+            verifiedIndicator.widthAnchor.constraint(equalTo: verifiedIndicator.heightAnchor),
             pinnedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
             mutedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
             locationStreamingIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2)
@@ -252,8 +273,9 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool, isContactRequest: Bool, isArchiveLink: Bool) {
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool, isContactRequest: Bool, isArchiveLink: Bool, isVerified: Bool) {
         unreadMessageCounter.backgroundColor = isMuted || isArchiveLink ? DcColors.unreadBadgeMuted : DcColors.unreadBadge
+        verifiedIndicator.isHidden = !isVerified
 
         if isLargeText {
             unreadMessageCounter.setCount(unreadCount)
@@ -356,7 +378,6 @@ class ContactCell: UITableViewCell {
             } else {
                 setBackupImage(name: chat.name, color: chat.color)
             }
-            setVerified(isVerified: chat.isProtected)
             let recentlySeen = DcUtils.showRecentlySeen(context: cellViewModel.dcContext, chat: chat)
             avatar.setRecentlySeen(recentlySeen)
             setTimeLabel(chatData.summary.timestamp)
@@ -366,7 +387,8 @@ class ContactCell: UITableViewCell {
                                 isLocationStreaming: chat.isSendingLocations,
                                 isMuted: chat.isMuted,
                                 isContactRequest: isContactRequest,
-                                isArchiveLink: chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK)
+                                isArchiveLink: chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK,
+                                isVerified: chat.isProtected)
 
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
@@ -377,7 +399,6 @@ class ContactCell: UITableViewCell {
                 avatar.setName(cellViewModel.title)
                 avatar.setColor(contact.color)
             }
-            setVerified(isVerified: contact.isVerified)
             avatar.setRecentlySeen(contact.wasSeenRecently)
             setStatusIndicators(unreadCount: 0,
                                 status: 0,
@@ -385,7 +406,8 @@ class ContactCell: UITableViewCell {
                                 isLocationStreaming: false,
                                 isMuted: false,
                                 isContactRequest: false,
-                                isArchiveLink: false)
+                                isArchiveLink: false,
+                                isVerified: contact.isVerified)
         case .profile:
             let contact = cellViewModel.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
             titleLabel.text = cellViewModel.title
@@ -396,7 +418,6 @@ class ContactCell: UITableViewCell {
                 avatar.setName(cellViewModel.title)
                 avatar.setColor(contact.color)
             }
-            setVerified(isVerified: false)
             avatar.setRecentlySeen(false)
             setStatusIndicators(unreadCount: 0,
             status: 0,
@@ -404,7 +425,8 @@ class ContactCell: UITableViewCell {
             isLocationStreaming: false,
             isMuted: false,
             isContactRequest: false,
-            isArchiveLink: false)
+            isArchiveLink: false,
+            isVerified: false)
         }
 
         accessibilityLabel = (titleLabel.text != nil ? ((titleLabel.text ?? "")+"\n") : "")
