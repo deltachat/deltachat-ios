@@ -32,7 +32,7 @@ class ChatTitleView: UIView {
         return stackView
     }()
 
-    private var subtitleLabel: UILabel = {
+    private lazy var subtitleLabel: UILabel = {
         let subtitleLabel = UILabel()
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
