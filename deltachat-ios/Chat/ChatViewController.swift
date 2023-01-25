@@ -1031,7 +1031,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 subtitle = dcContext.getContact(id: chatContactIds[0]).email
             }
 
-            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle)
+            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected)
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
         }
@@ -1042,7 +1042,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             initialsBadge.setName(dcChat.name)
             initialsBadge.setColor(dcChat.color)
         }
-        initialsBadge.setVerified(dcChat.isProtected)
 
         let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
         initialsBadge.setRecentlySeen(recentlySeen)
