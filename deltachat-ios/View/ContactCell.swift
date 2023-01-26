@@ -25,9 +25,16 @@ class ContactCell: UITableViewCell {
     private let imgSize: CGFloat = 20
 
     lazy var toplineStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedIndicator, spacerView, mutedIndicator, pinnedIndicator, timeLabel, locationStreamingIndicator])
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            verifiedIndicator,
+            spacerView,
+            mutedIndicator,
+            pinnedIndicator,
+            timeLabel,
+            locationStreamingIndicator])
         stackView.axis = .horizontal
-        stackView.alignment = .firstBaseline
+        stackView.alignment = .center
         stackView.spacing = 4
         return stackView
     }()
@@ -235,7 +242,7 @@ class ContactCell: UITableViewCell {
         verticalStackView.axis = .vertical
 
         toplineStackView.addConstraints([
-            verifiedIndicator.constraintHeightTo(titleLabel.font.pointSize * 0.95),
+            verifiedIndicator.constraintHeightTo(titleLabel.font.pointSize * 0.9),
             verifiedIndicator.widthAnchor.constraint(equalTo: verifiedIndicator.heightAnchor),
             pinnedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
             mutedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
