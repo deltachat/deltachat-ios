@@ -263,7 +263,7 @@ class ContactCell: UITableViewCell {
 
 
     func setVerified(isVerified: Bool) {
-        avatar.setVerified(isVerified)
+        verifiedIndicator.isHidden = !isVerified
     }
 
     func setImage(_ img: UIImage) {
