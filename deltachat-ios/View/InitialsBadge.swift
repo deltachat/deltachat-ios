@@ -28,15 +28,6 @@ public class InitialsBadge: UIView {
         return label
     }()
 
-    private var verifiedView: UIImageView = {
-        let imgView = UIImageView()
-        let img = UIImage(named: "verified")
-        imgView.isHidden = true
-        imgView.image = img
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        return imgView
-    }()
-
     private var recentlySeenView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -99,14 +90,9 @@ public class InitialsBadge: UIView {
         label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
-        addSubview(verifiedView)
         addSubview(recentlySeenView)
         addSubview(unreadMessageCounter)
-        let imgViewConstraints = [verifiedView.constraintAlignTopTo(self, paddingTop: radius * 0.15),
-                                  verifiedView.constraintAlignTrailingTo(self, paddingTrailing: radius * -0.1),
-                                  verifiedView.constraintHeightTo(radius * 0.8),
-                                  verifiedView.constraintWidthTo(radius * 0.8),
-                                  recentlySeenView.constraintAlignBottomTo(self),
+        let imgViewConstraints = [recentlySeenView.constraintAlignBottomTo(self),
                                   recentlySeenView.constraintAlignTrailingTo(self),
                                   recentlySeenView.constraintHeightTo(radius * 0.6),
                                   recentlySeenView.constraintWidthTo(radius * 0.6),
@@ -146,10 +132,6 @@ public class InitialsBadge: UIView {
         backgroundColor = color
     }
 
-    public func setVerified(_ verified: Bool) {
-        verifiedView.isHidden = !verified
-    }
-
     public func setRecentlySeen(_ seen: Bool) {
         recentlySeenView.isHidden = !seen
     }
@@ -160,7 +142,6 @@ public class InitialsBadge: UIView {
     }
 
     public func reset() {
-        verifiedView.isHidden = true
         imageView.image = nil
         label.text = nil
         accessibilityLabel = nil
