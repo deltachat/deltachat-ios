@@ -8,8 +8,8 @@ class ContactDetailHeader: UIView {
     var onMuteButtonTapped: VoidFunction?
 
     public static let headerHeight: CGFloat = 74.5
-
     let badgeSize: CGFloat = 54
+    var indicatorHeightConstraint: NSLayoutConstraint?
 
     private lazy var avatar: InitialsBadge = {
         let badge = InitialsBadge(size: badgeSize)
@@ -20,17 +20,46 @@ class ContactDetailHeader: UIView {
         return badge
     }()
 
-    private var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         label.textColor = DcColors.defaultTextColor
-        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: NSLayoutConstraint.Axis.horizontal)
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: UIFont.TextStyle.headline)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private var subtitleLabel: UILabel = {
+    private lazy var titleLabelContainer: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedIndicator, spacerView])
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 4
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
+    private lazy var spacerView: UIView = {
+        let view = UIView()
+        view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isAccessibilityElement = false
+        return view
+    }()
+
+    private lazy var verifiedIndicator: UIImageView = {
+        let imgView = UIImageView()
+        let img = UIImage(named: "verified")
+        imgView.isHidden = true
+        imgView.image = img
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        imgView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        imgView.isAccessibilityElement = false
+        return imgView
+    }()
+
+    private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.textColor = UIColor(hexString: "848ba7")
@@ -89,7 +118,7 @@ class ContactDetailHeader: UIView {
 
     private func setupSubviews() {
         let margin: CGFloat = 10
-        let verticalStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        let verticalStackView = UIStackView(arrangedSubviews: [titleLabelContainer, subtitleLabel])
         let horizontalStackView = UIStackView(arrangedSubviews: [searchButton, muteButton])
 
         addSubview(avatar)
@@ -105,8 +134,9 @@ class ContactDetailHeader: UIView {
             avatar.constraintHeightTo(badgeSize),
             avatar.constraintAlignLeadingTo(self, paddingLeading: badgeSize / 4),
             avatar.constraintCenterYTo(self),
+            verifiedIndicator.constraintHeightTo(titleLabel.font.pointSize * 0.9),
+            verifiedIndicator.widthAnchor.constraint(equalTo: verifiedIndicator.heightAnchor),
         ])
-
 
         verticalStackView.clipsToBounds = true
         verticalStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
@@ -162,7 +192,7 @@ class ContactDetailHeader: UIView {
     }
 
     func setVerified(isVerified: Bool) {
-        avatar.setVerified(isVerified)
+        verifiedIndicator.isHidden = !isVerified
     }
 
     @objc private func avatarTapped(_ sender: InitialsBadge) {
