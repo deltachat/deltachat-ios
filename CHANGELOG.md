@@ -6,6 +6,10 @@
 * introduce DNS cache: if DNS stops working on a network,
   Delta Chat will still be able to connect to IMAP by using previous IP addresses
 * speed up sending and improve usability in flaky networks by using SMTP pipelining
+* show a dialog on backup success
+* allow ogg attachments being shared to apps that can handle them
+* add "Copy to Clipboard" option for mailing list addresses
+* fix wrong counters shown in gallery sometimes
 * fix SOCKS5 connection handling
 * fix various bugs and improve logging
 * update translations
