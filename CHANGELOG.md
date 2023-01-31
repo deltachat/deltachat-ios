@@ -1,5 +1,17 @@
 # Delta Chat iOS Changelog
 
+## v1.34.11
+2023-01
+
+* introduce DNS cache: if DNS stops working on a network,
+  Delta Chat will still be able to connect to IMAP by using previous IP addresses
+* speed up sending and improve usability in flaky networks by using SMTP pipelining
+* fix SOCKS5 connection handling
+* fix various bugs and improve logging
+* update translations
+* update to core107
+
+
 ## v1.34.10
 2023-01
 
