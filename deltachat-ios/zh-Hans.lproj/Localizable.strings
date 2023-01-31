@@ -763,7 +763,7 @@
 "revive_verifygroup_explain" = "其他人可扫描此二维码加入群组“%1$@”。\n\n此设备上的二维码未激活。";
 "revive_qr_code" = "激活二维码";
 "qrshow_title" = "邀请二维码";
-"qrshow_x_joining" = "%1$@ 加入。";
+"qrshow_x_joining" = "添加 %1$@。";
 "qrshow_x_verified" = "%1$@ 已验证。";
 "qrshow_x_has_joined_group" = "%1$@ 已加入群组。";
 "qrshow_join_group_title" = "邀请二维码";
@@ -783,7 +783,7 @@
 // the placeholder will be replaced by the e-mail address of the account
 "qrlogin_ask_login_another" = "登录“%1$@“吗？\n\n你现有的账户不会被删除。使用“切换账户”来在不同账户间进行切换。";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_started" = "%1$@ 邀请你加入此群组。\n\n等待 %2$@ 设备回复…";
+"secure_join_started" = "%1$@ 邀请你加入此群组。\n\n等待 %2$@ 的设备回复…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ 已回复，等待被加入群组…";
 "contact_verified" = "%1$@ 已验证。";

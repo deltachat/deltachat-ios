@@ -1,0 +1,7 @@
+NSCameraUsageDescription = "Delta Chat користи вашу камеру за снимање и слање фотографија и видео записа и за очитавање бар-кôда.";
+NSContactsUsageDescription = "Delta Chat користи ваше контакте да прикаже листу имејл адреса на које можете слати поруке. Delta Chat нема сервер и ваши контакти се не шаљу нигде.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat захтева дозволу за дељење вашег положаја током периода у коме сте омогућили дељење положаја.";
+NSLocationWhenInUseUsageDescription = "Delta Chat захтева дозволу за дељење вашег положаја током периода у коме сте омогућили дељење положаја.";
+NSMicrophoneUsageDescription = "Delta Chat користи микрофон да снима и шаље звучне поруке и видео записе са звуком.";
+NSPhotoLibraryUsageDescription = "Delta Chat ће вам дозволити да изаберете које од слика из вашег фото албума желите да пошаљете.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat жели да сними слике у ваш фото албум.";
