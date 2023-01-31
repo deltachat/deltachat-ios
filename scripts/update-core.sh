@@ -1,10 +1,8 @@
 git submodule update --init --recursive
 cd deltachat-ios/libraries/deltachat-core-rust
 OLD=`git branch --show-current`
-if [ $# -eq 0 ]
-then
-    echo "updates deltachat-core-rust submodule"
-    echo "to the last commit of the given branch."
+if [ $# -eq 0 ]; then
+    echo "updates deltachat-core-rust submodule to last commit of a branch."
     echo "usage: ./scripts/update-core.sh BRANCH_NAME"
     echo "old branch: $OLD"
     exit
