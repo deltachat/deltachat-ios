@@ -25,5 +25,5 @@ cd ../../..
 git add deltachat-ios/libraries/deltachat-core-rust
 git commit -m "update deltachat-core-rust to '$commitmsg' of branch '$BRANCH'"
 echo "old branch: $OLD, new branch: $BRANCH"
-echo "changes are commited to local repo."
-echo "use 'git push' to use them or 'git reset HEAD~1; git submodule update --recursive' to abort"
+echo "changes are committed to local repo."
+echo "use 'git push' to use them or 'git reset HEAD~1; git submodule update --recursive' to abort."
