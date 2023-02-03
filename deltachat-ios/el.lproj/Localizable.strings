@@ -90,7 +90,7 @@
 "last_seen_unknown" = "Τελευταία προβολή: Άγνωστο";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
-// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+// Short form for "N Items Selected"
 
 "self" = "Εγώ";
 "draft" = "Πρόχειρο";
@@ -921,7 +921,7 @@
 "disabled_in_dc" = "Απενεργοποιήθηκε στο Delta Chat";
 "disabled_in_system_settings" = "Απενεργοποιήθηκε στις ρυθμίσεις συστήματος";
 "bg_app_refresh_disabled" = "Η \"Ανανέωση εφαρμογών στο παρασκήνιο\" απενεργοποιήθηκε στις ρυθμίσεις συστήματος";
-// iOS connectivity view
+// iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
 "delayed" = "Καθυστέρηση";
 "notifications_avg_minutes" = "Κατά μέσο όρο κάθε %1$d λεπτά";
 "notifications_avg_hours" = "Κατά μέσο όρο κάθε %1$d ώρες";

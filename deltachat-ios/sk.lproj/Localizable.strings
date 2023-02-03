@@ -90,7 +90,7 @@
 "last_seen_unknown" = "Naposledy videné: Neznáme";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
-// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+// Short form for "N Items Selected"
 
 "self" = "Ja";
 "draft" = "Návrh";
@@ -916,7 +916,7 @@
 "disabled_in_dc" = "Vypnuté v Delta Chat-e";
 "disabled_in_system_settings" = "Vypnuté v nastaveniach systém";
 "bg_app_refresh_disabled" = "\"Obnovenie aplikácie na pozadí\" vypnuté v nastaveniach systém";
-// iOS connectivity view
+// iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
 "delayed" = "Oneskorené";
 "notifications_avg_minutes" = "V priemere každých %1$d minút";
 "notifications_avg_hours" = "V priemere každých %1$d hodín";

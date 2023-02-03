@@ -94,7 +94,7 @@
 "last_seen_unknown" = "Visto por última vez: Desconocido";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
-// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+// Short form for "N Items Selected"
 
 "self" = "Yo";
 "draft" = "Borrador";
@@ -925,7 +925,7 @@
 "disabled_in_dc" = "Deshabilitado en Delta Chat";
 "disabled_in_system_settings" = "Deshabilitado en la configuración del sistema";
 "bg_app_refresh_disabled" = "\"Actualización de aplicaciones en segundo plano\" desactivada en los ajustes del sistema";
-// iOS connectivity view
+// iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
 "delayed" = "Demorado";
 "notifications_avg_minutes" = "Promedio cada %1$d minutos";
 "notifications_avg_hours" = "Promedio cada %1$d horas";

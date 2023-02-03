@@ -90,7 +90,7 @@
 "last_seen_unknown" = "Vist per darrer cop: Ves a saber";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
-// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+// Short form for "N Items Selected"
 
 "self" = "Jo";
 "draft" = "Esborrany";

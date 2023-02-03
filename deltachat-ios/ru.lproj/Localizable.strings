@@ -90,7 +90,7 @@
 "last_seen_unknown" = "Последний раз был(а): Неизвестно";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
-// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+// Short form for "N Items Selected"
 
 "self" = "Я";
 "draft" = "Черновик";
@@ -921,7 +921,7 @@
 "disabled_in_dc" = "Отключено в Delta Chat.";
 "disabled_in_system_settings" = "Отключено в системных настройках";
 "bg_app_refresh_disabled" = "«Обновление фоновых приложений» отключено в системных настройках.";
-// iOS connectivity view
+// iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
 "delayed" = "Отложено";
 "notifications_avg_minutes" = "В среднем каждые %1$d минут";
 "notifications_avg_hours" = "В среднем каждые %1$d часов";

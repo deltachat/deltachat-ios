@@ -90,7 +90,7 @@
 "last_seen_unknown" = "Son görülme: Bilinmeyen";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
-// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+// Short form for "N Items Selected"
 
 "self" = "Ben";
 "draft" = "Taslak";
@@ -921,7 +921,7 @@
 "disabled_in_dc" = "Delta Chat\'ten etkisizleştirildi";
 "disabled_in_system_settings" = "Sistem ayarlarından etkisizleştirildi";
 "bg_app_refresh_disabled" = "\"Arka Planda Uygulama Yenileme\" sistem ayarlarından etkisizleştirildi";
-// iOS connectivity view
+// iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
 "delayed" = "Gecikmeli";
 "notifications_avg_minutes" = "Ortalama olarak her %1$d dakikada bir";
 "notifications_avg_hours" = "Ortalama olarak her %1$d saatte bir";

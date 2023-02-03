@@ -90,7 +90,7 @@
 "last_seen_unknown" = "마지막 접속: 알 수 없음";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
-// Short form for "N Chats Selected" or "N Messages Selected": in English, "N Selected"
+// Short form for "N Items Selected"
 
 "self" = "나";
 "draft" = "임시 저장";
@@ -886,7 +886,7 @@
 "disabled_in_dc" = "Delta Chat에서 비활성화됨";
 "disabled_in_system_settings" = "환경설정에서 비활성화됨";
 "bg_app_refresh_disabled" = "시스템 설정에서 \"백그라운드 앱 새로 고침\"이 비활성화됨";
-// iOS connectivity view
+// iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
 "delayed" = "지연됨";
 "notifications_avg_minutes" = "평균적으로 %1$d분마다";
 "notifications_avg_hours" = "평균적으로 %1$d시간마다";
