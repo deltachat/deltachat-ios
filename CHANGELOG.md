@@ -1,5 +1,13 @@
 # Delta Chat iOS Changelog
 
+## v1.34.12
+2023-02
+
+* disable SMTP pipelining for now
+* improve logging
+* update to core107.1
+
+
 ## v1.34.11
 2023-01
 
