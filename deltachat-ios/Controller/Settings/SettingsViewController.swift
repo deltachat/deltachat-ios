@@ -286,8 +286,8 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
 
             self.progressAlert?.dismiss(animated: true) {
                 let alert = UIAlertController(
-                    title: String.localized("export_backup_desktop"),
-                    message: String.localizedStringWithFormat(String.localized("pref_backup_written_to_x"), "\(String.localized("Files")) ➔ Delta Chat"),
+                    title: String.localized("backup_successful"),
+                    message: String.localizedStringWithFormat(String.localized("backup_successful_explain_ios"), "\(String.localized("Files")) ➔ Delta Chat"),
                     preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {

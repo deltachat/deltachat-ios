@@ -5,4 +5,6 @@
     <string name="connectivity_low_data_mode">Disabled by system's \"Low Data Mode\".</string>
     <string name="connectivity_low_power_mode">Disabled by system's \"Low Power Mode\".</string>
     <string name="add_encrypted_account">Add encrypted account</string>
+    <string name="backup_successful">Backup successful</string>
+    <string name="backup_successful_explain_ios">You can find the backup in the \"Delta Chat\" folder using the \"Files\" app.\n\nMove the backup out of this folder to keep it when deleting Delta Chat.</string>
 </resources>
