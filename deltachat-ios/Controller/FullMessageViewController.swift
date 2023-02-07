@@ -5,9 +5,14 @@ import DcCore
 class FullMessageViewController: WebViewViewController {
 
     var loadButton: UIBarButtonItem {
-        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: self, action: #selector(showLoadOptions))
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showLoadOptions))
         button.accessibilityLabel = String.localized("load_remote_content")
-        button.tintColor = DcColors.primary
         return button
     }
 
