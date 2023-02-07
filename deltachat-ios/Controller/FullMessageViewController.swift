@@ -83,12 +83,9 @@ class FullMessageViewController: WebViewViewController {
         let alert = UIAlertController(title: String.localized("load_remote_content"),
                                       message: String.localized("load_remote_content_ask"),
                                       preferredStyle: .safeActionSheet)
-        if isContactRequest {
-            alert.addAction(UIAlertAction(title: "\(neverCheckmark)\(String.localized("no"))", style: .default, handler: neverActionPressed(_:)))
-            alert.addAction(UIAlertAction(title: "\(onceCheckmark)\(String.localized("once"))", style: .default, handler: onceActionPressed(_:)))
-        } else {
-            alert.addAction(UIAlertAction(title: "\(neverCheckmark)\(String.localized("never"))", style: .default, handler: neverActionPressed(_:)))
-            alert.addAction(UIAlertAction(title: "\(onceCheckmark)\(String.localized("once"))", style: .default, handler: onceActionPressed(_:)))
+        alert.addAction(UIAlertAction(title: "\(neverCheckmark)\(String.localized(isContactRequest ? "no" : "never"))", style: .default, handler: neverActionPressed(_:)))
+        alert.addAction(UIAlertAction(title: "\(onceCheckmark)\(String.localized("once"))", style: .default, handler: onceActionPressed(_:)))
+        if !isContactRequest {
             alert.addAction(UIAlertAction(title: "\(alwaysCheckmark)\(String.localized("always"))", style: .default, handler: alwaysActionPressed(_:)))
         }
 
