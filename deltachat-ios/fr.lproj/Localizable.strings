@@ -47,7 +47,7 @@
 "show_full_message" = "Montrer le message complet...";
 "show_full_message_in_browser" = "Afficher le message complet dans le navigateur";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
-"mark_all_as_read" = "Marquez tout comme lu";
+"mark_all_as_read" = "Marquer tout comme lu";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Lu";
 // Placeholder text when something is loading
