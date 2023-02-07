@@ -17,6 +17,7 @@ class FullMessageViewController: WebViewViewController {
     }
 
     var messageId: Int
+    private var isContactRequest: Bool
     private var loadContentOnce = false
 
     // Block just everything :)
@@ -34,8 +35,9 @@ class FullMessageViewController: WebViewViewController {
     """
     
 
-    init(dcContext: DcContext, messageId: Int) {
+    init(dcContext: DcContext, messageId: Int, isContactRequest: Bool) {
         self.messageId = messageId
+        self.isContactRequest = isContactRequest
         super.init(dcContext: dcContext)
         self.allowSearch = true
     }
@@ -58,7 +60,7 @@ class FullMessageViewController: WebViewViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if UserDefaults.standard.bool(forKey: "html_load_remote_content") {
+        if !isContactRequest && UserDefaults.standard.bool(forKey: "html_load_remote_content") {
             loadHtml()
         } else {
             loadRestrictedHtml()
@@ -72,7 +74,7 @@ class FullMessageViewController: WebViewViewController {
         var alwaysCheckmark = ""
         if loadContentOnce {
             onceCheckmark = checkmark
-        } else if UserDefaults.standard.bool(forKey: "html_load_remote_content") {
+        } else if !isContactRequest && UserDefaults.standard.bool(forKey: "html_load_remote_content") {
             alwaysCheckmark = checkmark
         } else {
             neverCheckmark = checkmark
@@ -81,14 +83,15 @@ class FullMessageViewController: WebViewViewController {
         let alert = UIAlertController(title: String.localized("load_remote_content"),
                                       message: String.localized("load_remote_content_ask"),
                                       preferredStyle: .safeActionSheet)
-        let alwaysAction = UIAlertAction(title: "\(alwaysCheckmark)\(String.localized("always"))", style: .default, handler: alwaysActionPressed(_:))
-        let neverAction = UIAlertAction(title: "\(neverCheckmark)\(String.localized("never"))", style: .default, handler: neverActionPressed(_:))
-        let onceAction = UIAlertAction(title: "\(onceCheckmark)\(String.localized("once"))", style: .default, handler: onceActionPressed(_:))
+        if isContactRequest {
+            alert.addAction(UIAlertAction(title: "\(neverCheckmark)\(String.localized("no"))", style: .default, handler: neverActionPressed(_:)))
+            alert.addAction(UIAlertAction(title: "\(onceCheckmark)\(String.localized("once"))", style: .default, handler: onceActionPressed(_:)))
+        } else {
+            alert.addAction(UIAlertAction(title: "\(neverCheckmark)\(String.localized("never"))", style: .default, handler: neverActionPressed(_:)))
+            alert.addAction(UIAlertAction(title: "\(onceCheckmark)\(String.localized("once"))", style: .default, handler: onceActionPressed(_:)))
+            alert.addAction(UIAlertAction(title: "\(alwaysCheckmark)\(String.localized("always"))", style: .default, handler: alwaysActionPressed(_:)))
+        }
 
-
-        alert.addAction(onceAction)
-        alert.addAction(alwaysAction)
-        alert.addAction(neverAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -101,15 +104,19 @@ class FullMessageViewController: WebViewViewController {
     }
 
     @objc func onceActionPressed(_ action: UIAlertAction) {
-        UserDefaults.standard.set(false, forKey: "html_load_remote_content")
-        UserDefaults.standard.synchronize()
+        if !isContactRequest {
+            UserDefaults.standard.set(false, forKey: "html_load_remote_content")
+            UserDefaults.standard.synchronize()
+        }
         loadContentOnce = true
         loadUnrestricedHtml()
     }
 
     @objc func neverActionPressed(_ action: UIAlertAction) {
-        UserDefaults.standard.set(false, forKey: "html_load_remote_content")
-        UserDefaults.standard.synchronize()
+        if !isContactRequest {
+            UserDefaults.standard.set(false, forKey: "html_load_remote_content")
+            UserDefaults.standard.synchronize()
+        }
         loadContentOnce = false
         loadRestrictedHtml()
     }
