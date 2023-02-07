@@ -15,7 +15,7 @@ class ChatTitleView: UIView {
 
     private lazy var verifiedView: UIImageView = {
         let imgView = UIImageView()
-        let img = UIImage(named: "verified")?.scaleDownImage(toMax: 18)
+        let img = UIImage(named: "verified")?.scaleDownImage(toMax: 14.4)
         imgView.isHidden = true
         imgView.image = img
         imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +26,7 @@ class ChatTitleView: UIView {
     private lazy var titleContainer: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedView])
         stackView.axis = .horizontal
-        stackView.alignment = .firstBaseline
+        stackView.alignment = .center
         stackView.spacing = 3
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
