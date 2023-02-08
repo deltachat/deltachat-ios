@@ -397,9 +397,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func adaptContentInset(isInitial: Bool = false) {
-        // TODO: figure out how we can calculate the bottom content inset dynamically for the inital run, currently we assume the default text size, incase of accessibility text sizes we need to adapt the value
-        let currentBottomOffset = self.tableView.contentInset.vertical
-        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: isInitial ? 50 : self.messageInputBar.keyboardHeight, right: 0)
+        if isInitial {
+            let fontSize = self.messageInputBar.inputTextView.font.pointSize
+            let padding = 32.0
+            let minBottomInset = 52.0
+            self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: max(minBottomInset, fontSize + padding), right: 0)
+            logger.debug(">>>> initial font size: \(fontSize) bottom: \(max(minBottomInset, fontSize + padding))")
+        } else {
+            self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.messageInputBar.keyboardHeight, right: 0)
+        }
     }
 
     private func resetContentInset() {
