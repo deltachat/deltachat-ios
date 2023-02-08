@@ -109,6 +109,10 @@ class ContactDetailViewModel {
         return chatId != 0 && context.getChat(chatId: chatId).isArchived
     }
 
+    var chatCanSend: Bool {
+        return chatId != 0 && context.getChat(chatId: chatId).canSend
+    }
+
     var chatIsMuted: Bool {
         return chatId != 0 && context.getChat(chatId: chatId).isMuted
     }
