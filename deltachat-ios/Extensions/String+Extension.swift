@@ -81,4 +81,9 @@ extension String {
             return "\(number)"
         }
     }
+
+    // Character.isEmoji is defined in deltachat-ios/Extensions/Character+Extension.swift
+    var containsOnlyEmoji: Bool {
+        return !isEmpty && !contains { !$0.isEmoji }
+    }
 }
