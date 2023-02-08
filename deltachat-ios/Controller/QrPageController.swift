@@ -39,6 +39,16 @@ class QrPageController: UIPageViewController {
         return control
     }()
 
+    private lazy var moreButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showMoreOptions))
+    }()
+
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
@@ -55,6 +65,7 @@ class QrPageController: UIPageViewController {
         dataSource = self
         delegate = self
         navigationItem.titleView = qrSegmentControl
+        navigationItem.rightBarButtonItem = moreButton
 
         let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
         setViewControllers(
@@ -63,14 +74,6 @@ class QrPageController: UIPageViewController {
             animated: true,
             completion: nil
         )
-
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "ellipsis.circle")
-        } else {
-            image = UIImage(named: "ic_more")
-        }
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showMoreOptions))
     }
 
     override func viewWillAppear(_ animated: Bool) {

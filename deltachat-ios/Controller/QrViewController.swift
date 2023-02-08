@@ -17,6 +17,16 @@ class QrViewController: UIViewController {
         return view
     }()
 
+    private lazy var moreButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showMoreOptions))
+    }()
+
     var qrCodeHint: String {
         willSet {
             let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
@@ -43,14 +53,7 @@ class QrViewController: UIViewController {
         title = String.localized("qrshow_title")
         setupSubviews()
         view.backgroundColor = DcColors.defaultBackgroundColor
-
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "ellipsis.circle")
-        } else {
-            image = UIImage(named: "ic_more")
-        }
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showMoreOptions))
+        navigationItem.rightBarButtonItem = moreButton
     }
 
     override func viewDidDisappear(_ animated: Bool) {
