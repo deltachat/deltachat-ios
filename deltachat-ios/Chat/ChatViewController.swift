@@ -2451,9 +2451,10 @@ extension ChatViewController: AudioControllerDelegate {
 extension ChatViewController: UITextViewDelegate {
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         if keepKeyboard.get() {
+            // the event is triggered twice on some devices, we're debouncing this
             logger.debug(">>>>> textViewShouldEndEditing - keep keyboard")
             let now = Double(Date().timeIntervalSince1970)
-            logger.debug(">>>> debounce time: \(lastTextViewShouldEndEditingUpdate - now)")
+            logger.debug(">>>> debounce time: \(now - lastTextViewShouldEndEditingUpdate)")
             if now - lastTextViewShouldEndEditingUpdate < 0.5 {
                 return false
             }
