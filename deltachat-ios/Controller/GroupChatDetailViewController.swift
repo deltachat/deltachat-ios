@@ -336,6 +336,7 @@ class GroupChatDetailViewController: UIViewController {
         }
         groupHeader.setVerified(isVerified: chat.isProtected)
         groupHeader.setMuted(isMuted: chat.isMuted)
+        groupHeader.showSearchButton(show: chat.canSend)
     }
 
     private func updateEphemeralTimerCellValue() {

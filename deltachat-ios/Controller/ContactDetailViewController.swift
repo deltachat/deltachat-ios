@@ -300,6 +300,7 @@ class ContactDetailViewController: UITableViewController {
             headerCell.setMuted(isMuted: viewModel.chatIsMuted)
             headerCell.showMuteButton(show: true)
         }
+        headerCell.showSearchButton(show: viewModel.chatCanSend)
     }
 
     private func updateCellValues() {
