@@ -387,6 +387,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if dcChat.canSend {
             configureUIForWriting()
+            adaptContentInset(isInitial: true)
         } else if dcChat.isContactRequest {
             configureContactRequestBar()
         } else {
@@ -395,15 +396,20 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         loadMessages()
     }
 
-    private func adaptContentInset() {
-        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.messageInputBar.keyboardHeight, right: 0)
-        logger.debug(">>>> adaptContentInset \(self.messageInputBar.keyboardHeight)")
+    private func adaptContentInset(isInitial: Bool = false) {
+        // TODO: figure out how we can calculate the bottom content inset dynamically for the inital run, currently we assume the default text size, incase of accessibility text sizes we need to adapt the value
+        let currentBottomOffset = self.tableView.contentInset.vertical
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: isInitial ? 50 : self.messageInputBar.keyboardHeight, right: 0)
     }
 
     private func resetContentInset() {
-        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let currentBottomOffset = self.tableView.contentInset.vertical
+        if currentBottomOffset > 0 {
+            UIView.animate(withDuration: 0.2, delay: 0, options: .beginFromCurrentState) { [weak self] in
+                self?.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            }
+        }
         logger.debug(">>>> resetContentInset \(0)")
-
     }
 
     private func configureUIForWriting() {
@@ -819,6 +825,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             markSeenMessagesInVisibleArea()
             updateScrollDownButtonVisibility()
         }
+        resetContentInset()
     }
 
     public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
