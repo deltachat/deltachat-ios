@@ -452,7 +452,7 @@ public class BaseMessageCell: UITableViewCell {
             quoteView.isHidden = true
         }
 
-        messageLabel.attributedText = MessageUtils.getFormattedSearchResultMessage(messageText: msg.text,
+        messageLabel.attributedText = MessageUtils.getFormattedTextMessage(messageText: msg.text,
                                                                                    searchText: searchText,
                                                                                    highlight: highlight)
 

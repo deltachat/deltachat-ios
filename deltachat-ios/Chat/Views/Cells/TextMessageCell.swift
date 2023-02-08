@@ -13,28 +13,6 @@ class TextMessageCell: BaseMessageCell {
 
     override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
         messageLabel.text = msg.text
-        
-        var fontSize = UIFont.preferredFont(for: .body, weight: .regular).pointSize
-        // calculate jumbomoji size
-        if msg.text != nil {
-            let text = msg.text! // simon: not sure how we can get rid of this `!`
-            let charCount = text.count
-            // simon: as far as I understood, this iterates over the whole string to find out how many unicode clusters there are,
-            // so we might wanna cache it here instead of calculating it twice
-            if charCount <= 8 && text.containsOnlyEmoji {
-                if charCount <= 2 {
-                    fontSize *= 3.0
-                } else if charCount <= 4 {
-                    fontSize *= 2.5
-                } else if charCount <= 6 {
-                    fontSize *= 1.75
-                } else {
-                    fontSize *= 1.35
-                }
-            }
-        }
-        messageLabel.font = messageLabel.font.withSize(fontSize)
-        // messageLabel.traitCollection
 
         super.update(dcContext: dcContext,
                      msg: msg,
