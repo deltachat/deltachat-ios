@@ -39,6 +39,16 @@ class QrPageController: UIPageViewController {
         return control
     }()
 
+    private lazy var moreButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showMoreOptions))
+    }()
+
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
@@ -55,6 +65,7 @@ class QrPageController: UIPageViewController {
         dataSource = self
         delegate = self
         navigationItem.titleView = qrSegmentControl
+        navigationItem.rightBarButtonItem = moreButton
 
         let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
         setViewControllers(
@@ -92,6 +103,17 @@ class QrPageController: UIPageViewController {
             self.qrCodeReaderController = qrCodeReaderController
             setViewControllers([qrCodeReaderController], direction: .forward, animated: false, completion: nil)
         }
+    }
+
+    @objc private func showMoreOptions() {
+        let alert = UIAlertController(title: String.localized("qrshow_title"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: copyToClipboard(_:)))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    @objc func copyToClipboard(_ action: UIAlertAction) {
+        UIPasteboard.general.string = dcContext.getSecurejoinQr(chatId: 0)
     }
 
     // MARK: - factory
