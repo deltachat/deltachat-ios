@@ -81,4 +81,11 @@ extension String {
             return "\(number)"
         }
     }
+
+    // required for jumbomoji logic
+    // thanks to https://stackoverflow.com/a/39425959
+    var containsOnlyEmoji: Bool {
+        // Character.isEmoji is defined in deltachat-ios/Extensions/Character+Extension.swift
+        return !isEmpty && !contains { !$0.isEmoji }
+    }
 }

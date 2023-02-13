@@ -122,10 +122,26 @@ public class MessageUtils {
         return "\(date) \(padlock) \(sendingState)"
     }
 
-    public static func getFormattedSearchResultMessage(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
+    public static func getFormattedTextMessage(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
         if let messageText = messageText {
+
+            var fontSize = UIFont.preferredFont(for: .body, weight: .regular).pointSize
+            // calculate jumbomoji size
+            let charCount = messageText.count
+            if charCount <= 8 && messageText.containsOnlyEmoji {
+                if charCount <= 2 {
+                    fontSize *= 3.0
+                } else if charCount <= 4 {
+                    fontSize *= 2.5
+                } else if charCount <= 6 {
+                    fontSize *= 1.75
+                } else {
+                    fontSize *= 1.35
+                }
+            }
+
             let fontAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.preferredFont(for: .body, weight: .regular),
+                .font: UIFont.systemFont(ofSize: fontSize),
                 .foregroundColor: DcColors.defaultTextColor
             ]
             let mutableAttributedString = NSMutableAttributedString(string: messageText, attributes: fontAttributes)
