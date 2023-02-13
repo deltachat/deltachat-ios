@@ -1,9 +1,7 @@
 import Foundation
-import UIKit
 
-// required extentions to Character and String
+// required for jumbomoji logic
 // thanks to https://stackoverflow.com/a/39425959
-
 extension Character {
     var isSimpleEmoji: Bool {
         guard let firstScalar = unicodeScalars.first else {
