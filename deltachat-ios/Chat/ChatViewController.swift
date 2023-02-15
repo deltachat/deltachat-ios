@@ -1370,6 +1370,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                                                     style: isLocationStreaming ? .destructive : .default,
                                                     handler: locationStreamingButtonPressed(_:))
 
+        #if DEBUG
+        let showNewChatController = UIAlertAction(title: "show new chat controller",
+                                                    style: .default,
+                                                    handler: showNewChatController(_:))
+        #endif
+
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
@@ -1389,6 +1395,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             alert.addAction(locationStreamingAction)
         }
+
+        #if DEBUG
+            alert.addAction(showNewChatController)
+        #endif
+
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: {
             // unfortunately, voiceMessageAction.accessibilityHint does not work,
@@ -1593,6 +1604,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
         showPhotoVideoLibrary(delegate: self)
+    }
+
+    private func showNewChatController(_ action: UIAlertAction) {
+        let newChatViewController = ChatViewController2(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
+        navigationController?.pushViewController(newChatViewController, animated: true)
     }
 
     private func locationStreamingButtonPressed(_ action: UIAlertAction) {

@@ -100,6 +100,7 @@
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
 		309D14DA28F482D300F7BA29 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305961862346125000C80F33 /* NSAttributedString+Extensions.swift */; };
 		30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */; };
+		30A60515299A75D800633F3C /* ChatViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A60514299A75D800633F3C /* ChatViewController2.swift */; };
 		30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AAD71A2762869600DE3DC1 /* SelectableCell.swift */; };
 		30B0ACFA24AB5B99004D5E29 /* EphemeralMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B0ACF924AB5B99004D5E29 /* EphemeralMessagesViewController.swift */; };
 		30B2BD02278F1C1900889AA4 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011E8042787365D00214221 /* KeychainManager.swift */; };
@@ -385,6 +386,7 @@
 		30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOnDemandViewController.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageCell.swift; sourceTree = "<group>"; };
+		30A60514299A75D800633F3C /* ChatViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController2.swift; sourceTree = "<group>"; };
 		30AAD71A2762869600DE3DC1 /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
 		30AC265E237F1807002A943F /* AvatarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarHelper.swift; sourceTree = "<group>"; };
 		30B0ACF924AB5B99004D5E29 /* EphemeralMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EphemeralMessagesViewController.swift; sourceTree = "<group>"; };
@@ -751,6 +753,7 @@
 			children = (
 				3008CB7524F95B6D00E6A617 /* AudioController.swift */,
 				30FDB6F824D1C1000066C48D /* ChatViewController.swift */,
+				30A60514299A75D800633F3C /* ChatViewController2.swift */,
 				3080A00D277DDA1400E74565 /* InputBarAccessoryView */,
 				30FDB6B524D193DD0066C48D /* Views */,
 				303492942565AABC00A523D0 /* DraftModel.swift */,
@@ -1575,6 +1578,7 @@
 				3080A038277DE30100E74565 /* UIView+AutoLayout.swift in Sources */,
 				30B0ACFA24AB5B99004D5E29 /* EphemeralMessagesViewController.swift in Sources */,
 				B20462E42440A4A600367A57 /* AutodelOverviewViewController.swift in Sources */,
+				30A60515299A75D800633F3C /* ChatViewController2.swift in Sources */,
 				305962102346154D00C80F33 /* String+Extension.swift in Sources */,
 				789E879621D6CB58003ED1C5 /* QrCodeReaderController.swift in Sources */,
 				305961D22346125100C80F33 /* CGRect+Extensions.swift in Sources */,

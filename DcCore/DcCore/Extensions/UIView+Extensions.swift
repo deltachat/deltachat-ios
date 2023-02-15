@@ -281,6 +281,14 @@ public extension UIView {
         return constraint
     }
 
+    func constraintMinHeightTo(_ height: CGFloat, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+        let constraint = heightAnchor.constraint(greaterThanOrEqualToConstant: height)
+        if let priority = priority {
+            constraint.priority = priority
+        }
+        return constraint
+    }
+
     func constraintWidthTo(_ width: CGFloat, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
         let constraint = widthAnchor.constraint(equalToConstant: width)
         if let priority = priority {
