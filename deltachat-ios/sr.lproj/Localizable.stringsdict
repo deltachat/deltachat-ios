@@ -139,11 +139,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d изабран</string>
+			<string>означено: %d</string>
 			<key>few</key>
-			<string>%d изабрано</string>
+			<string>означено: %d</string>
 			<key>other</key>
-			<string>%d изабрано</string>
+			<string>означено: %d</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

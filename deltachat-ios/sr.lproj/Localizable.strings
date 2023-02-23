@@ -100,7 +100,7 @@
 "draft" = "Нацрт";
 "image" = "Слика";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
-"reply_noun" = "Одговори";
+"reply_noun" = "Одговор";
 "gif" = "ГИФ";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Налепница";
@@ -110,17 +110,17 @@
 "forwarded" = "Прослеђено";
 "forwarded_message" = "Прослеђена порука";
 // %1$s will be replaced by the name or the e-mail address of the person who forwards the message
-"forwarded_by" = "Прослеђено од %1$@";
+"forwarded_by" = "Проследи %1$@";
 "video" = "Видео";
 "documents" = "Документи";
 "contact" = "Особа";
-"verified_contact" = "Потврђен контакт";
+"verified_contact" = "Проверен контакт";
 "camera" = "Камера";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
-"capture" = "Снимај";
+"capture" = "Сними";
 "switch_camera" = "Промени камеру";
-"toggle_fullscreen" = "Пребаци у режим приказивања преко целог екрана";
-"location" = "Положај";
+"toggle_fullscreen" = "Обрће режим пуног екрана";
+"location" = "Локација";
 "gallery" = "Галерија";
 "images_and_videos" = "Слике и видео записи";
 "file" = "Датотека";
@@ -130,18 +130,18 @@
 // plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Приватне апликације";
 "files_and_webxdx_apps" = "Датотеке и приватне апликације";
-"unknown" = "Непозната";
+"unknown" = "Непознато";
 
 "green" = "Зелена";
 "red" = "Црвена";
 "blue" = "Плава";
-"orange" = "Наранџасте";
-"cyan" = "Цијан";
-"purple" = "Љубичаста";
-"magenta" = "Магента";
+"orange" = "Наранџаста";
+"cyan" = "Тиркизна";
+"purple" = "Пурпурна";
+"magenta" = "Љубичаста";
 "white" = "Бела";
 
-"zoom" = "Увеличај";
+"zoom" = "Увеличање";
 "extra_small" = "Малецка";
 "small" = "Мала";
 "normal" = "Нормална";
@@ -166,7 +166,7 @@
 "menu_send" = "Пошаљи";
 "menu_toggle_keyboard" = "Емоџи тастатура";
 "menu_edit_group" = "Уреди групу";
-"menu_group_name_and_image" = "Назив групе и слика";
+"menu_group_name_and_image" = "Назив и слика групе";
 "menu_show_map" = "Прикажи карту";
 "menu_show_global_map" = "Прикажи све положаје";
 "menu_archive_chat" = "Архивирај ћаскање";
@@ -216,7 +216,7 @@
 "menu_zoom_in" = "Увеличати";
 "menu_zoom_out" = "Умањи";
 "menu_save_log" = "Сними дневник";
-"menu_more_options" = "Више подешавања";
+"menu_more_options" = "Више опција";
 "menu_learn_spelling" = "Научи правопис";
 "menu_chat_audit_log" = "Дневник ревизије ћаскања";
 "jump_to_message" = "Иди на поруку";
@@ -242,13 +242,13 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Додај на главни екран";
 
-"mute_for_one_hour" = "Утишај 1 сат";
-"mute_for_two_hours" = "Утишај 2 сата";
-"mute_for_one_day" = "Утишај 1 дан";
-"mute_for_seven_days" = "Утишај 7 дана";
-"mute_forever" = "Увек утишан";
+"mute_for_one_hour" = "Утишај на 1 сат";
+"mute_for_two_hours" = "Утишај на 2 сата";
+"mute_for_one_day" = "Утишај на 1 дан";
+"mute_for_seven_days" = "Утишај на 7 дана";
+"mute_forever" = "Утишај заувек";
 
-"share_location_for_5_minutes" = "За 5 минута";
+"share_location_for_5_minutes" = "на 5 минута";
 "share_location_for_30_minutes" = "За 30 минута";
 "share_location_for_one_hour" = "За 1 сат";
 "share_location_for_two_hours" = "За 2 сата";
@@ -260,7 +260,7 @@
 "videochat_invite_user_to_videochat" = "Позови %1$@у видео ћаскање?";
 "videochat_invite_user_hint" = "Ово захтева компатибилну апликацију или прегледач на оба краја.";
 "videochat_contact_invited_hint" = "%1$@је позван у видео ћаскање.";
-"videochat_you_invited_hint" = "Ви сте послали позив за видео ћаскање";
+"videochat_you_invited_hint" = "Послали сте позив за видео ћаскање.";
 "videochat_tap_to_join" = "Додирни да се придружиш";
 "videochat_tap_to_open" = "Додирни да отвориш";
 "videochat_instance" = "Инстанца видео ћаскања";
@@ -628,6 +628,7 @@
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Ово укључује све имејл поруке, медије и \"Сачуване поруке\" у свим директоријумима на серверу. Немојте користити ову функцију ако користите било које друге имејл клијенте осим Delta Chat-а.";
 "autodel_confirm" = "Разумем и желим да избришем све ове поруке";
+// "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Одмах";
 "after_30_seconds" = "За 30 секунди";
 "after_1_minute" = "За 1 минут";

@@ -513,6 +513,7 @@
 "autodel_device_title" = "Ištrinti žinutes iš įrenginio";
 "autodel_server_title" = "Ištrinti žinutes iš serverio";
 "autodel_confirm" = "Aš suprantu, ištrinti visas šias žinutes";
+// "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Iš karto";
 "after_30_seconds" = "Po 30 sekundžių";
 "after_1_minute" = "Po 1 minutės";

@@ -141,9 +141,9 @@
 			<key>one</key>
 			<string>%d Sélectionné</string>
 			<key>many</key>
-			<string>%d Sélectionné</string>
+			<string>%d Sélectionnés</string>
 			<key>other</key>
-			<string>%d Sélectionné</string>
+			<string>%d Sélectionnés</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>
@@ -175,11 +175,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Effacer %d tchats ?</string>
+			<string>Supprimer %d discussion ? Elle n\'apparaîtra plus dans la liste des discussions, mais les messages échangés resteront sur le serveur.</string>
 			<key>many</key>
-			<string>Effacer %d discussions ? Elles ne seront plus montrées dans la liste de tchats, mais leurs messages resteront sur le serveur.</string>
+			<string>Supprimer %d discussions ? Elles n\'apparaîtront plus dans la liste des discussions, mais les messages qu\'elles contiennent resteront sur le serveur.</string>
 			<key>other</key>
-			<string>Effacer %d discussions ? Elles ne seront plus montrées dans la liste de tchats, mais leurs messages resteront sur le serveur.</string>
+			<string>Supprimer %d discussions ? Elles n\'apparaîtront plus dans la liste des discussions, mais les messages qu\'elles contiennent resteront sur le serveur.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -193,11 +193,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Effacer %d messages ici et sur le serveur ?</string>
+			<string>Supprimer %d message ici et sur le serveur ?</string>
 			<key>many</key>
-			<string>Effacer %dmessages ici et sur le serveur ?</string>
+			<string>Supprimer %dmessages ici et sur le serveur ?</string>
 			<key>other</key>
-			<string>Effacer %dmessages ici et sur le serveur ?</string>
+			<string>Supprimer %dmessages ici et sur le serveur ?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
@@ -211,11 +211,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Effacer %d message ?</string>
+			<string>Supprimer %d message ?</string>
 			<key>many</key>
-			<string>Effacer %d messages ?</string>
+			<string>Supprimer %d messages ?</string>
 			<key>other</key>
-			<string>Effacer %d messages ?</string>
+			<string>Supprimer %d messages ?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

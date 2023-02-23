@@ -436,6 +436,7 @@
 "autodel_device_title" = "Hapus pesarn dari perangkat";
 "autodel_server_title" = "Hapus pesan dari server";
 "autodel_confirm" = "Saya mengerti, hapus semua pesan ini";
+// "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Segera";
 "after_30_seconds" = "Setelah 30 detik";
 "after_1_minute" = "Setelah 1 menit";
