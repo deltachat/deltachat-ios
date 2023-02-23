@@ -198,7 +198,6 @@ class WebxdcViewController: WebViewViewController {
         let willBeRemoved = parent == nil
         navigationController?.interactivePopGestureRecognizer?.isEnabled = willBeRemoved
         if willBeRemoved {
-            // remove observer
             let nc = NotificationCenter.default
             if let webxdcUpdateObserver = webxdcUpdateObserver {
                 nc.removeObserver(webxdcUpdateObserver)
@@ -229,7 +228,6 @@ class WebxdcViewController: WebViewViewController {
     }
     
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        // TODO: what about tel://
         if let url = navigationAction.request.url {
             if url.scheme == "mailto" {
                 openChatFor(url: url)
@@ -262,7 +260,6 @@ class WebxdcViewController: WebViewViewController {
     }
 
     private func loadRestrictedHtml() {
-        // TODO: compile only once
         WKContentRuleListStore.default().compileContentRuleList(
             forIdentifier: "WebxdcContentBlockingRules",
             encodedContentRuleList: blockRules) { (contentRuleList, error) in

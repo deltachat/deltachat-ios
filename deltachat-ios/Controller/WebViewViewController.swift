@@ -209,10 +209,6 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
             return
         }
 
-        // FIXME: lookupContactIdByAddress is still broken
-        // let contactId = dcContext.lookupContactIdByAddress(emailAddress)
-
-        // workaround:
         let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: emailAddress)
         let index = contacts.firstIndex(where: { dcContext.getContact(id: $0).email == emailAddress }) ?? -1
         let contactId = index >= 0 ? contacts[index] : 0
@@ -286,7 +282,6 @@ extension WebViewViewController: ChatSearchDelegate {
 
 extension WebViewViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didAdaptToKeyboard height: CGFloat) {
-        // logger.debug("didAdaptToKeyboard: \(height)")
         self.webView.scrollView.contentInset.bottom = height
     }
 }
