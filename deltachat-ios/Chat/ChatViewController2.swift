@@ -144,7 +144,12 @@ class ChatViewController2: UIViewController {
     }
 
     private func getInputTextHeight() -> CGFloat {
-        return 70
+        var bottomHeight: CGFloat = 0
+        if let keyboardManager = keyboardManager,
+            keyboardManager.isKeyboardDisappearing || keyboardManager.isKeyboardHidden {
+            bottomHeight = Utils.getSafeBottomLayoutInset()
+        }
+        return bottomHeight + textView.intrinsicContentSize.height
     }
 
     private func loadMessages() {
