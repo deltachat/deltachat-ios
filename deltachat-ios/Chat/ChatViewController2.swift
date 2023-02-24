@@ -173,14 +173,13 @@ class ChatViewController2: UIViewController {
         view.addSubview(tableView)
         view.addSubview(dummyView)
         view.addConstraints([
-            tableView.constraintAlignTopToAnchor(view.safeAreaLayoutGuide.topAnchor),
+            tableView.constraintAlignTopToAnchor(view.topAnchor),
             tableView.constraintAlignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor),
             tableView.constraintAlignTrailingToAnchor(view.safeAreaLayoutGuide.trailingAnchor),
             tableView.constraintAlignBottomToAnchor(dummyView.topAnchor),
             dummyView.constraintAlignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor),
             dummyView.constraintAlignTrailingToAnchor(view.safeAreaLayoutGuide.trailingAnchor),
-            dummyView.constraintAlignBottomToAnchor(view.safeAreaLayoutGuide.bottomAnchor)
-            ,
+            dummyView.constraintAlignBottomToAnchor(view.bottomAnchor),
             textView.constraintAlignTopTo(dummyView),
             textView.constraintAlignLeadingTo(dummyView),
             textView.constraintAlignTrailingTo(dummyView),
