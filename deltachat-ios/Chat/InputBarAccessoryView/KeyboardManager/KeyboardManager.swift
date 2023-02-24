@@ -42,6 +42,9 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     /// A flag that indicates if a portion of the keyboard is visible on the screen
     private(set) public var isKeyboardHidden: Bool = true
     
+    /// A flag that indicates if the keyboard is about to disappear
+    private(set) public var isKeyboardDisappearing: Bool = false
+
     // MARK: - Properties [Private]
     
     /// The `NSLayoutConstraintSet` that holds the `inputAccessoryView` to the bottom if its superview
@@ -213,6 +216,7 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     @objc
     open func keyboardDidHide(notification: NSNotification) {
         isKeyboardHidden = true
+        isKeyboardDisappearing = false
         guard let keyboardNotification = KeyboardNotification(from: notification) else { return }
         callbacks[.didHide]?(keyboardNotification)
     }
@@ -243,6 +247,7 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     @objc
     open func keyboardWillShow(notification: NSNotification) {
         isKeyboardHidden = false
+        isKeyboardDisappearing = false
         guard let keyboardNotification = KeyboardNotification(from: notification) else { return }
         callbacks[.willShow]?(keyboardNotification)
     }
@@ -252,6 +257,7 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     /// - Parameter notification: NSNotification
     @objc
     open func keyboardWillHide(notification: NSNotification) {
+        isKeyboardDisappearing = true
         guard let keyboardNotification = KeyboardNotification(from: notification) else { return }
         callbacks[.willHide]?(keyboardNotification)
     }
