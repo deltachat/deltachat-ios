@@ -1,5 +1,30 @@
 # Delta Chat iOS Changelog
 
+## v1.35.0 Testflight
+2023-02
+
+* show non-deltachat emails by default for new installations
+* add jumbomoji support: messages containing only emoji shown bigger
+* verified marker shown right of the chat names now
+* show hint on successful backups
+* add option to copy QR codes to the clipboard
+* show full messages: do not load remote content for requests automatically
+* improve freeing of unused space
+* cache DNS results for SMTP connections
+* use read/write timeouts instead of per-command timeouts for SMTP
+* prefer TLS over STARTTLS during autoconfiguration
+* fix Securejoin for multiple devices on a joining side
+* fix closing of database files, allowing proper shutdowns
+* fix some database transactons
+* fix a problem with Gmail where (auto-)deleted messages would get archived instead of deleted.
+  Move them to the Trash folder for Gmail which auto-deletes trashed messages in 30 days
+* fix: clear config cache after backup import. This bug sometimes resulted in the import to seemingly work at first
+* speed up connections to the database
+* improve logging
+* update translations
+* update to core110
+
+
 ## v1.34.12
 2023-02
 
