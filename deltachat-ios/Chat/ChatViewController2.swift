@@ -43,6 +43,7 @@ class ChatViewController2: UIViewController {
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.backgroundColor = DcColors.inputFieldColor
         textView.isEditable = true
+        textView.delegate = self
         return textView
     }()
 
@@ -223,5 +224,12 @@ extension ChatViewController2: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension ChatViewController2: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.bottomInset = self.getInputTextHeight() + (self.keyboardManager?.keyboardHeight ?? 0)
     }
 }
