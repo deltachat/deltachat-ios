@@ -45,6 +45,8 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     /// A flag that indicates if the keyboard is about to disappear
     private(set) public var isKeyboardDisappearing: Bool = false
 
+    private(set) public var keyboardHeight: CGFloat = 0
+
     // MARK: - Properties [Private]
     
     /// The `NSLayoutConstraintSet` that holds the `inputAccessoryView` to the bottom if its superview
@@ -227,6 +229,7 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     @objc
     open func keyboardDidChangeFrame(notification: NSNotification) {
         guard let keyboardNotification = KeyboardNotification(from: notification) else { return }
+        self.keyboardHeight = keyboardNotification.endFrame.height - (self.inputAccessoryView?.intrinsicContentSize.height ?? 0)
         callbacks[.didChangeFrame]?(keyboardNotification)
         cachedNotification = keyboardNotification
     }
@@ -237,6 +240,7 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     @objc
     open func keyboardWillChangeFrame(notification: NSNotification) {
         guard let keyboardNotification = KeyboardNotification(from: notification) else { return }
+        self.keyboardHeight = keyboardNotification.endFrame.height - (self.inputAccessoryView?.intrinsicContentSize.height ?? 0)
         callbacks[.willChangeFrame]?(keyboardNotification)
         cachedNotification = keyboardNotification
     }
