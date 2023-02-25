@@ -152,7 +152,7 @@
 "delete_contact" = "Ta bort kontakt";
 "menu_delete_location" = "Ta bort denna plats?";
 "menu_message_details" = "Meddelandedetaljer";
-"menu_copy_to_clipboard" = "Kopierad till urklipp";
+"menu_copy_to_clipboard" = "Kopiera till urklipp";
 "menu_copy_selection_to_clipboard" = "Kopiera urval";
 "menu_copy_link_to_clipboard" = "Kopiera länk";
 "menu_copy_text_to_clipboard" = "Kopiera text";
