@@ -15,7 +15,7 @@
 * prefer TLS over STARTTLS during autoconfiguration
 * fix Securejoin for multiple devices on a joining side
 * fix closing of database files, allowing proper shutdowns
-* fix some database transactons
+* fix some database transactions
 * fix a problem with Gmail where (auto-)deleted messages would get archived instead of deleted.
   Move them to the Trash folder for Gmail which auto-deletes trashed messages in 30 days
 * fix: clear config cache after backup import. This bug sometimes resulted in the import to seemingly work at first
