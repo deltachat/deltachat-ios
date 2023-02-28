@@ -597,8 +597,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 showDeleteChatConfirmationAlert()
             case .copyToClipboard:
                 tableView.deselectRow(at: indexPath, animated: false)
-                let pasteboard = UIPasteboard.general
-                pasteboard.string = chat.getMailinglistAddr()
+                UIPasteboard.general.string = chat.getMailinglistAddr()
 
             }
         }

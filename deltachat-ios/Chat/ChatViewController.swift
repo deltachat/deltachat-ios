@@ -2026,10 +2026,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func copyToClipboard(ids: [Int]) {
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = ""
         var stringsToCopy = ""
-
         if ids.count > 1 {
             let sortedIds = ids.sorted()
             var lastSenderId: Int = -1
@@ -2063,7 +2060,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 stringsToCopy.append("\(msgSummary)")
             }
         }
-        pasteboard.string = stringsToCopy
+        UIPasteboard.general.string = stringsToCopy
     }
 }
 

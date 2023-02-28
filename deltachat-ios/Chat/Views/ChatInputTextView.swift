@@ -16,7 +16,7 @@ public class ChatInputTextView: InputTextView {
 
     // MARK: - Image Paste Support
     open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == NSSelectorFromString("paste:") && UIPasteboard.general.image != nil {
+        if action == NSSelectorFromString("paste:") && UIPasteboard.general.hasImages {
             return true
         }
         return super.canPerformAction(action, withSender: sender)
