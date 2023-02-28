@@ -322,8 +322,7 @@ class ContactDetailViewController: UITableViewController {
             showEncrInfoAlert()
         case .copyToClipboard:
             tableView.deselectRow(at: indexPath, animated: true)
-            let pasteboard = UIPasteboard.general
-            pasteboard.string = viewModel.contact.email
+            UIPasteboard.general.string = viewModel.contact.email
         case .blockContact:
             tableView.deselectRow(at: indexPath, animated: false)
             toggleBlockContact()
