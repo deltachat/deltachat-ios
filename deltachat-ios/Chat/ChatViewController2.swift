@@ -8,6 +8,7 @@ class ChatViewController2: UIViewController {
     var messageIds: [Int] = []
 
     var heightConstraint: NSLayoutConstraint?
+    var bottomPaddingConstraint: NSLayoutConstraint?
     var bottomInset: CGFloat {
         get {
             logger.debug("bottomInset - get: \(heightConstraint?.constant ?? 0)")
@@ -16,6 +17,7 @@ class ChatViewController2: UIViewController {
         set {
             logger.debug("bottomInset - set: \(newValue)")
             heightConstraint?.constant = newValue
+            bottomPaddingConstraint?.constant = newValue
         }
     }
 
@@ -37,21 +39,18 @@ class ChatViewController2: UIViewController {
         return tableView
     }()
 
-    lazy var textView: ChatInputTextView = {
-        let textView = ChatInputTextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = UIFont.preferredFont(forTextStyle: .body)
-        textView.backgroundColor = DcColors.inputFieldColor
-        textView.isEditable = true
-        textView.delegate = self
-        return textView
+    /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
+    lazy var messageInputBar: InputBarAccessoryView = {
+        let inputBar = InputBarAccessoryView()
+        inputBar.translatesAutoresizingMaskIntoConstraints = false
+        return inputBar
     }()
 
     lazy var dummyView: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .yellow
-        view.addSubview(textView)
+        view.addSubview(messageInputBar)
         return view
     }()
 
@@ -150,7 +149,7 @@ class ChatViewController2: UIViewController {
             keyboardManager.isKeyboardDisappearing || keyboardManager.isKeyboardHidden {
             bottomHeight = Utils.getSafeBottomLayoutInset()
         }
-        return bottomHeight + textView.intrinsicContentSize.height
+        return bottomHeight + messageInputBar.intrinsicContentSize.height
     }
 
     private func loadMessages() {
@@ -186,22 +185,101 @@ class ChatViewController2: UIViewController {
             dummyView.constraintAlignLeadingToAnchor(view.leadingAnchor),
             dummyView.constraintAlignTrailingToAnchor(view.trailingAnchor),
             dummyView.constraintAlignBottomToAnchor(view.bottomAnchor),
-            textView.constraintAlignTopTo(dummyView),
-            textView.constraintAlignLeadingTo(dummyView),
-            textView.constraintAlignTrailingTo(dummyView),
-            textView.constraintAlignBottomTo(dummyView),
+            messageInputBar.constraintAlignTopTo(dummyView),
+            messageInputBar.constraintAlignLeadingTo(dummyView),
+            messageInputBar.constraintAlignTrailingTo(dummyView),
         ])
         heightConstraint = dummyView.constraintMinHeightTo(bottomInset)
+        bottomPaddingConstraint = messageInputBar.constraintAlignBottomTo(dummyView, paddingBottom: 0)
         bottomInset = getInputTextHeight()
+        bottomPaddingConstraint?.isActive = true
         heightConstraint?.isActive = true
-
         navigationItem.title = "new Chat UI"
+        configureMessageInputBar()
 
     }
 
     private func configureUIForWriting() {
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dragInteractionEnabled = true
+    }
+
+    private func configureMessageInputBar() {
+        //messageInputBar.delegate = self
+        messageInputBar.inputTextView.tintColor = DcColors.primary
+        messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
+        messageInputBar.inputTextView.accessibilityLabel = String.localized("write_message_desktop")
+        messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
+        messageInputBar.inputTextView.tintColor = DcColors.primary
+        messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
+        messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
+        messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
+        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
+        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 38)
+        messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
+        messageInputBar.inputTextView.layer.borderWidth = 1.0
+        messageInputBar.inputTextView.layer.cornerRadius = 13.0
+        messageInputBar.inputTextView.layer.masksToBounds = true
+        messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        configureInputBarItems()
+        messageInputBar.inputTextView.delegate = self
+        messageInputBar.sendButton.isEnabled = true
+       // messageInputBar.inputTextView.imagePasteDelegate = self
+       // messageInputBar.onScrollDownButtonPressed = scrollToBottom
+       // messageInputBar.ll.setDropInteractionDelegate(delegate: self)
+    }
+
+    private func configureInputBarItems() {
+
+        messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
+        messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
+
+
+        let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
+        messageInputBar.sendButton.image = sendButtonImage
+        messageInputBar.sendButton.accessibilityLabel = String.localized("menu_send")
+        messageInputBar.sendButton.accessibilityTraits = .button
+        messageInputBar.sendButton.title = nil
+        messageInputBar.sendButton.tintColor = UIColor(white: 1, alpha: 1)
+        messageInputBar.sendButton.layer.cornerRadius = 20
+        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        // this adds a padding between textinputfield and send button
+        messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        messageInputBar.sendButton.setSize(CGSize(width: 40, height: 40), animated: false)
+        messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
+        messageInputBar.shouldManageSendButtonEnabledState = false
+
+        let leftItems = [
+            InputBarButtonItem()
+                .configure {
+                    $0.spacing = .fixed(0)
+                    let clipperIcon = #imageLiteral(resourceName: "ic_attach_file_36pt").withRenderingMode(.alwaysTemplate)
+                    $0.image = clipperIcon
+                    $0.tintColor = DcColors.primary
+                    $0.setSize(CGSize(width: 40, height: 40), animated: false)
+                    $0.accessibilityLabel = String.localized("menu_add_attachment")
+                    $0.accessibilityTraits = .button
+            }.onSelected {
+                $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
+            }.onDeselected {
+                $0.tintColor = DcColors.primary
+            }.onTouchUpInside { [weak self] _ in
+               // self?.clipperButtonPressed()
+            }
+        ]
+
+        messageInputBar.setStackViewItems(leftItems, forStack: .left, animated: false)
+
+        // This just adds some more flare
+        messageInputBar.sendButton
+            .onEnabled { item in
+                UIView.animate(withDuration: 0.3, animations: {
+                    item.backgroundColor = DcColors.primary
+                })}
+            .onDisabled { item in
+                UIView.animate(withDuration: 0.3, animations: {
+                    item.backgroundColor = DcColors.colorDisabled
+                })}
     }
 
     private func setDefaultBackgroundImage(view: UIImageView) {
@@ -230,6 +308,7 @@ extension ChatViewController2: UITableViewDataSource {
 // MARK: - UITextViewDelegate
 extension ChatViewController2: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
+        self.messageInputBar.invalidateIntrinsicContentSize()
         self.bottomInset = self.getInputTextHeight() + (self.keyboardManager?.keyboardHeight ?? 0)
     }
 }
