@@ -67,7 +67,7 @@
   - stored in `UIApplication.shared.delegate.window`,
   - created in `application(_:didFinishLaunchingWithOptions:)`;
     in pure iOS13 apps set in SceneDelegate
-  - an app typicaly has only one window
+  - an app typically has only one window
   - `window.rootViewController` is the anchor of all view controllers
 
 
@@ -89,9 +89,9 @@ a tricky part (see eg. [3]) seems to be to hold the correct type of references t
 
 - "delegates" are needed to get events from the system
 
-- we need some dead-simple way to persist the objects that need persistance
+- we need some dead-simple way to persist the objects that need persistence
 
-- do we need our own delegates? or just call funcions directly as needed?
+- do we need our own delegates? or just call functions directly as needed?
   what is the current state?
 
 - is the overhead of "coordinator" really needed and helpful?
