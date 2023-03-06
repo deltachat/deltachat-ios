@@ -170,7 +170,7 @@
 * AEAP: show confirmation dialog before changing e-mail address
 * AEAP: add a device message after changing e-mail address
 * AEAP replaces e-mail addresses only in verified groups for now
-* fix openening experimental encrypted accounts
+* fix opening experimental encrypted accounts
 * fix: handle updates for not yet downloaded webxdc instances
 * fix: better information on several configuration and non-delivery errors
 * fix accessibility hint in multi-select chat list title
@@ -378,7 +378,7 @@
 * add an option to copy a contact's email address to the clipboard
 * force strict certificate checks when a strict certificate was seen on first login
 * do not forward group names on forwarding messages
-* "Broadcast Lists", as kown from other messengers, added as an experimental feature
+* "Broadcast Lists", as known from other messengers, added as an experimental feature
   (you can enable it at "Settings / Advanced")
 * fix: disappearing messages timer now synced more reliable in groups
 * fix: improve detection of some mailing list names
@@ -487,7 +487,7 @@
 
 * fix "show in chat" function in profile's gallery and document views
 * fix: less 0xdead10cc exceptions in background
-* update dependecies
+* update dependencies
 * update translations
 
 
@@ -500,7 +500,7 @@
 * fix: do not start location manager when location streaming is disabled
 * fix: do not send read receipts when the screen is off
 * fix: delete notifications if the corresponding chat is deleted
-* fix: target backround issues
+* fix: target background issues
 * fix crash when receiving some special messages                                
 * fix downloading some messages multiple times                                  
 * fix formatting of read receipt texts  
@@ -694,7 +694,7 @@
 * streamline profile views and show the number of items
 * option to enlarge profile image
 * show a device message when the password was changed on the server
-* show experimental disappearing-messags state in chat's title bar
+* show experimental disappearing-messages state in chat's title bar
 * improve sending large messages and GIF messages
 * improve receiving messages
 * improve error handling when there is no network
@@ -862,7 +862,7 @@ Delta Chat for iOS 1.0 :)
 * update translations
 * bug fixes
 
-The changes of this verison and the last beta versions have been done by
+The changes of this version and the last beta versions have been done by
 Alexander Krotov, Allan Nordhøy, Ampli-fier, Andrei Guliaikin,
 Asiel Díaz Benítez, Besnik, Björn Petersen, ButterflyOfFire, Calbasi, cyBerta,
 Daniel Boehrsi, Dmitry Bogatov, dorheim, Emil Lefherz, Enrico B., Ferhad Necef,
