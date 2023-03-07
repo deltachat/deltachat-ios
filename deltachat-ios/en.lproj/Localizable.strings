@@ -994,3 +994,4 @@
 "backup_successful_explain_ios" = "You can find the backup in the \"Delta Chat\" folder using the \"Files\" app.\n\nMove the backup out of this folder to keep it when deleting Delta Chat.";
 "add_another_device" = "Add Another Device";
 "add_another_device_explain" = "Add another device for this account";
+"scan_other_device_explain" = "Copy the account from the other device to this device? The original device is not changed.";
