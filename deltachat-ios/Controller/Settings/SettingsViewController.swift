@@ -13,6 +13,7 @@ internal final class SettingsViewController: UITableViewController {
     private enum CellTags: Int {
         case profile
         case chatsAndMedia
+        case addAnotherDevice
         case notifications
         case selectBackground
         case advanced
@@ -62,6 +63,17 @@ internal final class SettingsViewController: UITableViewController {
         }
         cell.accessoryView = notificationSwitch
         cell.selectionStyle = .none
+        return cell
+    }()
+
+    private lazy var addAnotherDeviceCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.tag = CellTags.addAnotherDevice.rawValue
+        cell.textLabel?.text = String.localized("add_another_device")
+        if #available(iOS 16.0, *) {
+            cell.imageView?.image = UIImage(systemName: "macbook.and.iphone") // added in ios16
+        }
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
@@ -122,7 +134,7 @@ internal final class SettingsViewController: UITableViewController {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
-            cells: [chatsAndMediaCell, notificationCell, selectBackgroundCell, connectivityCell, advancedCell]
+            cells: [chatsAndMediaCell, notificationCell, selectBackgroundCell, addAnotherDeviceCell, connectivityCell, advancedCell]
         )
         let helpSection = SectionConfigs(
             headerTitle: nil,
@@ -207,6 +219,7 @@ internal final class SettingsViewController: UITableViewController {
         switch cellTag {
         case .profile: showEditSettingsController()
         case .chatsAndMedia: showChatsAndMedia()
+        case .addAnotherDevice: showBackupProviderViewController()
         case .notifications: break
         case .advanced: showAdvanced()
         case .help: showHelp()
@@ -252,6 +265,11 @@ internal final class SettingsViewController: UITableViewController {
 
     private func showChatsAndMedia() {
         navigationController?.pushViewController(ChatsAndMediaViewController(dcAccounts: dcAccounts), animated: true)
+    }
+
+    private func showBackupProviderViewController() {
+         let backupProviderViewController = BackupTransferViewController(dcAccounts: dcAccounts)
+         navigationController?.pushViewController(backupProviderViewController, animated: true)
     }
 
     private func showAdvanced() {

@@ -204,6 +204,7 @@
 		B20462E62440C99600367A57 /* AutodelOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E52440C99600367A57 /* AutodelOptionsViewController.swift */; };
 		B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */; };
 		B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2172F3B29C125F2002C289E /* AdvancedViewController.swift */; };
+		B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B259D64229B771D5008FB706 /* BackupTransferViewController.swift */; };
 		B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */; };
 		B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4256F265C325C00B95377 /* MultilineLabelCell.swift */; };
 		B2D4B63B29C38D1900B47DA8 /* ChatsAndMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */; };
@@ -514,6 +515,7 @@
 		B2591B1F24106BA400C38152 /* eo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = eo; path = eo.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B2591B2024106BA400C38152 /* eo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = eo; path = eo.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2591B2124106BA400C38152 /* eo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = eo; path = eo.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		B259D64229B771D5008FB706 /* BackupTransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupTransferViewController.swift; sourceTree = "<group>"; };
 		B25FD2642952387200E79E00 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B25FD2652952387200E79E00 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B25FD2662952387200E79E00 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = el; path = el.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -944,6 +946,7 @@
 			children = (
 				B28D25882913CE8600B9067F /* Settings */,
 				AE18F28B228C17630007B1BE /* AccountSetup */,
+				B259D64229B771D5008FB706 /* BackupTransferViewController.swift */,
 				30DDCBEA28FCA21800465D22 /* AccountSwitchViewController.swift */,
 				30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */,
 				3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */,
@@ -1501,6 +1504,7 @@
 				303492952565AABC00A523D0 /* DraftModel.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsViewController.swift in Sources */,
 				3080A021277DE09900E74565 /* InputStackView.swift in Sources */,
+				B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */,
 				AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */,
 				302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,

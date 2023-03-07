@@ -1414,6 +1414,36 @@ public class DcLot {
     }
 }
 
+public class DcBackupProvider {
+    private var dcBackupProviderPointer: OpaquePointer
+
+    public init(_ dcContext: DcContext) {
+        dcBackupProviderPointer = dc_backup_provider_new(dcContext.contextPointer)
+    }
+
+    deinit {
+        dc_backup_provider_unref(dcBackupProviderPointer)
+    }
+
+    public func getQr() -> String? {
+        guard let cString = dc_backup_provider_get_qr(dcBackupProviderPointer) else { return nil }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
+    public func getQrSvg() -> String? {
+        guard let cString = dc_backup_provider_get_qr_svg(dcBackupProviderPointer) else { return nil }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
+    public func wait() {
+        dc_backup_provider_wait(dcBackupProviderPointer)
+    }
+ }
+
 public class DcProvider {
     private var dcProviderPointer: OpaquePointer?
 
