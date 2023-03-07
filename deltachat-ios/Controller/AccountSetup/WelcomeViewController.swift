@@ -305,7 +305,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                         self.dcContext = self.dcAccounts.getSelected()
                         self.navigationItem.title = String.localized(self.canCancel ? "add_account" : "welcome_desktop")
                     }
-                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
+                    var error = ui["errorMessage"] as? String ?? ""
+                    if error.isEmpty {
+                        error = self.dcContext.lastErrorString
+                    }
+                    self.updateProgressAlert(error: error)
                     self.stopAccessingSecurityScopedResource()
                     self.removeBackupProgressObserver()
                 } else if let done = ui["done"] as? Bool, done {
@@ -333,6 +337,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                 String.localized(dcAccounts.getAll().count > 1 ? "qrlogin_ask_login_another" : "qrlogin_ask_login"),
                 email)
             confirmQrAccountAlert(title: title, qrCode: code)
+        } else if lot.state == DC_QR_BACKUP {
+             confirmSetupNewDevice(qrCode: code)
         } else {
             qrErrorAlert()
         }
@@ -372,6 +378,39 @@ extension WelcomeViewController: QrCodeReaderDelegate {
         } else {
             self.present(alert, animated: true)
         }
+    }
+
+    private func confirmSetupNewDevice(qrCode: String) {
+        // triggerLocalNetworkPrivacyAlert() // TODO: is that needed with new iroh?
+        let alert = UIAlertController(title: String.localized("add_another_device"),
+                                      message: String.localized("scan_other_device_explain"),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+             title: String.localized("ok"),
+             style: .default,
+             handler: { [weak self] _ in
+                 guard let self = self else { return }
+                 self.dismissQRReader()
+                 self.addProgressHudBackupListener()
+                 self.showProgressAlert(title: String.localized("add_another_device"), dcContext: self.dcContext)
+                 self.dcAccounts.stopIo() // TODO: is this needed?
+                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                     guard let self = self else { return }
+                     self.dcContext.logger?.info("##### receiveBackup() with qr: \(qrCode)")
+                     let res = self.dcContext.receiveBackup(qrCode: qrCode)
+                     self.dcContext.logger?.info("##### receiveBackup() done with result: \(res)")
+                 }
+             }
+        ))
+        alert.addAction(UIAlertAction(
+            title: String.localized("cancel"),
+            style: .cancel,
+            handler: { [weak self] _ in
+                self?.dcContext.stopOngoingProcess()
+                self?.dismissQRReader()
+            }
+        ))
+        qrCodeReader?.present(alert, animated: true)
     }
 
     private func qrErrorAlert() {
@@ -470,7 +509,7 @@ class WelcomeContentView: UIView {
 
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
-        let title = String.localized("scan_invitation_code")
+        let title = String.localized("qrscan_title")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)

@@ -347,6 +347,10 @@ public class DcContext {
         return dc_set_config_from_qr(contextPointer, qrCode) != 0
     }
 
+    public func receiveBackup(qrCode: String) -> Bool {
+        return dc_receive_backup(contextPointer, qrCode) != 0
+    }
+
     public func stopOngoingProcess() {
         dc_stop_ongoing_process(contextPointer)
     }
