@@ -617,12 +617,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                         self.messageInputBar.isHidden = true
                     }
                 }
-
-                let oldMuted = self.navigationItem.rightBarButtonItems?.contains(self.muteItem)
-                let newMuted = self.dcChat.isMuted
-                if oldMuted != newMuted {
-                    self.updateTitle()
-                }
+                self.updateTitle()
             }
         }
 
