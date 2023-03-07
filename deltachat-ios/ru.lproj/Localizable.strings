@@ -46,6 +46,10 @@
 "start_chat" = "Начать чат";
 "show_full_message" = "Показать сообщение полностью…";
 "show_full_message_in_browser" = "Показать сообщение полностью в браузере…";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Отметить всё как прочитанное";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Прочитано";
 // Placeholder text when something is loading
 "loading" = "Загрузка…";
 "hide" = "Скрыть";

@@ -315,7 +315,7 @@
 "chat_share_with_title" = "Partager avec";
 "chat_input_placeholder" = "Message";
 "chat_archived_label" = "Archivé";
-"chat_request_label" = "Requête";
+"chat_request_label" = "Invitation";
 "chat_no_messages" = "Aucun message.";
 "chat_self_talk_subtitle" = "Messages envoyés à moi-même";
 "archive_empty_hint" = "Les discussions archivées apparaîtront ici.";
@@ -387,7 +387,7 @@
 "tab_docs" = "Documents";
 "tab_links" = "Liens";
 "tab_map" = "Carte";
-"tab_gallery_empty_hint" = "Les images et vidéos partagées dans ce tchat seront affichées ici.";
+"tab_gallery_empty_hint" = "Les images et vidéos partagées dans cette discussion seront affichées ici.";
 "tab_docs_empty_hint" = "Les documents, musiques et autres fichiers partagés dans ce chat seront affichés ici.";
 "tab_image_empty_hint" = "Les images partagées dans cette discussion seront affichées ici.";
 "tab_video_empty_hint" = "Les vidéos partagées dans cette discussion seront affichées ici.";
@@ -573,9 +573,9 @@
 "pref_auto_folder_moves" = "Déplacer automatiquement vers le dossier DeltaChat";
 "pref_auto_folder_moves_explain" = "Les discussions sont déplacées pour éviter d\'encombrer le dossier Boîte de réception";
 "pref_only_fetch_mvbox_title" = "Ne consulter que le dossier DeltaChat";
-"pref_only_fetch_mvbox_explain" = "Ignorer les autres répertoires. Cela requiert que votre serveur déplace tous les messages de tchate dans le répertoire DeltaChat.";
+"pref_only_fetch_mvbox_explain" = "Ignorer les autres répertoires. Cela requiert que votre serveur déplace tous les messages de discussion instantanée dans le dossier DeltaChat.";
 "pref_show_emails" = "Voir les courriels classiques";
-"pref_show_emails_no" = "Non, seulement les tchats";
+"pref_show_emails_no" = "Non, seulement les discussions";
 "pref_show_emails_accepted_contacts" = "Pour les contacts acceptés";
 "pref_show_emails_all" = "Tout";
 "pref_experimental_features" = "Fonctionnalités expérimentales";
