@@ -46,6 +46,10 @@
 "start_chat" = "Nisni fjalosje";
 "show_full_message" = "Shfaq mesazhin e plotë…";
 "show_full_message_in_browser" = "Shfaq mesazh të plotë në shfletues…";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Krejt të Lexuar";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "I lexuar";
 // Placeholder text when something is loading
 "loading" = "Po ngarkohet…";
 "hide" = "Fshihe";
@@ -119,9 +123,9 @@
 "images_and_videos" = "Figura dhe video";
 "file" = "Kartelë";
 "files" = "Kartela";
-// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Aplikacion Privat";
-// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Aplikacione Private";
 "files_and_webxdx_apps" = "Kartela dhe Aplikacione Private";
 "unknown" = "E panjohur";
@@ -168,6 +172,8 @@
 "menu_add_attachment" = "Shtoni bashkëngjitje";
 "menu_leave_group" = "Braktiseni grupin";
 "menu_delete_chat" = "Fshije fjalosjen";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Spastroje Fjalosjen";
 "ask_delete_named_chat" = "Jeni i sigurt se doni të fshihet \"%1$@\"?";
 "menu_delete_messages" = "Fshiji mesazhet";
 "delete_contact" = "Fshije kontaktin";
@@ -387,6 +393,7 @@
 "tab_video_empty_hint" = "Videot e dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_audio_empty_hint" = "Kartelat Audio dhe Mesazhet Zanore të dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_webxdc_empty_hint" = "Këtu do të shfaqen aplikacione private të përbashkët në këtë fjalosje ";
+"tab_all_media_empty_hint" = "Këtu do të duke media e dhënë në çfarëdo fjalosjeje.";
 "media_preview" = "Paraparje media";
 "send_message" = "Dërgo mesazh";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.

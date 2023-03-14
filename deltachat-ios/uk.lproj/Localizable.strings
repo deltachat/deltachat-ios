@@ -125,9 +125,9 @@
 "images_and_videos" = "Зображення та відео";
 "file" = "Файл";
 "files" = "Файли";
-// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Приватний застосунок";
-// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Приватні застосунки";
 "files_and_webxdx_apps" = "Файли і приватні застосунки";
 "unknown" = "Невідомо";
@@ -174,6 +174,8 @@
 "menu_add_attachment" = "Додати вкладення";
 "menu_leave_group" = "Залишити групу";
 "menu_delete_chat" = "Видалити чат";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Очистити чат";
 "ask_delete_named_chat" = "Ви впевнені, що хочете видалити \"%1$@\"?";
 "menu_delete_messages" = "Видалити повідомлення";
 "delete_contact" = "Видалити контакт";
@@ -393,6 +395,7 @@
 "tab_video_empty_hint" = "Відео, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_audio_empty_hint" = "Аудіозаписи та голосові повідомлення, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_webxdc_empty_hint" = "Приватні застосунки, якими поділилися у цьому чаті, будуть відображатися тут.";
+"tab_all_media_empty_hint" = "Тут відображатимуться медіафайли, якими ви ділилися в будь-якому чаті.";
 "media_preview" = "Попередній перегляд медіа";
 "send_message" = "Надіслати повідомлення";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.

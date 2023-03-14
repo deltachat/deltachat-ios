@@ -46,6 +46,10 @@
 "start_chat" = "Gesprek beginnen";
 "show_full_message" = "Volledig bericht tonen…";
 "show_full_message_in_browser" = "Volledig bericht in browser tonen…";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Alles markeren als gelezen";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Gelezen";
 // Placeholder text when something is loading
 "loading" = "Bezig met laden…";
 "hide" = "Verbergen";
@@ -121,9 +125,9 @@
 "images_and_videos" = "Foto\'s en video\'s";
 "file" = "Bestand";
 "files" = "Bestanden";
-// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Privé-app";
-// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Privé-apps";
 "files_and_webxdx_apps" = "Bestanden en privé-apps";
 "unknown" = "Onbekend";
@@ -170,6 +174,8 @@
 "menu_add_attachment" = "Bijlage toevoegen";
 "menu_leave_group" = "Groep verlaten";
 "menu_delete_chat" = "Gesprek verwijderen";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Ale berichten wissen";
 "ask_delete_named_chat" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
 "menu_delete_messages" = "Berichten verwijderen";
 "delete_contact" = "Contactpersoon verwijderen";
@@ -389,6 +395,7 @@
 "tab_video_empty_hint" = "De in dit gesprek gedeelde video\'s verschijnen hier.";
 "tab_audio_empty_hint" = "De in dit gesprek gedeelde audiobestanden en spraakberichten verschijnen hier.";
 "tab_webxdc_empty_hint" = "Privé-apps in dit gesprek worden hier getoond.";
+"tab_all_media_empty_hint" = "De in gesprekken gedeelde media verschijnen hier.";
 "media_preview" = "Mediavoorbeeld";
 "send_message" = "Bericht versturen";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.

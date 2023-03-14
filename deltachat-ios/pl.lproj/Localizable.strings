@@ -125,9 +125,9 @@
 "images_and_videos" = "Obrazy i wideo";
 "file" = "Plik";
 "files" = "Pliki";
-// "Private App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Prywatna aplikacja";
-// plural of "Private App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Prywatne aplikacje";
 "files_and_webxdx_apps" = "Pliki i prywatne aplikacje";
 "unknown" = "Nieznany";
@@ -174,6 +174,8 @@
 "menu_add_attachment" = "Dodaj załącznik";
 "menu_leave_group" = "Opuść grupę";
 "menu_delete_chat" = "Usuń czat";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Wyczyść czat";
 "ask_delete_named_chat" = "Czy na pewno chcesz usunąć „%1$@”?";
 "menu_delete_messages" = "Usuń wiadomości";
 "delete_contact" = "Usuń kontakt";
