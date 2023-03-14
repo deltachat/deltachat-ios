@@ -15,6 +15,8 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case sendAutocryptMessage
         case exportBackup
         case advanced
+        case experimentalFeatures
+        case viewLog
         case videoChat
     }
 
@@ -32,6 +34,14 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.videoChat.rawValue
         cell.textLabel?.text = String.localized("videochat_instance")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var experimentalFeaturesCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.experimentalFeatures.rawValue
+        cell.textLabel?.text = String.localized("pref_experimental_features")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -73,6 +83,13 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    private lazy var viewLogCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.viewLog.rawValue
+        cell.actionTitle = String.localized("pref_view_log")
+        return cell
+    }()
+
     private lazy var sections: [SectionConfigs] = {
         let backupSection = SectionConfigs(
             headerTitle: nil,
@@ -83,11 +100,15 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             footerTitle: String.localized("autocrypt_explain"),
             cells: [autocryptPreferencesCell, sendAutocryptMessageCell]
         )
-        let experimentalSection = SectionConfigs(
+        let miscSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
-            cells: [videoChatInstanceCell, advancedCell])
-        return [backupSection, autocryptSection, experimentalSection]
+            cells: [experimentalFeaturesCell, videoChatInstanceCell, advancedCell])
+        let viewLogSection = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: nil,
+            cells: [viewLogCell])
+        return [backupSection, autocryptSection, miscSection, viewLogSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -166,7 +187,9 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
+        case .experimentalFeatures: showExperimentalDialog()
         case .advanced: showAdvancedDialog()
+        case .viewLog: showLogViewController()
         }
     }
 
@@ -288,15 +311,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             self.present(alert, animated: true, completion: nil)
         }))
 
-        alert.addAction(UIAlertAction(title: String.localized("pref_experimental_features"), style: .default, handler: { [weak self] _ in
-            self?.showExperimentalDialog()
-        }))
-
-        let logAction = UIAlertAction(title: String.localized("pref_view_log"), style: .default, handler: { [weak self] _ in
-            guard let self = self else { return }
-            self.showLogViewController()
-        })
-        alert.addAction(logAction)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
