@@ -74,21 +74,20 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }()
 
     private lazy var sections: [SectionConfigs] = {
-        let preferencesSection = SectionConfigs(
+        let backupSection = SectionConfigs(
             headerTitle: nil,
-            footerTitle: nil,
-            cells: [videoChatInstanceCell]
-        )
+            footerTitle: String.localized("pref_backup_explain"),
+            cells: [exportBackupCell])
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
             footerTitle: String.localized("autocrypt_explain"),
             cells: [autocryptPreferencesCell, sendAutocryptMessageCell]
         )
-        let backupSection = SectionConfigs(
+        let experimentalSection = SectionConfigs(
             headerTitle: nil,
-            footerTitle: String.localized("pref_backup_explain"),
-            cells: [advancedCell, exportBackupCell])
-        return [preferencesSection, autocryptSection, backupSection]
+            footerTitle: nil,
+            cells: [videoChatInstanceCell, advancedCell])
+        return [backupSection, autocryptSection, experimentalSection]
     }()
 
     init(dcAccounts: DcAccounts) {
