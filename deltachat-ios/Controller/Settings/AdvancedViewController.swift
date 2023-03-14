@@ -11,22 +11,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }
 
     private enum CellTags: Int {
-        case profile
-        case showEmails
-        case blockedContacts
-        case notifications
-        case receiptConfirmation
         case autocryptPreferences
         case sendAutocryptMessage
         case exportBackup
         case advanced
-        case help
-        case autodel
-        case mediaQuality
-        case downloadOnDemand
         case videoChat
-        case connectivity
-        case selectBackground
     }
 
     private var dcContext: DcContext
@@ -34,115 +23,16 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
     private let externalPathDescr = "File Sharing/Delta Chat"
 
-    let documentInteractionController = UIDocumentInteractionController()
-
-    private var connectivityChangedObserver: NSObjectProtocol?
-
     // MARK: - ProgressAlertHandler
     weak var progressAlert: UIAlertController?
     var progressObserver: NSObjectProtocol?
 
     // MARK: - cells
-    private lazy var profileCell: ContactCell = {
-        let cell = ContactCell(style: .default, reuseIdentifier: nil)
-        let cellViewModel = ProfileViewModel(context: dcContext)
-        cell.updateCell(cellViewModel: cellViewModel)
-        cell.tag = CellTags.profile.rawValue
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    private lazy var showEmailsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.showEmails.rawValue
-        cell.textLabel?.text = String.localized("pref_show_emails")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
-        return cell
-    }()
-
-    private lazy var blockedContactsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.tag = CellTags.blockedContacts.rawValue
-        cell.textLabel?.text = String.localized("pref_blocked_contacts")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    func autodelSummary() -> String {
-        let delDeviceAfter = dcContext.getConfigInt("delete_device_after")
-        let delServerAfter = dcContext.getConfigInt("delete_server_after")
-        if delDeviceAfter==0 && delServerAfter==0 {
-            return String.localized("never")
-        } else {
-            return String.localized("on")
-        }
-    }
-
-    private lazy var autodelCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.autodel.rawValue
-        cell.textLabel?.text = String.localized("delete_old_messages")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = autodelSummary()
-        return cell
-    }()
-
-    private lazy var mediaQualityCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.mediaQuality.rawValue
-        cell.textLabel?.text = String.localized("pref_outgoing_media_quality")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = MediaQualityViewController.getValString(val: dcContext.getConfigInt("media_quality"))
-        return cell
-    }()
-
-    private lazy var downloadOnDemandCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.downloadOnDemand.rawValue
-        cell.textLabel?.text = String.localized("auto_download_messages")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(val: dcContext.getConfigInt("download_limit"))
-        return cell
-    }()
-
     private lazy var videoChatInstanceCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.videoChat.rawValue
         cell.textLabel?.text = String.localized("videochat_instance")
         cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    private lazy var notificationSwitch: UISwitch = {
-        let switchControl = UISwitch()
-        switchControl.isOn = !UserDefaults.standard.bool(forKey: "notifications_disabled")
-        switchControl.addTarget(self, action: #selector(handleNotificationToggle(_:)), for: .valueChanged)
-        return switchControl
-    }()
-
-    private lazy var notificationCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.tag = CellTags.notifications.rawValue
-        cell.textLabel?.text = String.localized("pref_notifications")
-        cell.accessoryView = notificationSwitch
-        cell.selectionStyle = .none
-        return cell
-    }()
-
-    private lazy var receiptConfirmationSwitch: UISwitch = {
-        let switchControl = UISwitch()
-        switchControl.isOn = dcContext.mdnsEnabled
-        switchControl.addTarget(self, action: #selector(handleReceiptConfirmationToggle(_:)), for: .valueChanged)
-        return switchControl
-    }()
-
-    private lazy var receiptConfirmationCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.tag = CellTags.receiptConfirmation.rawValue
-        cell.textLabel?.text = String.localized("pref_read_receipts")
-        cell.accessoryView = receiptConfirmationSwitch
-        cell.selectionStyle = .none
         return cell
     }()
 
@@ -183,49 +73,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var helpCell: ActionCell = {
-        let cell = ActionCell()
-        cell.tag = CellTags.help.rawValue
-        cell.actionTitle = String.localized("menu_help")
-        return cell
-    }()
-
-    private lazy var connectivityCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.connectivity.rawValue
-        cell.textLabel?.text = String.localized("connectivity")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    private lazy var selectBackgroundCell: UITableViewCell = {
-        let cell = UITableViewCell()
-        cell.tag = CellTags.selectBackground.rawValue
-        cell.textLabel?.text = String.localized("pref_background")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
     private lazy var sections: [SectionConfigs] = {
-        var appNameAndVersion = "Delta Chat"
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            appNameAndVersion += " v" + appVersion
-        }
-        let profileSection = SectionConfigs(
-            headerTitle: String.localized("pref_profile_info_headline"),
-            footerTitle: nil,
-            cells: [profileCell]
-        )
         let preferencesSection = SectionConfigs(
-            headerTitle: String.localized("pref_chats_and_media"),
-            footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [showEmailsCell, blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
-                    autodelCell, videoChatInstanceCell, notificationCell, receiptConfirmationCell]
-        )
-        let appearanceSection = SectionConfigs(
-            headerTitle: String.localized("pref_appearance"),
+            headerTitle: nil,
             footerTitle: nil,
-            cells: [selectBackgroundCell]
+            cells: [videoChatInstanceCell]
         )
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
@@ -236,13 +88,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             headerTitle: nil,
             footerTitle: String.localized("pref_backup_explain"),
             cells: [advancedCell, exportBackupCell])
-        let helpSection = SectionConfigs(
-            headerTitle: nil,
-            footerTitle: appNameAndVersion,
-            cells: [connectivityCell, helpCell]
-        )
-
-        return [profileSection, preferencesSection, appearanceSection, autocryptSection, backupSection, helpSection]
+        return [preferencesSection, autocryptSection, backupSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -258,24 +104,12 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("menu_settings")
-        documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
+        title = String.localized("menu_advanced")
         tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        // set connectivity changed observer before we acutally init `connectivityCell.detailTextLabel` in `updateCells()`,
-        // otherwise, we may miss events and the label is not correct.
-        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
-                                                                             object: nil,
-                                                                             queue: nil) { [weak self] _ in
-            guard let self = self else { return }
-            self.connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
-                                                                                        connectedString: String.localized("connectivity_connected"))
-        }
-
         updateCells()
     }
 
@@ -305,21 +139,9 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         if let backupProgressObserver = self.progressObserver {
             nc.removeObserver(backupProgressObserver)
         }
-        if let connectivityChangedObserver = self.connectivityChangedObserver {
-            NotificationCenter.default.removeObserver(connectivityChangedObserver)
-        }
     }
 
     // MARK: - UITableViewDelegate + UITableViewDatasource
-
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            return ContactCell.cellHeight
-        } else {
-            return UITableView.automaticDimension
-        }
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -341,22 +163,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         tableView.deselectRow(at: indexPath, animated: false)
 
         switch cellTag {
-        case .profile: showEditSettingsController()
-        case .showEmails: showClassicMail()
-        case .blockedContacts: showBlockedContacts()
-        case .autodel: showAutodelOptions()
-        case .mediaQuality: showMediaQuality()
-        case .downloadOnDemand: showDownloadOnDemand()
         case .videoChat: showVideoChatInstance()
-        case .notifications: break
-        case .receiptConfirmation: break
         case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
         case .advanced: showAdvancedDialog()
-        case .help: showHelp()
-        case .connectivity: showConnectivity()
-        case .selectBackground: selectBackground()
         }
     }
 
@@ -378,23 +189,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
-
-    @objc private func handleNotificationToggle(_ sender: UISwitch) {
-        UserDefaults.standard.set(!sender.isOn, forKey: "notifications_disabled")
-        if sender.isOn {
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.registerForNotifications()
-            }
-        } else {
-            NotificationManager.removeAllNotifications()
-        }
-        UserDefaults.standard.synchronize()
-        NotificationManager.updateApplicationIconBadge(dcContext: dcContext, reset: !sender.isOn)
-    }
-
-    @objc private func handleReceiptConfirmationToggle(_ sender: UISwitch) {
-        dcContext.mdnsEnabled = sender.isOn
     }
 
     @objc private func handleAutocryptPreferencesToggle(_ sender: UISwitch) {
@@ -528,64 +322,15 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }
 
     // MARK: - updates
+
     private func updateCells() {
-        profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
-        showEmailsCell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
-        mediaQualityCell.detailTextLabel?.text = MediaQualityViewController.getValString(val: dcContext.getConfigInt("media_quality"))
-        downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(
-            val: dcContext.getConfigInt("download_limit"))
         videoChatInstanceCell.detailTextLabel?.text = VideoChatInstanceViewController.getValString(val: dcContext.getConfig("webrtc_instance") ?? "")
-        autodelCell.detailTextLabel?.text = autodelSummary()
-        connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: dcContext,
-                                                                               connectedString: String.localized("connectivity_connected"))
     }
 
     // MARK: - coordinator
-    private func showEditSettingsController() {
-        let editController = SelfProfileViewController(dcAccounts: dcAccounts)
-        navigationController?.pushViewController(editController, animated: true)
-    }
-
-    private func showClassicMail() {
-        let settingsClassicViewController = EmailOptionsViewController(dcContext: dcContext)
-        navigationController?.pushViewController(settingsClassicViewController, animated: true)
-    }
-
-    private func  showMediaQuality() {
-        let mediaQualityController = MediaQualityViewController(dcContext: dcContext)
-        navigationController?.pushViewController(mediaQualityController, animated: true)
-    }
-
-    private func showDownloadOnDemand() {
-        let downloadOnDemandViewController = DownloadOnDemandViewController(dcContext: dcContext)
-        navigationController?.pushViewController(downloadOnDemandViewController, animated: true)
-    }
 
     private func showVideoChatInstance() {
         let videoInstanceController = VideoChatInstanceViewController(dcContext: dcContext)
         navigationController?.pushViewController(videoInstanceController, animated: true)
     }
-
-    private func showBlockedContacts() {
-        let blockedContactsController = BlockedContactsViewController(dcContext: dcContext)
-        navigationController?.pushViewController(blockedContactsController, animated: true)
-    }
-
-    private func showAutodelOptions() {
-        let settingsAutodelOverviewController = AutodelOverviewViewController(dcContext: dcContext)
-        navigationController?.pushViewController(settingsAutodelOverviewController, animated: true)
-    }
-
-    private func showHelp() {
-        navigationController?.pushViewController(HelpViewController(dcContext: dcContext), animated: true)
-    }
-
-    private func showConnectivity() {
-        navigationController?.pushViewController(ConnectivityViewController(dcContext: dcContext), animated: true)
-    }
-
-    private func selectBackground() {
-        navigationController?.pushViewController(BackgroundOptionsViewController(dcContext: dcContext), animated: true)
-    }
-
 }
