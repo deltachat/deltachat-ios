@@ -13,11 +13,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     private enum CellTags: Int {
         case autocryptPreferences
         case sendAutocryptMessage
-        case exportBackup
         case manageKeys
         case experimentalFeatures
-        case viewLog
         case videoChat
+        case exportBackup
+        case viewLog
     }
 
     private var dcContext: DcContext
@@ -30,22 +30,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     var progressObserver: NSObjectProtocol?
 
     // MARK: - cells
-    private lazy var videoChatInstanceCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.videoChat.rawValue
-        cell.textLabel?.text = String.localized("videochat_instance")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    private lazy var experimentalFeaturesCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.experimentalFeatures.rawValue
-        cell.textLabel?.text = String.localized("pref_experimental_features")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
     private lazy var autocryptSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isOn = dcContext.e2eeEnabled
@@ -69,18 +53,34 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var exportBackupCell: ActionCell = {
-        let cell = ActionCell()
-        cell.tag = CellTags.exportBackup.rawValue
-        cell.actionTitle = String.localized("export_backup_desktop")
-        return cell
-    }()
-
     private lazy var manageKeysCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.manageKeys.rawValue
         cell.textLabel?.text = String.localized("pref_manage_keys")
         cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var experimentalFeaturesCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.experimentalFeatures.rawValue
+        cell.textLabel?.text = String.localized("pref_experimental_features")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var videoChatInstanceCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.videoChat.rawValue
+        cell.textLabel?.text = String.localized("videochat_instance")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var exportBackupCell: ActionCell = {
+        let cell = ActionCell()
+        cell.tag = CellTags.exportBackup.rawValue
+        cell.actionTitle = String.localized("export_backup_desktop")
         return cell
     }()
 
@@ -92,10 +92,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }()
 
     private lazy var sections: [SectionConfigs] = {
-        let backupSection = SectionConfigs(
-            headerTitle: nil,
-            footerTitle: String.localized("pref_backup_explain"),
-            cells: [exportBackupCell])
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
             footerTitle: String.localized("autocrypt_explain"),
@@ -105,11 +101,15 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             headerTitle: nil,
             footerTitle: nil,
             cells: [manageKeysCell, experimentalFeaturesCell, videoChatInstanceCell])
+        let backupSection = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: String.localized("pref_backup_explain"),
+            cells: [exportBackupCell])
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
             cells: [viewLogCell])
-        return [backupSection, autocryptSection, miscSection, viewLogSection]
+        return [autocryptSection, miscSection, backupSection, viewLogSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -184,12 +184,12 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         tableView.deselectRow(at: indexPath, animated: false)
 
         switch cellTag {
-        case .videoChat: showVideoChatInstance()
         case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
-        case .exportBackup: createBackup()
-        case .experimentalFeatures: showExperimentalDialog()
         case .manageKeys: showManageKeysDialog()
+        case .experimentalFeatures: showExperimentalDialog()
+        case .videoChat: showVideoChatInstance()
+        case .exportBackup: createBackup()
         case .viewLog: showLogViewController()
         }
     }
