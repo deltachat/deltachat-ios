@@ -14,7 +14,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case autocryptPreferences
         case sendAutocryptMessage
         case exportBackup
-        case advanced
+        case manageKeys
         case experimentalFeatures
         case viewLog
         case videoChat
@@ -76,10 +76,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var advancedCell: ActionCell = {
-        let cell = ActionCell()
-        cell.tag = CellTags.advanced.rawValue
-        cell.actionTitle = String.localized("menu_advanced")
+    private lazy var manageKeysCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.manageKeys.rawValue
+        cell.textLabel?.text = String.localized("pref_manage_keys")
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
@@ -103,7 +104,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let miscSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
-            cells: [experimentalFeaturesCell, videoChatInstanceCell, advancedCell])
+            cells: [manageKeysCell, experimentalFeaturesCell, videoChatInstanceCell])
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
@@ -188,7 +189,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .exportBackup: createBackup()
         case .experimentalFeatures: showExperimentalDialog()
-        case .advanced: showAdvancedDialog()
+        case .manageKeys: showManageKeysDialog()
         case .viewLog: showLogViewController()
         }
     }
@@ -288,8 +289,8 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         present(alert, animated: true, completion: nil)
     }
 
-    private func showAdvancedDialog() {
-        let alert = UIAlertController(title: String.localized("menu_advanced"), message: nil, preferredStyle: .safeActionSheet)
+    private func showManageKeysDialog() {
+        let alert = UIAlertController(title: String.localized("pref_manage_keys"), message: nil, preferredStyle: .safeActionSheet)
 
         alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
             let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_export_explain"), self.externalPathDescr)
