@@ -131,11 +131,10 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var exportBackupCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    private lazy var exportBackupCell: ActionCell = {
+        let cell = ActionCell()
         cell.tag = CellTags.exportBackup.rawValue
-        cell.textLabel?.text = String.localized("export_backup_desktop")
-        cell.accessoryType = .disclosureIndicator
+        cell.actionTitle = String.localized("export_backup_desktop")
         return cell
     }()
 
@@ -182,9 +181,9 @@ internal final class SettingsViewController: UITableViewController, ProgressAler
         )
         let preferencesSection = SectionConfigs(
             headerTitle: String.localized("pref_chats_and_media"),
-            footerTitle: String.localized("pref_read_receipts_explain"),
+            footerTitle: nil,
             cells: [showEmailsCell, blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
-                    autodelCell, exportBackupCell, notificationCell, receiptConfirmationCell]
+                    autodelCell, notificationCell, receiptConfirmationCell, exportBackupCell]
         )
         let appearanceSection = SectionConfigs(
             headerTitle: String.localized("pref_appearance"),

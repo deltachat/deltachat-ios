@@ -52,19 +52,17 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var manageKeysCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    private lazy var manageKeysCell: ActionCell = {
+        let cell = ActionCell()
         cell.tag = CellTags.manageKeys.rawValue
-        cell.textLabel?.text = String.localized("pref_manage_keys")
-        cell.accessoryType = .disclosureIndicator
+        cell.actionTitle = String.localized("pref_manage_keys")
         return cell
     }()
 
-    private lazy var experimentalFeaturesCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    private lazy var experimentalFeaturesCell: ActionCell = {
+        let cell = ActionCell()
         cell.tag = CellTags.experimentalFeatures.rawValue
-        cell.textLabel?.text = String.localized("pref_experimental_features")
-        cell.accessoryType = .disclosureIndicator
+        cell.actionTitle = String.localized("pref_experimental_features")
         return cell
     }()
 
@@ -76,10 +74,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var viewLogCell: ActionCell = {
-        let cell = ActionCell()
+    private lazy var viewLogCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.viewLog.rawValue
-        cell.actionTitle = String.localized("pref_view_log")
+        cell.textLabel?.text = String.localized("pref_view_log")
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
@@ -104,6 +103,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         self.dcContext = dcAccounts.getSelected()
         self.dcAccounts = dcAccounts
         super.init(style: .grouped)
+        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder _: NSCoder) {
