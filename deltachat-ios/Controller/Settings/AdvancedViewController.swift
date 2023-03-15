@@ -16,7 +16,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case manageKeys
         case experimentalFeatures
         case videoChat
-        case exportBackup
         case viewLog
     }
 
@@ -77,13 +76,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var exportBackupCell: ActionCell = {
-        let cell = ActionCell()
-        cell.tag = CellTags.exportBackup.rawValue
-        cell.actionTitle = String.localized("export_backup_desktop")
-        return cell
-    }()
-
     private lazy var viewLogCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.viewLog.rawValue
@@ -101,15 +93,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             headerTitle: nil,
             footerTitle: nil,
             cells: [manageKeysCell, experimentalFeaturesCell, videoChatInstanceCell])
-        let backupSection = SectionConfigs(
-            headerTitle: nil,
-            footerTitle: String.localized("pref_backup_explain"),
-            cells: [exportBackupCell])
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
             cells: [viewLogCell])
-        return [autocryptSection, miscSection, backupSection, viewLogSection]
+        return [autocryptSection, miscSection, viewLogSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -138,19 +126,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         super.viewDidAppear(animated)
         addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationImexProgress) { [weak self] in
             guard let self = self else { return }
-
-            self.progressAlert?.dismiss(animated: true) {
-                let alert = UIAlertController(
-                    title: String.localized("backup_successful"),
-                    message: String.localizedStringWithFormat(String.localized("backup_successful_explain_ios"), "\(String.localized("Files")) ➔ Delta Chat"),
-                    preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.reloadDcContext()
-                    }
-                }))
-                self.present(alert, animated: true, completion: nil)
-            }
+            self.progressAlert?.dismiss(animated: true)
         }
     }
 
@@ -163,7 +139,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }
 
     // MARK: - UITableViewDelegate + UITableViewDatasource
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -189,7 +164,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case .manageKeys: showManageKeysDialog()
         case .experimentalFeatures: showExperimentalDialog()
         case .videoChat: showVideoChatInstance()
-        case .exportBackup: createBackup()
         case .viewLog: showLogViewController()
         }
     }
@@ -203,17 +177,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }
 
     // MARK: - actions
-
-    private func createBackup() {
-        let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            self.startImex(what: DC_IMEX_EXPORT_BACKUP)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-
     @objc private func handleAutocryptPreferencesToggle(_ sender: UISwitch) {
         dcContext.e2eeEnabled = sender.isOn
     }
@@ -294,7 +257,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
         alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
             let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_export_explain"), self.externalPathDescr)
-            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            let alert = UIAlertController(title: String.localized("pref_managekeys_export_secret_keys"), message: msg, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
                 self.startImex(what: DC_IMEX_EXPORT_SELF_KEYS)
             }))
@@ -304,7 +267,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
         alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_import_secret_keys"), style: .default, handler: { _ in
             let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_import_explain"), self.externalPathDescr)
-            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            let alert = UIAlertController(title: String.localized("pref_managekeys_import_secret_keys"), message: msg, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
                 self.startImex(what: DC_IMEX_IMPORT_SELF_KEYS)
             }))
@@ -325,7 +288,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     private func startImex(what: Int32, passphrase: String? = nil) {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
-            showProgressAlert(title: String.localized("imex_progress_title_desktop"), dcContext: dcContext)
+            showProgressAlert(title: String.localized(what==DC_IMEX_IMPORT_SELF_KEYS ? "pref_managekeys_import_secret_keys" : "pref_managekeys_export_secret_keys"), dcContext: dcContext)
             DispatchQueue.main.async {
                 self.dcAccounts.stopIo()
                 self.dcContext.imex(what: what, directory: documents[0], passphrase: passphrase)
@@ -336,13 +299,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }
 
     // MARK: - updates
-
     private func updateCells() {
         videoChatInstanceCell.detailTextLabel?.text = VideoChatInstanceViewController.getValString(val: dcContext.getConfig("webrtc_instance") ?? "")
     }
 
     // MARK: - coordinator
-
     private func showVideoChatInstance() {
         let videoInstanceController = VideoChatInstanceViewController(dcContext: dcContext)
         navigationController?.pushViewController(videoInstanceController, animated: true)
