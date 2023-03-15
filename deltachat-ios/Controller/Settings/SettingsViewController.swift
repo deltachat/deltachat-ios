@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 import Intents
 
-internal final class SettingsViewController: UITableViewController {
+internal final class SettingsViewController: UITableViewController, ProgressAlertHandler {
 
     private struct SectionConfigs {
         let headerTitle: String?
@@ -16,6 +16,7 @@ internal final class SettingsViewController: UITableViewController {
         case blockedContacts
         case notifications
         case receiptConfirmation
+        case exportBackup
         case advanced
         case help
         case autodel
@@ -29,6 +30,10 @@ internal final class SettingsViewController: UITableViewController {
     internal let dcAccounts: DcAccounts
 
     private var connectivityChangedObserver: NSObjectProtocol?
+
+    // MARK: - ProgressAlertHandler
+    weak var progressAlert: UIAlertController?
+    var progressObserver: NSObjectProtocol?
 
     // MARK: - cells
     private lazy var profileCell: ContactCell = {
@@ -126,6 +131,14 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var exportBackupCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.exportBackup.rawValue
+        cell.textLabel?.text = String.localized("export_backup_desktop")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
     private lazy var advancedCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.advanced.rawValue
@@ -171,7 +184,7 @@ internal final class SettingsViewController: UITableViewController {
             headerTitle: String.localized("pref_chats_and_media"),
             footerTitle: String.localized("pref_read_receipts_explain"),
             cells: [showEmailsCell, blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
-                    autodelCell, notificationCell, receiptConfirmationCell]
+                    autodelCell, exportBackupCell, notificationCell, receiptConfirmationCell]
         )
         let appearanceSection = SectionConfigs(
             headerTitle: String.localized("pref_appearance"),
@@ -220,9 +233,28 @@ internal final class SettingsViewController: UITableViewController {
         updateCells()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationImexProgress) { [weak self] in
+            guard let self = self else { return }
+
+            self.progressAlert?.dismiss(animated: true) {
+                let alert = UIAlertController(
+                    title: String.localized("backup_successful"),
+                    message: String.localizedStringWithFormat(String.localized("backup_successful_explain_ios"), "\(String.localized("Files")) ➔ Delta Chat"),
+                    preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         let nc = NotificationCenter.default
+        if let backupProgressObserver = self.progressObserver {
+            nc.removeObserver(backupProgressObserver)
+        }
         if let connectivityChangedObserver = self.connectivityChangedObserver {
             NotificationCenter.default.removeObserver(connectivityChangedObserver)
         }
@@ -267,6 +299,7 @@ internal final class SettingsViewController: UITableViewController {
         case .downloadOnDemand: showDownloadOnDemand()
         case .notifications: break
         case .receiptConfirmation: break
+        case .exportBackup: createBackup()
         case .advanced: showAdvanced()
         case .help: showHelp()
         case .connectivity: showConnectivity()
@@ -283,6 +316,16 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     // MARK: - actions
+
+    private func createBackup() {
+        let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+            self.startImex(what: DC_IMEX_EXPORT_BACKUP)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 
     @objc private func handleNotificationToggle(_ sender: UISwitch) {
         UserDefaults.standard.set(!sender.isOn, forKey: "notifications_disabled")
@@ -302,6 +345,19 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     // MARK: - updates
+    private func startImex(what: Int32, passphrase: String? = nil) {
+        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        if !documents.isEmpty {
+            showProgressAlert(title: String.localized("export_backup_desktop"), dcContext: dcContext)
+            DispatchQueue.main.async {
+                self.dcAccounts.stopIo()
+                self.dcContext.imex(what: what, directory: documents[0], passphrase: passphrase)
+            }
+        } else {
+            logger.error("document directory not found")
+        }
+    }
+
     private func updateCells() {
         profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
         showEmailsCell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
