@@ -233,7 +233,7 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     private func showChatsAndMedia() {
-        // TODO
+        navigationController?.pushViewController(ChatsAndMediaViewController(dcAccounts: dcAccounts), animated: true)
     }
 
     private func showAdvanced() {
