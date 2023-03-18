@@ -126,10 +126,10 @@
 "file" = "Файл";
 "files" = "Файли";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_app" = "Приватний застосунок";
+"webxdc_app" = "Застосунок";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_apps" = "Приватні застосунки";
-"files_and_webxdx_apps" = "Файли і приватні застосунки";
+"webxdc_apps" = "Застосунки";
+"files_and_webxdx_apps" = "Файли і застосунки";
 "unknown" = "Невідомо";
 
 "green" = "Зелений";
@@ -394,7 +394,7 @@
 "tab_image_empty_hint" = "Зображення, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_video_empty_hint" = "Відео, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_audio_empty_hint" = "Аудіозаписи та голосові повідомлення, якими поділилися у цьому чаті, будуть відображатися тут.";
-"tab_webxdc_empty_hint" = "Приватні застосунки, якими поділилися у цьому чаті, будуть відображатися тут.";
+"tab_webxdc_empty_hint" = "Застосунки, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_all_media_empty_hint" = "Тут відображатимуться медіафайли, якими ви ділилися в будь-якому чаті.";
 "media_preview" = "Попередній перегляд медіа";
 "send_message" = "Надіслати повідомлення";
@@ -935,7 +935,7 @@
 "notifications_avg_hours" = "В середньому %1$d годин";
 "last_check_at" = "Перевірено о %1$@";
 // iOS webxdc selector
-"webxdc_selector_empty_hint" = "Приватні застосунки, отримані або надіслані у цьому чаті, будуть відображатися тут. \"Файли\" відображають щойно завантажені приватні застосунки.";
+"webxdc_selector_empty_hint" = "Застосунки, отримані або надіслані у цьому чаті, будуть відображатися тут. \"Файли\" відображають щойно завантажені застосунки.";
 // iOS webxdc shortcut page
 "shortcut_step1_tap_share_btn" = "Натисніть кнопку поділитися";
 "shortcut_step2_tap_add_to_home_screen" = "Виберіть «Додати на головний екран», щоб додати застосунок на головний екран.";
