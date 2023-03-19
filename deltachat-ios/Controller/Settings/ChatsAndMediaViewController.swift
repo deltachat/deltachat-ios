@@ -114,7 +114,7 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
         )
         let exportBackupSection = SectionConfigs(
             headerTitle: nil,
-            footerTitle: nil,
+            footerTitle: String.localized("pref_backup_explain"),
             cells: [exportBackupCell]
         )
         return [preferencesSection, exportBackupSection]
