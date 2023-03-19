@@ -71,13 +71,16 @@ class BackupTransferViewController: UIViewController {
         }
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        // TODO: this is too harsh, aborting should be done only when the user actively quits the viewController
-        if dcBackupProvider != nil {
-            dcContext.stopOngoingProcess()
-            dcBackupProvider = nil
+    override func didMove(toParent parent: UIViewController?) {
+        let isRemoved = parent == nil
+        if isRemoved {
+            if dcBackupProvider != nil {
+                dcContext.stopOngoingProcess()
+                dcBackupProvider?.unref()
+                dcBackupProvider = nil
+            }
+            dcAccounts.startIo()
         }
-        dcAccounts.startIo()
     }
 
     // MARK: - setup
