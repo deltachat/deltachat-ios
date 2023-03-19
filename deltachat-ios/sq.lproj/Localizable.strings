@@ -563,6 +563,7 @@
 "pref_managekeys_import_explain" = "Të importohen kyçe të fshehtë prej \"%1$@\"?\n\n• Kyçet e fshehtë ekzistues s\’do të fshihen\n\n• Kyçi i fundit i importuar do të përdoret si kyçi i ri parazgjedhje, hiq rastin ku përmban te emri i kartelës fjalën \"legacy\"";
 "pref_managekeys_secret_keys_exported_to_x" = "Kyçe të fshehtë shkruar me sukses te \"%1$@\".";
 "pref_managekeys_secret_keys_imported_from_x" = "U importuan kyçe të fshehtë nga \"%1$@\".";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Sfond";
 "pref_background_btn_default" = "Përdor figurën parazgjedhje";
 "pref_background_btn_gallery" = "Përzgjidhni nga galeri";

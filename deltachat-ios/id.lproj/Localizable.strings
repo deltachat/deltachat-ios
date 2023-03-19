@@ -407,6 +407,7 @@
 "pref_managekeys_import_explain" = "Impor kunci rahasia dari \"%1$@\"?\n\n• Kunci rahasia sebelumnya tidak akan terhapus\n\n• Kunci terakhir yang diimpo akan digunakan sebagai kunci default baru kecuali ada kata \"legacy\" di nama berkas.";
 "pref_managekeys_secret_keys_exported_to_x" = "Kunci rahasia berhasil ditulis ke \"%1$@\".";
 "pref_managekeys_secret_keys_imported_from_x" = "Kunci rahasia diimpor dari \"%1$@\".";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Latar belakang";
 "pref_background_btn_default" = "Menggunakan gambar default";
 "pref_background_btn_gallery" = "Pilih dari galeri";

@@ -463,6 +463,7 @@
 "pref_managekeys_import_explain" = "Importer hemmelige nøgler fra \"%1$@\"?\n\n• Eksisterende hemmelige nøgler bliver ikke slettet\n\n• Den seneste importerede nøgle bliver brugt som ny standardnøgle medmindre den har ordet \"legacy\" i dens filnavn";
 "pref_managekeys_secret_keys_exported_to_x" = "Hemmelige nøgler skrevet til \"%1$@\".";
 "pref_managekeys_secret_keys_imported_from_x" = "Hemmelige nøgler importeret fra \"%1$@\".";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Baggrund";
 "pref_background_btn_default" = "Brug standardbillede";
 "pref_background_btn_gallery" = "Vælg fra galleri";

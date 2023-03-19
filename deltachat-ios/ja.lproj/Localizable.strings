@@ -449,6 +449,7 @@
 "pref_managekeys_import_secret_keys" = "秘密鍵のインポート";
 "pref_managekeys_secret_keys_exported_to_x" = "暗号鍵は%1$@に正常に書き込まれました。";
 "pref_managekeys_secret_keys_imported_from_x" = "暗号鍵は%1$@からインポートされました。";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "背景";
 "pref_background_btn_default" = "デフォルトの画像を使う";
 "pref_background_btn_gallery" = "ギャラリーから選ぶ";

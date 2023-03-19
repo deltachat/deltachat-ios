@@ -565,7 +565,8 @@
 "pref_managekeys_import_explain" = "Import secret keys from \"%1$@\"?\n\n• Existing secret keys will not be deleted\n\n• The last imported key will be used as the new default key unless it has the word \"legacy\" in its filename.";
 "pref_managekeys_secret_keys_exported_to_x" = "Secret keys written successfully to \"%1$@\".";
 "pref_managekeys_secret_keys_imported_from_x" = "Secret keys imported from \"%1$@\".";
-"pref_background" = "Background";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
+"pref_background" = "Wallpaper";
 "pref_background_btn_default" = "Use Default Image";
 "pref_background_btn_gallery" = "Select From Gallery";
 "pref_imap_folder_handling" = "IMAP Folder Handling";
@@ -585,7 +586,7 @@
 "pref_on_demand_location_streaming" = "On-demand Location Streaming";
 "pref_developer_mode" = "Developer Mode";
 "pref_developer_mode_explain" = "Activates debugging options and can make the app less stable. For developers only.";
-"pref_background_default" = "Default background";
+"pref_background_default" = "Default image";
 "pref_background_default_color" = "Default color";
 "pref_background_custom_image" = "Custom image";
 "pref_background_custom_color" = "Custom color";
@@ -909,7 +910,7 @@
 "a11y_delivery_status_read" = "Delivery status: Read";
 "a11y_delivery_status_invalid" = "Invalid delivery status";
 "a11y_message_context_menu_btn_label" = "Message actions";
-"a11y_background_preview_label" = "Background preview";
+"a11y_background_preview_label" = "Wallpaper preview";
 "a11y_disappearing_messages_activated" = "Disappearing messages activated";
 
 // iOS specific strings, developers: please take care to remove strings that are no longer used!

@@ -550,6 +550,7 @@
 "pref_managekeys_import_secret_keys" = "وارد کردن کلیدهای خصوصی";
 "pref_managekeys_secret_keys_exported_to_x" = "کلیدهای خصوصی با موفقیت در\"%1$@\" ذخیره شدند. ";
 "pref_managekeys_secret_keys_imported_from_x" = "کلیدهای خصوصی از \"%1$@\" وارد شدند. ";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "تصویرزمینه";
 "pref_background_btn_default" = "استفاده از تصویر پیش‌فرض";
 "pref_background_btn_gallery" = "انتخاب از گالری";

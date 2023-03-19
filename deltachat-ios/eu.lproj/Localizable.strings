@@ -345,6 +345,7 @@
 "pref_managekeys_import_explain" = "Inportatu gako sekretuak \"%1$@\"-tik?\n\n• Dauden gako sekretuak ez dira ezabatuko\n\n• Inportatutako azken gakoa lehenetsitako gako berri gisa erabiliko da fitxategiaren izenean \"legacy\" ez badu.";
 "pref_managekeys_secret_keys_exported_to_x" = "Gako sekretuak ongi idatzi dira hemen: \"%1$@\".";
 "pref_managekeys_secret_keys_imported_from_x" = "Gako sekretuak hemendik inportatu dira: \"%1$@\".";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Atzealdea";
 "pref_background_btn_default" = "Erabili lehenetsitako irudia";
 "pref_background_btn_gallery" = "Hautatu galeriatik";

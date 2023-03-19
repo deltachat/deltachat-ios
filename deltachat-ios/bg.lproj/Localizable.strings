@@ -521,6 +521,7 @@
 "pref_managekeys_import_explain" = "Да бъдат ли импортирани тайните ключове от \"%1$@\"?\n\n• Съществуващите тайни ключове няма да бъдат изтрити\n\n• Последният импортиран ключ ще стане новият подразбиращ се ключ, освен в случай че съдържа думата \"legacy\" в името на файла си.";
 "pref_managekeys_secret_keys_exported_to_x" = "Тайните ключове са записани успешно в \"%1$@\".";
 "pref_managekeys_secret_keys_imported_from_x" = "Тайните ключове са импортирани от \"%1$@\".";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Фон";
 "pref_background_btn_default" = "Да се използва подразбиращото се изображение";
 "pref_background_btn_gallery" = "Избор от галерията";
