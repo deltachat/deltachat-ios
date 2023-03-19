@@ -57,6 +57,10 @@ class BackupTransferViewController: UIViewController {
             self.dcAccounts.stopIo()
             self.dcBackupProvider = DcBackupProvider(self.dcContext)
             DispatchQueue.main.async {
+                if !(self.dcBackupProvider?.isOk() ?? false) {
+                    self.showLastErrorAlert("Cannot create backup provider; try over in a minute")
+                    return
+                }
                 let image = self.getQrImage(svg: self.dcBackupProvider?.getQrSvg())
                 self.qrContentView.image = image
                 self.progress.stopAnimating()
@@ -118,6 +122,16 @@ class BackupTransferViewController: UIViewController {
         return nil
     }
 
+    private func showLastErrorAlert(_ errorContext: String) {
+        var lastError = dcContext.lastErrorString
+        if lastError.isEmpty {
+            lastError = "<last error not set>"
+        }
+        let error = errorContext + " (" + lastError + ")"
+        let alert = UIAlertController(title: String.localized("Add Another Account"), message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+    }
 }
 
 
