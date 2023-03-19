@@ -34,13 +34,6 @@ class BackupTransferViewController: UIViewController {
         return progress
     }()
 
-    private lazy var blurView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .light)
-        let view = UIVisualEffectView(effect: blurEffect)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
@@ -91,7 +84,6 @@ class BackupTransferViewController: UIViewController {
     private func setupSubviews() {
         view.addSubview(qrContentView)
         view.addSubview(progressContainer)
-        progressContainer.addSubview(blurView)
         progressContainer.addSubview(progress)
         let qrDefaultWidth = qrContentView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75)
         qrDefaultWidth.priority = UILayoutPriority(500)
@@ -110,7 +102,6 @@ class BackupTransferViewController: UIViewController {
             progress.constraintCenterXTo(progressContainer),
             progress.constraintCenterYTo(progressContainer)
         ])
-        blurView.fillSuperview()
         progressContainer.isHidden = false
         progress.startAnimating()
         view.backgroundColor = DcColors.defaultBackgroundColor
