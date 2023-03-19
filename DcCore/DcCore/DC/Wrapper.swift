@@ -1419,14 +1419,21 @@ public class DcLot {
 }
 
 public class DcBackupProvider {
-    private var dcBackupProviderPointer: OpaquePointer
+    private var dcBackupProviderPointer: OpaquePointer?
 
     public init(_ dcContext: DcContext) {
         dcBackupProviderPointer = dc_backup_provider_new(dcContext.contextPointer)
     }
 
     deinit {
-        dc_backup_provider_unref(dcBackupProviderPointer)
+        unref()
+    }
+
+    public func unref() {
+        if dcBackupProviderPointer != nil {
+            dc_backup_provider_unref(dcBackupProviderPointer)
+            dcBackupProviderPointer = nil
+        }
     }
 
     public func getQr() -> String? {
