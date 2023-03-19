@@ -39,6 +39,9 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.chatsAndMedia.rawValue
         cell.textLabel?.text = String.localized("pref_chats_and_media")
+        if #available(iOS 16.0, *) {
+            cell.imageView?.image = UIImage(systemName: "message") // added in ios13
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -54,6 +57,9 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.notifications.rawValue
         cell.textLabel?.text = String.localized("pref_notifications")
+        if #available(iOS 16.0, *) {
+            cell.imageView?.image = UIImage(systemName: "bell") // added in ios13
+        }
         cell.accessoryView = notificationSwitch
         cell.selectionStyle = .none
         return cell
@@ -63,6 +69,9 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.advanced.rawValue
         cell.textLabel?.text = String.localized("menu_advanced")
+        if #available(iOS 16.0, *) {
+            cell.imageView?.image = UIImage(systemName: "chevron.left.forwardslash.chevron.right") // added in ios15
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -71,6 +80,9 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.help.rawValue
         cell.textLabel?.text = String.localized("menu_help")
+        if #available(iOS 16.0, *) {
+            cell.imageView?.image = UIImage(systemName: "questionmark.circle") // added in ios13
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -79,6 +91,9 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.connectivity.rawValue
         cell.textLabel?.text = String.localized("connectivity")
+        if #available(iOS 16.0, *) {
+            cell.imageView?.image = UIImage(systemName: "arrow.up.arrow.down") // added in ios13
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -87,6 +102,9 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.tag = CellTags.selectBackground.rawValue
         cell.textLabel?.text = String.localized("pref_background")
+        if #available(iOS 16.0, *) {
+            cell.imageView?.image = UIImage(systemName: "photo") // added in ios13
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
