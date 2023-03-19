@@ -41,8 +41,6 @@ class BackupTransferViewController: UIViewController {
         return view
     }()
 
-    private var progressObserver: NSObjectProtocol?
-
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
