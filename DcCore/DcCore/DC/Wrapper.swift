@@ -1429,6 +1429,10 @@ public class DcBackupProvider {
         unref()
     }
 
+    public func isOk() -> Bool {
+        return dcBackupProviderPointer != nil
+    }
+
     public func unref() {
         if dcBackupProviderPointer != nil {
             dc_backup_provider_unref(dcBackupProviderPointer)
