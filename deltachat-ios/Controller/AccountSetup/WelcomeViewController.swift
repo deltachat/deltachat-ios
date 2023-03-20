@@ -287,7 +287,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: filepath)
     }
 
-    private func addProgressHudBackupListener() {
+    private func addProgressHudBackupListener(importByFile: Bool) {
         let nc = NotificationCenter.default
         UIApplication.shared.isIdleTimerDisabled = true
         backupProgressObserver = nc.addObserver(
@@ -315,8 +315,22 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                     self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleBackupRestoreSuccess)
                     self.stopAccessingSecurityScopedResource()
-                } else {
+                } else if importByFile {
                     self.updateProgressAlertValue(value: ui["progress"] as? Int)
+                } else {
+                    guard let permille = ui["progress"] as? Int else { return }
+                    var statusLineText = ""
+                    if permille <= 50 {
+                        statusLineText = "Receiving collection..."
+                    } else if permille <= 100 {
+                        statusLineText = "Collection received."
+                    } else if permille <= 950 {
+                        let percent = ((permille-100)*100)/850
+                        statusLineText = "Transfer... \(percent)%"
+                    } else {
+                        statusLineText = "Finishing..."
+                    }
+                    self.updateProgressAlert(message: statusLineText)
                 }
             }
         }
@@ -390,7 +404,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
              handler: { [weak self] _ in
                  guard let self = self else { return }
                  self.dismissQRReader()
-                 self.addProgressHudBackupListener()
+                 self.addProgressHudBackupListener(importByFile: false)
                  self.showProgressAlert(title: String.localized("add_another_device"), dcContext: self.dcContext)
                  self.dcAccounts.stopIo() // TODO: is this needed?
                  DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -626,7 +640,7 @@ extension WelcomeViewController: MediaPickerDelegate {
         }
 
         if let selectedBackupFilePath = url.relativePath {
-            addProgressHudBackupListener()
+            addProgressHudBackupListener(importByFile: true)
             importBackup(at: selectedBackupFilePath)
         } else {
             stopAccessingSecurityScopedResource()

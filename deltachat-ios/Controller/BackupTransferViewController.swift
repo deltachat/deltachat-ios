@@ -69,8 +69,6 @@ class BackupTransferViewController: UIViewController {
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
                     self.dcBackupProvider?.wait()
-                    // TODO: track events and show transfer progress
-                    // TODO: once the QR code is scanned, it can disappear from the screen
                 }
             }
         }
