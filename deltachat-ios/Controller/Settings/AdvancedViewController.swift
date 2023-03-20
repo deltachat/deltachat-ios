@@ -95,9 +95,24 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             textLabel: String.localized("pref_only_fetch_mvbox_title"),
             on: dcContext.getConfigBool("only_fetch_mvbox"),
             action: { cell in
-                self.dcAccounts.stopIo()
-                self.dcContext.setConfigBool("only_fetch_mvbox", cell.isOn)
-                self.dcAccounts.startIo()
+                if cell.isOn {
+                    let alert = UIAlertController(title: String.localized("pref_only_fetch_mvbox_title"),
+                        message: String.localized("pref_imap_folder_warn_disable_defaults"),
+                        preferredStyle: .safeActionSheet)
+                    alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { _ in
+                        self.dcAccounts.stopIo()
+                        self.dcContext.setConfigBool("only_fetch_mvbox", true)
+                        self.dcAccounts.startIo()
+                    }))
+                    alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+                        cell.uiSwitch.setOn(false, animated: true)
+                    }))
+                    self.navigationController?.present(alert, animated: true, completion: nil)
+                } else {
+                    self.dcAccounts.stopIo()
+                    self.dcContext.setConfigBool("only_fetch_mvbox", false)
+                    self.dcAccounts.startIo()
+                }
         })
     }()
 
