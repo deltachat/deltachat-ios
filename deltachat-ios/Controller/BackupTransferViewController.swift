@@ -88,7 +88,9 @@ class BackupTransferViewController: UIViewController {
                 dcBackupProvider = nil
             }
             dcAccounts.startIo()
+            UIApplication.shared.isIdleTimerDisabled = false
         } else {
+            UIApplication.shared.isIdleTimerDisabled = true
             imexObserver = NotificationCenter.default.addObserver(forName: dcNotificationImexProgress, object: nil, queue: nil) { [weak self] notification in
                 guard let self = self, let ui = notification.userInfo, let permille = ui["progress"] as? Int else { return }
                 var statusLineText = ""
