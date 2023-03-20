@@ -59,6 +59,48 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
+    lazy var sentboxWatchCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_watch_sent_folder"),
+            on: dcContext.getConfigBool("sentbox_watch"),
+            action: { cell in
+                self.dcAccounts.stopIo()
+                self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
+                self.dcAccounts.startIo()
+        })
+    }()
+
+    lazy var sendCopyToSelfCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_send_copy_to_self"),
+            on: dcContext.getConfigBool("bcc_self"),
+            action: { cell in
+                self.dcContext.setConfigBool("bcc_self", cell.isOn)
+        })
+    }()
+
+    lazy var mvboxMoveCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_auto_folder_moves"),
+            on: dcContext.getConfigBool("mvbox_move"),
+            action: { cell in
+                self.dcAccounts.stopIo()
+                self.dcContext.setConfigBool("mvbox_move", cell.isOn)
+                self.dcAccounts.startIo()
+        })
+    }()
+
+    lazy var onlyFetchMvboxCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_only_fetch_mvbox_title"),
+            on: dcContext.getConfigBool("only_fetch_mvbox"),
+            action: { cell in
+                self.dcAccounts.stopIo()
+                self.dcContext.setConfigBool("only_fetch_mvbox", cell.isOn)
+                self.dcAccounts.startIo()
+        })
+    }()
+
     private lazy var experimentalFeaturesCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.experimentalFeatures.rawValue
@@ -86,17 +128,21 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let autocryptSection = SectionConfigs(
             headerTitle: String.localized("autocrypt"),
             footerTitle: String.localized("autocrypt_explain"),
-            cells: [autocryptPreferencesCell, sendAutocryptMessageCell]
+            cells: [autocryptPreferencesCell, manageKeysCell, sendAutocryptMessageCell]
         )
+        let folderSection = SectionConfigs(
+            headerTitle: String.localized("pref_imap_folder_handling"),
+            footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
+            cells: [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
         let miscSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
-            cells: [manageKeysCell, experimentalFeaturesCell, videoChatInstanceCell])
+            cells: [experimentalFeaturesCell, videoChatInstanceCell])
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
             cells: [viewLogCell])
-        return [autocryptSection, miscSection, viewLogSection]
+        return [autocryptSection, folderSection, miscSection, viewLogSection]
     }()
 
     init(dcAccounts: DcAccounts) {
