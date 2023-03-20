@@ -40,7 +40,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     let basicSection = 100
     let advancedSection = 200
-    let folderSection = 400
     private var sections = [Int]()
 
     private lazy var basicSectionCells: [UITableViewCell] = [emailCell, passwordCell]
@@ -58,7 +57,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         certCheckCell,
         viewLogCell
     ]
-    private lazy var folderCells: [UITableViewCell] = [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell]
     private let editView: Bool
     private var advancedSectionShowing: Bool = false
     private var providerInfoShowing: Bool = false
@@ -250,49 +248,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
-    lazy var sentboxWatchCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_watch_sent_folder"),
-            on: dcContext.getConfigBool("sentbox_watch"),
-            action: { cell in
-                self.dcAccounts.stopIo()
-                self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
-                self.dcAccounts.startIo()
-        })
-    }()
-
-    lazy var sendCopyToSelfCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_send_copy_to_self"),
-            on: dcContext.getConfigBool("bcc_self"),
-            action: { cell in
-                self.dcContext.setConfigBool("bcc_self", cell.isOn)
-        })
-    }()
-
-    lazy var mvboxMoveCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_auto_folder_moves"),
-            on: dcContext.getConfigBool("mvbox_move"),
-            action: { cell in
-                self.dcAccounts.stopIo()
-                self.dcContext.setConfigBool("mvbox_move", cell.isOn)
-                self.dcAccounts.startIo()
-        })
-    }()
-
-    lazy var onlyFetchMvboxCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_only_fetch_mvbox_title"),
-            on: dcContext.getConfigBool("only_fetch_mvbox"),
-            action: { cell in
-                self.dcAccounts.stopIo()
-                self.dcContext.setConfigBool("only_fetch_mvbox", cell.isOn)
-                self.dcAccounts.startIo()
-        })
-    }()
-
-
     private lazy var loginButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
             title: String.localized("login_title"),
@@ -303,7 +258,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return button
     }()
 
-
     // MARK: - constructor
     init(dcAccounts: DcAccounts, editView: Bool) {
         self.editView = editView
@@ -312,9 +266,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         self.sections.append(basicSection)
         self.sections.append(advancedSection)
-        if editView {
-            self.sections.append(folderSection)
-        }
 
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
@@ -371,8 +322,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if sections[section] == basicSection {
             return basicSectionCells.count
-        } else if sections[section] == folderSection {
-            return folderCells.count
         } else {
             return advancedSectionShowing ? advancedSectionCells.count : 1
         }
@@ -381,8 +330,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == basicSection && editView {
             return String.localized("login_header")
-        } else if sections[section] == folderSection {
-            return String.localized("pref_imap_folder_handling")
         } else {
             return nil
         }
@@ -409,8 +356,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             } else {
                 return String.localized("login_subheader")
             }
-        } else if sections[section] == folderSection {
-            return String.localized("pref_only_fetch_mvbox_explain")
         } else {
             return nil
         }
@@ -422,8 +367,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         if sections[section] == basicSection {
             return basicSectionCells[row]
-        } else if sections[section] == folderSection {
-            return folderCells[row]
         } else {
             return advancedSectionCells[row]
         }
