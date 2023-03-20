@@ -39,6 +39,10 @@ extension ProgressAlertHandler {
         }
     }
 
+    func updateProgressAlert(message: String) {
+        progressAlert?.message = message
+    }
+
     func updateProgressAlert(error message: String?, completion onComplete: VoidFunction? = nil) {
         DispatchQueue.main.async(execute: {
             // CAVE: show the new alert in the dismiss-done-handler of the previous one -
