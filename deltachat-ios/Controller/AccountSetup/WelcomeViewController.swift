@@ -289,6 +289,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private func addProgressHudBackupListener() {
         let nc = NotificationCenter.default
+        UIApplication.shared.isIdleTimerDisabled = true
         backupProgressObserver = nc.addObserver(
             forName: dcNotificationImexProgress,
             object: nil,
@@ -297,6 +298,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             guard let self = self else { return }
             if let ui = notification.userInfo {
                 if let error = ui["error"] as? Bool, error {
+                    UIApplication.shared.isIdleTimerDisabled = false
                     if self.dcContext.isConfigured() {
                         let accountId = self.dcContext.id
                         _ = self.dcAccounts.remove(id: accountId)
@@ -313,6 +315,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                     self.stopAccessingSecurityScopedResource()
                     self.removeBackupProgressObserver()
                 } else if let done = ui["done"] as? Bool, done {
+                    UIApplication.shared.isIdleTimerDisabled = false
                     self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleBackupRestoreSuccess)
                     self.stopAccessingSecurityScopedResource()
