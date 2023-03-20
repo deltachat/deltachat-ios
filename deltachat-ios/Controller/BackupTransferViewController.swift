@@ -8,6 +8,7 @@ class BackupTransferViewController: UIViewController {
     private let dcContext: DcContext
     private let dcAccounts: DcAccounts
     private var dcBackupProvider: DcBackupProvider?
+    private var imexObserver: NSObjectProtocol?
 
     private lazy var qrContentView: UIImageView = {
         let view = UIImageView()
@@ -78,12 +79,42 @@ class BackupTransferViewController: UIViewController {
     override func didMove(toParent parent: UIViewController?) {
         let isRemoved = parent == nil
         if isRemoved {
+            if let imexObserver = self.imexObserver {
+                NotificationCenter.default.removeObserver(imexObserver)
+            }
             if dcBackupProvider != nil {
                 dcContext.stopOngoingProcess()
                 dcBackupProvider?.unref()
                 dcBackupProvider = nil
             }
             dcAccounts.startIo()
+        } else {
+            imexObserver = NotificationCenter.default.addObserver(forName: dcNotificationImexProgress, object: nil, queue: nil) { [weak self] notification in
+                guard let self = self, let ui = notification.userInfo, let permille = ui["progress"] as? Int else { return }
+                var statusLineText = ""
+                if permille == 0 {
+                    self.showLastErrorAlert("Error")
+                } else if permille <= 100 {
+                    statusLineText = "Exporting database..."
+                } else if permille <= 300 {
+                    statusLineText = "Creating collection..."
+                } else if permille <= 350 {
+                    statusLineText = "Collection created."
+                } else if permille <= 400 {
+                    statusLineText = "Waiting for receiver..."
+                } else if permille <= 450 {
+                    statusLineText = "Receiver connected..."
+                } else if permille < 1000 {
+                    let percent = (permille-450)/5
+                    statusLineText = "Transfer... \(percent)%"
+                    if !self.qrContentView.isHidden {
+                        self.qrContentView.isHidden = true
+                    }
+                } else if permille == 1000 {
+                    statusLineText = "Done."
+                }
+                self.title = statusLineText // TODO: this should be a dedicated view
+            }
         }
     }
 
