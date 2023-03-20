@@ -92,8 +92,11 @@ class BackupTransferViewController: UIViewController {
             imexObserver = NotificationCenter.default.addObserver(forName: dcNotificationImexProgress, object: nil, queue: nil) { [weak self] notification in
                 guard let self = self, let ui = notification.userInfo, let permille = ui["progress"] as? Int else { return }
                 var statusLineText = ""
+                var hideQrCode = false
+
                 if permille == 0 {
                     self.showLastErrorAlert("Error")
+                    hideQrCode = true
                 } else if permille <= 100 {
                     statusLineText = "Exporting database..."
                 } else if permille <= 300 {
@@ -104,16 +107,20 @@ class BackupTransferViewController: UIViewController {
                     statusLineText = "Waiting for receiver..."
                 } else if permille <= 450 {
                     statusLineText = "Receiver connected..."
+                    hideQrCode = true
                 } else if permille < 1000 {
                     let percent = (permille-450)/5
                     statusLineText = "Transfer... \(percent)%"
-                    if !self.qrContentView.isHidden {
-                        self.qrContentView.isHidden = true
-                    }
+                    hideQrCode = true
                 } else if permille == 1000 {
                     statusLineText = "Done."
+                    hideQrCode = true
                 }
+
                 self.title = statusLineText // TODO: this should be a dedicated view
+                if hideQrCode && !self.qrContentView.isHidden {
+                    self.qrContentView.isHidden = true
+                }
             }
         }
     }
