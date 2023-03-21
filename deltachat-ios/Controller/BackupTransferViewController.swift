@@ -51,6 +51,9 @@ class BackupTransferViewController: UIViewController {
         self.dcContext = dcAccounts.getSelected()
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
+        setupSubviews()
+        title = String.localized("add_another_device")
+        navigationItem.leftBarButtonItem = cancelButton
     }
 
     required init?(coder _: NSCoder) {
@@ -60,9 +63,7 @@ class BackupTransferViewController: UIViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("add_another_device")
-        navigationItem.leftBarButtonItem = cancelButton
-        setupSubviews()
+        triggerLocalNetworkPrivacyAlert()
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
