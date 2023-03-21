@@ -5,10 +5,17 @@ import SDWebImageSVGKitPlugin
 
 class BackupTransferViewController: UIViewController {
 
+    public enum TranferState {
+        case unknown
+        case error
+        case success
+    }
+
     private let dcContext: DcContext
     private let dcAccounts: DcAccounts
     private var dcBackupProvider: DcBackupProvider?
     private var imexObserver: NSObjectProtocol?
+    private var transferState: TranferState = TranferState.unknown
 
     private var cancelButton: UIBarButtonItem {
         return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
@@ -63,6 +70,7 @@ class BackupTransferViewController: UIViewController {
             self.dcBackupProvider = DcBackupProvider(self.dcContext)
             DispatchQueue.main.async {
                 if !(self.dcBackupProvider?.isOk() ?? false) {
+                    self.transferState = TranferState.error
                     self.showLastErrorAlert("Cannot create backup provider")
                     return
                 }
@@ -99,6 +107,7 @@ class BackupTransferViewController: UIViewController {
                 var hideQrCode = false
 
                 if permille == 0 {
+                    self.transferState = TranferState.error
                     self.showLastErrorAlert("Error")
                     hideQrCode = true
                 } else if permille <= 100 {
@@ -117,6 +126,8 @@ class BackupTransferViewController: UIViewController {
                     statusLineText = "Transfer... \(percent)%"
                     hideQrCode = true
                 } else if permille == 1000 {
+                    self.transferState = TranferState.success
+                    self.navigationItem.leftBarButtonItem = nil // "Cancel" no longer fits as things are done
                     statusLineText = "Done."
                     hideQrCode = true
                 }
@@ -177,12 +188,17 @@ class BackupTransferViewController: UIViewController {
 
     // MARK: - actions
     @objc private func cancelButtonPressed() {
-        let alert = UIAlertController(title: nil, message: "Abort transfer?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+        switch transferState {
+        case .error, .success:
             self.navigationController?.popViewController(animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        navigationController?.present(alert, animated: true, completion: nil)
+        case .unknown:
+            let alert = UIAlertController(title: nil, message: "Abort transfer?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            navigationController?.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
