@@ -10,6 +10,10 @@ class BackupTransferViewController: UIViewController {
     private var dcBackupProvider: DcBackupProvider?
     private var imexObserver: NSObjectProtocol?
 
+    private var cancelButton: UIBarButtonItem {
+        return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+    }
+
     private lazy var qrContentView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
@@ -50,8 +54,8 @@ class BackupTransferViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("add_another_device")
+        navigationItem.leftBarButtonItem = cancelButton
         setupSubviews()
-        // TODO: add some more hints about what is going on
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
@@ -168,6 +172,16 @@ class BackupTransferViewController: UIViewController {
         let error = errorContext + " (" + lastError + ")"
         let alert = UIAlertController(title: String.localized("Add Another Account"), message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+    }
+
+    // MARK: - actions
+    @objc private func cancelButtonPressed() {
+        let alert = UIAlertController(title: nil, message: "Abort transfer?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
     }
 }
