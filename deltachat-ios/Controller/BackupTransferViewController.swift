@@ -59,7 +59,7 @@ class BackupTransferViewController: UIViewController {
             self.dcBackupProvider = DcBackupProvider(self.dcContext)
             DispatchQueue.main.async {
                 if !(self.dcBackupProvider?.isOk() ?? false) {
-                    self.showLastErrorAlert("Cannot create backup provider; try over in a minute")
+                    self.showLastErrorAlert("Cannot create backup provider")
                     return
                 }
                 let image = self.getQrImage(svg: self.dcBackupProvider?.getQrSvg())
