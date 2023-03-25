@@ -403,6 +403,7 @@
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Vous avez changé votre adresse e-mail de %1$@ à %2$@.\n\nSi vous envoyez maintenant un message à un groupe vérifié, les contacts de ce groupe remplaceront automatiquement l\'ancienne adresse par la nouvelle.\n\nIl est fortement conseillé de configurer votre ancien fournisseur d\'e-mail pour qu\'il transfère tous les e-mails à votre nouvelle adresse. Sinon, vous risquez de manquer des messages de contacts qui n\'ont pas encore reçu votre nouvelle adresse.";
 
+
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Messages entrants";
@@ -586,7 +587,7 @@
 "pref_on_demand_location_streaming" = "Envoi de la géolocalisation à la demande";
 "pref_developer_mode" = "Mode développeur";
 "pref_developer_mode_explain" = "Active les options de débogage et peut rendre l\'application moins stable. Seulement pour les développeurs.";
-"pref_background_default" = "Arrière-plan par défaut";
+"pref_background_default" = "Image par défaut";
 "pref_background_default_color" = "Couleur par défaut";
 "pref_background_custom_image" = "Image personnalisée";
 "pref_background_custom_color" = "Couleur personnalisée";
@@ -929,7 +930,7 @@
 // iOS notification settings
 "disabled_in_dc" = "Désactivé dans Delta Chat";
 "disabled_in_system_settings" = "Désactivé dans les paramètres système";
-"bg_app_refresh_disabled" = "\"La recharge des applications en arrière-plan\" est désactivé dans les paramètres du système.";
+"bg_app_refresh_disabled" = "Le \"rafraîchissement des applications en arrière-plan\" est désactivé dans les paramètres du système.";
 // iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
 "delayed" = "Retardé";
 "notifications_avg_minutes" = "Toutes les %1$d minutes en moyenne";

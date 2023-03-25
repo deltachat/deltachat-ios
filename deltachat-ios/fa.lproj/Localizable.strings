@@ -392,6 +392,7 @@
 "aeap_addr_changed" = "مخاطب %1$@ نشانی خود را از %2$@ به %3$@ تغییر داده است.  ";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 
+
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "پیام‌های ورودی";
