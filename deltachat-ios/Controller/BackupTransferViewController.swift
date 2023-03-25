@@ -25,7 +25,7 @@ class BackupTransferViewController: UIViewController {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.accessibilityHint = String.localized("scan_to_transfer")
+        view.accessibilityHint = String.localized("multidevice_qr_subtitle") // TODO: add name
         return view
     }()
 
@@ -52,7 +52,7 @@ class BackupTransferViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
         setupSubviews()
-        title = String.localized("add_another_device")
+        title = String.localized("multidevice_title")
         navigationItem.leftBarButtonItem = cancelButton
     }
 
@@ -112,24 +112,24 @@ class BackupTransferViewController: UIViewController {
                     self.showLastErrorAlert("Error")
                     hideQrCode = true
                 } else if permille <= 100 {
-                    statusLineText = "Exporting database..."
+                    statusLineText = String.localized("exporting_account")
                 } else if permille <= 300 {
-                    statusLineText = "Creating collection..."
+                    statusLineText = String.localized("preparing_account")
                 } else if permille <= 350 {
-                    statusLineText = "Collection created."
+                    statusLineText = String.localized("account_prepared")
                 } else if permille <= 400 {
-                    statusLineText = "Waiting for receiver..."
+                    statusLineText = String.localized("waiting_for_receiver")
                 } else if permille <= 450 {
-                    statusLineText = "Receiver connected..."
+                    statusLineText = String.localized("receiver_connected")
                     hideQrCode = true
                 } else if permille < 1000 {
                     let percent = (permille-450)/5
-                    statusLineText = "Transfer... \(percent)%"
+                    statusLineText = String.localized("transferring") + " \(percent)%"
                     hideQrCode = true
                 } else if permille == 1000 {
                     self.transferState = TranferState.success
                     self.navigationItem.leftBarButtonItem = nil // "Cancel" no longer fits as things are done
-                    statusLineText = "Done."
+                    statusLineText = String.localized("done")
                     hideQrCode = true
                 }
 
@@ -182,7 +182,7 @@ class BackupTransferViewController: UIViewController {
             lastError = "<last error not set>"
         }
         let error = errorContext + " (" + lastError + ")"
-        let alert = UIAlertController(title: String.localized("Add Another Account"), message: error, preferredStyle: .alert)
+        let alert = UIAlertController(title: String.localized("multidevice_title"), message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
     }
@@ -193,7 +193,7 @@ class BackupTransferViewController: UIViewController {
         case .error, .success:
             self.navigationController?.popViewController(animated: true)
         case .unknown:
-            let alert = UIAlertController(title: nil, message: "Abort transfer?", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: String.localized("multidevice_abort"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
                 self.navigationController?.popViewController(animated: true)
             }))

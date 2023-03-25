@@ -69,7 +69,7 @@ internal final class SettingsViewController: UITableViewController {
     private lazy var addAnotherDeviceCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.addAnotherDevice.rawValue
-        cell.textLabel?.text = String.localized("add_another_device")
+        cell.textLabel?.text = String.localized("multidevice_title")
         if #available(iOS 16.0, *) {
             cell.imageView?.image = UIImage(systemName: "macbook.and.iphone") // added in ios16
         }

@@ -395,8 +395,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
 
     private func confirmSetupNewDevice(qrCode: String) {
         triggerLocalNetworkPrivacyAlert()
-        let alert = UIAlertController(title: String.localized("add_another_device"),
-                                      message: String.localized("scan_other_device_explain"),
+        let alert = UIAlertController(title: String.localized("multidevice_receiver_title"),
+                                      message: String.localized("multidevice_receiver_scanning_ask"),
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(
              title: String.localized("ok"),
@@ -405,7 +405,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                  guard let self = self else { return }
                  self.dismissQRReader()
                  self.addProgressHudBackupListener(importByFile: false)
-                 self.showProgressAlert(title: String.localized("add_another_device"), dcContext: self.dcContext)
+                 self.showProgressAlert(title: String.localized("multidevice_receiver_title"), dcContext: self.dcContext)
                  self.dcAccounts.stopIo()
                  DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                      guard let self = self else { return }
