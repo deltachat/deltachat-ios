@@ -118,7 +118,7 @@ class QrPageController: UIPageViewController {
 
     // MARK: - factory
     private func makeQRReader() -> QrCodeReaderController {
-        let qrReader = QrCodeReaderController()
+        let qrReader = QrCodeReaderController(title: String.localized("qrscan_title"))
         qrReader.delegate = self
         return qrReader
     }

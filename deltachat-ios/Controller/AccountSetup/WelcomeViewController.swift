@@ -22,9 +22,18 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             guard let self = self else { return }
             self.showAccountSetupController()
         }
+        view.onAddSecondDevice  = { [weak self] in
+            guard let self = self else { return }
+            let qrReader = QrCodeReaderController(title: String.localized("multidevice_receiver_title"),
+                        addHints: "➊ " + String.localized("multidevice_same_network_hint") + "\n\n"
+                            +     "➋ " + String.localized("multidevice_open_settings_on_other_device") )
+            qrReader.delegate = self
+            self.qrCodeReader = qrReader
+            self.navigationController?.pushViewController(qrReader, animated: true)
+        }
         view.onScanQRCode  = { [weak self] in
             guard let self = self else { return }
-            let qrReader = QrCodeReaderController()
+            let qrReader = QrCodeReaderController(title: String.localized("scan_invitation_code"))
             qrReader.delegate = self
             self.qrCodeReader = qrReader
             self.navigationController?.pushViewController(qrReader, animated: true)
@@ -462,6 +471,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
 class WelcomeContentView: UIView {
 
     var onLogin: VoidFunction?
+    var onAddSecondDevice: VoidFunction?
     var onScanQRCode: VoidFunction?
     var onImportBackup: VoidFunction?
 
@@ -499,7 +509,7 @@ class WelcomeContentView: UIView {
     }()
 
     private lazy var buttonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [loginButton, qrCodeButton, importBackupButton])
+        let stack = UIStackView(arrangedSubviews: [loginButton, addSecondDeviceButton, qrCodeButton, importBackupButton])
         stack.axis = .vertical
         stack.spacing = 15
         return stack
@@ -520,9 +530,18 @@ class WelcomeContentView: UIView {
         return button
     }()
 
+    private lazy var addSecondDeviceButton: UIButton = {
+        let button = UIButton()
+        let title = String.localized("multidevice_receiver_title")
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        button.setTitle(title, for: .normal)
+        button.addTarget(self, action: #selector(addSecondDeviceButtonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+
     private lazy var qrCodeButton: UIButton = {
         let button = UIButton()
-        let title = String.localized("qrscan_title")
+        let title = String.localized("scan_invitation_code")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)
@@ -620,6 +639,10 @@ class WelcomeContentView: UIView {
     // MARK: - actions
      @objc private func loginButtonPressed(_ sender: UIButton) {
          onLogin?()
+     }
+
+     @objc private func addSecondDeviceButtonPressed(_ sender: UIButton) {
+         onAddSecondDevice?()
      }
 
      @objc private func qrCodeButtonPressed(_ sender: UIButton) {

@@ -7,7 +7,8 @@ class QrCodeReaderController: UIViewController {
     weak var delegate: QrCodeReaderDelegate?
 
     private let captureSession = AVCaptureSession()
-    
+
+    private var addHints: String?
     private var infoLabelBottomConstraint: NSLayoutConstraint?
     private var infoLabelCenterConstraint: NSLayoutConstraint?
 
@@ -17,17 +18,16 @@ class QrCodeReaderController: UIViewController {
         return videoPreviewLayer
     }()
 
-    private var infoLabel: UILabel = {
+    private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = String.localized("qrscan_hint")
+        label.text = addHints ?? String.localized("qrscan_hint")
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
         label.adjustsFontForContentSizeCategory = true
-        label.font = .preferredFont(forTextStyle: .subheadline)
-
+        label.font = .preferredFont(forTextStyle: .title2)
         return label
     }()
 
@@ -35,11 +35,20 @@ class QrCodeReaderController: UIViewController {
         AVMetadataObject.ObjectType.qr
     ]
 
+    init(title: String, addHints: String? = nil) {
+        super.init(nibName: nil, bundle: nil)
+        self.title = title
+        self.addHints = addHints // TODO: if set, show in overlay or so
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
-        title = String.localized("qrscan_title")
         self.setupInfoLabel()
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
             self.setupQRCodeScanner()
