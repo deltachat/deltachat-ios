@@ -726,7 +726,7 @@
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 // %1%s will be replaced by date and time in some human-readable format
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "برای ادامه، لطفا رمز تعیین شده توسط سیستم خود را وارد کنید";
 
 // qr code stuff

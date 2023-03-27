@@ -742,7 +742,7 @@
 "devicemsg_bad_time" = "⚠️ A data ou hora do seu dispositivo parecem imprecisas (%1$@).\n\nAjuste o relógio ⏰🔧 para garantir que suas mensagens sejam recebidas corretamente.";
 "devicemsg_update_reminder" = "⚠️ Sua versão do Delta Chat pode estar desatualizada.\n\nIsso pode causar problemas porque seus parceiros de bate-papo usam versões mais recentes - e você está perdendo os recursos mais recentes 😳\nEntre em https://get.delta.chat ou seu verifique com seu provedor de aplicativos por atualizações.";
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Por favor, insira o segredo de sistema para continuar. ";
 
 // qr code stuff

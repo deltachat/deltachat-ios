@@ -404,6 +404,30 @@
 "aeap_explanation" = "Вы изменили свой адрес электронной почты с %1$@ на %2$@.\n\nЕсли теперь вы отправите сообщение в проверенную группу, контакты там автоматически заменят старый адрес на ваш новый.\n\nНастоятельно рекомендуется настроить вашего старого поставщика услуг электронной почты на пересылку всех писем на ваш новый адрес электронной почты. В противном случае вы можете пропустить сообщения контактов, которые еще не получили ваш новый адрес.";
 
 
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Добавить второе устройство";
+"multidevice_same_network_hint" = "Подключите оба устройства к одной и той же сети Wi-Fi";
+"multidevice_install_dc_on_other_device" = "Установите Delta Chat на другое устройство (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "Запустите Delta Chat, нажмите \"Добавить второе устройство\" и отсканируйте показанный здесь код";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "Отсканируйте, чтобы настроить второе устройство для %1$@";
+"multidevice_receiver_title" = "Добавить как второе устройство";
+"multidevice_open_settings_on_other_device" = "На первом устройстве перейдите в \"Настройки / Добавить второе устройство\" и отсканируйте показанный код";
+"multidevice_receiver_scanning_ask" = "Скопировать аккаунт с другого устройства на это устройство?";
+"multidevice_abort" = "Прервать установку второго устройства?";
+"multidevice_abort_will_invalidate_copied_qr" = "Это сделает недействительным QR-код, скопированный в буфер обмена.";
+"multidevice_experimental_hint" = "(экспериментально, требуется версия 1.36)";
+// Shown beside progress bar, stay short
+"preparing_account" = "Готовим аккаунт...";
+// Shown beside progress bar, stay short
+"waiting_for_receiver" = "Ожидаем получателя...";
+// Shown beside progress bar, stay short
+"receiver_connected" = "Получатель подключен...";
+// Shown beside progress bar, stay short
+"transferring" = "Передача...";
+"troubleshooting" = "Устранение неполадок";
+
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Входящие сообщения";
@@ -745,7 +769,7 @@
 "devicemsg_bad_time" = "⚠️ Дата или время вашего устройства кажутся неточными (%1$@).\n\nНастройте свои часы ⏰🔧, чтобы убедиться, что ваши сообщения принимаются правильно.";
 "devicemsg_update_reminder" = "⚠️ Ваша версия Delta Chat может быть устаревшей.\n\nЭто может вызвать проблемы, поскольку ваши собеседники используют версии новее - вам не хватает новых функций 😳\nПожалуйста, проверьте https://get.delta.chat или магазин приложений на наличие обновлений.";
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Пожалуйста, введите защитный код вашей системы, чтобы продолжить. ";
 
 // qr code stuff

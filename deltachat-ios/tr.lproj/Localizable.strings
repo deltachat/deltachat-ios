@@ -46,6 +46,10 @@
 "start_chat" = "Sohbete Başla";
 "show_full_message" = "Tam İletiyi Göster…";
 "show_full_message_in_browser" = "Tam İletiyi Tarayıcıda Göster…";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Tümünü Okundu Olarak İmle";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Okundu";
 // Placeholder text when something is loading
 "loading" = "Yükleniyor…";
 "hide" = "Gizle";
@@ -122,10 +126,10 @@
 "file" = "Dosya";
 "files" = "Dosyalar";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_app" = "Özel Uygulama";
+"webxdc_app" = "Uygulama";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_apps" = "Özel Uygulamalar";
-"files_and_webxdx_apps" = "Dosyalar ve Özel Uygulamalar";
+"webxdc_apps" = "Uygulamalar";
+"files_and_webxdx_apps" = "Dosyalar ve Uygulamalar";
 "unknown" = "Bilinmeyen";
 
 "green" = "Yeşil";
@@ -170,6 +174,8 @@
 "menu_add_attachment" = "İlişik Ekle";
 "menu_leave_group" = "Gruptan Ayrıl";
 "menu_delete_chat" = "Sohbeti Sil";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Sohbeti Temizle";
 "ask_delete_named_chat" = "\"%1$@\" sohbetini silmek istediğinizden emin misiniz?";
 "menu_delete_messages" = "İletileri Sil";
 "delete_contact" = "Kişiyi Sil";
@@ -388,7 +394,8 @@
 "tab_image_empty_hint" = "Bu sohbette paylaşılan görseller burada görünecek.";
 "tab_video_empty_hint" = "Bu sohbette paylaşılan videolar burada görünecek.";
 "tab_audio_empty_hint" = "Bu sohbette paylaşılan ses dosyaları ve sesli iletiler burada görünecek.";
-"tab_webxdc_empty_hint" = "Bu sohbette paylaşılan özel uygulamalar burada görünecek.";
+"tab_webxdc_empty_hint" = "Bu sohbette paylaşılan uygulamalar burada görünecek.";
+"tab_all_media_empty_hint" = "Herhangi bir sohbette paylaşılan ortamlar burada görünecek.";
 "media_preview" = "Ortam Önizlemesi";
 "send_message" = "İleti Gönder";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -396,6 +403,30 @@
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "%1$@ e-posta adresinizi %2$@ olarak değiştirdiniz.\n\nŞimdi bir doğrulanan gruba ileti gönderirseniz, oradaki kişiler yeni adresinizle eskisini otomatik olarak değiştirecek.\n\nTüm e-postaları yeni e-posta adresinize iletmek için eski e-posta sağlayıcınızı ayarlamanız önemle önerilir. Yoksa henüz yeni adresinizi almamış olan kişilerin iletilerini kaçırabilirsiniz.";
 
+
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "İkinci Aygıt Ekle";
+"multidevice_same_network_hint" = "İki aygıtın da aynı Wi-Fi\'da ya da ağda olduğundan emin olun";
+"multidevice_install_dc_on_other_device" = "Delta Chat\'i diğer aygıtınıza kurun (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "Delta Chat\'i başlatın, “İkinci Aygıt Olarak Ekle”ye dokunun ve burada gösterilen kodu tarayın";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "%1$@ için ikinci aygıtı ayarlamak üzere tarayın";
+"multidevice_receiver_title" = "İkinci Aygıt Olarak Ayarla";
+"multidevice_open_settings_on_other_device" = "Birinci aygıtta “Ayarlar / İkinci Aygıt Ekle”ye gidin ve orada gösterilen kodu tarayın";
+"multidevice_receiver_scanning_ask" = "Diğer aygıttan gelen hesap bu aygıta kopyalansın mı?";
+"multidevice_abort" = "İkinci aygıtı ayarlamaktan vazgeçilsin mi?";
+"multidevice_abort_will_invalidate_copied_qr" = "Bu, panoya kopyalanan QR kodunu geçersizleştirecek.";
+"multidevice_experimental_hint" = "(deneysel, sürüm 1.36 gerekli)";
+// Shown beside progress bar, stay short
+"preparing_account" = "Hesap hazırlanıyor…";
+// Shown beside progress bar, stay short
+"waiting_for_receiver" = "Alıcı bekleniyor…";
+// Shown beside progress bar, stay short
+"receiver_connected" = "Alıcı bağlandı…";
+// Shown beside progress bar, stay short
+"transferring" = "Aktarılıyor…";
+"troubleshooting" = "Sorun Giderme";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -560,7 +591,7 @@
 "pref_managekeys_secret_keys_exported_to_x" = "Sır anahtarlar \"%1$@\" üzerine başarıyla yazıldı.";
 "pref_managekeys_secret_keys_imported_from_x" = "Sır anahtarlar \"%1$@\" üzerinden içe aktarıldı.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
-"pref_background" = "Arka Plan";
+"pref_background" = "Duvar Kâğıdı";
 "pref_background_btn_default" = "Varsayılan Görseli Kullan";
 "pref_background_btn_gallery" = "Galeriden Seç";
 "pref_imap_folder_handling" = "IMAP Klasör İşleme";
@@ -580,7 +611,7 @@
 "pref_on_demand_location_streaming" = "İsteğe Bağlı Konum Akışı";
 "pref_developer_mode" = "Geliştirici Modu";
 "pref_developer_mode_explain" = "Hata ayıklama seçeneklerini etkinleştirir ve uygulamayı daha az kararlı yapabilir. Yalnızca geliştiriciler içindir.";
-"pref_background_default" = "Varsayılan arka plan";
+"pref_background_default" = "Varsayılan görsel";
 "pref_background_default_color" = "Varsayılan renk";
 "pref_background_custom_image" = "Özel görsel";
 "pref_background_custom_color" = "Özel renk";
@@ -738,7 +769,7 @@
 "devicemsg_bad_time" = "⚠️ Aygıtınızdaki tarih ya da saat yanlış görünüyor (%1$@).\n\nİletilerinizin doğru şekilde alınmasını sağlamak için saatinizi ⏰🔧 ayarlayın.";
 "devicemsg_update_reminder" = "⚠️ Delta Chat sürümünüz eski olabilir.\n\nBu, sorunlara neden olabilir; çünkü sohbet ortaklarınız daha yeni sürümleri kullanıyor - ve en yeni özellikleri kaybediyorsunuz 😳\nGüncelleştirmeler için lütfen https://get.delta.chat ya da uygulama mağazanızı denetleyin.";
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Sürdürmek için lütfen sistem tanımlı sırrınızı girin.";
 
 // qr code stuff
@@ -904,7 +935,7 @@
 "a11y_delivery_status_read" = "Teslimat durumu: Okundu";
 "a11y_delivery_status_invalid" = "Geçersiz teslimat durumu";
 "a11y_message_context_menu_btn_label" = "İleti eylemleri";
-"a11y_background_preview_label" = "Arka plan önizlemesi";
+"a11y_background_preview_label" = "Duvar kâğıdı önizlemesi";
 "a11y_disappearing_messages_activated" = "Kaybolan iletiler etkinleştirildi";
 
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
@@ -930,7 +961,7 @@
 "notifications_avg_hours" = "Ortalama olarak her %1$d saatte bir";
 "last_check_at" = "Denetleme %1$@";
 // iOS webxdc selector
-"webxdc_selector_empty_hint" = "Herhangi bir sohbette alınan ya da gönderilen özel uygulamalar burada görünecek. \"Dosyalar\", yalnızca indirilen özel uygulamaları gösterir.";
+"webxdc_selector_empty_hint" = "Herhangi bir sohbette alınan ya da gönderilen uygulamalar burada görünecek. \"Dosyalar\", yalnızca indirilen uygulamaları gösterir.";
 // iOS webxdc shortcut page
 "shortcut_step1_tap_share_btn" = "Paylaş düğmesini tıklayın";
 "shortcut_step2_tap_add_to_home_screen" = "Uygulamayı ana ekranınıza eklemek için \"Ana Ekrana Ekle\"yi seçin.";

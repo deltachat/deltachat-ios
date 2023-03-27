@@ -408,6 +408,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Add Second Device";
 "multidevice_same_network_hint" = "Make sure both devices are on the same Wi-Fi or network";
+"multidevice_this_creates_a_qr_code" = "This creates a QR code that the second device can scan to copy the account.";
 "multidevice_install_dc_on_other_device" = "Install Delta Chat on your other device (https://get.delta.chat)";
 "multidevice_tap_scan_on_other_device" = "Start Delta Chat, tap “Add as Second Device” and scan the code shown here";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
@@ -419,11 +420,7 @@
 "multidevice_abort_will_invalidate_copied_qr" = "This will invalidate the QR code copied to clipboard.";
 "multidevice_experimental_hint" = "(experimental, version 1.36 required)";
 // Shown beside progress bar, stay short
-"exporting_account" = "Exporting account…";
-// Shown beside progress bar, stay short
 "preparing_account" = "Preparing account…";
-// Shown beside progress bar, stay short
-"account_prepared" = "Account prepared.";
 // Shown beside progress bar, stay short
 "waiting_for_receiver" = "Waiting for receiver…";
 // Shown beside progress bar, stay short
@@ -773,8 +770,8 @@
 "devicemsg_bad_time" = "⚠️ Date or time on your device seems to be inaccurate (%1$@).\n\nAdjust your clock ⏰🔧 to ensure your messages are received correctly.";
 "devicemsg_update_reminder" = "⚠️ Your Delta Chat version might be outdated.\n\nThis may cause problems because your chat partners use newer versions - and you are missing the latest features 😳\nPlease check https://get.delta.chat or your app store for updates.";
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
-"enter_system_secret_to_continue" = "Please enter your system defined secret to continue.";
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
+"enter_system_secret_to_continue" = "Unlock to continue";
 
 // qr code stuff
 "qr_code" = "QR Code";

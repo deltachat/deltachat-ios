@@ -714,7 +714,7 @@
 "devicemsg_bad_time" = "⚠️ 장치의 날짜 또는 시간이 정확하지 않은 것 같습니다(%1$@).\n\n메시지가 올바르게 수신되도록 시계 ⏰🔧를 조정하세요.";
 "devicemsg_update_reminder" = "⚠️ 델타 채팅 버전이 오래되었을 수 있습니다.\n\n채팅 파트너가 최신 버전을 사용하기 때문에 문제가 발생할 수 있습니다.  당신은 최신 기능이 없습니다. 😳\n https://get.delta.chat 또는 앱 스토어에서 업데이트를 확인하십시오.";
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "계속하려면 시스템 정의 암호를 입력하십시오.";
 
 // qr code stuff

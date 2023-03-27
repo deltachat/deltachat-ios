@@ -404,6 +404,30 @@
 "aeap_explanation" = "你将邮箱从 %1$@ 改为了 %2$@。\n\n如果你现在发送一条消息到已验证群组，那里的联系人将自动用你的新邮箱替换旧邮箱。\n\n我们建议你将旧邮箱配置为转发所有邮件到新邮箱。否则，你可能收不到还不知道你新邮箱的联系人发过来的消息。";
 
 
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "添加第二台设备";
+"multidevice_same_network_hint" = "确保两台设备连接的是相同的 WI-Fi 或网络";
+"multidevice_install_dc_on_other_device" = "在你的其他设备上安装 Delta Chat (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "启动 Delta Chat 应用，轻按“添加为第二台设备”并扫描显示在那里的二维码";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "扫描此处为 %1$@ 设置第二台设备";
+"multidevice_receiver_title" = "添加为第二台设备";
+"multidevice_open_settings_on_other_device" = "在第一台设备上，转到“设置/添加第二台设备”并扫描显示在那里的二维码";
+"multidevice_receiver_scanning_ask" = "将账户从其他设备复制到这台设备吗？";
+"multidevice_abort" = "中断设置第二台设备吗？";
+"multidevice_abort_will_invalidate_copied_qr" = "这会让复制到剪贴板的二维码失效。";
+"multidevice_experimental_hint" = "（实验性，需要 1.36 版本）";
+// Shown beside progress bar, stay short
+"preparing_account" = "准备账户中…";
+// Shown beside progress bar, stay short
+"waiting_for_receiver" = "等待接收者…";
+// Shown beside progress bar, stay short
+"receiver_connected" = "已连接接收者…";
+// Shown beside progress bar, stay short
+"transferring" = "转移中…";
+"troubleshooting" = "故障排除";
+
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "消息接收";
@@ -745,7 +769,7 @@
 "devicemsg_bad_time" = "⚠️设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟⏰🔧以确保能够正确接收消息。";
 "devicemsg_update_reminder" = "⚠️您的 Delta Chat 版本可能过时了。\n\n这可能会在您的聊天伙伴使用更新的版本时造成问题。并且您缺失了最新功能😳\n请浏览 https://get.delta.chat 或应用商店来获取更新。";
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "请输入您的系统密码以继续。";
 
 // qr code stuff

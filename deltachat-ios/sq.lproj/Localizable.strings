@@ -402,6 +402,30 @@
 "aeap_explanation" = "Ndryshuat adresën tuaj nga %1$@ në %2$@.\n\nNëse dërgoni tani një mesazh te një grup i verifikuar, kontaktet atje do të zëvendësojnë automatikisht adresën tuaj të vjetër me të renë.\n\nËshtë tejet e këshillueshme të ujdisni shërbimin tuaj të vjetër të email-it të përcjellë krejt email-et te adresa juaj e re email. Përndryshme, mund të humbni mesazhe të kontakteve që s’e kanë marrë ende adresën tuaj të re.";
 
 
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Shtoni Pajisje të Dytë";
+"multidevice_same_network_hint" = "Sigurohuni se të dy pajisjet janë në të njëjtin rrjet Wi-Fi ose klasik";
+"multidevice_install_dc_on_other_device" = "Instaloni Delta Chat-in në pajisjen tuaj tjetër (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "Nisni Delta Chat-in, prekni mbi “Shtoje si Pajisje të Dytë” dhe skanoni kodin e treguar këtu";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "Skanojeni, që të ujdisni pajise të dytë për %1$@";
+"multidevice_receiver_title" = "Shtoni Pajisje të Dytë";
+"multidevice_open_settings_on_other_device" = "Te pajisja e parë, kaloni te “Rregullime / Shtoje si Pajisje të Dytë” dhe skanoni kodin e treguar këtu";
+"multidevice_receiver_scanning_ask" = "Të kopjohet llogaria nga pajisja tjetër te kjo pajisje?";
+"multidevice_abort" = "Të ndërpritet ujdisja e pajisjes së dytë?";
+"multidevice_abort_will_invalidate_copied_qr" = "Kjo do të bëjë të pavlefshëm kodin QR të kopjuar në të papastër.";
+"multidevice_experimental_hint" = "(eksperimentale, lyp versionin 1.36)";
+// Shown beside progress bar, stay short
+"preparing_account" = "Po përgatitet llogaria…";
+// Shown beside progress bar, stay short
+"waiting_for_receiver" = "Po pritet për marrës…";
+// Shown beside progress bar, stay short
+"receiver_connected" = "Marrësi u lidh…";
+// Shown beside progress bar, stay short
+"transferring" = "Po shpërngulet…";
+"troubleshooting" = "Diagnostikim";
+
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Mesazhe të Marrë";
@@ -742,7 +766,7 @@
 "devicemsg_bad_time" = "⚠️ Data ose koha e pajisjes tuaj duket të jetë e pasaktë (%1$@).\n\nRregulloni sahatin tuaj ⏰🔧 që të garantohet se mesazhet tuaj merren saktë.";
 "devicemsg_update_reminder" = "⚠️ Versioni juaj i Delta Chat-it duket të jetë i vjetruar.\n\nKjo mund të shkaktojë probleme, ngaqë partnerët tuaj të fjalosjes përdorin versione të rinj - dhe ju mungojnë veçoritë më të reja 😳\nPër përditësime, ju lutemi, shihni te https://get.delta.chat ose te shitorja juaj e aplikacioneve.";
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Që të vazhdohet, ju lutemi, jepni të fshehtën tuaj të përcaktuar nga sistemi.";
 
 // qr code stuff

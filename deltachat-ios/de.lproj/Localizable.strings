@@ -408,6 +408,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Zweitgerät hinzufügen";
 "multidevice_same_network_hint" = "Beide Geräte müssen im selben Wi-Fi oder Netzwerk sein.";
+"multidevice_this_creates_a_qr_code" = "Erstellt einen QR-Code, den ein Zweitgerät scannen kann, um das Konto zu kopieren.";
 "multidevice_install_dc_on_other_device" = "Delta Chat auf dem anderen Gerät installieren (https://get.delta.chat)";
 "multidevice_tap_scan_on_other_device" = "Delta Chat starten, \"Als Zweitgerät hinzufügen\" wählen und den QR-Code scannen";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
@@ -419,11 +420,7 @@
 "multidevice_abort_will_invalidate_copied_qr" = "Dadurch wird der auf die Zwischenablage kopierte QR-Code ungültig.";
 "multidevice_experimental_hint" = "(experimentell, Version 1.36 erforderlich)";
 // Shown beside progress bar, stay short
-"exporting_account" = "Konto exportieren…";
-// Shown beside progress bar, stay short
 "preparing_account" = "Konto vorbereiten…";
-// Shown beside progress bar, stay short
-"account_prepared" = "Konto vorbereitet.";
 // Shown beside progress bar, stay short
 "waiting_for_receiver" = "Warte auf Empfänger…";
 // Shown beside progress bar, stay short
@@ -773,8 +770,8 @@
 "devicemsg_bad_time" = "⚠️ Ihr Gerät scheint ein falsches Datum oder eine falsche Uhrzeit (%1$@) zu verwenden.\n\nStellen Sie Ihre Uhr ⏰🔧 richtig ein, um sicherzustellen, dass Ihre Nachrichten korrekt empfangen werden.";
 "devicemsg_update_reminder" = "⚠️ Ihre Delta-Chat-Version ist möglicherweise veraltet.\n\nDies kann zu Problemen führen, wenn Ihre Chat-PartnerInnen neuere Versionen verwenden - und Ihnen die neuesten Funktionen fehlen. 😳\nBitte überprüfen Sie https://get.delta.chat oder Ihren App-Store auf Updates.";
 
-// Some options as "Manage keys" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Manage keys" or "Backup".
-"enter_system_secret_to_continue" = "Bitte geben Sie den System-Entsperrcode ein, um fortzufahren.";
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
+"enter_system_secret_to_continue" = "Entsperren zum Fortfahren";
 
 // qr code stuff
 "qr_code" = "QR-Code";
