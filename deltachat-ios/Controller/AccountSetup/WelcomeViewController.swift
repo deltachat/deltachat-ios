@@ -329,15 +329,13 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                 } else {
                     guard let permille = ui["progress"] as? Int else { return }
                     var statusLineText = ""
-                    if permille <= 50 {
-                        statusLineText = "Receiving collection..."
-                    } else if permille <= 100 {
-                        statusLineText = "Collection received."
+                    if permille <= 100 {
+                        statusLineText = String.localized("preparing_account")
                     } else if permille <= 950 {
                         let percent = ((permille-100)*100)/850
-                        statusLineText = "Transfer... \(percent)%"
+                        statusLineText = String.localized("transferring") + " \(percent)%"
                     } else {
-                        statusLineText = "Finishing..."
+                        statusLineText = "Finishing..." // range not used, should not happen
                     }
                     self.updateProgressAlert(message: statusLineText)
                 }
