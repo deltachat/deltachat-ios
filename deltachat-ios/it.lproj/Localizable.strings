@@ -408,6 +408,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Aggiungi Secondo Dispositivo";
 "multidevice_same_network_hint" = "Assicurati che entrambi i dispositivi siano sulla stessa rete o Wi-Fi.";
+"multidevice_this_creates_a_qr_code" = "In questo modo si crea un codice QR che il secondo dispositivo può scansionare per copiare l\'account.";
 "multidevice_install_dc_on_other_device" = "Installa Delta Chat sull\'altro dispositivo (https://get.delta.chat)";
 "multidevice_tap_scan_on_other_device" = "Avvia Delta Chat, tocca \"Aggiungi come secondo dispositivo\" e scansiona il codice qui mostrato";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
@@ -981,4 +982,8 @@
 
 // device messages for updates
 "update_1_34_android" = "Cosa c\'è di nuovo nella 1.34?\n\n🤗 Liste di contatti più amichevoli: ordinati per ultimo visto e contatti visti entro 10 minuti sono contrassegnati da un punto 🟢\n\n📑 Nuove pagine nei profili chat: \"Audio\" e \"App Private\"\n\n🖼️ Se qualcuno ti invia una \"App Privata\" (es. da https://webxdc.org), puoi aggiungerla alla schermata iniziale";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_36_android" = "1.36 In evidenza\n\n💻📱 Utilizza facilmente Delta Chat su tutti i tuoi dispositivi: basta seguire tre semplici passaggi in \"Impostazioni / Aggiungi Secondo Dispositivo\" (sperimentale)\n\n🖼🔍 Hai sempre cercato un\'immagine e non ricordavi la chat ? \"Tutti i Media\" dal menu principale sono tuoi!\n\nCos\'altro? Notifiche per tutti gli account, cancella messaggi e altro su %1$@";
+// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
+"update_1_36_audit" = "Qui non parliamo molto di sicurezza, ma state certi che ci teniamo: Vedere %1$@ per le recenti buone notizie 👌";
 

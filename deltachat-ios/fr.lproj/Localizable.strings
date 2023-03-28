@@ -212,7 +212,7 @@
 "menu_select_all" = "Tout sélectionner";
 "select_more" = "Sélectionner plus";
 "menu_edit_name" = "Modifier le nom";
-"menu_settings" = "Configuration";
+"menu_settings" = "Paramètres";
 "menu_advanced" = "Avancé";
 "menu_view_profile" = "Voir le profil";
 "menu_zoom_in" = "Zoom avant";
@@ -403,6 +403,31 @@
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Vous avez changé votre adresse e-mail de %1$@ à %2$@.\n\nSi vous envoyez maintenant un message à un groupe vérifié, les contacts de ce groupe remplaceront automatiquement l\'ancienne adresse par la nouvelle.\n\nIl est fortement conseillé de configurer votre ancien fournisseur d\'e-mail pour qu\'il transfère tous les e-mails à votre nouvelle adresse. Sinon, vous risquez de manquer des messages de contacts qui n\'ont pas encore reçu votre nouvelle adresse.";
 
+
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Ajouter un deuxième appareil";
+"multidevice_same_network_hint" = "Vérifiez que les deux appareils sont bien connectés au même Wi-Fi ou réseau.";
+"multidevice_this_creates_a_qr_code" = "Crée un code QR que vous pouvez scanner avec le deuxième appareil pour copier le compte.";
+"multidevice_install_dc_on_other_device" = "Installer Delta Chat sur votre autre appareil (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "Lancez Delta Chat, appuyez sur \"Ajouter comme deuxième appareil\" et scannez le code affiché ici.";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "Scanner pour configurer un deuxième appareil pour %1$@";
+"multidevice_receiver_title" = "Ajouter comme deuxième appareil";
+"multidevice_open_settings_on_other_device" = "Sur le premier appareil, allez dans \"Paramètres / Ajouter un deuxième appareil\" et scannez le code montré";
+"multidevice_receiver_scanning_ask" = "Copier le compte de l\'autre appareil sur cet appareil ?";
+"multidevice_abort" = "Abandonner la configuration du deuxième dispositif ?";
+"multidevice_abort_will_invalidate_copied_qr" = "Cela invalidera le code QR copié dans le presse-papiers.";
+"multidevice_experimental_hint" = "(expérimental, version 1.36 requise)";
+// Shown beside progress bar, stay short
+"preparing_account" = "Préparation du compte...";
+// Shown beside progress bar, stay short
+"waiting_for_receiver" = "En attente d\'un récepteur...";
+// Shown beside progress bar, stay short
+"receiver_connected" = "Récepteur connecté...";
+// Shown beside progress bar, stay short
+"transferring" = "Transfert...";
+"troubleshooting" = "Dépannage";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -746,7 +771,7 @@
 "devicemsg_update_reminder" = "⚠️ Votre version de Delta Chat semble être obsolète.\n\nCeci pourrait poser des problèmes car vos contacts utilisent des versions plus récentes - et vous loupez les dernières fonctionnalités 😳\nVeuillez s\'il vous plaît faire un tour sur https://get.delta.chat ou votre magasin d\'applications pour une mise à jour.";
 
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
-"enter_system_secret_to_continue" = "Pour continuer, veuillez s\'il vous plaît entrer votre code secret système.";
+"enter_system_secret_to_continue" = "Veuillez déverrouiller pour continuer.";
 
 // qr code stuff
 "qr_code" = "Code QR";
@@ -957,4 +982,8 @@
 
 // device messages for updates
 "update_1_34_android" = "Nouveautes de la version 1.34 :n\n🤗 Des listes de contacts plus ergonomique : les derniers vus sont en premiers, et les contacts vus dans les 10 dernières minutes sont marqués d\'un point 🟢\n\n📑 Nouvelles pages dans les profils des discussions : « Audio » and « Applis privées » \n\n🖼️ Vous pouvez ajouter à l\'écran d\'accueil les « Applis privées » qu\'on vous envoie (par exemple depuis https://webxdc.org ).";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_36_android" = "1.36 Highlights\n\n💻📱 Utiliser le Delta Chat sur tous vos appareils facilement - ça suffit de suivre trois étapes simples dans \"Reglages / Ajouter un deuxième appareil\" (expérimental)\n\n🖼🔍 Vous avez déjà cherché une image sans se souvener quelle discussion ? L\'option \"Tous les médias\" du menu principal est la vôtre !\n\nQuoi d\'autre ? Des notifications pour tous les comptes, vider des discussions, et plus ici %1$@";
+// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
+"update_1_36_audit" = "Nous ne parlons pas beaucoup de sécurité ici, mais soyez assurés que nous nous en préoccupons : Voyez %1$@ pour les bonnes nouvelles récentes 👌";
 

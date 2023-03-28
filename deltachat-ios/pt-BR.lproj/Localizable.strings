@@ -126,10 +126,10 @@
 "file" = "Arquivo";
 "files" = "Arquivos";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_app" = "App Privado";
+"webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_apps" = "Apps Privados";
-"files_and_webxdx_apps" = "Arquivos e Apps Privados";
+"webxdc_apps" = "Apps";
+"files_and_webxdx_apps" = "Arquivos e Apps";
 "unknown" = "Desconhecido";
 
 "green" = "Verde";
@@ -174,6 +174,8 @@
 "menu_add_attachment" = "Inserir anexo";
 "menu_leave_group" = "Sair do grupo";
 "menu_delete_chat" = "Apagar conversa";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Esvaziar bate-papo";
 "ask_delete_named_chat" = "Você tem certeza que quer apagar \"%1$@\"?";
 "menu_delete_messages" = "Apagar mensagens";
 "delete_contact" = "Apagar contato";
@@ -392,7 +394,8 @@
 "tab_image_empty_hint" = "As imagens compartilhadas neste chat serão exibidas aqui.";
 "tab_video_empty_hint" = "Os vídeos compartilhados neste chat serão exibidos aqui.";
 "tab_audio_empty_hint" = "Os arquivos de áudio e mensagens de voz compartilhados neste chat serão exibidos aqui.";
-"tab_webxdc_empty_hint" = "Apps privados compartilhados neste chat serão exibidos aqui.";
+"tab_webxdc_empty_hint" = "Apps compartilhados neste chat serão exibidos aqui.";
+"tab_all_media_empty_hint" = "Mídia compartilhada em qualquer bate-papo aparecerá aqui.";
 "media_preview" = "Pré-visualização.";
 "send_message" = "Enviar mensagem";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -400,6 +403,31 @@
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Você mudou seu endereço de e-mail de %1$@ para %2$@.\n\nSe você agora enviar uma mensagem para um grupo verificado, os contatos lá substituirão automaticamente o antigo por seu novo endereço.\n\nÉ altamente recomendável configurar seu antigo provedor de e-mail para encaminhar todos os e-mails para seu novo endereço de e-mail. Caso contrário, você pode perder mensagens de contatos que ainda não receberam seu novo endereço.";
 
+
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Adicionar segundo dispositivo";
+"multidevice_same_network_hint" = "Certifique-se de que ambos os dispositivos estejam no mesmo Wi-Fi ou na mesma rede";
+"multidevice_this_creates_a_qr_code" = "Isso cria um código QR que o segundo dispositivo pode digitalizar para copiar a conta.";
+"multidevice_install_dc_on_other_device" = "Instalar o Delta Chat em seu outro dispositivo (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "Inicie o Delta Chat, toque em \"Adicionar como segundo dispositivo\" e leia o código mostrado aqui";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "Scan para configurar um segundo dispositivo para %1$@";
+"multidevice_receiver_title" = "Adicionar como segundo dispositivo";
+"multidevice_open_settings_on_other_device" = "No primeiro dispositivo, vá para \"Configurações / Adicionar segundo dispositivo\" e leia o código mostrado lá";
+"multidevice_receiver_scanning_ask" = "Copiar a conta do outro dispositivo para este dispositivo?";
+"multidevice_abort" = "Cancelr a instalação de um segundo dispositivo?";
+"multidevice_abort_will_invalidate_copied_qr" = "Isto invalidará o código QR copiado para a prancheta.";
+"multidevice_experimental_hint" = "(experimental, versão 1.36 necessária)";
+// Shown beside progress bar, stay short
+"preparing_account" = "Preparando a conta...";
+// Shown beside progress bar, stay short
+"waiting_for_receiver" = "À espera do receptor...";
+// Shown beside progress bar, stay short
+"receiver_connected" = "Receptor conectado...";
+// Shown beside progress bar, stay short
+"transferring" = "Transferindo...";
+"troubleshooting" = "Solução de problemas";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -954,4 +982,8 @@
 
 // device messages for updates
 "update_1_34_android" = "O que há de novo em 1.34?\n\n 🤗 Listas de contatos mais intuitivas: Ordenado pela última vez visto e contatos vistos em 10 minutos são marcados por um ponto 🟢\n\n📑 Novas páginas em perfis de chat: \"Audio\" e \"Aplicativos Privados\"\n\n🖼 Se alguém lhe enviar um \"Applicativo privado\" (por exemplo, de https://webxdc.org ), você pode adicionar-lo à tela inicial";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_36_android" = "1.36 Destaques\n\n💻📱 Use o Delta Chat em todos os seus dispositivos facilmente - basta seguir três passos simples em \"Configurações / Adicionar segundo dispositivo\" (experimental)\n\n🖼🔍 Já procurou por uma imagem e não conseguiu se lembrar do bate-papo? \"Todas as mídias\" do menu principal é o seu!\n\nO que mais? Notificações para todas as contas, esvaziar bate-papo, e mais em %1$@";
+// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
+"update_1_36_audit" = "Aqui não falamos muito sobre segurança, mas fique tranquilo, isso nos importa: Olha em %1$@ para boas notícias recentes 👌";
 

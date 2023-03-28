@@ -406,6 +406,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Shtoni Pajisje të Dytë";
 "multidevice_same_network_hint" = "Sigurohuni se të dy pajisjet janë në të njëjtin rrjet Wi-Fi ose klasik";
+"multidevice_this_creates_a_qr_code" = "Kjo krijon një kod QR që pajisja e dytë mund ta skanojë për të kopjuar llogarinë.";
 "multidevice_install_dc_on_other_device" = "Instaloni Delta Chat-in në pajisjen tuaj tjetër (https://get.delta.chat)";
 "multidevice_tap_scan_on_other_device" = "Nisni Delta Chat-in, prekni mbi “Shtoje si Pajisje të Dytë” dhe skanoni kodin e treguar këtu";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
@@ -976,4 +977,3 @@
 
 // device messages for updates
 "update_1_34_android" = "Ç’ka të re në 1.34?\n\n🤗 Lista më miqësore kontaktesh: Renditur sipas parë së fundi dhe kontakteve të parë brenda 10 minutash u vihet një shenjë 🟢\n\n📑 Faqe të reja në profile fjalosjesh: “Audio” dhe “Aplikacione Private”\n\n🖼️ Nëse dikush ju dërgon një “Aplikacion Privat” (p.sh., që nga https://webxdc.org ), mund ta shtoni te skena e kreut";
-
