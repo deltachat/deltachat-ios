@@ -269,7 +269,7 @@
 "videochat_instance_placeholder" = "Votre instance de discussion vidéo";
 "videochat_instance_example" = "Exemples : https://meet.jit.si/$ROOM ou basicwebrtc:https://your-server";
 "videochat_instance_explain_2" = "Si vous avez activé les discussions vidéo, vous pouvez démarrer une conversation vidéo dans chacune de vos discussions. Il faut que chaque participant-e ait une application ou un navigateur compatibles pour pouvoir utiliser cette option.";
-"videochat_instance_from_qr" = "Utiliser « %1$@ » pour inviter les autres à des discussions de vidéo ?\n\nUne fois configuré, vous pouvez démarrer une discussion vidéo de chaque discussion privée. Ceci va remplacer la précédente configuration pour les discussions vidéos, s\'il y en a une.";
+"videochat_instance_from_qr" = "Utiliser « %1$@ » pour inviter d\'autres personnes à des discussions vidéo ?\n\nUne fois configuré, vous pouvez discuter en vidéo dans chaque discussion privée. Remplace vos préférences de configurations précédentes pour les discussions vidéos.";
 "videochat_invitation" = "Invitation à une discussion vidéo";
 "videochat_invitation_body" = "Vous êtes invité à une discussion vidéo, cliquez sur %1$@ pour la rejoindre.";
 
@@ -414,17 +414,17 @@
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Scanner pour configurer un deuxième appareil pour %1$@";
 "multidevice_receiver_title" = "Ajouter comme deuxième appareil";
-"multidevice_open_settings_on_other_device" = "Sur le premier appareil, allez dans \"Paramètres / Ajouter un deuxième appareil\" et scannez le code montré";
-"multidevice_receiver_scanning_ask" = "Copier le compte de l\'autre appareil sur cet appareil ?";
-"multidevice_abort" = "Abandonner la configuration du deuxième dispositif ?";
-"multidevice_abort_will_invalidate_copied_qr" = "Cela invalidera le code QR copié dans le presse-papiers.";
+"multidevice_open_settings_on_other_device" = "Sur le premier appareil, allez dans \"Paramètres / Ajouter un deuxième appareil\" et scannez le code qui s\'affiche";
+"multidevice_receiver_scanning_ask" = "Copier le compte de l\'autre appareil sur celui-ci ?";
+"multidevice_abort" = "Abandonner la configuration du deuxième appareil ?";
+"multidevice_abort_will_invalidate_copied_qr" = "Révoque le code QR copié dans le presse-papiers.";
 "multidevice_experimental_hint" = "(expérimental, version 1.36 requise)";
 // Shown beside progress bar, stay short
 "preparing_account" = "Préparation du compte...";
 // Shown beside progress bar, stay short
-"waiting_for_receiver" = "En attente d\'un récepteur...";
+"waiting_for_receiver" = "En attente de l\'appareil...";
 // Shown beside progress bar, stay short
-"receiver_connected" = "Récepteur connecté...";
+"receiver_connected" = "Appareil connecté...";
 // Shown beside progress bar, stay short
 "transferring" = "Transfert...";
 "troubleshooting" = "Dépannage";
@@ -771,7 +771,7 @@
 "devicemsg_update_reminder" = "⚠️ Votre version de Delta Chat semble être obsolète.\n\nCeci pourrait poser des problèmes car vos contacts utilisent des versions plus récentes - et vous loupez les dernières fonctionnalités 😳\nVeuillez s\'il vous plaît faire un tour sur https://get.delta.chat ou votre magasin d\'applications pour une mise à jour.";
 
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
-"enter_system_secret_to_continue" = "Veuillez déverrouiller pour continuer.";
+"enter_system_secret_to_continue" = "Déverrouillez votre appareil pour continuer";
 
 // qr code stuff
 "qr_code" = "Code QR";
@@ -844,7 +844,7 @@
 "perm_required_title" = "Autorisation requise";
 "perm_continue" = "Continuez";
 "perm_explain_access_to_camera_denied" = "Pour prendre des photos ou filmer des vidéos, aller au menu Paramètres de l\'application, sélectionnez \"Autorisations\" et autorisez \"Appareil photo\".";
-"perm_explain_access_to_mic_denied" = "Pour envoyer des messages audio,  aller dans les réglages de l\'application, sélectionner \"Autorisations\" et autoriser \"Microphone\".";
+"perm_explain_access_to_mic_denied" = "Pour envoyer des messages audio, aller dans les paramètres de l\'application, sélectionner \"Autorisations\" et autoriser \"Microphone\".";
 "perm_explain_access_to_storage_denied" = "Pour recevoir ou envoyer des fichiers, aller dans les Paramètres de l\'application, sélectionner \"Autorisations\" et autoriser \"Stockage\".";
 "perm_explain_access_to_location_denied" = "Pour attacher une position, aller au menu paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Position\".";
 
@@ -983,7 +983,7 @@
 // device messages for updates
 "update_1_34_android" = "Nouveautes de la version 1.34 :n\n🤗 Des listes de contacts plus ergonomique : les derniers vus sont en premiers, et les contacts vus dans les 10 dernières minutes sont marqués d\'un point 🟢\n\n📑 Nouvelles pages dans les profils des discussions : « Audio » and « Applis privées » \n\n🖼️ Vous pouvez ajouter à l\'écran d\'accueil les « Applis privées » qu\'on vous envoie (par exemple depuis https://webxdc.org ).";
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_36_android" = "1.36 Highlights\n\n💻📱 Utiliser le Delta Chat sur tous vos appareils facilement - ça suffit de suivre trois étapes simples dans \"Reglages / Ajouter un deuxième appareil\" (expérimental)\n\n🖼🔍 Vous avez déjà cherché une image sans se souvener quelle discussion ? L\'option \"Tous les médias\" du menu principal est la vôtre !\n\nQuoi d\'autre ? Des notifications pour tous les comptes, vider des discussions, et plus ici %1$@";
+"update_1_36_android" = "1.36 Nouveautés\n\n💻📱 Utilisez Delta Chat sur tous vos appareils, en trois étapes simples. Rendez-vous dans \"Paramètres / Ajouter un deuxième appareil\" (expérimental) !\n\n🖼🔍 Il vous est déjà arrivé de chercher une image sans pouvoir retrouver la bonne discussion ? L\'option \"Tous les médias\" du menu principal est faite pour vous !\n\nQuoi d\'autre ? Des notifications pour tous vos comptes, la possibilité de vider entièrement les discussions, et plus encore %1$@";
 // placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
-"update_1_36_audit" = "Nous ne parlons pas beaucoup de sécurité ici, mais soyez assurés que nous nous en préoccupons : Voyez %1$@ pour les bonnes nouvelles récentes 👌";
+"update_1_36_audit" = "Nous n\'avons pas beaucoup parlé de sécurité, mais pas d\'inquiétude, nous nous en occupons toujours ! Lisez les dernières bonnes nouvelles sur %1$@👌";
 
