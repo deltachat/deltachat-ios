@@ -22,7 +22,8 @@ class BackupTransferViewController: UIViewController {
     }
 
     private lazy var statusLine: UILabel = {
-        let label = UILabel(frame: CGRect(x: 10, y: 100, width: 400, height: 200))
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = String.localized("preparing_account")
         label.textColor = DcColors.defaultTextColor
         label.textAlignment = .center
@@ -90,7 +91,9 @@ class BackupTransferViewController: UIViewController {
                 self.qrContentView.image = image
                 self.progress.stopAnimating()
                 self.progressContainer.isHidden = true
-                self.statusLine.text = self.getInstructions()
+                self.statusLine.text = "➊ " + String.localized("multidevice_same_network_hint")
+                                 + "\n\n➋ " + String.localized("multidevice_install_dc_on_other_device")
+                                 + "\n\n➌ " + String.localized("multidevice_tap_scan_on_other_device")
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
                     self.dcBackupProvider?.wait()
@@ -124,9 +127,9 @@ class BackupTransferViewController: UIViewController {
                     self.showLastErrorAlert("Error")
                     hideQrCode = true
                 } else if permille <= 350 {
-                    statusLineText = String.localized("preparing_account")
+                    statusLineText = nil
                 } else if permille <= 400 {
-                    statusLineText = self.getInstructions()
+                    statusLineText = nil
                 } else if permille <= 450 {
                     statusLineText = String.localized("receiver_connected")
                     hideQrCode = true
@@ -165,6 +168,9 @@ class BackupTransferViewController: UIViewController {
         qrMinWidth.priority = UILayoutPriority(999)
         qrMinWidth.isActive = true
         view.addConstraints([
+            statusLine.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            statusLine.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            statusLine.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
             qrContentView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.05),
             qrContentView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             qrContentView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
@@ -197,12 +203,6 @@ class BackupTransferViewController: UIViewController {
         let alert = UIAlertController(title: String.localized("multidevice_title"), message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
-    }
-
-    private func getInstructions() -> String {
-        return "➊ " + String.localized("multidevice_same_network_hint")
-         + "\n\n➋ " + String.localized("multidevice_install_dc_on_other_device")
-         + "\n\n➌ " + String.localized("multidevice_tap_scan_on_other_device")
     }
 
     // MARK: - actions
