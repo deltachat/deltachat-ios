@@ -22,11 +22,12 @@ class BackupTransferViewController: UIViewController {
     }
 
     private lazy var statusLine: UILabel = {
-        let label = UILabel(frame: CGRect(x: 10, y: 100, width: 400, height: 100))
+        let label = UILabel(frame: CGRect(x: 10, y: 100, width: 400, height: 200))
         label.text = String.localized("preparing_account")
         label.textColor = DcColors.defaultTextColor
         label.textAlignment = .left
-        label.numberOfLines = 1
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.font = .preferredFont(forTextStyle: .headline)
         return label
     }()
@@ -89,6 +90,7 @@ class BackupTransferViewController: UIViewController {
                 self.qrContentView.image = image
                 self.progress.stopAnimating()
                 self.progressContainer.isHidden = true
+                self.statusLine.text = self.getInstructions()
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
                     self.dcBackupProvider?.wait()
@@ -114,7 +116,7 @@ class BackupTransferViewController: UIViewController {
             UIApplication.shared.isIdleTimerDisabled = true
             imexObserver = NotificationCenter.default.addObserver(forName: dcNotificationImexProgress, object: nil, queue: nil) { [weak self] notification in
                 guard let self = self, let ui = notification.userInfo, let permille = ui["progress"] as? Int else { return }
-                var statusLineText = ""
+                var statusLineText: String?
                 var hideQrCode = false
 
                 if permille == 0 {
@@ -124,7 +126,7 @@ class BackupTransferViewController: UIViewController {
                 } else if permille <= 350 {
                     statusLineText = String.localized("preparing_account")
                 } else if permille <= 400 {
-                    statusLineText = String.localized("waiting_for_receiver")
+                    statusLineText = self.getInstructions()
                 } else if permille <= 450 {
                     statusLineText = String.localized("receiver_connected")
                     hideQrCode = true
@@ -139,7 +141,10 @@ class BackupTransferViewController: UIViewController {
                     hideQrCode = true
                 }
 
-                self.title = statusLineText // TODO: this should be a dedicated view
+                if let statusLineText = statusLineText {
+                    self.statusLine.text = statusLineText
+                }
+
                 if hideQrCode && !self.qrContentView.isHidden {
                     self.qrContentView.isHidden = true
                 }
@@ -192,6 +197,12 @@ class BackupTransferViewController: UIViewController {
         let alert = UIAlertController(title: String.localized("multidevice_title"), message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
+    }
+
+    private func getInstructions() -> String {
+        return "➊ " + String.localized("multidevice_same_network_hint")
+         + "\n\n➋ " + String.localized("multidevice_install_dc_on_other_device")
+         + "\n\n➌ " + String.localized("multidevice_tap_scan_on_other_device")
     }
 
     // MARK: - actions
