@@ -25,7 +25,7 @@ class BackupTransferViewController: UIViewController {
         let label = UILabel(frame: CGRect(x: 10, y: 100, width: 400, height: 200))
         label.text = String.localized("preparing_account")
         label.textColor = DcColors.defaultTextColor
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = .preferredFont(forTextStyle: .headline)
