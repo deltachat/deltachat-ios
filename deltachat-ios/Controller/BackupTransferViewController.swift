@@ -21,6 +21,16 @@ class BackupTransferViewController: UIViewController {
         return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
     }
 
+    private lazy var statusLine: UILabel = {
+        let label = UILabel(frame: CGRect(x: 10, y: 100, width: 400, height: 100))
+        label.text = String.localized("preparing_account")
+        label.textColor = DcColors.defaultTextColor
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        label.font = .preferredFont(forTextStyle: .headline)
+        return label
+    }()
+
     private lazy var qrContentView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
@@ -139,6 +149,7 @@ class BackupTransferViewController: UIViewController {
 
     // MARK: - setup
     private func setupSubviews() {
+        view.addSubview(statusLine)
         view.addSubview(qrContentView)
         view.addSubview(progressContainer)
         progressContainer.addSubview(progress)
