@@ -25,7 +25,7 @@ class BackupTransferViewController: UIViewController {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.accessibilityHint = String.localized("multidevice_qr_subtitle") // TODO: add name
+        view.accessibilityHint = String.localized("qr_code")
         return view
     }()
 
