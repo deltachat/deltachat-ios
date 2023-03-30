@@ -108,6 +108,7 @@ class BackupTransferViewController: UIViewController {
                 self.qrContentView.image = image
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
+                self.statusLine.textAlignment = .left
                 self.statusLine.text = "➊ " + String.localized("multidevice_same_network_hint")
                                  + "\n\n➋ " + String.localized("multidevice_install_dc_on_other_device")
                                  + "\n\n➌ " + String.localized("multidevice_tap_scan_on_other_device")
@@ -166,6 +167,7 @@ class BackupTransferViewController: UIViewController {
                 }
 
                 if hideQrCode && !self.qrContentView.isHidden {
+                    self.statusLine.textAlignment = .center
                     self.qrContentView.isHidden = true
                 }
             }
