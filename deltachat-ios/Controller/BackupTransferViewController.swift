@@ -41,19 +41,11 @@ class BackupTransferViewController: UIViewController {
         return view
     }()
 
-    private lazy var progressContainer: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 20
-        view.clipsToBounds = true
-        view.layer.borderColor = DcColors.grey50.cgColor
-        view.layer.borderWidth = 1
-        view.backgroundColor = DcColors.defaultInverseColor.withAlphaComponent(0.5)
-        return view
-    }()
-
-    private lazy var progress: UIActivityIndicatorView = {
-        let progress = UIActivityIndicatorView(style: .white)
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let progress = UIActivityIndicatorView(style: .gray)
+        if #available(iOS 13.0, *) {
+            progress.style = .large
+        }
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
@@ -101,8 +93,8 @@ class BackupTransferViewController: UIViewController {
                 }
                 let image = self.getQrImage(svg: self.dcBackupProvider?.getQrSvg())
                 self.qrContentView.image = image
-                self.progress.stopAnimating()
-                self.progressContainer.isHidden = true
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
                 self.statusLine.text = "➊ " + String.localized("multidevice_same_network_hint")
                                  + "\n\n➋ " + String.localized("multidevice_install_dc_on_other_device")
                                  + "\n\n➌ " + String.localized("multidevice_tap_scan_on_other_device")
@@ -172,9 +164,8 @@ class BackupTransferViewController: UIViewController {
         view.addSubview(statusLine)
         view.addSubview(experimentalLine)
         view.addSubview(qrContentView)
-        view.addSubview(progressContainer)
+        view.addSubview(activityIndicator)
 
-        progressContainer.addSubview(progress)
         let qrDefaultWidth = qrContentView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75)
         qrDefaultWidth.priority = UILayoutPriority(500)
         qrDefaultWidth.isActive = true
@@ -192,15 +183,13 @@ class BackupTransferViewController: UIViewController {
             qrContentView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.05),
             qrContentView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 60),
             qrContentView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            progressContainer.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            progressContainer.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            progressContainer.constraintHeightTo(100),
-            progressContainer.constraintWidthTo(100),
-            progress.constraintCenterXTo(progressContainer),
-            progress.constraintCenterYTo(progressContainer)
+            activityIndicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            activityIndicator.constraintHeightTo(100),
+            activityIndicator.constraintWidthTo(100)
         ])
-        progressContainer.isHidden = false
-        progress.startAnimating()
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         view.backgroundColor = DcColors.defaultBackgroundColor
     }
     
