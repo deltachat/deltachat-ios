@@ -13,12 +13,23 @@ class HelpViewController: WebViewViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private lazy var moreButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonPressed))
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localized("menu_help")
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
+        navigationItem.rightBarButtonItem = moreButton
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,5 +59,31 @@ class HelpViewController: WebViewViewController {
             }
             completionHandler?(url)
         }
+    }
+
+    @objc private func moreButtonPressed() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("global_menu_help_learn_desktop"), style: .default, handler: { _ in
+            if let url = URL(string: "https://delta.chat") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("privacy_policy"), style: .default, handler: { _ in
+            if let url = URL(string: "https://delta.chat/gdpr") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("global_menu_help_contribute_desktop"), style: .default, handler: { _ in
+            if let url = URL(string: "https://github.com/deltachat/deltachat-ios") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("global_menu_help_report_desktop"), style: .default, handler: { _ in
+            if let url = URL(string: "https://github.com/deltachat/deltachat-ios/issues") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
