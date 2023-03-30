@@ -17,6 +17,7 @@ class BackupTransferViewController: UIViewController {
     private var imexObserver: NSObjectProtocol?
     private var transferState: TranferState = TranferState.unknown
     private var warnAboutCopiedQrCodeOnAbort = false
+    private var isFinishing = false
 
     private var cancelButton: UIBarButtonItem {
         return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
@@ -125,6 +126,7 @@ class BackupTransferViewController: UIViewController {
     override func didMove(toParent parent: UIViewController?) {
         let isRemoved = parent == nil
         if isRemoved {
+            isFinishing = true
             if let imexObserver = self.imexObserver {
                 NotificationCenter.default.removeObserver(imexObserver)
             }
@@ -139,6 +141,7 @@ class BackupTransferViewController: UIViewController {
             UIApplication.shared.isIdleTimerDisabled = true
             imexObserver = NotificationCenter.default.addObserver(forName: dcNotificationImexProgress, object: nil, queue: nil) { [weak self] notification in
                 guard let self = self, let ui = notification.userInfo, let permille = ui["progress"] as? Int else { return }
+                if self.isFinishing { return }
                 var statusLineText: String?
                 var hideQrCode = false
 
