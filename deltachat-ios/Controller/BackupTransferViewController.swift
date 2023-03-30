@@ -16,10 +16,21 @@ class BackupTransferViewController: UIViewController {
     private var dcBackupProvider: DcBackupProvider?
     private var imexObserver: NSObjectProtocol?
     private var transferState: TranferState = TranferState.unknown
+    private var warnAboutCopiedQrCodeOnAbort = false
 
     private var cancelButton: UIBarButtonItem {
         return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
     }
+
+    private lazy var moreButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonPressed))
+    }()
 
     private lazy var statusLine: UILabel = {
         let label = UILabel()
@@ -69,7 +80,6 @@ class BackupTransferViewController: UIViewController {
         hidesBottomBarWhenPushed = true
         setupSubviews()
         title = String.localized("multidevice_title")
-        navigationItem.leftBarButtonItem = cancelButton
     }
 
     required init?(coder _: NSCoder) {
@@ -79,6 +89,9 @@ class BackupTransferViewController: UIViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = moreButton
+
         triggerLocalNetworkPrivacyAlert()
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -218,13 +231,27 @@ class BackupTransferViewController: UIViewController {
         case .error, .success:
             self.navigationController?.popViewController(animated: true)
         case .unknown:
-            let alert = UIAlertController(title: nil, message: String.localized("multidevice_abort"), preferredStyle: .alert)
+            let addInfo = warnAboutCopiedQrCodeOnAbort ? String.localized("multidevice_abort_will_invalidate_copied_qr") : nil
+            let alert = UIAlertController(title: String.localized("multidevice_abort"), message: addInfo, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
                 self.navigationController?.popViewController(animated: true)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         }
+    }
+
+    @objc private func moreButtonPressed() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        if !self.qrContentView.isHidden {
+            alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.warnAboutCopiedQrCodeOnAbort = true
+                UIPasteboard.general.string = self.dcBackupProvider?.getQr()
+            }))
+        }
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
