@@ -100,8 +100,10 @@ class BackupTransferViewController: UIViewController {
             self.dcBackupProvider = DcBackupProvider(self.dcContext)
             DispatchQueue.main.async {
                 if !(self.dcBackupProvider?.isOk() ?? false) {
-                    self.transferState = TranferState.error
-                    self.showLastErrorAlert("Cannot create backup provider")
+                    if self.transferState != TranferState.error {
+                        self.transferState = TranferState.error
+                        self.showLastErrorAlert("Cannot create backup provider")
+                    }
                     return
                 }
                 let image = self.getQrImage(svg: self.dcBackupProvider?.getQrSvg())
@@ -141,8 +143,10 @@ class BackupTransferViewController: UIViewController {
                 var hideQrCode = false
 
                 if permille == 0 {
-                    self.transferState = TranferState.error
-                    self.showLastErrorAlert("Error")
+                    if self.transferState != TranferState.error {
+                        self.transferState = TranferState.error
+                        self.showLastErrorAlert("Error")
+                    }
                     hideQrCode = true
                 } else if permille <= 350 {
                     statusLineText = nil
