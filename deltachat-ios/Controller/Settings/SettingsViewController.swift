@@ -268,8 +268,17 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     private func showBackupProviderViewController() {
-         let backupProviderViewController = BackupTransferViewController(dcAccounts: dcAccounts)
-         navigationController?.pushViewController(backupProviderViewController, animated: true)
+        let alert = UIAlertController(title: String.localized("multidevice_receiver_title"), message: String.localized("multidevice_this_creates_a_qr_code"), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(
+            title: String.localized("perm_continue"),
+            style: .default,
+            handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+            }
+        ))
+        present(alert, animated: true)
     }
 
     private func showAdvanced() {
