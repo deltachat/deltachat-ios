@@ -29,7 +29,7 @@ class BackupTransferViewController: UIViewController {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.font = .preferredFont(forTextStyle: .headline)
+        label.font = .preferredFont(forTextStyle: .body)
         return label
     }()
 
@@ -56,6 +56,18 @@ class BackupTransferViewController: UIViewController {
         let progress = UIActivityIndicatorView(style: .white)
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
+    }()
+
+    private lazy var experimentalLine: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = String.localized("multidevice_experimental_hint")
+        label.textColor = DcColors.defaultTextColor
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.font = .preferredFont(forTextStyle: .body)
+        return label
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -140,7 +152,7 @@ class BackupTransferViewController: UIViewController {
                 } else if permille == 1000 {
                     self.transferState = TranferState.success
                     self.navigationItem.leftBarButtonItem = nil // "Cancel" no longer fits as things are done
-                    statusLineText = String.localized("done")
+                    statusLineText = String.localized("done") + "😀"
                     hideQrCode = true
                 }
 
@@ -158,8 +170,10 @@ class BackupTransferViewController: UIViewController {
     // MARK: - setup
     private func setupSubviews() {
         view.addSubview(statusLine)
+        view.addSubview(experimentalLine)
         view.addSubview(qrContentView)
         view.addSubview(progressContainer)
+
         progressContainer.addSubview(progress)
         let qrDefaultWidth = qrContentView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75)
         qrDefaultWidth.priority = UILayoutPriority(500)
@@ -167,10 +181,14 @@ class BackupTransferViewController: UIViewController {
         let qrMinWidth = qrContentView.widthAnchor.constraint(lessThanOrEqualToConstant: 260)
         qrMinWidth.priority = UILayoutPriority(999)
         qrMinWidth.isActive = true
+
         view.addConstraints([
             statusLine.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             statusLine.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             statusLine.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
+            experimentalLine.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            experimentalLine.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            experimentalLine.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
             qrContentView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.05),
             qrContentView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 60),
             qrContentView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
