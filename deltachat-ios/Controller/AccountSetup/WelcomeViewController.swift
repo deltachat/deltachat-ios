@@ -26,7 +26,8 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             guard let self = self else { return }
             let qrReader = QrCodeReaderController(title: String.localized("multidevice_receiver_title"),
                         addHints: "➊ " + String.localized("multidevice_same_network_hint") + "\n\n"
-                            +     "➋ " + String.localized("multidevice_open_settings_on_other_device") )
+                            +     "➋ " + String.localized("multidevice_open_settings_on_other_device") + "\n\n"
+                            +     String.localized("multidevice_experimental_hint"))
             qrReader.delegate = self
             self.qrCodeReader = qrReader
             self.navigationController?.pushViewController(qrReader, animated: true)
