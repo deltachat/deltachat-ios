@@ -143,7 +143,7 @@
 			<key>one</key>
 			<string>Да бъде ли изпратен следният файл на%s?</string>
 			<key>other</key>
-			<string>Да бъдат ли изпратени следните %d файлове на%s?</string>
+			<string>Да бъдат ли изпратени следните %d файлове на %s?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>
@@ -159,7 +159,7 @@
 			<key>one</key>
 			<string>Да бъде ли изтрит %d чат? Той повече няма да се показва в списъка с чатове, неговите съобщения ще останат на сървъра.</string>
 			<key>other</key>
-			<string>Да бъдат ли изтрити%d чата? Те повече няма да се показват в списъка с чатове, техните съобщения ще останат на сървъра.</string>
+			<string>Да бъдат ли изтрити%d чата? Те повече няма да се показват в списъка с чатове; техните съобщения ще останат на сървъра.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -175,7 +175,7 @@
 			<key>one</key>
 			<string>Да бъде ли изтрито%dсъобщение тук и на сървъра?</string>
 			<key>other</key>
-			<string>Да бъдат ли изтрити%d съобщения тук и на сървъра?</string>
+			<string>Да бъдат ли изтрити %d съобщения тук и на сървъра?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
@@ -191,7 +191,7 @@
 			<key>one</key>
 			<string>Да бъде ли изтрито %d съобщение?</string>
 			<key>other</key>
-			<string>Да бъдат ли изтрити%d съобщения?</string>
+			<string>Да бъдат ли изтрити %d съобщения?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>
@@ -207,7 +207,7 @@
 			<key>one</key>
 			<string>%d чат е архивиран</string>
 			<key>other</key>
-			<string>%d чата са архивирани</string>
+			<string>%d чата са поставени в архив</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -223,7 +223,7 @@
 			<key>one</key>
 			<string>%d чат е възстановен от архив</string>
 			<key>other</key>
-			<string>%d са възстановени от архив</string>
+			<string>%d чата са премахнати от архив</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
