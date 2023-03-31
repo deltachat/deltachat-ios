@@ -411,15 +411,23 @@ extension WelcomeViewController: QrCodeReaderDelegate {
              style: .default,
              handler: { [weak self] _ in
                  guard let self = self else { return }
-                 self.dismissQRReader()
-                 self.addProgressHudBackupListener(importByFile: false)
-                 self.showProgressAlert(title: String.localized("multidevice_receiver_title"), dcContext: self.dcContext)
-                 self.dcAccounts.stopIo()
-                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                     guard let self = self else { return }
-                     self.dcContext.logger?.info("##### receiveBackup() with qr: \(qrCode)")
-                     let res = self.dcContext.receiveBackup(qrCode: qrCode)
-                     self.dcContext.logger?.info("##### receiveBackup() done with result: \(res)")
+                 if self.dcAccounts.getSelected().isConfigured() {
+                     UserDefaults.standard.setValue(self.dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
+                     _ = self.dcAccounts.add()
+                 }
+                 let accountId = self.dcAccounts.getSelected().id
+                 if accountId != 0 {
+                     self.dcContext = self.dcAccounts.get(id: accountId)
+                     self.dismissQRReader()
+                     self.addProgressHudBackupListener(importByFile: false)
+                     self.showProgressAlert(title: String.localized("multidevice_receiver_title"), dcContext: self.dcContext)
+                     self.dcAccounts.stopIo()
+                     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                         guard let self = self else { return }
+                         self.dcContext.logger?.info("##### receiveBackup() with qr: \(qrCode)")
+                         let res = self.dcContext.receiveBackup(qrCode: qrCode)
+                         self.dcContext.logger?.info("##### receiveBackup() done with result: \(res)")
+                     }
                  }
              }
         ))
@@ -431,7 +439,11 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                 self?.dismissQRReader()
             }
         ))
-        qrCodeReader?.present(alert, animated: true)
+        if let qrCodeReader = qrCodeReader {
+            qrCodeReader.present(alert, animated: true)
+        } else {
+            self.present(alert, animated: true)
+        }
     }
 
     private func qrErrorAlert() {
