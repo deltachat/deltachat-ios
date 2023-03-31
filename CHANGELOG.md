@@ -5,6 +5,7 @@
 
 * new, easy method of adding a second device to your account:
   scan the QR code shown at "Settings / Add Second Device" with your new device
+* revamped settings dialog
 * show non-deltachat emails by default for new installations
   (you can change this at "Settings / Chats and Media)
 * resilience against outages by caching DNS results for SMTP connections
@@ -17,6 +18,8 @@
 * improve reliability by using read/write instead of per-command timeouts for SMTP
 * improve reliability by closing databases sooner
 * improve compatibility with encrypted messages from non-deltachat clients
+* add menu with links to issues reporting and more to help
+* fix: update mute icon in chat's title
 * fix: Skip "Show full message" if the additional text is only a footer already shown in the profile
 * fix verifications when using for multiple devices
 * fix backup imports for backups seemingly work at first
