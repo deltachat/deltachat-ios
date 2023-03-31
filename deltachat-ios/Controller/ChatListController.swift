@@ -134,20 +134,11 @@ class ChatListController: UITableViewController {
 
         // update messages - for new messages, do not reuse or modify strings but create new ones.
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
-        if dcContext.wasDeviceMsgEverAdded(label: "update_1_34d_ios") {
-            let msg2 = dcContext.newMessage(viewType: DC_MSG_TEXT)
-            msg2.text = "Some 1.34 Highlights:\n\n"
-                + "🗄️ More handy and common \"Archive\" in 1.34.10: "
-                + "\"Unread counters\" and moving things into view fixes issues with chats that stay in archive.\n\n"
-                + "For other recent bugfixes, see https://get.delta.chat/#changelogs"
-            dcContext.addDeviceMessage(label: "update_1_34_10a_ios", msg: msg2)
-        }
         let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-        msg.text = "Some 1.34 Highlights:\n\n"
-            + "🤗 Friendlier contact lists: Ordered by last seen and contacts seen within 10 minutes are marked by a dot 🟢\n\n"
-            + "🔘 New account selector atop of the chat list\n\n"
-            + "☝️ Drag'n'Drop: Eg. long tap an image in the system's gallery and navigate to the desired chat using a ✌️ second finger"
-        dcContext.addDeviceMessage(label: "update_1_34d_ios", msg: msg)
+        msg.text = "1.36 Highlights\n\n💻📱 Use Delta Chat on all your devices easily - just follow three simple steps at \"Settings / Add Second Device\" (experimental)\n\n"
+        +   "What else? Revamped settings, messages containing only emoji shown larger, and more at https://get.delta.chat/#changelogs\n\n"
+        +   "We don\'t talk much about security here, but rest assured, we care: See https://delta.chat/en/2023-03-27-third-independent-security-audit for recent good news 👌"
+        dcContext.addDeviceMessage(label: "update_1_36a_ios", msg: msg)
     }
 
     override func willMove(toParent parent: UIViewController?) {
