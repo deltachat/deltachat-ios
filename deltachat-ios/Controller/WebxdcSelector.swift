@@ -49,14 +49,14 @@ class WebxdcSelector: UIViewController {
         return label
     }()
 
-    private lazy var leftBarBtn: UIBarButtonItem = {
+    private lazy var cancelButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
                                                              target: self,
                                                action: #selector(cancelAction))
         return btn
     }()
 
-    private lazy var rightBarBtn: UIBarButtonItem = {
+    private lazy var filesButton: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: String.localized("files"),
                                   style: .plain,
                                   target: self,
@@ -88,8 +88,8 @@ class WebxdcSelector: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         title = String.localized("webxdc_apps")
-        navigationItem.setLeftBarButton(leftBarBtn, animated: false)
-        navigationItem.setRightBarButton(rightBarBtn, animated: false)
+        navigationItem.setLeftBarButton(filesButton, animated: false)
+        navigationItem.setRightBarButton(cancelButton, animated: false)
         if mediaMessageIds.isEmpty {
             emptyStateView.isHidden = false
         }
