@@ -103,7 +103,7 @@ class ChatListViewModel: NSObject {
     }
 
     func cellDataFor(section: Int, row: Int) -> AvatarCellViewModel {
-        if showSearchResults {
+        if showSearchResults && !searchResultSections.isEmpty {
             switch searchResultSections[section] {
             case .chats:
                 return makeChatCellViewModel(index: row, searchText: searchText)
