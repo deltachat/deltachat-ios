@@ -106,14 +106,22 @@ class QrPageController: UIPageViewController {
     }
 
     @objc private func showMoreOptions() {
-        let alert = UIAlertController(title: String.localized("qrshow_title"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: copyToClipboard(_:)))
+        let alert = UIAlertController(title: String.localized("qr_code"), message: nil, preferredStyle: .safeActionSheet)
+        if qrSegmentControl.selectedSegmentIndex == 0 {
+            alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: copyToClipboard(_:)))
+        } else {
+            alert.addAction(UIAlertAction(title: String.localized("paste_from_clipboard"), style: .default, handler: pasteFromClipboard(_:)))
+        }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
     @objc func copyToClipboard(_ action: UIAlertAction) {
         UIPasteboard.general.string = dcContext.getSecurejoinQr(chatId: 0)
+    }
+
+    @objc func pasteFromClipboard(_ action: UIAlertAction) {
+        handleQrCode(UIPasteboard.general.string ?? "")
     }
 
     // MARK: - factory
