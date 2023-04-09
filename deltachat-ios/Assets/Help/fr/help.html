@@ -24,7 +24,7 @@
       <li><a href="#je-ne-souhaite-plus-recevoir-les-message-dun-groupe">Je ne souhaite plus recevoir les message d’un groupe.</a></li>
       <li><a href="#que-signifient-les-coches-affichées-à-côté-des-messages-sortants-">Que signifient les coches affichées à côté des messages sortants ?</a></li>
       <li><a href="#que-se-passe-t-il-si-jactive-loption-supprimer-les-anciens-messages-sur-le-serveur-">Que se passe-t-il si j’active l’option “Supprimer les anciens messages sur le serveur” ?</a></li>
-      <li><a href="#que-se-passe-t-il-si-jactive-loption-supprimer-les-anciens-messages-de-lappareil-">Que se passe-t-il si j’active l’option “Supprimer les anciens messages de l’appareil” ?</a></li>
+      <li><a href="#delold">Que se passe-t-il si j’active l’option “Supprimer les anciens messages de l’appareil” ?</a></li>
     </ul>
   </li>
   <li><a href="#chiffrement">Chiffrement</a>
@@ -36,12 +36,11 @@
       <li><a href="#comment-puis-je-vérifier-le-chiffrement-des-messages-">Comment puis-je vérifier le chiffrement des messages ?</a></li>
       <li><a href="#how-can-i-ensure-message-encryption-and-deletion">How can I ensure message encryption and deletion?</a></li>
       <li><a href="#quels-standards-sont-utilisés-pour-le-chiffrement-de-bout-en-bout-">Quels standards sont utilisés pour le chiffrement de bout en bout ?</a></li>
-      <li><a href="#quelle-est-la-différence-entre-des-groupes-vérifiés-et-des-discussions-à-deux-avec-des-contacts-vérifiés-">Quelle est la différence entre des groupes vérifiés et des discussions à deux avec des contacts vérifiés ?</a></li>
+      <li><a href="#verdiff">Quelle est la différence entre des groupes vérifiés et des discussions à deux avec des contacts vérifiés ?</a></li>
       <li><a href="#delta-chat-prend-il-en-charge-la-confidentialité-persistante-parfaite-perfect-forward-secrecy-">Delta Chat prend-il en charge la confidentialité persistante parfaite (Perfect Forward Secrecy) ?</a></li>
       <li><a href="#comment-delta-chat-protège-t-il-mes-métadonnées">Comment Delta Chat protège-t-il mes métadonnées?</a></li>
       <li><a href="#puis-je-ré-utiliser-ma-clé-privée-existante-">Puis-je ré-utiliser ma clé privée existante ?</a></li>
       <li><a href="#je-narrive-pas-à-importer-ma-clé-pgp-existante-dans-delta-chat">Je n’arrive pas à importer ma clé PGP existante dans Delta Chat.</a></li>
-      <li><a href="#pourquoi-nutilisez-vous-pas-pep-pretty-easy-privacy-">Pourquoi n’utilisez-vous pas pEp (pretty easy privacy) ?</a></li>
     </ul>
   </li>
   <li><a href="#multiclient">Multi-client</a>
@@ -55,7 +54,7 @@
       <li><a href="#pourquoi-puis-je-choisir-de-ne-pas-regarder-le-dossier-delta-chat">Pourquoi puis-je choisir de ne pas regarder le dossier Delta Chat?</a></li>
     </ul>
   </li>
-  <li><a href="#applications-privées--webxdc">Applications privées / webxdc</a>
+  <li><a href="#webxdc">Applications privées / webxdc</a>
     <ul>
       <li><a href="#how-private-are-private-apps">How private are private apps?</a></li>
       <li><a href="#where-can-i-get-private-apps">Where can I get private apps?</a></li>
@@ -205,7 +204,7 @@ recevoir de messages de cette personne, nous vous conseillons de la <em>bloquer<
   <li>or the profile icon and then ‘Add Account’ (iOS)</li>
 </ul>
 
-<p>You may also wish to learn <a href="#can-i-use-delta-chat-on-multiple-devices-at-the-same-time">how to add accounts to multiple devices</a>.</p>
+<p>You may also wish to learn <a href="#multiclient">how to add accounts to multiple devices</a>.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="qui-peut-voir-ma-photo-de-profil-">
         
@@ -357,7 +356,7 @@ d’un contact. Cela signifie qu’il a été “vu récemment”.</li>
       <li>soit parce qu’il a écrit dans un groupe dont vous êtres tous les deux membres ;</li>
       <li>soit parce qu’il a envoyé l’accusé de lecture d’un message que vous lui avez écrit ;</li>
       <li>ou bien parce qu’il a envoyé des données à votre appli Delta Chat via une
-<a href="#private-apps--webxdc">appli privée</a>.</li>
+<a href="#webxdc">appli privée</a>.</li>
     </ul>
   </li>
   <li>Le “point vert” n’est donc pas un statut en temps réel. Aussi, si quelqu’un ne vous répond pas
@@ -466,10 +465,10 @@ qu’un humain a lu ou compris le message ;)</li>
   <li>Attention : si vous utilisez Delta Chat sur plusieurs appareils, laissez les messages sur le serveur jusqu’à ce que l’(es) autre(s) appareil(s) ai(en)t pu les télécharger aussi. Dans ce cas, nous vous conseillons de paramétrer la suppression automatique sur “Après 1 jour” ou plus, en fonction de la fréquence à laquelle vous vous servez de ces autres appareils.</li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="que-se-passe-t-il-si-jactive-loption-supprimer-les-anciens-messages-de-lappareil-">
+      <p class="back"><a href="#top">^</a></p><h3 id="delold">
         
         
-          Que se passe-t-il si j’active l’option “Supprimer les anciens messages de l’appareil” ? <a href="#que-se-passe-t-il-si-jactive-loption-supprimer-les-anciens-messages-de-lappareil-" class="anchor"></a>
+          Que se passe-t-il si j’active l’option “Supprimer les anciens messages de l’appareil” ? <a href="#delold" class="anchor"></a>
         
         
       </h3>
@@ -598,12 +597,12 @@ messages. But turning on “self-destructing messages” deletes the messages on
 the server after they were delivered.</p>
 
 <p>If you need the messages on your device, but not on the server, you can also
-agree in the group to turn on <a href="#what-happens-if-i-turn-on-delete-old-messages-from-server">“delete messages from server
+agree in the group to turn on <a href="#delold">“delete messages from server
 automatically”</a>.</p>
 
 <p>If you want to protect a 1:1 conversation like this, you should create a
 verified group with only 2 people. If the other person loses their device but
-not their account, you can still communicate in the 1:1 chat. (<a href="#what-is-the-difference-between-verified-groups-and-11-chats-with-verified-contacts">Read more</a>)</p>
+not their account, you can still communicate in the 1:1 chat. (<a href="#verdiff">Read more</a>)</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="quels-standards-sont-utilisés-pour-le-chiffrement-de-bout-en-bout-">
         
@@ -623,10 +622,10 @@ Autocrypt utilise un sous-ensemble restreint de la fonctionnalité OpenPGP.</p>
   </li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="quelle-est-la-différence-entre-des-groupes-vérifiés-et-des-discussions-à-deux-avec-des-contacts-vérifiés-">
+      <p class="back"><a href="#top">^</a></p><h3 id="verdiff">
         
         
-          Quelle est la différence entre des groupes vérifiés et des discussions à deux avec des contacts vérifiés ? <a href="#quelle-est-la-différence-entre-des-groupes-vérifiés-et-des-discussions-à-deux-avec-des-contacts-vérifiés-" class="anchor"></a>
+          Quelle est la différence entre des groupes vérifiés et des discussions à deux avec des contacts vérifiés ? <a href="#verdiff" class="anchor"></a>
         
         
       </h3>
@@ -724,18 +723,6 @@ Néanmoins, nous essayons de gérer les clés privées d’autant de sources que
 
 <p>La méthode pour retirer le mot de passe de la clé privée dépend du logiciel que vous utilisez pour gérer vos clés GPG. Avec Enigmail, vous pouvez définir votre mot de passe en laissant le champ vide dans la fenêtre de Gestion des Clés. Avec GnuPG, vous pouvez le définir <a href="https://github.com/deltachat/deltachat-android/issues/98#issuecomment-378383429">avec la ligne de commande</a>.
 Pour les autres programmes, vous devriez pouvoir trouver la solution en ligne.</p>
-    
-      <p class="back"><a href="#top">^</a></p><h3 id="pourquoi-nutilisez-vous-pas-pep-pretty-easy-privacy-">
-        
-        
-          Pourquoi n’utilisez-vous pas pEp (pretty easy privacy) ? <a href="#pourquoi-nutilisez-vous-pas-pep-pretty-easy-privacy-" class="anchor"></a>
-        
-        
-      </h3>
-
-<ul>
-  <li>Delta Chat utilise le standard de chiffrement de bout en bout d’Autocrypt. Vous trouverez des explications concernant Autocrypt et pEp sur la <a href="https://autocrypt.org/faq.html#how-does-autocrypt-differ-from-pep">FAQ d’Autocrypt</a>.</li>
-</ul>
     
       <p class="back"><a href="#top">^</a></p><h2 id="multiclient">
         
@@ -883,10 +870,10 @@ Ensuite, transférez-le sur l’autre appareil de la manière que vous préfére
 <p>Certaines personnes utilisent Delta Chat comme un client de messagerie normal, et veulent utiliser la Boîte de réception pour leurs mails au lieu d’utiliser le dossier DeltaChat. Si vous désactivez “Surveiller le dossier DeltaChat”, vous devriez aussi désactiver “déplacer les messages de discussions dans DeltaChat”.
 Sinon, la suppression de messages dans une configuration multi-appareils pourrait ne pas marcher correctement.</p>
     
-      <p class="back"><a href="#top">^</a></p><h2 id="applications-privées--webxdc">
+      <p class="back"><a href="#top">^</a></p><h2 id="webxdc">
         
         
-          Applications privées / webxdc <a href="#applications-privées--webxdc" class="anchor"></a>
+          Applications privées / webxdc <a href="#webxdc" class="anchor"></a>
         
         
       </h2>
@@ -1149,9 +1136,9 @@ Cependant, quelques fournisseurs ont besoin d’options spéciales pour bien fon
 
 <ul>
   <li>Most mail servers will work well. But what we personally recommend is a
-combination of mailcow and mailadm, as described <a href="2023-01-26-upcoming-mail-server-workshops">in this
+combination of mailcow and mailadm, as described <a href="https://delta.chat/en/2023-01-27-upcoming-mail-server-workshops">in this
 blogpost</a>.</li>
-  <li>You can find an <a href="serverguide">installation guide on our website</a>.</li>
+  <li>You can find an <a href="https://delta.chat/fr/serverguide">installation guide on our website</a>.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="si-delta-chat-se-base-sur-le-courrier-électronique-est-ce-vraiment-une-messagerie-instantanée">
@@ -1224,7 +1211,7 @@ but two high-severity issues that we subsequently fixed.
 It also revealed one medium-severity and some less severe issues,
 but there was no way to exploit these vulnerabilities in the Delta Chat implementation.
 Some of them we nevertheless fixed since the audit was concluded.
-You can read the <a href="../assets/blog/2019-first-security-review.pdf">full report here</a>.</p>
+You can read the <a href="https://delta.chat/assets/blog/2019-first-security-review.pdf">full report here</a>.</p>
   </li>
   <li>
     <p>In 2020, <a href="https://includesecurity.com">Include Security</a> analyzed Delta
@@ -1239,14 +1226,14 @@ because they depend on the environment in which Delta Chat is used.
 For usability and compatibility reasons,
 we can not mitigate all of them
 and decided to provide security recommendations to threatened users.
-You can read the <a href="../assets/blog/2020-second-security-review.pdf">full report here</a>.</p>
+You can read the <a href="https://delta.chat/assets/blog/2020-second-security-review.pdf">full report here</a>.</p>
   </li>
   <li>
     <p>Beginning 2023, <a href="https://cure53.de">Cure53</a> analyzed both the transport encryption of
 Delta Chat’s network connections and a reproducible mail server setup as
-<a href="serverguide">recommended on this site</a>.
-You can read more about the audit <a href="2023-03-23-third-independent-security-audit">on our blog</a>
-or read the <a href="../assets/blog/MER-01-report.pdf">full report here</a>.</p>
+<a href="https://delta.chat/fr/serverguide">recommended on this site</a>.
+You can read more about the audit <a href="https://delta.chat/en/2023-03-27-third-independent-security-audit">on our blog</a>
+or read the <a href="https://delta.chat/assets/blog/MER-01-report.pdf">full report here</a>.</p>
   </li>
 </ul>
     
@@ -1293,18 +1280,28 @@ completing Rust/Python bindings and instigating a Chat-bot ecosystem.</p>
 proposals, namely for <a href="https://dapsi.ngi.eu/hall-of-fame/eppd/">EPPD - e-mail provider portability directory</a> (~97K EUR) and <a href="https://nlnet.nl/project/EmailPorting/">AEAP - email address porting</a> (~90K EUR) which resulted in better multi-account support, improved QR-code contact and group setups and many networking improvements on all platforms.</p>
   </li>
   <li>
-    <p>For 2021/2022 we are receiving <em>Internet Freedom</em> funding (~500K USD) from the
+    <p>From End 2021 till March 2023 we received <em>Internet Freedom</em> funding (500K USD) from the
 U.S. Bureau of Democracy, Human Rights and Labor (DRL). 
-This funding supports our long-running goals to make Delta Chat more usable 
+This funding supported our long-running goals to make Delta Chat more usable 
 and compatible with a wide range of e-mail servers world-wide, and more resilient and secure
 in places often affected by internet censorship and shutdowns.</p>
   </li>
   <li>
-    <p>Sometimes we receive one-time donations from private individuals for
-which we are grateful. For example, in 2021 a generous individual bank-wired us 4K EUR 
-with the subject “keep up the good developments!”. We use such money to fund
-development gatherings or to care for ad-hoc expenses that can not easily be predicted
-for or reimbursed from public funding grants.</p>
+    <p>Beginning 2023 we got accepted in the Next Generation Internet (NGI)
+Entrust program for our “Private Decentralized Apps” proposals. 
+Exact amount is to be determined (around 100K EUR). 
+This funding supports further developments of <a href="https://webxdc.org">webxdc “apps shared in a chat”</a>.</p>
+  </li>
+  <li>
+    <p>Sometimes we receive one-time donations from private individuals. 
+For example, in 2021 a generous individual bank-wired us 4K EUR 
+with the subject “keep up the good developments!”. 💜 
+We use such money to fund development gatherings or to care for ad-hoc expenses 
+that can not easily be predicted for, or reimbursed from, public funding grants. 
+Receiving more donations also helps us to become more independent and long-term viable
+as a contributor community.</p>
+
+    
   </li>
   <li>
     <p>En dernier mais de loin pas des moindres, quelques enthousiastes et experts bénévoles qui ont contribué et contribuent au développement de Delta Chat sans recevoir d’argent, ou seulement de petites sommes. Sans eux, Delta Chat n’en serait pas où il en est aujourd’hui, et de très loin.</p>
@@ -1314,7 +1311,8 @@ for or reimbursed from public funding grants.</p>
 <p>The monetary funding mentioned above is mostly organized by merlinux GmbH in
 Freiburg (Germany), and is distributed to more than a dozen contributors world-wide.</p>
 
-<p>Funding for second half of 2022 and especially for 2023 is an ongoing issue of concern. Apart from applying for more public funding we want to become more independent from government-related funding sources. Please see <a href="https://delta.chat/en/contribute">Delta Chat Contribution channels</a> for both monetary and development related support possibilities.</p>
+<p>Please see <a href="https://delta.chat/fr/contribute">Delta Chat Contribution channels</a>
+for both monetary and and other contribution possibilities.</p>
 
 
 

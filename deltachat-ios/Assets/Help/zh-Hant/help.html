@@ -24,7 +24,7 @@
       <li><a href="#我不想再收到某个群组中的消息了">我不想再收到某个群组中的消息了。</a></li>
       <li><a href="#显示在发出消息旁边的对勾表示什么">显示在发出消息旁边的对勾表示什么？</a></li>
       <li><a href="#打开从服务器删除旧消息后会发生什么">打开“从服务器删除旧消息”后，会发生什么？</a></li>
-      <li><a href="#打开从设备删除旧消息后会发生什么">打开“从设备删除旧消息”后，会发生什么？</a></li>
+      <li><a href="#delold">打开“从设备删除旧消息”后，会发生什么？</a></li>
     </ul>
   </li>
   <li><a href="#加密">加密</a>
@@ -36,12 +36,11 @@
       <li><a href="#如何检查消息的加密状态">如何检查消息的加密状态？</a></li>
       <li><a href="#how-can-i-ensure-message-encryption-and-deletion">How can I ensure message encryption and deletion?</a></li>
       <li><a href="#端到端加密使用了哪些标准">端到端加密使用了哪些标准？</a></li>
-      <li><a href="#已验证群组和跟已验证联系人的一对一聊天有什么区别-">已验证群组和跟已验证联系人的一对一聊天有什么区别 ？</a></li>
+      <li><a href="#verdiff">已验证群组和跟已验证联系人的一对一聊天有什么区别 ？</a></li>
       <li><a href="#delta-chat-支持前向保密吗">Delta Chat 支持前向保密吗？</a></li>
       <li><a href="#delta-chat-如何保护我的元数据">Delta Chat 如何保护我的元数据？</a></li>
       <li><a href="#我可以重复使用现有的私钥吗">我可以重复使用现有的私钥吗？</a></li>
       <li><a href="#我无法将现有的-pgp-密钥导入-delta-chat">我无法将现有的 PGP 密钥导入 Delta Chat。</a></li>
-      <li><a href="#为什么不使用-peppretty-easy-privacy">为什么不使用 pEp（pretty easy privacy）？</a></li>
     </ul>
   </li>
   <li><a href="#multiclient">多客户端</a>
@@ -55,7 +54,7 @@
       <li><a href="#为什么我可以选择不监视-deltachat-文件夹">为什么我可以选择不监视 DeltaChat 文件夹？</a></li>
     </ul>
   </li>
-  <li><a href="#私人应用--webxdc">私人应用 / webxdc</a>
+  <li><a href="#webxdc">Private Apps / webxdc</a>
     <ul>
       <li><a href="#私人应用有多么私人">私人应用有多么私人？</a></li>
       <li><a href="#可以从哪里获取私人应用">可以从哪里获取私人应用？</a></li>
@@ -202,7 +201,7 @@ conversation in Delta Chat or in a “normal” e-mail app.</li>
   <li>or the profile icon and then ‘Add Account’ (iOS)</li>
 </ul>
 
-<p>You may also wish to learn <a href="#can-i-use-delta-chat-on-multiple-devices-at-the-same-time">how to add accounts to multiple devices</a>.</p>
+<p>You may also wish to learn <a href="#multiclient">how to add accounts to multiple devices</a>.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="谁会看见我的个人资料图片">
         
@@ -350,7 +349,7 @@ Archived chats remain accessible above the chat list or via search.</p>
       <li>或是因为他们直接给您发消息了，</li>
       <li>因为他们在和您的共有群组中发消息了，</li>
       <li>因为他们对您的消息发送了已读回执，</li>
-      <li>或是因为他们通过<a href="#private-apps--webxdc">私人应用</a>给您的 Delta Chat 发送数据了。</li>
+      <li>或是因为他们通过<a href="#webxdc">私人应用</a>给您的 Delta Chat 发送数据了。</li>
     </ul>
   </li>
   <li>所以，这并不是一个实时的在线状态——如果他人即使看起来在线也没有立即回复，不要心急，给他们一些空间 ;-)</li>
@@ -450,10 +449,10 @@ Archived chats remain accessible above the chat list or via search.</p>
   <li>注意：如果在多台设备上使用 Delta Chat，请将消息在服务器上保存足够长的时间，以便其他设备能够下载消息。在这种情况下，您应当根据其他设备的使用频率，将自动删除设置到“一天后”或相似的选项上。</li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="打开从设备删除旧消息后会发生什么">
+      <p class="back"><a href="#top">^</a></p><h3 id="delold">
         
         
-          打开“从设备删除旧消息”后，会发生什么？ <a href="#打开从设备删除旧消息后会发生什么" class="anchor"></a>
+          打开“从设备删除旧消息”后，会发生什么？ <a href="#delold" class="anchor"></a>
         
         
       </h3>
@@ -585,12 +584,12 @@ messages. But turning on “self-destructing messages” deletes the messages on
 the server after they were delivered.</p>
 
 <p>If you need the messages on your device, but not on the server, you can also
-agree in the group to turn on <a href="#what-happens-if-i-turn-on-delete-old-messages-from-server">“delete messages from server
+agree in the group to turn on <a href="#delold">“delete messages from server
 automatically”</a>.</p>
 
 <p>If you want to protect a 1:1 conversation like this, you should create a
 verified group with only 2 people. If the other person loses their device but
-not their account, you can still communicate in the 1:1 chat. (<a href="#what-is-the-difference-between-verified-groups-and-11-chats-with-verified-contacts">Read more</a>)</p>
+not their account, you can still communicate in the 1:1 chat. (<a href="#verdiff">Read more</a>)</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="端到端加密使用了哪些标准">
         
@@ -609,10 +608,10 @@ not their account, you can still communicate in the 1:1 chat. (<a href="#what-is
   </li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="已验证群组和跟已验证联系人的一对一聊天有什么区别-">
+      <p class="back"><a href="#top">^</a></p><h3 id="verdiff">
         
         
-          已验证群组和跟已验证联系人的一对一聊天有什么区别 ？ <a href="#已验证群组和跟已验证联系人的一对一聊天有什么区别-" class="anchor"></a>
+          已验证群组和跟已验证联系人的一对一聊天有什么区别 ？ <a href="#verdiff" class="anchor"></a>
         
         
       </h3>
@@ -701,18 +700,6 @@ not their account, you can still communicate in the 1:1 chat. (<a href="#what-is
 <p>Delta Chat 支持常见的 OpenPGP 私钥格式。然而，不可能使每种来源的私钥都被完整支持。这不是 Delta Chat 的主要目标。实际上，大多数新用户在使用 Delta Chat 之前根本没有密钥。不过，我们确实在尝试支持尽可能多的私钥来源。</p>
 
 <p>移除私钥密码的操作取决于您用于管理 PGP 密钥的软件。对于 Enigmail，您可以在密钥管理窗口中将密码设为空值。 对于 GnuPG，您可以<a href="https://github.com/deltachat/deltachat-android/issues/98#issuecomment-378383429">通过命令行</a>来进行设置。对于其他程序，您应该能在网上找到解决方案。</p>
-    
-      <p class="back"><a href="#top">^</a></p><h3 id="为什么不使用-peppretty-easy-privacy">
-        
-        
-          为什么不使用 pEp（pretty easy privacy）？ <a href="#为什么不使用-peppretty-easy-privacy" class="anchor"></a>
-        
-        
-      </h3>
-
-<ul>
-  <li>Delta Chat 使用 Autocrypt 端到端加密标准。有关 Autocrypt 与 pEp 的讨论，请参阅 <a href="https://autocrypt.org/faq.html#how-does-autocrypt-differ-from-pep">Autocrypt 常见问题</a>。</li>
-</ul>
     
       <p class="back"><a href="#top">^</a></p><h2 id="multiclient">
         
@@ -855,10 +842,10 @@ try the <strong>manual transfer</strong> described below</p>
 
 <p>有些人将 Delta Chat 用作常规电子邮件客户端并希望将收件箱文件夹用于其邮件，而不是使用 DeltaChat 文件夹。如果禁用了“监视 DeltaChat 文件夹”，则还应该禁用“将聊天消息移动到 DeltaChat”。否则，删除消息或多设备设置可能无法正常工作。</p>
     
-      <p class="back"><a href="#top">^</a></p><h2 id="私人应用--webxdc">
+      <p class="back"><a href="#top">^</a></p><h2 id="webxdc">
         
         
-          私人应用 / webxdc <a href="#私人应用--webxdc" class="anchor"></a>
+          Private Apps / webxdc <a href="#webxdc" class="anchor"></a>
         
         
       </h2>
@@ -1066,9 +1053,9 @@ try the <strong>manual transfer</strong> described below</p>
 
 <ul>
   <li>Most mail servers will work well. But what we personally recommend is a
-combination of mailcow and mailadm, as described <a href="2023-01-26-upcoming-mail-server-workshops">in this
+combination of mailcow and mailadm, as described <a href="https://delta.chat/en/2023-01-27-upcoming-mail-server-workshops">in this
 blogpost</a>.</li>
-  <li>You can find an <a href="serverguide">installation guide on our website</a>.</li>
+  <li>You can find an <a href="https://delta.chat/zh_CN/serverguide">installation guide on our website</a>.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="使用电子邮件的-delta-chat-真的是-即时-通讯工具吗">
@@ -1134,7 +1121,7 @@ but two high-severity issues that we subsequently fixed.
 It also revealed one medium-severity and some less severe issues,
 but there was no way to exploit these vulnerabilities in the Delta Chat implementation.
 Some of them we nevertheless fixed since the audit was concluded.
-You can read the <a href="../assets/blog/2019-first-security-review.pdf">full report here</a>.</p>
+You can read the <a href="https://delta.chat/assets/blog/2019-first-security-review.pdf">full report here</a>.</p>
   </li>
   <li>
     <p>In 2020, <a href="https://includesecurity.com">Include Security</a> analyzed Delta
@@ -1149,14 +1136,14 @@ because they depend on the environment in which Delta Chat is used.
 For usability and compatibility reasons,
 we can not mitigate all of them
 and decided to provide security recommendations to threatened users.
-You can read the <a href="../assets/blog/2020-second-security-review.pdf">full report here</a>.</p>
+You can read the <a href="https://delta.chat/assets/blog/2020-second-security-review.pdf">full report here</a>.</p>
   </li>
   <li>
     <p>Beginning 2023, <a href="https://cure53.de">Cure53</a> analyzed both the transport encryption of
 Delta Chat’s network connections and a reproducible mail server setup as
-<a href="serverguide">recommended on this site</a>.
-You can read more about the audit <a href="2023-03-23-third-independent-security-audit">on our blog</a>
-or read the <a href="../assets/blog/MER-01-report.pdf">full report here</a>.</p>
+<a href="https://delta.chat/zh_CN/serverguide">recommended on this site</a>.
+You can read more about the audit <a href="https://delta.chat/en/2023-03-27-third-independent-security-audit">on our blog</a>
+or read the <a href="https://delta.chat/assets/blog/MER-01-report.pdf">full report here</a>.</p>
   </li>
 </ul>
     
@@ -1186,10 +1173,28 @@ or read the <a href="../assets/blog/MER-01-report.pdf">full report here</a>.</p>
     <p>在 2021 年，我们从两项下一代互联网提案收到了欧盟的进一步资助，即 <a href="https://dapsi.ngi.eu/hall-of-fame/eppd/">EPPD - 电子邮件提供商可移植性目录</a>（约 9.7 万欧元）和 <a href="https://nlnet.nl/project/EmailPorting/">AEAP - 电子邮件地址移植</a>（约 9 万欧元）。这带来了更好的多账户支持，改进的二维码联系人和群组设置，和所有平台上的多处网络改进。</p>
   </li>
   <li>
-    <p>在 2021/2022 年，我们从美国民主、人权和劳工局（DRL）获得 <em>互联网自由</em> 资助（约 50 万美元）。这笔资金资助我们的长期目标是使 Delta Chat 更易于使用，兼容世界上各类电子邮件服务器，以及在经常遭受互联网审查与互联网关闭的地方更具适应力和安全性。</p>
+    <p>From End 2021 till March 2023 we received <em>Internet Freedom</em> funding (500K USD) from the
+U.S. Bureau of Democracy, Human Rights and Labor (DRL). 
+This funding supported our long-running goals to make Delta Chat more usable 
+and compatible with a wide range of e-mail servers world-wide, and more resilient and secure
+in places often affected by internet censorship and shutdowns.</p>
   </li>
   <li>
-    <p>有时我们会收到来自个人的一次性捐款，对此我们心存感激。例如在2021 年，一位慷慨的个人向我们银行电汇了四千欧元，主题为“保持良好发展！”。我们使用这些钱款来资助开发聚会，以及应对难以预测或无法从公共资金赠款中报销的临时费用。</p>
+    <p>Beginning 2023 we got accepted in the Next Generation Internet (NGI)
+Entrust program for our “Private Decentralized Apps” proposals. 
+Exact amount is to be determined (around 100K EUR). 
+This funding supports further developments of <a href="https://webxdc.org">webxdc “apps shared in a chat”</a>.</p>
+  </li>
+  <li>
+    <p>Sometimes we receive one-time donations from private individuals. 
+For example, in 2021 a generous individual bank-wired us 4K EUR 
+with the subject “keep up the good developments!”. 💜 
+We use such money to fund development gatherings or to care for ad-hoc expenses 
+that can not easily be predicted for, or reimbursed from, public funding grants. 
+Receiving more donations also helps us to become more independent and long-term viable
+as a contributor community.</p>
+
+    
   </li>
   <li>
     <p>最后但并非最不重要的是，数位专家与热心人在没有收到或仅收到少量金钱的情况下为 Delta Chat 的开发做出了贡献。没有他们，Delta Chat 不会发展到、甚至无法接近目前的状况。</p>
@@ -1198,7 +1203,8 @@ or read the <a href="../assets/blog/MER-01-report.pdf">full report here</a>.</p>
 
 <p>上面提到的钱款资助主要是由在弗赖堡（德国）的 merlinux GmbH 组织的，分发给了来自世界各地的十多位贡献者。</p>
 
-<p>2022 年下半年，特别是 2023 年的资助是一个正在被关注的问题。除了申请更多的公共资金外，我们希望能更加独立于政府相关的资金来源。请查看 <a href="https://delta.chat/en/contribute">Delta Chat 贡献渠道</a>来了解钱款和开发相关的支持可能性。</p>
+<p>Please see <a href="https://delta.chat/zh_CN/contribute">Delta Chat Contribution channels</a>
+for both monetary and and other contribution possibilities.</p>
 
 
 
