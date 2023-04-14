@@ -347,28 +347,26 @@ extension WebxdcViewController: WKScriptMessageHandler {
 extension WebxdcViewController: WKURLSchemeHandler {
     func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
         if let url = urlSchemeTask.request.url, let scheme = url.scheme, scheme == INTERNALSCHEMA {
+            let data: Data
+            let mimeType: String
+            let statusCode: Int
             if url.path == "/webxdc-update.json" || url.path == "webxdc-update.json" {
                 let lastKnownSerial = Int(url.query ?? "0") ?? 0
-                let data = Data(
+                data = Data(
                     dcContext.getWebxdcStatusUpdates(msgId: messageId, lastKnownSerial: lastKnownSerial).utf8)
-                let response = URLResponse(url: url, mimeType: "application/json", expectedContentLength: data.count, textEncodingName: "utf-8")
-                
-                urlSchemeTask.didReceive(response)
-                urlSchemeTask.didReceive(data)
-                urlSchemeTask.didFinish()
-                return
-            }
-
-            let file = url.path
-            let dcMsg = dcContext.getMessage(id: messageId)
-            var data: Data
-            if url.lastPathComponent == "webxdc.js" {
-                data = Data(webxdcbridge.utf8)
+                mimeType = "application/json"
+                statusCode = 200
             } else {
-                data = dcMsg.getWebxdcBlob(filename: file)
+                let file = url.path
+                let dcMsg = dcContext.getMessage(id: messageId)
+                if url.lastPathComponent == "webxdc.js" {
+                    data = Data(webxdcbridge.utf8)
+                } else {
+                    data = dcMsg.getWebxdcBlob(filename: file)
+                }
+                mimeType = DcUtils.getMimeTypeForPath(path: file)
+                statusCode = (data.isEmpty ? 404 : 200)
             }
-            let mimeType = DcUtils.getMimeTypeForPath(path: file)
-            let statusCode = (data.isEmpty ? 404 : 200)
 
             var headerFields = [
                 "Content-Type": mimeType,
