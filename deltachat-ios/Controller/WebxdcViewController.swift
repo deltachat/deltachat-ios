@@ -354,7 +354,7 @@ extension WebxdcViewController: WKURLSchemeHandler {
                 let lastKnownSerial = Int(url.query ?? "0") ?? 0
                 data = Data(
                     dcContext.getWebxdcStatusUpdates(msgId: messageId, lastKnownSerial: lastKnownSerial).utf8)
-                mimeType = "application/json"
+                mimeType = "application/json; charset=utf-8"
                 statusCode = 200
             } else {
                 let file = url.path
