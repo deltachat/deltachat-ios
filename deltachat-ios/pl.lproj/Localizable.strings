@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Obrazy zdalne mogą służyć do śledzenia użytkownika.\n\nTo ustawienie umożliwia również ładowanie czcionek i innych treści. Nawet jeśli jest wyłączone, nadal możesz widzieć obrazy osadzone lub zapisane w pamięci podręcznej.\n\nZaładować zdalne obrazy?";
 "always" = "Zawsze";
+"always_load_remote_images" = "Zawsze wczytuj zdalne obrazy";
 "once" = "Jeden raz";
+"show_warning" = "Pokaż ostrzeżenie";
 "show_password" = "Pokaż hasło";
 "hide_password" = "Ukryj hasło";
 "not_now" = "Nie teraz";
@@ -419,6 +421,7 @@
 "multidevice_abort" = "Przerwać konfigurowanie kolejnego urządzenia?";
 "multidevice_abort_will_invalidate_copied_qr" = "Spowoduje to unieważnienie kodu QR skopiowanego do schowka.";
 "multidevice_experimental_hint" = "(eksperymentalna, wymagana wersja 1.36)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Konto przeniesione na twoje kolejne urządzenie.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Przygotowywanie konta…";
 // Shown beside progress bar, stay short

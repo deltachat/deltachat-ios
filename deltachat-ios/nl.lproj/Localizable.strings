@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Externe afbeeldingen kunnen worden gebruikt om je gedrag te volgen.\n\nDeze instelling staat tevens toe om andere externe inhoud, zoals lettertypen, te laden, en zelfs na uitschakeling kunnen er ingesloten of gecachte afbeeldingen worden getoond.\n\nWeet je het zeker?";
 "always" = "Altijd";
+"always_load_remote_images" = "Externe afbeeldingen altijd laden";
 "once" = "Eenmalig";
+"show_warning" = "Waarschuwing tonen";
 "show_password" = "Wachtwoord tonen";
 "hide_password" = "Wachtwoord verbergen";
 "not_now" = "Niet nu";
@@ -419,6 +421,7 @@
 "multidevice_abort" = "Wil je het instellen afbreken?";
 "multidevice_abort_will_invalidate_copied_qr" = "Hierdoor wordt de gekopieerde QR-code onbruikbaar gemaakt.";
 "multidevice_experimental_hint" = "(experimenteel - versie 1.36 vereist)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Het account is overgezet naar je tweede apparaat.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Bezig met voorbereiden…";
 // Shown beside progress bar, stay short

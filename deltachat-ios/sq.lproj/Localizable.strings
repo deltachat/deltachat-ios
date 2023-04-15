@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Figurat e largëta mund të përdoren për t’ju ndjekur.\n\nRregullimi lejon gjithashtu të ngarkohen shkronja dhe lëndë tjetër. Edhe nëse është e çaktivizuar, prapë mund të shihni figura të trupëzuara ose të ruajtura në fshehtinë.\n\nTë ngarkohen figura të largëta?";
 "always" = "Përherë";
+"always_load_remote_images" = "Ngarko Përherë Figura të Largëta";
 "once" = "Vetëm njëherë";
+"show_warning" = "Shfaq Sinjalizim";
 "show_password" = "Shfaqe fjalëkalimin";
 "hide_password" = "Fshihe fjalëkalimin";
 "not_now" = "Jo tani";
@@ -417,6 +419,7 @@
 "multidevice_abort" = "Të ndërpritet ujdisja e pajisjes së dytë?";
 "multidevice_abort_will_invalidate_copied_qr" = "Kjo do të bëjë të pavlefshëm kodin QR të kopjuar në të papastër.";
 "multidevice_experimental_hint" = "(eksperimentale, lyp versionin 1.36)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Llogaria u shpërngul te pajisja juaj e dytë.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Po përgatitet llogaria…";
 // Shown beside progress bar, stay short

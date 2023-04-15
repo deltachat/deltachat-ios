@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Remote images can track you.\n\nThis setting also may load fonts and other content. If disabled, embedded or cached images may appear.\n\nLoad remote images?";
 "always" = "Always";
+"always_load_remote_images" = "Always Load Remote Images";
 "once" = "Once";
+"show_warning" = "Show Warning";
 "show_password" = "Show Password";
 "hide_password" = "Hide Password";
 "not_now" = "Not now";
@@ -419,6 +421,7 @@
 "multidevice_abort" = "Abort setting up second device?";
 "multidevice_abort_will_invalidate_copied_qr" = "This will invalidate the QR code copied to clipboard.";
 "multidevice_experimental_hint" = "(experimental, version 1.36 required)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Account transferred to your second device.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparing account…";
 // Shown beside progress bar, stay short

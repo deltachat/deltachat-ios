@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Le immagini remote possono essere utilizzate per tracciarti.\n\nL\'impostazione consente anche di caricare caratteri e altri contenuti. Anche se è disabilitato, potresti comunque vedere immagini incorporate o memorizzate nella cache.\n\nCaricare immagini remote?";
 "always" = "Sempre";
+"always_load_remote_images" = "Carica Sempre Immagini Remote";
 "once" = "Una Volta";
+"show_warning" = "Mostra Avviso";
 "show_password" = "Mostra Password";
 "hide_password" = "Nascondi Password";
 "not_now" = "Non ora";
@@ -419,6 +421,7 @@
 "multidevice_abort" = "Interrompere l\'impostazione del secondo dispositivo?";
 "multidevice_abort_will_invalidate_copied_qr" = "Questo invaliderà il codice QR copiato negli appunti.";
 "multidevice_experimental_hint" = "(sperimentale, è richiesta la versione 1.36)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Account trasferito sul tuo secondo dispositivo.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparazione account…";
 // Shown beside progress bar, stay short

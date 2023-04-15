@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "远程图像可以被用于追踪您。\n\n该设置可能还会加载字体以及其他内容。禁用状态下，您仍可能会看到嵌入的图像和缓存中的图像。\n\n要加载远程图像吗？";
 "always" = "总是";
+"always_load_remote_images" = "始终加载远程图像";
 "once" = "仅一次";
+"show_warning" = "显示警告";
 "show_password" = "显示密码";
 "hide_password" = "隐藏密码";
 "not_now" = "现在不";
@@ -419,6 +421,7 @@
 "multidevice_abort" = "中止第二台设备的设置吗？";
 "multidevice_abort_will_invalidate_copied_qr" = "这会让复制到剪贴板的二维码失效。";
 "multidevice_experimental_hint" = "（实验性，需要 1.36 版本）";
+"multidevice_transfer_done_devicemsg" = "ℹ️ 账户已转移到你的第二台设备。";
 // Shown beside progress bar, stay short
 "preparing_account" = "准备账户中…";
 // Shown beside progress bar, stay short

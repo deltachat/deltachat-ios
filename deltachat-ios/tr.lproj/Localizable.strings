@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Uzak görseller sizi izleyebilir.\n\nBu ayar, yazı tiplerini ve diğer içeriği de yükler. Etkisizleştirilirse, katıştırılan ya da önbelleklenen görselleri görebilirsiniz.\n\nUzak görseller yüklensin mi?";
 "always" = "Her zaman";
+"always_load_remote_images" = "Her Zaman Uzak Görselleri Yükle";
 "once" = "Bir kez";
+"show_warning" = "Uyarı Göster";
 "show_password" = "Parolayı Göster";
 "hide_password" = "Parolayı Gizle";
 "not_now" = "Şimdi değil";
@@ -419,6 +421,7 @@
 "multidevice_abort" = "İkinci aygıtı ayarlamaktan vazgeçilsin mi?";
 "multidevice_abort_will_invalidate_copied_qr" = "Bu, panoya kopyalanan QR kodunu geçersizleştirecek.";
 "multidevice_experimental_hint" = "(deneysel, sürüm 1.36 gerekli)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Hesap, ikinci aygıtınıza aktarıldı.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Hesap hazırlanıyor…";
 // Shown beside progress bar, stay short

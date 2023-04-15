@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Das Nachladen von Bildern kann dazu verwendet werden, Sie zu tracken.\n\nDie Option erlaubt auch das Laden von Schriftarten und anderen Inhalten; wenn sie deaktiviert ist, werden eingebettete oder zwischengespeicherte Bilder dennoch angezeigt.\n\nBilder nachladen?";
 "always" = "Immer";
+"always_load_remote_images" = "Bilder immer nachladen";
 "once" = "Einmal";
+"show_warning" = "Warnung anzeigen";
 "show_password" = "Passwort anzeigen";
 "hide_password" = "Passwort verstecken";
 "not_now" = "Nicht jetzt";
@@ -419,6 +421,7 @@
 "multidevice_abort" = "Einrichtung des Zweitgeräts beenden?";
 "multidevice_abort_will_invalidate_copied_qr" = "Dadurch wird der auf die Zwischenablage kopierte QR-Code ungültig.";
 "multidevice_experimental_hint" = "(experimentell, Version 1.36 erforderlich)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Konto wurde auf Ihr Zweitgerät übertragen.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Konto vorbereiten…";
 // Shown beside progress bar, stay short

@@ -419,6 +419,7 @@
 "multidevice_abort" = "Abandonner la configuration du deuxième appareil ?";
 "multidevice_abort_will_invalidate_copied_qr" = "Révoque le code QR copié dans le presse-papiers.";
 "multidevice_experimental_hint" = "(expérimental, version 1.36 requise)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Compte transféré sur votre deuxième appareil.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Préparation du compte...";
 // Shown beside progress bar, stay short
@@ -673,7 +674,7 @@
 
 // autocrypt
 "autocrypt" = "Autocrypt";
-"autocrypt_explain" = "Autocrypt est une nouvelle spécification ouverte pour le chiffrement automatique de bout en bout des courriels.\n\nVotre configuration de bout en bout est créée automatiquement si nécessaire et vous pouvez la transférer entre les périphériques avec les messages de configuration Autocrypt.";
+"autocrypt_explain" = "Autocrypt est une nouvelle spécification ouverte pour le chiffrement automatique de bout en bout des courriels.\n\nVotre configuration de bout en bout est créée automatiquement si nécessaire et vous pouvez la transférer entre vos appareils grâce aux messages de configuration Autocrypt.";
 "autocrypt_send_asm_title" = "Envoyer le message de configuration Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \"Message de configuration d\'Autocrypt\" partages en toute sécurité vos paramètres de bout-en-bout avec les autres applications conformes à Autocrypt.\n\nLa configuration sera chiffrée par un code d\'installation affiché ici et doit être saisi sur l\'autre appareil.";
 "autocrypt_send_asm_button" = "Envoyer le message de configuration Autocrypt";
@@ -681,7 +682,7 @@
 "autocrypt_prefer_e2ee" = "Préférez le chiffrement de bout en bout";
 "autocrypt_asm_subject" = "Message de configuration Autocrypt";
 "autocrypt_asm_general_body" = "Ceci est le message de configuration Autocrypt utilisé pour transférer votre configuration de bout en bout entre clients. Pour déchiffrer et utiliser votre configuration, ouvrez le message dans un client compatible Autocrypt et entrez le code de configuration présenté sur le périphérique de génération.";
-"autocrypt_asm_click_body" = "Ceci est le message de configuration Autocrypt utilisé pour transférer votre configuration de bout en bout entre clients. Pour décrypter et utiliser votre configuration, tapez ou cliquez sur ce message.";
+"autocrypt_asm_click_body" = "Ceci est le message de configuration Autocrypt utilisé pour transférer votre configuration de bout-en-bout entre clients. Pour déchiffrer et utiliser votre configuration, tapez ou cliquez sur ce message.";
 "autocrypt_continue_transfer_title" = "Message de configuration Autocrypt";
 "autocrypt_continue_transfer_please_enter_code" = "Veuillez entrer le code de configuration affiché sur l\'autre appareil.";
 "autocrypt_continue_transfer_succeeded" = "Configuration de bout en bout transférée. Cet appareil est maintenant prêt à utiliser Autocrypt avec la même configuration que l\'autre appareil.";
@@ -902,7 +903,7 @@
 "imex_progress_title_desktop" = "Avancement de la sauvegarde";
 "export_backup_desktop" = "Exporter la sauvegarde";
 "show_key_transfer_message_desktop" = "Votre clé vous a été envoyée. Passez à l\'autre appareil et ouvrez le message de configuration. Vous devriez être invité à entrer un code de configuration. Tapez les chiffres suivants:";
-"autocrypt_correct_desktop" = "Installation d\'Autocrypt transférée avec succès !";
+"autocrypt_correct_desktop" = "Configuration Autocrypt transférée.";
 "autocrypt_incorrect_desktop" = "Code de configuration incorrect. Veuillez réessayer.";
 "create_chat_error_desktop" = "La discussion n’a pas pu être créée.";
 "forget_login_confirmation_desktop" = "Supprimer cette connexion ? Tout sera effacé, y compris vos paramètres de chiffrement de bout en bout, vos contacts, discussions, messages et fichiers multimédia. Cette action est irrévocable.";
