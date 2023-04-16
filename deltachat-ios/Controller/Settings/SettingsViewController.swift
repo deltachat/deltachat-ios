@@ -268,7 +268,7 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     private func showBackupProviderViewController() {
-        let alert = UIAlertController(title: String.localized("multidevice_receiver_title"), message: String.localized("multidevice_this_creates_a_qr_code"), preferredStyle: .alert)
+        let alert = UIAlertController(title: String.localized("multidevice_title"), message: String.localized("multidevice_this_creates_a_qr_code"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(
             title: String.localized("perm_continue"),
