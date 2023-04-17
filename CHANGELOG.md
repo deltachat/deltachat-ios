@@ -1,5 +1,16 @@
 # Delta Chat iOS Changelog
 
+## v1.36.3
+2023-04
+
+* add "Paste From Clipboard" to QR code scanner
+* fix fetch errors due to erroneous EOF detection in long IMAP responses
+* fix crash in search when using the app on macos
+* more bug fixes
+* update translations and local help
+* update to core112.7
+
+
 ## v1.36.1
 2023-03
 
