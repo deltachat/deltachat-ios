@@ -43,7 +43,7 @@
 "media" = "Ortam";
 "profile" = "Profil";
 "main_menu" = "Ana Menü";
-"start_chat" = "Sohbete Başla";
+"start_chat" = "Sohbet Başlat";
 "show_full_message" = "Tam İletiyi Göster…";
 "show_full_message_in_browser" = "Tam İletiyi Tarayıcıda Göster…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
@@ -313,12 +313,12 @@
 "chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu grubu görecek.";
 "chat_record_slide_to_cancel" = "İptal etmek için kaydırın";
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
-"chat_no_chats_yet_title" = "Boş gelen kutusu.\nYeni bir sohbete başlamak için \"+\" simgesine basın.";
+"chat_no_chats_yet_title" = "Boş gelen kutusu.\nYeni bir sohbet başlatmak için \"+\" simgesine basın.";
 "chat_no_chats_yet_hint" = "Diğer Delta Chat kullanıcılarıyla ve herhangi bir e-posta adresiyle sohbet edebilirsiniz.";
-"chat_all_archived" = "Tüm sohbetler arşivlendi.\nYeni bir sohbete başlamak için \"+\" simgesine basın.";
+"chat_all_archived" = "Tüm sohbetler arşivlendi.\nYeni bir sohbet başlatmak için \"+\" simgesine basın.";
 "chat_share_with_title" = "Paylaş";
 "chat_input_placeholder" = "İleti";
-"chat_archived_label" = "Arşivlendi";
+"chat_archived_label" = "Arşivlenen";
 "chat_request_label" = "İstek";
 "chat_no_messages" = "İleti yok.";
 "chat_self_talk_subtitle" = "Kendime İletiler";
@@ -496,7 +496,7 @@
 "login_error_required_fields" = "Lütfen geçerli bir e-posta adresi ve bir parola girin";
 "import_backup_title" = "Yedekten Geri Yükle";
 "import_backup_ask" = "\"%1$@\" üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
-"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için \"İletileşmeye başla\"ya basın.";
+"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için \"İletileşmeyi başlat\"a basın.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "\"%1$@\" olarak oturum açılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
 // TLS certificate checks
@@ -568,8 +568,8 @@
 "pref_incognito_keyboard" = "Gizlenen Klavye";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Kişiselleştirilen öğrenmeyi etkisizleştirmek için klavye iste";
-"pref_read_receipts" = "Okunma Onayları";
-"pref_read_receipts_explain" = "Okunma onayları etkisizleştirilirse, diğerlerinden gelen okunma onaylarını göremeyeceksiniz.";
+"pref_read_receipts" = "Okundu Onayları";
+"pref_read_receipts_explain" = "Okundu onayları etkisizleştirilirse, diğerlerinden gelen okundu onaylarını göremeyeceksiniz.";
 "pref_manage_keys" = "Anahtarları Yönet";
 "pref_use_system_emoji" = "Sistem Emojisini Kullan";
 "pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
@@ -585,7 +585,7 @@
 "pref_backup" = "Yedekleme";
 "pref_backup_explain" = "Sohbetleri Dış Depolamaya Yedekle";
 "pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardımcı olur.\n\nYedek; tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
-"pref_backup_export_start_button" = "Yedeklemeye Başla";
+"pref_backup_export_start_button" = "Yedeklemeyi Başlat";
 "pref_backup_written_to_x" = "Yedek \"%1$@\" üzerine başarıyla yazıldı.";
 "pref_managekeys_menu_title" = "Anahtarları Yönet";
 "pref_managekeys_export_secret_keys" = "Sır Anahtarları Dışa Aktar";
