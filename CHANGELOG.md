@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v1.36.3
+## v1.36.4
 2023-04
 
 * add "Paste From Clipboard" to QR code scanner
