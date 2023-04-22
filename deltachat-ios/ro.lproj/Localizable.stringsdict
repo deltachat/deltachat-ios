@@ -218,5 +218,59 @@
 			<string>Ștergeți %d de mesaje?</string>
 		</dict>
 	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d chat arhivat</string>
+			<key>few</key>
+			<string>%d  chat-uri arhivate</string>
+			<key>other</key>
+			<string>%d de chat-uri arhivate</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d chat nearhivat</string>
+			<key>few</key>
+			<string>%d chat-uri nearhivate</string>
+			<key>other</key>
+			<string>%d de chat-uri nearhivate</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d nou mesaj</string>
+			<key>few</key>
+			<string>%d mesaje noi</string>
+			<key>other</key>
+			<string>%d de mesaje noi</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

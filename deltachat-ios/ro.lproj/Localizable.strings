@@ -230,7 +230,7 @@
 "device_talk" = "Mesajele Dispozitivului";
 "device_talk_subtitle" = "Mesaje generate la nivel local";
 "device_talk_explain" = "Mesajele din acest chat sunt generate pe dispozitivul dumneavoastră pentru a vă informa cu privire la actualizările app-ului și la problemele apărute în timpul utilizării.";
-
+"device_talk_welcome_message" = "Bine ați venit la Delta Chat! - Delta Chat arată și se simte ca și alte app-uri populare de mesagerie, dar nu implică control centralizat, urmărire sau vânzarea dumneavoastră, a prietenilor, colegilor sau a familiei către organizații mari.\n\nTehnic, Delta Chat este o aplicație de e-mail cu o interfață de chat modernă. E-mail într-o rochie nouă, dacă vreți 👻\n\nUtilizați Delta Chat cu oricine din miliardele de oameni: folosiți doar adresa lor de e-mail. Destinatarii nu trebuie să instaleze Delta Chat, să viziteze site-uri web sau să se înregistreze nicăieri - totuși, desigur, dacă doresc, le puteți indica 👉 https://get.delta.chat.";
 "edit_contact" = "Editați Contactul";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fixați Chat";
@@ -299,3 +299,165 @@
 "contacts_title" = "Contacte";
 "contacts_enter_name_or_email" = "Introduceți numele sau adresa de e-mail";
 "contacts_type_email_above" = "Introduceți adresa de e-mail de mai sus";
+"contacts_empty_hint" = "Fără contacte.";
+
+
+// chatlist and chat view
+"chat_archived_chats_title" = "Chat-uri Arhivate";
+"chat_please_enter_message" = "Vă rugăm să introduceți un mesaj.";
+"chat_camera_unavailable" = "Cameră indisponibilă.";
+"chat_unable_to_record_audio" = "Nu se poate înregistra audio.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Trimiteți un mesaj către %1$@; ei îl pot primi chiar și fără Delta Chat.";
+"chat_new_broadcast_hint" = "Într-o listă de difuzare, alte persoane vor primi mesaje în discuțiile lor private cu dumneavoastră.\n\nDestinatarii nu se vor cunoaște între ei.";
+"chat_new_group_hint" = "Ceilalți vor vedea acest grup numai după ce ați trimis un prim mesaj.";
+"chat_record_slide_to_cancel" = "Glisați pentru a anula";
+"chat_record_explain" = "Atingeți continuu pentru a înregistra un mesaj vocal, apoi eliberați-l pentru a-l trimite";
+"chat_no_chats_yet_title" = "Goliți inbox.\nPress \"+\" pentru a începe un nou chat.";
+"chat_no_chats_yet_hint" = "Puteți discuta cu alți utilizatori Delta Chat și cu orice adresă de e-mail.";
+"chat_all_archived" = "Toate chat-urile sunt archived.\nPress \"+\" pentru a începe un nou chat.";
+"chat_share_with_title" = "Împărtășiți cu";
+"chat_input_placeholder" = "Mesaj";
+"chat_archived_label" = "Arhivat";
+"chat_request_label" = "Cerere";
+"chat_no_messages" = "Nu există mesaje.";
+"chat_self_talk_subtitle" = "Mesaje către sine";
+"archive_empty_hint" = "Chat-urile arhivate vor apărea aici.";
+"saved_messages" = "Mesaje salvate";
+"saved_messages_explain" = "• Redirecționați mesajele aici pentru acces ușor\n\n• Luați notițe sau notițe vocale\n\n\n• Atașați fișiere media pentru a le salva";
+// Should match "Saved" from "Saved messages"
+"saved" = "Salvat";
+"save_as" = "Salvați ca";
+"retry_send" = "Reîncercarea de a trimite mesajul";
+// reasons for a disabled message composer
+"messaging_disabled_not_in_group" = "Trebuie să fiți în acest grup pentru a posta un mesaj. Pentru a vă alătura, întrebați un alt membru.";
+"messaging_disabled_device_chat" = "Acest chat conține mesaje generate local; scrierea este dezactivată.";
+"messaging_disabled_mailing_list" = "Trimiterea de mesaje în listele de discuții nu este încă acceptată.";
+"cannot_display_unsuported_file_type" = "Nu se poate afișa acest tip de fișier: %1$@";
+"attachment_failed_to_load" = "Nu s-a reușit încărcarea atașamentului";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Blocarea înregistrării";
+
+// mailing lists
+"mailing_list" = "Lista de corespondență";
+"mailing_list_profile_info" = "Modificările aduse numelui și imaginii listei de corespondență se aplică numai pe acest dispozitiv.";
+
+// webxdc
+// "Start..." button for an app
+"start_app" = "Start…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Vă rugăm să acceptați mai întâi cererea de chat.";
+
+// map
+"filter_map_on_time" = "Afișați locațiile în intervalul de timp";
+"show_location_traces" = "Afișați urme";
+"add_poi" = "Trimiteți punctul de interes";
+
+// chat audit log
+"chat_audit_log_empty_message" = "Mesajele de sistem pentru acest chat apar aici";
+"chat_audit_log_title" = "Jurnal de audit de chat pentru %1$@";
+"chat_audit_log_description" = "Afișează numai mesajele de sistem și cele informative; este util pentru a găsi ultimele acțiuni de chat fără a derula prin multe mesaje. ";
+
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Nu cereți din nou %1$@";
+"puny_code_warning_header" = "Link suspect detectat";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Ești sigur că vrei să vizitezi  %1$@?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Acest link poate denatura caracterele cu caractere asemănătoare din diferite alfabete. Urmând linkul etichetat %1$@ va duce la %2$@ ceea ce este normal pentru caracterele non-latine. Dacă nu v-ați așteptat la astfel de caractere, acest link ar putea fi dăunător.";
+
+
+// search
+"search" = "Căutați";
+"search_explain" = "Căutați chat-uri, contacte și mesaje";
+"search_no_result_for_x" = "Nu s-au găsit rezultate pentru \"%1$@\"";
+
+
+// create/edit groups, contact/group profile
+"group_name" = "Numele Grup";
+"group_avatar" = "Imagine de Grup";
+"remove_group_image" = "Eliminați Imaginea Grupului";
+"change_group_image" = "Schimbarea Imaginii Grupului";
+"group_create_button" = "Creați un Grup";
+"group_please_enter_group_name" = "Vă rugăm să introduceți un nume pentru grup.";
+"group_add_members" = "Adăugați Membri";
+"group_self_not_in_group" = "Trebuie să fiți membru al grupului pentru a efectua această acțiune.";
+"profile_encryption" = "Criptare";
+"profile_shared_chats" = "Chat-uri Partajate";
+"tab_contact" = "Contact";
+"tab_group" = "Grup";
+"tab_gallery" = "Galerie";
+"tab_docs" = "Documente";
+"tab_links" = "Link-uri";
+"tab_map" = "Hartă";
+"tab_gallery_empty_hint" = "Imaginile și videoclipurile partajate în acest chat vor apărea aici.";
+"tab_docs_empty_hint" = "Documentele și alte fișiere partajate în acest chat vor apărea aici.";
+"tab_image_empty_hint" = "Imaginile partajate în acest chat vor apărea aici.";
+"tab_video_empty_hint" = "Videoclipurile partajate în acest chat vor apărea aici.";
+"tab_audio_empty_hint" = "Fișierele audio și mesajele vocale partajate în acest chat vor apărea aici.";
+"tab_webxdc_empty_hint" = "App-urile partajate în acest chat vor apărea aici.";
+"tab_all_media_empty_hint" = "Materialele media partajate în orice chat vor apărea aici.";
+"media_preview" = "Previzualizare Media";
+"send_message" = "Trimiteți Mesaj";
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+"aeap_addr_changed" = "%1$@ și-au schimbat adresa de la %2$@ la %3$@";
+// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "V-ați schimbat adresa de e-mail de la %1$@ la %2$@.\n\nDacă trimiteți acum un mesaj către un grup verificat, contactele de acolo vor înlocui automat vechea adresă cu noua dumneavoastră adresă.\n\nSe recomandă să vă configurați vechiul furnizor de e-mail pentru a redirecționa toate e-mailurile către noua dumneavoastră adresă de e-mail. În caz contrar, s-ar putea să pierdeți mesaje ale contactelor care nu au primit încă noua dumneavoastră adresă.";
+
+
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Adăugați un al doilea dispozitiv";
+"multidevice_same_network_hint" = "Asigurați-vă că ambele dispozitive se află în aceeași rețea Wi-Fi sau în aceeași rețea";
+"multidevice_this_creates_a_qr_code" = "Astfel se creează un cod QR pe care cel de-al doilea dispozitiv îl poate scana pentru a copia contul.";
+"multidevice_install_dc_on_other_device" = "Instalați Delta Chat pe celălalt dispozitiv (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "Porniți Delta Chat, atingeți \" Adăugați ca al doilea dispozitiv\" și scanați codul afișat aici";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "Scanare pentru a configura un al doilea dispozitiv pentru %1$@";
+"multidevice_receiver_title" = "Adăugați ca Dispozitiv Secundar";
+"multidevice_open_settings_on_other_device" = "Pe primul dispozitiv, mergeți la \" Setări / Adaugă Dispozitivul Secundar \" și scanați codul afișat acolo.";
+"multidevice_receiver_scanning_ask" = "Copiați contul de pe celălalt dispozitiv pe acest dispozitiv?";
+"multidevice_abort" = "Abandonați configurarea celui de-al doilea dispozitiv?";
+"multidevice_abort_will_invalidate_copied_qr" = "Acest lucru va invalida codul QR copiat în clipboard.";
+"multidevice_experimental_hint" = "(experimental, este necesară versiunea 1.36)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Contul a fost transferat pe dispozitivul secundar.";
+// Shown beside progress bar, stay short
+"preparing_account" = "Pregătirea contului...";
+// Shown beside progress bar, stay short
+"waiting_for_receiver" = "În așteptare pentru receptor...";
+// Shown beside progress bar, stay short
+"receiver_connected" = "Receptorul conectat...";
+// Shown beside progress bar, stay short
+"transferring" = "Transferul...";
+"troubleshooting" = "Depanare";
+
+// Connectivity
+// Headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Mesaje primite";
+// Headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Mesaje de ieșire";
+// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+"storage_on_domain" = "Depozitarea pe %1$@";
+"connectivity" = "Conectivitate";
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
+"connectivity_not_connected" = "Nu este conectat";
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_connecting" = "Conectare...";
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_updating" = "Actualizare...";
+// Shown in the setting if the app is "Connected"
+"connectivity_connected" = "Conectat";
+"sending" = "Trimitere…";
+"last_msg_sent_successfully" = "Ultimul mesaj a fost trimis cu succes.";
+"not_supported_by_provider" = "Nu este suportat de furnizorul dumneavoastră.";
+// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+"messages" = "Mesaje";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ de %2$@ folosit";
+
+
+// welcome and login
+"welcome_chat_over_email" = "Chat prin e-mail.";
+"scan_invitation_code" = "Scanați Codul Invitației";
+"welcome_intro1_message" = "Mesagerul cu cea mai largă audiență din lume. Liber și independent.";
