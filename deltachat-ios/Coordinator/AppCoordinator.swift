@@ -9,8 +9,9 @@ class AppCoordinator {
     private let window: UIWindow
     private let dcAccounts: DcAccounts
     private let qrTab = 0
-    public  let chatsTab = 1
-    private let settingsTab = 2
+    public  let allMediaTab = 1 // there are two enums, here and at AppStateRestorer (this is error prone and could probably be merged)
+    public  let chatsTab = 2
+    private let settingsTab = 3
 
     private let appStateRestorer = AppStateRestorer.shared
 
@@ -23,11 +24,12 @@ class AppCoordinator {
     // MARK: - tabbar view handling
     lazy var tabBarController: UITabBarController = {
         let qrNavController = createQrNavigationController()
+        let allMediaNavController = createAllMediaNavigationController()
         let chatsNavController = createChatsNavigationController()
         let settingsNavController = createSettingsNavigationController()
         let tabBarController = UITabBarController()
         tabBarController.delegate = appStateRestorer
-        tabBarController.viewControllers = [qrNavController, chatsNavController, settingsNavController]
+        tabBarController.viewControllers = [qrNavController, allMediaNavController, chatsNavController, settingsNavController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
     }()
@@ -37,6 +39,19 @@ class AppCoordinator {
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "qr_code")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
+        return nav
+    }
+
+    private func createAllMediaNavigationController() -> UINavigationController {
+        let root = QrPageController(dcAccounts: dcAccounts)
+        let nav = UINavigationController(rootViewController: root)
+        let settingsImage: UIImage?
+        if #available(iOS 16.0, *) {
+            settingsImage = UIImage(systemName: "photo.stack")
+        } else {
+            settingsImage = UIImage(named: "report_card") // TODO: if image is settled, add it to assets
+        }
+        nav.tabBarItem = UITabBarItem(title: String.localized("menu_all_media"), image: settingsImage, tag: chatsTab)
         return nav
     }
 
@@ -247,6 +262,7 @@ class AppCoordinator {
         }
 
         self.tabBarController.setViewControllers([createQrNavigationController(),
+                                                  createAllMediaNavigationController(),
                                                   createChatsNavigationController(),
                                                   createSettingsNavigationController()], animated: false)
         presentTabBarController()

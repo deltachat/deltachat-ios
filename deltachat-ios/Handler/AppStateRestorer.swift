@@ -2,7 +2,7 @@ import UIKit
 
 class AppStateRestorer: NSObject, UITabBarControllerDelegate {
 
-    private let lastActiveTabKey = "last_active_tab"
+    private let lastActiveTabKey = "last_active_tab2"
     private let lastActiveChatId = "last_active_chat_id"
     private let offsetKey = 10
 
@@ -10,8 +10,9 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
 
     private enum Tab: Int {
         case qrTab = 10
-        case chatTab = 11
-        case settingsTab = 12
+        case allMediaTab = 11 // there are two enums, here and at AppCoordinator (this is error prone and could probably be merged)
+        case chatTab = 12
+        case settingsTab = 13
         case firstLaunch = 0
     }
 
@@ -29,7 +30,7 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
         }
 
         switch lastTab {
-        case .qrTab, .chatTab, .settingsTab:
+        case .allMediaTab, .qrTab, .chatTab, .settingsTab:
             return lastTab.rawValue - offsetKey
         case .firstLaunch:
             return -1
