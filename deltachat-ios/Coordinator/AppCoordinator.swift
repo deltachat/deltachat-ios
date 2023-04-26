@@ -43,7 +43,7 @@ class AppCoordinator {
     }
 
     private func createAllMediaNavigationController() -> UINavigationController {
-        let root = QrPageController(dcAccounts: dcAccounts)
+        let root = AllMediaViewController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage: UIImage?
         if #available(iOS 16.0, *) {
