@@ -208,6 +208,7 @@
 		B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */; };
 		B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4256F265C325C00B95377 /* MultilineLabelCell.swift */; };
 		B2D4B63B29C38D1900B47DA8 /* ChatsAndMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */; };
+		B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F899E029F96A67003797D5 /* AllMediaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -573,6 +574,7 @@
 		B2D729E927C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B2D729EA27C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B2D729EB27C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		B2F899E029F96A67003797D5 /* AllMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllMediaViewController.swift; sourceTree = "<group>"; };
 		C1B60449B860342EE5F2AD54 /* Pods-DcShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-DcShare/Pods-DcShare.release.xcconfig"; sourceTree = "<group>"; };
 		FECB35E2B04CD5F5D02C157A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -949,6 +951,7 @@
 			children = (
 				B28D25882913CE8600B9067F /* Settings */,
 				AE18F28B228C17630007B1BE /* AccountSetup */,
+				B2F899E029F96A67003797D5 /* AllMediaViewController.swift */,
 				B259D64229B771D5008FB706 /* BackupTransferViewController.swift */,
 				30DDCBEA28FCA21800465D22 /* AccountSwitchViewController.swift */,
 				30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */,
@@ -1516,6 +1519,7 @@
 				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
 				30C7D5EC28F47E620078D24C /* InitialsBadge.swift in Sources */,
+				B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */,
 				302D5450268B6B2300A8B271 /* MessageUtils.swift in Sources */,
 				30149D9322F21129003C12B5 /* QrViewController.swift in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
