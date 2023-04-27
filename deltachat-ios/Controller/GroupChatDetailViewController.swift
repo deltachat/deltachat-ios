@@ -299,22 +299,22 @@ class GroupChatDetailViewController: UIViewController {
         self.editBarButtonItem.isEnabled = chat.isMailinglist || chat.canSend
 
         if chat.isMailinglist {
-            self.chatOptions = [.gallery, .documents]
+            self.chatOptions = [.documents, .gallery]
             self.memberManagementRows = 0
             self.chatActions = [.archiveChat, .copyToClipboard, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else if chat.isBroadcast {
-            self.chatOptions = [.gallery, .documents]
+            self.chatOptions = [.documents, .gallery]
             self.memberManagementRows = 1
             self.chatActions = [.archiveChat, .deleteChat]
             self.groupHeader.showMuteButton(show: false)
         } else if chat.canSend {
-            self.chatOptions = [.gallery, .documents, .ephemeralMessages]
+            self.chatOptions = [.documents, .gallery, .ephemeralMessages]
             self.memberManagementRows = 2
             self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else {
-            self.chatOptions = [.gallery, .documents]
+            self.chatOptions = [.documents, .gallery]
             self.memberManagementRows = 0
             self.chatActions = [.archiveChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)

@@ -7,8 +7,8 @@ class AllMediaViewController: UIPageViewController {
 
     private lazy var segmentControl: UISegmentedControl = {
         let control = UISegmentedControl(
-            items: [String.localized("images_and_videos"),
-                    dcContext.hasWebxdc(chatId: 0) ? String.localized("files_and_webxdx_apps") : String.localized("files")]
+            items: [dcContext.hasWebxdc(chatId: 0) ? String.localized("files_and_webxdx_apps") : String.localized("files"),
+                    String.localized("images_and_videos")]
         )
         control.tintColor = DcColors.primary
         control.addTarget(self, action: #selector(segmentControlChanged), for: .valueChanged)
@@ -33,7 +33,7 @@ class AllMediaViewController: UIPageViewController {
         navigationItem.titleView = segmentControl
 
         setViewControllers(
-            [makeGalleryViewController()],
+            [makeFilesViewController()],
             direction: .forward,
             animated: true,
             completion: nil
@@ -58,9 +58,9 @@ class AllMediaViewController: UIPageViewController {
     // MARK: - actions
     @objc private func segmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            setViewControllers([makeGalleryViewController()], direction: .reverse, animated: true, completion: nil)
+            setViewControllers([makeFilesViewController()], direction: .reverse, animated: true, completion: nil)
         } else {
-            setViewControllers([makeFilesViewController()], direction: .forward, animated: true, completion: nil)
+            setViewControllers([makeGalleryViewController()], direction: .forward, animated: true, completion: nil)
         }
     }
 
@@ -79,22 +79,22 @@ class AllMediaViewController: UIPageViewController {
 // MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate
 extension AllMediaViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if viewController is GalleryViewController {
+        if viewController is DocumentGalleryController {
             return nil
         }
-        return makeGalleryViewController()
+        return makeFilesViewController()
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if viewController is GalleryViewController {
-            return makeFilesViewController()
+        if viewController is DocumentGalleryController {
+            return makeGalleryViewController()
         }
         return nil
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            if previousViewControllers.first is GalleryViewController {
+            if previousViewControllers.first is DocumentGalleryController {
                 segmentControl.selectedSegmentIndex = 1
             } else {
                 segmentControl.selectedSegmentIndex = 0

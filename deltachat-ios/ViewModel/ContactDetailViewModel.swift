@@ -72,7 +72,7 @@ class ContactDetailViewModel {
         sections.append(.chatActions)
 
         if chatId != 0 {
-            chatOptions = [.gallery, .documents]
+            chatOptions = [.documents, .gallery]
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
             }
@@ -88,7 +88,7 @@ class ContactDetailViewModel {
             }
             chatActions.append(.deleteChat)
         } else {
-            chatOptions = [.gallery, .documents, .startChat]
+            chatOptions = [.documents, .gallery, .startChat]
             chatActions = [.showEncrInfo, .copyToClipboard, .blockContact]
         }
     }
