@@ -37,7 +37,12 @@ class AppCoordinator {
     private func createQrNavigationController() -> UINavigationController {
         let root = QrPageController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
-        let settingsImage = UIImage(named: "qr_code")
+        let settingsImage: UIImage?
+        if #available(iOS 13.0, *) {
+            settingsImage = UIImage(systemName: "qrcode")
+        } else {
+            settingsImage = UIImage(named: "qr_code")
+        }
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
         return nav
     }
@@ -45,12 +50,7 @@ class AppCoordinator {
     private func createAllMediaNavigationController() -> UINavigationController {
         let root = AllMediaViewController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
-        let settingsImage: UIImage?
-        if #available(iOS 13.0, *) {
-            settingsImage = UIImage(systemName: "rectangle.on.rectangle")
-        } else {
-            settingsImage = UIImage(named: "report_card") // TODO: if image is settled, add it to assets
-        }
+        let settingsImage = UIImage(named: "rectangle.on.rectangle")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_all_media"), image: settingsImage, tag: chatsTab)
         return nav
     }
@@ -66,7 +66,12 @@ class AppCoordinator {
     private func createSettingsNavigationController() -> UINavigationController {
         let root = SettingsViewController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
-        let settingsImage = UIImage(named: "settings")
+        let settingsImage: UIImage?
+        if #available(iOS 13.0, *) {
+             settingsImage = UIImage(systemName: "gear")
+         } else {
+             settingsImage = UIImage(named: "settings")
+         }
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
         return nav
     }
