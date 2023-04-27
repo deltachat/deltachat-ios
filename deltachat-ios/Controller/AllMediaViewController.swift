@@ -3,12 +3,12 @@ import DcCore
 
 class AllMediaViewController: UIPageViewController {
     private let dcContext: DcContext
-
     private var selectedIndex: Int = 0
 
     private lazy var segmentControl: UISegmentedControl = {
         let control = UISegmentedControl(
-            items: [String.localized("images_and_videos"), String.localized("files")]
+            items: [String.localized("images_and_videos"),
+                    dcContext.hasWebxdc(chatId: 0) ? String.localized("files_and_webxdx_apps") : String.localized("files")]
         )
         control.tintColor = DcColors.primary
         control.addTarget(self, action: #selector(segmentControlChanged), for: .valueChanged)
