@@ -9,8 +9,8 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
     // UserDefaults returns 0 by default which conflicts with tab 0 -> therefore we map our tab indexes by adding an offsetKey
 
     private enum Tab: Int {
-        case qrTab = 10
-        case allMediaTab = 11 // there are two enums, here and at AppCoordinator (this is error prone and could probably be merged)
+        case allMediaTab = 10 // there are two enums, here and at AppCoordinator (this is error prone and could probably be merged)
+        case qrTab = 11
         case chatTab = 12
         case settingsTab = 13
         case firstLaunch = 0
