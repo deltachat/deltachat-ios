@@ -8,8 +8,8 @@ class AppCoordinator {
 
     private let window: UIWindow
     private let dcAccounts: DcAccounts
-    private let qrTab = 0
-    public  let allMediaTab = 1 // there are two enums, here and at AppStateRestorer (this is error prone and could probably be merged)
+    public  let allMediaTab = 0 // the order below is important as well - and there are two enums, here and at AppStateRestorer (this is error prone and could probably be merged)
+    private let qrTab = 1
     public  let chatsTab = 2
     private let settingsTab = 3
 
@@ -29,7 +29,7 @@ class AppCoordinator {
         let settingsNavController = createSettingsNavigationController()
         let tabBarController = UITabBarController()
         tabBarController.delegate = appStateRestorer
-        tabBarController.viewControllers = [qrNavController, allMediaNavController, chatsNavController, settingsNavController]
+        tabBarController.viewControllers = [allMediaNavController, qrNavController, chatsNavController, settingsNavController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
     }()
@@ -46,8 +46,8 @@ class AppCoordinator {
         let root = AllMediaViewController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage: UIImage?
-        if #available(iOS 16.0, *) {
-            settingsImage = UIImage(systemName: "photo.stack")
+        if #available(iOS 13.0, *) {
+            settingsImage = UIImage(systemName: "rectangle.on.rectangle")
         } else {
             settingsImage = UIImage(named: "report_card") // TODO: if image is settled, add it to assets
         }
@@ -261,8 +261,8 @@ class AppCoordinator {
             }
         }
 
-        self.tabBarController.setViewControllers([createQrNavigationController(),
-                                                  createAllMediaNavigationController(),
+        self.tabBarController.setViewControllers([createAllMediaNavigationController(),
+                                                  createQrNavigationController(),
                                                   createChatsNavigationController(),
                                                   createSettingsNavigationController()], animated: false)
         presentTabBarController()
