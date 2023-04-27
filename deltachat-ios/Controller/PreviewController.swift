@@ -17,6 +17,7 @@ class PreviewController: QLPreviewController {
         self.previewType = type
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
+        hidesBottomBarWhenPushed = true
         dataSource = self
         switch type {
         case .multi(_, let currentIndex):
