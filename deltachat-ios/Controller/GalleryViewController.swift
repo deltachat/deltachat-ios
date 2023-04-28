@@ -271,14 +271,14 @@ private extension GalleryViewController {
         let orientation = UIApplication.shared.statusBarOrientation
         let deviceType = UIDevice.current.userInterfaceIdiom
 
-        var gridDisplay: GridDisplay?
+        let gridDisplay: GridDisplay
         if deviceType == .phone {
             if orientation.isPortrait {
                 gridDisplay = .grid(columns: phonePortrait)
             } else {
                 gridDisplay = .grid(columns: phoneLandscape)
             }
-        } else if deviceType == .pad {
+        } else {
             if orientation.isPortrait {
                 gridDisplay = .grid(columns: padPortrait)
             } else {
@@ -286,11 +286,8 @@ private extension GalleryViewController {
             }
         }
 
-        if let gridDisplay = gridDisplay {
-            gridLayout.display = gridDisplay
-        } else {
-            safe_fatalError("undefined format")
-        }
+        gridLayout.display = gridDisplay
+
         let containerWidth = view.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right - 2 * gridDefaultSpacing
         gridLayout.containerWidth = containerWidth
     }
