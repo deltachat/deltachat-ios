@@ -266,7 +266,7 @@ private extension GalleryViewController {
 
         // columns specification
         let phonePortrait = 3
-        let phoneLandscape = 4
+        let phoneLandscape = 5
         let padPortrait = 5
         let padLandscape = 8
 
