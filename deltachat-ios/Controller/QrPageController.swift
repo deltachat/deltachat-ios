@@ -74,6 +74,10 @@ class QrPageController: UIPageViewController {
             animated: true,
             completion: nil
         )
+
+        if #available(iOS 13, *) {
+            self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -101,7 +105,7 @@ class QrPageController: UIPageViewController {
         } else {
             let qrCodeReaderController = makeQRReader()
             self.qrCodeReaderController = qrCodeReaderController
-            setViewControllers([qrCodeReaderController], direction: .forward, animated: false, completion: nil)
+            setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
         }
     }
 
