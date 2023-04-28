@@ -201,8 +201,10 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let msgId = mediaMessageIds[indexPath.row]
-        showPreview(msgId: msgId)
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(mediaMessageIds, indexPath.row))
+        previewController.delegate = self
+        navigationController?.pushViewController(previewController, animated: true)
+
         collectionView.deselectItem(at: indexPath, animated: true)
         UIMenuController.shared.setMenuVisible(false, animated: true)
     }
@@ -295,16 +297,6 @@ private extension GalleryViewController {
 
 // MARK: - coordinator
 private extension GalleryViewController {
-    func showPreview(msgId: Int) {
-        guard let index = mediaMessageIds.index(of: msgId) else {
-            return
-        }
-
-        let previewController = PreviewController(dcContext: dcContext, type: .multi(mediaMessageIds, index))
-        previewController.delegate = self
-        navigationController?.pushViewController(previewController, animated: true)
-    }
-
     func redirectToMessage(of indexPath: IndexPath) {
         let msgId = mediaMessageIds[indexPath.row]
         let chatId = dcContext.getMessage(id: msgId).chatId
