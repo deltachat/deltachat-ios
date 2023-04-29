@@ -159,11 +159,13 @@ class GalleryViewController: UIViewController {
 
 extension GalleryViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach { if items[$0.row] == nil {
-            let message = dcContext.getMessage(id: mediaMessageIds[$0.row])
-            let item = GalleryItem(msg: message)
-            items[$0.row] = item
-        }}
+        indexPaths.forEach {
+            if items[$0.row] == nil {
+                let message = dcContext.getMessage(id: mediaMessageIds[$0.row])
+                let item = GalleryItem(msg: message)
+                items[$0.row] = item
+            }
+        }
     }
 }
 
