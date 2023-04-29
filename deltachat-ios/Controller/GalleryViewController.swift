@@ -94,6 +94,7 @@ class GalleryViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        galleryItemCache = [:]
         grid.reloadData()
         setupContextMenuIfNeeded()
     }
