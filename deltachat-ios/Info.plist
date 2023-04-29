@@ -106,6 +106,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Creates a QR code that the second device can scan to copy the account</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>

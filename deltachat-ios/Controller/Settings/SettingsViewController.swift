@@ -1,6 +1,7 @@
 import UIKit
 import DcCore
 import Intents
+import LocalAuthentication
 
 internal final class SettingsViewController: UITableViewController {
 
@@ -267,17 +268,38 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     private func showBackupProviderViewController() {
-        let alert = UIAlertController(title: String.localized("multidevice_title"), message: String.localized("multidevice_this_creates_a_qr_code"), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(
-            title: String.localized("perm_continue"),
-            style: .default,
-            handler: { [weak self] _ in
-                guard let self = self else { return }
-                self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+        let context = LAContext()
+        var error: NSError?
+
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            // authentication available
+            let reason = String.localized("multidevice_this_creates_a_qr_code")
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { [weak self] success, cauthenticationError in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    if success {
+                        self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+                    } else {
+                        let alert = UIAlertController(title: nil, message: "Authentication failed, please try again.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                }
             }
-        ))
-        present(alert, animated: true)
+        } else {
+            // no authentication available
+            let alert = UIAlertController(title: String.localized("multidevice_title"), message: String.localized("multidevice_this_creates_a_qr_code"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(
+                title: String.localized("perm_continue"),
+                style: .default,
+                handler: { [weak self] _ in
+                    guard let self = self else { return }
+                    self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+                }
+            ))
+            present(alert, animated: true)
+        }
     }
 
     private func showAdvanced() {
