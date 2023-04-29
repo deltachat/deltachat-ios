@@ -57,6 +57,10 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+
+    func isOnScreen() -> Bool {
+        return viewIfLoaded?.window != nil
+    }
 }
 
 extension UIAlertController.Style {
