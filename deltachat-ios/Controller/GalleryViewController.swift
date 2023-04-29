@@ -97,9 +97,11 @@ class GalleryViewController: UIViewController {
         setupContextMenuIfNeeded()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        // user leaves view and may not come back soon: clearing cache may free a significant amount of memory
-        galleryItemCache = [:]
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        if !isOnScreen() {
+            galleryItemCache = [:]
+        }
     }
 
     override func viewWillLayoutSubviews() {
