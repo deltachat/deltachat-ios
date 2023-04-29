@@ -72,21 +72,21 @@ class AllMediaViewController: UIPageViewController {
 
     private func makeFilesViewController() -> UIViewController {
         let allMedia = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: DC_MSG_WEBXDC)
-        return DocumentGalleryController(context: dcContext, chatId: 0, fileMessageIds: allMedia.reversed(), hasWebxdc: false)
+        return FilesViewController(context: dcContext, chatId: 0, fileMessageIds: allMedia.reversed(), hasWebxdc: false)
     }
 }
 
 // MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate
 extension AllMediaViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if viewController is DocumentGalleryController {
+        if viewController is FilesViewController {
             return nil
         }
         return makeFilesViewController()
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if viewController is DocumentGalleryController {
+        if viewController is FilesViewController {
             return makeGalleryViewController()
         }
         return nil
@@ -94,7 +94,7 @@ extension AllMediaViewController: UIPageViewControllerDataSource, UIPageViewCont
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            if previousViewControllers.first is DocumentGalleryController {
+            if previousViewControllers.first is FilesViewController {
                 segmentControl.selectedSegmentIndex = 1
             } else {
                 segmentControl.selectedSegmentIndex = 0

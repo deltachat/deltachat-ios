@@ -164,7 +164,7 @@
 		AE1988AB23EB3C7600B4CD5F /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = AE1988AA23EB3C7600B4CD5F /* Assets */; };
 		AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */; };
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
-		AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */; };
+		AE39D323249CFC1A007346A1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE39D322249CFC1A007346A1 /* FilesViewController.swift */; };
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
 		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
 		AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */; };
@@ -456,7 +456,7 @@
 		AE1988AA23EB3C7600B4CD5F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionCell.swift; sourceTree = "<group>"; };
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
-		AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentGalleryController.swift; sourceTree = "<group>"; };
+		AE39D322249CFC1A007346A1 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
 		AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupViewController.swift; sourceTree = "<group>"; };
@@ -979,7 +979,7 @@
 				AE8F503424753DFE007FEE0B /* GalleryViewController.swift */,
 				30238CFA28A501C300EF14AC /* WebxdcSelector.swift */,
 				AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */,
-				AE39D322249CFC1A007346A1 /* DocumentGalleryController.swift */,
+				AE39D322249CFC1A007346A1 /* FilesViewController.swift */,
 				AE57C083255310BB003CFE70 /* ContextMenuController.swift */,
 				30DED712292EE4280040835D /* LogViewController.swift */,
 			);
@@ -1477,7 +1477,7 @@
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */,
 				30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */,
-				AE39D323249CFC1A007346A1 /* DocumentGalleryController.swift in Sources */,
+				AE39D323249CFC1A007346A1 /* FilesViewController.swift in Sources */,
 				AE8DD451249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift in Sources */,
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
 				B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */,

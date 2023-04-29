@@ -470,7 +470,7 @@ class ContactDetailViewController: UITableViewController {
 
     private func showDocuments() {
         let messageIds: [Int] = viewModel.documentItemMessageIds.reversed()
-        let fileGalleryController = DocumentGalleryController(context: viewModel.context, chatId: viewModel.chatId, fileMessageIds: messageIds, hasWebxdc: viewModel.hasWebxdc)
+        let fileGalleryController = FilesViewController(context: viewModel.context, chatId: viewModel.chatId, fileMessageIds: messageIds, hasWebxdc: viewModel.hasWebxdc)
         navigationController?.pushViewController(fileGalleryController, animated: true)
     }
 

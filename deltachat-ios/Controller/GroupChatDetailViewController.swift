@@ -434,7 +434,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private func showDocuments() {
         let messageIds: [Int] = documentItemMessageIds.reversed()
-        let fileGalleryController = DocumentGalleryController(context: dcContext, chatId: chatId, fileMessageIds: messageIds, hasWebxdc: hasWebxdc)
+        let fileGalleryController = FilesViewController(context: dcContext, chatId: chatId, fileMessageIds: messageIds, hasWebxdc: hasWebxdc)
         navigationController?.pushViewController(fileGalleryController, animated: true)    }
 
     private func showGallery() {

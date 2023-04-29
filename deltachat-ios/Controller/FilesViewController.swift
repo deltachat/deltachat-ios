@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 import LinkPresentation
 
-class DocumentGalleryController: UIViewController {
+class FilesViewController: UIViewController {
 
     private var fileMessageIds: [Int]
     private let dcContext: DcContext
@@ -126,7 +126,7 @@ class DocumentGalleryController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource {
+extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fileMessageIds.count
     }
@@ -188,7 +188,7 @@ extension DocumentGalleryController: UITableViewDelegate, UITableViewDataSource 
 }
 
 // MARK: - coordinator
-extension DocumentGalleryController {
+extension FilesViewController {
     func showPreview(msgId: Int) {
         guard let index = fileMessageIds.index(of: msgId) else {
             return
