@@ -8,7 +8,7 @@ class GalleryViewController: UIViewController {
     // MARK: - data
     private let chatId: Int
     private var mediaMessageIds: [Int]
-    private var items: [Int: GalleryItem] = [:]
+    private var galleryItemCache: [Int: GalleryItem] = [:]
 
     // MARK: - subview specs
     private let gridDefaultSpacing: CGFloat = 5
@@ -160,10 +160,10 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         indexPaths.forEach {
-            if items[$0.row] == nil {
+            if galleryItemCache[$0.row] == nil {
                 let message = dcContext.getMessage(id: mediaMessageIds[$0.row])
                 let item = GalleryItem(msg: message)
-                items[$0.row] = item
+                galleryItemCache[$0.row] = item
             }
         }
     }
@@ -189,12 +189,12 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
         let msgId = mediaMessageIds[indexPath.row]
         var item: GalleryItem
-        if let galleryItem = items[indexPath.row] {
+        if let galleryItem = galleryItemCache[indexPath.row] {
             item = galleryItem
         } else {
             let message = dcContext.getMessage(id: msgId)
             let galleryItem = GalleryItem(msg: message)
-            items[indexPath.row] = galleryItem
+            galleryItemCache[indexPath.row] = galleryItem
             item = galleryItem
         }
         galleryCell.update(item: item)
