@@ -94,9 +94,16 @@ class GalleryViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        // if would be better to reload on the corresponding events, see #1846
         galleryItemCache = [:]
         grid.reloadData()
+
         setupContextMenuIfNeeded()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        // user leaves view and may not come back soon: clearing cache may free a significant amount of memory
+        galleryItemCache = [:]
     }
 
     override func viewWillLayoutSubviews() {
