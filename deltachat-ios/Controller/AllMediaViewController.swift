@@ -71,8 +71,7 @@ class AllMediaViewController: UIPageViewController {
     }
 
     private func makeFilesViewController() -> UIViewController {
-        let allMedia = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_FILE, messageType2: DC_MSG_AUDIO, messageType3: DC_MSG_WEBXDC)
-        return FilesViewController(context: dcContext, chatId: 0, fileMessageIds: allMedia.reversed(), hasWebxdc: false)
+        return FilesViewController(context: dcContext, chatId: 0, type1: DC_MSG_FILE, type2: DC_MSG_AUDIO, type3: DC_MSG_WEBXDC)
     }
 }
 

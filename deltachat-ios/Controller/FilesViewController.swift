@@ -55,12 +55,12 @@ class FilesViewController: UIViewController {
         return menu
     }()
 
-    init(context: DcContext, chatId: Int, fileMessageIds: [Int], hasWebxdc: Bool) {
+    init(context: DcContext, chatId: Int, type1: Int32, type2: Int32, type3: Int32, title: String? = nil) {
         self.dcContext = context
-        self.fileMessageIds = fileMessageIds
+        self.fileMessageIds = dcContext.getChatMedia(chatId: 0, messageType: type1, messageType2: type2, messageType3: type3).reversed()
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
-        self.title = String.localized(hasWebxdc ? "files_and_webxdx_apps" : "files")
+        self.title = title
     }
 
     required init?(coder: NSCoder) {

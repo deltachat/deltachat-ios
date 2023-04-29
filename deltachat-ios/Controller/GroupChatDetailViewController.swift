@@ -433,9 +433,10 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     private func showDocuments() {
-        let messageIds: [Int] = documentItemMessageIds.reversed()
-        let fileGalleryController = FilesViewController(context: dcContext, chatId: chatId, fileMessageIds: messageIds, hasWebxdc: hasWebxdc)
-        navigationController?.pushViewController(fileGalleryController, animated: true)    }
+        let title = String.localized(hasWebxdc ? "files_and_webxdx_apps" : "files")
+        let fileGalleryController = FilesViewController(context: dcContext, chatId: chatId, type1: DC_MSG_FILE, type2: DC_MSG_AUDIO, type3: DC_MSG_WEBXDC, title: title)
+        navigationController?.pushViewController(fileGalleryController, animated: true)
+    }
 
     private func showGallery() {
         let messageIds: [Int] = galleryItemMessageIds.reversed()

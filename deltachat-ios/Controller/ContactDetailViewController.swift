@@ -469,8 +469,8 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func showDocuments() {
-        let messageIds: [Int] = viewModel.documentItemMessageIds.reversed()
-        let fileGalleryController = FilesViewController(context: viewModel.context, chatId: viewModel.chatId, fileMessageIds: messageIds, hasWebxdc: viewModel.hasWebxdc)
+        let title = String.localized(viewModel.hasWebxdc ? "files_and_webxdx_apps" : "files")
+        let fileGalleryController = FilesViewController(context: viewModel.context, chatId: viewModel.chatId, type1: DC_MSG_FILE, type2: DC_MSG_AUDIO, type3: DC_MSG_WEBXDC, title: title)
         navigationController?.pushViewController(fileGalleryController, animated: true)
     }
 
