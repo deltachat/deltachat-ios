@@ -70,7 +70,7 @@ class GalleryItem: ContextMenuItem {
         case .webxdc:
             loadWebxdcThumbnail(from: msg)
         default:
-            safe_fatalError("unsupported viewtype - viewtype \(viewtype) not supported.")
+            return
         }
     }
 

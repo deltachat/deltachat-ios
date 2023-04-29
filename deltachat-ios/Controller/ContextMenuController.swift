@@ -74,7 +74,6 @@ class ContextMenuController: UIViewController {
 
     private func makeImageView(image: UIImage?) -> UIView? {
         guard let image = image else {
-            safe_fatalError("unexpected nil value")
             return nil
         }
 
