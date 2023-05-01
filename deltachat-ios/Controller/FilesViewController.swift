@@ -4,6 +4,8 @@ import LinkPresentation
 
 class FilesViewController: UIViewController {
 
+    public let type1: Int32
+
     private var fileMessageIds: [Int]
     private let dcContext: DcContext
     private let chatId: Int
@@ -19,7 +21,13 @@ class FilesViewController: UIViewController {
 
     private lazy var emptyStateView: EmptyStateLabel = {
         let label = EmptyStateLabel()
-        label.text = String.localized(chatId == 0 ? "tab_all_media_empty_hint" : "tab_docs_empty_hint")
+        if chatId == 0 {
+            label.text = String.localized("tab_all_media_empty_hint")
+        } else if type1 == DC_MSG_AUDIO {
+            label.text = String.localized("tab_audio_empty_hint")
+        } else {
+            label.text = String.localized("tab_docs_empty_hint")
+        }
         label.isHidden = true
         return label
     }()
@@ -59,6 +67,7 @@ class FilesViewController: UIViewController {
         self.dcContext = context
         self.fileMessageIds = dcContext.getChatMedia(chatId: chatId, messageType: type1, messageType2: type2, messageType3: type3).reversed()
         self.chatId = chatId
+        self.type1 = type1
         super.init(nibName: nil, bundle: nil)
         self.title = title
     }
