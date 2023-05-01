@@ -64,12 +64,14 @@ class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
             self.scrollDirection = .vertical
             let spacing = CGFloat(column - 1) * minimumLineSpacing
             let optimisedWidth = (containerWidth - spacing) / CGFloat(column)
-            let height = calculateHeight(width: optimisedWidth)
-            self.itemSize = CGSize(width: optimisedWidth, height: height) // keep as square
+            if optimisedWidth > 0 {
+                self.itemSize = CGSize(width: optimisedWidth, height: calculateHeight(width: optimisedWidth))
+            }
         case .list:
             self.scrollDirection = .vertical
-            let height = calculateHeight(width: containerWidth)
-            self.itemSize = CGSize(width: containerWidth, height: height)
+            if containerWidth > 0 {
+                self.itemSize = CGSize(width: containerWidth, height: calculateHeight(width: containerWidth))
+            }
         }
     }
 
