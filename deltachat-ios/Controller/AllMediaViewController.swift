@@ -2,14 +2,50 @@ import UIKit
 import DcCore
 
 class AllMediaViewController: UIPageViewController {
+
+    private struct Page {
+        let headerTitle: String
+        let type1: Int32
+        let type2: Int32
+        let type3: Int32
+    }
+
     private let dcContext: DcContext
-    private var selectedIndex: Int = 0
+    private var everHadWebxdc: Bool = false
+    private var prevIndex: Int = 0
+
+    private func hasWebxdc() -> Bool {
+        if !everHadWebxdc {
+            everHadWebxdc = dcContext.hasWebxdc(chatId: 0)
+        }
+        return everHadWebxdc
+    }
+
+    private func getPages() -> [Page] {
+        pages.append(Page(
+            headerTitle: String.localized("files"),
+            type1: DC_MSG_FILE, type2: 0, type3: 0
+        ))
+        if hasWebxdc() {
+            pages.append(Page(
+                headerTitle: String.localized("webxdc_apps"),
+                type1: DC_MSG_WEBXDC, type2: 0, type3: 0
+            ))
+        }
+        pages.append(Page(
+            headerTitle: String.localized("audio"),
+            type1: DC_MSG_AUDIO, type2: DC_MSG_VOICE, type3: 0
+        ))
+        pages.append(Page(
+            headerTitle: String.localized("gallery"),
+            type1: DC_MSG_IMAGE, type2: DC_MSG_GIF, type3: DC_MSG_VIDEO
+        ))
+        return pages
+    }
+    private var pages: [Page] = []
 
     private lazy var segmentControl: UISegmentedControl = {
-        let control = UISegmentedControl(
-            items: [dcContext.hasWebxdc(chatId: 0) ? String.localized("files_and_webxdx_apps") : String.localized("files"),
-                    String.localized("images_and_videos")]
-        )
+        let control = UISegmentedControl(items: pages.map({$0.headerTitle}))
         control.tintColor = DcColors.primary
         control.addTarget(self, action: #selector(segmentControlChanged), for: .valueChanged)
         control.selectedSegmentIndex = 0
@@ -19,6 +55,7 @@ class AllMediaViewController: UIPageViewController {
     init(dcAccounts: DcAccounts) {
         self.dcContext = dcAccounts.getSelected()
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
+        self.pages = self.getPages()
     }
 
     required init?(coder: NSCoder) {
@@ -32,8 +69,9 @@ class AllMediaViewController: UIPageViewController {
         delegate = self
         navigationItem.titleView = segmentControl
 
+
         setViewControllers(
-            [makeFilesViewController()],
+            [makeViewController(pages[0])],
             direction: .forward,
             animated: true,
             completion: nil
@@ -44,60 +82,65 @@ class AllMediaViewController: UIPageViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        // viewWillAppear() is on called on section change, not on main-tab change
-        super.viewWillAppear(animated)
-
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        // viewWillDisappear() is on called on section change, not on main-tab change
-        super.viewWillDisappear(animated)
-    }
-
     // MARK: - actions
     @objc private func segmentControlChanged(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            setViewControllers([makeFilesViewController()], direction: .reverse, animated: true, completion: nil)
-        } else {
-            setViewControllers([makeGalleryViewController()], direction: .forward, animated: true, completion: nil)
+        if sender.selectedSegmentIndex < pages.count {
+            let page = pages[sender.selectedSegmentIndex]
+            setViewControllers([makeViewController(page)],
+                               direction: sender.selectedSegmentIndex > prevIndex ? .forward : .reverse, animated: true, completion: nil)
+            prevIndex = sender.selectedSegmentIndex
         }
     }
 
     // MARK: - factory
-    private func makeGalleryViewController() -> UIViewController {
-        let allMedia = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
-        return GalleryViewController(context: dcContext, chatId: 0, mediaMessageIds: allMedia.reversed())
-    }
-
-    private func makeFilesViewController() -> UIViewController {
-        return FilesViewController(context: dcContext, chatId: 0, type1: DC_MSG_FILE, type2: DC_MSG_AUDIO, type3: DC_MSG_WEBXDC)
+    private func makeViewController(_ page: Page) -> UIViewController {
+        if page.type1 == DC_MSG_IMAGE {
+            let allMedia = dcContext.getChatMedia(chatId: 0, messageType: page.type1, messageType2: page.type2, messageType3: page.type3)
+            return GalleryViewController(context: dcContext, chatId: 0, mediaMessageIds: allMedia.reversed())
+        } else {
+            return FilesViewController(context: dcContext, chatId: 0, type1: page.type1, type2: page.type2, type3: page.type3)
+        }
     }
 }
 
 // MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate
 extension AllMediaViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if viewController is FilesViewController {
-            return nil
+    func getIndexFromObject(_ viewController: UIViewController) -> Int {
+        let type1: Int32
+        if let filesViewContoller = viewController as? FilesViewController {
+            type1 = filesViewContoller.type1
+        } else {
+            type1 = DC_MSG_IMAGE
         }
-        return makeFilesViewController()
+        for (index, page) in pages.enumerated() {
+            if page.type1 == type1 {
+                return index
+            }
+        }
+        return 0
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        let i = getIndexFromObject(viewController)
+        if i > 0 {
+            return makeViewController(pages[i - 1])
+        }
+        return nil
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if viewController is FilesViewController {
-            return makeGalleryViewController()
+        let i = getIndexFromObject(viewController)
+        if i < (pages.count - 1) {
+            return makeViewController(pages[i + 1])
         }
         return nil
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
-            if previousViewControllers.first is FilesViewController {
-                segmentControl.selectedSegmentIndex = 1
-            } else {
-                segmentControl.selectedSegmentIndex = 0
-            }
+        if let viewControllers = viewControllers, let viewController = viewControllers.first, completed {
+            let i = getIndexFromObject(viewController)
+            segmentControl.selectedSegmentIndex = i
+            prevIndex = i
         }
     }
 }
