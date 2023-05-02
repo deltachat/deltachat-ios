@@ -11,22 +11,15 @@ class AllMediaViewController: UIPageViewController {
     }
 
     private let dcContext: DcContext
-    private var everHadWebxdc: Bool = false
     private var prevIndex: Int = 0
 
-    private func hasWebxdc() -> Bool {
-        if !everHadWebxdc {
-            everHadWebxdc = dcContext.hasWebxdc(chatId: 0)
-        }
-        return everHadWebxdc
-    }
-
     private func getPages() -> [Page] {
+        let webxdcReallyInUse = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).count > 5
         pages.append(Page(
             headerTitle: String.localized("files"),
-            type1: DC_MSG_FILE, type2: 0, type3: 0
+            type1: DC_MSG_FILE, type2: webxdcReallyInUse ? 0 : DC_MSG_WEBXDC, type3: 0
         ))
-        if hasWebxdc() {
+        if webxdcReallyInUse {
             pages.append(Page(
                 headerTitle: String.localized("webxdc_apps"),
                 type1: DC_MSG_WEBXDC, type2: 0, type3: 0
