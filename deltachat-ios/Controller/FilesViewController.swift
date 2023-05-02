@@ -146,7 +146,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let msg = dcContext.getMessage(id: fileMessageIds[indexPath.row])
-        cell.update(msg: msg)
+        cell.update(msg: msg, dcContext: dcContext)
         return cell
     }
 

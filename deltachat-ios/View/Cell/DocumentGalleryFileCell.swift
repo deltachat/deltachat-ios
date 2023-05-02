@@ -75,8 +75,10 @@ class DocumentGalleryFileCell: UITableViewCell {
     }
 
     // MARK: - update
-    func update(msg: DcMsg) {
-        if msg.type == DC_MSG_WEBXDC {
+    func update(msg: DcMsg, dcContext: DcContext) {
+        if msg.type == DC_MSG_VOICE {
+            updateVoiceMsg(msg: msg, dcContext: dcContext)
+        } else if msg.type == DC_MSG_WEBXDC {
             updateWebxdcMsg(msg: msg)
         } else {
             updateFileMsg(msg: msg)
@@ -89,6 +91,14 @@ class DocumentGalleryFileCell: UITableViewCell {
         }
         title.text = msg.filename
         subtitle.text = msg.getPrettyFileSize()
+    }
+
+    private func updateVoiceMsg(msg: DcMsg, dcContext: DcContext) {
+        if let fileUrl = msg.fileURL {
+            generateThumbnailFor(url: fileUrl, placeholder: UIImage(named: "ic_attach_file_36pt")?.maskWithColor(color: DcColors.grayTextColor))
+        }
+        title.text = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
+        subtitle.text = msg.formattedSentDate()
     }
 
     private func updateWebxdcMsg(msg: DcMsg) {
