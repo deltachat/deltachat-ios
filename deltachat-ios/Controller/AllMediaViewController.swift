@@ -11,10 +11,12 @@ class AllMediaViewController: UIPageViewController {
     }
 
     private let dcContext: DcContext
+    private let chatId: Int
     private var prevIndex: Int = 0
 
     private func getPages() -> [Page] {
-        let webxdcReallyInUse = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).count > 5
+        let webxdcReallyInUse = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).count
+                                    >= (chatId == 0 ? 5 : 1)
         pages.append(Page(
             headerTitle: String.localized("files"),
             type1: DC_MSG_FILE, type2: webxdcReallyInUse ? 0 : DC_MSG_WEBXDC, type3: 0
@@ -45,8 +47,9 @@ class AllMediaViewController: UIPageViewController {
         return control
     }()
 
-    init(dcAccounts: DcAccounts) {
-        self.dcContext = dcAccounts.getSelected()
+    init(dcContext: DcContext, chatId: Int = 0) {
+        self.dcContext = dcContext
+        self.chatId = chatId
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
         self.pages = self.getPages()
     }
@@ -88,10 +91,10 @@ class AllMediaViewController: UIPageViewController {
     // MARK: - factory
     private func makeViewController(_ page: Page) -> UIViewController {
         if page.type1 == DC_MSG_IMAGE {
-            let allMedia = dcContext.getChatMedia(chatId: 0, messageType: page.type1, messageType2: page.type2, messageType3: page.type3)
-            return GalleryViewController(context: dcContext, chatId: 0, mediaMessageIds: allMedia.reversed())
+            let allMedia = dcContext.getChatMedia(chatId: chatId, messageType: page.type1, messageType2: page.type2, messageType3: page.type3)
+            return GalleryViewController(context: dcContext, chatId: chatId, mediaMessageIds: allMedia.reversed())
         } else {
-            return FilesViewController(context: dcContext, chatId: 0, type1: page.type1, type2: page.type2, type3: page.type3)
+            return FilesViewController(context: dcContext, chatId: chatId, type1: page.type1, type2: page.type2, type3: page.type3)
         }
     }
 }

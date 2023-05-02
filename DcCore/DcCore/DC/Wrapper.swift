@@ -276,6 +276,24 @@ public class DcContext {
         return !getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).isEmpty
     }
 
+    public func getAllMediaCount(chatId: Int) -> String {
+        let max = 500
+        var c = getChatMedia(chatId: chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO).count
+        if c < max {
+            c += getChatMedia(chatId: chatId, messageType: DC_MSG_AUDIO, messageType2: DC_MSG_VOICE, messageType3: 0).count
+        }
+        if c < max {
+            c += getChatMedia(chatId: chatId, messageType: DC_MSG_FILE, messageType2: DC_MSG_WEBXDC, messageType3: 0).count
+        }
+        if c == 0 {
+            return String.localized("none")
+        } else if c >= max {
+            return "\(max)+"
+        } else {
+            return "\(c)"
+        }
+    }
+
     @discardableResult
     public func createChatByContactId(contactId: Int) -> Int {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
