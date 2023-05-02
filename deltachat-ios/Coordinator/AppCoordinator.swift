@@ -48,7 +48,7 @@ class AppCoordinator {
     }
 
     private func createAllMediaNavigationController() -> UINavigationController {
-        let root = AllMediaViewController(dcAccounts: dcAccounts)
+        let root = AllMediaViewController(dcContext: dcAccounts.getSelected())
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "photo.on.rectangle")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_all_media"), image: settingsImage, tag: chatsTab)

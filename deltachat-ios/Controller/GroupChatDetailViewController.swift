@@ -12,8 +12,7 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     enum ChatOption {
-        case gallery
-        case documents
+        case allMedia
         case ephemeralMessages
     }
 
@@ -43,28 +42,6 @@ class GroupChatDetailViewController: UIViewController {
     var chatIsEphemeral: Bool {
         return chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
     }
-
-    private var galleryItemMessageIds: [Int] {
-        return dcContext.getChatMedia(
-            chatId: chatId,
-            messageType: DC_MSG_IMAGE,
-            messageType2: DC_MSG_GIF,
-            messageType3: DC_MSG_VIDEO
-        )
-    }
-
-    private var documentItemMessageIds: [Int] {
-        return dcContext.getChatMedia(
-            chatId: chatId,
-            messageType: DC_MSG_FILE,
-            messageType2: DC_MSG_AUDIO,
-            messageType3: DC_MSG_WEBXDC
-        )
-    }
-
-    private lazy var hasWebxdc: Bool = {
-        return dcContext.hasWebxdc(chatId: chatId)
-    }()
 
     // stores contactIds
     private var groupMemberIds: [Int] = []
@@ -104,6 +81,9 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
+        if #available(iOS 13.0, *) {
+            cell.imageView?.image = UIImage(systemName: "timer") // added in ios13
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -136,16 +116,12 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
-    private lazy var galleryCell: UITableViewCell = {
+    private lazy var allMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("images_and_videos")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    private lazy var documentsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized(hasWebxdc ? "files_and_webxdx_apps" : "files")
+        cell.textLabel?.text = String.localized("menu_all_media")
+        if #available(iOS 13.0, *) {
+            cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -299,22 +275,22 @@ class GroupChatDetailViewController: UIViewController {
         self.editBarButtonItem.isEnabled = chat.isMailinglist || chat.canSend
 
         if chat.isMailinglist {
-            self.chatOptions = [.documents, .gallery]
+            self.chatOptions = [.allMedia]
             self.memberManagementRows = 0
             self.chatActions = [.archiveChat, .copyToClipboard, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else if chat.isBroadcast {
-            self.chatOptions = [.documents, .gallery]
+            self.chatOptions = [.allMedia]
             self.memberManagementRows = 1
             self.chatActions = [.archiveChat, .deleteChat]
             self.groupHeader.showMuteButton(show: false)
         } else if chat.canSend {
-            self.chatOptions = [.documents, .gallery, .ephemeralMessages]
+            self.chatOptions = [.allMedia, .ephemeralMessages]
             self.memberManagementRows = 2
             self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else {
-            self.chatOptions = [.documents, .gallery]
+            self.chatOptions = [.allMedia]
             self.memberManagementRows = 0
             self.chatActions = [.archiveChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
@@ -344,8 +320,7 @@ class GroupChatDetailViewController: UIViewController {
     }
     
     private func updateMediaCellValues() {
-        galleryCell.detailTextLabel?.text = String.numberOrNone(galleryItemMessageIds.count)
-        documentsCell.detailTextLabel?.text = String.numberOrNone(documentItemMessageIds.count)
+        allMediaCell.detailTextLabel?.text = dcContext.getAllMediaCount(chatId: chatId)
     }
 
     // MARK: - actions
@@ -432,16 +407,8 @@ class GroupChatDetailViewController: UIViewController {
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
 
-    private func showDocuments() {
-        let title = String.localized(hasWebxdc ? "files_and_webxdx_apps" : "files")
-        let fileGalleryController = FilesViewController(context: dcContext, chatId: chatId, type1: DC_MSG_FILE, type2: DC_MSG_AUDIO, type3: DC_MSG_WEBXDC, title: title)
-        navigationController?.pushViewController(fileGalleryController, animated: true)
-    }
-
-    private func showGallery() {
-        let messageIds: [Int] = galleryItemMessageIds.reversed()
-        let galleryController = GalleryViewController(context: dcContext, chatId: chatId, mediaMessageIds: messageIds)
-        navigationController?.pushViewController(galleryController, animated: true)
+    private func showAllMedia() {
+        navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
     private func showSearch() {
@@ -505,10 +472,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         switch sectionType {
         case .chatOptions:
             switch chatOptions[row] {
-            case .gallery:
-                return galleryCell
-            case .documents:
-                return documentsCell
+            case .allMedia:
+                return allMediaCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
             }
@@ -563,10 +528,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         switch sectionType {
         case .chatOptions:
             switch chatOptions[row] {
-            case .gallery:
-                showGallery()
-            case .documents:
-                showDocuments()
+            case .allMedia:
+                showAllMedia()
             case .ephemeralMessages:
                 showEphemeralMessagesController()
             }
