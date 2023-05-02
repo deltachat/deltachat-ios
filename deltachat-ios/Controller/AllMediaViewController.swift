@@ -132,8 +132,16 @@ extension AllMediaViewController: UIPageViewControllerDataSource, UIPageViewCont
         return nil
     }
 
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        if let viewController = pendingViewControllers.first {
+            let i = getIndexFromObject(viewController)
+            segmentControl.selectedSegmentIndex = i
+            prevIndex = i
+        }
+    }
+
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let viewControllers = viewControllers, let viewController = viewControllers.first, completed {
+        if let viewController = previousViewControllers.first, !completed {
             let i = getIndexFromObject(viewController)
             segmentControl.selectedSegmentIndex = i
             prevIndex = i
