@@ -57,7 +57,7 @@ class FilesViewController: UIViewController {
 
     init(context: DcContext, chatId: Int, type1: Int32, type2: Int32, type3: Int32, title: String? = nil) {
         self.dcContext = context
-        self.fileMessageIds = dcContext.getChatMedia(chatId: 0, messageType: type1, messageType2: type2, messageType3: type3).reversed()
+        self.fileMessageIds = dcContext.getChatMedia(chatId: chatId, messageType: type1, messageType2: type2, messageType3: type3).reversed()
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
         self.title = title
