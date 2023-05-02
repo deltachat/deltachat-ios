@@ -175,12 +175,20 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         return nil
     }
 
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        if pendingViewControllers.first is QrViewController {
+            qrSegmentControl.selectedSegmentIndex = 0
+        } else {
+            qrSegmentControl.selectedSegmentIndex = 1
+        }
+    }
+
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
+        if !completed {
             if previousViewControllers.first is QrViewController {
-                qrSegmentControl.selectedSegmentIndex = 1
-            } else {
                 qrSegmentControl.selectedSegmentIndex = 0
+            } else {
+                qrSegmentControl.selectedSegmentIndex = 1
             }
         }
     }
