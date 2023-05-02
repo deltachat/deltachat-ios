@@ -174,9 +174,11 @@ class QrCodeReaderController: UIViewController {
     // MARK: - actions
     func startSession() {
         #if targetEnvironment(simulator)
-        // ignore if run from simulator
+            // ignore if run from simulator
         #else
-        captureSession.startRunning()
+            DispatchQueue.global(qos: .userInteractive).async {
+                self.captureSession.startRunning()
+            }
         #endif
     }
 
