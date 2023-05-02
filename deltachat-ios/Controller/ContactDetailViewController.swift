@@ -27,6 +27,9 @@ class ContactDetailViewController: UITableViewController {
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
+        if #available(iOS 13.0, *) {
+            cell.imageView?.image = UIImage(systemName: "timer") // added in ios13
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -66,20 +69,12 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var galleryCell: UITableViewCell = {
+    private lazy var allMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("images_and_videos")
-        cell.accessoryType = .disclosureIndicator
-        if viewModel.chatId == 0 {
-            cell.isUserInteractionEnabled = false
-            cell.textLabel?.isEnabled = false
+        cell.textLabel?.text = String.localized("menu_all_media")
+        if #available(iOS 13.0, *) {
+            cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
         }
-        return cell
-    }()
-
-    private lazy var documentsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized(viewModel.hasWebxdc ? "files_and_webxdx_apps" : "files")
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -168,10 +163,8 @@ class ContactDetailViewController: UITableViewController {
         switch cellType {
         case .chatOptions:
             switch viewModel.chatOptionFor(row: row) {
-            case .documents:
-                return documentsCell
-            case .gallery:
-                return galleryCell
+            case .allMedia:
+                return allMediaCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
             case .startChat:
@@ -305,8 +298,7 @@ class ContactDetailViewController: UITableViewController {
 
     private func updateCellValues() {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
-        galleryCell.detailTextLabel?.text = String.numberOrNone(viewModel.galleryItemMessageIds.count)
-        documentsCell.detailTextLabel?.text = String.numberOrNone(viewModel.documentItemMessageIds.count)
+        allMediaCell.detailTextLabel?.text = viewModel.chatId == 0 ? String.localized("none") : viewModel.context.getAllMediaCount(chatId: viewModel.chatId)
         statusCell.setText(text: viewModel.contact.status)
     }
 
@@ -335,10 +327,8 @@ class ContactDetailViewController: UITableViewController {
     private func handleChatOption(indexPath: IndexPath) {
         let action = viewModel.chatOptionFor(row: indexPath.row)
         switch action {
-        case .documents:
-            showDocuments()
-        case .gallery:
-            showGallery()
+        case .allMedia:
+            showAllMedia()
         case .ephemeralMessages:
             showEphemeralMessagesController()
         case .startChat:
@@ -468,16 +458,8 @@ class ContactDetailViewController: UITableViewController {
         navigationController?.pushViewController(editContactController, animated: true)
     }
 
-    private func showDocuments() {
-        let title = String.localized(viewModel.hasWebxdc ? "files_and_webxdx_apps" : "files")
-        let fileGalleryController = FilesViewController(context: viewModel.context, chatId: viewModel.chatId, type1: DC_MSG_FILE, type2: DC_MSG_AUDIO, type3: DC_MSG_WEBXDC, title: title)
-        navigationController?.pushViewController(fileGalleryController, animated: true)
-    }
-
-    private func showGallery() {
-        let messageIds: [Int] = viewModel.galleryItemMessageIds.reversed()
-        let galleryController = GalleryViewController(context: viewModel.context, chatId: viewModel.chatId, mediaMessageIds: messageIds)
-        navigationController?.pushViewController(galleryController, animated: true)
+    private func showAllMedia() {
+        navigationController?.pushViewController(AllMediaViewController(dcContext: viewModel.context, chatId: viewModel.chatId), animated: true)
     }
 
     private func showSearch() {

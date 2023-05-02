@@ -13,8 +13,7 @@ class ContactDetailViewModel {
     }
 
     enum ChatOption {
-        case gallery
-        case documents
+        case allMedia
         case ephemeralMessages
         case startChat
     }
@@ -72,7 +71,7 @@ class ContactDetailViewModel {
         sections.append(.chatActions)
 
         if chatId != 0 {
-            chatOptions = [.documents, .gallery]
+            chatOptions = [.allMedia]
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
             }
@@ -88,7 +87,7 @@ class ContactDetailViewModel {
             }
             chatActions.append(.deleteChat)
         } else {
-            chatOptions = [.documents, .gallery, .startChat]
+            chatOptions = [.allMedia, .startChat]
             chatActions = [.showEncrInfo, .copyToClipboard, .blockContact]
         }
     }
@@ -120,34 +119,6 @@ class ContactDetailViewModel {
     var chatIsEphemeral: Bool {
         return chatId != 0 && context.getChatEphemeralTimer(chatId: chatId) > 0
     }
-
-    var galleryItemMessageIds: [Int] {
-        if chatId == 0 {
-            return []
-        }
-        return context.getChatMedia(
-            chatId: chatId,
-            messageType: DC_MSG_IMAGE,
-            messageType2: DC_MSG_GIF,
-            messageType3: DC_MSG_VIDEO
-        )
-    }
-
-    var documentItemMessageIds: [Int] {
-        if chatId == 0 {
-            return []
-        }
-        return context.getChatMedia(
-            chatId: chatId,
-            messageType: DC_MSG_FILE,
-            messageType2: DC_MSG_AUDIO,
-            messageType3: DC_MSG_WEBXDC
-        )
-    }
-
-    lazy var hasWebxdc: Bool = {
-        return context.hasWebxdc(chatId: chatId)
-    }()
 
     var numberOfSections: Int {
         return sections.count

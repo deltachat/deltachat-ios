@@ -74,14 +74,6 @@ extension String {
         }
     }
 
-    static func numberOrNone(_ number: Int) -> String {
-        if number == 0 {
-            return String.localized("none")
-        } else {
-            return "\(number)"
-        }
-    }
-
     // required for jumbomoji logic
     // thanks to https://stackoverflow.com/a/39425959
     var containsOnlyEmoji: Bool {
