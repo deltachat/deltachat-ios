@@ -126,17 +126,6 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
-    private lazy var searchCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("search")
-        cell.accessoryType = .disclosureIndicator
-        if chatId == 0 {
-            cell.isUserInteractionEnabled = false
-            cell.textLabel?.isEnabled = false
-        }
-        return cell
-    }()
-
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
         self.chatId = chatId
