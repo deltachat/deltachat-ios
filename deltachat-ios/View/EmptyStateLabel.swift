@@ -7,8 +7,9 @@ class EmptyStateLabel: PaddingTextView {
         super.init()
         backgroundColor = DcColors.systemMessageBackgroundColor
         label.textColor = DcColors.systemMessageFontColor
-        layer.cornerRadius = 5
+        layer.cornerRadius = 16
         label.clipsToBounds = true
+        label.textAlignment = .center
         paddingTop = 15
         paddingBottom = 15
         paddingLeading = 15
