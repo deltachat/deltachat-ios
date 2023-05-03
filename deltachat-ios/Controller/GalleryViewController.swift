@@ -7,7 +7,7 @@ class GalleryViewController: UIViewController {
     private let dcContext: DcContext
     // MARK: - data
     private let chatId: Int
-    private var mediaMessageIds: [Int]
+    private var mediaMessageIds: [Int] = []
     private var galleryItemCache: [Int: GalleryItem] = [:]
 
     // MARK: - subview specs
@@ -72,10 +72,9 @@ class GalleryViewController: UIViewController {
         return config
     }()
 
-    init(context: DcContext, chatId: Int, mediaMessageIds: [Int]) {
+    init(context: DcContext, chatId: Int) {
         self.dcContext = context
         self.chatId = chatId
-        self.mediaMessageIds = mediaMessageIds
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -88,9 +87,7 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         title = String.localized("images_and_videos")
-        if mediaMessageIds.isEmpty {
-            emptyStateView.isHidden = false
-        }
+        loadMediaAsync()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +127,21 @@ class GalleryViewController: UIViewController {
     private func setupContextMenuIfNeeded() {
         UIMenuController.shared.menuItems = contextMenu.menuItems
         UIMenuController.shared.update()
+    }
+
+    private func loadMediaAsync() {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self = self else { return }
+            let ids: [Int]
+            ids = self.dcContext.getChatMedia(chatId: self.chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO).reversed()
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.galleryItemCache = [:]
+                self.mediaMessageIds = ids
+                self.emptyStateView.isHidden = !ids.isEmpty
+                self.grid.reloadData()
+            }
+        }
     }
 
     // MARK: - updates

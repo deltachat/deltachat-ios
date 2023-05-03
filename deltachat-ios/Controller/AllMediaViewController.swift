@@ -91,8 +91,7 @@ class AllMediaViewController: UIPageViewController {
     // MARK: - factory
     private func makeViewController(_ page: Page) -> UIViewController {
         if page.type1 == DC_MSG_IMAGE {
-            let allMedia = dcContext.getChatMedia(chatId: chatId, messageType: page.type1, messageType2: page.type2, messageType3: page.type3)
-            return GalleryViewController(context: dcContext, chatId: chatId, mediaMessageIds: allMedia.reversed())
+            return GalleryViewController(context: dcContext, chatId: chatId)
         } else {
             return FilesViewController(context: dcContext, chatId: chatId, type1: page.type1, type2: page.type2, type3: page.type3)
         }
