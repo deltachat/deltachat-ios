@@ -82,7 +82,7 @@ class GroupChatDetailViewController: UIViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
         if #available(iOS 13.0, *) {
-            cell.imageView?.image = UIImage(systemName: "timer") // added in ios13
+            cell.imageView?.image = UIImage(named: "ephemeral_timer")?.withTintColor(UIColor.systemBlue)
         }
         cell.accessoryType = .disclosureIndicator
         return cell
