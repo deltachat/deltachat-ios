@@ -5,8 +5,10 @@ import LinkPresentation
 class FilesViewController: UIViewController {
 
     public let type1: Int32
+    public let type2: Int32
+    public let type3: Int32
 
-    private var fileMessageIds: [Int]
+    private var fileMessageIds: [Int] = []
     private let dcContext: DcContext
     private let chatId: Int
 
@@ -65,9 +67,10 @@ class FilesViewController: UIViewController {
 
     init(context: DcContext, chatId: Int, type1: Int32, type2: Int32, type3: Int32, title: String? = nil) {
         self.dcContext = context
-        self.fileMessageIds = dcContext.getChatMedia(chatId: chatId, messageType: type1, messageType2: type2, messageType3: type3).reversed()
         self.chatId = chatId
         self.type1 = type1
+        self.type2 = type2
+        self.type3 = type3
         super.init(nibName: nil, bundle: nil)
         self.title = title
     }
@@ -80,9 +83,7 @@ class FilesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        if fileMessageIds.isEmpty {
-            emptyStateView.isHidden = false
-        }
+        loadMediaAsync()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +105,20 @@ class FilesViewController: UIViewController {
     private func setupContextMenuIfNeeded() {
         UIMenuController.shared.menuItems = contextMenu.menuItems
         UIMenuController.shared.update()
+    }
+
+    private func loadMediaAsync() {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self = self else { return }
+            let ids: [Int]
+            ids = self.dcContext.getChatMedia(chatId: self.chatId, messageType: self.type1, messageType2: self.type2, messageType3: self.type3).reversed()
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.fileMessageIds = ids
+                self.emptyStateView.isHidden = !ids.isEmpty
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - actions
