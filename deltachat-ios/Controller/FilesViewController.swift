@@ -11,7 +11,7 @@ class FilesViewController: UIViewController {
     private let chatId: Int
 
     private lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
+        let table = UITableView(frame: .zero, style: .plain)
         table.register(DocumentGalleryFileCell.self, forCellReuseIdentifier: DocumentGalleryFileCell.reuseIdentifier)
         table.dataSource = self
         table.delegate = self
