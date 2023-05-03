@@ -144,10 +144,8 @@ class ChatListController: UITableViewController {
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         if parent == nil {
-            // logger.debug("chat observer: remove")
             removeObservers()
         } else {
-            // logger.debug("chat observer: setup")
             addObservers()
         }
     }

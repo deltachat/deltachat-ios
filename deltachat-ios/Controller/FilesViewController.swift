@@ -12,6 +12,9 @@ class FilesViewController: UIViewController {
     private let dcContext: DcContext
     private let chatId: Int
 
+    private var msgChangedObserver: NSObjectProtocol?
+    private var incomingMsgObserver: NSObjectProtocol?
+
     private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.register(DocumentGalleryFileCell.self, forCellReuseIdentifier: DocumentGalleryFileCell.reuseIdentifier)
@@ -83,14 +86,25 @@ class FilesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        loadMediaAsync()
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            self?.refreshDataFromBgThread()
+        }
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            removeObservers()
+        } else {
+            addObservers()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         setupContextMenuIfNeeded()
     }
 
-    // MARK: - layout
+    // MARK: - setup
     private func setupSubviews() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -107,17 +121,55 @@ class FilesViewController: UIViewController {
         UIMenuController.shared.update()
     }
 
-    private func loadMediaAsync() {
-        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            guard let self = self else { return }
-            let ids: [Int]
-            ids = self.dcContext.getChatMedia(chatId: self.chatId, messageType: self.type1, messageType2: self.type2, messageType3: self.type3).reversed()
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.fileMessageIds = ids
-                self.emptyStateView.isHidden = !ids.isEmpty
-                self.tableView.reloadData()
+    private func addObservers() {
+        msgChangedObserver = NotificationCenter.default.addObserver(
+            forName: dcNotificationChanged, object: nil, queue: nil) { [weak self] _ in
+                self?.refreshInBg()
             }
+        incomingMsgObserver = NotificationCenter.default.addObserver(
+            forName: dcNotificationIncoming, object: nil, queue: nil) { [weak self] _ in
+                self?.refreshInBg()
+            }
+    }
+
+    private func removeObservers() {
+        if let msgChangedObserver = self.msgChangedObserver {
+            NotificationCenter.default.removeObserver(msgChangedObserver)
+        }
+        if let incomingMsgObserver = self.incomingMsgObserver {
+            NotificationCenter.default.removeObserver(incomingMsgObserver)
+        }
+    }
+
+    private var inBgRefresh = false
+    private var needsAnotherBgRefresh = false
+    private func refreshInBg() {
+        if inBgRefresh {
+            needsAnotherBgRefresh = true
+        } else {
+            inBgRefresh = true
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                self?.needsAnotherBgRefresh = false
+                self?.refreshDataFromBgThread()
+                while self?.needsAnotherBgRefresh != false {
+                    usleep(500000)
+                    self?.needsAnotherBgRefresh = false
+                    self?.refreshDataFromBgThread()
+                }
+                self?.inBgRefresh = false
+            }
+        }
+    }
+
+    private func refreshDataFromBgThread() {
+        // may take a moment, should not be called from main thread
+        let ids: [Int]
+        ids = self.dcContext.getChatMedia(chatId: self.chatId, messageType: self.type1, messageType2: self.type2, messageType3: self.type3).reversed()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.fileMessageIds = ids
+            self.emptyStateView.isHidden = !ids.isEmpty
+            self.tableView.reloadData()
         }
     }
 

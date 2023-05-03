@@ -5,13 +5,13 @@ import QuickLook
 class GalleryViewController: UIViewController {
 
     private let dcContext: DcContext
-    // MARK: - data
     private let chatId: Int
     private var mediaMessageIds: [Int] = []
     private var galleryItemCache: [Int: GalleryItem] = [:]
-
-    // MARK: - subview specs
     private let gridDefaultSpacing: CGFloat = 5
+
+    private var msgChangedObserver: NSObjectProtocol?
+    private var incomingMsgObserver: NSObjectProtocol?
 
     private lazy var gridLayout: GridCollectionViewFlowLayout = {
         let layout = GridCollectionViewFlowLayout()
@@ -87,7 +87,18 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         setupSubviews()
         title = String.localized("images_and_videos")
-        loadMediaAsync()
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            self?.refreshDataFromBgThread()
+        }
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            removeObservers()
+        } else {
+            addObservers()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -129,18 +140,56 @@ class GalleryViewController: UIViewController {
         UIMenuController.shared.update()
     }
 
-    private func loadMediaAsync() {
-        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            guard let self = self else { return }
-            let ids: [Int]
-            ids = self.dcContext.getChatMedia(chatId: self.chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO).reversed()
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.galleryItemCache = [:]
-                self.mediaMessageIds = ids
-                self.emptyStateView.isHidden = !ids.isEmpty
-                self.grid.reloadData()
+    private func addObservers() {
+        msgChangedObserver = NotificationCenter.default.addObserver(
+            forName: dcNotificationChanged, object: nil, queue: nil) { [weak self] _ in
+                self?.refreshInBg()
             }
+        incomingMsgObserver = NotificationCenter.default.addObserver(
+            forName: dcNotificationIncoming, object: nil, queue: nil) { [weak self] _ in
+                self?.refreshInBg()
+            }
+    }
+
+    private func removeObservers() {
+        if let msgChangedObserver = self.msgChangedObserver {
+            NotificationCenter.default.removeObserver(msgChangedObserver)
+        }
+        if let incomingMsgObserver = self.incomingMsgObserver {
+            NotificationCenter.default.removeObserver(incomingMsgObserver)
+        }
+    }
+
+    private var inBgRefresh = false
+    private var needsAnotherBgRefresh = false
+    private func refreshInBg() {
+        if inBgRefresh {
+            needsAnotherBgRefresh = true
+        } else {
+            inBgRefresh = true
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                self?.needsAnotherBgRefresh = false
+                self?.refreshDataFromBgThread()
+                while self?.needsAnotherBgRefresh != false {
+                    usleep(500000)
+                    self?.needsAnotherBgRefresh = false
+                    self?.refreshDataFromBgThread()
+                }
+                self?.inBgRefresh = false
+            }
+        }
+    }
+
+    private func refreshDataFromBgThread() {
+        // may take a moment, should not be called from main thread
+        let ids: [Int]
+        ids = self.dcContext.getChatMedia(chatId: self.chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO).reversed()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.galleryItemCache = [:]
+            self.mediaMessageIds = ids
+            self.emptyStateView.isHidden = !ids.isEmpty
+            self.grid.reloadData()
         }
     }
 
