@@ -22,7 +22,7 @@ PODS:
   - SDWebImageWebPCoder (0.11.0):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.15)
-  - SVGKit (3.1.0):
+  - SVGKit (3.0.0):
     - CocoaLumberjack (~> 3.0)
   - Swifter (1.5.0)
   - SwiftFormat/CLI (0.51.8)
@@ -34,7 +34,7 @@ DEPENDENCIES:
   - SDWebImage
   - SDWebImageSVGKitPlugin
   - SDWebImageWebPCoder
-  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
+  - SVGKit
   - Swifter (from `https://github.com/httpswift/swifter.git`, branch `stable`)
   - SwiftFormat/CLI
   - SwiftLint
@@ -48,21 +48,16 @@ SPEC REPOS:
     - SDWebImage
     - SDWebImageSVGKitPlugin
     - SDWebImageWebPCoder
+    - SVGKit
     - SwiftFormat
     - SwiftLint
 
 EXTERNAL SOURCES:
-  SVGKit:
-    :branch: 3.x
-    :git: https://github.com/SVGKit/SVGKit.git
   Swifter:
     :branch: stable
     :git: https://github.com/httpswift/swifter.git
 
 CHECKOUT OPTIONS:
-  SVGKit:
-    :commit: 8c290ceee19254f6d0da1940201d5efa31b48f9f
-    :git: https://github.com/SVGKit/SVGKit.git
   Swifter:
     :commit: 1e4f51c92d7ca486242d8bf0722b99de2c3531aa
     :git: https://github.com/httpswift/swifter.git
@@ -75,11 +70,11 @@ SPEC CHECKSUMS:
   SDWebImage: d47d81bea8a77187896b620dc79c3c528e8906b9
   SDWebImageSVGKitPlugin: 7542dd07c344ec3415ded0461a1161a6f087e0c9
   SDWebImageWebPCoder: 295a6573c512f54ad2dd58098e64e17dcf008499
-  SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
+  SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
   Swifter: aa3514bbb8df8980c118f7bb1b80f2da24e39c2b
   SwiftFormat: 4334264324e20bad415888316165bdc1fc2860bc
   SwiftLint: 1b7561918a19e23bfed960e40759086e70f4dba5
 
-PODFILE CHECKSUM: fb3efc118f488a510c66aae9c8d41f4ee9184af9
+PODFILE CHECKSUM: bbaaa9c3242dd69a1c26c334c2eeb92bbece8f27
 
 COCOAPODS: 1.12.1

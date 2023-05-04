@@ -101,6 +101,7 @@
 		1C1B88B591379BAD7D543CD8C71D44A3 /* UIImage+ForceDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = F52B63DFEB4EE48CA6C29293FD75905E /* UIImage+ForceDecode.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1C5AB731EA1FD1CEF92C0546D17C69E8 /* SVGKParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F05AD638DB177A68F628B9407E0D6ED /* SVGKParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1CF7CF35053AD6192002AA179BB4D5FA /* sharpyuv_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = A9561DB6A177F2D1419203F6CB2A47B2 /* sharpyuv_sse2.c */; settings = {COMPILER_FLAGS = "-D_THREAD_SAFE -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1D229FFC794F8322B435A5CC1E1C9F14 /* SVGKDefine_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 881509CAE571738656712CCE4C7404D6 /* SVGKDefine_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D387B13401CBE3FB0A1B296AB630BFE /* rescaler_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = D2118AB1F3EADE3138DEBC6AD331AAF0 /* rescaler_neon.c */; settings = {COMPILER_FLAGS = "-D_THREAD_SAFE -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1D6714F649EC955E7A549EAAB26E0364 /* ProcessingInstruction.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F1FAF7777991E24FE404CD1418E4364 /* ProcessingInstruction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1DD3AAC2F7641B205C99970F25EA9497 /* SDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 143AE75B5C886D07397D036B66D88F1C /* SDWeakProxy.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -159,7 +160,6 @@
 		32C439A4F62DCC196CC09FE882F5F77F /* SVGPolylineElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E08519E135D09C6D8FD10CB229B52CC /* SVGPolylineElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		33475F7C2E560B3D671AB5E199FCF7D9 /* SVGKLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AAD7B48992ED7A91CCF3B2EEE1AC2C2 /* SVGKLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		337057626A23EBF33D4CC4EC7438FACF /* SVGKSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 995E911876A2984C4977DEDE0CDA9AEA /* SVGKSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		339DD1FC882CCB49EC773FE38F4B8BEE /* SVGKExporterNSImage.h in Headers */ = {isa = PBXBuildFile; fileRef = F8018AB8DF0AC3994E79C2BBA9207649 /* SVGKExporterNSImage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		34E7735EE27848E95C1CA88AF7A4CD36 /* SVGRectElement.h in Headers */ = {isa = PBXBuildFile; fileRef = F8A78EC764FA0DD9C05423935F1B65D4 /* SVGRectElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35B596E51ED3EE1FCC3E306AADA3674C /* format_constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 101C05F53CE815EC45C9A6DFD5AD5039 /* format_constants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36291754A9DC0AFC367D80FADEE00730 /* SVGGradientElement.h in Headers */ = {isa = PBXBuildFile; fileRef = ADCDB15621D7B2E51D9E0B667B293CD3 /* SVGGradientElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -186,6 +186,7 @@
 		3ED0ACF640186A77F9D9439DAC3303EC /* SDWebImageSVGKitPlugin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A2C69E610427D00D051656E5B1114A /* SDWebImageSVGKitPlugin-dummy.m */; };
 		3F01FAB50DECF8D85F7A54417D327A2E /* near_lossless_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 39A71DB5568EE97B8CFE750F3A88043E /* near_lossless_enc.c */; settings = {COMPILER_FLAGS = "-D_THREAD_SAFE -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3F1790581194405582CF85EDFDF76D93 /* dec.c in Sources */ = {isa = PBXBuildFile; fileRef = 98927A8C1FAB03D951FE285F15A89B8E /* dec.c */; settings = {COMPILER_FLAGS = "-D_THREAD_SAFE -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		3F6B8639906C2C7E7E9C9EF056384083 /* SVGKImageRep.h in Headers */ = {isa = PBXBuildFile; fileRef = D43C171BA0AB8CDBE71D8D7044967C0F /* SVGKImageRep.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		404B61113AB87679D15F5517FB6DE926 /* SDWebImageWebPCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 75A5A8B33FF4191155681CE893928221 /* SDWebImageWebPCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40560FCEAFAD199C3A321C9F6F0330ED /* SDMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = C88AF2EB2AC3BCC347A2F46D657C6D75 /* SDMemoryCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40A35E49C554912FC85B852136AF18A8 /* NSData+NSInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EA17C985AFC9D7DE8695C2E30C7801D /* NSData+NSInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -365,6 +366,7 @@
 		834E38B38A8BFD8BD755699DDA9E72A0 /* SVGHelperUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B8F6382427946D287B9138D917B2C65 /* SVGHelperUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		835C8FA7AF10ED94162D4BB28009632B /* SDImageAssetManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E7D43E273ACF4670879E1892737989A /* SDImageAssetManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		83C62598717470F75C4C7021C0B31693 /* Node+Mutable.h in Headers */ = {isa = PBXBuildFile; fileRef = A9C15E912BD7D39B8AB97F18AE7092B7 /* Node+Mutable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		845619D1F327D9C55012023493131177 /* SVGKExporterNSImage.h in Headers */ = {isa = PBXBuildFile; fileRef = F8018AB8DF0AC3994E79C2BBA9207649 /* SVGKExporterNSImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84C8FB06D7BF506B3706AAFC15E7A099 /* SVGRadialGradientElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1556118CE4AED43F15105A577C02BE8B /* SVGRadialGradientElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		852D61E528505C971A6FEC06342E8DD9 /* SVGKPointsAndPathsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 098D3DC840EB2B40647F279511AE04F0 /* SVGKPointsAndPathsParser.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		85435F4035E16E4B6E7BEC082506FA55 /* SDImageCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E915A34E0E1AB64987FC64ED05DFDE9 /* SDImageCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -503,7 +505,6 @@
 		BC6B9A255FBE7D2CE73AF3E905744999 /* picture_psnr_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = A03EECB864AE4AD80613CD4A404C590D /* picture_psnr_enc.c */; settings = {COMPILER_FLAGS = "-D_THREAD_SAFE -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		BC773AA342E15112FC9C036D02C260CE /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 76F4BBBCFC2C6CD4701E9AF42374F17A /* DDASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC927A57E6D341A611B5E875867C3C7C /* demux.c in Sources */ = {isa = PBXBuildFile; fileRef = 49869391B262D7BF850FD83E91478C97 /* demux.c */; settings = {COMPILER_FLAGS = "-D_THREAD_SAFE -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		BCE98D93D81536B12210B08ACD05A67E /* SVGKImageRep.h in Headers */ = {isa = PBXBuildFile; fileRef = D43C171BA0AB8CDBE71D8D7044967C0F /* SVGKImageRep.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		BD2FB1E5B56DD0337E939EFC706CC02D /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A34BCA8D7623DFAC9E6D624598A9F58 /* UIImage+WebP.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		BDEC1D3B173C6F7BEC67565EF19F3452 /* vp8i_dec.h in Headers */ = {isa = PBXBuildFile; fileRef = 780E11D49E764DF69F65447FD69A34B4 /* vp8i_dec.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		BE2C665DF3B22F5FC6AA14386953EB98 /* CAShapeLayerWithHitTest.h in Headers */ = {isa = PBXBuildFile; fileRef = FF995DC1D1FD6D6B1593F5FF46BEB14B /* CAShapeLayerWithHitTest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -545,7 +546,6 @@
 		CD366C92F7016984269D0821F073C34B /* SDImageCodersManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 916346B0423B51A7E6A585E994A91C8D /* SDImageCodersManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD56CDA5F0E25249D7E98F3467899B5F /* Pods-DcShare-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 915BCA32D4216B4489565D94B65E5BD9 /* Pods-DcShare-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD58569DBC17B76B9F25DD5DE4477B93 /* SVGStyleElement.h in Headers */ = {isa = PBXBuildFile; fileRef = E0E185E520B419D34BF6A3B177DA4714 /* SVGStyleElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDC184F822907BA36B165FA1CE4AAF73 /* SVGKDefine_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 881509CAE571738656712CCE4C7404D6 /* SVGKDefine_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CE63112A86470A84D06C84C80B45EADE /* Node.h in Headers */ = {isa = PBXBuildFile; fileRef = DFB2AA85BBD831C0CA9354EF973DB8B7 /* Node.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE88C6E422F6ED3A1857DED015C383B4 /* SVGKLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 210EC7DB9C4F6F03C6B9FFBE67E14770 /* SVGKLayer.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CEA2F0CCAFD83C8D40EC89D4B961C65D /* filter_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = B105234D5C44B69496EB3496FBFA9C19 /* filter_enc.c */; settings = {COMPILER_FLAGS = "-D_THREAD_SAFE -fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -3050,14 +3050,14 @@
 				834E38B38A8BFD8BD755699DDA9E72A0 /* SVGHelperUtilities.h in Headers */,
 				F224248917964EB63933714C7B0FCE85 /* SVGImageElement.h in Headers */,
 				28C7EBC311566AFA0D89FCC364EB0969 /* SVGKDefine.h in Headers */,
-				CDC184F822907BA36B165FA1CE4AAF73 /* SVGKDefine_Private.h in Headers */,
+				1D229FFC794F8322B435A5CC1E1C9F14 /* SVGKDefine_Private.h in Headers */,
 				77881C3CC3BB82FDC079617215A8483C /* SVGKExporterNSData.h in Headers */,
-				339DD1FC882CCB49EC773FE38F4B8BEE /* SVGKExporterNSImage.h in Headers */,
+				845619D1F327D9C55012023493131177 /* SVGKExporterNSImage.h in Headers */,
 				E3A3BE457254D586B3B8BDFF350C7AE3 /* SVGKExporterUIImage.h in Headers */,
 				8313DFAEBD0095146411C2538D59478D /* SVGKFastImageView.h in Headers */,
 				9BD60F577F6C53F26E6F7945E91A95CB /* SVGKImage.h in Headers */,
 				26B87A22CC40893B710ACBFF0F1AB2C0 /* SVGKImage+CGContext.h in Headers */,
-				BCE98D93D81536B12210B08ACD05A67E /* SVGKImageRep.h in Headers */,
+				3F6B8639906C2C7E7E9C9EF056384083 /* SVGKImageRep.h in Headers */,
 				FC4C696FF594EC8538D861901AF5E12C /* SVGKImageView.h in Headers */,
 				218B1CA14FD1739AC15A7CA7A3BEBD15 /* SVGKInlineResource.h in Headers */,
 				178DB6E7A97D2A2AE49402836EBC7217 /* SVGKit.h in Headers */,
@@ -4770,7 +4770,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5080,7 +5080,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
