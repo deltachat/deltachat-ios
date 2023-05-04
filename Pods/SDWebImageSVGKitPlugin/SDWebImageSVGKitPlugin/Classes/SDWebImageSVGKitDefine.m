@@ -6,8 +6,11 @@
 //
 
 #import "SDWebImageSVGKitDefine.h"
+#if __has_include(<SVGKit/SVGKit.h>)
 #import <SVGKit/SVGKit.h>
-
+#else
+@import SVGKit;
+#endif
 #if SD_UIKIT
 void SDAdjustSVGContentMode(SVGKImage * svgImage, UIViewContentMode contentMode, CGSize viewSize) {
     NSCParameterAssert(svgImage);

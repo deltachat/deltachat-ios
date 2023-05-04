@@ -12,7 +12,7 @@ target 'deltachat-ios' do
   # pod 'openssl-ios-bitcode'
   pod 'ReachabilitySwift'
   pod 'SCSiriWaveformView'
-  pod 'SDWebImage', '~> 5.9.1'
+  pod 'SDWebImage'
   pod 'SDWebImageWebPCoder'
   pod 'SDWebImageSVGKitPlugin'
   pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
@@ -30,6 +30,6 @@ target 'DcShare' do
   # ignore all warnings from all dependencies
   inhibit_all_warnings!
 
-  pod 'SDWebImage', '~> 5.9.1'
+  pod 'SDWebImage'
   pod 'SDWebImageWebPCoder'
 end

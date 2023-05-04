@@ -5,8 +5,16 @@
 //  Created by DreamPiggy on 2018/10/10.
 //
 
+#if __has_include(<SDWebImage/SDWebImage.h>)
 #import <SDWebImage/SDWebImage.h>
+#else
+@import SDWebImage;
+#endif
+#if __has_include(<SVGKit/SVGKit.h>)
 #import <SVGKit/SVGKit.h>
+#else
+@import SVGKit;
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

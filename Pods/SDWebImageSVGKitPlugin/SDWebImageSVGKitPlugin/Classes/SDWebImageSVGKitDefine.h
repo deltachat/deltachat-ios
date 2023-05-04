@@ -5,7 +5,11 @@
 //  Created by DreamPiggy on 2018/10/11.
 //
 
+#if __has_include(<SDWebImage/SDWebImage.h>)
 #import <SDWebImage/SDWebImage.h>
+#else
+@import SDWebImage;
+#endif
 
 @class SVGKImage;
 

@@ -13,15 +13,15 @@ PODS:
   - libwebp/webp (1.2.4)
   - ReachabilitySwift (5.0.0)
   - SCSiriWaveformView (1.1.2)
-  - SDWebImage (5.9.5):
-    - SDWebImage/Core (= 5.9.5)
-  - SDWebImage/Core (5.9.5)
-  - SDWebImageSVGKitPlugin (1.2.0):
-    - SDWebImage/Core (~> 5.6)
-    - SVGKit (>= 2.1)
-  - SDWebImageWebPCoder (0.6.1):
+  - SDWebImage (5.15.6):
+    - SDWebImage/Core (= 5.15.6)
+  - SDWebImage/Core (5.15.6)
+  - SDWebImageSVGKitPlugin (1.4.0):
+    - SDWebImage/Core (~> 5.10)
+    - SVGKit (~> 3.0)
+  - SDWebImageWebPCoder (0.11.0):
     - libwebp (~> 1.0)
-    - SDWebImage/Core (~> 5.7)
+    - SDWebImage/Core (~> 5.15)
   - SVGKit (3.1.0):
     - CocoaLumberjack (~> 3.0)
   - Swifter (1.5.0)
@@ -31,7 +31,7 @@ PODS:
 DEPENDENCIES:
   - ReachabilitySwift
   - SCSiriWaveformView
-  - SDWebImage (~> 5.9.1)
+  - SDWebImage
   - SDWebImageSVGKitPlugin
   - SDWebImageWebPCoder
   - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
@@ -72,14 +72,14 @@ SPEC CHECKSUMS:
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SCSiriWaveformView: 016392911fb442c17d6dbad68e666edb13193c02
-  SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
-  SDWebImageSVGKitPlugin: 06a811c05b9e839982baeb5251d15fe7a79abb82
-  SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
+  SDWebImage: d47d81bea8a77187896b620dc79c3c528e8906b9
+  SDWebImageSVGKitPlugin: 7542dd07c344ec3415ded0461a1161a6f087e0c9
+  SDWebImageWebPCoder: 295a6573c512f54ad2dd58098e64e17dcf008499
   SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
   Swifter: aa3514bbb8df8980c118f7bb1b80f2da24e39c2b
   SwiftFormat: 4334264324e20bad415888316165bdc1fc2860bc
   SwiftLint: 1b7561918a19e23bfed960e40759086e70f4dba5
 
-PODFILE CHECKSUM: 7ff757dacef19f015c1ecf6daabd42e59db7d4b5
+PODFILE CHECKSUM: fb3efc118f488a510c66aae9c8d41f4ee9184af9
 
 COCOAPODS: 1.12.1

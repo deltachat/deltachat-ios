@@ -20,9 +20,10 @@ You can modify the code or use some other SVG files to check the compatibility.
 
 ## Requirements
 
-+ iOS 8+
++ iOS 9+
 + tvOS 9+
-+ macOS 10.10+
++ macOS 10.11+
++ Xcode 11+
 
 ## Installation
 
@@ -35,10 +36,16 @@ it, simply add the following line to your Podfile:
 pod 'SDWebImageSVGKitPlugin'
 ```
 
-Note: The [SVGKit](https://github.com/SVGKit/SVGKit) dependency seems does not follow sem-version and didn't not release versions frequently. You can manually specify a branch or CID dependency for it. Like below:
+#### Swift Package Manager (Xcode 11+)
 
-```
-pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
+SDWebImagePhotosPlugin is available through [Swift Package Manager](https://swift.org/package-manager).
+
+```swift
+let package = Package(
+    dependencies: [
+        .package(url: "https://github.com/SDWebImage/SDWebImageSVGKitPlugin.git", from: "1.4")
+    ]
+)
 ```
 
 #### Carthage
