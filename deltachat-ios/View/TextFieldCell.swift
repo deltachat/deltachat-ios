@@ -32,7 +32,7 @@ class TextFieldCell: UITableViewCell {
 
     private var customConstraints: [NSLayoutConstraint] = []
 
-    var onTextFieldChange:((_:UITextField) -> Void)?	// set this from outside to get notified about textfield changes
+    var onTextFieldChange: ((_: UITextField) -> Void)?	// set this from outside to get notified about textfield changes
 
 
     public lazy var title: UILabel = {

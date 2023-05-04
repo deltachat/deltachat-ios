@@ -11,7 +11,7 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         return UIFont.preferredFont(forTextStyle: .body).pointSize * 4
     }
 
-    var onTextFieldChange:((_:UITextView) -> Void)?    // set this from outside to get notified about textfield changes
+    var onTextFieldChange: ((_: UITextView) -> Void)?    // set this from outside to get notified about textfield changes
 
     lazy var descriptionField: UITextField = {
         let textField = UITextField()

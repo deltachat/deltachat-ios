@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
-    var reachability: Reachability? = nil
+    var reachability: Reachability?
     var window: UIWindow?
     var notifyToken: String?
     var applicationInForeground: Bool = false
@@ -726,7 +726,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_REMOVE_MEMBER_BY_OTHER, localizationKey: "remove_member_by_other")
         dcContext.setStockTranslation(id: DC_STR_GROUP_LEFT_BY_YOU, localizationKey: "group_left_by_you")
         dcContext.setStockTranslation(id: DC_STR_GROUP_LEFT_BY_OTHER, localizationKey: "group_left_by_other")
-        dcContext.setStockTranslation(id: DC_STR_GROUP_IMAGE_DELETED_BY_YOU, localizationKey: "group_image_deleted_by_you");
+        dcContext.setStockTranslation(id: DC_STR_GROUP_IMAGE_DELETED_BY_YOU, localizationKey: "group_image_deleted_by_you")
         dcContext.setStockTranslation(id: DC_STR_GROUP_IMAGE_DELETED_BY_OTHER, localizationKey: "group_image_deleted_by_other")
         dcContext.setStockTranslation(id: DC_STR_LOCATION_ENABLED_BY_YOU, localizationKey: "location_enabled_by_you")
         dcContext.setStockTranslation(id: DC_STR_LOCATION_ENABLED_BY_OTHER, localizationKey: "location_enabled_by_other")

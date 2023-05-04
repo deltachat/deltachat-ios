@@ -14,4 +14,3 @@ extension Character {
     }
     var isEmoji: Bool { isSimpleEmoji || isCombinedIntoEmoji }
 }
-

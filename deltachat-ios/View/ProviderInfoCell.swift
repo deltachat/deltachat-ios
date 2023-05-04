@@ -106,7 +106,7 @@ class ProviderInfoCell: UITableViewCell {
     }
 
     // MARK: - actions
-    @objc func infoButtonPressed(_:UIButton) {
+    @objc func infoButtonPressed(_: UIButton) {
         onInfoButtonPressed?()
     }
 }

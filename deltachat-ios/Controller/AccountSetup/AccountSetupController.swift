@@ -90,8 +90,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     private lazy var providerInfoCell: ProviderInfoCell = {
         let cell = ProviderInfoCell()
-        cell.onInfoButtonPressed = {
-            [weak self] in
+        cell.onInfoButtonPressed = { [weak self] in
             self?.handleProviderInfoButton()
         }
         return cell
