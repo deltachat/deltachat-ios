@@ -1,14 +1,14 @@
-<p align="center" >
+<p align="center">
   <img src="https://raw.githubusercontent.com/CocoaLumberjack/CocoaLumberjack/master/LumberjackLogo.png" title="Lumberjack logo" float=left>
 </p>
 
 CocoaLumberjack
 ===============
-![Unit Tests](https://github.com/CocoaLumberjack/CocoaLumberjack/workflows/Unit%20Tests/badge.svg)
-[![Pod Version](http://img.shields.io/cocoapods/v/CocoaLumberjack.svg?style=flat)](http://cocoadocs.org/docsets/CocoaLumberjack/)
+[![Version](https://img.shields.io/github/release/CocoaLumberjack/CocoaLumberjack.svg?display_name=tag&style=flat)](https://github.com/CocoaLumberjack/CocoaLumberjack/releases/latest)
+[![License](https://img.shields.io/github/license/CocoaLumberjack/CocoaLumberjack.svg?style=flat)](https://opensource.org/licenses/BSD-3-Clause)
+[![Pod Platform](https://img.shields.io/cocoapods/p/CocoaLumberjack.svg?style=flat)](https://cocoadocs.org/docsets/CocoaLumberjack/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Pod Platform](http://img.shields.io/cocoapods/p/CocoaLumberjack.svg?style=flat)](http://cocoadocs.org/docsets/CocoaLumberjack/)
-[![Pod License](http://img.shields.io/cocoapods/l/CocoaLumberjack.svg?style=flat)](http://opensource.org/licenses/BSD-3-Clause)
+![Unit Tests](https://github.com/CocoaLumberjack/CocoaLumberjack/workflows/Unit%20Tests/badge.svg)
 [![codecov](https://codecov.io/gh/CocoaLumberjack/CocoaLumberjack/branch/master/graph/badge.svg)](https://codecov.io/gh/CocoaLumberjack/CocoaLumberjack)
 [![codebeat badge](https://codebeat.co/badges/840b714a-c8f3-4936-ada4-363473cd4e6b)](https://codebeat.co/projects/github-com-cocoalumberjack-cocoalumberjack-master)
 
@@ -17,13 +17,13 @@ CocoaLumberjack
 
 ## How to get started
 
-First, install CocoaLumberjack via [CocoaPods](http://cocoapods.org), [Carthage](https://github.com/Carthage/Carthage), [Swift Package Manager](https://swift.org/package-manager/) or manually.
+First, install CocoaLumberjack via [CocoaPods](https://cocoapods.org), [Carthage](https://github.com/Carthage/Carthage), [Swift Package Manager](https://swift.org/package-manager/) or manually.
 Then use `DDOSLogger` for iOS 10 and later, or `DDTTYLogger` and `DDASLLogger` for earlier versions to begin logging messages.
 
 ### CocoaPods
 
 ```ruby
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'SampleTarget' do
   use_frameworks!
@@ -35,7 +35,7 @@ For more details about how to use Swift with Lumberjack, see [this conversation]
 
 For Objective-C use the following:
 ```ruby
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'SampleTarget' do
     pod 'CocoaLumberjack'
@@ -60,14 +60,14 @@ As of CocoaLumberjack 3.6.0, you can use the Swift Package Manager as integratio
 If you want to use the Swift Package Manager as integration method, either use Xcode to add the package dependency or add the following dependency to your Package.swift:
 
 ```swift
-.package(url: "https://github.com/CocoaLumberjack/CocoaLumberjack.git", from: "3.7.0"),
+.package(url: "https://github.com/CocoaLumberjack/CocoaLumberjack.git", from: "3.8.0"),
 ```
 
 Note that you may need to add both products, `CocoaLumberjack` and `CocoaLumberjackSwift` to your target since SPM sometimes fails to detect that `CocoaLumerjackSwift` depends on `CocoaLumberjack`.
 
 ### Install manually
 
-If you want to install CocoaLumberjack manually, read the [manual installation](https://raw.githubusercontent.com/CocoaLumberjack/CocoaLumberjack/master/Documentation/GettingStarted.md#manual-installation) guide for more information.
+If you want to install CocoaLumberjack manually, read the [manual installation](Documentation/GettingStarted.md#manual-installation) guide for more information.
 
 ### Swift Usage
 
@@ -126,12 +126,24 @@ You can then use `DDLogHandler` as backend for swift-log, which will forward all
 
 In your own log formatters, you can make use of the `swiftLogInfo` property on `DDLogMessage` to retrieve the details of a message that is logged via swift-log.
 
+To use swift-log with CocoaLumberjack, take a look the following code snippet to see how to get started.
 
-### More information
+```swift
+import CocoaLumberjack
+import CocoaLumberjackSwiftLogBackend
+import Logging
 
-- read the [Getting started](https://raw.githubusercontent.com/CocoaLumberjack/CocoaLumberjack/master/Documentation/GettingStarted.md) guide, check out the [FAQ](https://raw.githubusercontent.com/CocoaLumberjack/CocoaLumberjack/master/Documentation/FAQ.md) section or the other [docs](Documentation/)
+// In your application's entry point (e.g. AppDelegate):
+DDLog.add(DDOSLogger.sharedInstance) // Configure loggers
+LoggingSystem.bootstrapWithCocoaLumberjack() // Use CocoaLumberjack as swift-log backend
+```
+
+
+## More information
+
+- read the [Getting started](Documentation/GettingStarted.md) guide, check out the [FAQ](Documentation/FAQ.md) section or the other [docs](Documentation/)
 - if you find issues or want to suggest improvements, create an issue or a pull request
-- for all kinds of questions involving CocoaLumberjack, use the [Google group](http://groups.google.com/group/cocoalumberjack) or StackOverflow (use [#lumberjack](http://stackoverflow.com/questions/tagged/lumberjack)).
+- for all kinds of questions involving CocoaLumberjack, use the [Google group](https://groups.google.com/group/cocoalumberjack) or StackOverflow (use [#lumberjack](https://stackoverflow.com/questions/tagged/lumberjack)).
 
 
 ## CocoaLumberjack 3
@@ -171,27 +183,28 @@ Configure your logging however you want. Change log levels per file (perfect for
 
 ## Documentation
 
-- **[Get started using Lumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/GettingStarted.md)**<br/>
-- [Different log levels for Debug and Release builds](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/XcodeTricks.md)<br/>
-- [Different log levels for each logger](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/PerLoggerLogLevels.md)<br/>
-- [Use colors in the Xcode debugging console](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/XcodeColors.md)<br/>
-- [Write your own custom formatters](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/CustomFormatters.md)<br/>
-- [FAQ](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/FAQ.md)<br/>
-- [Analysis of performance with benchmarks](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/Performance.md)<br/>
-- [Common issues you may encounter and their solutions](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/ProblemSolution.md)<br/>
-- [AppCode support](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/AppCode-support.md)
+- **[Get started using Lumberjack](Documentation/GettingStarted.md)**<br/>
+- [Different log levels for Debug and Release builds](Documentation/XcodeTricks.md)<br/>
+- [Different log levels for each logger](Documentation/PerLoggerLogLevels.md)<br/>
+- [Use colors in the Xcode debugging console](Documentation/XcodeColors.md)<br/>
+- [Write your own custom formatters](Documentation/CustomFormatters.md)<br/>
+- [FAQ](Documentation/FAQ.md)<br/>
+- [Analysis of performance with benchmarks](Documentation/Performance.md)<br/>
+- [Common issues you may encounter and their solutions](Documentation/ProblemSolution.md)<br/>
+- [AppCode support](Documentation/AppCode-support.md)
 - **[Full Lumberjack documentation](Documentation/)**<br/>
 
 ## Requirements
 The current version of Lumberjack requires:
-- Xcode 12 or later
-- Swift 5.3 or later
-- iOS 9 or later
-- macOS 10.10 or later
-- watchOS 3 or later
-- tvOS 9 or later
+- Xcode 14.1 or later
+- Swift 5.5 or later
+- macOS 10.13 or later
+- iOS 11 or later
+- tvOS 11 or later
+- watchOS 4 or later
 
 ### Backwards compatibility
+- for Xcode 12 and Swift up to 5.4, use the 3.7.4 version
 - for Xcode 11 and Swift up to 5.2, use the 3.6.2 version
 - for Xcode 10 and Swift 4.2, use the 3.5.2 version
 - for iOS 8, use the 3.6.1 version
@@ -207,8 +220,8 @@ The current version of Lumberjack requires:
 
 ## Communication
 
-- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/lumberjack). (Tag 'lumberjack')
-- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/lumberjack).
+- If you **need help**, use [Stack Overflow](https://stackoverflow.com/questions/tagged/lumberjack). (Tag 'lumberjack')
+- If you'd like to **ask a general question**, use [Stack Overflow](https://stackoverflow.com/questions/tagged/lumberjack).
 - If you **found a bug**, open an issue.
 - If you **have a feature request**, open an issue.
 - If you **want to contribute**, submit a pull request.
@@ -257,7 +270,7 @@ _Example_: `DDLogInfo("User: \(myUser)")` will add the `myUser` info to the logs
 ## Author
 
 - [Robbie Hanson](https://github.com/robbiehanson)
-- Love the project? Wanna buy me a coffee? (or a beer :D) [![donation](http://www.paypal.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UZRA26JPJB3DA)
+- Love the project? Wanna buy me a coffee? (or a beer :D) [![donation](https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UZRA26JPJB3DA)
 
 ## Collaborators
 - [Ernesto Rivera](https://github.com/rivera-ernesto)
@@ -273,14 +286,15 @@ _Example_: `DDLogInfo("User: \(myUser)")` will add the `myUser` info to the logs
 - [Hakon Hanesand](https://github.com/hhanesand)
 
 ## License
-- CocoaLumberjack is available under the BSD 3 license. See the [LICENSE file](https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/LICENSE).
+- CocoaLumberjack is available under the BSD 3 license. See the [LICENSE file](LICENSE).
 
 ## Extensions
+- [BugfenderSDK-CocoaLumberjack](https://github.com/bugfender/BugfenderSDK-CocoaLumberjack) A Bugfender logger for CocoaLumberjack
 - [LogIO-CocoaLumberjack](https://github.com/s4nchez/LogIO-CocoaLumberjack) A log.io logger for CocoaLumberjack
 - [XCDLumberjackNSLogger](https://github.com/0xced/XCDLumberjackNSLogger) CocoaLumberjack logger which sends logs to NSLogger
 
 ## Architecture
 
-<p align="center" >
+<p align="center">
     <img src="https://raw.githubusercontent.com/CocoaLumberjack/CocoaLumberjack/master/Documentation/CocoaLumberjackClassDiagram.png" title="CocoaLumberjack class diagram">
 </p>

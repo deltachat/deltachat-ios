@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
-    var reachability = Reachability()!
+    var reachability: Reachability? = nil
     var window: UIWindow?
     var notifyToken: String?
     var applicationInForeground: Bool = false
@@ -78,6 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 logger.warning("Failed to delete DB secrets")
             }
         }
+        
+        do {
+            self.reachability = try Reachability()
+        } catch {
+            // TODO: Handle
+        }
 
         let accountIds = dcAccounts.getAll()
         for accountId in accountIds {
@@ -122,32 +128,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setStockTranslations()
         dcAccounts.startIo()
 
-        reachability.whenReachable = { reachability in
-            // maybeNetwork() shall not be called in ui thread;
-            // Reachability::reachabilityChanged uses DispatchQueue.main.async only
-            logger.info("network: reachable", reachability.connection.description)
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let self = self else { return }
-                self.dcAccounts.maybeNetwork()
-                if self.notifyToken == nil &&
-                    self.dcAccounts.getSelected().isConfigured() &&
-                    !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+        if let reachability = reachability {
+            reachability.whenReachable = { reachability in
+                // maybeNetwork() shall not be called in ui thread;
+                // Reachability::reachabilityChanged uses DispatchQueue.main.async only
+                logger.info("network: reachable", reachability.connection.description)
+                DispatchQueue.global(qos: .background).async { [weak self] in
+                    guard let self = self else { return }
+                    self.dcAccounts.maybeNetwork()
+                    if self.notifyToken == nil &&
+                        self.dcAccounts.getSelected().isConfigured() &&
+                        !UserDefaults.standard.bool(forKey: "notifications_disabled") {
                         self.registerForNotifications()
+                    }
                 }
             }
-        }
-
-        reachability.whenUnreachable = { _ in
-            logger.info("network: not reachable")
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                self?.dcAccounts.maybeNetworkLost()
+            
+            reachability.whenUnreachable = { _ in
+                logger.info("network: not reachable")
+                DispatchQueue.global(qos: .background).async { [weak self] in
+                    self?.dcAccounts.maybeNetworkLost()
+                }
             }
-        }
-
-        do {
-            try reachability.startNotifier()
-        } catch {
-            logger.error("Unable to start notifier")
+            
+            do {
+                try reachability.startNotifier()
+            } catch {
+                logger.error("Unable to start notifier")
+            }
         }
         
         if let notificationOption = launchOptions?[.remoteNotification] {
@@ -209,8 +217,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
-            if self.reachability.connection != .none {
-                self.dcAccounts.maybeNetwork()
+            if let reachability = self.reachability {
+                if reachability.connection != .unavailable {
+                    self.dcAccounts.maybeNetwork()
+                }
             }
 
             AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
@@ -263,7 +273,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
         dcAccounts.closeDatabase()
-        reachability.stopNotifier()
+        if let reachability = reachability {
+            reachability.stopNotifier()
+        }
     }
 
 

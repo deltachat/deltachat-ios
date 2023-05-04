@@ -1,6 +1,6 @@
 // Software License Agreement (BSD License)
 //
-// Copyright (c) 2010-2021, Deusty, LLC
+// Copyright (c) 2010-2022, Deusty, LLC
 // All rights reserved.
 //
 // Redistribution and use of this software in source and binary forms,
@@ -201,11 +201,6 @@ FOUNDATION_EXPORT DDQualityOfServiceName const DDQualityOfServiceUnspecified NS_
  *  Method to compute the queue thread label
  */
 - (NSString *)queueThreadLabelForLogMessage:(DDLogMessage *)logMessage;
-
-/**
- *  The actual method that formats a message (transforms a `DDLogMessage` model into a printable string)
- */
-- (NSString *)formatLogMessage:(DDLogMessage *)logMessage;
 
 @end
 

@@ -1,18 +1,18 @@
 PODS:
-  - CocoaLumberjack (3.7.2):
-    - CocoaLumberjack/Core (= 3.7.2)
-  - CocoaLumberjack/Core (3.7.2)
-  - libwebp (1.2.0):
-    - libwebp/demux (= 1.2.0)
-    - libwebp/mux (= 1.2.0)
-    - libwebp/webp (= 1.2.0)
-  - libwebp/demux (1.2.0):
+  - CocoaLumberjack (3.8.0):
+    - CocoaLumberjack/Core (= 3.8.0)
+  - CocoaLumberjack/Core (3.8.0)
+  - libwebp (1.2.4):
+    - libwebp/demux (= 1.2.4)
+    - libwebp/mux (= 1.2.4)
+    - libwebp/webp (= 1.2.4)
+  - libwebp/demux (1.2.4):
     - libwebp/webp
-  - libwebp/mux (1.2.0):
+  - libwebp/mux (1.2.4):
     - libwebp/demux
-  - libwebp/webp (1.2.0)
-  - ReachabilitySwift (4.3.1)
-  - SCSiriWaveformView (1.1.1)
+  - libwebp/webp (1.2.4)
+  - ReachabilitySwift (5.0.0)
+  - SCSiriWaveformView (1.1.2)
   - SDWebImage (5.9.5):
     - SDWebImage/Core (= 5.9.5)
   - SDWebImage/Core (5.9.5)
@@ -25,8 +25,8 @@ PODS:
   - SVGKit (3.1.0):
     - CocoaLumberjack (~> 3.0)
   - Swifter (1.5.0)
-  - SwiftFormat/CLI (0.40.9)
-  - SwiftLint (0.47.0)
+  - SwiftFormat/CLI (0.51.8)
+  - SwiftLint (0.51.0)
 
 DEPENDENCIES:
   - ReachabilitySwift
@@ -59,22 +59,22 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SVGKit:
-    :commit: e9bc636845fb4d6d5d8e25a9bd08e75c5cf92de9
+    :commit: 8c290ceee19254f6d0da1940201d5efa31b48f9f
     :git: https://github.com/SVGKit/SVGKit.git
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
-  libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
-  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
-  SCSiriWaveformView: 15b9dd6f94c7536e2032b34a35c6ff74d38c7411
+  CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
+  libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SCSiriWaveformView: 016392911fb442c17d6dbad68e666edb13193c02
   SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
   SDWebImageSVGKitPlugin: 06a811c05b9e839982baeb5251d15fe7a79abb82
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
   Swifter: e71dd674404923d7f03ebb03f3f222d1c570bc8e
-  SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
-  SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
+  SwiftFormat: 4334264324e20bad415888316165bdc1fc2860bc
+  SwiftLint: 1b7561918a19e23bfed960e40759086e70f4dba5
 
-PODFILE CHECKSUM: abcd97a81967a20c7f11502cfd961e9c787330f8
+PODFILE CHECKSUM: fa6e9f0530dd141cd710936abd674caa70d383d1
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1

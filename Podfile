@@ -1,5 +1,5 @@
 target 'deltachat-ios' do
-  platform :ios, '10.0'
+  platform :ios, '11.0'
   use_frameworks!
   swift_version = '4.2'
 
@@ -23,7 +23,7 @@ target 'deltachat-ios' do
 end
 
 target 'DcShare' do
-  platform :ios, '10.0'
+  platform :ios, '11.0'
   use_frameworks!
   swift_version = '4.2'
 
