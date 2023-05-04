@@ -1,12 +1,12 @@
 target 'deltachat-ios' do
   platform :ios, '11.0'
   use_frameworks!
-  swift_version = '4.2'
+  swift_version = '5'
 
   # ignore all warnings from all dependencies
   inhibit_all_warnings!
 
-  pod 'Swifter'
+  pod 'Swifter', :git => 'https://github.com/httpswift/swifter.git', :branch => 'stable'
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
   # pod 'openssl-ios-bitcode'
@@ -25,7 +25,7 @@ end
 target 'DcShare' do
   platform :ios, '11.0'
   use_frameworks!
-  swift_version = '4.2'
+  swift_version = '5'
 
   # ignore all warnings from all dependencies
   inhibit_all_warnings!
