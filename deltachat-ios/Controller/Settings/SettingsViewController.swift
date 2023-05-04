@@ -180,7 +180,6 @@ internal final class SettingsViewController: UITableViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        let nc = NotificationCenter.default
         if let connectivityChangedObserver = self.connectivityChangedObserver {
             NotificationCenter.default.removeObserver(connectivityChangedObserver)
         }

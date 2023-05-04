@@ -29,7 +29,7 @@ extension ImageFormat {
                 return .webp
             }
 
-        case 0x00 where data.count >= 12 :
+        case 0x00 where data.count >= 12:
             let subdata = data[8...11]
 
             if let dataString = String(data: subdata, encoding: .ascii),
@@ -37,7 +37,7 @@ extension ImageFormat {
                 return .heic
             }
 
-        case 0x42 where data.count >= 2 :
+        case 0x42 where data.count >= 2:
             if data[1] == 0x4D {
                 return .bmp
             }

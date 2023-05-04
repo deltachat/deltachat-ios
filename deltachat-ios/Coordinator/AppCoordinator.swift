@@ -8,7 +8,9 @@ class AppCoordinator {
 
     private let window: UIWindow
     private let dcAccounts: DcAccounts
-    public  let allMediaTab = 0 // the order below is important as well - and there are two enums, here and at AppStateRestorer (this is error prone and could probably be merged)
+    // the order below is important as well - and there are two enums, here and at
+    // AppStateRestorer (this is error prone and could probably be merged)
+    public  let allMediaTab = 0
     private let qrTab = 1
     public  let chatsTab = 2
     private let settingsTab = 3

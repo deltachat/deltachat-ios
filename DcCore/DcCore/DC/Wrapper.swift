@@ -1194,7 +1194,6 @@ public class DcMsg {
     }
 
     public var isUnsupportedMediaFile: Bool {
-        let fileMime = filemime
         return filemime == "audio/ogg"
     }
 

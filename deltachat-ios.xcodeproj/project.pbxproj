@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -121,7 +121,7 @@
 		30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E83EFC289BF32C0035614C /* ShortcutManager.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
 		30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E8F2142447285600CE2C90 /* MainInterface.storyboard */; };
-		30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30E8F2102447285600CE2C90 /* Delta Chat.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 30E8F2102447285600CE2C90 /* Delta Chat.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		30E8F2252447622300CE2C90 /* DcCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; };
 		30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2412448B77600CE2C90 /* ChatListController.swift */; };
 		30E8F2442449C64100CE2C90 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2432449C64100CE2C90 /* ChatListCell.swift */; };
@@ -240,15 +240,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		30E8F21B2447285600CE2C90 /* Embed App Extensions */ = {
+		30E8F21B2447285600CE2C90 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed App Extensions */,
+				30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1111,7 +1111,7 @@
 				7837B63821E54CB400CDE126 /* Run Script */,
 				7837B64621E5532B00CDE126 /* ShellScript */,
 				304219D4243F588600516852 /* Embed Frameworks */,
-				30E8F21B2447285600CE2C90 /* Embed App Extensions */,
+				30E8F21B2447285600CE2C90 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1148,8 +1148,9 @@
 		7A9FB1381FB061E2001FEA36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Jonas Reinsch";
 				TargetAttributes = {
 					30E8F20F2447285600CE2C90 = {
@@ -1820,8 +1821,12 @@
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DcShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.36.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1845,8 +1850,12 @@
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DcShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.36.4;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcShare;
@@ -1883,6 +1892,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1909,7 +1919,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1944,6 +1954,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1964,10 +1975,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1992,8 +2004,11 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
@@ -2062,8 +2077,11 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
@@ -2120,7 +2138,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "deltachat-iosTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "nayooti.deltachat-iosTests";
@@ -2140,7 +2162,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "deltachat-iosTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "nayooti.deltachat-iosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
