@@ -2049,8 +2049,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
-					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
-					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/",
 				);
 				MARKETING_VERSION = 1.36.4;
 				OTHER_CFLAGS = (
@@ -2123,8 +2122,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
-					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/release",
-					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/target/universal/debug",
+					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/",
 				);
 				MARKETING_VERSION = 1.36.4;
 				OTHER_CFLAGS = (
