@@ -179,9 +179,6 @@ public class DcEventHandler {
         case DC_EVENT_SMTP_MESSAGE_SENT:
             dcContext.logger?.info("network: \(event.data2String)")
 
-        case DC_EVENT_MSG_DELIVERED:
-            dcContext.logger?.info("message delivered: \(data1)-\(data2)")
-
         case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
             if dcContext.id != dcAccounts.getSelected().id {
                 return
