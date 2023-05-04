@@ -5,7 +5,11 @@
 //  Created by DreamPiggy on 2018/10/10.
 //
 
+#if __has_include(<SVGKit/SVGKit.h>)
 #import <SVGKit/SVGKit.h>
+#else
+@import SVGKit;
+#endif
 #import "SDWebImageSVGKitDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN

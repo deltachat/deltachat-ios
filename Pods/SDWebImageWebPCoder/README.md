@@ -14,10 +14,11 @@ SDWebImageWebPCoder supports both WebP decoding and encoding, for Static WebP or
 
 ## Requirements
 
-+ iOS 8
-+ macOS 10.10
++ iOS 9.0
++ macOS 10.11
 + tvOS 9.0
 + watchOS 2.0
++ Xcode 11.0
 
 ## Installation
 
@@ -155,7 +156,7 @@ let image = SDImageWebPCoder.shared.decodedImage(with: data, options: nil)
 // WebP thumbnail image decoding
 NSData *webpData;
 CGSize thumbnailSize = CGSizeMake(300, 300);
-UIImage *thumbnailImage = [[SDImageWebPCoder sharedCoder] decodedImageWithData:webpData options:@{SDImageCoderDecodeThumbnailPixelSize : @(thumbnailSize}];
+UIImage *thumbnailImage = [[SDImageWebPCoder sharedCoder] decodedImageWithData:webpData options:@{SDImageCoderDecodeThumbnailPixelSize : @(thumbnailSize)}];
 ```
 
 + Swift
@@ -175,10 +176,12 @@ let image = SDImageWebPCoder.shared.decodedImage(with: data, options: [.decodeTh
 // WebP image encoding
 UIImage *image;
 NSData *webpData = [[SDImageWebPCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatWebP options:nil];
+// Animated encoding
+NSArray<SDImageFrames *> *frames;
+NSData *awebpData = [[SDImageWebPCoder sharedCoder] encodedDataWithFrames:frames loopCount:0 format:SDImageFormatWebP options:nil];
 // Encode Quality
 NSData *lossyWebpData = [[SDImageWebPCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatWebP options:@{SDImageCoderEncodeCompressionQuality : @(0.1)}]; // [0, 1] compression quality
 NSData *limitedWebpData = [[SDImageWebPCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatWebP options:@{SDImageCoderEncodeMaxFileSize : @(1024 * 10)}]; // v0.6.0 feature, limit output file size <= 10KB
-NSData *thumbnailWebpData = [[SDImageWebPCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatWebP options:@{SDImageCoderEncodeMaxPixelSize : @(CGSizeMake(200, 200)}]; // v0.6.1 feature, encoding max pixel size
 ```
 
 + Swift
@@ -187,12 +190,85 @@ NSData *thumbnailWebpData = [[SDImageWebPCoder sharedCoder] encodedDataWithImage
 // WebP image encoding
 let image: UIImage
 let webpData = SDImageWebPCoder.shared.encodedData(with: image, format: .webP, options: nil)
+// Animated encoding
+let frames: [SDImageFrame]
+let awebpData = SDImageWebPCoder.shared.encodedData(with: frames, loopCount: 0, format: .webP, options: nil)
+// Encode Quality
 let lossyWebpData = SDImageWebPCoder.shared.encodedData(with: image, format: .webP, options: [.encodeCompressionQuality: 0.1]) // [0, 1] compression quality
 let limitedWebpData = SDImageWebPCoder.shared.encodedData(with: image, format: .webP, options: [.encodeMaxFileSize: 1024 * 10]) // v0.6.0 feature, limit output file size <= 10KB
+```
+
+### Thumbnail Encoding (0.6.1+)
+
++ Objective-C
+
+```objective-c
+// WebP image thumbnail encoding
+UIImage *image;
+NSData *thumbnailWebpData = [[SDImageWebPCoder sharedCoder] encodedDataWithImage:image format:SDImageFormatWebP options:@{SDImageCoderEncodeMaxPixelSize : @(CGSizeMake(200, 200))}]; // v0.6.1 feature, encoding max pixel size
+```
+
++ Swift
+
+```swift
+// WebP image thumbnail encoding
+let image: UIImage
 let thumbnailWebpData = SDImageWebPCoder.shared.encodedData(with: image, format: .webP, options: [.encodeMaxPixelSize: CGSize(width: 200, height: 200)]) // v0.6.1 feature, encoding max pixel size
 ```
 
 See more documentation in [SDWebImage Wiki - Coders](https://github.com/SDWebImage/SDWebImage/wiki/Advanced-Usage#custom-coder-420)
+
+### Animated WebP Encoding (0.10+)
+
++ Objective-c
+
+```objective-c
+// Animated encoding
+NSMutableArray<SDImageFrames *> *frames = [NSMutableArray array];
+for (size_t i = 0; i < images.count; i++) {
+    SDImageFrame *frame = [SDImageFrame frameWithImage:images[i] duration:0.1];
+    [frames appendObject:frame];
+}
+NSData *awebpData = [[SDImageWebPCoder sharedCoder] encodedDataWithFrames:frames loopCount:0 format:SDImageFormatWebP options:nil];
+```
+
++ Swift
+
+```swift
+// Animated encoding
+var frames: [SDImageFrame] = []
+for i in 0..<images.count {
+    let frame = SDImageFrame(image: images[i], duration: 0.1)
+    frames.append(frame)
+}
+let awebpData = SDImageWebPCoder.shared.encodedData(with: frames, loopCount: 0, format: .webP, options: nil)
+```
+
+### Advanced WebP codec options (0.8+)
+
+The WebP codec [libwebp](https://developers.google.com/speed/webp/docs/api) we use, supports some advanced control options for encoding/decoding. You can pass them to libwebp by using the wrapper top level API:
+
++ Objective-C
+
+```objective-c
+UIImage *image;
+SDImageCoderOptions *options = @{SDImageCoderEncodeWebPMethod: @(0), SDImageCoderEncodeWebPAlphaCompression: @(100)};
+NSData *data = [SDImageWebPCoder.sharedCoder encodedDataWithImage:image format:SDImageFormatWebP options:options];
+// Will translate into:
+// config->method = 0;
+// config->alpha_quality = 100;
+```
+
++ Swift
+
+```swift
+let image: UIImage
+let options = [.encodeWebPMethod: 0, .encodeWebPAlphaCompression: 100]
+let data = SDImageWebPCoder.shared.encodedData(with: image, format: .webP, options: options)
+// Will translate into:
+// config->method = 0;
+// config->alpha_quality = 100;
+```
 
 ## Example
 

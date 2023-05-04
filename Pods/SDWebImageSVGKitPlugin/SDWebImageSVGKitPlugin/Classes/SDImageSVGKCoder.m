@@ -8,8 +8,11 @@
 #import "SDImageSVGKCoder.h"
 #import "SDSVGKImage.h"
 #import "SDWebImageSVGKitDefine.h"
+#if __has_include(<SVGKit/SVGKit.h>)
 #import <SVGKit/SVGKit.h>
-
+#else
+@import SVGKit;
+#endif
 #define kSVGTagEnd @"</svg>"
 
 @implementation SDImageSVGKCoder
