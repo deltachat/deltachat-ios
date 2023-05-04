@@ -304,7 +304,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# The $PATH used by XCode likely won't contain Cargo, fix that.\n# This assumes a default `rustup` setup.\nexport PATH=\"$HOME/.cargo/bin:$PATH\"\n\nexport CFLAGS_x86_64_apple_darwin=\"-I /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include\"\n\nexport LIBRARY_PATH=\"/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib\"\n\n# ensure all targets are installed\nrustup target add aarch64-apple-ios x86_64-apple-ios --toolchain `cat ../rust-toolchain`\n\n# --xcode-integ determines --release and --targets from XCode's env vars.\n# Depending your setup, specify the rustup toolchain explicitly.\nRUSTFLAGS=\"-C lto=on -C embed-bitcode=yes\" \\\ncargo +`cat ../rust-toolchain` lipo --release --manifest-path ../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/Cargo.toml\n";
+			shellScript = "# The $PATH used by XCode likely won't contain Cargo, fix that.\n# This assumes a default `rustup` setup.\nexport PATH=\"$HOME/.cargo/bin:$PATH\"\n\nrustc `cat ../rust-toolchain` --version\n\n# ensure all targets are installed\nrustup target add aarch64-apple-ios x86_64-apple-ios --toolchain `cat ../rust-toolchain`\n\n# --xcode-integ determines --release and --targets from XCode's env vars.\n# Depending your setup, specify the rustup toolchain explicitly.\nRUSTFLAGS=\"-C lto=on -C embed-bitcode=yes\" \\\ncargo +`cat ../rust-toolchain` lipo --release --manifest-path ../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/Cargo.toml\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

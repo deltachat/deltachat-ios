@@ -1354,7 +1354,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImageSVGKitPlugin/SDWebImageSVGKitPlugin.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework",
 				"${BUILT_PRODUCTS_DIR}/SVGKit/SVGKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework"
+				"${BUILT_PRODUCTS_DIR}/Swifter/Swifter.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
