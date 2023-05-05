@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Les images distantes peuvent être utilisées pour vous pister. Ce paramètre autorise également le chargement de police d\'écriture ou d\'autres contenus. S\'il est désactivé, vous pouvez tout de même voir les images ancrées ou en cache. Souhaitez-vous charger les images distantes ?";
 "always" = "Toujours";
+"always_load_remote_images" = "Toujours charger les images distantes";
 "once" = "Une fois";
+"show_warning" = "Montrer l\'avertissement";
 "show_password" = "Afficher le mot de passe";
 "hide_password" = "Masquer le mot de passe";
 "not_now" = "Pas maintenant";

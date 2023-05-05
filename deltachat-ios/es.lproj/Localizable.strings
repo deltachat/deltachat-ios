@@ -58,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Las imágenes remotas pueden ser usadas para seguirte.\n\nLa opción también permite cargar fuentes y otros contenidos. Inclusive si están deshabilitadas, quizás puedas ver imágenes embebidas o en caché.\n\n¿Cargar imágenes remotas?";
 "always" = "Siempre";
+"always_load_remote_images" = "Cargar imágenes remotas siempre";
 "once" = "Una vez";
+"show_warning" = "Mostrar advertencia";
 "show_password" = "Mostrar contraseña";
 "hide_password" = "Ocultar contraseña";
 "not_now" = "Ahora no";
@@ -419,6 +421,7 @@
 "multidevice_abort" = "¿Cancelar la configuración del nuevo dispositivo?";
 "multidevice_abort_will_invalidate_copied_qr" = "Esto invalidará el código QR copiado al portapapeles ";
 "multidevice_experimental_hint" = "(experimental, requiere versión 1.36)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Cuenta transferida a tu otro dispositivo.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparando cuenta…";
 // Shown beside progress bar, stay short
