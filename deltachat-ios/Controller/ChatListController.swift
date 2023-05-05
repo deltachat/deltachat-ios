@@ -503,7 +503,7 @@ class ChatListController: UITableViewController {
             return []
         }
 
-        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK || viewModel.isMessageSearchResult(indexPath: indexPath) {
             return []
             // returning nil may result in a default delete action,
             // see https://forums.developer.apple.com/thread/115030
