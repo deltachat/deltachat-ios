@@ -540,8 +540,13 @@ class ChatListController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        guard let viewModel = viewModel, let chatList = viewModel.chatList else { return false }
-        return chatList.getChatId(index: indexPath.row) != DC_CHAT_ID_ARCHIVED_LINK
+        guard let viewModel = viewModel else { return false }
+        if viewModel.searchActive {
+            return true
+        } else {
+            guard let chatList = viewModel.chatList else { return false }
+            return chatList.getChatId(index: indexPath.row) != DC_CHAT_ID_ARCHIVED_LINK
+        }
     }
 
     func setLongTapEditing(_ editing: Bool, initialIndexPath: [IndexPath]? = nil) {
