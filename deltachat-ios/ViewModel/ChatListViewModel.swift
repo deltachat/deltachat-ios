@@ -160,6 +160,18 @@ class ChatListViewModel: NSObject {
         }
     }
 
+    func isMessageSearchResult(indexPath: IndexPath) -> Bool {
+        if searchActive {
+            switch searchResultSections[indexPath.section] {
+            case .messages:
+                return true
+            case .contacts, .chats:
+                return false
+            }
+        }
+        return false
+    }
+
     func chatIdsFor(indexPaths: [IndexPath]?) -> [Int] {
         guard let indexPaths = indexPaths else { return [] }
         var chatIds: [Int] = []
