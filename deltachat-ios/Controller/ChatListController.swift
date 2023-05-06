@@ -93,7 +93,7 @@ class ChatListController: UITableViewController {
         self.dcContext = dcContext
         self.dcAccounts = dcAccounts
         self.isArchive = isArchive
-        super.init(style: .grouped)
+        super.init(style: .plain)
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
             self.viewModel = ChatListViewModel(dcContext: self.dcContext, isArchive: isArchive)
