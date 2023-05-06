@@ -503,7 +503,7 @@ class ChatListController: UITableViewController {
             return []
         }
 
-        if chatId==DC_CHAT_ID_ARCHIVED_LINK || viewModel.isMessageSearchResult(indexPath: indexPath) {
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
             return []
             // returning nil may result in a default delete action,
             // see https://forums.developer.apple.com/thread/115030
@@ -525,12 +525,15 @@ class ChatListController: UITableViewController {
         }
         pinAction.backgroundColor = UIColor.systemGreen
 
-        let deleteAction = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [weak self] _, _ in
-            self?.showDeleteChatConfirmationAlert(chatId: chatId)
+        if viewModel.isMessageSearchResult(indexPath: indexPath) {
+            return [archiveAction, pinAction]
+        } else {
+            let deleteAction = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [weak self] _, _ in
+                self?.showDeleteChatConfirmationAlert(chatId: chatId)
+            }
+            deleteAction.backgroundColor = UIColor.systemRed
+            return [archiveAction, pinAction, deleteAction]
         }
-        deleteAction.backgroundColor = UIColor.systemRed
-
-        return [archiveAction, pinAction, deleteAction]
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
