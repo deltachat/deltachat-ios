@@ -19,6 +19,7 @@ class GroupChatDetailViewController: UIViewController {
     enum ChatAction {
         case archiveChat
         case leaveGroup
+        case clearChat
         case deleteChat
         case copyToClipboard
     }
@@ -106,6 +107,13 @@ class GroupChatDetailViewController: UIViewController {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_copy_to_clipboard")
         cell.actionColor = SystemColor.blue.uiColor
+        return cell
+    }()
+
+    private lazy var clearChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("clear_chat")
+        cell.actionColor = UIColor.red
         return cell
     }()
 
@@ -266,22 +274,22 @@ class GroupChatDetailViewController: UIViewController {
         if chat.isMailinglist {
             self.chatOptions = [.allMedia]
             self.memberManagementRows = 0
-            self.chatActions = [.archiveChat, .copyToClipboard, .deleteChat]
+            self.chatActions = [.archiveChat, .copyToClipboard, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else if chat.isBroadcast {
             self.chatOptions = [.allMedia]
             self.memberManagementRows = 1
-            self.chatActions = [.archiveChat, .deleteChat]
+            self.chatActions = [.archiveChat, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: false)
         } else if chat.canSend {
             self.chatOptions = [.allMedia, .ephemeralMessages]
             self.memberManagementRows = 2
-            self.chatActions = [.archiveChat, .leaveGroup, .deleteChat]
+            self.chatActions = [.archiveChat, .leaveGroup, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else {
             self.chatOptions = [.allMedia]
             self.memberManagementRows = 0
-            self.chatActions = [.archiveChat, .deleteChat]
+            self.chatActions = [.archiveChat, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         }
     }
@@ -413,7 +421,6 @@ class GroupChatDetailViewController: UIViewController {
         dcContext.deleteChat(chatId: chatId)
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
-
         navigationController?.popViewControllers(viewsToPop: 2, animated: true)
     }
 
@@ -500,6 +507,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return archiveChatCell
             case .leaveGroup:
                 return leaveGroupCell
+            case .clearChat:
+                return clearChatCell
             case .deleteChat:
                 return deleteChatCell
             case .copyToClipboard:
@@ -545,6 +554,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             case .leaveGroup:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showLeaveGroupConfirmationAlert()
+            case .clearChat:
+                tableView.deselectRow(at: indexPath, animated: false)
+                showClearChatConfirmationAlert()
             case .deleteChat:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showDeleteChatConfirmationAlert()
@@ -650,6 +662,23 @@ extension GroupChatDetailViewController {
             self.navigationController?.popViewController(animated: true)
         })
         alert.addAction(action)
+    }
+
+    private func showClearChatConfirmationAlert() {
+        let msgIds = dcContext.getChatMsgs(chatId: chatId)
+        if !msgIds.isEmpty {
+            let alert = UIAlertController(
+                title: nil,
+                message: String.localized(stringID: "ask_delete_messages_simple", count: msgIds.count),
+                preferredStyle: .safeActionSheet
+            )
+            alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
+                self.dcContext.deleteMessages(msgIds: msgIds)
+                self.navigationController?.popViewController(animated: true)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
     private func showDeleteChatConfirmationAlert() {

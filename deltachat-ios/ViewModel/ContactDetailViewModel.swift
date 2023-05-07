@@ -23,6 +23,7 @@ class ContactDetailViewModel {
         case showEncrInfo
         case copyToClipboard
         case blockContact
+        case clearChat
         case deleteChat
     }
 
@@ -85,6 +86,7 @@ class ContactDetailViewModel {
                 chatActions.append(.copyToClipboard)
                 chatActions.append(.blockContact)
             }
+            chatActions.append(.clearChat)
             chatActions.append(.deleteChat)
         } else {
             chatOptions = [.allMedia, .startChat]

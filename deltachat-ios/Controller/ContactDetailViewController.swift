@@ -62,6 +62,13 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var clearChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("clear_chat")
+        cell.actionColor = UIColor.red
+        return cell
+    }()
+
     private lazy var deleteChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_delete_chat")
@@ -182,6 +189,8 @@ class ContactDetailViewController: UITableViewController {
                 return copyToClipboardCell
             case .blockContact:
                 return blockContactCell
+            case .clearChat:
+                return clearChatCell
             case .deleteChat:
                 return deleteChatCell
             }
@@ -318,6 +327,9 @@ class ContactDetailViewController: UITableViewController {
         case .blockContact:
             tableView.deselectRow(at: indexPath, animated: false)
             toggleBlockContact()
+        case .clearChat:
+            tableView.deselectRow(at: indexPath, animated: false)
+            showClearChatConfirmationAlert()
         case .deleteChat:
             tableView.deselectRow(at: indexPath, animated: false)
             showDeleteChatConfirmationAlert()
@@ -368,6 +380,23 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: alerts
+
+    private func showClearChatConfirmationAlert() {
+        let msgIds = viewModel.context.getChatMsgs(chatId: viewModel.chatId)
+        if !msgIds.isEmpty {
+            let alert = UIAlertController(
+                title: nil,
+                message: String.localized(stringID: "ask_delete_messages_simple", count: msgIds.count),
+                preferredStyle: .safeActionSheet
+            )
+            alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
+                self.viewModel.context.deleteMessages(msgIds: msgIds)
+                self.navigationController?.popViewController(animated: true)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 
     private func showDeleteChatConfirmationAlert() {
         let alert = UIAlertController(
