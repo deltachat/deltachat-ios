@@ -2,7 +2,7 @@ import UIKit
 
 public extension UIView {
 
-    func makeBorder(color: UIColor = UIColor.red) {
+    func makeBorder(color: UIColor = UIColor.systemRed) {
         self.layer.borderColor = color.cgColor
         self.layer.borderWidth = 2
     }

@@ -27,7 +27,7 @@ class MessageCounter: UIView {
         let radius = size / 2
         layer.cornerRadius = radius
         translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = UIColor.systemRed
         addConstraint(constraintHeightTo(size))
         widthConstraint = constraintWidthTo(size)
         addConstraint(widthConstraint!)

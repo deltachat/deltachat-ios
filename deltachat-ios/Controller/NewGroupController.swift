@@ -279,7 +279,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                     self.removeGroupContactFromList(at: indexPath)
                 }
             }
-            delete.backgroundColor = UIColor.red
+            delete.backgroundColor = UIColor.systemRed
             return [delete]
         } else {
             return nil

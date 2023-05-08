@@ -25,8 +25,8 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     var recordingFilePath: String = ""
     var audioRecorder: AVAudioRecorder?
 
-    var normalTintColor: UIColor = UIColor.sendButtonBlue
-    var highlightedTintColor = UIColor.red
+    var normalTintColor: UIColor = UIColor.systemBlue
+    var highlightedTintColor = UIColor.systemRed
 
     var isFirstUsage: Bool = true
 

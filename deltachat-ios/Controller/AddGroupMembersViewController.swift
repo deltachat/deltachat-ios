@@ -37,7 +37,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     private lazy var newContactCell: ActionCell = {
         let cell = ActionCell()
-        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionColor = UIColor.systemBlue
         cell.actionTitle = String.localized("menu_new_contact")
         return cell
     }()
