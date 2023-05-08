@@ -121,7 +121,7 @@ public class FileView: UIView {
 
         fileTitle.numberOfLines = 1
         fileTitle.lineBreakMode = .byTruncatingTail
-        fileTitle.font = UIFont.preferredBoldFont(for: .body)
+        fileTitle.font = UIFont.preferredFont(forTextStyle: .headline)
         fileSubtitle.font = UIFont.preferredFont(forTextStyle: .body)
         fileTitle.text = document.isEmpty ? name : "\(document) – \(name)"
         fileSubtitle.text = summary.isEmpty ? String.localized("webxdc_app") : summary
@@ -137,8 +137,8 @@ public class FileView: UIView {
         }
         fileTitle.numberOfLines = 3
         fileTitle.lineBreakMode = .byCharWrapping
-        fileTitle.font = UIFont.preferredItalicFont(for: .body)
-        fileSubtitle.font = UIFont.preferredItalicFont(for: .caption2)
+        fileTitle.font = UIFont.preferredFont(forTextStyle: .headline)
+        fileSubtitle.font = UIFont.preferredFont(forTextStyle: .caption2)
         fileTitle.text = message.filename
         fileSubtitle.text = message.getPrettyFileSize()
     }
