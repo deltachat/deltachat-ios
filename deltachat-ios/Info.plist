@@ -111,6 +111,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>om</string>
+		<string>geo</string>
 	</array>
 </dict>
 </plist>

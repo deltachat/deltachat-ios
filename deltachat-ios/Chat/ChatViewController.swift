@@ -291,7 +291,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
                         } else {
                             if let url = URL(string: "geo:\(location)") {
-                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                if UIApplication.shared.canOpenURL(url) {
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                }else {
+                                    if let url = URL(string: "https://www.openstreetmap.org/#map=16/33.89041/35.50664\(location.replacingOccurrences(of: ",", with: "/"))") {
+                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    }
+                                }
                             }
                         }
                     }
