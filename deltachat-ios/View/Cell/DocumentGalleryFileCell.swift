@@ -37,7 +37,7 @@ class DocumentGalleryFileCell: UITableViewCell {
 
     private lazy var subtitle: UILabel = {
         let subtitle = UILabel()
-        subtitle.font = UIFont.preferredItalicFont(for: .subheadline)
+        subtitle.font = UIFont.preferredFont(forTextStyle: .subheadline)
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         return subtitle
     }()
