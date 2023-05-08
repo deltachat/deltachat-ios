@@ -23,6 +23,7 @@
  */
 
 import UIKit
+import DcCore
 
 open class PlayButtonView: UIView {
 
@@ -70,9 +71,8 @@ open class PlayButtonView: UIView {
 
     private func setupView() {
         triangleView.clipsToBounds = true
-        triangleView.backgroundColor = .black
-
-        backgroundColor = .playButtonLightGray
+        triangleView.backgroundColor = DcColors.systemMessageFontColor
+        backgroundColor = DcColors.systemMessageBackgroundColor
     }
 
     private func setupConstraints() {
