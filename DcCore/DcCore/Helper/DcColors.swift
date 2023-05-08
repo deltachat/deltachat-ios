@@ -4,7 +4,6 @@ public struct DcColors {
     private static let white                                  = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     private static let actionCellBackgroundDark               = #colorLiteral(red: 0.1031623408, green: 0.1083367988, blue: 0.1185036376, alpha: 1)
 
-
     public static let primary = UIColor.systemBlue
     public static let highlight = UIColor.themeColor(light: UIColor.yellow, dark: UIColor.systemBlue)
     public static let colorDisabled = UIColor.themeColor(light: UIColor(white: 0.9, alpha: 1), dark: UIColor(white: 0.2, alpha: 1))
@@ -24,9 +23,9 @@ public struct DcColors {
     public static let unreadBadgeMuted = UIColor.themeColor(light: UIColor.init(hexString: "b6b6bb"), dark: UIColor.init(hexString: "3b3b3b"))
     public static let defaultTextColor = UIColor.themeColor(light: .darkText, dark: .white)
     public static let grayTextColor = UIColor.themeColor(light: .darkGray, dark: coreDark05)
-    public static let coreDark05 = UIColor.init(hexString: "EFEFEF") // naming according to DC Android
-    public static let grey50 = UIColor.init(hexString: "808080") // naming according to DC Android
-    public static let unknownSender = UIColor.init(hexString: "999999") // naming according to DC Android
+    public static let coreDark05 = UIColor.init(hexString: "EFEFEF")
+    public static let grey50 = UIColor.init(hexString: "808080")
+    public static let unknownSender = UIColor.init(hexString: "999999")
     public static let incomingMessageSecondaryTextColor = UIColor.themeColor(light: grey50, dark: coreDark05)
     public static let middleGray = UIColor(hexString: "848ba7")
     public static let secondaryTextColor = UIColor.themeColor(lightHex: "848ba7", darkHex: "a5abc0")
