@@ -600,6 +600,22 @@ public class DcContext {
     public func setLocation(latitude: Double, longitude: Double, accuracy: Double) {
         dc_set_location(contextPointer, latitude, longitude, accuracy)
     }
+    
+    public func getLocationStringForMessage(chatId: Int, msgId: Int) -> String? {
+        let locationsArray = dc_get_locations(contextPointer, UInt32(chatId), 0, 0, 0)
+        let len = dc_array_get_cnt(locationsArray)
+        var result: String?
+        for i in 0 ..< len {
+            if dc_array_get_msg_id(locationsArray, i) == msgId {
+                let lat = Double(dc_array_get_latitude(locationsArray, i))
+                let lng = Double(dc_array_get_longitude(locationsArray, i))
+                result = "\(lat),\(lng)"
+                break
+            }
+        }
+        dc_array_unref(locationsArray)
+        return result
+    }
 
     public func searchMessages(chatId: Int = 0, searchText: String) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()

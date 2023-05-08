@@ -177,15 +177,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let config = ContextMenuProvider()
         if #available(iOS 13.0, *) {
             if dcChat.canSend {
-                let mainMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
+                let mainMenu = ContextMenuProvider.ContextMenuItem(
+                    submenuitems: [replyItem, replyPrivatelyItem, openLocationItem, forwardItem, infoItem, copyItem, deleteItem])
                 config.setMenu([mainMenu, selectMoreItem])
             } else {
-                config.setMenu([replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
+                config.setMenu([replyPrivatelyItem, forwardItem, openLocationItem, infoItem, copyItem, deleteItem])
             }
         } else if dcChat.canSend { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
-            config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
+            config.setMenu([forwardItem, openLocationItem, infoItem, copyItem, deleteItem, selectMoreItem])
         } else {
-            config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
+            config.setMenu([forwardItem, openLocationItem, infoItem, copyItem, deleteItem])
         }
         return config
     }()
@@ -272,6 +273,29 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             onPerform: { [weak self] indexPath in
                 guard let self = self else { return }
                 self.replyPrivatelyToMessage(at: indexPath)
+            }
+        )
+    }()
+    
+    private lazy var openLocationItem: ContextMenuProvider.ContextMenuItem = {
+        return ContextMenuProvider.ContextMenuItem(
+            title: String.localized("show_location"),
+            imageName: "map",
+            action: #selector(BaseMessageCell.openLocation),
+            onPerform: { [weak self] indexPath in
+                guard let self = self else { return }
+                let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
+                if let location = self.dcContext.getLocationStringForMessage(chatId: msg.chatId, msgId: msg.id) {
+                    if let url = URL(string: "om://map?v=1&ll=\(location)") {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        } else {
+                            if let url = URL(string: "geo:\(location)") {
+                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                            }
+                        }
+                    }
+                }
             }
         )
     }()
@@ -1909,14 +1933,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 guard let self = self else {
                     return nil
                 }
-                if self.dcContext.getMessage(id: messageId).isInfo {
+                let message = self.dcContext.getMessage(id: messageId)
+                let hasLocation: Bool = message.hasLocation
+                if message.isInfo {
                     return self.contextMenu.actionProvider(indexPath: indexPath,
                                                            filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
-                } else if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
-                    return self.contextMenu.actionProvider(indexPath: indexPath)
+                } else if self.isGroupChat && !message.isFromCurrentSender {
+                    return self.contextMenu.actionProvider(indexPath: indexPath,
+                                                           filters: [ { $0.action != self.openLocationItem.action || hasLocation } ])
                 } else {
                     return self.contextMenu.actionProvider(indexPath: indexPath,
-                                                           filters: [ { $0.action != self.replyPrivatelyItem.action } ])
+                                                           filters: [ { $0.action != self.replyPrivatelyItem.action && ($0.action != self.openLocationItem.action || hasLocation) } ])
                 }
             }
         )

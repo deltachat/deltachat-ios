@@ -549,6 +549,10 @@ public class BaseMessageCell: UITableViewCell {
     @objc func messageReplyPrivately(_ sender: Any?) {
         self.performAction(#selector(BaseMessageCell.messageReplyPrivately(_:)), with: sender)
     }
+    
+    @objc func openLocation(_ sender: Any?) {
+        self.performAction(#selector(BaseMessageCell.openLocation(_:)), with: sender)
+    }
 
     @objc func messageCopy(_ sender: Any?) {
         self.performAction(#selector(BaseMessageCell.messageCopy(_:)), with: sender)
