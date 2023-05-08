@@ -19,7 +19,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var startChatCell: ActionCell = {
         let cell = ActionCell()
-        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionColor = UIColor.systemBlue
         cell.actionTitle = String.localized("send_message")
         return cell
     }()
@@ -37,42 +37,42 @@ class ContactDetailViewController: UITableViewController {
     private lazy var showEncrInfoCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("encryption_info_title_desktop")
-        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
     private lazy var copyToClipboardCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_copy_to_clipboard")
-        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
     private lazy var blockContactCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        cell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
+        cell.actionColor = viewModel.contact.isBlocked ? UIColor.systemBlue : UIColor.systemRed
         return cell
     }()
 
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = viewModel.chatIsArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
-        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
     private lazy var clearChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("clear_chat")
-        cell.actionColor = UIColor.red
+        cell.actionColor = UIColor.systemRed
         return cell
     }()
 
     private lazy var deleteChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_delete_chat")
-        cell.actionColor = UIColor.red
+        cell.actionColor = UIColor.systemRed
         return cell
     }()
 
@@ -371,7 +371,7 @@ class ContactDetailViewController: UITableViewController {
 
     private func updateBlockContactCell() {
         blockContactCell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        blockContactCell.actionColor = viewModel.contact.isBlocked ? SystemColor.blue.uiColor : UIColor.red
+        blockContactCell.actionColor = viewModel.contact.isBlocked ? UIColor.systemBlue : UIColor.systemRed
     }
 
 

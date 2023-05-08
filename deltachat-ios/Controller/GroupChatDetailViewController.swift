@@ -99,28 +99,28 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var leaveGroupCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_leave_group")
-        cell.actionColor = UIColor.red
+        cell.actionColor = UIColor.systemRed
         return cell
     }()
 
     private lazy var copyToClipboardCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_copy_to_clipboard")
-        cell.actionColor = SystemColor.blue.uiColor
+        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
     private lazy var clearChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("clear_chat")
-        cell.actionColor = UIColor.red
+        cell.actionColor = UIColor.systemRed
         return cell
     }()
 
     private lazy var deleteChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_delete_chat")
-        cell.actionColor = UIColor.red
+        cell.actionColor = UIColor.systemRed
         return cell
     }()
 
@@ -616,7 +616,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-            delete.backgroundColor = UIColor.red
+            delete.backgroundColor = UIColor.systemRed
             return [delete]
         }
         return nil
