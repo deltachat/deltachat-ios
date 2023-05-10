@@ -515,7 +515,7 @@ class WelcomeContentView: UIView {
         label.textColor = DcColors.grayTextColor
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         return label
     }()
 
@@ -530,7 +530,7 @@ class WelcomeContentView: UIView {
         let button = UIButton(type: .roundedRect)
         let title = String.localized("login_header").uppercased()
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = DcColors.primary
         let insets = button.contentEdgeInsets
@@ -546,6 +546,7 @@ class WelcomeContentView: UIView {
         let title = String.localized("multidevice_receiver_title")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         button.addTarget(self, action: #selector(addSecondDeviceButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
@@ -555,6 +556,7 @@ class WelcomeContentView: UIView {
         let title = String.localized("scan_invitation_code")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
@@ -564,6 +566,7 @@ class WelcomeContentView: UIView {
         let title = String.localized("import_backup_title")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         button.addTarget(self, action: #selector(importBackupButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
