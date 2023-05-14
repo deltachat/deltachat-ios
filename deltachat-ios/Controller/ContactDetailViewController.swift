@@ -78,7 +78,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var allMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("menu_all_media")
+        cell.textLabel?.text = String.localized("media")
         if #available(iOS 13.0, *) {
             cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
         }
