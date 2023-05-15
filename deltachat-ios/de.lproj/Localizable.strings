@@ -122,7 +122,8 @@
 "capture" = "Aufnehmen";
 "switch_camera" = "Kamera wechseln";
 "toggle_fullscreen" = "Vollbildmodus umschalten";
-"location" = "Ort";
+"location" = "Standort";
+"locations" = "Standorte";
 "gallery" = "Galerie";
 "images_and_videos" = "Bilder und Videos";
 "file" = "Datei";
@@ -169,8 +170,7 @@
 "menu_toggle_keyboard" = "Emojis einblenden";
 "menu_edit_group" = "Gruppe bearbeiten";
 "menu_group_name_and_image" = "Gruppenname und -bild";
-"menu_show_map" = "Karte anzeigen";
-"menu_show_global_map" = "Alle Standorte anzeigen";
+"menu_show_global_map" = "Alle Standorte";
 "menu_archive_chat" = "Chat archivieren";
 "menu_unarchive_chat" = "Archivieren rückgängig";
 "menu_add_attachment" = "Dateien anhängen";

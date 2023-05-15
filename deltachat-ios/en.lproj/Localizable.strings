@@ -123,6 +123,7 @@
 "switch_camera" = "Switch Camera";
 "toggle_fullscreen" = "Toggle Full Screen Mode";
 "location" = "Location";
+"locations" = "Locations";
 "gallery" = "Gallery";
 "images_and_videos" = "Images and Videos";
 "file" = "File";
@@ -169,8 +170,7 @@
 "menu_toggle_keyboard" = "Toggle Emoji Keyboard";
 "menu_edit_group" = "Edit Group";
 "menu_group_name_and_image" = "Group Name and Image";
-"menu_show_map" = "Show Map";
-"menu_show_global_map" = "Show all Locations";
+"menu_show_global_map" = "All Locations";
 "menu_archive_chat" = "Archive Chat";
 "menu_unarchive_chat" = "Unarchive Chat";
 "menu_add_attachment" = "Add Attachment";

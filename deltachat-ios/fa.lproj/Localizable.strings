@@ -46,6 +46,10 @@
 "start_chat" = "شروع گفتگو";
 "show_full_message" = "نمایش پیام کامل...";
 "show_full_message_in_browser" = "نمایش پیام کامل در مرورگر";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "همه را خوانده شده بزن";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "خوانده شد";
 // Placeholder text when something is loading
 "loading" = "در حال بارگیری...";
 "hide" = "مخفی کردن";
@@ -54,7 +58,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "تصاویر مربوط به نشانی‌های اینترنتی دیگر می‌توانند برای ردیابی شما استفاده شوند. \n\n این تنظیمات همچنین برای بارگیری فونت‌ها و دیگر محتواها استفاده می‌شوند. اگر غیرفعال باشد ممکن است همچنان تصاویر درون پیام و تصاویر بارگیری شده را ببینید. \n\n آيا تصاویر خارجی بارگیری شوند؟";
 "always" = "همیشه";
+"always_load_remote_images" = "همیشه تصاویر ریموت را بارگیری کن";
 "once" = "همین یک بار";
+"show_warning" = "نمایش هشدار";
 "show_password" = "نمایش رمزعبور";
 "hide_password" = "مخفی کردن رمز عبور";
 "not_now" = "اکنون نه";
@@ -163,13 +169,14 @@
 "menu_toggle_keyboard" = "تعییر صفحه کلید شکلک‌ها";
 "menu_edit_group" = "ویرایش گروه";
 "menu_group_name_and_image" = "نام و تصویر گروه";
-"menu_show_map" = "نمایش نقشه";
 "menu_show_global_map" = "نمایش همه موقعیت‌های مکانی";
 "menu_archive_chat" = "بایگانی گفتگو";
 "menu_unarchive_chat" = "خروج چت از بایگانی";
 "menu_add_attachment" = "افزودن ضمیمه";
 "menu_leave_group" = "ترک گروه";
 "menu_delete_chat" = "حذف کل گفتگو";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "پاک کردن چت";
 "ask_delete_named_chat" = "اطمینان دارید می‌خواهید \"%1$@\" را پاک کنید؟";
 "menu_delete_messages" = "حذف پیام‌ها";
 "delete_contact" = "پاک کردن مخاطب";
@@ -386,12 +393,39 @@
 "tab_video_empty_hint" = "فیلم‌هایی که در این گفتگو اشتراک گذاری شده باشند در اینجا نمایش داده می‌شوند. ";
 "tab_audio_empty_hint" = "فایل‌ها و پیام‌های صوتی که در این گفتگو اشتراک گذاری شده‌‌اند در اینجا نمایش داده می‌شوند.";
 "tab_webxdc_empty_hint" = "نرم‌افزارهای خصوصی، که در این گفتگو به اشتراک گذاشته شده‌اند در اینجا نمایش داده می‌شوند. ";
+"tab_all_media_empty_hint" = "رسانه به اشتراک گذاشته شده هر چت در اینجا ظاهر می‌شود.";
 "media_preview" = "نمایش رسانه";
 "send_message" = "ارسال پیام";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "مخاطب %1$@ نشانی خود را از %2$@ به %3$@ تغییر داده است.  ";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 
+
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "افزودن دستگاه دوم";
+"multidevice_same_network_hint" = "مطمئن شوید هر دو دستگاه در یک وای‌فای یا شبکه هستند";
+"multidevice_this_creates_a_qr_code" = "این یک کد QR ایجاد می‌کند که دستگاه دوم می‌تواند برای کپی حساب اسکن کند.";
+"multidevice_install_dc_on_other_device" = "دلتا چت را روی دستگاه دیگر خود نصب کنید (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "دلتا چت را اجرا کنید، روی \"افزودن به عنوان دستگاه دوم\" بزنید و کد نشان داده شده در اینجا را اسکن کنید";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "برای راه اندازی دستگاه دوم برای %1$@ اسکن کنید";
+"multidevice_receiver_title" = "افزودن به عنوان دستگاه دوم";
+"multidevice_open_settings_on_other_device" = "در دستگاه اول، به \"تنظیمات / افزودن دستگاه دوم\" بروید و کد نشان داده شده در آنجا را اسکن کنید";
+"multidevice_receiver_scanning_ask" = "حساب از دستگاه دیگر به این دستگاه کپی شود؟";
+"multidevice_abort" = "راه اندازی دستگاه دوم لغو شود؟";
+"multidevice_abort_will_invalidate_copied_qr" = "این کار کد QR کپی شده در کلیپ بورد را باطل می کند.";
+"multidevice_experimental_hint" = "(تجربی، نسخه 1.36 مورد نیاز است)";
+"multidevice_transfer_done_devicemsg" = "ℹ️ حساب به دستگاه دوم شما منتقل شد.";
+// Shown beside progress bar, stay short
+"preparing_account" = "در حال آماده سازی حساب…";
+// Shown beside progress bar, stay short
+"waiting_for_receiver" = "در انتظار گیرنده…";
+// Shown beside progress bar, stay short
+"receiver_connected" = "گیرنده متصل شد…";
+// Shown beside progress bar, stay short
+"transferring" = "در حال انتقال…";
+"troubleshooting" = "عیب یابی";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -927,4 +961,10 @@
 "perm_enable_bg_reminder_title" = "برای دریافت پیام‌ها به صورت پس زمینه در دلتاچت این جا را ضربه بزنید. ";
 "perm_enable_bg_already_done" = "قبلا اجازه دسترسی به فعالیت در پس زمینه را به دلتاچت داده‌اید. \n\n اگر پیام‌ها هنوز هم در شرایط پس زمینه نمی‌آمد لطفا تنظیمات سیستم را نیز بررسی نمایید. ";
 
+
+// device messages for updates
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_36_android" = "نکات برجسته 1.36/n/n💻📱 از دلتا چت در همه دستگاه‌های خود به راحتی استفاده کنید - فقط سه مرحله ساده را در \"تنظیمات / افزودن دستگاه دوم\" (تجربی) دنبال کنید/n/n🖼🔍 آیا تا به حال به دنبال یک تصویر هستید و نمی توانید چت را به یاد بیاورید؟ \"همه رسانه\" از منوی اصلی متعلق به شماست!/n/nچه چیز دیگری؟ اعلان ها برای همه حساب ها، پاک کردن چت، و موارد دیگر در %1$@";
+// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
+"update_1_36_audit" = "ما در اینجا زیاد در مورد امنیت صحبت نمی کنیم، اما مطمئن باشید، ما اهمیت می دهیم: برای اخبار خوب اخیر به %1$@ مراجعه کنید 👌";
 
