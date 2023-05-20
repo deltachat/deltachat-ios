@@ -174,7 +174,9 @@ class ContactDetailViewModel {
     func footerFor(section: Int) -> String? {
         switch sections[section] {
         case .chatOptions:
-            if lastSeen == 0 {
+            if isSavedMessages {
+                return nil
+            } else if lastSeen == 0 {
                 return String.localized("last_seen_unknown")
             } else {
                 return String.localizedStringWithFormat(String.localized("last_seen_at"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(lastSeen)))
