@@ -91,7 +91,7 @@
 "this_month" = "Luna aceasta";
 "last_week" = "Săptămâna trecută";
 "last_month" = "Luna trecută";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Ultima dată văzut la %1$@";
 "last_seen_unknown" = "Ultima dată a fost văzut: Necunoscut";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.

@@ -91,7 +91,7 @@
 "this_month" = "Ten miesiąc";
 "last_week" = "Ostatni tydzień";
 "last_month" = "Ostatni miesiąc";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Ostatnio widziano %1$@";
 "last_seen_unknown" = "Ostatnio widziano: nie wiadomo";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
@@ -123,6 +123,7 @@
 "switch_camera" = "Przełącz kamerę";
 "toggle_fullscreen" = "Przełącz na tryb pełnoekranowy";
 "location" = "Lokalizacja";
+"locations" = "Lokalizacje";
 "gallery" = "Galeria";
 "images_and_videos" = "Obrazy i wideo";
 "file" = "Plik";
@@ -169,7 +170,7 @@
 "menu_toggle_keyboard" = "Przełącz klawiaturę emoji";
 "menu_edit_group" = "Edytuj grupę";
 "menu_group_name_and_image" = "Nazwa grupy i obraz";
-"menu_show_global_map" = "Pokaż wszystkie lokalizacje";
+"menu_show_global_map" = "Wszystkie lokalizacje";
 "menu_archive_chat" = "Archiwizuj czat";
 "menu_unarchive_chat" = "Przywróć czat z archiwum";
 "menu_add_attachment" = "Dodaj załącznik";

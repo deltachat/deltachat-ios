@@ -91,7 +91,7 @@
 "this_month" = "Bu ay";
 "last_week" = "Geçen hafta";
 "last_month" = "Geçen ay";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Son görülme %1$@";
 "last_seen_unknown" = "Son görülme: Bilinmeyen";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
@@ -123,6 +123,7 @@
 "switch_camera" = "Kamerayı Değiştir";
 "toggle_fullscreen" = "Tam Ekran Moduna Geç";
 "location" = "Konum";
+"locations" = "Konumlar";
 "gallery" = "Galeri";
 "images_and_videos" = "Görseller ve Videolar";
 "file" = "Dosya";
@@ -169,7 +170,7 @@
 "menu_toggle_keyboard" = "Emoji Klavyesine Geç";
 "menu_edit_group" = "Grubu Düzenle";
 "menu_group_name_and_image" = "Grup Adı ve Görseli";
-"menu_show_global_map" = "Tüm Konumları Göster";
+"menu_show_global_map" = "Tüm Konumlar";
 "menu_archive_chat" = "Sohbeti Arşivle";
 "menu_unarchive_chat" = "Sohbeti Arşivleme";
 "menu_add_attachment" = "İlişik Ekle";

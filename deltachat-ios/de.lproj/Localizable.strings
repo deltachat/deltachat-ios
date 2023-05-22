@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Anhang";
 "back" = "Zurück";
+"verified" = "Verifiziert";
 "close" = "Schließen";
 "forward" = "Weiterleiten";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -91,8 +92,10 @@
 "this_month" = "Dieser Monat";
 "last_week" = "Letzte Woche";
 "last_month" = "Letzter Monat";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Zuletzt gesehen %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Zuletzt gesehen %1$@";
 "last_seen_unknown" = "Zuletzt gesehen: Unbekannt";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -822,6 +825,8 @@
 "secure_join_replies" = "%1$@ antwortet. Warte, zur Gruppe hinzugefügt zu werden...";
 "contact_verified" = "%1$@ verifiziert.";
 "contact_not_verified" = "Kann %1$@ nicht verifizieren";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Verifiziert von %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Geändertes Setup für %1$@";
 "verified_group_explain" = "Verifizierte Gruppen (experimentell) bieten Schutz gegen aktive Angriffe mittels Zwei-Faktor-Authentifizierung aller Mitglieder und immer aktiver Ende-zu-Ende-Verschlüsselung.";

@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Bashkëngjitje";
 "back" = "Mbrapsht";
+"verified" = "Verifikuar";
 "close" = "Mbylle";
 "forward" = "Përpara";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -91,8 +92,10 @@
 "this_month" = "Këtë muaj";
 "last_week" = "Javën e shkuar";
 "last_month" = "Muajin e shkuar";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Parë së fundi më %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Parë së fundi %1$@";
 "last_seen_unknown" = "Parë së fundi më: S’dihet";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -121,6 +124,7 @@
 "switch_camera" = "Ndërro kamera";
 "toggle_fullscreen" = "Kalo në / Dil nga mënyra sa krejt ekrani";
 "location" = "Vendndodhje";
+"locations" = "Vendndodhje";
 "gallery" = "Galeri";
 "images_and_videos" = "Figura dhe video";
 "file" = "Kartelë";
@@ -818,6 +822,8 @@
 "secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";
 "contact_verified" = "%1$@ u verifikua.";
 "contact_not_verified" = "S\’verifikohet dot %1$@";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Verifikuar nga %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "U ndryshua rregullimi për %1$@";
 "verified_group_explain" = "Grupet e verifikuara (eksperimentale) furnizojnë siguri kundër sulmesh aktive. Anëtarët janë të verifikuar me një faktor të dytë nga anëtarë të tjerë dhe mesazhet janë përherë të fshehtëzuara skaj më skaj.";

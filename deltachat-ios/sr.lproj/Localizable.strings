@@ -89,7 +89,7 @@
 "this_month" = "Овог месеца";
 "last_week" = "Прошле недеље";
 "last_month" = "Прошлог месеца";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Последњи пут виђен %1$@";
 "last_seen_unknown" = "Последњи пут виђен: Непознато";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.

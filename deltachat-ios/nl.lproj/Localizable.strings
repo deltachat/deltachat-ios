@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Bijlage";
 "back" = "Terug";
+"verified" = "Goedgekeurd";
 "close" = "Sluiten";
 "forward" = "Doorsturen";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -91,8 +92,10 @@
 "this_month" = "Deze maand";
 "last_week" = "Vorige week";
 "last_month" = "Vorige maand";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Laatst gezien om %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Laatst gezien: %1$@";
 "last_seen_unknown" = "Laatst gezien: onbekend";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -123,6 +126,7 @@
 "switch_camera" = "Andere camera";
 "toggle_fullscreen" = "Beeldvullende modus aan/uit";
 "location" = "Locatie";
+"locations" = "Locaties";
 "gallery" = "Galerij";
 "images_and_videos" = "Foto\'s en video\'s";
 "file" = "Bestand";
@@ -821,6 +825,8 @@
 "secure_join_replies" = "%1$@ heefn geantwoord en wacht op toelating tot de groep…";
 "contact_verified" = "%1$@ is goedgekeurd.";
 "contact_not_verified" = "Kan %1$@ niet goedkeuren";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Goedgekeurd door %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_group_explain" = "Goedgekeurde groepen (experimenteel) zijn extra beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd eind-tot-eind versleuteld.";

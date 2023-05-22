@@ -27,6 +27,7 @@
 "emoji" = "Émoji";
 "attachment" = "Pièce jointe";
 "back" = "Retour";
+"verified" = "Vérifié";
 "close" = "Fermer";
 "forward" = "Faire suivre";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -91,7 +92,7 @@
 "this_month" = "Ce mois-ci";
 "last_week" = "La semaine dernière";
 "last_month" = "Le mois dernier";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Vu·e pour la dernière fois à %1$@";
 "last_seen_unknown" = "Vu·e pour la dernière fois : inconnu";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
@@ -123,6 +124,7 @@
 "switch_camera" = "Changer de caméra";
 "toggle_fullscreen" = "Activer le plein écran";
 "location" = "Position";
+"locations" = "Positions";
 "gallery" = "Galerie";
 "images_and_videos" = "Images et vidéos";
 "file" = "Fichier";
@@ -169,7 +171,7 @@
 "menu_toggle_keyboard" = "Basculer le clavier emoji";
 "menu_edit_group" = "Modifier le groupe";
 "menu_group_name_and_image" = "Nom du groupe et photo";
-"menu_show_global_map" = "Afficher toutes les positions";
+"menu_show_global_map" = "Toutes les positions";
 "menu_archive_chat" = "Archiver la discussion";
 "menu_unarchive_chat" = "Désarchiver la discussion";
 "menu_add_attachment" = "Ajouter une pièce jointe";
@@ -720,9 +722,9 @@
 "group_image_deleted_by_you" = "Vous avez supprimé l\'image du groupe.";
 // %1$s will be replaced by name and address of the contact
 "group_image_deleted_by_other" = "Image du groupe supprimée par %1$@.";
-"location_enabled_by_you" = "Vous avez activé l\'envoi de votre localisation.";
+"location_enabled_by_you" = "Vous avez activé l\'envoi de votre position.";
 // %1$s will be replaced by name and address of the contact
-"location_enabled_by_other" = "%1$@a activé l\'envoi de sa localisation.";
+"location_enabled_by_other" = "%1$@a activé l\'envoi de sa position.";
 "ephemeral_timer_disabled_by_you" = "Vous avez désactivé la minuterie des messages éphémères.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_disabled_by_other" = "Minuterie des messages éphémères désactivée par %1$@.";
@@ -821,6 +823,8 @@
 "secure_join_replies" = "%1$@ a répondu, en attente d’être ajouté au groupe…";
 "contact_verified" = "%1$@ vérifié.";
 "contact_not_verified" = "Ne peut pas vérifier %1$@";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Vérifié par %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuration modifiée pour %1$@";
 "verified_group_explain" = "Les groupes vérifiés (fonction expérimentale) offrent une sécurité contre les attaques actives. Les membres sont vérifiés avec un second facteur par d\'autres membres et les messages sont toujours chiffrés de bout en bout.";
@@ -848,7 +852,7 @@
 "perm_explain_access_to_camera_denied" = "Pour prendre des photos ou filmer des vidéos, aller au menu Paramètres de l\'application, sélectionnez \"Autorisations\" et autorisez \"Appareil photo\".";
 "perm_explain_access_to_mic_denied" = "Pour envoyer des messages audio, aller dans les paramètres de l\'application, sélectionner \"Autorisations\" et autoriser \"Microphone\".";
 "perm_explain_access_to_storage_denied" = "Pour recevoir ou envoyer des fichiers, aller dans les Paramètres de l\'application, sélectionner \"Autorisations\" et autoriser \"Stockage\".";
-"perm_explain_access_to_location_denied" = "Pour attacher une position, aller au menu paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Position\".";
+"perm_explain_access_to_location_denied" = "Pour joindre une position, aller au menu paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Position\".";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Dessinez n\'importe où pour flouter";
@@ -942,7 +946,7 @@
 "a11y_disappearing_messages_activated" = "Messages éphémères activés";
 
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
-"stop_sharing_location" = "Arrêter de partager la localisation";
+"stop_sharing_location" = "Arrêter de partager la position";
 "a11y_voice_message_hint_ios" = "Après l\'enregistrement, poussez deux fois pour envoyer. Pour le supprimer, balayez l\'écran avec deux doigts.";
 "a11y_connectivity_hint" = "Double-cliquez pour afficher les détails de la connectivité.";
 "login_error_no_internet_connection" = "Pas de connexion Internet, connexion échouée.";

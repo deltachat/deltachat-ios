@@ -27,6 +27,7 @@
 "emoji" = "Эмодзи";
 "attachment" = "Вложение";
 "back" = "Назад";
+"verified" = "Верифицирован";
 "close" = "Закрыть";
 "forward" = "Переслать";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -91,8 +92,10 @@
 "this_month" = "В этом месяце";
 "last_week" = "Прошлая неделя";
 "last_month" = "Прошлый месяц";
-// Placeholder replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Последний раз был(а) в %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Был %1$@";
 "last_seen_unknown" = "Последний раз был(а): Неизвестно";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -123,6 +126,7 @@
 "switch_camera" = "Переключить камеру";
 "toggle_fullscreen" = "Включить полноэкранный режим";
 "location" = "Местоположение";
+"locations" = "Местоположения";
 "gallery" = "Галерея";
 "images_and_videos" = "Изображения и видео";
 "file" = "Файл";
@@ -821,6 +825,8 @@
 "secure_join_replies" = "%1$@ ответил, ожидаем добавления в группу…";
 "contact_verified" = "%1$@ подтвержден.";
 "contact_not_verified" = "Невозможно подтвердить %1$@";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Верифицирован %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Изменены параметры для %1$@";
 "verified_group_explain" = "Проверенные группы (экспериментальная функция) защищены от активных атак. Участники проверяются с помощью второго фактора другими участниками и сообщения всегда передаются посредством cквозного шифрования.";
