@@ -173,7 +173,7 @@ class ContactDetailViewModel {
     func footerFor(section: Int) -> String? {
         switch sections[section] {
         case .chatOptions:
-            if isSavedMessages {
+            if isSavedMessages || isDeviceTalk {
                 return nil
             } else if lastSeen == 0 {
                 return String.localized("last_seen_unknown")
