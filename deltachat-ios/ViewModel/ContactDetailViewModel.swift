@@ -164,7 +164,7 @@ class ContactDetailViewModel {
     func titleFor(section: Int) -> String? {
         switch sections[section] {
         case .chatOptions: return nil
-        case .statusArea: return String.localized("pref_default_status_label")
+        case .statusArea: return (isSavedMessages || isDeviceTalk) ? nil : String.localized("pref_default_status_label")
         case .sharedChats: return String.localized("profile_shared_chats")
         case .chatActions: return nil
         }
