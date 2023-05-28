@@ -308,7 +308,7 @@ class ContactDetailViewController: UITableViewController {
     private func updateCellValues() {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
         allMediaCell.detailTextLabel?.text = viewModel.chatId == 0 ? String.localized("none") : viewModel.context.getAllMediaCount(chatId: viewModel.chatId)
-        statusCell.setText(text: viewModel.contact.status)
+        statusCell.setText(text: viewModel.isSavedMessages ? String.localized("saved_messages_explain") : viewModel.contact.status)
     }
 
     // MARK: - actions
