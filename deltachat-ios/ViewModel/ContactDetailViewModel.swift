@@ -60,10 +60,9 @@ class ContactDetailViewModel {
 
         let dcContact = context.getContact(id: contactId)
         self.lastSeen = dcContact.lastSeen
-        if !self.isSavedMessages {
-            if !dcContact.status.isEmpty {
-                sections.append(.statusArea)
-            }
+
+        if self.isSavedMessages || !dcContact.status.isEmpty {
+            sections.append(.statusArea)
         }
 
         if sharedChats.length > 0 && !isSavedMessages && !isDeviceTalk {
