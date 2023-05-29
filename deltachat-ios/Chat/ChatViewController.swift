@@ -1647,7 +1647,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds)
+        if !appDelegate.locationManager.shareLocation(chatId: self.chatId, duration: seconds) {
+            let alert = UIAlertController(title: String.localized("location_denied"), message: String.localized("location_denied_explain_ios"), preferredStyle: .alert)
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default, handler: { _ in
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                }))
+            }
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            navigationController?.present(alert, animated: true, completion: nil)
+        }
     }
 
     func updateMessage(_ msg: DcMsg) {

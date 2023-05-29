@@ -29,7 +29,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         dcContext = dcAccounts.getSelected()
     }
 
-    func shareLocation(chatId: Int, duration: Int) {
+    func shareLocation(chatId: Int, duration: Int) -> Bool {
         if duration > 0 {
             var authStatus: CLAuthorizationStatus
             if #available(iOS 14.0, *) {
@@ -43,18 +43,21 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 chatIdLocationRequest = chatId
                 durationLocationRequest = duration
                 locationManager.requestAlwaysAuthorization()
+                return true
             case .authorizedAlways, .authorizedWhenInUse:
                 dcContext.sendLocationsToChat(chatId: chatId, seconds: duration)
                 locationManager.startUpdatingLocation()
-            default:
-                // TODO: show an alert to inform the user why nothing works :)
-                logger.info("Location permission was rejected.")
+                return true
+            case .restricted, .denied:
+                logger.error("Location permission rejected: \(authStatus)")
+                return false
             }
         } else {
             dcContext.sendLocationsToChat(chatId: chatId, seconds: duration)
             if !dcContext.isSendingLocationsToChat(chatId: 0) {
                 locationManager.stopUpdatingLocation()
             }
+            return true
         }
     }
 
