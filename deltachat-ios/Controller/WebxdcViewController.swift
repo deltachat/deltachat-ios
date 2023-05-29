@@ -8,6 +8,7 @@ class WebxdcViewController: WebViewViewController {
         case log  = "log"
         case setUpdateListener = "setUpdateListener"
         case sendStatusUpdate = "sendStatusUpdateHandler"
+        case sendToChat = "sendToChat"
     }
     let INTERNALSCHEMA = "webxdc"
     
@@ -117,6 +118,16 @@ class WebxdcViewController: WebViewViewController {
                 };
                 webkit.messageHandlers.sendStatusUpdateHandler.postMessage(parameter);
             },
+
+            sendToChat: (parameter) => {
+                if (parameter.file) {
+                    // pass blob as base64 as postMessage() encodes File objects as null
+                    parameter.__fileBase64 = btoa(parameter.file.blob); // TODO: not sure if that is right, the encoded string looks suspicious
+                    parameter.__fileName = parameter.file.name;
+                }
+                webkit.messageHandlers.sendToChat.postMessage(parameter);
+                // TODO: handle promise return values
+            }
           };
         })();
         """
@@ -131,6 +142,7 @@ class WebxdcViewController: WebViewViewController {
         contentController.add(self, name: WebxdcHandler.sendStatusUpdate.rawValue)
         contentController.add(self, name: WebxdcHandler.setUpdateListener.rawValue)
         contentController.add(self, name: WebxdcHandler.log.rawValue)
+        contentController.add(self, name: WebxdcHandler.sendToChat.rawValue)
         
         let scriptSource = """
             window.RTCPeerConnection = ()=>{};
@@ -337,6 +349,10 @@ extension WebxdcViewController: WKScriptMessageHandler {
                       return
                   }
             _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
+
+        case .sendToChat:
+            logger.debug("send to chat: \(message.body)")
+            // TODO: pass file and thext to share forward handler so that it results in a draft; exit the xdc
 
         default:
             logger.debug("another method was called")
