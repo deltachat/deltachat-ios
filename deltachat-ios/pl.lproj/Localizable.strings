@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Załącznik";
 "back" = "Wróć";
+"verified" = "Zweryfikowano";
 "close" = "Zamknij";
 "forward" = "Przekaż";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -93,6 +94,8 @@
 "last_month" = "Ostatni miesiąc";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Ostatnio widziano %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Ostatnio widziano %1$@";
 "last_seen_unknown" = "Ostatnio widziano: nie wiadomo";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -822,6 +825,8 @@
 "secure_join_replies" = "Użytkownik %1$@ odpowiedział, czekając na dodanie do grupy…";
 "contact_verified" = "Kontakt %1$@ zweryfikowany.";
 "contact_not_verified" = "Nie można zweryfikować %1$@";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Zweryfikowano przez %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Zmieniono konfigurację dla %1$@";
 "verified_group_explain" = "Zweryfikowane grupy (eksperymentalne) zapewniają bezpieczeństwo przed aktywnymi atakami. Członkowie są weryfikowani za pomocą drugiego czynnika przez innych członków, a wiadomości są zawsze szyfrowane metodą end-to-end. ";
