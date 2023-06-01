@@ -360,7 +360,8 @@ extension WebxdcViewController: WKScriptMessageHandler {
 
         case .sendToChat:
             logger.debug("send to chat: \(message.body)")
-            // TODO: pass file and thext to share forward handler so that it results in a draft; exit the xdc
+            RelayHelper.shared.setForwardMessage(messageId: messageId) // TOOD: set message.* as data to the RelayHelper, make RelayHelper produce a draft
+            navigationController?.popViewControllers(viewsToPop: 2, animated: true) // TODO: xdc may be in profile, all media, whatnot, just popping 2 is wrong
 
         default:
             logger.debug("another method was called")
