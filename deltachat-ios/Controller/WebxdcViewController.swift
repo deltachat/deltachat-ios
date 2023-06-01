@@ -119,14 +119,22 @@ class WebxdcViewController: WebViewViewController {
                 webkit.messageHandlers.sendStatusUpdateHandler.postMessage(parameter);
             },
 
-            sendToChat: (parameter) => {
-                if (parameter.file) {
-                    // pass blob as base64 as postMessage() encodes File objects as null
-                    parameter.__fileBase64 = btoa(parameter.file.blob); // TODO: not sure if that is right, the encoded string looks suspicious
-                    parameter.__fileName = parameter.file.name;
+            sendToChat: async (message) => {
+                const data = {};
+                if (!message.text && !message.file) {
+                    return Promise.reject("Invalid empty message, at least one of text or file should be provided");
                 }
-                webkit.messageHandlers.sendToChat.postMessage(parameter);
-                // TODO: handle promise return values
+                if (message.text) {
+                    data.text = message.text;
+                }
+                if (message.file) {
+                    if (!message.file.name || typeof message.file.base64 !== 'string') {
+                        return Promise.reject("provided file is invalid, you need to set both name and base64 content");
+                    }
+                    data.base64 = message.file.base64;
+                    data.name = message.file.name;
+                }
+                webkit.messageHandlers.sendToChat.postMessage(data);
             }
           };
         })();
