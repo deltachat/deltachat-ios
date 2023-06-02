@@ -486,14 +486,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if RelayHelper.shared.isForwarding() {
             if RelayHelper.shared.forwardIds != nil {
                 askToForwardMessage()
-            } else if RelayHelper.shared.forwardFileBase64 != nil || RelayHelper.shared.forwardText != nil {
+            } else if RelayHelper.shared.forwardFileData != nil || RelayHelper.shared.forwardText != nil {
                 if let text = RelayHelper.shared.forwardText {
                     messageInputBar.inputTextView.text = text
                 }
-                if let fileBase64 = RelayHelper.shared.forwardFileBase64 {
-                    guard let data = Data(base64Encoded: fileBase64) else { return }
-                    guard let name = RelayHelper.shared.forwardFileName else { return }
-                    guard let file = FileHelper.saveData(data: data, name: name, directory: .cachesDirectory) else { return }
+                if let data = RelayHelper.shared.forwardFileData {
+                    guard let file = FileHelper.saveData(data: data, name: RelayHelper.shared.forwardFileName, directory: .cachesDirectory) else { return }
                     stageDocument(url: NSURL(fileURLWithPath: file))
                 }
                 RelayHelper.shared.finishRelaying()
