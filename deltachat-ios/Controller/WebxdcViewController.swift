@@ -366,7 +366,12 @@ extension WebxdcViewController: WKScriptMessageHandler {
             let base64 = dict["base64"] as? String
             let data = base64 != nil ? Data(base64Encoded: base64 ?? "") : nil
             RelayHelper.shared.setForwardMessage(text: dict["text"] as? String, fileData: data, fileName: dict["name"] as? String)
-            navigationController?.popViewControllers(viewsToPop: 2, animated: true) // TODO: xdc may be in profile, all media, whatnot, just popping 2 is wrong
+
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+               let rootController = appDelegate.appCoordinator.tabBarController.selectedViewController as? UINavigationController {
+                appDelegate.appCoordinator.showTab(index: appDelegate.appCoordinator.chatsTab)
+                rootController.popToRootViewController(animated: false)
+            }
 
         default:
             logger.debug("another method was called")
