@@ -4,7 +4,7 @@ public class FileHelper {
     
     // implementation is following Apple's recommendations
     // https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/AccessingFilesandDirectories/AccessingFilesandDirectories.html
-    public static func saveData(data: Data, name: String? = nil, suffix: String, directory: FileManager.SearchPathDirectory = .applicationSupportDirectory) -> String? {
+    public static func saveData(data: Data, name: String? = nil, suffix: String? = nil, directory: FileManager.SearchPathDirectory = .applicationSupportDirectory) -> String? {
         var path: URL?
 
         // ensure directory exists (application support dir doesn't exist per default)
@@ -40,8 +40,12 @@ public class FileHelper {
 
         // add file name to path
         if let name = name {
-            path = subdirectoryURL.appendingPathComponent("\(name).\(suffix)")
-        } else {
+            if let suffix = suffix {
+                path = subdirectoryURL.appendingPathComponent("\(name).\(suffix)")
+            } else {
+                path = subdirectoryURL.appendingPathComponent(name)
+            }
+        } else if let suffix = suffix {
             let timestamp = Double(Date().timeIntervalSince1970)
             path = subdirectoryURL.appendingPathComponent("\(timestamp).\(suffix)")
         }
