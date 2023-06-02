@@ -484,10 +484,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         if RelayHelper.shared.isForwarding() {
-            askToForwardMessage()
+            if RelayHelper.shared.forwardIds != nil {
+                askToForwardMessage()
+            } else if let text = RelayHelper.shared.forwardText {
+                messageInputBar.inputTextView.text = text // TODO: handle RelayHelper.shared.fileBase64
+                RelayHelper.shared.finishRelaying()
+            }
         } else if RelayHelper.shared.isMailtoHandling() {
             messageInputBar.inputTextView.text = RelayHelper.shared.mailtoDraft
-            RelayHelper.shared.finishMailto()
+            RelayHelper.shared.finishRelaying()
         }
     }
 
@@ -1478,13 +1483,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func askToForwardMessage() {
         let chat = dcContext.getChat(chatId: self.chatId)
         if chat.isSelfTalk {
-            RelayHelper.shared.forward(to: self.chatId)
+            RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
             refreshMessages()
         } else {
             confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
                               actionTitle: String.localized("menu_forward"),
                               actionHandler: { _ in
-                                RelayHelper.shared.forward(to: self.chatId)
+                                RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
                                 self.dismiss(animated: true, completion: nil)},
                               cancelHandler: { _ in
                                 self.dismiss(animated: false, completion: nil)

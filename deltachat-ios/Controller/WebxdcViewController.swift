@@ -359,8 +359,12 @@ extension WebxdcViewController: WKScriptMessageHandler {
             _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
 
         case .sendToChat:
+            guard let dict = message.body as? [String: AnyObject] else {
+                logger.error("failed to parse sendToChat parameters \(message.body)")
+                return
+            }
             logger.debug("send to chat: \(message.body)")
-            RelayHelper.shared.setForwardMessage(messageId: messageId) // TOOD: set message.* as data to the RelayHelper, make RelayHelper produce a draft
+            RelayHelper.shared.setForwardMessage(text: dict["text"] as? String, fileBase64: dict["base64"] as? String, fileName: dict["name"] as? String)
             navigationController?.popViewControllers(viewsToPop: 2, animated: true) // TODO: xdc may be in profile, all media, whatnot, just popping 2 is wrong
 
         default:

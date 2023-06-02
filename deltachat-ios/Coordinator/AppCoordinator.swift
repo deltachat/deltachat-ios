@@ -199,7 +199,7 @@ class AppCoordinator {
         } else {
             logger.warning("Could not parse mailto: URL")
         }
-        RelayHelper.shared.finishMailto()
+        RelayHelper.shared.finishRelaying()
         return false
     }
 

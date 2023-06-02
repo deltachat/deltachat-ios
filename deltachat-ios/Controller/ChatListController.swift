@@ -363,8 +363,7 @@ class ChatListController: UITableViewController {
         if tableView.isEditing {
             self.setLongTapEditing(false)
         } else {
-            // cancel forwarding
-            RelayHelper.shared.cancel()
+            RelayHelper.shared.finishRelaying()
             updateTitle()
             refreshInBg()
         }
@@ -815,7 +814,7 @@ class ChatListController: UITableViewController {
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
             if RelayHelper.shared.isMailtoHandling() {
-                RelayHelper.shared.finishMailto()
+                RelayHelper.shared.finishRelaying()
             }
         }))
         present(alert, animated: true, completion: nil)
