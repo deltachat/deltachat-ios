@@ -4,7 +4,11 @@ import DcCore
 class RelayHelper {
     static var shared: RelayHelper = RelayHelper()
     private static var dcContext: DcContext?
-    var messageIds: [Int]?
+
+    var forwardIds: [Int]?
+    var forwardText: String?
+    var forwardFileBase64: String?
+    var forwardFileName: String?
 
     var mailtoDraft: String = ""
     var mailtoAddress: String?
@@ -21,47 +25,59 @@ class RelayHelper {
         return shared
     }
 
+    // forwarding messages
+
+    func setForwardMessage(text: String?, fileBase64: String?, fileName: String?) {
+        finishRelaying()
+        self.forwardText = text
+        self.forwardFileBase64 = fileBase64
+        self.forwardFileName = fileName
+    }
+
     func setForwardMessage(messageId: Int) {
-        self.messageIds = [messageId]
+        finishRelaying()
+        self.forwardIds = [messageId]
     }
 
     func setForwardMessages(messageIds: [Int]) {
-        self.messageIds = messageIds
+        finishRelaying()
+        if !messageIds.isEmpty {
+            self.forwardIds = messageIds
+        }
     }
 
     func isForwarding() -> Bool {
-        return !(messageIds?.isEmpty ?? true)
+        return forwardIds != nil || forwardText != nil || forwardFileBase64 != nil
     }
 
-    func forward(to chat: Int) {
-        if let messageIds = self.messageIds {
+    func forwardIdsAndFinishRelaying(to chat: Int) {
+        if let messageIds = self.forwardIds {
             RelayHelper.dcContext?.forwardMessages(with: messageIds, to: chat)
         }
-        self.messageIds = nil
+        finishRelaying()
     }
 
-    func cancel() {
-        messageIds = nil
-    }
-
-    func isMailtoHandling() -> Bool {
-        return !mailtoDraft.isEmpty || mailtoAddress != nil
-    }
-
-    func finishMailto() {
+    func finishRelaying() {
+        forwardIds = nil
+        forwardText = nil
+        forwardFileBase64 = nil
+        forwardFileName = nil
         mailtoDraft = ""
         mailtoAddress = nil
         askToChatWithMailto = true
     }
 
 
+    // mailto: handling
+
+    func isMailtoHandling() -> Bool {
+        return !mailtoDraft.isEmpty || mailtoAddress != nil
+    }
+
     func splitString(_ value: String) -> [String] {
         return value.split(separator: ",").map(String.init)
     }
 
-    /**
-            returns true if parsing was successful
-     */
     func parseMailtoUrl(_ url: URL) -> Bool {
         if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
             var subject: String = ""
