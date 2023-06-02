@@ -651,7 +651,7 @@ class ChatListController: UITableViewController {
         titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
         if RelayHelper.shared.isForwarding() {
             // multi-select is not allowed during forwarding
-            titleView.text = String.localized("forward_to")
+            titleView.text = RelayHelper.shared.forwardIds != nil ? String.localized("forward_to") : String.localized("chat_share_with_title")
             if !isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
