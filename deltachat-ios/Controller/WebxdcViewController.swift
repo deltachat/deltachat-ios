@@ -363,8 +363,9 @@ extension WebxdcViewController: WKScriptMessageHandler {
                 logger.error("failed to parse sendToChat parameters \(message.body)")
                 return
             }
-            logger.debug("send to chat: \(message.body)")
-            RelayHelper.shared.setForwardMessage(text: dict["text"] as? String, fileBase64: dict["base64"] as? String, fileName: dict["name"] as? String)
+            let base64 = dict["base64"] as? String
+            let data = base64 != nil ? Data(base64Encoded: base64 ?? "") : nil
+            RelayHelper.shared.setForwardMessage(text: dict["text"] as? String, fileData: data, fileName: dict["name"] as? String)
             navigationController?.popViewControllers(viewsToPop: 2, animated: true) // TODO: xdc may be in profile, all media, whatnot, just popping 2 is wrong
 
         default:

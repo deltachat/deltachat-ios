@@ -7,7 +7,7 @@ class RelayHelper {
 
     var forwardIds: [Int]?
     var forwardText: String?
-    var forwardFileBase64: String?
+    var forwardFileData: Data?
     var forwardFileName: String?
 
     var mailtoDraft: String = ""
@@ -28,10 +28,10 @@ class RelayHelper {
 
     // forwarding messages
 
-    func setForwardMessage(text: String?, fileBase64: String?, fileName: String?) {
+    func setForwardMessage(text: String?, fileData: Data?, fileName: String?) {
         finishRelaying()
         self.forwardText = text
-        self.forwardFileBase64 = fileBase64
+        self.forwardFileData = fileData
         self.forwardFileName = fileName
     }
 
@@ -48,7 +48,7 @@ class RelayHelper {
     }
 
     func isForwarding() -> Bool {
-        return forwardIds != nil || forwardText != nil || forwardFileBase64 != nil
+        return forwardIds != nil || forwardText != nil || forwardFileData != nil
     }
 
     func forwardIdsAndFinishRelaying(to chat: Int) {
@@ -61,7 +61,7 @@ class RelayHelper {
     func finishRelaying() {
         forwardIds = nil
         forwardText = nil
-        forwardFileBase64 = nil
+        forwardFileData = nil
         forwardFileName = nil
         mailtoDraft = ""
         mailtoAddress = nil
