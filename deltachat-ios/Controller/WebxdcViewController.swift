@@ -123,44 +123,44 @@ class WebxdcViewController: WebViewViewController {
                 const data = {};
                 /** @type {(file: Blob) => Promise<string>} */
                 const blob_to_base64 = (file) => {
-                  const data_start = ";base64,";
-                  return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => {
-                      let data = reader.result;
-                      resolve(data.slice(data.indexOf(data_start) + data_start.length));
-                    };
-                    reader.onerror = () => reject(reader.error);
-                  });
+                    const data_start = ";base64,";
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = () => {
+                            let data = reader.result;
+                            resolve(data.slice(data.indexOf(data_start) + data_start.length));
+                        };
+                        reader.onerror = () => reject(reader.error);
+                    });
                 };
 
                 if (!message.file && !message.text) {
-                  return Promise.reject("sendToChat() error: file or text missing");
+                    return Promise.reject("sendToChat() error: file or text missing");
                 }
 
                 if (message.text) {
-                  data.text = message.text;
+                    data.text = message.text;
                 }
 
                 if (message.file) {
-                  if (!message.file.name) {
-                    return Promise.reject("sendToChat() error: file name missing");
-                  }
-                  if (Object.keys(message.file).filter((key) => ["blob", "base64", "plainText"].includes(key)).length > 1) {
-                    return Promise.reject("sendToChat() error: only one of blob, base64 or plainText allowed");
-                  }
+                    if (!message.file.name) {
+                        return Promise.reject("sendToChat() error: file name missing");
+                    }
+                    if (Object.keys(message.file).filter((key) => ["blob", "base64", "plainText"].includes(key)).length > 1) {
+                        return Promise.reject("sendToChat() error: only one of blob, base64 or plainText allowed");
+                    }
 
-                  if (message.file.blob instanceof Blob) {
-                    data.base64 = await blob_to_base64(message.file.blob);
-                  } else if (typeof message.file.base64 === "string") {
-                    data.base64 = message.file.base64;
-                  } else if (typeof message.file.plainText === "string") {
-                    data.base64 = await blob_to_base64(new Blob([message.file.plainText]));
-                  } else {
-                    return Promise.reject("sendToChat() error: none of blob, base64 or plainText set correctly");
-                  }
-                  data.name = message.file.name;
+                    if (message.file.blob instanceof Blob) {
+                        data.base64 = await blob_to_base64(message.file.blob);
+                    } else if (typeof message.file.base64 === "string") {
+                        data.base64 = message.file.base64;
+                    } else if (typeof message.file.plainText === "string") {
+                        data.base64 = await blob_to_base64(new Blob([message.file.plainText]));
+                    } else {
+                        return Promise.reject("sendToChat() error: none of blob, base64 or plainText set correctly");
+                    }
+                    data.name = message.file.name;
                 }
 
                 webkit.messageHandlers.sendToChat.postMessage(data);
