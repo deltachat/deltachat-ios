@@ -122,14 +122,14 @@ class WebxdcViewController: WebViewViewController {
             sendToChat: async (message) => {
                 const data = {};
                 /** @type {(file: Blob) => Promise<string>} */
-                const blob_to_base64 = (file) => {
-                    const data_start = ";base64,";
+                const blobToBase64 = (file) => {
+                    const dataStart = ";base64,";
                     return new Promise((resolve, reject) => {
                         const reader = new FileReader();
                         reader.readAsDataURL(file);
                         reader.onload = () => {
                             let data = reader.result;
-                            resolve(data.slice(data.indexOf(data_start) + data_start.length));
+                            resolve(data.slice(data.indexOf(dataStart) + dataStart.length));
                         };
                         reader.onerror = () => reject(reader.error);
                     });
@@ -152,11 +152,11 @@ class WebxdcViewController: WebViewViewController {
                     }
 
                     if (message.file.blob instanceof Blob) {
-                        data.base64 = await blob_to_base64(message.file.blob);
+                        data.base64 = await blobToBase64(message.file.blob);
                     } else if (typeof message.file.base64 === "string") {
                         data.base64 = message.file.base64;
                     } else if (typeof message.file.plainText === "string") {
-                        data.base64 = await blob_to_base64(new Blob([message.file.plainText]));
+                        data.base64 = await blobToBase64(new Blob([message.file.plainText]));
                     } else {
                         return Promise.reject("sendToChat() error: none of blob, base64 or plainText set correctly");
                     }
