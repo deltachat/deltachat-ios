@@ -674,6 +674,7 @@ class ChatListController: UITableViewController {
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
         titleView.sizeToFit()
+        updateMarkArchivedReadButton()
     }
 
     func handleMultiSelectionTitle() -> Bool {
@@ -703,6 +704,11 @@ class ChatListController: UITableViewController {
                 self.handleEmptyStateLabel()
             }
         }
+        updateMarkArchivedReadButton()
+    }
+    
+    func updateMarkArchivedReadButton(){
+        self.markArchivedReadButton.isEnabled = dcContext.getUnreadMessages(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK)) != 0
     }
 
     private func handleEmptyStateLabel() {
