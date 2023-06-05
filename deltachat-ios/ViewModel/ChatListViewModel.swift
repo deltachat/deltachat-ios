@@ -128,7 +128,7 @@ class ChatListViewModel: NSObject {
 
     // only visible on search results
     func titleForHeaderIn(section: Int) -> String? {
-        if showSearchResults {
+        if showSearchResults && !searchResultSections.isEmpty {
             switch searchResultSections[section] {
             case .chats:
                 return String.localized(stringID: "n_chats", count: numberOfRowsIn(section: section))
