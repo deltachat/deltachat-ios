@@ -862,7 +862,8 @@ class ChatListController: UITableViewController {
             searchController.searchBar.resignFirstResponder()
         }
         let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
-        navigationController?.pushViewController(chatVC, animated: animated)
+        // navigationController?.pushViewController(chatVC, animated: animated)
+        splitViewController?.showDetailViewController(chatVC, sender: self)
     }
 
     public func showArchive(animated: Bool) {

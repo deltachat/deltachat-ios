@@ -36,6 +36,13 @@ class AppCoordinator {
         return tabBarController
     }()
 
+    lazy var splitViewController: UISplitViewController = {
+        let splitView = UISplitViewController()
+        tabBarController.delegate = appStateRestorer
+        splitView.viewControllers = [tabBarController]
+        return splitView
+    }()
+
     private func createQrNavigationController() -> UINavigationController {
         let root = QrPageController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
@@ -126,6 +133,9 @@ class AppCoordinator {
 
     func showChat(chatId: Int, msgId: Int? = nil, openHighlightedMsg: Bool = false, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
+        let dcContext = dcAccounts.getSelected()
+        let chatVC1 = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: msgId)
+        splitViewController.showDetailViewController(chatVC1, sender: self)
         if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
            let chatListViewController = rootController.viewControllers.first as? ChatListController {
             if let msgId = msgId, openHighlightedMsg {
@@ -243,7 +253,7 @@ class AppCoordinator {
     }
 
     func presentTabBarController() {
-        window.rootViewController = tabBarController
+        window.rootViewController = splitViewController
         showTab(index: chatsTab)
         window.makeKeyAndVisible()
     }
