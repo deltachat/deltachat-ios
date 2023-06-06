@@ -661,6 +661,7 @@ class ChatListController: UITableViewController {
                 navigationItem.setLeftBarButton(nil, animated: true)
                 navigationItem.setRightBarButton(markArchivedReadButton, animated: true)
             }
+            updateMarkArchivedReadButton()
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
             if !handleMultiSelectionTitle() {
@@ -703,6 +704,13 @@ class ChatListController: UITableViewController {
                 self.handleEmptyStateLabel()
             }
         }
+        if isArchive {
+            updateMarkArchivedReadButton()
+        }
+    }
+    
+    func updateMarkArchivedReadButton(){
+        self.markArchivedReadButton.isEnabled = dcContext.getUnreadMessages(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK)) != 0
     }
 
     private func handleEmptyStateLabel() {
