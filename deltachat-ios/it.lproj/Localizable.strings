@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Allegato";
 "back" = "Indietro";
+"verified" = "Verificato";
 "close" = "Chiudi";
 "forward" = "Inoltra";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -93,6 +94,8 @@
 "last_month" = "Ultimo mese";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Visto l\'ultima volta %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = " Ultima visualizzazione %1$@";
 "last_seen_unknown" = "Visto l\'ultima volta: Sconosciuto";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -123,6 +126,7 @@
 "switch_camera" = "Cambia Fotocamera";
 "toggle_fullscreen" = "Alterna la Modalità a Schermo Intero";
 "location" = "Posizione";
+"locations" = "Posizioni";
 "gallery" = "Galleria";
 "images_and_videos" = "Immagini e Video";
 "file" = "File";
@@ -821,6 +825,8 @@
 "secure_join_replies" = "%1$@ ha risposto, in attesa di essere aggiunto al gruppo…";
 "contact_verified" = "%1$@ verificato.";
 "contact_not_verified" = "Impossibile verificare %1$@";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Verificato da %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Impostazioni modificate per %1$@";
 "verified_group_explain" = "I gruppi verificati (sperimentali) garantiscono sicurezza dagli attacchi. I membri vengono verificati con un secondo fattore dagli altri membri e i messaggi sono sempre cifrati end-to-end. ";
