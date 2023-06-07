@@ -2,10 +2,12 @@
 
 on the command-line:
 
-1. update core rust submodule, if needed:
-   $ ./scripts/update-core.sh
-   depending on how much you trust in rust, you might want to do a
-   ./scripts/clean-core.sh before building
+1. update core:
+   ```
+   ./scripts/update-core.sh               # shows used branch
+   ./scripts/update-core.sh BRANCH_OR_TAG # update to tag or latest commit of branch
+   ./scripts/clean-core.sh                # helps on weird issues, do also "Build / Clean"
+   ```
 
 2. update translations:
    $ ./scripts/tx-pull-translations.sh
