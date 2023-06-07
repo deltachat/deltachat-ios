@@ -1,5 +1,30 @@
 # Delta Chat iOS Changelog
 
+## v1.37.0 Testflight
+2023-06
+
+* view "All Media" of all chats by the corresponding button
+* new "Clear Chat" option in the profiles
+* remove upper size limit of attachments
+* save local storage: compress HTML emails in the database
+* save traffic and storage: recode large PNG and other supported image formats
+  (large JPEG were always recoded; images send as "File" are still not recorded or changed otherwise)
+* also strip metadata from images before sending
+  in case they're already small enough and do not require recoding
+* strip unicode sequences that are useless but may trick the user (RTLO attacks)
+* snappier UI by various speed improvements
+* sticky search result headers
+* accessibility: adaptive fonts in the welcome screen
+* disabled "Read" button in the archive view if there is nothing that can be marked as read
+* fix a bug that avoids pinning or archiving the first search results
+* fix: exiting messages are no longer downloaded after configuration
+* fix: don't allow blocked contacts to create groups
+* fix: do not send messages when sending was cancelled while being offline
+* fix various bugs and improve logging
+* fix: show errors when trying to send locations without access
+* update to core116.0
+
+
 ## v1.36.4
 2023-04
 

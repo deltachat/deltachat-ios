@@ -135,10 +135,13 @@ class ChatListController: UITableViewController {
         // update messages - for new messages, do not reuse or modify strings but create new ones.
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
         let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-        msg.text = "1.36 Highlights\n\n💻📱 Use Delta Chat on all your devices easily - just follow three simple steps at \"Settings / Add Second Device\" (experimental)\n\n"
-        +   "What else? Revamped settings, messages containing only emoji shown larger, and more at https://get.delta.chat/#changelogs\n\n"
-        +   "We don\'t talk much about security here, but rest assured, we care: See https://delta.chat/en/2023-03-27-third-independent-security-audit for recent good news 👌"
-        dcContext.addDeviceMessage(label: "update_1_36a_ios", msg: msg)
+        msg.text = "1.37 is out:\n\n"
+            +  "🖼🔍 Ever searching for an image and could not remember the chat? Then the \"All Media\" button is yours!\n\n"
+            +   "🧹 \"Clear Chat\" from the profiles\n\n"
+            +   "📎 Removed upper size limit of attachments\n\n"
+            +   "🗜️ PNG images (screenshots!) are now compressed as well\n\n"
+            +   "... and more at https://get.delta.chat/#changelogs"
+        dcContext.addDeviceMessage(label: "update_1_37b_ios", msg: msg)
     }
 
     override func willMove(toParent parent: UIViewController?) {
