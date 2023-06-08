@@ -164,7 +164,7 @@ class WebxdcViewController: WebViewViewController {
                 }
 
                 webkit.messageHandlers.sendToChat.postMessage(data);
-            }
+            },
 
             importFiles: (filters) => {
                 var element = document.createElement("input");
