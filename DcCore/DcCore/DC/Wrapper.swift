@@ -105,6 +105,7 @@ public class DcContext {
     var contextPointer: OpaquePointer?
     public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
     public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
+    private var anyWebxdcSeen: Bool = false
 
     public init(contextPointer: OpaquePointer?, logger: Logger?) {
         self.contextPointer = contextPointer
@@ -273,7 +274,10 @@ public class DcContext {
     }
 
     public func hasWebxdc(chatId: Int) -> Bool {
-        return !getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).isEmpty
+        if !anyWebxdcSeen {
+            anyWebxdcSeen = !getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).isEmpty
+        }
+        return anyWebxdcSeen
     }
 
     public func getAllMediaCount(chatId: Int) -> String {

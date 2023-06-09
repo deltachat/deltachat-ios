@@ -1524,8 +1524,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func showWebxdcSelector() {
-        let msgIds = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
-        let webxdcSelector = WebxdcSelector(context: dcContext, mediaMessageIds: msgIds.reversed())
+        let webxdcSelector = WebxdcSelector(context: dcContext)
         webxdcSelector.delegate = self
         let webxdcSelectorNavigationController = UINavigationController(rootViewController: webxdcSelector)
         if #available(iOS 15.0, *) {
