@@ -11,9 +11,7 @@ class WebxdcSelector: UIViewController {
 
     private let dcContext: DcContext
     // MARK: - data
-    private var mediaMessageIds: [Int]
-    private var deduplicatedMessageHashes: [String: Int]
-    private var deduplicatedMessageIds: [Int]
+    private var deduplicatedMessageIds: [Int] = []
     private var items: [Int: GalleryItem] = [:]
 
     // MARK: - subview specs
@@ -70,13 +68,9 @@ class WebxdcSelector: UIViewController {
         return mediaPicker
     }()
 
-    init(context: DcContext, mediaMessageIds: [Int]) {
+    init(context: DcContext) {
         self.dcContext = context
-        self.mediaMessageIds = mediaMessageIds
-        self.deduplicatedMessageHashes = [:]
-        self.deduplicatedMessageIds = []
         super.init(nibName: nil, bundle: nil)
-        deduplicateWebxdcs()
     }
 
     required init?(coder: NSCoder) {
@@ -90,13 +84,7 @@ class WebxdcSelector: UIViewController {
         title = String.localized("webxdc_apps")
         navigationItem.setLeftBarButton(filesButton, animated: false)
         navigationItem.setRightBarButton(cancelButton, animated: false)
-        if mediaMessageIds.isEmpty {
-            emptyStateView.isHidden = false
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        grid.reloadData()
+        deduplicateWebxdcs()
     }
 
     override func viewWillLayoutSubviews() {
@@ -112,21 +100,21 @@ class WebxdcSelector: UIViewController {
         grid.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         grid.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         grid.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-
         emptyStateView.addCenteredTo(parentView: view)
     }
 
     func deduplicateWebxdcs() {
+        var deduplicatedMessageHashes: [String: Int] = [:]
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
-            for id in self.mediaMessageIds {
+            let mediaMessageIds = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).reversed()
+            for id in mediaMessageIds {
                 guard let filename = self.dcContext.getMessage(id: id).fileURL else { continue }
                 if let hash = try? NSData(contentsOf: filename).sha1() {
                     DispatchQueue.main.async {
-                        if self.deduplicatedMessageHashes[hash] == nil {
-                            self.deduplicatedMessageHashes[hash] = id
+                        if deduplicatedMessageHashes[hash] == nil {
+                            deduplicatedMessageHashes[hash] = id
                             self.deduplicatedMessageIds.append(id)
-                            self.grid.insertItems(at: [IndexPath(row: self.deduplicatedMessageIds.count - 1, section: 0)])
                         }
                     }
                 }
@@ -136,6 +124,7 @@ class WebxdcSelector: UIViewController {
                 if self.deduplicatedMessageIds.isEmpty {
                     self.emptyStateView.isHidden = false
                 }
+                self.grid.reloadData()
             }
         }
     }
