@@ -42,8 +42,7 @@ class WebxdcSelector: UIViewController {
 
     private lazy var emptyStateView: EmptyStateLabel = {
         let label = EmptyStateLabel()
-        label.text = String.localized("webxdc_selector_empty_hint")
-        label.isHidden = true
+        label.text = String.localized("one_moment")
         return label
     }()
 
@@ -122,7 +121,9 @@ class WebxdcSelector: UIViewController {
 
             DispatchQueue.main.async {
                 if self.deduplicatedMessageIds.isEmpty {
-                    self.emptyStateView.isHidden = false
+                    self.emptyStateView.text = String.localized("webxdc_selector_empty_hint")
+                } else {
+                    self.emptyStateView.isHidden = true
                 }
                 self.grid.reloadData()
             }
