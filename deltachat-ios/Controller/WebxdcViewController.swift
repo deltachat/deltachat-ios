@@ -411,19 +411,23 @@ extension WebxdcViewController: WKScriptMessageHandler {
             _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
 
         case .sendToChat:
-            guard let dict = message.body as? [String: AnyObject] else {
-                logger.error("failed to parse sendToChat parameters \(message.body)")
-                return
-            }
-            let base64 = dict["base64"] as? String
-            let data = base64 != nil ? Data(base64Encoded: base64 ?? "") : nil
-            RelayHelper.shared.setForwardMessage(text: dict["text"] as? String, fileData: data, fileName: dict["name"] as? String)
+            let alert = UIAlertController(title: String.localized("chat_share_with_title"), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("select_chat"), style: .default, handler: { _ in
+                if let dict = message.body as? [String: AnyObject] {
+                    let base64 = dict["base64"] as? String
+                    let data = base64 != nil ? Data(base64Encoded: base64 ?? "") : nil
+                    RelayHelper.shared.setForwardMessage(text: dict["text"] as? String, fileData: data, fileName: dict["name"] as? String)
 
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-               let rootController = appDelegate.appCoordinator.tabBarController.selectedViewController as? UINavigationController {
-                appDelegate.appCoordinator.showTab(index: appDelegate.appCoordinator.chatsTab)
-                rootController.popToRootViewController(animated: false)
-            }
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                       let rootController = appDelegate.appCoordinator.tabBarController.selectedViewController as? UINavigationController {
+                        appDelegate.appCoordinator.showTab(index: appDelegate.appCoordinator.chatsTab)
+                        rootController.popToRootViewController(animated: false)
+                    }
+                }
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
 
         default:
             logger.debug("another method was called")
