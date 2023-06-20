@@ -215,6 +215,7 @@
 "menu_help" = "Help";
 "privacy_policy" = "Privacy Policy";
 "menu_select_all" = "Select All";
+"select_chat" = "Select Chat";
 "select_more" = "Select more";
 "menu_edit_name" = "Edit Name";
 "menu_settings" = "Settings";
@@ -993,6 +994,10 @@
 "update_1_36_android" = "1.36 Highlights\n\n💻📱 Use Delta Chat on all your devices easily - just follow three simple steps at \"Settings / Add Second Device\" (experimental)\n\n🖼🔍 Ever searching for an image and could not remember the chat? \"All Media\" from the main menu is yours!\n\nWhat else? Notifications for all accounts, clear chat, and more at %1$@";
 // placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
 "update_1_36_audit" = "We don\'t talk much about security here, but rest assured, we care: See %1$@ for recent good news 👌";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_38_android" = "1.38 is out:\n\n📎 Removed upper size limit of attachments\n\n🗜️ PNG images (screenshots!) are now compressed as well\n\n⌨️ For Devs: Better apps for chats with sendToChat() and importFiles() (What is Webxdc? → https://webxdc.org)\n\n… and more at %1$@";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_38_ios" = "1.38 is out:\n\n🖼🔍 Ever searching for an image and could not remember the chat? Then the \"All Media\" button is yours!\n\n🧹 \"Clear Chat\" from the profiles\n\n📎 Removed upper size limit of attachments\n\n🗜️ PNG images (screenshots!) are now compressed as well\n\n… and more at %1$@";
 
 "connectivity_low_data_mode" = "Disabled by system's \"Low Data Mode\".";
 "connectivity_low_power_mode" = "Disabled by system's \"Low Power Mode\".";
@@ -1001,4 +1006,3 @@
 "backup_successful_explain_ios" = "You can find the backup in the \"Delta Chat\" folder using the \"Files\" app.\n\nMove the backup out of this folder to keep it when deleting Delta Chat.";
 "location_denied" = "Location access denied";
 "location_denied_explain_ios" = "In the system settings, enable \"Privacy/Location Services\" and set \"Delta Chat/Location\" to \"Always\" and \"Precise\".";
-"select_chat" = "Select Chat";

@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Adjunto";
 "back" = "Atrás";
+"verified" = "Verificado";
 "close" = "Cerrar";
 "forward" = "Reenviar";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -93,6 +94,8 @@
 "last_month" = "El mes pasado";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Visto por última vez: %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Visto por última vez: %1$@";
 "last_seen_unknown" = "Visto por última vez: Desconocido";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -123,6 +126,7 @@
 "switch_camera" = "Alternar cámara";
 "toggle_fullscreen" = "Alternar modo pantalla completa";
 "location" = "Ubicación";
+"locations" = "Ubicaciones";
 "gallery" = "Galería";
 "images_and_videos" = "Imágenes y videos";
 "file" = "Archivo";
@@ -211,6 +215,7 @@
 "menu_help" = "Ayuda";
 "privacy_policy" = "Política de privacidad";
 "menu_select_all" = "Seleccionar todo";
+"select_chat" = "Seleccionar chat";
 "select_more" = "Seleccionar más";
 "menu_edit_name" = "Editar nombre";
 "menu_settings" = "Ajustes";
@@ -821,6 +826,8 @@
 "secure_join_replies" = "%1$@ respondió, esperando ser agregado al grupo…";
 "contact_verified" = "%1$@ verificado.";
 "contact_not_verified" = "No se pudo verificar %1$@.";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Verificado por %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuración cambiada para %1$@.";
 "verified_group_explain" = "Los grupos verificados (experimentales) brindan seguridad contra ataques activos. Los miembros son verificados con un segundo factor por otros miembros y los mensajes siempre están encriptados de extremo a extremo.";
@@ -987,4 +994,8 @@
 "update_1_36_android" = "1.36 Cambios principales\n\n💻📱 Utiliza Delta Chat en todos tus dispositivos fácilmente - sólo tienes que seguir tres sencillos pasos en \"Ajustes / Añadir otro dispositivo\" (experimental)\n\n🖼🔍 ¿Alguna vez has buscado una imagen sin recordar en cual chat? \"Toda la multimedia\" del menú principal es lo que necesitas!\n\n¿Qué más? Notificaciones para todas las cuentas, vaciar chat, y mucho más en %1$@";
 // placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
 "update_1_36_audit" = "No hablamos mucho de seguridad aquí, pero puedes confiar que nos importa: Consulte %1$@ para buenas noticias recientes 👌";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_38_android" = "1.38 ya está disponible:\n\n📎 Se eliminó el límite de tamaño máximo de los archivos adjuntos\n\n🗜️ Las imágenes PNG (¡capturas de pantalla!) ahora también son comprimidas\n\n⌨️ Para desarrolladores: mejores aplicaciones para chats con sendToChat() e importFiles( ) (¿Qué es Webxdc? → https://webxdc.org)\n\n... y más en %1$@";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_38_ios" = "1.38 está disponible:\n\n🖼🔍 ¿Alguna vez buscaste una imagen y no recordabas el chat? ¡Entonces el botón \"Toda la multimedia\" es tuyo!\n\n🧹 \"Vaciar chat\" de los perfiles\n\n📎 Se eliminó el límite de tamaño máximo de los archivos adjuntos\n\n🗜️ Las imágenes PNG (¡capturas de pantalla!) ahora también se comprimen\n\n... y más en %1$@";
 
