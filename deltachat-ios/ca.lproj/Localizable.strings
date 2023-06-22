@@ -326,7 +326,6 @@
 "start_app" = "Comença...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Si us plau accepteu primer el requeriment del xat.";
-
 // map
 "filter_map_on_time" = "Mostra les ubicacions al llarg del temps";
 "show_location_traces" = "Mostra el rastre";

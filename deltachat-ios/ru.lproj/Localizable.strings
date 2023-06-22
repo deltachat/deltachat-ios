@@ -350,7 +350,6 @@
 "start_app" = "Запустить...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Пожалуйста, сначала примите запрос";
-
 // map
 "filter_map_on_time" = "Показать местоположения с интервалом времени";
 "show_location_traces" = "Показывать маршруты";

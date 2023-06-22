@@ -343,7 +343,6 @@
 "start_app" = "شروع...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "لطفا اول درخواست گفتگو را قبول کنید.";
-
 // map
 "filter_map_on_time" = "نمایش موقعیت‌های مکانی در چارچوب زمان";
 "show_location_traces" = "نمایش ردپاها";

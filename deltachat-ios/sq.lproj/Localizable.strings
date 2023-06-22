@@ -348,7 +348,6 @@
 "start_app" = "Fillo…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Ju lutemi, së pari pranoni kërkesën për fjalosje.";
-
 // map
 "filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
 "show_location_traces" = "Shfaq gjurmë";

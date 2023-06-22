@@ -342,7 +342,6 @@
 "start_app" = "Покретање...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Прво прихватите захтев за ћаскање.";
-
 // map
 "filter_map_on_time" = "Прикажи положаје у временском периоду?";
 "show_location_traces" = "Прикажи трагове";

@@ -351,6 +351,9 @@
 "start_app" = "Başlat…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Lütfen önce sohbet isteğini kabul edin.";
+// placeholder will be replaced by a file name
+"send_file_to" = "\"%1$@\" dosyasını gönder…";
+"send_message_to" = "İletiyi gönder…";
 
 // map
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
@@ -465,18 +468,18 @@
 "welcome_chat_over_email" = "E-Posta Üzerinden Sohbet.";
 "scan_invitation_code" = "Davet Kodunu Tara";
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsız.";
-"login_title" = "Oturum Aç";
-"login_header" = "E-Posta Hesabınızda Oturum Açın";
-"login_explain" = "Varolan bir e-posta hesabıyla oturum açın";
+"login_title" = "Giriş Yap";
+"login_header" = "E-Posta Hesabınıza Giriş Yapın";
+"login_explain" = "Varolan bir e-posta hesabıyla giriş yapın";
 "login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'in web ayarlarından etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
 "login_no_servers_hint" = "Delta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
 "login_inbox" = "Gelen Kutusu";
-"login_imap_login" = "IMAP Oturum Açma Adı";
+"login_imap_login" = "IMAP Giriş Adı";
 "login_imap_server" = "IMAP Sunucusu";
 "login_imap_port" = "IMAP Bağlantı Noktası";
 "login_imap_security" = "IMAP Güvenliği";
 "login_outbox" = "Giden Kutusu";
-"login_smtp_login" = "SMTP Oturum Açma Adı";
+"login_smtp_login" = "SMTP Giriş Adı";
 "login_smtp_password" = "SMTP Parolası";
 "login_smtp_server" = "SMTP Sunucusu";
 "login_smtp_port" = "SMTP Bağlantı Noktası";
@@ -502,7 +505,7 @@
 "import_backup_ask" = "\"%1$@\" üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
 "import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği \"%1$@\" üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için \"İletileşmeyi başlat\"a basın.";
 // Translators: %1$s will be replaced by the e-mail address
-"login_error_cannot_login" = "\"%1$@\" olarak oturum açılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
+"login_error_cannot_login" = "\"%1$@\" olarak giriş yapılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
 "used_settings" = "Kullanılan ayarlar:";
@@ -811,15 +814,15 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
-"qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada oturum açılsın mı?";
-"qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
-"qraccount_success_enter_name" = "Oturum açma başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
+"qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada giriş yapılsın mı?";
+"qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada giriş yapılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
+"qraccount_success_enter_name" = "Giriş başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir hesap ayarlamak için kullanılamıyor.";
 "qraccount_use_on_new_install" = "Taranan QR kodu, yeni bir hesap ayarlamak içindir. QR kodunu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";
 // the placeholder will be replaced by the e-mail address of the account
-"qrlogin_ask_login" = "\"%1$@\" üzerinde oturum açılsın mı?";
+"qrlogin_ask_login" = "\"%1$@\" adresine giriş yapılsın mı?";
 // the placeholder will be replaced by the e-mail address of the account
-"qrlogin_ask_login_another" = "\"%1$@\" üzerinde oturum açılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
+"qrlogin_ask_login_another" = "\"%1$@\" adresine giriş yapılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya davet etti.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
@@ -914,7 +917,7 @@
 "autocrypt_correct_desktop" = "Autocrypt ayarlaması aktarıldı.";
 "autocrypt_incorrect_desktop" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.";
 "create_chat_error_desktop" = "Sohbet oluşturulamadı.";
-"forget_login_confirmation_desktop" = "Bu oturum silinsin mi? Uçtan uca ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak her şey silinecek. Bu eylem geri alınamaz.";
+"forget_login_confirmation_desktop" = "Bu giriş silinsin mi? Uçtan uca ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak her şey silinecek. Bu eylem geri alınamaz.";
 "account_info_hover_tooltip_desktop2" = "E-Posta: %1$@\nBoyut: %2$@\nHesap Kimliği: %3$@";
 "message_detail_sent_desktop" = "gönderilme";
 "message_detail_received_desktop" = "alınma";
@@ -952,7 +955,7 @@
 "stop_sharing_location" = "Konum paylaşımını durdur";
 "a11y_voice_message_hint_ios" = "Kaydettikten sonra göndermek için çift dokunun. Kaydı atmak için iki parmakla sarın.";
 "a11y_connectivity_hint" = "Bağlanabilirlik ayrıntılarını görüntülemek için çift dokunun.";
-"login_error_no_internet_connection" = "Internet bağlantısı yok; oturum açma başarısız.";
+"login_error_no_internet_connection" = "Internet bağlantısı yok; giriş başarısız.";
 "share_account_not_configured" = "Hesap yapılandırılmadı.";
 "cannot_play_audio_file" = "Ses dosyası oynatılamıyor.";
 // iOS camera permission alert
@@ -994,3 +997,8 @@
 "update_1_36_android" = "1.36\'nın Öne Çıkanları\n\n💻📱 Delta Chat\'i aygıtlarınızın tümünde kolayca kullanın - yalnızca \"Ayarlar / İkinci Aygıt Ayarla\"daki üç kolay adımı takip edin (deneysel)\n\n🖼🔍 Hiç bir görsel ararken bir sohbeti anımsayamadığınız oldu mu? Ana menüdeki \"Tüm Ortamlar\" sizin!\n\nBaşka ne var? Tüm hesaplar için bildirimler, sohbet temizleme ve daha fazlası %1$@ adresinde";
 // placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
 "update_1_36_audit" = "Burada güvenlikten çok söz etmiyoruz ama emin olun önemsiyoruz: En son iyi haberler için %1$@ adresine bakın 👌";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_38_android" = "1.38 çıktı:\n\n📎 İlişiklerin daha yüksek boyut sınırlaması kaldırıldı\n\n🗜️ PNG görselleri (ekran görüntüleri!) de artık sıkıştırılıyor\n\n⌨️ Geliştiriciler için: Sohbetler için sendToChat() ve importFiles() ile uygulamalar (Webxdc nedir? → https://webxdc.org) daha iyi\n\n… ve daha fazlası için %1$@";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_38_ios" = "1.38 çıktı:\n\n🖼🔍 Hiç bir görseli ararken sohbeti anımsayamadığınız oldu mu? Öyleyse \"Tüm Ortamlar\" düğmesi sizin!\n\n🧹 Profillerden \"Sohbeti Temizle\"\n\n📎 İlişiklerin daha yüksek boyut sınırlaması kaldırıldı\n\n🗜️ PNG görselleri (ekran görüntüleri!) de artık sıkıştırılıyor\n\n… ve daha fazlası için 1%1$@";
+

@@ -338,7 +338,6 @@
 "start_app" = "Aloita...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Hyväksy keskustelupyyntö ensin.";
-
 // map
 "filter_map_on_time" = "Näytä sijainnit aikajanalla";
 "show_location_traces" = "Näytä jäljet";

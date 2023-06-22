@@ -351,6 +351,9 @@
 "start_app" = "Start…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Please accept the chat request first.";
+// placeholder will be replaced by a file name
+"send_file_to" = "Send \"%1$@\" to…";
+"send_message_to" = "Send Message to…";
 
 // map
 "filter_map_on_time" = "Show locations in time frame";

@@ -351,6 +351,9 @@
 "start_app" = "开始…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "请先接受聊天请求";
+// placeholder will be replaced by a file name
+"send_file_to" = "发送“%1$@\"到...";
+"send_message_to" = "发送消息到...";
 
 // map
 "filter_map_on_time" = "显示时间范围内的位置";

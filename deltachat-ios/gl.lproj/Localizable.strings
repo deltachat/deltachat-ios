@@ -344,7 +344,6 @@
 "start_app" = "Comezar...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Primeiro acepta a solicitude de conversa.";
-
 // map
 "filter_map_on_time" = "Mostrar localizacións no marco temporal";
 "show_location_traces" = "Mostrar trazas";

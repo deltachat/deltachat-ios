@@ -351,7 +351,6 @@
 "start_app" = "Старт…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Моля, първо приемете заявката за чат.";
-
 // map
 "filter_map_on_time" = "Показване на местоположенията във времева рамка";
 "show_location_traces" = "Показване на съобщенията за проследяване";

@@ -334,7 +334,6 @@
 "start_app" = "시작...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "채팅 요청을 먼저 수락하십시오.";
-
 // map
 "filter_map_on_time" = "시간 범위 내 위치 표시";
 "show_location_traces" = "기록 보기";

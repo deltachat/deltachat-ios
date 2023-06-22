@@ -338,7 +338,6 @@
 "start_app" = "Εκκίνηση…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Αποδεχτείτε πρώτα το αίτημα συνομιλίας.";
-
 // map
 "filter_map_on_time" = "Εμφάνιση τοποθεσιών σε χρονικό πλαίσιο";
 "show_location_traces" = "Εμφάνιση ιχνών";
