@@ -213,6 +213,7 @@
 "menu_help" = "Nidhmë";
 "privacy_policy" = "Rregulla Privatësie";
 "menu_select_all" = "Përzgjidhi krejt";
+"select_chat" = "Përzgjidhni Fjalosje";
 "select_more" = "Përzgjidhni më tepër";
 "menu_edit_name" = "Përpunoni emrin";
 "menu_settings" = "Rregullime";
@@ -348,6 +349,10 @@
 "start_app" = "Fillo…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Ju lutemi, së pari pranoni kërkesën për fjalosje.";
+// placeholder will be replaced by a file name
+"send_file_to" = "Dërgoni “%1$@” për …";
+"send_message_to" = "Dërgoni Mesazh për…";
+
 // map
 "filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
 "show_location_traces" = "Shfaq gjurmë";
