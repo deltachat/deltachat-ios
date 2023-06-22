@@ -351,6 +351,10 @@
 "start_app" = "Starten…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Accepteer eerst het gespreksverzoek.";
+// placeholder will be replaced by a file name
+"send_file_to" = "“%1$@” versturen naar…";
+"send_message_to" = "Bericht versturen naar…";
+
 // map
 "filter_map_on_time" = "Locaties tonen in tijdsbeeld";
 "show_location_traces" = "Sporen tonen";

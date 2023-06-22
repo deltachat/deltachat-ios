@@ -351,6 +351,10 @@
 "start_app" = "Avvia...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Per favore, accetta prima la richiesta di chat.";
+// placeholder will be replaced by a file name
+"send_file_to" = "Invia \"%1$@\" a…";
+"send_message_to" = "Invia Messaggio a...";
+
 // map
 "filter_map_on_time" = "Mostra le posizioni nel tempo";
 "show_location_traces" = "Mostra tracce";
