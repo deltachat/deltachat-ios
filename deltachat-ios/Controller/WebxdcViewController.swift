@@ -423,7 +423,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
                 alert.addAction(UIAlertAction(title: String.localized("select_chat"), style: .default, handler: { _ in
                     let base64 = dict["base64"] as? String
                     let data = base64 != nil ? Data(base64Encoded: base64 ?? "") : nil
-                    RelayHelper.shared.setForwardMessage(text: dict["text"] as? String, fileData: data, fileName: dict["name"] as? String)
+                    RelayHelper.shared.setForwardMessage(dialogTitle: title, text: dict["text"] as? String, fileData: data, fileName: dict["name"] as? String)
 
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                        let rootController = appDelegate.appCoordinator.tabBarController.selectedViewController as? UINavigationController {

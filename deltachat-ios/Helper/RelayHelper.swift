@@ -5,6 +5,8 @@ class RelayHelper {
     static var shared: RelayHelper = RelayHelper()
     private static var dcContext: DcContext?
 
+    var dialogTitle: String = ""
+
     var forwardIds: [Int]?
     var forwardText: String?
     var forwardFileData: Data?
@@ -28,8 +30,9 @@ class RelayHelper {
 
     // forwarding messages
 
-    func setForwardMessage(text: String?, fileData: Data?, fileName: String?) {
+    func setForwardMessage(dialogTitle: String, text: String?, fileData: Data?, fileName: String?) {
         finishRelaying()
+        self.dialogTitle = dialogTitle
         self.forwardText = text
         self.forwardFileData = fileData
         self.forwardFileName = fileName
@@ -37,11 +40,13 @@ class RelayHelper {
 
     func setForwardMessage(messageId: Int) {
         finishRelaying()
+        self.dialogTitle = String.localized("forward_to")
         self.forwardIds = [messageId]
     }
 
     func setForwardMessages(messageIds: [Int]) {
         finishRelaying()
+        self.dialogTitle = String.localized("forward_to")
         if !messageIds.isEmpty {
             self.forwardIds = messageIds
         }
@@ -59,6 +64,7 @@ class RelayHelper {
     }
 
     func finishRelaying() {
+        dialogTitle = ""
         forwardIds = nil
         forwardText = nil
         forwardFileData = nil
