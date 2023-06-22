@@ -1,5 +1,16 @@
 # Delta Chat iOS Changelog
 
+## v1.38.2
+2023-06
+
+* improve group membership consistency
+* fix verification issues because of email addresses compared case-sensitive sometimes
+* fix empty lines in HTML view
+* fix empty links in HTML view
+* update translations
+* update to core117.0
+
+
 ## v1.37.0 Testflight
 2023-06
 
