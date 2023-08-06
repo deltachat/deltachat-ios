@@ -1,5 +1,24 @@
 # Delta Chat iOS Changelog
 
+## v1.40.0
+2023-08
+
+* improve IMAP logs
+* update "verified icon"
+* fix: avoid IMAP move loops when DeltaChat folder is aliased
+* fix: accept webxdc updates in mailing lists
+* fix: delete webxdc status updates together with webxdc instance
+* fix: prevent corruption of large unencrypted webxdc updates
+* fix "Member added by me" message appearing sometimes within wrong context
+* fix core panic after sending 29 offline messages
+* fix: make avatar in qr-codes work on more platforms
+* fix: preserve indentation when converting plaintext to HTML
+* fix: remove superfluous spaces at start of lines when converting HTML to plaintext
+* fix: always rewrite and translate member added/removed messages
+* add Luri Bakhtiari translation, update other translations and local help
+* update to core119
+
+
 ## v1.38.2
 2023-06
 
