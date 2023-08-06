@@ -16,6 +16,7 @@
 "open" = "Malferma";
 "download" = "Elŝuti";
 "downloading" = "Elŝutado...";
+"open_attachment" = "Malfermu aldonaĵon";
 "join" = "Aliĝi";
 "rejoin" = "Realiĝi";
 "delete" = "Forigi";
@@ -24,6 +25,7 @@
 "emoji" = "Emoji";
 "attachment" = "Aldonaĵo";
 "back" = "Reen";
+"verified" = "Konfirmita";
 "close" = "Fermi";
 "forward" = "Plusendi";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -34,20 +36,30 @@
 "unarchive" = "Malarĥivi";
 "mute" = "Muta sciigoj";
 "ephemeral_messages" = "Memviŝontaj mesaĝoj";
+"ephemeral_messages_hint" = "Aplikebla al ĉiuj anoj de tiu ĉi babilejo kiuj uzas Delta Chat; ili ankoraŭ povas kopii, konservi kaj plusendi mesaĝojn, kaj uzi aliajn retpoŝtajn klientojn.";
 "save" = "Konservi";
 "chat" = "Babilo";
 "media" = "Aŭdovidaĵoj";
 "profile" = "Profilo";
 "main_menu" = "Ĉefa menuo";
 "start_chat" = "Komenci Babiladon";
+"show_full_message" = "Afiŝu la tutan mesaĝon...";
+"show_full_message_in_browser" = "Afiŝu la tutan mesaĝon en la retumilo...";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Marki ĉiujn legitaj";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Legi";
 // Placeholder text when something is loading
 "loading" = "Ŝarĝado...";
 "hide" = "Kaŝi";
 "activate" = "Aktivigi";
+"load_remote_content" = "Ŝargu forajn bildojn ";
+// Possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "La foraj bildoj povas spuri vin.\n\nTiu ĉi agordo povas ankaŭ ŝargi tiparojn kaj aliajn enhavojn. Malŝaltite, enkorpigitaj aŭ kaŝmemorigitaj bildoj povas aperi.\n\nŜargu forajn bildojn? ";
 "always" = "Ĉiam";
+"always_load_remote_images" = "Ĉiam ŝargu forajn bildojn";
 "once" = "Unufoje";
+"show_warning" = "Afiŝu averton";
 "show_password" = "Montri pasvorton";
 "hide_password" = "Kaŝi pasvorton";
 "not_now" = "Ne nun";
@@ -55,6 +67,7 @@
 "one_moment" = "Unu momenton…";
 "done" = "Farita";
 "undo" = "Malfari";
+"offline" = "Nekonektite";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Sekva";
 "error" = "Eraro";
@@ -77,19 +90,30 @@
 "this_month" = "Ĉi-monate";
 "last_week" = "Pasint-semajne";
 "last_month" = "Pasint-monate";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Laste vidita je%1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Laste vidita %1$@";
+"last_seen_unknown" = "Laste vidita: nedisponebla informo";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Items Selected"
+
 "self" = "Mi";
 "draft" = "Malneto";
 "image" = "Bildo";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Respondi";
 "gif" = "Gif";
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
+"sticker" = "Glumarko";
 "images" = "Bildoj";
 "audio" = "Sonaĵo";
 "voice_message" = "Voĉmesaĝo";
 "forwarded" = "Plusendita";
 "forwarded_message" = "Plusendita mesaĝo";
+// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+"forwarded_by" = "Plusendita de %1$@";
 "video" = "Filmo";
 "documents" = "Dokumentoj";
 "contact" = "Kontakto";
@@ -97,8 +121,12 @@
 "camera" = "Fotilo";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Kapti";
+"switch_camera" = "Elektu alian kameraon";
+"toggle_fullscreen" = "Baskulu el/al la plena ekrano";
 "location" = "Loko";
+"locations" = "Lokoj";
 "gallery" = "Galerio";
+"images_and_videos" = "Bildoj kaj videoj";
 "file" = "Dosiero";
 "files" = "Dosieroj";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
@@ -117,6 +145,7 @@
 "magenta" = "Malva";
 "white" = "Blanka";
 
+"zoom" = "Grandeco";
 "extra_small" = "Ege malgranda";
 "small" = "Malgranda";
 "normal" = "Normala";
@@ -148,20 +177,29 @@
 "menu_add_attachment" = "Aldoni kunsendaĵon";
 "menu_leave_group" = "Forlasi grupon";
 "menu_delete_chat" = "Forigi babilon";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Viŝi la babilejon";
+"ask_delete_named_chat" = "Ĉu vi certas, ke vi deziras forigi \"%1$@\"?";
 "menu_delete_messages" = "Forigi mesaĝojn";
 "delete_contact" = "Forviŝi Kontakton";
 "menu_delete_location" = "Ĉu forigi tiun ĉi lokon?";
 "menu_message_details" = "Mesaĝ-detaloj";
 "menu_copy_to_clipboard" = "Kopii al tondujo";
+"menu_copy_selection_to_clipboard" = "Kopii tion, kion vi elstarigis";
 "menu_copy_link_to_clipboard" = "Kopii Ligilon";
 "menu_copy_text_to_clipboard" = "Kopii Tekston";
 "menu_copy_image_to_clipboard" = "Kopii Bildon";
+"menu_copy_email_to_clipboard" = "Kopii retpoŝtaĵon";
+"paste_from_clipboard" = "Alglui el la tondujo";
 "menu_forward" = "Plusendi mesaĝon";
 "menu_reply" = "Respondi al mesaĝo";
 "menu_mute" = "Silentigi sciigojn";
 "menu_unmute" = "Malsilentigi";
 "menu_export_attachment" = "Eksporti aldonaĵon";
+"menu_export_attachments" = "Eksporti aldonaĵojn";
 "menu_all_media" = "Ĉiuj aŭvidaĵoj";
+// Command to jump to the original message corresponding to a gallery image or document
+"show_in_chat" = "Afiŝu en la babilejo";
 "menu_share" = "Kunhavigi";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloki";
@@ -173,7 +211,9 @@
 "menu_scroll_to_bottom" = "Rulumi al la malsupro";
 "menu_scroll_to_top" = "Rulumi al la supro";
 "menu_help" = "Helpo";
+"privacy_policy" = "Politiko pri privateco";
 "menu_select_all" = "Elekti ĉion";
+"select_chat" = "Elektu babilejon";
 "select_more" = "Elekti pli";
 "menu_edit_name" = "Redakti nomon";
 "menu_settings" = "Agordoj";
@@ -182,6 +222,10 @@
 "menu_zoom_in" = "Zomi";
 "menu_zoom_out" = "Malzomi";
 "menu_save_log" = "Konservi protokolon";
+"menu_more_options" = "Pli da ebloj";
+"menu_learn_spelling" = "Lernu la ortografion";
+"jump_to_message" = "Iru al mesaĝo";
+"copy_json" = "Kopiu JSON";
 "title_share_location" = "Konigi lokon al ĉiuj grupanoj";
 "device_talk" = "Aparataj mesaĝoj";
 "device_talk_subtitle" = "Loke generitaj mesaĝoj";

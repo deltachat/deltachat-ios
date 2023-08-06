@@ -295,7 +295,7 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Rimuovere %1$@ dal gruppo?";
 // %1$s is replaced by a comma-separated list of names
-"ask_remove_from_broadcast" = "Rimuovere %1$@ dalla lista trasmissione?";
+"ask_remove_from_broadcast" = "Rimuovere %1$@ dalla lista di trasmissione?";
 "open_url_confirmation" = "Vuoi aprire questo link?";
 
 
@@ -408,7 +408,7 @@
 "media_preview" = "Anteprima dei Media";
 "send_message" = "Invia Messaggio";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
-"aeap_addr_changed" = "%1$@ hanno cambiato il loro indirizzo da %2$@ a %3$@";
+"aeap_addr_changed" = "%1$@ ha cambiato l\'indirizzo da %2$@ a %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Hai cambiato il tuo indirizzo email da %1$@ a %2$@.\n\nSe ora invii un messaggio a un gruppo verificato, i contatti sostituiranno automaticamente il vecchio indirizzo con il tuo nuovo.\n\nSi consiglia vivamente di impostare il tuo vecchio provider email per inoltrare tutte le email al tuo nuovo indirizzo email. Altrimenti potresti perdere i messaggi di contatti che non hanno ancora ricevuto il tuo nuovo indirizzo.";
 

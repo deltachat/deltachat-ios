@@ -1,32 +1,33 @@
 // common strings without special context
-"app_name" = "دلتا چت";
-"ok" = "تایید";
+"app_name" = "دلتاچت";
+"ok" = "تأیید";
 "cancel" = "لغو";
-"clear_search" = "پاک کردن جستجو";
+"clear_search" = "پاک کردن جست‌وجو";
 "yes" = "بله";
 "no" = "خیر";
 "select" = "انتخاب";
 "on" = "روشن";
 "off" = "خاموش";
 "def" = "پیش‌فرض";
-"default_value" = "پیش‌فرض(%1$@)";
-"default_value_as_above" = "پیش‌فرض(مانند بالا)";
-"custom" = "ترجیحی";
+"default_value" = "پیش‌فرض (%1$@)";
+"default_value_as_above" = "پیش‌فرض (مانند بالا)";
+"custom" = "سفارشی";
 "none" = "هیچ‌کدام";
 "automatic" = "خودکار";
 "strict" = "سخت‌گیرانه";
-"open" = "بازکردن";
+"open" = "گشودن";
 "download" = "بارگیری";
-"downloading" = "در حال بارگیری...";
-"open_attachment" = "باز کردن ضمیمه";
+"downloading" = "در حال بارگیری…";
+"open_attachment" = "گشودن پیوست";
 "join" = "پیوستن";
 "rejoin" = "پیوستن مجدد";
 "delete" = "حذف";
 "info" = "درباره";
-"update" = "به‌ روز رسانی";
+"update" = "به‌‌روزرسانی";
 "emoji" = "شکلک";
-"attachment" = "ضمیمه";
+"attachment" = "پیوست";
 "back" = "بازگشت";
+"verified" = "احراز هویت شده";
 "close" = "بستن";
 "forward" = "هدایت";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -37,13 +38,13 @@
 "unarchive" = "خروج از بایگانی";
 "mute" = "سکوت";
 "ephemeral_messages" = "پیام‌های ناپدید شونده";
-"ephemeral_messages_hint" = "این تنظیمات برای تمام افرادی که از دلتاچت استفاده می کنند اعمال می‌شود. ولی ممکن است آن‌ها  از پیامها را زونوشت گرفته، پیام‌ها را  ذخیره یا هدایت کرده و یا از سایر برنامه های ایمیل استفاده کنند.";
+"ephemeral_messages_hint" = "روی تمام اعضای این گپ، اگر از دلتاچت استفاده کنند، اعمال می‌شود؛ ولی همچنان می‌توانند پیام‌ها را رونوشت، ذخیره و هدایت کنند یا از کارخواه‌های رایانامهٔ دیگر استفاده کنند.";
 "save" = "ذخیره";
-"chat" = "گفتگو";
+"chat" = "گپ";
 "media" = "رسانه";
 "profile" = "نمایه";
-"main_menu" = "صفحه اصلی";
-"start_chat" = "شروع گفتگو";
+"main_menu" = "فهرست اصلی";
+"start_chat" = "شروع گپ";
 "show_full_message" = "نمایش پیام کامل...";
 "show_full_message_in_browser" = "نمایش پیام کامل در مرورگر";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
@@ -58,7 +59,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "تصاویر مربوط به نشانی‌های اینترنتی دیگر می‌توانند برای ردیابی شما استفاده شوند. \n\n این تنظیمات همچنین برای بارگیری فونت‌ها و دیگر محتواها استفاده می‌شوند. اگر غیرفعال باشد ممکن است همچنان تصاویر درون پیام و تصاویر بارگیری شده را ببینید. \n\n آيا تصاویر خارجی بارگیری شوند؟";
 "always" = "همیشه";
-"always_load_remote_images" = "همیشه تصاویر ریموت را بارگیری کن";
+"always_load_remote_images" = "تصاویر دوردست همیشه بار شوند";
 "once" = "همین یک بار";
 "show_warning" = "نمایش هشدار";
 "show_password" = "نمایش رمزعبور";
@@ -93,6 +94,8 @@
 "last_month" = "ماه گذشته";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "آخرین بار در %1$@ دیده شده";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "آخرین بار دیده‌شده در %1$@";
 "last_seen_unknown" = "آخرین زمان مشاهده: نامشخص";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -116,22 +119,23 @@
 "video" = "فیلم";
 "documents" = "اسناد";
 "contact" = "مخاطب";
-"verified_contact" = "مخاطب تایید شده. ";
+"verified_contact" = "مخاطب تأیید شده";
 "camera" = "دوربین";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "گرفتن";
 "switch_camera" = "تغییر دوربین";
 "toggle_fullscreen" = "تغییر وضعیت تمام صفحه";
 "location" = "موقعیت مکانی";
+"locations" = "مکان‌ها";
 "gallery" = "گالری";
 "images_and_videos" = "تصاویر و فیلم‌ها";
 "file" = "پوشه";
-"files" = "فایل‌ها";
+"files" = "پرونده‌ها";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_app" = "نرم‌افزار خصوصی";
+"webxdc_app" = "برنامه";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_apps" = "نرم‌افزارهای خصوصی";
-"files_and_webxdx_apps" = "فایل‌ها و نرم‌افزارهای خصوصی";
+"webxdc_apps" = "برنامه‌ها";
+"files_and_webxdx_apps" = "پرونده‌ها و برنامه‌ها";
 "unknown" = "ناشناس";
 
 "green" = "سبز";
@@ -155,11 +159,11 @@
 
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "مخاطب جدید";
-"menu_new_chat" = "گفتگوی جدید";
+"menu_new_chat" = "گپ جدید";
 "menu_new_group" = "گروه جدید";
 // Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
 "new_group_or_subject" = "گروه یا عنوان جدید";
-"menu_new_verified_group" = "گروه تایید شده جدید";
+"menu_new_verified_group" = "گروه تأیید شدهٔ جدید";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "لیست Broadcast";
 "broadcast_lists" = "لیست‌های Broadcast";
@@ -170,11 +174,11 @@
 "menu_edit_group" = "ویرایش گروه";
 "menu_group_name_and_image" = "نام و تصویر گروه";
 "menu_show_global_map" = "نمایش همه موقعیت‌های مکانی";
-"menu_archive_chat" = "بایگانی گفتگو";
+"menu_archive_chat" = "بایگانی گپ";
 "menu_unarchive_chat" = "خروج چت از بایگانی";
 "menu_add_attachment" = "افزودن ضمیمه";
 "menu_leave_group" = "ترک گروه";
-"menu_delete_chat" = "حذف کل گفتگو";
+"menu_delete_chat" = "حذف گپ";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "پاک کردن چت";
 "ask_delete_named_chat" = "اطمینان دارید می‌خواهید \"%1$@\" را پاک کنید؟";
@@ -197,7 +201,7 @@
 "menu_export_attachments" = "صادر کردن ضمیمه";
 "menu_all_media" = "همه رسانه‌ها";
 // Command to jump to the original message corresponding to a gallery image or document
-"show_in_chat" = "نمایش در گفتگو";
+"show_in_chat" = "نمایش در گپ";
 "menu_share" = "اشتراک";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "مسدود کردن";
@@ -211,29 +215,30 @@
 "menu_help" = "کمک";
 "privacy_policy" = "خط مشی رازداری";
 "menu_select_all" = "انتخاب همه";
+"select_chat" = "انتخاب چت";
 "select_more" = "انتخاب بیشتر";
 "menu_edit_name" = "ویرایش نام";
 "menu_settings" = "تنظیمات";
 "menu_advanced" = "پیشرفته";
-"menu_view_profile" = "نمایش پروفایل";
+"menu_view_profile" = "نمایش نمایه";
 "menu_zoom_in" = "درشت نمایی";
 "menu_zoom_out" = "کوچک نمایی";
 "menu_save_log" = "ذخیره گزارش";
 "menu_more_options" = "گزینه‌های بیشتر";
 "menu_learn_spelling" = "یادگرفتن املا ";
-"menu_chat_audit_log" = "گزارش بررسی گفتگو";
+"menu_chat_audit_log" = "گزارش بررسی گپ";
 "jump_to_message" = "رفتن به پیام";
 "copy_json" = "JSON رونوشت برداری از ";
 "replace_draft" = "جایگزین کردن پیش‌نویس";
 "title_share_location" = "اشتراک موقعیت مکانی با همه اعضای گروه";
 "device_talk" = "پیام‌های دستگاه";
 "device_talk_subtitle" = "پیام‌های  داخلی";
-"device_talk_explain" = "پیام‌ها در این گفتگو به صورت داخلی و توسط نرم‌افزار دلتاچت تولید شده‌اند. سازنده‌ها از این محل برای اعلان به روز‌رسانی‌ها و مشکلات پیش آمده حین کار استفاده می‌کنند. ";
+"device_talk_explain" = "پیام‌ها در این گپ به صورت داخلی و توسط نرم‌افزار دلتاچت تولید شده‌اند. سازنده‌ها از این محل برای اعلان به روز‌رسانی‌ها و مشکلات پیش آمده حین کار استفاده می‌کنند. ";
 "edit_contact" = "ویرایش مخاطب";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
-"pin_chat" = "سنجاق کردن گفتگو";
+"pin_chat" = "سنجاق کردن گپ";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
-"unpin_chat" = "سنجاق برداری از گفتگو";
+"unpin_chat" = "کندن گپ از سنجاق";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "سنجاق‌کردن";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
@@ -256,10 +261,10 @@
 "share_location_for_two_hours" = "به مدت ۲ ساعت";
 "share_location_for_six_hours" = "به مدت ۶ ساعت";
 
-"file_saved_to" = "فایل  در \"%1$@\" ذخیره شد";
+"file_saved_to" = "پرونده  در «%1$@» ذخیره شد.";
 
-"videochat" = "گفتگوی تصویری";
-"videochat_invite_user_to_videochat" = "دعوت کردن %1$@به گفتگوی تصویری";
+"videochat" = "گپ تصویری";
+"videochat_invite_user_to_videochat" = "دعوت کردن %1$@به گپ تصویری";
 "videochat_invite_user_hint" = "این عمل، به نرم افزار یا مرورگر سازگار برای هردوطرف مکالمه نیاز دارد. ";
 "videochat_contact_invited_hint" = "%1$@ دعوت به تماس تصویری  ";
 "videochat_you_invited_hint" = "شما به تماس تصویری دعوت شده‌اید.";
@@ -267,8 +272,8 @@
 "videochat_tap_to_open" = "برای باز کردن ضربه بزنید. ";
 "videochat_instance" = "جلسه تماس تصویری";
 "videochat_instance_placeholder" = "جلسه تماس تصویری شما";
-"videochat_instance_explain_2" = "در صورت فعال‌سازی می‌توانید یک مکالمه تصویری را در هر گفتگو شروع کنید. نیازمند نرم‌افزار مورد نیاز یا مرورگر در هر دو طرف است. ";
-"videochat_instance_from_qr" = "می‌خواهید از \"%1$@\" برای دعوت دیگران به گفتگوی تصویری استفاده کنید؟/n/n وقتی تعیین شد، می‌توانید در هر گفتگوی فرد به فرد یک مکالمه تصویری شروع کنید. این کار، تنظیمات قبلی تماس تصویری(در صورت وجود تنظیمات قبلی) را تغییر می‌دهد.";
+"videochat_instance_explain_2" = "اگر به کا بیفتد، می‌توانید یک مکالمهٔ تصویری را در هر گپ شروع کنید. نیازمند نرم‌افزار مورد نیاز یا مرورگر در هر دو طرف است. ";
+"videochat_instance_from_qr" = "می‌خواهید از «%1$@» برای دعوت دیگران به گپ تصویری استفاده کنید؟/n/n وقتی تعیین شد، می‌توانید در هر گپ فرد به فرد یک مکالمهٔ تصویری شروع کنید. این کار، تنظیمات قبلی تماس تصویری را تغییر می‌دهد.";
 "videochat_invitation" = "دعوت به مکالمه تصویری.";
 "videochat_invitation_body" = "شما به مکالمه تصویری دعوت شده اید برای پیوستن%1$@ را بزنید.";
 
@@ -276,14 +281,14 @@
 "ask_leave_group" = "مطمئن هستید می‌خواهید این گروه را ترک کنید؟";
 "ask_delete_message" = "مطمئن هستید می‌خواهید این پیام را پاک کنید؟";
 "ask_forward" = "پیام‌ها به %1$@هدایت شوند؟";
-"ask_forward_multiple" = "انتقال پیام‌ها به %1$d گفتگو؟";
+"ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
 "ask_export_attachment" = "ضمیمه صادر شود؟ صادر کردن ضمیمه باعث می‌شود دیگر نرم‌افزارهای روی دستگاه شما بتوانند به آن دسترسی داشته باشند. \n\nادامه می‌دهید؟";
 "ask_block_contact" = "مخاطب مسدود شود؟ شما دیگر پیامی از این مخاطب دریافت نخواهید کرد.";
 "ask_unblock_contact" = "رفع مسدودیت مخاطب؟ دوباره قادر خواهید بود پیام‌های ارسال شده توسط این مخاطب را دریافت کنید.";
-"ask_delete_contacts" = "مخاطبین حذف شوند؟\n\nمخاطبینی که گفتگوی فعال دارند و مخاطبینی که در دفتر تلفن سیستم هستند را نمی‌توان به صورت دائمی حذف کرد. ";
-"ask_delete_contact" = "حذف مخاطب %1$@؟ \n\nمخاطبین با گفتگوی فعال و مخاطبینی که در دفتر تلفن سیستم هستند را نمی‌توان به صورت دائمی حذف کرد. ";
-"cannot_delete_contacts_in_use" = "نمی‌توان مخاطبین گفتگو‌های فعال را حذف کرد. ";
-"ask_start_chat_with" = "گفتگو با %1$@؟";
+"ask_delete_contacts" = "مخاطبین حذف شوند؟\n\nمخاطبینی که گپ فعال دارند و مخاطبینی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
+"ask_delete_contact" = "حذف مخاطب %1$@؟ \n\nمخاطبین با گپ فعال و مخاطبینی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
+"cannot_delete_contacts_in_use" = "نمی‌توان مخاطبین گپ‌های فعال را حذف کرد. ";
+"ask_start_chat_with" = "گپ زدن با %1$@؟";
 "ask_delete_value" = "پاک کردن %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "حذف %1$@ از گروه؟";
@@ -300,25 +305,26 @@
 
 
 // chatlist and chat view
-"chat_archived_chats_title" = "گفتگو‌های بایگانی شده";
+"chat_archived_chats_title" = "گپ‌های بایگانی شده";
 "chat_please_enter_message" = "لطفا یک پیام وارد کنید.";
 "chat_camera_unavailable" = "دوربین در دسترس نیست";
 "chat_unable_to_record_audio" = "ضبط صدا ممکن نیست. ";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "ارسال پیام. مشکلی نیست اگر %1$@ از دلتاچت استفاده نمی‌کند.";
+"chat_new_broadcast_hint" = "در فهرست پخش، دیگران پیام‌ها را در گپ‌های خصوصی با شما دریافت می‌کنند.\n\nگیرنده‌ها از یکدیگر خبر نخواهند داشت. ";
 "chat_new_group_hint" = "نوشتن اولین پیام به دیگران امکان می‌دهد در این گروه پاسخ دهند. \n\n• مشکلی نیست اگر همه اعضا از دلتاچت استفاده نکنند\n\n• دریافت اولین پیام ممکن است به زمان بیشتری نیاز داشته باشد. ";
 "chat_record_slide_to_cancel" = "برای لغو بکشید.";
 "chat_record_explain" = "برای ضبط پیام صوتی فشار داده و نگهدارید، برای ارسال رها کنید. ";
-"chat_no_chats_yet_title" = "جعبه ورودی خالی. \n برای شروع گفتگو جدید \"+\" را فشار دهید.";
-"chat_no_chats_yet_hint" = "می‌توانید با دیگر کاربران دلتا چت و هر نشانی رایانامه‌ای گفتگو را آغاز کنید.";
-"chat_all_archived" = "همه گفتگوها بایگانی شده‌اند. /n برای شروع گفتگو \"+\" را فشار دهید. ";
+"chat_no_chats_yet_title" = "جعبهٔ ورودی خالی. \n برای شروع گپ جدید «+» را فشار دهید.";
+"chat_no_chats_yet_hint" = "می‌توانید با دیگر کاربران دلتاچت و هر نشانی رایانامه‌ای گپ بزنید.";
+"chat_all_archived" = "تمام گپ‌ها بایگانی شده‌اند. /n برای شروع گپ جدید، «+» را فشار دهید. ";
 "chat_share_with_title" = "اشتراک گذاری با";
 "chat_input_placeholder" = "پیام";
 "chat_archived_label" = "بایگانی شد";
 "chat_request_label" = "درخواست";
 "chat_no_messages" = "پیامی نیست. ";
 "chat_self_talk_subtitle" = "پیام‌هایی که برای خودم  ارسال کرده‌ام. ";
-"archive_empty_hint" = "اگر گفتگوها را بایگانی کنید در اینجا نمایش داده می‌شوند. ";
+"archive_empty_hint" = "اگر گپ‌ها را بایگانی کنید در اینجا نمایش داده می‌شوند. ";
 "saved_messages" = "پیام‌های ذخیره شده. ";
 "saved_messages_explain" = "برای دسترسی راحت‌تر پیام‌ها را به اینجا هدایت کنید\n\n• می‌توانید یادداشت متنی یا صوتی تهیه کنید\n\n• برای ذخیره رسانه‌ آن را ضمیمه کنید. ";
 // Should match "Saved" from "Saved messages"
@@ -327,31 +333,35 @@
 "retry_send" = "برای ارسال پیام دوباره تلاش کنید. ";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "نمی‌توانید بنویسید چرا که در این گروه نیستید. برای عضو شدن از یکی از اعضا درخواست کنید. ";
-"messaging_disabled_device_chat" = "این گفتگو شامل پیام‌های تولید شده به صورت داخلی است. برای همین نمی‌توانید پیامی بنویسید. ";
-"messaging_disabled_mailing_list" = "ارسال پیام در لیست‌های ایمیل فعلا پشتیبانی نمی‌شود.";
-"cannot_display_unsuported_file_type" = "امکان نمایش این نوع فایل وجود ندارد: %1$@";
+"messaging_disabled_device_chat" = "این گپ شامل پیام‌های تولید شده به صورت داخلی است. برای همین نمی‌توانید پیامی بنویسید. ";
+"messaging_disabled_mailing_list" = "ارسال پیام در فهرست‌های پستی فعلاً پشتیبانی نمی‌شود.";
+"cannot_display_unsuported_file_type" = "امکان نمایش این نوع پرونده وجود ندارد: %1$@";
 "attachment_failed_to_load" = "ناموفق در بارگیری ضمیمه";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "قفل کردن ضبط کردن";
 
 // mailing lists
-"mailing_list" = "لیست ایمیل";
-"mailing_list_profile_info" = "تغییرات انجام شده روی اسم و تصویر لیست ایمیل فقط در این دستگاه اعمال شود.";
+"mailing_list" = "فهرست پستی";
+"mailing_list_profile_info" = "تغییرات انجام شده روی نام و تصویر فهست پستی فقط در این دستگاه اعمال شود.";
 
 // webxdc
 // "Start..." button for an app
 "start_app" = "شروع...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
-"accept_request_first" = "لطفا اول درخواست گفتگو را قبول کنید.";
+"accept_request_first" = "لطفاً اول درخواست گپ را قبول کنید.";
+// placeholder will be replaced by a file name
+"send_file_to" = "ارسال \"%1$@\" به...";
+"send_message_to" = "ارسال پیام به...";
+
 // map
 "filter_map_on_time" = "نمایش موقعیت‌های مکانی در چارچوب زمان";
 "show_location_traces" = "نمایش ردپاها";
 "add_poi" = "ارسال نقطه توجه";
 
 // chat audit log
-"chat_audit_log_empty_message" = "پیام‌های سیستم مربوط به این گفتگو اینجا نمایش داده خواهند شد.";
-"chat_audit_log_title" = "گزارش بررسی گفتگو برای %1$@";
-"chat_audit_log_description" = "این نمایش فقط اطلاعات پیام‌ها و سیستم را نشان می‌دهد و برای پیدا کردن آخرین فعالیت‌های گفتگو بدون گشتن بین تعداد زیادی پیام معمولی مناسب است.";
+"chat_audit_log_empty_message" = "پیام‌های سامانه‌ای این گپ اینجا نمایش داده خواهند شد";
+"chat_audit_log_title" = "گزارش حسابرسی گپ برای %1$@";
+"chat_audit_log_description" = "فقط سامانه و پیام‌های اطلاع‌رسانی را نشان می‌دهد. برای یافتن آخرین کنش‌های گپ بدون لغزش میان بسیاری پیام مفید است.";
 
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -365,7 +375,7 @@
 
 // search
 "search" = "جستجو";
-"search_explain" = "جستجو برای گفتگوها، مخاطبین و پیام‌ها";
+"search_explain" = "جست‌وجو برای گپ‌ها، مخاطبان و پیام‌ها";
 "search_no_result_for_x" = "نتیجه‌ای برای \"%1$@\" پیدا نشد";
 
 
@@ -379,25 +389,26 @@
 "group_add_members" = "افزودن اعضا";
 "group_self_not_in_group" = "برای این کار باید عضو گروه باشید.";
 "profile_encryption" = "رمزگذاری";
-"profile_shared_chats" = "گفتگوهای اشتراک گذاری شده";
+"profile_shared_chats" = "گپ‌های هم‌رسانده";
 "tab_contact" = "مخاطب";
 "tab_group" = "گروه";
 "tab_gallery" = "گالری";
 "tab_docs" = "اسناد";
 "tab_links" = "لینک‌ها";
 "tab_map" = "نقشه";
-"tab_gallery_empty_hint" = "عکس‌ها و فیلم‌هایی که در این گفتگو به اشتراک گذاشته شده‌اند در اینجا نمایش داده خواهد شد. ";
-"tab_docs_empty_hint" = "اسناد، آهنگ‌ها و دیگر فایل‌هایی که در این گفتگو به اشتراک گذاشته شده باشند در اینجا نمایش داده خواهند شد. ";
-"tab_image_empty_hint" = "تصاوری که در این گفتگو اشتراک گذاری شده‌ باشند در اینجا نمایش داده می‌شوند. ";
-"tab_video_empty_hint" = "فیلم‌هایی که در این گفتگو اشتراک گذاری شده باشند در اینجا نمایش داده می‌شوند. ";
-"tab_audio_empty_hint" = "فایل‌ها و پیام‌های صوتی که در این گفتگو اشتراک گذاری شده‌‌اند در اینجا نمایش داده می‌شوند.";
-"tab_webxdc_empty_hint" = "نرم‌افزارهای خصوصی، که در این گفتگو به اشتراک گذاشته شده‌اند در اینجا نمایش داده می‌شوند. ";
-"tab_all_media_empty_hint" = "رسانه به اشتراک گذاشته شده هر چت در اینجا ظاهر می‌شود.";
+"tab_gallery_empty_hint" = "تصاویر و ویدیوهای هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
+"tab_docs_empty_hint" = "اسناد و پرونده‌های هم‌رساندهٔ دیگر در این گپ اینجا نمایش داده می‌شوند.";
+"tab_image_empty_hint" = "تصاویر هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
+"tab_video_empty_hint" = "ویدیوهای هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
+"tab_audio_empty_hint" = "پرونده‌های صوتی و پیام‌های صوتی هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
+"tab_webxdc_empty_hint" = "برنامه‌هایی که در این چت به اشتراک گذاشته شده‌اند، این‌جا نمایش داده خواهند شد.";
+"tab_all_media_empty_hint" = "رسانه‌های به اشتراک گذاشته شده همه چت‌ها در اینجا ظاهر می‌شود.";
 "media_preview" = "نمایش رسانه";
 "send_message" = "ارسال پیام";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "مخاطب %1$@ نشانی خود را از %2$@ به %3$@ تغییر داده است.  ";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+"aeap_explanation" = "شما نشانی رایانامهٔ خود را از %1$@ به %2$@ تغییر دادید.\n\nاگر به یک گروه تأیید شده پیام بفرستید، مخاطبان آن به صورت خودکار نشانی جدید را جایگزین نشانی پیشین می‌کنند.\n\nبه شدت توصیه می‌شود که نشانی رایانامهٔ پیشین خود را به نحوی تنظیم کنید که تمام رایانامه‌ها را به نشانی جدید شما هدایت کند؛ در غیر این صورت ممکن است پیام‌های مخاطبانی که از تغییر نشانی شما مطلع نشده‌اند را از دست بدهید. ";
 
 
 // Multi Device
@@ -405,16 +416,16 @@
 "multidevice_title" = "افزودن دستگاه دوم";
 "multidevice_same_network_hint" = "مطمئن شوید هر دو دستگاه در یک وای‌فای یا شبکه هستند";
 "multidevice_this_creates_a_qr_code" = "این یک کد QR ایجاد می‌کند که دستگاه دوم می‌تواند برای کپی حساب اسکن کند.";
-"multidevice_install_dc_on_other_device" = "دلتا چت را روی دستگاه دیگر خود نصب کنید (https://get.delta.chat)";
-"multidevice_tap_scan_on_other_device" = "دلتا چت را اجرا کنید، روی \"افزودن به عنوان دستگاه دوم\" بزنید و کد نشان داده شده در اینجا را اسکن کنید";
+"multidevice_install_dc_on_other_device" = "دلتاچت را روی دستگاه دیگر خود نصب کنید (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "دلتاچت را اجرا کنید، روی «افزودن به عنوان دستگاه دوم» بزنید و کد نشان داده شده در اینجا را پویش کنید";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "برای راه اندازی دستگاه دوم برای %1$@ اسکن کنید";
 "multidevice_receiver_title" = "افزودن به عنوان دستگاه دوم";
 "multidevice_open_settings_on_other_device" = "در دستگاه اول، به \"تنظیمات / افزودن دستگاه دوم\" بروید و کد نشان داده شده در آنجا را اسکن کنید";
 "multidevice_receiver_scanning_ask" = "حساب از دستگاه دیگر به این دستگاه کپی شود؟";
 "multidevice_abort" = "راه اندازی دستگاه دوم لغو شود؟";
-"multidevice_abort_will_invalidate_copied_qr" = "این کار کد QR کپی شده در کلیپ بورد را باطل می کند.";
-"multidevice_experimental_hint" = "(تجربی، نسخه 1.36 مورد نیاز است)";
+"multidevice_abort_will_invalidate_copied_qr" = "این کار رمزینهٔ پاس رونوشت شده در تخته‌گیره را باطل می کند.";
+"multidevice_experimental_hint" = "(آزمایشی، نسخه 1.36 مورد نیاز است)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ حساب به دستگاه دوم شما منتقل شد.";
 // Shown beside progress bar, stay short
 "preparing_account" = "در حال آماده سازی حساب…";
@@ -424,7 +435,7 @@
 "receiver_connected" = "گیرنده متصل شد…";
 // Shown beside progress bar, stay short
 "transferring" = "در حال انتقال…";
-"troubleshooting" = "عیب یابی";
+"troubleshooting" = "عیب‌یابی";
 
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -452,12 +463,13 @@
 
 
 // welcome and login
-"welcome_chat_over_email" = "گفتگو از طریق رایانامه";
+"welcome_chat_over_email" = "روی رایانامه گپ بزنید.";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
 "welcome_intro1_message" = "پیام‌رسانی با وسیع‌ترین طیف مخاطبین در جهان. آزاد و مستقل. ";
 "login_title" = "ورود";
 "login_header" = "به سرور خود وارد شوید";
 "login_explain" = "ورود با یک رایانامه موجود";
+"login_subheader" = "برای ارائه‌دهندگان شناخته شده تنظبمات اضافه به صورت خودکار انجام می‌شود. گاهی اوقات IMAP باید در تنظیمات رایانامهٔ شما فعال شود. از ارائه‌دهندهٔ رایانامه یا دوستانتان در این مورد کمک بگیرید.";
 "login_no_servers_hint" = "دلتاچت هیچ سروری ندارد، داده‌های شما در دستگاه شما باقی می‌ماند.";
 "login_inbox" = "ورودی";
 "login_imap_login" = "IMAP Login Name";
@@ -481,18 +493,18 @@
 // Translators: %1$s will be replaced by an e-mail address
 "login_oauth2_checking_addr" = "بررسی %1$@";
 "login_info_oauth2_title" = "با تنظیمات ساده‌ شده ادامه می‌دهید؟";
-"login_certificate_checks" = "بررسی تاییدیه";
-"login_error_mail" = "لطفا یک نشانی ایمیل صحیح وارد کنید";
-"login_error_server" = "لطفا یک نشانی ایمیل/آی پی صحیح وارد کنید";
+"login_certificate_checks" = "بررسی‌های گواهینامه";
+"login_error_mail" = "لطفاً یک نشانی رایانامهٔ معتبر وارد کنید";
+"login_error_server" = "لطفا یک کارساز / نشانی آی‌پی صحیح وارد کنید";
 "login_error_port" = "لظفا یک پورت صحیح وارد کنید(1–65535)";
-"login_error_required_fields" = "لطفا یک ایمیل و رمزعبور صحیح وارد کنید";
+"login_error_required_fields" = "لطفاً یک نشانی رایانامه و گذرواژهٔ معتبر وارد کنید";
 "import_backup_title" = "وارد کردن نسخه پشتیبانی";
 "import_backup_ask" = "نسخه پشتیبانی در\"%1$@\" پیدا شد.\n\n آیا می‌خواهید همه داده ها و تنظیمات از آن وارد شود؟";
 "import_backup_no_backup_found" = "نسخه پشتیبانی پیدا نشد.\n\n نسخه پشتیبانی را در\"%1$@\" کپی کرده و دوباره امتحان کنید. در غیر این صورت می‌توانید \"شروع پیام‌رسانی\" را فشار دهید دا فرایند به صورت عادی ادامه یابد. ";
 // Translators: %1$s will be replaced by the e-mail address
-"login_error_cannot_login" = "امکان ورود با\"%1$@\"وجود ندارد. لطفا صحت ایمیل و رمز عبور را بررسی کنید. ";
+"login_error_cannot_login" = "نتوانست به عنوان «%1$@» وارد شود. لطفاً صحت نشانی رایانامه و گذرواژه را بررسی کنید. ";
 // TLS certificate checks
-"accept_invalid_certificates" = "پذیرش تاییدیه‌های نادرست";
+"accept_invalid_certificates" = "پذیرش گواهینامه‌های نامعتبر";
 "used_settings" = "تنظیمات استفاده شده:";
 "switch_account" = "تغییر حساب کاربری";
 "add_account" = "افزودن حساب کاربری";
@@ -509,21 +521,21 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "هدایت به...";
-"share_multiple_attachments" = "ارسال %1$dفایل به گفتگوی انتخاب شده؟ n/n/ فایل‌ها بدون تغییر و در اندازه اصلی ارسال شده و تصاویر و فیلم ها فشرده نمی‌شوند.";
-"share_multiple_attachments_multiple_chats" = "ارسال  %1$dفایل به %2$d گفتگو؟n/n/ فایل‌(ها) بدون تغییر ارسال می‌شوند به این معنا که تصاویر و فیلم‌ها فشرده نمی‌شوند. ";
-"share_text_multiple_chats" = "ارسال این متن به %1$d گفتگو؟n/n/ \"%2$@\"";
+"share_multiple_attachments" = "ارسال %1$dپرونده به گپ انتخاب شده؟ n/n/ پرونده‌ها بدون تغییر و در اندازهٔ اصلی ارسال می‌شوند (مثلاً تصاویر و ویدیوها فشرده نمی‌شوند).";
+"share_multiple_attachments_multiple_chats" = "ارسال  %1$dپرونده به %2$d گپ؟n/n/ پرونده‌(ها) بدون تغییر ارسال می‌شوند (مثلاً تصاویر و ویدیوها فشرده نمی‌شوند).";
+"share_text_multiple_chats" = "ارسال این متن به %1$d گپ؟n/n/«%2$@»";
 "share_abort" = "اشتراک گذاری به دلیل نبود مجوز‌ها متوقف شد.";
 
 
 // preferences
 "pref_using_custom" = "استفاده از ترجیحی: %1$@";
 "pref_using_default" = "استفاده از پیش‌فرض: %1$@";
-"pref_profile_info_headline" = "اطلاعات پروفایل شما";
-"pref_profile_photo" = "تصویر پروفایل";
+"pref_profile_info_headline" = "اطلاعات نمایهٔ شما";
+"pref_profile_photo" = "تصویر نمایه";
 "pref_blocked_contacts" = "مخاطبین مسدود شده";
 "blocked_empty_hint" = "اگر مخاطبی را مسدود کنید اینجا نمایش داده می‌شود";
 "pref_password_and_account_settings" = "رمزعبور و حساب کاربری";
-"pref_who_can_see_profile_explain" = "وقتی با دیگر کاربران گفتگو می‌کنید تصویر پروفایل و اسم شما در کنار پیام‌ها نمایش داده می‌شوند. اطلاعاتی که تا کنون ارسال شده‌اند قابل حذف نیستند. ";
+"pref_who_can_see_profile_explain" = "وقتی با دیگر کاربران گپ می‌زنید، تصویر نمایه، نام و امضایتان در کنار پیام‌هایتان فرستاده می‌شوند.";
 "pref_your_name" = "اسم شما";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "متن امضا";
@@ -548,7 +560,7 @@
 "pref_sound" = "صدا";
 "pref_silent" = "سکوت";
 "pref_privacy" = "حریم خصوصی";
-"pref_chats_and_media" = "گفتگوها و رسانه";
+"pref_chats_and_media" = "گپ‌ها و رسانه";
 "pref_system_default" = "پیش‌فرض سیستم";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "روشن";
@@ -565,8 +577,8 @@
 "pref_use_system_emoji" = "استفاده از شکلک‌های سیستم";
 "pref_use_system_emoji_explain" = "غیرفعال کردن شکلک‌های داخلی دلتاچت";
 "pref_app_access" = "دسترسی نرم‌افزار";
-"pref_chats" = "گفتگوها";
-"pref_in_chat_sounds" = "صداهای مربوط به گفتگو";
+"pref_chats" = "گپ‌ها";
+"pref_in_chat_sounds" = "صداهای درون‌گپی";
 "pref_message_text_size" = "اندازه نوشته‌های پیام";
 "pref_view_log" = "نمایش گزارش";
 "pref_saved_log" = "گزارش را در پوشه\"دانلودها\" ذخیره کن ";
@@ -574,18 +586,19 @@
 "pref_log_header" = "گزارش";
 "pref_other" = "دیگر";
 "pref_backup" = "نسخه پشتیبان";
-"pref_backup_explain" = "تهیه نسخه پشتیبان از گفتگوها در حافظه خارجی";
-"pref_backup_export_explain" = "تهیه نسخه پشتیبان به شما  کمک می‌کند روی این دستگاه یا دستگاه دیگر نرم‌افزار را دوباره نصب کنید.\n\n نسخه پشتیبان حاوی همه پیام‌ها، مخاطبین، گفتگوها و سیستم رمزگذاری خودکار گیرنده به گیرنده  شما خواهد بود. فایل پشتیبانی را در یک جای امن نگه دارید و در اسرع وقت آن را پاک کنید.";
+"pref_backup_explain" = "تهیهٔ پشتیبان از گپ‌ها در ذخیره‌گاه خارجی";
+"pref_backup_export_explain" = "تهیهٔ پشتیبان به شما  کمک می‌کند روی این دستگاه یا دستگاه دیگر نرم‌افزار را دوباره نصب کنید.\n\nپشتیبان حاوی تمام پیام‌ها، مخاطبین، گپ‌ها و برپاسازی اتوکریپت سرتاسر شما خواهد بود. پروندهٔ پشتیبانی را در یک جای امن نگه دارید و در اسرع وقت آن را پاک کنید.";
 "pref_backup_export_start_button" = "شروع تهیه نسخه پشتیبان";
 "pref_backup_written_to_x" = "نسخه پشتیبان با موفقیت در\"%1$@\" ذخیره شد.";
 "pref_managekeys_menu_title" = "مدیریت کلیدها";
 "pref_managekeys_export_secret_keys" = "صادر کردن کلید خصوصی";
 "pref_managekeys_export_explain" = "صادر کردن کلیدهای خصوصی به\"%1$@\"؟";
 "pref_managekeys_import_secret_keys" = "وارد کردن کلیدهای خصوصی";
+"pref_managekeys_import_explain" = "وارد کردن کلیدهای خصوصی از «%1$@»؟\n\n• کلیدهای خصوصی موجود پاک نخواهند شد\n\n•  آخرین کلید وارد شده به عنوان کلید پیش‌فرض جدید استفاده می شود مگر اینکه در نام پرونده کلمهٔ «Legacy» وجود داشته باشد. ";
 "pref_managekeys_secret_keys_exported_to_x" = "کلیدهای خصوصی با موفقیت در\"%1$@\" ذخیره شدند. ";
 "pref_managekeys_secret_keys_imported_from_x" = "کلیدهای خصوصی از \"%1$@\" وارد شدند. ";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
-"pref_background" = "تصویرزمینه";
+"pref_background" = "پس‌زمینه";
 "pref_background_btn_default" = "استفاده از تصویر پیش‌فرض";
 "pref_background_btn_gallery" = "انتخاب از گالری";
 "pref_imap_folder_handling" = "IMAP نحوه مدیریت پوشه ";
@@ -594,18 +607,18 @@
 "pref_send_copy_to_self" = "ارسال رونوشت به خودم";
 "pref_send_copy_to_self_explain" = "درصورت استفاده از این حساب در چند دستگاه مورد نیاز است. ";
 "pref_auto_folder_moves" = "انتقال خودکار به پوشه دلتاچت";
-"pref_auto_folder_moves_explain" = "گفتگوها برای جلوگیری از پر شدن صندوق ورودی جابجا شده‌اند";
+"pref_auto_folder_moves_explain" = "گپ‌ها برای جلوگیری از پر شدن صندوق ورودی جابه‌جا شدند";
 "pref_only_fetch_mvbox_title" = "فقط پوشه دلتاچت را بررسی کن";
-"pref_only_fetch_mvbox_explain" = "از بقیه پوشه‌ها صرف نظر کن. در صورت انتخاب این گزینه، ایمیل شما باید پیام‌ها را به پوشه دلتاچت انتقال دهد";
-"pref_show_emails" = "نمایش ایمیل‌های معمولی";
-"pref_show_emails_no" = "نه، فقط گفتگوها";
+"pref_only_fetch_mvbox_explain" = "چشم‌پوشی از بقیهٔ پوشه‌ها. لازم است کارساز شما پیام‌ها را به پوشهٔ دلتاچت انتقال دهد.";
+"pref_show_emails" = "نمایش رایانامه‌های معمولی";
+"pref_show_emails_no" = "نه، فقط گپ‌ها";
 "pref_show_emails_accepted_contacts" = "برای مخاطبین پذیرفته شده";
 "pref_show_emails_all" = "همه";
 "pref_experimental_features" = "ویژگی‌های آزمایشی";
-"pref_on_demand_location_streaming" = "اشتراک موقعیت مکانی در صورت نیاز";
+"pref_on_demand_location_streaming" = "هم‌رسانی زندهٔ به‌فرمان مکان";
 "pref_developer_mode" = "حالت برنامه نویسی";
 "pref_developer_mode_explain" = "تنظیمات عیب‌یابی را فعال می‌کند که موجب کاهش پایداری نرم‌افزار می‌شوند.  فقط جهت استفاده توسعه دهندگان";
-"pref_background_default" = "تصویر زمینه پیش‌فرض";
+"pref_background_default" = "پس‌زمینه پیش‌فرض";
 "pref_background_default_color" = "رنگ پیش‌فرض";
 "pref_background_custom_image" = "تصویر ترجیحی";
 "pref_background_custom_color" = "رنگ ترجیحی";
@@ -621,7 +634,7 @@
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "سقف دانلود تا %1$@ فعال خواهد بود";
 "profile_image_select" = "انتخاب تصویر نمایه";
-"select_your_new_profile_image" = "انتخاب تصویر پروفایل جدید";
+"select_your_new_profile_image" = "تصویر نمایهٔ جدیدتان را برگزینید";
 "profile_image_delete" = "حذف تصویر نمایه";
 "pref_show_tray_icon" = "نمایش نمادک در زیر صفحه";
 "pref_edit_profile" = "ویرایش نمایه";
@@ -647,9 +660,9 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "آیا می‌خواهید %1$d پیام جدید و دریافت شده را در زمان%2$@ در آینده پاک کنید؟\n\n• این شامل همه رسانه‌ها هم می‌شود\n\n•  پیام‌ها جدای از اینکه دیده شده باشند یا نه پاک می‌شوند. \"پیام های ذخیره شده\" شامل این پاک کردن محلی نمی‌شوند. ";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "آیا می‌خواهید اکنون %1$dپیام و همه\"%2$@\"   پیام‌ جدید دریافت شده در آینده را پاک کنید؟/n/n⚠️ این شامل ایمیل‌ها، رسانه و \"پیام‌های ذخیره شده\" در همه پوشه‌های سرور می‌شود /n/n⚠️ اگر می‌خواهید داده‌ها در سرور باقی بمانده از این قابلیت استفاده نکنید/n/n⚠️ اگر بجز دلتاچت از دیگر نرم‌افزارهای ایمیل هم استفاده می‌کنید این قابلیت را به کار نگیرید.";
+"autodel_server_ask" = "آیا می‌خواهید %1$dپیام را اکنون و تمام پیام‌های آیندهٔ «%2$@»  را پاک کنید؟/n/n⚠️ این شامل رایانامه‌ها، رسانه و «پیام‌های ذخیره شده» در همه پوشه‌های کارساز می‌شود/n/n⚠️ اگر می‌خواهید داده‌ها در کارساز باقی بمانند از این قابلیت استفاده نکنید/n/n⚠️ اگر به‌جز دلتاچت از دیگر نرم‌افزارهای رایانامه هم استفاده می‌کنید این قابلیت را به کار نگیرید.";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "این شامل ایمیل‌ها، رسانه و \"پیام‌های ذخیره شده\" در همه پوشه‌های سرور می‌شود. اگر می‌خواهید داده‌ها را در سرور نگه دارید از این قابلیت استفاده نکنید. اگر از دیگر نرم‌افزارهای ایمیل به جز دلتا چت استفاده می‌کنید از این قابلیت استفاده نکنید.";
+"autodel_server_enabled_hint" = "این شامل رایانامه‌ها، رسانه و «پیام‌های ذخیره شده» در تمام پوشه‌های کارساز می‌شود. اگر می‌خواهید داده‌ها را در کارساز نگه دارید از این قابلیت استفاده نکنید. اگر از دیگر نرم‌افزارهای رایانامه به‌جز دلتاچت استفاده می‌کنید از این قابلیت استفاده نکنید.";
 "autodel_confirm" = "متوجه هستم، همه پیام‌ها حذف شوند";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "یک بار";
@@ -665,27 +678,27 @@
 "autodel_after_1_year" = "بعد از ۱ سال";
 
 // autocrypt
-"autocrypt" = "خودرمز";
-"autocrypt_explain" = "خودرمز  یک ویژگی جدید و باز برای رمزگذاری گیرنده به گیرنده خودکار ایمیل است.\n\n تنظیمات رمزگذاری گیرنده به گیرنده در موقع لازم به صورت خودکار ایجاد می‌شود و می‌توانید آن را  با پیام تنظیم خودرمز بین دستگاه‌ها  انتقال دهید. ";
-"autocrypt_send_asm_title" = "ارسال پیام تنظیمات خودرمز";
-"autocrypt_send_asm_explain_before" = "پیام تنظیم خودرمز تنظیمات رمزگذاری گیرنده به گیرنده شما را به شکلی امن با دیگر پذیرنده‌ها به اشتراک می‌گذارد.\n\n تنظیمات با یک کد نصب که در اینجا نمایش داده می‌شود رمزگذاری می‌شوند و باید در دستگاه دیگر تایپ شود. ";
-"autocrypt_send_asm_button" = "ارسال پیام تنظیمات خودرمز";
+"autocrypt" = "اتوکریپت";
+"autocrypt_explain" = "اتوکریپت  یک ویژگی جدید و باز برای رمزگذاری سرتاسر خودکار رایانامه است.\n\n تنظیمات رمزگذاری سرتاسر در هنگام نیاز به صورت خودکار ایجاد می‌شود و می‌توانید آن را  با پیام‌های تنظیم اتوکریپت بین دستگاه‌ها انتقال دهید. ";
+"autocrypt_send_asm_title" = "ارسال پیام برپاسازی اتوکریپت";
+"autocrypt_send_asm_explain_before" = "پیام برپاسازی اتوکریپت تنظیمات رمزگذاری سرتاسر شما را به شکلی امن با دیگر برنامه‌ها به اشتراک می‌گذارد.\n\n تنظیمات با یک کد برپاسازی که در اینجا نمایش داده می‌شود رمزگذاری می‌شوند و باید در دستگاه دیگر تایپ شود. ";
+"autocrypt_send_asm_button" = "ارسال پیام برپاسازی اتوکریپت";
 "autocrypt_send_asm_explain_after" = "تنظیمات شما برای خودتان ارسال شد. پیام تنظیمات را در دستگاه دیگر باز کنید. یک کد نصب از شما خواسته می‌شود. این ارقام را وارد کنید:\n\n %1$@ ";
 "autocrypt_prefer_e2ee" = "ترجیح رمزگذاری گیرنده به گیرنده";
-"autocrypt_asm_subject" = "پیام تنظیمات خودرمز";
-"autocrypt_asm_general_body" = "این پیام تنظیمات خودرمز است و تنظیمات مربوط به رمزگذاری گیرنده به گیرنده شما را بین دستگاه‌ها جابجا می‌کند.\n\n برای رمزگشایی و استفاده از آن، پیام را در یک سیستم که با خودرمز همخوانی دارد باز کنید و کد نصب که در دستگاه تولید کننده پیام، به شما داده می شود را وارد نمایید. ";
-"autocrypt_asm_click_body" = "این پیام تنظیم خودرمز است که تنظیمات مربوط به رمزگذاری گیرنده به گیرنده شما را بین دستگاه‌ها جابجا می‌کند.\n\n برای رمزگشایی و استفاده، روی این پیام بزنید یا کلیک کنید. ";
-"autocrypt_continue_transfer_title" = "پیام تنظیم خودرمز";
+"autocrypt_asm_subject" = "پیام برپاسازی اتوکریپت";
+"autocrypt_asm_general_body" = "این پیام برپاسازی اتوکریپت است و تنظیمات مربوط به رمزگذاری سرتاسر شما را بین دستگاه‌ها جابه‌جا می‌کند.\n\n برای رمزگشایی و استفاده از آن، پیام را در یک سامانه که با اتوکریپت همخوانی دارد باز کنید و کد برپاسازی که در دستگاه تولیدکنندهٔ پیام، به شما داده می‌شود را وارد نمایید. ";
+"autocrypt_asm_click_body" = "این پیام برپاسازی اتوکریپت است که تنظیمات مربوط به رمزگذاری سرتاسر شما را بین دستگاه‌ها جابه‌جا می‌کند.\n\n برای رمزگشایی و استفاده، روی این پیام بزنید یا کلیک کنید. ";
+"autocrypt_continue_transfer_title" = "پیام برپاسازی اتوکریپت";
 "autocrypt_continue_transfer_please_enter_code" = "لطفا کد نصب نمایش داده شده در دستگاه دیگر را وارد کنید. ";
-"autocrypt_continue_transfer_succeeded" = "تنظیمات رمزگذاری گیرنده به گیرنده انتقال یافت. این دستگاه اکنون برای استفاده از خودرمز به همان نحوی که در دستگاه دیگر وجود داشت قابل استفاده است. ";
+"autocrypt_continue_transfer_succeeded" = "برپاسازی رمزگذاری سرتاسر انتقال یافت. این دستگاه اکنون برای استفاده از اتوکریپت به همان نحوی که در دستگاه دیگر وجود داشت قابل استفاده است.";
 "autocrypt_continue_transfer_retry" = "تلاش مجدد";
-"autocrypt_bad_setup_code" = "کد نصب نادرست. لطفا دوباره تلاش کنید. \n\n اگر کد نصب را فراموش کرده‌اید یک پیام جدید تنظیمات خودرمز را از دستگاه دیگر ارسال کنید. ";
+"autocrypt_bad_setup_code" = "کد برپاسازی نادرست. لطفاً دوباره تلاش کنید. \n\n اگر کد برپاسازی را فراموش کرده‌اید یک پیام برپاسازی اتوکریپت جدید را از دستگاه دیگر ارسال کنید. ";
 
 
 // system messages
 "systemmsg_read_receipt_subject" = "پیام باز شد";
 "systemmsg_read_receipt_body" = "پیام\"%1$@\" که ارسال کرده بودید در ثفحه گیرنده نمایش داده شد\n\n. تضمینی وجود ندارد که محتوای پیام را خوانده باشد. ";
-"systemmsg_cannot_decrypt" = "این پیام را نمی‌توان رمزگشایی کرد.\n\n• ممکن است بهتر باشد که به همین پیام پاسخ داده و از ارسال کننده بخواهید دوباره آن را بفرستد. \n\n• اگر دوباره دلتاچت را نصب کرده‌اید یا از یک ایمیل دیگر هم روی این دستگاه یا دستگاه دیگر استفاده می‌کنید ممکن است لازم باشد یک پیام تنظیمات خودرمز از آن دستگاه ارسال کنید. ";
+"systemmsg_cannot_decrypt" = "این پیام را نمی‌توان رمزگشایی کرد.\n\n• ممکن است بهتر باشد که به همین پیام پاسخ داده و از ارسال کننده بخواهید دوباره آن را بفرستد. \n\n• اگر دوباره دلتاچت را نصب کرده‌اید یا از یک رایانامه دیگر هم روی این دستگاه یا دستگاه دیگر استفاده می‌کنید ممکن است لازم باشد یک پیام برپاسازی اتوکریپت از آن دستگاه ارسال کنید. ";
 "systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از%1$@";
 "systemmsg_failed_sending_to" = "ارسال ناموفق پیام به %1$@.";
@@ -701,9 +714,9 @@
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
 "add_member_by_other" = "عضو جدید با نام %1$@ توسط %2$@ افزوده شد. ";
 // %1$s will be replaced by name and address of the contact removed from the group
-"remove_member_by_you" = "شما عضویت %1$@ را حذف کردید.  ";
+"remove_member_by_you" = "شما عضو گروه، %1$@، را حذف کردید.  ";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
-"remove_member_by_other" = "عضویت %1$@ توسط %2$@ حذف شد. ";
+"remove_member_by_other" = "عضو گروه، %1$@، توسط %2$@ حذف شد. ";
 // "left" in the meaning of "exited"
 "group_left_by_you" = "شما گروه را ترک کردید.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
@@ -711,44 +724,44 @@
 "group_image_deleted_by_you" = "شما تصویر گروه را حذف کردید.";
 // %1$s will be replaced by name and address of the contact
 "group_image_deleted_by_other" = "تصویر گروه توسط %1$@ حذف شد.";
-"location_enabled_by_you" = "جریان موقعیت مکانی را فعال کردید.";
+"location_enabled_by_you" = "هم‌رسانی زندهٔ مکان را به کار انداختید.";
 // %1$s will be replaced by name and address of the contact
-"location_enabled_by_other" = "جریان موقعیت مکانی توسط %1$@ فعال شد.";
-"ephemeral_timer_disabled_by_you" = "تایمر ناپدید شدن پیام‌ها را غیرفعال کردید.";
+"location_enabled_by_other" = "هم‌رسانی زندهٔ مکان توسط %1$@ به کار افتاد.";
+"ephemeral_timer_disabled_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را غیرفعال کردید.";
 // %1$s will be replaced by name and address of the contact
-"ephemeral_timer_disabled_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %1$@ غیرفعال شد.";
+"ephemeral_timer_disabled_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ غیرفعال شد.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
-"ephemeral_timer_seconds_by_you" = "تایمر ناپدید شدن پیام‌ها را روی %1$@ ثانیه تنظیم کردید";
+"ephemeral_timer_seconds_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ ثانیه تنظیم کردید";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
-"ephemeral_timer_seconds_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ ثانیه تنظیم شد.";
-"ephemeral_timer_1_minute_by_you" = "تایمر ناپدید شدن پیام‌ها را روی 1 دقیقه تنظیم کرده‌اید.";
+"ephemeral_timer_seconds_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ ثانیه تنظیم شد.";
+"ephemeral_timer_1_minute_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 دقیقه تنظیم کرده‌اید.";
 // %1$s will be replaced by name and address of the contact
-"ephemeral_timer_1_minute_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %1$@ روی 1 دقیقه تنظیم شد.";
-"ephemeral_timer_1_hour_by_you" = "تایمر ناپدید شدن پیام‌ها را روی 1 ساعت تنظیم کرده‌اید.";
+"ephemeral_timer_1_minute_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 دقیقه تنظیم شد.";
+"ephemeral_timer_1_hour_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 ساعت تنظیم کرده‌اید.";
 // %1$s will be replaced by name and address of the contact
-"ephemeral_timer_1_hour_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %1$@ روی 1 ساعت تنظیم شد.";
-"ephemeral_timer_1_day_by_you" = "تایمر ناپدید شدن پیام‌ها را روی 1 روز تنظیم کرده‌اید.";
+"ephemeral_timer_1_hour_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 ساعت تنظیم شد.";
+"ephemeral_timer_1_day_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 روز تنظیم کرده‌اید.";
 // %1$s will be replaced by name and address of the contact
-"ephemeral_timer_1_day_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %1$@ روی 1 روز تنظیم شد.";
-"ephemeral_timer_1_week_by_you" = "تایمر ناپدید شدن پیام‌ها را روی 1 هفته تنظیم کرده‌اید.";
+"ephemeral_timer_1_day_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 روز تنظیم شد.";
+"ephemeral_timer_1_week_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 هفته تنظیم کرده‌اید.";
 // %1$s will be replaced by name and address of the contact
-"ephemeral_timer_1_week_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %1$@ روی 1 هفته تنظیم شد.";
+"ephemeral_timer_1_week_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 هفته تنظیم شد.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
-"ephemeral_timer_minutes_by_you" = "تایمر ناپدید شدن پیام‌ها را روی %1$@ دقیقه تنظیم کردید.";
+"ephemeral_timer_minutes_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ دقیقه تنظیم کردید.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
-"ephemeral_timer_minutes_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ دقیقه تنظیم شد.";
+"ephemeral_timer_minutes_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ دقیقه تنظیم شد.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
-"ephemeral_timer_hours_by_you" = "تایمر ناپدید شدن پیام‌ها را روی %1$@ ساعت تنظیم کردید.";
+"ephemeral_timer_hours_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ ساعت تنظیم کردید.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
-"ephemeral_timer_hours_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ ساعت تنظیم شد.";
+"ephemeral_timer_hours_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ ساعت تنظیم شد.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
-"ephemeral_timer_days_by_you" = "تایمر ناپدید شدن پیام‌ها را روی %1$@ روز تنظیم کردید.";
+"ephemeral_timer_days_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ روز تنظیم کردید.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
-"ephemeral_timer_days_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ روز تنظیم شد.";
+"ephemeral_timer_days_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ روز تنظیم شد.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
-"ephemeral_timer_weeks_by_you" = "تایمر ناپدید شدن پیام‌ها را روی %1$@ هفته تنظیم کردید.";
+"ephemeral_timer_weeks_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ هفته تنظیم کردید.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
-"ephemeral_timer_weeks_by_other" = "تایمر ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ هفته تنظیم شد.";
+"ephemeral_timer_weeks_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ هفته تنظیم شد.";
 "protection_enabled_by_you" = "محافظ چت را فعال کردید.";
 // %1$s will be replaced by name and address of the contact
 "protection_enabled_by_other" = "محافظ چت توسط %1$@ فعال شد.";
@@ -756,6 +769,7 @@
 // %1$s will be replaced by name and address of the contact
 "protection_disabled_by_other" = "محافظ چت توسط %1$@ غیرفعال شد.";
 
+"devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 // %1%s will be replaced by date and time in some human-readable format
 
@@ -770,7 +784,7 @@
 "qrscan_failed" = "امکان رمزگشایی کد کیوآر وجود ندارد";
 "qrscan_ask_join_group" = "آیا می خواهید به گروه\"%1$@\" ملحق شوید؟";
 "qrscan_fingerprint_mismatch" = "اثرانگشت اسکن شده با انچه که برای %1$@مشاهده شده بود انطباق ندارد. ";
-"qrscan_no_addr_found" = "این کیوآر حاوی یک شناساگر است ولی ادرس ایمیلی در آن نیست. \n\n برای یک تاییدیه به روش‌های دیگر لطفا ابتدا یک ارتباط رمزگذاری شده با دریافت کننده برقرار کنید. ";
+"qrscan_no_addr_found" = "این کیوآر حاوی یک شناساگر است ولی ادرس رایانامه‌ای در آن نیست. \n\n برای یک تأییدیه به روش‌های دیگر لطفا ابتدا یک ارتباط رمزگذاری شده با دریافت کننده برقرار کنید. ";
 "qrscan_contains_text" = "کیوآر کد اسکن شده:\n\n %1$@";
 "qrscan_contains_url" = "آدرس اینترنتی کیوآر اسکن شده:\n\n %1$@";
 "qrscan_fingerprint_label" = "اثر انگشت";
@@ -784,7 +798,7 @@
 "revive_qr_code" = "فعال کردن کد کیوآر";
 "qrshow_title" = "کد دعوت کیوآر";
 "qrshow_x_joining" = "%1$@عضو شد.";
-"qrshow_x_verified" = "%1$@ تایید شد.";
+"qrshow_x_verified" = "%1$@ تأیید شد.";
 "qrshow_x_has_joined_group" = "%1$@عضو گروه شد. ";
 "qrshow_join_group_title" = "کد دعوت کیوآر";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
@@ -793,8 +807,8 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "برای ارتباط با %1$@ این را اسکن کنید.";
 "qrshow_join_contact_no_connection_toast" = "اتصال اینترنت نیست. نمیتوان نصب کد کیوآر را انجام داد. ";
-"qraccount_ask_create_and_login" = "ایجاد ایمیل جدید روی \"%1$@\" و ورود در آن‌جا؟";
-"qraccount_success_enter_name" = "ورود موفق—آدرس ایمیل شما %1$@است.\n\n اگر دوست دارید می‌توانید اکنون یک اسم وارد کرده و تصویر نمایه‌ای که هنگام نوشتن برای دیگران نشان داده می‌شود را انتخاب نمایید. ";
+"qraccount_ask_create_and_login" = "ایجاد رایانامهٔ جدید روی «%1$@» و ورود به آنجا؟";
+"qraccount_success_enter_name" = "ورود موفق—نشانی رایانامهٔ شما %1$@است.\n\n اگر دوست دارید می‌توانید اکنون یک نام وارد کرده و تصویر نمایه‌ای که هنگام نوشتن برای دیگران نشان داده می‌شود را انتخاب نمایید. ";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه اندازی اکانت جدید استفاده کرد. ";
 "qraccount_use_on_new_install" = "کد کیوآر اسکن شده برای راه اندازی یک اکانت جدید است. می‌توانید در حال تنظیم یک دلتاچت تازه نصب شده کیوآر  را اسکن کنید.";
 // the placeholder will be replaced by the e-mail address of the account
@@ -804,16 +818,18 @@
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "کاربر %1$@ پاسخ داد، در انتظار اضافه شدن به گروه...";
-"contact_verified" = "%1$@تایید شد.";
-"contact_not_verified" = "%1$@تایید نشد. ";
+"contact_verified" = "%1$@ تأیید شد.";
+"contact_not_verified" = "نتوانست %1$@ را تأیید کند. ";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "احراز هویت شده توسط %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "تنظیمات برای %1$@ تغییر کرد. ";
-"verified_group_explain" = "گرو‌ه های تایید شده(آزمایشی) در برابر حمله‌های فعال امنیت دارند. اعضا با یک روش ثانویه هم از طریق دیگر اعضا احراز هویت می‌شوند و پیام‌ها هم همیشه به صورت رمزگذاری شده به صورت گیرنده به گیرنده می‌باشد. ";
+"verified_group_explain" = "گرو‌ه های تأیید شده(آزمایشی) در برابر حمله‌های فعال امنیت دارند. اعضا با یک روش ثانویه هم از طریق دیگر اعضا احراز هویت می‌شوند و پیام‌ها هم همیشه به صورت رمزگذاری شده به صورت گیرنده به گیرنده می‌باشد. ";
 "copy_qr_data_success" = "آدرس کیوآر در حافظه ذخیر شد";
-"mailto_dialog_header_select_chat" = "گفتگو را برای ارسال پیام انتخاب کنید";
+"mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
 // first placeholder is the name of the chat
-"confirm_replace_draft" = "گفتگوی %1$@ همین حالا هم یک پیام پیشنویس دارد؛ آیا می‌خواهید آن را جایگزین کنید؟";
-"mailto_link_could_not_be_decoded" = "امکان رمزگشایی ایمیل به لینک وجود ندارد: %1$@";
+"confirm_replace_draft" = "%1$@ هم‌اکنون هم یک پیام پیش‌نویس دارد؛ آیا می‌خواهید آن را جایگزین کنید؟";
+"mailto_link_could_not_be_decoded" = "امکان کدگشایی پیوند mailto وجود ندارد: %1$@";
 
 // notifications 
 "notify_dismiss" = "صرف نظر";
@@ -830,6 +846,7 @@
 // permissions
 "perm_required_title" = "مجوز لازم است";
 "perm_continue" = "ادامه";
+"perm_explain_access_to_storage_denied" = "برای دریافت یا ارسال پرونده به تنظیمات برنامه بروید، «اجازه‌ها» را برگزینید و «ذخیره‌گاه» را به کار بیندازید.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "هر کجا مایلید شروع به رسم کردن کنید تا مات شود.";
@@ -849,7 +866,7 @@
 "welcome_desktop" = "به دلتاچت خوش‌آمدید";
 "login_known_accounts_title_desktop" = "اکانت‌های شناخته شده";
 "global_menu_preferences_language_desktop" = "زبان";
-"global_menu_file_desktop" = "فایل";
+"global_menu_file_desktop" = "پرونده";
 "global_menu_file_quit_desktop" = "خروج";
 "global_menu_edit_desktop" = "ویرایش";
 "global_menu_edit_undo_desktop" = "بازگردانی";
@@ -868,7 +885,7 @@
 "global_menu_help_about_desktop" = "درباره دلتاچت";
 "global_menu_file_open_desktop" = "بازکردن دلتاچت";
 "global_menu_minimize_to_tray" = "بردن زیر صفحه";
-"no_chat_selected_suggestion_desktop" = "یک گفتگو را انتخاب کرده یا یک گفتگو ایجاد نمایید";
+"no_chat_selected_suggestion_desktop" = "یک گپ را انتخاب کرده یا یک گپ ایجاد نمایید";
 "write_message_desktop" = "نوشتن پیام";
 "encryption_info_title_desktop" = "مشخصات رمزگذاری";
 "delete_message_desktop" = "حذف پیام";
@@ -878,16 +895,16 @@
 "remove_desktop" = "حذف";
 "save_desktop" = "ذخیره";
 "name_desktop" = "نام";
-"autocrypt_key_transfer_desktop" = "انتقال کلید خودرمز";
-"initiate_key_transfer_desktop" = "یک پیام تنظیمات خودرمز،  تنظیمات مربوط به رمزگذاری گیرنده به گیرنده را برای دیگر نرم افزارهایی که با خودرمز همخوانی دارند به اشتراک می‌گذارد. تنظیمات با یک کد نصب رمزگذاری خواهند شد که در اینجا نمایش داده می‌شود که باید آن  را در دستگاه دیگر وارد کنید. ";
+"autocrypt_key_transfer_desktop" = "انتقال کلید اتوکریپت";
+"initiate_key_transfer_desktop" = "یک پیام برپاسازی اتوکریپت، برپاسازی رمزگذاری سرتاسرتان را به‌امنی با دیگر برنامه‌های سازگار با اتوکریپت هم‌رسانی می‌کند. برپاسازی با یک کد برپاسازی رمزگذاری خواهند شد که در اینجا نمایش داده می‌شود که باید آن  را در دستگاه دیگر وارد کنید. ";
 "select_group_image_desktop" = "انتخاب تصویر گروه";
 "imex_progress_title_desktop" = "فرایند تهیه نسخه پشتیبان";
 "export_backup_desktop" = "صادر کردن نسخه پشتیبان";
 "show_key_transfer_message_desktop" = "کلید برایتان ارسال شد. به دستگاه دیگر رفته و پیام نصب را باز کنید. از شما یک کد نصب خواسته می‌شود. این ارقام را آن‌جا وارد کنید:";
-"autocrypt_correct_desktop" = "تنظیمات خودرمز انتقال یافت.";
+"autocrypt_correct_desktop" = "برپاسازی اتوکریپت انتقال یافت.";
 "autocrypt_incorrect_desktop" = "کد نصب نادرست. لطفا دوباره امتحان کنید. ";
-"create_chat_error_desktop" = "امکان ایجاد گفتگو وجود ندارد. ";
-"forget_login_confirmation_desktop" = "پاک کردن این ورود؟ همه چیز پاک می شود که شامل رمزگذاری گیرنده به گیرنده، مخاطبین، گفتگوها، پیام‌ها و رسانه می‌شود. این عملیات قابل بازگردانی نیست.";
+"create_chat_error_desktop" = "امکان ایجاد گپ وجود ندارد. ";
+"forget_login_confirmation_desktop" = "پاک کردن این ورود؟ همه‌چیز پاک می‌شود که شامل رمزگذاری سرتاسر، مخاطبین، گپ‌ها، پیام‌ها و رسانه می‌شود. این عملیات قابل بازگردانی نیست.";
 "message_detail_sent_desktop" = "ارسال شد";
 "message_detail_received_desktop" = "دریافت شد";
 "menu.view.developer.open.log.folder" = "پوشه گزارش را باز کن";
@@ -899,7 +916,7 @@
 
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "کلیدهای میانبر";
-"switch_between_chats" = "جابجا شدن میان گفتگوها";
+"switch_between_chats" = "جابه‌جا شدن میان گپ‌ها";
 "scroll_messages" = "حرکت کردن میان پیام‌ها";
 // command to put the cursor to the search input field
 "focus_search_input" = "تمرکز نشانگر بر بخش جستجو";
@@ -917,7 +934,7 @@
 "a11y_delivery_status_read" = "وضعیت ارسال: خوانده شد";
 "a11y_delivery_status_invalid" = "وضعیت ارسال نامعتبر";
 "a11y_message_context_menu_btn_label" = "عملیات‌های پیام";
-"a11y_background_preview_label" = "نمایش پس زمینه";
+"a11y_background_preview_label" = "پیش‌نمایش پس‌زمینه";
 "a11y_disappearing_messages_activated" = "پیام‌های ناپدید شونده فعال شدند";
 
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
@@ -926,13 +943,13 @@
 "a11y_connectivity_hint" = "برای مشاهده اطلاعات اتصال دوبار ضربه بزنید";
 "login_error_no_internet_connection" = "بدون اتصال اینترنت. ورود ناموفق";
 "share_account_not_configured" = "حساب تنظیم نشده است";
-"cannot_play_audio_file" = "امکان پخش کردن فایل صوتی وجود ندارد";
+"cannot_play_audio_file" = "امکان پخش کردن پروندهٔ صوتی وجود ندارد.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "برای عکس یا فیلم گرفتن یا اسکن کردن کد کیو آر، وارد تنظیمات سیستم شده و دسترسی به دوربین را فعال کنید. ";
 "open_settings" = "تنظیمات را باز کنید";
 // iOS device contact alert
 "import_device_contacts" = "وارد کردن مخاطبین";
-"import_device_contacts_hint" = "برای شروع گفتگو با مخاطبین دستگاه خود، تنظیمات را باز کرده و دسترسی به مخاطبین را روشن کنید. ";
+"import_device_contacts_hint" = "برای شروع گپ با مخاطبین دستگاه خود، تنظیمات را باز کرده و «مخاطبین» را به کار بیندازید.";
 // iOS notification settings
 "disabled_in_dc" = "در دلتاچت غیر فعال شده است. ";
 "disabled_in_system_settings" = "در تنظیمات سیستم غیر فعال شده است. ";
@@ -943,7 +960,7 @@
 "notifications_avg_hours" = "به صورت متوسط هر %1$d ساعت";
 "last_check_at" = "بررسی شده در %1$@";
 // iOS webxdc selector
-"webxdc_selector_empty_hint" = "برنامه های خصوصی دریافت شده یا ارسال شده در هر چت در اینجا ظاهر می شوند. برنامه‌های خصوصی را که تازه دانلود شده‌اند را «پوشه‌ها»  نشان می‌دهد.";
+"webxdc_selector_empty_hint" = "برنامه‌های دریافت‌شده یا ارسال‌شده از همه چت‌ها در این‌جا نمایش داده می‌شود. «پرونده‌ها» تنها برنامه‌های اخیرا دریافت‌شده را نمایش می‌دهد.";
 // iOS webxdc shortcut page
 "shortcut_step1_tap_share_btn" = "روی دکمه اشتراک کلیک کنید";
 "shortcut_step2_tap_add_to_home_screen" = "برای افزودن برنامه به صفحه اصلی خود، «افزودن به صفحه اصلی» را انتخاب کنید.";
@@ -953,7 +970,7 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "اعلان‌های پیش زمینه";
 "pref_background_notifications_explain" = "از یک ارتباط پیش زمینه به سرور شما استفاده می کند و برای استفاده از آن باید تنظیمات بهینه سازی مصرف باتری غیرفعال شود.";
-"pref_background_notifications_rationale" = "برای حفظ ارتباطتان با سرور ایمیل و دریافت پیامها در پیش زمینه، در گام بعدی، تنظیمات بهینه سازی باتری را نادیده بگیرید. \n\n دلتاچت از منابع کمی استفاده میکند و مراقب است باتری شما را بیش از حد مصرف نکند. ";
+"pref_background_notifications_rationale" = "برای حفظ ارتباطتان با سرور رایانامه و دریافت پیامها در پیش زمینه، در گام بعدی، تنظیمات بهینه سازی باتری را نادیده بگیرید. \n\n دلتاچت از منابع کمی استفاده میکند و مراقب است باتری شما را بیش از حد مصرف نکند. ";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "pref_reliable_service" = "اتصالات پیش زمینه قابل اطمینان";
 "pref_reliable_service_explain" = "به یک اعلان دائمی احتیاج دارد.";
@@ -963,6 +980,9 @@
 
 // device messages for updates
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_36_android" = "نکات برجسته 1.36/n/n💻📱 از دلتا چت در همه دستگاه‌های خود به راحتی استفاده کنید - فقط سه مرحله ساده را در \"تنظیمات / افزودن دستگاه دوم\" (تجربی) دنبال کنید/n/n🖼🔍 آیا تا به حال به دنبال یک تصویر هستید و نمی توانید چت را به یاد بیاورید؟ \"همه رسانه\" از منوی اصلی متعلق به شماست!/n/nچه چیز دیگری؟ اعلان ها برای همه حساب ها، پاک کردن چت، و موارد دیگر در %1$@";
+"update_1_36_android" = "نکات برجسته ۱.۳۶/n/n💻📱 از دلتاچت در همه دستگاه‌های خود به راحتی استفاده کنید - فقط سه مرحله ساده را در \"تنظیمات / افزودن دستگاه دوم\" (تجربی) دنبال کنید/n/n🖼🔍 آیا تا به حال به دنبال 1 تصویر هستید و نمی توانید چت را به یاد بیاورید؟ \"همه رسانه\" از منوی اصلی متعلق به شماست!/n/nچه چیز دیگری؟ اعلان ها برای همه حساب‌ها، پاک کردن چت، و موارد دیگر در %1$@";
 // placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
 "update_1_36_audit" = "ما در اینجا زیاد در مورد امنیت صحبت نمی کنیم، اما مطمئن باشید، ما اهمیت می دهیم: برای اخبار خوب اخیر به %1$@ مراجعه کنید 👌";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+

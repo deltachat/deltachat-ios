@@ -27,6 +27,7 @@
 "emoji" = "Емоџи";
 "attachment" = "Прилог";
 "back" = "Назад";
+"verified" = "Проверено";
 "close" = "Затвори";
 "forward" = "Проследи";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -58,6 +59,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Слике са сервера могу да вас прате\n\nОво подешавање такође може да учита додатне фонтове и други садржај. Ако је онемогућено, могу се појавити уграђене или ускладиштене слике.\n\nДа ли желите да учитате слике са сервера?";
 "always" = "Увек";
+"always_load_remote_images" = "Увек учитај слике са сервера";
 "once" = "Само једном";
 "show_password" = "Прикажи лозинку";
 "hide_password" = "Сакри лозинку";
@@ -91,6 +93,8 @@
 "last_month" = "Прошлог месеца";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Последњи пут виђен %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Последњи пут виђен %1$@";
 "last_seen_unknown" = "Последњи пут виђен: Непознато";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -121,6 +125,7 @@
 "switch_camera" = "Промени камеру";
 "toggle_fullscreen" = "Обрће режим пуног екрана";
 "location" = "Локација";
+"locations" = "Локације";
 "gallery" = "Галерија";
 "images_and_videos" = "Слике и видео записи";
 "file" = "Фајл";
@@ -173,6 +178,8 @@
 "menu_add_attachment" = "Додај прилог";
 "menu_leave_group" = "Напусти групу";
 "menu_delete_chat" = "Обриши ћаскање";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Обриши ћаскање";
 "ask_delete_named_chat" = "Јесте ли сигурни да желите да избришете „%1$@“?";
 "menu_delete_messages" = "Избришите поруке";
 "delete_contact" = "Избриши контакт";
@@ -207,6 +214,7 @@
 "menu_help" = "Помоћ";
 "privacy_policy" = "Политика приватности";
 "menu_select_all" = "Изабери све";
+"select_chat" = "Изабери ћаскање";
 "select_more" = "Изабери још";
 "menu_edit_name" = "Уреди назив";
 "menu_settings" = "Поставке";
@@ -789,6 +797,8 @@
 "secure_join_replies" = "%1$@ је одговорио и чека да буде додат у групу...";
 "contact_verified" = "%1$@ потврђен.";
 "contact_not_verified" = "Немогуће је проверити %1$@.";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Проверено од %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Подешавања су се променила за %1$@.";
 "verified_group_explain" = "Верификоване групе (ово је експериментална могућност) пружају сигурност од активних напада. Чланови се верификују са другим фактором од стране других чланова и поруке су увек с-краја-на-крај шифроване.";

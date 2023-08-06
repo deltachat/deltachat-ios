@@ -351,6 +351,10 @@
 "start_app" = "Старт...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Будь ласка, спочатку прийміть запит на чат.";
+// placeholder will be replaced by a file name
+"send_file_to" = "Надіслати \"%1$@\" до…";
+"send_message_to" = "Надіслати повідомлення до...";
+
 // map
 "filter_map_on_time" = "Показати місця у часовому проміжку";
 "show_location_traces" = "Показати треки";

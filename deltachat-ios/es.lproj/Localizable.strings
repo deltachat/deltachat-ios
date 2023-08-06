@@ -48,7 +48,7 @@
 "show_full_message" = "Mostrar mensaje completo…";
 "show_full_message_in_browser" = "Mostrar mensaje completo en el navegador…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
-"mark_all_as_read" = "Marcar todo leído";
+"mark_all_as_read" = "Marcar todo como leído";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Leído";
 // Placeholder text when something is loading
@@ -59,7 +59,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Las imágenes remotas pueden ser usadas para seguirte.\n\nLa opción también permite cargar fuentes y otros contenidos. Inclusive si están deshabilitadas, quizás puedas ver imágenes embebidas o en caché.\n\n¿Cargar imágenes remotas?";
 "always" = "Siempre";
-"always_load_remote_images" = "Cargar imágenes remotas siempre";
+"always_load_remote_images" = "Cargar siempre imágenes remotas";
 "once" = "Una vez";
 "show_warning" = "Mostrar advertencia";
 "show_password" = "Mostrar contraseña";
@@ -351,6 +351,10 @@
 "start_app" = "Iniciar…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Primero acepte la solicitud de chat.";
+// placeholder will be replaced by a file name
+"send_file_to" = "Enviar \"%1$@\" a…";
+"send_message_to" = "Enviar mensaje a…";
+
 // map
 "filter_map_on_time" = "Mostrar ubicaciones en el marco de tiempo";
 "show_location_traces" = "Mostrar trazas";
