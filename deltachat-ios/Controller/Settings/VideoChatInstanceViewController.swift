@@ -31,7 +31,6 @@ class VideoChatInstanceViewController: UITableViewController {
     private var dcContext: DcContext
 
     private static let predefinedOptions = [
-        PredefinedOption(label: "Jitsi", url: "https://meet.jit.si/$ROOM"),
         PredefinedOption(label: "Systemli", url: "https://meet.systemli.org/$ROOM"),
         PredefinedOption(label: "Autistici", url: "https://vc.autistici.org/$ROOM"),
     ]
