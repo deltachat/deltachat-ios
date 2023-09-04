@@ -31,32 +31,6 @@ struct Utils {
         return url.absoluteString.substring(mailScheme.count + 1, url.absoluteString.count)
     }
 
-    static func formatAddressForQuery(address: [String: String]) -> String {
-        // Open address in Apple Maps app.
-        var addressParts = [String]()
-        let addAddressPart: ((String?) -> Void) = { part in
-            guard let part = part else {
-                return
-            }
-            guard !part.isEmpty else {
-                return
-            }
-            addressParts.append(part)
-        }
-        addAddressPart(address["Street"])
-        addAddressPart(address["Neighborhood"])
-        addAddressPart(address["City"])
-        addAddressPart(address["Region"])
-        addAddressPart(address["Postcode"])
-        addAddressPart(address["Country"])
-        return addressParts.joined(separator: ", ")
-    }
-
-    static func hasAudioSuffix(url: URL) -> Bool {
-        // TODO: add more file suffixes
-        return url.absoluteString.hasSuffix("wav")
-    }
-
     public static func getBackgroundImageURL(name: String) -> URL? {
         let fileManager = FileManager.default
         let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask) as [URL]
