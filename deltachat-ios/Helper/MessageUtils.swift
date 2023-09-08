@@ -58,19 +58,21 @@ public class MessageUtils {
 
     private static func attachLocation(to text: NSMutableAttributedString, color: UIColor) {
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "ic_location")?.maskWithColor(color: color)?.scaleDownImage(toMax: 12)
+        imageAttachment.image = UIImage(named: "ic_location")?.maskWithColor(color: color)
+        imageAttachment.bounds = CGRect(x: 0, y: 0, width: 8.7272, height: 12)
 
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
-        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -0.5], range: NSRange(location: 0, length: 1))
+        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -1.0], range: NSRange(location: 0, length: 1))
         text.append(NSAttributedString(string: "\u{202F}"))
         text.append(imageString)
     }
 
     private static func attachPadlock(to text: NSMutableAttributedString, color: UIColor) {
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "ic_lock")?.maskWithColor(color: color)?.scaleDownImage(toMax: 15)
+        imageAttachment.image = UIImage(named: "padlock")?.maskWithColor(color: color)
+        imageAttachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
         let imageString = NSMutableAttributedString(attachment: imageAttachment)
-        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -0.5], range: NSRange(location: 0, length: 1))
+        imageString.addAttributes([NSAttributedString.Key.baselineOffset: -2], range: NSRange(location: 0, length: 1))
         text.append(NSAttributedString(string: " "))
         text.append(imageString)
     }
@@ -96,16 +98,20 @@ public class MessageUtils {
 
         switch Int32(state) {
         case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING, DC_DOWNLOAD_IN_PROGRESS:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 14)?.maskWithColor(color: color)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").maskWithColor(color: color)
+            imageAttachment.bounds = CGRect(x: 0, y: 0, width: 14, height: 14)
         case DC_STATE_OUT_DELIVERED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))?.maskWithColor(color: color)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_36pt").maskWithColor(color: color)
+            imageAttachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
             offset = -3.5
         case DC_STATE_OUT_MDN_RCVD:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))?.maskWithColor(color: color)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_done_all_36pt").maskWithColor(color: color)
+            imageAttachment.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
             text.append(NSAttributedString(string: "\u{202F}"))
             offset = -3.5
         case DC_STATE_OUT_FAILED:
-            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 14)
+            imageAttachment.image = #imageLiteral(resourceName: "ic_error_36pt")
+            imageAttachment.bounds = CGRect(x: 0, y: 0, width: 14, height: 14)
         default:
             imageAttachment.image = nil
         }
