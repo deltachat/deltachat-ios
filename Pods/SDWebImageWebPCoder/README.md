@@ -168,6 +168,28 @@ let thumbnailSize = CGSize(width: 300, height: 300)
 let image = SDImageWebPCoder.shared.decodedImage(with: data, options: [.decodeThumbnailPixelSize: thumbnailSize])
 ```
 
+### Decoding with limit bytes (0.12.0+)
+
++ Objective-C
+
+```objective-c
+// WebP thumbnail image decoding
+NSData *webpData;
+NSUInteger limitBytes = 1024 * 1024; // 1MB
+UIImage *image = [[SDImageWebPCoder sharedCoder] decodedImageWithData:webpData options:@{SDImageCoderDecodeScaleDownLimitBytes : @(limitBytes)}];
+// The image pixel buffer is guaranteed to less than 1MB in RAM (may scale down or full size), suitable for large image
+```
+
++ Swift
+
+```swift
+// WebP thumbnail image decoding
+let webpData: Data
+let limitBytes = 1024 * 1024 // 1MB
+let image = SDImageWebPCoder.shared.decodedImage(with: data, options: [.decodeScaleDownLimitBytes: limitBytes])
+// The image pixel buffer is guaranteed to less than 1MB in RAM (may scale down or full size), suitable for large image
+```
+
 ### Encoding
 
 + Objective-c
