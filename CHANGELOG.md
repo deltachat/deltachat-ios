@@ -1,5 +1,14 @@
 # Delta Chat iOS Changelog
 
+## v1.40.2
+2023-10
+
+* update libwebp and other libs
+* remove meet.jit.si from default video chat instances as it requires login now
+* update translations
+* using core119
+
+
 ## v1.40.0
 2023-08
 
