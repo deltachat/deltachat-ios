@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1834,7 +1834,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
 				);
 				INFOPLIST_FILE = DcShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1880,7 +1880,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
 				);
 				INFOPLIST_FILE = DcShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2037,7 +2037,7 @@
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 91;
+				CURRENT_PROJECT_VERSION = 92;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -2056,7 +2056,7 @@
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
 					"$(PROJECT_DIR)/deltachat-ios/libraries",
 				);
-				MARKETING_VERSION = 1.40.0;
+				MARKETING_VERSION = 1.40.2;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -2110,7 +2110,7 @@
 				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 91;
+				CURRENT_PROJECT_VERSION = 92;
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -2129,7 +2129,7 @@
 					"$(PROJECT_DIR)/deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
 					"$(PROJECT_DIR)/deltachat-ios/libraries",
 				);
-				MARKETING_VERSION = 1.40.0;
+				MARKETING_VERSION = 1.40.2;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
