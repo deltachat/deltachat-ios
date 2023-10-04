@@ -33,14 +33,11 @@ in Xcode:
       (codesign may ask for a password, this _may_ be empty and "Enter" will do)
    c) on success, a dialog with all releases on the machine is shown;
       select the most recent,
-      then "Distribute App/App Store Connect/Next/Upload/Next";
-      leave default options (Strip symbols: yes, Upload symbols: yes,
-      Manage Version and Build Number: yes, Automatically manage signing);
-      in the summary, click "Upload" again
+      then "Distribute App / Testflight & App Store", use defaults, "Distribute"
 
 on https://appstoreconnect.apple.com :
 
-7. for a **Testflight release**, open "My Apps/Delta Chat/TestFlight/iOS"
+7. for a **Testflight release**, open "My Apps / Delta Chat / TestFlight / iOS"
    a) status becomes "Ready to Submit" automatically after some minutes
    b) select "open-testing-group" on the left, scroll down to "Builds" section
    c) click "+" and select the version made "Ready to submit" above
