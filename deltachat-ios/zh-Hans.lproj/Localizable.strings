@@ -29,6 +29,7 @@
 "back" = "返回";
 "verified" = "已验证";
 "close" = "关闭";
+"close_window" = "关闭窗口";
 "forward" = "转发";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "重新发送";
@@ -351,8 +352,9 @@
 "start_app" = "开始…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "请先接受聊天请求";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "发送“%1$@\"到...";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "发送消息到...";
 
 // map
@@ -580,6 +582,8 @@
 "pref_manage_keys" = "管理密钥";
 "pref_use_system_emoji" = "使用系统 emoji";
 "pref_use_system_emoji_explain" = "关闭 Delta Chat 内置 emoji 支持";
+"pref_use_inapp_camera" = "使用应用内相机";
+"pref_use_inapp_camera_explain" = "应用内相机功能通常比系统相机少";
 "pref_app_access" = "应用程序访问";
 "pref_chats" = "聊天";
 "pref_in_chat_sounds" = "聊天音";
@@ -655,7 +659,6 @@
 "emoji_objects" = "物品";
 "emoji_symbols" = "符号";
 "emoji_flags" = "旗帜";
-
 
 // automatically delete message
 "delete_old_messages" = "删除旧消息";
@@ -831,6 +834,7 @@
 "contact_not_verified" = "无法验证 %1$@。";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "验证人 %1$@";
+"verified_by_you" = "由您验证";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ 的加密设置已更改。";
 "verified_group_explain" = "已验证群组（实验性）可提供针对主动攻击的安全性。其中的成员被其他成员用第二个因素进行了验证，并且消息始终是端到端加密的。";
@@ -850,8 +854,6 @@
 "notify_name_and_message" = "名称和消息";
 "notify_name_only" = "仅名称";
 "notify_no_name_or_message" = "不显示名称或消息";
-
-
 // permissions
 "perm_required_title" = "需要权限";
 "perm_continue" = "继续";
@@ -859,7 +861,6 @@
 "perm_explain_access_to_mic_denied" = "要发送音频消息，请转至应用设置，选择“权限”，然后启用“麦克风”。";
 "perm_explain_access_to_storage_denied" = "要发送或接收文件，请转至应用设置，选择“权限”，然后启用“存储”。";
 "perm_explain_access_to_location_denied" = "要附加位置，请转至应用设置，选择“权限”，然后启用“位置”。";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "对任意地方涂抹以进行模糊";
 "ImageEditorHud_add_text" = "添加文字";

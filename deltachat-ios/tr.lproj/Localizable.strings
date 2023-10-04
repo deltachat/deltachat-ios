@@ -29,6 +29,7 @@
 "back" = "Geri";
 "verified" = "Doğrulandı";
 "close" = "Kapat";
+"close_window" = "Pencereyi Kapat";
 "forward" = "İlet";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Yeniden Gönder";
@@ -38,7 +39,7 @@
 "unarchive" = "Arşivleme";
 "mute" = "Sessize Al";
 "ephemeral_messages" = "Kaybolan İletiler";
-"ephemeral_messages_hint" = "Delta Chat\'i kullanıyorlarsa, bu sohbetin tüm üyelerine uygulanır; onlar hâlâ iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
+"ephemeral_messages_hint" = "Onlar Delta Chat\'i kullanıyorsa, bu sohbetin tüm üyelerine uygulanır; onlar hâlâ iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";
@@ -160,10 +161,10 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Yeni Kişi";
 "menu_new_chat" = "Yeni Sohbet";
-"menu_new_group" = "Yeni Grup";
+"menu_new_group" = "Yeni Öbek";
 // Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Yeni Grup ya da Konu";
-"menu_new_verified_group" = "Yeni Doğrulanan Grup";
+"new_group_or_subject" = "Yeni Öbek ya da Konu";
+"menu_new_verified_group" = "Yeni Doğrulanan Öbek";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Yayın Listesi";
 "broadcast_lists" = "Yayın Listeleri";
@@ -171,13 +172,13 @@
 "add_recipients" = "Alıcılar Ekle";
 "menu_send" = "Gönder";
 "menu_toggle_keyboard" = "Emoji Klavyesine Geç";
-"menu_edit_group" = "Grubu Düzenle";
-"menu_group_name_and_image" = "Grup Adı ve Görseli";
+"menu_edit_group" = "Öbeği Düzenle";
+"menu_group_name_and_image" = "Öbek Adı ve Görseli";
 "menu_show_global_map" = "Tüm Konumlar";
 "menu_archive_chat" = "Sohbeti Arşivle";
 "menu_unarchive_chat" = "Sohbeti Arşivleme";
 "menu_add_attachment" = "İlişik Ekle";
-"menu_leave_group" = "Gruptan Ayrıl";
+"menu_leave_group" = "Öbekten Ayrıl";
 "menu_delete_chat" = "Sohbeti Sil";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sohbeti Temizle";
@@ -230,7 +231,7 @@
 "jump_to_message" = "İletiye Atla";
 "copy_json" = "JSON kopyala";
 "replace_draft" = "Taslağı Değiştir";
-"title_share_location" = "Tüm grup üyeleriyle konum paylaş";
+"title_share_location" = "Tüm öbek üyeleriyle konum paylaş";
 "device_talk" = "Aygıt İletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
 "device_talk_explain" = "Bu sohbetteki iletiler, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için aygıtınızda oluşturulur.";
@@ -265,22 +266,22 @@
 "file_saved_to" = "Dosya \"%1$@\" üzerine kaydedildi.";
 
 "videochat" = "Video Sohbeti";
-"videochat_invite_user_to_videochat" = "%1$@ bir video sohbetine davet edilsin mi?";
+"videochat_invite_user_to_videochat" = "%1$@ bir video sohbetine çağrılsın mı?";
 "videochat_invite_user_hint" = "Bu, her iki uçta da uyumlu bir uygulama ya da tarayıcı gerektirir.";
-"videochat_contact_invited_hint" = "%1$@ video sohbetine davet etti.";
-"videochat_you_invited_hint" = "Bir video sohbeti daveti gönderdiniz.";
+"videochat_contact_invited_hint" = "%1$@ bir video sohbetine çağrıldı.";
+"videochat_you_invited_hint" = "Bir video sohbeti çağrısı gönderdiniz.";
 "videochat_tap_to_join" = "Katılmak için Dokunun";
 "videochat_tap_to_open" = "Açmak için Dokunun";
 "videochat_instance" = "Video Sohbeti Örneği";
 "videochat_instance_placeholder" = "Video Sohbeti Örneğiniz";
-"videochat_instance_example" = "Örnekler: https://meet.jit.si/$ROOM ya da basicwebrtc:https://your-server";
+"videochat_instance_example" = "Örnek: https://your-server.org/$ROOM";
 "videochat_instance_explain_2" = "Etkinleştirilirse, her sohbetten video sohbeti başlatabilirsiniz. Her iki uçta da uyumlu bir uygulama ya da bir tarayıcı gerektirir.";
-"videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetlerine davet etmek için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Bu, video sohbetleri için herhangi bir önceki ayarın yerini alır.";
-"videochat_invitation" = "Video sohbeti daveti";
-"videochat_invitation_body" = "Bir video sohbetine davet edildiniz; katılmak için %1$@ öğesini tıklayın.";
+"videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetlerine çağırmak için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Bu, video sohbetleri için herhangi bir önceki ayarın yerini alır.";
+"videochat_invitation" = "Video sohbeti çağrısı";
+"videochat_invitation_body" = "Bir video sohbetine çağrıldınız; katılmak için %1$@ öğesini tıklayın.";
 
 // get confirmations
-"ask_leave_group" = "Bu gruptan ayrılmak istediğinizden emin misiniz?";
+"ask_leave_group" = "Bu öbekten ayrılmak istediğinizden emin misiniz?";
 "ask_delete_message" = "Bu iletiyi silmek istediğinizden emin misiniz?";
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
@@ -293,7 +294,7 @@
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
 "ask_delete_value" = "%1$@ silinsin mi?";
 // %1$s is replaced by a comma-separated list of names
-"ask_remove_members" = "%1$@ gruptan kaldırılsın mı?";
+"ask_remove_members" = "%1$@ öbekten kaldırılsın mı?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "%1$@ yayın listesinden kaldırılsın mı?";
 "open_url_confirmation" = "Bu bağlantıyı açmak istiyor musunuz?";
@@ -314,7 +315,7 @@
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "%1$@ kişisine bir ileti gönderin; Delta Chat olmadan bile onu alabilir.";
 "chat_new_broadcast_hint" = "Bir yayın listesinde, diğerleri sizinle olan özel sohbetlerinde ileti alacak.\n\nAlıcılar birbirinin farkında olmayacak.";
-"chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu grubu görecek.";
+"chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu öbeği görecek.";
 "chat_record_slide_to_cancel" = "İptal etmek için kaydırın";
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
 "chat_no_chats_yet_title" = "Boş gelen kutusu.\nYeni bir sohbet başlatmak için \"+\" simgesine basın.";
@@ -334,7 +335,7 @@
 "save_as" = "Farklı Kaydet";
 "retry_send" = "İletiyi göndermeyi yeniden dene";
 // reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Bir ileti göndermek için bu grupta olmalısınız. Katılmak için başka bir üyeye sorun.";
+"messaging_disabled_not_in_group" = "Bir ileti göndermek için bu öbekte olmalısınız. Katılmak için başka bir üyeye sorun.";
 "messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir; yazma etkisizleştirilir.";
 "messaging_disabled_mailing_list" = "Posta listelerine iletiler gönderme henüz desteklenmiyor";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
@@ -351,8 +352,9 @@
 "start_app" = "Başlat…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Lütfen önce sohbet isteğini kabul edin.";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "\"%1$@\" dosyasını gönder…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "İletiyi gönder…";
 
 // map
@@ -382,18 +384,18 @@
 
 
 // create/edit groups, contact/group profile
-"group_name" = "Grup Adı";
-"group_avatar" = "Grup Görseli";
-"remove_group_image" = "Grup Görselini Kaldır";
-"change_group_image" = "Grup Görselini Değiştir";
-"group_create_button" = "Grup Oluştur";
-"group_please_enter_group_name" = "Lütfen grup için bir ad girin.";
+"group_name" = "Öbek Adı";
+"group_avatar" = "Öbek Görseli";
+"remove_group_image" = "Öbek Görselini Kaldır";
+"change_group_image" = "Öbek Görselini Değiştir";
+"group_create_button" = "Öbek Oluştur";
+"group_please_enter_group_name" = "Lütfen öbek için bir ad girin.";
 "group_add_members" = "Üyeler Ekle";
-"group_self_not_in_group" = "Bu eylemi gerçekleştirmek için grubun bir üyesi olmalısınız.";
+"group_self_not_in_group" = "Bu eylemi gerçekleştirmek için öbeğin bir üyesi olmalısınız.";
 "profile_encryption" = "Şifreleme";
 "profile_shared_chats" = "Paylaşılan Sohbetler";
 "tab_contact" = "Kişi";
-"tab_group" = "Grup";
+"tab_group" = "Öbek";
 "tab_gallery" = "Galeri";
 "tab_docs" = "Belgeler";
 "tab_links" = "Bağlantılar";
@@ -410,7 +412,7 @@
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@, %2$@ adresini %3$@ olarak değiştirdi";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
-"aeap_explanation" = "%1$@ e-posta adresinizi %2$@ olarak değiştirdiniz.\n\nŞimdi bir doğrulanan gruba ileti gönderirseniz, oradaki kişiler yeni adresinizle eskisini otomatik olarak değiştirecek.\n\nTüm e-postaları yeni e-posta adresinize iletmek için eski e-posta sağlayıcınızı ayarlamanız önemle önerilir. Yoksa henüz yeni adresinizi almamış olan kişilerin iletilerini kaçırabilirsiniz.";
+"aeap_explanation" = "%1$@ e-posta adresinizi %2$@ olarak değiştirdiniz.\n\nŞimdi bir doğrulanan öbeğe ileti gönderirseniz, oradaki kişiler yeni adresinizle eskisini otomatik olarak değiştirecek.\n\nTüm e-postaları yeni e-posta adresinize iletmek için eski e-posta sağlayıcınızı ayarlamanız önemle önerilir. Yoksa henüz yeni adresinizi almamış olan kişilerin iletilerini kaçırabilirsiniz.";
 
 
 // Multi Device
@@ -425,7 +427,7 @@
 "multidevice_receiver_title" = "İkinci Aygıt Olarak Ayarla";
 "multidevice_open_settings_on_other_device" = "Birinci aygıtta “Ayarlar / İkinci Aygıt Ekle”ye gidin ve orada gösterilen kodu tarayın";
 "multidevice_receiver_scanning_ask" = "Diğer aygıttan gelen hesap bu aygıta kopyalansın mı?";
-"multidevice_abort" = "İkinci aygıtı ayarlamaktan vazgeçilsin mi?";
+"multidevice_abort" = "İkinci aygıtı ayarlamadan vazgeçilsin mi?";
 "multidevice_abort_will_invalidate_copied_qr" = "Bu, panoya kopyalanan QR kodunu geçersizleştirecek.";
 "multidevice_experimental_hint" = "(deneysel, sürüm 1.36 gerekli)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Hesap, ikinci aygıtınıza aktarıldı.";
@@ -466,7 +468,7 @@
 
 // welcome and login
 "welcome_chat_over_email" = "E-Posta Üzerinden Sohbet.";
-"scan_invitation_code" = "Davet Kodunu Tara";
+"scan_invitation_code" = "Çağrı Kodunu Tara";
 "welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsız.";
 "login_title" = "Giriş Yap";
 "login_header" = "E-Posta Hesabınıza Giriş Yapın";
@@ -552,7 +554,7 @@
 "pref_vibrate" = "Titret";
 "pref_screen_security" = "Ekran Güvenliği";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
-"pref_screen_security_explain" = "Yeni listesinde ve uygulamanın içinde ekran görüntülerinin engellenmesini iste";
+"pref_screen_security_explain" = "En yeniler listesinde ve uygulamanın içinde ekran görüntülerinin engellenmesini iste";
 "pref_screen_security_please_restart_hint" = "Ekran güvenliği ayarını uygulamak için lütfen uygulamayı yeniden başlatın.";
 "pref_notifications" = "Bildirimler";
 "pref_notifications_show" = "Göster";
@@ -580,6 +582,8 @@
 "pref_manage_keys" = "Anahtarları Yönet";
 "pref_use_system_emoji" = "Sistem Emojisini Kullan";
 "pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
+"pref_use_inapp_camera" = "Uygulama İçi Kamerayı Kullan";
+"pref_use_inapp_camera_explain" = "Uygulama içi kameranın genellikle sistem kamerasından daha az özelliği vardır";
 "pref_app_access" = "Uygulama Erişimi";
 "pref_chats" = "Sohbetler";
 "pref_in_chat_sounds" = "Sohbet İçi Sesler";
@@ -656,6 +660,8 @@
 "emoji_symbols" = "Semboller";
 "emoji_flags" = "Bayraklar";
 
+// Reactions
+"reactions" = "Tepkiler";
 
 // automatically delete message
 "delete_old_messages" = "Eski İletileri Sil";
@@ -707,12 +713,12 @@
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
 "systemmsg_failed_sending_to" = "%1$@ kişisine ileti gönderme başarısız.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
-"group_name_changed_by_you" = "\"%1$@\" grup adını \"%2$@\" olarak değiştirdiniz.";
+"group_name_changed_by_you" = "\"%1$@\" öbek adını \"%2$@\" olarak değiştirdiniz.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
-"group_name_changed_by_other" = "%3$@ tarafından \"%1$@\" grup adı \"%2$@\" olarak değiştirildi.";
-"group_image_changed_by_you" = "Grup görselini değiştirdiniz.";
+"group_name_changed_by_other" = "%3$@ tarafından \"%1$@\" öbek adı \"%2$@\" olarak değiştirildi.";
+"group_image_changed_by_you" = "Öbek görselini değiştirdiniz.";
 // %1$s will be replaced by name and address of the contact who did the action
-"group_image_changed_by_other" = "%1$@ tarafından grup görseli değiştirildi.";
+"group_image_changed_by_other" = "%1$@ tarafından öbek görseli değiştirildi.";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "%1$@ üyesini eklediniz.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
@@ -722,12 +728,12 @@
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ tarafından %1$@ üyesi kaldırıldı.";
 // "left" in the meaning of "exited"
-"group_left_by_you" = "Gruptan ayrıldınız.";
+"group_left_by_you" = "Öbekten ayrıldınız.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
-"group_left_by_other" = "%1$@ tarafından gruptan ayrılındı.";
-"group_image_deleted_by_you" = "Grup görselini sildiniz.";
+"group_left_by_other" = "%1$@ tarafından öbekten ayrılındı.";
+"group_image_deleted_by_you" = "Öbek görselini sildiniz.";
 // %1$s will be replaced by name and address of the contact
-"group_image_deleted_by_other" = "%1$@ tarafından grup görseli silindi.";
+"group_image_deleted_by_other" = "%1$@ tarafından öbek görseli silindi.";
 "location_enabled_by_you" = "Konum akışını etkinleştirdiniz.";
 // %1$s will be replaced by name and address of the contact
 "location_enabled_by_other" = "%1$@ tarafından konum akışı etkinleştirildi.";
@@ -749,7 +755,7 @@
 "ephemeral_timer_1_day_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 gün olarak ayarlandı.";
 "ephemeral_timer_1_week_by_you" = "Kaybolan iletiler zamanlayıcısını 1 hafta olarak ayarladınız.";
 // %1$s will be replaced by name and address of the contact
-"ephemeral_timer_1_week_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 gün olarak ayarlandı.";
+"ephemeral_timer_1_week_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 hafta olarak ayarlandı.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ dakika olarak ayarladınız.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
@@ -789,28 +795,28 @@
 "qrscan_title" = "QR Kodu Tara";
 "qrscan_hint" = "Kameranızı QR kodunun üzerinde tutun.";
 "qrscan_failed" = "QR kodu çözülemedi";
-"qrscan_ask_join_group" = "\"%1$@\" grubuna katılmak istiyor musunuz?";
+"qrscan_ask_join_group" = "\"%1$@\" öbeğine katılmak istiyor musunuz?";
 "qrscan_fingerprint_mismatch" = "Taranan parmak izi, %1$@ için son görülenle eşleşmiyor.";
 "qrscan_no_addr_found" = "Bu QR kodu, bir parmak izi içeriyor; ama e-posta adresi yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
 "qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";
 "qrscan_contains_url" = "Taranan QR kodu URL\'si:\n\n%1$@";
 "qrscan_fingerprint_label" = "Parmak izi";
 "withdraw_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
-"withdraw_verifygroup_explain" = "Bu QR kodu, \"%1$@\" grubuna katılmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
+"withdraw_verifygroup_explain" = "Bu QR kodu, \"%1$@\" öbeğine katılmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
 "withdraw_qr_code" = "QR Kodunu Etkisizleştir";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
-"revive_verifygroup_explain" = "Bu QR kodu, \"%1$@\" grubuna katılmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
+"revive_verifygroup_explain" = "Bu QR kodu, \"%1$@\" öbeğine katılmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
 "revive_qr_code" = "QR Kodunu Etkinleştir";
-"qrshow_title" = "QR Davet Kodu";
+"qrshow_title" = "QR Çağrı Kodu";
 "qrshow_x_joining" = "%1$@ katılıyor.";
 "qrshow_x_verified" = "%1$@ doğrulandı.";
-"qrshow_x_has_joined_group" = "%1$@ gruba katıldı.";
-"qrshow_join_group_title" = "QR Davet Kodu";
+"qrshow_x_has_joined_group" = "%1$@ öbeğe katıldı.";
+"qrshow_join_group_title" = "QR Çağrı Kodu";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
-"qrshow_join_group_hint" = "\"%1$@\" grubuna katılmak için bunu tarayın";
-"qrshow_join_contact_title" = "QR Davet Kodu";
+"qrshow_join_group_hint" = "\"%1$@\" öbeğine katılmak için bunu tarayın";
+"qrshow_join_contact_title" = "QR Çağrı Kodu";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
@@ -824,16 +830,17 @@
 // the placeholder will be replaced by the e-mail address of the account
 "qrlogin_ask_login_another" = "\"%1$@\" adresine giriş yapılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_started" = "%1$@ sizi bu gruba katılmaya davet etti.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
+"secure_join_started" = "%1$@ sizi bu öbeğe katılmaya çağırdı.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
-"secure_join_replies" = "%1$@ yanıtladı; gruba eklenmesi bekleniyor…";
+"secure_join_replies" = "%1$@ yanıtladı; öbeğe eklenmesi bekleniyor…";
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "%1$@ tarafından doğrulandı";
+"verified_by_you" = "Sizin tarafınızdan doğrulandı";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
-"verified_group_explain" = "Doğrulanan gruplar (deneysel), etkin saldırılar karşısında güvenlik sağlar. Üyeler, diğer üyeler tarafından ikinci bir etkenle doğrulanır ve iletiler her zaman uçtan uca şifrelenir.";
+"verified_group_explain" = "Doğrulanan öbekler (deneysel), etkin saldırılar karşısında güvenlik sağlar. Üyeler, diğer üyeler tarafından ikinci bir etkenle doğrulanır ve iletiler her zaman uçtan uca şifrelenir.";
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
 // first placeholder is the name of the chat
@@ -850,6 +857,7 @@
 "notify_name_and_message" = "Ad ve ileti";
 "notify_name_only" = "Yalnızca ad";
 "notify_no_name_or_message" = "Ad ya da ileti yok";
+"notifications_disabled" = "Bildirimler etkisizleştirildi";
 
 
 // permissions
@@ -859,6 +867,7 @@
 "perm_explain_access_to_mic_denied" = "Sesli iletiler göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Mikrofon\"u etkinleştirin.";
 "perm_explain_access_to_storage_denied" = "Dosyalar almak ya da göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";
 "perm_explain_access_to_location_denied" = "Bir konum iliştirmek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
+"perm_explain_access_to_notifications_denied" = "Bildirimler almak için \"Sistem Ayarları / Uygulamalar / Delta Chat\"e gidin ve \"Bildirimler\"i etkinleştirin.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Bulanıklaştırmak için herhangi bir yere çizin";
@@ -910,7 +919,7 @@
 "name_desktop" = "Ad";
 "autocrypt_key_transfer_desktop" = "Autocrypt anahtar aktarımı";
 "initiate_key_transfer_desktop" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır. Ayarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
-"select_group_image_desktop" = "Grup Görseli Seç";
+"select_group_image_desktop" = "Öbek Görseli Seç";
 "imex_progress_title_desktop" = "Yedekleme İlerlemesi";
 "export_backup_desktop" = "Yedeği Dışa Aktar";
 "show_key_transfer_message_desktop" = "Anahtarınız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";

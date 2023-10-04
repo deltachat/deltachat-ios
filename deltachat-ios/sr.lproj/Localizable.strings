@@ -624,7 +624,6 @@
 "emoji_symbols" = "Симболи";
 "emoji_flags" = "Заставе";
 
-
 // automatically delete message
 "delete_old_messages" = "Избриши старе поруке";
 "autodel_device_title" = "Избриши поруке са уређаја";
@@ -818,8 +817,6 @@
 "notify_name_and_message" = "Име и поруку";
 "notify_name_only" = "Само име";
 "notify_no_name_or_message" = "Ни име ни поруку";
-
-
 // permissions
 "perm_required_title" = "Дозвола је потребна";
 "perm_continue" = "Настави";
@@ -827,7 +824,6 @@
 "perm_explain_access_to_mic_denied" = "Да бисте послали звучне записе, идите на подешавања апликације, изаберите „Дозволе“ и омогућите „Микрофон“.";
 "perm_explain_access_to_storage_denied" = "Да бисте примали или слали датотеке, идите на подешавања апликације, изаберите „Дозволе“ и омогућите „Складиштење“.";
 "perm_explain_access_to_location_denied" = "Да приложите положај, идите у подешавања апликације и изаберите „Дозволе“ и омогућите „Положај/Локацију“.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Цртајте било где да би сте замутили";
 "ImageEditorHud_add_text" = "Додај текст";

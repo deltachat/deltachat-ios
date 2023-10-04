@@ -29,6 +29,7 @@
 "back" = "Назад";
 "verified" = "Підтверджено";
 "close" = "Закрити";
+"close_window" = "Закрити вікно";
 "forward" = "Переслати";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Відправити знову";
@@ -351,8 +352,9 @@
 "start_app" = "Старт...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Будь ласка, спочатку прийміть запит на чат.";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "Надіслати \"%1$@\" до…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Надіслати повідомлення до...";
 
 // map
@@ -656,7 +658,6 @@
 "emoji_symbols" = "Символи";
 "emoji_flags" = "Прапори";
 
-
 // automatically delete message
 "delete_old_messages" = "Видалити старі повідомлення";
 "autodel_device_title" = "Видалити повідомлення з пристрою";
@@ -850,8 +851,6 @@
 "notify_name_and_message" = "Ім\'я та повідомлення";
 "notify_name_only" = "Тільки ім\'я";
 "notify_no_name_or_message" = "Без імені або повідомлення";
-
-
 // permissions
 "perm_required_title" = "Потрібен дозвіл";
 "perm_continue" = "Продовжити";
@@ -859,7 +858,6 @@
 "perm_explain_access_to_mic_denied" = "Для надсилання голосових повідомлень додатку потрібен дозвіл на використання мікрофону, але зараз його не надано. Для надання дозволу перейдіть у системне меню налаштувань, у розділі «Додатки» знайдіть Delta Chat і дозвольте доступ до мікрофону.";
 "perm_explain_access_to_storage_denied" = "Для збереження або передавання фотографій перейдіть до налаштувань додатку, оберіть \"Дозволи\" та включіть \"Сховище\"";
 "perm_explain_access_to_location_denied" = "Щоб передати місцезнаходження, додатку потрібен доступ до геоданих пристрою, але зараз його не надано. Для надання доступу перейдіть у системне меню налаштувань, у розділі «Додатки» знайдіть Delta Chat, виберіть пункт «Права доступу» і дозвольте доступ до місцезнаходження пристрою.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Малюйте де завгодно для розмиття";
 "ImageEditorHud_add_text" = "Додати текст";

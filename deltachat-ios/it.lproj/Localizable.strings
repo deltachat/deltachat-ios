@@ -29,6 +29,7 @@
 "back" = "Indietro";
 "verified" = "Verificato";
 "close" = "Chiudi";
+"close_window" = "Chiudi finestra";
 "forward" = "Inoltra";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Reinvia";
@@ -234,7 +235,7 @@
 "device_talk" = "Messaggi del Dispositivo";
 "device_talk_subtitle" = "Messaggi generati localmente";
 "device_talk_explain" = "I messaggi in questa chat vengono generati localmente da Delta Chat. Gli sviluppatori li usano per informarti sugli aggiornamenti o sui problemi di utilizzo.";
-"device_talk_welcome_message" = "Benvenuto in Delta Chat! - Delta Chat ha l\'aspetto e lo stile di altre popolari applicazioni di messaggistica, ma non costringe a un controllo centralizzato, al tracciamento o alla vendita tua, dei tuoi amici, colleghi o familiari a grandi organizzazioni.\n\nTecnicamente, Delta Chat è un\'applicazione di posta elettronica con un\'interfaccia moderna. L\'email in una nuova veste 👻\n\nUtilizza Delta Chat con chiunque: basta conoscere il loro indirizzo e-mail. I destinatari non hanno bisogno di installare Delta Chat, visitare siti web o iscriversi da nessuna parte - ma, naturalmente se lo desiderano, puoi suggerirgli 👉 https://get.delta.chat";
+"device_talk_welcome_message" = "Benvenuto in Delta Chat! - Delta Chat ha l\'aspetto e lo stile di altre popolari applicazioni di messaggistica, ma non costringe a un controllo centralizzato, al tracciamento o alla vendita dei dati personali tuoi, dei tuoi amici, colleghi o familiari a grandi organizzazioni.\n\nTecnicamente, Delta Chat è un\'applicazione di posta elettronica con un\'interfaccia moderna. L\'e-mail in una nuova veste 👻\n\nUtilizza Delta Chat con chiunque: basta conoscere il loro indirizzo e-mail. I destinatari non hanno bisogno di installare Delta Chat, visitare siti web o iscriversi da nessuna parte - ma, naturalmente se lo desiderano, puoi suggerirgli 👉 https://get.delta.chat";
 "edit_contact" = "Modifica Contatto";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fissa Chat";
@@ -351,8 +352,9 @@
 "start_app" = "Avvia...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Per favore, accetta prima la richiesta di chat.";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "Invia \"%1$@\" a…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Invia Messaggio a...";
 
 // map
@@ -580,6 +582,8 @@
 "pref_manage_keys" = "Gestisci Chiavi";
 "pref_use_system_emoji" = "Usa Emoji di Sistema";
 "pref_use_system_emoji_explain" = "Disabilita il supporto delle emoji integrato in Delta Chat";
+"pref_use_inapp_camera" = "Usa Fotocamera App";
+"pref_use_inapp_camera_explain" = "La fotocamera dell\'app di solito ha meno funzionalità della fotocamera di sistema";
 "pref_app_access" = "Accesso all\'App";
 "pref_chats" = "Chat";
 "pref_in_chat_sounds" = "Suoni In-Chat";
@@ -655,7 +659,6 @@
 "emoji_objects" = "Oggetti";
 "emoji_symbols" = "Simboli";
 "emoji_flags" = "Bandiere";
-
 
 // automatically delete message
 "delete_old_messages" = "Elimina i Vecchi Messaggi";
@@ -831,6 +834,7 @@
 "contact_not_verified" = "Impossibile verificare %1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "Verificato da %1$@";
+"verified_by_you" = "Verificato da te";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Impostazioni modificate per %1$@";
 "verified_group_explain" = "I gruppi verificati (sperimentali) garantiscono sicurezza dagli attacchi. I membri vengono verificati con un secondo fattore dagli altri membri e i messaggi sono sempre cifrati end-to-end. ";
@@ -850,8 +854,6 @@
 "notify_name_and_message" = "Nome e messaggio";
 "notify_name_only" = "Solo nome";
 "notify_no_name_or_message" = "Nessun nome nè messaggio";
-
-
 // permissions
 "perm_required_title" = "Autorizzazione richiesta";
 "perm_continue" = "Continua";
@@ -859,7 +861,6 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat richiede l\'autorizzazione inviare messaggi audio, ma è stata bloccata permanentemente. Vai nelle impostazioni delle App, seleziona \"Autorizzazioni\" e abilita \"Microfono\".";
 "perm_explain_access_to_storage_denied" = "Per ricevere o inviare files, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".";
 "perm_explain_access_to_location_denied" = "Delta Chat richiede l\'autorizzazione per allegare la posizione, ma è stata bloccata permanentemente. Vai nelle impostazioni delle App, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Disegna ovunque per sfocare";
 "ImageEditorHud_add_text" = "Aggiungi Testo";

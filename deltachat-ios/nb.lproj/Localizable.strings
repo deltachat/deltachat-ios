@@ -371,8 +371,6 @@
 "notify_name_and_message" = "Navn og melding";
 "notify_name_only" = "Bare navn";
 "notify_no_name_or_message" = "Ingen navn eller melding";
-
-
 // permissions
 "perm_required_title" = "Tillatelse kreves";
 "perm_continue" = "Fortsett";

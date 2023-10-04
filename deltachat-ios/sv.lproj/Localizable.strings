@@ -578,8 +578,6 @@
 "notify_name_and_message" = "Namn och meddelande";
 "notify_name_only" = "Endast namn";
 "notify_no_name_or_message" = "Inget namn eller meddelande";
-
-
 // permissions
 "perm_required_title" = "Behörighet krävs";
 "perm_continue" = "Fortsätt";
@@ -587,7 +585,6 @@
 "perm_explain_access_to_mic_denied" = "Gå till programinställningarna och aktivera \"Mikrofon\" under \"Behörighet\", för att skicka röstmeddelanden.";
 "perm_explain_access_to_storage_denied" = "Gå till programinställningarna och aktivera \"Lagring\" under \"Behörighet\", för att ta emot eller skicka filer.";
 "perm_explain_access_to_location_denied" = "Gå till programinställningarna och aktivera \"Plats\" under \"Behörighet\", för att bifoga en plats.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Rita var som helst för att smeta ut";
 // dc_str_* resources

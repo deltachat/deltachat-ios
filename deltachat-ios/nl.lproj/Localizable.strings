@@ -29,6 +29,7 @@
 "back" = "Terug";
 "verified" = "Goedgekeurd";
 "close" = "Sluiten";
+"close_window" = "Venster sluiten";
 "forward" = "Doorsturen";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Opnieuw versturen";
@@ -351,8 +352,9 @@
 "start_app" = "Starten…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Accepteer eerst het gespreksverzoek.";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "“%1$@” versturen naar…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Bericht versturen naar…";
 
 // map
@@ -580,6 +582,8 @@
 "pref_manage_keys" = "Sleutels beheren";
 "pref_use_system_emoji" = "Systeememoji gebruiken";
 "pref_use_system_emoji_explain" = "Schakel Delta Chat\'s ingebouwde emoji-ondersteuning uit";
+"pref_use_inapp_camera" = "Ingebouwde camera gebruiken";
+"pref_use_inapp_camera_explain" = "Let op: de ingebouwde camera beschikt over minder functies dan de systeemcamera";
 "pref_app_access" = "App-toegang";
 "pref_chats" = "Gesprekken";
 "pref_in_chat_sounds" = "Gespreksgeluiden";
@@ -655,7 +659,6 @@
 "emoji_objects" = "Objecten";
 "emoji_symbols" = "Symbolen";
 "emoji_flags" = "Vlaggen";
-
 
 // automatically delete message
 "delete_old_messages" = "Oude berichten verwijderen";
@@ -831,6 +834,7 @@
 "contact_not_verified" = "Kan %1$@ niet goedkeuren";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "Goedgekeurd door %1$@";
+"verified_by_you" = "Goedgekeurd door mij";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_group_explain" = "Goedgekeurde groepen (experimenteel) zijn extra beveiligd tegen aanvallen van buitenaf. Leden worden goedgekeurd door andere leden en berichten zijn altijd eind-tot-eind versleuteld.";
@@ -850,8 +854,6 @@
 "notify_name_and_message" = "Naam en bericht";
 "notify_name_only" = "Alleen naam";
 "notify_no_name_or_message" = "Geen naam of bericht";
-
-
 // permissions
 "perm_required_title" = "Machtiging vereist";
 "perm_continue" = "Doorgaan";
@@ -859,7 +861,6 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat wil spraakberichten versturen. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Microfoon’ in.";
 "perm_explain_access_to_storage_denied" = "Delta Chat wil bestanden kunnen ontvangen en versturen. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Opslag’ in.";
 "perm_explain_access_to_location_denied" = "Delta Chat wil je locatie kunnen delen. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Locatie’ in.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Teken met je vinger om vervaging toe te passen";
 "ImageEditorHud_add_text" = "Tekst toevoegen";

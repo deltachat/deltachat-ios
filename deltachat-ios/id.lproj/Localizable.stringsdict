@@ -86,6 +86,34 @@
 			<string>%d anggota</string>
 		</dict>
 	</dict>
+	<key>n_recipients</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d penerima</string>
+		</dict>
+	</dict>
+	<key>n_selected</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d Dipilih</string>
+		</dict>
+	</dict>
 	<key>ask_send_following_n_files_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -126,6 +154,20 @@
 			<string>d</string>
 			<key>other</key>
 			<string>Hapus %d pesan disini dan di server?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages_simple</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>Menghapus pesan %d?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

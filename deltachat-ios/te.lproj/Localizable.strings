@@ -195,8 +195,6 @@
 "notify_name_and_message" = "పేరు మరియు సందేశం";
 "notify_name_only" = "పేరు మాత్రమే";
 "notify_no_name_or_message" = "పేరు లేదా సందేశం";
-
-
 // permissions
 "perm_required_title" = "అనుమతి అవసరం";
 "perm_continue" = "కొనసాగించు";

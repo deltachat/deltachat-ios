@@ -486,7 +486,6 @@
 "emoji_symbols" = "シンボル";
 "emoji_flags" = "フラッグ";
 
-
 // automatically delete message
 "delete_old_messages" = "古いメッセージの削除";
 "autodel_device_title" = "端末からメッセージを削除する";
@@ -611,8 +610,6 @@
 "notify_name_and_message" = "名前とメッセージ";
 "notify_name_only" = "名前のみ";
 "notify_no_name_or_message" = "名前もメッセージも非表示";
-
-
 // permissions
 "perm_required_title" = "アクセス許可が必要です";
 "perm_continue" = "続行";

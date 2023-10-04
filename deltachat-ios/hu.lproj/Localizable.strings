@@ -249,8 +249,6 @@
 "notify_name_and_message" = "Név és üzenet";
 "notify_name_only" = "Csak név";
 "notify_no_name_or_message" = "Se név, se üzenet";
-
-
 // permissions
 "perm_required_title" = "Engedély szükséges";
 "perm_continue" = "Folytatás";

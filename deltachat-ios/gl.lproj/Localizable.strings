@@ -619,7 +619,6 @@
 "emoji_symbols" = "Símbolos";
 "emoji_flags" = "Bandeiras";
 
-
 // automatically delete message
 "delete_old_messages" = "Eliminar mensaxes antigas";
 "autodel_device_title" = "Borrar mensaxes do dispositivo";
@@ -773,8 +772,6 @@
 "notify_name_and_message" = "Nome e mensaxe";
 "notify_name_only" = "Só nome";
 "notify_no_name_or_message" = "Sen nome ou mensaxe";
-
-
 // permissions
 "perm_required_title" = "Permiso requerido";
 "perm_continue" = "Continuar";
@@ -782,7 +779,6 @@
 "perm_explain_access_to_mic_denied" = "Para enviar mensaxes de voz, vaite aos axustes da app, escolle \"Permisos\" e activa \"Micrófono\".";
 "perm_explain_access_to_storage_denied" = "Para recibir ou enviar ficheiros, vaite aos axustes da app, escolle \"Permisos\" e activa \"Almacenaxe\".";
 "perm_explain_access_to_location_denied" = "Para engadir a localización, vaite aos axustes da app, escolle \"Permisos\" e activa \"Localización\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Debuxa para esborranchar";
 "ImageEditorHud_add_text" = "Engadir texto";

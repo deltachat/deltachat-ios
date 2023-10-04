@@ -205,8 +205,6 @@
 "notify_name_and_message" = "الاسم والرسالة";
 "notify_name_only" = "الاسم فقط";
 "notify_no_name_or_message" = "لا إسم ولا رسالة";
-
-
 // permissions
 "perm_required_title" = "منح إحدى الأذونات مطلو";
 "perm_continue" = "استمر";

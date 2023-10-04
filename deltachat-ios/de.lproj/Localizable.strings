@@ -29,6 +29,7 @@
 "back" = "Zurück";
 "verified" = "Verifiziert";
 "close" = "Schließen";
+"close_window" = "Fenster schließen";
 "forward" = "Weiterleiten";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Erneut senden";
@@ -351,8 +352,9 @@
 "start_app" = "Start…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Bitte nehmen Sie zunächst die Chatanfrage an.";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "Sende \"%1$@\" an…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Nachricht senden an…";
 
 // map
@@ -580,6 +582,8 @@
 "pref_manage_keys" = "Schlüssel verwalten";
 "pref_use_system_emoji" = "System-Emoji benutzen";
 "pref_use_system_emoji_explain" = "Eingebaute Emoji-Unterstützung von Delta Chat deaktivieren";
+"pref_use_inapp_camera" = "In-App Kamera verwenden";
+"pref_use_inapp_camera_explain" = "Die In-App-Kamera hat in der Regel weniger Funktionen als die Systemkamera";
 "pref_app_access" = "App-Zugriff";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "In-Chat-Klänge";
@@ -656,6 +660,8 @@
 "emoji_symbols" = "Symbole";
 "emoji_flags" = "Flaggen";
 
+// Reactions
+"reactions" = "Reaktionen";
 
 // automatically delete message
 "delete_old_messages" = "Alte Nachrichten löschen";
@@ -831,6 +837,7 @@
 "contact_not_verified" = "Kann %1$@ nicht verifizieren";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "Verifiziert von %1$@";
+"verified_by_you" = "Verifiziert von Ihnen";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Geändertes Setup für %1$@";
 "verified_group_explain" = "Verifizierte Gruppen (experimentell) bieten Schutz gegen aktive Angriffe mittels Zwei-Faktor-Authentifizierung aller Mitglieder und immer aktiver Ende-zu-Ende-Verschlüsselung.";
@@ -850,6 +857,7 @@
 "notify_name_and_message" = "Name und Nachricht";
 "notify_name_only" = "Nur der Name";
 "notify_no_name_or_message" = "Kein Name oder Nachricht";
+"notifications_disabled" = "Benachrichtigungen deaktiviert";
 
 
 // permissions
@@ -859,6 +867,7 @@
 "perm_explain_access_to_mic_denied" = "Um Audio-Nachrichten zu senden, bitte in den System-Einstellungen DeltaChat den Zugriff auf das Mikrophon erlauben.";
 "perm_explain_access_to_storage_denied" = "Um Dateien zu empfangen oder zu versenden, bitte in den System-Einstellungen Delta Chat den Zugriff auf den Speicher erlauben.";
 "perm_explain_access_to_location_denied" = "Um einen Standort anzuhängen, bitte in den Systemeinstellungen DeltaChat den Zugriff auf \"Standort\" erlauben.";
+"perm_explain_access_to_notifications_denied" = "Um Benachrichtigungen zu erhalten, öffnen Sie \"Systemeinstellungen / Apps / Delta Chat\" und aktivieren Sie \"Benachrichtigungen\".";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Zeichne zum Verwischen in beliebige Bereiche";

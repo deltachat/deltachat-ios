@@ -29,6 +29,7 @@
 "back" = "Retour";
 "verified" = "Vérifié";
 "close" = "Fermer";
+"close_window" = "Fermer la fenêtre";
 "forward" = "Faire suivre";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Renvoyer";
@@ -351,8 +352,13 @@
 "start_app" = "Démarrer...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Veuillez d\'abord accepter l\'invitation.";
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
+"send_file_to" = "Envoyer \"%1$@\" à";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
+"send_message_to" = "Envoyer un message à";
+
 // map
-"filter_map_on_time" = "Afficher les positions dans le temps";
+"filter_map_on_time" = "Afficher les positions pour une période";
 "show_location_traces" = "Afficher les traces";
 "add_poi" = "Afficher les points d\'intérêt";
 
@@ -652,7 +658,6 @@
 "emoji_symbols" = "Symboles";
 "emoji_flags" = "Drapeaux";
 
-
 // automatically delete message
 "delete_old_messages" = "Supprimer les anciens messages";
 "autodel_device_title" = "Supprimer les messages de l\'appareil";
@@ -846,8 +851,6 @@
 "notify_name_and_message" = "Nom et message";
 "notify_name_only" = "Nom seulement";
 "notify_no_name_or_message" = "Pas de nom ou de message";
-
-
 // permissions
 "perm_required_title" = "Autorisation requise";
 "perm_continue" = "Continuez";
@@ -855,7 +858,6 @@
 "perm_explain_access_to_mic_denied" = "Pour envoyer des messages audio, aller dans les paramètres de l\'application, sélectionner \"Autorisations\" et autoriser \"Microphone\".";
 "perm_explain_access_to_storage_denied" = "Pour recevoir ou envoyer des fichiers, aller dans les Paramètres de l\'application, sélectionner \"Autorisations\" et autoriser \"Stockage\".";
 "perm_explain_access_to_location_denied" = "Pour joindre une position, aller au menu paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Position\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Dessinez n\'importe où pour flouter";
 "ImageEditorHud_add_text" = "Ajouter du texte";

@@ -652,7 +652,6 @@
 "emoji_symbols" = "Символи";
 "emoji_flags" = "Знамена";
 
-
 // automatically delete message
 "delete_old_messages" = "Изтриване на старите съобщения";
 "autodel_device_title" = "Изтриване на съобщенията от устройството";
@@ -846,8 +845,6 @@
 "notify_name_and_message" = "Име и съобщение";
 "notify_name_only" = "Само име";
 "notify_no_name_or_message" = "Без име или съобщение";
-
-
 // permissions
 "perm_required_title" = "Изисква се позволение";
 "perm_continue" = "Продължаване";
@@ -855,7 +852,6 @@
 "perm_explain_access_to_mic_denied" = "За да изпращате аудиосъобщения, отидете в настройките на приложението, изберете \"Позволения\" и разрешете \"Микрофон\".";
 "perm_explain_access_to_storage_denied" = "За да получавате или изпращате файлове, отидете в настройките на приложението, изберете \"Позволения\" и разрешете \"Съхранение\".";
 "perm_explain_access_to_location_denied" = "За да прикрепите информация за местоположението, отидете в настройките на приложението, изберете \"Позволения\" и разрешете \"Местоположение\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Рисувайте на произволно място, за да замъглите";
 "ImageEditorHud_add_text" = "Добавяне на текст";

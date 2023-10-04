@@ -499,7 +499,6 @@
 "emoji_symbols" = "Symboler";
 "emoji_flags" = "Flag";
 
-
 // automatically delete message
 "delete_old_messages" = "Slet gamle beskeder";
 "autodel_device_title" = "Slet beskeder fra enhed";
@@ -653,8 +652,6 @@
 "notify_name_and_message" = "Navn og besked";
 "notify_name_only" = "Kun navn";
 "notify_no_name_or_message" = "Ingen navn eller besked";
-
-
 // permissions
 "perm_required_title" = "Tilladelse påkrævet";
 "perm_continue" = "Fortsæt";
@@ -662,7 +659,6 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat kræver mikrofon tilladelse for at sende lydbeskeder, men den er blevet nægtet permanent. Fortsæt til program indstillinger, vælg \"Tilladelser\" og aktiver \"Mikrofon\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat kræver lagring tilladelse for at vedhæfte eller eksportere billeder, video eller lyd, men det er blevet afvist permanent. Fortsæt til program indstillings-menuen, vælg \"Tilladelser\" og aktiver \"Lagring\".";
 "perm_explain_access_to_location_denied" = "Delta Chat kræver placering tilladelse for at kunne vedhæfte placering, men det er blevet afvist permanent. Fortsæt til program indstillings-menuen, vælg \"Tilladelser\" og aktiver \"Placering\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Tegn hvor som helst for at sløre";
 "ImageEditorHud_rotate" = "Roter";

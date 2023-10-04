@@ -349,8 +349,9 @@
 "start_app" = "شروع...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "لطفاً اول درخواست گپ را قبول کنید.";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "ارسال \"%1$@\" به...";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "ارسال پیام به...";
 
 // map
@@ -652,7 +653,6 @@
 "emoji_symbols" = "نمادها";
 "emoji_flags" = "پرچم‌ها";
 
-
 // automatically delete message
 "delete_old_messages" = "پاک کردن پیام‌های قدیمی";
 "autodel_device_title" = "پاک کردن پیام‌ها از دستگاه";
@@ -841,13 +841,10 @@
 "notify_name_and_message" = "نام و پیام";
 "notify_name_only" = "فقط نام";
 "notify_no_name_or_message" = "بدون نام یا پیام";
-
-
 // permissions
 "perm_required_title" = "مجوز لازم است";
 "perm_continue" = "ادامه";
 "perm_explain_access_to_storage_denied" = "برای دریافت یا ارسال پرونده به تنظیمات برنامه بروید، «اجازه‌ها» را برگزینید و «ذخیره‌گاه» را به کار بیندازید.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "هر کجا مایلید شروع به رسم کردن کنید تا مات شود.";
 "ImageEditorHud_add_text" = "افزودن متن";

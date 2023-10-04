@@ -204,8 +204,6 @@
 "notify_name_and_message" = "பெயரும் செய்தியும்";
 "notify_name_only" = "பெயர் மட்டும்";
 "notify_no_name_or_message" = "பெயர் அல்லது செய்தி இல்லை";
-
-
 // permissions
 "perm_required_title" = "அனுமதி தேவை";
 "perm_continue" = "தொடர்";

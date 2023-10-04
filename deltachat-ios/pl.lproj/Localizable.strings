@@ -29,6 +29,7 @@
 "back" = "Wróć";
 "verified" = "Zweryfikowano";
 "close" = "Zamknij";
+"close_window" = "Zamknij okno";
 "forward" = "Przekaż";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Wyślij ponownie";
@@ -351,8 +352,9 @@
 "start_app" = "Uruchom…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Najpierw zaakceptuj prośbę o czat.";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "Wyślij „%1$@” do…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Wyślij wiadomość do…";
 
 // map
@@ -656,7 +658,6 @@
 "emoji_symbols" = "Symbole";
 "emoji_flags" = "Flagi";
 
-
 // automatically delete message
 "delete_old_messages" = "Usuwanie starych wiadomości";
 "autodel_device_title" = "Usuń wiadomości z urządzenia";
@@ -850,8 +851,6 @@
 "notify_name_and_message" = "Nazwa i wiadomość";
 "notify_name_only" = "Tylko nazwa";
 "notify_no_name_or_message" = "Brak nazwy lub wiadomości";
-
-
 // permissions
 "perm_required_title" = "Wymagane zezwolenie";
 "perm_continue" = "Kontynuuj";
@@ -859,7 +858,6 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat wymaga zezwolenia użycia mikrofonu, aby wysyłać wiadomości audio, ale zostało ono trwale odrzucone. Przejdź do ustawień aplikacji, wybierz „Uprawnienia” i włącz „Mikrofon”.";
 "perm_explain_access_to_storage_denied" = "Delta Chat wymaga uprawnienia do przechowywania, aby dołączyć lub wyeksportować zdjęcia, filmy lub dźwięk, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Pamięć”.";
 "perm_explain_access_to_location_denied" = "Delta Chat wymaga zezwolenia na lokalizację, aby dołączyć lokalizację, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Lokalizacja”.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Rysuj gdziekolwiek, aby rozmyć";
 "ImageEditorHud_add_text" = "Dodaj tekst";

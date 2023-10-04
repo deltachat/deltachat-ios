@@ -247,8 +247,9 @@
 "retry_send" = "zênu si fêšnāďênê payom taqalā ko";
 // mailing lists
 "mailing_list" = "nomga posti";
-// placeholder will be replaced by a file name
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "fêšnāďên \"%1$@\" vê...";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "fêšnāďên payom vê...";
 
 "show_location_traces" = "nêšow dāďên jā pā";
@@ -302,7 +303,6 @@
 "emoji_symbols" = "nemāďā";
 "emoji_flags" = "bêyraqā";
 
-
 // automatically delete message
 "delete_old_messages" = "pāk kerdên payomā qaďimi";
 "autodel_device_title" = "pāk kerdên payomā zê dasgā";
@@ -332,8 +332,6 @@
 "notify_name_and_message" = "nom vo payom";
 "notify_name_only" = "têynā nom";
 "notify_no_name_or_message" = "nom yā payomi nî";
-
-
 "global_menu_preferences_language_desktop" = "zow";
 "global_menu_file_desktop" = "fāyl";
 "global_menu_file_quit_desktop" = "vê dar zêyďên";

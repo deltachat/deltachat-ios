@@ -612,7 +612,6 @@
 "emoji_symbols" = "Symbolit";
 "emoji_flags" = "Liput";
 
-
 // automatically delete message
 "delete_old_messages" = "Poista vanhat viestit";
 "autodel_device_title" = "Poista viestit laitteelta";
@@ -804,8 +803,6 @@
 "notify_name_and_message" = "Nimi ja viesti";
 "notify_name_only" = "Pelkkä nimi";
 "notify_no_name_or_message" = "Ei nimeä eikä viestiä";
-
-
 // permissions
 "perm_required_title" = "Pääsylupa vaaditaan";
 "perm_continue" = "Jatka";
@@ -813,7 +810,6 @@
 "perm_explain_access_to_mic_denied" = "Lähettääksesi ääniviestin mene sovelluksen asetuksiin, valitse \"Käyttöluvat\" ja kytke päälle \"Mikrofoni\".";
 "perm_explain_access_to_storage_denied" = "Lähettääksesi tai vastaanottaaksesi tiedostoja mene sovelluksen asetuksiin, valitse \"Käyttöluvat\" ja kytke päälle \"Tallennustila\".";
 "perm_explain_access_to_location_denied" = "Jakaaksesi sijaintisi mene sovelluksen asetuksiin, valitse \"Käyttöluvat\" ja kytke päälle \"Sijainti\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Piirrää sumentaaksesi";
 "ImageEditorHud_add_text" = "Lisää teksti";

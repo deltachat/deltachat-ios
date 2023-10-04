@@ -328,8 +328,6 @@
 "notify_name_and_message" = "Nome e mensagem";
 "notify_name_only" = "Apenas nome";
 "notify_no_name_or_message" = "Sem nome ou mensagem";
-
-
 // permissions
 "perm_required_title" = "Permissão necessária";
 "perm_continue" = "Continuar";
@@ -337,7 +335,6 @@
 "perm_explain_access_to_mic_denied" = "O Delta Chat necessita de permissão de  acesso ao microfone para enviar mensagens de áudio, mas foi negado. Por favor, continue com as configurações do aplicativo, selecione \"Permissões\" e active \"Microfone\".";
 "perm_explain_access_to_storage_denied" = "O Delta Chat necessita da permissão de armazenamento para anexar ou exportar fotos, vídeos ou áudio, mas foi negado. Por favor, continue no menu de configurações do aplicativo, seleccione \"Permissões\" e active \"Armazenamento\".";
 "perm_explain_access_to_location_denied" = "O Delta Chat necessita permissão de acesso à localização para anexar um local, mas ele negado. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões \"e ative \"Localização\".";
-
 // dc_str_* resources
 "encrypted_message" = "Mensagem encriptada";
 

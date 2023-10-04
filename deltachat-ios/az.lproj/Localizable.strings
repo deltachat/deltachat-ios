@@ -396,8 +396,6 @@
 "notify_name_and_message" = "Ad və mesaj";
 "notify_name_only" = "Ancaq ad";
 "notify_no_name_or_message" = "Adı və ya mesaj yoxdur";
-
-
 // permissions
 "perm_required_title" = "İzin tələb olunur";
 "perm_continue" = "Davam edin";
@@ -405,7 +403,6 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \"İcazələr\"-i seçin və\"Yerləşmə\" izni verin. ";
 "perm_explain_access_to_storage_denied" = "Delta Chat, fotoşəkilləri, videoları və ya səsləri əlavə etmək və ya ixrac etmək üçün saxlama icazəsini tələb edir, lakin bu daimi olaraq rədd edildi. Xahiş edirik tətbiq ayarları menyusuna davam edin, \"İzinlər\" seçin və \"Yaddaş\" funksiyasını aktivləşdirin.";
 "perm_explain_access_to_location_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \"İcazələr\"-i seçin və\"Yerləşmə\" izni verin. ";
-
 // dc_str_* resources
 "encrypted_message" = "Şifrələnmiş mesaj";
 

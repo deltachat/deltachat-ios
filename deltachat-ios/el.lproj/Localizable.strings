@@ -612,7 +612,6 @@
 "emoji_symbols" = "Σύμβολα";
 "emoji_flags" = "Σημαίες";
 
-
 // automatically delete message
 "delete_old_messages" = "Διαγραφή Παλιών Μηνυμάτων";
 "autodel_device_title" = "Διαγραφή Μηνυμάτων από Συσκευή";
@@ -804,8 +803,6 @@
 "notify_name_and_message" = "Όνομα και μήνυμα";
 "notify_name_only" = "Μόνο όνομα";
 "notify_no_name_or_message" = "Χωρίς όνομα ή μήνυμα";
-
-
 // permissions
 "perm_required_title" = "Χρειάζονται δικαιώματα πρόσβασης";
 "perm_continue" = "Συνέχεια";
@@ -813,7 +810,6 @@
 "perm_explain_access_to_mic_denied" = "Για να στείλετε μηνύματα ήχου, μεταβείτε στις ρυθμίσεις της εφαρμογής, επιλέξτε \"Άδειες\" και ενεργοποιήστε το \"Μικρόφωνο\".";
 "perm_explain_access_to_storage_denied" = "Για να λάβετε ή να στείλετε αρχεία, μεταβείτε στις ρυθμίσεις της εφαρμογής, επιλέξτε \"Άδειες\" και ενεργοποιήστε την \"Αποθήκευση\".";
 "perm_explain_access_to_location_denied" = "Για να επισυνάψετε μια τοποθεσία, μεταβείτε στις ρυθμίσεις της εφαρμογής, επιλέξτε \"Άδειες\" και ενεργοποιήστε την \"Τοποθεσία\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Ζωγράφισε οπουδήποτε για να θολώσεις";
 "ImageEditorHud_add_text" = "Σύνταξη κειμένου";

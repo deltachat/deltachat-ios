@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Anexo";
 "back" = "Voltar";
+"verified" = "Verificado";
 "close" = "Fechar";
 "forward" = "Encaminhar";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -93,6 +94,8 @@
 "last_month" = "Mês passado";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Visto pela última vez às %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Visto por último %1$@";
 "last_seen_unknown" = "Visto pela última vez: desconhecido";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -123,6 +126,7 @@
 "switch_camera" = "Trocar câmera";
 "toggle_fullscreen" = "Ativar modo tela cheia";
 "location" = "Localização";
+"locations" = "Localizações";
 "gallery" = "Galeria";
 "images_and_videos" = "Imagens e vídeos";
 "file" = "Arquivo";
@@ -169,7 +173,7 @@
 "menu_toggle_keyboard" = "Ativar teclado de emojis";
 "menu_edit_group" = "Modificar grupo";
 "menu_group_name_and_image" = "Nome e Imagem do grupo";
-"menu_show_global_map" = "Exibir todas as localizações";
+"menu_show_global_map" = "Todas as localizações";
 "menu_archive_chat" = "Arquivar conversa";
 "menu_unarchive_chat" = "Desarquivar conversa";
 "menu_add_attachment" = "Inserir anexo";
@@ -211,6 +215,7 @@
 "menu_help" = "Ajuda";
 "privacy_policy" = "Política de privacidade";
 "menu_select_all" = "Selecionar tudo";
+"select_chat" = "Selecionar Chat";
 "select_more" = "Selecionar mais";
 "menu_edit_name" = "Modificar nome";
 "menu_settings" = "Configurações";
@@ -346,6 +351,11 @@
 "start_app" = "Iniciar...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Por favor, aceite o pedido de bate-papo primeiro.";
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
+"send_file_to" = "Enviar \"%1$@\" para…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
+"send_message_to" = "Enviar Mensagem para…";
+
 // map
 "filter_map_on_time" = "Exibir localização no tempo.";
 "show_location_traces" = "Exibir pegadas";
@@ -647,7 +657,6 @@
 "emoji_symbols" = "Símbolos";
 "emoji_flags" = "Bandeiras";
 
-
 // automatically delete message
 "delete_old_messages" = "Apagar mensagens antigas";
 "autodel_device_title" = "Apagar mensagens do dispositivo";
@@ -820,6 +829,8 @@
 "secure_join_replies" = "%1$@respondeu, esperando para ser adicionado ao grupo...";
 "contact_verified" = "%1$@ verificado.";
 "contact_not_verified" = "Impossível verificar %1$@";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+"verified_by" = "Verificado por %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "A configuração Autocrypt mudou para %1$@";
 "verified_group_explain" = "Grupos verificados (experimental) fornecem segurança contra ataques ativos. Os membros são verificados com um segundo fator por outros membros e as mensagens são sempre criptografadas de ponta a ponta.";
@@ -839,8 +850,6 @@
 "notify_name_and_message" = "Nome e mensagem";
 "notify_name_only" = "Somente o nome";
 "notify_no_name_or_message" = "Sem nome ou mensagem";
-
-
 // permissions
 "perm_required_title" = "Permissão necessária";
 "perm_continue" = "Continuar";
@@ -848,7 +857,6 @@
 "perm_explain_access_to_mic_denied" = "O Delta Chat precisa acessar seu microfone para que você possa enviar mensagens de voz, mas o acesso foi negado. Por favor, habilite o microfone nas configurações de permissões do aplicativo.";
 "perm_explain_access_to_storage_denied" = "Para receber o enviar arquivos, vai nas configurações do aplicativo, escolhe \"Permissões\", e ativar \"Armazenamento\".";
 "perm_explain_access_to_location_denied" = "O Delta Chat precisa acessar sua localização para que você possa enviá-la, mas o acesso foi negado. Por favor, habilite o seu acesso nas configurações de permissões do aplicativo.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Desenhe em qualquer lugar para desfocar";
 "ImageEditorHud_add_text" = "Adicionar texto";
@@ -986,3 +994,8 @@
 "update_1_36_android" = "Destaques da 1.36\n\n💻📱 Use o Delta Chat em todos os seus dispositivos facilmente - basta seguir três passos simples em \"Configurações / Adicionar segundo dispositivo\" (experimental)\n\n🖼🔍 Já procurou por uma imagem e não conseguiu se lembrar do bate-papo? \"Todas as mídias\" do menu principal é o seu!\n\nO que mais? Notificações para todas as contas, esvaziar bate-papo, e mais em %1$@";
 // placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
 "update_1_36_audit" = "Aqui não falamos muito sobre segurança, mas fique tranquilo, isso nos importa: Olhe em %1$@ para boas notícias recentes 👌";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_38_android" = "1.38 foi lançado:\n\n📎 Limite superior de tamanho de anexos removido\n\n🗜️ Imagens PNG (capturas de tela!) agora também são compactadas\n\n⌨️ Para desenvolvedores: aplicativos melhores para bate-papos com sendToChat() e importFiles( ) (O que é Webxdc? → https://webxdc.org)\n\n… e mais em %1$@";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_38_ios" = "1.38 foi lançado:\n\n🖼🔍 Já procurou por uma imagem e não conseguiu se lembrar do chat? Então o botão \"Todas as mídias\" é seu!\n\n🧹 \"Limpar bate-papo\" dos perfis\n\n📎 Limite superior de tamanho de anexos removido\n\n🗜️ Imagens PNG (capturas de tela!) agora também são compactadas\n\n… e mais em %1$@";
+

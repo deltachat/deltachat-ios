@@ -199,8 +199,6 @@
 "notify_name_and_message" = "Ime i poruka";
 "notify_name_only" = "Samo ime";
 "notify_no_name_or_message" = "Bez imena ili poruke";
-
-
 // permissions
 "perm_required_title" = "Potrebna je dozvola";
 "perm_continue" = "Nastavi";

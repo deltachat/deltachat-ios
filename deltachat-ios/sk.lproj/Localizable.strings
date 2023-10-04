@@ -608,7 +608,6 @@
 "emoji_symbols" = "Symboly";
 "emoji_flags" = "Vlajky";
 
-
 // automatically delete message
 "delete_old_messages" = "Odstraňovať staré správy";
 "autodel_device_title" = "Odstráňte správy zo zariadenia";
@@ -798,8 +797,6 @@
 "notify_name_and_message" = "Meno a správa";
 "notify_name_only" = "Iba meno";
 "notify_no_name_or_message" = "Žiadne meno ani správa";
-
-
 // permissions
 "perm_required_title" = "Vyžaduje sa povolenie";
 "perm_continue" = "ďalej";
@@ -807,7 +804,6 @@
 "perm_explain_access_to_mic_denied" = "Ak chcete odosielať zvukové správy, prejdite do nastavení aplikácie, vyberte možnosť „Povolenia“ a povoľte možnosť „Mikrofón“.";
 "perm_explain_access_to_storage_denied" = "Ak chcete prijímať alebo odosielať súbory, prejdite do nastavení aplikácie, vyberte možnosť „Povolenia“ a povoľte možnosť „Úložisko“.";
 "perm_explain_access_to_location_denied" = "Ak chcete pripojiť miesto, prejdite do nastavení aplikácie, vyberte možnosť Povolenia a povoľte možnosť Poloha.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Ak chcete rozmazať, nakreslite kamkoľvek";
 "ImageEditorHud_add_text" = "Pridať text";

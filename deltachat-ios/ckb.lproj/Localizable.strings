@@ -424,7 +424,6 @@
 "emoji_symbols" = "هێماکان";
 "emoji_flags" = "ئاڵاکان";
 
-
 // automatically delete message
 "delete_old_messages" = "سڕینەوەی پەیامە کۆنەکان";
 "autodel_device_title" = "سڕینەوەی پەیامەکان لەسەر مۆبایەلەکت";
@@ -494,8 +493,6 @@
 "notify_name_and_message" = "ناو و پەیام";
 "notify_name_only" = "بەس ناو";
 "notify_no_name_or_message" = "نە ناو و نە پەیام";
-
-
 // permissions
 "perm_required_title" = "ڕێدان پێویستە";
 "perm_continue" = "بەردەوامبوون";
@@ -503,7 +500,6 @@
 "perm_explain_access_to_mic_denied" = "بۆ هەناردنی پەیامی دەنگی، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"مایک\" چالاک بکەوە.";
 "perm_explain_access_to_storage_denied" = "بۆ هەناردن و وەرگرتنی پەڕگەکان، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"بیرگە\" چالاک بکەوە.";
 "perm_explain_access_to_location_denied" = "بۆ لکاندنی شوێنێک، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"شوێن\" چالاک بکەوە.";
-
 // dc_str_* resources
 "encrypted_message" = "پەیامی شفرەکراو";
 

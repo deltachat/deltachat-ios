@@ -410,8 +410,6 @@
 "notify_name_and_message" = "Nomon kaj mesaĝon";
 "notify_name_only" = "Nur nomon";
 "notify_no_name_or_message" = "Nek nomon aŭ mesaĝon";
-
-
 // permissions
 "perm_required_title" = "Permeso bezonata";
 "perm_continue" = "Daŭrigi";
