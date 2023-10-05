@@ -15,7 +15,7 @@ class NewContactController: UITableViewController {
     var onContactSaved: ((Int) -> Void)?
 
     func contactIsValid() -> Bool {
-        return Utils.isValid(email: model.email)
+        return mayBeValidAddr(email: model.email)
     }
 
     var model: (name: String, email: String) = ("", "") {

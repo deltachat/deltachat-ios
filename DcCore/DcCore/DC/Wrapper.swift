@@ -1546,3 +1546,7 @@ func strToBool(_ value: String?) -> Bool {
 
     return false
 }
+
+public func mayBeValidAddr(email: String) -> Bool {
+    return dc_may_be_valid_addr(email) != 0
+}
