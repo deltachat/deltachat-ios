@@ -52,9 +52,11 @@ on https://appstoreconnect.apple.com :
    c) select a build
    d) make sure, the credentials for the apple-review-team are working
    e) select "Release update over 7-day period using phased release"
-   f) if the question comes up,
-      we are not using "Advertising Identifier (IDFA)"
-   click on "Save" and then "Submit", wrt ads: we do not use ads, answer "No".
+   f) click on "Save" and then "Add for Review"
+   g) on the "Confirm Submission" page, another time "Submit to App Review"
+   the overview must read for the new version "Waiting for Review" afterwards
+
+   wrt ads: we do not use ads, answer "No".
    final state should be "Waiting for Review" - if it is only "Ready for Review",
    watch out for some additional alerts.
 
