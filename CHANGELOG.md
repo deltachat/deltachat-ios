@@ -1,5 +1,13 @@
 # Delta Chat iOS Changelog
 
+## v1.40.3
+2023-10
+
+* fix a crash when opening the connectivity view on newer iOS versions
+* minimum system version is iOS 12 now
+* using core119
+
+
 ## v1.40.2
 2023-10
 
