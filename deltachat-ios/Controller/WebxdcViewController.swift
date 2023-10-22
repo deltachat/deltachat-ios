@@ -260,7 +260,7 @@ class WebxdcViewController: WebViewViewController {
         if willBeRemoved {
             removeObservers()
         } else {
-            addObserver()
+            addObservers()
         }
     }
 
@@ -280,7 +280,7 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
-    private func addObserver() {
+    private func addObservers() {
         let nc = NotificationCenter.default
         webxdcUpdateObserver = nc.addObserver(
             forName: dcNotificationWebxdcUpdate,
