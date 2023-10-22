@@ -582,6 +582,8 @@
 "pref_manage_keys" = "Управління ключами";
 "pref_use_system_emoji" = "Використовувати системні емодзі";
 "pref_use_system_emoji_explain" = "Вимкнути вбудовану підтримку емодзі";
+"pref_use_inapp_camera" = "Використовувати вбудовану в додаток камеру";
+"pref_use_inapp_camera_explain" = "Вбудована в додаток камера зазвичай має менше функцій ніж системна.";
 "pref_app_access" = "Доступ додатку";
 "pref_chats" = "Чати";
 "pref_in_chat_sounds" = "Звуки у чаті";
@@ -657,6 +659,9 @@
 "emoji_objects" = "Об\'єкти";
 "emoji_symbols" = "Символи";
 "emoji_flags" = "Прапори";
+
+// Reactions
+"reactions" = "Реакції";
 
 // automatically delete message
 "delete_old_messages" = "Видалити старі повідомлення";
@@ -832,6 +837,7 @@
 "contact_not_verified" = "Неможливо підтвердити %1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "Підтверджено %1$@";
+"verified_by_you" = "Підтверджено вами";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Змінені параметри для %1$@";
 "verified_group_explain" = "Перевірені групи (експеримент) надають захист від активних атак. Члени таких груп перевірені через другий фактор іншими членами групи, а повідомлення завжди наскрізно зашифровані.";
@@ -851,6 +857,9 @@
 "notify_name_and_message" = "Ім\'я та повідомлення";
 "notify_name_only" = "Тільки ім\'я";
 "notify_no_name_or_message" = "Без імені або повідомлення";
+"notifications_disabled" = "Сповіщення вимкнено";
+
+
 // permissions
 "perm_required_title" = "Потрібен дозвіл";
 "perm_continue" = "Продовжити";
@@ -858,6 +867,8 @@
 "perm_explain_access_to_mic_denied" = "Для надсилання голосових повідомлень додатку потрібен дозвіл на використання мікрофону, але зараз його не надано. Для надання дозволу перейдіть у системне меню налаштувань, у розділі «Додатки» знайдіть Delta Chat і дозвольте доступ до мікрофону.";
 "perm_explain_access_to_storage_denied" = "Для збереження або передавання фотографій перейдіть до налаштувань додатку, оберіть \"Дозволи\" та включіть \"Сховище\"";
 "perm_explain_access_to_location_denied" = "Щоб передати місцезнаходження, додатку потрібен доступ до геоданих пристрою, але зараз його не надано. Для надання доступу перейдіть у системне меню налаштувань, у розділі «Додатки» знайдіть Delta Chat, виберіть пункт «Права доступу» і дозвольте доступ до місцезнаходження пристрою.";
+"perm_explain_access_to_notifications_denied" = "Щоб отримувати сповіщення зайдіть у \"Налаштування системи / Застосунки / Delta Chat\" і увімкніть \"Сповіщення\"";
+
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Малюйте де завгодно для розмиття";
 "ImageEditorHud_add_text" = "Додати текст";

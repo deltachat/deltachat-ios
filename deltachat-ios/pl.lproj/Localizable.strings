@@ -582,6 +582,8 @@
 "pref_manage_keys" = "Zarządzaj prywatnymi kluczami";
 "pref_use_system_emoji" = "Użyj emoji systemowych";
 "pref_use_system_emoji_explain" = "Wyłącza wbudowaną obsługę emoji Delta Chat";
+"pref_use_inapp_camera" = "Użyj aparatu w aplikacji";
+"pref_use_inapp_camera_explain" = "Aparat w aplikacji ma zwykle mniej funkcji niż aparat systemowy";
 "pref_app_access" = "Dostęp do aplikacji";
 "pref_chats" = "Czaty";
 "pref_in_chat_sounds" = "Dźwięki w czacie";
@@ -657,6 +659,9 @@
 "emoji_objects" = "Obiekty";
 "emoji_symbols" = "Symbole";
 "emoji_flags" = "Flagi";
+
+// Reactions
+"reactions" = "Reakcje";
 
 // automatically delete message
 "delete_old_messages" = "Usuwanie starych wiadomości";
@@ -832,6 +837,7 @@
 "contact_not_verified" = "Nie można zweryfikować %1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "Zweryfikowano przez %1$@";
+"verified_by_you" = "Zweryfikowane przez ciebie";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Zmieniono konfigurację dla %1$@";
 "verified_group_explain" = "Zweryfikowane grupy (eksperymentalne) zapewniają bezpieczeństwo przed aktywnymi atakami. Członkowie są weryfikowani za pomocą drugiego czynnika przez innych członków, a wiadomości są zawsze szyfrowane metodą end-to-end. ";
@@ -851,6 +857,9 @@
 "notify_name_and_message" = "Nazwa i wiadomość";
 "notify_name_only" = "Tylko nazwa";
 "notify_no_name_or_message" = "Brak nazwy lub wiadomości";
+"notifications_disabled" = "Powiadomienia wyłączone";
+
+
 // permissions
 "perm_required_title" = "Wymagane zezwolenie";
 "perm_continue" = "Kontynuuj";
@@ -858,6 +867,8 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat wymaga zezwolenia użycia mikrofonu, aby wysyłać wiadomości audio, ale zostało ono trwale odrzucone. Przejdź do ustawień aplikacji, wybierz „Uprawnienia” i włącz „Mikrofon”.";
 "perm_explain_access_to_storage_denied" = "Delta Chat wymaga uprawnienia do przechowywania, aby dołączyć lub wyeksportować zdjęcia, filmy lub dźwięk, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Pamięć”.";
 "perm_explain_access_to_location_denied" = "Delta Chat wymaga zezwolenia na lokalizację, aby dołączyć lokalizację, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Lokalizacja”.";
+"perm_explain_access_to_notifications_denied" = "Aby odbierać powiadomienia, przejdź do „Ustawienia » Aplikacje » Delta Chat” i włącz „Powiadomienia”.";
+
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Rysuj gdziekolwiek, aby rozmyć";
 "ImageEditorHud_add_text" = "Dodaj tekst";

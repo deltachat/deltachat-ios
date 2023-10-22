@@ -660,6 +660,9 @@
 "emoji_symbols" = "Simboli";
 "emoji_flags" = "Bandiere";
 
+// Reactions
+"reactions" = "Reazioni";
+
 // automatically delete message
 "delete_old_messages" = "Elimina i Vecchi Messaggi";
 "autodel_device_title" = "Elimina Messaggi dal Dispositivo";
@@ -854,6 +857,9 @@
 "notify_name_and_message" = "Nome e messaggio";
 "notify_name_only" = "Solo nome";
 "notify_no_name_or_message" = "Nessun nome nè messaggio";
+"notifications_disabled" = "Notifiche disabilitate";
+
+
 // permissions
 "perm_required_title" = "Autorizzazione richiesta";
 "perm_continue" = "Continua";
@@ -861,6 +867,8 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat richiede l\'autorizzazione inviare messaggi audio, ma è stata bloccata permanentemente. Vai nelle impostazioni delle App, seleziona \"Autorizzazioni\" e abilita \"Microfono\".";
 "perm_explain_access_to_storage_denied" = "Per ricevere o inviare files, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".";
 "perm_explain_access_to_location_denied" = "Delta Chat richiede l\'autorizzazione per allegare la posizione, ma è stata bloccata permanentemente. Vai nelle impostazioni delle App, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";
+"perm_explain_access_to_notifications_denied" = "Per ricevere le notifiche, vai su \"Impostazioni di sistema/App/Delta Chat\" e attiva \"Notifiche\".";
+
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Disegna ovunque per sfocare";
 "ImageEditorHud_add_text" = "Aggiungi Testo";

@@ -39,7 +39,7 @@
 "unarchive" = "Arşivleme";
 "mute" = "Sessize Al";
 "ephemeral_messages" = "Kaybolan İletiler";
-"ephemeral_messages_hint" = "Onlar Delta Chat\'i kullanıyorsa, bu sohbetin tüm üyelerine uygulanır; onlar hâlâ iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
+"ephemeral_messages_hint" = "Bu sohbetin tüm üyelerine onlar Delta Chat\'i kullanıyorsa uygulanır; onlar hâlâ iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";

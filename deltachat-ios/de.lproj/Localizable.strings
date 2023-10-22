@@ -837,7 +837,7 @@
 "contact_not_verified" = "Kann %1$@ nicht verifizieren";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "Verifiziert von %1$@";
-"verified_by_you" = "Verifiziert von Ihnen";
+"verified_by_you" = "Durch mich verifiziert";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Geändertes Setup für %1$@";
 "verified_group_explain" = "Verifizierte Gruppen (experimentell) bieten Schutz gegen aktive Angriffe mittels Zwei-Faktor-Authentifizierung aller Mitglieder und immer aktiver Ende-zu-Ende-Verschlüsselung.";
