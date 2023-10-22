@@ -134,6 +134,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     @objc func doneButtonPressed() {
         if createBroadcast {
             groupChatId = dcContext.createBroadcastList()
+            _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         } else if groupChatId == 0 {
             groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
         } else {
