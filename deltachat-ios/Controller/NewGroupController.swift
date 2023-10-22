@@ -43,7 +43,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var groupNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("group_name"), placeholder: String.localized("group_name"))
+        let cell = TextFieldCell(description: String.localized(createBroadcast ? "name_desktop" : "group_name"), placeholder: String.localized("name_desktop"))
         cell.onTextFieldChange = self.updateGroupName
         cell.textField.autocorrectionType = UITextAutocorrectionType.no
         cell.textField.enablesReturnKeyAutomatically = true
@@ -65,13 +65,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         self.isVerifiedGroup = isVerified
         self.createBroadcast = createBroadcast
         self.dcContext = dcContext
+        self.sections = [.details, .invite, .members]
         if createBroadcast {
-            self.sections = [.invite, .members]
-            self.detailsRows = []
+            self.detailsRows = [.name]
             self.inviteRows = [.addMembers]
             self.contactIdsForGroup = []
         } else {
-            self.sections = [.details, .invite, .members]
             self.detailsRows = [.name, .avatar]
             self.inviteRows = [.addMembers, .showQrCode]
             self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
@@ -127,11 +126,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func checkDoneButton() {
-        var nameOk = true
-        if !createBroadcast {
-            let name = groupNameCell.textField.text ?? ""
-            nameOk = !name.isEmpty
-        }
+        let name = groupNameCell.textField.text ?? ""
+        let nameOk = !name.isEmpty
         doneButton.isEnabled = nameOk && contactIdsForGroup.count >= 1
     }
 
