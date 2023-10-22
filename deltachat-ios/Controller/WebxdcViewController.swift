@@ -13,6 +13,7 @@ class WebxdcViewController: WebViewViewController {
     let INTERNALSCHEMA = "webxdc"
     
     var messageId: Int
+    var msgChangedObserver: NSObjectProtocol?
     var webxdcUpdateObserver: NSObjectProtocol?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
@@ -248,6 +249,22 @@ class WebxdcViewController: WebViewViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = moreButton
+        refreshWebxdcInfo()
+    }
+
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        let willBeRemoved = parent == nil
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = willBeRemoved
+        if willBeRemoved {
+            removeObservers()
+        } else {
+            addObserver()
+        }
+    }
+
+    private func refreshWebxdcInfo() {
         let msg = dcContext.getMessage(id: messageId)
         let dict = msg.getWebxdcInfoDict()
 
@@ -257,29 +274,12 @@ class WebxdcViewController: WebViewViewController {
         self.allowInternet = dict["internet_access"] as? Bool ?? false
 
         self.title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
-        navigationItem.rightBarButtonItem = moreButton
-
         if let sourceCode = dict["source_code_url"] as? String,
            !sourceCode.isEmpty {
             sourceCodeUrl = sourceCode
         }
     }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        let willBeRemoved = parent == nil
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = willBeRemoved
-        if willBeRemoved {
-            let nc = NotificationCenter.default
-            if let webxdcUpdateObserver = webxdcUpdateObserver {
-                nc.removeObserver(webxdcUpdateObserver)
-            }
-            shortcutManager = nil
-        } else {
-            addObserver()
-        }
-    }
-    
+
     private func addObserver() {
         let nc = NotificationCenter.default
         webxdcUpdateObserver = nc.addObserver(
@@ -297,8 +297,35 @@ class WebxdcViewController: WebViewViewController {
                 self.updateWebxdc()
             }
         }
+
+        msgChangedObserver = nc.addObserver(
+            forName: dcNotificationChanged,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] notification in
+            guard let self = self else { return }
+            guard let ui = notification.userInfo,
+                  let messageId = ui["message_id"] as? Int else {
+                      logger.error("failed to handle dcNotificationChanged")
+                      return
+                  }
+            if messageId == self.messageId {
+                refreshWebxdcInfo()
+            }
+        }
     }
     
+    private func removeObservers() {
+        let nc = NotificationCenter.default
+        if let webxdcUpdateObserver = webxdcUpdateObserver {
+            nc.removeObserver(webxdcUpdateObserver)
+        }
+        if let msgChangedObserver = self.msgChangedObserver {
+            nc.removeObserver(msgChangedObserver)
+        }
+        shortcutManager = nil
+    }
+
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let url = navigationAction.request.url {
             if url.scheme == "mailto" {
