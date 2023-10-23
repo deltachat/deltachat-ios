@@ -636,11 +636,11 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func resignFirstResponderOnAllCells() {
-        let _ = basicSectionCells.map({
+        _ = basicSectionCells.map({
             resignCell(cell: $0)
         })
 
-        let _ = advancedSectionCells.map({
+        _ = advancedSectionCells.map({
             resignCell(cell: $0)
         })
     }
@@ -727,7 +727,7 @@ extension AccountSetupController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == tagTextFieldEmail {
-            let _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
+            _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
                 self.passwordCell.textField.becomeFirstResponder()
             })
             updateProviderInfo()
