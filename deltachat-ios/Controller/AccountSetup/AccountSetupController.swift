@@ -566,8 +566,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             forName: dcNotificationConfigureProgress,
             object: nil,
             queue: nil
-        ) {
-            notification in
+        ) { notification in
             if let ui = notification.userInfo {
                 if ui["error"] as! Bool {
                     self.dcAccounts.startIo()
@@ -623,7 +622,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             appDelegate.registerForNotifications()
         }
 
-        initSelectionCells();
+        initSelectionCells()
         if let onLoginSuccess = self.onLoginSuccess {
             onLoginSuccess()
         } else {

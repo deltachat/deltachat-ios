@@ -707,7 +707,7 @@ class ChatListController: UITableViewController {
         }
     }
     
-    func updateMarkArchivedReadButton(){
+    func updateMarkArchivedReadButton() {
         self.markArchivedReadButton.isEnabled = dcContext.getUnreadMessages(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK)) != 0
     }
 
