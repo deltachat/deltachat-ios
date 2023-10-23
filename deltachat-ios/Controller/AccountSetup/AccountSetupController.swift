@@ -567,7 +567,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             queue: nil
         ) { notification in
             if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
+                if let error = ui["error"] as? Bool, error {
                     self.dcAccounts.startIo()
                     var errorMessage = ui["errorMessage"] as? String
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -578,7 +578,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                         errorMessage = "\(errorMessage ?? "no message")\n\n(warning=\(self.dcContext.lastWarningString) (progress=\(self.dcContext.maxConfigureProgress))"
                     }
                     self.updateProgressAlert(error: errorMessage)
-                } else if ui["done"] as! Bool {
+                } else if let done = ui["done"] as? Bool, done {
                     self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
