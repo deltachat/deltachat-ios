@@ -507,7 +507,6 @@ open class MessageLabel: UILabel {
             }
         }
     }
-    // swiftlint:enable cyclomatic_complexity
 
     private func handleAddress(_ addressComponents: [String: String]) {
         delegate?.didSelectAddress(addressComponents)
