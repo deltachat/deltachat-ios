@@ -293,10 +293,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         handleLoginButton()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         resignFirstResponderOnAllCells()
         progressObserver = nil
@@ -523,7 +519,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 //
 //         if let url = URL(string: oAuth2Url) {
 //             let title = "Continue with simplified setup"
-//             // swiftlint:disable all
 //             let message = "The entered e-mail address supports a simplified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
 //
 //             let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -570,10 +565,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             forName: dcNotificationConfigureProgress,
             object: nil,
             queue: nil
-        ) {
-            notification in
+        ) { notification in
             if let ui = notification.userInfo {
-                if ui["error"] as! Bool {
+                if let error = ui["error"] as? Bool, error {
                     self.dcAccounts.startIo()
                     var errorMessage = ui["errorMessage"] as? String
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -584,7 +578,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                         errorMessage = "\(errorMessage ?? "no message")\n\n(warning=\(self.dcContext.lastWarningString) (progress=\(self.dcContext.maxConfigureProgress))"
                     }
                     self.updateProgressAlert(error: errorMessage)
-                } else if ui["done"] as! Bool {
+                } else if let done = ui["done"] as? Bool, done {
                     self.dcAccounts.startIo()
                     self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
                 } else {
@@ -627,7 +621,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             appDelegate.registerForNotifications()
         }
 
-        initSelectionCells();
+        initSelectionCells()
         if let onLoginSuccess = self.onLoginSuccess {
             onLoginSuccess()
         } else {
@@ -642,11 +636,11 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func resignFirstResponderOnAllCells() {
-        let _ = basicSectionCells.map({
+        _ = basicSectionCells.map({
             resignCell(cell: $0)
         })
 
-        let _ = advancedSectionCells.map({
+        _ = advancedSectionCells.map({
             resignCell(cell: $0)
         })
     }
@@ -733,7 +727,7 @@ extension AccountSetupController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == tagTextFieldEmail {
-            let _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
+            _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
                 self.passwordCell.textField.becomeFirstResponder()
             })
             updateProviderInfo()

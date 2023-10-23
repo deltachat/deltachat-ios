@@ -38,11 +38,6 @@ class ActionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     private func setupSubviews() {
         contentView.addSubview(actionLabel)
         actionLabel.translatesAutoresizingMaskIntoConstraints = false

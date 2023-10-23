@@ -22,9 +22,4 @@ class TextMessageCell: BaseMessageCell {
                      searchText: searchText,
                      highlight: highlight)
     }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
 }

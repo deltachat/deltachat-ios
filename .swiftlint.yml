@@ -22,10 +22,10 @@ identifier_name:
   min_length:
     warning: 1
     error: 0
-  max_length: 40
+  max_length: 50
 
 line_length:
-  warning: 160
+  warning: 200
   error: 200
   ignores_function_declarations: true
   ignores_comments: true
@@ -39,7 +39,7 @@ function_body_length:
   error: 500
 
 function_parameter_count:
-  warning: 6
+  warning: 8
   error: 8
 
 file_length:

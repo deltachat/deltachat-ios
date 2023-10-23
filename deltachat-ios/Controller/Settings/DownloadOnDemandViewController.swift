@@ -26,10 +26,6 @@ class DownloadOnDemandViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     static func getValString(val: Int) -> String {
         switch val {
         case 0:

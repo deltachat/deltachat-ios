@@ -26,10 +26,6 @@ class EmailOptionsViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     static public func getValString(val: Int) -> String {
         switch Int32(val) {
         case DC_SHOW_EMAILS_OFF:
