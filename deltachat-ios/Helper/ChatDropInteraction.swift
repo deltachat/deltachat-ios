@@ -92,7 +92,7 @@ public class ChatDropInteraction {
     }
 
     private func loadTextObjects(session: UIDropSession) {
-        session.loadObjects(ofClass: String.self) { [weak self] stringItems in
+        _ = session.loadObjects(ofClass: String.self) { [weak self] stringItems in
             guard !stringItems.isEmpty else { return }
             self?.delegate?.onTextDragAndDropped(text: stringItems[0])
         }
