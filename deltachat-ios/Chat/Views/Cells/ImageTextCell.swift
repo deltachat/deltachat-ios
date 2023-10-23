@@ -54,9 +54,7 @@ class ImageTextCell: BaseMessageCell {
         tag = msg.id
 
         if let url = msg.fileURL,
-           (msg.type == DC_MSG_IMAGE ||
-            msg.type == DC_MSG_GIF ||
-                msg.type == DC_MSG_STICKER) {
+            msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF || msg.type == DC_MSG_STICKER {
             contentImageView.sd_setImage(with: url,
                                          placeholderImage: UIImage(color: UIColor.init(alpha: 0,
                                                                                        red: 255,

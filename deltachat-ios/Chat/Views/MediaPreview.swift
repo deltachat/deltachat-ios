@@ -36,7 +36,7 @@ class MediaPreview: DraftPreview {
             return
         }
         
-        if (draft.viewType == DC_MSG_GIF || draft.viewType == DC_MSG_IMAGE), let path = draft.attachment {
+        if draft.viewType == DC_MSG_GIF || draft.viewType == DC_MSG_IMAGE, let path = draft.attachment {
             contentImageView.sd_setImage(with: URL(fileURLWithPath: path, isDirectory: false), completed: { image, error, _, _ in
                 if let error = error {
                     logger.error("could not load draft image: \(error)")
