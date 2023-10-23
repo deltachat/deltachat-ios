@@ -293,10 +293,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         handleLoginButton()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         resignFirstResponderOnAllCells()
         progressObserver = nil
