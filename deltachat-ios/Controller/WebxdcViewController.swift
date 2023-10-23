@@ -320,7 +320,7 @@ class WebxdcViewController: WebViewViewController {
         if let webxdcUpdateObserver = webxdcUpdateObserver {
             nc.removeObserver(webxdcUpdateObserver)
         }
-        if let msgChangedObserver = self.msgChangedObserver {
+        if let msgChangedObserver = msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
         }
         shortcutManager = nil
