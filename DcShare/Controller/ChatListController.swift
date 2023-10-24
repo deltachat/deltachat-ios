@@ -19,7 +19,7 @@ class ChatListController: UITableViewController {
         searchController.searchResultsUpdater = viewModel
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = true
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.searchBar.delegate = self
         return searchController
