@@ -27,6 +27,8 @@ in Xcode:
 5. a) adapt version ("View/Navigators/Project/deltachat-ios",
       target "deltachat-ios", then "General/Version")
    b) increase the build number in the same dialog
+   c) navigate to "DcShare / Build Settings / Versioning"
+      and adapt "Marketing Version" and "Current Project Version"
 
 6. a) select "Any iOS Device (arm64)" in the toolbar
    b) select menu "Product/Archive"
