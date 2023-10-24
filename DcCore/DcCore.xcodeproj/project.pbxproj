@@ -34,8 +34,6 @@
 		30421931243DE0F200516852 /* DcCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DcCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30421934243DE0F200516852 /* DcCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DcCore.h; sourceTree = "<group>"; };
 		30421935243DE0F200516852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3042193F243DE0F200516852 /* DcCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcCoreTests.swift; sourceTree = "<group>"; };
-		30421941243DE0F200516852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3042194C243DE15D00516852 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrapper.h; path = ../../DcCore/DcCore/DC/wrapper.h; sourceTree = "<group>"; };
 		3042194D243DE15D00516852 /* Wrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wrapper.swift; path = ../../DcCore/DcCore/DC/Wrapper.swift; sourceTree = "<group>"; };
 		3042194E243DE15D00516852 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wrapper.c; path = ../../DcCore/DcCore/DC/wrapper.c; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 			children = (
 				3042195A243DF1C500516852 /* deltachat.h */,
 				30421933243DE0F200516852 /* DcCore */,
-				3042193E243DE0F200516852 /* DcCoreTests */,
 				30421932243DE0F200516852 /* Products */,
 				30421957243DE61400516852 /* Frameworks */,
 			);
@@ -103,15 +100,6 @@
 				30421935243DE0F200516852 /* Info.plist */,
 			);
 			path = DcCore;
-			sourceTree = "<group>";
-		};
-		3042193E243DE0F200516852 /* DcCoreTests */ = {
-			isa = PBXGroup;
-			children = (
-				3042193F243DE0F200516852 /* DcCoreTests.swift */,
-				30421941243DE0F200516852 /* Info.plist */,
-			);
-			path = DcCoreTests;
 			sourceTree = "<group>";
 		};
 		3042194B243DE15D00516852 /* DC */ = {
