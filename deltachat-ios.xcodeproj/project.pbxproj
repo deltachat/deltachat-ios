@@ -151,7 +151,6 @@
 		7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */; };
 		7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */; };
 		8322D73686330E887566D754 /* Pods_DcShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A81736FBF0A4844C6D619F /* Pods_DcShare.framework */; };
-		A8EBD816A8021D0BC6B09048 /* Pods_deltachat_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23C80FA36453692862D4A90 /* Pods_deltachat_iosTests.framework */; };
 		AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA951247800E700D42A7F /* GalleryCell.swift */; };
 		AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */; };
 		AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA957247834A400D42A7F /* Date+Extension.swift */; };
@@ -176,7 +175,6 @@
 		AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */; };
 		AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
 		AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */; };
-		AE851A04227AECDE00ED86F0 /* deltachat_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */; };
 		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
 		AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851ACF227DF50900ED86F0 /* GroupChatDetailViewController.swift */; };
 		AE8DD451249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DD450249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift */; };
@@ -217,13 +215,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 30E8F20F2447285600CE2C90;
 			remoteInfo = DcShare;
-		};
-		AE851A06227AECDF00ED86F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A9FB13F1FB061E2001FEA36;
-			remoteInfo = "deltachat-ios";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -465,7 +456,6 @@
 		AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
 		AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellViewModel.swift; sourceTree = "<group>"; };
 		AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceContactsHandler.swift; sourceTree = "<group>"; };
-		AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "deltachat-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE851A03227AECDE00ED86F0 /* deltachat_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deltachat_iosTests.swift; sourceTree = "<group>"; };
 		AE851A05227AECDF00ED86F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE851AC4227C755A00ED86F0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -595,14 +585,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C0B3392019C51BC9DDBB960 /* Pods_deltachat_ios.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AE8519FE227AECDE00ED86F0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A8EBD816A8021D0BC6B09048 /* Pods_deltachat_iosTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,7 +808,6 @@
 			isa = PBXGroup;
 			children = (
 				7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */,
-				AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */,
 				30E8F2102447285600CE2C90 /* Delta Chat.appex */,
 			);
 			name = Products;
@@ -1123,25 +1104,6 @@
 			productReference = 7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AE851A00227AECDE00ED86F0 /* deltachat-iosTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AE851A08227AECDF00ED86F0 /* Build configuration list for PBXNativeTarget "deltachat-iosTests" */;
-			buildPhases = (
-				6A7828131EB8195AFA35CE36 /* [CP] Check Pods Manifest.lock */,
-				AE8519FD227AECDE00ED86F0 /* Sources */,
-				AE8519FE227AECDE00ED86F0 /* Frameworks */,
-				AE8519FF227AECDE00ED86F0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AE851A07227AECDF00ED86F0 /* PBXTargetDependency */,
-			);
-			name = "deltachat-iosTests";
-			productName = "deltachat-iosTests";
-			productReference = AE851A01227AECDE00ED86F0 /* deltachat-iosTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1176,11 +1138,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					AE851A00227AECDE00ED86F0 = {
-						CreatedOnToolsVersion = 10.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 7A9FB13F1FB061E2001FEA36;
 					};
 				};
 			};
@@ -1241,7 +1198,6 @@
 			projectRoot = "";
 			targets = (
 				7A9FB13F1FB061E2001FEA36 /* deltachat-ios */,
-				AE851A00227AECDE00ED86F0 /* deltachat-iosTests */,
 				30E8F20F2447285600CE2C90 /* DcShare */,
 			);
 		};
@@ -1271,13 +1227,6 @@
 				7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */,
 				306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */,
 				7A9FB14B1FB061E2001FEA36 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AE8519FF227AECDE00ED86F0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1356,28 +1305,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-DcShare-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6A7828131EB8195AFA35CE36 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-deltachat-iosTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1620,14 +1547,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AE8519FD227AECDE00ED86F0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AE851A04227AECDE00ED86F0 /* deltachat_iosTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1635,11 +1554,6 @@
 			isa = PBXTargetDependency;
 			target = 30E8F20F2447285600CE2C90 /* DcShare */;
 			targetProxy = 30E8F2182447285600CE2C90 /* PBXContainerItemProxy */;
-		};
-		AE851A07227AECDF00ED86F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
-			targetProxy = AE851A06227AECDF00ED86F0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2173,175 +2087,6 @@
 			};
 			name = Release;
 		};
-		AE851A09227AECDF00ED86F0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C59EE96DDE92F0E6C645056 /* Pods-deltachat-iosTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SCSiriWaveformView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageSVGKitPlugin\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVGKit\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Swifter\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjack.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageSVGKitPlugin/SDWebImageSVGKitPlugin.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVGKit/SVGKit.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Swifter/Swifter.framework/Headers\"",
-				);
-				INFOPLIST_FILE = "deltachat-iosTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-l\"xml2\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"CocoaLumberjack\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Reachability\"",
-					"-framework",
-					"\"SCSiriWaveformView\"",
-					"-framework",
-					"\"SDWebImage\"",
-					"-framework",
-					"\"SDWebImageSVGKitPlugin\"",
-					"-framework",
-					"\"SDWebImageWebPCoder\"",
-					"-framework",
-					"\"SVGKit\"",
-					"-framework",
-					"\"Swifter\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "nayooti.deltachat-iosTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/deltachat-ios.app/deltachat-ios";
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = Debug;
-		};
-		AE851A0A227AECDF00ED86F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BC6FD76CA0F3A90C00DDC3A /* Pods-deltachat-iosTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SCSiriWaveformView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageSVGKitPlugin\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVGKit\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Swifter\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaLumberjack/CocoaLumberjack.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/Reachability.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SCSiriWaveformView/SCSiriWaveformView.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageSVGKitPlugin/SDWebImageSVGKitPlugin.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVGKit/SVGKit.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Swifter/Swifter.framework/Headers\"",
-				);
-				INFOPLIST_FILE = "deltachat-iosTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-l\"xml2\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"CocoaLumberjack\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Reachability\"",
-					"-framework",
-					"\"SCSiriWaveformView\"",
-					"-framework",
-					"\"SDWebImage\"",
-					"-framework",
-					"\"SDWebImageSVGKitPlugin\"",
-					"-framework",
-					"\"SDWebImageWebPCoder\"",
-					"-framework",
-					"\"SVGKit\"",
-					"-framework",
-					"\"Swifter\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "nayooti.deltachat-iosTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/deltachat-ios.app/deltachat-ios";
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2368,15 +2113,6 @@
 			buildConfigurations = (
 				7A9FB1531FB061E2001FEA36 /* Debug */,
 				7A9FB1541FB061E2001FEA36 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AE851A08227AECDF00ED86F0 /* Build configuration list for PBXNativeTarget "deltachat-iosTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AE851A09227AECDF00ED86F0 /* Debug */,
-				AE851A0A227AECDF00ED86F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
