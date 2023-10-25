@@ -5,7 +5,6 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'deltachat-ios' do
-  pod 'Swifter', :git => 'https://github.com/httpswift/swifter.git', :branch => 'stable'
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
   # pod 'openssl-ios-bitcode'
@@ -15,10 +14,6 @@ target 'deltachat-ios' do
   pod 'SDWebImageWebPCoder', :modular_headers => true
   pod 'SDWebImageSVGKitPlugin'
   pod 'SVGKit', :modular_headers => true
-  target 'deltachat-iosTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 end
 
 target 'DcShare' do

@@ -1,6 +1,0 @@
-framework module Pods_deltachat_iosTests {
-  umbrella header "Pods-deltachat-iosTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
