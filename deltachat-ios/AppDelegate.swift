@@ -200,6 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         case "mailto":
             return appCoordinator.handleMailtoURL(url)
         case "chat.delta.deeplink":
+            // support existing 'Add To Home Screen' shortcuts (we do not support adding new ones, see #1880)
             return appCoordinator.handleDeepLinkURL(url)
         default:
             return false

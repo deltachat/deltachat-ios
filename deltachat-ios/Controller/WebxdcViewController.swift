@@ -19,8 +19,6 @@ class WebxdcViewController: WebViewViewController {
     var sourceCodeUrl: String?
     private var allowInternet: Bool = false
 
-    private var shortcutManager: ShortcutManager?
-
     private lazy var moreButton: UIBarButtonItem = {
         let image: UIImage?
         if #available(iOS 13.0, *) {
@@ -239,7 +237,6 @@ class WebxdcViewController: WebViewViewController {
     
     init(dcContext: DcContext, messageId: Int) {
         self.messageId = messageId
-        self.shortcutManager = ShortcutManager(dcContext: dcContext, messageId: messageId)
         super.init(dcContext: dcContext)
     }
     
@@ -323,7 +320,6 @@ class WebxdcViewController: WebViewViewController {
         if let msgChangedObserver = msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
         }
-        shortcutManager = nil
     }
 
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -392,8 +388,6 @@ class WebxdcViewController: WebViewViewController {
         let alert = UIAlertController(title: webxdcName + " – " + String.localized("webxdc_app"),
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
-        let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default, handler: addToHomeScreen(_:))
-        alert.addAction(addToHomescreenAction)
         if sourceCodeUrl != nil {
             let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
             alert.addAction(sourceCodeAction)
@@ -401,10 +395,6 @@ class WebxdcViewController: WebViewViewController {
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
-    }
-
-    private func addToHomeScreen(_ action: UIAlertAction) {
-        shortcutManager?.showShortcutLandingPage()
     }
 
     private func openUrl(_ action: UIAlertAction) {
