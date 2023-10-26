@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SDImageCodersManager.shared.addCoder(svgCoder)
 
         dcAccounts.logger = SimpleLogger()
-        dcAccounts.openDatabase()
+        dcAccounts.openDatabase(writeable: true)
         migrateToDcAccounts()
 
         self.launchOptions = launchOptions
