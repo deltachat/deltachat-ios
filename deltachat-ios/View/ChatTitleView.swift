@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class ChatTitleView: UIView {
+class ChatTitleView: UIStackView {
 
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
@@ -43,35 +43,16 @@ class ChatTitleView: UIView {
 
     init() {
         super.init(frame: .zero)
-        setupSubviews()
+        
         isAccessibilityElement = true
+        axis = .vertical
+        alignment = .center
+        addArrangedSubview(titleContainer)
+        addArrangedSubview(subtitleLabel)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setupSubviews() {
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(containerView)
-        containerView.addSubview(titleContainer)
-        containerView.addSubview(subtitleLabel)
-
-        addConstraints([ containerView.constraintAlignTopTo(self),
-                         containerView.constraintAlignBottomTo(self),
-                         containerView.constraintCenterXTo(self),
-                         containerView.constraintAlignLeadingTo(self),
-                         containerView.constraintAlignTrailingTo(self),
-                         titleContainer.constraintAlignLeadingTo(containerView),
-                         titleContainer.constraintAlignTrailingTo(containerView),
-                         titleContainer.constraintAlignTopTo(containerView),
-                         subtitleLabel.constraintToBottomOf(titleContainer),
-                         subtitleLabel.constraintAlignLeadingTo(containerView),
-                         subtitleLabel.constraintAlignTrailingTo(containerView),
-                         subtitleLabel.constraintAlignBottomTo(containerView),
-                         verifiedView.widthAnchor.constraint(equalTo: verifiedView.heightAnchor)
-        ])
     }
 
     func updateTitleView(title: String, subtitle: String?, isVerified: Bool) {
