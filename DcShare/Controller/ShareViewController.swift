@@ -65,7 +65,7 @@ class ShareViewController: SLComposeServiceViewController {
         SDImageCodersManager.shared.addCoder(webPCoder)
 
         dcAccounts.logger = logger
-        dcAccounts.openDatabase()
+        dcAccounts.openDatabase(writeable: false)
         let accountIds = dcAccounts.getAll()
         for accountId in accountIds {
             let dcContext = dcAccounts.get(id: accountId)
