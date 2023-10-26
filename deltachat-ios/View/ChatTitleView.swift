@@ -37,6 +37,7 @@ class ChatTitleView: UIView {
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.textAlignment = .center
+        subtitleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         return subtitleLabel
     }()
 
