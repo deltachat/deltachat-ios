@@ -1580,11 +1580,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         mediaPicker?.showPhotoVideoLibrary()
     }
 
-    private func showMediaGallery(currentIndex: Int, msgIds: [Int]) {
-        let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds, currentIndex))
-        navigationController?.pushViewController(previewController, animated: true)
-    }
-
     private func webxdcButtonPressed(_ action: UIAlertAction) {
         showWebxdcSelector()
     }
@@ -1927,19 +1922,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         navigationController?.pushViewController(webxdcViewController, animated: true)
     }
 
-    func showMediaGalleryFor(indexPath: IndexPath) {
-        let messageId = messageIds[indexPath.row]
-        let message = dcContext.getMessage(id: messageId)
-        if message.type != DC_MSG_STICKER {
-            showMediaGalleryFor(message: message)
-        }
-    }
-
     func showMediaGalleryFor(message: DcMsg) {
-
         let msgIds = dcContext.getChatMedia(chatId: chatId, messageType: Int32(message.type), messageType2: 0, messageType3: 0)
         let index = msgIds.firstIndex(of: message.id) ?? 0
-        showMediaGallery(currentIndex: index, msgIds: msgIds)
+
+        navigationController?.pushViewController(PreviewController(dcContext: dcContext, type: .multi(msgIds, index)), animated: true)
     }
 
     private func didTapAsm(msg: DcMsg, orgText: String) {
@@ -2167,8 +2154,8 @@ extension ChatViewController: BaseMessageCellDelegate {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
         if message.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: message)
-        } else {
-            showMediaGalleryFor(indexPath: indexPath)
+        } else if message.type != DC_MSG_STICKER {
+            showMediaGalleryFor(message: message)
         }
     }
 
