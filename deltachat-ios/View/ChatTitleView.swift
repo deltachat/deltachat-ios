@@ -41,9 +41,6 @@ class ChatTitleView: UIView {
         return subtitleLabel
     }()
 
-    private let paddingNaviationButtons = 120
-    private let sizeStreamingIndicator = 28
-
     init() {
         super.init(frame: .zero)
         setupSubviews()
@@ -77,11 +74,11 @@ class ChatTitleView: UIView {
         ])
     }
 
-    func updateTitleView(title: String, subtitle: String?, baseColor: UIColor = DcColors.defaultTextColor, isVerified: Bool) {
-        subtitleLabel.textColor = baseColor.withAlphaComponent(0.95)
-        titleLabel.textColor = baseColor
+    func updateTitleView(title: String, subtitle: String?, isVerified: Bool) {
         titleLabel.text = title
-        subtitleLabel.text = subtitle
+        titleLabel.textColor = DcColors.defaultTextColor
         verifiedView.isHidden = !isVerified
+        subtitleLabel.text = subtitle
+        subtitleLabel.textColor = DcColors.defaultTextColor.withAlphaComponent(0.95)
     }
 }
