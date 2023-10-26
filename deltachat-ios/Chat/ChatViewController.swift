@@ -2147,7 +2147,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         }
     }
 
-    @objc func imageTapped(indexPath: IndexPath) {
+    @objc func imageTapped(indexPath: IndexPath, previewError: Bool) {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
@@ -2155,7 +2155,16 @@ extension ChatViewController: BaseMessageCellDelegate {
         if message.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: message)
         } else if message.type != DC_MSG_STICKER {
-            showMediaGalleryFor(message: message)
+            if previewError && message.type == DC_MSG_VIDEO {
+                let alert = UIAlertController(title: "To play this video, share to apps as VLC on the following page.", message: nil, preferredStyle: .safeActionSheet)
+                alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .default, handler: { _ in
+                    self.showMediaGalleryFor(message: message)
+                }))
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+                present(alert, animated: true, completion: nil)
+            } else {
+                showMediaGalleryFor(message: message)
+            }
         }
     }
 
