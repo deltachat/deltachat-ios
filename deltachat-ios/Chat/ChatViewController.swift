@@ -2155,6 +2155,8 @@ extension ChatViewController: BaseMessageCellDelegate {
         if message.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: message)
         } else if message.type != DC_MSG_STICKER {
+            // prefer previewError over QLPreviewController.canPreview().
+            // (the latter returns `true` for .webm - which is not wrong as _something_ is shown, even if the video cannot be played)
             if previewError && message.type == DC_MSG_VIDEO {
                 let alert = UIAlertController(title: "To play this video, share to apps as VLC on the following page.", message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .default, handler: { _ in
