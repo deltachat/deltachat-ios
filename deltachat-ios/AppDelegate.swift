@@ -750,10 +750,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_DAYS_BY_OTHER, localizationKey: "ephemeral_timer_days_by_other")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_WEEKS_BY_YOU, localizationKey: "ephemeral_timer_weeks_by_you")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_WEEKS_BY_OTHER, localizationKey: "ephemeral_timer_weeks_by_other")
-        dcContext.setStockTranslation(id: DC_STR_PROTECTION_ENABLED_BY_YOU, localizationKey: "protection_enabled_by_you")
-        dcContext.setStockTranslation(id: DC_STR_PROTECTION_ENABLED_BY_OTHER, localizationKey: "protection_enabled_by_other")
-        dcContext.setStockTranslation(id: DC_STR_PROTECTION_DISABLED_BY_YOU, localizationKey: "protection_disabled_by_you")
-        dcContext.setStockTranslation(id: DC_STR_PROTECTION_DISABLED_BY_OTHER, localizationKey: "protection_disabled_by_other")
     }
 
     func appIsInForeground() -> Bool {
