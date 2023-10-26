@@ -103,7 +103,7 @@ class ImageTextCell: BaseMessageCell {
 
     @objc func onImageTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
-            baseDelegate?.imageTapped(indexPath: indexPath)
+            baseDelegate?.imageTapped(indexPath: indexPath, previewError: imageView?.image == nil)
         }
     }
 

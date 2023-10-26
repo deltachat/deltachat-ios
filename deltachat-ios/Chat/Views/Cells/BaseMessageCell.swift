@@ -616,7 +616,7 @@ public protocol BaseMessageCellDelegate: class {
     func commandTapped(command: String, indexPath: IndexPath) // `/command`
     func phoneNumberTapped(number: String, indexPath: IndexPath)
     func urlTapped(url: URL, indexPath: IndexPath) // url is eg. `https://foo.bar`
-    func imageTapped(indexPath: IndexPath)
+    func imageTapped(indexPath: IndexPath, previewError: Bool)
     func avatarTapped(indexPath: IndexPath)
     func textTapped(indexPath: IndexPath)
     func quoteTapped(indexPath: IndexPath)
