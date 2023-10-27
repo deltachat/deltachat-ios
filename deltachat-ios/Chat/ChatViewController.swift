@@ -992,8 +992,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
-        } else if message.isInfo, message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent {
-            scrollToMessage(msgId: parent.id)
+        } else if message.isInfo {
+            switch message.infoType {
+            case DC_INFO_WEBXDC_INFO_MESSAGE:
+                if let parent = message.parent {
+                    scrollToMessage(msgId: parent.id)
+                }
+            case DC_INFO_PROTECTION_ENABLED:
+                showProtectionEnabledDialog()
+            case DC_INFO_PROTECTION_DISABLED:
+                showProtectionBrokenDialog()
+            default:
+                break
+            }
         }
         _ = handleUIMenu()
     }
@@ -1581,6 +1592,31 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
         mediaPicker?.showPhotoVideoLibrary()
+    }
+
+    private func showProtectionBrokenDialog() {
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("chat_protection_broken_explanation"), dcChat.name), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
+            if let url = URL(string: "https://staging.delta.chat/733/en/help#verificationbroken") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
+            // TODO
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+    }
+
+    private func showProtectionEnabledDialog() {
+        let alert = UIAlertController(title: String.localized("chat_protection_enabled_explanation"), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
+            if let url = URL(string: "https://staging.delta.chat/733/en/help#verifiedchats") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
     }
 
     private func webxdcButtonPressed(_ action: UIAlertAction) {
