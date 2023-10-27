@@ -20,7 +20,7 @@ public class ProtectionBrokenBar: UIView, InputItem {
 
     private lazy var acceptButton: DynamicFontButton = {
         let view = DynamicFontButton()
-        view.setTitle(String.localized("accept"), for: .normal)
+        view.setTitle(String.localized("ok"), for: .normal)
         view.accessibilityLabel = String.localized("accept")
         view.setTitleColor(.systemBlue, for: .normal)
         view.setTitleColor(.gray, for: .highlighted)
@@ -33,9 +33,9 @@ public class ProtectionBrokenBar: UIView, InputItem {
         return view
     }()
 
-    private lazy var blockButton: DynamicFontButton = {
+    private lazy var infoButton: DynamicFontButton = {
         let view = DynamicFontButton()
-        view.setTitle(useDeleteButton ? String.localized("delete") : String.localized("block"), for: .normal)
+        view.setTitle(String.localized("more_info"), for: .normal)
         view.accessibilityLabel = useDeleteButton ? String.localized("delete") : String.localized("block")
         view.setTitleColor(.systemRed, for: .normal)
         view.setTitleColor(.gray, for: .highlighted)
@@ -50,7 +50,7 @@ public class ProtectionBrokenBar: UIView, InputItem {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [blockButton, acceptButton])
+        let view = UIStackView(arrangedSubviews: [infoButton, acceptButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .fill
@@ -82,7 +82,7 @@ public class ProtectionBrokenBar: UIView, InputItem {
         acceptButton.addGestureRecognizer(acceptGestureListener)
 
         let blockGestureListener = UITapGestureRecognizer(target: self, action: #selector(onRejectPressed))
-        blockButton.addGestureRecognizer(blockGestureListener)
+        infoButton.addGestureRecognizer(blockGestureListener)
 
     }
 
