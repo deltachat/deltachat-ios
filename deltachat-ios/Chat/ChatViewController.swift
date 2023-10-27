@@ -2125,7 +2125,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         } else if msg.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: msg)
         } else {
-            let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id, isContactRequest: dcChat.isContactRequest)
+            let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id, isHalfBlocked: dcChat.isHalfBlocked)
             navigationController?.pushViewController(fullMessageViewController, animated: true)
         }
     }
