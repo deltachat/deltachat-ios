@@ -1602,7 +1602,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         }))
         alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
-            // TODO
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.appCoordinator.presentQrCodeController()
+            }
         }))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)

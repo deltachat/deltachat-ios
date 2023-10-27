@@ -248,6 +248,13 @@ class AppCoordinator {
         window.makeKeyAndVisible()
     }
 
+    func presentQrCodeController() {
+        popTabsToRootViewControllers()
+        window.rootViewController = tabBarController
+        showTab(index: qrTab)
+        window.makeKeyAndVisible()
+    }
+
     func popTabsToRootViewControllers() {
         self.tabBarController.viewControllers?.forEach { controller in
             if let navController = controller as? UINavigationController {
