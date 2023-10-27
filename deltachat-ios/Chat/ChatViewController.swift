@@ -384,7 +384,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if dcChat.canSend {
             configureUIForWriting()
-        } else if dcChat.isContactRequest {
+        } else if dcChat.isHalfBlocked {
             configureContactRequestBar()
         } else {
             messageInputBar.isHidden = true
@@ -623,6 +623,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                         self.configureUIForWriting()
                         self.messageInputBar.isHidden = false
                     }
+                } else if self.dcChat.isProtectionBroken {
+                    self.configureContactRequestBar()
+                    self.messageInputBar.isHidden = false
                 } else if !self.dcChat.isContactRequest {
                     if !self.messageInputBar.isHidden {
                         self.messageInputBar.isHidden = true
