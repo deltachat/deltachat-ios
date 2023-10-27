@@ -750,6 +750,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_DAYS_BY_OTHER, localizationKey: "ephemeral_timer_days_by_other")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_WEEKS_BY_YOU, localizationKey: "ephemeral_timer_weeks_by_you")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_WEEKS_BY_OTHER, localizationKey: "ephemeral_timer_weeks_by_other")
+        dcContext.setStockTranslation(id: DC_STR_CHAT_PROTECTION_ENABLED, localizationKey: "chat_protection_enabled_tap_to_learn_more")
+        dcContext.setStockTranslation(id: DC_STR_CHAT_PROTECTION_DISABLED, localizationKey: "chat_protection_broken_tap_to_learn_more")
     }
 
     func appIsInForeground() -> Bool {
