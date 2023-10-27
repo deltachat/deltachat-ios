@@ -571,13 +571,6 @@
 "ephemeral_timer_weeks_by_you" = "自分から消えるメッセージを%1$@週間にしました。";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@から消えるメッセージを%1$@週間にしました。";
-"protection_enabled_by_you" = "自分から保護が有効です。";
-// %1$s will be replaced by name and address of the contact
-"protection_enabled_by_other" = "%1$@から保護が有効です。";
-"protection_disabled_by_you" = "自分から保護が無効です。";
-// %1$s will be replaced by name and address of the contact
-"protection_disabled_by_other" = "%1$@から保護が無効です。";
-
 // qr code stuff
 "qr_code" = "QRコード";
 "load_qr_code_as_image" = "QRコードを画像として読み込む";

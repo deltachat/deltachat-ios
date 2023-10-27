@@ -314,7 +314,6 @@
 "chat_unable_to_record_audio" = "No es posible grabar audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Envíe un mensaje. Está bien si %1$@ no usa Delta Chat.";
-"chat_new_broadcast_hint" = "En una lista de difusión, los otros recibirán los mensajes en sus chats privados contigo.\n\nLos destinatarios no se ven entre sí.";
 "chat_new_group_hint" = "Los demás sólo verán este grupo después de que hayas enviado un primer mensaje.";
 "chat_record_slide_to_cancel" = "Deslice para cancelar";
 "chat_record_explain" = "Mantenga pulsado para grabar un mensaje de voz, suelte para enviar";
@@ -772,13 +771,6 @@
 "ephemeral_timer_weeks_by_you" = "Estableciste el temporizador de la desaparición de mensajes en %1$@ semanas.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de la desaparición de mensajes establecido en %1$@ semanas por %2$@.";
-"protection_enabled_by_you" = "Activaste la protección de chat.";
-// %1$s will be replaced by name and address of the contact
-"protection_enabled_by_other" = "Protección de chat habilitada por %1$@.";
-"protection_disabled_by_you" = "Desactivaste la protección de chat.";
-// %1$s will be replaced by name and address of the contact
-"protection_disabled_by_other" = "Protección de chat deshabilitada por %1$@.";
-
 "devicemsg_self_deleted" = "Eliminaste los chats de los \"Mensajes guardados\". \n\nℹ️ Para volver a usar los\"Mensajes guardados\", debes crear un chat contigo mismo.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ El almacenamiento de tu proveedor está por excederse, ya tienes %1$@%% en uso.\n\nQuizás no puedas recibir mensajes cuando el almacenamiento esté al 100%% de uso.\n\n👉 Por favor chequea si puedes eliminar los datos antiguos en la página web del proveedor y considera habilitar \"Ajustes / Eliminar mensajes antiguos\". Puedes chequear tu almacenamiento actual en cualquier momento en \"Ajustes / Conectividad\".";
@@ -1003,11 +995,6 @@
 
 // device messages for updates
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_36_android" = "1.36 Cambios principales\n\n💻📱 Utiliza Delta Chat en todos tus dispositivos fácilmente - sólo tienes que seguir tres sencillos pasos en \"Ajustes / Añadir otro dispositivo\" (experimental)\n\n🖼🔍 ¿Alguna vez has buscado una imagen sin recordar en cual chat? \"Toda la multimedia\" del menú principal es lo que necesitas!\n\n¿Qué más? Notificaciones para todas las cuentas, vaciar chat, y mucho más en %1$@";
-// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
-"update_1_36_audit" = "No hablamos mucho de seguridad aquí, pero puedes confiar que nos importa: Consulte %1$@ para buenas noticias recientes 👌";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_38_android" = "1.38 ya está disponible:\n\n📎 Se eliminó el límite de tamaño máximo de los archivos adjuntos\n\n🗜️ Las imágenes PNG (¡capturas de pantalla!) ahora también son comprimidas\n\n⌨️ Para desarrolladores: mejores aplicaciones para chats con sendToChat() e importFiles( ) (¿Qué es Webxdc? → https://webxdc.org)\n\n... y más en %1$@";
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_38_ios" = "1.38 está disponible:\n\n🖼🔍 ¿Alguna vez buscaste una imagen y no recordabas el chat? ¡Entonces el botón \"Toda la multimedia\" es tuyo!\n\n🧹 \"Vaciar chat\" de los perfiles\n\n📎 Se eliminó el límite de tamaño máximo de los archivos adjuntos\n\n🗜️ Las imágenes PNG (¡capturas de pantalla!) ahora también se comprimen\n\n... y más en %1$@";
-

@@ -314,7 +314,7 @@
 "chat_unable_to_record_audio" = "Audio kann nicht aufgenommen werden.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Senden Sie eine Nachricht. Es ist in Ordnung, wenn %1$@ kein Delta Chat hat.";
-"chat_new_broadcast_hint" = "In Broadcast-Listen erhalten die Empfänger die Nachrichten in den privaten Chats mit Ihnen.\n\nDie Empfänger wissen nicht, wer die anderen Empfänger sind.";
+"chat_new_broadcast_hint" = "In Broadcast-Listen erhalten die Empfänger die Nachrichten in einem Nur-Lesen-Chat.";
 "chat_new_group_hint" = "Andere sehen diese Gruppe erst, nachdem Sie eine erste Nachricht gesendet haben.";
 "chat_record_slide_to_cancel" = "Schieben, um abzubrechen";
 "chat_record_explain" = "Tippen und halten, um eine Sprachnachricht aufzunehmen, loslassen um zu senden. ";
@@ -772,12 +772,13 @@
 "ephemeral_timer_weeks_by_you" = "Sie haben die Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen gesetzt.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen gesetzt von %2$@.";
-"protection_enabled_by_you" = "Sie haben die Chat-Absicherung eingeschaltet.";
-// %1$s will be replaced by name and address of the contact
-"protection_enabled_by_other" = "Chat-Absicherung eingeschaltet von %1$@.";
-"protection_disabled_by_you" = "Sie haben die Chat-Absicherung ausgeschaltet.";
-// %1$s will be replaced by name and address of the contact
-"protection_disabled_by_other" = "Chat-Absicherung ausgeschaltet von %1$@";
+// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+"chat_protection_broken" = "%1$@ hat eine Nachricht von einem anderen Gerät gesendet.";
+"chat_protection_enabled_tap_to_learn_more" = "Nachrichten sind von nun an garantiert Ende-zu-Ende-verschlüsselt. Tippen, um mehr zu erfahren.";
+"chat_protection_enabled_explanation" = "Es ist nun garantiert, dass alle Nachrichten in diesem Chat Ende-zu-Ende verschlüsselt sind.\n\nDurch die Ende-zu-Ende-Verschlüsselung bleiben die Nachrichten zwischen Ihnen und Ihren Chat-Partnern privat. Nicht einmal Ihr E-Mail-Anbieter kann sie lesen.";
+"chat_protection_broken_tap_to_learn_more" = "%1$@ hat eine Nachricht von einem anderen Gerät gesendet. Tippen, um mehr zu erfahren.";
+"chat_protection_broken_explanation" = "Die Ende-zu-Ende-Verschlüsselung kann nicht mehr garantiert werden, wahrscheinlich weil %1$@ Delta Chat neu installiert oder eine Nachricht von einem anderen Gerät gesendet hat.\n\n Sie können ihn persönlich treffen und seinen QR-Code erneut scannen, um die garantierte Ende-zu-Ende-Verschlüsselung wiederherzustellen.";
+"learn_more" = "Mehr erfahren";
 
 "devicemsg_self_deleted" = "Sie haben den Chat \"Gespeicherte Nachrichten\" gelöscht.\n\nℹ️ Um die Funktion \"Gespeicherte Nachrichten\" erneut zu verwenden, erstellen Sie einfach einen Chat mit sich selbst.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -1003,11 +1004,6 @@
 
 // device messages for updates
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_36_android" = "1.36 Highlights\n\n💻📱 Verwenden Sie Delta Chat auf all Ihren Geräten: Folgen Sie einfach den drei Schritten unter \"Einstellungen / Zweitgerät hinzufügen\" (experimentell)\n\n🖼🔍 Haben Sie jemals nach einem Bild gesucht und konnten sich nicht an den Chat erinnern? Dann ist \"Alle Medien\" aus dem Hauptmenü wie für Sie gemacht!\n\nWas noch? Benachrichtigungen für alle Konten, Chat leeren und mehr, %1$@";
-// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
-"update_1_36_audit" = "Wir reden hier nicht viel über Sicherheit, aber seien Sie versichert, dass sie uns am Herzen liegt: Siehe %1$@ für aktuelle, gute Nachrichten 👌";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_38_android" = "1.38 ist da:\n\n📎 Größenbeschränkung für Anhänge entfernt\n\n🗜️ PNG-Bilder (Screenshots!) werden jetzt auch komprimiert\n\n⌨️ Für Entwickler: Bessere \"Apps für Chats\" mit sendToChat() und importFiles() (Was ist Webxdc? → https://webxdc.org)\n\n... und mehr auf %1$@";
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_38_ios" = "1.38 ist da:\n\n🖼🔍 Haben Sie jemals nach einem Bild gesucht und konnten sich nicht an den Chat erinnern? Dann ist \"Alle Medien\" (Chatliste unten links) wie für Sie gemacht\n\n🧹 \"Chat leeren\"-Funktion im Profil\n\n📎 Größenbeschränkung für Anhänge entfernt\n\n🗜️ PNG-Bilder (Screenshots!) werden jetzt auch komprimiert\n\n… und mehr auf %1$@";
-

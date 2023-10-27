@@ -314,7 +314,7 @@
 "chat_unable_to_record_audio" = "Unable to record audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Send a message to %1$@; they can even receive it without Delta Chat.";
-"chat_new_broadcast_hint" = "In a broadcast list, others will receive messages in their private chats with you.\n\nThe recipients will not be aware of each other.";
+"chat_new_broadcast_hint" = "In a broadcast list, recipients will receive messages in a read-only chat with you.";
 "chat_new_group_hint" = "Others will only see this group after you sent a first message.";
 "chat_record_slide_to_cancel" = "Slide to cancel";
 "chat_record_explain" = "Tap and hold to record a voice message, release to send";
@@ -772,12 +772,13 @@
 "ephemeral_timer_weeks_by_you" = "You set disappearing messages timer to %1$@ weeks.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Disappearing messages timer set to %1$@ weeks by %2$@.";
-"protection_enabled_by_you" = "You enabled chat protection.";
-// %1$s will be replaced by name and address of the contact
-"protection_enabled_by_other" = "Chat protection enabled by %1$@.";
-"protection_disabled_by_you" = "You disabled chat protection.";
-// %1$s will be replaced by name and address of the contact
-"protection_disabled_by_other" = "Chat protection disabled by %1$@.";
+// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+"chat_protection_broken" = "%1$@ sent a message from another device.";
+"chat_protection_enabled_tap_to_learn_more" = "Messages are guaranteed to be end-to-end encrypted from now on. Tap to learn more.";
+"chat_protection_enabled_explanation" = "It is now guaranteed that all messages in this chat are end-to-end encrypted.\n\nEnd-to-end encryption keeps messages private between you and your chat partners. Not even your email provider can read them.";
+"chat_protection_broken_tap_to_learn_more" = "%1$@ sent a message from another device. Tap to learn more.";
+"chat_protection_broken_explanation" = "End-to-end encryption cannot be guaranteed anymore, likely because %1$@ reinstalled Delta Chat or sent a message from another device.\n\nYou may meet them in person and scan their QR Code again to reestablish guaranteed end-to-end encryption.";
+"learn_more" = "Learn More";
 
 "devicemsg_self_deleted" = "You deleted the \"Saved messages\" chat.\n\nℹ️ To use the \"Saved messages\" feature again, create a new chat with yourself.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -837,7 +838,7 @@
 "contact_not_verified" = "Cannot verify %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
 "verified_by" = "Verified by %1$@";
-"verified_by_you" = "Verified by you";
+"verified_by_you" = "Verified by me";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Changed setup for %1$@.";
 "verified_group_explain" = "Verified groups (experimental) provide safety against active attacks. Members are verified with a second factor by other members and messages are always end-to-end-encrypted.";
@@ -1003,14 +1004,9 @@
 
 // device messages for updates
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_36_android" = "1.36 Highlights\n\n💻📱 Use Delta Chat on all your devices easily - just follow three simple steps at \"Settings / Add Second Device\" (experimental)\n\n🖼🔍 Ever searching for an image and could not remember the chat? \"All Media\" from the main menu is yours!\n\nWhat else? Notifications for all accounts, clear chat, and more at %1$@";
-// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
-"update_1_36_audit" = "We don\'t talk much about security here, but rest assured, we care: See %1$@ for recent good news 👌";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_38_android" = "1.38 is out:\n\n📎 Removed upper size limit of attachments\n\n🗜️ PNG images (screenshots!) are now compressed as well\n\n⌨️ For Devs: Better apps for chats with sendToChat() and importFiles() (What is Webxdc? → https://webxdc.org)\n\n… and more at %1$@";
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_38_ios" = "1.38 is out:\n\n🖼🔍 Ever searching for an image and could not remember the chat? Then the \"All Media\" button is yours!\n\n🧹 \"Clear Chat\" from the profiles\n\n📎 Removed upper size limit of attachments\n\n🗜️ PNG images (screenshots!) are now compressed as well\n\n… and more at %1$@";
-
 "connectivity_low_data_mode" = "Disabled by system's \"Low Data Mode\".";
 "connectivity_low_power_mode" = "Disabled by system's \"Low Power Mode\".";
 "add_encrypted_account" = "Add encrypted account";

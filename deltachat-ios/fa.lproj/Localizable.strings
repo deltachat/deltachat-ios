@@ -311,7 +311,6 @@
 "chat_unable_to_record_audio" = "ضبط صدا ممکن نیست. ";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "ارسال پیام. مشکلی نیست اگر %1$@ از دلتاچت استفاده نمی‌کند.";
-"chat_new_broadcast_hint" = "در فهرست پخش، دیگران پیام‌ها را در گپ‌های خصوصی با شما دریافت می‌کنند.\n\nگیرنده‌ها از یکدیگر خبر نخواهند داشت. ";
 "chat_new_group_hint" = "نوشتن اولین پیام به دیگران امکان می‌دهد در این گروه پاسخ دهند. \n\n• مشکلی نیست اگر همه اعضا از دلتاچت استفاده نکنند\n\n• دریافت اولین پیام ممکن است به زمان بیشتری نیاز داشته باشد. ";
 "chat_record_slide_to_cancel" = "برای لغو بکشید.";
 "chat_record_explain" = "برای ضبط پیام صوتی فشار داده و نگهدارید، برای ارسال رها کنید. ";
@@ -762,13 +761,6 @@
 "ephemeral_timer_weeks_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ هفته تنظیم کردید.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ هفته تنظیم شد.";
-"protection_enabled_by_you" = "محافظ چت را فعال کردید.";
-// %1$s will be replaced by name and address of the contact
-"protection_enabled_by_other" = "محافظ چت توسط %1$@ فعال شد.";
-"protection_disabled_by_you" = "محافظ چت را غیرفعال کردید.";
-// %1$s will be replaced by name and address of the contact
-"protection_disabled_by_other" = "محافظ چت توسط %1$@ غیرفعال شد.";
-
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 // %1%s will be replaced by date and time in some human-readable format
@@ -977,9 +969,4 @@
 
 // device messages for updates
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_36_android" = "نکات برجسته ۱.۳۶/n/n💻📱 از دلتاچت در همه دستگاه‌های خود به راحتی استفاده کنید - فقط سه مرحله ساده را در \"تنظیمات / افزودن دستگاه دوم\" (تجربی) دنبال کنید/n/n🖼🔍 آیا تا به حال به دنبال 1 تصویر هستید و نمی توانید چت را به یاد بیاورید؟ \"همه رسانه\" از منوی اصلی متعلق به شماست!/n/nچه چیز دیگری؟ اعلان ها برای همه حساب‌ها، پاک کردن چت، و موارد دیگر در %1$@";
-// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
-"update_1_36_audit" = "ما در اینجا زیاد در مورد امنیت صحبت نمی کنیم، اما مطمئن باشید، ما اهمیت می دهیم: برای اخبار خوب اخیر به %1$@ مراجعه کنید 👌";
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-

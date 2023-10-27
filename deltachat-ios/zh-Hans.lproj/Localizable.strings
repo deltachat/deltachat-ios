@@ -314,7 +314,6 @@
 "chat_unable_to_record_audio" = "无法录制音频。";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "发一条消息给 %1$@。即使对方不使用 Delta Chat 也没问题。";
-"chat_new_broadcast_hint" = "使用广播列表时，其他人会在与你的私人聊天中收到消息。\n\n接收者之间不会知道彼此的存在。";
 "chat_new_group_hint" = "在您发出第一条消息后，其他人才会看到此群组。";
 "chat_record_slide_to_cancel" = "滑动来取消";
 "chat_record_explain" = "按住来录制语音消息，松开来发送";
@@ -772,13 +771,6 @@
 "ephemeral_timer_weeks_by_you" = "你将消息定时销毁计时器设为 %1$@ 周";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ 将消息定时销毁计时器设为 %1$@ 周";
-"protection_enabled_by_you" = "你开启了聊天保护";
-// %1$s will be replaced by name and address of the contact
-"protection_enabled_by_other" = "%1$@ 开启了聊天保护 ";
-"protection_disabled_by_you" = "你禁用了聊天保护";
-// %1$s will be replaced by name and address of the contact
-"protection_disabled_by_other" = "%1$@ 禁用了聊天保护";
-
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️邮件服务商提供的存储空间快满了，已使用 %1$@%%。\n\n如果存储空间用光，您可能无法接收消息。\n\n👉请检查是否可以在提供商的网页界面上删除旧数据，或考虑启用“设置/删除旧消息”。您可以在“设置/连接状态”中查看当前的存储使用情况。";
@@ -1003,11 +995,6 @@
 
 // device messages for updates
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_36_android" = "1.36 版本主要改动\n\n💻📱轻松地在所有设备上使用 Delta Chat - 按照“设置/添加第二台设备”处的提示，只需三步即可完成（实验性功能）\n\n🖼🔍为寻找聊天图片时记不起对应聊天而苦恼吗？主菜单中的“所有媒体”帮你解决这个问题！\n\n其他重要改动包括为所有账户显示通知、清空聊天记录等，详见 %1$@";
-// placeholder will be replaced by the URL https://delta.chat/en/2023-03-27-third-independent-security-audit
-"update_1_36_audit" = "虽然我们在这里对安全谈得不多，但别担心，我们非常重视它：查看 %1$@ 来了解最近的好消息👌";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_38_android" = "1.38 版发布啦：\n\n📎 删除了附件大小上限 \n\n🗜️ PNG 图片(截屏文件!) 现在同样被压缩\n\n⌨️ 对于开发者: 更好的聊天应用，sendToChat() 和 importFiles() (什么是 Webxdc? → https://webxdc.org)\n\n… 更多内容请访问 %1$@";
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_38_ios" = "1.38版发布啦：\n\n🖼🔍 尝试搜索某张图片却记不得到底在哪个聊天会话中吗? 别急，试试“所有媒体”按钮吧。\n\n🧹从个人资料部分“清除聊天”\n\n📎 删除了附件大小上限\n\n🗜️ PNG 图片(截屏文件！) 现在同样被压缩\n\n… 更多内容请访问 %1$@";
-

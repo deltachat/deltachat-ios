@@ -562,13 +562,6 @@
 "ephemeral_timer_weeks_by_you" = "Samomazací zprávy vyprší po %1$@ týdnech ode mě.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Samomazací zprávy vyprší po %1$@ týdnech od %2$@.";
-"protection_enabled_by_you" = "Ochrana rozhovoru zapnuta ode mě.";
-// %1$s will be replaced by name and address of the contact
-"protection_enabled_by_other" = "Ochrana rozhovoru zapnuta od %1$@.";
-"protection_disabled_by_you" = "Ochrana rozhovoru vypnuta ode mě.";
-// %1$s will be replaced by name and address of the contact
-"protection_disabled_by_other" = "Ochrana rozhovoru vypnuta od %1$@.";
-
 // qr code stuff
 "qr_code" = "QR kód";
 "load_qr_code_as_image" = "Nahraj QR kód z obrázku";
