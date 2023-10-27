@@ -205,6 +205,7 @@
 		B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */; };
 		B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4256F265C325C00B95377 /* MultilineLabelCell.swift */; };
 		B2D4B63B29C38D1900B47DA8 /* ChatsAndMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */; };
+		B2F090C92AEC484C00F900FA /* ProtectionBrokenBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F090C82AEC484B00F900FA /* ProtectionBrokenBar.swift */; };
 		B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F899E029F96A67003797D5 /* AllMediaViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -561,6 +562,7 @@
 		B2D729E927C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B2D729EA27C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B2D729EB27C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		B2F090C82AEC484B00F900FA /* ProtectionBrokenBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectionBrokenBar.swift; sourceTree = "<group>"; };
 		B2F899E029F96A67003797D5 /* AllMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllMediaViewController.swift; sourceTree = "<group>"; };
 		B9CDCE77DAE9389E205F094C /* Pods-DcShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.release.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.release.xcconfig"; sourceTree = "<group>"; };
 		D30610767F4AF8040B739987 /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -750,6 +752,7 @@
 				307A82CB25B8D26700748B57 /* ChatEditingBar.swift */,
 				30C2BFFD27032375005505DA /* ChatSearchAccessoryBar.swift */,
 				302D54692693591700A8B271 /* ChatContactRequestBar.swift */,
+				B2F090C82AEC484B00F900FA /* ProtectionBrokenBar.swift */,
 				302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */,
 				30F8817524DA97DA0023780E /* BackgroundContainer.swift */,
 				3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */,
@@ -1507,6 +1510,7 @@
 				305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */,
 				30EF7324252FF15F00E2C54A /* MessageLabel.swift in Sources */,
 				30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */,
+				B2F090C92AEC484C00F900FA /* ProtectionBrokenBar.swift in Sources */,
 				3080A034277DE30100E74565 /* NSNotification+Extensions.swift in Sources */,
 				3080A01B277DDB8A00E74565 /* InputPlugin.swift in Sources */,
 				304F769525DD237B0094B5E2 /* WebViewViewController.swift in Sources */,

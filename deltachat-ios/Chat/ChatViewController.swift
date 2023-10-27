@@ -102,14 +102,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return view
     }()
 
-    public lazy var contactRequestBar: ChatContactRequestBar = {
-        let chat = dcContext.getChat(chatId: chatId)
-        let view = ChatContactRequestBar(useDeleteButton: chat.isGroup && !chat.isMailinglist)
-        view.delegate = self
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -848,7 +840,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func configureContactRequestBar() {
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
-        messageInputBar.setMiddleContentView(contactRequestBar, animated: false)
+
+        if dcChat.isProtectionBroken {
+            let bar = ProtectionBrokenBar(useDeleteButton: dcChat.isGroup && !dcChat.isMailinglist)
+            bar.delegate = self
+            bar.translatesAutoresizingMaskIntoConstraints = false
+            messageInputBar.setMiddleContentView(bar, animated: false)
+        } else {
+            let bar = ChatContactRequestBar(useDeleteButton: dcChat.isGroup && !dcChat.isMailinglist)
+            bar.delegate = self
+            bar.translatesAutoresizingMaskIntoConstraints = false
+            messageInputBar.setMiddleContentView(bar, animated: false)
+        }
+
         messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
         messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
         messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
@@ -2457,6 +2461,15 @@ extension ChatViewController: ChatContactRequestDelegate {
     
     func onDeleteRequest() {
         self.askToDeleteChat()
+    }
+}
+
+// MARK: - ProtectionBrokenDelegate
+extension ChatViewController: ProtectionBrokenDelegate {
+    func onBrokenProtectionInfo() {
+    }
+
+    func onAcceptBrokenProtection() {
     }
 }
 
