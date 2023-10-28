@@ -25,14 +25,16 @@ public class ChatContactRequestBar: UIView, InputItem {
     weak var delegate: ChatContactRequestDelegate?
     
     private let notAcceptMeaning: NotAcceptMeaning
+    private let infoText: String?
 
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .body, weight: .regular)
-        label.lineBreakMode = .byTruncatingTail
+        label.lineBreakMode = .byWordWrapping
         label.textColor = DcColors.defaultInverseColor
-        label.textAlignment = .left
+        label.textAlignment = .center
+        label.text = infoText
         return label
     }()
 
@@ -73,6 +75,7 @@ public class ChatContactRequestBar: UIView, InputItem {
 
     public required init(_ notAcceptMeaning: NotAcceptMeaning, infoText: String?) {
         self.notAcceptMeaning = notAcceptMeaning
+        self.infoText = infoText
         super.init(frame: .zero)
         setupSubviews(infoText: infoText)
     }
@@ -87,12 +90,9 @@ public class ChatContactRequestBar: UIView, InputItem {
         buttons.distribution = .fillEqually
         buttons.alignment = .fill
 
-        if let infoText = infoText {
-            infoLabel.text = infoText
-        }
-
         let mainContentView = UIStackView(arrangedSubviews: infoText == nil ? [buttons] : [infoLabel, buttons])
         mainContentView.axis = .vertical
+        mainContentView.distribution = .fillEqually
         mainContentView.alignment = .fill
         mainContentView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(mainContentView)
@@ -125,5 +125,9 @@ public class ChatContactRequestBar: UIView, InputItem {
         case .info:
             delegate?.onShowInfoDialog()
         }
+    }
+
+    public override var intrinsicContentSize: CGSize {
+        return CGSize(width: super.intrinsicContentSize.width, height: infoText == nil ? 44 : 88)
     }
 }
