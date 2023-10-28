@@ -86,11 +86,26 @@ class QrViewController: UIViewController {
     @objc private func showMoreOptions() {
         let alert = UIAlertController(title: String.localized("qrshow_title"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: copyToClipboard(_:)))
+        alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .default, handler: withdrawQrCode(_:)))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
     @objc func copyToClipboard(_ action: UIAlertAction) {
         UIPasteboard.general.string = dcContext.getSecurejoinQr(chatId: chatId)
+    }
+
+    @objc func withdrawQrCode(_ action: UIAlertAction) {
+        let groupName = dcContext.getChat(chatId: chatId).name
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("withdraw_verifygroup_explain"), groupName),
+                                      message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+        alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            guard let code = dcContext.getSecurejoinQr(chatId: self.chatId) else { return }
+            _ = self.dcContext.setConfigFromQR(qrCode: code)
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true)
     }
 }
