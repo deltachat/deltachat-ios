@@ -26,6 +26,16 @@ public class ChatContactRequestBar: UIView, InputItem {
     
     private let notAcceptMeaning: NotAcceptMeaning
 
+    private lazy var infoLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.preferredFont(for: .body, weight: .regular)
+        label.lineBreakMode = .byTruncatingTail
+        label.textColor = DcColors.defaultInverseColor
+        label.textAlignment = .left
+        return label
+    }()
+
     private lazy var acceptButton: DynamicFontButton = {
         let view = DynamicFontButton()
         view.setTitle(String.localized(notAcceptMeaning == .info ? "ok" : "accept"), for: .normal)
@@ -61,23 +71,27 @@ public class ChatContactRequestBar: UIView, InputItem {
         return view
     }()
 
-    public required init(_ notAcceptMeaning: NotAcceptMeaning) {
+    public required init(_ notAcceptMeaning: NotAcceptMeaning, infoText: String?) {
         self.notAcceptMeaning = notAcceptMeaning
         super.init(frame: .zero)
-        setupSubviews()
+        setupSubviews(infoText: infoText)
     }
 
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func setupSubviews() {
+    public func setupSubviews(infoText: String?) {
         let buttons = UIStackView(arrangedSubviews: [notAcceptButton, acceptButton])
         buttons.axis = .horizontal
         buttons.distribution = .fillEqually
         buttons.alignment = .fill
 
-        let mainContentView = UIStackView(arrangedSubviews: [buttons])
+        if let infoText = infoText {
+            infoLabel.text = infoText
+        }
+
+        let mainContentView = UIStackView(arrangedSubviews: infoText == nil ? [buttons] : [infoLabel, buttons])
         mainContentView.axis = .vertical
         mainContentView.alignment = .fill
         mainContentView.translatesAutoresizingMaskIntoConstraints = false
@@ -111,9 +125,5 @@ public class ChatContactRequestBar: UIView, InputItem {
         case .info:
             delegate?.onShowInfoDialog()
         }
-    }
-
-    public override var intrinsicContentSize: CGSize {
-        return CGSize(width: super.intrinsicContentSize.width, height: 44)
     }
 }
