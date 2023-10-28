@@ -843,9 +843,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         let bar: ChatContactRequestBar
         if dcChat.isProtectionBroken {
-            bar = ChatContactRequestBar(useDeleteButton: dcChat.isGroup && !dcChat.isMailinglist)
+            bar = ChatContactRequestBar(.infoButton)
         } else {
-            bar = ChatContactRequestBar(useDeleteButton: dcChat.isGroup && !dcChat.isMailinglist)
+            bar = ChatContactRequestBar(dcChat.isGroup && !dcChat.isMailinglist ? .deleteButton : .blockButton)
         }
         bar.delegate = self
         bar.translatesAutoresizingMaskIntoConstraints = false
@@ -2461,7 +2461,7 @@ extension ChatViewController: ChatContactRequestDelegate {
         self.askToDeleteChat()
     }
 
-    func onInfoRequest() {
+    func onShowInfoDialog() {
         showProtectionBrokenDialog()
     }
 }

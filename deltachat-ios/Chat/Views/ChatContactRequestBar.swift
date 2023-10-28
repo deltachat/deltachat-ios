@@ -1,11 +1,17 @@
 import UIKit
 import DcCore
 
+public enum NotAcceptButton: Error {
+    case deleteButton
+    case blockButton
+    case infoButton
+}
+
 public protocol ChatContactRequestDelegate: class {
     func onAcceptRequest()
     func onBlockRequest()
     func onDeleteRequest()
-    func onInfo()
+    func onShowInfoDialog()
 }
 
 public class ChatContactRequestBar: UIView, InputItem {
@@ -18,11 +24,11 @@ public class ChatContactRequestBar: UIView, InputItem {
 
     weak var delegate: ChatContactRequestDelegate?
     
-    private var useDeleteButton: Bool = false
+    private let notAcceptButton: NotAcceptButton
 
     private lazy var acceptButton: DynamicFontButton = {
         let view = DynamicFontButton()
-        view.setTitle(String.localized("accept"), for: .normal)
+        view.setTitle(String.localized(notAcceptButton == .infoButton ? "ok" : "accept"), for: .normal)
         view.setTitleColor(.systemBlue, for: .normal)
         view.setTitleColor(.gray, for: .highlighted)
         view.titleLabel?.lineBreakMode = .byWordWrapping
@@ -36,8 +42,14 @@ public class ChatContactRequestBar: UIView, InputItem {
 
     private lazy var blockButton: DynamicFontButton = {
         let view = DynamicFontButton()
-        view.setTitle(useDeleteButton ? String.localized("delete") : String.localized("block"), for: .normal)
-        view.setTitleColor(.systemRed, for: .normal)
+        switch notAcceptButton {
+        case .deleteButton, .blockButton:
+            view.setTitle(String.localized(notAcceptButton == .deleteButton ? "delete" : "block"), for: .normal)
+            view.setTitleColor(.systemRed, for: .normal)
+        case .infoButton:
+            view.setTitle(String.localized("more_info_desktop"), for: .normal)
+            view.setTitleColor(.systemBlue, for: .normal)
+        }
         view.setTitleColor(.gray, for: .highlighted)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.titleLabel?.lineBreakMode = .byWordWrapping
@@ -58,8 +70,8 @@ public class ChatContactRequestBar: UIView, InputItem {
         return view
     }()
 
-    public required init(useDeleteButton: Bool) {
-        self.useDeleteButton = useDeleteButton
+    public required init(_ notAcceptButton: NotAcceptButton) {
+        self.notAcceptButton = notAcceptButton
         super.init(frame: .zero)
         setupSubviews()
     }
@@ -91,10 +103,13 @@ public class ChatContactRequestBar: UIView, InputItem {
     }
 
     @objc func onRejectPressed() {
-        if useDeleteButton {
+        switch notAcceptButton {
+        case .deleteButton:
             delegate?.onDeleteRequest()
-        } else {
+        case .blockButton:
             delegate?.onBlockRequest()
+        case .infoButton:
+            delegate?.onShowInfoDialog()
         }
     }
 
