@@ -133,6 +133,7 @@ class QrPageController: UIPageViewController {
             guard let code = dcContext.getSecurejoinQr(chatId: 0) else { return }
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             _ = self.dcContext.setConfigFromQR(qrCode: code)
+            setViewControllers([QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)], direction: .reverse, animated: false, completion: nil)
             appDelegate.appCoordinator.presentTabBarController()
         }))
         present(alert, animated: true)
