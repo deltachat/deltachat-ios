@@ -22,7 +22,6 @@ class InfoMessageCell: UITableViewCell {
     private lazy var typeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.isHidden = true
-        imageView.image = UIImage(named: "verified")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.setContentCompressionResistancePriority(.required, for: .horizontal)
         imageView.isAccessibilityElement = false
@@ -122,9 +121,11 @@ class InfoMessageCell: UITableViewCell {
         if let infoType = infoType {
             switch infoType {
             case DC_INFO_PROTECTION_ENABLED:
+                typeImageView.image = UIImage(named: "verified_large")
                 typeImageView.isHidden = false
             case DC_INFO_PROTECTION_DISABLED:
-                typeImageView.isHidden = true
+                typeImageView.image = UIImage(named: "verified_broken")
+                typeImageView.isHidden = false
             default:
                 typeImageView.isHidden = true
             }
