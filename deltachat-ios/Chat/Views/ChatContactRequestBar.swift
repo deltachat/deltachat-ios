@@ -5,6 +5,7 @@ public protocol ChatContactRequestDelegate: class {
     func onAcceptRequest()
     func onBlockRequest()
     func onDeleteRequest()
+    func onInfo()
 }
 
 public class ChatContactRequestBar: UIView, InputItem {
@@ -22,7 +23,6 @@ public class ChatContactRequestBar: UIView, InputItem {
     private lazy var acceptButton: DynamicFontButton = {
         let view = DynamicFontButton()
         view.setTitle(String.localized("accept"), for: .normal)
-        view.accessibilityLabel = String.localized("accept")
         view.setTitleColor(.systemBlue, for: .normal)
         view.setTitleColor(.gray, for: .highlighted)
         view.titleLabel?.lineBreakMode = .byWordWrapping
@@ -37,7 +37,6 @@ public class ChatContactRequestBar: UIView, InputItem {
     private lazy var blockButton: DynamicFontButton = {
         let view = DynamicFontButton()
         view.setTitle(useDeleteButton ? String.localized("delete") : String.localized("block"), for: .normal)
-        view.accessibilityLabel = useDeleteButton ? String.localized("delete") : String.localized("block")
         view.setTitleColor(.systemRed, for: .normal)
         view.setTitleColor(.gray, for: .highlighted)
         view.translatesAutoresizingMaskIntoConstraints = false

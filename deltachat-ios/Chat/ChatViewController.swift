@@ -841,17 +841,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func configureContactRequestBar() {
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
 
+        let bar: ChatContactRequestBar
         if dcChat.isProtectionBroken {
-            let bar = ProtectionBrokenBar(useDeleteButton: dcChat.isGroup && !dcChat.isMailinglist)
-            bar.delegate = self
-            bar.translatesAutoresizingMaskIntoConstraints = false
-            messageInputBar.setMiddleContentView(bar, animated: false)
+            bar = ChatContactRequestBar(useDeleteButton: dcChat.isGroup && !dcChat.isMailinglist)
         } else {
-            let bar = ChatContactRequestBar(useDeleteButton: dcChat.isGroup && !dcChat.isMailinglist)
-            bar.delegate = self
-            bar.translatesAutoresizingMaskIntoConstraints = false
-            messageInputBar.setMiddleContentView(bar, animated: false)
+            bar = ChatContactRequestBar(useDeleteButton: dcChat.isGroup && !dcChat.isMailinglist)
         }
+        bar.delegate = self
+        bar.translatesAutoresizingMaskIntoConstraints = false
+        messageInputBar.setMiddleContentView(bar, animated: false)
 
         messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
         messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
@@ -2462,17 +2460,12 @@ extension ChatViewController: ChatContactRequestDelegate {
     func onDeleteRequest() {
         self.askToDeleteChat()
     }
-}
 
-// MARK: - ProtectionBrokenDelegate
-extension ChatViewController: ProtectionBrokenDelegate {
-    func onBrokenProtectionInfo() {
+    func onInfoRequest() {
         showProtectionBrokenDialog()
     }
-
-    func onAcceptBrokenProtection() {
-    }
 }
+
 
 // MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
