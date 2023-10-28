@@ -1,10 +1,10 @@
 import UIKit
 import DcCore
 
-public enum NotAcceptButton: Error {
-    case deleteButton
-    case blockButton
-    case infoButton
+public enum NotAcceptMeaning: Error {
+    case delete
+    case block
+    case info
 }
 
 public protocol ChatContactRequestDelegate: class {
@@ -24,11 +24,11 @@ public class ChatContactRequestBar: UIView, InputItem {
 
     weak var delegate: ChatContactRequestDelegate?
     
-    private let notAcceptButton: NotAcceptButton
+    private let notAcceptMeaning: NotAcceptMeaning
 
     private lazy var acceptButton: DynamicFontButton = {
         let view = DynamicFontButton()
-        view.setTitle(String.localized(notAcceptButton == .infoButton ? "ok" : "accept"), for: .normal)
+        view.setTitle(String.localized(notAcceptMeaning == .info ? "ok" : "accept"), for: .normal)
         view.setTitleColor(.systemBlue, for: .normal)
         view.setTitleColor(.gray, for: .highlighted)
         view.titleLabel?.lineBreakMode = .byWordWrapping
@@ -40,13 +40,13 @@ public class ChatContactRequestBar: UIView, InputItem {
         return view
     }()
 
-    private lazy var blockButton: DynamicFontButton = {
+    private lazy var notAcceptButton: DynamicFontButton = {
         let view = DynamicFontButton()
-        switch notAcceptButton {
-        case .deleteButton, .blockButton:
-            view.setTitle(String.localized(notAcceptButton == .deleteButton ? "delete" : "block"), for: .normal)
+        switch notAcceptMeaning {
+        case .delete, .block:
+            view.setTitle(String.localized(notAcceptMeaning == .delete ? "delete" : "block"), for: .normal)
             view.setTitleColor(.systemRed, for: .normal)
-        case .infoButton:
+        case .info:
             view.setTitle(String.localized("more_info_desktop"), for: .normal)
             view.setTitleColor(.systemBlue, for: .normal)
         }
@@ -61,17 +61,8 @@ public class ChatContactRequestBar: UIView, InputItem {
         return view
     }()
 
-    private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [blockButton, acceptButton])
-        view.axis = .horizontal
-        view.distribution = .fillEqually
-        view.alignment = .fill
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    public required init(_ notAcceptButton: NotAcceptButton) {
-        self.notAcceptButton = notAcceptButton
+    public required init(_ notAcceptMeaning: NotAcceptMeaning) {
+        self.notAcceptMeaning = notAcceptMeaning
         super.init(frame: .zero)
         setupSubviews()
     }
@@ -81,6 +72,15 @@ public class ChatContactRequestBar: UIView, InputItem {
     }
 
     public func setupSubviews() {
+        let buttons = UIStackView(arrangedSubviews: [notAcceptButton, acceptButton])
+        buttons.axis = .horizontal
+        buttons.distribution = .fillEqually
+        buttons.alignment = .fill
+
+        let mainContentView = UIStackView(arrangedSubviews: [buttons])
+        mainContentView.axis = .vertical
+        mainContentView.alignment = .fill
+        mainContentView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(mainContentView)
 
         addConstraints([
@@ -94,7 +94,7 @@ public class ChatContactRequestBar: UIView, InputItem {
         acceptButton.addGestureRecognizer(acceptGestureListener)
 
         let blockGestureListener = UITapGestureRecognizer(target: self, action: #selector(onRejectPressed))
-        blockButton.addGestureRecognizer(blockGestureListener)
+        notAcceptButton.addGestureRecognizer(blockGestureListener)
 
     }
 
@@ -103,12 +103,12 @@ public class ChatContactRequestBar: UIView, InputItem {
     }
 
     @objc func onRejectPressed() {
-        switch notAcceptButton {
-        case .deleteButton:
+        switch notAcceptMeaning {
+        case .delete:
             delegate?.onDeleteRequest()
-        case .blockButton:
+        case .block:
             delegate?.onBlockRequest()
-        case .infoButton:
+        case .info:
             delegate?.onShowInfoDialog()
         }
     }

@@ -843,9 +843,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         let bar: ChatContactRequestBar
         if dcChat.isProtectionBroken {
-            bar = ChatContactRequestBar(.infoButton)
+            bar = ChatContactRequestBar(.info)
         } else {
-            bar = ChatContactRequestBar(dcChat.isGroup && !dcChat.isMailinglist ? .deleteButton : .blockButton)
+            bar = ChatContactRequestBar(dcChat.isGroup && !dcChat.isMailinglist ? .delete : .block)
         }
         bar.delegate = self
         bar.translatesAutoresizingMaskIntoConstraints = false
