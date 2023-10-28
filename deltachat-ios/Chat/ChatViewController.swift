@@ -2467,6 +2467,7 @@ extension ChatViewController: ChatContactRequestDelegate {
 // MARK: - ProtectionBrokenDelegate
 extension ChatViewController: ProtectionBrokenDelegate {
     func onBrokenProtectionInfo() {
+        showProtectionBrokenDialog()
     }
 
     func onAcceptBrokenProtection() {

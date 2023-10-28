@@ -21,7 +21,6 @@ public class ProtectionBrokenBar: UIView, InputItem {
     private lazy var acceptButton: DynamicFontButton = {
         let view = DynamicFontButton()
         view.setTitle(String.localized("ok"), for: .normal)
-        view.accessibilityLabel = String.localized("accept")
         view.setTitleColor(.systemBlue, for: .normal)
         view.setTitleColor(.gray, for: .highlighted)
         view.titleLabel?.lineBreakMode = .byWordWrapping
@@ -35,9 +34,8 @@ public class ProtectionBrokenBar: UIView, InputItem {
 
     private lazy var infoButton: DynamicFontButton = {
         let view = DynamicFontButton()
-        view.setTitle(String.localized("more_info"), for: .normal)
-        view.accessibilityLabel = useDeleteButton ? String.localized("delete") : String.localized("block")
-        view.setTitleColor(.systemRed, for: .normal)
+        view.setTitle(String.localized("more_info_desktop"), for: .normal)
+        view.setTitleColor(.systemBlue, for: .normal)
         view.setTitleColor(.gray, for: .highlighted)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.titleLabel?.lineBreakMode = .byWordWrapping
