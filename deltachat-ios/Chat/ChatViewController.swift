@@ -102,14 +102,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return view
     }()
 
-    public lazy var contactRequestBar: ChatContactRequestBar = {
-        let chat = dcContext.getChat(chatId: chatId)
-        let view = ChatContactRequestBar(useDeleteButton: chat.isGroup && !chat.isMailinglist)
-        view.delegate = self
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     open override var shouldAutorotate: Bool {
         return false
     }
@@ -384,7 +376,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if dcChat.canSend {
             configureUIForWriting()
-        } else if dcChat.isContactRequest {
+        } else if dcChat.isHalfBlocked {
             configureContactRequestBar()
         } else {
             messageInputBar.isHidden = true
@@ -623,6 +615,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                         self.configureUIForWriting()
                         self.messageInputBar.isHidden = false
                     }
+                } else if self.dcChat.isProtectionBroken {
+                    self.configureContactRequestBar()
+                    self.messageInputBar.isHidden = false
                 } else if !self.dcChat.isContactRequest {
                     if !self.messageInputBar.isHidden {
                         self.messageInputBar.isHidden = true
@@ -761,7 +756,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent {
                 cell.update(text: message.text, image: parent.getWebxdcPreviewImage())
             } else {
-                cell.update(text: message.text)
+                cell.update(text: message.text, infoType: message.infoType)
             }
             return cell
         }
@@ -845,7 +840,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func configureContactRequestBar() {
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
-        messageInputBar.setMiddleContentView(contactRequestBar, animated: false)
+
+        let bar: ChatContactRequestBar
+        if dcChat.isProtectionBroken {
+            bar = ChatContactRequestBar(.info, infoText: String.localizedStringWithFormat(String.localized("chat_protection_broken"), dcChat.name))
+        } else {
+            bar = ChatContactRequestBar(dcChat.isGroup && !dcChat.isMailinglist ? .delete : .block, infoText: nil)
+        }
+        bar.delegate = self
+        bar.translatesAutoresizingMaskIntoConstraints = false
+        messageInputBar.setMiddleContentView(bar, animated: false)
+
         messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
         messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
         messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
@@ -989,8 +994,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
-        } else if message.isInfo, message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent {
-            scrollToMessage(msgId: parent.id)
+        } else if message.isInfo {
+            switch message.infoType {
+            case DC_INFO_WEBXDC_INFO_MESSAGE:
+                if let parent = message.parent {
+                    scrollToMessage(msgId: parent.id)
+                }
+            case DC_INFO_PROTECTION_ENABLED:
+                showProtectionEnabledDialog()
+            case DC_INFO_PROTECTION_DISABLED:
+                showProtectionBrokenDialog()
+            default:
+                break
+            }
         }
         _ = handleUIMenu()
     }
@@ -1580,6 +1596,33 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         mediaPicker?.showPhotoVideoLibrary()
     }
 
+    private func showProtectionBrokenDialog() {
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("chat_protection_broken_explanation"), dcChat.name), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
+            if let url = URL(string: "https://staging.delta.chat/733/en/help#verificationbroken") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.appCoordinator.presentQrCodeController()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+    }
+
+    private func showProtectionEnabledDialog() {
+        let alert = UIAlertController(title: String.localized("chat_protection_enabled_explanation"), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
+            if let url = URL(string: "https://staging.delta.chat/733/en/help#verifiedchats") {
+                UIApplication.shared.open(url)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+    }
+
     private func webxdcButtonPressed(_ action: UIAlertAction) {
         showWebxdcSelector()
     }
@@ -2084,7 +2127,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         } else if msg.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: msg)
         } else {
-            let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id, isContactRequest: dcChat.isContactRequest)
+            let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id, isHalfBlocked: dcChat.isHalfBlocked)
             navigationController?.pushViewController(fullMessageViewController, animated: true)
         }
     }
@@ -2417,7 +2460,12 @@ extension ChatViewController: ChatContactRequestDelegate {
     func onDeleteRequest() {
         self.askToDeleteChat()
     }
+
+    func onShowInfoDialog() {
+        showProtectionBrokenDialog()
+    }
 }
+
 
 // MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {

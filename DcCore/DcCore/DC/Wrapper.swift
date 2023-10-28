@@ -25,11 +25,15 @@ public class DcAccounts {
     }
 
     public func addClosedAccount() -> Int {
-        return Int(dc_accounts_add_closed_account(accountsPointer))
+        let accountId = Int(dc_accounts_add_closed_account(accountsPointer))
+        get(id: accountId).setConfig("verified_one_on_one_chats", "1")
+        return accountId
     }
 
     public func add() -> Int {
-        return Int(dc_accounts_add_account(accountsPointer))
+        let accountId = Int(dc_accounts_add_account(accountsPointer))
+        get(id: accountId).setConfig("verified_one_on_one_chats", "1")
+        return accountId
     }
 
     public func get(id: Int) -> DcContext {
@@ -90,6 +94,11 @@ public class DcAccounts {
         if var sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
             sharedDbLocation.appendPathComponent("accounts", isDirectory: true)
             accountsPointer = dc_accounts_new(sharedDbLocation.path, writeable ? 1 : 0)
+
+            for accountId in getAll() {
+                let dcContext = get(id: accountId)
+                dcContext.setConfig("verified_one_on_one_chats", "1")
+            }
         }
     }
 
@@ -898,6 +907,14 @@ public class DcChat {
 
     public var isContactRequest: Bool {
         return Int(dc_chat_is_contact_request(chatPointer)) != 0
+    }
+
+    public var isProtectionBroken: Bool {
+        return Int(dc_chat_is_protection_broken(chatPointer)) != 0
+    }
+
+    public var isHalfBlocked: Bool {
+        return isContactRequest || isProtectionBroken
     }
 
     public var canSend: Bool {
