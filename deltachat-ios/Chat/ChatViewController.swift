@@ -756,7 +756,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent {
                 cell.update(text: message.text, image: parent.getWebxdcPreviewImage())
             } else {
-                cell.update(text: message.text)
+                cell.update(text: message.text, infoType: message.infoType)
             }
             return cell
         }

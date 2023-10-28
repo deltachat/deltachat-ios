@@ -91,7 +91,7 @@ class InfoMessageCell: UITableViewCell {
         trailingConstraintEditingMode?.isActive = isEditing
     }
 
-    func update(text: String?, weight: UIFont.Weight? = nil, image: UIImage? = nil) {
+    func update(text: String?, weight: UIFont.Weight? = nil, image: UIImage? = nil, infoType: Int32? = nil) {
         messageLabel.text = text
         if let weight = weight {
             messageLabel.font = UIFont.preferredFont(for: .subheadline, weight: weight)
