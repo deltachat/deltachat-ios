@@ -93,7 +93,7 @@ class ContactDetailViewModel {
             chatActions.append(.clearChat)
             chatActions.append(.deleteChat)
         } else {
-            chatOptions = [.startChat]
+            chatOptions.append(.startChat)
             chatActions = [.showEncrInfo, .copyToClipboard, .blockContact]
         }
     }
