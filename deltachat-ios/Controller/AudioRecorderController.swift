@@ -1,6 +1,7 @@
 import Foundation
 import SCSiriWaveformView
 import AVKit
+import DcCore
 
 protocol AudioRecorderControllerDelegate: class {
     func didFinishAudioAtPath(path: String)
@@ -14,6 +15,10 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     // Recording...
     var meterUpdateDisplayLink: CADisplayLink?
     var isRecordingPaused: Bool = false
+
+    private let bitrateBalanced = 32000
+    private let bitrateWorse    = 24000
+    private let bitrate: Int
 
     // maximumRecordDuration > 0 -> restrict max time period for one take
     var maximumRecordDuration = 0.0
@@ -107,6 +112,15 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
     }()
     
+    init(dcContext: DcContext) {
+        bitrate = dcContext.getConfigInt("media_quality") == 1 ? bitrateWorse : bitrateBalanced
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.accessibilityViewIsModal = true

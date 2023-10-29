@@ -70,7 +70,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }()
 
     private lazy var mediaPicker: MediaPicker? = {
-        let mediaPicker = MediaPicker(navigationController: navigationController)
+        let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
         mediaPicker.delegate = self
         return mediaPicker
     }()
