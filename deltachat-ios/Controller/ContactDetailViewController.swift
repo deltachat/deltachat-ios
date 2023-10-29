@@ -322,11 +322,14 @@ class ContactDetailViewController: UITableViewController {
             let verifierId = viewModel.contact.getVerifierId()
             let verifiedInfo: String
             if verifierId == DC_CONTACT_ID_SELF {
+                verifiedByCell.accessoryType = .none
                 verifiedInfo = String.localized("verified_by_you")
             } else if verifierId != 0 {
+                verifiedByCell.accessoryType = .disclosureIndicator
                 verifiedInfo = String.localizedStringWithFormat(String.localized("verified_by"),
                                                                 viewModel.context.getContact(id: verifierId).email)
             } else {
+                verifiedByCell.accessoryType = .none
                 verifiedInfo = String.localized("vefified")
             }
             verifiedByCell.textLabel?.text = verifiedInfo
@@ -363,6 +366,10 @@ class ContactDetailViewController: UITableViewController {
         switch action {
         case .verifiedBy:
             tableView.deselectRow(at: indexPath, animated: true)
+            let verifierId = viewModel.contact.getVerifierId()
+            if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF && verifierId != viewModel.contactId {
+                showContact(contactId: verifierId)
+            }
         case .allMedia:
             showAllMedia()
         case .ephemeralMessages:
@@ -504,6 +511,11 @@ class ContactDetailViewController: UITableViewController {
             let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)
             navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
         }
+    }
+
+    private func showContact(contactId: Int) {
+        let contactViewController = ContactDetailViewController(dcContext: viewModel.context, contactId: contactId)
+        navigationController?.pushViewController(contactViewController, animated: true)
     }
 
     private func showEditContact(contactId: Int) {
