@@ -3,5 +3,5 @@ NSContactsUsageDescription = "Delta Chat, yazabileceğiniz e-posta adreslerinin 
 NSLocationAlwaysAndWhenInUseUsageDescription = "Konum paylaşımını etkinleştirdiğiniz zaman aralığında konumunuzu paylaşmak için Delta Chat\'e izin gerekir.";
 NSLocationWhenInUseUsageDescription = "Konum paylaşımını etkinleştirdiğiniz zaman aralığında konumunuzu paylaşmak için Delta Chat\'e izin gerekir.";
 NSMicrophoneUsageDescription = "Delta Chat, sesli iletiler ve sesli videolar kaydetmek ve göndermek için mikrofonunuzu kullanır.";
-NSPhotoLibraryUsageDescription = "Delta Chat, göndermek için kitaplığınızdan fotoğraflar seçmenizi sağlayacak.";
+NSPhotoLibraryUsageDescription = "Delta Chat, kitaplığınızdan hangi fotoğrafların gönderileceğini seçmenize izin verir.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat, görselleri fotoğraf kitaplığınıza kaydetmek istiyor.";

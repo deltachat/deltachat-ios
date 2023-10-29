@@ -51,6 +51,7 @@
 "load_remote_content_ask" = "Nuotoliniai paveikslai gali būti naudojami, kad būtumėte sekami.\n\nŠis nustatymas taip pat leidžia šriftų įkėlimą ir kitą turinį. Netgi, jeigu jis yra išjungtas, gali būti, kad vis tiek matysite įterptus paveikslus ar paveikslus iš podėlio.\n\nĮkelti nuotolinius paveikslus?";
 "always" = "Visada";
 "once" = "Vieną kartą";
+"show_warning" = "Rodyti įspėjimą";
 "show_password" = "Rodyti slaptažodį";
 "hide_password" = "Slėpti slaptažodį";
 "not_now" = "Ne dabar";
@@ -327,6 +328,8 @@
 "send_message" = "Siųsti žinutę";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ pasikeitė adresą iš %2$@ į %3$@";
+// Shown beside progress bar, stay short
+"preparing_account" = "Ruošiama paskyra…";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Gaunamosios žinutės";
@@ -517,6 +520,9 @@
 "emoji_symbols" = "Simboliai";
 "emoji_flags" = "Vėliavos";
 
+// Reactions
+"reactions" = "Reakcijos";
+
 // automatically delete message
 "delete_old_messages" = "Ištrinti senas žinutes";
 "autodel_device_title" = "Ištrinti žinutes iš įrenginio";
@@ -568,8 +574,13 @@
 "ephemeral_timer_disabled_by_you" = "Jūs išjungėte išnykstančių žinučių laikmatį.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_disabled_by_other" = "%1$@ išjungė išnykstančių žinučių laikmatį.";
+"learn_more" = "Sužinoti daugiau";
+
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Atrodo, kad jūsų įrenginyje yra nustatyta netiksli data ar laikas (%1$@).\n\nSuderinkite savo laikrodį ⏰🔧 kad užtikrintumėte, jog žinutės bus gaunamos teisingai.";
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
+"enter_system_secret_to_continue" = "Atrakinkite, norėdami tęsti";
+
 // qr code stuff
 "qr_code" = "QR kodas";
 "load_qr_code_as_image" = "Įkelti QR kodą kaip paveikslą";
@@ -613,6 +624,9 @@
 "notify_name_and_message" = "Vardą ir žinutę";
 "notify_name_only" = "Tik vardą";
 "notify_no_name_or_message" = "Jokio vardo ar žinutės";
+"notifications_disabled" = "Pranešimai išjungti";
+
+
 // permissions
 "perm_required_title" = "Reikalingas leidimas";
 "perm_continue" = "Tęsti";
