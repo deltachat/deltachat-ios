@@ -13,6 +13,7 @@ class ContactDetailViewModel {
     }
 
     enum ChatOption {
+        case verifiedBy
         case allMedia
         case ephemeralMessages
         case startChat
@@ -70,8 +71,12 @@ class ContactDetailViewModel {
         }
         sections.append(.chatActions)
 
+        chatOptions = []
+        if dcContact.isVerified {
+            chatOptions.append(.verifiedBy)
+        }
+        chatOptions.append(.allMedia)
         if chatId != 0 {
-            chatOptions = [.allMedia]
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
             }
@@ -88,7 +93,7 @@ class ContactDetailViewModel {
             chatActions.append(.clearChat)
             chatActions.append(.deleteChat)
         } else {
-            chatOptions = [.allMedia, .startChat]
+            chatOptions.append(.startChat)
             chatActions = [.showEncrInfo, .copyToClipboard, .blockContact]
         }
     }

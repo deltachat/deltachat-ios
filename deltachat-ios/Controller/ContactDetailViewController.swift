@@ -76,6 +76,12 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var verifiedByCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 24)
+        return cell
+    }()
+
     private lazy var allMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("media")
@@ -170,6 +176,8 @@ class ContactDetailViewController: UITableViewController {
         switch cellType {
         case .chatOptions:
             switch viewModel.chatOptionFor(row: row) {
+            case .verifiedBy:
+                return verifiedByCell
             case .allMedia:
                 return allMediaCell
             case .ephemeralMessages:
@@ -309,6 +317,23 @@ class ContactDetailViewController: UITableViewController {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
         allMediaCell.detailTextLabel?.text = viewModel.chatId == 0 ? String.localized("none") : viewModel.context.getAllMediaCount(chatId: viewModel.chatId)
         statusCell.setText(text: viewModel.isSavedMessages ? String.localized("saved_messages_explain") : viewModel.contact.status)
+
+        if viewModel.contact.isVerified {
+            let verifierId = viewModel.contact.getVerifierId()
+            let verifiedInfo: String
+            if verifierId == DC_CONTACT_ID_SELF {
+                verifiedByCell.accessoryType = .none
+                verifiedInfo = String.localized("verified_by_you")
+            } else if verifierId != 0 {
+                verifiedByCell.accessoryType = .disclosureIndicator
+                verifiedInfo = String.localizedStringWithFormat(String.localized("verified_by"),
+                                                                viewModel.context.getContact(id: verifierId).nameNAddr)
+            } else {
+                verifiedByCell.accessoryType = .none
+                verifiedInfo = String.localized("vefified")
+            }
+            verifiedByCell.textLabel?.text = verifiedInfo
+        }
     }
 
     // MARK: - actions
@@ -339,6 +364,12 @@ class ContactDetailViewController: UITableViewController {
     private func handleChatOption(indexPath: IndexPath) {
         let action = viewModel.chatOptionFor(row: indexPath.row)
         switch action {
+        case .verifiedBy:
+            tableView.deselectRow(at: indexPath, animated: true)
+            let verifierId = viewModel.contact.getVerifierId()
+            if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF && verifierId != viewModel.contactId {
+                showContact(contactId: verifierId)
+            }
         case .allMedia:
             showAllMedia()
         case .ephemeralMessages:
@@ -480,6 +511,11 @@ class ContactDetailViewController: UITableViewController {
             let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)
             navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
         }
+    }
+
+    private func showContact(contactId: Int) {
+        let contactViewController = ContactDetailViewController(dcContext: viewModel.context, contactId: contactId)
+        navigationController?.pushViewController(contactViewController, animated: true)
     }
 
     private func showEditContact(contactId: Int) {

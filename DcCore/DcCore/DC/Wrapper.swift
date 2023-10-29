@@ -1376,6 +1376,10 @@ public class DcContact {
         return dc_contact_is_verified(contactPointer) > 0
     }
 
+    public func getVerifierId() -> Int {
+        return Int(dc_contact_get_verifier_id(contactPointer))
+    }
+
     public var isBlocked: Bool {
         return dc_contact_is_blocked(contactPointer) == 1
     }
