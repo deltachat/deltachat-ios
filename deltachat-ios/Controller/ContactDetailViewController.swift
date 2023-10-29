@@ -330,7 +330,7 @@ class ContactDetailViewController: UITableViewController {
                                                                 viewModel.context.getContact(id: verifierId).nameNAddr)
             } else {
                 verifiedByCell.accessoryType = .none
-                verifiedInfo = String.localized("vefified")
+                verifiedInfo = String.localized("verified")
             }
             verifiedByCell.textLabel?.text = verifiedInfo
         }
