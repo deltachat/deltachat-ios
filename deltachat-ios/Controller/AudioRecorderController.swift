@@ -131,9 +131,9 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.toolbar.isTranslucent = true
 
-        // Define the recorder setting
         let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC,
                               AVSampleRateKey: 44100.0,
+                              AVEncoderBitRateKey: 32000,
                               AVNumberOfChannelsKey: 1] as [String: Any]
         let globallyUniqueString = ProcessInfo.processInfo.globallyUniqueString
         recordingFilePath = NSTemporaryDirectory().appending(globallyUniqueString).appending(".m4a")
