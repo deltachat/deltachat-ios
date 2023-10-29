@@ -76,6 +76,13 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var verifiedByCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("verified")
+        cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 24)
+        return cell
+    }()
+
     private lazy var allMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("media")
@@ -170,6 +177,8 @@ class ContactDetailViewController: UITableViewController {
         switch cellType {
         case .chatOptions:
             switch viewModel.chatOptionFor(row: row) {
+            case .verifiedBy:
+                return verifiedByCell
             case .allMedia:
                 return allMediaCell
             case .ephemeralMessages:
@@ -339,6 +348,8 @@ class ContactDetailViewController: UITableViewController {
     private func handleChatOption(indexPath: IndexPath) {
         let action = viewModel.chatOptionFor(row: indexPath.row)
         switch action {
+        case .verifiedBy:
+            tableView.deselectRow(at: indexPath, animated: true)
         case .allMedia:
             showAllMedia()
         case .ephemeralMessages:
