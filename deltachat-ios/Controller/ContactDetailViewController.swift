@@ -78,7 +78,6 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var verifiedByCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("verified")
         cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 24)
         return cell
     }()
@@ -318,6 +317,20 @@ class ContactDetailViewController: UITableViewController {
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(viewModel.chatIsEphemeral ? "on" : "off")
         allMediaCell.detailTextLabel?.text = viewModel.chatId == 0 ? String.localized("none") : viewModel.context.getAllMediaCount(chatId: viewModel.chatId)
         statusCell.setText(text: viewModel.isSavedMessages ? String.localized("saved_messages_explain") : viewModel.contact.status)
+
+        if viewModel.contact.isVerified {
+            let verifierId = viewModel.contact.getVerifierId()
+            let verifiedInfo: String
+            if verifierId == DC_CONTACT_ID_SELF {
+                verifiedInfo = String.localized("verified_by_you")
+            } else if verifierId != 0 {
+                verifiedInfo = String.localizedStringWithFormat(String.localized("verified_by"),
+                                                                viewModel.context.getContact(id: verifierId).email)
+            } else {
+                verifiedInfo = String.localized("vefified")
+            }
+            verifiedByCell.textLabel?.text = verifiedInfo
+        }
     }
 
     // MARK: - actions
