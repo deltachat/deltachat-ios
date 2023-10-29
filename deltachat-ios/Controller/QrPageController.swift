@@ -113,6 +113,7 @@ class QrPageController: UIPageViewController {
         let alert = UIAlertController(title: String.localized("qr_code"), message: nil, preferredStyle: .safeActionSheet)
         if qrSegmentControl.selectedSegmentIndex == 0 {
             alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: copyToClipboard(_:)))
+            alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .default, handler: withdrawQrCode(_:)))
         } else {
             alert.addAction(UIAlertAction(title: String.localized("paste_from_clipboard"), style: .default, handler: pasteFromClipboard(_:)))
         }
@@ -122,6 +123,20 @@ class QrPageController: UIPageViewController {
 
     @objc func copyToClipboard(_ action: UIAlertAction) {
         UIPasteboard.general.string = dcContext.getSecurejoinQr(chatId: 0)
+    }
+
+    @objc func withdrawQrCode(_ action: UIAlertAction) {
+        let alert = UIAlertController(title: String.localized("withdraw_verifycontact_explain"), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+        alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            guard let code = dcContext.getSecurejoinQr(chatId: 0) else { return }
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            _ = self.dcContext.setConfigFromQR(qrCode: code)
+            setViewControllers([QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)], direction: .reverse, animated: false, completion: nil)
+            appDelegate.appCoordinator.presentTabBarController()
+        }))
+        present(alert, animated: true)
     }
 
     @objc func pasteFromClipboard(_ action: UIAlertAction) {
