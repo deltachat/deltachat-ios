@@ -1,6 +1,7 @@
 import UIKit
 import Photos
 import MobileCoreServices
+import DcCore
 
 protocol MediaPickerDelegate: class {
     func onImageSelected(image: UIImage)
@@ -44,17 +45,18 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         case video = "public.movie"
      }
 
+    private let dcContext: DcContext
     private weak var navigationController: UINavigationController?
     private var accountRecorderTransitionDelegate: PartialScreenModalTransitioningDelegate?
     weak var delegate: MediaPickerDelegate?
 
-    init(navigationController: UINavigationController?) {
-        // it does not make sense to give nil here, but it makes construction easier
+    init(dcContext: DcContext, navigationController: UINavigationController?) {
+        self.dcContext = dcContext
         self.navigationController = navigationController
     }
 
     func showVoiceRecorder() {
-        let audioRecorderController = AudioRecorderController()
+        let audioRecorderController = AudioRecorderController(dcContext: dcContext)
         audioRecorderController.delegate = self
         // audioRecorderController.maximumRecordDuration = 1200
         let audioRecorderNavController = UINavigationController(rootViewController: audioRecorderController)
