@@ -15,7 +15,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     let isVerifiedGroup: Bool
     let createBroadcast: Bool
     let dcContext: DcContext
-    private var contactAddedObserver: NSObjectProtocol?
 
     enum DetailsRows {
         case name
@@ -25,7 +24,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     enum InviteRows {
         case addMembers
-        case showQrCode
     }
     private let inviteRows: [InviteRows]
 
@@ -59,8 +57,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         return cell
     }()
 
-    var qrInviteCodeCell: ActionCell?
-
     init(dcContext: DcContext, createBroadcast: Bool) {
         self.isVerifiedGroup = false // TODO: not needed
         self.createBroadcast = createBroadcast
@@ -72,7 +68,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             self.contactIdsForGroup = []
         } else {
             self.detailsRows = [.name, .avatar]
-            self.inviteRows = [.addMembers, .showQrCode]
+            self.inviteRows = [.addMembers]
             self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
         }
         self.groupContactIds = Array(contactIdsForGroup)
@@ -98,31 +94,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
         self.hideKeyboardOnTap()
         checkDoneButton()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        let nc = NotificationCenter.default
-        contactAddedObserver = nc.addObserver(
-            forName: dcNotificationChatModified,
-            object: nil,
-            queue: nil
-        ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo {
-                if let chatId = ui["chat_id"] as? Int {
-                    if self.groupChatId == 0 || chatId != self.groupChatId {
-                        return
-                    }
-                    self.updateGroupContactIdsOnQRCodeInvite()
-                }
-            }
-        }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        if let observer = self.contactAddedObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
     }
 
     private func checkDoneButton() {
@@ -169,24 +140,15 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 return groupNameCell
             }
         case .invite:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             if inviteRows[row] == .addMembers {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
                 if let actionCell = cell as? ActionCell {
                     actionCell.actionTitle = String.localized(createBroadcast ? "add_recipients" : "group_add_members")
                     actionCell.actionColor = UIColor.systemBlue
                     actionCell.isUserInteractionEnabled = true
                 }
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-                if let actionCell = cell as? ActionCell {
-                    actionCell.actionTitle = String.localized("qrshow_join_group_title")
-                    actionCell.actionColor = groupName.isEmpty ? DcColors.colorDisabled : UIColor.systemBlue
-                    actionCell.isUserInteractionEnabled = !groupName.isEmpty
-                    qrInviteCodeCell = actionCell
-                }
-                return cell
             }
+            return cell
         case .members:
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
@@ -253,9 +215,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 var contactsWithoutSelf = contactIdsForGroup
                 contactsWithoutSelf.remove(Int(DC_CONTACT_ID_SELF))
                 showAddMembers(preselectedMembers: contactsWithoutSelf, isVerified: self.isVerifiedGroup)
-            } else {
-                self.groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
-                showQrCodeInvite(chatId: Int(self.groupChatId))
             }
         }
     }
@@ -287,8 +246,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func updateGroupName(textView: UITextField) {
         let name = textView.text ?? ""
         groupName = name
-        qrInviteCodeCell?.isUserInteractionEnabled = name.containsCharacters()
-        qrInviteCodeCell?.actionColor = groupName.isEmpty ? DcColors.colorDisabled : UIColor.systemBlue
         checkDoneButton()
     }
 
@@ -321,15 +278,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         changeGroupImage = image
         deleteGroupImage = false
         avatarSelectionCell.setAvatar(image: changeGroupImage)
-    }
-
-    func updateGroupContactIdsOnQRCodeInvite() {
-        for contactId in dcContext.getChat(chatId: groupChatId).getContactIds(dcContext) {
-            contactIdsForGroup.insert(contactId)
-        }
-        groupContactIds = Array(contactIdsForGroup)
-        self.tableView.reloadData()
-        checkDoneButton()
     }
 
     func updateGroupContactIdsOnListSelection(_ members: Set<Int>) {
@@ -373,19 +321,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     private func showCamera(delegate: MediaPickerDelegate) {
         mediaPicker?.showCamera(allowCropping: true, supportedMediaTypes: .photo)
-    }
-
-    private func showQrCodeInvite(chatId: Int) {
-        var hint = ""
-        let dcChat = dcContext.getChat(chatId: chatId)
-        if !dcChat.name.isEmpty {
-            hint = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), dcChat.name)
-        }
-        let qrInviteCodeController = QrViewController(dcContext: dcContext, chatId: chatId, qrCodeHint: hint)
-        qrInviteCodeController.onDismissed = { [weak self] in
-            self?.updateGroupContactIdsOnQRCodeInvite()
-        }
-        navigationController?.pushViewController(qrInviteCodeController, animated: true)
     }
 
     private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
