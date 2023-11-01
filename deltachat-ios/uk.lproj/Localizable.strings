@@ -250,7 +250,6 @@
 "source_code" = "Вихідний код";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Додати на домашній екран";
-
 "mute_for_one_hour" = "Відключити сповіщення на 1 годину";
 "mute_for_two_hours" = "Відключити сповіщення на 2 години";
 "mute_for_one_day" = "Відключити сповіщення на 1 день";
@@ -314,6 +313,7 @@
 "chat_unable_to_record_audio" = "Неможливо записати аудіо.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Відправити повідомлення. Це нічого, якщо %1$@ не використовує Delta Chat.";
+"chat_new_broadcast_hint" = "У списку трансляцій одержувачі будуть отримувати повідомлення у чаті з вами в режимі тільки-для-читання.";
 "chat_new_group_hint" = "Інші побачать цю групу лише після того, як ви надішлете перше повідомлення.";
 "chat_record_slide_to_cancel" = "Рухайте для скасування";
 "chat_record_explain" = "Натисніть і утримуйте для запису голосового повідомлення, відпустіть для відправки";
@@ -645,7 +645,6 @@
 "profile_image_delete" = "Видалити зображення профілю";
 "pref_show_tray_icon" = "Показати іконку в треї";
 "pref_edit_profile" = "Редагувати профіль";
-
 // Emoji picker and categories
 "emoji_search_results" = "Результати пошуку";
 "emoji_not_found" = "Емодзі не знайдено";
@@ -832,7 +831,6 @@
 "verified_by_you" = "Підтверджено вами";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Змінені параметри для %1$@";
-"verified_group_explain" = "Перевірені групи (експеримент) надають захист від активних атак. Члени таких груп перевірені через другий фактор іншими членами групи, а повідомлення завжди наскрізно зашифровані.";
 "copy_qr_data_success" = "URL з QR-коду скопійовано в буфер";
 "mailto_dialog_header_select_chat" = "Виберіть чат, якому потрібно надіслати повідомлення";
 // first placeholder is the name of the chat
@@ -850,8 +848,6 @@
 "notify_name_only" = "Тільки ім\'я";
 "notify_no_name_or_message" = "Без імені або повідомлення";
 "notifications_disabled" = "Сповіщення вимкнено";
-
-
 // permissions
 "perm_required_title" = "Потрібен дозвіл";
 "perm_continue" = "Продовжити";

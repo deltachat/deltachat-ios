@@ -569,7 +569,6 @@
 "contact_not_verified" = "Kan inte verifiera %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Ändrade inställningarna för %1$@.";
-"verified_group_explain" = "Verifierade grupper (experimentellt) tillhandahåller skydd mot aktiva attacker. Medlemmar verifieras med en andra faktor, av andra medlemmar, och meddelanden är alltid slutpunkt-till-slutpunkt-krypterade.";
 "notify_reply_button" = "Svara";
 "notify_new_message" = "Nytt meddelande";
 "notify_background_connection_enabled" = "Bakgrundsanslutning aktiverad";

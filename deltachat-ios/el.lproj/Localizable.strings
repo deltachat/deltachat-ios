@@ -236,7 +236,6 @@
 "source_code" = "Πηγαίος Κώδικας";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Προσθήκη στην κεντρική οθόνη";
-
 "mute_for_one_hour" = "Σίγαση για 1 ώρα";
 "mute_for_two_hours" = "Σίγαση για 2 ώρες";
 "mute_for_one_day" = "Σίγαση για 1 ημέρα";
@@ -597,7 +596,6 @@
 "profile_image_delete" = "Διαγραφή Εικόνας Προφίλ";
 "pref_show_tray_icon" = "Εμφάνιση Εικονιδίου Δίσκου";
 "pref_edit_profile" = "Επεξεργασία Προφίλ";
-
 // Emoji picker and categories
 "emoji_search_results" = "Αποτελέσματα Αναζήτησης";
 "emoji_not_found" = "Δεν βρέθηκε emoji";
@@ -778,7 +776,6 @@
 "contact_not_verified" = "Αδυναμία επαλήθευσης %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Άλλαξε η ρύθμιση για %1$@.";
-"verified_group_explain" = "Οι επαληθευμένες ομάδες (πειραματικές) παρέχουν ασφάλεια έναντι ενεργών επιθέσεων. Τα μέλη επαληθεύονται με έναν δεύτερο παράγοντα από άλλα μέλη και τα μηνύματα είναι πάντα κρυπτογραφημένα από άκρο σε άκρο.";
 "copy_qr_data_success" = "Αντιγράφηκε το QR url στο πρόχειρο";
 "mailto_dialog_header_select_chat" = "Επιλέξτε συνομιλία για να στείλετε το μήνυμα";
 // first placeholder is the name of the chat

@@ -472,7 +472,6 @@
 "profile_image_delete" = "アイコン画像を削除する";
 "pref_show_tray_icon" = "トレイアイコンの表示";
 "pref_edit_profile" = "プロフィール編集";
-
 // Emoji picker and categories
 "emoji_search_results" = "検索結果";
 "emoji_not_found" = "絵文字がみつかりません";

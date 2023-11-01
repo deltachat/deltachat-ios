@@ -250,7 +250,6 @@
 "source_code" = "Исходный код";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Добавить на главный экран";
-
 "mute_for_one_hour" = "1 час";
 "mute_for_two_hours" = "На 2 часа";
 "mute_for_one_day" = "На 1 день";
@@ -645,7 +644,6 @@
 "profile_image_delete" = "Удалить фото профиля";
 "pref_show_tray_icon" = "Показать значок в трее";
 "pref_edit_profile" = "Редактировать профиль";
-
 // Emoji picker and categories
 "emoji_search_results" = "Результаты поиска";
 "emoji_not_found" = "Эмодзи не найдено";
@@ -832,7 +830,6 @@
 "verified_by_you" = "Проверено вами";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Изменены параметры для %1$@";
-"verified_group_explain" = "Проверенные группы (экспериментальная функция) защищены от активных атак. Участники проверяются с помощью второго фактора другими участниками и сообщения всегда передаются посредством cквозного шифрования.";
 "copy_qr_data_success" = "Ссылка из QR-кода скопирована в буфер обмена";
 "mailto_dialog_header_select_chat" = "Выберите чат для отправки сообщение";
 // first placeholder is the name of the chat
@@ -850,8 +847,6 @@
 "notify_name_only" = "Только имя";
 "notify_no_name_or_message" = "Без имени или сообщения";
 "notifications_disabled" = "Уведомления отключены";
-
-
 // permissions
 "perm_required_title" = "Требуется разрешение";
 "perm_continue" = "Продолжить";

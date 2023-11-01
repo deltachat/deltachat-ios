@@ -249,7 +249,6 @@
 "source_code" = "Изходен код";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Добавяне към началния екран";
-
 "mute_for_one_hour" = "Спиране на звука за 1 час";
 "mute_for_two_hours" = "Спиране на звука за 2 часа";
 "mute_for_one_day" = "Спиране на звука за 1 ден";
@@ -637,7 +636,6 @@
 "profile_image_delete" = "Изтриване на изображението на профила";
 "pref_show_tray_icon" = "Показване на иконата в System Tray";
 "pref_edit_profile" = "Редактиране на профил";
-
 // Emoji picker and categories
 "emoji_search_results" = "Резултати от търсенето";
 "emoji_not_found" = "Не е открито Emoji";
@@ -820,7 +818,6 @@
 "verified_by" = "Проверен от%1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Настройката за %1$@ е сменена.";
-"verified_group_explain" = "Проверените групи (експериментална възможност) предоставят защита срещу активни атаки. Членовете се проверяват посредством втори фактор от други членове и съобщенията винаги се криптират \"от край до край\".";
 "copy_qr_data_success" = "URL адресът от QR кода е копиран в клипборда";
 "mailto_dialog_header_select_chat" = "Изберете чат, към който да бъде пратено съобщението";
 // first placeholder is the name of the chat

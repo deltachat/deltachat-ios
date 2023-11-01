@@ -250,7 +250,6 @@
 "source_code" = "Code source";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Ajouter à l\'écran d\'accueil";
-
 "mute_for_one_hour" = "Désactiver pour 1 heure";
 "mute_for_two_hours" = "Désactiver pour 2 heures";
 "mute_for_one_day" = "Désactiver pour 1 jour";
@@ -645,7 +644,6 @@
 "profile_image_delete" = "Supprimer l\'image de profil";
 "pref_show_tray_icon" = "Afficher l\'icône dans la zone de notifications";
 "pref_edit_profile" = "Édition du profil";
-
 // Emoji picker and categories
 "emoji_search_results" = "Résultats de la recherche";
 "emoji_not_found" = "Pas d\'emoji trouvé";
@@ -832,7 +830,6 @@
 "verified_by_you" = "Vérifié par vous";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuration modifiée pour %1$@";
-"verified_group_explain" = "Les groupes vérifiés (fonction expérimentale) offrent une sécurité contre les attaques actives. Les membres sont vérifiés avec un second facteur par d\'autres membres et les messages sont toujours chiffrés de bout en bout.";
 "copy_qr_data_success" = "L\'URL du code QR a été copié dans le presse-papiers";
 "mailto_dialog_header_select_chat" = "Sélectionnez une discussion à qui envoyer le message";
 // first placeholder is the name of the chat
@@ -850,8 +847,6 @@
 "notify_name_only" = "Nom seulement";
 "notify_no_name_or_message" = "Pas de nom ou de message";
 "notifications_disabled" = "Notifications désactivées";
-
-
 // permissions
 "perm_required_title" = "Autorisation requise";
 "perm_continue" = "Continuez";

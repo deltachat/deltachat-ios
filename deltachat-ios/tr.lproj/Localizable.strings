@@ -250,7 +250,6 @@
 "source_code" = "Kaynak Kodu";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Ana Ekrana Ekle";
-
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
@@ -646,7 +645,6 @@
 "profile_image_delete" = "Profil Görselini Sil";
 "pref_show_tray_icon" = "Tepsi Simgesi Göster";
 "pref_edit_profile" = "Profili Düzenle";
-
 // Emoji picker and categories
 "emoji_search_results" = "Arama Sonuçları";
 "emoji_not_found" = "Emoji bulunamadı";
@@ -777,7 +775,7 @@
 "chat_protection_enabled_tap_to_learn_more" = "Bundan böyle iletiler uçtan uca şifreleme güvencelidir. Daha fazlasını öğrenmek için dokunun.";
 "chat_protection_enabled_explanation" = "Artık bu sohbetteki tüm iletiler uçtan uca şifreleme güvencelidir.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. E-posta sağlayıcınız bile onları okuyamaz.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ başka bir aygıttan bir ileti gönderdi. Daha fazlasını öğrenmek için dokunun.";
-"chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvenceli değil; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
+"chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvenceli olamıyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
 
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
@@ -841,7 +839,8 @@
 "verified_by_you" = "Benim tarafımdan doğrulandı";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
-"verified_group_explain" = "Doğrulanan öbekler (deneysel), etkin saldırılar karşısında güvenlik sağlar. Üyeler, diğer üyeler tarafından ikinci bir etkenle doğrulanır ve iletiler her zaman uçtan uca şifrelenir.";
+"verified_group_explain" = "Doğrulanan gruplar uçtan uca şifrelemeyi güvenceler. Onlara yalnızca yeşil bir doğrulama onay kutusu olan kişiler eklenebilir.";
+"verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu öbeğe yalnızca yeşil bir doğrulama imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları doğrulamak için onların QR kodunu tarayabilirsiniz.";
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
 // first placeholder is the name of the chat
@@ -859,8 +858,6 @@
 "notify_name_only" = "Yalnızca ad";
 "notify_no_name_or_message" = "Ad ya da ileti yok";
 "notifications_disabled" = "Bildirimler etkisizleştirildi";
-
-
 // permissions
 "perm_required_title" = "İzin gerekli";
 "perm_continue" = "Sürdür";

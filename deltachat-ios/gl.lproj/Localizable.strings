@@ -242,7 +242,6 @@
 "source_code" = "Código Fonte";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Engadir á pantalla de Inicio";
-
 "mute_for_one_hour" = "Acalar durante 1 h.";
 "mute_for_two_hours" = "Acalar durante 2 h.";
 "mute_for_one_day" = "Acalar durante 1 día";
@@ -604,7 +603,6 @@
 "profile_image_delete" = "Elimina a imaxe de perfil";
 "pref_show_tray_icon" = "Mostrar icona na bandexa";
 "pref_edit_profile" = "Editar perfil";
-
 // Emoji picker and categories
 "emoji_search_results" = "Resultados da busca";
 "emoji_not_found" = "Non se atopan emojis";
@@ -754,7 +752,6 @@
 "contact_not_verified" = "Non se puido verificar %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Cambiaron os axustes para %1$@.";
-"verified_group_explain" = "Os grupos verificados (experimental) proporcionan seguridade contra ataques activos. As integrantes son verificadas cun segundo factor por outros membros e as mensaxes van sempre cifradas E2E.";
 "copy_qr_data_success" = "Copiado o url do QR ao portapapeis";
 "mailto_dialog_header_select_chat" = "Elexir chat ao que enviar a mensaxe";
 // first placeholder is the name of the chat

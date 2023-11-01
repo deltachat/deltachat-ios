@@ -31,6 +31,8 @@
 "close" = "关闭";
 "close_window" = "关闭窗口";
 "forward" = "转发";
+"create" = "创建";
+"later" = "稍后";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "重新发送";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -110,6 +112,9 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "贴纸";
+"add_to_sticker_collection" = "添加到表情集";
+"add_stickers_instructions" = "要添加表情包，轻按“打开表情包文件夹”为你的表情包新建一个子文件夹，并把图片和表情符号拖动至此";
+"open_sticker_folder" = "打开表情包文件夹";
 "images" = "图像";
 "audio" = "音频";
 "voice_message" = "语音消息";
@@ -170,6 +175,9 @@
 "broadcast_lists" = "广播列表";
 "new_broadcast_list" = "新建广播列表";
 "add_recipients" = "添加接收者";
+"edit_broadcast_list" = "编辑广播列表";
+"broadcast_list_name" = "广播列表名称";
+"please_enter_broadcast_list_name" = "请属于广播列表的名称";
 "menu_send" = "发送";
 "menu_toggle_keyboard" = "切换 emoji 键盘";
 "menu_edit_group" = "编辑群组";
@@ -194,6 +202,7 @@
 "menu_copy_image_to_clipboard" = "复制图像";
 "menu_copy_email_to_clipboard" = "复制电子邮件";
 "paste_from_clipboard" = "从剪贴板粘贴";
+"ask_copy_unopenable_link_to_clipboard" = "无法在浏览器中打开链接 “%1$d”。你要将链接复制到剪贴板吗？";
 "menu_forward" = "转发消息";
 "menu_reply" = "回复消息";
 "menu_mute" = "通知静音";
@@ -203,6 +212,7 @@
 "menu_all_media" = "所有媒体";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "在聊天中显示";
+"show_app_in_chat" = "在聊天中显示应用";
 "menu_share" = "分享";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "屏蔽";
@@ -214,6 +224,7 @@
 "menu_scroll_to_bottom" = "滚动至底部";
 "menu_scroll_to_top" = "滚动至顶部";
 "menu_help" = "帮助";
+"what_is_webxdc" = "Webxdc 是什么？";
 "privacy_policy" = "隐私政策";
 "menu_select_all" = "全选";
 "select_chat" = "选择聊天";
@@ -250,6 +261,7 @@
 "source_code" = "源代码";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "添加到主屏幕";
+"donate" = "捐赠";
 
 "mute_for_one_hour" = "静音 1 小时";
 "mute_for_two_hours" = "静音 2 小时";
@@ -379,6 +391,8 @@
 
 // search
 "search" = "搜索";
+"search_in_chat" = "搜索聊天";
+"search_files" = "搜索文件";
 "search_explain" = "搜索聊天、联系人和消息";
 "search_no_result_for_x" = "没有找到有关\"%1$@\"的结果";
 
@@ -394,6 +408,7 @@
 "group_self_not_in_group" = "为了执行此操作，您必须是群组成员。";
 "profile_encryption" = "加密";
 "profile_shared_chats" = "共有聊天";
+"related_chats" = "相关聊天";
 "tab_contact" = "联系人";
 "tab_group" = "群组";
 "tab_gallery" = "图库";
@@ -408,6 +423,10 @@
 "tab_webxdc_empty_hint" = "在此聊天中分享的私人应用会出现在这里";
 "tab_all_media_empty_hint" = "任何聊天中分享的媒体文件都将出现在这里";
 "media_preview" = "媒体预览";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "宽高比网格";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "方形网格";
 "send_message" = "发送消息";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ 将邮箱从 %2$@ 更改为 %3$@";
@@ -596,6 +615,10 @@
 "pref_backup" = "备份";
 "pref_backup_explain" = "将聊天备份至外部存储";
 "pref_backup_export_explain" = "备份可帮助您在此设备或另一台设备上设置全新安装的本应用。\n\n备份将包含所有消息、联系人、聊天以及端到端的 Autocrypt 设置。请将备份文件保存在安全的地方，或尽快将其删除。";
+// the placeholder will be replaced by the name of the account's email address
+"pref_backup_export_x" = "导出 %1$@";
+// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+"pref_backup_export_all" = "导出全部 %1$d 个账户";
 "pref_backup_export_start_button" = "开始备份";
 "pref_backup_written_to_x" = "备份已成功写入到“%1$@”。";
 "pref_managekeys_menu_title" = "管理密钥";
@@ -646,6 +669,8 @@
 "profile_image_delete" = "删除个人资料图片";
 "pref_show_tray_icon" = "显示托盘图标";
 "pref_edit_profile" = "编辑个人资料";
+"disable_imap_idle" = "禁用 IMAP IDLE";
+"disable_imap_idle_explain" = "即便服务器支持，也不要使用 IMAP IDLE 扩展。启用后会造成消息获取延迟，请仅出于测试目的启用该功能。";
 
 // Emoji picker and categories
 "emoji_search_results" = "搜索结果";
@@ -841,7 +866,9 @@
 "verified_by_you" = "由您验证";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ 的加密设置已更改。";
-"verified_group_explain" = "已验证群组（实验性）可提供针对主动攻击的安全性。其中的成员被其他成员用第二个因素进行了验证，并且消息始终是端到端加密的。";
+"verified_group_explain" = "已验证的群组确保端到端加密。只有带绿色验证钩形符号的联系人才能被加群";
+"verified_contact_required_explain" = "要确保端到端加密，你只能将带有略色验证标识的联系人到此群中。\n\n你可以亲自和未验证联系人线下碰面并扫描联系人二维码来验证。";
+"create_verified_group_ask" = "所有成员均有绿色验证钩形符号。\n\n你要创建一个确保端到端加密的群吗？";
 "copy_qr_data_success" = "已复制二维码链接到剪贴板";
 "mailto_dialog_header_select_chat" = "选择要发送消息的聊天";
 // first placeholder is the name of the chat
@@ -859,6 +886,8 @@
 "notify_name_only" = "仅名称";
 "notify_no_name_or_message" = "不显示名称或消息";
 "notifications_disabled" = "已禁用通知";
+"new_messages" = "新消息";
+"n_messages_in_m_chats" = "%1$d 条消息，位于 %2$d 个聊天内";
 
 
 // permissions

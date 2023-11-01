@@ -244,7 +244,6 @@
 "source_code" = "Codul Sursă";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Adăugați la ecranul principal";
-
 "mute_for_one_hour" = "Silențios timp de 1 oră";
 "mute_for_two_hours" = "Silențios timp de 2 ore";
 "mute_for_one_day" = "Silențios pentru 1 zi";

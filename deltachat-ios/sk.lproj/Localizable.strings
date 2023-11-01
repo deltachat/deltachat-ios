@@ -236,7 +236,6 @@
 "source_code" = "Zdrojový kód";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Pridať na domovskú obrazovku";
-
 "mute_for_one_hour" = "Stíšiť na 1 hodinu";
 "mute_for_two_hours" = "Stíšiť na 2 hodiny";
 "mute_for_one_day" = "Stíšiť na 1 deň";
@@ -593,7 +592,6 @@
 "profile_image_delete" = "Odstrániť profilový obrázok";
 "pref_show_tray_icon" = "Zobraziť ikonu v systémovej lište";
 "pref_edit_profile" = "Upraviť profil";
-
 // Emoji picker and categories
 "emoji_search_results" = "Výsledky vyhľadávania";
 "emoji_not_found" = "Nenašli sa žiadne emodži";
@@ -772,7 +770,6 @@
 "contact_not_verified" = "Cannot verify %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Zmena nastavenia pre %1$@.";
-"verified_group_explain" = "Overené skupiny (experimentálne) poskytujú bezpečnosť proti aktívnym útokom. Členovia sú overovaní druhým faktorom ostatnými členmi a správy sú vždy šifrované end-to-end.";
 "copy_qr_data_success" = "Skopírovaná adresa URL QR do schránky";
 "mailto_dialog_header_select_chat" = "Vyberte konverzáciu, kam bude správa odoslaná";
 // first placeholder is the name of the chat

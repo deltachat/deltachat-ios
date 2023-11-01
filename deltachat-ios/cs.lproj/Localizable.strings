@@ -594,7 +594,6 @@
 "contact_not_verified" = "Nelze ověřit %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Změněné nastavení pro %1$@.";
-"verified_group_explain" = "Ověřené skupiny (pokusná funkce) zabezpečuje proti aktivním útokům. Noví členové jsou ověřeni ostatními členy druhou cestou a zprávy jsou vždy šifrované end-to-end.";
 "copy_qr_data_success" = "URL z QR kódu zkopírováno do mezipaměti";
 "notify_reply_button" = "Odpověď";
 "notify_new_message" = "Nová zpráva";

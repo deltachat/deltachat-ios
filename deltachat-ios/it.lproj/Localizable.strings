@@ -31,6 +31,8 @@
 "close" = "Chiudi";
 "close_window" = "Chiudi finestra";
 "forward" = "Inoltra";
+"create" = "Crea";
+"later" = "Dopo";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Reinvia";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -110,6 +112,9 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
+"add_to_sticker_collection" = "Aggiungi alla Raccolta Adesivi";
+"add_stickers_instructions" = "Per aggiungere adesivi, tocca \"Apri Cartella Adesivi\", crea una sottocartella per il tuo pacchetto di adesivi e trascina lì i file di immagini e adesivi";
+"open_sticker_folder" = "Apri Cartella Adesivi";
 "images" = "Immagini";
 "audio" = "Audio";
 "voice_message" = "Messaggio Vocale";
@@ -170,6 +175,9 @@
 "broadcast_lists" = "Liste Trasmissioni";
 "new_broadcast_list" = "Nuova Lista Trasmissione";
 "add_recipients" = "Aggiungi Destinatari";
+"edit_broadcast_list" = "Modifica Lista Trasmissione";
+"broadcast_list_name" = "Nome Lista Trasmissione";
+"please_enter_broadcast_list_name" = "Per piacere inserisci un nome per la lista trasmissione.";
 "menu_send" = "Inviato";
 "menu_toggle_keyboard" = "Alterna la Tastiera Emoji";
 "menu_edit_group" = "Modifica Gruppo";
@@ -194,6 +202,7 @@
 "menu_copy_image_to_clipboard" = "Copia l\'Immagine";
 "menu_copy_email_to_clipboard" = "Copia E-Mail";
 "paste_from_clipboard" = "Incolla dagli Appunti";
+"ask_copy_unopenable_link_to_clipboard" = "Il link \"%1$d\" non può essere aperto nel browser web. Vuoi invece copiare il collegamento negli appunti?";
 "menu_forward" = "Inoltra Messaggio";
 "menu_reply" = "Rispondi al Messaggio";
 "menu_mute" = "Silenzia Notifiche";
@@ -203,6 +212,7 @@
 "menu_all_media" = "Tutti i Media";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Mostra in Chat";
+"show_app_in_chat" = "Mostra App in Chat";
 "menu_share" = "Condividi";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Blocca";
@@ -214,6 +224,7 @@
 "menu_scroll_to_bottom" = "Scorri alla Fine";
 "menu_scroll_to_top" = "Scorri in Cima";
 "menu_help" = "Aiuto";
+"what_is_webxdc" = "Cos\'è Webxdc?";
 "privacy_policy" = "Privacy Policy";
 "menu_select_all" = "Seleziona Tutto";
 "select_chat" = "Seleziona Chat";
@@ -250,6 +261,7 @@
 "source_code" = "Codice Sorgente";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Aggiungi alla Schermata Home";
+"donate" = "Donate";
 
 "mute_for_one_hour" = "Silenzia per 1 ora";
 "mute_for_two_hours" = "Silenzia per 2 ore";
@@ -379,6 +391,8 @@
 
 // search
 "search" = "Cerca";
+"search_in_chat" = "Cerca in Chat";
+"search_files" = "Cerca Files";
 "search_explain" = "Cerca in chat, contatti e messaggi";
 "search_no_result_for_x" = "Nessun risultato per \"%1$@\"";
 
@@ -394,6 +408,7 @@
 "group_self_not_in_group" = "Devi essere membro del gruppo per fare questa operazione.";
 "profile_encryption" = "Crittografia";
 "profile_shared_chats" = "Chat Condivise";
+"related_chats" = "Chat Correlate";
 "tab_contact" = "Contatto";
 "tab_group" = "Gruppo";
 "tab_gallery" = "Galleria";
@@ -408,6 +423,10 @@
 "tab_webxdc_empty_hint" = "Le app private condivise in questa chat verranno visualizzate qui.";
 "tab_all_media_empty_hint" = "I media condivisi in qualsiasi chat appariranno qui.";
 "media_preview" = "Anteprima dei Media";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "Aspetto Griglia Proporzioni";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "Griglia Quadrata";
 "send_message" = "Invia Messaggio";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ ha cambiato l\'indirizzo da %2$@ a %3$@";
@@ -596,6 +615,10 @@
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Backup Chats su Memoria Esterna";
 "pref_backup_export_explain" = "Un backup ti aiuta a impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni Autocrypt. Tienilo al sicuro o eliminalo il prima possibile. ";
+// the placeholder will be replaced by the name of the account's email address
+"pref_backup_export_x" = "Esporta %1$@";
+// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+"pref_backup_export_all" = "Esporta tutti i %1$d accounts";
 "pref_backup_export_start_button" = "Avvia Backup";
 "pref_backup_written_to_x" = "Backup scritto con successo in %1$@";
 "pref_managekeys_menu_title" = "Gestisci Chiavi";
@@ -646,6 +669,8 @@
 "profile_image_delete" = "Elimina Immagine Profilo";
 "pref_show_tray_icon" = "Mostra l\'Icona nel Vassoio";
 "pref_edit_profile" = "Modifica Profilo";
+"disable_imap_idle" = "Disabilita IMAP IDLE";
+"disable_imap_idle_explain" = "Non utilizzare l\'estensione IMAP IDLE anche se il server la supporta. L\'abilitazione di questa opzione ritarderà il recupero del messaggio, abilitarla solo a scopo di test.";
 
 // Emoji picker and categories
 "emoji_search_results" = "Risultati Ricerca";
@@ -841,7 +866,9 @@
 "verified_by_you" = "Verificato da te";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Impostazioni modificate per %1$@";
-"verified_group_explain" = "I gruppi verificati (sperimentali) garantiscono sicurezza dagli attacchi. I membri vengono verificati con un secondo fattore dagli altri membri e i messaggi sono sempre cifrati end-to-end. ";
+"verified_group_explain" = "I gruppi verificati garantiscono la crittografia end-to-end. È possibile aggiungervi solo i contatti con un segno di spunta di verifica verde.";
+"verified_contact_required_explain" = "Per garantire la crittografia end-to-end, puoi aggiungere a questo gruppo solo contatti con un segno di verifica verde.\n\nPotresti incontrare di persona contatti non verificati e scansionare il loro Codice QR per verificarli.";
+"create_verified_group_ask" = "Tutti i membri hanno un segno di spunta verde di verifica.\n\nVuoi creare un gruppo che garantisca la crittografia end-to-end?";
 "copy_qr_data_success" = "URL QR copiato negli appunti";
 "mailto_dialog_header_select_chat" = "Seleziona la chat a cui inviare il messaggio";
 // first placeholder is the name of the chat
@@ -859,6 +886,8 @@
 "notify_name_only" = "Solo nome";
 "notify_no_name_or_message" = "Nessun nome nè messaggio";
 "notifications_disabled" = "Notifiche disabilitate";
+"new_messages" = "Nuovi messaggi";
+"n_messages_in_m_chats" = "%1$d messaggi in %2$d chats";
 
 
 // permissions

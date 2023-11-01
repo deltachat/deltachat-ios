@@ -248,7 +248,6 @@
 "source_code" = "Изворни код";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Додај на главни екран";
-
 "mute_for_one_hour" = "Утишај на 1 сат";
 "mute_for_two_hours" = "Утишај на 2 сата";
 "mute_for_one_day" = "Утишај на 1 дан";
@@ -609,7 +608,6 @@
 "profile_image_delete" = "Избриши слику профила";
 "pref_show_tray_icon" = "Прикажи иконицу на системској касети";
 "pref_edit_profile" = "Уреди профил";
-
 // Emoji picker and categories
 "emoji_search_results" = "Резултати претраге";
 "emoji_not_found" = "Није пронађен ниједан емоџи";
@@ -792,7 +790,6 @@
 "verified_by" = "Проверено од %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Подешавања су се променила за %1$@.";
-"verified_group_explain" = "Верификоване групе (ово је експериментална могућност) пружају сигурност од активних напада. Чланови се верификују са другим фактором од стране других чланова и поруке су увек с-краја-на-крај шифроване.";
 "copy_qr_data_success" = "Бар-кôд везе је копиран у клипборд";
 "mailto_dialog_header_select_chat" = "Изабери ћаскање у које желите да пошаљете поруку";
 // first placeholder is the name of the chat

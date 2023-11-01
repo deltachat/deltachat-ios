@@ -31,6 +31,8 @@
 "close" = "Mbylle";
 "close_window" = "Mbylle Dritaren";
 "forward" = "Përpara";
+"create" = "Krijoje";
+"later" = "Më vonë";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Ridërgoje";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -110,6 +112,9 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Ngjitës";
+"add_to_sticker_collection" = "Shtoje te Koleksion Ngjitësish";
+"add_stickers_instructions" = "Që të shtoni ngjitës, prekni “Hap Dosje Ngjitësish”, krijoni një nëndosje për paketën e ngjitësit tuaj dhe tërhiqni në të figurë dhe kartela ngjitësi";
+"open_sticker_folder" = "Hap Dosje Ngjitësish";
 "images" = "Figura";
 "audio" = "Audio";
 "voice_message" = "Mesazh zanor";
@@ -168,6 +173,9 @@
 "broadcast_lists" = "Lista Transmetimi";
 "new_broadcast_list" = "Listë e Re Transmetimi";
 "add_recipients" = "Shtoni Marrës";
+"edit_broadcast_list" = "Përpunoni Listë Transmetimesh";
+"broadcast_list_name" = "Emër Liste Transmetimesh";
+"please_enter_broadcast_list_name" = "Ju lutemi, jepni një emër për listën e transmetimeve";
 "menu_send" = "Dërgoje";
 "menu_toggle_keyboard" = "Shfaq/fshih tastierë emoji";
 "menu_edit_group" = "Përpunoni grup";
@@ -192,6 +200,7 @@
 "menu_copy_image_to_clipboard" = "Kopjo figurën";
 "menu_copy_email_to_clipboard" = "Kopjo Email";
 "paste_from_clipboard" = "Ngjite prej të papastre";
+"ask_copy_unopenable_link_to_clipboard" = "Lidhja “%1$d” s’mund të hapet te shfletuesi. Doni, në vend të kësaj, të kopjohet lidhja në të papastër?";
 "menu_forward" = "Përcille mesazhin";
 "menu_reply" = "Përgjigju mesazhit";
 "menu_mute" = "Heshto njoftimet";
@@ -201,6 +210,7 @@
 "menu_all_media" = "Krejt mediat";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Shfaqe në fjalosje";
+"show_app_in_chat" = "Shfaqe Aplikacionin në Fjalosje";
 "menu_share" = "Ndajeni me të tjerë";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bllokoje";
@@ -212,6 +222,7 @@
 "menu_scroll_to_bottom" = "Rrëshqit drejt fundit";
 "menu_scroll_to_top" = "Rrëshqit sipër në krye";
 "menu_help" = "Nidhmë";
+"what_is_webxdc" = "Ç’është Webxdc?";
 "privacy_policy" = "Rregulla Privatësie";
 "menu_select_all" = "Përzgjidhi krejt";
 "select_chat" = "Përzgjidhni Fjalosje";
@@ -248,6 +259,7 @@
 "source_code" = "Kod Burim";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Shtoje te Skena e Kreut";
+"donate" = "Dhuroni";
 
 "mute_for_one_hour" = "Heshtoji për 1 orë";
 "mute_for_two_hours" = "Heshtoji për 2 orë";
@@ -377,6 +389,8 @@
 
 // search
 "search" = "Kërko";
+"search_in_chat" = "Kërko në Fjalosje";
+"search_files" = "Kërko në Kartela";
 "search_explain" = "Kërkoni për fjalosje, kontakte dhe mesazhe.";
 "search_no_result_for_x" = "S\’u gjetën përfundime për \"%1$@\"";
 
@@ -392,6 +406,7 @@
 "group_self_not_in_group" = "Duhet të jeni anëtar i grupit që të kryeni këtë veprim.";
 "profile_encryption" = "Fshehtëzim";
 "profile_shared_chats" = "Fjalosje të përbashkëta";
+"related_chats" = "Fjalosje të Afërta";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeri";
@@ -406,6 +421,10 @@
 "tab_webxdc_empty_hint" = "Këtu do të shfaqen aplikacione private të përbashkët në këtë fjalosje ";
 "tab_all_media_empty_hint" = "Këtu do të duke media e dhënë në çfarëdo fjalosjeje.";
 "media_preview" = "Paraparje media";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "Mozaik Përpjesëtimor  ";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "Mozaik Katror";
 "send_message" = "Dërgo mesazh";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ ndryshoi adresën e vet nga %2$@ në %3$@";
@@ -594,6 +613,10 @@
 "pref_backup" = "Kopjeruajtje";
 "pref_backup_explain" = "Kopjeruaji fjalosjet në depozitim të jashtëm";
 "pref_backup_export_explain" = "Një kopjeruajtje ju lejon të rregulloni një instalim të ri në këtë apo në një tjetër pajisje.\n\nKopjeruajtja do të përmbajë krejt mesazhet, kontaktet dhe fjalosjet, si dhe rregullimin tuaj për Autocrypt skaj-më-skaj. Mbajeni kartelën e kopjeruajtjes diku të parrezikuar, përndryshe fshijeni as më shpejt që të jetë e mundur.";
+// the placeholder will be replaced by the name of the account's email address
+"pref_backup_export_x" = "Eksporto %1$@";
+// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+"pref_backup_export_all" = "Eksporto krejt llogaritë e %1$d";
 "pref_backup_export_start_button" = "Fillo kopjeruajtjen";
 "pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te %1$@";
 "pref_managekeys_menu_title" = "Administroni kyçe";
@@ -643,6 +666,8 @@
 "profile_image_delete" = "Fshini figurën e profilit";
 "pref_show_tray_icon" = "Shfaq ikonë paneli";
 "pref_edit_profile" = "Përpunoni profil";
+"disable_imap_idle" = "Çaktivizo IMAP IDLE";
+"disable_imap_idle_explain" = "Mos e përdor zgjerimin IMAP IDLE, edhe kur shërbyesi e mbulon. Aktivizimi i kësaj mundësie do të vonojë marrjen e mesazheve, aktivizojeni vetëm për testime.";
 
 // Emoji picker and categories
 "emoji_search_results" = "Përfundime kërkimi";
@@ -838,7 +863,9 @@
 "verified_by_you" = "Verifikuar nga ju";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "U ndryshua rregullimi për %1$@";
-"verified_group_explain" = "Grupet e verifikuara (eksperimentale) furnizojnë siguri kundër sulmesh aktive. Anëtarët janë të verifikuar me një faktor të dytë nga anëtarë të tjerë dhe mesazhet janë përherë të fshehtëzuara skaj më skaj.";
+"verified_group_explain" = "Grupet e verifikuara garantojnë fshehtëzim skaj-më-skaj. Në to mund të shtohen vetëm kontakte me një shenjë të gjelbër verifikimi.";
+"verified_contact_required_explain" = "Që të garantohte fshehtëzim skaj-më-skaj, mund të shtoni në këtë grup vetëm kontakte me shenjën e gjelbër të verifikimit.\n\nMund të takoheni drejtpërsëdrejti me kontakte të paverifikuar dhe të skanoni kodin e tyre QR për t’i verifikuar ata.";
+"create_verified_group_ask" = "Krejt anëtarët kanë një shenjë të gjelbër verifikimi.\n\nDoni të krijohet një grup që garanton fshehtëzim skaj-më-skaj?";
 "copy_qr_data_success" = "URL-ja QR u kopjua në të papastër";
 "mailto_dialog_header_select_chat" = "Përzgjidhni fjalosje ku të dërgohet mesazhi";
 // first placeholder is the name of the chat
@@ -856,6 +883,8 @@
 "notify_name_only" = "Vetëm emër";
 "notify_no_name_or_message" = "Pa emër apo mesazh";
 "notifications_disabled" = "Njoftimet të çaktivizuara";
+"new_messages" = "Mesazhe të rinj";
+"n_messages_in_m_chats" = "%1$d mesazhe në %2$d fjalosje";
 
 
 // permissions

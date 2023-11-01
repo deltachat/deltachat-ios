@@ -248,7 +248,6 @@
 "source_code" = "کد منبع";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "افزودن به صفحه خانه";
-
 "mute_for_one_hour" = "ساکت کردن به مدت۱ ساعت";
 "mute_for_two_hours" = "ساکت کردن به مدت ۲ ساعت";
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
@@ -638,7 +637,6 @@
 "profile_image_delete" = "حذف تصویر نمایه";
 "pref_show_tray_icon" = "نمایش نمادک در زیر صفحه";
 "pref_edit_profile" = "ویرایش نمایه";
-
 // Emoji picker and categories
 "emoji_search_results" = "نتایج جستجو";
 "emoji_not_found" = "شکلکی پیدا نشد";
@@ -816,7 +814,6 @@
 "verified_by" = "احراز هویت شده توسط %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "تنظیمات برای %1$@ تغییر کرد. ";
-"verified_group_explain" = "گرو‌ه های تأیید شده(آزمایشی) در برابر حمله‌های فعال امنیت دارند. اعضا با یک روش ثانویه هم از طریق دیگر اعضا احراز هویت می‌شوند و پیام‌ها هم همیشه به صورت رمزگذاری شده به صورت گیرنده به گیرنده می‌باشد. ";
 "copy_qr_data_success" = "آدرس کیوآر در حافظه ذخیر شد";
 "mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
 // first placeholder is the name of the chat
