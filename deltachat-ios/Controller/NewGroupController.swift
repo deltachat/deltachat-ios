@@ -61,8 +61,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     var qrInviteCodeCell: ActionCell?
 
-    init(dcContext: DcContext, isVerified: Bool, createBroadcast: Bool) {
-        self.isVerifiedGroup = isVerified
+    init(dcContext: DcContext, createBroadcast: Bool) {
+        self.isVerifiedGroup = false // TODO: not needed
         self.createBroadcast = createBroadcast
         self.dcContext = dcContext
         self.sections = [.details, .invite, .members]
@@ -136,6 +136,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             groupChatId = dcContext.createBroadcastList()
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         } else if groupChatId == 0 {
+            // TODO: check if all members are verifed and create verified group
             groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
         } else {
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
