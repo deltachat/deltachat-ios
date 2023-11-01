@@ -98,13 +98,41 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         doneButton.isEnabled = nameOk && contactIdsForGroup.count >= 1
     }
 
+    private func allMembersVerified() -> Bool {
+        for contactId in contactIdsForGroup {
+            if !dcContext.getContact(id: contactId).isVerified {
+                return false
+            }
+        }
+        return true
+    }
+
     @objc func doneButtonPressed() {
+        if createBroadcast || !allMembersVerified() {
+            createGroupAndFinish(createVerified: false)
+        } else {
+            let alert = UIAlertController(title: String.localized("create_verified_group_ask"), message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("yes"), style: .default, handler: { _ in
+                self.createGroupAndFinish(createVerified: true)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("no"), style: .default, handler: { _ in
+                self.createGroupAndFinish(createVerified: false)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
+                if let url = URL(string: "https://delta.chat/en/help#verifiedchats") {
+                    UIApplication.shared.open(url)
+                }
+            }))
+            navigationController?.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    private func createGroupAndFinish(createVerified: Bool) {
         if createBroadcast {
             groupChatId = dcContext.createBroadcastList()
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         } else if groupChatId == 0 {
-            // TODO: check if all members are verifed and create verified group
-            groupChatId = dcContext.createGroupChat(verified: false, name: groupName)
+            groupChatId = dcContext.createGroupChat(verified: createVerified, name: groupName)
         } else {
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         }
@@ -120,6 +148,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
         showGroupChat(chatId: Int(groupChatId))
     }
+
 
     override func numberOfSections(in _: UITableView) -> Int {
         return sections.count
