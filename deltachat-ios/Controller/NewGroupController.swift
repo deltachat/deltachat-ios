@@ -6,13 +6,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     var groupChatId: Int = 0
 
     var doneButton: UIBarButtonItem!
-    var contactIdsForGroup: Set<Int> // TODO: check if array is sufficient
+    var contactIdsForGroup: Set<Int>
     var groupContactIds: [Int]
 
     private var changeGroupImage: UIImage?
     private var deleteGroupImage: Bool = false
 
-    let isVerifiedGroup: Bool
     let createBroadcast: Bool
     let dcContext: DcContext
 
@@ -58,7 +57,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     init(dcContext: DcContext, createBroadcast: Bool) {
-        self.isVerifiedGroup = false // TODO: not needed
         self.createBroadcast = createBroadcast
         self.dcContext = dcContext
         self.sections = [.details, .invite, .members]
@@ -81,9 +79,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if isVerifiedGroup {
-            title = String.localized("menu_new_verified_group")
-        } else if createBroadcast {
+        if createBroadcast {
             title = String.localized("new_broadcast_list")
         } else {
             title = String.localized("menu_new_group")
@@ -108,7 +104,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         } else if groupChatId == 0 {
             // TODO: check if all members are verifed and create verified group
-            groupChatId = dcContext.createGroupChat(verified: isVerifiedGroup, name: groupName)
+            groupChatId = dcContext.createGroupChat(verified: false, name: groupName)
         } else {
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         }
@@ -169,9 +165,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if sections[section] == .details && isVerifiedGroup {
-            return String.localized("verified_group_explain")
-        } else if sections[section] == .invite && createBroadcast {
+        if sections[section] == .invite && createBroadcast {
             return String.localized("chat_new_broadcast_hint")
         }
         return nil
@@ -214,7 +208,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             if inviteRows[indexPath.row] == .addMembers {
                 var contactsWithoutSelf = contactIdsForGroup
                 contactsWithoutSelf.remove(Int(DC_CONTACT_ID_SELF))
-                showAddMembers(preselectedMembers: contactsWithoutSelf, isVerified: self.isVerifiedGroup)
+                showAddMembers(preselectedMembers: contactsWithoutSelf)
             }
         }
     }
@@ -323,10 +317,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         mediaPicker?.showCamera(allowCropping: true, supportedMediaTypes: .photo)
     }
 
-    private func showAddMembers(preselectedMembers: Set<Int>, isVerified: Bool) {
+    private func showAddMembers(preselectedMembers: Set<Int>) {
         let newGroupController = AddGroupMembersViewController(dcContext: dcContext,
                                                                preselected: preselectedMembers,
-                                                               isVerified: isVerified,
+                                                               isVerified: false, // TOOD: remove
                                                                isBroadcast: createBroadcast)
         newGroupController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
             guard let self = self else { return }
