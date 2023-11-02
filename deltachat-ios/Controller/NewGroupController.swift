@@ -110,11 +110,11 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         if createBroadcast || !allMembersVerified() {
             createGroupAndFinish(createVerified: false)
         } else {
-            let alert = UIAlertController(title: String.localized("create_verified_group_ask"), message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("yes"), style: .default, handler: { _ in
+            let alert = UIAlertController(title: String.localized("create_verified_group_ask"), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("create_verified_group"), style: .default, handler: { _ in
                 self.createGroupAndFinish(createVerified: true)
             }))
-            alert.addAction(UIAlertAction(title: String.localized("no"), style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: String.localized("create_unverified_group"), style: .default, handler: { _ in
                 self.createGroupAndFinish(createVerified: false)
             }))
             alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
@@ -122,6 +122,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                     UIApplication.shared.open(url)
                 }
             }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         }
     }
