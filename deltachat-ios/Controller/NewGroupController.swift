@@ -83,7 +83,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         } else {
             title = String.localized("menu_new_group")
         }
-        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+        doneButton = UIBarButtonItem(title: String.localized("create"), style: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
         tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
         tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")

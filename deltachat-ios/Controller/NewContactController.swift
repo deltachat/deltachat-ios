@@ -46,7 +46,7 @@ class NewContactController: UITableViewController {
         nameCell.textField.returnKeyType = .done
 
         title = String.localized("menu_new_contact")
-        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveContactButtonPressed))
+        doneButton = UIBarButtonItem(title: String.localized("create"), style: .done, target: self, action: #selector(saveContactButtonPressed))
         doneButton?.isEnabled = false
         navigationItem.rightBarButtonItem = doneButton
 
