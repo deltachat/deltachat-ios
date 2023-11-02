@@ -132,11 +132,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     func loadMemberCandidates() -> [Int] {
-        var flags: Int32 = 0
-        if isVerifiedGroup {
-            flags |= DC_GCL_VERIFIED_ONLY
-        }
-        return dcContext.getContacts(flags: flags)
+        return dcContext.getContacts(flags: DC_GCL_ADD_SELF)
     }
 
     private func showNewContactController() {
@@ -154,8 +150,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
     
     // MARK: - search
-    override open func filterContactIds(flags: Int32, queryString: String) -> [Int] {
-        let flags = self.isVerifiedGroup ? DC_GCL_VERIFIED_ONLY : DC_GCL_ADD_SELF
-        return dcContext.getContacts(flags: flags, queryString: queryString)
+    override open func filterContactIds(queryString: String) -> [Int] {
+        return dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: queryString)
     }
 }

@@ -50,7 +50,7 @@ class GroupMembersViewController: UITableViewController {
         return searchController.searchBar.text
     }
     
-    open func filterContactIds(flags: Int32, queryString: String) -> [Int] {
+    open func filterContactIds(queryString: String) -> [Int] {
         return dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
     }
 
@@ -165,7 +165,7 @@ extension GroupMembersViewController: UISearchResultsUpdating {
     }
 
     private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
-        filteredContactIds = filterContactIds(flags: DC_GCL_ADD_SELF, queryString: searchText)
+        filteredContactIds = filterContactIds(queryString: searchText)
         tableView.reloadData()
         tableView.scrollToTop()
 
