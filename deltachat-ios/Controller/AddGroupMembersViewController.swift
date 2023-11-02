@@ -114,7 +114,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
             tableView.deselectRow(at: indexPath, animated: false)
             showNewContactController()
         case .memberList:
-            didSelectContactCell(at: indexPath)
+            didSelectContactCell(at: indexPath, verifiedContactRequired: isVerifiedGroup)
         }
     }
 

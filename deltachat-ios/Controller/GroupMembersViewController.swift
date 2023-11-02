@@ -117,7 +117,7 @@ class GroupMembersViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectContactCell(at: indexPath)
+        didSelectContactCell(at: indexPath, verifiedContactRequired: false)
     }
 
     func updateContactCell(for indexPath: IndexPath) -> UITableViewCell {
@@ -134,7 +134,7 @@ class GroupMembersViewController: UITableViewController {
     }
 
     // MARK: - actions
-    func didSelectContactCell(at indexPath: IndexPath) {
+    func didSelectContactCell(at indexPath: IndexPath, verifiedContactRequired: Bool) {
         let row = indexPath.row
         if let cell = tableView.cellForRow(at: indexPath) {
             tableView.deselectRow(at: indexPath, animated: true)
@@ -146,6 +146,22 @@ class GroupMembersViewController: UITableViewController {
                 }
                 groupMemberSelectionDelegate?.selected(contactId: contactId, selected: false)
             } else {
+                if verifiedContactRequired && !dcContext.getContact(id: contactId).isVerified {
+                    let alert = UIAlertController(title: String.localized("verified_contact_required_explain"), message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
+                        if let url = URL(string: "https://delta.chat/en/help#verifiedchats") {
+                            UIApplication.shared.open(url)
+                        }
+                    }))
+                    alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
+                        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                            appDelegate.appCoordinator.presentQrCodeController()
+                        }
+                    }))
+                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: nil))
+                    navigationController?.present(alert, animated: true, completion: nil)
+                    return
+                }
                 selectedContactIds.insert(contactId)
                 if enableCheckmarks {
                     cell.accessoryType = .checkmark
