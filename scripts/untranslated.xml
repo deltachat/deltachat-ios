@@ -10,6 +10,4 @@
     <string name="location_denied">Location access denied</string>
     <string name="location_denied_explain_ios">In the system settings, enable \"Privacy/Location Services\" and set \"Delta Chat/Location\" to \"Always\" and \"Precise\".</string>
     <string name="select_chat">Select Chat</string>
-    <string name="create_verified_group">Create Verified Group</string>
-    <string name="create_unverified_group">Create Unverified Group</string>
 </resources>

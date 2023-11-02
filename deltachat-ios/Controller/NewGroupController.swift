@@ -107,33 +107,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     @objc func doneButtonPressed() {
-        if createBroadcast || !allMembersVerified() {
-            createGroupAndFinish(createVerified: false)
-        } else {
-            let alert = UIAlertController(title: String.localized("create_verified_group_ask"), message: nil, preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("create_verified_group"), style: .default, handler: { _ in
-                self.createGroupAndFinish(createVerified: true)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("create_unverified_group"), style: .default, handler: { _ in
-                self.createGroupAndFinish(createVerified: false)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-                if let url = URL(string: "https://delta.chat/en/help#verifiedchats") {
-                    UIApplication.shared.open(url)
-                }
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            navigationController?.present(alert, animated: true, completion: nil)
-        }
-    }
-
-    private func createGroupAndFinish(createVerified: Bool) {
         let groupChatId: Int
         if createBroadcast {
             groupChatId = dcContext.createBroadcastList()
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
         } else {
-            groupChatId = dcContext.createGroupChat(verified: createVerified, name: groupName)
+            groupChatId = dcContext.createGroupChat(verified: allMembersVerified(), name: groupName)
         }
 
         for contactId in contactIdsForGroup {
