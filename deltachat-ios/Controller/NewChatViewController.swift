@@ -8,9 +8,8 @@ class NewChatViewController: UITableViewController {
     private let sectionNew = 0
     private let sectionNewRowNewContact = 0
     private let sectionNewRowNewGroup = 1
-    private let sectionNewRowNewVerifiedGroup = 2
-    private let sectionNewRowBroadcastList = 3
-    private var sectionNewRowCount: Int { return UserDefaults.standard.bool(forKey: "broadcast_lists") ? 4 : 3 }
+    private let sectionNewRowBroadcastList = 2
+    private var sectionNewRowCount: Int { return UserDefaults.standard.bool(forKey: "broadcast_lists") ? 3 : 2 }
 
     private let sectionImportedContacts = 1
 
@@ -146,8 +145,6 @@ class NewChatViewController: UITableViewController {
                 switch row {
                 case sectionNewRowNewGroup:
                     actionCell.actionTitle = String.localized("menu_new_group")
-                case sectionNewRowNewVerifiedGroup:
-                    actionCell.actionTitle = String.localized("menu_new_verified_group")
                 case sectionNewRowBroadcastList:
                     actionCell.actionTitle = String.localized("new_broadcast_list")
                 default:
@@ -188,11 +185,9 @@ class NewChatViewController: UITableViewController {
 
         if section == sectionNew {
             if row == sectionNewRowNewGroup {
-                showNewGroupController(isVerified: false)
-            } else if row == sectionNewRowNewVerifiedGroup {
-                showNewGroupController(isVerified: true)
+                showNewGroupController()
             } else if row == sectionNewRowBroadcastList {
-                showNewGroupController(isVerified: false, createBroadcast: true)
+                showNewGroupController(createBroadcast: true)
             } else if row == sectionNewRowNewContact {
                 showNewContactController()
             }
@@ -313,8 +308,8 @@ class NewChatViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-    private func showNewGroupController(isVerified: Bool, createBroadcast: Bool = false) {
-        let newGroupController = NewGroupController(dcContext: dcContext, isVerified: isVerified, createBroadcast: createBroadcast)
+    private func showNewGroupController(createBroadcast: Bool = false) {
+        let newGroupController = NewGroupController(dcContext: dcContext, createBroadcast: createBroadcast)
         navigationController?.pushViewController(newGroupController, animated: true)
     }
 

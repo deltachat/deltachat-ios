@@ -19,21 +19,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         case memberList
     }
 
-    private lazy var chatMemberIds: [Int] = {
-        if let chat = chat {
-            return chat.getContactIds(dcContext)
-        }
-        return []
-    }()
-
-    private lazy var chat: DcChat? = {
-        if let chatId = self.chatId {
-            return dcContext.getChat(chatId: chatId)
-        }
-        return nil
-    }()
-
-    private var chatId: Int?
+    private let chat: DcChat?
 
     private lazy var newContactCell: ActionCell = {
         let cell = ActionCell()
@@ -53,9 +39,10 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     // add members of new group, no chat object yet
-    init(dcContext: DcContext, preselected: Set<Int>, isVerified: Bool, isBroadcast: Bool) {
+    init(dcContext: DcContext, preselected: Set<Int>, isBroadcast: Bool) {
+        self.chat = nil
         super.init(dcContext: dcContext)
-        isVerifiedGroup = isVerified
+        isVerifiedGroup = false
         self.isBroadcast = isBroadcast
         numberOfSections = sections.count
         selectedContactIds = preselected
@@ -63,7 +50,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     // add members of existing group
     init(dcContext: DcContext, chatId: Int) {
-        self.chatId = chatId
+        self.chat = dcContext.getChat(chatId: chatId)
         super.init(dcContext: dcContext)
         isVerifiedGroup = chat?.isProtected ?? false
         isBroadcast = chat?.isBroadcast ?? false
@@ -127,16 +114,12 @@ class AddGroupMembersViewController: GroupMembersViewController {
             tableView.deselectRow(at: indexPath, animated: false)
             showNewContactController()
         case .memberList:
-            didSelectContactCell(at: indexPath)
+            didSelectContactCell(at: indexPath, verifiedContactRequired: isVerifiedGroup)
         }
     }
 
     func loadMemberCandidates() -> [Int] {
-        var flags: Int32 = 0
-        if isVerifiedGroup {
-            flags |= DC_GCL_VERIFIED_ONLY
-        }
-        return dcContext.getContacts(flags: flags)
+        return dcContext.getContacts(flags: DC_GCL_ADD_SELF)
     }
 
     private func showNewContactController() {
@@ -154,8 +137,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
     
     // MARK: - search
-    override open func filterContactIds(flags: Int32, queryString: String) -> [Int] {
-        let flags = self.isVerifiedGroup ? DC_GCL_VERIFIED_ONLY : DC_GCL_ADD_SELF
-        return dcContext.getContacts(flags: flags, queryString: queryString)
+    override open func filterContactIds(queryString: String) -> [Int] {
+        return dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: queryString)
     }
 }
