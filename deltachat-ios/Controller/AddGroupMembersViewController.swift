@@ -53,9 +53,9 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     // add members of new group, no chat object yet
-    init(dcContext: DcContext, preselected: Set<Int>, isVerified: Bool, isBroadcast: Bool) {
+    init(dcContext: DcContext, preselected: Set<Int>, isBroadcast: Bool) {
         super.init(dcContext: dcContext)
-        isVerifiedGroup = isVerified
+        isVerifiedGroup = false
         self.isBroadcast = isBroadcast
         numberOfSections = sections.count
         selectedContactIds = preselected
