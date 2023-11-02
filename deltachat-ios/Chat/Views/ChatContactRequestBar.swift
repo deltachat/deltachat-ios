@@ -31,6 +31,7 @@ public class ChatContactRequestBar: UIView, InputItem {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .body, weight: .regular)
+        label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textColor = DcColors.defaultInverseColor
         label.textAlignment = .center
@@ -128,6 +129,6 @@ public class ChatContactRequestBar: UIView, InputItem {
     }
 
     public override var intrinsicContentSize: CGSize {
-        return CGSize(width: super.intrinsicContentSize.width, height: infoText == nil ? 44 : 88)
+        return CGSize(width: super.intrinsicContentSize.width, height: infoText == nil ? 44 : 110)
     }
 }
