@@ -3,7 +3,6 @@ import DcCore
 
 class NewGroupController: UITableViewController, MediaPickerDelegate {
     var groupName: String = ""
-    var groupChatId: Int = 0
 
     var doneButton: UIBarButtonItem!
     var contactIdsForGroup: Set<Int>
@@ -128,13 +127,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func createGroupAndFinish(createVerified: Bool) {
+        let groupChatId: Int
         if createBroadcast {
             groupChatId = dcContext.createBroadcastList()
             _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
-        } else if groupChatId == 0 {
-            groupChatId = dcContext.createGroupChat(verified: createVerified, name: groupName)
         } else {
-            _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
+            groupChatId = dcContext.createGroupChat(verified: createVerified, name: groupName)
         }
 
         for contactId in contactIdsForGroup {
@@ -249,15 +247,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         if sections[indexPath.section] == .members, groupContactIds[indexPath.row] != DC_CONTACT_ID_SELF {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
                 guard let self = self else { return }
-                if self.groupChatId != 0,
-                   self.dcContext.getChat(chatId: self.groupChatId).getContactIds(self.dcContext).contains(self.groupContactIds[row]) {
-                    let success = self.dcContext.removeContactFromChat(chatId: self.groupChatId, contactId: self.groupContactIds[row])
-                    if success {
-                        self.removeGroupContactFromList(at: indexPath)
-                    }
-                } else {
-                    self.removeGroupContactFromList(at: indexPath)
-                }
+                self.removeGroupContactFromList(at: indexPath)
             }
             delete.backgroundColor = UIColor.systemRed
             return [delete]
@@ -304,12 +294,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     func updateGroupContactIdsOnListSelection(_ members: Set<Int>) {
-        if groupChatId != 0 {
-            var members = members
-            for contactId in dcContext.getChat(chatId: groupChatId).getContactIds(dcContext) {
-                members.insert(contactId)
-            }
-        }
         contactIdsForGroup = members
         groupContactIds = Array(members)
         self.tableView.reloadData()
@@ -349,7 +333,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func showAddMembers(preselectedMembers: Set<Int>) {
         let newGroupController = AddGroupMembersViewController(dcContext: dcContext,
                                                                preselected: preselectedMembers,
-                                                               isVerified: false, // TOOD: remove
+                                                               isVerified: false,
                                                                isBroadcast: createBroadcast)
         newGroupController.onMembersSelected = { [weak self] (memberIds: Set<Int>) -> Void in
             guard let self = self else { return }
