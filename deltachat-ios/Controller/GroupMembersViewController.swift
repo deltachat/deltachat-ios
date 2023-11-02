@@ -137,7 +137,7 @@ class GroupMembersViewController: UITableViewController {
     func didSelectContactCell(at indexPath: IndexPath) {
         let row = indexPath.row
         if let cell = tableView.cellForRow(at: indexPath) {
-            tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
+            tableView.deselectRow(at: indexPath, animated: true)
             let contactId = contactIdByRow(row)
             if selectedContactIds.contains(contactId) {
                 selectedContactIds.remove(contactId)
