@@ -19,21 +19,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         case memberList
     }
 
-    private lazy var chatMemberIds: [Int] = {
-        if let chat = chat {
-            return chat.getContactIds(dcContext)
-        }
-        return []
-    }()
-
-    private lazy var chat: DcChat? = {
-        if let chatId = self.chatId {
-            return dcContext.getChat(chatId: chatId)
-        }
-        return nil
-    }()
-
-    private var chatId: Int?
+    private let chat: DcChat?
 
     private lazy var newContactCell: ActionCell = {
         let cell = ActionCell()
@@ -54,6 +40,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     // add members of new group, no chat object yet
     init(dcContext: DcContext, preselected: Set<Int>, isBroadcast: Bool) {
+        self.chat = nil
         super.init(dcContext: dcContext)
         isVerifiedGroup = false
         self.isBroadcast = isBroadcast
@@ -63,7 +50,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
 
     // add members of existing group
     init(dcContext: DcContext, chatId: Int) {
-        self.chatId = chatId
+        self.chat = dcContext.getChat(chatId: chatId)
         super.init(dcContext: dcContext)
         isVerifiedGroup = chat?.isProtected ?? false
         isBroadcast = chat?.isBroadcast ?? false
