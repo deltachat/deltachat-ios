@@ -256,7 +256,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
                         sc.substring(30, 34) + "  -  " + sc.substring(35, 39) + "  -  " + sc.substring(40, 44)
                 }
 
-                let text = String.localizedStringWithFormat(String.localized("autocrypt_send_asm_explain_after"), sc)
+                let text = String.localized("autocrypt_send_asm_explain_after") + "\n\n" + sc
                 let showAlert = UIAlertController(title: text, message: nil, preferredStyle: .alert)
                 showAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
                 self.present(showAlert, animated: true, completion: nil)
