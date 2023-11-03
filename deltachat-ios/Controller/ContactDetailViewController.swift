@@ -318,19 +318,16 @@ class ContactDetailViewController: UITableViewController {
         allMediaCell.detailTextLabel?.text = viewModel.chatId == 0 ? String.localized("none") : viewModel.context.getAllMediaCount(chatId: viewModel.chatId)
         statusCell.setText(text: viewModel.isSavedMessages ? String.localized("saved_messages_explain") : viewModel.contact.status)
 
-        if viewModel.contact.isVerified {
-            let verifierId = viewModel.contact.getVerifierId()
+        let verifierId = viewModel.contact.getVerifierId()
+        if  verifierId != 0 {
             let verifiedInfo: String
             if verifierId == DC_CONTACT_ID_SELF {
                 verifiedByCell.accessoryType = .none
                 verifiedInfo = String.localized("verified_by_you")
-            } else if verifierId != 0 {
+            } else {
                 verifiedByCell.accessoryType = .disclosureIndicator
                 verifiedInfo = String.localizedStringWithFormat(String.localized("verified_by"),
                                                                 viewModel.context.getContact(id: verifierId).nameNAddr)
-            } else {
-                verifiedByCell.accessoryType = .none
-                verifiedInfo = String.localized("verified")
             }
             verifiedByCell.textLabel?.text = verifiedInfo
         }

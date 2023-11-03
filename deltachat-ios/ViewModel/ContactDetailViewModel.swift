@@ -72,7 +72,7 @@ class ContactDetailViewModel {
         sections.append(.chatActions)
 
         chatOptions = []
-        if dcContact.isVerified {
+        if dcContact.getVerifierId() != 0 {
             chatOptions.append(.verifiedBy)
         }
         chatOptions.append(.allMedia)
