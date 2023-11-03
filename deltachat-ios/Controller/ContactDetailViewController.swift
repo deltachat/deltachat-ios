@@ -364,7 +364,7 @@ class ContactDetailViewController: UITableViewController {
         case .verifiedBy:
             tableView.deselectRow(at: indexPath, animated: true)
             let verifierId = viewModel.contact.getVerifierId()
-            if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF && verifierId != viewModel.contactId {
+            if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                 showContact(contactId: verifierId)
             }
         case .allMedia:
