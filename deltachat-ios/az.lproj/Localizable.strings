@@ -66,7 +66,6 @@
 "video" = "Video";
 "documents" = "Sənədlər";
 "contact" = "Kontakt";
-"verified_contact" = "Yoxlanılmış kontakt";
 "camera" = "Kamera";
 "location" = "Yer";
 "gallery" = "Qalereya";
@@ -94,7 +93,6 @@
 "menu_new_contact" = "Yeni kontakt";
 "menu_new_chat" = "Yeni çat";
 "menu_new_group" = "Yeni qrup";
-"menu_new_verified_group" = "Yeni yoxlanılmış qrup";
 "menu_send" = "Göndər";
 "menu_toggle_keyboard" = "Emoji klaviatura keçidi";
 "menu_edit_group" = "Qrupu dəyiş";
@@ -210,7 +208,6 @@
 "tab_gallery_empty_hint" = "Bu çatda paylaşılan şəkillər və videolar burada nümayiş olunacaq.";
 "tab_docs_empty_hint" = "Bu söhbətdə paylaşılan sənədlər, musiqi və digər fayllar burada göstəriləcək.";
 "media_preview" = "Fayllara baxmaq";
-"welcome_intro1_message" = "Dünyanın ən böyük auditoriyasına sahib olan mesenjeri. Azad və müstəqil.";
 "login_title" = "Daxil ol";
 "login_header" = "Serverinə daxil ol";
 "login_explain" = "Mövcud e-mail hesabı ilə daxil olun";
@@ -333,6 +330,7 @@
 "autocrypt_send_asm_title" = "Autocrypt mesaj ayarı göndər";
 "autocrypt_send_asm_explain_before" = "Autocrypt Setup Message digər Autocrypt-uyğun proqramlarla təhlükəsiz şəkildə bölüşür. \n\nSizin buradakı quraşdırma koduyla şifrələnir və digər qurğuda yazılmalıdır.";
 "autocrypt_send_asm_button" = "Autocrypt Setup Message-ı göndər";
+"autocrypt_send_asm_explain_after" = "Sizin açarınız sizə göndərildi. Başqa bir cihaza keçin və mesajın ayarını açın. Siz quraşdırma kodu daxil etməlisiniz. Orada aşağıdakı rəqəmləri daxil edin. Bitirən zaman, başqa bir cihazda Autocrypt istifadə üçün hazır olacaq.";
 "autocrypt_prefer_e2ee" = "Ucdan-uca şifrələmə üstünlük təşkil edir";
 "autocrypt_asm_subject" = "Autocrypt mesaj ayarı";
 "autocrypt_asm_general_body" = "Bu, müvəqqəti quraşdırma üçün müştərilər arasında köçürmək üçün istifadə edilən Autocrypt Setup Mesajıdır. \n\nSenfikanızı çözmək və istifadə etmək üçün autocrypt uyğun müştəri içərisində mesajı açın və yaradan cihazda göstərilən quraşdırma kodunu daxil edin.";
@@ -433,13 +431,15 @@
 "remove_desktop" = "Sil";
 "save_desktop" = "Saxla";
 "name_desktop" = "Ad";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Avtoşifrələmə açarın ötürülməsi";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt konfiqurasiya mesajı təhlükəsiz olaraq \"sondan sona\" parametrinizi Autocrypt ilə uyğun olan digər tətbiqlərlə bölüşür. Quraşdırma burada göstərilir və başqa bir cihazda yığılmış olmalıdır. Bir quraşdırma kodu ilə şifrələ olunacaq.";
 "select_group_image_desktop" = "Qrup şəklini seç";
 "imex_progress_title_desktop" = "Ehtiyat nüsxəsinin yaradılması";
 "export_backup_desktop" = "Ehtiyat nüsxəsinin ixracı";
-"show_key_transfer_message_desktop" = "Sizin açarınız sizə göndərildi. Başqa bir cihaza keçin və mesajın ayarını açın. Siz quraşdırma kodu daxil etməlisiniz. Orada aşağıdakı rəqəmləri daxil edin. Bitirən zaman, başqa bir cihazda Autocrypt istifadə üçün hazır olacaq.";
 "autocrypt_correct_desktop" = "Autocrypt ayarı müvəffəqiyyətlə köçürüldü!";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Yanlış kod. Yenidən cəhd edin. ";
 "create_chat_error_desktop" = "Yeni çat yaratmaq alınmadı";
 "forget_login_confirmation_desktop" = "Bu giriş silmək istəyirsiniz? Hər şey, sizin \"sondan sona\" quraşdırma, kontaktlar, söhbətlər, mesajlar və daşıyıcıları daxil olmaqla silinəcəkdir. Bu hərəkət son və ləğv edilə bilməz.";

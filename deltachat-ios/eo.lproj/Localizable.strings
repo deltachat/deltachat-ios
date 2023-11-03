@@ -25,6 +25,7 @@
 "emoji" = "Emoji";
 "attachment" = "Aldonaĵo";
 "back" = "Reen";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "Konfirmita";
 "close" = "Fermi";
 "forward" = "Plusendi";
@@ -44,7 +45,6 @@
 "main_menu" = "Ĉefa menuo";
 "start_chat" = "Komenci Babiladon";
 "show_full_message" = "Afiŝu la tutan mesaĝon...";
-"show_full_message_in_browser" = "Afiŝu la tutan mesaĝon en la retumilo...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marki ĉiujn legitaj";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -117,7 +117,6 @@
 "video" = "Filmo";
 "documents" = "Dokumentoj";
 "contact" = "Kontakto";
-"verified_contact" = "Kontrolita kontakto";
 "camera" = "Fotilo";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Kapti";
@@ -133,7 +132,6 @@
 "webxdc_app" = "Apo";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apoj";
-"files_and_webxdx_apps" = "Dosieroj kaj apoj";
 "unknown" = "Nekonata";
 
 "green" = "Verda";
@@ -159,9 +157,6 @@
 "menu_new_contact" = "Nova kontakto";
 "menu_new_chat" = "Nova babilo";
 "menu_new_group" = "Nova grupo";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Nova Grupo aŭ Temo";
-"menu_new_verified_group" = "Nova kontrolita grupo.";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Elsenda Listo";
 "broadcast_lists" = "Elsendaj Listoj";

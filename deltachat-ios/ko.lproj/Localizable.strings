@@ -45,7 +45,6 @@
 "main_menu" = "메인 메뉴";
 "start_chat" = "채팅 시작";
 "show_full_message" = "전체 메시지 보기...";
-"show_full_message_in_browser" = "브라우저에서 전체 메시지 보기...";
 // Placeholder text when something is loading
 "loading" = "로딩 중...";
 "hide" = "숨기기";
@@ -110,7 +109,6 @@
 "video" = "동영상";
 "documents" = "문서";
 "contact" = "연락처";
-"verified_contact" = "확인된 연락처";
 "camera" = "카메라";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "캡쳐";
@@ -125,7 +123,6 @@
 "webxdc_app" = "개인 앱";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "개인 앱";
-"files_and_webxdx_apps" = "파일, 개인 앱";
 "unknown" = "알 수 없음";
 
 "green" = "초록";
@@ -151,9 +148,6 @@
 "menu_new_contact" = "대화상대 추가";
 "menu_new_chat" = "채팅 시작";
 "menu_new_group" = "새 그룹";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "새 그룹이나 주제";
-"menu_new_verified_group" = "새 확인된 그룹";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "방송 목록";
 "broadcast_lists" = "방송 목록";
@@ -415,7 +409,6 @@
 // welcome and login
 "welcome_chat_over_email" = "이메일로 채팅.";
 "scan_invitation_code" = "초대 코드 스캔";
-"welcome_intro1_message" = "세계에서 가장 많은 시청자를 가진 메신저. 자유롭고 독립적입니다.";
 "login_title" = "로그인";
 "login_header" = "이메일 계정으로 로그인하시오";
 "login_explain" = "존재하는 이메일 계정으로 로그인하시오";
@@ -440,8 +433,6 @@
 "login_socks5_port" = "SOCKS5 포트";
 "login_socks5_user" = "SOCKS5 사용자";
 "login_socks5_password" = "SOCKS5 비밀번호";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "%1$@ 확인중";
 "login_info_oauth2_title" = "간소화된 설치를 계속하시겠습니까?";
 "login_info_oauth2_text" = "입력한 이메일 주소는 단순화된 설정(OAuth 2.0)을 지원합니다.\n\n다음 단계에서는 Delta Chat 이 이메일을 통한 채팅 앱 역할을 하도록 허용하십시오.\n\nDelta 채팅 서버가 없으며 데이터가 장치에 남아 있습니다.";
 "login_certificate_checks" = "인증서 확인";
@@ -620,7 +611,7 @@
 "autocrypt_send_asm_title" = "자동 암호화 설정된 메시지 전송";
 "autocrypt_send_asm_explain_before" = "자동 암호화 설치 메시지는 사용자의 설정을 다른 자동 암호화 호환 앱과 안전하게 공유합니다.\n\n설치는 여기에 표시된 설치 코드에 의해 암호화되며 다른 장치에 입력해야 합니다.";
 "autocrypt_send_asm_button" = "자동 암호화 설정된 메시지 전송";
-"autocrypt_send_asm_explain_after" = "설정이 사용자 자신에게 전송되었습니다. 다른 장치로 전환하고 설정 메시지를 엽니다. 설정 코드를 입력하라는 메시지가 표시됩니다. 다음 숫자를 입력합니다.\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "설정이 사용자 자신에게 전송되었습니다. 다른 장치로 전환하고 설정 메시지를 엽니다. 설정 코드를 입력하라는 메시지가 표시됩니다. 다음 숫자를 입력합니다.";
 "autocrypt_asm_subject" = "자동 암호화 설정 메시지";
 "autocrypt_asm_general_body" = "클라이언트 간에 종단 간 설정을 전송하는 데 사용되는 자동 암호화 설정 메시지입니다.\n\n설치를 해독하고 사용하려면 자동 암호화 호환 클라이언트에서 메시지를 열고 생성 장치에 표시된 설치 코드를 입력하십시오.";
 "autocrypt_asm_click_body" = "클라이언트 간에 종단 간 설정을 전송하는 데 사용되는 자동 암호화 설정 메시지입니다.\n\n설치를 해독하고 사용하려면 이 메시지를 누르거나 클릭하십시오.";
@@ -822,13 +813,17 @@
 "remove_desktop" = "삭제";
 "save_desktop" = "저장";
 "name_desktop" = "이름";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "자동 암호화 키 전송";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "자동 암호화 설치 메시지는 사용자의 설정을 다른 자동 암호화 호환 앱과 안전하게 공유합니다. 설정은 여기에 표시된 설정 코드로 암호화되며 다른 장치에 입력해야 합니다.";
 "select_group_image_desktop" = "그룹 이미지 선택";
 "imex_progress_title_desktop" = "백업 진행률";
 "export_backup_desktop" = "백업 내보내기";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "키가 사용자 자신에게 전송되었습니다. 다른 장치로 전환하고 설정 메시지를 엽니다. 설정 코드를 입력하라는 메시지가 표시됩니다. 다음 숫자를 입력합니다.";
 "autocrypt_correct_desktop" = "자동 암호화 설정이 전송되었습니다.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "잘못된 설정 코드입니다. 다시 시도하십시오.";
 "create_chat_error_desktop" = "대화를 만들 수 없습니다.";
 "forget_login_confirmation_desktop" = "이 로그인을 삭제하시겠습니까? 모든 설정, 연락처, 채팅, 메시지 및 미디어를 포함한 모든 것이 삭제됩니다. 이 작업은 취소할 수 없습니다.";

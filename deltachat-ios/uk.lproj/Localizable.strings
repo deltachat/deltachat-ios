@@ -27,10 +27,13 @@
 "emoji" = "Емодзі";
 "attachment" = "Вкладення";
 "back" = "Назад";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "Підтверджено";
 "close" = "Закрити";
 "close_window" = "Закрити вікно";
 "forward" = "Переслати";
+"create" = "Створити";
+"later" = "Пізніше";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Відправити знову";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -47,7 +50,6 @@
 "main_menu" = "Головне меню";
 "start_chat" = "Почати розмову";
 "show_full_message" = "Показати повне повідомлення...";
-"show_full_message_in_browser" = "Показати повне повідомлення у браузері...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Позначити все як прочитане";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -110,6 +112,9 @@
 "gif" = "GIF";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Стікер";
+"add_to_sticker_collection" = "Додати до колекції стікерів";
+"add_stickers_instructions" = "Аби додати стікери, торкніться \"Відкрити директорію наклейок\", створіть субдерикторію для вашого стікерпаку та перетягніть туди зображення і файли стікерів";
+"open_sticker_folder" = "Відкрити директорію наклейок";
 "images" = "Зображення";
 "audio" = "Аудіо";
 "voice_message" = "Голосове повідомлення";
@@ -120,7 +125,6 @@
 "video" = "Відео";
 "documents" = "Документи";
 "contact" = "Контакт";
-"verified_contact" = "Перевірений контакт";
 "camera" = "Камера";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Захопити";
@@ -136,7 +140,6 @@
 "webxdc_app" = "Застосунок";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Застосунки";
-"files_and_webxdx_apps" = "Файли і застосунки";
 "unknown" = "Невідомо";
 
 "green" = "Зелений";
@@ -162,14 +165,14 @@
 "menu_new_contact" = "Новий контакт";
 "menu_new_chat" = "Новий чат";
 "menu_new_group" = "Нова група";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Нова група або тема";
-"menu_new_verified_group" = "Нова перевірена група";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Список трансляцій";
 "broadcast_lists" = "Списки трансляцій";
 "new_broadcast_list" = "Новий Список трансляцій";
 "add_recipients" = "Додати одержувачів";
+"edit_broadcast_list" = "Редагувати список трансляцій";
+"broadcast_list_name" = "Назва списку трансляцій";
+"please_enter_broadcast_list_name" = "Будь-ласка введіть назву для списку трансляцій.";
 "menu_send" = "Відправити";
 "menu_toggle_keyboard" = "Увімкнути емодзі-клавіатуру";
 "menu_edit_group" = "Редагувати групу";
@@ -468,7 +471,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Чат через електронну пошту.";
 "scan_invitation_code" = "Сканувати код запрошення";
-"welcome_intro1_message" = "Мессенджер з найширшою аудиторією у світі. Безкоштовний і незалежний.";
 "login_title" = "Увійти";
 "login_header" = "Увійдіть до свого облікового запису електронної пошти";
 "login_explain" = "Увійти з наявним обліковим записом електронної пошти";
@@ -493,8 +495,6 @@
 "login_socks5_port" = "Порт SOCKS5";
 "login_socks5_user" = "Ім\'я користувача SOCKS5";
 "login_socks5_password" = "Пароль SOCKS5";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Перевірка %1$@";
 "login_info_oauth2_title" = "Продовжити спрощене налаштування?";
 "login_info_oauth2_text" = "Введена адреса електронної пошти підтримує спрощене налаштування (OAuth2).\n\nНа наступному кроці дозвольте, будь ласка, Delta Chat виступати у якості Вашого додатку для чату за допомогою електронної пошти.\n\nУ Delta Chat немає серверів, Ваші дані залишаються на Вашому пристрої!";
 "login_certificate_checks" = "Перевірки сертифікатів";
@@ -691,7 +691,7 @@
 "autocrypt_send_asm_title" = "Надіслати повідомлення з параметрами Autocrypt";
 "autocrypt_send_asm_explain_before" = "«Повідомлення з параметрами Autocrypt» слугує для безпечної передачі параметрів наскрізного шифрування між власними додатками для роботи з електронною поштою, що підтримують протокол Autocrypt.\n\nЦі параметри шифруються з використанням спеціального інсталяційного коду, що показаний тут і повинен бути введений у налаштовуємому додатку.";
 "autocrypt_send_asm_button" = "Надіслати повідомлення з параметрами Autocrypt";
-"autocrypt_send_asm_explain_after" = "Параметри шифрування були Вам надіслані. Відкрийте інсталяційне повідомлення у налаштовуємій програмі, після чого вона запросить інсталяційний код. Введіть наступний код:\n\n%1$@\n\nПісля завершення налаштування програма зможе використовувати Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Параметри шифрування були Вам надіслані. Відкрийте інсталяційне повідомлення у налаштовуємій програмі, після чого вона запросить інсталяційний код. Введіть наступний код.\n\nПісля завершення налаштування програма зможе використовувати Autocrypt.";
 "autocrypt_prefer_e2ee" = "Віддавати перевагу наскрізному шифруванню";
 "autocrypt_asm_subject" = "Повідомлення з параметрами Autocrypt";
 "autocrypt_asm_general_body" = "Це повідомлення з параметрами Autocrypt, що слугує для передачі параметрів наскрізного шифрування між пристроями.\n\nДля розшифрування параметрів відкрийте це повідомлення у додатку, що підтримує Autocrypt і введіть інсталяційний код, показаний на початковому пристрої.";
@@ -826,7 +826,7 @@
 "secure_join_replies" = "%1$@ відповіли, очікуємо на додавання до групи…";
 "contact_verified" = "%1$@ підтверджений(-а)";
 "contact_not_verified" = "Неможливо підтвердити %1$@";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Підтверджено %1$@";
 "verified_by_you" = "Підтверджено вами";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
@@ -905,13 +905,17 @@
 "remove_desktop" = "Видалити";
 "save_desktop" = "Зберегти";
 "name_desktop" = "Ім\'я";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Передавання ключів Autocrypt";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Повідомлення з параметрами Autocrypt слугує для безпечного передавання параметрів наскрізного шифрування між власними додатками для роботи з електронною поштою, що підтримують протокол Autocrypt. Ці параметри шифруються з використанням спеціального інсталяційного коду, що показаний тут і повинен бути введений у налаштовуємому додатку.";
 "select_group_image_desktop" = "Вибрати зображення групи";
 "imex_progress_title_desktop" = "Прогрес резервного копіювання";
 "export_backup_desktop" = "Експорт резервної копії";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Ваш ключ було надіслано до вас. Перейдіть на інший пристрій та відкрийте установче повідомлення. Вас мають спитати установчий код. Введіть наступні цифри:";
 "autocrypt_correct_desktop" = "Налаштування Autocrypt успішно передані!";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Невірний інсталяційний код. Спробуйте ввести його повторно.";
 "create_chat_error_desktop" = "Не вдалося створити чат.";
 "forget_login_confirmation_desktop" = "Видалити цей обліковий запис? При цьому будуть видалені всі дані, включно з параметрами наскрізного шифрування, списками контактів, чатами, повідомленнями та медіафайлами. Цю дію не можна буде скасувати.";

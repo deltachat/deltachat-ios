@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Прикачен файл";
 "back" = "Назад";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "Проверен";
 "close" = "Затваряне";
 "forward" = "Напред";
@@ -46,7 +47,6 @@
 "main_menu" = "Основно меню";
 "start_chat" = "Започване на чат";
 "show_full_message" = "Показване на пълното съобщение...";
-"show_full_message_in_browser" = "Показване на пълното съобщение в браузър...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Маркиране на всички като прочетени";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -119,7 +119,6 @@
 "video" = "Видео";
 "documents" = "Документи";
 "contact" = "Контакт";
-"verified_contact" = "Проверен контакт";
 "camera" = "Камера";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Заснемане";
@@ -135,7 +134,6 @@
 "webxdc_app" = "Приложение";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Приложения";
-"files_and_webxdx_apps" = "Файлове и приложения";
 "unknown" = "Непознат";
 
 "green" = "Зелено";
@@ -161,9 +159,6 @@
 "menu_new_contact" = "Нов контакт";
 "menu_new_chat" = "Нов чат";
 "menu_new_group" = "Нова група";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Нова група или тема";
-"menu_new_verified_group" = "Нова проверена група";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Списък за разпространение";
 "broadcast_lists" = "Списъци за разпространение";
@@ -461,7 +456,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Чат през email.";
 "scan_invitation_code" = "Сканиране на код за покана";
-"welcome_intro1_message" = "Приложението за обмен на съобщения с най-широка публика в света. Свободно и независимо.";
 "login_title" = "Влизане";
 "login_header" = "Влизане във Вашия акаунт за електронна поща";
 "login_explain" = "Влизане със съществуващ акаунт за електронна поща";
@@ -486,8 +480,6 @@
 "login_socks5_port" = "SOCKS5 порт";
 "login_socks5_user" = "SOCKS5 потребител";
 "login_socks5_password" = "SOCKS5 парола";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "%1$@ се проверява";
 "login_info_oauth2_title" = "Да се продължи ли с опростената настройка?";
 "login_info_oauth2_text" = "Въведеният адрес за електронна поща поддържа опростена настройка (OAuth 2.0).\n\nНа следващата стъпка, моля позволете на Delta Chat да действа в качеството си на избраното от Вас приложение за чат върху електронна поща.\n\nDelta Chat няма сървъри, Вашите данни стоят на Вашето устройство.";
 "login_certificate_checks" = "Проверки на сертификатите";
@@ -679,7 +671,7 @@
 "autocrypt_send_asm_title" = "Изпращане на съобщение за настройка на Autocrypt";
 "autocrypt_send_asm_explain_before" = "Съобщението за настройка на Autocrypt споделя по сигурен начин Вашата настройка за криптиране \"от край до край\" с други съвместими с Autorcypt приложения.\n\nНастройката се криптира с код, който се показва тук и трябва да бъде въведен на другото устройство.";
 "autocrypt_send_asm_button" = "Изпращане на съобщението за настройка на Autocrypt";
-"autocrypt_send_asm_explain_after" = "Изпратихте Вашата настройка до себе си. Отворете съобщението за настройка в другото устройство. Би трябвало да Ви бъде поискан код за настройка. Въведете следните цифри:\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "Изпратихте Вашата настройка до себе си. Отворете съобщението за настройка в другото устройство. Би трябвало да Ви бъде поискан код за настройка. Въведете следните цифри:";
 "autocrypt_prefer_e2ee" = "Да се предпочита криптиране \"от край до край\"";
 "autocrypt_asm_subject" = "Съобщение за настройка на Autocrypt";
 "autocrypt_asm_general_body" = "Това е съобщението за настройка на Autocrypt, чрез което се прехвърля Вашата настройка за криптиране \"от край до край\" между различни клиенти.\n\nЗа да декриптирате и използвате Вашата настройка, отворете съобщението в клиент, съвместим с Autocrypt, и въведете кода за настройка, представен на генериращото устройство.";
@@ -814,7 +806,7 @@
 "secure_join_replies" = "%1$@ отговори, изчаква се да бъдете добавени към групата…";
 "contact_verified" = "%1$@ е проверен.";
 "contact_not_verified" = "Не може да бъде проверен %1$@.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Проверен от%1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Настройката за %1$@ е сменена.";
@@ -889,13 +881,17 @@
 "remove_desktop" = "Премахване";
 "save_desktop" = "Запис";
 "name_desktop" = "Име";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Прехвърляне на ключ на Autocrypt";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Съобщението за настройка на Autocrypt споделя по сигурен начин Вашата настройка за криптиране \"от край до край\" с други приложения, съвместими с Autocrypt. Настройката ще бъде криптирана с код, показан тук, който трябва да бъде въведен на другото устройство.";
 "select_group_image_desktop" = "Изберете изображение за групата";
 "imex_progress_title_desktop" = "Прогрес в създаването на резервно копие";
 "export_backup_desktop" = "Експорт на резервно копие";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Изпратихте Вашия ключ до себе си. Преминете на другото устройство и отворете съобщението за настройка. Би трябвало да Ви бъде поискан код за настройка. Въведете следните цифри:";
 "autocrypt_correct_desktop" = "Найстроката на Autocrypt е прехвърлена.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Неправилен код за настройка. Моля, опитайте отново.";
 "create_chat_error_desktop" = "Неуспешно създаване на чат.";
 "forget_login_confirmation_desktop" = "Да бъде ли изтрита тази регистрация? Всичко ще бъде изтрито, включително Вашата настройка за криптиране \"от край до край\", контакти, чатове, съобщения и медийни файлове. Това действие не може да бъде отменено.";

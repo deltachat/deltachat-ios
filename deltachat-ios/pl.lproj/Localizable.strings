@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Załącznik";
 "back" = "Wróć";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "Zweryfikowano";
 "close" = "Zamknij";
 "close_window" = "Zamknij okno";
@@ -47,7 +48,6 @@
 "main_menu" = "Menu główne";
 "start_chat" = "Rozpocznij czat";
 "show_full_message" = "Pokaż całą wiadomość…";
-"show_full_message_in_browser" = "Pokaż całą wiadomość w przeglądarce…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Wszys. przeczyt.";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -120,7 +120,6 @@
 "video" = "Wideo";
 "documents" = "Dokumenty";
 "contact" = "Kontakt";
-"verified_contact" = "Zweryfikowany kontakt";
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Zrób to";
@@ -136,7 +135,6 @@
 "webxdc_app" = "Prywatna aplikacja";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Prywatne aplikacje";
-"files_and_webxdx_apps" = "Pliki i prywatne aplikacje";
 "unknown" = "Nieznany";
 
 "green" = "Zielony";
@@ -162,9 +160,6 @@
 "menu_new_contact" = "Nowy kontakt";
 "menu_new_chat" = "Nowy czat";
 "menu_new_group" = "Nowa grupa";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Nowa grupa lub temat";
-"menu_new_verified_group" = "Nowa zweryfikowana grupa";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista rozgłoszeniowa";
 "broadcast_lists" = "Lista rozgłoszeniowa";
@@ -467,7 +462,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Rozmawiaj przez e-mail.";
 "scan_invitation_code" = "Zeskanuj kod zaproszenia";
-"welcome_intro1_message" = "Komunikator o największym zasięgu na świecie. Darmowy i bezpieczny.";
 "login_title" = "Zaloguj się";
 "login_header" = "Zaloguj się na swoje konto e-mail";
 "login_explain" = "Zaloguj się przy użyciu istniejącego konta e-mail";
@@ -492,8 +486,6 @@
 "login_socks5_port" = "Port SOCKS5";
 "login_socks5_user" = "Użytkownik SOCKS5";
 "login_socks5_password" = "Hasło SOCKS5";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Sprawdzanie %1$@";
 "login_info_oauth2_title" = "Kontynuuj w uproszczonej konfiguracji?";
 "login_info_oauth2_text" = "Wprowadzony adres e-mail obsługuje uproszczoną konfigurację (OAuth2.0).\n\nW następnym kroku pozwól, aby Delta Chat działał jako czat z aplikacją e-mail.\n\nNie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
 "login_certificate_checks" = "Sprawdzanie certyfikatów";
@@ -690,7 +682,7 @@
 "autocrypt_send_asm_title" = "Wyślij wiadomość konfiguracyjną Autocrypt";
 "autocrypt_send_asm_explain_before" = "Wiadomość konfiguracyjna automatycznego szyfrowania” bezpiecznie udostępnia twoją konfigurację end-to-end innym aplikacjom zgodnym z Autocrypt. Klucz zostanie zaszyfrowany za pomocą wyświetlonego tutaj kodu konfiguracyjnego, który należy wpisać na drugim urządzeniu.";
 "autocrypt_send_asm_button" = "Wyślij wiadomość konfiguracyjną Autocrypt";
-"autocrypt_send_asm_explain_after" = "Klucz został wysłany do ciebie. Przejdź do innego urządzenia i otwórz wiadomość konfiguracyjną. Zostanie wyświetlona prośba o podanie kodu konfiguracyjnego. Wpisz następujące cyfry w podpowiedzi:\n\n%1$@\n\nGdy skończysz, drugie urządzenie będzie gotowe do użycia funkcji automatycznego szyfrowania.";
+"autocrypt_send_asm_explain_after" = "Klucz został wysłany do ciebie. Przejdź do innego urządzenia i otwórz wiadomość konfiguracyjną. Zostanie wyświetlona prośba o podanie kodu konfiguracyjnego. Wpisz następujące cyfry w podpowiedzi.\n\nGdy skończysz, drugie urządzenie będzie gotowe do użycia funkcji automatycznego szyfrowania.";
 "autocrypt_prefer_e2ee" = "Preferuj pełne szyfrowanie";
 "autocrypt_asm_subject" = "Wiadomość konfiguracyjna automatycznego szyfrowania";
 "autocrypt_asm_general_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, otwórz wiadomość w kliencie zgodnym z automatycznym szyfrowaniem i wprowadź kod konfiguracyjny przedstawiony na urządzeniu generującym.";
@@ -825,7 +817,7 @@
 "secure_join_replies" = "Użytkownik %1$@ odpowiedział, czekając na dodanie do grupy…";
 "contact_verified" = "Kontakt %1$@ zweryfikowany.";
 "contact_not_verified" = "Nie można zweryfikować %1$@";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Zweryfikowano przez %1$@";
 "verified_by_you" = "Zweryfikowane przez ciebie";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
@@ -904,13 +896,17 @@
 "remove_desktop" = "Usuń";
 "save_desktop" = "Zapisz";
 "name_desktop" = "Nazwa";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Transfer klucza Autocrypt";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Wiadomość konfiguracyjna automatycznego szyfrowania bezpiecznie udostępnia twoją konfigurację end-to-end innym aplikacjom zgodnym z Autocrypt. Klucz zostanie zaszyfrowany za pomocą wyświetlonego tutaj kodu konfiguracyjnego, który należy wpisać na drugim urządzeniu.";
 "select_group_image_desktop" = "Wybierz obraz grupy";
 "imex_progress_title_desktop" = "Postęp tworzenia kopii zapasowej ";
 "export_backup_desktop" = "Eksport kopii zapasowej";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Twój klucz został wysłany do ciebie. Przełącz się na inne urządzenie i otwórz komunikat konfiguracji. Powinieneś zostać poproszony o kod instalacyjny. Wpisz następujące cyfry w wierszu polecenia. Po zakończeniu Twoje drugie urządzenie będzie gotowe do użycia funkcji Autocrypt.";
 "autocrypt_correct_desktop" = "Pomyślnie przetransferowano konfigurację Autocrypt!";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Nieprawidłowy kod konfiguracji. Spróbuj ponownie.";
 "create_chat_error_desktop" = "Nie można utworzyć czatu.";
 "forget_login_confirmation_desktop" = "Usunąć ten login? Wszystko zostanie usunięte, w tym kompletna konfiguracja, kontakty, czaty, wiadomości i multimedia. Ta akcja jest ostateczna i nie można jej odwrócić.";

@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "附件";
 "back" = "返回";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "已验证";
 "close" = "关闭";
 "close_window" = "关闭窗口";
@@ -49,7 +50,6 @@
 "main_menu" = "主菜单";
 "start_chat" = "开始聊天";
 "show_full_message" = "显示完整消息… ";
-"show_full_message_in_browser" = "在浏览器中显示完整消息…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "将所有标记为已读";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -125,7 +125,6 @@
 "video" = "视频";
 "documents" = "文档";
 "contact" = "联系人";
-"verified_contact" = "已验证的联系人";
 "camera" = "相机";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "捕获";
@@ -141,7 +140,6 @@
 "webxdc_app" = "私人应用";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "私人应用";
-"files_and_webxdx_apps" = "文件和私人应用";
 "unknown" = "未知";
 
 "green" = "绿色";
@@ -167,9 +165,7 @@
 "menu_new_contact" = "新建联系人";
 "menu_new_chat" = "新建聊天";
 "menu_new_group" = "新建群组";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "新建群组或邮件主题";
-"menu_new_verified_group" = "新建已验证群组";
+"clone_chat" = "克隆聊天";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "广播列表";
 "broadcast_lists" = "广播列表";
@@ -488,7 +484,6 @@
 // welcome and login
 "welcome_chat_over_email" = "通过电子邮件聊天。";
 "scan_invitation_code" = "扫描邀请码";
-"welcome_intro1_message" = "本通讯软件有着世界上最广泛的受众。自由且自主。";
 "login_title" = "登录";
 "login_header" = "登录您的电子邮件账户";
 "login_explain" = "使用现有电子邮件帐户登录";
@@ -513,8 +508,6 @@
 "login_socks5_port" = "SOCKS5 端口";
 "login_socks5_user" = "SOCKS5 用户名";
 "login_socks5_password" = "SOCKS5 密码";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "正在检查 %1$@";
 "login_info_oauth2_title" = "使用简易设置继续？";
 "login_info_oauth2_text" = "输入的电子邮件地址支持简化设置（OAuth 2.0）。\n\n在下一步中，请允许 Delta Chat 充当您的“通过电子邮件聊天”应用程序。\n\n不存在 Delta Chat 服务器，您的数据保留于您的设备！";
 "login_certificate_checks" = "证书检查";
@@ -718,7 +711,7 @@
 "autocrypt_send_asm_title" = "发送 Autocrypt 设置消息";
 "autocrypt_send_asm_explain_before" = "Autocrypt 设置消息安全地共享您的端到端设置至其他兼容 Autocrypt 的应用程序。\n\n该设置将通过在此显示的、必须在另一台设备上输入的设置码进行加密。";
 "autocrypt_send_asm_button" = "发送 Autocrypt 设置消息";
-"autocrypt_send_asm_explain_after" = "您的设置已发送给您自己。切换到另一台设备并打开该设置消息。 您将被要求输入设置码。 输入以下数字：\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "您的设置已发送给您自己。切换到另一台设备并打开该设置消息。 您将被要求输入设置码。 输入以下数字：";
 "autocrypt_prefer_e2ee" = "优先使用端到端加密";
 "autocrypt_asm_subject" = "Autocrypt 设置消息";
 "autocrypt_asm_general_body" = "这是用于在客户端之间传输端到端设置的 Autocrypt 设置消息。\n\n要解密并使用您的设置，请在兼容 Autocrypt 的客户端中打开本消息，然后输入生成设备上显示的设置码。";
@@ -861,14 +854,12 @@
 "secure_join_replies" = "%1$@ 已回复，等待被加入群组…";
 "contact_verified" = "%1$@ 已验证。";
 "contact_not_verified" = "无法验证 %1$@。";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "验证人 %1$@";
 "verified_by_you" = "由您验证";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ 的加密设置已更改。";
-"verified_group_explain" = "已验证的群组确保端到端加密。只有带绿色验证钩形符号的联系人才能被加群";
 "verified_contact_required_explain" = "要确保端到端加密，你只能将带有略色验证标识的联系人到此群中。\n\n你可以亲自和未验证联系人线下碰面并扫描联系人二维码来验证。";
-"create_verified_group_ask" = "所有成员均有绿色验证钩形符号。\n\n你要创建一个确保端到端加密的群吗？";
 "copy_qr_data_success" = "已复制二维码链接到剪贴板";
 "mailto_dialog_header_select_chat" = "选择要发送消息的聊天";
 // first placeholder is the name of the chat
@@ -947,13 +938,17 @@
 "remove_desktop" = "移除";
 "save_desktop" = "保存";
 "name_desktop" = "名称";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Autocrypt 密钥传输";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt 设置消息安全地共享您的端到端设置至其他兼容 Autocrypt 的应用程序。该设置将通过在此显示的、必须在另一台设备上输入的设置码进行加密。";
 "select_group_image_desktop" = "选择群组图像";
 "imex_progress_title_desktop" = "备份进度";
 "export_backup_desktop" = "导出备份";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "您的密钥已发送给您自己。切换到另一台设备并打开该设置消息。 您将被要求输入设置码。 输入以下数字：";
 "autocrypt_correct_desktop" = "Autocrypt 设置已传输 。";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "不正确的设置码。请重试。";
 "create_chat_error_desktop" = "无法创建聊天。";
 "forget_login_confirmation_desktop" = "删除此登录？ 一切都将被删除，包括您的端到端设置、联系人、聊天、消息及媒体。 此操作无法撤消。";

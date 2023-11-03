@@ -45,7 +45,6 @@
 "main_menu" = "Päävalikko";
 "start_chat" = "Aloita keskustelu";
 "show_full_message" = "Näytä koko viesti...";
-"show_full_message_in_browser" = "Näytä koko viesti selaimessa...";
 // Placeholder text when something is loading
 "loading" = "Ladataan...";
 "hide" = "Piilota";
@@ -110,7 +109,6 @@
 "video" = "Video";
 "documents" = "Asiakirjat";
 "contact" = "Yhteyshenkilö";
-"verified_contact" = "Varmistettu yhteyshenkilö";
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Kuvaa";
@@ -125,7 +123,6 @@
 "webxdc_app" = "Yksityinen sovellus";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Yksityiset sovellukset";
-"files_and_webxdx_apps" = "Tiedostot ja yksityiset sovellukset";
 "unknown" = "Tuntematon";
 
 "green" = "Vihreä";
@@ -151,9 +148,6 @@
 "menu_new_contact" = "Uusi yhteystieto";
 "menu_new_chat" = "Uusi keskustelu";
 "menu_new_group" = "Uusi ryhmä";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Uusi ryhmä tai aihe";
-"menu_new_verified_group" = "Uusi varmistettu ryhmä";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Kuulutuslista";
 "broadcast_lists" = "Kuulutuslistat";
@@ -421,7 +415,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Chattaa sähköpostilla.";
 "scan_invitation_code" = "Skannaa kutsukoodi";
-"welcome_intro1_message" = "Viestisovellus, jolla on maailman laajin yleisö. Ilmainen ja riippumaton.";
 "login_title" = "Kirjaudu sisään";
 "login_header" = "Kirjaudu palvelimellesi";
 "login_explain" = "Kirjaudu olemassa olevalla sähköpostitilillä";
@@ -446,8 +439,6 @@
 "login_socks5_port" = "SOCKS5-portti";
 "login_socks5_user" = "SOCKS5-käyttäjä";
 "login_socks5_password" = "SOCKS5-salasana";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Tarkistetaan %1$@";
 "login_info_oauth2_title" = "Jatka yksinkertaisella asennuksella?";
 "login_info_oauth2_text" = "Annettu sähköpostiosoite tukee yksinkertaista asennusta (OAuth 2.0).\n\nSeuraavaksi sinun täytyy sallia Delta Chatin toiminta Chat over E-mail -sovelluksena.\n\nDelta Chatilla ei ole palvelimia, tietosi pysyvät laitteellasi.";
 "login_certificate_checks" = "Varmennetarkastukset";
@@ -639,7 +630,7 @@
 "autocrypt_send_asm_title" = "Lähetä Autocrypt-asetusviesti";
 "autocrypt_send_asm_explain_before" = "Autocrypt-asetusviesti jakaa turvallisesti päästä-päähän-salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa.\n\nAsetuksen salataan tässä näytettävällä asetuskoodilla, joka on syötettävä toiseen laitteeseen.";
 "autocrypt_send_asm_button" = "Lähetä Autocrypt-asetusviesti";
-"autocrypt_send_asm_explain_after" = "Asetusviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään asennuskoodia. Anna seuraavat numerot:\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "Asetusviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään asennuskoodia. Anna seuraavat numerot:";
 "autocrypt_prefer_e2ee" = "Suosi päästä-päähän-salausta";
 "autocrypt_asm_subject" = "Autocrypt-asetusviesti";
 "autocrypt_asm_general_body" = "Tätä Autocrypt-asetusviestiä käytetään päästä-päähän-salauksen asetusten kopioimiseksi toiselle laitteelle.\n\nSalauksen purkamiseksi ja asetusten käyttöön ottamiseksi, avaa viesti toisella Autocrypt-yhteensopivalla sovelluksella ja anna asennuskoodi laitteelta, jolla koodi luotiin.";
@@ -847,13 +838,17 @@
 "remove_desktop" = "Poista";
 "save_desktop" = "Tallenna";
 "name_desktop" = "Nimi";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Autocrypt-avainten siirto";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt-asetusviesti jakaa turvallisesti päästä-päähän-salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa. Asetukset salataan tässä näytettävällä asetuskoodilla, joka on syötettävä toiseen laitteeseen.";
 "select_group_image_desktop" = "Valitse ryhmän kuva";
 "imex_progress_title_desktop" = "Varmuuskopioinnin tila";
 "export_backup_desktop" = "Vie varmuuskopio";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Asetusviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään asennuskoodia. Anna seuraavat numerot:";
 "autocrypt_correct_desktop" = "Autocrypt-asetukset siirretty.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Virheellinen asennuskoodi. Yritä uudelleen.";
 "create_chat_error_desktop" = "Keskustelua ei voitu luoda.";
 "forget_login_confirmation_desktop" = "Poista tämä kirjautuminen? Kaikki tiedot poistetaan, mukaan lukien päästä-päähän-salauksen asetukset, yhteystiedot, keskustelut, viestit ja media. Tämä toiminto on peruuttamaton.";

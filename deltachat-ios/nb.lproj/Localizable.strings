@@ -77,7 +77,6 @@
 "video" = "Video";
 "documents" = "Dokumenter";
 "contact" = "Kontakt";
-"verified_contact" = "Bekreftet kontakt";
 "camera" = "Kamera";
 "location" = "Posisjon";
 "gallery" = "Galleri";
@@ -107,7 +106,6 @@
 "menu_new_contact" = "Ny kontakt";
 "menu_new_chat" = "Ny chat";
 "menu_new_group" = "Ny gruppe";
-"menu_new_verified_group" = "Ny bekreftet gruppe";
 "menu_send" = "Send";
 "menu_toggle_keyboard" = "Slå på/av emoji-tastatur";
 "menu_edit_group" = "Rediger gruppe";
@@ -311,7 +309,7 @@
 "autocrypt_send_asm_title" = "Igangsett Autocrypt-nøkkeloverføring";
 "autocrypt_send_asm_explain_before" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
 "autocrypt_send_asm_button" = "Igangsett Autocrypt-nøkkeloverføring";
-"autocrypt_send_asm_explain_after" = "Nøkkelen din har blitt sendt til deg selv. Bytt til den andre enheten og åpne oppsettsmeldingen. Du bør bli forespurt om å oppgi en oppsettskode. Skriv in følgende siffer:\n\n%1$@\n\nNår du er ferdig, vil din andre enhet også kunne bruke Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Nøkkelen din har blitt sendt til deg selv. Bytt til den andre enheten og åpne oppsettsmeldingen. Du bør bli forespurt om å oppgi en oppsettskode. Skriv in følgende siffer.\n\nNår du er ferdig, vil din andre enhet også kunne bruke Autocrypt.";
 "autocrypt_prefer_e2ee" = "Foretrekk ende-til-ende -kryptering";
 "autocrypt_asm_subject" = "Autocrypt-nøkkeloverføring";
 "autocrypt_asm_general_body" = "Dette er Autocrypt-oppsettsmeldingen brukt til å overføre nøkkelen din mellom klienter.\n\nFor å dekryptere å bruke din nøkkel, åpne meldingen i en Autocrypt-kompatibel klient og skriv inn oppsettskoden som vises på enheten som genererer den.";
@@ -391,6 +389,8 @@
 "remove_desktop" = "Fjerne";
 "save_desktop" = "Lagre";
 "name_desktop" = "Navn";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Autocrypt-nøkkeloverføring";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
 "export_backup_desktop" = "Eksporter sikkerhetskopi";

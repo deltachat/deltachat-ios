@@ -83,7 +83,6 @@
 "video" = "Vìdeu";
 "documents" = "Documentos editàbiles";
 "contact" = "Cuntatu";
-"verified_contact" = "Cuntatu verificadu";
 "camera" = "Fotocàmera";
 "location" = "Positzione";
 "gallery" = "Galleria";
@@ -115,7 +114,6 @@
 "menu_new_contact" = "Cuntatu nou";
 "menu_new_chat" = "Tzarrada noa";
 "menu_new_group" = "Grupu nou";
-"menu_new_verified_group" = "Grupu verificadu nou";
 "menu_send" = "Imbiadu";
 "menu_toggle_keyboard" = "Alterna sa tastiera emoji";
 "menu_edit_group" = "Modìfica su grupu";
@@ -274,7 +272,6 @@
 "tab_docs_empty_hint" = "Sos documentos editàbiles, cussos musicales e totu sas àteras castas de documentos cumpartzidos in custa tzarrada ant a èssere ammustrados inoghe.";
 "media_preview" = "Anteprima de su documentu multimediale";
 "send_message" = "Imbia messàgiu";
-"welcome_intro1_message" = "S\'aplicatzione de messagìstica cun prus impreadores in su mundu. Lìbera e indipendente.";
 "login_title" = "Intra";
 "login_header" = "Intra in su servidore tuo";
 "login_explain" = "Intra cun un\'indiritzu de posta eletrònica chi esistat";
@@ -292,8 +289,6 @@
 "login_smtp_port" = "Ghenna SMTP";
 "login_smtp_security" = "Seguresa SMTP";
 "login_auth_method" = "Manera de autenticatzione";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Verifichende %1$@";
 "login_info_oauth2_title" = "Cheres sighire cun s\'impostatzione semplificada?";
 "login_info_oauth2_text" = "S\'indiritzu de posta eletrònica insertadu suportat un\'impostztione semplificada (OAuth 2.0).\n\n In su passu chi sighet, pro praghere, permite a Delta Chat de operare che a aplicatzione de tzarrada pro mèdiu de posta eletrònica.\n\nNon bi sunt serbidores de Delta Chat, abarrat totu in su dispositivu tuo.";
 "login_certificate_checks" = "Verìficas de su tzertificadu";
@@ -446,7 +441,7 @@
 "autocrypt_send_asm_title" = "Imbia unu messàgiu de impostatzione de Autocrypt";
 "autocrypt_send_asm_explain_before" = "Unu \'Messàgiu de configuratzione Autocrypt\' cumpartzit sa configuratzione a nodu terminale (end-to-end) cun àteras aplicatziones cumpatìbiles cun Autocrypt.\n\nSa configuratzione ant a èssere tzifradas cun unu còdighe ammustradu inoghe chi depet èssere insertadu in s\'àteru dispositivu. ";
 "autocrypt_send_asm_button" = "Imbia unu messàgiu de impostatzione de Autocrypt";
-"autocrypt_send_asm_explain_after" = "Ti ses imbiadu sa configuratzione tua. Cola a s\'àteru dispositivu e aberi su messàgiu de configuratzione. Ti diat dèpere èssere pedidu unu còdighe de configuratzione. Inserta custas tzifras:\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "Ti ses imbiadu sa configuratzione tua. Cola a s\'àteru dispositivu e aberi su messàgiu de configuratzione. Ti diat dèpere èssere pedidu unu còdighe de configuratzione. Inserta custas tzifras:";
 "autocrypt_prefer_e2ee" = "Preferi sa tzifradura a nodu terminale (end-to-end)";
 "autocrypt_asm_subject" = "Messàgiu de configuratzione de Autocrypt";
 "write_message_desktop" = "Iscrie unu messàgiu";

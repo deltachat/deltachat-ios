@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Lampiran";
 "back" = "Kembali";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "Diverifikasi";
 "close" = "Tutup";
 "close_window" = "Tutup Jendela";
@@ -47,7 +48,6 @@
 "main_menu" = "Menu utama";
 "start_chat" = "Mulai obrolan";
 "show_full_message" = "Tampilkan semua pesan...";
-"show_full_message_in_browser" = "Tampilkan semua pesan di browser...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Tandai Semua sebagai Telah Dibaca";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -117,7 +117,6 @@
 "video" = "Video";
 "documents" = "Dokumen";
 "contact" = "Kontak";
-"verified_contact" = "Kontak terverifikasi";
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Tangkap";
@@ -133,7 +132,6 @@
 "webxdc_app" = "Aplikasi";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Aplikasi";
-"files_and_webxdx_apps" = "Berkas dan Aplikasi";
 "unknown" = "Tak dikenal";
 
 "green" = "Hijau";
@@ -159,9 +157,6 @@
 "menu_new_contact" = "Kontak baru";
 "menu_new_chat" = "Obrolan baru";
 "menu_new_group" = "Grup baru";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Kelompok atau Subjek Baru";
-"menu_new_verified_group" = "Grup baru terverifikasi";
 "add_recipients" = "Tambahkan Penerima";
 "menu_send" = "Terkirim";
 "menu_toggle_keyboard" = "Tekan tombol emoji keyboard";
@@ -341,7 +336,6 @@
 "tab_docs_empty_hint" = "Dokumen, musik dan berkas yang dibagikan di obrolan ini akan ditampilkan disini.";
 "media_preview" = "Tampilan media";
 "send_message" = "Kirim pesan";
-"welcome_intro1_message" = "Percakapan dengan pemirsa terluas di dunia. Gratis dan independen.";
 "login_title" = "Masuk";
 "login_header" = "Masuk ke server Anda";
 "login_explain" = "Masuk dengan akun surel yang ada";
@@ -359,8 +353,6 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "Keamanan SMTP";
 "login_auth_method" = "Metode otorisasi";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Memeriksa %1$@";
 "login_info_oauth2_title" = "Lanjutkan dengan pengaturan yang disederhanakan?";
 "login_info_oauth2_text" = "Bantuan untuk alamat surel yang telah dimasukkan adalah pengaturan yang disederhanakan (OAuth 2.0).\n\nPada langkah selanjutnya, izinkan Delta Chat sebagai Obrolan Anda pada aplikasi Surel.\n\nTidak ada server Delta Chat, obrolan Anda tetap di perangkat Anda.";
 "login_certificate_checks" = "Cek sertifikat";
@@ -504,7 +496,7 @@
 "autocrypt_send_asm_title" = "Kirim Pengaturan Pesan Autocrypt";
 "autocrypt_send_asm_explain_before" = "Pengaturan Pesan Autocrypt membagi pengaturan ujung ke ujung Anda secara aman dengan aplikasi Autocrypt-compliant lain.\n\nPengaturan ini akan dienkripsi oleh kode pengaturan yang ditampilkan disini dan harus diketik di perangkat lainnya.";
 "autocrypt_send_asm_button" = "Kirim Pengaturan Pesan Autocrypt";
-"autocrypt_send_asm_explain_after" = "Pengaturan Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "Pengaturan Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
 "autocrypt_prefer_e2ee" = "Lebih baik enkripsi ujung ke ujung";
 "autocrypt_asm_subject" = "Pengaturan Pesan Autocrypt";
 "autocrypt_asm_general_body" = "Inilah Autocrypt Setup Message yang digunakan utuk mentransfer pengaturan ujung ke ujung Anda antar pelanggan.\n\nUntuk membuka enkirpsi dan menggunakan pengaturan Anda, bukan pesan di Autocrypt-compliant pelanggan dan masukkan kode pengaturan yang ditampikan untuk perangkat terkait.";
@@ -623,11 +615,15 @@
 "remove_desktop" = "Menghapus";
 "save_desktop" = "Menyimpan";
 "name_desktop" = "Nama";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Transfer kunci Autocrypt";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Pengaturan Pesan Autocrypt secara aman membagikan pengaturan ujung ke ujung Anda dengan aplikasi lain yang sesuai dengan Autocrypt. Pengaturan akan dienkripsi dengan kode pengaturan yang ditampilkan di sini dan harus diketik di perangkat lain.";
 "select_group_image_desktop" = "Pilih gambar grup";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Kunci Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
 "autocrypt_correct_desktop" = "Pengaturan Autocrypt ditransfer.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Kode pengaturan salah. Coba lagi.";
 "create_chat_error_desktop" = "Tidak dapat membuat obrolan.";
 "forget_login_confirmation_desktop" = "Hapus login ini? Semuanya akan dihapus, termasuk pengaturan ujung ke ujung, kontak, obrolan, pesan dan media. Kalau diklik tidak bisa balik lagi.";

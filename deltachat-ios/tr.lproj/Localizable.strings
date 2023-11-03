@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "İlişik";
 "back" = "Geri";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "Doğrulandı";
 "close" = "Kapat";
 "close_window" = "Pencereyi Kapat";
@@ -47,7 +48,6 @@
 "main_menu" = "Ana Menü";
 "start_chat" = "Sohbet Başlat";
 "show_full_message" = "Tam İletiyi Göster…";
-"show_full_message_in_browser" = "Tam İletiyi Tarayıcıda Göster…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Tümünü Okundu Olarak İmle";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -120,7 +120,6 @@
 "video" = "Video";
 "documents" = "Belgeler";
 "contact" = "Kişi";
-"verified_contact" = "Doğrulanan Kişi";
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Yakala";
@@ -136,7 +135,6 @@
 "webxdc_app" = "Uygulama";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Uygulamalar";
-"files_and_webxdx_apps" = "Dosyalar ve Uygulamalar";
 "unknown" = "Bilinmeyen";
 
 "green" = "Yeşil";
@@ -162,9 +160,6 @@
 "menu_new_contact" = "Yeni Kişi";
 "menu_new_chat" = "Yeni Sohbet";
 "menu_new_group" = "Yeni Öbek";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Yeni Öbek ya da Konu";
-"menu_new_verified_group" = "Yeni Doğrulanan Öbek";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Yayın Listesi";
 "broadcast_lists" = "Yayın Listeleri";
@@ -468,7 +463,6 @@
 // welcome and login
 "welcome_chat_over_email" = "E-Posta Üzerinden Sohbet.";
 "scan_invitation_code" = "Çağrı Kodunu Tara";
-"welcome_intro1_message" = "Dünyanın en geniş kitleli ulağı. Özgür ve bağımsız.";
 "login_title" = "Giriş Yap";
 "login_header" = "E-Posta Hesabınıza Giriş Yapın";
 "login_explain" = "Varolan bir e-posta hesabıyla giriş yapın";
@@ -493,8 +487,6 @@
 "login_socks5_port" = "SOCKS5 Bağlantı Noktası";
 "login_socks5_user" = "SOCKS5 Kullanıcısı";
 "login_socks5_password" = "SOCKS5 Parolası";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "%1$@ denetleniyor";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
 "login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta Üzerinden Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
 "login_certificate_checks" = "Sertifika Denetimleri";
@@ -691,7 +683,7 @@
 "autocrypt_send_asm_title" = "Autocrypt Ayarlama İletisi Gönder";
 "autocrypt_send_asm_explain_before" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır.\n\nAyarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
 "autocrypt_send_asm_button" = "Autocrypt Ayarlama İletisi Gönder";
-"autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
 "autocrypt_prefer_e2ee" = "Uçtan Uca Şifrelemeyi Yeğle";
 "autocrypt_asm_subject" = "Autocrypt Ayarlama İletisi";
 "autocrypt_asm_general_body" = "Bu, uçtan uca ayarlamanızı istemciler arasında aktarmak için kullanılan Autocrypt Ayarlama İletisi\'dir.\n\nŞifreyi çözmek ve ayarlamanızı kullanmak için iletiyi Autocrypt uyumlu bir istemcide açın ve oluşturan aygıtta sunulan ayarlama kodunu girin.";
@@ -834,12 +826,11 @@
 "secure_join_replies" = "%1$@ yanıtladı; öbeğe eklenmesi bekleniyor…";
 "contact_verified" = "%1$@ doğrulandı.";
 "contact_not_verified" = "%1$@ doğrulanamıyor.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ tarafından doğrulandı";
 "verified_by_you" = "Benim tarafımdan doğrulandı";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
-"verified_group_explain" = "Doğrulanan gruplar uçtan uca şifrelemeyi güvenceler. Onlara yalnızca yeşil bir doğrulama onay kutusu olan kişiler eklenebilir.";
 "verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu öbeğe yalnızca yeşil bir doğrulama imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları doğrulamak için onların QR kodunu tarayabilirsiniz.";
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
@@ -915,13 +906,17 @@
 "remove_desktop" = "Kaldır";
 "save_desktop" = "Kaydet";
 "name_desktop" = "Ad";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Autocrypt anahtar aktarımı";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır. Ayarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
 "select_group_image_desktop" = "Öbek Görseli Seç";
 "imex_progress_title_desktop" = "Yedekleme İlerlemesi";
 "export_backup_desktop" = "Yedeği Dışa Aktar";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Anahtarınız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
 "autocrypt_correct_desktop" = "Autocrypt ayarlaması aktarıldı.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.";
 "create_chat_error_desktop" = "Sohbet oluşturulamadı.";
 "forget_login_confirmation_desktop" = "Bu giriş silinsin mi? Uçtan uca ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak her şey silinecek. Bu eylem geri alınamaz.";

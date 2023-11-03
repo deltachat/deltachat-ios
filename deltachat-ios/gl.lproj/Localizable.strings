@@ -45,7 +45,6 @@
 "main_menu" = "Menú principal";
 "start_chat" = "Inciar chat";
 "show_full_message" = "Mostrar mensaxe completa…";
-"show_full_message_in_browser" = "Mostrar mensaxe completa no navegador…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marcar Todo como lido";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -114,7 +113,6 @@
 "video" = "Vídeo";
 "documents" = "Documentos";
 "contact" = "Contacto";
-"verified_contact" = "Contacto verificado";
 "camera" = "Cámara";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capturar";
@@ -129,7 +127,6 @@
 "webxdc_app" = "App privada";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps privadas";
-"files_and_webxdx_apps" = "Ficheiros e Apps privadas";
 "unknown" = "Descoñecido";
 
 "green" = "Verde";
@@ -155,9 +152,6 @@
 "menu_new_contact" = "Novo contacto";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Novo Grupo ou Asunto";
-"menu_new_verified_group" = "Novo grupo verificado";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista de difusión";
 "broadcast_lists" = "Listas de difusión";
@@ -428,7 +422,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Chat a través de Email.";
 "scan_invitation_code" = "Escanear código de convite";
-"welcome_intro1_message" = "O sistema de conversa con maior audiencia no mundo. Libre e independente.";
 "login_title" = "Acceder";
 "login_header" = "Accede ao teu servidor";
 "login_explain" = "Accede cunha conta de correo existente";
@@ -453,8 +446,6 @@
 "login_socks5_port" = "Porto SOCKS5";
 "login_socks5_user" = "Usuaria SOCKS5";
 "login_socks5_password" = "Contrasinal SOCKS5";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Comprobando %1$@";
 "login_info_oauth2_title" = "Continuar co axuste simplificado?";
 "login_info_oauth2_text" = "O enderezo introducido soporta o axuste simplificado (OAuth 2.0).\n\nNo seguinte paso, permite a Delta Chat actuar como app de Conversa sobre Correo-e.\n\nNon hai servidores Delta Chat, os teus datos permanecen no dispositivo.";
 "login_certificate_checks" = "Comprobacións do certificado";
@@ -646,7 +637,7 @@
 "autocrypt_send_asm_title" = "Enviar Mensaxe de Configuración Autocrypt";
 "autocrypt_send_asm_explain_before" = "Unha Mensaxe de Configuración Autocrypt comparte de xeito seguro o teu cifrado extremo-a-extremo con outras apps compatibles con Autocrypt.\n\nO axuste realízase cifrado e protexido cun código que se debe escribir no outro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar Mensaxe de Configuración Autocrypt";
-"autocrypt_send_asm_explain_after" = "Os axustes envíanse a ti mesma. Vaite ao outro dispositivo e abre a mensaxe de configuración. Debería solicitarche un código. Introduce os seguintes díxitos:\n\n %1$@";
+"autocrypt_send_asm_explain_after" = "Os axustes envíanse a ti mesma. Vaite ao outro dispositivo e abre a mensaxe de configuración. Debería solicitarche un código. Introduce os seguintes díxitos:";
 "autocrypt_prefer_e2ee" = "Preferir cifrado extremo-a-extremo";
 "autocrypt_asm_subject" = "Mensaxe de Configuración Autocrypt";
 "autocrypt_asm_general_body" = "Esta é a Mensaxe de Configuración Autocrypt utilizado para transferir os teus axustes de cifrado de extremo-a-extremo entre clientes.\n\nPara descifrar e utilizar os axustes abre a mensaxe nun cliente compatible con Autocrypt e introduce o código mostrado no dispositivo de orixe.";
@@ -823,13 +814,17 @@
 "remove_desktop" = "Eliminar";
 "save_desktop" = "Gardar";
 "name_desktop" = "Nome";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Transferir chave Autocrypt";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Unha Mensaxe de Configuración Autocrypt comparte de xeito seguro o teu cifrado extremo-a-extremo con outras apps compatibles con Autocrypt. O axuste cífrase cun código seguro que se mostra aquí e debes escribir no outro dispositivo.";
 "select_group_image_desktop" = "Escoller imaxe do grupo";
 "imex_progress_title_desktop" = "Progreso do respaldo";
 "export_backup_desktop" = "Exportar respaldo";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Enviaches a chave a ti mesma. Vaite ao outro dispositivo e abre a mensaxe de Configuración. Pedirache o código de configuración. Introduce os seguintes díxitos:";
 "autocrypt_correct_desktop" = "Axuste Autocrypt transferido.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Código incorrecto. Inténtao outra vez.";
 "create_chat_error_desktop" = "Non se puido crear a conversa.";
 "forget_login_confirmation_desktop" = "Eliminar esta conexión? Borrarase todo, incluíndo os axustes de cifrado, contactos, conversas, mensaxes e ficheiros de medios. Esta acción non ten volta atrás.";

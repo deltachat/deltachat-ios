@@ -45,7 +45,6 @@
 "main_menu" = "Menú principal";
 "start_chat" = "Inicia un xat";
 "show_full_message" = "Mostra el missatge sencer...";
-"show_full_message_in_browser" = "Mostra el missatge sencer al navegador...";
 // Placeholder text when something is loading
 "loading" = "Carregant...";
 "hide" = "Amaga";
@@ -110,7 +109,6 @@
 "video" = "Vídeo";
 "documents" = "Documents";
 "contact" = "Contacte";
-"verified_contact" = "Contacte verificat";
 "camera" = "Càmera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Captura";
@@ -146,9 +144,6 @@
 "menu_new_contact" = "Contacte nou";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Grup nou";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Grup o Tema nou";
-"menu_new_verified_group" = "Nou grup verificat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Llista de difusió";
 "broadcast_lists" = "Llistes de difusió";
@@ -390,7 +385,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Xateja via Email";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
-"welcome_intro1_message" = "El programa de missatgeria amb més usuaris del món. Gratuït i independent.";
 "login_title" = "Identifiqueu-vos";
 "login_header" = "Identifiqueu-vos al vostre servidor";
 "login_subheader" = "Als proveïdors de mail coneguts els paràmetres es configuren automàticament. De vegades l\'IMAP s\'ha d\'activar a la interfície web. Consulta el teu proveïdor de correu electrònic o a un amic perquè t\'ajudi. ";
@@ -506,7 +500,7 @@
 "autocrypt_send_asm_title" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \"missatge de configuració Autocrypt\" comparteix de forma segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles amb Autocrypt.\n\nLa configuració es xifrarà amb un codi de configuració que es mostrarà aquí i que haureu d\'escriure a l’altre dispositiu.";
 "autocrypt_send_asm_button" = "Envia el missatge de configuració Autocrypt";
-"autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\'indicador:\n\n%1$@\n\nUn cop fet, l\'altre dispositiu estarà llest per utilitzar Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\'indicador.\n\nUn cop fet, l\'altre dispositiu estarà llest per utilitzar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Prefereix l\'encriptació d\'extrem a extrem";
 "autocrypt_asm_subject" = "Missatge de configuració Autocrypt";
 "autocrypt_asm_general_body" = "Aquest és el missatge de configuració Autocrypt que s’utilitza per transferir la vostra configuració d\'extrem a extrem entre dispositius.\n\nPer desxifrar i utilitzar aquesta configuració, obriu el missatge en un dispositiu compatible amb Autocript i introduïu el codi de configuració que apareix al dispositiu primari.";
@@ -607,13 +601,17 @@
 "remove_desktop" = "Elimina";
 "save_desktop" = "Desa";
 "name_desktop" = "Nom";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Transfereix la clau d\'Autocrypt";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Un missatge de configuració Autocrypt comparteix de manera segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles. La configuració es xifrarà mitjançant un codi de configuració que es mostrarà aquí i que s\'ha d’escriure a l’altre dispositiu.";
 "select_group_image_desktop" = "Tria una imatge de grup";
 "imex_progress_title_desktop" = "Progrés de còpia de seguretat";
 "export_backup_desktop" = "Exporta la còpia de seguretat";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "La vostra clau us ha estat enviada. Canvieu a l\'altre dispositiu i obriu-hi el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els següents dígits a l\'indicador. Un cop hagueu acabat, l’altre dispositiu estarà llest per utilitzar Autocrypt.";
 "autocrypt_correct_desktop" = "S\'ha transferit correctament la configuració Autocrypt!";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Codi de configuració incorrecte. Siusplau torneu-ho a provar.";
 "create_chat_error_desktop" = "No s\'ha pogut crear el xat.";
 "forget_login_confirmation_desktop" = "Voleu suprimir aquesta sessió? S\'eliminarà tot, incloent-hi la configuració, els contactes, els xats, els missatges i els arxius multimèdia. Aquesta acció és definitiva i no es pot desfer.";

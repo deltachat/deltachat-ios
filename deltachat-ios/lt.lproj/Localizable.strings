@@ -26,7 +26,9 @@
 "attachment" = "Priedas";
 "back" = "Atgal";
 "close" = "Užverti";
+"close_window" = "Užverti langą";
 "forward" = "Persiųsti";
+"later" = "Vėliau";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Siųsti iš naujo";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -41,7 +43,6 @@
 "main_menu" = "Pagrindinis meniu";
 "start_chat" = "Pradėti pokalbį";
 "show_full_message" = "Rodyti visą žinutę…";
-"show_full_message_in_browser" = "Rodyti visą žinutę naršyklėje…";
 // Placeholder text when something is loading
 "loading" = "Įkeliama…";
 "hide" = "Slėpti";
@@ -100,7 +101,6 @@
 "video" = "Vaizdo įrašai";
 "documents" = "Dokumentai";
 "contact" = "Adresatas";
-"verified_contact" = "Patvirtintas adresatas";
 "camera" = "Kamera";
 "switch_camera" = "Perjungti kamerą";
 "toggle_fullscreen" = "Perjungti viso ekrano veikseną";
@@ -113,7 +113,6 @@
 "webxdc_app" = "Privati programėlė";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Privačios programėlės";
-"files_and_webxdx_apps" = "Failai ir privačios programėlės";
 "unknown" = "Nežinoma";
 
 "green" = "Žalia";
@@ -139,7 +138,6 @@
 "menu_new_contact" = "Naujas adresatas";
 "menu_new_chat" = "Naujas pokalbis";
 "menu_new_group" = "Nauja grupė";
-"menu_new_verified_group" = "Nauja patvirtinta grupė";
 "add_recipients" = "Pridėti gavėjus";
 "menu_send" = "Siųsti";
 "menu_toggle_keyboard" = "Perjungti šypsniukų klaviatūrą";
@@ -151,6 +149,8 @@
 "menu_add_attachment" = "Pridėti priedą";
 "menu_leave_group" = "Išeiti iš grupės";
 "menu_delete_chat" = "Ištrinti pokalbį";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Išvalyti pokalbį";
 "ask_delete_named_chat" = "Ar tikrai norite ištrinti „%1$@“?";
 "menu_delete_messages" = "Ištrinti žinutes";
 "delete_contact" = "Ištrinti adresatą";
@@ -328,6 +328,11 @@
 "send_message" = "Siųsti žinutę";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ pasikeitė adresą iš %2$@ į %3$@";
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Pridėti antrąjį įrenginį";
+"multidevice_receiver_title" = "Pridėti kaip antrąjį įrenginį";
+"multidevice_open_settings_on_other_device" = "Pirmajame įrenginyje pereikite į „Nustatymai / Pridėti antrąjį įrenginį“ ir nuskenuokite ten rodomą kodą";
 // Shown beside progress bar, stay short
 "preparing_account" = "Ruošiama paskyra…";
 // Connectivity
@@ -349,8 +354,8 @@
 // Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Žinutės";
 // welcome and login
-"welcome_chat_over_email" = "Pokalbis per el. paštą.";
-"welcome_intro1_message" = "Pokalbių programa su plačiausia auditorija pasaulyje. Nemokama ir nepriklausoma.";
+"welcome_chat_over_email" = "Pokalbiai el. paštu.";
+"scan_invitation_code" = "Skenuoti pakvietimo kodą";
 "login_title" = "Prisijungti";
 "login_header" = "Prisijungti prie savo serverio";
 "login_explain" = "Prisijungti naudojant esamą el. pašto paskyrą";
@@ -375,8 +380,6 @@
 "login_socks5_port" = "SOCKS5 prievadas";
 "login_socks5_user" = "SOCKS5 naudotojas";
 "login_socks5_password" = "SOCKS5 slaptažodis";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Tikrinamas %1$@";
 "login_info_oauth2_title" = "Tęsti, naudojant supaprastintą sąranką?";
 "login_certificate_checks" = "Liudijimų patikrinimai";
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
@@ -546,7 +549,7 @@
 "autocrypt_send_asm_title" = "Siųsti Autocrypt sąrankos žinutę";
 "autocrypt_send_asm_explain_before" = "\"Autocrypt sąrankos žinutė\" saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis.\n\nSąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
-"autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis:\n\n%1$@\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis.\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
 "autocrypt_prefer_e2ee" = "Teikti pirmenybę ištisiniam šifravimui";
 "autocrypt_asm_subject" = "Autocrypt sąrankos žinutė";
 "autocrypt_asm_general_body" = "Tai yra Autocrypt sąrankos žinutė, kuri yra naudojama perduoti jūsų ištisinę sąranką tarp klientų.\n\nNorėdami iššifruoti ir naudoti savo sąranką, atverkite žinutę su Autocrypt suderinamame kliente ir įveskite generuojančiame įrenginyje rodomą sąrankos kodą.";
@@ -624,6 +627,7 @@
 "notify_name_only" = "Tik vardą";
 "notify_no_name_or_message" = "Jokio vardo ar žinutės";
 "notifications_disabled" = "Pranešimai išjungti";
+"new_messages" = "Naujos žinutės";
 // permissions
 "perm_required_title" = "Reikalingas leidimas";
 "perm_continue" = "Tęsti";
@@ -656,7 +660,7 @@
 "global_menu_view_developer_tools_desktop" = "Plėtotojo įrankiai";
 "global_menu_help_desktop" = "Žinynas";
 "global_menu_help_learn_desktop" = "Sužinokite daugiau apie Delta Chat";
-"global_menu_help_contribute_desktop" = "Talkinti Github svetainėje";
+"global_menu_help_contribute_desktop" = "Talkinti „Github“ svetainėje";
 "global_menu_help_report_desktop" = "Pranešti apie klaidą";
 "global_menu_help_about_desktop" = "Apie Delta Chat";
 "global_menu_file_open_desktop" = "Atverti Delta Chat";
@@ -671,13 +675,17 @@
 "remove_desktop" = "Šalinti";
 "save_desktop" = "Išsaugoti";
 "name_desktop" = "Vardas";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Autocrypt rakto perdavimas";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt sąrankos žinutė saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis. Sąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "select_group_image_desktop" = "Pasirinkti grupės paveikslą";
 "imex_progress_title_desktop" = "Atsarginės kopijos eiga";
 "export_backup_desktop" = "Eksportuoti atsarginę kopiją";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Jūsų raktas išsiųstas jums patiems. Persijunkite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti prašoma įvesti sąrankos kodą. Įveskite šiuos skaitmenis:";
 "autocrypt_correct_desktop" = "Autocrypt sąranka sėkmingai perduota!";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Neteisingas sąrankos kodas. Bandykite dar kartą.";
 "create_chat_error_desktop" = "Nepavyko sukurti pokalbio.";
 "forget_login_confirmation_desktop" = "Ištrinti šį prisijungimą? Viskas bus ištrinta, įskaitant jūsų ištisinę sąranką, adresatus, pokalbius, žinutes ir mediją. Šis veiksmas yra galutinis ir negalės būti panaikintas.";

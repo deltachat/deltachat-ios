@@ -43,7 +43,6 @@
 "main_menu" = "メインメニュー";
 "start_chat" = "チャットを開始する";
 "show_full_message" = "メッセージ全体を表示";
-"show_full_message_in_browser" = "ブラウザにフルメッセージを表示";
 // Placeholder text when something is loading
 "loading" = "読み込み中";
 "hide" = "非表示";
@@ -100,7 +99,6 @@
 "video" = "動画";
 "documents" = "文章";
 "contact" = "連絡先";
-"verified_contact" = "確認済みの連絡先";
 "camera" = "カメラ";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "撮影";
@@ -136,7 +134,6 @@
 "menu_new_contact" = "新規連絡先";
 "menu_new_chat" = "新規チャット";
 "menu_new_group" = "新規グループ";
-"menu_new_verified_group" = "新しい検証済みグループ";
 "menu_send" = "送信";
 "menu_toggle_keyboard" = "絵文字キーボードを呼び出す";
 "menu_edit_group" = "グループを編集";
@@ -326,7 +323,6 @@
 "connectivity_updating" = "アップデート中";
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "接続済み";
-"welcome_intro1_message" = "世界で最も大衆的なメッセンジャーです。自由に使えて独立している。";
 "login_title" = "ログイン";
 "login_header" = "自分のメールサーバーにログインする";
 "login_explain" = "既存のメールアカウントにログインする";
@@ -344,8 +340,6 @@
 "login_smtp_port" = "SMTPポート";
 "login_smtp_security" = "SMTP暗号方式";
 "login_auth_method" = "認証方法";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "%1$@が確認中";
 "login_info_oauth2_title" = "簡単セットアップを使用しましょうか？";
 "login_info_oauth2_text" = "入力されたメールアドレスは、簡易セットアップ（OAuth 2.0）に対応しています。次に「メールでチャット」を許可してください。Delta Chatにはサーバーがなく、テーダはデバイスにあります。";
 "login_certificate_checks" = "有効な証明書です";
@@ -643,7 +637,9 @@
 "remove_desktop" = "削除";
 "save_desktop" = "保存";
 "name_desktop" = "名前";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "自動暗号化設定の転送";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "｢自動暗号化設定用メッセージ｣は安全に一対一暗号化設定を対応するアプリケーションとの間に設定します｡　受信側は設定時に表示されるパスコードを入力する必要が有ります｡";
 "select_group_image_desktop" = "グループ画像を選択する";
 "imex_progress_title_desktop" = "バックアップの進行状況";

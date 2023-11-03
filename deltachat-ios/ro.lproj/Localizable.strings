@@ -45,7 +45,6 @@
 "main_menu" = "Meniul Principal";
 "start_chat" = "Începeți chat-ul";
 "show_full_message" = "Afișați mesajul complet...";
-"show_full_message_in_browser" = "Afișați mesajul complet în browser...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marcați toate ca fiind citite";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -116,7 +115,6 @@
 "video" = "Video";
 "documents" = "Documente";
 "contact" = "Contact";
-"verified_contact" = "Contact verificat";
 "camera" = "Cameră";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Captură";
@@ -131,7 +129,6 @@
 "webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "App-uri";
-"files_and_webxdx_apps" = "Fișiere și App-uri";
 "unknown" = "Necunoscut";
 
 "green" = "Verde";
@@ -157,9 +154,6 @@
 "menu_new_contact" = "Contact Nou";
 "menu_new_chat" = "Chat Nou";
 "menu_new_group" = "Grup Nou";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Subiect sau Grup Nou";
-"menu_new_verified_group" = "Noul Grup Verificat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Listă de difuzare";
 "broadcast_lists" = "Liste de difuzare";
@@ -456,7 +450,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Chat prin e-mail.";
 "scan_invitation_code" = "Scanați Codul Invitației";
-"welcome_intro1_message" = "Mesagerul cu cea mai largă audiență din lume. Liber și independent.";
 "login_title" = "Autentificare";
 "login_header" = "Autentificați-vă în contul dumneavoastră de e-mail";
 "login_explain" = "Conectați-vă cu un cont de e-mail existent";
@@ -481,8 +474,6 @@
 "login_socks5_port" = "Portul SOCKS5";
 "login_socks5_user" = "Utilizator SOCKS5";
 "login_socks5_password" = "Parolă SOCKS5";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Verificarea %1$@";
 "login_info_oauth2_title" = "Continuați cu configurația simplificată?";
 "login_info_oauth2_text" = "Adresa de e-mail introdusă suportă o configurare simplificată (OAuth 2.0).\n\nÎn pasul următor, vă rugăm să permiteți ca Delta Chat să acționeze ca aplicație de chat prin e-mail.\n\nNu există servere Delta Chat, datele voastre rămân pe dispozitivul dumneavoastră.";
 "login_certificate_checks" = "Verificări de certificate";

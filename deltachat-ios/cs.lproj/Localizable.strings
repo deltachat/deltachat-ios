@@ -92,7 +92,6 @@
 "video" = "Video";
 "documents" = "Dokumenty";
 "contact" = "Kontakt";
-"verified_contact" = "Ověřený kontakt";
 "camera" = "Kamera";
 "location" = "Poloha";
 "gallery" = "Galerie";
@@ -124,7 +123,6 @@
 "menu_new_contact" = "Nový kontakt";
 "menu_new_chat" = "Nový hovor";
 "menu_new_group" = "Nová skupina";
-"menu_new_verified_group" = "Nová ověřená skupina";
 "menu_send" = "Poslat";
 "menu_toggle_keyboard" = "Přepni na smajlíky";
 "menu_edit_group" = "Uprav skupinu";
@@ -299,7 +297,6 @@
 "tab_docs_empty_hint" = "Documenty, hudba a další soubory sdílené v tomto hovoru budou zobrazeny zde.";
 "media_preview" = "Náhled multimedia";
 "send_message" = "Pošli zprávu";
-"welcome_intro1_message" = "Messenger s nejširší základnou na světě. Svobodný a nezávislý.";
 "login_title" = "Přihlaš se";
 "login_header" = "Přihlaš se na váš server";
 "login_explain" = "Přihlásit se se stávajícím účtem pro e-mail.";
@@ -317,8 +314,6 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP zabezpečení";
 "login_auth_method" = "Metoda autorizace";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Prohlížím %1$@";
 "login_info_oauth2_title" = "Zkus zjednodušené nastavení?";
 "login_info_oauth2_text" = "Zadaný e-mail podporuje zjednodušené nastavení (OAuth 2.0).\n\nV příštím kroku dej prosím Delta Chatu povolení chovat se jako chat přes e-mail. \n\nŽádné servery Delta Chat nemá, tvá data zůstávají na tvém přístroji.";
 "login_certificate_checks" = "Kontroly certifikátu";
@@ -490,7 +485,7 @@
 "autocrypt_send_asm_title" = "Pošli Nastavení Autocryptu";
 "autocrypt_send_asm_explain_before" = "Pomocí Nastavení Autocryptu lze bezpečně sdílet nastavení šifrování této aplikace s jinou, která také používá Autocrypt.\n\nNastavení je zašifrované zobrazeným kódem, který musí být vložen i na druhém zařízení.";
 "autocrypt_send_asm_button" = "Pošli Nastavení Autocryptu";
-"autocrypt_send_asm_explain_after" = "Nastavení se ti odeslalo. Vem si druhé zařízení a otevři v něm zprávu nastavení. Měl by jsi být dotázán na kód. Pak vlož následující čísla:\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "Nastavení se ti odeslalo. Vem si druhé zařízení a otevři v něm zprávu nastavení. Měl by jsi být dotázán na kód. Pak vlož následující čísla:";
 "autocrypt_prefer_e2ee" = "Upřednostňuj end-to-end šifrování";
 "autocrypt_asm_subject" = "Nastavení Autocryptu";
 "autocrypt_asm_general_body" = "Toto je Nastavení Autocryptu, kterým lze přenést nastavení šifrování mezi klienty.\n\nK dešifrování a použití nastavení musíte zprávu otevřít v druhém klientu s Autocryptem a tam zadat kód zobrazený na prvním přístroji.";
@@ -648,13 +643,17 @@
 "remove_desktop" = "Odstranit";
 "save_desktop" = "Uložit";
 "name_desktop" = "Jméno";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Přenos klíče Autocryptu";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Nastavení Autocryptu zabezpečeně sdílí nastavení tvého šifrování s ostatními programy používající Autocrypt. Nastavení bude zašifrováno zobrazeným kódem, který musíš zadat i na tom druhém zařízení.";
 "select_group_image_desktop" = "Vyber obrázek skupiny";
 "imex_progress_title_desktop" = "Stav zálohování";
 "export_backup_desktop" = "Ulož zálohu";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Poslal jsi si svůj klíč. Přejdi k druhému zařízení a otevři zprávu s nastavením. Měla by se ti objevit výzva k zadání kódu. Pak opiš následující číslo:";
 "autocrypt_correct_desktop" = "Nastavení Autocryptu přeneseno.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Nesprávný kód. Zkus to znovu, prosím.";
 "create_chat_error_desktop" = "Hovor nelze vytvořit.";
 "forget_login_confirmation_desktop" = "Smazat toto přihlášení? Vše bude smazáno, včetně nastavení tvého end-to-end šifrování, kontaktů, hovorů, zpráv a multimedií. Tuto akci nelze vrátit zpět.";

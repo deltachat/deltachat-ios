@@ -98,7 +98,6 @@
 "video" = "Video";
 "documents" = "Dokumenter";
 "contact" = "Kontakt";
-"verified_contact" = "Bekræftet kontakt";
 "camera" = "Kamera";
 "switch_camera" = "Skift kamera";
 "location" = "Placering";
@@ -131,7 +130,6 @@
 "menu_new_contact" = "Ny kontakt";
 "menu_new_chat" = "Ny samtale";
 "menu_new_group" = "Ny gruppe";
-"menu_new_verified_group" = "Ny bekræftet gruppe";
 "menu_send" = "Send";
 "menu_toggle_keyboard" = "Skift emoji tastatur";
 "menu_edit_group" = "Rediger gruppe";
@@ -330,7 +328,6 @@
 "part_of_total_used" = "%1$@ af %2$@ brugt";
 
 
-"welcome_intro1_message" = "Budbringeren med verdens bredeste publikum. Fri og uafhængig.";
 "login_title" = "Login";
 "login_header" = "Login til server";
 "login_explain" = "Login med en eksisterende e-mailkonto";
@@ -355,8 +352,6 @@
 "login_socks5_port" = "SOCKS5 Port";
 "login_socks5_user" = "SOCKS5 Brugernavn";
 "login_socks5_password" = "SOCKS5 adgangskode";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Checker %1$@";
 "login_info_oauth2_title" = "Fortsæt med forenklet opsætning?";
 "login_info_oauth2_text" = "Indtastet e-mail adresse understøtter simple opsætning (OAuth2).\n\nTillad i næste trin at Delta Chat agerer som samtale med e-mail program.\n\nDer er ingen Delta Chat servere, data forbliver på enhed.";
 "login_certificate_checks" = "Certifikationstjek";
@@ -529,7 +524,7 @@
 "autocrypt_send_asm_title" = "Send Autocrypt opsætning besked";
 "autocrypt_send_asm_explain_before" = "En \"Autocrypt opsætning besked\" deler sikkert end-to-end opsætning med andre Autocrypt kompatible programmer.\n\nOpsætning er krypteret med en kode som er vist her og skal indtastes på den anden enhed.";
 "autocrypt_send_asm_button" = "Send autocrypt-opsætningsbesked";
-"autocrypt_send_asm_explain_after" = "Opsætning er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt:\n\n%1$@\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Opsætning er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt.\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
 "autocrypt_prefer_e2ee" = "Foretræk end-to-end kryptering";
 "autocrypt_asm_subject" = "Autocrypt opsætningsbesked";
 "autocrypt_asm_general_body" = "Dette er Autocrypt opsætning besked brugt til at overføre ende-til-ende opsætning mellem klienter.\n\nFor at af kryptere og bruge opsætning åben beskeden i en Autocrypt kompatibel klient og indtast opsæt koden vist på den genererende enhed.";
@@ -692,13 +687,17 @@
 "remove_desktop" = "Fjern";
 "save_desktop" = "Gem";
 "name_desktop" = "Navn";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Autocrypt nøgleoverførsel";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "En Autocrypt opsætning beskeddeler sikkert ende-til-ende opsætning med andre Autocrypt kompatible programmer. Opsætninger er krypteret med en opsætning kode som er vist her og skal indtastes på de andre enheder.";
 "select_group_image_desktop" = "Vælg gruppebillede";
 "imex_progress_title_desktop" = "Sikkerhedskopiering fremgang";
 "export_backup_desktop" = "Eksporter sikkerhedskopi";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Nøgle er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der bliver promptet for en opsætning kode.. Indtast følgende cifre i prompten. Når det er afsluttet vil den anden enhed være klar til at bruge Autocrypt.";
 "autocrypt_correct_desktop" = "Autocrypt opsætning overført!";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Forkert opsætningskode. Prøv igen.";
 "create_chat_error_desktop" = "Kunne ikke oprette samtale";
 "forget_login_confirmation_desktop" = "Slet login? Alt vil blive slettet, din end-to-end opsætning, kontakter, samtaler, meddelelser og medier. Denne handling er endelig og kan ikke fortrydes.";

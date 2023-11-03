@@ -45,7 +45,6 @@
 "main_menu" = "Κύριο Μενού";
 "start_chat" = "Ξεκινήστε Συνομιλία";
 "show_full_message" = "Εμφάνιση Πλήρους Μηνύματος";
-"show_full_message_in_browser" = "Εμφάνιση Πλήρους Μηνύματος στο Πρόγραμμα Περιήγησης";
 // Placeholder text when something is loading
 "loading" = "Φόρτωση…";
 "hide" = "Απόκρυψη";
@@ -110,7 +109,6 @@
 "video" = "Βίντεο";
 "documents" = "Αρχεία";
 "contact" = "Επαφή";
-"verified_contact" = "Επαληθευμένη Επαφή";
 "camera" = "Κάμερα";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Λήψη";
@@ -125,7 +123,6 @@
 "webxdc_app" = "Ιδιωτική Εφαρμογή";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Ιδιωτικές Εφαρμογές";
-"files_and_webxdx_apps" = "Αρχεία και Ιδιωτικές Εφαρμογές";
 "unknown" = "Άγνωστο";
 
 "green" = "Πράσινο";
@@ -151,9 +148,6 @@
 "menu_new_contact" = "Νέα Επαφή";
 "menu_new_chat" = "Νέα Συνομιλία";
 "menu_new_group" = "Νέα ομάδα";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Νέα Ομάδα ή Θέμα";
-"menu_new_verified_group" = "Νέα Επαληθευμένη Ομάδα";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Λίστα Μέσων";
 "broadcast_lists" = "Λίστες Μέσων";
@@ -421,7 +415,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Συνομιλία μέσω E-Mail.";
 "scan_invitation_code" = "Σάρωση Κωδικού Πρόσκλησης";
-"welcome_intro1_message" = "Ο αγγελιοφόρος με το ευρύτερο κοινό στον κόσμο. Ελεύθερος και ανεξάρτητος.";
 "login_title" = "Σύνδεση";
 "login_header" = "Συνδεθείτε στον λογαριασμό σας E-Mail";
 "login_explain" = "Συνδεθείτε με έναν υπάρχοντα λογαριασμό e-mail";
@@ -446,8 +439,6 @@
 "login_socks5_port" = "Θύρα SOCKS5";
 "login_socks5_user" = "Χρήστης SOCKS5";
 "login_socks5_password" = "Κωδικός SOCKS5";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Έλεγχος %1$@";
 "login_info_oauth2_title" = "Συνέχεια με την απλοποιημένη ρύθμιση;";
 "login_info_oauth2_text" = "Η εισαγόμενη διεύθυνση e-mail υποστηρίζει μια απλοποιημένη ρύθμιση (OAuth 2.0).\n\nΣτο επόμενο βήμα, επιτρέψτε στο Delta Chat να λειτουργεί ως η εφαρμογή Chat μέσω ηλεκτρονικού ταχυδρομείου.\n\nΔεν υπάρχουν διακομιστές Delta Chat, τα δεδομένα σας παραμένει στη συσκευή σας.";
 "login_certificate_checks" = "Έλεγχοι Πιστοποιητικών";
@@ -639,7 +630,7 @@
 "autocrypt_send_asm_title" = "Αποστολή μηνύματος ρύθμισης αυτόματης κρυπτογράφησης";
 "autocrypt_send_asm_explain_before" = "Ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης κοινοποιεί με ασφάλεια τη ρύθμισή σας από άκρο σε άκρο με άλλες εφαρμογές συμβατές με την Αυτόματη κρυπτογράφηση.\n\nΗ ρύθμιση θα κρυπτογραφηθεί από έναν κωδικό ρύθμισης που εμφανίζεται εδώ και θα πρέπει να πληκτρολογηθεί στην άλλη συσκευή.";
 "autocrypt_send_asm_button" = "Αποστολή μηνύματος ρύθμισης αυτόματης κρυπτογράφησης";
-"autocrypt_send_asm_explain_after" = "Η ρύθμισή σας έχει σταλεί στον εαυτό σας. Μεταβείτε στην άλλη συσκευή και ανοίξτε το μήνυμα ρύθμισης. Θα πρέπει να σας ζητηθεί κωδικός ρύθμισης. Εισαγάγετε τα ακόλουθα ψηφία:\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "Η ρύθμισή σας έχει σταλεί στον εαυτό σας. Μεταβείτε στην άλλη συσκευή και ανοίξτε το μήνυμα ρύθμισης. Θα πρέπει να σας ζητηθεί κωδικός ρύθμισης. Εισαγάγετε τα ακόλουθα ψηφία:";
 "autocrypt_prefer_e2ee" = "Προτιμήστε την κρυπτογράφηση από άκρο σε άκρο";
 "autocrypt_asm_subject" = "Μήνυμα ρύθμισης αυτόματης κρυπτογράφησης";
 "autocrypt_asm_general_body" = "Αυτό είναι το μήνυμα ρύθμισης αυτόματης κρυπτογράφησης που χρησιμοποιείται για τη μεταφορά της ρύθμισής σας από άκρο σε άκρο μεταξύ πελατών.\n\nΓια να αποκρυπτογραφήσετε και να χρησιμοποιήσετε τη ρύθμισή σας, ανοίξτε το μήνυμα σε ένα πρόγραμμα-πελάτη συμβατό με Αυτόματη κρυπτογράφηση και εισαγάγετε τον κωδικό ρύθμισης που παρουσιάζεται στη συσκευή δημιουργίας.";
@@ -847,13 +838,17 @@
 "remove_desktop" = "Αφαίρεση";
 "save_desktop" = "Αποθήκευση";
 "name_desktop" = "Όνομα";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Αυτόματη κρυπτογράφηση μεταφοράς κλειδιού";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης μοιράζεται με ασφάλεια τις ρυθμίσεις σας από άκρο σε άκρο με άλλες εφαρμογές συμβατές με την αυτόματη κρυπτογράφηση. Η εγκατάσταση θα κρυπτογραφηθεί από έναν κωδικό ρύθμισης που εμφανίζεται εδώ και πρέπει να πληκτρολογηθεί στην άλλη συσκευή.";
 "select_group_image_desktop" = "Επιλέξτε Εικόνας Ομάδας";
 "imex_progress_title_desktop" = "Δημιουργία Αντιγράφων Ασφαλείας";
 "export_backup_desktop" = "Εξαγωγή Αντιγράφων Ασφαλείας";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Το κλειδί σας έχει σταλεί στον εαυτό σας. Μεταβείτε στην άλλη συσκευή και ανοίξτε το μήνυμα ρύθμισης. Θα πρέπει να σας ζητηθεί κωδικός ρύθμισης. Εισαγάγετε τα ακόλουθα ψηφία:";
 "autocrypt_correct_desktop" = "Η ρύθμιση αυτόματης κρυπτογράφησης μεταφέρθηκε.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Λανθασμένος κωδικός ρύθμισης. Παρακαλώ προσπαθησε ξανά.";
 "create_chat_error_desktop" = "Αδυναμία δημιουργίας συνομιλίας.";
 "forget_login_confirmation_desktop" = "Διαγραφή αυτής της σύνδεσης; Τα πάντα θα διαγραφούν, συμπεριλαμβανομένων των ρυθμίσεων από άκρο σε άκρο, επαφών, συνομιλιών, μηνυμάτων και πολυμέσων. Αυτή η πράξη δε μπορεί να αναιρεθεί.";

@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Anexo";
 "back" = "Voltar";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "Verificado";
 "close" = "Fechar";
 "forward" = "Encaminhar";
@@ -46,7 +47,6 @@
 "main_menu" = "Menu principal";
 "start_chat" = "Começar conversa";
 "show_full_message" = "Mostrar mensagem completa...";
-"show_full_message_in_browser" = "Mostrar mensagem completa no navegador...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marcar tudo como lido";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -119,7 +119,6 @@
 "video" = "Vídeo";
 "documents" = "Documentos";
 "contact" = "Contato";
-"verified_contact" = "Contato verificado";
 "camera" = "Câmera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capturar";
@@ -135,7 +134,6 @@
 "webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps";
-"files_and_webxdx_apps" = "Arquivos e Apps";
 "unknown" = "Desconhecido";
 
 "green" = "Verde";
@@ -161,9 +159,6 @@
 "menu_new_contact" = "Novo contato";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "Novo Grupo ou Assunto";
-"menu_new_verified_group" = "Novo grupo verificado";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista de Transmissão";
 "broadcast_lists" = "Listas de Transmissão";
@@ -466,7 +461,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Bate-papo por E-mail";
 "scan_invitation_code" = "Escanear Código De Convite";
-"welcome_intro1_message" = "O aplicativo com a maior base de usuários do mundo. Livre e independente.";
 "login_title" = "Acessar";
 "login_header" = "Acesse seu servidor";
 "login_explain" = "Acesse com uma conta de email existente";
@@ -491,8 +485,6 @@
 "login_socks5_port" = "Porta SOCKS5";
 "login_socks5_user" = "Usuário SOCKS5";
 "login_socks5_password" = "Senha SOCKS5";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Verificando %1$@";
 "login_info_oauth2_title" = "Prosseguir pela configuração simplificada?";
 "login_info_oauth2_text" = "Seu servidor de e-mail aceita o método de configuração simplificada (OAuth 2.0).\n\n No próximo passo, por favor, permita que o Delta Chat seja seu aplicativo de e-mail.\n\nNão há servidor do Delta Chat. Seus dados ficam no seu aparelho.";
 "login_certificate_checks" = "Verificações de certificado";
@@ -684,7 +676,7 @@
 "autocrypt_send_asm_title" = "Enviar \"mensagem de configuração do Autocrypt\"?";
 "autocrypt_send_asm_explain_before" = "A \"mensagem de configuração do Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis. \n\nA configuração será criptografada por um código de configuração que será exibido aqui e deverá ser digitado no outro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar \"mensagem de configuração do Autocrypt\"?";
-"autocrypt_send_asm_explain_after" = "Sua chave foi enviada para você mesmo. Abra a mensagem de configuração no seu outro dispositivo. Lá será exibido uma solicitação de código. Digite-o lá:\n\n%1$@\n\nDepois disso, seu dispositivo estará pronto para usar o Autocrypt.";
+"autocrypt_send_asm_explain_after" = "Sua chave foi enviada para você mesmo. Abra a mensagem de configuração no seu outro dispositivo. Lá será exibido uma solicitação de código. Digite-o lá.\n\nDepois disso, seu dispositivo estará pronto para usar o Autocrypt.";
 "autocrypt_prefer_e2ee" = "Preferir criptografia ponta a ponta";
 "autocrypt_asm_subject" = "Mensagem de configuração do Autocrypt";
 "autocrypt_asm_general_body" = "Esta é uma \"mensagem de configuração do Autocrypt\" que serve para transferir suas chaves entre dispositivos diferentes.\n\nPara descriptografar sua chave abra esta mensagem num cliente compatível e digite o código exibido no dispositivo de origem.";
@@ -819,7 +811,7 @@
 "secure_join_replies" = "%1$@respondeu, esperando para ser adicionado ao grupo...";
 "contact_verified" = "%1$@ verificado.";
 "contact_not_verified" = "Impossível verificar %1$@";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Verificado por %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "A configuração Autocrypt mudou para %1$@";
@@ -894,13 +886,17 @@
 "remove_desktop" = "Remover";
 "save_desktop" = "Salvar";
 "name_desktop" = "Nome";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Transferência de chaves do Autocrypt";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Uma \"mensagem de configuração do Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis. A configuração será criptografada por um código de configuração que será exibido aqui e deverá ser digitado no outro dispositivo.";
 "select_group_image_desktop" = "Selecionar avatar de grupo";
 "imex_progress_title_desktop" = "Progresso do becape";
 "export_backup_desktop" = "Exportar becape";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Sua chave foi enviada para você mesmo. Abra a mensagem de configuração no seu outro dispositivo. Lá será exibido uma solicitação de código. Digite-o lá. Depois disso, seu dispositivo estará pronto para usar o Autocrypt.";
 "autocrypt_correct_desktop" = "Configuração Autocrypt completada!";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Código errado. Tente de novo.";
 "create_chat_error_desktop" = "Impossível iniciar conversa.";
 "forget_login_confirmation_desktop" = "Apagar este login? Tudo será apagado, incluindo sua configuração de criptografia, contatos, conversas, mensagens e mídia. Esta ação é final e irreversível.";

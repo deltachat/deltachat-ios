@@ -27,6 +27,7 @@
 "emoji" = "Emoji";
 "attachment" = "Attachment";
 "back" = "Back";
+// this string is deprecated; the new wording is "introduced by ..."
 "verified" = "Verified";
 "close" = "Close";
 "close_window" = "Close Window";
@@ -49,7 +50,6 @@
 "main_menu" = "Main Menu";
 "start_chat" = "Start Chat";
 "show_full_message" = "Show Full Message…";
-"show_full_message_in_browser" = "Show Full Message in Browser…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Mark All as Read";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -125,7 +125,6 @@
 "video" = "Video";
 "documents" = "Documents";
 "contact" = "Contact";
-"verified_contact" = "Verified Contact";
 "camera" = "Camera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capture";
@@ -141,7 +140,6 @@
 "webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps";
-"files_and_webxdx_apps" = "Files and Apps";
 "unknown" = "Unknown";
 
 "green" = "Green";
@@ -167,9 +165,7 @@
 "menu_new_contact" = "New Contact";
 "menu_new_chat" = "New Chat";
 "menu_new_group" = "New Group";
-// Use the same wording as "Subject" to help people coming from the e-mail context; eg. "Betreff" in German
-"new_group_or_subject" = "New Group or Subject";
-"menu_new_verified_group" = "New Verified Group";
+"clone_chat" = "Clone Chat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Broadcast List";
 "broadcast_lists" = "Broadcast Lists";
@@ -488,7 +484,6 @@
 // welcome and login
 "welcome_chat_over_email" = "Chat over E-Mail.";
 "scan_invitation_code" = "Scan Invitation Code";
-"welcome_intro1_message" = "The messenger with the broadest audience in the world. Free and independent.";
 "login_title" = "Log In";
 "login_header" = "Log into your E-Mail Account";
 "login_explain" = "Log in with an existing e-mail account";
@@ -513,8 +508,6 @@
 "login_socks5_port" = "SOCKS5 Port";
 "login_socks5_user" = "SOCKS5 User";
 "login_socks5_password" = "SOCKS5 Password";
-// Translators: %1$s will be replaced by an e-mail address
-"login_oauth2_checking_addr" = "Checking %1$@";
 "login_info_oauth2_title" = "Continue with simplified setup?";
 "login_info_oauth2_text" = "The entered e-mail address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to act as your Chat over E-mail app.\n\nThere are no Delta Chat servers, your data stays on your device.";
 "login_certificate_checks" = "Certificate Checks";
@@ -718,7 +711,7 @@
 "autocrypt_send_asm_title" = "Send Autocrypt Setup Message";
 "autocrypt_send_asm_explain_before" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps.\n\nThe setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "autocrypt_send_asm_button" = "Send Autocrypt Setup Message";
-"autocrypt_send_asm_explain_after" = "Your setup has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:\n\n%1$@";
+"autocrypt_send_asm_explain_after" = "Your setup has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
 "autocrypt_prefer_e2ee" = "Prefer End-To-End Encryption";
 "autocrypt_asm_subject" = "Autocrypt Setup Message";
 "autocrypt_asm_general_body" = "This is the Autocrypt Setup Message used to transfer your end-to-end setup between clients.\n\nTo decrypt and use your setup, open the message in an Autocrypt-compliant client and enter the setup code presented on the generating device.";
@@ -837,7 +830,7 @@
 "revive_qr_code" = "Activate QR Code";
 "qrshow_title" = "QR Invite Code";
 "qrshow_x_joining" = "%1$@ joins.";
-"qrshow_x_verified" = "%1$@ verified.";
+"qrshow_x_verified" = "%1$@ introduced.";
 "qrshow_x_has_joined_group" = "%1$@ joined the group.";
 "qrshow_join_group_title" = "QR Invite Code";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
@@ -859,16 +852,14 @@
 "secure_join_started" = "%1$@ invited you to join this group.\n\nWaiting for the device of %2$@ to reply…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ replied, waiting for being added to the group…";
-"contact_verified" = "%1$@ verified.";
-"contact_not_verified" = "Cannot verify %1$@.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that verified the contact shown.
-"verified_by" = "Verified by %1$@";
-"verified_by_you" = "Verified by me";
+"contact_verified" = "%1$@ introduced.";
+"contact_not_verified" = "Cannot establish guaranteed end-to-end encryption with %1$@.";
+// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+"verified_by" = "Introduced by %1$@";
+"verified_by_you" = "Introduced by me";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Changed setup for %1$@.";
-"verified_group_explain" = "Verified groups guarantee end-to-end encryption. Only contacts with a green verification checkmark can be added to them.";
-"verified_contact_required_explain" = "To guarantee end-to-end-encryption, you can only add contacts with a green verification mark to this group.\n\nYou may meet unverified contacts in person and scan their QR Code to verify them.";
-"create_verified_group_ask" = "All members have a green verification checkmark.\n\nDo you want to create a group that guarantees end-to-end-encryption?";
+"verified_contact_required_explain" = "To guarantee end-to-end-encryption, you can only add contacts with a green checkmark to this group.\n\nYou may meet contacts in person and scan their QR Code to introduce them.";
 "copy_qr_data_success" = "Copied QR url to clipboard";
 "mailto_dialog_header_select_chat" = "Select chat to send the message to";
 // first placeholder is the name of the chat
@@ -947,13 +938,17 @@
 "remove_desktop" = "Remove";
 "save_desktop" = "Save";
 "name_desktop" = "Name";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Autocrypt key transfer";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps. The setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "select_group_image_desktop" = "Select Group Image";
 "imex_progress_title_desktop" = "Backup Progress";
 "export_backup_desktop" = "Export Backup";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Your key has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
 "autocrypt_correct_desktop" = "Autocrypt setup transferred.";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Incorrect setup code. Please try again.";
 "create_chat_error_desktop" = "Could not create chat.";
 "forget_login_confirmation_desktop" = "Delete this login? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";

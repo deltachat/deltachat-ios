@@ -73,7 +73,6 @@
 "video" = "Bideoa";
 "documents" = "Dokumentuak";
 "contact" = "Kontaktua";
-"verified_contact" = "Egiaztatutako kontaktua";
 "camera" = "Kamera";
 "location" = "Kokalekua";
 "gallery" = "Galeria";
@@ -101,7 +100,6 @@
 "menu_new_contact" = "Kontaktu berria";
 "menu_new_chat" = "Txat berria";
 "menu_new_group" = "Talde berria";
-"menu_new_verified_group" = "Egiaztatutako talde berria";
 "menu_send" = "Bidali";
 "menu_toggle_keyboard" = "Txandakatu emoji teklatua";
 "menu_edit_group" = "Editatu taldea";
@@ -234,7 +232,6 @@
 "tab_docs_empty_hint" = "Txat honetan partekatutako dokumentuak, musika, eta bestelako fitxategiak agertuko dira hemen";
 "media_preview" = "Multimediaren aurrebista";
 "send_message" = "Bidali mezua";
-"welcome_intro1_message" = "Munduan erabiltzaile gehien dituen mezularitza aplikazioa. Librea eta independentea.";
 "login_title" = "Hasi saioa";
 "login_header" = "Hasi saioa zure zerbitzarian";
 "login_explain" = "Badagoen e-mail kontu batekin saioa hasten";
@@ -383,7 +380,7 @@
 "autocrypt_send_asm_title" = "Bidali Autocrypt ezarpen mezua";
 "autocrypt_send_asm_explain_before" = "\"Autocrypt ezarpen mezua\" batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "autocrypt_send_asm_button" = "Bidali Autocrypt ezarpen mezua";
-"autocrypt_send_asm_explain_after" = "Zure ezarpena zuri bidali zaizu. Aldatu beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu, Idatzi honako zenbaki hauek han:\n\n%1$@\n\nBehin bukatuta, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
+"autocrypt_send_asm_explain_after" = "Zure ezarpena zuri bidali zaizu. Aldatu beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu, Idatzi honako zenbaki hauek han.\n\nBehin bukatuta, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
 "autocrypt_prefer_e2ee" = "Hobetsi muturretik muturrerako zifratzea";
 "autocrypt_asm_subject" = "Autocrypt ezarpen mezua";
 "autocrypt_asm_general_body" = "Hau Autocrypt ezarpen mezua da, zure muturretik muturrerako ezarpena bezeroen artean pasatzeko erabilia.\n\n Zure ezarpena deszifratu eta erabiltzeko, ireki mezua Autocrypt onartzen duen bezero batean eta sartu gailu sortzailean agertutako ezarpen kodea.";
@@ -494,13 +491,17 @@
 "remove_desktop" = "Kendu";
 "save_desktop" = "Gorde";
 "name_desktop" = "Izena";
+// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
 "autocrypt_key_transfer_desktop" = "Autocrypt gakoaren transferentzia";
+// deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt ezarpen mezu batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "select_group_image_desktop" = "Hautatu taldearen irudia";
 "imex_progress_title_desktop" = "Babes-kopia abian";
 "export_backup_desktop" = "Esportatu babes-kopia";
+// deprecated, use autocrypt_send_asm_explain_after instead
 "show_key_transfer_message_desktop" = "Zure gakoa  bidali zaizu. Joan beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu. Idatzi honako zenbaki hauek han. Behin eginda, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
 "autocrypt_correct_desktop" = "Ongi igorri da Autocrypt ezarpena!";
+// deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Ezarpen kode okerra. Saiatu berriro.";
 "create_chat_error_desktop" = "Ezin izan da txata sortu.";
 "forget_login_confirmation_desktop" = "Ezabatu erabiltzaile-izen hau? Dena ezabatuko da, muturretik muturrerako ezarpena, txatak, mezuak eta multimedia barne. Ekintza hau behin betikoa da eta ezin da desegin.";
