@@ -31,7 +31,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var doneButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveContactButtonPressed))
+        let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveContactButtonPressed))
         button.isEnabled = false
         return button
     }()

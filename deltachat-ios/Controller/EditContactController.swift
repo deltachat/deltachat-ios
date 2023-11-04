@@ -23,6 +23,10 @@ class EditContactController: NewContactController {
         model.name = contact.editedName
         model.email = contact.email
 
+        doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveContactButtonPressed))
+        doneButton?.isEnabled = false
+        navigationItem.rightBarButtonItem = doneButton
+
         if contactIsValid() {
             doneButton?.isEnabled = true
         }
