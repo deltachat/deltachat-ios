@@ -3,9 +3,6 @@ import DcCore
 
 class EditContactController: NewContactController {
 
-    // for editing existing contacts (only
-    // the name may be edited, therefore disable
-    // the email field)
     init(dcContext: DcContext, contactIdForUpdate: Int) {
         super.init(dcContext: dcContext)
         title = String.localized("edit_contact")
@@ -17,15 +14,15 @@ class EditContactController: NewContactController {
             nameCell.placeholder = contact.authName
         }
         emailCell.textField.text = contact.email
-        emailCell.textField.isEnabled = false
+        emailCell.textField.isEnabled = false // only contact name can be edited
         emailCell.contentView.alpha = 0.3
 
         model.name = contact.editedName
         model.email = contact.email
 
-        if contactIsValid() {
-            doneButton?.isEnabled = true
-        }
+        doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveContactButtonPressed))
+        doneButton?.isEnabled = contactIsValid()
+        navigationItem.rightBarButtonItem = doneButton
     }
 
     required init?(coder _: NSCoder) {
