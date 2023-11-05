@@ -2,7 +2,6 @@ import UIKit
 import DcCore
 import Intents
 
-// this is also used as ChatDetail for SingleChats
 class ContactDetailViewController: UITableViewController {
     private let viewModel: ContactDetailViewModel
 
@@ -306,7 +305,7 @@ class ContactDetailViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
             }
-            headerCell.setVerified(isVerified: viewModel.contact.isVerified)
+            headerCell.setVerified(isVerified: viewModel.isProtected)
             headerCell.setMuted(isMuted: viewModel.chatIsMuted)
             headerCell.showMuteButton(show: true)
         }
