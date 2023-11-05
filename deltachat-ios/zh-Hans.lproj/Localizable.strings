@@ -907,6 +907,7 @@
 "about_offical_app_desktop" = "这是 Delta Chat 官方桌面应用。";
 "about_licensed_under_desktop" = "本软件在 GNU GPL 版本 3 下获得授权，其源代码可从 GitHub 获得。";
 "welcome_desktop" = "欢迎使用 Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "已知账户";
 "global_menu_preferences_language_desktop" = "语言";
 "global_menu_file_desktop" = "文件";
@@ -934,6 +935,7 @@
 "delete_message_desktop" = "删除消息";
 "more_info_desktop" = "更多信息";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "显示加密信息";
 "remove_desktop" = "移除";
 "save_desktop" = "保存";
@@ -943,6 +945,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt 设置消息安全地共享您的端到端设置至其他兼容 Autocrypt 的应用程序。该设置将通过在此显示的、必须在另一台设备上输入的设置码进行加密。";
 "select_group_image_desktop" = "选择群组图像";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "备份进度";
 "export_backup_desktop" = "导出备份";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -950,6 +953,7 @@
 "autocrypt_correct_desktop" = "Autocrypt 设置已传输 。";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "不正确的设置码。请重试。";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "无法创建聊天。";
 "forget_login_confirmation_desktop" = "删除此登录？ 一切都将被删除，包括您的端到端设置、联系人、聊天、消息及媒体。 此操作无法撤消。";
 "account_info_hover_tooltip_desktop2" = "电子邮件：%1$@\n大小：%2$@\n账户 Id：%3$@";

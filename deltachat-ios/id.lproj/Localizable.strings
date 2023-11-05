@@ -587,6 +587,7 @@
 "about_offical_app_desktop" = "Ini adalah aplikasi resmi Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Perangkat lunak ini berlisensi di bawah GNU GPL versi 3 dan kode sumber tersedia di GitHub.";
 "welcome_desktop" = "Selamat Datang di Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Akun yang dikenal";
 "global_menu_preferences_language_desktop" = "Bahasa";
 "global_menu_file_desktop" = "Berkas";
@@ -611,6 +612,7 @@
 "delete_message_desktop" = "Hapus pesan";
 "more_info_desktop" = "Info lebih lanjut";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Tampilkan info enkripsi";
 "remove_desktop" = "Menghapus";
 "save_desktop" = "Menyimpan";
@@ -625,6 +627,7 @@
 "autocrypt_correct_desktop" = "Pengaturan Autocrypt ditransfer.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Kode pengaturan salah. Coba lagi.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Tidak dapat membuat obrolan.";
 "forget_login_confirmation_desktop" = "Hapus login ini? Semuanya akan dihapus, termasuk pengaturan ujung ke ujung, kontak, obrolan, pesan dan media. Kalau diklik tidak bisa balik lagi.";
 "message_detail_sent_desktop" = "kirim";

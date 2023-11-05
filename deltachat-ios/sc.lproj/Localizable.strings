@@ -447,6 +447,7 @@
 "write_message_desktop" = "Iscrie unu messàgiu";
 "encryption_info_title_desktop" = "Informatziones de tzifradura";
 "more_info_desktop" = "Àteras informatziones";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Ammustra sas informatziones de tzifradura";
 "a11y_encryption_padlock" = "Luchete de tzifradura";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

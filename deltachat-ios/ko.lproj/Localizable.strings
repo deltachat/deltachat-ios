@@ -784,6 +784,7 @@
 "about_offical_app_desktop" = "이것은 Delta Chat 데스크톱 공식 앱입니다.";
 "about_licensed_under_desktop" = "이 소프트웨어는 GNU GPL 버전 3에 따라 라이센스가 부여되며 소스 코드는 GitHub에서 사용할 수 있습니다.";
 "welcome_desktop" = "Delta Chat에 오신 것을 환영합니다.";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "확인된 계정";
 "global_menu_preferences_language_desktop" = "언어";
 "global_menu_file_desktop" = "파일";
@@ -809,6 +810,7 @@
 "write_message_desktop" = "메시지 작성";
 "delete_message_desktop" = "메시지 삭제";
 "more_info_desktop" = "더 많은 정보";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "암호화 정보 표시";
 "remove_desktop" = "삭제";
 "save_desktop" = "저장";
@@ -818,6 +820,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "자동 암호화 설치 메시지는 사용자의 설정을 다른 자동 암호화 호환 앱과 안전하게 공유합니다. 설정은 여기에 표시된 설정 코드로 암호화되며 다른 장치에 입력해야 합니다.";
 "select_group_image_desktop" = "그룹 이미지 선택";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "백업 진행률";
 "export_backup_desktop" = "백업 내보내기";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -825,6 +828,7 @@
 "autocrypt_correct_desktop" = "자동 암호화 설정이 전송되었습니다.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "잘못된 설정 코드입니다. 다시 시도하십시오.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "대화를 만들 수 없습니다.";
 "forget_login_confirmation_desktop" = "이 로그인을 삭제하시겠습니까? 모든 설정, 연락처, 채팅, 메시지 및 미디어를 포함한 모든 것이 삭제됩니다. 이 작업은 취소할 수 없습니다.";
 "account_info_hover_tooltip_desktop2" = "이메일: %1$@\n크기: %2$@\n계정 ID:%3$@";

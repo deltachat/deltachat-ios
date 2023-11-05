@@ -614,6 +614,7 @@
 "about_offical_app_desktop" = "Toto je původní aplikace Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Tento software je pod licencí GNU GPL verze 3 a zdrojový kód je k mání na GitHubu.";
 "welcome_desktop" = "Vítej v Delta Chatu";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Známé účty";
 "global_menu_preferences_language_desktop" = "Jazyk";
 "global_menu_file_desktop" = "Soubor";
@@ -639,6 +640,7 @@
 "delete_message_desktop" = "Vymaž zprávu";
 "more_info_desktop" = "Více podrobností";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Zobraz popis šifrování";
 "remove_desktop" = "Odstranit";
 "save_desktop" = "Uložit";
@@ -648,6 +650,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Nastavení Autocryptu zabezpečeně sdílí nastavení tvého šifrování s ostatními programy používající Autocrypt. Nastavení bude zašifrováno zobrazeným kódem, který musíš zadat i na tom druhém zařízení.";
 "select_group_image_desktop" = "Vyber obrázek skupiny";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Stav zálohování";
 "export_backup_desktop" = "Ulož zálohu";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -655,6 +658,7 @@
 "autocrypt_correct_desktop" = "Nastavení Autocryptu přeneseno.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Nesprávný kód. Zkus to znovu, prosím.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Hovor nelze vytvořit.";
 "forget_login_confirmation_desktop" = "Smazat toto přihlášení? Vše bude smazáno, včetně nastavení tvého end-to-end šifrování, kontaktů, hovorů, zpráv a multimedií. Tuto akci nelze vrátit zpět.";
 "message_detail_sent_desktop" = "odesláno";

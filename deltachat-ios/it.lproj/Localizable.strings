@@ -165,6 +165,7 @@
 "menu_new_contact" = "Nuovo Contatto";
 "menu_new_chat" = "Nuova Chat";
 "menu_new_group" = "Nuovo Gruppo";
+"clone_chat" = "Clona Chat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista Trasmissione";
 "broadcast_lists" = "Liste Trasmissioni";
@@ -906,6 +907,7 @@
 "about_offical_app_desktop" = "Questa è l\'app Desktop Delta Chat ufficiale.";
 "about_licensed_under_desktop" = "Questo software è concesso in licenza con GNU GPL versione 3 e il codice sorgente è disponibile su GitHub.";
 "welcome_desktop" = "Benvenuto in Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Account Conosciuti";
 "global_menu_preferences_language_desktop" = "Lingua";
 "global_menu_file_desktop" = "File";
@@ -933,6 +935,7 @@
 "delete_message_desktop" = "Elimina Messaggio";
 "more_info_desktop" = "Maggiori Informazioni";
 "timestamp_format_m_desktop" = "D MMM";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Mostra Info Cifratura";
 "remove_desktop" = "Rimuovi";
 "save_desktop" = "Salva";
@@ -942,6 +945,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Un Messaggio di Configurazione Autocrypt condivide in modo sicuro la tua configurazione end-to-end con altre applicazioni compatibili con Autocrypt. La configurazione sarà criptata da un codice di configurazione visualizzato qui e deve essere digitato sull\'altro dispositivo.";
 "select_group_image_desktop" = "Seleziona Immagine Gruppo";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Avanzamento Backup";
 "export_backup_desktop" = "Esporta Backup";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -949,6 +953,7 @@
 "autocrypt_correct_desktop" = "Configurazione di Autocrypt trasferita.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Codice di impostazione errato. Si prega di riprovare.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Impossibile creare una chat.";
 "forget_login_confirmation_desktop" = "Eliminare questo accesso? Tutto verrà eliminato, inclusa la configurazione end-to-end, i contatti, le chat, i messaggi e i media. Questa azione non può essere annullata.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nDimensione: %2$@\nAccount Id: %3$@";

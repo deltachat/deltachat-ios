@@ -32,6 +32,8 @@
 "close" = "Kapat";
 "close_window" = "Pencereyi Kapat";
 "forward" = "İlet";
+"create" = "Oluştur";
+"later" = "Daha Sonra";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Yeniden Gönder";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -110,6 +112,9 @@
 "gif" = "GIF";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Çıkartma";
+"add_to_sticker_collection" = "Çıkartma Toplamasına Ekle";
+"add_stickers_instructions" = "Çıkartmalar eklemek için \"Çıkartma Klasörünü Aç\"a dokunun, çıkartma paketiniz için bir alt klasör oluşturun ve görseli ve çıkartma dosyalarını oraya sürükleyin";
+"open_sticker_folder" = "Çıkartma Klasörünü Aç";
 "images" = "Görseller";
 "audio" = "Ses";
 "voice_message" = "Sesli İleti";
@@ -160,11 +165,15 @@
 "menu_new_contact" = "Yeni Kişi";
 "menu_new_chat" = "Yeni Sohbet";
 "menu_new_group" = "Yeni Öbek";
+"clone_chat" = "Sohbeti Çoğalt";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Yayın Listesi";
 "broadcast_lists" = "Yayın Listeleri";
 "new_broadcast_list" = "Yeni Yayın Listesi";
 "add_recipients" = "Alıcılar Ekle";
+"edit_broadcast_list" = "Yayın Listesini Düzenle";
+"broadcast_list_name" = "Yayın Listesi Adı";
+"please_enter_broadcast_list_name" = "Lütfen yayın listesi için bir ad girin.";
 "menu_send" = "Gönder";
 "menu_toggle_keyboard" = "Emoji Klavyesine Geç";
 "menu_edit_group" = "Öbeği Düzenle";
@@ -189,6 +198,7 @@
 "menu_copy_image_to_clipboard" = "Görseli Kopyala";
 "menu_copy_email_to_clipboard" = "E-Postayı Kopyala";
 "paste_from_clipboard" = "Panodan Yapıştır";
+"ask_copy_unopenable_link_to_clipboard" = "\"%1$d\" bağlantısı web tarayıcısında açılamıyor. Bunun yerine bağlantıyı panoya kopyalamak istiyor musunuz?";
 "menu_forward" = "İletiyi İlet";
 "menu_reply" = "İletiye Yanıt Ver";
 "menu_mute" = "Bildirimleri Sessize Al";
@@ -198,6 +208,7 @@
 "menu_all_media" = "Tüm Ortamlar";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Sohbette Göster";
+"show_app_in_chat" = "Uygulamayı Sohbette Göster";
 "menu_share" = "Paylaş";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Engelle";
@@ -209,6 +220,7 @@
 "menu_scroll_to_bottom" = "En Alta Kaydır";
 "menu_scroll_to_top" = "En Üste Kaydır";
 "menu_help" = "Yardım";
+"what_is_webxdc" = "Webxdc nedir?";
 "privacy_policy" = "Gizlilik İlkesi";
 "menu_select_all" = "Tümünü Seç";
 "select_chat" = "Sohbet Seç";
@@ -245,6 +257,8 @@
 "source_code" = "Kaynak Kodu";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Ana Ekrana Ekle";
+"donate" = "Bağış";
+
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
@@ -373,6 +387,8 @@
 
 // search
 "search" = "Ara";
+"search_in_chat" = "Sohbette Ara";
+"search_files" = "Dosyalar Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
 "search_no_result_for_x" = "\"%1$@\" için sonuç bulunamadı";
 
@@ -388,6 +404,7 @@
 "group_self_not_in_group" = "Bu eylemi gerçekleştirmek için öbeğin bir üyesi olmalısınız.";
 "profile_encryption" = "Şifreleme";
 "profile_shared_chats" = "Paylaşılan Sohbetler";
+"related_chats" = "İlgili Sohbetler";
 "tab_contact" = "Kişi";
 "tab_group" = "Öbek";
 "tab_gallery" = "Galeri";
@@ -402,6 +419,10 @@
 "tab_webxdc_empty_hint" = "Bu sohbette paylaşılan uygulamalar burada görünecek.";
 "tab_all_media_empty_hint" = "Herhangi bir sohbette paylaşılan ortamlar burada görünecek.";
 "media_preview" = "Ortam Önizlemesi";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "En Boy Oranı Izgarası";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "Kare Izgara";
 "send_message" = "İleti Gönder";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@, %2$@ adresini %3$@ olarak değiştirdi";
@@ -587,6 +608,10 @@
 "pref_backup" = "Yedekleme";
 "pref_backup_explain" = "Sohbetleri Dış Depolamaya Yedekle";
 "pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardımcı olur.\n\nYedek; tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
+// the placeholder will be replaced by the name of the account's email address
+"pref_backup_export_x" = "%1$@ hesabını dışa aktar";
+// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+"pref_backup_export_all" = "Tüm %1$d hesabı dışa aktar";
 "pref_backup_export_start_button" = "Yedeklemeyi Başlat";
 "pref_backup_written_to_x" = "Yedek \"%1$@\" üzerine başarıyla yazıldı.";
 "pref_managekeys_menu_title" = "Anahtarları Yönet";
@@ -637,6 +662,9 @@
 "profile_image_delete" = "Profil Görselini Sil";
 "pref_show_tray_icon" = "Tepsi Simgesi Göster";
 "pref_edit_profile" = "Profili Düzenle";
+"disable_imap_idle" = "IMAP IDLE\'ı Etkisizleştir";
+"disable_imap_idle_explain" = "Sunucu desteklese bile IMAP IDLE uzantısını kullanmayın. Bu seçeneği etkinleştirmek ileti getirmeyi geciktirecek; yalnızca sınama için etkinleştirin.";
+
 // Emoji picker and categories
 "emoji_search_results" = "Arama Sonuçları";
 "emoji_not_found" = "Emoji bulunamadı";
@@ -802,7 +830,7 @@
 "revive_qr_code" = "QR Kodunu Etkinleştir";
 "qrshow_title" = "QR Çağrı Kodu";
 "qrshow_x_joining" = "%1$@ katılıyor.";
-"qrshow_x_verified" = "%1$@ doğrulandı.";
+"qrshow_x_verified" = "%1$@ tanıtıldı.";
 "qrshow_x_has_joined_group" = "%1$@ öbeğe katıldı.";
 "qrshow_join_group_title" = "QR Çağrı Kodu";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
@@ -824,14 +852,14 @@
 "secure_join_started" = "%1$@ sizi bu öbeğe katılmaya çağırdı.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ yanıtladı; öbeğe eklenmesi bekleniyor…";
-"contact_verified" = "%1$@ doğrulandı.";
-"contact_not_verified" = "%1$@ doğrulanamıyor.";
+"contact_verified" = "%1$@ tanıtıldı.";
+"contact_not_verified" = "%1$@ ile güvenceli uçtan uca şifreleme kurulamıyor.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-"verified_by" = "%1$@ tarafından doğrulandı";
-"verified_by_you" = "Benim tarafımdan doğrulandı";
+"verified_by" = "%1$@ tarafından tanıtıldı";
+"verified_by_you" = "Benim tarafımdan tanıtıldı";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
-"verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu öbeğe yalnızca yeşil bir doğrulama imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları doğrulamak için onların QR kodunu tarayabilirsiniz.";
+"verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu öbeğe yalnızca yeşil bir doğrulama imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
 // first placeholder is the name of the chat
@@ -849,6 +877,10 @@
 "notify_name_only" = "Yalnızca ad";
 "notify_no_name_or_message" = "Ad ya da ileti yok";
 "notifications_disabled" = "Bildirimler etkisizleştirildi";
+"new_messages" = "Yeni iletiler";
+"n_messages_in_m_chats" = "%2$d sohbette %1$d ileti";
+
+
 // permissions
 "perm_required_title" = "İzin gerekli";
 "perm_continue" = "Sürdür";
@@ -875,6 +907,7 @@
 "about_offical_app_desktop" = "Bu, resmî Delta Chat Masaüstü uygulamasıdır.";
 "about_licensed_under_desktop" = "Bu yazılım, GNU GPL sürüm 3 altında lisanslıdır ve kaynak kodu GitHub\'da kullanılabilir.";
 "welcome_desktop" = "Delta Chat\'e hoş geldiniz";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Bilinen Hesaplar";
 "global_menu_preferences_language_desktop" = "Dil";
 "global_menu_file_desktop" = "Dosya";
@@ -902,6 +935,7 @@
 "delete_message_desktop" = "İletiyi Sil";
 "more_info_desktop" = "Daha Fazla Bilgi";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Şifreleme Bilgisini Göster";
 "remove_desktop" = "Kaldır";
 "save_desktop" = "Kaydet";
@@ -911,6 +945,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır. Ayarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
 "select_group_image_desktop" = "Öbek Görseli Seç";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Yedekleme İlerlemesi";
 "export_backup_desktop" = "Yedeği Dışa Aktar";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -918,6 +953,7 @@
 "autocrypt_correct_desktop" = "Autocrypt ayarlaması aktarıldı.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Sohbet oluşturulamadı.";
 "forget_login_confirmation_desktop" = "Bu giriş silinsin mi? Uçtan uca ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak her şey silinecek. Bu eylem geri alınamaz.";
 "account_info_hover_tooltip_desktop2" = "E-Posta: %1$@\nBoyut: %2$@\nHesap Kimliği: %3$@";

@@ -584,6 +584,7 @@
 "encrypted_message" = "Krypterat meddelande";
 
 "welcome_desktop" = "Välkommen till Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Kända konton";
 "global_menu_preferences_language_desktop" = "Språk";
 "global_menu_file_desktop" = "Arkiv";
@@ -609,6 +610,7 @@
 "delete_message_desktop" = "Ta bort meddelande";
 "more_info_desktop" = "Mer information";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Visa krypteringsinfo";
 "remove_desktop" = "Ta bort";
 "save_desktop" = "Save";
@@ -618,6 +620,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Ett Autocrypt inställningsmeddelande delar din slutpunkt-till-slutpunkt-inställning med andra Autocrypt-anpassade program på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den andra enheten.";
 "select_group_image_desktop" = "Välj en gruppbild";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Säkerhetskopieringsförlopp";
 "export_backup_desktop" = "Exportera säkerhetskopia";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -625,6 +628,7 @@
 "autocrypt_correct_desktop" = "Autocrypt-inställning överförd.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Felaktig inställningskod. Försök igen.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Kunde inte skapa chatt.";
 "forget_login_confirmation_desktop" = "Ta bort den här inloggningen? Allt kommer att raderas, inklusive din slutpunkt-till-slutpunkt-inställning, dina kontakter, media och meddelanden. Denna åtgärd kan inte ångras.";
 "message_detail_sent_desktop" = "skickat";

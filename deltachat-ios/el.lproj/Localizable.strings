@@ -807,6 +807,7 @@
 "about_offical_app_desktop" = "Αυτή είναι η επίσημη εφαρμογή Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Αυτό το λογισμικό έχει άδεια χρήσης σύμφωνα με την GNU GPL έκδοση 3 και ο πηγαίος κώδικας είναι διαθέσιμος στο GitHub.";
 "welcome_desktop" = "Καλώς ήρθατε στο Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Γνωστοί Λογαριασμοί";
 "global_menu_preferences_language_desktop" = "Γλώσσα";
 "global_menu_file_desktop" = "Αρχείο";
@@ -834,6 +835,7 @@
 "delete_message_desktop" = "Διαγραφή μηνύματος";
 "more_info_desktop" = "Περισσότερες πληροφορίες";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Εμφάνιση Πληροφοριών Κρυπτογράφησης";
 "remove_desktop" = "Αφαίρεση";
 "save_desktop" = "Αποθήκευση";
@@ -843,6 +845,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης μοιράζεται με ασφάλεια τις ρυθμίσεις σας από άκρο σε άκρο με άλλες εφαρμογές συμβατές με την αυτόματη κρυπτογράφηση. Η εγκατάσταση θα κρυπτογραφηθεί από έναν κωδικό ρύθμισης που εμφανίζεται εδώ και πρέπει να πληκτρολογηθεί στην άλλη συσκευή.";
 "select_group_image_desktop" = "Επιλέξτε Εικόνας Ομάδας";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Δημιουργία Αντιγράφων Ασφαλείας";
 "export_backup_desktop" = "Εξαγωγή Αντιγράφων Ασφαλείας";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -850,6 +853,7 @@
 "autocrypt_correct_desktop" = "Η ρύθμιση αυτόματης κρυπτογράφησης μεταφέρθηκε.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Λανθασμένος κωδικός ρύθμισης. Παρακαλώ προσπαθησε ξανά.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Αδυναμία δημιουργίας συνομιλίας.";
 "forget_login_confirmation_desktop" = "Διαγραφή αυτής της σύνδεσης; Τα πάντα θα διαγραφούν, συμπεριλαμβανομένων των ρυθμίσεων από άκρο σε άκρο, επαφών, συνομιλιών, μηνυμάτων και πολυμέσων. Αυτή η πράξη δε μπορεί να αναιρεθεί.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nΜέγεθος: %2$@\n Αναγνωριστικό Λογαριασμού: %3$@";

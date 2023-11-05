@@ -574,6 +574,7 @@
 // dc_str_* resources
 "encrypted_message" = "Missatge encriptat";
 
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Comptes coneguts";
 "global_menu_preferences_language_desktop" = "Trieu l\'idioma...";
 "global_menu_file_desktop" = "Arxiva";
@@ -597,6 +598,7 @@
 "delete_message_desktop" = "Esborra missatge";
 "more_info_desktop" = "Més informació";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Mostra la informació de xifratge";
 "remove_desktop" = "Elimina";
 "save_desktop" = "Desa";
@@ -606,6 +608,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Un missatge de configuració Autocrypt comparteix de manera segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles. La configuració es xifrarà mitjançant un codi de configuració que es mostrarà aquí i que s\'ha d’escriure a l’altre dispositiu.";
 "select_group_image_desktop" = "Tria una imatge de grup";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Progrés de còpia de seguretat";
 "export_backup_desktop" = "Exporta la còpia de seguretat";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -613,6 +616,7 @@
 "autocrypt_correct_desktop" = "S\'ha transferit correctament la configuració Autocrypt!";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Codi de configuració incorrecte. Siusplau torneu-ho a provar.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "No s\'ha pogut crear el xat.";
 "forget_login_confirmation_desktop" = "Voleu suprimir aquesta sessió? S\'eliminarà tot, incloent-hi la configuració, els contactes, els xats, els missatges i els arxius multimèdia. Aquesta acció és definitiva i no es pot desfer.";
 "message_detail_sent_desktop" = "enviat";

@@ -855,6 +855,7 @@
 "about_offical_app_desktop" = "Este é o aplicativo oficial Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Este software é licenciado sob a GNU GPL versão 3 e o código-fonte está disponível no GitHub.";
 "welcome_desktop" = "Boas-vindas ao Delta Chat.";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Contas conhecidas";
 "global_menu_preferences_language_desktop" = "Escolher língua...";
 "global_menu_file_desktop" = "Arquivo";
@@ -882,6 +883,7 @@
 "delete_message_desktop" = "Apagar mensagem";
 "more_info_desktop" = "Mais informação";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Exibir informações de criptografia";
 "remove_desktop" = "Remover";
 "save_desktop" = "Salvar";
@@ -891,6 +893,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Uma \"mensagem de configuração do Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis. A configuração será criptografada por um código de configuração que será exibido aqui e deverá ser digitado no outro dispositivo.";
 "select_group_image_desktop" = "Selecionar avatar de grupo";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Progresso do becape";
 "export_backup_desktop" = "Exportar becape";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -898,6 +901,7 @@
 "autocrypt_correct_desktop" = "Configuração Autocrypt completada!";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Código errado. Tente de novo.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Impossível iniciar conversa.";
 "forget_login_confirmation_desktop" = "Apagar este login? Tudo será apagado, incluindo sua configuração de criptografia, contatos, conversas, mensagens e mídia. Esta ação é final e irreversível.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nTamanho: %2$@\nConta Id: %3$@";

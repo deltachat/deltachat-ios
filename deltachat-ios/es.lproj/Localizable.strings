@@ -32,6 +32,8 @@
 "close" = "Cerrar";
 "close_window" = "Cerrar ventana";
 "forward" = "Reenviar";
+"create" = "Crear";
+"later" = "Luego";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Volver a enviar";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -110,6 +112,8 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
+"add_to_sticker_collection" = "Añadir a la colección de stickers";
+"open_sticker_folder" = "Abrir la carpeta de stickers";
 "images" = "Imágenes";
 "audio" = "Audio";
 "voice_message" = "Mensaje de voz";
@@ -160,11 +164,15 @@
 "menu_new_contact" = "Nuevo contacto";
 "menu_new_chat" = "Nuevo chat";
 "menu_new_group" = "Nuevo grupo";
+"clone_chat" = "Clonar chat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
-"broadcast_list" = "Lista de difusión";
-"broadcast_lists" = "Listas de difusión";
-"new_broadcast_list" = "Nueva lista de difusión";
+"broadcast_list" = "Difusión";
+"broadcast_lists" = "Difusiones";
+"new_broadcast_list" = "Nueva difusión";
 "add_recipients" = "Agregar destinatarios";
+"edit_broadcast_list" = "Editar difusión";
+"broadcast_list_name" = "Nombre de difusión";
+"please_enter_broadcast_list_name" = "Por favor, introduce un nombre para la difusión.";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
 "menu_edit_group" = "Editar grupo";
@@ -198,6 +206,7 @@
 "menu_all_media" = "Toda la multimedia";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Mostrar en el chat";
+"show_app_in_chat" = "Mostrar en el chat";
 "menu_share" = "Compartir";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloquear";
@@ -209,6 +218,7 @@
 "menu_scroll_to_bottom" = "Desplazarse al final";
 "menu_scroll_to_top" = "Desplazarse al inicio";
 "menu_help" = "Ayuda";
+"what_is_webxdc" = "`¿Qué es Webxdc?";
 "privacy_policy" = "Política de privacidad";
 "menu_select_all" = "Seleccionar todo";
 "select_chat" = "Seleccionar chat";
@@ -245,6 +255,8 @@
 "source_code" = "Código fuente";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Añadir a la pantalla principal";
+"donate" = "Donar";
+
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_two_hours" = "Silenciar por 2 horas";
 "mute_for_one_day" = "Silenciar por 1 día";
@@ -308,7 +320,7 @@
 "chat_unable_to_record_audio" = "No es posible grabar audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Envíe un mensaje. Está bien si %1$@ no usa Delta Chat.";
-"chat_new_broadcast_hint" = "En una lista de difusión, los destinatarios recibirán mensajes en un chat de solo lectura contigo.";
+"chat_new_broadcast_hint" = "En una difusión, los destinatarios recibirán mensajes en un chat de solo lectura contigo.";
 "chat_new_group_hint" = "Los demás sólo verán este grupo después de que hayas enviado un primer mensaje.";
 "chat_record_slide_to_cancel" = "Deslice para cancelar";
 "chat_record_explain" = "Mantenga pulsado para grabar un mensaje de voz, suelte para enviar";
@@ -373,6 +385,8 @@
 
 // search
 "search" = "Buscar";
+"search_in_chat" = "Buscar en el chat";
+"search_files" = "Buscar archivos";
 "search_explain" = "Buscar chats, contactos, y mensajes";
 "search_no_result_for_x" = "No se encontraron resultados para \"%1$@\"";
 
@@ -388,6 +402,7 @@
 "group_self_not_in_group" = "Debes ser un miembro del grupo para realizar esta acción.";
 "profile_encryption" = "Cifrado";
 "profile_shared_chats" = "Chats compartidos";
+"related_chats" = "Chats similares";
 "tab_contact" = "Contacto";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galería";
@@ -587,6 +602,10 @@
 "pref_backup" = "Copia de respaldo";
 "pref_backup_explain" = "Hacer copias de respaldo de chats en almacenamiento externo";
 "pref_backup_export_explain" = "Una copia de respaldo lo ayuda a configurar una nueva instalación en este u otro dispositivo.\n\nLa copia de respaldo contendrá todos los mensajes, contactos y chats, y su configuración Autocrypt de extremo a extremo. Guarde el archivo de respaldo en un lugar seguro o elimínelo lo antes posible.";
+// the placeholder will be replaced by the name of the account's email address
+"pref_backup_export_x" = "Exportar %1$@";
+// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+"pref_backup_export_all" = "Exportar todo (%1$d cuentas)";
 "pref_backup_export_start_button" = "Iniciar copia de respaldo";
 "pref_backup_written_to_x" = "Copia de respaldo escrita correctamente en %1$@";
 "pref_managekeys_menu_title" = "Administrar claves";
@@ -637,6 +656,7 @@
 "profile_image_delete" = "Borrar imagen de perfil";
 "pref_show_tray_icon" = "Mostrar icono de bandeja";
 "pref_edit_profile" = "Editar perfil";
+"disable_imap_idle" = "Deshabilitar IMAP IDLE";
 // Emoji picker and categories
 "emoji_search_results" = "Resultados de la búsqueda";
 "emoji_not_found" = "No se encontraron emojis";
@@ -831,6 +851,7 @@
 "verified_by_you" = "Verificado por ti";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuración cambiada para %1$@.";
+"verified_contact_required_explain" = "Para garantizar el cifrado de extremo a extremo, solo puedes añadir contactos con una marca de verificación verde";
 "copy_qr_data_success" = "URL del código QR copiado al portapapeles";
 "mailto_dialog_header_select_chat" = "Seleccione el chat para enviar el mensaje";
 // first placeholder is the name of the chat
@@ -848,6 +869,10 @@
 "notify_name_only" = "Solo nombre";
 "notify_no_name_or_message" = "Sin nombre ni mensaje";
 "notifications_disabled" = "Notificaciones deshabilitadas";
+"new_messages" = "Nuevos mensajes";
+"n_messages_in_m_chats" = "%1$d mensajes en %2$d chats";
+
+
 // permissions
 "perm_required_title" = "Permiso requerido";
 "perm_continue" = "Continuar";
@@ -874,6 +899,7 @@
 "about_offical_app_desktop" = "Esta es la aplicación oficial de Delta Chat para escritorio.";
 "about_licensed_under_desktop" = "Este programa está licenciado bajo GNU GPL versión 3 y el código está disponible en GitHub.";
 "welcome_desktop" = "Bienvenido a Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Cuentas conocidas";
 "global_menu_preferences_language_desktop" = "Idioma";
 "global_menu_file_desktop" = "Archivo";
@@ -901,6 +927,7 @@
 "delete_message_desktop" = "Eliminar mensaje";
 "more_info_desktop" = "Más información";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Mostrar información de cifrado";
 "remove_desktop" = "Eliminar";
 "save_desktop" = "Guardar";
@@ -910,6 +937,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Un Mensaje de Configuración Autocrypt comparte de forma segura su configuración de extremo a extremo con otras aplicaciones compatibles con Autocrypt. La configuración se cifrará mediante un código de configuración que se muestra aquí y debe escribirse en el otro dispositivo.";
 "select_group_image_desktop" = "Seleccionar imagen de grupo";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Progreso de copia de respaldo";
 "export_backup_desktop" = "Exportar copia de respaldo";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -917,6 +945,7 @@
 "autocrypt_correct_desktop" = "Configuración de Autocrypt transferida exitosamente!";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Código de configuración incorrecto. Por favor, inténtalo de nuevo.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "No se pudo crear el chat.";
 "forget_login_confirmation_desktop" = "¿Borrar esta sesión? Todo se eliminará, incluida la configuración de extremo a extremo, contactos, chats, mensajes y multimedia. Esta acción es definitiva y no puede ser revertida.";
 "account_info_hover_tooltip_desktop2" = "Correo: %1$@\nTamaño: %2$@\nID de la cuenta: %3$@";

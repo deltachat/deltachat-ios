@@ -462,6 +462,7 @@
 "encrypted_message" = "Zifratutako mezua";
 
 "welcome_desktop" = "Ongi etorri Delta Chat-era";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Kontu ezagunak";
 "global_menu_preferences_language_desktop" = "Hautatu hizkuntza...";
 "global_menu_file_desktop" = "Fitxategia";
@@ -487,6 +488,7 @@
 "delete_message_desktop" = "Ezabatu mezua";
 "more_info_desktop" = "Informazio gehiago";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Erakutsi zifratzeari buruzko informazioa";
 "remove_desktop" = "Kendu";
 "save_desktop" = "Gorde";
@@ -496,6 +498,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt ezarpen mezu batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "select_group_image_desktop" = "Hautatu taldearen irudia";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Babes-kopia abian";
 "export_backup_desktop" = "Esportatu babes-kopia";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -503,6 +506,7 @@
 "autocrypt_correct_desktop" = "Ongi igorri da Autocrypt ezarpena!";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Ezarpen kode okerra. Saiatu berriro.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Ezin izan da txata sortu.";
 "forget_login_confirmation_desktop" = "Ezabatu erabiltzaile-izen hau? Dena ezabatuko da, muturretik muturrerako ezarpena, txatak, mezuak eta multimedia barne. Ekintza hau behin betikoa da eta ezin da desegin.";
 "message_detail_sent_desktop" = "bidalita";

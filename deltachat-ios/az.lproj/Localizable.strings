@@ -404,6 +404,7 @@
 // dc_str_* resources
 "encrypted_message" = "Şifrələnmiş mesaj";
 
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Bilinən hesablar";
 "global_menu_preferences_language_desktop" = "Dil səç";
 "global_menu_file_desktop" = "Fayl";
@@ -427,6 +428,7 @@
 "delete_message_desktop" = "Mesajı sil";
 "more_info_desktop" = "Daha çox məlumat";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Şifrələmə məlumatını göstər";
 "remove_desktop" = "Sil";
 "save_desktop" = "Saxla";
@@ -436,11 +438,13 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt konfiqurasiya mesajı təhlükəsiz olaraq \"sondan sona\" parametrinizi Autocrypt ilə uyğun olan digər tətbiqlərlə bölüşür. Quraşdırma burada göstərilir və başqa bir cihazda yığılmış olmalıdır. Bir quraşdırma kodu ilə şifrələ olunacaq.";
 "select_group_image_desktop" = "Qrup şəklini seç";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Ehtiyat nüsxəsinin yaradılması";
 "export_backup_desktop" = "Ehtiyat nüsxəsinin ixracı";
 "autocrypt_correct_desktop" = "Autocrypt ayarı müvəffəqiyyətlə köçürüldü!";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Yanlış kod. Yenidən cəhd edin. ";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Yeni çat yaratmaq alınmadı";
 "forget_login_confirmation_desktop" = "Bu giriş silmək istəyirsiniz? Hər şey, sizin \"sondan sona\" quraşdırma, kontaktlar, söhbətlər, mesajlar və daşıyıcıları daxil olmaqla silinəcəkdir. Bu hərəkət son və ləğv edilə bilməz.";
 "message_detail_sent_desktop" = "Göndər";

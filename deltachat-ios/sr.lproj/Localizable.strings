@@ -822,6 +822,7 @@
 "about_offical_app_desktop" = "Ово је званична Delta Chat апликација за рачунар.";
 "about_licensed_under_desktop" = "Овај програм је лиценциран под ГНУ ГПЛ верзија 3 лиценцом и изворни код је доступан на Гитхабу.";
 "welcome_desktop" = "Добродошли у Delta Chat.";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Познати налози";
 "global_menu_preferences_language_desktop" = "Језик";
 "global_menu_file_desktop" = "Фајл";
@@ -849,6 +850,7 @@
 "delete_message_desktop" = "Избриши поруку";
 "more_info_desktop" = "Више података";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Прикажи податке о шифровању";
 "remove_desktop" = "Уклони";
 "save_desktop" = "Сачувај";
@@ -858,6 +860,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Порука о подешавању аутоматског шифровања безбедно дели ваше комплетно подешавање са другим апликацијама компатибилним са аутоматским шифровањем. Подешавање ће бити шифровано кôдом за подешавање приказаним овде и мора се унети на другом уређају.";
 "select_group_image_desktop" = "Изабери слику групе";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Напредак израде резервне копије";
 "export_backup_desktop" = "Извези резервну копију";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -865,6 +868,7 @@
 "autocrypt_correct_desktop" = "Поставке за аутошифровање су послате.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Ваша подешавања су неисправна. Пробајте поново.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Није могуће креирати ћаскање.";
 "forget_login_confirmation_desktop" = "Да ли желите да избришете овај налог? Све ће бити избрисано, укључујући и ваше подешавање с-краја-на-крај шифровања, контакти, ћаскања, поруке и медији. Ова радња се не може опозвати.";
 "account_info_hover_tooltip_desktop2" = "Е-пошта: %1$@\nВеличина: %2$@\nИдентификатор налога: %3$@";

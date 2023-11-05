@@ -865,6 +865,7 @@
 "about_offical_app_desktop" = "Ceci est l\'application de bureau Delta Chat officielle.";
 "about_licensed_under_desktop" = "Ce logiciel est sous licence GNU GPL version 3 et le code source est disponible sur GitHub.";
 "welcome_desktop" = "Bienvenue sur Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Comptes connus";
 "global_menu_preferences_language_desktop" = "Choisissez la langue...";
 "global_menu_file_desktop" = "Fichier";
@@ -892,6 +893,7 @@
 "delete_message_desktop" = "Supprimer le message";
 "more_info_desktop" = "En savoir plus";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Afficher les informations de chiffrement";
 "remove_desktop" = "Retirer";
 "save_desktop" = "Sauvegardez";
@@ -901,6 +903,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Un message de configuration Autocrypt partage en toute sécurité votre configuration de bout en bout avec d\'autres applications compatibles Autocrypt. La configuration est chiffrée par un code de configuration qui s\'affiche ici et doit être tapé sur l\'autre appareil.";
 "select_group_image_desktop" = "Choisir l\'image de groupe";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Avancement de la sauvegarde";
 "export_backup_desktop" = "Exporter la sauvegarde";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -908,6 +911,7 @@
 "autocrypt_correct_desktop" = "Configuration Autocrypt transférée.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Code de configuration incorrect. Veuillez réessayer.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "La discussion n’a pas pu être créée.";
 "forget_login_confirmation_desktop" = "Supprimer cette connexion ? Tout sera effacé, y compris vos paramètres de chiffrement de bout en bout, vos contacts, discussions, messages et fichiers multimédia. Cette action est irrévocable.";
 "account_info_hover_tooltip_desktop2" = "Adresse: %1$@\nTaille: %2$@\nID du compte: %3$@";

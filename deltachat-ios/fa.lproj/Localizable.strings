@@ -842,6 +842,7 @@
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "این نرم‌افزار رسمی دلتاچت در محیط رایانه است.";
 "welcome_desktop" = "به دلتاچت خوش‌آمدید";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "اکانت‌های شناخته شده";
 "global_menu_preferences_language_desktop" = "زبان";
 "global_menu_file_desktop" = "پرونده";
@@ -869,6 +870,7 @@
 "delete_message_desktop" = "حذف پیام";
 "more_info_desktop" = "جزئیات بیشتر ";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "نمایش مشخصات رمزگذاری";
 "remove_desktop" = "حذف";
 "save_desktop" = "ذخیره";
@@ -878,6 +880,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "یک پیام برپاسازی اتوکریپت، برپاسازی رمزگذاری سرتاسرتان را به‌امنی با دیگر برنامه‌های سازگار با اتوکریپت هم‌رسانی می‌کند. برپاسازی با یک کد برپاسازی رمزگذاری خواهند شد که در اینجا نمایش داده می‌شود که باید آن  را در دستگاه دیگر وارد کنید. ";
 "select_group_image_desktop" = "انتخاب تصویر گروه";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "فرایند تهیه نسخه پشتیبان";
 "export_backup_desktop" = "صادر کردن نسخه پشتیبان";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -885,6 +888,7 @@
 "autocrypt_correct_desktop" = "برپاسازی اتوکریپت انتقال یافت.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "کد نصب نادرست. لطفا دوباره امتحان کنید. ";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "امکان ایجاد گپ وجود ندارد. ";
 "forget_login_confirmation_desktop" = "پاک کردن این ورود؟ همه‌چیز پاک می‌شود که شامل رمزگذاری سرتاسر، مخاطبین، گپ‌ها، پیام‌ها و رسانه می‌شود. این عملیات قابل بازگردانی نیست.";
 "message_detail_sent_desktop" = "ارسال شد";

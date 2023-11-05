@@ -801,6 +801,7 @@
 "about_offical_app_desktop" = "Toto je oficiálna aplikácia Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Tento softvér je licencovaný pod GNU GPL verzie 3 a zdrojový kód je k dispozícii na GitHub-e.";
 "welcome_desktop" = "Víta vás Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Známe účty";
 "global_menu_preferences_language_desktop" = "Jazyk";
 "global_menu_file_desktop" = "Súbor";
@@ -828,6 +829,7 @@
 "delete_message_desktop" = "Odstrániť správu";
 "more_info_desktop" = "Viac informácií";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Zobraziť informácie o šifrovaní";
 "remove_desktop" = "Odstrániť";
 "save_desktop" = "Uložiť";
@@ -837,6 +839,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Správa o nastavení automatického šifrovania bezpečne zdieľa vaše komplexné nastavenie s inými aplikáciami kompatibilnými s automatickým šifrovaním. Nastavenie bude šifrované tu zobrazeným nastavovacím kódom a musí byť zadané na druhom zariadení.";
 "select_group_image_desktop" = "Vyberte obrázok skupiny";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Priebeh zálohovania";
 "export_backup_desktop" = "Exportovať zálohu";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -844,6 +847,7 @@
 "autocrypt_correct_desktop" = "Nastavenie automatického šifrovania bolo prenesené.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Nesprávny kód nastavenia. Prosím skúste znova.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Nepodarilo sa vytvoriť konverzáciu.";
 "forget_login_confirmation_desktop" = "Odstrániť tieto prihlasovacie údaje? Odstráni sa všetko vrátane vášho kompletného nastavenia, kontaktov, konverzácií, správ a médií. Túto akciu nie je možné vrátiť späť.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nVeľkosť: %2$@\n ID Účtu: %3$@";

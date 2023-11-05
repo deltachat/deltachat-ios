@@ -644,6 +644,7 @@
 
 "about_licensed_under_desktop" = "Ši programinė įranga yra licencijuota pagal GNU GPL versiją 3, o pirminis kodas yra prieinamas „GitHub“ internetinėje svetainėje.";
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Žinomos paskyros";
 "global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";
 "global_menu_file_desktop" = "Failas";
@@ -671,6 +672,7 @@
 "delete_message_desktop" = "Ištrinti žinutę";
 "more_info_desktop" = "Daugiau informacijos";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Rodyti šifravimo informaciją";
 "remove_desktop" = "Šalinti";
 "save_desktop" = "Išsaugoti";
@@ -680,6 +682,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "Autocrypt sąrankos žinutė saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis. Sąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "select_group_image_desktop" = "Pasirinkti grupės paveikslą";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Atsarginės kopijos eiga";
 "export_backup_desktop" = "Eksportuoti atsarginę kopiją";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -687,6 +690,7 @@
 "autocrypt_correct_desktop" = "Autocrypt sąranka sėkmingai perduota!";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Neteisingas sąrankos kodas. Bandykite dar kartą.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Nepavyko sukurti pokalbio.";
 "forget_login_confirmation_desktop" = "Ištrinti šį prisijungimą? Viskas bus ištrinta, įskaitant jūsų ištisinę sąranką, adresatus, pokalbius, žinutes ir mediją. Šis veiksmas yra galutinis ir negalės būti panaikintas.";
 "account_info_hover_tooltip_desktop2" = "El. paštas: %1$@\nDydis: %2$@\nPaskyros Id: %3$@";

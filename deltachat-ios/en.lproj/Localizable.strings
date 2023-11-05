@@ -907,6 +907,7 @@
 "about_offical_app_desktop" = "This is the official Delta Chat Desktop app.";
 "about_licensed_under_desktop" = "This software is licensed under GNU GPL version 3 and the source code is available on GitHub.";
 "welcome_desktop" = "Welcome to Delta Chat";
+// deprecated, use switch_account
 "login_known_accounts_title_desktop" = "Known Accounts";
 "global_menu_preferences_language_desktop" = "Language";
 "global_menu_file_desktop" = "File";
@@ -934,6 +935,7 @@
 "delete_message_desktop" = "Delete Message";
 "more_info_desktop" = "More Info";
 "timestamp_format_m_desktop" = "MMM D";
+// deprecated, use encryption_info_title_desktop or profile_encryption
 "encryption_info_desktop" = "Show Encryption Info";
 "remove_desktop" = "Remove";
 "save_desktop" = "Save";
@@ -943,6 +945,7 @@
 // deprecated, use autocrypt_send_asm_explain_before
 "initiate_key_transfer_desktop" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps. The setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "select_group_image_desktop" = "Select Group Image";
+// deprecated, use export_backup_desktop instead
 "imex_progress_title_desktop" = "Backup Progress";
 "export_backup_desktop" = "Export Backup";
 // deprecated, use autocrypt_send_asm_explain_after instead
@@ -950,6 +953,7 @@
 "autocrypt_correct_desktop" = "Autocrypt setup transferred.";
 // deprecated, use autocrypt_bad_setup_code instead
 "autocrypt_incorrect_desktop" = "Incorrect setup code. Please try again.";
+// deprecated, rare errors should be english only for easier searchability
 "create_chat_error_desktop" = "Could not create chat.";
 "forget_login_confirmation_desktop" = "Delete this login? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nSize: %2$@\nAccount Id: %3$@";
