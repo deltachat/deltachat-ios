@@ -307,7 +307,7 @@ class GroupChatDetailViewController: UIViewController {
         } else {
             groupHeader.setBackupImage(name: chat.name, color: chat.color)
         }
-        groupHeader.setVerified(isVerified: chat.isProtected)
+        groupHeader.setChatProtected(isProtected: chat.isProtected)
         groupHeader.setMuted(isMuted: chat.isMuted)
         groupHeader.showSearchButton(show: chat.canSend)
     }

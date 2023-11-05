@@ -295,7 +295,7 @@ class ContactDetailViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
-            headerCell.setVerified(isVerified: false)
+            headerCell.setChatProtected(isProtected: false)
             headerCell.showMuteButton(show: false)
         } else {
             headerCell.updateDetails(title: viewModel.contact.displayName,
@@ -305,7 +305,7 @@ class ContactDetailViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
             }
-            headerCell.setVerified(isVerified: viewModel.isProtected)
+            headerCell.setChatProtected(isProtected: viewModel.isProtected)
             headerCell.setMuted(isMuted: viewModel.chatIsMuted)
             headerCell.showMuteButton(show: true)
         }

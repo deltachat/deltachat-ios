@@ -32,7 +32,7 @@ class ContactDetailHeader: UIView {
     }()
 
     private lazy var titleLabelContainer: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedIndicator, spacerView])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, greenCheckmark, spacerView])
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 4
@@ -48,7 +48,7 @@ class ContactDetailHeader: UIView {
         return view
     }()
 
-    private lazy var verifiedIndicator: UIImageView = {
+    private lazy var greenCheckmark: UIImageView = {
         let imgView = UIImageView()
         let img = UIImage(named: "verified")
         imgView.isHidden = true
@@ -134,8 +134,8 @@ class ContactDetailHeader: UIView {
             avatar.constraintHeightTo(badgeSize),
             avatar.constraintAlignLeadingTo(self, paddingLeading: badgeSize / 4),
             avatar.constraintCenterYTo(self),
-            verifiedIndicator.constraintHeightTo(titleLabel.font.pointSize * 0.9),
-            verifiedIndicator.widthAnchor.constraint(equalTo: verifiedIndicator.heightAnchor),
+            greenCheckmark.constraintHeightTo(titleLabel.font.pointSize * 0.9),
+            greenCheckmark.widthAnchor.constraint(equalTo: greenCheckmark.heightAnchor),
         ])
 
         verticalStackView.clipsToBounds = true
@@ -191,8 +191,8 @@ class ContactDetailHeader: UIView {
         searchButton.isHidden = !show
     }
 
-    func setVerified(isVerified: Bool) {
-        verifiedIndicator.isHidden = !isVerified
+    func setChatProtected(isProtected: Bool) {
+        greenCheckmark.isHidden = !isProtected
     }
 
     @objc private func avatarTapped(_ sender: InitialsBadge) {
