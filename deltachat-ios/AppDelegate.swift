@@ -752,6 +752,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_WEEKS_BY_OTHER, localizationKey: "ephemeral_timer_weeks_by_other")
         dcContext.setStockTranslation(id: DC_STR_CHAT_PROTECTION_ENABLED, localizationKey: "chat_protection_enabled_tap_to_learn_more")
         dcContext.setStockTranslation(id: DC_STR_CHAT_PROTECTION_DISABLED, localizationKey: "chat_protection_broken_tap_to_learn_more")
+        dcContext.setStockTranslation(id: DC_STR_NEW_GROUP_SEND_FIRST_MESSAGE, localizationKey: "chat_new_group_hint")
     }
 
     func appIsInForeground() -> Bool {
