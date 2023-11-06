@@ -1030,8 +1030,3 @@
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
 
 
-// device messages for updates
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_38_android" = "1.38 版发布啦：\n\n📎 删除了附件大小上限 \n\n🗜️ PNG 图片(截屏文件!) 现在同样被压缩\n\n⌨️ 对于开发者: 更好的聊天应用，sendToChat() 和 importFiles() (什么是 Webxdc? → https://webxdc.org)\n\n… 更多内容请访问 %1$@";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_38_ios" = "1.38版发布啦：\n\n🖼🔍 尝试搜索某张图片却记不得到底在哪个聊天会话中吗? 别急，试试“所有媒体”按钮吧。\n\n🧹从个人资料部分“清除聊天”\n\n📎 删除了附件大小上限\n\n🗜️ PNG 图片(截屏文件！) 现在同样被压缩\n\n… 更多内容请访问 %1$@";
