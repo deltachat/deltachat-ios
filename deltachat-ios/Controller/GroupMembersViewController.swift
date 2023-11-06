@@ -149,7 +149,7 @@ class GroupMembersViewController: UITableViewController {
                 if verifiedContactRequired && !dcContext.getContact(id: contactId).isVerified {
                     let alert = UIAlertController(title: String.localized("verified_contact_required_explain"), message: nil, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-                        if let url = URL(string: "https://delta.chat/en/help#verifiedchats") {
+                        if let url = URL(string: "https://staging.delta.chat/746/en/help#howtoe2ee") {
                             UIApplication.shared.open(url)
                         }
                     }))

@@ -1599,7 +1599,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func showProtectionBrokenDialog() {
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("chat_protection_broken_explanation"), dcChat.name), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-            if let url = URL(string: "https://staging.delta.chat/733/en/help#verificationbroken") {
+            if let url = URL(string: "https://staging.delta.chat/746/en/help#nocryptanymore") {
                 UIApplication.shared.open(url)
             }
         }))
@@ -1615,7 +1615,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func showProtectionEnabledDialog() {
         let alert = UIAlertController(title: String.localized("chat_protection_enabled_explanation"), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-            if let url = URL(string: "https://staging.delta.chat/733/en/help#verifiedchats") {
+            if let url = URL(string: "https://staging.delta.chat/746/en/help#e2eeguarantee") {
                 UIApplication.shared.open(url)
             }
         }))
