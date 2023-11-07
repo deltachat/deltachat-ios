@@ -16,7 +16,7 @@ class DownloadOnDemandViewController: UITableViewController {
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
-        self.options = [0, 40960, 163840, 655360, 5242880, 26214400]
+        self.options = [0, 163840, 655360, 5242880, 26214400]
         super.init(style: .grouped)
         self.title = String.localized("auto_download_messages")
         hidesBottomBarWhenPushed = true
@@ -30,9 +30,7 @@ class DownloadOnDemandViewController: UITableViewController {
         switch val {
         case 0:
             return String.localized("pref_show_emails_all")
-        case 40960:
-            return String.localizedStringWithFormat(String.localized("up_to_x"), "40 KiB")
-        case 163840:
+        case 40960, 163840:
             return String.localizedStringWithFormat(String.localized("up_to_x_most_worse_quality_images"), "160 KiB")
         case 655360:
             return String.localizedStringWithFormat(String.localized("up_to_x_most_balanced_quality_images"), "640 KiB")
