@@ -305,7 +305,7 @@ class ContactDetailViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: viewModel.contact.displayName, color: viewModel.contact.color)
             }
-            headerCell.setGreenCheckmark(greenCheckmark: viewModel.isProtected)
+            headerCell.setGreenCheckmark(greenCheckmark: viewModel.greenCheckmark)
             headerCell.setMuted(isMuted: viewModel.chatIsMuted)
             headerCell.showMuteButton(show: true)
         }
