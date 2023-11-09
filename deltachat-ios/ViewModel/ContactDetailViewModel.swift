@@ -38,7 +38,7 @@ class ContactDetailViewModel {
     let chatId: Int
     let isSavedMessages: Bool
     let isDeviceTalk: Bool
-    let isProtected: Bool
+    let greenCheckmark: Bool
     var lastSeen: Int64
     private var sharedChats: DcChatlist
     private var sections: [ProfileSections] = []
@@ -49,21 +49,21 @@ class ContactDetailViewModel {
         self.context = dcContext
         self.contactId = contactId
         self.chatId = dcContext.getChatIdByContactId(contactId: contactId)
+        let dcContact = context.getContact(id: contactId)
         if chatId != 0 {
             let dcChat = dcContext.getChat(chatId: chatId)
             isSavedMessages = dcChat.isSelfTalk
             isDeviceTalk = dcChat.isDeviceTalk
-            isProtected = dcChat.isProtected
+            greenCheckmark = dcChat.isProtected
         } else {
             isSavedMessages = false
             isDeviceTalk = false
-            isProtected = false
+            greenCheckmark = dcContact.isVerified
         }
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.chatOptions)
 
-        let dcContact = context.getContact(id: contactId)
         self.lastSeen = dcContact.lastSeen
 
         if self.isSavedMessages || !dcContact.status.isEmpty {
