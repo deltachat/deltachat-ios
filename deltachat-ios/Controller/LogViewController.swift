@@ -46,7 +46,7 @@ public class LogViewController: UIViewController {
     }
 
     public func getDebugVariables(dcContext: DcContext) -> String {
-        var info = ""
+        var info = "**This log may contain sensitive information. If you want to post it publicly you may examine and edit it beforehand.**\n\n"
 
         let systemVersion = UIDevice.current.systemVersion
         info += "iosVersion=\(systemVersion)\n"
@@ -57,6 +57,22 @@ public class LogViewController: UIViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             info += "notify-token=\(appDelegate.notifyToken ?? "<unset>")\n"
         }
+
+        var val = "?"
+        switch UIApplication.shared.backgroundRefreshStatus {
+        case .restricted: val = "restricted"
+        case .available: val = "available"
+        case .denied: val = "denied"
+        }
+        info += "backgroundRefreshStatus=\(val)\n"
+
+        #if DEBUG
+        info += "DEBUG=1\n"
+        #else
+        info += "DEBUG=0\n"
+        #endif
+
+        info += "\n" + dcContext.getInfo() + "\n"
 
         for name in ["notify-remote-launch", "notify-remote-receive", "notify-local-wakeup"] {
             let cnt = UserDefaults.standard.integer(forKey: name + "-count")
@@ -87,22 +103,6 @@ public class LogViewController: UIViewController {
             }
         }
         info += "\n"
-
-        var val = "?"
-        switch UIApplication.shared.backgroundRefreshStatus {
-        case .restricted: val = "restricted"
-        case .available: val = "available"
-        case .denied: val = "denied"
-        }
-        info += "backgroundRefreshStatus=\(val)\n"
-
-        #if DEBUG
-        info += "DEBUG=1\n"
-        #else
-        info += "DEBUG=0\n"
-        #endif
-
-        info += "\n" + dcContext.getInfo()
 
         return info
     }
