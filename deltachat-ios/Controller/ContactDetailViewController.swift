@@ -326,7 +326,7 @@ class ContactDetailViewController: UITableViewController {
             } else {
                 verifiedByCell.accessoryType = .disclosureIndicator
                 verifiedInfo = String.localizedStringWithFormat(String.localized("verified_by"),
-                                                                viewModel.context.getContact(id: verifierId).nameNAddr)
+                                                                viewModel.context.getContact(id: verifierId).displayName)
             }
             verifiedByCell.textLabel?.text = verifiedInfo
         }
