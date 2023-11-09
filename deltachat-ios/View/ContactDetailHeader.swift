@@ -191,8 +191,8 @@ class ContactDetailHeader: UIView {
         searchButton.isHidden = !show
     }
 
-    func setChatProtected(isProtected: Bool) {
-        greenCheckmark.isHidden = !isProtected
+    func setGreenCheckmark(greenCheckmark: Bool) {
+        self.greenCheckmark.isHidden = !greenCheckmark
     }
 
     @objc private func avatarTapped(_ sender: InitialsBadge) {
