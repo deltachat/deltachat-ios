@@ -4,7 +4,10 @@ import DcCore
 
 class HelpViewController: WebViewViewController {
 
-    override init(dcContext: DcContext) {
+    let fragment: String?
+
+    init(dcContext: DcContext, fragment: String? = nil) {
+        self.fragment = fragment
         super.init(dcContext: dcContext)
         self.allowSearch = true
     }
@@ -39,6 +42,13 @@ class HelpViewController: WebViewViewController {
             DispatchQueue.main.async {
                 self?.webView.loadFileURL(url, allowingReadAccessTo: url)
             }
+        }
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if let fragment = self.fragment {
+            let scrollToFragmentScript = "window.location.hash = '\(fragment)';"
+            webView.evaluateJavaScript(scrollToFragmentScript, completionHandler: nil)
         }
     }
 

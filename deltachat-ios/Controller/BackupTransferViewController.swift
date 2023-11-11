@@ -253,9 +253,7 @@ class BackupTransferViewController: UIViewController {
     @objc private func moreButtonPressed() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("troubleshooting"), style: .default, handler: { _ in
-            if let url = URL(string: "https://delta.chat/en/help#multiclient") {
-                UIApplication.shared.open(url)
-            }
+            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#multiclient"), animated: true)
         }))
         if !self.qrContentView.isHidden {
             alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: { [weak self] _ in
