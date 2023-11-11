@@ -113,6 +113,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
 "add_to_sticker_collection" = "Añadir a la colección de stickers";
+"add_stickers_instructions" = "Para añadir stickers, toca en \"Abrir carpeta de stickers\", crea una subcarpeta para tu colección de stickers y copia imágenes y stickers allí";
 "open_sticker_folder" = "Abrir la carpeta de stickers";
 "images" = "Imágenes";
 "audio" = "Audio";
@@ -197,6 +198,7 @@
 "menu_copy_image_to_clipboard" = "Copiar imagen";
 "menu_copy_email_to_clipboard" = "Copiar correo electrónico";
 "paste_from_clipboard" = "Pegar del portapapeles";
+"ask_copy_unopenable_link_to_clipboard" = "El enlace \"%1$d\" no se puede abrir en el navegador. ¿Desea copiar el enlace al portapapeles?";
 "menu_forward" = "Reenviar mensaje";
 "menu_reply" = "Responder al mensaje";
 "menu_mute" = "Silenciar notificaciones";
@@ -657,6 +659,8 @@
 "pref_show_tray_icon" = "Mostrar icono de bandeja";
 "pref_edit_profile" = "Editar perfil";
 "disable_imap_idle" = "Deshabilitar IMAP IDLE";
+"disable_imap_idle_explain" = "No utilizar la extensión IMAP IDLE aunque el servidor la admita. Habilitar esta opción retrasará el recibo de mensajes, actívala solo para pruebas.";
+
 // Emoji picker and categories
 "emoji_search_results" = "Resultados de la búsqueda";
 "emoji_not_found" = "No se encontraron emojis";
@@ -1022,3 +1026,7 @@
 "perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
 
 
+// device messages for updates
+"update_1_42_common" = "Novedades:\n\n💌 Los chats privados garantizan el cifrado de extremo a extremo para los contactos introducidos via QR\n\n😌 Para la simplicidad de todos, marcamos estos contactos y chats con marcas de verificación verdes\n\n👥 Los grupos se crean automáticamente con cifrado de extremo a extremo garantizado si es posible\n\n🔄 Aceptar/bloquear, archivar, fijar y silenciar se sincronizan en todos tus dispositivos";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_42_android" = "Esté atento a más mejoras en la cámara, mensajes de voz, copia de respaldo, lector de pantalla, fondos de pantalla por cuenta, seleccionar todo en la galería, webxdc en modo horizontal… o léalos en %1$@";
