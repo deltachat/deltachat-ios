@@ -93,6 +93,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
         if let templateChat = self.templateChat {
             groupNameCell.textField.text = templateChat.name
+            if !createBroadcast, let image = templateChat.profileImage {
+                avatarSelectionCell = AvatarSelectionCell(image: image)
+                changeGroupImage = image
+            }
         }
         doneButton = UIBarButtonItem(title: String.localized("create"), style: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
