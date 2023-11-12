@@ -2,7 +2,6 @@ import UIKit
 import DcCore
 
 class NewGroupController: UITableViewController, MediaPickerDelegate {
-    var groupName: String = ""
 
     var doneButton: UIBarButtonItem!
     var contactIdsForGroup: Set<Int>
@@ -119,6 +118,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     @objc func doneButtonPressed() {
+        guard let groupName = groupNameCell.textField.text else { return }
         let groupChatId: Int
         if createBroadcast {
             groupChatId = dcContext.createBroadcastList()
@@ -247,8 +247,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func updateGroupName(textView: UITextField) {
-        let name = textView.text ?? ""
-        groupName = name
         checkDoneButton()
     }
 
