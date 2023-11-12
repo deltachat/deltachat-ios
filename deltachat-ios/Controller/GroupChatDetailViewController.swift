@@ -18,6 +18,7 @@ class GroupChatDetailViewController: UIViewController {
 
     enum ChatAction {
         case archiveChat
+        case cloneChat
         case leaveGroup
         case clearChat
         case deleteChat
@@ -92,6 +93,13 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = chat.isArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
+        cell.actionColor = UIColor.systemBlue
+        return cell
+    }()
+
+    private lazy var cloneChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("clone_chat")
         cell.actionColor = UIColor.systemBlue
         return cell
     }()
@@ -279,12 +287,12 @@ class GroupChatDetailViewController: UIViewController {
         } else if chat.isBroadcast {
             self.chatOptions = [.allMedia]
             self.memberManagementRows = 1
-            self.chatActions = [.archiveChat, .clearChat, .deleteChat]
+            self.chatActions = [.archiveChat, .cloneChat, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: false)
         } else if chat.canSend {
             self.chatOptions = [.allMedia, .ephemeralMessages]
             self.memberManagementRows = 2
-            self.chatActions = [.archiveChat, .leaveGroup, .clearChat, .deleteChat]
+            self.chatActions = [.archiveChat, .cloneChat, .leaveGroup, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else {
             self.chatOptions = [.allMedia]
@@ -505,6 +513,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             switch chatActions[row] {
             case .archiveChat:
                 return archiveChatCell
+            case .cloneChat:
+                return cloneChatCell
             case .leaveGroup:
                 return leaveGroupCell
             case .clearChat:
@@ -551,6 +561,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             case .archiveChat:
                 tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
                 toggleArchiveChat()
+            case .cloneChat:
+                tableView.deselectRow(at: indexPath, animated: false)
             case .leaveGroup:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showLeaveGroupConfirmationAlert()
