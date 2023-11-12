@@ -563,6 +563,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 toggleArchiveChat()
             case .cloneChat:
                 tableView.deselectRow(at: indexPath, animated: false)
+                navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: chat.isBroadcast, templateChatId: chatId), animated: true)
             case .leaveGroup:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showLeaveGroupConfirmationAlert()

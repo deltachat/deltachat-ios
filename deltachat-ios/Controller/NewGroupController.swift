@@ -7,6 +7,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     var doneButton: UIBarButtonItem!
     var contactIdsForGroup: Set<Int>
     var groupContactIds: [Int]
+    let templateChat: DcChat?
 
     private var changeGroupImage: UIImage?
     private var deleteGroupImage: Bool = false
@@ -55,7 +56,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         return cell
     }()
 
-    init(dcContext: DcContext, createBroadcast: Bool) {
+    init(dcContext: DcContext, createBroadcast: Bool, templateChatId: Int? = nil) {
         self.createBroadcast = createBroadcast
         self.dcContext = dcContext
         self.sections = [.details, .invite, .members]
@@ -67,6 +68,14 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             self.detailsRows = [.name, .avatar]
             self.inviteRows = [.addMembers]
             self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
+        }
+        if let templateChatId = templateChatId {
+            templateChat = dcContext.getChat(chatId: templateChatId)
+            if let templateChat = templateChat {
+                self.contactIdsForGroup = Set(templateChat.getContactIds(dcContext))
+            }
+        } else {
+            templateChat = nil
         }
         self.groupContactIds = Array(contactIdsForGroup)
         super.init(style: .grouped)
@@ -82,6 +91,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             title = String.localized("new_broadcast_list")
         } else {
             title = String.localized("menu_new_group")
+        }
+        if let templateChat = self.templateChat {
+            groupNameCell.textField.text = templateChat.name
         }
         doneButton = UIBarButtonItem(title: String.localized("create"), style: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
