@@ -687,7 +687,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "پیام باز شد";
 "systemmsg_read_receipt_body" = "پیام\"%1$@\" که ارسال کرده بودید در ثفحه گیرنده نمایش داده شد\n\n. تضمینی وجود ندارد که محتوای پیام را خوانده باشد. ";
-"systemmsg_cannot_decrypt" = "این پیام را نمی‌توان رمزگشایی کرد.\n\n• ممکن است بهتر باشد که به همین پیام پاسخ داده و از ارسال کننده بخواهید دوباره آن را بفرستد. \n\n• اگر دوباره دلتاچت را نصب کرده‌اید یا از یک رایانامه دیگر هم روی این دستگاه یا دستگاه دیگر استفاده می‌کنید ممکن است لازم باشد یک پیام برپاسازی اتوکریپت از آن دستگاه ارسال کنید. ";
 "systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از%1$@";
 "systemmsg_failed_sending_to" = "ارسال ناموفق پیام به %1$@.";
@@ -842,8 +841,6 @@
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "این نرم‌افزار رسمی دلتاچت در محیط رایانه است.";
 "welcome_desktop" = "به دلتاچت خوش‌آمدید";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "اکانت‌های شناخته شده";
 "global_menu_preferences_language_desktop" = "زبان";
 "global_menu_file_desktop" = "پرونده";
 "global_menu_file_quit_desktop" = "خروج";
@@ -870,26 +867,12 @@
 "delete_message_desktop" = "حذف پیام";
 "more_info_desktop" = "جزئیات بیشتر ";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "نمایش مشخصات رمزگذاری";
 "remove_desktop" = "حذف";
 "save_desktop" = "ذخیره";
 "name_desktop" = "نام";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "انتقال کلید اتوکریپت";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "یک پیام برپاسازی اتوکریپت، برپاسازی رمزگذاری سرتاسرتان را به‌امنی با دیگر برنامه‌های سازگار با اتوکریپت هم‌رسانی می‌کند. برپاسازی با یک کد برپاسازی رمزگذاری خواهند شد که در اینجا نمایش داده می‌شود که باید آن  را در دستگاه دیگر وارد کنید. ";
 "select_group_image_desktop" = "انتخاب تصویر گروه";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "فرایند تهیه نسخه پشتیبان";
 "export_backup_desktop" = "صادر کردن نسخه پشتیبان";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "کلید برایتان ارسال شد. به دستگاه دیگر رفته و پیام نصب را باز کنید. از شما یک کد نصب خواسته می‌شود. این ارقام را آن‌جا وارد کنید:";
 "autocrypt_correct_desktop" = "برپاسازی اتوکریپت انتقال یافت.";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "کد نصب نادرست. لطفا دوباره امتحان کنید. ";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "امکان ایجاد گپ وجود ندارد. ";
 "forget_login_confirmation_desktop" = "پاک کردن این ورود؟ همه‌چیز پاک می‌شود که شامل رمزگذاری سرتاسر، مخاطبین، گپ‌ها، پیام‌ها و رسانه می‌شود. این عملیات قابل بازگردانی نیست.";
 "message_detail_sent_desktop" = "ارسال شد";
 "message_detail_received_desktop" = "دریافت شد";

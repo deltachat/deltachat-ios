@@ -645,7 +645,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Το μήνυμα ανοίχτηκε";
 "systemmsg_read_receipt_body" = "Το μήνυμα \"%1$@\" που στείλατε εμφανίστηκε στην οθόνη του παραλήπτη.\n\nΑυτό δεν αποτελεί εγγύηση για την ανάγνωση του περιεχομένου.";
-"systemmsg_cannot_decrypt" = "Αυτό το μήνυμα δεν μπορεί να αποκρυπτογραφηθεί.\n\n• Μπορεί ήδη να σας βοηθήσει να απαντήσετε απλώς σε αυτό το μήνυμα και να ζητήσετε από τον αποστολέα να στείλει ξανά το μήνυμα.\n\n• Σε περίπτωση που εγκαταστήσατε ξανά το Delta Chat ή άλλο πρόγραμμα e-mail σε αυτήν ή σε άλλη συσκευή μπορεί να θέλετε να στείλετε ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης από εκεί.";
 "systemmsg_unknown_sender_for_chat" = "Άγνωστος αποστολέας για αυτήν τη συνομιλία. Δείτε \"πληροφορίες\" για περισσότερες λεπτομέρειες.";
 "systemmsg_subject_for_new_contact" = "Μήνυμα από τον/την %1$@";
 "systemmsg_failed_sending_to" = "Αποτυχία αποστολής μηνύματος σε %1$@.";
@@ -807,8 +806,6 @@
 "about_offical_app_desktop" = "Αυτή είναι η επίσημη εφαρμογή Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Αυτό το λογισμικό έχει άδεια χρήσης σύμφωνα με την GNU GPL έκδοση 3 και ο πηγαίος κώδικας είναι διαθέσιμος στο GitHub.";
 "welcome_desktop" = "Καλώς ήρθατε στο Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Γνωστοί Λογαριασμοί";
 "global_menu_preferences_language_desktop" = "Γλώσσα";
 "global_menu_file_desktop" = "Αρχείο";
 "global_menu_file_quit_desktop" = "Κλείσιμο";
@@ -835,26 +832,12 @@
 "delete_message_desktop" = "Διαγραφή μηνύματος";
 "more_info_desktop" = "Περισσότερες πληροφορίες";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Εμφάνιση Πληροφοριών Κρυπτογράφησης";
 "remove_desktop" = "Αφαίρεση";
 "save_desktop" = "Αποθήκευση";
 "name_desktop" = "Όνομα";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Αυτόματη κρυπτογράφηση μεταφοράς κλειδιού";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης μοιράζεται με ασφάλεια τις ρυθμίσεις σας από άκρο σε άκρο με άλλες εφαρμογές συμβατές με την αυτόματη κρυπτογράφηση. Η εγκατάσταση θα κρυπτογραφηθεί από έναν κωδικό ρύθμισης που εμφανίζεται εδώ και πρέπει να πληκτρολογηθεί στην άλλη συσκευή.";
 "select_group_image_desktop" = "Επιλέξτε Εικόνας Ομάδας";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Δημιουργία Αντιγράφων Ασφαλείας";
 "export_backup_desktop" = "Εξαγωγή Αντιγράφων Ασφαλείας";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Το κλειδί σας έχει σταλεί στον εαυτό σας. Μεταβείτε στην άλλη συσκευή και ανοίξτε το μήνυμα ρύθμισης. Θα πρέπει να σας ζητηθεί κωδικός ρύθμισης. Εισαγάγετε τα ακόλουθα ψηφία:";
 "autocrypt_correct_desktop" = "Η ρύθμιση αυτόματης κρυπτογράφησης μεταφέρθηκε.";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Λανθασμένος κωδικός ρύθμισης. Παρακαλώ προσπαθησε ξανά.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Αδυναμία δημιουργίας συνομιλίας.";
 "forget_login_confirmation_desktop" = "Διαγραφή αυτής της σύνδεσης; Τα πάντα θα διαγραφούν, συμπεριλαμβανομένων των ρυθμίσεων από άκρο σε άκρο, επαφών, συνομιλιών, μηνυμάτων και πολυμέσων. Αυτή η πράξη δε μπορεί να αναιρεθεί.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nΜέγεθος: %2$@\n Αναγνωριστικό Λογαριασμού: %3$@";
 "message_detail_sent_desktop" = "Στάλθηκε";

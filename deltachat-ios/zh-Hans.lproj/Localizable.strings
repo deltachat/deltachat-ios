@@ -726,7 +726,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "消息已被打开";
 "systemmsg_read_receipt_body" = "您发送的“%1$@”消息已在接收者的屏幕上显示过。\n\n这并不保证内容已被阅读。";
-"systemmsg_cannot_decrypt" = "此消息无法解密。\n\n• 回复此消息并要求发送者重发该消息可能会有所帮助。\n\n• 如果您在此设备或其他设备上重新安装了 Delta Chat 或其他电子邮件程序，则可能需要从别处发送 Autocrypt 设置消息。";
 "systemmsg_unknown_sender_for_chat" = "此聊天发送者未知。查看“信息”来获取更多详情。";
 "systemmsg_subject_for_new_contact" = "来自 %1$@ 的消息";
 "systemmsg_failed_sending_to" = "发送消息给 %1$@ 失败。";
@@ -907,8 +906,6 @@
 "about_offical_app_desktop" = "这是 Delta Chat 官方桌面应用。";
 "about_licensed_under_desktop" = "本软件在 GNU GPL 版本 3 下获得授权，其源代码可从 GitHub 获得。";
 "welcome_desktop" = "欢迎使用 Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "已知账户";
 "global_menu_preferences_language_desktop" = "语言";
 "global_menu_file_desktop" = "文件";
 "global_menu_file_quit_desktop" = "退出";
@@ -935,26 +932,12 @@
 "delete_message_desktop" = "删除消息";
 "more_info_desktop" = "更多信息";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "显示加密信息";
 "remove_desktop" = "移除";
 "save_desktop" = "保存";
 "name_desktop" = "名称";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt 密钥传输";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Autocrypt 设置消息安全地共享您的端到端设置至其他兼容 Autocrypt 的应用程序。该设置将通过在此显示的、必须在另一台设备上输入的设置码进行加密。";
 "select_group_image_desktop" = "选择群组图像";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "备份进度";
 "export_backup_desktop" = "导出备份";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "您的密钥已发送给您自己。切换到另一台设备并打开该设置消息。 您将被要求输入设置码。 输入以下数字：";
 "autocrypt_correct_desktop" = "Autocrypt 设置已传输 。";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "不正确的设置码。请重试。";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "无法创建聊天。";
 "forget_login_confirmation_desktop" = "删除此登录？ 一切都将被删除，包括您的端到端设置、联系人、聊天、消息及媒体。 此操作无法撤消。";
 "account_info_hover_tooltip_desktop2" = "电子邮件：%1$@\n大小：%2$@\n账户 Id：%3$@";
 "message_detail_sent_desktop" = "发送于";

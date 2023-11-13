@@ -645,7 +645,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Viesti avattu";
 "systemmsg_read_receipt_body" = "Lähettämäsi viesti \"%1$@\" näytettiin vastaanottajan näytöllä.\n\nTämä ei takaa, että sisältö luettiin.";
-"systemmsg_cannot_decrypt" = "Viestin salausta ei voi purkaa.\n\n• Pyydä lähettäjää lähettämään viesti uudelleen.\n\n• Jos asensit Delta Chatin tai toisen sähköpostisovelluksen uudelleen tälle tai toiselle laitteelle, Autocrypt-asetusviestin lähettäminen siitä sovelluksesta voi auttaa.";
 "systemmsg_unknown_sender_for_chat" = "Tuntematon lähettäjä. Katso \"lisätietoja\".";
 "systemmsg_subject_for_new_contact" = "Viesti lähettäjältä %1$@";
 "systemmsg_failed_sending_to" = "Viestin lähettäminen kohteeseen %1$@ epäonnistui.";
@@ -807,8 +806,6 @@
 "about_offical_app_desktop" = "Tämä on virallinen Delta Chat -työpöytäsovellus.";
 "about_licensed_under_desktop" = "Tämä ohjelmisto on GNU GPL v3 -lisensoitu, ja lähdekoodi on saatavilla GitHubissa.";
 "welcome_desktop" = "Tervetuloa Delta Chatiin";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Tunnetut tilit";
 "global_menu_preferences_language_desktop" = "Kieli";
 "global_menu_file_desktop" = "Tiedosto";
 "global_menu_file_quit_desktop" = "Sulje";
@@ -835,26 +832,12 @@
 "delete_message_desktop" = "Poista viesti";
 "more_info_desktop" = "Lisätietoja";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Näytä salaustiedot";
 "remove_desktop" = "Poista";
 "save_desktop" = "Tallenna";
 "name_desktop" = "Nimi";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt-avainten siirto";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Autocrypt-asetusviesti jakaa turvallisesti päästä-päähän-salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa. Asetukset salataan tässä näytettävällä asetuskoodilla, joka on syötettävä toiseen laitteeseen.";
 "select_group_image_desktop" = "Valitse ryhmän kuva";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Varmuuskopioinnin tila";
 "export_backup_desktop" = "Vie varmuuskopio";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Asetusviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään asennuskoodia. Anna seuraavat numerot:";
 "autocrypt_correct_desktop" = "Autocrypt-asetukset siirretty.";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Virheellinen asennuskoodi. Yritä uudelleen.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Keskustelua ei voitu luoda.";
 "forget_login_confirmation_desktop" = "Poista tämä kirjautuminen? Kaikki tiedot poistetaan, mukaan lukien päästä-päähän-salauksen asetukset, yhteystiedot, keskustelut, viestit ja media. Tämä toiminto on peruuttamaton.";
 "account_info_hover_tooltip_desktop2" = "Sähköposti: %1$@\nKoko: %2$@\nTilin tunniste: %3$@";
 "message_detail_sent_desktop" = "lähetetty";

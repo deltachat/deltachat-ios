@@ -395,7 +395,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Irakurragiria";
 "systemmsg_read_receipt_body" = "Hau \"%1$@\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
-"systemmsg_cannot_decrypt" = "Ezin da mezu hau deszifratu.\n\n• Mezuari erantzun diezaiokezu eta berriro bidaltzea eskatu.\n\n• Delta Chat berrinstalatu baduzu edo beste posta programa bat instalatu baduzu gailu honetan edo beste batean, AutoCrypt ezarpen mezua handik hona birbidaltzen saiatu zaitezke.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Nik: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -462,8 +461,6 @@
 "encrypted_message" = "Zifratutako mezua";
 
 "welcome_desktop" = "Ongi etorri Delta Chat-era";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Kontu ezagunak";
 "global_menu_preferences_language_desktop" = "Hautatu hizkuntza...";
 "global_menu_file_desktop" = "Fitxategia";
 "global_menu_file_quit_desktop" = "Irten";
@@ -488,26 +485,12 @@
 "delete_message_desktop" = "Ezabatu mezua";
 "more_info_desktop" = "Informazio gehiago";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Erakutsi zifratzeari buruzko informazioa";
 "remove_desktop" = "Kendu";
 "save_desktop" = "Gorde";
 "name_desktop" = "Izena";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt gakoaren transferentzia";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Autocrypt ezarpen mezu batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "select_group_image_desktop" = "Hautatu taldearen irudia";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Babes-kopia abian";
 "export_backup_desktop" = "Esportatu babes-kopia";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Zure gakoa  bidali zaizu. Joan beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu. Idatzi honako zenbaki hauek han. Behin eginda, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
 "autocrypt_correct_desktop" = "Ongi igorri da Autocrypt ezarpena!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Ezarpen kode okerra. Saiatu berriro.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Ezin izan da txata sortu.";
 "forget_login_confirmation_desktop" = "Ezabatu erabiltzaile-izen hau? Dena ezabatuko da, muturretik muturrerako ezarpena, txatak, mezuak eta multimedia barne. Ekintza hau behin betikoa da eta ezin da desegin.";
 "message_detail_sent_desktop" = "bidalita";
 "message_detail_received_desktop" = "jasota";

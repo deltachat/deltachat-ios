@@ -726,7 +726,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Сповіщення про прочитання.";
 "systemmsg_read_receipt_body" = "Це підтвердження того, що повідомлення «%1$@» було відкрито на пристрої одержувача. Дане підтвердження не означає, що повідомлення було прочитано.";
-"systemmsg_cannot_decrypt" = "Це повідомлення не може бути розшифроване.\n\n• Можливо, має сенс просто відповісти на нього і попросити відправника повторно відправити повідомлення.\n\n• У випадку, якщо Ви переустановили Delta Chat або іншу поштову програму на цьому або іншому пристрої, Ви, можливо, захочете відправити повідомлення з параметрами Autocrypt звідти.";
 "systemmsg_unknown_sender_for_chat" = "Невідомий відправник для цього чату. Дивіться \"Інформацію\" для деталей.";
 "systemmsg_subject_for_new_contact" = "Повідомлення від %1$@";
 "systemmsg_failed_sending_to" = "Неможлива надіслати повідомлення до %1$@.";
@@ -907,8 +906,6 @@
 "about_offical_app_desktop" = "Це офіційний додаток Delta Chat для ПК.";
 "about_licensed_under_desktop" = "Це програмне забезпечення ліцензується за GNU GPL версії 3, а початковий код доступний на GitHub.";
 "welcome_desktop" = "Вітаємо у Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Відомі облікові записи";
 "global_menu_preferences_language_desktop" = "Вибір мови";
 "global_menu_file_desktop" = "Файл";
 "global_menu_file_quit_desktop" = "Вийти";
@@ -935,26 +932,12 @@
 "delete_message_desktop" = "Видалити повідомлення";
 "more_info_desktop" = "Більше інформації";
 "timestamp_format_m_desktop" = "d MMMM";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Показати інформацію про шифрування";
 "remove_desktop" = "Видалити";
 "save_desktop" = "Зберегти";
 "name_desktop" = "Ім\'я";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Передавання ключів Autocrypt";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Повідомлення з параметрами Autocrypt слугує для безпечного передавання параметрів наскрізного шифрування між власними додатками для роботи з електронною поштою, що підтримують протокол Autocrypt. Ці параметри шифруються з використанням спеціального інсталяційного коду, що показаний тут і повинен бути введений у налаштовуємому додатку.";
 "select_group_image_desktop" = "Вибрати зображення групи";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Прогрес резервного копіювання";
 "export_backup_desktop" = "Експорт резервної копії";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Ваш ключ було надіслано до вас. Перейдіть на інший пристрій та відкрийте установче повідомлення. Вас мають спитати установчий код. Введіть наступні цифри:";
 "autocrypt_correct_desktop" = "Налаштування Autocrypt успішно передані!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Невірний інсталяційний код. Спробуйте ввести його повторно.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Не вдалося створити чат.";
 "forget_login_confirmation_desktop" = "Видалити цей обліковий запис? При цьому будуть видалені всі дані, включно з параметрами наскрізного шифрування, списками контактів, чатами, повідомленнями та медіафайлами. Цю дію не можна буде скасувати.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nРозмір: %2$@\nІдентиф. аккаунту: %3$@";
 "message_detail_sent_desktop" = "Надіслано";

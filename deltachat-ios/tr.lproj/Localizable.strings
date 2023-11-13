@@ -726,7 +726,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "İleti açıldı";
 "systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunduğunun güvencesi değildir.";
-"systemmsg_cannot_decrypt" = "Bu iletinin şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderene iletiyi yeniden gönderip gönderemeyeceğini sormak zaten yardımcı olabilir.\n\n• Delta Chat\'i ya da başka bir e-posta programını bu ya da başka bir aygıta yeniden kurduysanız, oradan bir Autocrypt Ayarlama İletisi göndermek isteyebilirsiniz.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
 "systemmsg_failed_sending_to" = "%1$@ kişisine ileti gönderme başarısız.";
@@ -795,7 +794,7 @@
 "chat_protection_enabled_tap_to_learn_more" = "Bundan böyle iletiler uçtan uca şifreleme güvencelidir. Daha fazlasını öğrenmek için dokunun.";
 "chat_protection_enabled_explanation" = "Artık bu sohbetteki tüm iletiler uçtan uca şifreleme güvencelidir.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. E-posta sağlayıcınız bile onları okuyamaz.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ başka bir aygıttan bir ileti gönderdi. Daha fazlasını öğrenmek için dokunun.";
-"chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvenceli olamıyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
+"chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvencelenemiyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
 
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
@@ -853,7 +852,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ yanıtladı; öbeğe eklenmesi bekleniyor…";
 "contact_verified" = "%1$@ tanıtıldı.";
-"contact_not_verified" = "%1$@ ile güvenceli uçtan uca şifreleme kurulamıyor.";
+"contact_not_verified" = "%1$@ ile güvencelenen uçtan uca şifreleme kurulamıyor.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ tarafından tanıtıldı";
 "verified_by_you" = "Benim tarafımdan tanıtıldı";
@@ -907,8 +906,6 @@
 "about_offical_app_desktop" = "Bu, resmî Delta Chat Masaüstü uygulamasıdır.";
 "about_licensed_under_desktop" = "Bu yazılım, GNU GPL sürüm 3 altında lisanslıdır ve kaynak kodu GitHub\'da kullanılabilir.";
 "welcome_desktop" = "Delta Chat\'e hoş geldiniz";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Bilinen Hesaplar";
 "global_menu_preferences_language_desktop" = "Dil";
 "global_menu_file_desktop" = "Dosya";
 "global_menu_file_quit_desktop" = "Çık";
@@ -935,26 +932,12 @@
 "delete_message_desktop" = "İletiyi Sil";
 "more_info_desktop" = "Daha Fazla Bilgi";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Şifreleme Bilgisini Göster";
 "remove_desktop" = "Kaldır";
 "save_desktop" = "Kaydet";
 "name_desktop" = "Ad";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt anahtar aktarımı";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır. Ayarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
 "select_group_image_desktop" = "Öbek Görseli Seç";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Yedekleme İlerlemesi";
 "export_backup_desktop" = "Yedeği Dışa Aktar";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Anahtarınız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
 "autocrypt_correct_desktop" = "Autocrypt ayarlaması aktarıldı.";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Sohbet oluşturulamadı.";
 "forget_login_confirmation_desktop" = "Bu giriş silinsin mi? Uçtan uca ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak her şey silinecek. Bu eylem geri alınamaz.";
 "account_info_hover_tooltip_desktop2" = "E-Posta: %1$@\nBoyut: %2$@\nHesap Kimliği: %3$@";
 "message_detail_sent_desktop" = "gönderilme";
@@ -1030,3 +1013,7 @@
 "perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
 
 
+// device messages for updates
+"update_1_42_common" = "Ne yeni:\n\n💌 bire bir sohbetler artık tanıtılan kişiler için uçtan uca şifrelemeyi güvenceler\n\n😌 Herkesin basitliği için bu kişileri ve sohbetleri yeşil onay işaretleriyle işaretliyoruz\n\n👥 olanaklıysa, öbekler güvencelenen uçtan uca şifrelemeyle otomatik olarak oluşturulur\n\n🔄 Kabul edilen/Engellenen, Arşivlenen, Sabitlenen, Sessize Al aygıtlarınız arasında eşzamanlanır";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_42_android" = "Kamera, sesli iletiler, tümünü yedekleme, ekran okuyucusu, hesap başına duvar kâğıtları, galeride tümünü seç, webxdc manzarasındaki daha fazla iyileştirmeye dikkat edin … ya da onları %1$@ adresinde okuyun";

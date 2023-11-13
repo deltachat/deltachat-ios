@@ -722,7 +722,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Recibo de lectura";
 "systemmsg_read_receipt_body" = "El mensaje \"%1$@\" que enviaste se mostró en la pantalla del destinatario.\n\nEsto no garantiza que el contenido haya sido leído.";
-"systemmsg_cannot_decrypt" = "Este mensaje no puede ser descifrado.\n\n• Es posible que sea útil simplemente responderlo y pedirle al remitente que lo envíe nuevamente.\n\n• En caso de que haya reinstalado Delta Chat u otro programa de correo en este u otro dispositivo, puede que quiera enviar un Mensaje de Configuración de Autocrypt desde allí.";
 "systemmsg_unknown_sender_for_chat" = "Remitente desconocido. Mira \"info\" para más detalles.";
 "systemmsg_subject_for_new_contact" = "Mensaje de %1$@";
 "systemmsg_failed_sending_to" = "Falla en enviar el mensaje a %1$@.";
@@ -903,8 +902,6 @@
 "about_offical_app_desktop" = "Esta es la aplicación oficial de Delta Chat para escritorio.";
 "about_licensed_under_desktop" = "Este programa está licenciado bajo GNU GPL versión 3 y el código está disponible en GitHub.";
 "welcome_desktop" = "Bienvenido a Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Cuentas conocidas";
 "global_menu_preferences_language_desktop" = "Idioma";
 "global_menu_file_desktop" = "Archivo";
 "global_menu_file_quit_desktop" = "Salir";
@@ -931,26 +928,12 @@
 "delete_message_desktop" = "Eliminar mensaje";
 "more_info_desktop" = "Más información";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Mostrar información de cifrado";
 "remove_desktop" = "Eliminar";
 "save_desktop" = "Guardar";
 "name_desktop" = "Nombre";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Transferencia de clave Autocrypt";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Un Mensaje de Configuración Autocrypt comparte de forma segura su configuración de extremo a extremo con otras aplicaciones compatibles con Autocrypt. La configuración se cifrará mediante un código de configuración que se muestra aquí y debe escribirse en el otro dispositivo.";
 "select_group_image_desktop" = "Seleccionar imagen de grupo";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Progreso de copia de respaldo";
 "export_backup_desktop" = "Exportar copia de respaldo";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Tu llave ha sido enviada a ti mismo. Cámbiate al otro dispositivo y abre el mensaje de configuración. Se te debe pedir un código de configuración. Escribe los siguientes dígitos:";
 "autocrypt_correct_desktop" = "Configuración de Autocrypt transferida exitosamente!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Código de configuración incorrecto. Por favor, inténtalo de nuevo.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "No se pudo crear el chat.";
 "forget_login_confirmation_desktop" = "¿Borrar esta sesión? Todo se eliminará, incluida la configuración de extremo a extremo, contactos, chats, mensajes y multimedia. Esta acción es definitiva y no puede ser revertida.";
 "account_info_hover_tooltip_desktop2" = "Correo: %1$@\nTamaño: %2$@\nID de la cuenta: %3$@";
 "message_detail_sent_desktop" = "enviado";

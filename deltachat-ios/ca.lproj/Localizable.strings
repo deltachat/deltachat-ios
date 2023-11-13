@@ -515,7 +515,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Confirmació de lectura";
 "systemmsg_read_receipt_body" = "Confirmació de lectura del missatge \"%1$@\".\n\nVol dir que el missatge s\'ha mostrat al dispositiu del receptor, no necessàriament que s\'hagi llegit.";
-"systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Proveu de respondre\'l i demanar-li al remitent que us el torni a enviar.\n\n• Si heu reinstal·lat Delta Chat o un altre gestor de correu en aquest dispositiu o en algun altre, proveu d\'enviar un missatge de configuració Autocrypt des d\'allà.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Nom del grup \"%1$@\" canviat a \"%2$@\" per mi.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -574,8 +573,6 @@
 // dc_str_* resources
 "encrypted_message" = "Missatge encriptat";
 
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Comptes coneguts";
 "global_menu_preferences_language_desktop" = "Trieu l\'idioma...";
 "global_menu_file_desktop" = "Arxiva";
 "global_menu_file_quit_desktop" = "Surt";
@@ -598,26 +595,12 @@
 "delete_message_desktop" = "Esborra missatge";
 "more_info_desktop" = "Més informació";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Mostra la informació de xifratge";
 "remove_desktop" = "Elimina";
 "save_desktop" = "Desa";
 "name_desktop" = "Nom";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Transfereix la clau d\'Autocrypt";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Un missatge de configuració Autocrypt comparteix de manera segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles. La configuració es xifrarà mitjançant un codi de configuració que es mostrarà aquí i que s\'ha d’escriure a l’altre dispositiu.";
 "select_group_image_desktop" = "Tria una imatge de grup";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Progrés de còpia de seguretat";
 "export_backup_desktop" = "Exporta la còpia de seguretat";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "La vostra clau us ha estat enviada. Canvieu a l\'altre dispositiu i obriu-hi el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els següents dígits a l\'indicador. Un cop hagueu acabat, l’altre dispositiu estarà llest per utilitzar Autocrypt.";
 "autocrypt_correct_desktop" = "S\'ha transferit correctament la configuració Autocrypt!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Codi de configuració incorrecte. Siusplau torneu-ho a provar.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "No s\'ha pogut crear el xat.";
 "forget_login_confirmation_desktop" = "Voleu suprimir aquesta sessió? S\'eliminarà tot, incloent-hi la configuració, els contactes, els xats, els missatges i els arxius multimèdia. Aquesta acció és definitiva i no es pot desfer.";
 "message_detail_sent_desktop" = "enviat";
 "message_detail_received_desktop" = "rebut";

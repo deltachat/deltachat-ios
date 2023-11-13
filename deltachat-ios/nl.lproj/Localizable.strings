@@ -726,7 +726,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Leesbevestiging";
 "systemmsg_read_receipt_body" = "Het door jou verstuurde bericht, “%1$@”, heeft het scherm van de ontvanger bereikt.\n\nDit betekent echter niet dat het ook gelezen is.";
-"systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd op dit of een ander apparaat, verstuur het instelbericht dan opnieuw.";
 "systemmsg_unknown_sender_for_chat" = "Dit gesprek bevat een onbekende afzender. Zie ‘Informatie’ voor meer informatie.";
 "systemmsg_subject_for_new_contact" = "Bericht van %1$@";
 "systemmsg_failed_sending_to" = "Het bericht kan niet worden verstuurd aan %1$@.";
@@ -907,8 +906,6 @@
 "about_offical_app_desktop" = "Dit is de officiële Delta Chat-computerapp.";
 "about_licensed_under_desktop" = "Deze software is vrijgegeven onder de GNU GPL versie 3 en de broncode is beschikbaar op GitHub.";
 "welcome_desktop" = "Welkom bij Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Bekende accounts";
 "global_menu_preferences_language_desktop" = "Taal";
 "global_menu_file_desktop" = "Bestand";
 "global_menu_file_quit_desktop" = "Afsluiten";
@@ -935,26 +932,12 @@
 "delete_message_desktop" = "Bericht verwijderen";
 "more_info_desktop" = "Meer informatie";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Versleutelingsinformatie tonen";
 "remove_desktop" = "Verwijderen";
 "save_desktop" = "Opslaan";
 "name_desktop" = "Naam";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt-sleuteloverdracht";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps. De instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "select_group_image_desktop" = "Kies een groepsafbeelding";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Back-upvoortgang";
 "export_backup_desktop" = "Back-up exporteren";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "D sleutel is aan jezelf verstuurd. Ga naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:";
 "autocrypt_correct_desktop" = "Autocrypt-instellingen overgedragen!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Onjuiste instelcode; probeer het opnieuw.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Kan geen gesprek beginnen.";
 "forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd: je eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
 "account_info_hover_tooltip_desktop2" = "E-mail: %1$@\nGrootte: %2$@\nAccount-id: %3$@";
 "message_detail_sent_desktop" = "verstuurd";

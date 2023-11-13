@@ -539,7 +539,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Besked åbnet";
 "systemmsg_read_receipt_body" = "Beskeden \"%1$@\" du har sendt blev vist på modtagerens skærm.\n\nDette er ikke en garanti for at indholdet blev læst.";
-"systemmsg_cannot_decrypt" = "Denne besked kan ikke dekrypteres.\n\n• Det kan måske hjælpe at svare på beskeden og bede afsender sende beskeden igen.\n\n• I tilfælde at Delta Chat eller andet e-mail program på denne enhed eller en anden er blevet gen-installeret bør der sendes en Autocrypt opsætning besked derfra.";
 "systemmsg_unknown_sender_for_chat" = "Ukent afsender af denne chat. Se \'info\' for flere detaljer.";
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";
 "systemmsg_failed_sending_to" = "Mislykket forsøg på afsendelse af besked til %1$@.";
@@ -657,8 +656,6 @@
 "about_offical_app_desktop" = "Dette er den officielle Delta Chat Desktop app.";
 "about_licensed_under_desktop" = "Denne software er licenseret under GNU GPL version 3 og kildekoden er tilgængelig på GitHub";
 "welcome_desktop" = "Velkommen til Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Kendte konti";
 "global_menu_preferences_language_desktop" = "Vælge sprog...";
 "global_menu_file_desktop" = "Fil";
 "global_menu_file_quit_desktop" = "Afslut";
@@ -684,26 +681,12 @@
 "delete_message_desktop" = "Slet besked";
 "more_info_desktop" = "Mere information";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Vis krypteringsinformation";
 "remove_desktop" = "Fjern";
 "save_desktop" = "Gem";
 "name_desktop" = "Navn";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt nøgleoverførsel";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "En Autocrypt opsætning beskeddeler sikkert ende-til-ende opsætning med andre Autocrypt kompatible programmer. Opsætninger er krypteret med en opsætning kode som er vist her og skal indtastes på de andre enheder.";
 "select_group_image_desktop" = "Vælg gruppebillede";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Sikkerhedskopiering fremgang";
 "export_backup_desktop" = "Eksporter sikkerhedskopi";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Nøgle er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der bliver promptet for en opsætning kode.. Indtast følgende cifre i prompten. Når det er afsluttet vil den anden enhed være klar til at bruge Autocrypt.";
 "autocrypt_correct_desktop" = "Autocrypt opsætning overført!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Forkert opsætningskode. Prøv igen.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Kunne ikke oprette samtale";
 "forget_login_confirmation_desktop" = "Slet login? Alt vil blive slettet, din end-to-end opsætning, kontakter, samtaler, meddelelser og medier. Denne handling er endelig og kan ikke fortrydes.";
 "message_detail_sent_desktop" = "sendt";
 "message_detail_received_desktop" = "modtaget";

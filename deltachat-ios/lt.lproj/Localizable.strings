@@ -564,7 +564,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Pranešimas apie skaitymą";
 "systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \"%1$@\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
-"systemmsg_cannot_decrypt" = "Nepavyksta iššifruoti šios žinutės.\n\n• Galima, tiesiog, atsakyti į šią žinutę ir paprašyti siuntėjo dar kartą išsiųsti šią žinutę.\n\n• Tuo atveju, jeigu iš naujo įdiegėte Delta Chat ar kitą el. pašto programą šiame ar kitame įrenginyje, jūs galite pageidauti išsiųsti Autocrypt sąrankos žinutę iš to įrenginio.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
 // "left" in the meaning of "exited"
 "group_left_by_you" = "Jūs išėjote iš grupės.";
@@ -644,8 +643,6 @@
 
 "about_licensed_under_desktop" = "Ši programinė įranga yra licencijuota pagal GNU GPL versiją 3, o pirminis kodas yra prieinamas „GitHub“ internetinėje svetainėje.";
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Žinomos paskyros";
 "global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";
 "global_menu_file_desktop" = "Failas";
 "global_menu_file_quit_desktop" = "Išeiti";
@@ -672,26 +669,12 @@
 "delete_message_desktop" = "Ištrinti žinutę";
 "more_info_desktop" = "Daugiau informacijos";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Rodyti šifravimo informaciją";
 "remove_desktop" = "Šalinti";
 "save_desktop" = "Išsaugoti";
 "name_desktop" = "Vardas";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt rakto perdavimas";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Autocrypt sąrankos žinutė saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis. Sąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "select_group_image_desktop" = "Pasirinkti grupės paveikslą";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Atsarginės kopijos eiga";
 "export_backup_desktop" = "Eksportuoti atsarginę kopiją";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Jūsų raktas išsiųstas jums patiems. Persijunkite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti prašoma įvesti sąrankos kodą. Įveskite šiuos skaitmenis:";
 "autocrypt_correct_desktop" = "Autocrypt sąranka sėkmingai perduota!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Neteisingas sąrankos kodas. Bandykite dar kartą.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Nepavyko sukurti pokalbio.";
 "forget_login_confirmation_desktop" = "Ištrinti šį prisijungimą? Viskas bus ištrinta, įskaitant jūsų ištisinę sąranką, adresatus, pokalbius, žinutes ir mediją. Šis veiksmas yra galutinis ir negalės būti panaikintas.";
 "account_info_hover_tooltip_desktop2" = "El. paštas: %1$@\nDydis: %2$@\nPaskyros Id: %3$@";
 "message_detail_sent_desktop" = "išsiųsta";

@@ -2,6 +2,8 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Abbruch";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "oder";
 "clear_search" = "Suche löschen";
 "yes" = "Ja";
 "no" = "Nein";
@@ -726,7 +728,7 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Empfangsbestätigung";
 "systemmsg_read_receipt_body" = "Ihre Nachricht \"%1$@\" wurde auf dem Empfangsgerät angezeigt.\n\nDas ist keine Garantie dafür, dass sie auch gelesen wurde.";
-"systemmsg_cannot_decrypt" = "Diese Nachricht kann nicht entschlüsselt werden.\n\n• Es könnte bereits helfen, einfach auf diese Nachricht zu antworten und die/den AbsenderIn zu bitten, die Nachricht erneut zu senden.\n\n• Falls Delta Chat oder ein anderes E-Mail-Programm auf diesem oder einem anderen Gerät neu installiert wurde, kann von dort aus eine Autocrypt Setup-Nachricht gesendet werden.";
+"systemmsg_cannot_decrypt" = "Diese Nachricht kann nicht entschlüsselt werden.\n\n• Es kann bereits helfen, auf diese Nachricht zu antworten und den Absender zu bitten, die Nachricht noch einmal zu senden.\n\n• Wenn Sie Delta Chat gerade neu installiert haben, ist es am besten, wenn Sie Delta Chat mit \"Als Zweitgerät hinzufügen\" neu einrichten oder ein Backup importieren.";
 "systemmsg_unknown_sender_for_chat" = "Absender ist für diesen Chat unbekannt. Siehe \"Info\" für weitere Details,";
 "systemmsg_subject_for_new_contact" = "Nachricht von %1$@";
 "systemmsg_failed_sending_to" = "Nachricht senden an %1$@ fehlgeschlagen.";
@@ -738,7 +740,7 @@
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "Gruppenbild geändert von %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group
-"add_member_by_you" = "Sie haben %1$@ hinzugefügt.";
+"add_member_by_you" = "%1$@ hinzugefügt.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
 "add_member_by_other" = "%1$@ hinzugefügt von %2$@.";
 // %1$s will be replaced by name and address of the contact removed from the group
@@ -907,8 +909,6 @@
 "about_offical_app_desktop" = "Dies ist die offizielle Delta Chat Desktop App.";
 "about_licensed_under_desktop" = "Dieses Programm ist lizenziert unter der GNU GPL version 3 und der Quellcode ist auf Github verfügbar.";
 "welcome_desktop" = "Willkommen bei Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Bekannte E-Mail-Konten";
 "global_menu_preferences_language_desktop" = "Sprache";
 "global_menu_file_desktop" = "Datei";
 "global_menu_file_quit_desktop" = "Beenden";
@@ -935,26 +935,12 @@
 "delete_message_desktop" = "Nachricht löschen";
 "more_info_desktop" = "Mehr Informationen";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Zeige Verschlüsselungsinfo";
 "remove_desktop" = "Entfernen";
 "save_desktop" = "Speichern";
 "name_desktop" = "Name";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt-Schlüsselübertragung";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Eine \"Autocrypt-Setup-Nachricht\" überträgt das Ende-zu-Ende-Setup sicher auf ein anderes Autocrypt-kompatibles Gerät. Das Setup wird mit einem Setup-Code geschützt; dieser wird hier angezeigt und muss auf dem anderen Gerät eingetippt werden.";
 "select_group_image_desktop" = "Gruppenbild auswählen";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Backup-Prozess";
 "export_backup_desktop" = "Backup exportieren";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Der Schlüssel wurde an Sie versandt. Nun zum anderen Gerät wechseln und die Setup-Nachricht öffnen. Nach Aufforderung, den Setup-Code einzugeben, die folgenden Zahlen eingeben. Danach ist Autocrypt auf dem anderen Gerät eingerichtet.";
 "autocrypt_correct_desktop" = "Erfolgreich übertragenes Autocrypt-Setup!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Falscher Setup-Code. Bitte versuche es erneut.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Konnte Chat nicht erstellen.";
 "forget_login_confirmation_desktop" = "Dieses Login löschen? Alles wird gelöscht, einschließlich des Ende-zu-Ende-Setups, der Kontakte, Chats, Nachrichten und Medien. Diese Aktion ist endgültig und kann nicht rückgängig gemacht werden.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nGröße: %2$@\nAccount-ID: %3$@";
 "message_detail_sent_desktop" = "gesendet";

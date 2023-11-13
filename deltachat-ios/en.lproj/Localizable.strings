@@ -2,6 +2,8 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancel";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "or";
 "clear_search" = "Clear Search";
 "yes" = "Yes";
 "no" = "No";
@@ -726,7 +728,7 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Message opened";
 "systemmsg_read_receipt_body" = "The \"%1$@\" message you sent was displayed on the screen of the recipient.\n\nThis is no guarantee the content was read.";
-"systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• In case you re-installed Delta Chat or another e-mail program on this or another device you may want to send an Autocrypt Setup Message from there.";
+"systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• If you just re-installed Delta Chat then it is best if you re-setup Delta Chat now and choose \"Add as second device\" or import a backup.";
 "systemmsg_unknown_sender_for_chat" = "Unknown sender for this chat. See \'info\' for more details.";
 "systemmsg_subject_for_new_contact" = "Message from %1$@";
 "systemmsg_failed_sending_to" = "Failed to send message to %1$@.";
@@ -737,6 +739,8 @@
 "group_image_changed_by_you" = "You changed the group image.";
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "Group image changed by %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"member_x_added" = "Member %1$@ added.";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "You added member %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
@@ -907,8 +911,6 @@
 "about_offical_app_desktop" = "This is the official Delta Chat Desktop app.";
 "about_licensed_under_desktop" = "This software is licensed under GNU GPL version 3 and the source code is available on GitHub.";
 "welcome_desktop" = "Welcome to Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Known Accounts";
 "global_menu_preferences_language_desktop" = "Language";
 "global_menu_file_desktop" = "File";
 "global_menu_file_quit_desktop" = "Quit";
@@ -935,26 +937,12 @@
 "delete_message_desktop" = "Delete Message";
 "more_info_desktop" = "More Info";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Show Encryption Info";
 "remove_desktop" = "Remove";
 "save_desktop" = "Save";
 "name_desktop" = "Name";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt key transfer";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps. The setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "select_group_image_desktop" = "Select Group Image";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Backup Progress";
 "export_backup_desktop" = "Export Backup";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Your key has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
 "autocrypt_correct_desktop" = "Autocrypt setup transferred.";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Incorrect setup code. Please try again.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Could not create chat.";
 "forget_login_confirmation_desktop" = "Delete this login? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nSize: %2$@\nAccount Id: %3$@";
 "message_detail_sent_desktop" = "sent";

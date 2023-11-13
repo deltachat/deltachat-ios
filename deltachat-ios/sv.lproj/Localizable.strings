@@ -492,7 +492,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Meddelande öppnat";
 "systemmsg_read_receipt_body" = "\"%1$@\" meddelandet du skickade visades på mottagarens skärm.\n\nDet är ingen garanti för att innehållet har lästs.";
-"systemmsg_cannot_decrypt" = "Meddelandet kan inte avkrypteras.\n\n• Det kanske kan hjälpa, att svara på detta meddelande och be avsändaren skicka det igen.\n\n• Ifall du har ominstallerat Delta Chat eller något annat e-postprogram på denna eller någon annan enhet, kanske du behöver skicka ett nytt Autocryp inställningsmeddelande därifrån.";
 "systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
 "systemmsg_failed_sending_to" = "Kunde inte skicka meddelande till %1$@.";
@@ -584,8 +583,6 @@
 "encrypted_message" = "Krypterat meddelande";
 
 "welcome_desktop" = "Välkommen till Delta Chat";
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Kända konton";
 "global_menu_preferences_language_desktop" = "Språk";
 "global_menu_file_desktop" = "Arkiv";
 "global_menu_file_quit_desktop" = "Avsluta";
@@ -610,26 +607,12 @@
 "delete_message_desktop" = "Ta bort meddelande";
 "more_info_desktop" = "Mer information";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Visa krypteringsinfo";
 "remove_desktop" = "Ta bort";
 "save_desktop" = "Save";
 "name_desktop" = "Namn";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt nyckelöverföring";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Ett Autocrypt inställningsmeddelande delar din slutpunkt-till-slutpunkt-inställning med andra Autocrypt-anpassade program på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den andra enheten.";
 "select_group_image_desktop" = "Välj en gruppbild";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Säkerhetskopieringsförlopp";
 "export_backup_desktop" = "Exportera säkerhetskopia";
-// deprecated, use autocrypt_send_asm_explain_after instead
-"show_key_transfer_message_desktop" = "Din nyckel har skickats till dig själv. Byt till den andra enheten och öppna inställningsmeddelandet. . Du kommer att tillfrågas om en inställningskod. Ange följande siffror:";
 "autocrypt_correct_desktop" = "Autocrypt-inställning överförd.";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Felaktig inställningskod. Försök igen.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Kunde inte skapa chatt.";
 "forget_login_confirmation_desktop" = "Ta bort den här inloggningen? Allt kommer att raderas, inklusive din slutpunkt-till-slutpunkt-inställning, dina kontakter, media och meddelanden. Denna åtgärd kan inte ångras.";
 "message_detail_sent_desktop" = "skickat";
 "message_detail_received_desktop" = "mottaget";

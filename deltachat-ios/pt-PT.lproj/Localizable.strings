@@ -277,7 +277,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Ler recibos";
 "systemmsg_read_receipt_body" = "Este é um recibo de confirmação de leitura da mensagem \"%1$@\".\n\nEsta mensagem foi exibida no dispositivo do destinatário, não necessariamente que o conteúdo foi lido.";
-"systemmsg_cannot_decrypt" = "Esta mensagem não pode ser descriptada.\n\n • Talvez seja útil simplesmente responder a esta mensagem e solicitar que o remetente envie a mensagem novamente.\n\n • Caso você tenha re-instalado o Delta Chat ou outro programa de e-mail neste ou noutro dispositivo poderá querer enviar uma mensagem de configuração Autocrypt do dispositvo.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -336,8 +335,6 @@
 // dc_str_* resources
 "encrypted_message" = "Mensagem encriptada";
 
-// deprecated, use switch_account
-"login_known_accounts_title_desktop" = "Contas Conhecidas";
 "global_menu_preferences_language_desktop" = "Escolha o seu idioma...";
 "global_menu_file_desktop" = "Arquivo";
 "global_menu_file_quit_desktop" = "Sair";
@@ -360,24 +357,12 @@
 "delete_message_desktop" = "Apagar mensagem";
 "more_info_desktop" = "Informação adicional";
 "timestamp_format_m_desktop" = "MMM D";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Mostrar a informação de encriptação";
 "remove_desktop" = "Apagar";
 "save_desktop" = "Guardar";
 "name_desktop" = "Nome";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Transferência da chave de Autocrypt";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "Uma Mensagem de Configuração Autocrypt compartilha de forma segura sua configuração de ponta a ponta com outros aplicativos compatíveis com Autocrypt. A configuração será encriptada por um código de configuração que é exibido aqui e deve ser digitado no outro dispositivo.";
 "select_group_image_desktop" = "Seleccionar a imagem para o grupo";
-// deprecated, use export_backup_desktop instead
-"imex_progress_title_desktop" = "Progressão do backup";
 "export_backup_desktop" = "Exportar o backup";
 "autocrypt_correct_desktop" = "Configuração autocrypt transferida com sucesso!";
-// deprecated, use autocrypt_bad_setup_code instead
-"autocrypt_incorrect_desktop" = "Código de configuração incorreto. Por favor, tente novamente.";
-// deprecated, rare errors should be english only for easier searchability
-"create_chat_error_desktop" = "Não foi possível criar o Chat";
 "forget_login_confirmation_desktop" = "Apagar este login? Tudo será apagado, incluindo sua configuração de ponta a ponta, contatos, chats, mensagens e mídia. Esta ação é final e não pode ser revertida.";
 "message_detail_sent_desktop" = "enviado";
 "message_detail_received_desktop" = "recebido";

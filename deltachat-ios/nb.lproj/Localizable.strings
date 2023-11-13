@@ -324,7 +324,6 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Meldingskvittering";
 "systemmsg_read_receipt_body" = "Dette er en meldingskvittering for meldingen \"%1$@\".\n\nDenne meldingskvitteringen bekrefter bare at meldingen ble vist på mottakerens enhet. Det finnes ingen garanti for at mottakeren har lest meldingsinnholdet.";
-"systemmsg_cannot_decrypt" = "Denne meldingen kan ikke dekrypteres.\n\n• Det kan hjelpe å svare på denne meldingen og spørre avsenderen om å sende den igjen.\n\n• I fall du har reinstallert Delta Chat eller et annet e-postprogram på denne eller en annen enhet, kan du sende en Autocrypt-oppsettsmelding derfra.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Gruppenavn endret fra \"%1$@\" til \"%2$@\" av meg.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -385,13 +384,7 @@
 "encryption_info_title_desktop" = "Krypteringsinfo";
 "delete_message_desktop" = "Slett melding";
 "more_info_desktop" = "Mer informasjon";
-// deprecated, use encryption_info_title_desktop or profile_encryption
-"encryption_info_desktop" = "Krypteringsinfo";
 "remove_desktop" = "Fjerne";
 "save_desktop" = "Lagre";
 "name_desktop" = "Navn";
-// deprecated, use autocrypt_send_asm_title / autocrypt_continue_transfer_title
-"autocrypt_key_transfer_desktop" = "Autocrypt-nøkkeloverføring";
-// deprecated, use autocrypt_send_asm_explain_before
-"initiate_key_transfer_desktop" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
 "export_backup_desktop" = "Eksporter sikkerhetskopi";
