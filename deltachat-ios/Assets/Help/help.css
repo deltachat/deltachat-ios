@@ -46,9 +46,5 @@ a {
     background-color: black !important;
 	color: #eee;
   }
-
-  img {
-    filter: invert(100%);
-  }
 }
 
