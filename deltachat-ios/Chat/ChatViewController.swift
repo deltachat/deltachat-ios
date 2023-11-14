@@ -1599,9 +1599,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func showProtectionBrokenDialog() {
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("chat_protection_broken_explanation"), dcChat.name), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-            if let url = URL(string: "https://staging.delta.chat/746/en/help#nocryptanymore") {
-                UIApplication.shared.open(url)
-            }
+            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#nocryptanymore"), animated: true)
         }))
         alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -1615,9 +1613,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func showProtectionEnabledDialog() {
         let alert = UIAlertController(title: String.localized("chat_protection_enabled_explanation"), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-            if let url = URL(string: "https://staging.delta.chat/746/en/help#e2eeguarantee") {
-                UIApplication.shared.open(url)
-            }
+            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#e2eeguarantee"), animated: true)
         }))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
