@@ -18,6 +18,10 @@ public class DcAccounts {
         dc_accounts_unref(accountsPointer)
         accountsPointer = nil
     }
+    
+    public func isOpen() -> Bool {
+        return accountsPointer != nil
+    }
 
     public func migrate(dbLocation: String) -> Int {
         return Int(dc_accounts_migrate_account(accountsPointer, dbLocation))

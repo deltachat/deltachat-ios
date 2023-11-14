@@ -67,6 +67,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         continueDidFinishLaunchingWithOptions()
         return true
     }
+    
+    func openAccountsWithKeychain() {
+        logger.info("🔐 openAccountsWithKeychain")
+        let accountIds = dcAccounts.getAll()
+        for accountId in accountIds {
+            let dcContext = dcAccounts.get(id: accountId)
+            if !dcContext.isOpen() {
+                do {
+                    logger.info("🔐 start")
+                    let secret = try KeychainManager.getAccountSecret(accountID: accountId)
+                    logger.info("🔐 got secret")
+                    if !dcContext.open(passphrase: secret) {
+                        logger.error("Failed to open database for account \(accountId)")
+                    }
+                    logger.info("🔐 done")
+                } catch KeychainError.accessError(let message, let status) {
+                    logger.error("Keychain error. \(message). Error status: \(status)")
+                    return
+                } catch KeychainError.unhandledError(let message, let status) {
+                    logger.error("Keychain error. \(message). Error status: \(status)")
+                } catch {
+                    logger.error("\(error)")
+                }
+            }
+        }
+        logger.info("🔐 openAccountsWithKeychain done")
+    }
 
     // finishes the app initialization which depends on the successful access to the keychain
     func continueDidFinishLaunchingWithOptions() {
@@ -83,27 +110,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } catch {
             // TODO: Handle
         }
-
-        let accountIds = dcAccounts.getAll()
-        for accountId in accountIds {
-            let dcContext = dcAccounts.get(id: accountId)
-            if !dcContext.isOpen() {
-                do {
-                    let secret = try KeychainManager.getAccountSecret(accountID: accountId)
-                    if !dcContext.open(passphrase: secret) {
-                        logger.error("Failed to open database for account \(accountId)")
-                    }
-                } catch KeychainError.accessError(let message, let status) {
-                    logger.error("Keychain error. \(message). Error status: \(status)")
-                    return
-                } catch KeychainError.unhandledError(let message, let status) {
-                    logger.error("Keychain error. \(message). Error status: \(status)")
-                } catch {
-                    logger.error("\(error)")
-                }
-            }
-        }
-
+        
+        openAccountsWithKeychain()
+        
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
            fatalError("Could not initialize a new account.")
         }
@@ -211,9 +220,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // applicationWillEnterForeground() is _not_ called on initial app start
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
+        maybeStart()
         applicationInForeground = true
         dcAccounts.startIo()
-
+        
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             if let reachability = self.reachability {
@@ -257,6 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationDidBecomeActive(_: UIApplication) {
         logger.info("➡️ applicationDidBecomeActive")
         applicationInForeground = true
+        dcAccounts.startIo()
     }
 
     func applicationWillResignActive(_: UIApplication) {
@@ -271,7 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
-        dcAccounts.closeDatabase()
+        self.closeDB();
         if let reachability = reachability {
             reachability.stopNotifier()
         }
@@ -309,8 +320,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.unregisterBackgroundTask()
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
-                self.dcAccounts.stopIo()
-
+                self.closeDB()
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling unregisterBackgroundTask()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -321,6 +331,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 logger.info("⬅️ remaining background time: \(app.backgroundTimeRemaining)")
                 self.maybeStop()
             }
+        }
+    }
+    
+    var shouldShutdownEventLoop: Bool = false
+    var eventShutdownSemaphore = DispatchSemaphore(value: 1)
+    func closeDB() {
+        // add flag to shutdown event handler
+        shouldShutdownEventLoop = true
+        // stopIo will generate atleast one event to the event handler can shut down
+        self.dcAccounts.stopIo()
+        // somehow wait for the eventhandler to be closed
+        eventShutdownSemaphore.wait()
+        // to avoid 0xdead10cc exceptions, we need to make sure there are no locks on files.
+        self.dcAccounts.closeDatabase()
+        shouldShutdownEventLoop = false
+    }
+    
+    func maybeStart() {
+        logger.debug("⏫ maybe openDatabase again 🤔")
+        if !dcAccounts.isOpen() {
+            logger.debug("⏫ openDatabase again, because it is closed")
+            dcAccounts.openDatabase(writeable: true)
+            self.openAccountsWithKeychain()
+            logger.debug("⏫ openDatabase done")
+            if !eventHandlerActive {
+                installEventHandler()
+            }
+            reloadDcContext()
         }
     }
 
@@ -465,6 +503,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             completionHandler(.newData)
             return
         }
+        
+        maybeStart()
 
         // from time to time, `didReceiveRemoteNotification` and `performFetchWithCompletionHandler`
         // are actually called at the same millisecond.
@@ -527,11 +567,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             if !self.appIsInForeground() {
                 self.dcAccounts.stopIo()
+                // to avoid 0xdead10cc exceptions, we need to make sure there are no locks on files.
+                self.closeDB()
             }
 
-            // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
-            // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
-            usleep(1_000_000)
             logger.info("⬅️ fetch done")
             completionHandler(.newData)
             if backgroundTask != .invalid {
@@ -597,16 +636,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
+    var eventHandlerActive = false
     func installEventHandler() {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             let eventHandler = DcEventHandler(dcAccounts: self.dcAccounts)
             let eventEmitter = self.dcAccounts.getEventEmitter()
+            eventHandlerActive = true
+            logger.info("⏫ event emitter started")
             while true {
+                if shouldShutdownEventLoop {
+                    break
+                }
                 guard let event = eventEmitter.getNextEvent() else { break }
                 eventHandler.handleEvent(event: event)
             }
-            logger.info("⬅️ event emitter finished")
+            logger.info("⏬ event emitter finished")
+            eventShutdownSemaphore.signal()
+            eventHandlerActive = false
         }
     }
 
