@@ -2,6 +2,8 @@
 "app_name" = "Delta Chat";
 "ok" = "Tamam";
 "cancel" = "İptal";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "ya da";
 "clear_search" = "Aramayı Temizle";
 "yes" = "Evet";
 "no" = "Hayır";
@@ -726,6 +728,7 @@
 // system messages
 "systemmsg_read_receipt_subject" = "İleti açıldı";
 "systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunduğunun güvencesi değildir.";
+"systemmsg_cannot_decrypt" = "Bu ileti şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderenden iletiyi yeniden göndermesini istemek zaten yardımcı olabilir.\n\n• Delta Chat\'i yeni kurduysanız, Delta Chat\'i şimdi yeniden ayarlayıp \"İkinci aygıt olarak ekle\"yi seçmeniz ya da bir yedeği içe aktarmanız en iyisidir.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
 "systemmsg_failed_sending_to" = "%1$@ kişisine ileti gönderme başarısız.";
@@ -736,6 +739,8 @@
 "group_image_changed_by_you" = "Öbek görselini değiştirdiniz.";
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "%1$@ tarafından öbek görseli değiştirildi.";
+// %1$s will be replaced by name and address of the contact added to the group
+"member_x_added" = "%1$@ üyesi eklendi.";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "%1$@ üyesini eklediniz.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action

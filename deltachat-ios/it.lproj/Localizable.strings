@@ -2,6 +2,8 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Annulla";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "o";
 "clear_search" = "Cancella Ricerca";
 "yes" = "Sì";
 "no" = "No";
@@ -726,6 +728,7 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Ricevuta di lettura";
 "systemmsg_read_receipt_body" = "Questa è una ricevuta di lettura del messaggio \"%1$@\".\n\nCiò significa che il messaggio è stato mostrato nel dispositivo del destinatario, ma non necessariamente che il contenuto è stato letto.";
+"systemmsg_cannot_decrypt" = "Questo messaggio non può essere decrittografato.\n\n• Potrebbe essere già utile rispondere semplicemente a questo messaggio e chiedere al mittente d\'inviare nuovamente il messaggio.\n\n• Se hai appena reinstallato Delta Chat, è meglio se riconfiguri ora Delta Chat e scegli \"Aggiungi come secondo dispositivo\" o importa un backup.";
 "systemmsg_unknown_sender_for_chat" = "Mittente sconosciuto per questa chat. Vedi \'info\' per maggiori dettagli.";
 "systemmsg_subject_for_new_contact" = "Messaggio da %1$@";
 "systemmsg_failed_sending_to" = "Impossibile inviare il messaggio a %1$@.";
@@ -736,6 +739,8 @@
 "group_image_changed_by_you" = "Hai cambiato l\'immagine del gruppo.";
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "Immagine del gruppo cambiata da %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"member_x_added" = "Membro %1$@ aggiunto.";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "Hai aggiunto un membro %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action

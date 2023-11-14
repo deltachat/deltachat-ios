@@ -2,6 +2,8 @@
 "app_name" = "Delta Chat";
 "ok" = "Oké";
 "cancel" = "Annuleren";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "of";
 "clear_search" = "Zoekopdracht wissen";
 "yes" = "Ja";
 "no" = "Nee";
@@ -726,6 +728,7 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Leesbevestiging";
 "systemmsg_read_receipt_body" = "Het door jou verstuurde bericht, “%1$@”, heeft het scherm van de ontvanger bereikt.\n\nDit betekent echter niet dat het ook gelezen is.";
+"systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd, voeg het dan toe als tweede apparaat of importeer een reservekopie.";
 "systemmsg_unknown_sender_for_chat" = "Dit gesprek bevat een onbekende afzender. Zie ‘Informatie’ voor meer informatie.";
 "systemmsg_subject_for_new_contact" = "Bericht van %1$@";
 "systemmsg_failed_sending_to" = "Het bericht kan niet worden verstuurd aan %1$@.";
@@ -736,6 +739,8 @@
 "group_image_changed_by_you" = "Je hebt de groepsafbeelding gewijzigd.";
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "De groepsafbeelding is gewijzigd door %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"member_x_added" = "‘%1$@’ is toegevoegd.";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "Je hebt ‘%1$@’ toegevoegd.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action

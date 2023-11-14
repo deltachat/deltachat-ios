@@ -740,6 +740,8 @@
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "Gruppenbild geändert von %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group
+"member_x_added" = "%1$@ hinzugefügt.";
+// %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "%1$@ hinzugefügt.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
 "add_member_by_other" = "%1$@ hinzugefügt von %2$@.";
@@ -1017,6 +1019,6 @@
 
 
 // device messages for updates
-"update_1_42_common" = "Was ist neu:\n\n💌 Eins-Zu-Eins-Chats garantieren jetzt eine Ende-zu-Ende-Verschlüsselung für eingeführte Kontakte\n\n😌 Der Einfachheit halber markieren wir diese Kontakte und Chats mit grünen Häkchen\n\n👥 Gruppen werden, wenn möglich, automatisch mit garantierter Ende-zu-Ende-Verschlüsselung erstellt\n\n🔄 Annehmen, Blockieren, Archivieren, Anhefteten und Stummschalten wird nun über alle Geräte hinweg synchronisiert";
+"update_1_42_common" = "Was ist neu:\n\n💌 Eins-Zu-Eins-Chats garantieren jetzt eine Ende-zu-Ende-Verschlüsselung für Kontakte mit einem grünen Häkchen\n\n😌 Der Einfachheit halber markieren wir auch die Chats mit grünen Häkchen\n\n👥 Gruppen werden, wenn möglich, automatisch mit garantierter Ende-zu-Ende-Verschlüsselung erstellt\n\n🔄 Annehmen, Blockieren, Archivieren, Anhefteten und Stummschalten wird nun über alle Geräte hinweg synchronisiert";
 // placeholder will be replaced by the URL https://get.delta.chat/#changelogs
 "update_1_42_android" = "Weitere Verbesserungen gibt es in den Bereichen Kamera, Sprachnachrichten, Backup aller Konten, Screenreader, Konto-Hintergrundbilder, Galerie alles auswählen, Webxdc-Querformat ... und mehr unter %1$@";
