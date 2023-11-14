@@ -1,5 +1,83 @@
 # Delta Chat iOS Changelog
 
+## v1.41.8
+2023-11
+
+* guarantee end-to-end-encryption in one-to-one chats, if possible
+* if end-to-end-encryption cannot be guaranteed eg. due to key changes,
+  the chat requires a confirmation of the user
+* auto-detect if a new group can guaranteed end-to-end encryption
+  (replaces experimental "verified groups")
+* add "group created instructions" as info message to new chats
+* clone group in the group's profile menu
+* synchronize Accept/Blocked, Archived, Pinned and Mute across devices
+* synchronize "Broadcast Lists" (experimental) across devices
+* "QR Invite Code" is available after group creation in the group's profile
+* backup filenames include the account name now
+* "Broadcast Lists" (experimental) create their own chats on the receiver site
+* add "Introduced by" information to contact profiles
+* add info messages about implicitly added members
+* add hardcoded fallback DNS cache
+* more graceful ratelimit for .testrun.org subdomains
+* faster message detection on the server
+* improve handling of various partly broken encryption states by adding a secondary verified key
+* add "Deactivate QR code" option when showing QR codes
+  (in addition to deactivate and reactivate QR codes by scanning them)
+* give instructions how to play unsupported video formats
+* use same voice messages bitrates as on android and respect media quality setting
+* add a privacy warning atop of logs
+* fix: allow to QR scan groups when 1:1 chat with the inviter is a contact request
+* fix: add "Setup Changed" message before the message
+* fix: read receipts created or unblock 1:1 chats sometimes
+* fix: do not skip actual message parts when group change messages are inserted
+* fix broken chat names (encode names in the List-ID to avoid SMTPUTF8 errors)
+* fix: mark 1:1 chat as protected when joining a group
+* fix: raise lower auto-download limit to 160k
+* fix: remove Reporting-UA from read receipt
+* fix: do not apply group changes to special chats; avoid adding members to trashed chats
+* fix: protect better against duplicate UIDs reported by IMAP servers
+* fix: more reliable group consistency by always automatically downloading messages up to 160k
+* fix: make sure, a QR scan succeeds if there is some leftover from a previously broken scan
+* fix: allow other guaranteed e2ee group recipients to be unverified, only check the sender verification
+* fix: switch to "Mutual" encryption preference on a receipt of encrypted+signed message
+* fix hang in receiving messages when accidentally going IDLE
+* fix: allow verified key changes via "member added" message
+* fix: partial messages do not change group state
+* fix: don't implicitly delete members locally, add absent ones instead
+* fix configure error with "Winmail Pro Mail Server"
+* fix: set maximal memory usage for the internal database
+* fix: allow setting a draft if verification is broken
+* fix joining verified group via QR if contact is not already verified
+* fix: sort old incoming messages below all outgoing ones
+* fix: do not mark non-verified group chats as verified when using securejoin
+* fix: show only chats where we can send to on forwarding or sharing
+* fix: improve removing accounts in case the filesystem is busy
+* fix: don't show a contact as verified if their key changed since the verification
+* fix sorting error with downloaded manually messages
+* fix group creation when the initial group message is downloaded manually
+* fix connectivity status view for servers not supporting IMAP IDLE
+* fix: don't try to send more read receipts if there's a temporary SMTP error
+* fix sending images and other files in location steaming mode
+* fix connectivity view layout if eg. storage shows values larger than 100%
+* fix scanning account-QR-codes on older phones that miss the Let's Encrypt system certificate
+* fix: make Thunderbird show encrypted subjects
+* fix: do not create new groups if someone replies to a group message with status "failed"
+* fix: do not block new group chats if 1:1 chat is blocked
+* fix "Show full message" showing a black screen for some messages received from Microsoft Exchange
+* fix: skip read-only mailing lists from forwarding/share chat lists
+* fix: do not allow dots at the end of email addresses
+* fix: do not send images pasted from the keyboard unconditionally as stickers
+* fix: forbid membership changes from possible non-members, allow from possible members
+* fix: improve group consistency across members
+* fix: delete messages from SMTP queue only on user demand
+* fix: improve wrapping of email messages on the wire
+* fix memory leak in IMAP
+* fix: disable 'Add to Home Screen' for iOS 16+ as unsupported
+* update provider database
+* update translations and local help
+* using core 1.131.2
+
+
 ## v1.40.3
 2023-10
 
