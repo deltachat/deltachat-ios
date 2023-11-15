@@ -393,21 +393,27 @@ public class BaseMessageCell: UITableViewCell {
         let downloadState = msg.downloadState
         let hasHtml = msg.hasHtml
         let hasWebxdc =  msg.type == DC_MSG_WEBXDC
-        isActionButtonHidden = !hasWebxdc && !hasHtml && downloadState == DC_DOWNLOAD_DONE
         
         switch downloadState {
         case DC_DOWNLOAD_AVAILABLE:
             actionButton.setTitle(String.localized("download"), for: .normal)
+            isActionButtonHidden = false
         case DC_DOWNLOAD_FAILURE:
             actionButton.setTitle(String.localized("download_failed"), for: .normal)
+            isActionButtonHidden = false
         case DC_DOWNLOAD_IN_PROGRESS:
             actionButton.isEnabled = false
             actionButton.setTitle(String.localized("downloading"), for: .normal)
+            isActionButtonHidden = false
         default:
             if hasHtml {
                 actionButton.setTitle(String.localized("show_full_message"), for: .normal)
+                isActionButtonHidden = false
             } else if hasWebxdc {
                 actionButton.setTitle(String.localized("start_app"), for: .normal)
+                isActionButtonHidden = false
+            } else {
+                isActionButtonHidden = true
             }
         }
 
