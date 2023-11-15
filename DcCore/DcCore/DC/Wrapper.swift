@@ -112,8 +112,6 @@ public class DcContext {
 
     public var logger: Logger?
     var contextPointer: OpaquePointer?
-    public var lastWarningString: String = "" // temporary thing to get a grip on some weird errors
-    public var maxConfigureProgress: Int = 0 // temporary thing to get a grip on some weird errors
     private var anyWebxdcSeen: Bool = false
 
     public init(contextPointer: OpaquePointer?, logger: Logger?) {
@@ -494,8 +492,6 @@ public class DcContext {
     }
 
     public func configure() {
-        maxConfigureProgress = 0
-        lastWarningString = ""
         dc_configure(contextPointer)
     }
 

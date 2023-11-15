@@ -41,11 +41,9 @@ public class DcEventHandler {
 
         case DC_EVENT_WARNING:
             let s = event.data2String
-            dcContext.lastWarningString = s
             dcContext.logger?.warning("event: \(s)")
 
         case DC_EVENT_CONFIGURE_PROGRESS:
-            dcContext.maxConfigureProgress = max(dcContext.maxConfigureProgress, Int(data1))
             dcContext.logger?.info("configure progress: \(Int(data1)) \(Int(data2))")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
