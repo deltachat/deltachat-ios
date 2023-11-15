@@ -77,7 +77,7 @@ public class DcEventHandler {
                         "progress": Int(data1),
                         "error": Int(data1) == 0,
                         "done": Int(data1) == 1000,
-                        "errorMessage": dcContext.lastErrorString as Any,
+                        "errorMessage": self.dcAccounts.get(id: accountId).lastErrorString,
                     ]
                 )
             }
@@ -220,7 +220,7 @@ public class DcEventHandler {
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            dcContext.logger?.info("network: DC_EVENT_CONNECTIVITY_CHANGED: \(dcContext.getConnectivity())")
+            dcContext.logger?.info("network: DC_EVENT_CONNECTIVITY_CHANGED: \(self.dcAccounts.get(id: accountId).getConnectivity())")
             DispatchQueue.main.async {
                 let nc = NotificationCenter.default
                 nc.post(
