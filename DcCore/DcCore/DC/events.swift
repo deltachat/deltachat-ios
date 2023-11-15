@@ -25,6 +25,7 @@ public class DcEventHandler {
         let id = event.id
         let data1 = event.data1Int
         let data2 = event.data2Int
+        let accountId = event.accountId
         let dcContext = dcAccounts.get(id: event.accountId)
 
         if id >= DC_EVENT_ERROR && id <= 499 {
@@ -85,7 +86,7 @@ public class DcEventHandler {
             dcContext.logger?.warning("network: \(event.data2String)")
 
         case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("change: \(id)")
@@ -105,7 +106,7 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_MSGS_NOTICED:
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             let nc = NotificationCenter.default
@@ -120,7 +121,7 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CHAT_MODIFIED:
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("chat modified: \(id)")
@@ -135,7 +136,7 @@ public class DcEventHandler {
                 )
             }
         case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("chat ephemeral timer modified: \(id)")
@@ -158,7 +159,7 @@ public class DcEventHandler {
                         userInfo: nil)
             }
             
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             
@@ -178,7 +179,7 @@ public class DcEventHandler {
             dcContext.logger?.info("network: \(event.data2String)")
 
         case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("securejoin inviter progress \(data1)")
@@ -197,7 +198,7 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CONTACTS_CHANGED:
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("contact changed: \(data1)")
@@ -216,7 +217,7 @@ public class DcEventHandler {
             if let sem = dcAccounts.fetchSemaphore, dcAccounts.isAllWorkDone() {
                 sem.signal()
             }
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("network: DC_EVENT_CONNECTIVITY_CHANGED: \(dcContext.getConnectivity())")
@@ -230,7 +231,7 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_WEBXDC_STATUS_UPDATE:
-            if dcContext.id != dcAccounts.getSelected().id {
+            if accountId != dcAccounts.getSelected().id {
                 return
             }
             dcContext.logger?.info("webxdc: update!")
