@@ -221,6 +221,12 @@ class WebxdcViewController: WebViewViewController {
         
         config.mediaTypesRequiringUserActionForPlayback = []
         config.allowsInlineMediaPlayback = true
+    
+        if #available(iOS 14.0, *) {
+            config.limitsNavigationsToAppBoundDomains = true
+        } else {
+            // Fallback on earlier versions
+        }
 
         if #available(iOS 13.0, *) {
             preferences.isFraudulentWebsiteWarningEnabled = true
@@ -251,6 +257,11 @@ class WebxdcViewController: WebViewViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
         refreshWebxdcInfo()
+        if #available(iOS 16.4, *) {
+            self.webView.isInspectable = true
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     override func willMove(toParent parent: UIViewController?) {
