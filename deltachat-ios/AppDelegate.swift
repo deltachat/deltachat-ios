@@ -6,6 +6,7 @@ import DcCore
 import SDWebImageWebPCoder
 import Intents
 import SDWebImageSVGKitPlugin
+import OSLog
 
 let logger = SimpleLogger()
 
@@ -603,11 +604,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             guard let self = self else { return }
             let eventHandler = DcEventHandler(dcAccounts: self.dcAccounts)
             let eventEmitter = self.dcAccounts.getEventEmitter()
+            os_log("📡⬆️ EventHandler started ⬆️📡", log: .default, type: .info)
             while true {
                 guard let event = eventEmitter.getNextEvent() else { break }
                 eventHandler.handleEvent(event: event)
             }
-            logger.info("⬅️ event emitter finished")
+            os_log("📡⬇️ EventHandler shutdown ⬇️📡", log: .default, type: .info)
         }
     }
 

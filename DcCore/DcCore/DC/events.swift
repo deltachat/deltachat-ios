@@ -1,5 +1,6 @@
 import UIKit
 import UserNotifications
+import OSLog
 
 public let dcNotificationChanged = Notification.Name(rawValue: "MrEventMsgsChanged")
 public let dcNotificationIncoming = Notification.Name(rawValue: "MrEventIncomingMsg")
@@ -25,28 +26,25 @@ public class DcEventHandler {
         let id = event.id
         let data1 = event.data1Int
         let data2 = event.data2Int
+        let accountId = event.accountId
         let dcContext = dcAccounts.get(id: event.accountId)
 
         if id >= DC_EVENT_ERROR && id <= 499 {
-            let s = event.data2String
-            dcContext.logger?.error("event: \(s)")
+            os_log("🚨📡%d %@", log: .default, type: .fault, accountId, event.data2String)
             return
         }
 
         switch id {
 
         case DC_EVENT_INFO:
-            let s = event.data2String
-            dcContext.logger?.info("event: \(s)")
+            os_log("ℹ️📡%d %@", log: .default, type: .info, accountId, event.data2String)
 
         case DC_EVENT_WARNING:
-            let s = event.data2String
-            dcContext.lastWarningString = s
-            dcContext.logger?.warning("event: \(s)")
+            os_log("⚠️📡%d %@", log: .default, type: .error, accountId, event.data2String)
 
         case DC_EVENT_CONFIGURE_PROGRESS:
             dcContext.maxConfigureProgress = max(dcContext.maxConfigureProgress, Int(data1))
-            dcContext.logger?.info("configure progress: \(Int(data1)) \(Int(data2))")
+            os_log("📡%d configure progress: %d %d", log: .default, type: .debug, accountId, Int(data1), Int(data2))
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
                 let done = Int(data1) == 1000
@@ -83,15 +81,18 @@ public class DcEventHandler {
                 )
             }
 
-        case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
-            dcContext.logger?.warning("network: \(event.data2String)")
+        case DC_EVENT_IMAP_CONNECTED:
+            os_log("📡%d network imap connected: %@", log: .default, type: .info, accountId, event.data2String)
+
+        case DC_EVENT_SMTP_CONNECTED:
+            os_log("📡%d network smtp connected: %@", log: .default, type: .info, accountId, event.data2String)
 
         case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
+            os_log("📡%d msg change: %d %d", log: .default, type: .debug, accountId, Int(data2), Int(data1))
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
-            dcContext.logger?.info("change: \(id)")
-
+            
             let nc = NotificationCenter.default
 
             DispatchQueue.main.async {
@@ -122,10 +123,10 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CHAT_MODIFIED:
+            os_log("📡%d chat modified: (chatid=%d)", log: .default, type: .debug, accountId, Int(data1))
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
-            dcContext.logger?.info("chat modified: \(id)")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
                 nc.post(
@@ -137,10 +138,10 @@ public class DcEventHandler {
                 )
             }
         case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
+            os_log("📡%d chat ephemeral timer modified: (chatid=%d)", log: .default, type: .debug, accountId, Int(data1))
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
-            dcContext.logger?.info("chat ephemeral timer modified: \(id)")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
                 nc.post(
@@ -159,7 +160,7 @@ public class DcEventHandler {
                         object: nil,
                         userInfo: nil)
             }
-            
+            os_log("📡%d incoming msg: (chatid=%d, message_id=%d)", log: .default, type: .default, accountId, Int(data1), Int(data2))
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
@@ -169,7 +170,6 @@ public class DcEventHandler {
                 "chat_id": Int(data1),
             ]
 
-            dcContext.logger?.info("incoming message \(userInfo)")
             DispatchQueue.main.async {
                 nc.post(name: dcNotificationIncoming,
                         object: nil,
@@ -177,13 +177,13 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_SMTP_MESSAGE_SENT:
-            dcContext.logger?.info("network: \(event.data2String)")
+            os_log("📡%d network smtp msg sent: %@", log: .default, type: .info, accountId, event.data2String)
 
         case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
+            os_log("📡%d securejoin inviter progress: %d", log: .default, type: .info, accountId, data1)
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
-            dcContext.logger?.info("securejoin inviter progress \(data1)")
 
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
@@ -199,10 +199,10 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CONTACTS_CHANGED:
+            os_log("📡%d contact changed: %d", log: .default, type: .info, accountId, data1)
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
-            dcContext.logger?.info("contact changed: \(data1)")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
                 nc.post(
@@ -215,13 +215,14 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
+            let connectivity = dcContext.getConnectivity()
+            os_log("📡%d connectivity changed: %d", log: .default, type: .info, accountId, connectivity)
             if let sem = dcAccounts.fetchSemaphore, dcAccounts.isAllWorkDone() {
                 sem.signal()
             }
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
-            dcContext.logger?.info("network: DC_EVENT_CONNECTIVITY_CHANGED: \(dcContext.getConnectivity())")
             DispatchQueue.main.async {
                 let nc = NotificationCenter.default
                 nc.post(
@@ -232,10 +233,10 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_WEBXDC_STATUS_UPDATE:
+            os_log("📡%d webxdc update: (msg_id=%d)", log: .default, type: .info, accountId, Int(data1))
             if dcContext.id != dcAccounts.getSelected().id {
                 return
             }
-            dcContext.logger?.info("webxdc: update!")
             DispatchQueue.main.async {
                 let nc = NotificationCenter.default
                 nc.post(
@@ -247,8 +248,11 @@ public class DcEventHandler {
                 )
             }
 
+        case DC_EVENT_INCOMING_MSG_BUNCH:
+            os_log("📡%d imap incoming msg bunch", log: .default, type: .default, accountId, id)
+            
         default:
-            dcContext.logger?.warning("unknown event: \(id)")
+            os_log("📡%d unknown event: (event_id=%d)", log: .default, type: .info, accountId, id)
         }
     }
 

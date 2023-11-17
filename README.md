@@ -86,3 +86,22 @@ If you want to import/export a backup this is the location you want to put it (i
 ```
 ~/Library/Containers/98CC2CD0-7DED-4E02-9C0A-B4FF287AA877/Data/Documents
 ```
+
+
+## Accssing the Logs
+
+Use the macOS Console app. (maybe some tool from libimobile device can also read the log)
+Select your device (you need to plugin in your phone), then paste this in the seach field to only show messages from deltachat:
+```
+prozesspfad:deltachat-ios
+```
+
+
+These symbols are used and you can use them for filtering.
+```
+📡 - events
+📡accountId - also events but replace accountId with the id you are interessted in
+🚨📡 - error events
+⚠️📡 - warn events
+ℹ️📡 - info events
+```
