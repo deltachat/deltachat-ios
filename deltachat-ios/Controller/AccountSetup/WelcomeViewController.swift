@@ -219,7 +219,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     @objc private func moreButtonPressed() {
         let alert = UIAlertController(title: "Encrypt Database (highly experimental, use at your own risk)",
-                                      message: "Encrypting your database will slow down your accout and notifications. "
+                                      message: "Encrypting your database will slow down the app and notifications. "
                                           + "This cannot be undone and is usually not needed on iOS "
                                           + "as the system already protects and sandboxes the database.",
                                       preferredStyle: .safeActionSheet)
