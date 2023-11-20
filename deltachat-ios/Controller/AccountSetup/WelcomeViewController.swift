@@ -218,11 +218,13 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: "Encrypted Account (experimental)",
-                                      message: "Do you want to encrypt your account database? This cannot be undone.",
+        let alert = UIAlertController(title: "Encrypt Database (highly experimental, use at your own risk)",
+                                      message: "Encrypting your database will slow down your accout and notifications. "
+                                          + "This cannot be undone and is usually not needed on iOS "
+                                          + "as the system already protects and sandboxes the database.",
                                       preferredStyle: .safeActionSheet)
-        let encryptedAccountAction = UIAlertAction(title: "Create encrypted account", style: .default, handler: switchToEncrypted(_:))
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil)
+        let encryptedAccountAction = UIAlertAction(title: "Use Non-Recommended Database Encryption", style: .default, handler: switchToEncrypted(_:))
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         alert.addAction(encryptedAccountAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
@@ -241,7 +243,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                 logger.error("Failed to open account database for account \(dcContext.id)")
                 return
             }
-            self.navigationItem.title = String.localized("add_encrypted_account")
+            self.navigationItem.title = "Encrypt database"
         } catch KeychainError.unhandledError(let message, let status) {
             logger.error("Keychain error. Failed to create encrypted account. \(message). Error status: \(status)")
         } catch {
