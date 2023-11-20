@@ -507,7 +507,7 @@
 "login_socks5_user" = "Usuario SOCKS5";
 "login_socks5_password" = "Contraseña SOCKS5";
 "login_info_oauth2_title" = "¿Continuar con la configuración simplificada?";
-"login_info_oauth2_text" = "La dirección de correo electrónico introducida admite una configuración simplificada (OAuth2).\n\nEn el próximo paso, permita que Delta Chat actúe como su aplicación de chat con correo electrónico.\n\nNo hay servidores de Delta Chat, tus datos permanecen en tu dispositivo!";
+"login_info_oauth2_text" = "La dirección de correo electrónico introducida admite una configuración simplificada (OAuth 2.0).\n\nEn el próximo paso, permita que Delta Chat actúe como su aplicación de chat por correo electrónico.\n\nNo hay servidores de Delta Chat, tus datos permanecen en tu dispositivo.";
 "login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
 "login_error_server" = "Por favor, introduzca un servidor / dirección IP válido";

@@ -2,6 +2,8 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Anuluj";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "lub";
 "clear_search" = "Wyczyść wyszukiwanie";
 "yes" = "Tak";
 "no" = "Nie";
@@ -32,6 +34,8 @@
 "close" = "Zamknij";
 "close_window" = "Zamknij okno";
 "forward" = "Przekaż";
+"create" = "Utwórz";
+"later" = "Później";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Wyślij ponownie";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -110,6 +114,9 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Naklejka";
+"add_to_sticker_collection" = "Dodaj do kolekcji naklejek";
+"add_stickers_instructions" = "Aby dodać naklejki, dotknij „Otwórz folder naklejek”, utwórz podfolder dla swojego pakietu naklejek i przeciągnij do niego pliki obrazów i naklejek";
+"open_sticker_folder" = "Otwórz folder naklejek";
 "images" = "Obrazy";
 "audio" = "Audio";
 "voice_message" = "Wiadomość głosowa";
@@ -160,11 +167,15 @@
 "menu_new_contact" = "Nowy kontakt";
 "menu_new_chat" = "Nowy czat";
 "menu_new_group" = "Nowa grupa";
+"clone_chat" = "Klonuj czat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista rozgłoszeniowa";
 "broadcast_lists" = "Lista rozgłoszeniowa";
 "new_broadcast_list" = "Nowa lista rozgłoszeniowa";
 "add_recipients" = "Dodaj odbiorców";
+"edit_broadcast_list" = "Edytuj listę rozgłoszeniową";
+"broadcast_list_name" = "Nazwa listy rozgłoszeniowej";
+"please_enter_broadcast_list_name" = "Wpisz nazwę listy rozgłoszeniowej";
 "menu_send" = "Wyślij";
 "menu_toggle_keyboard" = "Przełącz klawiaturę emoji";
 "menu_edit_group" = "Edytuj grupę";
@@ -189,6 +200,7 @@
 "menu_copy_image_to_clipboard" = "Kopiuj obraz";
 "menu_copy_email_to_clipboard" = "Kopiuj e-mail";
 "paste_from_clipboard" = "Wklej ze schowka";
+"ask_copy_unopenable_link_to_clipboard" = "Linku „%1$d” nie można otworzyć w przeglądarce internetowej. Czy zamiast tego chcesz skopiować link do schowka?";
 "menu_forward" = "Przekaż wiadomość";
 "menu_reply" = "Odpowiedz na wiadomość";
 "menu_mute" = "Wyłącz powiadomienia";
@@ -198,6 +210,7 @@
 "menu_all_media" = "Wszystkie multimedia";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Pokaż w czacie";
+"show_app_in_chat" = "Pokaż aplikację w czacie";
 "menu_share" = "Udostępnij";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Zablokuj";
@@ -209,6 +222,7 @@
 "menu_scroll_to_bottom" = "Przewiń na dołu";
 "menu_scroll_to_top" = "Przewiń na górę";
 "menu_help" = "Pomoc";
+"what_is_webxdc" = "Co to jest Webxdc?";
 "privacy_policy" = "Polityka prywatności";
 "menu_select_all" = "Zaznacz wszystko";
 "select_chat" = "Zaznacz czat";
@@ -245,6 +259,8 @@
 "source_code" = "Kod źródłowy";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Dodaj do ekranu głównego";
+"donate" = "Wspomóż";
+
 "mute_for_one_hour" = "Wyłącz na 1 godzinę";
 "mute_for_two_hours" = "Wyłącz na 2 godziny";
 "mute_for_one_day" = "Wyłącz na 1 dzień";
@@ -308,6 +324,7 @@
 "chat_unable_to_record_audio" = "Nie można nagrać dźwięku.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Wyślij wiadomość. Nie szkodzi, jeśli %1$@ nie korzysta z Delta Chat.";
+"chat_new_broadcast_hint" = "Na liście rozgłoszeniowej odbiorcy będą otrzymywać wiadomości w czacie tylko do odczytu.";
 "chat_new_group_hint" = "Napisz pierwszą wiadomość, by inni mogli odpowiedzieć w tej grupie.\n\n• Nie ma problemu, jeśli nie wszyscy członkowie korzystają z Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać.";
 "chat_record_slide_to_cancel" = "PRZESUŃ, BY ANULOWAĆ";
 "chat_record_explain" = "Dotknij i przytrzymaj, aby nagrać wiadomość głosową, zwolnij, aby wysłać";
@@ -372,6 +389,8 @@
 
 // search
 "search" = "Szukaj";
+"search_in_chat" = "Wyszukaj w czacie";
+"search_files" = "Szukaj plików";
 "search_explain" = "Wyszukaj czaty, kontakty i wiadomości";
 "search_no_result_for_x" = "Nie znaleziono wyników dla „%1$@";
 
@@ -387,6 +406,7 @@
 "group_self_not_in_group" = "Musisz być członkiem grupy, aby wykonać tę czynność.";
 "profile_encryption" = "Szyfrowanie";
 "profile_shared_chats" = "Wspólne czaty";
+"related_chats" = "Powiązane czaty";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupa";
 "tab_gallery" = "Galeria";
@@ -401,6 +421,10 @@
 "tab_webxdc_empty_hint" = "Tutaj pojawią się prywatne aplikacje udostępnione na tym czacie.";
 "tab_all_media_empty_hint" = "Tutaj pojawią się multimedia udostępnione w dowolnym czacie.";
 "media_preview" = "Podgląd multimediów";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "Siatka proporcjonalna";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "Siatka kwadratowa";
 "send_message" = "Wyślij wiadomość";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ zmieniła swój adres z %2$@ na %3$@";
@@ -528,7 +552,7 @@
 "pref_profile_info_headline" = "Twój profil";
 "pref_profile_photo" = "Zdjęcie profilowe";
 "pref_blocked_contacts" = "Zablokowane kontakty";
-"blocked_empty_hint" = "Jeśli zablokujesz kontakty, zostaną one pokazane tutaj.";
+"blocked_empty_hint" = "Zablokowane kontakty, zostaną pokazane tutaj.";
 "pref_password_and_account_settings" = "Hasło i konto";
 "pref_who_can_see_profile_explain" = "Twoje zdjęcie profilowe i nazwa będą wyświetlane wraz z wiadomościami podczas komunikacji z innymi użytkownikami. Już wysłanych informacji nie można skasować ani usunąć.";
 "pref_your_name" = "Twoja nazwa";
@@ -585,7 +609,11 @@
 "pref_other" = "Inne";
 "pref_backup" = "Kopia zapasowa";
 "pref_backup_explain" = "Wykonaj kopię zapasową czatów na pamięci zewnętrznej";
-"pref_backup_export_explain" = "Kopia zapasowa pomaga skonfigurować nową instalację na tym lub na innym urządzeniu.\n\nKopia zapasowa będzie zawierała wszystkie wiadomości, kontakty i czaty oraz pełną konfigurację  funkcji automatycznego szyfrowania. Przechowuj plik kopii zapasowej w bezpiecznym miejscu lub usuń go jak najszybciej.";
+"pref_backup_export_explain" = "Kopia zapasowa pomaga skonfigurować nową instalację na tym lub na innym urządzeniu.\n\nKopia zapasowa będzie zawierała wszystkie wiadomości, kontakty i czaty oraz pełną konfigurację  funkcji automatycznego szyfrowania typu end-to-end. Przechowuj plik kopii zapasowej w bezpiecznym miejscu lub usuń go jak najszybciej.";
+// the placeholder will be replaced by the name of the account's email address
+"pref_backup_export_x" = "Eksportuj %1$@";
+// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+"pref_backup_export_all" = "Eksportuj wszystkie %1$d konta";
 "pref_backup_export_start_button" = "Utwórz kopię";
 "pref_backup_written_to_x" = "Kopia zapasowa została pomyślnie zapisana do %1$@";
 "pref_managekeys_menu_title" = "Zarządzaj prywatnymi kluczami";
@@ -636,6 +664,9 @@
 "profile_image_delete" = "Usuń zdjęcie profilowe";
 "pref_show_tray_icon" = "Pokaż ikonę w obszarze powiadomień";
 "pref_edit_profile" = "Edytuj profil";
+"disable_imap_idle" = "Wyłącz IMAP IDLE";
+"disable_imap_idle_explain" = "Nie używaj rozszerzenia IMAP IDLE, nawet jeśli serwer je obsługuje. Włączenie tej opcji opóźni pobieranie wiadomości, włącz ją tylko na testy.";
+
 // Emoji picker and categories
 "emoji_search_results" = "Wyniki wyszukiwania";
 "emoji_not_found" = "Nie znaleziono emoji";
@@ -683,13 +714,13 @@
 "autocrypt_send_asm_explain_before" = "Wiadomość konfiguracyjna automatycznego szyfrowania” bezpiecznie udostępnia twoją konfigurację end-to-end innym aplikacjom zgodnym z Autocrypt. Klucz zostanie zaszyfrowany za pomocą wyświetlonego tutaj kodu konfiguracyjnego, który należy wpisać na drugim urządzeniu.";
 "autocrypt_send_asm_button" = "Wyślij wiadomość konfiguracyjną Autocrypt";
 "autocrypt_send_asm_explain_after" = "Klucz został wysłany do ciebie. Przejdź do innego urządzenia i otwórz wiadomość konfiguracyjną. Zostanie wyświetlona prośba o podanie kodu konfiguracyjnego. Wpisz następujące cyfry w podpowiedzi.\n\nGdy skończysz, drugie urządzenie będzie gotowe do użycia funkcji automatycznego szyfrowania.";
-"autocrypt_prefer_e2ee" = "Preferuj pełne szyfrowanie";
+"autocrypt_prefer_e2ee" = "Preferuj szyfrowanie typu end-to-end";
 "autocrypt_asm_subject" = "Wiadomość konfiguracyjna automatycznego szyfrowania";
-"autocrypt_asm_general_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, otwórz wiadomość w kliencie zgodnym z automatycznym szyfrowaniem i wprowadź kod konfiguracyjny przedstawiony na urządzeniu generującym.";
-"autocrypt_asm_click_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, dotknij lub kliknij tą wiadomość.";
+"autocrypt_asm_general_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania typu end-to-end służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, otwórz wiadomość w kliencie zgodnym z automatycznym szyfrowaniem i wprowadź kod konfiguracyjny przedstawiony na urządzeniu generującym.";
+"autocrypt_asm_click_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania typu end-to-end służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, dotknij lub kliknij tą wiadomość.";
 "autocrypt_continue_transfer_title" = "Wiadomość konfiguracyjna automatycznego szyfrowania";
 "autocrypt_continue_transfer_please_enter_code" = "Wprowadź kod konfiguracyjny wyświetlany na drugim urządzeniu.";
-"autocrypt_continue_transfer_succeeded" = "Udany transfer klucza. To urządzenie jest teraz gotowe do użycia automatycznego szyfrowania za pomocą tego samego klucza, co na drugim urządzeniu.";
+"autocrypt_continue_transfer_succeeded" = "Udany transfer klucza end-to-end. To urządzenie jest teraz gotowe do użycia automatycznego szyfrowania za pomocą tego samego klucza, co na drugim urządzeniu.";
 "autocrypt_continue_transfer_retry" = "Powtórz";
 "autocrypt_bad_setup_code" = "Zły kod konfiguracyjny. Spróbuj ponownie.\n\nJeśli nie pamiętasz kodu konfiguracji, po prostu uruchom ponownie transfer klucza na drugim urządzeniu.";
 
@@ -697,6 +728,7 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Potwierdzenie odczytu";
 "systemmsg_read_receipt_body" = "To jest potwierdzenie odczytu dla wiadomości ”%1$@„.\n\nTo potwierdzenie odczytu tylko informuje, że wiadomość została wyświetlona na urządzeniu odbiorcy. Nie ma gwarancji, że odbiorca przeczytał treść wiadomości.";
+"systemmsg_cannot_decrypt" = "Tej wiadomości nie można odszyfrować.\n\n• Możesz teraz pomóc odpowiadając po prostu na tą wiadomość i poprosić nadawcę o ponowne wysłanie wiadomości.\n\n• Jeśli właśnie ponownie zainstalowałeś Delta Chat, najlepiej będzie, jeśli ponownie skonfigurujesz Delta Chat teraz i wybierzesz „Dodaj jako drugie urządzenie” lub zaimportujesz kopię zapasową.";
 "systemmsg_unknown_sender_for_chat" = "Nieznany nadawca tego czatu. Więcej szczegółów znajdziesz w sekcji „Informacje”.";
 "systemmsg_subject_for_new_contact" = "Wiadomość od %1$@";
 "systemmsg_failed_sending_to" = "Nie udało się wysłać wiadomości do %1$@.";
@@ -707,6 +739,8 @@
 "group_image_changed_by_you" = "Zmieniono obraz grupy.";
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "Obraz grupy zmieniony przez %1$@.";
+// %1$s will be replaced by name and address of the contact added to the group
+"member_x_added" = "Dodano członka %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "Dodano członka %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
@@ -760,6 +794,12 @@
 "ephemeral_timer_weeks_by_you" = "Ustawiono zegar znikających wiadomości na %1$@ tyg.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = " Użytkownik %2$@ ustawił zegar znikających wiadomości na %1$@ tyg.";
+// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+"chat_protection_broken" = "Użytkownik %1$@ wysłał wiadomość z innego urządzenia.";
+"chat_protection_enabled_tap_to_learn_more" = "Od teraz gwarantujemy, że wiadomości będą szyfrowane metodą end-to-end. Dotknij, aby przeczytać więcej.";
+"chat_protection_enabled_explanation" = "Teraz gwarantujemy, że wszystkie wiadomości w tym czacie są szyfrowane metodą end-to-end.\n\nSzyfrowanie end-to-end zapewnia prywatność wiadomości między tobą a twoimi partnerami czatów. Nawet dostawca twojej poczty e-mail nie może ich odczytać.";
+"chat_protection_broken_tap_to_learn_more" = "Użytkownik %1$@ wysłał wiadomość z innego urządzenia. Dotknij, aby przeczytać więcej.";
+"chat_protection_broken_explanation" = "Nie można już zagwarantować szyfrowania end-to-end, prawdopodobnie z powodu ponownej instalacji Delta Chat przez %1$@ lub wysłania wiadomości z innego urządzenia.\n\nMożesz spotkać się z tą osobą osobiście i ponownie zeskanować jej kod QR, aby przywrócić gwarantowane szyfrowanie end-to-end.";
 "learn_more" = "Czytaj więcej";
 
 "devicemsg_self_deleted" = "Usunięto czat „Zapisane wiadomości”.\n\nℹ️ Aby ponownie użyć funkcji „Zapisane wiadomości”, utwórz nowy czat ze sobą.";
@@ -817,12 +857,13 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "Użytkownik %1$@ odpowiedział, czekając na dodanie do grupy…";
 "contact_verified" = "Kontakt %1$@ zweryfikowany.";
-"contact_not_verified" = "Nie można zweryfikować %1$@";
+"contact_not_verified" = "Nie można zweryfikować szyfrowania typu end-to-end %1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Zweryfikowano przez %1$@";
 "verified_by_you" = "Zweryfikowane przez ciebie";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Zmieniono konfigurację dla %1$@";
+"verified_contact_required_explain" = "Aby zagwarantować szyfrowanie end-to-end, do tej grupy możesz dodawać wyłącznie kontakty oznaczone zielonym znacznikiem wyboru.\n\nMożesz spotkać się z kontaktami osobiście i zeskanować ich kod QR, aby je przedstawić.";
 "copy_qr_data_success" = "Skopiowano adres kodu QR do schowka";
 "mailto_dialog_header_select_chat" = "Wybierz czat, do którego chcesz wysłać wiadomość";
 // first placeholder is the name of the chat
@@ -902,7 +943,7 @@
 "select_group_image_desktop" = "Wybierz obraz grupy";
 "export_backup_desktop" = "Eksport kopii zapasowej";
 "autocrypt_correct_desktop" = "Pomyślnie przetransferowano konfigurację Autocrypt!";
-"forget_login_confirmation_desktop" = "Usunąć ten login? Wszystko zostanie usunięte, w tym kompletna konfiguracja, kontakty, czaty, wiadomości i multimedia. Ta akcja jest ostateczna i nie można jej odwrócić.";
+"forget_login_confirmation_desktop" = "Usunąć ten login? Wszystko zostanie usunięte, w tym kompletna konfiguracja end-to-end, kontakty, czaty, wiadomości i multimedia. Ta akcja jest ostateczna i nie można jej odwrócić.";
 "account_info_hover_tooltip_desktop2" = "E-mail: %1$@\nRozmiar: %2$@\nID konta: %3$@";
 "message_detail_sent_desktop" = "wysłane";
 "message_detail_received_desktop" = "odebrane";
@@ -977,3 +1018,7 @@
 "perm_enable_bg_already_done" = "Pozwolono już Delta Chat na odbieranie wiadomości w tle.\n\nJeśli wiadomości nadal nie docierają w tle, sprawdź też ustawienia systemu.";
 
 
+// device messages for updates
+"update_1_42_common" = "Co nowego:\n\n💌 czaty indywidualne gwarantują szyfrowanie end-to-end dla kontaktów oznaczonych zielonym znacznikiem\n\n😌 dla ułatwienia dla wszystkich oznaczamy te czaty również zielonymi znacznikami wyboru\n\n👥 grupy są tworzone automatycznie z gwarantowanym kompleksowym szyfrowaniem, jeśli to możliwe\n\n🔄 Zaakceptowany/Zablokowany, Zarchiwizowany, Przypięty, Wyciszony są synchronizowane na wszystkich twoich urządzeniach";
+// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
+"update_1_42_android" = "Zwróć uwagę na więcej ulepszeń w aparacie, wiadomościach głosowych, tworzeniu kopii zapasowych, czytniku ekranu, tapetach dla poszczególnych kont, opcji wybierz wszystkie w galerii, krajobrazie webxdc … lub przeczytaj o nich pod adresem %1$@";
