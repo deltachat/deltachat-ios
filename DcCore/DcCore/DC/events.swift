@@ -246,7 +246,7 @@ public class DcEventHandler {
             }
 
         default:
-            logger.warning("unknown event: \(id)")
+            break
         }
     }
 
