@@ -115,6 +115,13 @@ a tricky part (see eg. [3]) seems to be to hold the correct type of references t
   child-class and a makeCoordinator() called by SwiftUI:
   https://developer.apple.com/tutorials/swiftui/interfacing-with-uikit
 
+- rules of thumb to minimze impact of **logging:**
+  - only log vars that are anyway there, do not calculate or get vars only for logging
+  - do only log relevant information
+  - logging is there to help on issues.
+	to not decelerate things, there is no strict format or depth buerocracy.
+	logging may be adapted, also temporary, different areas may have different depths etc.
+
 
 ## notification system
 
