@@ -426,9 +426,9 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                      self.dcAccounts.stopIo()
                      DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                          guard let self = self else { return }
-                         self.dcContext.logger?.info("##### receiveBackup() with qr: \(qrCode)")
+                         logger.info("##### receiveBackup() with qr: \(qrCode)")
                          let res = self.dcContext.receiveBackup(qrCode: qrCode)
-                         self.dcContext.logger?.info("##### receiveBackup() done with result: \(res)")
+                         logger.info("##### receiveBackup() done with result: \(res)")
                      }
                  }
              }

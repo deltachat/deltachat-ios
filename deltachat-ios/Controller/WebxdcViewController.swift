@@ -393,7 +393,7 @@ class WebxdcViewController: WebViewViewController {
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         if #available(iOS 16, *) {
-            dcContext.logger?.info("cannot add shortcut as passing data: urls to local server was disabled by apple on on iOS 16")
+            logger.info("cannot add shortcut as passing data: urls to local server was disabled by apple on on iOS 16")
         } else {
             let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default, handler: addToHomeScreen(_:))
             alert.addAction(addToHomescreenAction)

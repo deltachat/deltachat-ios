@@ -116,8 +116,6 @@
 		30E348DF24F3F819005C93D1 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348DE24F3F819005C93D1 /* ChatTableView.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
 		30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E424F6647D005C93D1 /* FileTextCell.swift */; };
-		30E6E35A293FEEA70093871E /* SimpleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E6E359293FEEA70093871E /* SimpleLogger.swift */; };
-		30E6E35B293FF9F30093871E /* SimpleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E6E359293FEEA70093871E /* SimpleLogger.swift */; };
 		30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E83EFC289BF32C0035614C /* ShortcutManager.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
 		30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E8F2142447285600CE2C90 /* MainInterface.storyboard */; };
@@ -393,7 +391,6 @@
 		30E348DE24F3F819005C93D1 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
 		30E348E424F6647D005C93D1 /* FileTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTextCell.swift; sourceTree = "<group>"; };
-		30E6E359293FEEA70093871E /* SimpleLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLogger.swift; sourceTree = "<group>"; };
 		30E83EFC289BF32C0035614C /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
 		30E8F2102447285600CE2C90 /* Delta Chat.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Delta Chat.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E8F2122447285600CE2C90 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -974,7 +971,6 @@
 				3011E8042787365D00214221 /* KeychainManager.swift */,
 				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
 				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
-				30E6E359293FEEA70093871E /* SimpleLogger.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1364,7 +1360,6 @@
 				30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */,
 				3067AAC72667F3FE00525036 /* ImageFormat.swift in Sources */,
 				30E8F253244DAD0E00CE2C90 /* SendingController.swift in Sources */,
-				30E6E35B293FF9F30093871E /* SimpleLogger.swift in Sources */,
 				3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */,
 				30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */,
 				30152C9725A5D91900377714 /* MessageLabel.swift in Sources */,
@@ -1468,7 +1463,6 @@
 				3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */,
 				3080A035277DE30100E74565 /* String+Extensions.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
-				30E6E35A293FEEA70093871E /* SimpleLogger.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				30C7D5EE28F47E620078D24C /* MessageCounter.swift in Sources */,
 				30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */,

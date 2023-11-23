@@ -7,7 +7,7 @@ import SDWebImageWebPCoder
 import Intents
 import SDWebImageSVGKitPlugin
 
-let logger = SimpleLogger()
+let logger = getDcLogger()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -60,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let svgCoder = SDImageSVGKCoder.shared
         SDImageCodersManager.shared.addCoder(svgCoder)
 
-        dcAccounts.logger = SimpleLogger()
         dcAccounts.openDatabase(writeable: true)
         migrateToDcAccounts()
 

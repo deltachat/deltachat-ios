@@ -6,10 +6,10 @@ import Intents
 import SDWebImageWebPCoder
 import SDWebImage
 
+let logger = getDcLogger()
 
 class ShareViewController: SLComposeServiceViewController {
 
-    let logger = SimpleLogger()
     let dcAccounts: DcAccounts = DcAccounts()
     lazy var dcContext: DcContext = {
         return dcAccounts.getSelected()
@@ -64,7 +64,6 @@ class ShareViewController: SLComposeServiceViewController {
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
 
-        dcAccounts.logger = logger
         dcAccounts.openDatabase(writeable: false)
         let accountIds = dcAccounts.getAll()
         for accountId in accountIds {

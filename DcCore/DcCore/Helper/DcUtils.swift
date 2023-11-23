@@ -40,7 +40,7 @@ public struct DcUtils {
             interaction.groupIdentifier = "\(context.id)"
             interaction.donate(completion: { error in
                 if error != nil {
-                    context.logger?.error(error.debugDescription)
+                    logger.error(error.debugDescription)
                 }
             })
         }

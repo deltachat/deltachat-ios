@@ -8,7 +8,6 @@ public class DcAccounts {
     /// The ID is created in the apple developer portal and can be changed there.
     let applicationGroupIdentifier = "group.chat.delta.ios"
     var accountsPointer: OpaquePointer?
-    public var logger: Logger?
     public var fetchSemaphore: DispatchSemaphore?
 
     public init() {
@@ -38,7 +37,7 @@ public class DcAccounts {
 
     public func get(id: Int) -> DcContext {
         let contextPointer = dc_accounts_get_account(accountsPointer, UInt32(id))
-        return DcContext(contextPointer: contextPointer, logger: logger)
+        return DcContext(contextPointer: contextPointer)
     }
 
     public func getAll() -> [Int] {
@@ -48,7 +47,7 @@ public class DcAccounts {
 
     public func getSelected() -> DcContext {
         let cPtr = dc_accounts_get_selected_account(accountsPointer)
-        return DcContext(contextPointer: cPtr, logger: logger)
+        return DcContext(contextPointer: cPtr)
     }
 
     // call maybeNetwork() from a worker thread.
@@ -110,13 +109,11 @@ public class DcAccounts {
 
 public class DcContext {
 
-    public var logger: Logger?
     var contextPointer: OpaquePointer?
     private var anyWebxdcSeen: Bool = false
 
-    public init(contextPointer: OpaquePointer?, logger: Logger?) {
+    public init(contextPointer: OpaquePointer?) {
         self.contextPointer = contextPointer
-        self.logger = logger
     }
     
     deinit {
@@ -183,7 +180,7 @@ public class DcContext {
         let start = CFAbsoluteTimeGetCurrent()
         let cMessageIds = dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(DC_GCM_ADDDAYMARKER), 0)
         let diff = CFAbsoluteTimeGetCurrent() - start
-        logger?.info("⏰ getChatMsgs: \(diff) s")
+        logger.info("⏰ getChatMsgs: \(diff) s")
 
         let ids = DcUtils.copyAndFreeArray(inputArray: cMessageIds)
         return ids
@@ -201,7 +198,7 @@ public class DcContext {
         let start = CFAbsoluteTimeGetCurrent()
         let cContacts = dc_get_contacts(contextPointer, UInt32(flags), queryString)
         let diff = CFAbsoluteTimeGetCurrent() - start
-        logger?.info("⏰ getContacts: \(diff) s")
+        logger.info("⏰ getContacts: \(diff) s")
         return DcUtils.copyAndFreeArray(inputArray: cContacts)
     }
 
@@ -263,7 +260,7 @@ public class DcContext {
         let chatlistPointer = dc_get_chatlist(contextPointer, flags, queryString, UInt32(queryId))
         let chatlist = DcChatlist(chatListPointer: chatlistPointer)
         let diff = CFAbsoluteTimeGetCurrent() - start
-        logger?.info("⏰ getChatlist: \(diff) s")
+        logger.info("⏰ getChatlist: \(diff) s")
         return chatlist
     }
 
@@ -565,7 +562,7 @@ public class DcContext {
                let data = try Data(contentsOf: path)
                return UIImage(data: data)
            } catch {
-               logger?.warning("failed to load image: \(fileName), \(error)")
+               logger.warning("failed to load image: \(fileName), \(error)")
                return nil
            }
        }
@@ -613,7 +610,7 @@ public class DcContext {
         }
         let messageIds = DcUtils.copyAndFreeArray(inputArray: arrayPointer)
         let diff = CFAbsoluteTimeGetCurrent() - start
-        logger?.info("⏰ searchMessages: \(diff) s")
+        logger.info("⏰ searchMessages: \(diff) s")
         return messageIds
     }
 
