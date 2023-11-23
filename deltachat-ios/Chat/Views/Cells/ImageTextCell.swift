@@ -17,6 +17,7 @@ class ImageTextCell: BaseMessageCell {
         imageView.clipsToBounds = true
         return imageView
     }()
+    var contentImageIsPlaceholder: Bool = true
 
     /// The play button view to display on video messages.
     open lazy var playButtonView: PlayButtonView = {
@@ -51,6 +52,7 @@ class ImageTextCell: BaseMessageCell {
         topCompactView = msg.quoteText == nil ? true : false
         isTransparent = msg.type == DC_MSG_STICKER
         topLabel.isHidden = msg.type == DC_MSG_STICKER
+        contentImageIsPlaceholder = true
         tag = msg.id
 
         if let url = msg.fileURL,
@@ -61,6 +63,7 @@ class ImageTextCell: BaseMessageCell {
                                                                                        green: 255,
                                                                                        blue: 255),
                                                                    size: CGSize(width: 500, height: 500)))
+            contentImageIsPlaceholder = false
             playButtonView.isHidden = true
             accessibilityLabel = msg.type == DC_MSG_GIF ? String.localized("gif") : String.localized("image")
             setAspectRatioFor(message: msg)
@@ -69,6 +72,7 @@ class ImageTextCell: BaseMessageCell {
             accessibilityLabel = String.localized("video")
             if let image = ThumbnailCache.shared.restoreImage(key: url.absoluteString) {
                 contentImageView.image = image
+                contentImageIsPlaceholder = false
                 setAspectRatioFor(message: msg, with: image, isPlaceholder: false)
             } else {
                 // no image in cache
@@ -84,6 +88,7 @@ class ImageTextCell: BaseMessageCell {
                         DispatchQueue.main.async { [weak self] in
                             if msg.id == self?.tag {
                                 self?.contentImageView.image = thumbnailImage
+                                self?.contentImageIsPlaceholder = false
                                 ThumbnailCache.shared.storeImage(image: thumbnailImage, key: url.absoluteString)
                             }
                         }
@@ -103,7 +108,7 @@ class ImageTextCell: BaseMessageCell {
 
     @objc func onImageTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
-            baseDelegate?.imageTapped(indexPath: indexPath, previewError: imageView?.image == nil)
+            baseDelegate?.imageTapped(indexPath: indexPath, previewError: contentImageIsPlaceholder)
         }
     }
 
@@ -236,6 +241,7 @@ class ImageTextCell: BaseMessageCell {
         super.prepareForReuse()
         contentImageView.image = nil
         contentImageView.sd_cancelCurrentImageLoad()
+        contentImageIsPlaceholder = true
         tag = -1
     }
 }
