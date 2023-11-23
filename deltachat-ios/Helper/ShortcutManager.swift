@@ -111,7 +111,7 @@ public class ShortcutManager {
                 logger.error(errorString)
             } catch {
                 tryToReconnect = false
-                logger.error(error)
+                logger.error("\(String(describing: error))")
             }
         }
 

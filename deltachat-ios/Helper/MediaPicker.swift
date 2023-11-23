@@ -17,10 +17,10 @@ extension MediaPickerDelegate {
         logger.debug("image selected")
     }
     func onImageSelected(url: NSURL) {
-        logger.debug("image selected: ", url.path ?? "unknown")
+        logger.debug("image selected: \(url)")
     }
     func onVideoSelected(url: NSURL) {
-        logger.debug("video selected: ", url.path ?? "unknown")
+        logger.debug("video selected: \(url)")
     }
     func onVoiceMessageRecorded(url: NSURL) {
         logger.debug("voice message recorded: \(url)")

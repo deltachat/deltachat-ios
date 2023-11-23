@@ -11,31 +11,23 @@ public class DcLogger {
     public init() {
     }
 
-    public func debug(_ messages: Any...) {
-        addLog(heart: "💚", messages: messages)
+    public func debug(_ message: String) {
+        log(heart: "💚", message: message)
     }
 
-    public func info(_ messages: Any...) {
-        addLog(heart: "💙", messages: messages)
+    public func info(_ message: String) {
+        log(heart: "💙", message: message)
     }
 
-    public func warning(_ messages: Any...) {
-        addLog(heart: "🧡", messages: messages)
+    public func warning(_ message: String) {
+        log(heart: "🧡", message: message)
     }
 
-    public func error(_ messages: Any...) {
-        addLog(heart: "❤️", messages: messages)
+    public func error(_ message: String) {
+        log(heart: "❤️", message: message)
     }
 
-    private func addLog(heart: String, messages: Any...) {
-        if messages is [String] {
-            var messagesSummary = ""
-            messages.forEach({(message) in
-                messagesSummary = "\(messagesSummary) \(message)"
-            })
-            print(DateUtils.getTimestamp(), heart, messagesSummary)
-        } else {
-            print(DateUtils.getTimestamp(), heart, messages)
-        }
+    private func log(heart: String, message: String) {
+        print(DateUtils.getTimestamp(), heart, message)
     }
 }
