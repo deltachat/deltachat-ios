@@ -891,8 +891,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        if !dcChat.canSend || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION {
+        let messageId = messageIds[indexPath.row]
+        if messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER || !dcChat.canSend {
+            return nil
+        }
+
+        let message = dcContext.getMessage(id: messageId)
+        if message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION {
             return nil
         }
 
