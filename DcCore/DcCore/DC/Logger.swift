@@ -12,22 +12,18 @@ public class DcLogger {
     }
 
     public func debug(_ message: String) {
-        log(heart: "💚", message: message)
+        print("💚 \(message)")
     }
 
     public func info(_ message: String) {
-        log(heart: "💙", message: message)
+        print("💙 \(message)")
     }
 
     public func warning(_ message: String) {
-        log(heart: "🧡", message: message)
+        print("🧡 \(message)")
     }
 
     public func error(_ message: String) {
-        log(heart: "❤️", message: message)
-    }
-
-    private func log(heart: String, message: String) {
-        print(DateUtils.getTimestamp(), heart, message)
+        print("❤️ \(message)")
     }
 }
