@@ -1,8 +1,29 @@
 import Foundation
-public protocol Logger {
-    func verbose(_ message: Any...)
-    func debug(_ message: Any...)
-    func info(_ message: Any...)
-    func warning(_ message: Any...)
-    func error(_ message: Any...)
+
+let logger = DcLogger()
+
+public func getDcLogger() -> DcLogger {
+    return logger
+}
+
+public class DcLogger {
+
+    public init() {
+    }
+
+    public func debug(_ message: String) {
+        print("💚 \(message)")
+    }
+
+    public func info(_ message: String) {
+        print("💙 \(message)")
+    }
+
+    public func warning(_ message: String) {
+        print("🧡 \(message)")
+    }
+
+    public func error(_ message: String) {
+        print("❤️ \(message)")
+    }
 }

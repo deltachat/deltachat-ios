@@ -133,9 +133,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
             let jsCode: String = String(decoding: data, as: UTF8.self)
             // inject the search code
             webView.evaluateJavaScript(jsCode, completionHandler: { _, error in
-                if let error = error {
-                    logger.error(error)
-                }
+                logger.error("\(String(describing: error))")
             })
         } catch {
             logger.error("could not load javascript: \(error)")
@@ -152,9 +150,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         let searchString = "WKWebView_HighlightAllOccurencesOfString('\(string)')"
         // perform search
         webView.evaluateJavaScript(searchString, completionHandler: { _, error in
-            if let error = error {
-                logger.error(error)
-            }
+            logger.error("\(String(describing: error))")
         })
     }
 
@@ -180,7 +176,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     private func getInt(key: String, completionHandler: @escaping (_ result: Int) -> Void) {
         webView.evaluateJavaScript(key) { (result, error) in
             if let error = error {
-                logger.error(error)
+                logger.error("\(error)")
             } else if result != nil,
                let integerResult = result as? Int {
                     completionHandler(integerResult)

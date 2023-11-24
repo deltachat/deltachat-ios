@@ -7,7 +7,7 @@ import SDWebImageWebPCoder
 import Intents
 import SDWebImageSVGKitPlugin
 
-let logger = SimpleLogger()
+let logger = getDcLogger()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -60,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let svgCoder = SDImageSVGKCoder.shared
         SDImageCodersManager.shared.addCoder(svgCoder)
 
-        dcAccounts.logger = SimpleLogger()
         dcAccounts.openDatabase(writeable: true)
         migrateToDcAccounts()
 
@@ -132,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             reachability.whenReachable = { reachability in
                 // maybeNetwork() shall not be called in ui thread;
                 // Reachability::reachabilityChanged uses DispatchQueue.main.async only
-                logger.info("network: reachable", reachability.connection.description)
+                logger.info("network: reachable \(reachability.connection.description)")
                 DispatchQueue.global(qos: .background).async { [weak self] in
                     guard let self = self else { return }
                     self.dcAccounts.maybeNetwork()

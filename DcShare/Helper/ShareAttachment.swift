@@ -80,7 +80,7 @@ class ShareAttachment {
             case let url as URL:
                 result = SDAnimatedImage(contentsOfFile: url.path)
             default:
-                self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+                logger.debug("Unexpected data: \(type(of: data))")
             }
             if let result = result {
                 let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory)
@@ -93,7 +93,7 @@ class ShareAttachment {
                     self.delegate?.onThumbnailChanged()
                 }
                 if let error = error {
-                    self.dcContext.logger?.error("Could not load share item as image: \(error.localizedDescription)")
+                    logger.error("Could not load share item as image: \(error.localizedDescription)")
                 }
             }
         }
@@ -110,7 +110,7 @@ class ShareAttachment {
             case let url as URL:
                 result = ImageFormat.loadImageFrom(url: url)
             default:
-                self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+                logger.debug("Unexpected data: \(type(of: data))")
                 result = nil
             }
             if let result = result,
@@ -125,7 +125,7 @@ class ShareAttachment {
                 }
             }
             if let error = error {
-                self.dcContext.logger?.error("Could not load share item as image: \(error.localizedDescription)")
+                logger.error("Could not load share item as image: \(error.localizedDescription)")
             }
         }
     }
@@ -146,10 +146,10 @@ class ShareAttachment {
 
                 }
             default:
-                self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+                logger.debug("Unexpected data: \(type(of: data))")
             }
             if let error = error {
-                self.dcContext.logger?.error("Could not load share item as video: \(error.localizedDescription)")
+                logger.error("Could not load share item as video: \(error.localizedDescription)")
             }
         }
     }
@@ -182,10 +182,10 @@ class ShareAttachment {
                     self.generateThumbnailRepresentations(url: url)
                 }
             default:
-                self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+                logger.debug("Unexpected data: \(type(of: data))")
             }
             if let error = error {
-                self.dcContext.logger?.error("Could not load share item: \(error.localizedDescription)")
+                logger.error("Could not load share item: \(error.localizedDescription)")
             }
         }
     }
@@ -210,7 +210,7 @@ class ShareAttachment {
             generator.generateRepresentations(for: request) { (thumbnail, _, error) in
                 DispatchQueue.main.async {
                     if thumbnail == nil || error != nil {
-                        self.dcContext.logger?.warning(error?.localizedDescription ?? "Could not create thumbnail.")
+                        logger.warning(error?.localizedDescription ?? "Could not create thumbnail.")
                     } else {
                         self.attachmentThumbnail = thumbnail?.uiImage
                         self.delegate?.onThumbnailChanged()
@@ -231,10 +231,10 @@ class ShareAttachment {
                 case let url as URL:
                     delegate.onUrlShared(url: url)
                 default:
-                    self.dcContext.logger?.debug("Unexpected data: \(type(of: data))")
+                    logger.debug("Unexpected data: \(type(of: data))")
                 }
                 if let error = error {
-                    self.dcContext.logger?.error("Could not share URL: \(error.localizedDescription)")
+                    logger.error("Could not share URL: \(error.localizedDescription)")
                 }
             }
         }
