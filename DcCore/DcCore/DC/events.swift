@@ -44,7 +44,7 @@ public class DcEventHandler {
             logger.warning("📡[\(accountId)] \(s)")
 
         case DC_EVENT_CONFIGURE_PROGRESS:
-            logger.info("📡[\(accountId)] configure progress: \(Int(data1)) \(Int(data2))")
+            logger.info("📡[\(accountId)] configure: \(Int(data1))")
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
                 let done = Int(data1) == 1000
@@ -175,13 +175,13 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_SMTP_MESSAGE_SENT:
-            logger.info("smtp message sent: \(event.data2String)")
+            logger.info("📡[\(accountId)] smtp sent: \(event.data2String)")
 
         case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            logger.info("📡[\(accountId)] securejoin inviter progress \(data1)")
+            logger.info("📡[\(accountId)] securejoin inviter: \(data1)")
 
             let nc = NotificationCenter.default
             DispatchQueue.main.async {
