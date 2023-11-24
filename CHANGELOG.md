@@ -1,5 +1,16 @@
 # Delta Chat iOS Changelog
 
+## v1.42.4
+2023-11
+
+* fix possibly infinte IMAP loop on some providers; this was introduced in 1.42.3
+* fix log in error on some providers as 163.com; this was introduced in 1.42.3
+* fix: do not allow swipe-to-reply on daymarkers or other markers
+* fix instructions for how to play unsupported video formats
+* update translations and local help
+* update to core 1.131.7
+
+
 ## v1.42.3
 2023-11
 
