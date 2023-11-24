@@ -14,6 +14,7 @@ protocol ShareAttachmentDelegate: class {
 }
 
 class ShareAttachment {
+
     weak var delegate: ShareAttachmentDelegate?
     let dcContext: DcContext
     let thumbnailSize = CGFloat(96)
