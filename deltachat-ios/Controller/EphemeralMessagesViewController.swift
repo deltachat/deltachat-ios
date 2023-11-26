@@ -32,7 +32,20 @@ class EphemeralMessagesViewController: UITableViewController {
         self.dcContext = dcContext
         self.chatId = chatId
         super.init(style: .grouped)
-        self.currentIndex = self.options.index(of: dcContext.getChatEphemeralTimer(chatId: chatId)) ?? 0
+
+        // select option close to the timespan (that may no be available as an option eg. in case option have changed)
+        self.currentIndex = 0
+        let timespan = dcContext.getChatEphemeralTimer(chatId: chatId)
+        if timespan > 0 {
+            self.currentIndex = options.count - 1
+            for i in 2...options.count - 1 {
+                if timespan < options[i] {
+                    self.currentIndex = i - 1
+                    break
+                }
+            }
+        }
+
         self.title = String.localized("ephemeral_messages")
         hidesBottomBarWhenPushed = true
 
