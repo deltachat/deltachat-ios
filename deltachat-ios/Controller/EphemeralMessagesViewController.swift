@@ -7,7 +7,7 @@ class EphemeralMessagesViewController: UITableViewController {
     var currentIndex: Int = 0
 
     private lazy var options: [Int] = {
-        return [0, Time.thirtySeconds, Time.oneMinute, Time.oneHour, Time.oneDay, Time.oneWeek, Time.fourWeeks]
+        return [0, Time.oneMinute, Time.fiveMinutes, Time.thirtyMinutes, Time.oneHour, Time.oneDay, Time.oneWeek, Time.fiveWeeks]
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
@@ -52,18 +52,20 @@ class EphemeralMessagesViewController: UITableViewController {
         switch val {
         case 0:
             return String.localized("off")
-        case Time.thirtySeconds:
-            return String.localized("after_30_seconds")
         case Time.oneMinute:
             return String.localized("after_1_minute")
+        case Time.fiveMinutes:
+            return String.localized("after_5_minutes")
+        case Time.thirtyMinutes:
+            return String.localized("after_30_minutes")
         case Time.oneHour:
             return String.localized("autodel_after_1_hour")
         case Time.oneDay:
             return String.localized("autodel_after_1_day")
         case Time.oneWeek:
             return String.localized("autodel_after_1_week")
-        case Time.fourWeeks:
-            return String.localized("autodel_after_4_weeks")
+        case Time.fiveWeeks:
+            return String.localized("after_5_weeks")
         default:
             return "Err"
         }
