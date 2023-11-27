@@ -1384,7 +1384,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if tableView.isEditing {
             return
         }
-        showChatDetail(chatId: chatId)
+        titleView.setEnabled(false) // immedidate feedback
+        DispatchQueue.main.async { // opening controller in next loop allows the system to render the immedidate feedback
+            self.showChatDetail(chatId: self.chatId)
+            self.titleView.setEnabled(true)
+        }
     }
 
     @objc private func clipperButtonPressed() {
