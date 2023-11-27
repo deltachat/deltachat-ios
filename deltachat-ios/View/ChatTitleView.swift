@@ -61,4 +61,9 @@ class ChatTitleView: UIStackView {
         subtitleLabel.text = subtitle
         subtitleLabel.textColor = DcColors.defaultTextColor.withAlphaComponent(0.95)
     }
+
+    func setEnabled(_ enabled: Bool) {
+        titleLabel.isEnabled = enabled
+        subtitleLabel.isEnabled = enabled
+    }
 }
