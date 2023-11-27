@@ -16,6 +16,7 @@ internal final class SettingsViewController: UITableViewController {
         case addAnotherDevice
         case notifications
         case selectBackground
+        case passwordAndAccount
         case advanced
         case help
         case connectivity
@@ -72,6 +73,17 @@ internal final class SettingsViewController: UITableViewController {
         cell.textLabel?.text = String.localized("multidevice_title")
         if #available(iOS 16.0, *) {
             cell.imageView?.image = UIImage(systemName: "macbook.and.iphone") // added in ios16
+        }
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var passwordAndAccountCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.passwordAndAccount.rawValue
+        cell.textLabel?.text = String.localized("pref_password_and_account_settings")
+        if #available(iOS 16.0, *) {
+            cell.imageView?.image = UIImage(systemName: "server.rack") // added in ios14
         }
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -134,7 +146,7 @@ internal final class SettingsViewController: UITableViewController {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
-            cells: [chatsAndMediaCell, notificationCell, selectBackgroundCell, addAnotherDeviceCell, connectivityCell, advancedCell]
+            cells: [chatsAndMediaCell, notificationCell, selectBackgroundCell, addAnotherDeviceCell, connectivityCell, passwordAndAccountCell, advancedCell]
         )
         let helpSection = SectionConfigs(
             headerTitle: nil,
@@ -223,6 +235,7 @@ internal final class SettingsViewController: UITableViewController {
         case .advanced: showAdvanced()
         case .help: showHelp()
         case .connectivity: showConnectivity()
+        case .passwordAndAccount: showPasswordAndAccount()
         case .selectBackground: selectBackground()
         }
     }
@@ -290,6 +303,10 @@ internal final class SettingsViewController: UITableViewController {
 
     private func showConnectivity() {
         navigationController?.pushViewController(ConnectivityViewController(dcContext: dcContext), animated: true)
+    }
+
+    private func showPasswordAndAccount() {
+        navigationController?.pushViewController(AccountSetupController(dcAccounts: dcAccounts, editView: true), animated: true)
     }
 
     private func selectBackground() {

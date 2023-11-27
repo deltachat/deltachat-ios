@@ -11,13 +11,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     private let section1Status = 2
     private let section1RowCount = 3
 
-    private let section2 = 1
-    private let section2AccountSettings = 0
-    private let section2RowCount = 1
-
-    private let sectionCount = 2
-
-    private let tagAccountSettingsCell = 1
+    private let sectionCount = 1
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -29,14 +23,6 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
         let cell = MultilineTextFieldCell(description: String.localized("pref_default_status_label"),
                                           multilineText: dcContext.selfstatus,
                                           placeholder: String.localized("pref_default_status_label"))
-        return cell
-    }()
-
-    private lazy var accountSettingsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("pref_password_and_account_settings")
-        cell.accessoryType = .disclosureIndicator
-        cell.tag = tagAccountSettingsCell
         return cell
     }()
 
@@ -85,9 +71,8 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == section1 {
             return section1RowCount
-        } else {
-            return section2RowCount
         }
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,29 +85,17 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
             case section1Status:
                 return statusCell
             default:
-               return UITableViewCell()
+                break
             }
-        } else {
-            return accountSettingsCell
         }
+        return UITableViewCell()
     }
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == section1 {
             return String.localized("pref_who_can_see_profile_explain")
-        } else {
-            return nil
         }
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        if cell.tag == tagAccountSettingsCell {
-            tableView.deselectRow(at: indexPath, animated: false)
-            guard let nc = navigationController else { return }
-            let accountSetupVC = AccountSetupController(dcAccounts: dcAccounts, editView: true)
-            nc.pushViewController(accountSetupVC, animated: true)
-        }
+        return nil
     }
 
     // MARK: - actions
