@@ -282,9 +282,11 @@ class ChatListController: UITableViewController {
 
     @objc
     public func onNavigationTitleTapped() {
-        logger.debug("on navigation title tapped")
-        let connectivityViewController = ConnectivityViewController(dcContext: dcContext)
-        navigationController?.pushViewController(connectivityViewController, animated: true)
+        titleView.isEnabled = false // immedidate feedback
+        DispatchQueue.main.async { // opening controller in next loop allows the system to render the immedidate feedback
+            self.navigationController?.pushViewController(ConnectivityViewController(dcContext: self.dcContext), animated: true)
+            self.titleView.isEnabled = true
+        }
     }
 
     // MARK: - configuration
