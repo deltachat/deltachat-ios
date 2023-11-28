@@ -146,12 +146,12 @@ internal final class SettingsViewController: UITableViewController {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
-            cells: [chatsAndMediaCell, notificationCell, selectBackgroundCell, addAnotherDeviceCell, passwordAndAccountCell, connectivityCell, advancedCell]
+            cells: [chatsAndMediaCell, notificationCell, selectBackgroundCell, addAnotherDeviceCell, passwordAndAccountCell, advancedCell]
         )
         let helpSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: appNameAndVersion,
-            cells: [helpCell]
+            cells: [connectivityCell, helpCell]
         )
 
         return [profileSection, preferencesSection, helpSection]
