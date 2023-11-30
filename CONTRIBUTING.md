@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-Thank you for looking for ways to help on Delta Chat Android!
+Thank you for looking for ways to help on Delta Chat iOS!
 
 This document tries to outline some conventions that may not be obvious
 and aims to give a good starting point to new contributors.
@@ -8,7 +8,7 @@ and aims to give a good starting point to new contributors.
 
 ## Reporting Bugs
 
-If you found a bug, [report it on Github](https://github.com/deltachat/deltachat-android/issues).
+If you found a bug, [report it on Github](https://github.com/deltachat/deltachat-ios/issues).
 
 Project maintainers may transfer bugs that are not UI specific
 (eg. network, database or encryption related)
@@ -45,13 +45,12 @@ Some rough ideas, that may be helpful when thinking about how to enhance things:
 
 ## Contributing Code
 
-The [README](./README.md) explains in detail how to set up the build environment.
-Please follow all steps precisely.
+The [README](./README.md) explains how to set up the build environment.
 If you run into troubles,
 ask on of the [cummunication channels](https://delta.chat/contribute) for help.
 
 To contribute code,
-[open a Pull Request](https://github.com/deltachat/deltachat-android/pulls).
+[open a Pull Request](https://github.com/deltachat/deltachat-ios/pulls).
 
 If you have write access to the repository,
 push a branch named `<username>/<feature>`
@@ -83,22 +82,35 @@ so that the result fits well together.
 Do not refactor or rename things in the same PR
 to make the diff small and the PR easy to review.
 
-Project language is Java.
+Project language is Swift.
+To support a wider range of devices, SwiftUI is no used currently.
+This also avoids conditional code and allows SwiftUI to mature meanwhile.
 
 By using [Delta Chat Core](https://github.com/deltachat/deltachat-core-rust)
 there is already a strong separation between "UI" and "Model".
 Further separations and abstraction layers are often not helpful
 and only add more complexity.
+Eg. Model-View-ViewModel (MVVM), often hailed as best practise,
+is easily overkill in case of deltachat-ios.
+In existing code, functionality is just added to the ViewControllers,
+which is easy to understand and good enough.
 
 Try to avoid premature optimisation
 and complexity because it "may be needed in some future".
 Usually, it is not.
 
-Readable code is better than having some Java paradigms fulfilled.
-Classic Java has a strong drive to add lots of classes, factories, one-liner-functions.
-Try to not follow these patterns and keep things really on point and simple.
+Note, that most current iOS developers are not "iOS natives".
+
+Readable code is better than having some paradigms fulfilled.
+Keep things really on point and simple.
 If this gets in conflict with embracing existing style, however,
 consistency with existing code is more important.
+
+Do as many things as possible in an "iOS way" with APIs the system provides
+and avoid using external libraries;
+even if this means being a bit more conservative.
+Fewer dependencies are usually a win in the longer term,
+when it comes to maintainance, stability and consistency.
 
 The "Delta Chat Core" is a high-level interface to what the UI actually needs,
 data should be served in a form that the UI do not need much additional work.
@@ -138,7 +150,8 @@ Most strings and the whole help are used for all systems
 (Android, iOS, Linux, Windows, macOS)
 and should be formulated accordingly.
 
-If you want to change the english sources,
+The english sources are in the "Android" and "Pages" repositories.
+If you want to change them,
 do a PR to [`strings.xml`](https://github.com/deltachat/deltachat-android/blob/main/res/values/strings.xml)
 or to [`help.md`](https://github.com/deltachat/deltachat-pages/blob/master/en/help.md).
 Again, please do not mix adding things and refactorings, esp. for `help.md`,
