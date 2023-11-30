@@ -83,7 +83,7 @@ Do not refactor or rename things in the same PR
 to make the diff small and the PR easy to review.
 
 Project language is Swift.
-To support a wider range of devices, SwiftUI is no used currently.
+To support a wider range of devices, SwiftUI is not used currently.
 This also avoids conditional code and allows SwiftUI to mature meanwhile.
 
 By using [Delta Chat Core](https://github.com/deltachat/deltachat-core-rust)
