@@ -1,6 +1,13 @@
-# deltachat-ios
+# Delta Chat iOS Client
 
-Email-based instant messaging for iOS.
+This is the iOS client for [Delta Chat](https://delta.chat/).
+It is available on [Testflight](#testing)
+and in the [App Store](https://apps.apple.com/us/app/delta-chat/id1459523234).
+
+For the core library and other common info, please refer to the
+[Delta Chat Core Library](https://github.com/deltachat/deltachat-core-rust).
+
+For general contribution hints, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ![Screenshot Chat List](docs/images/screenshot_chat_list.png) ![Screenshot Chat View](docs/images/screenshot_chat_view.png)
 
