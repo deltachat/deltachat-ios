@@ -69,19 +69,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func openAccountsWithKeychain() {
-        logger.info("🔐 openAccountsWithKeychain")
         let accountIds = dcAccounts.getAll()
         for accountId in accountIds {
             let dcContext = dcAccounts.get(id: accountId)
             if !dcContext.isOpen() {
                 do {
-                    logger.info("🔐 start")
+                    logger.info("➡️ opening encrypted account \(accountId)")
                     let secret = try KeychainManager.getAccountSecret(accountID: accountId)
-                    logger.info("🔐 got secret")
                     if !dcContext.open(passphrase: secret) {
                         logger.error("Failed to open database for account \(accountId)")
                     }
-                    logger.info("🔐 done")
                 } catch KeychainError.accessError(let message, let status) {
                     logger.error("Keychain error. \(message). Error status: \(status)")
                     return
@@ -92,7 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
         }
-        logger.info("🔐 openAccountsWithKeychain done")
     }
 
     // finishes the app initialization which depends on the successful access to the keychain
@@ -223,7 +219,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         maybeStart()
         applicationInForeground = true
         dcAccounts.startIo()
-        
+
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             if let reachability = self.reachability {
@@ -282,7 +278,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
-        self.closeDB();
+        closeDB()
         if let reachability = reachability {
             reachability.stopNotifier()
         }
@@ -334,24 +330,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    var shouldShutdownEventLoop: Bool = false
-    var eventShutdownSemaphore = DispatchSemaphore(value: 1)
-    func closeDB() {
-        // add flag to shutdown event handler
+    private var shouldShutdownEventLoop: Bool = false
+    private var eventShutdownSemaphore = DispatchSemaphore(value: 1)
+    private func closeDB() {
         shouldShutdownEventLoop = true
-        // stopIo will generate atleast one event to the event handler can shut down
-        self.dcAccounts.stopIo()
-        // somehow wait for the eventhandler to be closed
+        dcAccounts.stopIo() // stopIo will generate atleast one event to the event handler can shut down
         eventShutdownSemaphore.wait()
-        // to avoid 0xdead10cc exceptions, we need to make sure there are no locks on files.
-        self.dcAccounts.closeDatabase()
+        dcAccounts.closeDatabase() // to avoid 0xdead10cc exceptions, we need to make sure there are no locks on files.
         shouldShutdownEventLoop = false
     }
     
-    func maybeStart() {
-        logger.debug("⏫ maybe openDatabase again 🤔")
+    private func maybeStart() {
+        logger.debug("➡️ maybe openDatabase again 🤔")
         if !dcAccounts.isOpen() {
-            logger.debug("⏫ openDatabase again, because it is closed")
+            logger.debug("➡️ openDatabase again")
             dcAccounts.openDatabase(writeable: true)
             openAccountsWithKeychain()
             logger.debug("➡️ openDatabase done")
