@@ -353,11 +353,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if !dcAccounts.isOpen() {
             logger.debug("⏫ openDatabase again, because it is closed")
             dcAccounts.openDatabase(writeable: true)
-            self.openAccountsWithKeychain()
-            logger.debug("⏫ openDatabase done")
-            if !eventHandlerActive {
-                installEventHandler()
-            }
+            openAccountsWithKeychain()
+            logger.debug("➡️ openDatabase done")
+            installEventHandler()
             reloadDcContext()
         }
     }
@@ -638,14 +636,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    var eventHandlerActive = false
-    func installEventHandler() {
+    private var eventHandlerActive = false
+    private func installEventHandler() {
+        if eventHandlerActive {
+            return
+        }
+        eventHandlerActive = true
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             let eventHandler = DcEventHandler(dcAccounts: self.dcAccounts)
             let eventEmitter = self.dcAccounts.getEventEmitter()
-            eventHandlerActive = true
-            logger.info("⏫ event emitter started")
+            logger.info("➡️ event emitter started")
             while true {
                 if shouldShutdownEventLoop {
                     break
@@ -653,7 +654,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 guard let event = eventEmitter.getNextEvent() else { break }
                 eventHandler.handleEvent(event: event)
             }
-            logger.info("⏬ event emitter finished")
+            logger.info("⬅️ event emitter finished")
             eventShutdownSemaphore.signal()
             eventHandlerActive = false
         }
