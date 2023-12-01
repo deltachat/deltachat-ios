@@ -570,6 +570,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.closeDB()
             }
 
+            // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
+            // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
+            usleep(1_000_000)
             logger.info("⬅️ fetch done")
             completionHandler(.newData)
             if backgroundTask != .invalid {
