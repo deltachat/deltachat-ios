@@ -566,7 +566,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.pushToDebugArray(String(format: "3/%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
 
             if !self.appIsInForeground() {
-                self.dcAccounts.stopIo()
                 // to avoid 0xdead10cc exceptions, we need to make sure there are no locks on files.
                 self.closeDB()
             }
