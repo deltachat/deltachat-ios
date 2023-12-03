@@ -331,7 +331,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     private var shouldShutdownEventLoop: Bool = false
-    private var eventShutdownSemaphore = DispatchSemaphore(value: 1)
+    private var eventShutdownSemaphore = DispatchSemaphore(value: 0)
     private func closeDB() {
         shouldShutdownEventLoop = true
         dcAccounts.stopIo() // stopIo will generate atleast one event to the event handler can shut down
