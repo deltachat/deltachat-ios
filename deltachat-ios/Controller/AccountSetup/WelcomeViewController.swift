@@ -56,19 +56,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelAccountCreation))
     }()
 
-    private lazy var moreButton: UIBarButtonItem = {
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "ellipsis.circle")
-        } else {
-            image = UIImage(named: "ic_more")
-        }
-        return UIBarButtonItem(image: image,
-                               style: .plain,
-                               target: self,
-                               action: #selector(moreButtonPressed))
-    }()
-
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
         mediaPicker.delegate = self
@@ -107,7 +94,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if canCancel {
             navigationItem.leftBarButtonItem = cancelButton
         }
-        navigationItem.rightBarButtonItem = moreButton
         if let accountCode = accountCode {
             handleQrCode(accountCode)
         }
@@ -168,9 +154,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private func createAccountFromQRCode(qrCode: String) {
         if dcAccounts.getSelected().isConfigured() {
             UserDefaults.standard.setValue(dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
-
-            // FIXME: what do we want to do with QR-Code created accounts? For now: adding an unencrypted account
-            // ensure we're configuring on an empty new account
             _ = dcAccounts.add()
         }
         let accountId = dcAccounts.getSelected().id
@@ -214,40 +197,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.reloadDcContext()
-        }
-    }
-
-    @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: "Encrypt Database (highly experimental, use at your own risk)",
-                                      message: "Encrypting your database will slow down the app and notifications. "
-                                          + "This cannot be undone and is usually not needed on iOS "
-                                          + "as the system already protects and sandboxes the database.",
-                                      preferredStyle: .safeActionSheet)
-        let encryptedAccountAction = UIAlertAction(title: "Use Non-Recommended Database Encryption", style: .default, handler: switchToEncrypted(_:))
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        alert.addAction(encryptedAccountAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    private func switchToEncrypted(_ action: UIAlertAction) {
-        let lastContextId = dcAccounts.getSelected().id
-        let newContextId = dcAccounts.addClosedAccount()
-        _ = dcAccounts.remove(id: lastContextId)
-        KeychainManager.deleteAccountSecret(id: lastContextId)
-        _ = dcAccounts.select(id: newContextId)
-        dcContext = dcAccounts.getSelected()
-        do {
-            let secret = try KeychainManager.getAccountSecret(accountID: dcContext.id)
-            guard dcContext.open(passphrase: secret) else {
-                logger.error("Failed to open account database for account \(dcContext.id)")
-                return
-            }
-            self.navigationItem.title = "Encrypt database"
-        } catch KeychainError.unhandledError(let message, let status) {
-            logger.error("Keychain error. Failed to create encrypted account. \(message). Error status: \(status)")
-        } catch {
-            logger.error("Keychain error. Failed to create encrypted account.")
         }
     }
 
