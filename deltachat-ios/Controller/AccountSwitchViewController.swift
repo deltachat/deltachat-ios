@@ -321,6 +321,7 @@ class AccountCell: UITableViewCell {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
+        let encrypted = dcContext.isEncrypted() ? "⚠️ " : ""
         let title = dcContext.displayname ?? dcContext.addr ?? ""
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
         accountAvatar.setColor(contact.color)
@@ -332,7 +333,7 @@ class AccountCell: UITableViewCell {
         let unreadMessages = dcContext.getFreshMessages().count
         accountAvatar.setUnreadMessageCount(unreadMessages)
 
-        accountName.text = title
+        accountName.text = encrypted + title
         if unreadMessages > 0 {
             accountName.accessibilityLabel = "\(title): \(String.localized(stringID: "n_messages", count: unreadMessages))"
         } else {
