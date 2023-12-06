@@ -59,19 +59,6 @@ public class DcAccounts {
         return dc_accounts_all_work_done(accountsPointer) != 0
     }
 
-    public func isAnythingEncrypted() -> Bool {
-        if encryptedAccounts.isEmpty {
-            for accountId in getAll() {
-                if !get(id: accountId).isOpen() {
-                    return true
-                }
-            }
-            return false
-        } else {
-            return true
-        }
-    }
-
     public func startIo() {
         dc_accounts_start_io(accountsPointer)
     }
@@ -153,6 +140,10 @@ public class DcContext {
 
     public func isEncrypted() -> Bool {
         return encryptedAccounts[id] ?? false
+    }
+
+    public func isAnythingEncrypted() -> Bool {
+        return !encryptedAccounts.isEmpty
     }
 
     // viewType: one of DC_MSG_*
