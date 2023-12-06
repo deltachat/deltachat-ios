@@ -23,12 +23,6 @@ public class DcAccounts {
         return Int(dc_accounts_migrate_account(accountsPointer, dbLocation))
     }
 
-    public func addClosedAccount() -> Int {
-        let accountId = Int(dc_accounts_add_closed_account(accountsPointer))
-        get(id: accountId).setConfig("verified_one_on_one_chats", "1")
-        return accountId
-    }
-
     public func add() -> Int {
         let accountId = Int(dc_accounts_add_account(accountsPointer))
         get(id: accountId).setConfig("verified_one_on_one_chats", "1")
