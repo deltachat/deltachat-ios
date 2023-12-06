@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 import AVFoundation
 
+private var encryptedAccounts: [Int: Bool] = [:]
+
 public class DcAccounts {
 
     /// The application group identifier defines a group of apps or extensions that have access to a shared container.
@@ -55,6 +57,19 @@ public class DcAccounts {
 
     public func isAllWorkDone() -> Bool {
         return dc_accounts_all_work_done(accountsPointer) != 0
+    }
+
+    public func isAnythingEncrypted() -> Bool {
+        if encryptedAccounts.isEmpty {
+            for accountId in getAll() {
+                if !get(id: accountId).isOpen() {
+                    return true
+                }
+            }
+            return false
+        } else {
+            return true
+        }
     }
 
     public func startIo() {
@@ -127,13 +142,17 @@ public class DcContext {
         return swiftString
     }
 
-    // The passphrase can be ommited if the account db is not encrypted
-    public func open(passphrase: String? = nil) -> Bool {
-        dc_context_open(contextPointer, passphrase) == 1
+    public func open(passphrase: String) -> Bool {
+        encryptedAccounts[id] = true
+        return dc_context_open(contextPointer, passphrase) == 1
     }
 
     public func isOpen() -> Bool {
         return dc_context_is_open(contextPointer) == 1
+    }
+
+    public func isEncrypted() -> Bool {
+        return encryptedAccounts[id] ?? false
     }
 
     // viewType: one of DC_MSG_*
