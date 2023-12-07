@@ -4,10 +4,14 @@
 2023-12
 
 * sync changes on "Your Profile Name", "Show Class Mails", "Read Receipts" options across devices
-* remove receiver limit on .xdc size
+* immediate feedback when tapping chat titles
+* fix crashes and notification issues due to races in shutdown event handler
+* fix crashes and notification issues due to account lock file
+* fix crashes and notification issues by fading out "encrypted database" experiment introduced in 1.28.0
+  (database is still encrypted by the system, for existing "encrypted database" users a messages is shown)
+* fix: align "Disappearing Messages" options with the ones used on android/desktop
 * fix decryption errors when using multiple private keys
 * fix more log in errors for providers as 163.com; this was introduced in 1.42.3
-* fix: database locked errors on webxdc updates
 * update translations
 * update to core 1.132.0
 
