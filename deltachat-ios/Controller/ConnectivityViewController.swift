@@ -80,6 +80,12 @@ class ConnectivityViewController: WebViewViewController {
                 .appending("Timeout Error")
         }
 
+        if dcContext.isAnyDatabaseEncrypted() {
+            return "<span class=\"red dot\"></span>"
+                .appending(title)
+                .appending("Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
+        }
+
         if !notificationsEnabledInDC {
             return "<span class=\"disabled dot\"></span>"
                 .appending(title)
