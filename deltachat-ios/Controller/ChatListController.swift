@@ -138,7 +138,7 @@ class ChatListController: UITableViewController {
         msg.text = String.localized("update_1_42_common") + "\n\n" + String.localized("more_info_desktop") +  ": https://get.delta.chat/#changelogs"
         dcContext.addDeviceMessage(label: "update_1_42b_ios", msg: msg)
 
-        if dcContext.isAnythingEncrypted() {
+        if dcContext.isAnyDatabaseEncrypted() {
             let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
             msg.text = "⚠️ \"Encrypted Accounts\" now unsupported!\n\n"
             +   "Thank you for trying out the experimental \"Encrypted Accounts\". "

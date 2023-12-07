@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-private var encryptedAccounts: [Int: Bool] = [:]
+private var encryptedDatabases: [Int: Bool] = [:]
 
 public class DcAccounts {
 
@@ -130,7 +130,7 @@ public class DcContext {
     }
 
     public func open(passphrase: String) -> Bool {
-        encryptedAccounts[id] = true
+        encryptedDatabases[id] = true
         return dc_context_open(contextPointer, passphrase) == 1
     }
 
@@ -138,12 +138,12 @@ public class DcContext {
         return dc_context_is_open(contextPointer) == 1
     }
 
-    public func isEncrypted() -> Bool {
-        return encryptedAccounts[id] ?? false
+    public func isDatabaseEncrypted() -> Bool {
+        return encryptedDatabases[id] ?? false
     }
 
-    public func isAnythingEncrypted() -> Bool {
-        return !encryptedAccounts.isEmpty
+    public func isAnyDatabaseEncrypted() -> Bool {
+        return !encryptedDatabases.isEmpty
     }
 
     // viewType: one of DC_MSG_*

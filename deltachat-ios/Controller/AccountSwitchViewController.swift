@@ -321,7 +321,7 @@ class AccountCell: UITableViewCell {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
-        let encrypted = dcContext.isEncrypted() ? "⚠️ " : ""
+        let encrypted = dcContext.isDatabaseEncrypted() ? "⚠️ " : ""
         let title = dcContext.displayname ?? dcContext.addr ?? ""
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
         accountAvatar.setColor(contact.color)
