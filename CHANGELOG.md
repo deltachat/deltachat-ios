@@ -1,5 +1,17 @@
 # Delta Chat iOS Changelog
 
+## v1.42.7
+2023-12
+
+* sync changes on "Your Profile Name", "Show Class Mails", "Read Receipts" options across devices
+* remove receiver limit on .xdc size
+* fix decryption errors when using multiple private keys
+* fix more log in errors for providers as 163.com; this was introduced in 1.42.3
+* fix: database locked errors on webxdc updates
+* update translations
+* update to core 1.132.0
+
+
 ## v1.42.4
 2023-11
 
