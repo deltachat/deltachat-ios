@@ -53,6 +53,7 @@ public class LogViewController: UIViewController {
 
         let notifyEnabled = !UserDefaults.standard.bool(forKey: "notifications_disabled")
         info += "notify-enabled=\(notifyEnabled)\n"
+        info += "any-database-encrypted=\(dcContext.isAnyDatabaseEncrypted())\n"
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             info += "notify-token=\(appDelegate.notifyToken ?? "<unset>")\n"
