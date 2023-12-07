@@ -271,6 +271,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
+        uninstallEventHandler()
         dcAccounts.closeDatabase()
         if let reachability = reachability {
             reachability.stopNotifier()
@@ -597,17 +598,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    func installEventHandler() {
+    private var shouldShutdownEventLoop = false
+    private var eventHandlerActive = false
+    private var eventShutdownSemaphore = DispatchSemaphore(value: 0)
+
+    private func installEventHandler() {
+        if eventHandlerActive {
+            return
+        }
+        eventHandlerActive = true
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             let eventHandler = DcEventHandler(dcAccounts: self.dcAccounts)
             let eventEmitter = self.dcAccounts.getEventEmitter()
-            while true {
+            logger.info("➡️ event emitter started")
+            while !shouldShutdownEventLoop {
                 guard let event = eventEmitter.getNextEvent() else { break }
                 eventHandler.handleEvent(event: event)
             }
             logger.info("⬅️ event emitter finished")
+            eventShutdownSemaphore.signal()
+            eventHandlerActive = false
         }
+    }
+
+    private func uninstallEventHandler() {
+        shouldShutdownEventLoop = true
+        dcAccounts.stopIo() // stopIo will generate atleast one event to the event handler can shut down
+        eventShutdownSemaphore.wait()
+        shouldShutdownEventLoop = false
     }
 
     // Values calculated for debug log view
