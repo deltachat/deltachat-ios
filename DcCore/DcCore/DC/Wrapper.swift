@@ -72,6 +72,7 @@ public class DcAccounts {
     }
 
     public func remove(id: Int) -> Bool {
+        encryptedDatabases[id] = nil
         return dc_accounts_remove_account(accountsPointer, UInt32(id)) == 1
     }
 
