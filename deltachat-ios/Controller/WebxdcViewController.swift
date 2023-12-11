@@ -403,6 +403,10 @@ class WebxdcViewController: WebViewViewController {
             let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
             alert.addAction(sourceCodeAction)
         }
+
+        let shareAction = UIAlertAction(title: String.localized("menu_share"), style: .default, handler: shareWebxdc(_:))
+        alert.addAction(shareAction)
+
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
@@ -417,6 +421,9 @@ class WebxdcViewController: WebViewViewController {
            let url = URL(string: sourceCodeUrl) {
             UIApplication.shared.open(url)
         }
+    }
+
+    private func shareWebxdc(_ action: UIAlertAction) {
     }
 }
 
