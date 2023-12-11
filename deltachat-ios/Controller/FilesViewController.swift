@@ -284,7 +284,10 @@ extension FilesViewController {
 
     func shareAttachment(of indexPath: IndexPath) {
         let msgId = fileMessageIds[indexPath.row]
-        let message = dcContext.getMessage(id: msgId)
+        FilesViewController.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: self.view)
+    }
+
+    public static func share(message: DcMsg, parentViewController: UIViewController, sourceView: UIView) {
         let activityVC: UIActivityViewController
         guard let fileURL = message.fileURL else { return }
         let objectsToShare: [Any]
@@ -301,8 +304,8 @@ extension FilesViewController {
 
         activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [.copyToPasteboard]
-        activityVC.popoverPresentationController?.sourceView = self.view
-        self.present(activityVC, animated: true, completion: nil)
+        activityVC.popoverPresentationController?.sourceView = sourceView
+        parentViewController.present(activityVC, animated: true, completion: nil)
     }
 }
 
