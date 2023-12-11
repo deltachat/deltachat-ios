@@ -150,8 +150,6 @@
 "pref_blocked_contacts" = "నిరోధించిన పరిచయాలు";
 "pref_password_and_account_settings" = "ఖాతా సెట్టింగులు";
 "pref_your_name" = "మీ పేరు";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "నా Delta Chat మెసెంజర్ ద్వారా పంపబడినది: https://delta.chat";
 "pref_enter_sends" = "\"ఎంటర్\" నొక్కితే పంపు";
 "pref_vibrate" = "వైబ్రేషన్";
 "pref_screen_security" = "స్క్రీన్ భద్రత";

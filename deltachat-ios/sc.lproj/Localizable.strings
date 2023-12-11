@@ -333,8 +333,6 @@
 "pref_your_name" = "Su nùmene tuo";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Firma";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "Imbiadu cun Delta Chat: https://delta.chat";
 "pref_enter_sends" = "Imbia cun \"Imbiu\"";
 "pref_enter_sends_explain" = "Incarchende sa tecla Imbiu as a imbiare sos messàgios";
 "pref_outgoing_media_quality" = "Calidade de sos documentos multimediales in essida";

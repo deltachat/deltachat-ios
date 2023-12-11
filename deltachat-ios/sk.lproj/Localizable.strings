@@ -483,8 +483,6 @@
 "pref_your_name" = "Vaše meno";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Text v podpise";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "Odoslané pomocou Delta Chat Messenger-a: https://delta.chat";
 "pref_enter_sends" = "Zadajte odoslanie kľúča";
 "pref_enter_sends_explain" = "Textové správy sa odošlú po stlačení Enteru";
 "pref_outgoing_media_quality" = "Kvalita odchádzajúcich médií";

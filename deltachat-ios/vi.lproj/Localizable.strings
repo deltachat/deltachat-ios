@@ -558,8 +558,6 @@
 "pref_your_name" = "Tên của bạn";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Văn bản chữ ký";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "Đã gửi bằng Delta Chat Messenger của tôi: https://delta.chat";
 "pref_enter_sends" = "Nhập khóa gửi";
 "pref_enter_sends_explain" = "Nhấn phím Enter sẽ gửi tin nhắn văn bản";
 "pref_outgoing_media_quality" = "Chất lượng phương tiện truyền thông đi";

@@ -385,7 +385,6 @@
 "pref_your_name" = "あなたの名前";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "署名";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_enter_sends" = "エンターキーで送信";
 "pref_enter_sends_explain" = "エンターキーを押すとテキストメッセージが送信されます";
 "pref_outgoing_media_quality" = "送信する画像や映像の画質";

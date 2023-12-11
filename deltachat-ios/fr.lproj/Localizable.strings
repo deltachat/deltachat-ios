@@ -556,8 +556,6 @@
 "pref_your_name" = "Votre nom";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Signature";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "Envoyé depuis Delta Chat: https://delta.chat";
 "pref_enter_sends" = "Entrer les envois de clés";
 "pref_enter_sends_explain" = "Appuyez sur la touche Entrée pour envoyer des messages texte";
 "pref_outgoing_media_quality" = "Qualité du média en sortie";

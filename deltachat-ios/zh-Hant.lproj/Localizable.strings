@@ -358,8 +358,6 @@
 "pref_your_name" = "你的名字";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "簽名檔";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "使用 Delta Chat 傳送: https://delta.chat";
 "pref_enter_sends" = "換行鍵送出訊息";
 "pref_enter_sends_explain" = "按下換行鍵就送出訊息";
 "pref_outgoing_media_quality" = "傳送的媒體品質";

@@ -341,8 +341,6 @@
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
 "pref_password_and_account_settings" = "Pasvorto kaj konto";
 "pref_your_name" = "Via nomo";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "Sendita per mia Delta Chat mesaĝilo: https://delta.chat";
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";
 "pref_enter_sends_explain" = "Premado de la Eniga klavo sendos mesaĝojn";
 "pref_vibrate" = "Vibrado";

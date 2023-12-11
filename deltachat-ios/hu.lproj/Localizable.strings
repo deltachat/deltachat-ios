@@ -188,8 +188,6 @@
 "pref_profile_photo" = "Profilkép";
 "pref_blocked_contacts" = "Letiltott partnerek";
 "pref_your_name" = "Neved";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "A Delta Chat Messengeremmel küldtem: https://delta.chat";
 "pref_enter_sends" = "Küldés \"enterrel\"";
 "pref_vibrate" = "Rezgés";
 "pref_screen_security" = "Képernyőbiztonság";

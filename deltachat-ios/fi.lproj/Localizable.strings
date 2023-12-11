@@ -487,8 +487,6 @@
 "pref_your_name" = "Nimesi";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Allekirjoitus";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "Lähetetty Delta Chat -sovelluksesta: https://delta.chat";
 "pref_enter_sends" = "Enter-näppäin lähettää";
 "pref_enter_sends_explain" = "Enter-näppäimen painaminen lähettää viestin";
 "pref_outgoing_media_quality" = "Lähtevän median laatu";

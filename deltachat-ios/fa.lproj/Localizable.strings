@@ -2,6 +2,8 @@
 "app_name" = "دلتاچت";
 "ok" = "تأیید";
 "cancel" = "لغو";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "یا";
 "clear_search" = "پاک کردن جست‌وجو";
 "yes" = "بله";
 "no" = "خیر";
@@ -30,7 +32,10 @@
 // this string is deprecated; the new wording is "introduced by ..."
 "verified" = "احراز هویت شده";
 "close" = "بستن";
+"close_window" = "بستن پنجره";
 "forward" = "هدایت";
+"create" = "ایجاد";
+"later" = "بعدا";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "ارسال مجدد";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -109,6 +114,7 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "استیکر";
+"add_to_sticker_collection" = "افزودن به مجموعه استیکر";
 "images" = "تصاویر";
 "audio" = "صدا";
 "voice_message" = "پیام صوتی";
@@ -197,6 +203,7 @@
 "menu_all_media" = "همه رسانه‌ها";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "نمایش در گپ";
+"show_app_in_chat" = "نمایش برنامه در گفتگو";
 "menu_share" = "اشتراک";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "مسدود کردن";
@@ -243,6 +250,8 @@
 "source_code" = "کد منبع";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "افزودن به صفحه خانه";
+"donate" = "حمایت مالی";
+
 "mute_for_one_hour" = "ساکت کردن به مدت۱ ساعت";
 "mute_for_two_hours" = "ساکت کردن به مدت ۲ ساعت";
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
@@ -369,6 +378,8 @@
 
 // search
 "search" = "جستجو";
+"search_in_chat" = "جستجو در گفتگو";
+"search_files" = "جستجوی پرونده‌ها";
 "search_explain" = "جست‌وجو برای گپ‌ها، مخاطبان و پیام‌ها";
 "search_no_result_for_x" = "نتیجه‌ای برای \"%1$@\" پیدا نشد";
 
@@ -384,6 +395,7 @@
 "group_self_not_in_group" = "برای این کار باید عضو گروه باشید.";
 "profile_encryption" = "رمزگذاری";
 "profile_shared_chats" = "گپ‌های هم‌رسانده";
+"related_chats" = "گفتگوهای مرتبط";
 "tab_contact" = "مخاطب";
 "tab_group" = "گروه";
 "tab_gallery" = "گالری";
@@ -530,7 +542,6 @@
 "pref_your_name" = "اسم شما";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "متن امضا";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
 "pref_enter_sends" = "ورود کلیدهای ارسال";
 "pref_enter_sends_explain" = "فشاردادن کلید اینتر پیام‌ها را ارسال می‌کند";
 "pref_outgoing_media_quality" = "کیفیت رسانه خروجی";
@@ -642,6 +653,9 @@
 "emoji_symbols" = "نمادها";
 "emoji_flags" = "پرچم‌ها";
 
+// Reactions
+"reactions" = "واکنش‌ها";
+
 // automatically delete message
 "delete_old_messages" = "پاک کردن پیام‌های قدیمی";
 "autodel_device_title" = "پاک کردن پیام‌ها از دستگاه";
@@ -750,6 +764,8 @@
 "ephemeral_timer_weeks_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ هفته تنظیم کردید.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ هفته تنظیم شد.";
+"learn_more" = "بیشتر بدانید";
+
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 // %1%s will be replaced by date and time in some human-readable format
@@ -821,6 +837,11 @@
 "notify_name_and_message" = "نام و پیام";
 "notify_name_only" = "فقط نام";
 "notify_no_name_or_message" = "بدون نام یا پیام";
+"notifications_disabled" = "آگاه‌سازی‌ها غیرفعال شد";
+"new_messages" = "پیام‌های جدید";
+"n_messages_in_m_chats" = "%1$d پیام در %2$d گفتگو";
+
+
 // permissions
 "perm_required_title" = "مجوز لازم است";
 "perm_continue" = "ادامه";

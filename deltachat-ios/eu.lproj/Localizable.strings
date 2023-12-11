@@ -285,8 +285,6 @@
 "pref_your_name" = "Zure izena";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Sinaduraren testua";
-// Translators: The URL should not be localized as it is unclear which language the receiver prefers; the language will be automatically detected on the server
-"pref_default_status_text" = "Delta Chat mezulariarekin bidalita: https://delta.chat";
 "pref_enter_sends" = "Enter teklarekin bidali";
 "pref_enter_sends_explain" = "Enter tekla sakatzeak mezua bidaliko du";
 "pref_outgoing_media_quality" = "Bidalitako multimediaren kalitatea";
