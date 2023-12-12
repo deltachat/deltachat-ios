@@ -39,7 +39,9 @@ These are the steps needed for renewal:
 
 In case you cannot do the server-side update yourself,
 ping server admins to renew the certificate
-and send them `Certificates.p12` and `password.txt` through a secure channel
+and send them `Certificates.p12` and `password.txt` through a secure channel.
+
+The server code itself is hosted on <https://github.com/deltachat/notifiers>.
 
 
 [^1]: source: <https://stackoverflow.com/questions/9418661/how-to-create-p12-certificate-for-ios-distribution/28962937#28962937>
