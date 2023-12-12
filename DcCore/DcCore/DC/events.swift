@@ -213,9 +213,6 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
-            if let sem = dcAccounts.fetchSemaphore, dcAccounts.isAllWorkDone() {
-                sem.signal()
-            }
             if accountId != dcAccounts.getSelected().id {
                 return
             }

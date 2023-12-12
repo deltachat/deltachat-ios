@@ -506,29 +506,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             guard let self = self else { completionHandler(.failed); return }
 
             // we're in background, run IO for a little time
-            self.dcAccounts.startIo()
-            self.dcAccounts.maybeNetwork()
-            self.pushToDebugArray("2")
-
             self.addDebugFetchTimestamp()
+            // this pauses io/scheduler so we don't need start/stop io here
+            if !self.dcAccounts.backgroundFetch(timeout: 20) {
+                logger.info("⬅️ error or timeout on backgroundFetch")
+                self.pushToDebugArray(String("error or timeout on backgroundFetch"))
+            }
 
-            // create a new semaphore to make sure the received DC_CONNECTIVITY_CONNECTED really belongs to maybeNetwork() from above
-            // (maybeNetwork() sets connectivity to DC_CONNECTIVITY_CONNECTING, when fetch is done, we're back at DC_CONNECTIVITY_CONNECTED)
-            self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
-            _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 20)
-            self.dcAccounts.fetchSemaphore = nil
-
-            // TOCHECK: it seems, we are not always reaching this point in code,
-            // semaphore?.wait() does not always exit after the given timeout and the app gets suspended -
-            // maybe that is on purpose somehow to suspend inactive apps, not sure.
-            // this does not happen often, but still.
-            // cmp. https://github.com/deltachat/deltachat-ios/pull/1542#pullrequestreview-951620906
             logger.info("⬅️ finishing fetch")
             self.pushToDebugArray(String(format: "3/%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
-
-            if !self.appIsInForeground() {
-                self.dcAccounts.stopIo()
-            }
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()

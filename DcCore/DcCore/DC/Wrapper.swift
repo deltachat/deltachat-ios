@@ -10,7 +10,6 @@ public class DcAccounts {
     /// The ID is created in the apple developer portal and can be changed there.
     let applicationGroupIdentifier = "group.chat.delta.ios"
     var accountsPointer: OpaquePointer?
-    public var fetchSemaphore: DispatchSemaphore?
 
     public init() {
     }
@@ -65,6 +64,10 @@ public class DcAccounts {
 
     public func stopIo() {
         dc_accounts_stop_io(accountsPointer)
+    }
+    
+    public func backgroundFetch(timeout: UInt64) -> Bool {
+        return dc_accounts_background_fetch(accountsPointer, timeout) == 1
     }
 
     public func select(id: Int) -> Bool {
