@@ -507,11 +507,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             // we're in background, run IO for a little time
             self.addDebugFetchTimestamp()
+            let start = CFAbsoluteTimeGetCurrent()
             // this pauses io/scheduler so we don't need start/stop io here
             if !self.dcAccounts.backgroundFetch(timeout: 20) {
                 logger.info("⬅️ error or timeout on backgroundFetch")
                 self.pushToDebugArray(String("error or timeout on backgroundFetch"))
             }
+            let diff = CFAbsoluteTimeGetCurrent() - start
+            logger.info("⏰ background fetch took: \(diff) s")
 
             logger.info("⬅️ finishing fetch")
             self.pushToDebugArray(String(format: "3/%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
