@@ -6,7 +6,7 @@
 * fix checking for notificatios that are aborted too soon
 * fix: sync pin/archive across devies also for groups created by non-delta-chats clients
 * fix: show padlock in empty part if the whole message is empty
-* fix: more reliable message pushing from IMAP implementations as used by mailbox.org
+* fix: more reliable message pushing from IMAP implementations as mailbox.org
   (renew IDLE timeout on keepalives and reduce it to 5 minutes)
 * update translations
 * update to core 1.132.1
