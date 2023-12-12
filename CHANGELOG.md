@@ -1,5 +1,17 @@
 # Delta Chat iOS Changelog
 
+## v1.42.8
+2023-12
+
+* fix checking for notificatios that are aborted too soon
+* fix: sync pin/archive across devies also for groups created by non-delta-chats clients
+* fix: show padlock in empty part if the whole message is empty
+* fix: more reliable message pushing from IMAP implementations as used by mailbox.org
+  (renew IDLE timeout on keepalives and reduce it to 5 minutes)
+* update translations
+* update to core 1.132.1
+
+
 ## v1.42.7
 2023-12
 
