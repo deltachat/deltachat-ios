@@ -3,7 +3,7 @@
 ## v1.42.8
 2023-12
 
-* fix checking for notificatios that are aborted too soon
+* fix checking for new messages in the background being aborted before finishing fetching the messages
 * fix: sync pin/archive across devices also for groups created by non-delta-chats clients
 * fix: show padlock in empty part if the whole message is empty
 * fix: more reliable message pushing from IMAP implementations as mailbox.org
