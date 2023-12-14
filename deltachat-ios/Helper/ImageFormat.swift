@@ -48,17 +48,12 @@ extension ImageFormat {
         return .unknown
     }
 
-
-    // Theoretically, SDAnimatedImage should be able to read data of all kinds of images.
-    // In practive, JPG files haven't been read correctly, for now we're using SDAnimatedImage
-    // only for file formats that support animated content.
     static func loadImageFrom(data: Data) -> UIImage? {
-        switch ImageFormat.get(from: data) {
-        case .gif, .png, .webp, .heic:
-            return SDAnimatedImage(data: data)
-        default:
-            return UIImage(data: data)
+        if let image = SDAnimatedImage(data: data) {
+            return image
         }
+        // use UIImage if SDAnimatedImage failes (known for some JPG, see #1911, SDAnimatedImageView does probably sth. similar)
+        return UIImage(data: data)
     }
 
     static func loadImageFrom(url: URL) -> UIImage? {
