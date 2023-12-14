@@ -78,29 +78,34 @@ class GalleryItem: ContextMenuItem {
         DispatchQueue.global(qos: .userInteractive).async {
             if let image = ImageFormat.loadImageFrom(url: url) {
                 DispatchQueue.main.async { [weak self] in
-                        self?.thumbnailImage = image
+                    self?.thumbnailImage = image
                 }
+            } else {
+                logger.error("cannot load image thumbnail for \(url)")
             }
         }
     }
 
     private func loadVideoThumbnail(from url: URL) {
         DispatchQueue.global(qos: .userInteractive).async {
-            if let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url) {
+            if let image = DcUtils.generateThumbnailFromVideo(url: url) {
                 DispatchQueue.main.async { [weak self] in
-                    self?.thumbnailImage = thumbnailImage
+                    self?.thumbnailImage = image
                 }
+            } else {
+                logger.error("cannot load video thumbnail for \(url)")
             }
         }
     }
 
     private func loadWebxdcThumbnail(from message: DcMsg) {
         DispatchQueue.global(qos: .userInteractive).async {
-            let image = message.getWebxdcPreviewImage()
-            if let image = image {
+            if let image = message.getWebxdcPreviewImage() {
                 DispatchQueue.main.async { [weak self] in
                     self?.thumbnailImage = image
                 }
+            } else {
+                logger.error("cannot load webxdc thumbnail for \(message.file ?? "ErrName")")
             }
         }
     }
