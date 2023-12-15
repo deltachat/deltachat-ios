@@ -13,8 +13,6 @@ protocol ShareAttachmentDelegate: class {
     func onAttachmentChanged()
     func onThumbnailChanged()
     func onUrlShared(url: URL)
-    func onLoadingStarted()
-    func onLoadingFinished()
 }
 
 class ShareAttachment {
@@ -48,13 +46,11 @@ class ShareAttachment {
 
     private func createMessages() {
         guard let items = inputItems as? [NSExtensionItem] else { return }
-        delegate?.onLoadingStarted()
         for item in items {
             if let attachments = item.attachments {
                 createMessageFromDataRepresentation(attachments)
             }
         }
-        delegate?.onLoadingFinished()
     }
 
     private func createMessageFromDataRepresentation(_ attachments: [NSItemProvider]) {
