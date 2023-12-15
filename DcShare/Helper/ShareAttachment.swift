@@ -84,9 +84,7 @@ class ShareAttachment {
             }
             if let result = result {
                 let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory)
-                let msg = self.dcContext.newMessage(viewType: DC_MSG_GIF)
-                msg.setFile(filepath: path)
-                self.messages.append(msg)
+                _ = self.addDcMsg(path: path, viewType: DC_MSG_GIF)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     self.imageThumbnail = result
@@ -117,9 +115,7 @@ class ShareAttachment {
             }
             if let result = result,
                let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory) {
-                let msg = self.dcContext.newMessage(viewType: DC_MSG_IMAGE)
-                msg.setFile(filepath: path)
-                self.messages.append(msg)
+                _ = self.addDcMsg(path: path, viewType: DC_MSG_IMAGE)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     self.imageThumbnail = ImageFormat.scaleDownImage(NSURL(fileURLWithPath: path), toMax: self.thumbnailSize)
