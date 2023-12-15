@@ -80,7 +80,7 @@ class ShareAttachment {
             case let url as URL:
                 result = SDAnimatedImage(contentsOfFile: url.path)
             default:
-                logger.debug("Unexpected data: \(type(of: data))")
+                logger.error("Unexpected data: \(type(of: data))")
             }
             if let result = result {
                 let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory)
@@ -110,7 +110,7 @@ class ShareAttachment {
             case let url as URL:
                 result = ImageFormat.loadImageFrom(url: url)
             default:
-                logger.debug("Unexpected data: \(type(of: data))")
+                logger.error("Unexpected data: \(type(of: data))")
                 result = nil
             }
             if let result = result,
@@ -146,7 +146,7 @@ class ShareAttachment {
 
                 }
             default:
-                logger.debug("Unexpected data: \(type(of: data))")
+                logger.error("Unexpected data: \(type(of: data))")
             }
             if let error = error {
                 logger.error("Could not load share item as video: \(error.localizedDescription)")
@@ -182,7 +182,7 @@ class ShareAttachment {
                     self.generateThumbnailRepresentations(url: url)
                 }
             default:
-                logger.debug("Unexpected data: \(type(of: data))")
+                logger.error("Unexpected data: \(type(of: data))")
             }
             if let error = error {
                 logger.error("Could not load share item: \(error.localizedDescription)")
@@ -231,7 +231,7 @@ class ShareAttachment {
                 case let url as URL:
                     delegate.onUrlShared(url: url)
                 default:
-                    logger.debug("Unexpected data: \(type(of: data))")
+                    logger.error("Unexpected data: \(type(of: data))")
                 }
                 if let error = error {
                     logger.error("Could not share URL: \(error.localizedDescription)")
