@@ -193,11 +193,11 @@ class ShareAttachment {
         let msg = dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: path)
         let bytes = msg.filesize
+        logger.info("share \(path ?? "ErrPath") with \(bytes) bytes")
         if bytes > maxAttachmentBytes {
-            self.error = "For large files, open Delta Chat and attach the file there"
+            self.error = "File is too large for sharing.\n\nOpen Delta Chat directly and attach the file there."
             return nil
         }
-        logger.info("adding \(path ?? "ErrPath") with \(bytes) bytes")
         self.messages.append(msg)
         return msg
     }
@@ -236,10 +236,10 @@ class ShareAttachment {
                 case let url as URL:
                     delegate.onUrlShared(url: url)
                 default:
-                    logger.error("Unexpected data: \(type(of: data))")
+                    self.error = "Unexpected data: \(type(of: data))"
                 }
                 if let error = error {
-                    logger.error("Could not share URL: \(error.localizedDescription)")
+                    self.error = error.localizedDescription
                 }
             }
         }
