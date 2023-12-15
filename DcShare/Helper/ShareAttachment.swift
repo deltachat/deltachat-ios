@@ -5,9 +5,11 @@ import UIKit
 import QuickLookThumbnailing
 import SDWebImage
 
-// the share extension allows a max. of 120 mb ram (the app allows 2gb);
-// assume we need 2/3rd for processing in UI and core
-let maxAttachmentBytes = 40 * 1024 * 1024
+// iOS allows max. 120mb ram for extenstions (2000mb for apps).
+// by copying memory around, this is easily exceeded.
+// the following 12mb were tested to work on an iphone7 -
+// where 15mb already result in "high watermark memory limit exceeded" crash.
+let maxAttachmentBytes = 12 * 1024 * 1024
 
 protocol ShareAttachmentDelegate: class {
     func onAttachmentChanged()
