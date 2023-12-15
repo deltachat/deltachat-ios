@@ -75,33 +75,47 @@ class GalleryItem: ContextMenuItem {
     }
 
     private func loadImageThumbnail(from url: URL) {
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             if let image = ImageFormat.loadImageFrom(url: url) {
                 DispatchQueue.main.async { [weak self] in
-                        self?.thumbnailImage = image
+                    self?.thumbnailImage = image
                 }
+            } else {
+                logger.error("cannot load image thumbnail for \(url)")
+                self?.setLoadingFailedPlaceholder()
             }
         }
     }
 
     private func loadVideoThumbnail(from url: URL) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            if let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url) {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            if let image = DcUtils.generateThumbnailFromVideo(url: url) {
                 DispatchQueue.main.async { [weak self] in
-                    self?.thumbnailImage = thumbnailImage
+                    self?.thumbnailImage = image
                 }
+            } else {
+                logger.error("cannot load video thumbnail for \(url)")
+                self?.setLoadingFailedPlaceholder()
             }
         }
     }
 
     private func loadWebxdcThumbnail(from message: DcMsg) {
-        DispatchQueue.global(qos: .userInteractive).async {
-            let image = message.getWebxdcPreviewImage()
-            if let image = image {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            if let image = message.getWebxdcPreviewImage() {
                 DispatchQueue.main.async { [weak self] in
                     self?.thumbnailImage = image
                 }
+            } else {
+                logger.error("cannot load webxdc thumbnail for \(message.file ?? "ErrName")")
+                self?.setLoadingFailedPlaceholder()
             }
+        }
+    }
+
+    private func setLoadingFailedPlaceholder() {
+        DispatchQueue.main.async { [weak self] in
+            self?.thumbnailImage = UIImage(named: "ic_error_36pt")?.sd_tintedImage(with: .gray)
         }
     }
 }
