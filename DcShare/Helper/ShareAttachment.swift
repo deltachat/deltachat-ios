@@ -5,6 +5,10 @@ import UIKit
 import QuickLookThumbnailing
 import SDWebImage
 
+// the share extension allows a max. of 120 mb ram (the app allows 2gb);
+// assume we need 2/3rd for processing in UI and core
+let maxAttachmentBytes = 40 * 1024 * 1024
+
 protocol ShareAttachmentDelegate: class {
     func onAttachmentChanged()
     func onThumbnailChanged()
@@ -21,6 +25,7 @@ class ShareAttachment {
 
     var inputItems: [Any]?
     var messages: [DcMsg] = []
+    var error: String?
 
     private var imageThumbnail: UIImage?
     private var attachmentThumbnail: UIImage?
@@ -80,7 +85,7 @@ class ShareAttachment {
             case let url as URL:
                 result = SDAnimatedImage(contentsOfFile: url.path)
             default:
-                logger.error("Unexpected data: \(type(of: data))")
+                self.error = "Unexpected data: \(type(of: data))"
             }
             if let result = result {
                 let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory)
@@ -90,9 +95,9 @@ class ShareAttachment {
                     self.imageThumbnail = result
                     self.delegate?.onThumbnailChanged()
                 }
-                if let error = error {
-                    logger.error("Could not load share item as image: \(error.localizedDescription)")
-                }
+            }
+            if let error = error {
+                self.error = error.localizedDescription
             }
         }
     }
@@ -111,7 +116,7 @@ class ShareAttachment {
                     result = ImageFormat.scaleDownImage(nsurl, toMax: 1280)
                 }
             default:
-                logger.error("Unexpected data: \(type(of: data))")
+                self.error = "Unexpected data: \(type(of: data))"
             }
             if let result = result,
                let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory) {
@@ -123,7 +128,7 @@ class ShareAttachment {
                 }
             }
             if let error = error {
-                logger.error("Could not load share item as image: \(error.localizedDescription)")
+                self.error = error.localizedDescription
             }
         }
     }
@@ -144,10 +149,10 @@ class ShareAttachment {
 
                 }
             default:
-                logger.error("Unexpected data: \(type(of: data))")
+                self.error = "Unexpected data: \(type(of: data))"
             }
             if let error = error {
-                logger.error("Could not load share item as video: \(error.localizedDescription)")
+                self.error = error.localizedDescription
             }
         }
     }
@@ -164,8 +169,8 @@ class ShareAttachment {
         item.loadItem(forTypeIdentifier: typeIdentifier as String, options: nil) { data, error in
             switch data {
             case let url as URL:
-                if url.pathExtension == "xdc" {
-                    let webxdcMsg = self.addDcMsg(path: url.relativePath, viewType: DC_MSG_WEBXDC)
+                if url.pathExtension == "xdc",
+                   let webxdcMsg = self.addDcMsg(path: url.relativePath, viewType: DC_MSG_WEBXDC) {
                     if self.imageThumbnail == nil {
                         self.imageThumbnail = webxdcMsg.getWebxdcPreviewImage()?
                             .scaleDownImage(toMax: self.thumbnailSize,
@@ -180,17 +185,23 @@ class ShareAttachment {
                     self.generateThumbnailRepresentations(url: url)
                 }
             default:
-                logger.error("Unexpected data: \(type(of: data))")
+                self.error = "Unexpected data: \(type(of: data))"
             }
             if let error = error {
-                logger.error("Could not load share item: \(error.localizedDescription)")
+                self.error = error.localizedDescription
             }
         }
     }
 
-    private func addDcMsg(path: String?, viewType: Int32) -> DcMsg {
+    private func addDcMsg(path: String?, viewType: Int32) -> DcMsg? {
         let msg = dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: path)
+        let bytes = msg.filesize
+        if bytes > maxAttachmentBytes {
+            self.error = "For large files, open Delta Chat and attach the file there"
+            return nil
+        }
+        logger.info("adding \(path ?? "ErrPath") with \(bytes) bytes")
         self.messages.append(msg)
         return msg
     }

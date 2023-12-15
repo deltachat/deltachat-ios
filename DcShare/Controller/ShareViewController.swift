@@ -247,6 +247,14 @@ extension ShareViewController: ShareAttachmentDelegate {
 
     func onAttachmentChanged() {
         DispatchQueue.main.async {
+            if let shareAttachment = self.shareAttachment,
+               let error = shareAttachment.error {
+                shareAttachment.error = nil
+                logger.error(error)
+                let alert = UIAlertController(title: nil, message: error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
             self.validateContent()
         }
     }
