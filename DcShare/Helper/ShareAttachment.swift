@@ -5,12 +5,16 @@ import UIKit
 import QuickLookThumbnailing
 import SDWebImage
 
+// iOS allows max. 120mb ram for extenstions (2000mb for apps).
+// by copying memory around, this is easily exceeded.
+// the following 12mb were tested to work on an iphone7 -
+// where 15mb already result in "high watermark memory limit exceeded" crash.
+let maxAttachmentBytes = 12 * 1024 * 1024
+
 protocol ShareAttachmentDelegate: class {
     func onAttachmentChanged()
     func onThumbnailChanged()
     func onUrlShared(url: URL)
-    func onLoadingStarted()
-    func onLoadingFinished()
 }
 
 class ShareAttachment {
@@ -21,6 +25,7 @@ class ShareAttachment {
 
     var inputItems: [Any]?
     var messages: [DcMsg] = []
+    var error: String?
 
     private var imageThumbnail: UIImage?
     private var attachmentThumbnail: UIImage?
@@ -43,13 +48,11 @@ class ShareAttachment {
 
     private func createMessages() {
         guard let items = inputItems as? [NSExtensionItem] else { return }
-        delegate?.onLoadingStarted()
         for item in items {
             if let attachments = item.attachments {
                 createMessageFromDataRepresentation(attachments)
             }
         }
-        delegate?.onLoadingFinished()
     }
 
     private func createMessageFromDataRepresentation(_ attachments: [NSItemProvider]) {
@@ -80,21 +83,19 @@ class ShareAttachment {
             case let url as URL:
                 result = SDAnimatedImage(contentsOfFile: url.path)
             default:
-                logger.error("Unexpected data: \(type(of: data))")
+                self.error = "Unexpected data: \(type(of: data))"
             }
             if let result = result {
                 let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory)
-                let msg = self.dcContext.newMessage(viewType: DC_MSG_GIF)
-                msg.setFile(filepath: path)
-                self.messages.append(msg)
+                _ = self.addDcMsg(path: path, viewType: DC_MSG_GIF)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     self.imageThumbnail = result
                     self.delegate?.onThumbnailChanged()
                 }
-                if let error = error {
-                    logger.error("Could not load share item as image: \(error.localizedDescription)")
-                }
+            }
+            if let error = error {
+                self.error = error.localizedDescription
             }
         }
     }
@@ -113,13 +114,11 @@ class ShareAttachment {
                     result = ImageFormat.scaleDownImage(nsurl, toMax: 1280)
                 }
             default:
-                logger.error("Unexpected data: \(type(of: data))")
+                self.error = "Unexpected data: \(type(of: data))"
             }
             if let result = result,
                let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory) {
-                let msg = self.dcContext.newMessage(viewType: DC_MSG_IMAGE)
-                msg.setFile(filepath: path)
-                self.messages.append(msg)
+                _ = self.addDcMsg(path: path, viewType: DC_MSG_IMAGE)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     self.imageThumbnail = ImageFormat.scaleDownImage(NSURL(fileURLWithPath: path), toMax: self.thumbnailSize)
@@ -127,7 +126,7 @@ class ShareAttachment {
                 }
             }
             if let error = error {
-                logger.error("Could not load share item as image: \(error.localizedDescription)")
+                self.error = error.localizedDescription
             }
         }
     }
@@ -136,7 +135,7 @@ class ShareAttachment {
         item.loadItem(forTypeIdentifier: kUTTypeMovie as String, options: nil) { data, error in
             switch data {
             case let url as URL:
-                _ = self.addDcMsg(url: url, viewType: DC_MSG_VIDEO)
+                _ = self.addDcMsg(path: url.relativePath, viewType: DC_MSG_VIDEO)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     DispatchQueue.global(qos: .background).async {
@@ -148,10 +147,10 @@ class ShareAttachment {
 
                 }
             default:
-                logger.error("Unexpected data: \(type(of: data))")
+                self.error = "Unexpected data: \(type(of: data))"
             }
             if let error = error {
-                logger.error("Could not load share item as video: \(error.localizedDescription)")
+                self.error = error.localizedDescription
             }
         }
     }
@@ -168,8 +167,8 @@ class ShareAttachment {
         item.loadItem(forTypeIdentifier: typeIdentifier as String, options: nil) { data, error in
             switch data {
             case let url as URL:
-                if url.pathExtension == "xdc" {
-                    let webxdcMsg = self.addDcMsg(url: url, viewType: DC_MSG_WEBXDC)
+                if url.pathExtension == "xdc",
+                   let webxdcMsg = self.addDcMsg(path: url.relativePath, viewType: DC_MSG_WEBXDC) {
                     if self.imageThumbnail == nil {
                         self.imageThumbnail = webxdcMsg.getWebxdcPreviewImage()?
                             .scaleDownImage(toMax: self.thumbnailSize,
@@ -177,24 +176,30 @@ class ShareAttachment {
                         self.delegate?.onThumbnailChanged()
                     }
                 } else {
-                    _ = self.addDcMsg(url: url, viewType: viewType)
+                    _ = self.addDcMsg(path: url.relativePath, viewType: viewType)
                 }
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
                     self.generateThumbnailRepresentations(url: url)
                 }
             default:
-                logger.error("Unexpected data: \(type(of: data))")
+                self.error = "Unexpected data: \(type(of: data))"
             }
             if let error = error {
-                logger.error("Could not load share item: \(error.localizedDescription)")
+                self.error = error.localizedDescription
             }
         }
     }
 
-    private func addDcMsg(url: URL, viewType: Int32) -> DcMsg {
+    private func addDcMsg(path: String?, viewType: Int32) -> DcMsg? {
         let msg = dcContext.newMessage(viewType: viewType)
-        msg.setFile(filepath: url.relativePath)
+        msg.setFile(filepath: path)
+        let bytes = msg.filesize
+        logger.info("share \(path ?? "ErrPath") with \(bytes) bytes")
+        if bytes > maxAttachmentBytes {
+            self.error = "File is too large for sharing.\n\nOpen Delta Chat directly and attach the file there."
+            return nil
+        }
         self.messages.append(msg)
         return msg
     }
@@ -233,10 +238,10 @@ class ShareAttachment {
                 case let url as URL:
                     delegate.onUrlShared(url: url)
                 default:
-                    logger.error("Unexpected data: \(type(of: data))")
+                    self.error = "Unexpected data: \(type(of: data))"
                 }
                 if let error = error {
-                    logger.error("Could not share URL: \(error.localizedDescription)")
+                    self.error = error.localizedDescription
                 }
             }
         }

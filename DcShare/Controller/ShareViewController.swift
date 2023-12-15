@@ -19,7 +19,6 @@ class ShareViewController: SLComposeServiceViewController {
     var selectedChat: DcChat?
     var shareAttachment: ShareAttachment?
     var isAccountConfigured: Bool = true
-    var isLoading: Bool = false
 
     var previewImageHeightConstraint: NSLayoutConstraint?
     var previewImageWidthConstraint: NSLayoutConstraint?
@@ -126,6 +125,9 @@ class ShareViewController: SLComposeServiceViewController {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
+            DispatchQueue.main.async {
+                self.validateContent()
+            }
         }
     }
 
@@ -135,7 +137,7 @@ class ShareViewController: SLComposeServiceViewController {
 
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        return  isAccountConfigured && !isLoading && (!(contentText?.isEmpty ?? true) || !(self.shareAttachment?.isEmpty ?? true))
+        return  isAccountConfigured && (!(contentText?.isEmpty ?? true) || !(self.shareAttachment?.isEmpty ?? true))
     }
 
     private func setupNavigationBar() {
@@ -247,6 +249,15 @@ extension ShareViewController: ShareAttachmentDelegate {
 
     func onAttachmentChanged() {
         DispatchQueue.main.async {
+            if let shareAttachment = self.shareAttachment,
+               let error = shareAttachment.error {
+                logger.error(error)
+                let alert = UIAlertController(title: nil, message: error, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
+                    self.quit()
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
             self.validateContent()
         }
     }
@@ -258,14 +269,5 @@ extension ShareViewController: ShareAttachmentDelegate {
                 preview.image = self.shareAttachment?.thumbnail ?? nil
             }
         }
-    }
-
-    func onLoadingStarted() {
-        isLoading = true
-    }
-
-    func onLoadingFinished() {
-        isLoading = false
-        self.validateContent()
     }
 }
