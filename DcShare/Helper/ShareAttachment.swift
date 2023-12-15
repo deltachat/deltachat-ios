@@ -111,7 +111,6 @@ class ShareAttachment {
                 result = ImageFormat.loadImageFrom(url: url)
             default:
                 logger.error("Unexpected data: \(type(of: data))")
-                result = nil
             }
             if let result = result,
                let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory) {
