@@ -57,6 +57,10 @@ class GalleryCell: UICollectionViewCell {
         }
         playButtonView.isHidden = !item.showPlayButton
         imageView.image = item.thumbnailImage
+
+        contentView.isAccessibilityElement = true
+        contentView.accessibilityHint = String.localized(item.showPlayButton ? "video" : "image")
+            + ", " + DateUtils.getBriefRelativeTimeSpanString(timeStamp: Double(item.msg.timestamp))
     }
 
     override var isSelected: Bool {
