@@ -65,9 +65,3 @@ extension UIImage {
         return finalImage
     }
 }
-
-public enum ImageType: String {
-    case play
-    case pause
-    case disclouser
-}
