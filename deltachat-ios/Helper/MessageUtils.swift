@@ -87,11 +87,8 @@ public class StatusView: UIStackView {
         }
         stateView.isHidden = stateView.image == nil
     }
-}
 
-public class MessageUtils {
-    public static func getFormattedBottomLineAccessibilityString(message: DcMsg) -> String {
-        let padlock =  message.showPadlock() ? "\(String.localized("encrypted_message")), " : ""
+    public static func getAccessibilityString(message: DcMsg) -> String {
         let state: String
         switch Int32(message.state) {
         case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
@@ -105,9 +102,11 @@ public class MessageUtils {
         default:
             state = ""
         }
-        return "\(message.formattedSentDate()), \(padlock) \(state)"
+        return "\(message.formattedSentDate()), \(state)\(message.showPadlock() ? ", " + String.localized("encrypted_message") : "")"
     }
+}
 
+public class MessageUtils {
     public static func getFormattedTextMessage(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
         if let messageText = messageText {
 

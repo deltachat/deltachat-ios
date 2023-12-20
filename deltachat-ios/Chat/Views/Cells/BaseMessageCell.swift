@@ -478,7 +478,7 @@ public class BaseMessageCell: UITableViewCell {
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(MessageUtils.getFormattedBottomLineAccessibilityString(message: message))"
+            "\(StatusView.getAccessibilityString(message: message))"
     }
 
     func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {
