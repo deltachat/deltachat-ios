@@ -13,12 +13,12 @@ public class StatusView: UIStackView {
         dateLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
 
         padlockView = UIImageView()
-        padlockView.widthAnchor.constraint(equalToConstant: 8).isActive = true
-        padlockView.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        padlockView.widthAnchor.constraint(equalToConstant: 15).isActive = true
+        padlockView.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
         locationView = UIImageView()
-        locationView.widthAnchor.constraint(equalToConstant: 9).isActive = true
-        locationView.heightAnchor.constraint(equalToConstant: 12).isActive = true
+        locationView.widthAnchor.constraint(equalToConstant: 8).isActive = true
+        locationView.heightAnchor.constraint(equalToConstant: 11).isActive = true
 
         stateView = UIImageView()
         stateView.widthAnchor.constraint(equalToConstant: 20).isActive = true
@@ -31,7 +31,7 @@ public class StatusView: UIStackView {
         addArrangedSubview(locationView)
         addArrangedSubview(stateView)
         alignment = .center
-        spacing = 3
+        spacing = 0
         translatesAutoresizingMaskIntoConstraints = false
     }
 
