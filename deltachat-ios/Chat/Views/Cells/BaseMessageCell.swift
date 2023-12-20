@@ -447,12 +447,47 @@ public class BaseMessageCell: UITableViewCell {
             quoteView.isHidden = true
         }
 
-        messageLabel.attributedText = MessageUtils.getFormattedTextMessage(messageText: msg.text,
-                                                                                   searchText: searchText,
-                                                                                   highlight: highlight)
+        messageLabel.attributedText = getFormattedText(messageText: msg.text, searchText: searchText, highlight: highlight)
 
         messageLabel.delegate = self
         accessibilityLabel = configureAccessibilityString(message: msg)
+    }
+
+    private func getFormattedText(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
+        if let messageText = messageText {
+            var fontSize = UIFont.preferredFont(for: .body, weight: .regular).pointSize
+            let charCount = messageText.count
+            if charCount <= 8 && messageText.containsOnlyEmoji { // render as jumbomoji
+                if charCount <= 2 {
+                    fontSize *= 3.0
+                } else if charCount <= 4 {
+                    fontSize *= 2.5
+                } else if charCount <= 6 {
+                    fontSize *= 1.75
+                } else {
+                    fontSize *= 1.35
+                }
+            }
+
+            let fontAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: fontSize),
+                .foregroundColor: DcColors.defaultTextColor
+            ]
+            let mutableAttributedString = NSMutableAttributedString(string: messageText, attributes: fontAttributes)
+
+            if let searchText = searchText {
+                let ranges = messageText.ranges(of: searchText, options: .caseInsensitive)
+                for range in ranges {
+                    let nsRange = NSRange(range, in: messageText)
+                    mutableAttributedString.addAttribute(.font, value: UIFont.preferredFont(for: .body, weight: .semibold), range: nsRange)
+                    if highlight {
+                        mutableAttributedString.addAttribute(.backgroundColor, value: DcColors.highlight, range: nsRange)
+                    }
+                }
+            }
+            return mutableAttributedString
+        }
+        return nil
     }
 
     func configureAccessibilityString(message: DcMsg) -> String {
