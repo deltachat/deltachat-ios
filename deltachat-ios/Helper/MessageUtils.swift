@@ -3,34 +3,33 @@ import UIKit
 import DcCore
 
 public class StatusView: UIStackView {
-    private lazy var dateLabel: UILabel = {
-        let title = UILabel()
-        title.font = UIFont.preferredFont(for: .caption1, weight: .regular)
-        return title
-    }()
-
-    private lazy var padlockView: UIImageView = {
-        return UIImageView()
-    }()
-
-    private lazy var locationView: UIImageView = {
-        return UIImageView()
-    }()
-
-    private lazy var stateView: UIImageView = {
-        return UIImageView()
-    }()
+    private var dateLabel: UILabel
+    private var padlockView: UIImageView
+    private var locationView: UIImageView
+    private var stateView: UIImageView
 
     override init(frame: CGRect) {
+        dateLabel = UILabel()
+        dateLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+
+        padlockView = UIImageView()
+
+        locationView = UIImageView()
+
+        stateView = UIImageView()
+        stateView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        stateView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+
         super.init(frame: frame)
+
         addArrangedSubview(dateLabel)
         addArrangedSubview(padlockView)
         addArrangedSubview(locationView)
         addArrangedSubview(stateView)
+
         translatesAutoresizingMaskIntoConstraints = false
         setContentHuggingPriority(.defaultHigh, for: .horizontal)
         setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        isAccessibilityElement = false
     }
 
     required init(coder: NSCoder) {
@@ -56,7 +55,7 @@ public class StatusView: UIStackView {
         }
 
         if message.hasLocation {
-            locationView.image = UIImage(named: "ic_location")?.maskWithColor(color: tintColor)?.scaleDownImage(toMax: 12)
+            locationView.image = UIImage(named: "ic_location")?.maskWithColor(color: tintColor)
             locationView.isHidden = false
         } else {
             locationView.isHidden = true
@@ -73,13 +72,13 @@ public class StatusView: UIStackView {
 
         switch Int32(state) {
         case DC_DOWNLOAD_IN_PROGRESS, DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            stateView.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").scaleDownImage(toMax: 14)?.maskWithColor(color: tintColor)
+            stateView.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").maskWithColor(color: tintColor)
         case DC_STATE_OUT_DELIVERED:
-            stateView.image = #imageLiteral(resourceName: "ic_done_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))?.maskWithColor(color: tintColor)
+            stateView.image = #imageLiteral(resourceName: "ic_done_36pt").maskWithColor(color: tintColor)
         case DC_STATE_OUT_MDN_RCVD:
-            stateView.image = #imageLiteral(resourceName: "ic_done_all_36pt").scaleDownImage(toMax: 16)?.sd_croppedImage(with: CGRect(x: 0, y: 4, width: 16, height: 14))?.maskWithColor(color: tintColor)
+            stateView.image = #imageLiteral(resourceName: "ic_done_all_36pt").maskWithColor(color: tintColor)
         case DC_STATE_OUT_FAILED:
-            stateView.image = #imageLiteral(resourceName: "ic_error_36pt").scaleDownImage(toMax: 14)
+            stateView.image = #imageLiteral(resourceName: "ic_error_36pt")
         default:
             stateView.image = nil
         }
