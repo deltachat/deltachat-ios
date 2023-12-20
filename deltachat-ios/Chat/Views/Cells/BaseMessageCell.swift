@@ -157,18 +157,8 @@ public class BaseMessageCell: UITableViewCell {
         return button
     }()
 
-    lazy var bottomLabel: PaddingTextView = {
-        let label = PaddingTextView()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
-        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        label.layer.cornerRadius = 4
-        label.paddingLeading = 4
-        label.paddingTrailing = 4
-        label.clipsToBounds = true
-        label.isAccessibilityElement = false
-        return label
+    lazy var bottomLabel: StatusView = {
+        return StatusView()
     }()
 
     private lazy var messageBackgroundContainer: BackgroundContainer = {
@@ -429,8 +419,7 @@ public class BaseMessageCell: UITableViewCell {
             } else {
                 tintColor = DcColors.incomingMessageSecondaryTextColor
             }
-            bottomLabel.attributedText = MessageUtils.getFormattedBottomLine(message: msg,
-                                                                             tintColor: tintColor)
+            bottomLabel.update(message: msg, tintColor: tintColor)
         }
 
         if let quoteText = msg.quoteText {
@@ -458,12 +447,47 @@ public class BaseMessageCell: UITableViewCell {
             quoteView.isHidden = true
         }
 
-        messageLabel.attributedText = MessageUtils.getFormattedTextMessage(messageText: msg.text,
-                                                                                   searchText: searchText,
-                                                                                   highlight: highlight)
+        messageLabel.attributedText = getFormattedText(messageText: msg.text, searchText: searchText, highlight: highlight)
 
         messageLabel.delegate = self
         accessibilityLabel = configureAccessibilityString(message: msg)
+    }
+
+    private func getFormattedText(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
+        if let messageText = messageText {
+            var fontSize = UIFont.preferredFont(for: .body, weight: .regular).pointSize
+            let charCount = messageText.count
+            if charCount <= 8 && messageText.containsOnlyEmoji { // render as jumbomoji
+                if charCount <= 2 {
+                    fontSize *= 3.0
+                } else if charCount <= 4 {
+                    fontSize *= 2.5
+                } else if charCount <= 6 {
+                    fontSize *= 1.75
+                } else {
+                    fontSize *= 1.35
+                }
+            }
+
+            let fontAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: fontSize),
+                .foregroundColor: DcColors.defaultTextColor
+            ]
+            let mutableAttributedString = NSMutableAttributedString(string: messageText, attributes: fontAttributes)
+
+            if let searchText = searchText {
+                let ranges = messageText.ranges(of: searchText, options: .caseInsensitive)
+                for range in ranges {
+                    let nsRange = NSRange(range, in: messageText)
+                    mutableAttributedString.addAttribute(.font, value: UIFont.preferredFont(for: .body, weight: .semibold), range: nsRange)
+                    if highlight {
+                        mutableAttributedString.addAttribute(.backgroundColor, value: DcColors.highlight, range: nsRange)
+                    }
+                }
+            }
+            return mutableAttributedString
+        }
+        return nil
     }
 
     func configureAccessibilityString(message: DcMsg) -> String {
@@ -489,7 +513,7 @@ public class BaseMessageCell: UITableViewCell {
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(MessageUtils.getFormattedBottomLineAccessibilityString(message: message))"
+            "\(StatusView.getAccessibilityString(message: message))"
     }
 
     func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {
@@ -524,8 +548,7 @@ public class BaseMessageCell: UITableViewCell {
         topLabel.attributedText = nil
         avatarView.reset()
         messageBackgroundContainer.prepareForReuse()
-        bottomLabel.text = nil
-        bottomLabel.attributedText = nil
+        bottomLabel.prepareForReuse()
         baseDelegate = nil
         messageLabel.text = nil
         messageLabel.attributedText = nil

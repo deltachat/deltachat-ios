@@ -32,7 +32,7 @@
 		302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AC265E237F1807002A943F /* AvatarHelper.swift */; };
 		302B84C72396770B001C261F /* RelayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84C42396627F001C261F /* RelayHelper.swift */; };
 		302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84CD2397F6CD001C261F /* URL+Extension.swift */; };
-		302D5450268B6B2300A8B271 /* MessageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D544F268B6B2300A8B271 /* MessageUtils.swift */; };
+		302D5450268B6B2300A8B271 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D544F268B6B2300A8B271 /* StatusView.swift */; };
 		302D5454268B84CB00A8B271 /* VideoChatInstanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D5453268B84CB00A8B271 /* VideoChatInstanceViewController.swift */; };
 		302D546A2693591700A8B271 /* ChatContactRequestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D54692693591700A8B271 /* ChatContactRequestBar.swift */; };
 		302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */; };
@@ -280,7 +280,7 @@
 		30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextFieldCell.swift; sourceTree = "<group>"; };
 		302B84C42396627F001C261F /* RelayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayHelper.swift; sourceTree = "<group>"; };
 		302B84CD2397F6CD001C261F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
-		302D544F268B6B2300A8B271 /* MessageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtils.swift; sourceTree = "<group>"; };
+		302D544F268B6B2300A8B271 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		302D5453268B84CB00A8B271 /* VideoChatInstanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoChatInstanceViewController.swift; sourceTree = "<group>"; };
 		302D54692693591700A8B271 /* ChatContactRequestBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContactRequestBar.swift; sourceTree = "<group>"; };
 		302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = "deltachat-ios/Chat/Views/PlayButtonView.swift"; sourceTree = SOURCE_ROOT; };
@@ -745,6 +745,7 @@
 			isa = PBXGroup;
 			children = (
 				30FDB6B624D193DD0066C48D /* Cells */,
+				302D544F268B6B2300A8B271 /* StatusView.swift */,
 				30E348DE24F3F819005C93D1 /* ChatTableView.swift */,
 				3067AA4B2666310E00525036 /* ChatInputTextView.swift */,
 				307A82CB25B8D26700748B57 /* ChatEditingBar.swift */,
@@ -967,7 +968,6 @@
 				AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */,
 				AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */,
 				21D6C9392606190600D0755A /* NotificationManager.swift */,
-				302D544F268B6B2300A8B271 /* MessageUtils.swift */,
 				3011E8042787365D00214221 /* KeychainManager.swift */,
 				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
 				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
@@ -1443,7 +1443,7 @@
 				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
 				30C7D5EC28F47E620078D24C /* InitialsBadge.swift in Sources */,
 				B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */,
-				302D5450268B6B2300A8B271 /* MessageUtils.swift in Sources */,
+				302D5450268B6B2300A8B271 /* StatusView.swift in Sources */,
 				30149D9322F21129003C12B5 /* QrViewController.swift in Sources */,
 				AEE56D80225504DB007DC082 /* Extensions.swift in Sources */,
 				B2D4B63B29C38D1900B47DA8 /* ChatsAndMediaViewController.swift in Sources */,
