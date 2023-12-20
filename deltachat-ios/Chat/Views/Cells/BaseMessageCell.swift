@@ -157,18 +157,8 @@ public class BaseMessageCell: UITableViewCell {
         return button
     }()
 
-    lazy var bottomLabel: PaddingTextView = {
-        let label = PaddingTextView()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
-        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        label.layer.cornerRadius = 4
-        label.paddingLeading = 4
-        label.paddingTrailing = 4
-        label.clipsToBounds = true
-        label.isAccessibilityElement = false
-        return label
+    lazy var bottomLabel: StatusView = {
+        return StatusView()
     }()
 
     private lazy var messageBackgroundContainer: BackgroundContainer = {
@@ -429,8 +419,7 @@ public class BaseMessageCell: UITableViewCell {
             } else {
                 tintColor = DcColors.incomingMessageSecondaryTextColor
             }
-            bottomLabel.attributedText = MessageUtils.getFormattedBottomLine(message: msg,
-                                                                             tintColor: tintColor)
+            bottomLabel.update(message: msg, tintColor: tintColor)
         }
 
         if let quoteText = msg.quoteText {
@@ -524,8 +513,7 @@ public class BaseMessageCell: UITableViewCell {
         topLabel.attributedText = nil
         avatarView.reset()
         messageBackgroundContainer.prepareForReuse()
-        bottomLabel.text = nil
-        bottomLabel.attributedText = nil
+        bottomLabel.prepareForReuse()
         baseDelegate = nil
         messageLabel.text = nil
         messageLabel.attributedText = nil

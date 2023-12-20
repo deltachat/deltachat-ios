@@ -54,19 +54,8 @@ public class VideoInviteCell: UITableViewCell {
         return label
     }()
 
-    lazy var bottomLabel: PaddingTextView = {
-        let label = PaddingTextView()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(for: .caption1, weight: .regular)
-        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        label.layer.cornerRadius = 4
-        label.paddingLeading = 4
-        label.paddingTrailing = 4
-        label.clipsToBounds = true
-        label.isAccessibilityElement = false
-        label.backgroundColor = DcColors.systemMessageBackgroundColor
-        return label
+    lazy var bottomLabel: StatusView = {
+        return StatusView()
     }()
     
     private var showSelectionBackground: Bool
@@ -131,8 +120,8 @@ public class VideoInviteCell: UITableViewCell {
             avatarView.setImage(profileImage)
         }
 
-        bottomLabel.attributedText = MessageUtils.getFormattedBottomLine(message: msg, tintColor: DcColors.coreDark05)
-        
+        bottomLabel.update(message: msg, tintColor: DcColors.coreDark05)
+
         var corners: UIRectCorner = []
         corners.formUnion(.topLeft)
         corners.formUnion(.bottomLeft)
@@ -154,8 +143,7 @@ public class VideoInviteCell: UITableViewCell {
         super.prepareForReuse()
         messageLabel.text = nil
         messageLabel.attributedText = nil
-        bottomLabel.text = nil
-        bottomLabel.attributedText = nil
+        bottomLabel.prepareForReuse()
         openLabel.text = nil
         openLabel.attributedText = nil
         avatarView.reset()
