@@ -80,7 +80,7 @@ public class ShortcutManager {
         }
 
         let infoDict = message.getWebxdcInfoDict()
-        let iconData = scaledDownLogo?.pngData() ?? UIImage(named: "appicon")?.pngData() ?? nil
+        let iconData = scaledDownLogo?.pngData() ?? nil
         let document = infoDict["document"] as? String ?? ""
         let webxdcName = infoDict["name"] as? String ?? "ErrName" // name should not be empty
         let iconTitle = document.isEmpty ? webxdcName : document
