@@ -28,7 +28,7 @@
   - both, "delegator" and "delegate" may be view controllers,
     eg. ViewControllerA ("delegator") is sending an event to ViewControllerB ("delegate")
   - in practise, subclasses just override functions defined by "delegate" protocol, as `didSelect()`
-  - used view controllers the system provides
+  - used by view controllers the system provides
 
 - "coordinator"
   - convention, no requirement from UIKit
@@ -73,7 +73,8 @@
 
 ## holding references
 
-a tricky part (see eg. [3]) seems to be to hold the correct type of references to the UIViewControllers.
+a tricky part (see eg. [3]) seems to be to hold
+the correct type of references to the UIViewControllers.
 
 - at least one "strong" (normal) reference is needed somewhere.
 
