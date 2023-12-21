@@ -22,17 +22,16 @@ public class DcEventHandler {
     }
 
     public func handleEvent(event: DcEvent) {
-        let id = event.id
         let data1 = event.data1Int
         let data2 = event.data2Int
         let accountId = event.accountId
 
-        if id >= DC_EVENT_ERROR && id <= 499 {
+        if event.id >= DC_EVENT_ERROR && event.id <= 499 {
             logger.error("📡[\(accountId)] \(event.data2String)")
             return
         }
 
-        switch id {
+        switch event.id {
 
         case DC_EVENT_INFO:
             logger.info("📡[\(accountId)] \(event.data2String)")
@@ -83,8 +82,7 @@ public class DcEventHandler {
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            logger.info("📡[\(accountId)] change: \(id)")
-
+            logger.info("📡[\(accountId)] msgs changed: \(data1), \(data2)")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(
                     name: eventMsgsChangedReadDeliveredFailed,
@@ -114,7 +112,7 @@ public class DcEventHandler {
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            logger.info("📡[\(accountId)] chat modified: \(id)")
+            logger.info("📡[\(accountId)] chat modified: \(data1)")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(
                     name: eventChatModified,
@@ -128,7 +126,7 @@ public class DcEventHandler {
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            logger.info("📡[\(accountId)] ephemeral timer modified: \(id)")
+            logger.info("📡[\(accountId)] ephemeral timer modified: \(data1)")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(
                     name: eventEphemeralTimerModified,
@@ -145,21 +143,17 @@ public class DcEventHandler {
                         object: nil,
                         userInfo: nil)
             }
-            
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            
-            let userInfo = [
-                "message_id": Int(data2),
-                "chat_id": Int(data1),
-            ]
-
-            logger.info("📡[\(accountId)] incoming message \(userInfo)")
+            logger.info("📡[\(accountId)] incoming message \(data2)")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: eventIncomingMsg,
                         object: nil,
-                        userInfo: userInfo)
+                        userInfo: [
+                            "message_id": Int(data2),
+                            "chat_id": Int(data1),
+                        ])
             }
 
         case DC_EVENT_SMTP_MESSAGE_SENT:
@@ -170,7 +164,6 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] securejoin inviter: \(data1)")
-
             DispatchQueue.main.async {
                 NotificationCenter.default.post(
                     name: eventSecureInviterProgress,
