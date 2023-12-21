@@ -34,7 +34,7 @@ class ConnectivityViewController: WebViewViewController {
     override func viewWillAppear(_ animated: Bool) {
         // set connectivity changed observer before we acutally init html,
         // otherwise, we may miss events and the html is not correct.
-        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
+        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: eventConnectivityChanged,
                                                      object: nil,
                                                      queue: nil) { [weak self] _ in
                                                         self?.loadHtml()

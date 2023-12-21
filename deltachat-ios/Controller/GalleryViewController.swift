@@ -142,11 +142,11 @@ class GalleryViewController: UIViewController {
 
     private func addObservers() {
         msgChangedObserver = NotificationCenter.default.addObserver(
-            forName: dcNotificationChanged, object: nil, queue: nil) { [weak self] _ in
+            forName: eventMsgsChangedReadDeliveredFailed, object: nil, queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
         incomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: dcNotificationIncoming, object: nil, queue: nil) { [weak self] _ in
+            forName: eventIncomingMsg, object: nil, queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
     }

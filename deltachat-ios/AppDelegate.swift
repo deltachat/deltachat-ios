@@ -242,7 +242,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
             DispatchQueue.main.async {
                 NotificationCenter.default.post(
-                    name: dcNotificationChanged,
+                    name: eventMsgsChangedReadDeliveredFailed,
                     object: nil,
                     userInfo: [
                         "message_id": Int(0),

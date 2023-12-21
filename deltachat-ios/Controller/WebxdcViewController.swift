@@ -283,34 +283,24 @@ class WebxdcViewController: WebViewViewController {
     private func addObservers() {
         let nc = NotificationCenter.default
         webxdcUpdateObserver = nc.addObserver(
-            forName: dcNotificationWebxdcUpdate,
+            forName: eventWebxdcStatusUpdate,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self else { return }
-            guard let ui = notification.userInfo,
-                  let messageId = ui["message_id"] as? Int else {
-                      logger.error("failed to handle dcNotificationWebxdcUpdate")
-                      return
-                  }
+            guard let self = self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
             if messageId == self.messageId {
                 self.updateWebxdc()
             }
         }
 
         msgChangedObserver = nc.addObserver(
-            forName: dcNotificationChanged,
+            forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self else { return }
-            guard let ui = notification.userInfo,
-                  let messageId = ui["message_id"] as? Int else {
-                      logger.error("failed to handle dcNotificationChanged")
-                      return
-                  }
+            guard let self = self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
             if messageId == self.messageId {
-                refreshWebxdcInfo()
+                self.refreshWebxdcInfo()
             }
         }
     }

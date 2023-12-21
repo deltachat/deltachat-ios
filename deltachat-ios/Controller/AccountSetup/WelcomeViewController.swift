@@ -110,9 +110,8 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
      }
 
     override func viewDidDisappear(_ animated: Bool) {
-        let nc = NotificationCenter.default
         if let observer = self.progressObserver {
-            nc.removeObserver(observer)
+            NotificationCenter.default.removeObserver(observer)
             self.progressObserver = nil
         }
         removeBackupProgressObserver()
@@ -161,7 +160,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if accountId != 0 {
             dcContext = dcAccounts.get(id: accountId)
             addProgressAlertListener(dcAccounts: self.dcAccounts,
-                                     progressName: dcNotificationConfigureProgress,
+                                     progressName: eventConfigureProgress,
                                      onSuccess: self.handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"), dcContext: self.dcContext)
             DispatchQueue.global().async { [weak self] in
@@ -249,10 +248,9 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     private func addProgressHudBackupListener(importByFile: Bool) {
-        let nc = NotificationCenter.default
         UIApplication.shared.isIdleTimerDisabled = true
-        backupProgressObserver = nc.addObserver(
-            forName: dcNotificationImexProgress,
+        backupProgressObserver = NotificationCenter.default.addObserver(
+            forName: eventImexProgress,
             object: nil,
             queue: nil
         ) { [weak self] notification in

@@ -549,58 +549,52 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func setupObservers() {
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
-            forName: dcNotificationChanged,
+            forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo {
-                logger.debug(">>> msgChangedObserver: \(String(describing: ui["message_id"]))")
-                if self.dcChat.canSend, let id = ui["message_id"] as? Int, id > 0 {
-                    let msg = self.dcContext.getMessage(id: id)
-                    if msg.isInfo,
-                       let parent = msg.parent,
-                       parent.type == DC_MSG_WEBXDC {
-                        self.refreshMessages()
-                    } else {
-                        self.updateMessage(msg)
-                    }
-                } else {
+            guard let self = self, let id = notification.userInfo?["message_id"] as? Int else { return }
+            if self.dcChat.canSend, id > 0 {
+                let msg = self.dcContext.getMessage(id: id)
+                if msg.isInfo,
+                   let parent = msg.parent,
+                   parent.type == DC_MSG_WEBXDC {
                     self.refreshMessages()
-                    DispatchQueue.main.async {
-                        self.updateScrollDownButtonVisibility()
+                } else {
+                    self.updateMessage(msg)
+                }
+            } else {
+                self.refreshMessages()
+                DispatchQueue.main.async {
+                    self.updateScrollDownButtonVisibility()
+                }
+            }
+            self.updateTitle()
+        }
+
+        incomingMsgObserver = nc.addObserver(
+            forName: eventIncomingMsg,
+            object: nil, queue: OperationQueue.main
+        ) { [weak self] notification in
+            guard let self = self, let ui = notification.userInfo else { return }
+            if self.chatId == ui["chat_id"] as? Int {
+                if let id = ui["message_id"] as? Int {
+                    if id > 0 {
+                        self.insertMessage(self.dcContext.getMessage(id: id))
+                    } else {
+                        logger.debug(">>> messageId \(id) is not > 0, message not inserted")
                     }
                 }
                 self.updateTitle()
             }
         }
 
-        incomingMsgObserver = nc.addObserver(
-            forName: dcNotificationIncoming,
-            object: nil, queue: OperationQueue.main
-        ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo {
-                logger.debug(">>> incomingMsgObserver: \(String(describing: ui["chat_id"])) \(String(describing: ui["messageId"]))")
-                if self.chatId == ui["chat_id"] as? Int {
-                    if let id = ui["message_id"] as? Int {
-                        if id > 0 {
-                            self.insertMessage(self.dcContext.getMessage(id: id))
-                        } else {
-                            logger.debug(">>> messageId \(id) is not > 0, message not inserted")
-                        }
-                    }
-                    self.updateTitle()
-                }
-            }
-        }
-
         chatModifiedObserver = nc.addObserver(
-            forName: dcNotificationChatModified,
+            forName: eventChatModified,
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self else { return }
-            if let ui = notification.userInfo, self.chatId == ui["chat_id"] as? Int {
+            guard let self = self, let ui = notification.userInfo else { return }
+            if self.chatId == ui["chat_id"] as? Int {
                 self.dcChat = self.dcContext.getChat(chatId: self.chatId)
                 if self.dcChat.canSend {
                     if self.messageInputBar.isHidden {
@@ -620,7 +614,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         ephemeralTimerModifiedObserver = nc.addObserver(
-            forName: dcEphemeralTimerModified,
+            forName: eventEphemeralTimerModified,
             object: nil, queue: OperationQueue.main
         ) { [weak self] _ in
             guard let self = self else { return }

@@ -185,7 +185,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addProgressAlertListener(dcAccounts: dcAccounts, progressName: dcNotificationImexProgress) { [weak self] in
+        addProgressAlertListener(dcAccounts: dcAccounts, progressName: eventImexProgress) { [weak self] in
             guard let self = self else { return }
             self.progressAlert?.dismiss(animated: true)
         }
@@ -193,9 +193,8 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        let nc = NotificationCenter.default
         if let backupProgressObserver = self.progressObserver {
-            nc.removeObserver(backupProgressObserver)
+            NotificationCenter.default.removeObserver(backupProgressObserver)
         }
     }
 

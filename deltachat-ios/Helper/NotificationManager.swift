@@ -57,7 +57,7 @@ public class NotificationManager {
 
     private func initIncomingMsgsObserver() {
         incomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: dcNotificationIncoming,
+            forName: eventIncomingMsg,
             object: nil, queue: OperationQueue.main
         ) { notification in
             // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
@@ -126,7 +126,7 @@ public class NotificationManager {
 
     private func initMsgsNoticedObserver() {
         msgsNoticedObserver =  NotificationCenter.default.addObserver(
-            forName: dcMsgsNoticed,
+            forName: eventMsgsNoticed,
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
             guard let self = self else { return }
