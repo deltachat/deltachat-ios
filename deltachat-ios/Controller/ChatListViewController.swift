@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class ChatListController: UITableViewController {
+class ChatListViewController: UITableViewController {
     var viewModel: ChatListViewModel?
     let dcContext: DcContext
     internal let dcAccounts: DcAccounts
@@ -888,7 +888,7 @@ class ChatListController: UITableViewController {
     }
 
     public func showArchive(animated: Bool) {
-        let controller = ChatListController(dcContext: dcContext, dcAccounts: dcAccounts, isArchive: true)
+        let controller = ChatListViewController(dcContext: dcContext, dcAccounts: dcAccounts, isArchive: true)
         navigationController?.pushViewController(controller, animated: animated)
     }
 
@@ -899,7 +899,7 @@ class ChatListController: UITableViewController {
 }
 
 // MARK: - uisearchbardelegate
-extension ChatListController: UISearchBarDelegate {
+extension ChatListViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         viewModel?.beginSearch()
         setLongTapEditing(false)
@@ -920,7 +920,7 @@ extension ChatListController: UISearchBarDelegate {
     }
 }
 
-extension ChatListController: ContactCellDelegate {
+extension ChatListViewController: ContactCellDelegate {
     func onLongTap(at indexPath: IndexPath) {
         if let searchActive = viewModel?.searchActive,
            !searchActive,
@@ -936,7 +936,7 @@ extension ChatListController: ContactCellDelegate {
     }
 }
 
-extension ChatListController: ChatListEditingBarDelegate {
+extension ChatListViewController: ChatListEditingBarDelegate {
     func onPinButtonPressed() {
         viewModel?.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
         setLongTapEditing(false)

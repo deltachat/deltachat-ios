@@ -58,7 +58,7 @@ class AppCoordinator {
     }
 
     private func createChatsNavigationController() -> UINavigationController {
-        let root = ChatListController(dcContext: dcAccounts.getSelected(), dcAccounts: dcAccounts, isArchive: false)
+        let root = ChatListViewController(dcContext: dcAccounts.getSelected(), dcAccounts: dcAccounts, isArchive: false)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage = UIImage(named: "ic_chat")
         nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
@@ -109,7 +109,7 @@ class AppCoordinator {
         showTab(index: chatsTab)
 
         if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
-           let chatListController = rootController.viewControllers.first as? ChatListController {
+           let chatListController = rootController.viewControllers.first as? ChatListViewController {
             rootController.popToRootViewController(animated: false)
             chatListController.showArchive(animated: false)
         }
@@ -127,7 +127,7 @@ class AppCoordinator {
     func showChat(chatId: Int, msgId: Int? = nil, openHighlightedMsg: Bool = false, animated: Bool = true, clearViewControllerStack: Bool = false) {
         showTab(index: chatsTab)
         if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
-           let chatListViewController = rootController.viewControllers.first as? ChatListController {
+           let chatListViewController = rootController.viewControllers.first as? ChatListViewController {
             if let msgId = msgId, openHighlightedMsg {
                 let dcContext = dcAccounts.getSelected()
                 let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: msgId)
@@ -191,7 +191,7 @@ class AppCoordinator {
             showTab(index: chatsTab)
             if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
                 rootController.popToRootViewController(animated: false)
-                if let controller = rootController.viewControllers.first as? ChatListController {
+                if let controller = rootController.viewControllers.first as? ChatListViewController {
                     controller.handleMailto(askToChat: RelayHelper.shared.askToChatWithMailto)
                     return true
                 }

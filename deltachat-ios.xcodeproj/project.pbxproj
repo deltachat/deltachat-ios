@@ -152,7 +152,7 @@
 		AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA951247800E700D42A7F /* GalleryCell.swift */; };
 		AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */; };
 		AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0AA957247834A400D42A7F /* Date+Extension.swift */; };
-		AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */; };
+		AE0D26FD1FB1FE88002FAFCE /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListViewController.swift */; };
 		AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */; };
 		AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19887423EB264000B4CD5F /* HelpViewController.swift */; };
 		AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1988A423EB2FBA00B4CD5F /* Errors.swift */; };
@@ -432,7 +432,7 @@
 		AE0AA951247800E700D42A7F /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		AE0AA957247834A400D42A7F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListController.swift; sourceTree = "<group>"; tabWidth = 4; };
+		AE0D26FC1FB1FE88002FAFCE /* ChatListViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsController.swift; sourceTree = "<group>"; };
 		AE19887423EB264000B4CD5F /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		AE1988A423EB2FBA00B4CD5F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -913,7 +913,7 @@
 				30DDCBEA28FCA21800465D22 /* AccountSwitchViewController.swift */,
 				30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */,
 				3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */,
-				AE0D26FC1FB1FE88002FAFCE /* ChatListController.swift */,
+				AE0D26FC1FB1FE88002FAFCE /* ChatListViewController.swift */,
 				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
 				AE9DAF0C22C1215D004C9591 /* EditContactController.swift */,
 				AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */,
@@ -1440,7 +1440,7 @@
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
 				305702A124C6453700D84EFC /* TypeAlias.swift in Sources */,
 				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,
-				AE0D26FD1FB1FE88002FAFCE /* ChatListController.swift in Sources */,
+				AE0D26FD1FB1FE88002FAFCE /* ChatListViewController.swift in Sources */,
 				30C7D5EC28F47E620078D24C /* InitialsBadge.swift in Sources */,
 				B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */,
 				302D5450268B6B2300A8B271 /* StatusView.swift in Sources */,
