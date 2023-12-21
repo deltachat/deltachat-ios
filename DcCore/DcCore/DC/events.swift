@@ -28,20 +28,17 @@ public class DcEventHandler {
         let accountId = event.accountId
 
         if id >= DC_EVENT_ERROR && id <= 499 {
-            let s = event.data2String
-            logger.error("📡[\(accountId)] \(s)")
+            logger.error("📡[\(accountId)] \(event.data2String)")
             return
         }
 
         switch id {
 
         case DC_EVENT_INFO:
-            let s = event.data2String
-            logger.info("📡[\(accountId)] \(s)")
+            logger.info("📡[\(accountId)] \(event.data2String)")
 
         case DC_EVENT_WARNING:
-            let s = event.data2String
-            logger.warning("📡[\(accountId)] \(s)")
+            logger.warning("📡[\(accountId)] \(event.data2String)")
 
         case DC_EVENT_CONFIGURE_PROGRESS:
             logger.info("📡[\(accountId)] configure: \(Int(data1))")
