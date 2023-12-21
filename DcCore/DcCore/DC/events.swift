@@ -44,16 +44,12 @@ public class DcEventHandler {
             DispatchQueue.main.async {
                 let done = Int(data1) == 1000
 
-                NotificationCenter.default.post(
-                    name: eventConfigureProgress,
-                    object: nil,
-                    userInfo: [
-                        "progress": Int(data1),
-                        "error": Int(data1) == 0,
-                        "done": done,
-                        "errorMessage": event.data2String,
-                    ]
-                )
+                NotificationCenter.default.post(name: eventConfigureProgress, object: nil, userInfo: [
+                    "progress": Int(data1),
+                    "error": Int(data1) == 0,
+                    "done": done,
+                    "errorMessage": event.data2String,
+                ])
 
                 if done {
                     UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
@@ -63,16 +59,12 @@ public class DcEventHandler {
 
         case DC_EVENT_IMEX_PROGRESS:
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventImexProgress,
-                    object: nil,
-                    userInfo: [
-                        "progress": Int(data1),
-                        "error": Int(data1) == 0,
-                        "done": Int(data1) == 1000,
-                        "errorMessage": self.dcAccounts.get(id: accountId).lastErrorString,
-                    ]
-                )
+                NotificationCenter.default.post(name: eventImexProgress, object: nil, userInfo: [
+                    "progress": Int(data1),
+                    "error": Int(data1) == 0,
+                    "done": Int(data1) == 1000,
+                    "errorMessage": self.dcAccounts.get(id: accountId).lastErrorString,
+                ])
             }
 
         case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
@@ -84,14 +76,10 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] msgs changed: \(data1), \(data2)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventMsgsChangedReadDeliveredFailed,
-                    object: nil,
-                    userInfo: [
-                        "message_id": Int(data2),
-                        "chat_id": Int(data1),
-                    ]
-                )
+                NotificationCenter.default.post(name: eventMsgsChangedReadDeliveredFailed, object: nil, userInfo: [
+                    "message_id": Int(data2),
+                    "chat_id": Int(data1),
+                ])
             }
 
         case DC_EVENT_MSGS_NOTICED:
@@ -99,13 +87,9 @@ public class DcEventHandler {
                 return
             }
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventMsgsNoticed,
-                    object: nil,
-                    userInfo: [
-                        "chat_id": Int(data1),
-                    ]
-                )
+                NotificationCenter.default.post(name: eventMsgsNoticed, object: nil, userInfo: [
+                    "chat_id": Int(data1),
+                ])
             }
 
         case DC_EVENT_CHAT_MODIFIED:
@@ -114,13 +98,9 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] chat modified: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventChatModified,
-                    object: nil,
-                    userInfo: [
-                        "chat_id": Int(data1),
-                    ]
-                )
+                NotificationCenter.default.post(name: eventChatModified, object: nil, userInfo: [
+                    "chat_id": Int(data1),
+                ])
             }
         case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
             if accountId != dcAccounts.getSelected().id {
@@ -128,32 +108,24 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] ephemeral timer modified: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventEphemeralTimerModified,
-                    object: nil,
-                    userInfo: [
-                        "chat_id": Int(data1),
-                    ]
-                )
+                NotificationCenter.default.post(name: eventEphemeralTimerModified, object: nil, userInfo: [
+                    "chat_id": Int(data1),
+                ])
             }
 
         case DC_EVENT_INCOMING_MSG:
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventIncomingMsgAnyAccount,
-                        object: nil,
-                        userInfo: nil)
+                NotificationCenter.default.post(name: eventIncomingMsgAnyAccount, object: nil)
             }
             if accountId != dcAccounts.getSelected().id {
                 return
             }
             logger.info("📡[\(accountId)] incoming message \(data2)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventIncomingMsg,
-                        object: nil,
-                        userInfo: [
-                            "message_id": Int(data2),
-                            "chat_id": Int(data1),
-                        ])
+                NotificationCenter.default.post(name: eventIncomingMsg, object: nil, userInfo: [
+                    "message_id": Int(data2),
+                    "chat_id": Int(data1),
+                ])
             }
 
         case DC_EVENT_SMTP_MESSAGE_SENT:
@@ -165,15 +137,11 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] securejoin inviter: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventSecureInviterProgress,
-                    object: nil,
-                    userInfo: [
-                        "progress": Int(data2),
-                        "error": Int(data2) == 0,
-                        "done": Int(data2) == 1000,
-                    ]
-                )
+                NotificationCenter.default.post(name: eventSecureInviterProgress, object: nil, userInfo: [
+                    "progress": Int(data2),
+                    "error": Int(data2) == 0,
+                    "done": Int(data2) == 1000,
+                ])
             }
 
         case DC_EVENT_CONTACTS_CHANGED:
@@ -182,13 +150,9 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] contact changed: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventContactsChanged,
-                    object: nil,
-                    userInfo: [
-                        "contact_id": Int(data1)
-                    ]
-                )
+                NotificationCenter.default.post(name: eventContactsChanged, object: nil, userInfo: [
+                    "contact_id": Int(data1)
+                ])
             }
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
@@ -200,11 +164,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] connectivity changed")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventConnectivityChanged,
-                    object: nil,
-                    userInfo: nil
-                )
+                NotificationCenter.default.post(name: eventConnectivityChanged, object: nil)
             }
 
         case DC_EVENT_WEBXDC_STATUS_UPDATE:
@@ -213,13 +173,9 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] webxdc update")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: eventWebxdcStatusUpdate,
-                    object: nil,
-                    userInfo: [
-                        "message_id": Int(data1),
-                    ]
-                )
+                NotificationCenter.default.post(name: eventWebxdcStatusUpdate, object: nil, userInfo: [
+                    "message_id": Int(data1),
+                ])
             }
 
         default:
