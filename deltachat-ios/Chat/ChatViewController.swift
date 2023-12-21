@@ -1093,10 +1093,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func reloadData() {
+        let selectedRows = tableView.indexPathsForSelectedRows
         tableView.reloadData()
-        // There's an iOS bug, filling up the console output but which can be ignored: https://developer.apple.com/forums/thread/668295
-        // [Assert] Attempted to call -cellForRowAtIndexPath: on the table view while it was in the process of updating its visible cells, which is not allowed.
-        tableView.indexPathsForSelectedRows?.forEach({ (selectedRow) in
+        selectedRows?.forEach({ (selectedRow) in
             tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })
     }
