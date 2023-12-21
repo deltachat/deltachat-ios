@@ -189,14 +189,14 @@ class ChatListViewController: UITableViewController {
     private func addObservers() {
         let nc = NotificationCenter.default
         
-        connectivityChangedObserver = nc.addObserver(forName: dcNotificationConnectivityChanged,
+        connectivityChangedObserver = nc.addObserver(forName: eventConnectivityChanged,
                                                      object: nil,
                                                      queue: nil) { [weak self] _ in
                                                         self?.updateTitle()
                                                      }
 
         msgChangedSearchResultObserver = nc.addObserver(
-            forName: dcNotificationChanged,
+            forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
             queue: nil) { [weak self] _ in
             guard let self = self else { return }
@@ -209,37 +209,37 @@ class ChatListViewController: UITableViewController {
         }
 
         msgChangedObserver = nc.addObserver(
-            forName: dcNotificationChanged,
+            forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
         msgsNoticedObserver = nc.addObserver(
-            forName: dcMsgsNoticed,
+            forName: eventMsgsNoticed,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
         incomingMsgObserver = nc.addObserver(
-            forName: dcNotificationIncoming,
+            forName: eventIncomingMsg,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
         incomingMsgAnyAccountObserver = nc.addObserver(
-            forName: dcNotificationIncomingAnyAccount,
+            forName: eventIncomingMsgAnyAccount,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.updateAccountButton()
             }
         chatModifiedObserver = nc.addObserver(
-            forName: dcNotificationChatModified,
+            forName: eventChatModified,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
         contactsChangedObserver = nc.addObserver(
-            forName: dcNotificationContactChanged,
+            forName: eventContactsChanged,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()

@@ -549,7 +549,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func setupObservers() {
         let nc = NotificationCenter.default
         msgChangedObserver = nc.addObserver(
-            forName: dcNotificationChanged,
+            forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
@@ -576,7 +576,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         incomingMsgObserver = nc.addObserver(
-            forName: dcNotificationIncoming,
+            forName: eventIncomingMsg,
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
             guard let self = self else { return }
@@ -596,7 +596,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         chatModifiedObserver = nc.addObserver(
-            forName: dcNotificationChatModified,
+            forName: eventChatModified,
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
             guard let self = self else { return }
@@ -620,7 +620,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         ephemeralTimerModifiedObserver = nc.addObserver(
-            forName: dcEphemeralTimerModified,
+            forName: eventEphemeralTimerModified,
             object: nil, queue: OperationQueue.main
         ) { [weak self] _ in
             guard let self = self else { return }

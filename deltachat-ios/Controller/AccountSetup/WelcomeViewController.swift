@@ -161,7 +161,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if accountId != 0 {
             dcContext = dcAccounts.get(id: accountId)
             addProgressAlertListener(dcAccounts: self.dcAccounts,
-                                     progressName: dcNotificationConfigureProgress,
+                                     progressName: eventConfigureProgress,
                                      onSuccess: self.handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"), dcContext: self.dcContext)
             DispatchQueue.global().async { [weak self] in
@@ -252,7 +252,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let nc = NotificationCenter.default
         UIApplication.shared.isIdleTimerDisabled = true
         backupProgressObserver = nc.addObserver(
-            forName: dcNotificationImexProgress,
+            forName: eventImexProgress,
             object: nil,
             queue: nil
         ) { [weak self] notification in

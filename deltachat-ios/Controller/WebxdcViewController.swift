@@ -283,7 +283,7 @@ class WebxdcViewController: WebViewViewController {
     private func addObservers() {
         let nc = NotificationCenter.default
         webxdcUpdateObserver = nc.addObserver(
-            forName: dcNotificationWebxdcUpdate,
+            forName: eventWebxdcStatusUpdate,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
@@ -299,7 +299,7 @@ class WebxdcViewController: WebViewViewController {
         }
 
         msgChangedObserver = nc.addObserver(
-            forName: dcNotificationChanged,
+            forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in

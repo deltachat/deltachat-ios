@@ -248,7 +248,7 @@ class ContactDetailViewController: UITableViewController {
     private func setupObservers() {
         let nc = NotificationCenter.default
         contactChangedObserver = nc.addObserver(
-            forName: dcNotificationContactChanged,
+            forName: eventContactsChanged,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }
@@ -258,7 +258,7 @@ class ContactDetailViewController: UITableViewController {
             }
         }
         incomingMsgsObserver = nc.addObserver(
-            forName: dcNotificationIncoming,
+            forName: eventIncomingMsg,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }

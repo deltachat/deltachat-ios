@@ -562,7 +562,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         let nc = NotificationCenter.default
         progressObserver = nc.addObserver(
-            forName: dcNotificationConfigureProgress,
+            forName: eventConfigureProgress,
             object: nil,
             queue: nil
         ) { notification in

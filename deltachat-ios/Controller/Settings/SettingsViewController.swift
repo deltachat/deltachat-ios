@@ -167,7 +167,7 @@ internal final class SettingsViewController: UITableViewController {
 
         // set connectivity changed observer before we acutally init `connectivityCell.detailTextLabel` in `updateCells()`,
         // otherwise, we may miss events and the label is not correct.
-        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: dcNotificationConnectivityChanged,
+        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: eventConnectivityChanged,
                                                                              object: nil,
                                                                              queue: nil) { [weak self] _ in
             guard let self = self else { return }

@@ -224,7 +224,7 @@ class GroupChatDetailViewController: UIViewController {
     private func setupObservers() {
         let nc = NotificationCenter.default
         incomingMsgsObserver = nc.addObserver(
-            forName: dcNotificationIncoming,
+            forName: eventIncomingMsg,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }
@@ -234,7 +234,7 @@ class GroupChatDetailViewController: UIViewController {
             }
         }
         ephemeralTimerObserver = nc.addObserver(
-            forName: dcEphemeralTimerModified,
+            forName: eventEphemeralTimerModified,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }
@@ -244,7 +244,7 @@ class GroupChatDetailViewController: UIViewController {
             }
         }
         chatModifiedObserver = nc.addObserver(
-            forName: dcNotificationChatModified,
+            forName: eventChatModified,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
             guard let self = self else { return }
