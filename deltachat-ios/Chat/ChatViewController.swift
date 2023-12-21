@@ -6,26 +6,25 @@ import DcCore
 import SDWebImage
 
 class ChatViewController: UITableViewController, UITableViewDropDelegate {
-    var dcContext: DcContext
-    let chatId: Int
-    var messageIds: [Int] = []
+    public let chatId: Int
 
-    var msgChangedObserver: NSObjectProtocol?
-    var incomingMsgObserver: NSObjectProtocol?
-    var chatModifiedObserver: NSObjectProtocol?
-    var ephemeralTimerModifiedObserver: NSObjectProtocol?
+    private var dcContext: DcContext
+    private var messageIds: [Int] = []
+    private var msgChangedObserver: NSObjectProtocol?
+    private var incomingMsgObserver: NSObjectProtocol?
+    private var chatModifiedObserver: NSObjectProtocol?
+    private var ephemeralTimerModifiedObserver: NSObjectProtocol?
     private var isInitial = true
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
     private var wasInputBarFirstResponder = false
 
-    lazy var isGroupChat: Bool = {
+    private lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
     }()
 
-    lazy var draft: DraftModel = {
-        let draft = DraftModel(dcContext: dcContext, chatId: chatId)
-        return draft
+    private lazy var draft: DraftModel = {
+        return DraftModel(dcContext: dcContext, chatId: chatId)
     }()
 
     private lazy var dropInteraction: ChatDropInteraction = {
@@ -40,7 +39,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var searchResultIndex: Int = 0
     private var debounceTimer: Timer?
 
-    lazy var searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = String.localized("search")
@@ -53,7 +52,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return searchController
     }()
 
-    public lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
+    private lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
         let view = ChatSearchAccessoryBar()
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +60,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return view
     }()
 
-    public lazy var backgroundContainer: UIImageView = {
+    private lazy var backgroundContainer: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
@@ -82,12 +81,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
-    lazy var messageInputBar: InputBarAccessoryView = {
-        let inputBar = InputBarAccessoryView()
-        return inputBar
+    private lazy var messageInputBar: InputBarAccessoryView = {
+        return InputBarAccessoryView()
     }()
 
-    lazy var draftArea: DraftArea = {
+    private lazy var draftArea: DraftArea = {
         let view = DraftArea()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
@@ -95,7 +93,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return view
     }()
 
-    public lazy var editingBar: ChatEditingBar = {
+    private lazy var editingBar: ChatEditingBar = {
         let view = ChatEditingBar()
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -108,13 +106,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private weak var timer: Timer?
 
-    lazy var navBarTap: UITapGestureRecognizer = {
+    private lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
 
     private var locationStreamingItem: UIBarButtonItem = {
-        let indicator = LocationStreamingIndicator()
-        return UIBarButtonItem(customView: indicator)
+        return UIBarButtonItem(customView: LocationStreamingIndicator())
     }()
 
     private lazy var muteItem: UIBarButtonItem = {
@@ -150,10 +147,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
-                                          target: self,
-                                          action: #selector(onCancelPressed))
-        return button
+        return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
 
     private lazy var titleView: ChatTitleView = {
@@ -161,8 +155,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }()
 
     private lazy var dcChat: DcChat = {
-        let chat = dcContext.getChat(chatId: chatId)
-        return chat
+        return dcContext.getChat(chatId: chatId)
     }()
 
     private lazy var contextMenu: ContextMenuProvider = {
@@ -290,11 +283,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
     private lazy var keyboardManager: KeyboardManager? = {
-        let manager = KeyboardManager()
-        return manager
+        return KeyboardManager()
     }()
 
-    var highlightedMsg: Int?
+    private var highlightedMsg: Int?
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -302,7 +294,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return mediaPicker
     }()
 
-    var emptyStateView: EmptyStateLabel = {
+    private var emptyStateView: EmptyStateLabel = {
         let view =  EmptyStateLabel()
         view.isHidden = true
         return view
@@ -885,8 +877,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-       let swipeAction = UISwipeActionsConfiguration(actions: [])
-       return swipeAction
+       return UISwipeActionsConfiguration(actions: [])
     }
 
 
@@ -977,7 +968,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if tableView.isEditing {
             handleEditingBar()
             updateTitle()
-
         }
     }
     
@@ -1024,10 +1014,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
-
+    private func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
         var corners: UIRectCorner = []
-
         if message.isFromCurrentSender {
             corners.formUnion(.topLeft)
             corners.formUnion(.bottomLeft)
@@ -1037,7 +1025,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             corners.formUnion(.bottomRight)
             corners.formUnion(.topLeft)
         }
-
         return corners
     }
 
@@ -1106,17 +1093,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func reloadData() {
-        let selectredRows = tableView.indexPathsForSelectedRows
         tableView.reloadData()
         // There's an iOS bug, filling up the console output but which can be ignored: https://developer.apple.com/forums/thread/668295
         // [Assert] Attempted to call -cellForRowAtIndexPath: on the table view while it was in the process of updating its visible cells, which is not allowed.
-        selectredRows?.forEach({ (selectedRow) in
+        tableView.indexPathsForSelectedRows?.forEach({ (selectedRow) in
             tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })
     }
 
     private func loadMessages() {
-
         // update message ids
         var msgIds = dcContext.getChatMsgs(chatId: chatId)
         let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
@@ -1127,7 +1112,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         self.messageIds = msgIds
 
         self.showEmptyStateView(self.messageIds.isEmpty)
-
         self.reloadData()
     }
 
@@ -1328,10 +1312,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func configureInputBarItems() {
-
         messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
         messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
-
 
         let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
         messageInputBar.sendButton.image = sendButtonImage
@@ -1712,7 +1694,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    func updateMessage(_ msg: DcMsg) {
+    private func updateMessage(_ msg: DcMsg) {
         if messageIds.firstIndex(of: msg.id) != nil {
             reloadData()
         } else {
@@ -1735,7 +1717,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    func insertMessage(_ message: DcMsg) {
+    private func insertMessage(_ message: DcMsg) {
         logger.debug(">>> insertMessage \(message.id)")
         markSeenMessage(id: message.id)
         let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
@@ -1909,7 +1891,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
-
         // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
         contextMenu.performAction(action: action, indexPath: indexPath)
     }
