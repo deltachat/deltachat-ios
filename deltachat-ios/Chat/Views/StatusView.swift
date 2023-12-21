@@ -3,28 +3,24 @@ import UIKit
 import DcCore
 
 public class StatusView: UIStackView {
-    private var dateLabel: UILabel
-    private var padlockView: UIImageView
-    private var locationView: UIImageView
-    private var stateView: UIImageView
+    private var dateLabel = UILabel()
+    private var padlockView = UIImageView()
+    private var locationView = UIImageView()
+    private var stateView = UIImageView()
 
     override init(frame: CGRect) {
-        dateLabel = UILabel()
+        super.init(frame: frame)
+
         dateLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
 
-        padlockView = UIImageView()
         padlockView.widthAnchor.constraint(equalToConstant: 15).isActive = true
         padlockView.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
-        locationView = UIImageView()
         locationView.widthAnchor.constraint(equalToConstant: 8).isActive = true
         locationView.heightAnchor.constraint(equalToConstant: 11).isActive = true
 
-        stateView = UIImageView()
         stateView.widthAnchor.constraint(equalToConstant: 20).isActive = true
         stateView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-
-        super.init(frame: frame)
 
         addArrangedSubview(dateLabel)
         addArrangedSubview(padlockView)
