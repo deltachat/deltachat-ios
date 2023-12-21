@@ -299,7 +299,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     override func viewDidDisappear(_: Bool) {
-
         let nc = NotificationCenter.default
         if let configureProgressObserver = self.progressObserver {
             nc.removeObserver(configureProgressObserver)
@@ -559,9 +558,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func addProgressHudLoginListener() {
-
-        let nc = NotificationCenter.default
-        progressObserver = nc.addObserver(
+        progressObserver = NotificationCenter.default.addObserver(
             forName: eventConfigureProgress,
             object: nil,
             queue: nil

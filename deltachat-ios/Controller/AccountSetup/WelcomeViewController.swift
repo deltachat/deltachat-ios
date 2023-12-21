@@ -110,9 +110,8 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
      }
 
     override func viewDidDisappear(_ animated: Bool) {
-        let nc = NotificationCenter.default
         if let observer = self.progressObserver {
-            nc.removeObserver(observer)
+            NotificationCenter.default.removeObserver(observer)
             self.progressObserver = nil
         }
         removeBackupProgressObserver()
@@ -249,9 +248,8 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 
     private func addProgressHudBackupListener(importByFile: Bool) {
-        let nc = NotificationCenter.default
         UIApplication.shared.isIdleTimerDisabled = true
-        backupProgressObserver = nc.addObserver(
+        backupProgressObserver = NotificationCenter.default.addObserver(
             forName: eventImexProgress,
             object: nil,
             queue: nil

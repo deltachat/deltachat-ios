@@ -45,11 +45,10 @@ public class DcEventHandler {
 
         case DC_EVENT_CONFIGURE_PROGRESS:
             logger.info("📡[\(accountId)] configure: \(Int(data1))")
-            let nc = NotificationCenter.default
             DispatchQueue.main.async {
                 let done = Int(data1) == 1000
 
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventConfigureProgress,
                     object: nil,
                     userInfo: [
@@ -67,9 +66,8 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_IMEX_PROGRESS:
-            let nc = NotificationCenter.default
             DispatchQueue.main.async {
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventImexProgress,
                     object: nil,
                     userInfo: [
@@ -90,10 +88,8 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] change: \(id)")
 
-            let nc = NotificationCenter.default
-
             DispatchQueue.main.async {
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventMsgsChangedReadDeliveredFailed,
                     object: nil,
                     userInfo: [
@@ -107,9 +103,8 @@ public class DcEventHandler {
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            let nc = NotificationCenter.default
             DispatchQueue.main.async {
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventMsgsNoticed,
                     object: nil,
                     userInfo: [
@@ -123,9 +118,8 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] chat modified: \(id)")
-            let nc = NotificationCenter.default
             DispatchQueue.main.async {
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventChatModified,
                     object: nil,
                     userInfo: [
@@ -138,9 +132,8 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] ephemeral timer modified: \(id)")
-            let nc = NotificationCenter.default
             DispatchQueue.main.async {
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventEphemeralTimerModified,
                     object: nil,
                     userInfo: [
@@ -150,9 +143,8 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_INCOMING_MSG:
-            let nc = NotificationCenter.default
             DispatchQueue.main.async {
-                nc.post(name: eventIncomingMsgAnyAccount,
+                NotificationCenter.default.post(name: eventIncomingMsgAnyAccount,
                         object: nil,
                         userInfo: nil)
             }
@@ -168,7 +160,7 @@ public class DcEventHandler {
 
             logger.info("📡[\(accountId)] incoming message \(userInfo)")
             DispatchQueue.main.async {
-                nc.post(name: eventIncomingMsg,
+                NotificationCenter.default.post(name: eventIncomingMsg,
                         object: nil,
                         userInfo: userInfo)
             }
@@ -182,9 +174,8 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] securejoin inviter: \(data1)")
 
-            let nc = NotificationCenter.default
             DispatchQueue.main.async {
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventSecureInviterProgress,
                     object: nil,
                     userInfo: [
@@ -200,9 +191,8 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] contact changed: \(data1)")
-            let nc = NotificationCenter.default
             DispatchQueue.main.async {
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventContactsChanged,
                     object: nil,
                     userInfo: [
@@ -220,8 +210,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] connectivity changed")
             DispatchQueue.main.async {
-                let nc = NotificationCenter.default
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventConnectivityChanged,
                     object: nil,
                     userInfo: nil
@@ -234,8 +223,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] webxdc update")
             DispatchQueue.main.async {
-                let nc = NotificationCenter.default
-                nc.post(
+                NotificationCenter.default.post(
                     name: eventWebxdcStatusUpdate,
                     object: nil,
                     userInfo: [

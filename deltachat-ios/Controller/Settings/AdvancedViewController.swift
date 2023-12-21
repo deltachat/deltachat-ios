@@ -193,9 +193,8 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        let nc = NotificationCenter.default
         if let backupProgressObserver = self.progressObserver {
-            nc.removeObserver(backupProgressObserver)
+            NotificationCenter.default.removeObserver(backupProgressObserver)
         }
     }
 
