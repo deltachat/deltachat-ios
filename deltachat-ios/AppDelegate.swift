@@ -372,10 +372,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // when the call to `UIApplication.shared.registerForRemoteNotifications` succeeded.
     //
     // we pass the received token to the app's notification server then.
-    func application(
-      _ application: UIApplication,
-      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-    ) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let tokenString = tokenParts.joined()
 
@@ -408,9 +405,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // `didFailToRegisterForRemoteNotificationsWithError` is called by iOS
     // when the call to `UIApplication.shared.registerForRemoteNotifications` failed.
-    func application(
-      _ application: UIApplication,
-      didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         logger.error("Notifications: Failed to register: \(error)")
     }
 
@@ -426,11 +421,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // after 10 seconds, things should be done.
     // (see https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
     // (at some point it would be nice if we get a clear signal from the core)
-    func application(
-      _ application: UIApplication,
-      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
-    ) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
         increaseDebugCounter("notify-remote-receive")
         pushToDebugArray("📡")
@@ -443,10 +434,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // ("App downloads content from the network" in Xcode)
     //
     // we have 30 seconds time for our job, things are quite similar as in `didReceiveRemoteNotification`
-    func application(
-      _ application: UIApplication,
-      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
-    ) {
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("➡️ Notifications: performFetchWithCompletionHandler")
         increaseDebugCounter("notify-local-wakeup")
         pushToDebugArray("🏠")
