@@ -123,7 +123,7 @@ class ConnectivityViewController: WebViewViewController {
         }
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
-        guard let timestamps = timestamps else {
+        guard let timestamps = timestamps, !timestamps.isEmpty else {
             // in most cases, here the app was just installed and we do not have any data.
             // so, do not show something error-like here.
             // (in case of errors, it usually converts to an error sooner or later)
@@ -132,18 +132,7 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(String.localized("connectivity_connected"))
         }
 
-        var averageDelta: Double = 0
-        if timestamps.isEmpty {
-            // this should not happen:
-            // the array should not be empty as old notifications are only removed if a new one is added
-            return "<span class=\"red dot\"></span>"
-                .appending(title)
-                .appending("Bad Data")
-        } else if timestamps.count == 1 {
-            averageDelta = Double(Date().timeIntervalSince1970) - timestamps.first!
-        } else {
-            averageDelta = (timestamps.last! - timestamps.first!) / Double(timestamps.count-1)
-        }
+        let averageDelta = (Double(Date().timeIntervalSince1970) - timestamps.first!) / Double(timestamps.count)
 
         var lastWakeups = ""
         var lastWakeupsCnt = 0
