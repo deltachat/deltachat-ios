@@ -123,27 +123,16 @@ class ConnectivityViewController: WebViewViewController {
         }
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
-        guard let timestamps = timestamps else {
+        guard let timestamps = timestamps, !timestamps.isEmpty else {
             // in most cases, here the app was just installed and we do not have any data.
             // so, do not show something error-like here.
             // (in case of errors, it usually converts to an error sooner or later)
-            return "<span class=\"green dot\"></span>"
+            return "<span class=\"yellow dot\"></span>"
                 .appending(title)
                 .appending(String.localized("connectivity_connected"))
         }
 
-        var averageDelta: Double = 0
-        if timestamps.isEmpty {
-            // this should not happen:
-            // the array should not be empty as old notifications are only removed if a new one is added
-            return "<span class=\"red dot\"></span>"
-                .appending(title)
-                .appending("Bad Data")
-        } else if timestamps.count == 1 {
-            averageDelta = Double(Date().timeIntervalSince1970) - timestamps.first!
-        } else {
-            averageDelta = (timestamps.last! - timestamps.first!) / Double(timestamps.count-1)
-        }
+        let averageDelta = (Double(Date().timeIntervalSince1970) - timestamps.first!) / Double(timestamps.count)
 
         var lastWakeups = ""
         var lastWakeupsCnt = 0
@@ -155,33 +144,13 @@ class ConnectivityViewController: WebViewViewController {
             }
         }
 
-        if Int(averageDelta / Double(60 * 60)) > 1 {
-            // more than 1 hour in average
-            return "<span class=\"red dot\"></span>"
-                .appending(title)
-                .appending(String.localized("delayed"))
-                .appending(", ")
-                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
-                .appending(", ")
-                .appending(String.localized(stringID: "notifications_avg_hours", count: Int(averageDelta / Double(60 * 60))))
-        }
-
-        if averageDelta / Double(60 * 20) > 1 {
-            // more than 20 minutes in average
-            return  "<span class=\"yellow dot\"></span>"
-                .appending(title)
-                .appending(String.localized("delayed"))
-                .appending(", ")
-                .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
-                .appending(", ")
-                .appending(String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
-        }
-
-        return  "<span class=\"green dot\"></span>"
+        return  "<span class=\"yellow dot\"></span>"
             .appending(title)
             .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
             .appending(", ")
-            .appending(String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
+            .appending(averageDelta / 3600 > 2 ?
+                       String.localized(stringID: "notifications_avg_hours", count: Int(averageDelta / 3600)) :
+                       String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
     }
 
     private func loadHtml() {
