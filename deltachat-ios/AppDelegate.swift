@@ -324,7 +324,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - background fetch and notifications
 
-    // asks the user if they want to get notifiations shown.
+    // asks the user if they want to get notifications shown.
     // nb: the alert dialog could be avoided by using `.provisional`,
     // https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications
     func registerForNotifications() {
