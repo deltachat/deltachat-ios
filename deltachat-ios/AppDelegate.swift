@@ -324,46 +324,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - background fetch and notifications
 
-    // `registerForNotifications` asks the user if they want to get notifiations shown.
-    // if so, it registers for receiving remote notifications.
+    // asks the user if they want to get notifications shown.
+    // nb: the alert dialog could be avoided by using `.provisional`,
+    // https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications
     func registerForNotifications() {
-        UNUserNotificationCenter.current().delegate = self
-        notifyToken = nil
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
 
-        // register for showing notifications
-        //
-        // note: the alert-dialog cannot be customized, however, since iOS 12,
-        // it can be avoided completely by using `.provisional`,
-        // https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications
-        UNUserNotificationCenter.current()
-          .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-            if granted {
-                // we are allowed to show notifications:
-                // register for receiving remote notifications
-                logger.info("Notifications: Permission granted: \(granted)")
-                self?.maybeRegisterForRemoteNotifications()
-            } else {
-                logger.info("Notifications: Permission not granted.")
-            }
-        }
-    }
-
-    // register on apple server for receiving remote notifications
-    // and pass the token to the app's notification server.
-    //
-    // on success, we get a token at didRegisterForRemoteNotificationsWithDeviceToken;
-    // on failure, didFailToRegisterForRemoteNotificationsWithError is called
-    private func maybeRegisterForRemoteNotifications() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            logger.info("Notifications: Settings: \(settings)")
-
-            switch settings.authorizationStatus {
-            case .authorized, .provisional, .ephemeral:
+            self.notifyToken = nil
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                 DispatchQueue.main.async {
-                  UIApplication.shared.registerForRemoteNotifications()
+                    if !granted || error != nil {
+                        logger.warning("Notifications: Permission not granted, \(error?.localizedDescription ?? "no error")")
+                    } else {
+                        logger.info("Notifications: Permission granted")
+                        // register on apple's server for notifications: we get the needed token in `didRegisterForRemoteNotificationsWithDeviceToken`
+                        // or an error in `didFailToRegisterForRemoteNotificationsWithError`
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
                 }
-            case .denied, .notDetermined:
-                break
             }
         }
     }
