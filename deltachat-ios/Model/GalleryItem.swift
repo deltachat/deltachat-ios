@@ -81,7 +81,7 @@ class GalleryItem: ContextMenuItem {
                     self?.thumbnailImage = image
                 }
             } else {
-                logger.error("cannot load image thumbnail for \(url)")
+                logger.warning("cannot load image thumbnail for \(url)")
                 self?.setLoadingFailedPlaceholder()
             }
         }
@@ -94,7 +94,7 @@ class GalleryItem: ContextMenuItem {
                     self?.thumbnailImage = image
                 }
             } else {
-                logger.error("cannot load video thumbnail for \(url)")
+                logger.warning("cannot load video thumbnail for \(url)")
                 self?.setLoadingFailedPlaceholder()
             }
         }
@@ -107,7 +107,7 @@ class GalleryItem: ContextMenuItem {
                     self?.thumbnailImage = image
                 }
             } else {
-                logger.error("cannot load webxdc thumbnail for \(message.file ?? "ErrName")")
+                logger.warning("cannot load webxdc thumbnail for \(message.file ?? "ErrName")")
                 self?.setLoadingFailedPlaceholder()
             }
         }
