@@ -167,7 +167,6 @@
 		AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */; };
 		AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C083255310BB003CFE70 /* ContextMenuController.swift */; };
 		AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */; };
-		AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */; };
 		AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */; };
 		AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */; };
 		AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */; };
@@ -447,7 +446,6 @@
 		AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
 		AE57C083255310BB003CFE70 /* ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuController.swift; sourceTree = "<group>"; };
 		AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
-		AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailCache.swift; sourceTree = "<group>"; };
 		AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerAlertAction.swift; sourceTree = "<group>"; };
 		AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
@@ -966,7 +964,6 @@
 				AE1988A423EB2FBA00B4CD5F /* Errors.swift */,
 				307D822D241669C7006D2490 /* LocationManager.swift */,
 				AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */,
-				AE6EC5272497B9B200A400E4 /* ThumbnailCache.swift */,
 				21D6C9392606190600D0755A /* NotificationManager.swift */,
 				3011E8042787365D00214221 /* KeychainManager.swift */,
 				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
@@ -1394,7 +1391,6 @@
 				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
 				30734326249A280B00BF9AD1 /* MediaQualityViewController.swift in Sources */,
 				3080A01C277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift in Sources */,
-				AE6EC5282497B9B200A400E4 /* ThumbnailCache.swift in Sources */,
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
 				3080A013277DDABA00E74565 /* KeyboardNotification.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,

@@ -17,21 +17,14 @@ class GalleryItem: ContextMenuItem {
     var thumbnailImage: UIImage? {
         get {
             if let fileUrl = self.fileUrl {
-                if let image = ThumbnailCache.shared.restoreImage(key: fileUrl.absoluteString) {
-                    return image
-                } else {
-                    loadThumbnail()
-                }
+                loadThumbnail()
             }
             return nil
         }
         set {
             if let fileUrl = self.fileUrl {
                 if let image = newValue {
-                    ThumbnailCache.shared.storeImage(image: image, key: fileUrl.absoluteString)
                     onImageLoaded?(newValue)
-                } else {
-                    ThumbnailCache.shared.deleteImage(key: fileUrl.absoluteString)
                 }
             }
         }
@@ -48,11 +41,7 @@ class GalleryItem: ContextMenuItem {
 
     init(msg: DcMsg) {
         self.msg = msg
-        if let key = msg.fileURL?.absoluteString, let image = ThumbnailCache.shared.restoreImage(key: key) {
-            self.thumbnailImage = image
-        } else {
-            loadThumbnail()
-        }
+        loadThumbnail()
         if msg.viewtype == .webxdc {
             description = msg.getWebxdcInfoDict()["name"] as? String ?? "ErrName"
         }

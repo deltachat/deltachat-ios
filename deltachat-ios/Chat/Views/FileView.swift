@@ -161,13 +161,9 @@ public class FileView: UIView {
     }
 
     private func generateThumbnailFor(url: URL, placeholder: UIImage?) {
-        if let thumbnail = ThumbnailCache.shared.restoreImage(key: url.absoluteString) {
-            fileImageView.image = thumbnail
-            horizontalLayout = allowLayoutChange ? false : horizontalLayout
-        } else if let pdfThumbnail = DcUtils.thumbnailFromPdf(withUrl: url) {
+        if let pdfThumbnail = DcUtils.thumbnailFromPdf(withUrl: url) {
             fileImageView.image = pdfThumbnail
             horizontalLayout = allowLayoutChange ? false : horizontalLayout
-            ThumbnailCache.shared.storeImage(image: pdfThumbnail, key: url.absoluteString)
         } else {
             let controller = UIDocumentInteractionController(url: url)
             fileImageView.image = controller.icons.first ?? placeholder
