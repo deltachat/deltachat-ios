@@ -12,17 +12,11 @@ class GalleryItem: ContextMenuItem {
 
     var thumbnailImage: UIImage? {
         get {
-            if let fileUrl = msg.fileURL {
-                loadThumbnail()
-            }
+            loadThumbnail()
             return nil
         }
         set {
-            if let fileUrl = msg.fileURL {
-                if let image = newValue {
-                    onImageLoaded?(newValue)
-                }
-            }
+            onImageLoaded?(newValue)
         }
     }
 
@@ -44,10 +38,8 @@ class GalleryItem: ContextMenuItem {
     }
 
     private func loadThumbnail() {
-        guard let viewtype = msg.viewtype, let url = msg.fileURL else {
-            return
-        }
-        switch viewtype {
+        guard let url = msg.fileURL else { return }
+        switch msg.viewtype {
         case .image, .gif:
             loadImageThumbnail(from: url)
         case .video:
