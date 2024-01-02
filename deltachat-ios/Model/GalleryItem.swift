@@ -2,12 +2,11 @@ import UIKit
 import DcCore
 import SDWebImage
 
-class GalleryItem: ContextMenuItem {
+class GalleryItem {
 
     var onImageLoaded: ((UIImage?) -> Void)?
 
-    var msg: DcMsg
-
+    let msg: DcMsg
     var description: String?
 
     var thumbnailImage: UIImage? {

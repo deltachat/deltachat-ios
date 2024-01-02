@@ -3,22 +3,16 @@ import AVFoundation
 import SDWebImage
 import DcCore
 
-
-protocol ContextMenuItem {
-    var msg: DcMsg { get set }
-    var thumbnailImage: UIImage? { get set  }
-}
-
 // MARK: - ContextMenuController
 class ContextMenuController: UIViewController {
 
-    let item: ContextMenuItem
+    let item: GalleryItem
 
     var msg: DcMsg {
         return item.msg
     }
 
-    init(item: ContextMenuItem) {
+    init(item: GalleryItem) {
         self.item = item
         super.init(nibName: nil, bundle: nil)
     }
