@@ -8,21 +8,17 @@ class GalleryItem: ContextMenuItem {
 
     var msg: DcMsg
 
-    var fileUrl: URL? {
-        return msg.fileURL
-    }
-
     var description: String?
 
     var thumbnailImage: UIImage? {
         get {
-            if let fileUrl = self.fileUrl {
+            if let fileUrl = msg.fileURL {
                 loadThumbnail()
             }
             return nil
         }
         set {
-            if let fileUrl = self.fileUrl {
+            if let fileUrl = msg.fileURL {
                 if let image = newValue {
                     onImageLoaded?(newValue)
                 }
