@@ -7,7 +7,6 @@ class GalleryItem {
     var onImageLoaded: ((UIImage?) -> Void)?
 
     let msg: DcMsg
-    var description: String?
 
     var thumbnailImage: UIImage? {
         get {
@@ -31,9 +30,6 @@ class GalleryItem {
     init(msg: DcMsg) {
         self.msg = msg
         loadThumbnail()
-        if msg.viewtype == .webxdc {
-            description = msg.getWebxdcInfoDict()["name"] as? String ?? "ErrName"
-        }
     }
 
     private func loadThumbnail() {

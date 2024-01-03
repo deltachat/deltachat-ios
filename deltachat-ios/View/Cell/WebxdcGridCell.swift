@@ -77,7 +77,7 @@ class WebxdcGridCell: UICollectionViewCell {
             self?.imageView.image = image
         }
         imageView.image = item.thumbnailImage
-        descriptionLabel.text = item.description
+        descriptionLabel.text = item.msg.getWebxdcInfoDict()["name"] as? String ?? "ErrName"
     }
 
     override var isSelected: Bool {
