@@ -55,11 +55,11 @@ class GalleryCell: UICollectionViewCell {
         item.onImageLoaded = { [weak self] image in
             self?.imageView.image = image
         }
-        playButtonView.isHidden = !item.showPlayButton
+        playButtonView.isHidden = item.msg.viewtype != .video
         imageView.image = item.thumbnailImage
 
         contentView.isAccessibilityElement = true
-        contentView.accessibilityHint = String.localized(item.showPlayButton ? "video" : "image")
+        contentView.accessibilityHint = String.localized(playButtonView.isHidden ? "image" : "video")
             + ", " + DateUtils.getBriefRelativeTimeSpanString(timeStamp: Double(item.msg.timestamp))
     }
 

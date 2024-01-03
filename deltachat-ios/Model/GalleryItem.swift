@@ -18,15 +18,6 @@ class GalleryItem {
         }
     }
 
-    var showPlayButton: Bool {
-        switch msg.viewtype {
-        case .video:
-            return true
-        default:
-            return false
-        }
-    }
-
     init(msg: DcMsg) {
         self.msg = msg
         loadThumbnail()
