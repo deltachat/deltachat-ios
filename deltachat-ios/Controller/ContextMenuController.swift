@@ -6,14 +6,12 @@ import DcCore
 // MARK: - ContextMenuController
 class ContextMenuController: UIViewController {
 
-    let item: GalleryItem
+    let msg: DcMsg
+    let image: UIImage?
 
-    var msg: DcMsg {
-        return item.msg
-    }
-
-    init(item: GalleryItem) {
-        self.item = item
+    init(msg: DcMsg, image: UIImage?) {
+        self.msg = msg
+        self.image = image
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -29,11 +27,11 @@ class ContextMenuController: UIViewController {
         var thumbnailView: UIView?
         switch viewType {
         case .image:
-            thumbnailView = makeImageView(image: msg.image)
+            thumbnailView = makeImageView()
         case .video:
-            thumbnailView = makeVideoView(videoUrl: msg.fileURL)
+            thumbnailView = makeVideoView()
         case .gif:
-            thumbnailView = makeGifView(gifImage: msg.image)
+            thumbnailView = makeGifView()
         default:
             return
         }
@@ -54,19 +52,19 @@ class ContextMenuController: UIViewController {
     }
 
     // MARK: - thumbnailView creation
-    private func makeGifView(gifImage: UIImage?) -> UIView? {
+    private func makeGifView() -> UIView? {
         let view = SDAnimatedImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.backgroundColor = DcColors.defaultBackgroundColor
-        if let image = gifImage {
+        if let image = image {
             setPreferredContentSize(for: image)
         }
-        view.image = gifImage
+        view.image = image
         return view
     }
 
-    private func makeImageView(image: UIImage?) -> UIView? {
+    private func makeImageView() -> UIView? {
         guard let image = image else {
             return nil
         }
@@ -79,8 +77,8 @@ class ContextMenuController: UIViewController {
         return imageView
     }
 
-    private func makeVideoView(videoUrl: URL?) -> UIView? {
-        guard let videoUrl = videoUrl, let videoSize = item.thumbnailImage?.size else { return nil }
+    private func makeVideoView() -> UIView? {
+        guard let videoUrl = msg.fileURL, let videoSize = image?.size else { return nil }
         let player = AVPlayer(url: videoUrl)
         let playerController = AVPlayerViewController()
         addChild(playerController)
