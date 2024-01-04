@@ -33,7 +33,7 @@ class ContextMenuController: UIViewController {
         case .video:
             thumbnailView = makeVideoView(videoUrl: msg.fileURL)
         case .gif:
-            thumbnailView = makeGifView(gifImage: item.thumbnailImage)
+            thumbnailView = makeGifView(gifImage: msg.image)
         default:
             return
         }
