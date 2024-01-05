@@ -309,14 +309,14 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         _ collectionView: UICollectionView,
         contextMenuConfigurationForItemAt indexPath: IndexPath,
         point: CGPoint) -> UIContextMenuConfiguration? {
-        guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
+            guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
             return nil
         }
 
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: {
-                let contextMenuController = ContextMenuController(item: item)
+                let contextMenuController = ContextMenuController(msg: item.msg, image: galleryCell.imageView.image)
                 return contextMenuController
             },
             actionProvider: { [weak self] _ in

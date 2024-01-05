@@ -50,21 +50,14 @@ class MediaPreview: DraftPreview {
             })
             isHidden = false
         } else if draft.viewType == DC_MSG_VIDEO, let path = draft.attachment {
-            if let image = ThumbnailCache.shared.restoreImage(key: path) {
-                self.contentImageView.image = image
-                self.setAspectRatio(image: image)
-                self.delegate?.onAttachmentAdded()
-            } else {
-                DispatchQueue.global(qos: .userInteractive).async {
-                    let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: URL(fileURLWithPath: path, isDirectory: false))
-                    if let thumbnailImage = thumbnailImage {
-                        DispatchQueue.main.async { [weak self] in
-                            guard let self = self else { return }
-                            self.contentImageView.image = thumbnailImage
-                            self.setAspectRatio(image: thumbnailImage)
-                            ThumbnailCache.shared.storeImage(image: thumbnailImage, key: path)
-                            self.delegate?.onAttachmentAdded()
-                        }
+            DispatchQueue.global(qos: .userInteractive).async {
+                let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: URL(fileURLWithPath: path, isDirectory: false))
+                if let thumbnailImage = thumbnailImage {
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        self.contentImageView.image = thumbnailImage
+                        self.setAspectRatio(image: thumbnailImage)
+                        self.delegate?.onAttachmentAdded()
                     }
                 }
             }
@@ -103,7 +96,6 @@ class MediaPreview: DraftPreview {
                 self?.configure(draft: draft)
             })
         } else if draft.viewType == DC_MSG_VIDEO {
-            ThumbnailCache.shared.deleteImage(key: attachment)
             self.configure(draft: draft)
         }
     }

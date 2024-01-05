@@ -70,32 +70,20 @@ class ImageTextCell: BaseMessageCell {
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
             accessibilityLabel = String.localized("video")
-            if let image = ThumbnailCache.shared.restoreImage(key: url.absoluteString) {
-                contentImageView.image = image
-                contentImageIsPlaceholder = false
-                setAspectRatioFor(message: msg, with: image, isPlaceholder: false)
-            } else {
-                // no image in cache
-                let placeholderImage = UIImage(color: UIColor.init(alpha: 0,
-                                                                   red: 255,
-                                                                   green: 255,
-                                                                   blue: 255),
-                                               size: CGSize(width: 250, height: 250))
-                contentImageView.image = placeholderImage
-                DispatchQueue.global(qos: .userInteractive).async {
-                    let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
-                    if let thumbnailImage = thumbnailImage {
-                        DispatchQueue.main.async { [weak self] in
-                            if msg.id == self?.tag {
-                                self?.contentImageView.image = thumbnailImage
-                                self?.contentImageIsPlaceholder = false
-                                ThumbnailCache.shared.storeImage(image: thumbnailImage, key: url.absoluteString)
-                            }
+            let placeholderImage = UIImage(color: UIColor.init(alpha: 0, red: 255, green: 255, blue: 255), size: CGSize(width: 250, height: 250))
+            contentImageView.image = placeholderImage
+            DispatchQueue.global(qos: .userInteractive).async {
+                let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
+                if let thumbnailImage = thumbnailImage {
+                    DispatchQueue.main.async { [weak self] in
+                        if msg.id == self?.tag {
+                            self?.contentImageView.image = thumbnailImage
+                            self?.contentImageIsPlaceholder = false
                         }
                     }
                 }
-                setAspectRatioFor(message: msg, with: placeholderImage, isPlaceholder: true)
             }
+            setAspectRatioFor(message: msg, with: placeholderImage, isPlaceholder: true)
         }
         super.update(dcContext: dcContext,
                      msg: msg,

@@ -2,67 +2,30 @@ import UIKit
 import DcCore
 import SDWebImage
 
-class GalleryItem: ContextMenuItem {
+class GalleryItem {
 
     var onImageLoaded: ((UIImage?) -> Void)?
 
-    var msg: DcMsg
-
-    var fileUrl: URL? {
-        return msg.fileURL
-    }
-
-    var description: String?
+    let msg: DcMsg
 
     var thumbnailImage: UIImage? {
         get {
-            if let fileUrl = self.fileUrl {
-                if let image = ThumbnailCache.shared.restoreImage(key: fileUrl.absoluteString) {
-                    return image
-                } else {
-                    loadThumbnail()
-                }
-            }
+            loadThumbnail()
             return nil
         }
         set {
-            if let fileUrl = self.fileUrl {
-                if let image = newValue {
-                    ThumbnailCache.shared.storeImage(image: image, key: fileUrl.absoluteString)
-                    onImageLoaded?(newValue)
-                } else {
-                    ThumbnailCache.shared.deleteImage(key: fileUrl.absoluteString)
-                }
-            }
-        }
-    }
-
-    var showPlayButton: Bool {
-        switch msg.viewtype {
-        case .video:
-            return true
-        default:
-            return false
+            onImageLoaded?(newValue)
         }
     }
 
     init(msg: DcMsg) {
         self.msg = msg
-        if let key = msg.fileURL?.absoluteString, let image = ThumbnailCache.shared.restoreImage(key: key) {
-            self.thumbnailImage = image
-        } else {
-            loadThumbnail()
-        }
-        if msg.viewtype == .webxdc {
-            description = msg.getWebxdcInfoDict()["name"] as? String ?? "ErrName"
-        }
+        loadThumbnail()
     }
 
     private func loadThumbnail() {
-        guard let viewtype = msg.viewtype, let url = msg.fileURL else {
-            return
-        }
-        switch viewtype {
+        guard let url = msg.fileURL else { return }
+        switch msg.viewtype {
         case .image, .gif:
             loadImageThumbnail(from: url)
         case .video:
