@@ -70,11 +70,7 @@ class ImageTextCell: BaseMessageCell {
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
             accessibilityLabel = String.localized("video")
-            let placeholderImage = UIImage(color: UIColor.init(alpha: 0,
-                                                               red: 255,
-                                                               green: 255,
-                                                               blue: 255),
-                                           size: CGSize(width: 250, height: 250))
+            let placeholderImage = UIImage(color: UIColor.init(alpha: 0, red: 255, green: 255, blue: 255), size: CGSize(width: 250, height: 250))
             contentImageView.image = placeholderImage
             DispatchQueue.global(qos: .userInteractive).async {
                 let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
