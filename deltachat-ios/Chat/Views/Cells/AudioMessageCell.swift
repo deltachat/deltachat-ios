@@ -53,7 +53,7 @@ public class AudioMessageCell: BaseMessageCell {
             accessibilityLabel = String.localized("audio")
         }
         
-        delegate?.getAudioDuration(messageId: messageId, successHandler: { [weak self] (messageId, duration) -> Void in
+        delegate?.getAudioDuration(messageId: messageId, successHandler: { [weak self] messageId, duration in
             if let self = self,
                messageId == self.messageId {
                 self.audioPlayerView.setDuration(duration: duration)

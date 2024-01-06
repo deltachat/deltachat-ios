@@ -49,7 +49,7 @@ extension URL {
             let range = CMTimeRangeMake(start: start, duration: avAsset.duration)
             exportSession.timeRange = range
 
-            exportSession.exportAsynchronously(completionHandler: {() -> Void in
+            exportSession.exportAsynchronously(completionHandler: {
                 switch exportSession.status {
                 case .failed:
                     completionHandler?(nil, exportSession.error)
