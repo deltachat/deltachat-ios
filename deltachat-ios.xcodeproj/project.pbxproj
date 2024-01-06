@@ -241,7 +241,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0BC6FD76CA0F3A90C00DDC3A /* Pods-deltachat-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.release.xcconfig"; path = "Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		12D100E31F2B9011A3F77CA1 /* Pods-deltachat-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.release.xcconfig"; path = "Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.release.xcconfig"; sourceTree = "<group>"; };
 		12E18F2336264C265BB756C2 /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D544FF299415B9008B54D5 /* Character+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extentions.swift"; sourceTree = "<group>"; };
@@ -426,7 +425,6 @@
 		7A9FB14D1FB061E2001FEA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A9FB14F1FB061E2001FEA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AE0A5481FC42F65005ECB4B /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
-		8C59EE96DDE92F0E6C645056 /* Pods-deltachat-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-deltachat-iosTests/Pods-deltachat-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6A81736FBF0A4844C6D619F /* Pods_DcShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DcShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0AA951247800E700D42A7F /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -1018,8 +1016,6 @@
 				B9CDCE77DAE9389E205F094C /* Pods-DcShare.release.xcconfig */,
 				D30610767F4AF8040B739987 /* Pods-deltachat-ios.debug.xcconfig */,
 				12D100E31F2B9011A3F77CA1 /* Pods-deltachat-ios.release.xcconfig */,
-				8C59EE96DDE92F0E6C645056 /* Pods-deltachat-iosTests.debug.xcconfig */,
-				0BC6FD76CA0F3A90C00DDC3A /* Pods-deltachat-iosTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1735,7 +1731,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
 				);
 				INFOPLIST_FILE = DcShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1781,7 +1776,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
 				);
 				INFOPLIST_FILE = DcShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
