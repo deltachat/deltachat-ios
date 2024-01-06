@@ -303,7 +303,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     func validateMicrophoneAccess() {
         let audioSession = AVAudioSession.sharedInstance()
-        audioSession.requestRecordPermission({(granted: Bool) -> Void in
+        audioSession.requestRecordPermission({ granted in
             DispatchQueue.main.async { [weak self] in
                 if let self = self {
                     self.noRecordingPermissionView.alpha = granted ? 0.0 : 1.0

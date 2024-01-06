@@ -318,7 +318,7 @@ open class InputTextView: UITextView {
         
         var images = [UIImage]()
         let range = NSRange(location: 0, length: attributedText.length)
-        attributedText.enumerateAttribute(.attachment, in: range, options: [], using: { value, range, _ -> Void in
+        attributedText.enumerateAttribute(.attachment, in: range, options: [], using: { value, range, _ in
             
             if let attachment = value as? NSTextAttachment {
                 if let image = attachment.image {
@@ -395,7 +395,7 @@ open class InputTextView: UITextView {
         
         guard !images.isEmpty else { return }
         let range = NSRange(location: 0, length: attributedText.length)
-        attributedText.enumerateAttribute(.attachment, in: range, options: [], using: { value, _, _ -> Void in
+        attributedText.enumerateAttribute(.attachment, in: range, options: [], using: { value, _, _ in
             if let attachment = value as? NSTextAttachment, let image = attachment.image {
                 
                 // Calculates a new width/height ratio to fit the image in the current frame

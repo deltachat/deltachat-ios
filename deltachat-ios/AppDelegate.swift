@@ -161,7 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
             increaseDebugCounter("notify-remote-launch")
             pushToDebugArray("📡'")
-            performFetch(completionHandler: { (_) -> Void in })
+            performFetch()
         }
 
         if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
@@ -421,13 +421,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         performFetch(completionHandler: completionHandler)
     }
 
-    private func performFetch(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    private func performFetch(completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
         // in this case, there is no need to wait for things or do sth.
         if appIsInForeground() {
             logger.info("➡️ app already in foreground")
             pushToDebugArray("OK1")
-            completionHandler(.newData)
+            completionHandler?(.newData)
             return
         }
 
@@ -443,7 +443,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if nowTimestamp < bgIoTimestamp + 60 {
             logger.info("➡️ fetch was just executed, skipping")
             pushToDebugArray("OK2")
-            completionHandler(.newData)
+            completionHandler?(.newData)
             return
         }
         bgIoTimestamp = nowTimestamp
@@ -455,7 +455,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("⬅️ finishing fetch by system urgency requests")
             self?.pushToDebugArray("ERR1")
             self?.dcAccounts.stopIo()
-            completionHandler(.newData)
+            completionHandler?(.newData)
             if backgroundTask != .invalid {
                 UIApplication.shared.endBackgroundTask(backgroundTask)
                 backgroundTask = .invalid
@@ -467,7 +467,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // move work to non-main thread to not block UI (otherwise, in case we get suspended, the app is blocked totally)
         // (we are using `qos: default` as `qos: .background` or `main.asyncAfter` may be delayed by tens of minutes)
         DispatchQueue.global().async { [weak self] in
-            guard let self = self else { completionHandler(.failed); return }
+            guard let self = self else { completionHandler?(.failed); return }
 
             // we're in background, run IO for a little time
             self.dcAccounts.startIo()
@@ -498,7 +498,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
             usleep(1_000_000)
             logger.info("⬅️ fetch done")
-            completionHandler(.newData)
+            completionHandler?(.newData)
             if backgroundTask != .invalid {
                 self.pushToDebugArray("OK3")
                 UIApplication.shared.endBackgroundTask(backgroundTask)
