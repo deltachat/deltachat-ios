@@ -125,7 +125,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     private func showNewContactController() {
         let newContactController = NewContactController(dcContext: dcContext, searchResult: searchText)
         newContactController.createChatOnSave = false
-        newContactController.onContactSaved = { [weak self] (contactId: Int) -> Void in
+        newContactController.onContactSaved = { [weak self] contactId in
             guard let self = self else { return }
             self.contactIds = self.loadMemberCandidates()
             if self.contactIds.contains(contactId) {
