@@ -91,15 +91,21 @@ static inline CGContextRef _Nullable CreateWebPCanvas(BOOL hasAlpha, CGSize canv
 WEBP_CSP_MODE ConvertCSPMode(CGBitmapInfo bitmapInfo) {
     // Get alpha info, byteOrder info
     CGImageAlphaInfo alphaInfo = bitmapInfo & kCGBitmapAlphaInfoMask;
-    CGBitmapInfo byteOrderInfo = bitmapInfo & kCGBitmapByteOrderMask;
+    CGImageByteOrderInfo byteOrderInfo = bitmapInfo & kCGBitmapByteOrderMask;
+    size_t bitsPerPixel = 8;
+    if (bitmapInfo & kCGBitmapFloatComponents) {
+        bitsPerPixel = 16; // 16-Bits, which don't support currently!
+    }
     BOOL byteOrderNormal = NO;
     switch (byteOrderInfo) {
-        case kCGBitmapByteOrderDefault: {
+        case kCGImageByteOrderDefault: {
             byteOrderNormal = YES;
         } break;
-        case kCGBitmapByteOrder32Little: {
+        case kCGImageByteOrder32Little:
+        case kCGImageByteOrder16Little: {
         } break;
-        case kCGBitmapByteOrder32Big: {
+        case kCGImageByteOrder32Big:
+        case kCGImageByteOrder16Big: {
             byteOrderNormal = YES;
         } break;
         default: break;
@@ -161,7 +167,7 @@ WEBP_CSP_MODE ConvertCSPMode(CGBitmapInfo bitmapInfo) {
             break;
         case kCGImageAlphaOnly: {
             // A
-            // Unsupported
+            // Unsupported!
             return MODE_LAST;
         }
             break;
@@ -621,8 +627,13 @@ WEBP_CSP_MODE ConvertCSPMode(CGBitmapInfo bitmapInfo) {
     CGBitmapInfo bitmapInfo = pixelFormat.bitmapInfo;
     WEBP_CSP_MODE mode = ConvertCSPMode(bitmapInfo);
     if (mode == MODE_LAST) {
-        NSAssert(NO, @"Unsupported libwebp preferred CGBitmapInfo: %d", bitmapInfo);
-        return nil;
+#if DEBUG
+        NSLog(@"Unsupported libwebp preferred CGBitmapInfo: %d", bitmapInfo);
+#endif
+        // Fallback to RGBA8888/RGB888 instead
+        mode = MODE_rgbA;
+        bitmapInfo = kCGBitmapByteOrderDefault;
+        bitmapInfo |= hasAlpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNoneSkipLast;
     }
     config.output.colorspace = mode;
     config.options.use_threads = 1;
@@ -872,14 +883,22 @@ WEBP_CSP_MODE ConvertCSPMode(CGBitmapInfo bitmapInfo) {
     }
     
     uint8_t *rgba = NULL; // RGBA Buffer managed by CFData, don't call `free` on it, instead call `CFRelease` on `dataRef`
-    // We could not assume that input CGImage's color mode is always RGB888/RGBA8888. Convert all other cases to target color mode using vImage
+    // We must prefer the input CGImage's color space, which may contains ICC profile
+    CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);
+    if (!colorSpace) {
+        colorSpace = [SDImageCoderHelper colorSpaceGetDeviceRGB];
+    }
+    CGColorRenderingIntent renderingIntent = CGImageGetRenderingIntent(imageRef);
     vImage_CGImageFormat destFormat = {
         .bitsPerComponent = 8,
         .bitsPerPixel = hasAlpha ? 32 : 24,
-        .colorSpace = [SDImageCoderHelper colorSpaceGetDeviceRGB],
-        .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB888/RGBA8888 (Non-premultiplied to works for libwebp)
+        .colorSpace = colorSpace,
+        .bitmapInfo = hasAlpha ? kCGImageAlphaLast | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault, // RGB888/RGBA8888 (Non-premultiplied to works for libwebp)
+        .renderingIntent = renderingIntent
     };
     vImage_Buffer dest;
+    // We could not assume that input CGImage's color mode is always RGB888/RGBA8888. Convert all other cases to target color mode using vImage
+    // But vImageBuffer_InitWithCGImage will do convert automatically (unless you use `kvImageNoAllocate`), so no need to call `vImageConvert` by ourselves
     vImage_Error error = vImageBuffer_InitWithCGImage(&dest, &destFormat, NULL, imageRef, kvImageNoFlags);
     if (error != kvImageNoError) {
         return nil;
@@ -955,7 +974,7 @@ WEBP_CSP_MODE ConvertCSPMode(CGBitmapInfo bitmapInfo) {
 
     config->target_size = (int)maxFileSize; // Max filesize for output, 0 means use quality instead
     config->pass = maxFileSize > 0 ? 6 : 1; // Use 6 passes for file size limited encoding, which is the default value of `cwebp` command line
-    config->lossless = 0; // Disable lossless encoding (If we need, can add new Encoding Options in future version)
+    config->lossless = GetIntValueForKey(options, SDImageCoderEncodeWebPLossless, config->lossless);
     
     config->method = GetIntValueForKey(options, SDImageCoderEncodeWebPMethod, config->method);
     config->pass = GetIntValueForKey(options, SDImageCoderEncodeWebPPass, config->pass);

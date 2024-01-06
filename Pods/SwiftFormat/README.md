@@ -20,6 +20,7 @@ Table of Contents
     - [Via Applescript](#via-applescript)
     - [VSCode plugin](#vscode-plugin)
     - [Sublime Text plugin](#sublime-text-plugin)
+    - [Nova plugin](nova-plugin)
     - [Git pre-commit hook](#git-pre-commit-hook)
     - [On CI using Danger](#on-ci-using-danger)
     - [Bazel build](#bazel-build)
@@ -275,6 +276,8 @@ You can also use `swift run -c release --package-path BuildTools swiftformat "$S
 
 **NOTE:** You may wish to check BuildTools/Package.swift into your source control so that the version used by your run-script phase is kept in version control. It is recommended to add the following to your .gitignore file: `BuildTools/.build` and `BuildTools/.swiftpm`.
 
+**NOTE (2):** If you are using Xcode 15 or later, make sure that the `ENABLE_USER_SCRIPT_SANDBOXING` (aka "User Script Sandboxing") option is set to NO, otherwise SwiftFormat won't be able to run correctly.
+
 ### Using CocoaPods
 
 #### 1) Add the SwiftFormat CLI to your Podfile
@@ -337,7 +340,7 @@ fi
 or you can create a symbolic link in `/usr/local/bin` pointing to the actual binary:
 
 ```bash
-ln -s /opt/homebrew/bin/swiftlint /usr/local/bin/swiftlint
+ln -s /opt/homebrew/bin/swiftformat /usr/local/bin/swiftformat
 ```
 
 Swift Package Manager plugin
@@ -408,6 +411,12 @@ Sublime Text plugin
 --------------------
 
 If you prefer to use the [Sublime Text](https://www.sublimetext.com) editor, try the [Sublime-Swift-Format plugin](https://github.com/aerobounce/Sublime-Swift-Format) by [Aerobounce](https://github.com/aerobounce).
+
+
+Nova plugin
+-----------
+
+If you prefer to use the [Nova](https://panic.com/nova) editor, try the [SwiftFormat extension](https://extensions.panic.com/extensions/org.padraig/org.padraig.SwiftFormat/) by [Pádraig Ó Cinnéide](https://mastodon.social/@PadraigOCinneide).
 
 
 Git pre-commit hook

@@ -1,4 +1,4 @@
-platform :ios, '11.0'
+platform :ios, '12.0'
 use_frameworks!
 
 # ignore all warnings from all dependencies
@@ -15,13 +15,18 @@ target 'deltachat-ios' do
   pod 'SDWebImageWebPCoder', :modular_headers => true
   pod 'SDWebImageSVGKitPlugin'
   pod 'SVGKit', :modular_headers => true
-  target 'deltachat-iosTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+
 end
 
 target 'DcShare' do
   pod 'SDWebImage', :modular_headers => true
   pod 'SDWebImageWebPCoder', :modular_headers => true
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = "12.0"
+    end
+  end
 end

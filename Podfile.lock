@@ -1,7 +1,7 @@
 PODS:
-  - CocoaLumberjack (3.8.1):
-    - CocoaLumberjack/Core (= 3.8.1)
-  - CocoaLumberjack/Core (3.8.1)
+  - CocoaLumberjack (3.8.2):
+    - CocoaLumberjack/Core (= 3.8.2)
+  - CocoaLumberjack/Core (3.8.2)
   - libwebp (1.3.2):
     - libwebp/demux (= 1.3.2)
     - libwebp/mux (= 1.3.2)
@@ -16,20 +16,20 @@ PODS:
     - libwebp/sharpyuv
   - ReachabilitySwift (5.0.0)
   - SCSiriWaveformView (1.1.2)
-  - SDWebImage (5.18.2):
-    - SDWebImage/Core (= 5.18.2)
-  - SDWebImage/Core (5.18.2)
+  - SDWebImage (5.18.8):
+    - SDWebImage/Core (= 5.18.8)
+  - SDWebImage/Core (5.18.8)
   - SDWebImageSVGKitPlugin (1.4.0):
     - SDWebImage/Core (~> 5.10)
     - SVGKit (~> 3.0)
-  - SDWebImageWebPCoder (0.13.0):
+  - SDWebImageWebPCoder (0.14.2):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
   - SVGKit (3.0.0):
     - CocoaLumberjack (~> 3.0)
   - Swifter (1.5.0)
-  - SwiftFormat/CLI (0.52.4)
-  - SwiftLint (0.53.0)
+  - SwiftFormat/CLI (0.52.11)
+  - SwiftLint (0.54.0)
 
 DEPENDENCIES:
   - ReachabilitySwift
@@ -66,18 +66,18 @@ CHECKOUT OPTIONS:
     :git: https://github.com/httpswift/swifter.git
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 5c7e64cdb877770859bddec4d3d5a0d7c9299df9
+  CocoaLumberjack: f8d89a516e7710fdb2e9b8f1560b16ec6040eef0
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SCSiriWaveformView: 016392911fb442c17d6dbad68e666edb13193c02
-  SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
+  SDWebImage: a81bbb3ba4ea5f810f4069c68727cb118467a04a
   SDWebImageSVGKitPlugin: 7542dd07c344ec3415ded0461a1161a6f087e0c9
-  SDWebImageWebPCoder: af09429398d99d524cae2fe00f6f0f6e491ed102
+  SDWebImageWebPCoder: 633b813fca24f1de5e076bcd7f720c038b23892b
   SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
   Swifter: aa3514bbb8df8980c118f7bb1b80f2da24e39c2b
-  SwiftFormat: 3471ff966ddb724bd7acd091c865aaa6582dde08
-  SwiftLint: 5ce4d6a8ff83f1b5fd5ad5dbf30965d35af65e44
+  SwiftFormat: 2ca3d0b75754193f0f3ba532291f25ae08dd1e42
+  SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
 
-PODFILE CHECKSUM: bbaaa9c3242dd69a1c26c334c2eeb92bbece8f27
+PODFILE CHECKSUM: 057a06a96ff1cc62643cb9f9b465381d79620783
 
 COCOAPODS: 1.13.0
