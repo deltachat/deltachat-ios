@@ -10,7 +10,7 @@ let logger = getDcLogger()
 
 class ShareViewController: SLComposeServiceViewController {
 
-    let dcAccounts: DcAccounts = DcAccounts()
+    let dcAccounts: DcAccounts = getDcAccounts()
     lazy var dcContext: DcContext = {
         return dcAccounts.getSelected()
     }()
