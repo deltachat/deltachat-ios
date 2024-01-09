@@ -2,7 +2,12 @@ import Foundation
 import UIKit
 import AVFoundation
 
+private let dcAccounts = DcAccounts()
 private var encryptedDatabases: [Int: Bool] = [:]
+
+public func getDcAccounts() -> DcAccounts {
+    return dcAccounts
+}
 
 public class DcAccounts {
 
@@ -109,6 +114,15 @@ public class DcAccounts {
             dc_accounts_unref(accountsPointer)
             accountsPointer = nil
         }
+    }
+
+    public func blockingCall(json: String) -> Data? {
+        if let cString = dc_jsonrpc_blocking_call(rpcPointer, json) {
+            let swiftString = String(cString: cString)
+            dc_str_unref(cString)
+            return swiftString.data(using: .utf8)
+        }
+        return nil
     }
 }
 
@@ -462,6 +476,13 @@ public class DcContext {
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
+    }
+
+    public func getMessageReactions(messageId: Int) -> DcReactions? {
+        if let data = dcAccounts.blockingCall(json: "{\"jsonrpc\":\"2.0\",\"method\":\"get_message_reactions\",\"params\":[\(id),\(messageId)],\"id\":1}") {
+            return try? JSONDecoder().decode(DcReactionResult.self, from: data).result
+        }
+        return nil
     }
 
     public func deleteMessage(msgId: Int) {
@@ -1536,6 +1557,21 @@ public class DcProvider {
         dc_str_unref(cString)
         return swiftString
     }
+}
+
+public struct DcReaction: Decodable {
+    let count: Int
+    let emoji: String
+    let isFromSelf: Bool
+}
+
+public struct DcReactions: Decodable {
+    let reactions: [DcReaction]
+    let reactionsByContact: [Int: [String]]
+}
+
+struct DcReactionResult: Decodable {
+    let result: DcReactions
 }
 
 public enum MessageViewType: CustomStringConvertible {
