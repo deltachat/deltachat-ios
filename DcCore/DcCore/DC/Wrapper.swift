@@ -10,15 +10,14 @@ public class DcAccounts {
     /// The ID is created in the apple developer portal and can be changed there.
     let applicationGroupIdentifier = "group.chat.delta.ios"
     var accountsPointer: OpaquePointer?
+    var rpcPointer: OpaquePointer?
     public var fetchSemaphore: DispatchSemaphore?
 
     public init() {
     }
 
     deinit {
-        if accountsPointer == nil { return }
-        dc_accounts_unref(accountsPointer)
-        accountsPointer = nil
+        closeDatabase()
     }
 
     public func migrate(dbLocation: String) -> Int {
@@ -95,12 +94,21 @@ public class DcAccounts {
                 let dcContext = get(id: accountId)
                 dcContext.setConfig("verified_one_on_one_chats", "1")
             }
+
+            rpcPointer = dc_jsonrpc_init(accountsPointer)
         }
     }
 
     public func closeDatabase() {
-        dc_accounts_unref(accountsPointer)
-        accountsPointer = nil
+        if rpcPointer != nil {
+            dc_jsonrpc_unref(rpcPointer)
+            rpcPointer = nil
+        }
+
+        if accountsPointer != nil {
+            dc_accounts_unref(accountsPointer)
+            accountsPointer = nil
+        }
     }
 }
 
