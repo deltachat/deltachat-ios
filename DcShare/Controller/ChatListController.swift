@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import DcCore
 
-protocol ChatListDelegate: class {
+protocol ChatListDelegate: AnyObject {
     func onChatSelected(chatId: Int)
 }
 

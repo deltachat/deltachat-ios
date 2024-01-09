@@ -1,10 +1,10 @@
 import UIKit
 
-protocol QrCodeReaderDelegate: class {
+protocol QrCodeReaderDelegate: AnyObject {
     func handleQrCode(_ code: String)
 }
 
-protocol ContactListDelegate: class {
+protocol ContactListDelegate: AnyObject {
     func accessGranted()
     func accessDenied()
     func deviceContactsImported()

@@ -51,6 +51,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             case .restricted, .denied:
                 logger.error("Location permission rejected: \(authStatus)")
                 return false
+            @unknown default:
+                assertionFailure("")
+                return false
             }
         } else {
             dcContext.sendLocationsToChat(chatId: chatId, seconds: duration)

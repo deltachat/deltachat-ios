@@ -3,7 +3,7 @@ import SCSiriWaveformView
 import AVKit
 import DcCore
 
-protocol AudioRecorderControllerDelegate: class {
+protocol AudioRecorderControllerDelegate: AnyObject {
     func didFinishAudioAtPath(path: String)
     func didClose()
 }

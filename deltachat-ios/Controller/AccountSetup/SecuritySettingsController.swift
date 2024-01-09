@@ -33,9 +33,9 @@ class SecuritySettingsController: UITableViewController {
         self.dcContext = dcContext
         switch securityType {
         case .IMAPSecurity:
-            selectedIndex = options.index(of: Int32(dcContext.getConfigInt("mail_security"))) ?? 0
+            selectedIndex = options.firstIndex(of: Int32(dcContext.getConfigInt("mail_security"))) ?? 0
         case .SMTPSecurity:
-            selectedIndex = options.index(of: Int32(dcContext.getConfigInt("send_security"))) ?? 0
+            selectedIndex = options.firstIndex(of: Int32(dcContext.getConfigInt("send_security"))) ?? 0
         }
         super.init(style: .grouped)
         self.title = title

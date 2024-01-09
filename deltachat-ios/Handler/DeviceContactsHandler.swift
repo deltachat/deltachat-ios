@@ -98,6 +98,8 @@ class DeviceContactsHandler {
                     }
                 }
             }
+        @unknown default:
+            assertionFailure("")
         }
     }
 }

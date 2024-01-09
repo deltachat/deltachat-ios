@@ -56,7 +56,7 @@ class DownloadOnDemandViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
 
-        if let lastSelectedIndex = options.index(of: dcContext.getConfigInt("download_limit")) {
+        if let lastSelectedIndex = options.firstIndex(of: dcContext.getConfigInt("download_limit")) {
             let oldSelectedCell = tableView.cellForRow(at: IndexPath.init(row: lastSelectedIndex, section: 0))
             oldSelectedCell?.accessoryType = .none
         }

@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-public protocol ChatSearchDelegate: class {
+public protocol ChatSearchDelegate: AnyObject {
     func onSearchPreviousPressed()
     func onSearchNextPressed()
 }

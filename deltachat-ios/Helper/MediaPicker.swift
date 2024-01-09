@@ -3,7 +3,7 @@ import Photos
 import MobileCoreServices
 import DcCore
 
-protocol MediaPickerDelegate: class {
+protocol MediaPickerDelegate: AnyObject {
     func onImageSelected(image: UIImage)
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
@@ -86,6 +86,8 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
                         print("denied")
                     case .authorized, .limited:
                         self?.presentPhotoVideoLibrary()
+                    @unknown default:
+                        assertionFailure("")
                     }
                 }
             }

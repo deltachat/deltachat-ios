@@ -11,7 +11,7 @@ import SDWebImage
 // where 15mb already result in "high watermark memory limit exceeded" crash.
 let maxAttachmentBytes = 12 * 1024 * 1024
 
-protocol ShareAttachmentDelegate: class {
+protocol ShareAttachmentDelegate: AnyObject {
     func onAttachmentChanged()
     func onThumbnailChanged()
     func onUrlShared(url: URL)

@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol ChatListEditingBarDelegate: class {
+public protocol ChatListEditingBarDelegate: AnyObject {
     func onPinButtonPressed()
     func onDeleteButtonPressed()
     func onArchiveButtonPressed()

@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-public protocol ChatEditingDelegate: class {
+public protocol ChatEditingDelegate: AnyObject {
     func onDeletePressed()
     func onForwardPressed()
     func onCancelPressed()

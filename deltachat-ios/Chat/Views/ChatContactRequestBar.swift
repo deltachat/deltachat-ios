@@ -7,7 +7,7 @@ public enum NotAcceptMeaning: Error {
     case info
 }
 
-public protocol ChatContactRequestDelegate: class {
+public protocol ChatContactRequestDelegate: AnyObject {
     func onAcceptRequest()
     func onBlockRequest()
     func onDeleteRequest()

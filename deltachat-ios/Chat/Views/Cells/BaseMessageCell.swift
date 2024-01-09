@@ -641,7 +641,7 @@ extension BaseMessageCell: SelectableCell {
 
 // MARK: - BaseMessageCellDelegate
 // this delegate contains possible events from base cells or from derived cells
-public protocol BaseMessageCellDelegate: class {
+public protocol BaseMessageCellDelegate: AnyObject {
     func commandTapped(command: String, indexPath: IndexPath) // `/command`
     func phoneNumberTapped(number: String, indexPath: IndexPath)
     func urlTapped(url: URL, indexPath: IndexPath) // url is eg. `https://foo.bar`

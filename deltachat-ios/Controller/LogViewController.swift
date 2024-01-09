@@ -64,6 +64,7 @@ public class LogViewController: UIViewController {
         case .restricted: val = "restricted"
         case .available: val = "available"
         case .denied: val = "denied"
+        @unknown default: assertionFailure("")
         }
         info += "backgroundRefreshStatus=\(val)\n"
 

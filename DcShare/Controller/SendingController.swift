@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-protocol SendingControllerDelegate: class {
+protocol SendingControllerDelegate: AnyObject {
     func onSendingAttemptFinished()
 }
 
