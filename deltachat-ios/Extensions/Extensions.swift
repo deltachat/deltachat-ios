@@ -99,7 +99,7 @@ extension UINavigationController {
 
 extension UILabel {
     func offsetOfSubstring(_ substring: String) -> CGFloat {
-        guard let text = text else {
+        guard let text, let font else {
             return 0
         }
 

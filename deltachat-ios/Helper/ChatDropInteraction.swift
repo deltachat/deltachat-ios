@@ -99,7 +99,7 @@ public class ChatDropInteraction {
     }
 }
 
-public protocol ChatDropInteractionDelegate: class {
+public protocol ChatDropInteractionDelegate: AnyObject {
     func onImageDragAndDropped(image: UIImage)
     func onVideoDragAndDropped(url: NSURL)
     func onFileDragAndDropped(url: NSURL)

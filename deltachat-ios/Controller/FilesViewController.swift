@@ -266,7 +266,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - coordinator
 extension FilesViewController {
     func showPreview(msgId: Int) {
-        guard let index = fileMessageIds.index(of: msgId) else {
+        guard let index = fileMessageIds.firstIndex(of: msgId) else {
             return
         }
         let previewController = PreviewController(dcContext: dcContext, type: .multi(fileMessageIds, index))

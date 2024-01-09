@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-public protocol DraftPreviewDelegate: class {
+public protocol DraftPreviewDelegate: AnyObject {
     func onAttachmentAdded()
     func onCancelAttachment()
     func onCancelQuote()

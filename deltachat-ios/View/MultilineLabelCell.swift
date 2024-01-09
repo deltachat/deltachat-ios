@@ -93,7 +93,7 @@ extension MultilineLabelCell: MessageLabelDelegate {
     public func didSelectCustom(_ pattern: String, match: String?) {}
 }
 
-public protocol MultilineLabelCellDelegate: class {
+public protocol MultilineLabelCellDelegate: AnyObject {
     func phoneNumberTapped(number: String)
     func urlTapped(url: URL)
 }

@@ -44,6 +44,6 @@ extension ChatInputTextView: UIDropInteractionDelegate {
     }
 }
 
-public protocol ChatInputTextViewPasteDelegate: class {
+public protocol ChatInputTextViewPasteDelegate: AnyObject {
     func onImagePasted(image: UIImage)
 }

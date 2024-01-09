@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-protocol ContactCellDelegate: class {
+protocol ContactCellDelegate: AnyObject {
     func onLongTap(at indexPath: IndexPath)
 }
 

@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-protocol GroupMemberSelectionDelegate: class {
+protocol GroupMemberSelectionDelegate: AnyObject {
     func selected(contactId: Int, selected: Bool)
 }
 

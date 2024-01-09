@@ -744,6 +744,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 applicationInForeground = false
             case .active:
                 applicationInForeground = true
+            @unknown default:
+                applicationInForeground = false
             }
         }
         return applicationInForeground
