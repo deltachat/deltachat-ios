@@ -13,12 +13,14 @@ class ProfileInfoViewController: UITableViewController {
     }()
 
     private lazy var doneButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(
+        let button = UIBarButtonItem(
             title: String.localized("done"),
             style: .done,
             target: self,
             action: #selector(doneButtonPressed(_:))
         )
+        button.isEnabled = false
+        return button
     }()
 
     private lazy var avatarCell: AvatarSelectionCell = {
@@ -32,7 +34,9 @@ class ProfileInfoViewController: UITableViewController {
         cell.placeholder = String.localized("pref_your_name")
         cell.setText(text: dcContext.displayname)
         cell.onTextFieldChange = {[weak self] textField in
-            self?.displayName = textField.text
+            guard let self else { return }
+            self.displayName = textField.text
+            self.doneButtonItem.isEnabled = !(self.displayName?.isEmpty ?? true)
         }
         cell.textField.returnKeyType = .default
         return cell
