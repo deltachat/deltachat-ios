@@ -59,7 +59,7 @@ class ChatTitleView: UIStackView {
         titleLabel.textColor = DcColors.defaultTextColor
         verifiedView.isHidden = !isVerified
 
-        if let subtitle = subtitle {
+        if let subtitle {
             subtitleLabel.text = subtitle
             subtitleLabel.textColor = DcColors.defaultTextColor.withAlphaComponent(0.95)
             subtitleLabel.isHidden = false
