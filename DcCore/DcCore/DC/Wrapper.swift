@@ -117,7 +117,8 @@ public class DcAccounts {
     }
 
     @discardableResult
-    public func blockingCall(json: String) -> Data? {
+    public func blockingCall(method: String, params: String) -> Data? {
+        let json = "{\"jsonrpc\":\"2.0\", \"method\":\"\(method)\", \"params\":[\(params)], \"id\":1}" // params need to be escaped properly
         if let cString = dc_jsonrpc_blocking_call(rpcPointer, json) {
             let swiftString = String(cString: cString)
             dc_str_unref(cString)
@@ -480,7 +481,7 @@ public class DcContext {
     }
 
     public func getMessageReactions(messageId: Int) -> DcReactions? {
-        if let data = dcAccounts.blockingCall(json: "{\"jsonrpc\":\"2.0\",\"method\":\"get_message_reactions\",\"params\":[\(id),\(messageId)],\"id\":1}") {
+        if let data = dcAccounts.blockingCall(method: "get_message_reactions", params: "\(id), \(messageId)") {
             return try? JSONDecoder().decode(DcReactionResult.self, from: data).result
         }
         return nil
@@ -488,9 +489,9 @@ public class DcContext {
 
     public func sendReaction(messageId: Int, reaction: String?) {
         if let reaction = reaction {
-            dcAccounts.blockingCall(json: "{\"jsonrpc\":\"2.0\",\"method\":\"send_reaction\",\"params\":[\(id),\(messageId),[\"\(reaction)\"]],\"id\":1}")
+            dcAccounts.blockingCall(method: "send_reaction", params: "\(id), \(messageId), [\"\(reaction)\"]")
         } else {
-            dcAccounts.blockingCall(json: "{\"jsonrpc\":\"2.0\",\"method\":\"send_reaction\",\"params\":[\(id),\(messageId),[]],\"id\":1}")
+            dcAccounts.blockingCall(method: "send_reaction", params: "\(id), \(messageId), []")
         }
     }
 
