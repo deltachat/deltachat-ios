@@ -17,6 +17,7 @@ class ReactionsView: UIControl {
         reactionsStackView = UIStackView()
         reactionsStackView.axis = .horizontal
         reactionsStackView.translatesAutoresizingMaskIntoConstraints = false
+        reactionsStackView.spacing = 2
 
         super.init(frame: .zero)
 
@@ -38,18 +39,17 @@ class ReactionsView: UIControl {
     }
 
     public func configure(with reactions: DcReactions) {
-        let emojis = reactions.reactions.map { $0.emoji }.prefix(5)
-        // TODO: check for more than 5 emojis
-
-        let subviews = emojis.map { emoji in
-            // TODO: Replace with custom EmojiView with a border and stuff
-            let label = UILabel()
-            label.text = emoji
-            return label
+        let subviews = reactions.reactions.prefix(5).map { reaction in
+            let emojiView = EmojiView()
+            emojiView.configure(with: reaction)
+            return emojiView
         }
 
         reactionsStackView.replaceSubviews(with: subviews)
+    }
 
+    public func prepareForReuse() {
+        reactionsStackView.replaceSubviews(with: [])
     }
 }
 
