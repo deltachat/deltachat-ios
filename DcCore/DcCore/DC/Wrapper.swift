@@ -1573,14 +1573,14 @@ public class DcProvider {
 }
 
 public struct DcReaction: Decodable {
-    let count: Int
-    let emoji: String
-    let isFromSelf: Bool
+    public let count: Int
+    public let emoji: String
+    public let isFromSelf: Bool
 }
 
 public struct DcReactions: Decodable {
-    let reactions: [DcReaction]
-    let reactionsByContact: [Int: [String]]
+    public let reactions: [DcReaction]
+    public let reactionsByContact: [Int: [String]]
 }
 
 struct DcReactionResult: Decodable {

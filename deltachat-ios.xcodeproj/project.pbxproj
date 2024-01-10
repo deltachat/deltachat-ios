@@ -203,6 +203,7 @@
 		B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4256F265C325C00B95377 /* MultilineLabelCell.swift */; };
 		B2D4B63B29C38D1900B47DA8 /* ChatsAndMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */; };
 		B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F899E029F96A67003797D5 /* AllMediaViewController.swift */; };
+		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -560,6 +561,7 @@
 		B2F899E029F96A67003797D5 /* AllMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllMediaViewController.swift; sourceTree = "<group>"; };
 		B9CDCE77DAE9389E205F094C /* Pods-DcShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.release.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.release.xcconfig"; sourceTree = "<group>"; };
 		D30610767F4AF8040B739987 /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		DFBB6227B203C9B6FB5F4321 /* Pods-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.debug.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
 		E23C80FA36453692862D4A90 /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -760,6 +762,7 @@
 				303492AC2577CAC300A523D0 /* FileView.swift */,
 				303492B22577E40700A523D0 /* DocumentPreview.swift */,
 				303492CA257A814200A523D0 /* DraftArea.swift */,
+				D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1442,6 +1445,7 @@
 				7A0052C81FBE6CB40048C3BF /* NewContactController.swift in Sources */,
 				30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */,
 				AEE56D762253431E007DC082 /* AccountSetupController.swift in Sources */,
+				D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */,
 				3080A015277DDABA00E74565 /* KeyboardEvent.swift in Sources */,
 				AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */,
 				B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */,
