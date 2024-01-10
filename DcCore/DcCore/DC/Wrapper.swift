@@ -116,6 +116,7 @@ public class DcAccounts {
         }
     }
 
+    @discardableResult
     public func blockingCall(json: String) -> Data? {
         if let cString = dc_jsonrpc_blocking_call(rpcPointer, json) {
             let swiftString = String(cString: cString)
@@ -483,6 +484,14 @@ public class DcContext {
             return try? JSONDecoder().decode(DcReactionResult.self, from: data).result
         }
         return nil
+    }
+
+    public func sendReaction(messageId: Int, reaction: String?) {
+        if let reaction = reaction {
+            dcAccounts.blockingCall(json: "{\"jsonrpc\":\"2.0\",\"method\":\"send_reaction\",\"params\":[\(id),\(messageId),[\"\(reaction)\"]],\"id\":1}")
+        } else {
+            dcAccounts.blockingCall(json: "{\"jsonrpc\":\"2.0\",\"method\":\"send_reaction\",\"params\":[\(id),\(messageId),[]],\"id\":1}")
+        }
     }
 
     public func deleteMessage(msgId: Int) {
