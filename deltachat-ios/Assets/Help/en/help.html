@@ -12,7 +12,7 @@
       <li><a href="#does-delta-chat-support-html-e-mails">Does Delta Chat support HTML e-mails?</a></li>
       <li><a href="#why-do-i-have-to-enter-my-e-mail-password-into-delta-chat-is-this-secure">Why do I have to enter my E-Mail password into Delta Chat? Is this secure?</a></li>
       <li><a href="#which-permissions-does-delta-chat-need">Which permissions does Delta Chat need?</a></li>
-      <li><a href="#what-means-pinning-muting-archiving">What means Pinning, Muting, Archiving?</a></li>
+      <li><a href="#what-do-pinning-muting-and-archiving-mean">What do Pinning, Muting and Archiving mean?</a></li>
       <li><a href="#what-does-the-green-dot-mean">What does the green dot mean?</a></li>
       <li><a href="#ephemeralmsgs">How do disappearing messages work?</a></li>
       <li><a href="#how-can-i-delete-my-account">How can I delete my account?</a></li>
@@ -336,10 +336,10 @@ This is what Delta Chat does with these permissions:</p>
   </li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="what-means-pinning-muting-archiving">
+      <p class="back"><a href="#top">^</a></p><h3 id="what-do-pinning-muting-and-archiving-mean">
         
         
-          What means Pinning, Muting, Archiving? <a href="#what-means-pinning-muting-archiving" class="anchor"></a>
+          What do Pinning, Muting and Archiving mean? <a href="#what-do-pinning-muting-and-archiving-mean" class="anchor"></a>
         
         
       </h3>
@@ -406,7 +406,7 @@ message them or write to a group they’re in as well.</li>
 in the settings of a chat,
 at the top right of the chat window,
 by selecting a time span
-between 30 seconds and 5 weeks.</p>
+between 1 minute and 5 weeks.</p>
 
 <p>Until the setting is turned off again,
 each chat member’s Delta Chat app takes care
@@ -1114,11 +1114,12 @@ Caution: Make sure the key is not protected by a password, or remove the passwor
         
       </h3>
 
-<p>The most likely cause is that your key is encrypted and/or uses
-a password. Such keys are not supported by Delta Chat.  You could remove the
-passphrase encryption and the password and try the import again.  If you want
-to keep your passphrase you’ll have to create an e-mail alias for use
-with Delta Chat such that Delta Chat’s key is tied to this e-mail alias.</p>
+<p>The most likely cause is that your key is encrypted and/or uses a password.
+Such keys are not supported by Delta Chat.
+You could remove the passphrase encryption and the password and try the import again.</p>
+
+<p>Another common error is having the wrong file ending.
+Use the ASCII armored format and an <code class="language-plaintext highlighter-rouge">.asc</code> file ending.</p>
 
 <p>Delta Chat supports common OpenPGP private key formats, however, it
 is unlikely that private keys from all sources will be fully supported. This
