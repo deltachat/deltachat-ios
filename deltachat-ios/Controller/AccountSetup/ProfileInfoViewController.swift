@@ -67,11 +67,7 @@ class ProfileInfoViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        let email = dcContext.addr ?? ""
-        let footerTitle = String.localizedStringWithFormat(
-            String.localized("qraccount_success_enter_name"), email
-        )
-        return footerTitle
+        return String.localized("set_name_and_avatar_explain")
     }
 
     // MARK: - updates
