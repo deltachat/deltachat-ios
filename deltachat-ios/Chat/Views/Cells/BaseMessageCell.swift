@@ -264,7 +264,8 @@ public class BaseMessageCell: UITableViewCell {
 
         // TODO: check if it's my message: use leadingAnchor, else: use trailingAnchor
         let reactionsViewConstraints = [
-            messageBackgroundContainer.trailingAnchor.constraint(equalTo: reactionsView.trailingAnchor, constant: -10),
+            messageBackgroundContainer.leadingAnchor.constraint(lessThanOrEqualTo: reactionsView.leadingAnchor, constant: -10),
+            messageBackgroundContainer.trailingAnchor.constraint(equalTo: reactionsView.trailingAnchor, constant: 10),
             messageBackgroundContainer.bottomAnchor.constraint(equalTo: reactionsView.bottomAnchor, constant: -15)
         ]
 
@@ -583,6 +584,7 @@ public class BaseMessageCell: UITableViewCell {
         quoteView.prepareForReuse()
         actionButton.isEnabled = true
         showSelectionBackground = false
+        reactionsView.prepareForReuse()
     }
 
     // MARK: - Context menu
