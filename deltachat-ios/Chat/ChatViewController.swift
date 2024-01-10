@@ -1029,7 +1029,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             navigationItem.title = String.localized(stringID: "n_selected", count: cnt)
             self.navigationItem.setLeftBarButton(cancelButton, animated: true)
         } else {
-            var subtitle = ""
+            let subtitle: String?
             let chatContactIds = dcChat.getContactIds(dcContext)
             if dcChat.isMailinglist {
                 subtitle = String.localized("mailing_list")
@@ -1041,8 +1041,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 subtitle = String.localized("device_talk_subtitle")
             } else if dcChat.isSelfTalk {
                 subtitle = String.localized("chat_self_talk_subtitle")
-            } else if chatContactIds.count >= 1 {
+            } else if !dcChat.isProtected && chatContactIds.count >= 1 {
                 subtitle = dcContext.getContact(id: chatContactIds[0]).email
+            } else {
+                subtitle = nil
             }
 
             titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected)
