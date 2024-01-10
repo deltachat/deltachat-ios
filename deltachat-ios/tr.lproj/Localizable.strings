@@ -323,7 +323,7 @@
 "chat_camera_unavailable" = "Kamera kullanım dışı.";
 "chat_unable_to_record_audio" = "Ses kaydedilemiyor.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "%1$@ kişisine bir ileti gönderin; Delta Chat olmadan bile onu alabilir.";
+"chat_new_one_to_one_hint" = "%1$@ kişisine bir ileti gönderin.";
 "chat_new_broadcast_hint" = "Bir yayın listesinde, alıcılar sizinle salt okunur bir sohbette iletiler alacak.";
 "chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu öbeği görecek.";
 "chat_record_slide_to_cancel" = "İptal etmek için kaydırın";
@@ -843,6 +843,7 @@
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
 "qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada giriş yapılsın mı?";
 "qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada giriş yapılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Giriş başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir hesap ayarlamak için kullanılamıyor.";
 "qraccount_use_on_new_install" = "Taranan QR kodu, yeni bir hesap ayarlamak içindir. QR kodunu yeni bir Delta Chat kurulumu ayarlanırken tarayabilirsiniz.";

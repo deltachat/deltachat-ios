@@ -323,7 +323,7 @@
 "chat_camera_unavailable" = "Máy ảnh không có sẵn.";
 "chat_unable_to_record_audio" = "Không thể ghi âm.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Gửi tin nhắn tới %1$@; họ thậm chí có thể nhận được nó mà không cần Delta Chat.";
+"chat_new_one_to_one_hint" = "Gửi tin nhắn tới %1$@.";
 "chat_new_broadcast_hint" = "Trong danh sách phát sóng, người nhận sẽ nhận được tin nhắn trong cuộc trò chuyện chỉ đọc với bạn.";
 "chat_new_group_hint" = "Những người khác sẽ chỉ nhìn thấy nhóm này sau khi bạn gửi tin nhắn đầu tiên.";
 "chat_record_slide_to_cancel" = "Trượt để hủy";
@@ -843,6 +843,7 @@
 "qrshow_join_contact_no_connection_toast" = "Không có kết nối internet, không thể thực hiện thiết lập mã QR.";
 "qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
 "qraccount_ask_create_and_login_another" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Đăng nhập thành công—địa chỉ email của bạn là %1$@\n\nNếu muốn, bây giờ bạn có thể nhập tên và ảnh hồ sơ sẽ được hiển thị cho những người mà bạn viết thư cho.";
 "qraccount_qr_code_cannot_be_used" = "Mã QR được quét không thể được sử dụng để thiết lập tài khoản mới.";
 "qraccount_use_on_new_install" = "Mã QR được quét là để thiết lập một tài khoản mới. Bạn có thể quét mã QR khi thiết lập cài đặt Delta Chat mới.";

@@ -323,7 +323,7 @@
 "chat_camera_unavailable" = "Kamera nicht verfügbar.";
 "chat_unable_to_record_audio" = "Audio kann nicht aufgenommen werden.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Senden Sie eine Nachricht. Es ist in Ordnung, wenn %1$@ kein Delta Chat hat.";
+"chat_new_one_to_one_hint" = "Senden Sie eine Nachricht an %1$@.";
 "chat_new_broadcast_hint" = "In Broadcast-Listen erhalten die Empfänger die Nachrichten in einem Nur-Lesen-Chat.";
 "chat_new_group_hint" = "Andere sehen diese Gruppe erst, nachdem Sie eine erste Nachricht gesendet haben.";
 "chat_record_slide_to_cancel" = "Schieben, um abzubrechen";
@@ -843,7 +843,10 @@
 "qrshow_join_contact_no_connection_toast" = "Keine Verbindung zum Internet, Austausch des QR-Codes nicht möglich.";
 "qraccount_ask_create_and_login" = "E-Mail-Konto auf \"%1$@\" erzeugen und dort anmelden?";
 "qraccount_ask_create_and_login_another" = "E-Mail-Konto auf \"%1$@\" erzeugen und dort anmelden?\n\nIhr bisheriges E-Mail-Konto wird dabei nicht gelöscht. Sie können mit der Option \"E-Mail-Konto wechseln\" jederzeit zwischen den Konten hin- und herschalten.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Anmeldung erfolgreich — Ihre E-Mail-Adresse ist %1$@\n\nWenn Sie mögen, können Sie nun einen Namen und ein Profilbild festlegen, der den ChatpartnerInnen angezeigt wird.";
+"set_name_and_avatar_explain" = "Legen Sie einen Namen fest, unter dem Ihre Kontakte sie kennen. Sie können auch ein Profilbild festlegen.";
+"please_enter_name" = "Bitte geben Sie einen Namen an.";
 "qraccount_qr_code_cannot_be_used" = "Der eingescannte QR-Code kann nicht dazu verwendet werden, eine neues E-Mail-Konto zu erzeugen.";
 "qraccount_use_on_new_install" = "Der gescannte QR-Code ist zum Erstellen eines neuen E-Mail-Kontos. Sie können den QR-Code nur bei einer neuen Delta Chat Installation verwenden.";
 // the placeholder will be replaced by the e-mail address of the account

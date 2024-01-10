@@ -300,7 +300,7 @@
 "chat_camera_unavailable" = "Cameră indisponibilă.";
 "chat_unable_to_record_audio" = "Nu se poate înregistra audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Trimiteți un mesaj către %1$@; ei îl pot primi chiar și fără Delta Chat.";
+"chat_new_one_to_one_hint" = "Trimiteți un mesaj către %1$@.";
 "chat_new_group_hint" = "Ceilalți vor vedea acest grup numai după ce ați trimis un prim mesaj.";
 "chat_record_slide_to_cancel" = "Glisați pentru a anula";
 "chat_record_explain" = "Atingeți continuu pentru a înregistra un mesaj vocal, apoi eliberați-l pentru a-l trimite";

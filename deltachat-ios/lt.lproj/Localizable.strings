@@ -603,6 +603,7 @@
 "qrshow_join_contact_hint" = "Nuskenuokite tai, norėdami užmegzti kontaktą su %1$@";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
 "qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Prisijungimas sėkmingas — jūsų el. pašto adresas yra %1$@\n\nJei norite, dabar galite įvesti vardą ir pridėti profilio paveikslą, kuris bus rodomas žmonėms, kuriems rašysite.";
 "qraccount_qr_code_cannot_be_used" = "Nuskenuotas QR kodas negali būti naudojamas naujos paskyros nustatymui.";
 "qraccount_use_on_new_install" = "Nuskenuotas QR kodas yra skirtas naujos paskyros nustatymui. Galite nuskenuoti QR kodą tuomet, kai nustatote naują Delta Chat diegimą.";

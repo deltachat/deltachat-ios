@@ -843,6 +843,7 @@
 "qrshow_join_contact_no_connection_toast" = "Nessuna connessione internet, impossibile effettuare l\'impostazione tramite codice QR.";
 "qraccount_ask_create_and_login" = "Creo un nuovo indirizzo email su \"%1$@\" e accedo?";
 "qraccount_ask_create_and_login_another" = "Crea un nuovo indirizzo e-mail su \"%1$@\" e accedi qui?\n\nIl tuo account esistente non verrà eliminato. Utilizza la voce \"Cambia account\" per passare da un account all\'altro.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Accesso completato—il tuo indirizzo email è %1$@\n\nSe vuoi, puoi inserire un nome e un\'immagine profilo che verranno mostrati a chi ti scrive.";
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo account.";
 "qraccount_use_on_new_install" = "Il codice QR scansionato serve a creare un nuovo account. Puoi scansionare il codice quando configuri una nuova installazione di Delta Chat.";

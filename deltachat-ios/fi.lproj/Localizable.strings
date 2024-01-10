@@ -749,6 +749,7 @@
 "qrshow_join_contact_no_connection_toast" = "Ei internetyhteyttä, QR-koodin luominen ei onnistu.";
 "qraccount_ask_create_and_login" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?";
 "qraccount_ask_create_and_login_another" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?\n\nNykyistä tiliäsi ei poisteta. Käytä valintaa \"Vaihda tiliä\" vaihtaaksesi tilien välillä.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Kirjautuminen onnistui - sähköpostiosoitteesa on %1$@\n\nVoit nyt halutessasi antaa nimen ja profiilikuvan, jotka näytetään muille kirjoittaessasi heille.";
 "qraccount_qr_code_cannot_be_used" = "Uutta tiliä ei voida luoda skannatulla QR-koodilla.";
 "qraccount_use_on_new_install" = "Skannattu QR-koodi on käytössä uuden tilin luomiseksi. Voit skannata QR-koodin uuden Delta Chat -asennuksen yhteydessä.";

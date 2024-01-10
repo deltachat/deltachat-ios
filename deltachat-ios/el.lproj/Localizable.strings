@@ -292,7 +292,7 @@
 "chat_camera_unavailable" = "Η κάμερα δεν είναι διαθέσιμη.";
 "chat_unable_to_record_audio" = "Αδυναμία εγγραφής ήχου.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Στείλτε ένα μήνυμα σε %1$@, και μπορούν να το λάβουν ακόμη και χωρίς Delta Chat.";
+"chat_new_one_to_one_hint" = "Στείλτε ένα μήνυμα σε %1$@.";
 "chat_new_group_hint" = "Οι άλλοι θα δουν αυτήν την ομάδα μόνο αφού στείλετε ένα πρώτο μήνυμα.";
 "chat_record_slide_to_cancel" = "Σύρε για ακύρωση";
 "chat_record_explain" = "Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα φωνητικό μήνυμα, άφησε το κουμπί για αποστολή";
@@ -749,6 +749,7 @@
 "qrshow_join_contact_no_connection_toast" = "Δεν υπάρχει σύνδεση στο διαδίκτυο, δεν είναι δυνατή η ρύθμιση κωδικού QR.";
 "qraccount_ask_create_and_login" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;";
 "qraccount_ask_create_and_login_another" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Επιτυχής σύνδεση—η διεύθυνση e-mail σας είναι %1$@\n\nΑν θέλετε, μπορείτε τώρα να εισαγάγετε ένα όνομα και μια εικόνα προφίλ που θα εμφανίζονται στα άτομα στα οποία γράφετε.";
 "qraccount_qr_code_cannot_be_used" = "Ο σαρωμένος κωδικός QR δεν μπορεί να χρησιμοποιηθεί για τη δημιουργία νέου λογαριασμού.";
 "qraccount_use_on_new_install" = "Ο σαρωμένος κωδικός QR προορίζεται για τη δημιουργία νέου λογαριασμού. Μπορείτε να σαρώσετε τον κωδικό QR όταν ρυθμίζετε μια νέα εγκατάσταση Delta Chat.";

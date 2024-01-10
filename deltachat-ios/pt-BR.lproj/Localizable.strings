@@ -306,7 +306,7 @@
 "chat_camera_unavailable" = "Câmera indisponível.";
 "chat_unable_to_record_audio" = "Impossível gravar áudio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Envie uma mensagem. Tudo bem se %1$@ não usar o Chat Delta.  ";
+"chat_new_one_to_one_hint" = "Envie uma mensagem. Tudo bem se %1$@ não usar o Chat Delta.";
 "chat_new_group_hint" = "Compor a primeira mensagem habilitará os participantes a ingressar no grupo.\n\n• Não tem problema se nem todos usarem o Delta Chat.\n\n• O envio da primeira mensagem pode demorar.";
 "chat_record_slide_to_cancel" = "Deslize para cancelar";
 "chat_record_explain" = "Toque e segure para gravar uma mensagem de voz e, depois, solte para enviar";
@@ -795,6 +795,7 @@
 "qrshow_join_contact_no_connection_toast" = "Sem conexão à rede não é possível realizar configuração por código QR.";
 "qraccount_ask_create_and_login" = "Criar novo endereço de e-mail em \"%1$@\" e entrar nele?";
 "qraccount_ask_create_and_login_another" = "Criar novo endereço de e-mail em \"%1$@\"  e entrar nele?\n\n nSua conta existente não será excluída. Use o item \"Trocar conta\" para alternar entre suas contas.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Entrada bem-sucedida - seu endereço de e-mail é %1$@\n\nSe desejar, agora você pode inserir um nome e uma imagem do perfil que será exibida para as pessoas para quem você escrever.";
 "qraccount_qr_code_cannot_be_used" = "O código QR lido não pode ser usado para configurar uma nova conta.";
 "qraccount_use_on_new_install" = "O código QR digitalizado é para configurar uma nova conta. Você pode ler o código QR ao configurar uma nova instalação Delta Chat.";

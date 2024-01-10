@@ -745,6 +745,7 @@
 "qrshow_join_contact_no_connection_toast" = "Nie je pripojenie na internet, nedá sa nastaviť kód QR.";
 "qraccount_ask_create_and_login" = "Vytvoriť novú e-mailovú adresu na „%1$@“ a prihlásiť sa tam?";
 "qraccount_ask_create_and_login_another" = "Vytvorte novú e-mailovú adresu na „%1$@“ a prihláste sa tam?\n\nVáš existujúci účet nebude odstránený. Medzi položkami môžete prepínať pomocou položky „Prepnúť účet“.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Prihlásenie bolo úspešné - vaša e-mailová adresa je %1$@\n\nlf chcete, teraz môžete zadať meno a profilový obrázok, ktoré sa zobrazia ľuďom, s ktorými si píšete.";
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na založenie nového účtu.";
 "qraccount_use_on_new_install" = "Naskenovaný QR kód slúži na založenie nového účtu. QR kód môžete naskenovať pri nastavovaní novej inštalácie Delta Chat.";

@@ -840,6 +840,7 @@
 "qrshow_join_contact_no_connection_toast" = "S\’ka lidhje në internet, s\’bëhet dot ujdisja e kodit QR.";
 "qraccount_ask_create_and_login" = "Të krijohet adresë email e re te \"%1$@\" dhe të bëhet hyrja atje?";
 "qraccount_ask_create_and_login_another" = "Të krijohet adresë e re email në \"%1$@\" dhe të bëhet hyrja atje?\n\nLlogaria juaj ekzistuese s’do të fshihet. Që të kaloni nga një llogari në tjetrën, përdorni zërin \"Ndërroni llogari\".";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Hyrje e suksesshme—adresa juaj email është %1$@\n\nNëse doni, tani mund të jepni një emër dhe një figurë avatari që do t’u shfaqet personave që ju shkruajnë.";
 "qraccount_qr_code_cannot_be_used" = "Kodi QR i skanuar s’mund të përdoret për të ujdisur një llogari të re.";
 "qraccount_use_on_new_install" = "Kodi QR i skanuar është për ujdisje të një llogarie të re. Kodin QR mund ta skanoni kur ujdisni një instalim të ri të Delta Chat-it.";

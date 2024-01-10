@@ -291,7 +291,7 @@
 "chat_camera_unavailable" = "카메라를 사용할 수 없습니다.";
 "chat_unable_to_record_audio" = "오디오를 녹음할 수 없습니다.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "%1$@에게 메시지를 보냅니다. Delta Chat 없이도 메시지를 받을 수 있습니다.";
+"chat_new_one_to_one_hint" = "%1$@에게 메시지를 보냅니다.";
 "chat_new_group_hint" = "당신이 첫 번째 메시지를 보낸 후에만 다른 사용자들이 이 그룹을 볼 것입니다.";
 "chat_record_slide_to_cancel" = "밀어서 취소";
 "chat_record_explain" = "꾹 눌러 음성 메시지를 녹음하고, 떼서 보내시오";
@@ -726,6 +726,7 @@
 "qrshow_join_contact_no_connection_toast" = "인터넷에 연결되어 있지 않아 QR 코드 설정을 수행할 수 없습니다.";
 "qraccount_ask_create_and_login" = "\"%1$@\"에서 새 이메일 주소를 만들고 로그인하시겠습니까?";
 "qraccount_ask_create_and_login_another" = "\"%1$@\"에서 새 이메일 주소를 만들고 로그인하시겠습니까?\n\n기존 계정은 삭제되지 않습니다. 계정 전환 항목을 사용하여 계정 간을 전환합니다.";
+// deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "로그인 성공—이메일 주소는 %1$@입니다 \n\n원하는 경우, 이제 다름 사람에게 표시할 이름과 프로필 이미지를 입력할 수 있습니다.";
 "qraccount_qr_code_cannot_be_used" = "스캔한 QR 코드를 사용하여 새 계정을 설정할 수 없습니다.";
 "qraccount_use_on_new_install" = "스캔한 QR 코드는 새 계정을 설정하기 위한 것입니다. 새 델타 채팅 설치를 설정할 때 QR 코드를 스캔할 수 있습니다.";
