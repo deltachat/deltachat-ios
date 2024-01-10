@@ -491,7 +491,7 @@ public class DcContext {
     }
 
     public func sendReaction(messageId: Int, reaction: String?) {
-        if let reaction = reaction {
+        if let reaction {
             dcAccounts.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [reaction] as AnyObject])
         } else {
             dcAccounts.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [] as AnyObject])
