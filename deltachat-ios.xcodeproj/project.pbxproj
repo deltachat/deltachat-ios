@@ -1093,7 +1093,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1500;
-				ORGANIZATIONNAME = "Jonas Reinsch";
+				ORGANIZATIONNAME = "merlinux GmbH";
 				TargetAttributes = {
 					30E8F20F2447285600CE2C90 = {
 						CreatedOnToolsVersion = 11.4;
