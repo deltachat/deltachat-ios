@@ -117,12 +117,15 @@ public class DcAccounts {
     }
 
     @discardableResult
-    public func blockingCall(method: String, params: String) -> Data? {
-        let json = "{\"jsonrpc\":\"2.0\", \"method\":\"\(method)\", \"params\":[\(params)], \"id\":1}" // params need to be escaped properly
-        if let cString = dc_jsonrpc_blocking_call(rpcPointer, json) {
-            let swiftString = String(cString: cString)
-            dc_str_unref(cString)
-            return swiftString.data(using: .utf8)
+    public func blockingCall(method: String, params: [AnyObject]) -> Data? {
+        if let paramsData = try? JSONSerialization.data(withJSONObject: params),
+           let paramsStr = String(data: paramsData, encoding: .utf8) {
+            let inStr = "{\"jsonrpc\":\"2.0\", \"method\":\"\(method)\", \"params\":\(paramsStr), \"id\":1}"
+            if let outCStr = dc_jsonrpc_blocking_call(rpcPointer, inStr) {
+                let outStr = String(cString: outCStr)
+                dc_str_unref(outCStr)
+                return outStr.data(using: .utf8)
+            }
         }
         return nil
     }
@@ -481,7 +484,7 @@ public class DcContext {
     }
 
     public func getMessageReactions(messageId: Int) -> DcReactions? {
-        if let data = dcAccounts.blockingCall(method: "get_message_reactions", params: "\(id), \(messageId)") {
+        if let data = dcAccounts.blockingCall(method: "get_message_reactions", params: [id as AnyObject, messageId as AnyObject]) {
             return try? JSONDecoder().decode(DcReactionResult.self, from: data).result
         }
         return nil
@@ -489,9 +492,9 @@ public class DcContext {
 
     public func sendReaction(messageId: Int, reaction: String?) {
         if let reaction = reaction {
-            dcAccounts.blockingCall(method: "send_reaction", params: "\(id), \(messageId), [\"\(reaction)\"]")
+            dcAccounts.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [reaction] as AnyObject])
         } else {
-            dcAccounts.blockingCall(method: "send_reaction", params: "\(id), \(messageId), []")
+            dcAccounts.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [] as AnyObject])
         }
     }
 
