@@ -5,6 +5,7 @@ public class BaseMessageCell: UITableViewCell {
 
     // horizontal message constraints for received messages
     private var leadingConstraint: NSLayoutConstraint?
+    private var bottomConstraint: NSLayoutConstraint?
     private var trailingConstraint: NSLayoutConstraint?
     private var trailingConstraintEditingMode: NSLayoutConstraint?
     private var leadingConstraintGroup: NSLayoutConstraint?
@@ -170,10 +171,16 @@ public class BaseMessageCell: UITableViewCell {
         container.isUserInteractionEnabled = true
         return container
     }()
-    
+
+    private let reactionsView: ReactionsView
+
     private var showSelectionBackground: Bool
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+
+        reactionsView = ReactionsView()
+        reactionsView.translatesAutoresizingMaskIntoConstraints = false
+
         showSelectionBackground = false
         showBottomLabelBackground = false
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
@@ -205,7 +212,6 @@ public class BaseMessageCell: UITableViewCell {
             topLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
             topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
-            messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3),
             actionButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
             bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
             bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
@@ -214,6 +220,8 @@ public class BaseMessageCell: UITableViewCell {
         ])
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
+        bottomConstraint = messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3)
+        bottomConstraint?.isActive = true
         leadingConstraintGroup = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: 2)
         trailingConstraint = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 50)
         trailingConstraintEditingMode = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 6)
@@ -229,7 +237,7 @@ public class BaseMessageCell: UITableViewCell {
         mainContentBelowTopLabelConstraint = mainContentView.constraintToBottomOf(topLabel, paddingTop: 6)
         mainContentUnderTopLabelConstraint = mainContentView.constraintAlignTopTo(messageBackgroundContainer)
         mainContentAboveActionBtnConstraint = actionButton.constraintToBottomOf(mainContentView, paddingTop: 8, priority: .defaultHigh)
-        mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
+        mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 20, priority: .defaultHigh)
 
         actionBtnZeroHeightConstraint = actionButton.constraintHeightTo(0)
         actionBtnTrailingConstraint = actionButton.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 12)
@@ -238,7 +246,6 @@ public class BaseMessageCell: UITableViewCell {
         bottomCompactView = false
         showBottomLabelBackground = false
         isActionButtonHidden = true
-        
 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onAvatarTapped))
         gestureRecognizer.numberOfTapsRequired = 1
@@ -251,6 +258,17 @@ public class BaseMessageCell: UITableViewCell {
         let quoteViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onQuoteTapped))
         quoteViewGestureRecognizer.numberOfTapsRequired = 1
         quoteView.addGestureRecognizer(quoteViewGestureRecognizer)
+
+
+        contentView.addSubview(reactionsView)
+
+        // TODO: check if it's my message: use leadingAnchor, else: use trailingAnchor
+        let reactionsViewConstraints = [
+            messageBackgroundContainer.trailingAnchor.constraint(equalTo: reactionsView.trailingAnchor, constant: -10),
+            messageBackgroundContainer.bottomAnchor.constraint(equalTo: reactionsView.bottomAnchor, constant: -15)
+        ]
+
+        NSLayoutConstraint.activate(reactionsViewConstraints)
 
     }
 
@@ -451,6 +469,15 @@ public class BaseMessageCell: UITableViewCell {
 
         messageLabel.delegate = self
         accessibilityLabel = configureAccessibilityString(message: msg)
+
+        if let reactions = dcContext.getMessageReactions(messageId: msg.id) {
+            reactionsView.isHidden = false
+            reactionsView.configure(with: reactions)
+            bottomConstraint?.constant = -18
+        } else {
+            reactionsView.isHidden = true
+            bottomConstraint?.constant = -3
+        }
     }
 
     private func getFormattedText(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
