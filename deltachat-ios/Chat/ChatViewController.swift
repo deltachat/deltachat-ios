@@ -2199,6 +2199,21 @@ extension ChatViewController: BaseMessageCellDelegate {
         let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: message.fromContactId)
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
+
+    @objc func reactionsTapped(indexPath: IndexPath) {
+        guard let reactions = dcContext.getMessageReactions(messageId: messageIds[indexPath.row]) else { return }
+
+        let reactionsOverview = ReactionsOverviewViewController(reactions: reactions)
+        let navigationController = UINavigationController(rootViewController: reactionsOverview)
+        if #available(iOS 15.0, *) {
+            if let sheet = navigationController.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 20
+            }
+        }
+
+        self.present(navigationController, animated: true)
+    }
 }
 
 // MARK: - MediaPickerDelegate

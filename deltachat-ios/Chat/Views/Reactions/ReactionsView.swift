@@ -18,6 +18,7 @@ class ReactionsView: UIControl {
         reactionsStackView.axis = .horizontal
         reactionsStackView.translatesAutoresizingMaskIntoConstraints = false
         reactionsStackView.spacing = 2
+        reactionsStackView.isUserInteractionEnabled = false
 
         super.init(frame: .zero)
 
