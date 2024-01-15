@@ -184,6 +184,8 @@ public class BaseMessageCell: UITableViewCell {
         showSelectionBackground = false
         showBottomLabelBackground = false
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+
+        reactionsView.addTarget(self, action: #selector(BaseMessageCell.reactionsViewTapped(_:)), for: .touchUpInside)
         clipsToBounds = false
         backgroundColor = .none
         setupSubviews()
@@ -625,8 +627,15 @@ public class BaseMessageCell: UITableViewCell {
                                            withSender: sender)
         }
     }
+
+    @objc func reactionsViewTapped(_ sender: Any?) {
+        guard let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) else { return }
+
+        baseDelegate?.reactionsTapped(indexPath: indexPath)
+    }
 }
 
+// MARK: - MessageLabelDelegate
 extension BaseMessageCell: MessageLabelDelegate {
     public func didSelectAddress(_ addressComponents: [String: String]) {}
 
@@ -679,4 +688,5 @@ public protocol BaseMessageCellDelegate: AnyObject {
     func textTapped(indexPath: IndexPath)
     func quoteTapped(indexPath: IndexPath)
     func actionButtonTapped(indexPath: IndexPath)
+    func reactionsTapped(indexPath: IndexPath)
 }
