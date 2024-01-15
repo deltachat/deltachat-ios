@@ -55,7 +55,10 @@ class ReactionsView: UIControl {
 
 extension UIStackView {
     public func replaceSubviews(with newSubviews: [UIView]) {
-        arrangedSubviews.forEach { [weak self] in self?.removeArrangedSubview($0) }
+        arrangedSubviews.forEach { [weak self] in
+            $0.removeFromSuperview()
+            self?.removeArrangedSubview($0)
+        }
         newSubviews.forEach { [weak self] in self?.addArrangedSubview($0) }
     }
 }
