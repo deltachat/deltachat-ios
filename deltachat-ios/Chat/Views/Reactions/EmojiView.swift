@@ -19,12 +19,7 @@ class EmojiView: UIView {
 
         super.init(frame: .zero)
 
-        layer.borderWidth = 2
-        if #available(iOS 13.0, *) {
-            layer.borderColor = UIColor.label.cgColor
-        } else {
-            layer.borderColor = UIColor.black.cgColor
-        }
+        layer.borderWidth = 0
         layer.cornerRadius = 10
 
         addSubview(emojiLabel)
@@ -35,10 +30,10 @@ class EmojiView: UIView {
 
     private func setupConstraints() {
         let constraints = [
-            emojiLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2),
-            emojiLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
-            trailingAnchor.constraint(equalTo: emojiLabel.trailingAnchor, constant: 2),
-            bottomAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: 2),
+            emojiLabel.topAnchor.constraint(equalTo: topAnchor, constant: 3),
+            emojiLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 3),
+            trailingAnchor.constraint(equalTo: emojiLabel.trailingAnchor, constant: 3),
+            bottomAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: 3),
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -52,10 +47,17 @@ class EmojiView: UIView {
         }
 
         if reaction.isFromSelf {
-            layer.backgroundColor = UIColor.gray.cgColor
+            backgroundColor = DcColors.myReactionBackground
+            emojiLabel.textColor = DcColors.myReactionLabel
         } else {
-            layer.backgroundColor = UIColor.white.cgColor
+            backgroundColor = DcColors.reactionBackground
+            emojiLabel.textColor = DcColors.reactionLabel
         }
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        layer.borderColor = DcColors.messageSecondaryColor.cgColor
+    }
 }

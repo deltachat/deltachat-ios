@@ -266,7 +266,7 @@ public class BaseMessageCell: UITableViewCell {
         let reactionsViewConstraints = [
             messageBackgroundContainer.leadingAnchor.constraint(lessThanOrEqualTo: reactionsView.leadingAnchor, constant: -10),
             messageBackgroundContainer.trailingAnchor.constraint(equalTo: reactionsView.trailingAnchor, constant: 10),
-            messageBackgroundContainer.bottomAnchor.constraint(equalTo: reactionsView.bottomAnchor, constant: -15)
+            messageBackgroundContainer.bottomAnchor.constraint(equalTo: reactionsView.bottomAnchor, constant: -20)
         ]
 
         NSLayoutConstraint.activate(reactionsViewConstraints)
@@ -474,7 +474,7 @@ public class BaseMessageCell: UITableViewCell {
         if let reactions = dcContext.getMessageReactions(messageId: msg.id) {
             reactionsView.isHidden = false
             reactionsView.configure(with: reactions)
-            bottomConstraint?.constant = -18
+            bottomConstraint?.constant = -20
         } else {
             reactionsView.isHidden = true
             bottomConstraint?.constant = -3
