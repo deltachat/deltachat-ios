@@ -19,8 +19,9 @@ class EmojiView: UIView {
 
         super.init(frame: .zero)
 
-        layer.borderWidth = 0
+        layer.borderWidth = 1
         layer.cornerRadius = 10
+        layer.borderColor = DcColors.reactionBorder.cgColor
 
         addSubview(emojiLabel)
         setupConstraints()
@@ -47,7 +48,7 @@ class EmojiView: UIView {
         }
 
         if reaction.isFromSelf {
-            backgroundColor = DcColors.myReactionBackground
+            backgroundColor = DcColors.messagePrimaryColor
             emojiLabel.textColor = DcColors.myReactionLabel
         } else {
             backgroundColor = DcColors.reactionBackground
@@ -58,6 +59,6 @@ class EmojiView: UIView {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
-        layer.borderColor = DcColors.messageSecondaryColor.cgColor
+        layer.borderColor = DcColors.reactionBorder.cgColor
     }
 }
