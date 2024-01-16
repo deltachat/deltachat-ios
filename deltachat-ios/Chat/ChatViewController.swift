@@ -2203,7 +2203,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func reactionsTapped(indexPath: IndexPath) {
         guard let reactions = dcContext.getMessageReactions(messageId: messageIds[indexPath.row]) else { return }
 
-        let reactionsOverview = ReactionsOverviewViewController(reactions: reactions)
+        let reactionsOverview = ReactionsOverviewViewController(reactions: reactions, context: dcContext)
         let navigationController = UINavigationController(rootViewController: reactionsOverview)
         if #available(iOS 15.0, *) {
             if let sheet = navigationController.sheetPresentationController {
