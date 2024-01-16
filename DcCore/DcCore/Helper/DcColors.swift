@@ -40,8 +40,8 @@ public struct DcColors {
     public static let deaddropBackground = UIColor.themeColor(light: UIColor.init(hexString: "f2f2f6"), dark: UIColor.init(hexString: "1a1a1c"))
     public static let accountSwitchBackgroundColor = UIColor.themeColor(light: UIColor.init(hexString: "65CCCCCC"), dark: UIColor.init(hexString: "65444444"))
 
-    public static let myReactionBackground = UIColor.themeColor(light: UIColor(named: "Colors/MyReactionBackground")!)
     public static let myReactionLabel = UIColor.themeColor(light: UIColor(named: "Colors/MyReactionLabel")!)
     public static let reactionBackground = UIColor.themeColor(light: UIColor(named: "Colors/ReactionBackground")!)
     public static let reactionLabel = UIColor.themeColor(light: UIColor(named: "Colors/ReactionLabel")!)
+    public static let reactionBorder = UIColor(named: "Colors/ReactionBorder")!
 }
