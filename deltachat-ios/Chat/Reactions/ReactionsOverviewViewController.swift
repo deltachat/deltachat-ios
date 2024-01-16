@@ -33,7 +33,7 @@ class ReactionsOverviewViewController: UIViewController {
 
         tableView.dataSource = self
 
-        title = "Reactions"
+        title = String.localized("reactions")
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ReactionsOverviewViewController.dismiss(_:)))
 

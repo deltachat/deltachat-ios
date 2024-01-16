@@ -21,8 +21,6 @@ class ReactionsOverviewTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     func configure(emojis: [String], contact: DcContact) {
-        let string = "\(contact.displayName) reacted with \(emojis.joined(separator: ","))"
-
-        textLabel?.text = string
+        textLabel?.text = "\(contact.displayName): \(emojis.joined(separator: ","))"
     }
 }
