@@ -40,10 +40,27 @@ class ReactionsView: UIControl {
     }
 
     public func configure(with reactions: DcReactions) {
-        let subviews = reactions.reactions.prefix(5).map { reaction in
-            let emojiView = EmojiView()
-            emojiView.configure(with: reaction)
-            return emojiView
+
+        let moreThanFiveReactions = reactions.reactions.count > 5
+
+        var subviews: [UIView]
+        if moreThanFiveReactions {
+            subviews = reactions.reactions.prefix(4).map { reaction in
+                let emojiView = EmojiView()
+                emojiView.configure(with: reaction)
+                return emojiView
+            }
+
+            let ellipsisBubble = EmojiView()
+            ellipsisBubble.configure(with: DcReaction(emoji: " … "))
+            subviews.append(ellipsisBubble)
+            
+        } else {
+            subviews = reactions.reactions.prefix(5).map { reaction in
+                let emojiView = EmojiView()
+                emojiView.configure(with: reaction)
+                return emojiView
+            }
         }
 
         reactionsStackView.replaceSubviews(with: subviews)
