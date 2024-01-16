@@ -43,7 +43,7 @@ class EmojiView: UIView {
         if reaction.count == 1 {
             emojiLabel.text = reaction.emoji
         } else {
-            emojiLabel.text = " \(reaction.count) \(reaction.emoji) "
+            emojiLabel.text = " \(reaction.emoji) \(reaction.count) "
         }
 
         if reaction.isFromSelf {
