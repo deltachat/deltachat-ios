@@ -11,23 +11,32 @@ import DcCore
 
 class ReactionsOverviewViewController: UIViewController {
 
-    let tableView: UITableView
-    let reactions: DcReactions
+    private let tableView: UITableView
+    private let reactions: DcReactions
+    private let contactIds: [Int]
+    private let context: DcContext
 
-    init(reactions: DcReactions) {
-        
+    init(reactions: DcReactions, context: DcContext) {
+
         self.reactions = reactions
+        self.contactIds = Array(self.reactions.reactionsByContact.keys)
+        self.context = context
 
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ReactionsOverviewTableViewCell.self, forCellReuseIdentifier: ReactionsOverviewTableViewCell.reuseIdentifier)
 
         super.init(nibName: nil, bundle: nil)
 
         view.addSubview(tableView)
         setupConstraints()
 
-        tableView.delegate = self
         tableView.dataSource = self
+
+        title = "Reactions"
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ReactionsOverviewViewController.dismiss(_:)))
+
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -42,21 +51,31 @@ class ReactionsOverviewViewController: UIViewController {
 
         NSLayoutConstraint.activate(constraints)
     }
-}
 
-// MARK: - UITableViewDelegate
+    // MARK: - Actions
 
-extension ReactionsOverviewViewController: UITableViewDelegate {
-
+    @objc func dismiss(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension ReactionsOverviewViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reactions.reactions.count
+        return contactIds.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ReactionsOverviewTableViewCell.reuseIdentifier, for: indexPath) as? ReactionsOverviewTableViewCell
+        else { fatalError("WTF?! Wrong cell!") }
+        
+        let contactId = contactIds[indexPath.row]
+        let contact = context.getContact(id: contactId)
+
+        if let emojis = reactions.reactionsByContact[contactId] {
+            cell.configure(emojis: emojis, contact: contact)
+        }
+
+        return cell
     }
 }
