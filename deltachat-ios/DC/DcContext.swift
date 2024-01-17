@@ -453,7 +453,7 @@ public class DcContext {
     }
 
     public func getConfigBool(_ key: String) -> Bool {
-        return strToBool(getConfig(key))
+        return getConfig(key).numericBoolValue
     }
 
     public func setConfigBool(_ key: String, _ value: Bool) {

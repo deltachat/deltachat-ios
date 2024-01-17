@@ -56,5 +56,13 @@ public extension String {
         }
         return attributedText
     }
+}
 
+extension String? {
+    /// returns `true` if `"1"`, in case of `nil` or any other string: return false
+    var numericBoolValue: Bool {
+        guard let self, let intValue = Int(self) else { return false }
+
+        return intValue == 1
+    }
 }
