@@ -7,7 +7,7 @@ struct Utils {
     static func isEmail(url: URL) -> Bool {
         let mailScheme = "mailto"
         if let scheme = url.scheme {
-            return mailScheme == scheme && mayBeValidAddr(email: url.absoluteString.substring(mailScheme.count + 1, url.absoluteString.count))
+            return mailScheme == scheme && DcContext.mayBeValidAddr(email: url.absoluteString.substring(mailScheme.count + 1, url.absoluteString.count))
         }
         return false
     }

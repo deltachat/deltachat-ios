@@ -267,6 +267,10 @@ public class DcContext {
         return nil
     }
 
+    public static func mayBeValidAddr(email: String) -> Bool {
+        return dc_may_be_valid_addr(email) != 0
+    }
+
     public func getSecurejoinQrSVG(chatId: Int) -> String? {
         if let cString = dc_get_securejoin_qr_svg(self.contextPointer, UInt32(chatId)) {
             let swiftString = String(cString: cString)

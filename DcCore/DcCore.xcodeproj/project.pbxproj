@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		30421942243DE0F200516852 /* DcCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 30421934243DE0F200516852 /* DcCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30421950243DE15D00516852 /* wrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3042194C243DE15D00516852 /* wrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30421951243DE15D00516852 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042194D243DE15D00516852 /* Helper.swift */; };
 		30421952243DE15D00516852 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 3042194E243DE15D00516852 /* wrapper.c */; };
 		3042195B243DF1C500516852 /* deltachat.h in Headers */ = {isa = PBXBuildFile; fileRef = 3042195A243DF1C500516852 /* deltachat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3042195D243E23F100516852 /* DcUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042195C243E23F100516852 /* DcUtils.swift */; };
@@ -48,7 +47,6 @@
 		30421934243DE0F200516852 /* DcCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DcCore.h; sourceTree = "<group>"; };
 		30421935243DE0F200516852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3042194C243DE15D00516852 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrapper.h; path = ../../DcCore/DcCore/DC/wrapper.h; sourceTree = "<group>"; };
-		3042194D243DE15D00516852 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = ../../DcCore/DcCore/DC/Helper.swift; sourceTree = "<group>"; };
 		3042194E243DE15D00516852 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wrapper.c; path = ../../DcCore/DcCore/DC/wrapper.c; sourceTree = "<group>"; };
 		30421958243DE61400516852 /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/deltachat-core-rust/target/universal/release/libdeltachat.a"; sourceTree = "<group>"; };
 		3042195A243DF1C500516852 /* deltachat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = deltachat.h; path = "../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/deltachat.h"; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 				D8BBF0182B57D9AE008C96FD /* DcProvider.swift */,
 				D8BBF01A2B57D9BE008C96FD /* DcReaction.swift */,
 				30421985243F209E00516852 /* events.swift */,
-				3042194D243DE15D00516852 /* Helper.swift */,
 				30421961243E26C800516852 /* Logger.swift */,
 				3042194E243DE15D00516852 /* wrapper.c */,
 				3042194C243DE15D00516852 /* wrapper.h */,
@@ -302,7 +299,6 @@
 				30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */,
 				30421962243E26C800516852 /* Logger.swift in Sources */,
 				30421986243F209E00516852 /* events.swift in Sources */,
-				30421951243DE15D00516852 /* Helper.swift in Sources */,
 				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
 				D8BBF0152B57D991008C96FD /* DcLot.swift in Sources */,
 				30B2BD04278F207000889AA4 /* KeychainManager.swift in Sources */,
