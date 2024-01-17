@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		30421942243DE0F200516852 /* DcCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 30421934243DE0F200516852 /* DcCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30421950243DE15D00516852 /* wrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3042194C243DE15D00516852 /* wrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30421951243DE15D00516852 /* Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042194D243DE15D00516852 /* Wrapper.swift */; };
+		30421951243DE15D00516852 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042194D243DE15D00516852 /* Helper.swift */; };
 		30421952243DE15D00516852 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 3042194E243DE15D00516852 /* wrapper.c */; };
 		3042195B243DF1C500516852 /* deltachat.h in Headers */ = {isa = PBXBuildFile; fileRef = 3042195A243DF1C500516852 /* deltachat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3042195D243E23F100516852 /* DcUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042195C243E23F100516852 /* DcUtils.swift */; };
@@ -28,6 +28,19 @@
 		30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24C2449D30200CE2C90 /* DcColors.swift */; };
 		78072F172A040ED800EB7C98 /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78072F162A040ED800EB7C98 /* libdeltachat.a */; };
 		7871729629BA495200F110DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7871729529BA495200F110DC /* SystemConfiguration.framework */; };
+		D8BBF0032B57D8E5008C96FD /* DcAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0022B57D8E5008C96FD /* DcAccount.swift */; };
+		D8BBF0052B57D904008C96FD /* DcContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0042B57D904008C96FD /* DcContext.swift */; };
+		D8BBF0072B57D91B008C96FD /* DcEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0062B57D91B008C96FD /* DcEventEmitter.swift */; };
+		D8BBF0092B57D92E008C96FD /* DcEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0082B57D92E008C96FD /* DcEvent.swift */; };
+		D8BBF00B2B57D93D008C96FD /* DcChatlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF00A2B57D93D008C96FD /* DcChatlist.swift */; };
+		D8BBF00D2B57D949008C96FD /* DcChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF00C2B57D949008C96FD /* DcChat.swift */; };
+		D8BBF00F2B57D959008C96FD /* DcArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF00E2B57D959008C96FD /* DcArray.swift */; };
+		D8BBF0112B57D96F008C96FD /* DcMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0102B57D96F008C96FD /* DcMsg.swift */; };
+		D8BBF0132B57D97B008C96FD /* DcContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0122B57D97B008C96FD /* DcContact.swift */; };
+		D8BBF0152B57D991008C96FD /* DcLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0142B57D991008C96FD /* DcLot.swift */; };
+		D8BBF0172B57D99F008C96FD /* DcBackupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0162B57D99F008C96FD /* DcBackupProvider.swift */; };
+		D8BBF0192B57D9AE008C96FD /* DcProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0182B57D9AE008C96FD /* DcProvider.swift */; };
+		D8BBF01B2B57D9BE008C96FD /* DcReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF01A2B57D9BE008C96FD /* DcReaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +48,7 @@
 		30421934243DE0F200516852 /* DcCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DcCore.h; sourceTree = "<group>"; };
 		30421935243DE0F200516852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3042194C243DE15D00516852 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrapper.h; path = ../../DcCore/DcCore/DC/wrapper.h; sourceTree = "<group>"; };
-		3042194D243DE15D00516852 /* Wrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wrapper.swift; path = ../../DcCore/DcCore/DC/Wrapper.swift; sourceTree = "<group>"; };
+		3042194D243DE15D00516852 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = ../../DcCore/DcCore/DC/Helper.swift; sourceTree = "<group>"; };
 		3042194E243DE15D00516852 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wrapper.c; path = ../../DcCore/DcCore/DC/wrapper.c; sourceTree = "<group>"; };
 		30421958243DE61400516852 /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/deltachat-core-rust/target/universal/release/libdeltachat.a"; sourceTree = "<group>"; };
 		3042195A243DF1C500516852 /* deltachat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = deltachat.h; path = "../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi/deltachat.h"; sourceTree = "<group>"; };
@@ -57,6 +70,19 @@
 		7827C8882A04089900B8470D /* libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libraries; path = "../deltachat-ios/libraries"; sourceTree = "<group>"; };
 		7827C88A2A0408A700B8470D /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/deltachat-core-rust/libdeltachat.a"; sourceTree = "<group>"; };
 		7871729529BA495200F110DC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		D8BBF0022B57D8E5008C96FD /* DcAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcAccount.swift; sourceTree = "<group>"; };
+		D8BBF0042B57D904008C96FD /* DcContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcContext.swift; sourceTree = "<group>"; };
+		D8BBF0062B57D91B008C96FD /* DcEventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcEventEmitter.swift; sourceTree = "<group>"; };
+		D8BBF0082B57D92E008C96FD /* DcEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcEvent.swift; sourceTree = "<group>"; };
+		D8BBF00A2B57D93D008C96FD /* DcChatlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcChatlist.swift; sourceTree = "<group>"; };
+		D8BBF00C2B57D949008C96FD /* DcChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcChat.swift; sourceTree = "<group>"; };
+		D8BBF00E2B57D959008C96FD /* DcArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcArray.swift; sourceTree = "<group>"; };
+		D8BBF0102B57D96F008C96FD /* DcMsg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcMsg.swift; sourceTree = "<group>"; };
+		D8BBF0122B57D97B008C96FD /* DcContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcContact.swift; sourceTree = "<group>"; };
+		D8BBF0142B57D991008C96FD /* DcLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcLot.swift; sourceTree = "<group>"; };
+		D8BBF0162B57D99F008C96FD /* DcBackupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcBackupProvider.swift; sourceTree = "<group>"; };
+		D8BBF0182B57D9AE008C96FD /* DcProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcProvider.swift; sourceTree = "<group>"; };
+		D8BBF01A2B57D9BE008C96FD /* DcReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcReaction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +131,24 @@
 		3042194B243DE15D00516852 /* DC */ = {
 			isa = PBXGroup;
 			children = (
+				D8BBF0022B57D8E5008C96FD /* DcAccount.swift */,
+				D8BBF00E2B57D959008C96FD /* DcArray.swift */,
+				D8BBF0162B57D99F008C96FD /* DcBackupProvider.swift */,
+				D8BBF00C2B57D949008C96FD /* DcChat.swift */,
+				D8BBF00A2B57D93D008C96FD /* DcChatlist.swift */,
+				D8BBF0122B57D97B008C96FD /* DcContact.swift */,
+				D8BBF0042B57D904008C96FD /* DcContext.swift */,
+				D8BBF0082B57D92E008C96FD /* DcEvent.swift */,
+				D8BBF0062B57D91B008C96FD /* DcEventEmitter.swift */,
+				D8BBF0142B57D991008C96FD /* DcLot.swift */,
+				D8BBF0102B57D96F008C96FD /* DcMsg.swift */,
+				D8BBF0182B57D9AE008C96FD /* DcProvider.swift */,
+				D8BBF01A2B57D9BE008C96FD /* DcReaction.swift */,
 				30421985243F209E00516852 /* events.swift */,
+				3042194D243DE15D00516852 /* Helper.swift */,
 				30421961243E26C800516852 /* Logger.swift */,
 				3042194E243DE15D00516852 /* wrapper.c */,
 				3042194C243DE15D00516852 /* wrapper.h */,
-				3042194D243DE15D00516852 /* Wrapper.swift */,
 			);
 			name = DC;
 			path = "../../deltachat-ios/DC";
@@ -258,20 +297,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				30421988243F23E500516852 /* Constants.swift in Sources */,
+				D8BBF0072B57D91B008C96FD /* DcEventEmitter.swift in Sources */,
+				D8BBF00F2B57D959008C96FD /* DcArray.swift in Sources */,
 				30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */,
 				30421962243E26C800516852 /* Logger.swift in Sources */,
 				30421986243F209E00516852 /* events.swift in Sources */,
-				30421951243DE15D00516852 /* Wrapper.swift in Sources */,
+				30421951243DE15D00516852 /* Helper.swift in Sources */,
 				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
+				D8BBF0152B57D991008C96FD /* DcLot.swift in Sources */,
 				30B2BD04278F207000889AA4 /* KeychainManager.swift in Sources */,
 				30421952243DE15D00516852 /* wrapper.c in Sources */,
+				D8BBF0092B57D92E008C96FD /* DcEvent.swift in Sources */,
 				30E8F2212447357500CE2C90 /* DatabaseHelper.swift in Sources */,
+				D8BBF01B2B57D9BE008C96FD /* DcReaction.swift in Sources */,
 				3042195D243E23F100516852 /* DcUtils.swift in Sources */,
+				D8BBF0032B57D8E5008C96FD /* DcAccount.swift in Sources */,
 				30421964243F0B8400516852 /* String+Extensions.swift in Sources */,
 				30421960243E257100516852 /* UIColor+Extensions.swift in Sources */,
+				D8BBF0192B57D9AE008C96FD /* DcProvider.swift in Sources */,
 				30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */,
 				3057028624C5C60000D84EFC /* UITableView+Extensions.swift in Sources */,
 				308198AB24866229003BE20D /* UserDefaults+Extensions.swift in Sources */,
+				D8BBF00D2B57D949008C96FD /* DcChat.swift in Sources */,
+				D8BBF0132B57D97B008C96FD /* DcContact.swift in Sources */,
+				D8BBF0112B57D96F008C96FD /* DcMsg.swift in Sources */,
+				D8BBF00B2B57D93D008C96FD /* DcChatlist.swift in Sources */,
+				D8BBF0052B57D904008C96FD /* DcContext.swift in Sources */,
+				D8BBF0172B57D99F008C96FD /* DcBackupProvider.swift in Sources */,
 				304F5E41244F2F3200462538 /* UIImage+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

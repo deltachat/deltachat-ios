@@ -11,7 +11,7 @@ let logger = getDcLogger()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    private let dcAccounts = getDcAccounts()
+    private let dcAccounts = DcAccounts.shared
     var appCoordinator: AppCoordinator!
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
