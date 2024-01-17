@@ -239,7 +239,7 @@ public class BaseMessageCell: UITableViewCell {
         mainContentBelowTopLabelConstraint = mainContentView.constraintToBottomOf(topLabel, paddingTop: 6)
         mainContentUnderTopLabelConstraint = mainContentView.constraintAlignTopTo(messageBackgroundContainer)
         mainContentAboveActionBtnConstraint = actionButton.constraintToBottomOf(mainContentView, paddingTop: 8, priority: .defaultHigh)
-        mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 20, priority: .defaultHigh)
+        mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
 
         actionBtnZeroHeightConstraint = actionButton.constraintHeightTo(0)
         actionBtnTrailingConstraint = actionButton.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 12)
@@ -264,7 +264,6 @@ public class BaseMessageCell: UITableViewCell {
 
         contentView.addSubview(reactionsView)
 
-        // TODO: check if it's my message: use leadingAnchor, else: use trailingAnchor
         let reactionsViewConstraints = [
             messageBackgroundContainer.leadingAnchor.constraint(lessThanOrEqualTo: reactionsView.leadingAnchor, constant: -10),
             messageBackgroundContainer.trailingAnchor.constraint(equalTo: reactionsView.trailingAnchor, constant: 10),
