@@ -70,7 +70,7 @@ public class DcEventHandler {
         case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
             logger.info("📡[\(accountId)] network: \(event.data2String)")
 
-        case DC_EVENT_MSGS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
+        case DC_EVENT_MSGS_CHANGED, DC_EVENT_REACTIONS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
             if accountId != dcAccounts.getSelected().id {
                 return
             }
