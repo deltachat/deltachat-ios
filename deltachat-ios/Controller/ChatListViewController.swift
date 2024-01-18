@@ -612,7 +612,7 @@ class ChatListViewController: UITableViewController {
     }
     
     private func updateAccountButton() {
-        let unreadMessages = getUnreadCounterOfOtherAccounts()
+        let unreadMessages = dcAccounts.getFreshMessageCount(skipCurrent: true)
         accountButtonAvatar.setUnreadMessageCount(unreadMessages)
         if unreadMessages > 0 {
             accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account")): \(String.localized(stringID: "n_messages", count: unreadMessages))"
@@ -627,20 +627,6 @@ class ChatListViewController: UITableViewController {
         if let image = contact.profileImage {
             accountButtonAvatar.setImage(image)
         }
-    }
-    
-    private func getUnreadCounterOfOtherAccounts() -> Int {
-        var unreadCount = 0
-        let selectedAccountId = dcAccounts.getSelected().id
-        
-        for accountId in dcAccounts.getAll() {
-            if accountId == selectedAccountId {
-                continue
-            }
-            unreadCount += dcAccounts.get(id: accountId).getFreshMessages().count
-        }
-        
-        return unreadCount
     }
     
     @objc private func accountButtonTapped() {
