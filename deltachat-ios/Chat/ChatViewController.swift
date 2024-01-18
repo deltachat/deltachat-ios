@@ -703,11 +703,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     /// UITableView methods
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageIds.count
     }
