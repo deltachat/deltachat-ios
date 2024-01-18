@@ -95,11 +95,11 @@ class ChatListViewController: UITableViewController {
         self.isArchive = isArchive
         super.init(style: .plain)
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.viewModel = ChatListViewModel(dcContext: self.dcContext, isArchive: isArchive)
             self.viewModel?.onChatListUpdate = self.handleChatListUpdate
             DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 if !isArchive {
                     self.navigationItem.searchController = self.searchController
                     self.searchController.searchResultsUpdater = self.viewModel
@@ -204,7 +204,7 @@ class ChatListViewController: UITableViewController {
             forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
             queue: nil) { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                let viewModel = self.viewModel,
                viewModel.searchActive,
@@ -704,7 +704,7 @@ class ChatListViewController: UITableViewController {
             handleEmptyStateLabel()
         } else {
             DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.tableView.reloadData()
                 self.handleEmptyStateLabel()
             }
@@ -740,7 +740,7 @@ class ChatListViewController: UITableViewController {
         stopTimer()
         timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
             
-            guard let self = self,
+            guard let self,
                   let appDelegate = UIApplication.shared.delegate as? AppDelegate
             else { return }
             
@@ -809,7 +809,7 @@ class ChatListViewController: UITableViewController {
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
-            guard let self = self, let viewModel = self.viewModel else { return }
+            guard let self, let viewModel = self.viewModel else { return }
             viewModel.deleteChats(indexPaths: self.tableView.indexPathsForSelectedRows)
             self.setLongTapEditing(false)
         }))
@@ -822,7 +822,7 @@ class ChatListViewController: UITableViewController {
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             self.createAndShowNewChat(contactId: contactId, email: address)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in

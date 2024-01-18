@@ -156,7 +156,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
 
     private func updateAccessoryBar() {
         handleSearchResultCount { [weak self] result in
-            guard let self = self else { return }
+            guard let self else { return }
             logger.debug("found \(result) elements")
             self.searchAccessoryBar.isEnabled = result > 0
             self.handleCurrentlySelected { [weak self] position in

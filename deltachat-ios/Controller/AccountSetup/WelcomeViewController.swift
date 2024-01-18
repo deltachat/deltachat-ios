@@ -19,11 +19,11 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
         view.onLogin = { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.showAccountSetupController()
         }
         view.onAddSecondDevice  = { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let qrReader = QrCodeReaderController(title: String.localized("multidevice_receiver_title"),
                         addHints: "➊ " + String.localized("multidevice_same_network_hint") + "\n\n"
                             +     "➋ " + String.localized("multidevice_open_settings_on_other_device") + "\n\n"
@@ -33,14 +33,14 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             self.navigationController?.pushViewController(qrReader, animated: true)
         }
         view.onScanQRCode  = { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let qrReader = QrCodeReaderController(title: String.localized("scan_invitation_code"))
             qrReader.delegate = self
             self.qrCodeReader = qrReader
             self.navigationController?.pushViewController(qrReader, animated: true)
         }
         view.onImportBackup = { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.restoreBackup()
         }
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +72,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
         onProgressSuccess = { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let profileInfoController = ProfileInfoViewController(context: self.dcContext)
             profileInfoController.onClose = {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -164,7 +164,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
                                      onSuccess: self.handleLoginSuccess)
             showProgressAlert(title: String.localized("login_header"), dcContext: self.dcContext)
             DispatchQueue.global().async { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 let success = self.dcContext.setConfigFromQR(qrCode: qrCode)
                 DispatchQueue.main.async {
                     if success {
@@ -254,7 +254,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             object: nil,
             queue: nil
         ) { [weak self] notification in
-            guard let self = self else { return }
+            guard let self else { return }
             if let ui = notification.userInfo {
                 if let error = ui["error"] as? Bool, error {
                     UIApplication.shared.isIdleTimerDisabled = false
@@ -321,7 +321,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.dismissQRReader()
                 self.createAccountFromQRCode(qrCode: qrCode)
             }
@@ -331,7 +331,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("cancel"),
             style: .cancel,
             handler: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.dismissQRReader()
                 // if an injected accountCode exists, the WelcomeViewController was only opened to handle that
                 // cancelling the action should also dismiss the whole controller
@@ -359,7 +359,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
              title: String.localized("ok"),
              style: .default,
              handler: { [weak self] _ in
-                 guard let self = self else { return }
+                 guard let self else { return }
                  if self.dcAccounts.getSelected().isConfigured() {
                      UserDefaults.standard.setValue(self.dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
                      _ = self.dcAccounts.add()
@@ -372,7 +372,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                      self.showProgressAlert(title: String.localized("multidevice_receiver_title"), dcContext: self.dcContext)
                      self.dcAccounts.stopIo()
                      DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                         guard let self = self else { return }
+                         guard let self else { return }
                          logger.info("##### receiveBackup() with qr: \(qrCode)")
                          let res = self.dcContext.receiveBackup(qrCode: qrCode)
                          logger.info("##### receiveBackup() done with result: \(res)")
@@ -402,7 +402,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
             title: String.localized("ok"),
             style: .default,
             handler: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 if self.accountCode != nil {
                     // if an injected accountCode exists, the WelcomeViewController was only opened to handle that
                     // if the action failed the whole controller should be dismissed

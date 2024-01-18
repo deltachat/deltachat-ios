@@ -77,7 +77,7 @@ extension ProgressAlertHandler {
             object: nil,
             queue: nil
         ) { [weak self] notification in
-            guard let self = self else { return }
+            guard let self else { return }
             if let ui = notification.userInfo {
                 if ui["error"] as? Bool ?? false {
                     dcAccounts.startIo()

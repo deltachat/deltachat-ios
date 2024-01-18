@@ -181,7 +181,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             imageName: "doc.on.doc",
             action: #selector(BaseMessageCell.messageCopy),
             onPerform: { [weak self] indexPath in
-                guard let self = self else { return }
+                guard let self else { return }
                 let id = self.messageIds[indexPath.row]
                 self.copyToClipboard(ids: [id])
             }
@@ -194,7 +194,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             imageName: "info",
             action: #selector(BaseMessageCell.messageInfo),
             onPerform: { [weak self] indexPath in
-                guard let self = self else { return }
+                guard let self else { return }
                 let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
                 let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
                 if let ctrl = self.navigationController {
@@ -212,7 +212,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             action: #selector(BaseMessageCell.messageDelete),
             onPerform: { [weak self] indexPath in
                 DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     self.tableView.becomeFirstResponder()
                     let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
                     self.askToDeleteMessage(id: msg.id)
@@ -227,7 +227,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             imageName: "ic_forward_white_36pt",
             action: #selector(BaseMessageCell.messageForward),
             onPerform: { [weak self] indexPath in
-                guard let self = self else { return }
+                guard let self else { return }
                 let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
                 RelayHelper.shared.setForwardMessage(messageId: msg.id)
                 self.navigationController?.popViewController(animated: true)
@@ -255,7 +255,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             imageName: "arrowshape.turn.up.left",
             action: #selector(BaseMessageCell.messageReplyPrivately),
             onPerform: { [weak self] indexPath in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.replyPrivatelyToMessage(at: indexPath)
             }
         )
@@ -268,7 +268,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             action: #selector(BaseMessageCell.messageSelectMore),
             onPerform: { indexPath in
                 DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     let messageId = self.messageIds[indexPath.row]
                     self.setEditing(isEditing: true, selectedAtIndexPath: indexPath)
                     if UIAccessibility.isVoiceOverRunning {
@@ -345,7 +345,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
         keyboardManager?.on(event: .didChangeFrame) { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             if self.isInitial {
                 self.isInitial = false
                 return
@@ -354,7 +354,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 self.scrollToBottom()
             }
         }.on(event: .willChangeFrame) { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil  && !self.isInitial {
                 self.scrollToBottom()
             }
@@ -399,7 +399,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
             // reload table
             DispatchQueue.main.async { [weak self] in
-                guard let self = self,
+                guard let self,
                       let appDelegate = UIApplication.shared.delegate as? AppDelegate
                 else { return }
                 
@@ -448,19 +448,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 self?.scrollToMessage(msgId: msgId, animated: false)
             }, completion: { [weak self] finished in
                 if finished {
-                    guard let self = self else { return }
+                    guard let self else { return }
                     self.highlightedMsg = nil
                     self.updateScrollDownButtonVisibility()
                 }
             })
         } else {
             UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 if self.isInitial {
                     self.scrollToLastUnseenMessage()
                 }
             }, completion: { [weak self] finished in
-                guard let self = self else { return }
+                guard let self else { return }
                 if finished {
                     self.updateScrollDownButtonVisibility()
                 }
@@ -493,7 +493,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.dcContext.marknoticedChat(chatId: self.chatId)
         }
 
@@ -553,6 +553,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
+
             guard let self, let ui = notification.userInfo else { return }
             let chatId = ui["chat_id"] as? Int ?? 0
             if chatId == 0 || chatId == self.chatId {
@@ -596,7 +597,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             forName: eventChatModified,
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self, let ui = notification.userInfo else { return }
+            guard let self, let ui = notification.userInfo else { return }
             if self.chatId == ui["chat_id"] as? Int {
                 self.dcChat = self.dcContext.getChat(chatId: self.chatId)
                 if self.dcChat.canSend {
@@ -620,7 +621,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             forName: eventEphemeralTimerModified,
             object: nil, queue: OperationQueue.main
         ) { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             self.updateTitle()
         }
 
@@ -658,14 +659,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let lastSectionVisibleBeforeTransition = self.isLastRowVisible(checkTopCellPostion: true, checkBottomCellPosition: true, allowPartialVisibility: true)
         coordinator.animate(
             alongsideTransition: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.navigationItem.setRightBarButton(self.badgeItem, animated: true)
                 if lastSectionVisibleBeforeTransition {
                     self.scrollToBottom(animated: false)
                 }
             },
             completion: {[weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.updateTitle()
                 if lastSectionVisibleBeforeTransition {
                     DispatchQueue.main.async { [weak self] in
@@ -1153,7 +1154,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func scrollToBottom(animated: Bool, focusOnVoiceOver: Bool = false) {
         if !messageIds.isEmpty {
             DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
                     self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
@@ -1167,7 +1168,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func scrollToLastUnseenMessage() {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
                 let indexPath = IndexPath(row: markerMessageIndex, section: 0)
                 self.scrollToRow(at: indexPath, animated: false)
@@ -1183,7 +1184,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func scrollToMessage(msgId: Int, animated: Bool = true, scrollToText: Bool = false) {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             guard let index = self.messageIds.firstIndex(of: msgId) else {
                 return
             }
@@ -1229,7 +1230,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     // notification doesn't cause VoiceOver to readout the cell mutliple times.
     private func forceVoiceOverFocussingCell(at indexPath: IndexPath, postingFinished: (() -> Void)?) {
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             for _ in 1...4 {
                 DispatchQueue.main.async {
                     UIAccessibility.post(notification: .layoutChanged, argument: self.tableView.cellForRow(at: indexPath))
@@ -1435,7 +1436,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let title = String.localized(stringID: "ask_delete_chat", count: 1)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { [weak self] _ in
-                            guard let self = self else { return }
+                            guard let self else { return }
                             // remove message observers early to avoid careless calls to dcContext methods
                             self.removeObservers()
                             self.dcContext.deleteChat(chatId: self.chatId)
@@ -1543,7 +1544,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         } else {
             AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
                 DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     if granted {
                         self.mediaPicker?.showCamera()
                     } else {
@@ -1642,7 +1643,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                                style: .default,
                                handler: { _ in
                                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                                    guard let self = self else { return }
+                                    guard let self else { return }
                                     let messageId = self.dcContext.sendVideoChatInvitation(chatId: self.chatId)
                                     let inviteMessage = self.dcContext.getMessage(id: messageId)
                                     if let url = NSURL(string: inviteMessage.getVideoChatUrl()) {
@@ -1681,7 +1682,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func sendTextMessage(text: String, quoteMessage: DcMsg?) {
         DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let message = self.dcContext.newMessage(viewType: DC_MSG_TEXT)
             message.text = text
             if let quoteMessage = quoteMessage {
@@ -1703,7 +1704,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func stageDocument(url: NSURL) {
         keepKeyboard = true
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.focusInputTextView()
@@ -1714,7 +1715,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func stageVideo(url: NSURL) {
         keepKeyboard = true
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.focusInputTextView()
@@ -1733,7 +1734,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func stageImage(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             if let pathInCachesDir = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 DispatchQueue.main.async {
                     if pathInCachesDir.suffix(4).contains(".gif") {
@@ -1751,7 +1752,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func sendImage(_ image: UIImage, message: String? = nil) {
         DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
                 FileHelper.deleteFile(atPath: path)
@@ -1761,7 +1762,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
                 FileHelper.deleteFile(atPath: path)
@@ -1781,7 +1782,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func sendVoiceMessage(url: NSURL) {
         DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let msg = self.dcContext.newMessage(viewType: DC_MSG_VOICE)
             if let quoteMessage =  self.draft.quoteMessage {
                 msg.quoteMessage = quoteMessage
@@ -1875,7 +1876,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
             actionProvider: { [weak self] _ in
-                guard let self = self else {
+                guard let self else {
                     return nil
                 }
                 if self.dcContext.getMessage(id: messageId).isInfo {
@@ -2335,11 +2336,11 @@ extension ChatViewController: UISearchResultsUpdating {
         debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
             let searchText = searchController.searchBar.text ?? ""
             DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
                 DispatchQueue.main.async { [weak self] in
 
-                guard let self = self else { return }
+                guard let self else { return }
                     self.searchMessageIds = resultIds
                     self.searchResultIndex = self.searchMessageIds.isEmpty ? 0 : self.searchMessageIds.count - 1
                     self.searchAccessoryBar.isEnabled = !resultIds.isEmpty
@@ -2422,7 +2423,7 @@ extension ChatViewController: QLPreviewControllerDelegate {
 
     func previewController(_ controller: QLPreviewController, didUpdateContentsOf previewItem: QLPreviewItem) {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.draftArea.reload(draft: self.draft)
         }
     }
@@ -2464,7 +2465,7 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
 extension ChatViewController: WebxdcSelectorDelegate {
     func onWebxdcFromFilesSelected(url: NSURL) {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.tableView.becomeFirstResponder()
             self.onDocumentSelected(url: url)
         }
@@ -2473,7 +2474,7 @@ extension ChatViewController: WebxdcSelectorDelegate {
     func onWebxdcSelected(msgId: Int) {
         keepKeyboard = true
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let message = self.dcContext.getMessage(id: msgId)
             if let filename = message.fileURL {
                 let nsdata = NSData(contentsOf: filename)
