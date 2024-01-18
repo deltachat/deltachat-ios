@@ -5,6 +5,7 @@ import UIKit
 
 public class NotificationManager {
     
+    var anyIncomingMsgObserver: NSObjectProtocol?
     var incomingMsgObserver: NSObjectProtocol?
     var msgsNoticedObserver: NSObjectProtocol?
 
@@ -14,24 +15,17 @@ public class NotificationManager {
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
-        initIncomingMsgsObserver()
-        initMsgsNoticedObserver()
+        initObservers()
     }
 
     public func reloadDcContext() {
         NotificationManager.removeAllNotifications()
         dcContext = dcAccounts.getSelected()
-        NotificationManager.updateApplicationIconBadge(dcContext: dcContext, reset: false)
     }
 
-    public static func updateApplicationIconBadge(dcContext: DcContext, reset: Bool) {
-        var unreadMessages = 0
-        if !reset {
-            unreadMessages = dcContext.getFreshMessages().count
-        }
-
+    public static func updateApplicationIconBadge(forceZero: Bool = false) {
         DispatchQueue.main.async {
-            UIApplication.shared.applicationIconBadgeNumber = unreadMessages
+            UIApplication.shared.applicationIconBadgeNumber = forceZero ? 0 : DcAccounts.shared.getFreshMessageCount()
         }
     }
 
@@ -51,11 +45,20 @@ public class NotificationManager {
         DispatchQueue.global(qos: .background).async {
             NotificationManager.removePendingNotificationsFor(dcContext: dcContext, chatId: chatId)
             NotificationManager.removeDeliveredNotificationsFor(dcContext: dcContext, chatId: chatId)
-            NotificationManager.updateApplicationIconBadge(dcContext: dcContext, reset: false)
+            NotificationManager.updateApplicationIconBadge()
         }
     }
 
-    private func initIncomingMsgsObserver() {
+    private func initObservers() {
+        anyIncomingMsgObserver = NotificationCenter.default.addObserver(
+            forName: eventIncomingMsgAnyAccount,
+            object: nil, queue: OperationQueue.main
+        ) { _ in
+            if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+                NotificationManager.updateApplicationIconBadge()
+            }
+        }
+
         incomingMsgObserver = NotificationCenter.default.addObserver(
             forName: eventIncomingMsg,
             object: nil, queue: OperationQueue.main
@@ -73,8 +76,6 @@ public class NotificationManager {
                    let chatId = ui["chat_id"] as? Int,
                    let messageId = ui["message_id"] as? Int,
                    !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-
-                    NotificationManager.updateApplicationIconBadge(dcContext: self.dcContext, reset: false)
 
                     let chat = self.dcContext.getChat(chatId: chatId)
 
@@ -122,9 +123,7 @@ public class NotificationManager {
                 UIApplication.shared.endBackgroundTask(backgroundTask)
             }
         }
-    }
 
-    private func initMsgsNoticedObserver() {
         msgsNoticedObserver =  NotificationCenter.default.addObserver(
             forName: eventMsgsNoticed,
             object: nil, queue: OperationQueue.main
