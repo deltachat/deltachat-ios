@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 // Reachability::reachabilityChanged uses DispatchQueue.main.async only
                 logger.info("network: reachable \(reachability.connection.description)")
                 DispatchQueue.global(qos: .background).async { [weak self] in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     self.dcAccounts.maybeNetwork()
                     if self.notifyToken == nil &&
                         self.dcAccounts.getSelected().isConfigured() &&
@@ -215,7 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcAccounts.startIo()
 
         DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             if let reachability = self.reachability {
                 if reachability.connection != .unavailable {
                     self.dcAccounts.maybeNetwork()
@@ -329,7 +329,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications
     func registerForNotifications() {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
 
             self.notifyToken = nil
             UNUserNotificationCenter.current().delegate = self
@@ -467,7 +467,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // move work to non-main thread to not block UI (otherwise, in case we get suspended, the app is blocked totally)
         // (we are using `qos: default` as `qos: .background` or `main.asyncAfter` may be delayed by tens of minutes)
         DispatchQueue.global().async { [weak self] in
-            guard let self = self else { completionHandler?(.failed); return }
+            guard let self else { completionHandler?(.failed); return }
 
             // we're in background, run IO for a little time
             self.dcAccounts.startIo()
@@ -572,7 +572,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         eventHandlerActive = true
         DispatchQueue.global(qos: .background).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let eventHandler = DcEventHandler(dcAccounts: self.dcAccounts)
             let eventEmitter = self.dcAccounts.getEventEmitter()
             logger.info("➡️ event emitter started")

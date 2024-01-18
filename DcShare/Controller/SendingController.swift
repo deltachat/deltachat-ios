@@ -85,7 +85,7 @@ class SendingController: UIViewController {
 
     private func sendMessage() {
         DispatchQueue.global(qos: .utility).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             for dcMsg in self.dcMsgs {
                 self.dcContext.sendMsgSync(chatId: self.chatId, msg: dcMsg)
             }

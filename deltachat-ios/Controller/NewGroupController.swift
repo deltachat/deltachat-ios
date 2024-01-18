@@ -240,7 +240,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         // swipe to delete
         if sections[indexPath.section] == .members, groupContactIds[indexPath.row] != DC_CONTACT_ID_SELF {
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.removeGroupContactFromList(at: indexPath)
             }
             delete.backgroundColor = UIColor.systemRed
@@ -327,7 +327,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                                                                preselected: preselectedMembers,
                                                                isBroadcast: createBroadcast)
         newGroupController.onMembersSelected = { [weak self] memberIds in
-            guard let self = self else { return }
+            guard let self else { return }
             var memberIds = memberIds
             if !self.createBroadcast {
                 memberIds.insert(Int(DC_CONTACT_ID_SELF))

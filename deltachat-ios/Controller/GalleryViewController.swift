@@ -185,7 +185,7 @@ class GalleryViewController: UIViewController {
         let ids: [Int]
         ids = self.dcContext.getChatMedia(chatId: self.chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO).reversed()
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.galleryItemCache = [:]
             self.mediaMessageIds = ids
             self.emptyStateView.isHidden = !ids.isEmpty

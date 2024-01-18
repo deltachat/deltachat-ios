@@ -305,7 +305,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         let audioSession = AVAudioSession.sharedInstance()
         audioSession.requestRecordPermission({ granted in
             DispatchQueue.main.async { [weak self] in
-                if let self = self {
+                if let self {
                     self.noRecordingPermissionView.alpha = granted ? 0.0 : 1.0
                     self.waveFormView.alpha = granted ? 1.0 : 0.0
                     self.doneButton.isEnabled = granted

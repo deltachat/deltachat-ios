@@ -170,7 +170,7 @@ internal final class SettingsViewController: UITableViewController {
         connectivityChangedObserver = NotificationCenter.default.addObserver(forName: eventConnectivityChanged,
                                                                              object: nil,
                                                                              queue: nil) { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             self.connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
                                                                                         connectedString: String.localized("connectivity_connected"))
         }
@@ -273,7 +273,7 @@ internal final class SettingsViewController: UITableViewController {
             title: String.localized("perm_continue"),
             style: .default,
             handler: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
             }
         ))

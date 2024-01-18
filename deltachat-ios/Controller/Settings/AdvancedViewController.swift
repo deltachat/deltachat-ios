@@ -186,7 +186,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addProgressAlertListener(dcAccounts: dcAccounts, progressName: eventImexProgress) { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.progressAlert?.dismiss(animated: true)
         }
     }
@@ -275,7 +275,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let broadcastLists = UserDefaults.standard.bool(forKey: "broadcast_lists")
         alert.addAction(UIAlertAction(title: (broadcastLists ? "✔︎ " : "") + String.localized("broadcast_lists"),
                                       style: .default, handler: { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             UserDefaults.standard.set(!broadcastLists, forKey: "broadcast_lists")
             if !broadcastLists {
                 let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Broadcast Lists\"!",
@@ -291,7 +291,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let locationStreaming = UserDefaults.standard.bool(forKey: "location_streaming")
         let title = (locationStreaming ? "✔︎ " : "") + String.localized("pref_on_demand_location_streaming")
         alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
             if !locationStreaming {
                 let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Location streaming\"",

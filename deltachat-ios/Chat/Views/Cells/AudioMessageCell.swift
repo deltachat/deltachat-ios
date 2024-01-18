@@ -54,7 +54,7 @@ public class AudioMessageCell: BaseMessageCell {
         }
         
         delegate?.getAudioDuration(messageId: messageId, successHandler: { [weak self] messageId, duration in
-            if let self = self,
+            if let self,
                messageId == self.messageId {
                 self.audioPlayerView.setDuration(duration: duration)
             }

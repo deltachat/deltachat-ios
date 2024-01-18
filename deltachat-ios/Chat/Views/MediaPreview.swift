@@ -54,7 +54,7 @@ class MediaPreview: DraftPreview {
                 let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: URL(fileURLWithPath: path, isDirectory: false))
                 if let thumbnailImage = thumbnailImage {
                     DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
+                        guard let self else { return }
                         self.contentImageView.image = thumbnailImage
                         self.setAspectRatio(image: thumbnailImage)
                         self.delegate?.onAttachmentAdded()

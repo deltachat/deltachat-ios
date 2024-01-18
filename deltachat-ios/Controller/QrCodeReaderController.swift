@@ -54,7 +54,7 @@ class QrCodeReaderController: UIViewController {
             self.setupQRCodeScanner()
         } else {
             AVCaptureDevice.requestAccess(for: .video, completionHandler: {  [weak self] (granted: Bool) in
-                guard let self = self else { return }
+                guard let self else { return }
                 DispatchQueue.main.async {
                     if granted {
                         self.setupQRCodeScanner()
@@ -127,7 +127,7 @@ class QrCodeReaderController: UIViewController {
     
     private func showCameraWarning() {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let text = String.localized("chat_camera_unavailable")
             logger.error(text)
             self.infoLabel.textColor = DcColors.defaultTextColor

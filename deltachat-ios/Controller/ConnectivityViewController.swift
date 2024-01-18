@@ -20,7 +20,7 @@ class ConnectivityViewController: WebViewViewController {
         if #available(iOS 13.0, *) {
             let monitor = NWPathMonitor()
             monitor.pathUpdateHandler = { [weak self] path in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.isLowDataMode = path.isConstrained
                 self.loadHtml()
             }
@@ -155,7 +155,7 @@ class ConnectivityViewController: WebViewViewController {
 
     private func loadHtml() {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             // `UIApplication.shared` needs to be called from main thread
             var hasNotifyToken = false
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -165,7 +165,7 @@ class ConnectivityViewController: WebViewViewController {
 
             // do the remaining things in background thread
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 var html = self.dcContext.getConnectivityHtml()
                     .replacingOccurrences(of: "</style>", with:
                         """

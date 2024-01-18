@@ -146,7 +146,7 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addProgressAlertListener(dcAccounts: dcAccounts, progressName: eventImexProgress) { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
 
             self.progressAlert?.dismiss(animated: true) {
                 let alert = UIAlertController(

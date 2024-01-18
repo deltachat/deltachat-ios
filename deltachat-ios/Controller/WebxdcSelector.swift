@@ -105,7 +105,7 @@ class WebxdcSelector: UIViewController {
     func deduplicateWebxdcs() {
         var deduplicatedMessageHashes: [String: Int] = [:]
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let mediaMessageIds = dcContext.getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).reversed()
             for id in mediaMessageIds {
                 guard let filename = self.dcContext.getMessage(id: id).fileURL else { continue }
