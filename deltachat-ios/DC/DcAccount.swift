@@ -110,6 +110,17 @@ public class DcAccounts {
         }
     }
 
+    public func getFreshMessageCount(skipCurrent: Bool = false) -> Int {
+        var freshCount = 0
+        let skipId = skipCurrent ? getSelected().id : -1
+        for accountId in getAll() {
+            if accountId != skipId {
+                freshCount += get(id: accountId).getFreshMessages().count
+            }
+        }
+        return freshCount
+    }
+
     @discardableResult
     public func blockingCall(method: String, params: [AnyObject]) -> Data? {
         if let paramsData = try? JSONSerialization.data(withJSONObject: params),
