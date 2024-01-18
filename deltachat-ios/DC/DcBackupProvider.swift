@@ -1,11 +1,3 @@
-//
-//  DcBackupProvider.swift
-//  DcCore
-//
-//  Created by Nathan Mattes on 17.01.24.
-//  Copyright © 2024 merlinux GmbH. All rights reserved.
-//
-
 import Foundation
 
 /// Set up another device

@@ -1,11 +1,3 @@
-//
-//  DcEvent.swift
-//  DcCore
-//
-//  Created by Nathan Mattes on 17.01.24.
-//  Copyright © 2024 merlinux GmbH. All rights reserved.
-//
-
 import Foundation
 
 /// Opaque object describing a single event.
