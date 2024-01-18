@@ -59,7 +59,7 @@ public extension String {
 }
 
 extension String? {
-    /// returns `true` if `"1"`, in case of `nil` or any other string: return false
+    /// returns `true` if `"1"`, returns `false` in case of `nil` or any other string
     var numericBoolValue: Bool {
         guard let self, let intValue = Int(self) else { return false }
 
