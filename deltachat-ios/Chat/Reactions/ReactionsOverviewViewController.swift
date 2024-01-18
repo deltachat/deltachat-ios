@@ -1,11 +1,3 @@
-//
-//  ReactionsOverviewViewController.swift
-//  deltachat-ios
-//
-//  Created by Nathan Mattes on 15.01.24.
-//  Copyright © 2024 merlinux GmbH. All rights reserved.
-//
-
 import UIKit
 import DcCore
 
