@@ -251,7 +251,7 @@ class ContactDetailViewController: UITableViewController {
             forName: eventContactsChanged,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
-            guard let self = self else { return }
+            guard let self else { return }
             if let ui = notification.userInfo,
                self.viewModel.contactId == ui["contact_id"] as? Int {
                 self.updateHeader()
@@ -261,7 +261,7 @@ class ContactDetailViewController: UITableViewController {
             forName: eventIncomingMsg,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
-            guard let self = self else { return }
+            guard let self else { return }
             if let ui = notification.userInfo,
                let chatId = ui["chat_id"] as? Int {
                 if self.viewModel.getSharedChatIds().contains(chatId) {
@@ -574,7 +574,7 @@ extension ContactDetailViewController: MultilineLabelCellDelegate {
             let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
                                           message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 let chatId = self.viewModel.context.createChatByContactId(contactId: contactId)
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)

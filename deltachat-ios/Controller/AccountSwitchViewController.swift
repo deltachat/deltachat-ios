@@ -162,12 +162,12 @@ class AccountSwitchViewController: UITableViewController {
         let prefs = UserDefaults.standard
         let confirm1 = UIAlertController(title: String.localized("delete_account_ask"), message: nil, preferredStyle: .safeActionSheet)
         confirm1.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             let account = self.dcAccounts.get(id: accountId)
             let confirm2 = UIAlertController(title: account.displaynameAndAddr,
                 message: String.localized("forget_login_confirmation_desktop"), preferredStyle: .alert)
             confirm2.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 appDelegate.locationManager.disableLocationStreamingInAllChats()
                 self.dcAccounts.stopIo()
                 _ = self.dcAccounts.remove(id: accountId)

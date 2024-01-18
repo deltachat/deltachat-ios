@@ -227,7 +227,7 @@ class GroupChatDetailViewController: UIViewController {
             forName: eventIncomingMsg,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
-            guard let self = self else { return }
+            guard let self else { return }
             if let ui = notification.userInfo,
                self.chatId == ui["chat_id"] as? Int {
                 self.updateMediaCellValues()
@@ -237,7 +237,7 @@ class GroupChatDetailViewController: UIViewController {
             forName: eventEphemeralTimerModified,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
-            guard let self = self else { return }
+            guard let self else { return }
             if let ui = notification.userInfo,
                self.chatId == ui["chat_id"] as? Int {
                 self.updateEphemeralTimerCellValue()
@@ -247,7 +247,7 @@ class GroupChatDetailViewController: UIViewController {
             forName: eventChatModified,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
-            guard let self = self else { return }
+            guard let self else { return }
             if let ui = notification.userInfo,
                self.chatId == ui["chat_id"] as? Int {
                 self.updateHeader()
@@ -378,7 +378,7 @@ class GroupChatDetailViewController: UIViewController {
     private func showAddGroupMember(chatId: Int) {
         let groupMemberViewController = AddGroupMembersViewController(dcContext: dcContext, chatId: chatId)
         groupMemberViewController.onMembersSelected = { [weak self] memberIds in
-            guard let self = self else { return }
+            guard let self else { return }
             let chat = self.dcContext.getChat(chatId: chatId)
             var chatMembersToRemove = chat.getContactIds(self.dcContext)
             chatMembersToRemove.removeAll(where: { memberIds.contains($0)})
@@ -614,7 +614,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             getGroupMemberIdFor(row) != DC_CONTACT_ID_SELF {
             // action set for members except for current user
             let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
-                guard let self = self else { return }
+                guard let self else { return }
                 let contact = self.getGroupMember(at: row)
                 let title = String.localizedStringWithFormat(String.localized(self.chat.isBroadcast ?
                                      "ask_remove_from_broadcast" :

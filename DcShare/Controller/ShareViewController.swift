@@ -123,7 +123,7 @@ class ShareViewController: SLComposeServiceViewController {
         }
         selectedChat = dcContext.getChat(chatId: chatId)
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.shareAttachment = ShareAttachment(dcContext: self.dcContext, inputItems: self.extensionContext?.inputItems, delegate: self)
             DispatchQueue.main.async {
                 self.validateContent()
@@ -264,7 +264,7 @@ extension ShareViewController: ShareAttachmentDelegate {
 
     func onThumbnailChanged() {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             if let preview = self.preview {
                 preview.image = self.shareAttachment?.thumbnail ?? nil
             }

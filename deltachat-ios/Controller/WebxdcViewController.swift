@@ -287,7 +287,7 @@ class WebxdcViewController: WebViewViewController {
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
+            guard let self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
             if messageId == self.messageId {
                 self.updateWebxdc()
             }
@@ -298,7 +298,7 @@ class WebxdcViewController: WebViewViewController {
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
+            guard let self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
             if messageId == self.messageId {
                 self.refreshWebxdcInfo()
             }
@@ -365,7 +365,7 @@ class WebxdcViewController: WebViewViewController {
     
     private func loadHtml() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             let url = URL(string: "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/index.html")
             let urlRequest = URLRequest(url: url!)
             DispatchQueue.main.async {

@@ -418,15 +418,15 @@ open class InputBarAccessoryView: UIView {
 
     private func setupKeyboardEvents() {
         keyboardManager.on(event: .willChangeFrame, do: {  [weak self] (notification) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.keyboardHeight = notification.endFrame.height - self.intrinsicContentSize.height
             self.delegate?.inputBar(self, didAdaptToKeyboard: self.keyboardHeight)
         }).on(event: .didChangeFrame, do: {  [weak self] (notification) in
-            guard let self = self else { return }
+            guard let self else { return }
             self.keyboardHeight = notification.endFrame.height - self.intrinsicContentSize.height
             self.delegate?.inputBar(self, didAdaptToKeyboard: self.keyboardHeight)
         }).on(event: .didShow, do: { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             if UIApplication.shared.statusBarOrientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone {
                 self.orientationDidChange()
             }

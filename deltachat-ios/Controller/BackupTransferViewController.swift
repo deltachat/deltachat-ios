@@ -96,7 +96,7 @@ class BackupTransferViewController: UIViewController {
         triggerLocalNetworkPrivacyAlert()
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.dcAccounts.stopIo()
             self.dcBackupProvider = DcBackupProvider(self.dcContext)
             DispatchQueue.main.async {
@@ -116,7 +116,7 @@ class BackupTransferViewController: UIViewController {
                                  + "\n\n➋ " + String.localized("multidevice_install_dc_on_other_device")
                                  + "\n\n➌ " + String.localized("multidevice_tap_scan_on_other_device")
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                    guard let self = self else { return }
+                    guard let self else { return }
                     self.dcBackupProvider?.wait()
                 }
             }
@@ -140,7 +140,7 @@ class BackupTransferViewController: UIViewController {
         } else {
             UIApplication.shared.isIdleTimerDisabled = true
             imexObserver = NotificationCenter.default.addObserver(forName: eventImexProgress, object: nil, queue: nil) { [weak self] notification in
-                guard let self = self, let ui = notification.userInfo, let permille = ui["progress"] as? Int else { return }
+                guard let self, let ui = notification.userInfo, let permille = ui["progress"] as? Int else { return }
                 if self.isFinishing { return }
                 var statusLineText: String?
                 var hideQrCode = false
@@ -257,7 +257,7 @@ class BackupTransferViewController: UIViewController {
         }))
         if !self.qrContentView.isHidden {
             alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.warnAboutCopiedQrCodeOnAbort = true
                 UIPasteboard.general.string = self.dcBackupProvider?.getQr()
             }))

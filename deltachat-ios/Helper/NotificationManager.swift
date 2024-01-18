@@ -71,7 +71,7 @@ public class NotificationManager {
             }
 
             DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 if let ui = notification.userInfo,
                    let chatId = ui["chat_id"] as? Int,
                    let messageId = ui["message_id"] as? Int,
@@ -128,7 +128,7 @@ public class NotificationManager {
             forName: eventMsgsNoticed,
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self else { return }
+            guard let self else { return }
             if !UserDefaults.standard.bool(forKey: "notifications_disabled"),
                let ui = notification.userInfo,
                let chatId = ui["chat_id"] as? Int {

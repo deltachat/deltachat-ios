@@ -101,7 +101,7 @@ class QrViewController: UIViewController {
                                       message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
         alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             guard let code = dcContext.getSecurejoinQr(chatId: self.chatId) else { return }
             _ = self.dcContext.setConfigFromQR(qrCode: code)
             self.navigationController?.popViewController(animated: true)

@@ -129,7 +129,7 @@ class QrPageController: UIPageViewController {
         let alert = UIAlertController(title: String.localized("withdraw_verifycontact_explain"), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
         alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
-            guard let self = self else { return }
+            guard let self else { return }
             guard let code = dcContext.getSecurejoinQr(chatId: 0) else { return }
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             _ = self.dcContext.setConfigFromQR(qrCode: code)
@@ -280,7 +280,7 @@ extension QrPageController: QrCodeReaderDelegate {
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 let success = self.dcContext.setConfigFromQR(qrCode: code)
                 if !success {
                     logger.warning("Could not set webrtc instance from QR code.")

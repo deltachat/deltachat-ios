@@ -166,7 +166,7 @@ class FilesViewController: UIViewController {
         let ids: [Int]
         ids = self.dcContext.getChatMedia(chatId: self.chatId, messageType: self.type1, messageType2: self.type2, messageType3: self.type3).reversed()
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             self.fileMessageIds = ids
             self.emptyStateView.isHidden = !ids.isEmpty
             self.tableView.reloadData()
