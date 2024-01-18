@@ -40,7 +40,6 @@ class ReactionsView: UIControl {
     }
 
     public func configure(with reactions: DcReactions) {
-
         let moreThanFiveReactions = reactions.reactions.count > 5
 
         var subviews: [UIView]
