@@ -1895,7 +1895,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
               let messageSnapshotView = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false)
         else { return nil }
 
-        let sendReactionsView = SendReactionsView(messageId: messageId as String)
+        let myReactions = dcContext.getMessageReactions(messageId: messageId.integerValue)?.reactions.filter { $0.isFromSelf } ?? []
+
+        let sendReactionsView = SendReactionsView(messageId: messageId as String, myReactions: myReactions)
         sendReactionsView.delegate = self
         sendReactionsView.translatesAutoresizingMaskIntoConstraints = false
         sendReactionsView.layoutIfNeeded()
