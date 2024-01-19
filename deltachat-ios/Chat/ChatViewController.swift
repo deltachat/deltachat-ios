@@ -1843,26 +1843,50 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        return makeTargetedPreview(for: configuration)
-    }
-
-    @available(iOS 13.0, *)
-    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        return makeTargetedPreview(for: configuration)
-    }
-
-    @available(iOS 13.0, *)
-    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let messageId = configuration.identifier as? NSString else { return nil }
         guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
 
-        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
+              let messageSnapshotView = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false)
+        else { return nil }
 
-        // clear background, so that background image is still visible
+        let sendReactionsView = SendReactionsView(messageId: messageId as String)
+        sendReactionsView.delegate = self
+        sendReactionsView.translatesAutoresizingMaskIntoConstraints = false
+        sendReactionsView.layoutIfNeeded()
+
+        let width = max(messageSnapshotView.frame.width, sendReactionsView.frame.width)
+        let height = messageSnapshotView.frame.height + 10 + sendReactionsView.frame.height
+
+        let container = UIStackView(frame: CGRect(0, cell.bounds.minY, width, height))
+        container.addArrangedSubview(sendReactionsView)
+        container.addArrangedSubview(messageSnapshotView)
+        container.spacing = 10
+        container.axis = .vertical
+        container.backgroundColor = .clear
+
+        sendReactionsView.widthAnchor.constraint(lessThanOrEqualTo: container.widthAnchor).isActive = true
+
+        let centerPoint = cell.convert(messageSnapshotView.center, to: tableView)
+        let previewTarget = UIPreviewTarget(container: tableView, center: centerPoint)
+
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
-        return UITargetedPreview(view: cell, parameters: parameters)
+        return UITargetedPreview(view: container, parameters: parameters, target: previewTarget)
+    }
+
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let messageId = configuration.identifier as? NSString else { return nil }
+        guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
+        let indexPath = IndexPath(row: index, section: 0)
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return nil }
+
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+        return UITargetedPreview(view: cell.messageBackgroundContainer, parameters: parameters)
     }
 
     // context menu for iOS 13+
@@ -2488,6 +2512,7 @@ extension ChatViewController: WebxdcSelectorDelegate {
     }
 }
 
+// MARK: - ChatDropInteractionDelegate
 extension ChatViewController: ChatDropInteractionDelegate {
     func onImageDragAndDropped(image: UIImage) {
         stageImage(image)
@@ -2509,5 +2534,15 @@ extension ChatViewController: ChatDropInteractionDelegate {
             updatedText?.append(" \(text) ")
             messageInputBar.inputTextView.text = updatedText
         }
+    }
+}
+
+// MARK: - SendReactionsViewDelegate
+extension ChatViewController: SendReactionsViewDelegate {
+    func reactionButtonTapped(_ view: SendReactionsView, reaction: DefaultReactions, messageId: String) {
+        guard let messageId = Int(messageId) else { return }
+
+        // TODO: Dismiss Menu
+        dcContext.sendReaction(messageId: messageId, reaction: reaction.emoji)
     }
 }
