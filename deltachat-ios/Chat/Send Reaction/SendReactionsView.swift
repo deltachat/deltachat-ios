@@ -1,4 +1,5 @@
 import UIKit
+import DcCore
 
 enum DefaultReactions: CaseIterable {
     case thumbsUp
@@ -24,30 +25,48 @@ class SendReactionsView: UIView {
     weak var delegate: SendReactionsViewDelegate?
     
     private let messageId: String
+    let myReactions: [DcReaction]
+
     private let contentStackView: UIStackView
     private let thumbsUpReactionButton: UIButton
     private let thumbsDownReactionButton: UIButton
     private let heartReactionButton: UIButton
     private let hahaReactionButton: UIButton
 
-    init(messageId: String) {
+    init(messageId: String, myReactions: [DcReaction]) {
         self.messageId = messageId
+        self.myReactions = myReactions
 
         thumbsUpReactionButton = UIButton()
         thumbsDownReactionButton = UIButton()
         heartReactionButton = UIButton()
         hahaReactionButton = UIButton()
 
-        [thumbsUpReactionButton, thumbsDownReactionButton, heartReactionButton, hahaReactionButton].forEach {
+        let myEmojis = myReactions.map { $0.emoji }
+
+        [
+            (button: thumbsUpReactionButton, reaction: DefaultReactions.thumbsUp),
+            (button: thumbsDownReactionButton, reaction: DefaultReactions.thumbsDown),
+            (button: heartReactionButton, reaction: DefaultReactions.heart),
+            (button: hahaReactionButton, reaction: DefaultReactions.haha)
+        ].forEach {
             if #available(iOS 13, *) {
-                $0.backgroundColor = .systemBackground
+                if myEmojis.contains($0.reaction.emoji) {
+                    $0.button.backgroundColor = DcColors.messagePrimaryColor
+                } else {
+                    $0.button.backgroundColor = .systemBackground
+                }
             } else {
-                $0.backgroundColor = .white
+                if myEmojis.contains($0.reaction.emoji) {
+                    $0.button.backgroundColor = DcColors.messagePrimaryColor
+                } else {
+                    $0.button.backgroundColor = .white
+                }
             }
 
-            $0.layer.cornerRadius = 8
-            $0.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 16)
-            $0.titleEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: -8)
+            $0.button.layer.cornerRadius = 8
+            $0.button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 16)
+            $0.button.titleEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: -8)
         }
 
         contentStackView = UIStackView(arrangedSubviews: [thumbsUpReactionButton, thumbsDownReactionButton, heartReactionButton, hahaReactionButton])
