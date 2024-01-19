@@ -162,7 +162,7 @@ public class BaseMessageCell: UITableViewCell {
         return StatusView()
     }()
 
-    private lazy var messageBackgroundContainer: BackgroundContainer = {
+    lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
         container.image = UIImage(color: UIColor.blue)
         container.contentMode = .scaleToFill
