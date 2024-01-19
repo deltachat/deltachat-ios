@@ -30,9 +30,9 @@ class ContactCell: UITableViewCell {
             verifiedIndicator,
             spacerView,
             mutedIndicator,
-            pinnedIndicator,
+            locationStreamingIndicator,
             timeLabel,
-            locationStreamingIndicator])
+            pinnedIndicator])
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 4
