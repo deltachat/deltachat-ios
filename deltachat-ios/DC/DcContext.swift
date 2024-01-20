@@ -504,8 +504,8 @@ public class DcContext {
     }
 
     @discardableResult
-    public func addDeviceMessage(label: String?, msg: DcMsg) -> Int {
-        return Int(dc_add_device_msg(contextPointer, label, msg.cptr))
+    public func addDeviceMessage(label: String?, msg: DcMsg?) -> Int {
+        return Int(dc_add_device_msg(contextPointer, label, msg?.cptr ?? nil))
     }
 
     public func getProviderFromEmailWithDns(addr: String) -> DcProvider? {
