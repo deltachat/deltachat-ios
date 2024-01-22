@@ -12,7 +12,7 @@ public class DcAccounts {
     public var fetchSemaphore: DispatchSemaphore?
 
     private var encryptedDatabases: [Int: Bool] = [:]
-    private var justAdded: [Int: Bool] = [:]
+    private var freshlyAddedAccountIds: [Int] = []
 
     public init() {}
 
@@ -27,7 +27,7 @@ public class DcAccounts {
     public func add() -> Int {
         let accountId = Int(dc_accounts_add_account(accountsPointer))
         get(id: accountId).setConfig("verified_one_on_one_chats", "1")
-        justAdded[accountId] = true
+        freshlyAddedAccountIds.append(accountId)
         return accountId
     }
 
@@ -36,8 +36,8 @@ public class DcAccounts {
         return DcContext(contextPointer: contextPointer)
     }
 
-    public func isJustAdded(id: Int) -> Bool {
-        return justAdded[id] ?? false
+    public func isFreshlyAdded(id: Int) -> Bool {
+        return freshlyAddedAccountIds.contains(id)
     }
 
     public func getAll() -> [Int] {
