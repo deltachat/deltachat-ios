@@ -176,7 +176,7 @@
 "edit_broadcast_list" = "Modifica Lista Trasmissione";
 "broadcast_list_name" = "Nome Lista Trasmissione";
 "please_enter_broadcast_list_name" = "Per piacere inserisci un nome per la lista trasmissione.";
-"menu_send" = "Inviato";
+"menu_send" = "Invia";
 "menu_toggle_keyboard" = "Alterna la Tastiera Emoji";
 "menu_edit_group" = "Modifica Gruppo";
 "menu_group_name_and_image" = "Nome e Immagine Gruppo";
@@ -845,6 +845,8 @@
 "qraccount_ask_create_and_login_another" = "Crea un nuovo indirizzo e-mail su \"%1$@\" e accedi qui?\n\nIl tuo account esistente non verrà eliminato. Utilizza la voce \"Cambia account\" per passare da un account all\'altro.";
 // deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Accesso completato—il tuo indirizzo email è %1$@\n\nSe vuoi, puoi inserire un nome e un\'immagine profilo che verranno mostrati a chi ti scrive.";
+"set_name_and_avatar_explain" = "Imposta un nome che i tuoi contatti riconosceranno. Puoi anche impostare un\'immagine del profilo.";
+"please_enter_name" = "Inserisci un nome.";
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo account.";
 "qraccount_use_on_new_install" = "Il codice QR scansionato serve a creare un nuovo account. Puoi scansionare il codice quando configuri una nuova installazione di Delta Chat.";
 // the placeholder will be replaced by the e-mail address of the account

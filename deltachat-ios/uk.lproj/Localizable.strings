@@ -323,7 +323,7 @@
 "chat_camera_unavailable" = "Камера недоступна.";
 "chat_unable_to_record_audio" = "Неможливо записати аудіо.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Відправити повідомлення. Це нічого, якщо %1$@ не використовує Delta Chat.";
+"chat_new_one_to_one_hint" = "Надіслати повідомлення до %1$@.";
 "chat_new_broadcast_hint" = "У списку трансляцій одержувачі будуть отримувати повідомлення у чаті з вами в режимі тільки-для-читання.";
 "chat_new_group_hint" = "Інші побачать цю групу лише після того, як ви надішлете перше повідомлення.";
 "chat_record_slide_to_cancel" = "Рухайте для скасування";
@@ -563,7 +563,7 @@
 "pref_outgoing_media_quality" = "Якість вихідних медіа файлів";
 "pref_outgoing_balanced" = "Збалансовано";
 "pref_outgoing_worse" = "Гірша якість, менший розмір";
-"pref_vibrate" = "Вібрує";
+"pref_vibrate" = "Вібрація";
 "pref_screen_security" = "Безпека екрану";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Запит на блокування скріншотів у списку останніх і всередині програми";
@@ -832,7 +832,7 @@
 "revive_qr_code" = "Активувати QR-код";
 "qrshow_title" = "QR-код запрошення";
 "qrshow_x_joining" = "%1$@ приєднався(-лася).";
-"qrshow_x_verified" = "%1$@ перевірений(-а).";
+"qrshow_x_verified" = "%1$@ перевірено.";
 "qrshow_x_has_joined_group" = "%1$@ приєднався(-лася) до групи.";
 "qrshow_join_group_title" = "QR-код запрошення";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
@@ -845,6 +845,8 @@
 "qraccount_ask_create_and_login_another" = "Створити нову електронну адресу на \"%1$@\" та увійти у неї?\n\nВаш поточний обліковий запис не буде видалено. Використовуйте \"Перемкнути обліковий запис\".";
 // deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Вхід успішний — ваша ел. адреса %1$@\n\nЯкщо ви бажаєте, ви можете ввести ім\'я та аватар.";
+"set_name_and_avatar_explain" = "Встановіть ім’я, яке розпізнають ваші контакти. Ви також можете встановити зображення профілю.";
+"please_enter_name" = "Будь ласка, введіть ім\'я.";
 "qraccount_qr_code_cannot_be_used" = "Зісканований QR-код не може бути використаний для створення нового облікового запису.";
 "qraccount_use_on_new_install" = "Зісканований QR-код для створення нового облікового запису. Ви можете зісканувати QR-код коли налаштовуєте нову інсталяцію.";
 // the placeholder will be replaced by the e-mail address of the account
@@ -855,7 +857,7 @@
 "secure_join_started" = "%1$@ запросили вас приєднатися до цієї групи.\n\nОчікуємо на відповідь від пристрою %2$@…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ відповіли, очікуємо на додавання до групи…";
-"contact_verified" = "%1$@ підтверджений(-а)";
+"contact_verified" = "%1$@ підтверджено.";
 "contact_not_verified" = "Неможливо підтвердити %1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Підтверджено %1$@";

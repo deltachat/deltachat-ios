@@ -841,6 +841,8 @@
 "qraccount_ask_create_and_login_another" = "¿Crear una nueva dirección de correo en \"%1$@\" e ingresar ahí?\n\nTu cuenta existente no será eliminada. Usar el ítem \"Cambiar cuenta\" para cambiar entre tus cuentas.";
 // deprecated, use set_name_and_avatar_explain instead
 "qraccount_success_enter_name" = "Ingreso satisfactorio—tu dirección de email es %1$@\n\nSi lo deseas, puedes ingresar un nombre y una imagen de perfil, que será mostrada a los usuarios que escribas.";
+"set_name_and_avatar_explain" = "Establece un nombre que tus contactos puedan reconocer. También puedes establecer una foto de perfil.";
+"please_enter_name" = "Por favor, introduce un nombre.";
 "qraccount_qr_code_cannot_be_used" = "El código QR escaneado no puede ser usado para configurar una nueva cuenta.";
 "qraccount_use_on_new_install" = "El código QR escaneado esta configurando la nueva cuenta. Puedes escanear el código QR cuando estés preparando una nueva instalación de Delta Chat";
 // the placeholder will be replaced by the e-mail address of the account
