@@ -1887,6 +1887,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return targetedPreview(for: configuration, reactionsHidden: false)
+    }
+
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return targetedPreview(for: configuration, reactionsHidden: true)
+    }
+
+    @available(iOS 13.0, *)
+    private func targetedPreview(for configuration: UIContextMenuConfiguration, reactionsHidden: Bool) -> UITargetedPreview? {
         guard let messageId = configuration.identifier as? NSString else { return nil }
         guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
@@ -1901,6 +1911,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         sendReactionsView.delegate = self
         sendReactionsView.translatesAutoresizingMaskIntoConstraints = false
         sendReactionsView.layoutIfNeeded()
+        
+        if reactionsHidden {
+            sendReactionsView.alpha = 0.0
+        }
 
         let width = max(messageSnapshotView.frame.width, sendReactionsView.frame.width)
         let height = messageSnapshotView.frame.height + 10 + sendReactionsView.frame.height
@@ -1938,18 +1952,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return preview
     }
 
-    @available(iOS 13.0, *)
-    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        guard let messageId = configuration.identifier as? NSString else { return nil }
-        guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
-        let indexPath = IndexPath(row: index, section: 0)
-
-        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return nil }
-
-        let parameters = UIPreviewParameters()
-        parameters.backgroundColor = .clear
-        return UITargetedPreview(view: cell.messageBackgroundContainer, parameters: parameters)
-    }
 
     // context menu for iOS 13+
     @available(iOS 13, *)
