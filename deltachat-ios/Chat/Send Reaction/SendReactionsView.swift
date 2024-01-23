@@ -67,6 +67,8 @@ class SendReactionsView: UIView {
             $0.button.layer.cornerRadius = 8
             $0.button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 16)
             $0.button.titleEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: -8)
+            $0.button.setTitle($0.reaction.emoji, for: .normal)
+
         }
 
         contentStackView = UIStackView(arrangedSubviews: [thumbsUpReactionButton, thumbsDownReactionButton, heartReactionButton, hahaReactionButton])
@@ -79,13 +81,9 @@ class SendReactionsView: UIView {
 
         addSubview(contentStackView)
 
-        thumbsUpReactionButton.setTitle(DefaultReactions.thumbsUp.emoji, for: .normal)
         thumbsUpReactionButton.addTarget(self, action: #selector(SendReactionsView.thumbsUpReactionButtonsButtonPressed(_:)), for: .touchUpInside)
-        thumbsDownReactionButton.setTitle(DefaultReactions.thumbsDown.emoji, for: .normal)
         thumbsDownReactionButton.addTarget(self, action: #selector(SendReactionsView.thumbsDownReactionButtonsButtonPressed(_:)), for: .touchUpInside)
-        heartReactionButton.setTitle(DefaultReactions.heart.emoji, for: .normal)
         heartReactionButton.addTarget(self, action: #selector(SendReactionsView.heartReactionButtonsButtonPressed(_:)), for: .touchUpInside)
-        hahaReactionButton.setTitle(DefaultReactions.haha.emoji, for: .normal)
         hahaReactionButton.addTarget(self, action: #selector(SendReactionsView.hahaReactionButtonsButtonPressed(_:)), for: .touchUpInside)
 
         setupCostraints()
