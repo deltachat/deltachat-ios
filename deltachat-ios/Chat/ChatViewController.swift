@@ -1867,15 +1867,24 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         container.spacing = 10
         container.axis = .vertical
         container.backgroundColor = .clear
+        container.alignment = .leading
 
-        sendReactionsView.widthAnchor.constraint(lessThanOrEqualTo: container.widthAnchor).isActive = true
+        messageSnapshotView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sendReactionsView.widthAnchor.constraint(lessThanOrEqualTo: container.widthAnchor),
+            messageSnapshotView.widthAnchor.constraint(equalToConstant: messageSnapshotView.frame.width),
+        ])
 
-        let centerPoint = cell.convert(messageSnapshotView.center, to: tableView)
+        var centerPoint = cell.convert(messageSnapshotView.center, to: tableView)
+        centerPoint.y -= 20
+        centerPoint.x += 6
         let previewTarget = UIPreviewTarget(container: tableView, center: centerPoint)
 
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
-        return UITargetedPreview(view: container, parameters: parameters, target: previewTarget)
+        let preview = UITargetedPreview(view: container, parameters: parameters, target: previewTarget)
+
+        return preview
     }
 
     @available(iOS 13.0, *)
