@@ -1890,10 +1890,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         guard let messageId = configuration.identifier as? NSString else { return nil }
         guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
+        let message = dcContext.getMessage(id: messageId.integerValue)
 
         guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
-              let messageSnapshotView = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false)
-        else { return nil }
+              let messageSnapshotView = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) else { return nil }
 
         let myReactions = dcContext.getMessageReactions(messageId: messageId.integerValue)?.reactions.filter { $0.isFromSelf } ?? []
 
@@ -1911,7 +1911,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         container.spacing = 10
         container.axis = .vertical
         container.backgroundColor = .clear
-        container.alignment = .leading
 
         messageSnapshotView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -1919,9 +1918,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             messageSnapshotView.widthAnchor.constraint(equalToConstant: messageSnapshotView.frame.width),
         ])
 
-        var centerPoint = cell.convert(messageSnapshotView.center, to: tableView)
-        centerPoint.y -= 20
-        centerPoint.x += 6
+        var centerPoint = cell.convert(cell.messageBackgroundContainer.frame.origin, to: tableView)
+        centerPoint.y += 0.5 * cell.messageBackgroundContainer.frame.height - 24
+
+        if message.isFromCurrentSender {
+            centerPoint.x = cell.frame.width - 0.5 * container.frame.width - 6
+            container.alignment = .trailing
+        } else {
+            centerPoint.x = (container.center.x + cell.messageBackgroundContainer.frame.minX)
+            container.alignment = .leading
+        }
+
         let previewTarget = UIPreviewTarget(container: tableView, center: centerPoint)
 
         let parameters = UIPreviewParameters()
