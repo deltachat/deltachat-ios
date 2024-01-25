@@ -578,15 +578,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
             guard let self, let ui = notification.userInfo else { return }
-            if self.chatId == ui["chat_id"] as? Int {
-                if let id = ui["message_id"] as? Int {
-                    if id > 0 {
-                        self.insertMessage(self.dcContext.getMessage(id: id))
-                    } else {
-                        logger.debug(">>> messageId \(id) is not > 0, message not inserted")
-                    }
+            let chatId = ui["chat_id"] as? Int ?? 0
+            if chatId == 0 || chatId == self.chatId {
+                let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
+                refreshMessages()
+                updateTitle()
+                if wasLastSectionScrolledToBottom {
+                    scrollToBottom(animated: true)
                 }
-                self.updateTitle()
+                self.updateScrollDownButtonVisibility()
             }
         }
 
@@ -1682,23 +1682,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
-        }
-    }
-
-    private func insertMessage(_ message: DcMsg) {
-        logger.debug(">>> insertMessage \(message.id)")
-        markSeenMessage(id: message.id)
-        let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
-        messageIds.append(message.id)
-        emptyStateView.isHidden = true
-
-        reloadData()
-        if UIAccessibility.isVoiceOverRunning && !message.isFromCurrentSender {
-            scrollToBottom(animated: false, focusOnVoiceOver: true)
-        } else if wasLastSectionScrolledToBottom || message.isFromCurrentSender {
-            scrollToBottom(animated: true)
-        } else {
-            updateScrollDownButtonVisibility()
         }
     }
 
