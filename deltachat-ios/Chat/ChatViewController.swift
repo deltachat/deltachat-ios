@@ -929,14 +929,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 }
         }
     }
-    
-    func markSeenMessage(id: Int) {
-        if isVisibleToUser {
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                self?.dcContext.markSeenMessages(messageIds: [UInt32(id)])
-            }
-        }
-    }
 
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return tableView.cellForRow(at: indexPath) as? SelectableCell != nil
