@@ -6,6 +6,7 @@ enum DefaultReactions: CaseIterable {
     case thumbsDown
     case heart
     case haha
+    case sad
 
     var emoji: String {
         switch self {
@@ -13,6 +14,7 @@ enum DefaultReactions: CaseIterable {
         case .thumbsDown: return "👎"
         case .heart: return "❤️"
         case .haha: return "😀"
+        case .sad: return "🙁"
         }
     }
 }
@@ -32,6 +34,7 @@ class SendReactionsView: UIView {
     private let thumbsDownReactionButton: UIButton
     private let heartReactionButton: UIButton
     private let hahaReactionButton: UIButton
+    private let sadReactionButton: UIButton
 
     init(messageId: String, myReactions: [DcReaction]) {
         self.messageId = messageId
@@ -41,6 +44,7 @@ class SendReactionsView: UIView {
         thumbsDownReactionButton = UIButton()
         heartReactionButton = UIButton()
         hahaReactionButton = UIButton()
+        sadReactionButton = UIButton()
 
         let myEmojis = myReactions.map { $0.emoji }
 
@@ -48,7 +52,8 @@ class SendReactionsView: UIView {
             (button: thumbsUpReactionButton, reaction: DefaultReactions.thumbsUp),
             (button: thumbsDownReactionButton, reaction: DefaultReactions.thumbsDown),
             (button: heartReactionButton, reaction: DefaultReactions.heart),
-            (button: hahaReactionButton, reaction: DefaultReactions.haha)
+            (button: hahaReactionButton, reaction: DefaultReactions.haha),
+            (button: sadReactionButton, reaction: DefaultReactions.sad),
         ].forEach {
             if #available(iOS 13, *) {
                 if myEmojis.contains($0.reaction.emoji) {
@@ -68,10 +73,9 @@ class SendReactionsView: UIView {
             $0.button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 16)
             $0.button.titleEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: -8)
             $0.button.setTitle($0.reaction.emoji, for: .normal)
-
         }
 
-        contentStackView = UIStackView(arrangedSubviews: [thumbsUpReactionButton, thumbsDownReactionButton, heartReactionButton, hahaReactionButton])
+        contentStackView = UIStackView(arrangedSubviews: [thumbsUpReactionButton, thumbsDownReactionButton, heartReactionButton, hahaReactionButton, sadReactionButton])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .horizontal
 
@@ -85,6 +89,7 @@ class SendReactionsView: UIView {
         thumbsDownReactionButton.addTarget(self, action: #selector(SendReactionsView.thumbsDownReactionButtonsButtonPressed(_:)), for: .touchUpInside)
         heartReactionButton.addTarget(self, action: #selector(SendReactionsView.heartReactionButtonsButtonPressed(_:)), for: .touchUpInside)
         hahaReactionButton.addTarget(self, action: #selector(SendReactionsView.hahaReactionButtonsButtonPressed(_:)), for: .touchUpInside)
+        sadReactionButton.addTarget(self, action: #selector(SendReactionsView.sadReactionButtonsButtonPressed(_:)), for: .touchUpInside)
 
         setupCostraints()
 
@@ -121,5 +126,9 @@ class SendReactionsView: UIView {
 
     @objc func hahaReactionButtonsButtonPressed(_ sender: Any) {
         delegate?.reactionButtonTapped(self, reaction: .haha, myReactions: myReactions, messageId: messageId)
+    }
+
+    @objc func sadReactionButtonsButtonPressed(_ sender: Any) {
+        delegate?.reactionButtonTapped(self, reaction: .sad, myReactions: myReactions, messageId: messageId)
     }
 }
