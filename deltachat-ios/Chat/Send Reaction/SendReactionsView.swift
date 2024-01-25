@@ -18,7 +18,7 @@ enum DefaultReactions: CaseIterable {
 }
 
 protocol SendReactionsViewDelegate: AnyObject {
-    func reactionButtonTapped(_ view: SendReactionsView, reaction: DefaultReactions, messageId: String)
+    func reactionButtonTapped(_ view: SendReactionsView, reaction: DefaultReactions, myReactions: [DcReaction], messageId: String)
 }
 
 class SendReactionsView: UIView {
@@ -108,18 +108,18 @@ class SendReactionsView: UIView {
     // MARK: - Actions
 
     @objc func thumbsUpReactionButtonsButtonPressed(_ sender: Any) {
-        delegate?.reactionButtonTapped(self, reaction: .thumbsUp, messageId: messageId)
+        delegate?.reactionButtonTapped(self, reaction: .thumbsUp, myReactions: myReactions, messageId: messageId)
     }
 
     @objc func thumbsDownReactionButtonsButtonPressed(_ sender: Any) {
-        delegate?.reactionButtonTapped(self, reaction: .thumbsDown, messageId: messageId)
+        delegate?.reactionButtonTapped(self, reaction: .thumbsDown, myReactions: myReactions, messageId: messageId)
     }
 
     @objc func heartReactionButtonsButtonPressed(_ sender: Any) {
-        delegate?.reactionButtonTapped(self, reaction: .heart, messageId: messageId)
+        delegate?.reactionButtonTapped(self, reaction: .heart, myReactions: myReactions, messageId: messageId)
     }
 
     @objc func hahaReactionButtonsButtonPressed(_ sender: Any) {
-        delegate?.reactionButtonTapped(self, reaction: .haha, messageId: messageId)
+        delegate?.reactionButtonTapped(self, reaction: .haha, myReactions: myReactions, messageId: messageId)
     }
 }

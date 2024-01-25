@@ -2559,10 +2559,17 @@ extension ChatViewController: ChatDropInteractionDelegate {
 
 // MARK: - SendReactionsViewDelegate
 extension ChatViewController: SendReactionsViewDelegate {
-    func reactionButtonTapped(_ view: SendReactionsView, reaction: DefaultReactions, messageId: String) {
+    func reactionButtonTapped(_ view: SendReactionsView, reaction: DefaultReactions, myReactions: [DcReaction], messageId: String) {
         guard let messageId = Int(messageId) else { return }
 
+        let myEmojis = myReactions.map { $0.emoji }
+
+        if myEmojis.contains(reaction.emoji) {
+            dcContext.sendReaction(messageId: messageId, reaction: nil)
+        } else {
+            dcContext.sendReaction(messageId: messageId, reaction: reaction.emoji)
+        }
+
         // TODO: Dismiss Menu
-        dcContext.sendReaction(messageId: messageId, reaction: reaction.emoji)
     }
 }
