@@ -2570,6 +2570,11 @@ extension ChatViewController: SendReactionsViewDelegate {
             dcContext.sendReaction(messageId: messageId, reaction: reaction.emoji)
         }
 
-        // TODO: Dismiss Menu
+        if #available(iOS 14.0, *) {
+            tableView.contextMenuInteraction?.dismissMenu()
+        } else {
+            // Fallback on earlier versions
+            dismiss(animated: false)
+        }
     }
 }
