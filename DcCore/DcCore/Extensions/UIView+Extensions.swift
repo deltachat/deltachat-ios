@@ -7,19 +7,19 @@ public extension UIView {
         self.layer.borderWidth = 2
     }
 
-    func alignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
+    func alignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority = .required) {
         _ = constraintAlignLeadingToAnchor(anchor, paddingLeading: paddingLeading, priority: priority)
     }
 
-    func alignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
+    func alignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority = .required) {
         _ = constraintAlignTrailingToAnchor(anchor, paddingTrailing: paddingTrailing, priority: priority)
     }
 
-    func alignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
+    func alignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0, priority: UILayoutPriority = .required) {
         _ = constraintAlignTopToAnchor(anchor, paddingTop: paddingTop, priority: priority)
     }
 
-    func alignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) {
+    func alignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority = .required) {
         _ = constraintAlignBottomToAnchor(anchor, paddingBottom: paddingBottom, priority: priority)
     }
 
@@ -30,38 +30,30 @@ public extension UIView {
         alignBottomToAnchor(view.bottomAnchor, paddingBottom: paddingBottom ?? 0.0)
     }
 
-    func constraintAlignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignLeadingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = self.leadingAnchor.constraint(equalTo: anchor, constant: paddingLeading)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         constraint.isActive = true
         return constraint
     }
 
-    func constraintAlignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignTrailingToAnchor(_ anchor: NSLayoutXAxisAnchor, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = self.trailingAnchor.constraint(equalTo: anchor, constant: -paddingTrailing)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         constraint.isActive = true
         return constraint
     }
 
-    func constraintAlignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignTopToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingTop: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = self.topAnchor.constraint(equalTo: anchor, constant: paddingTop)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         constraint.isActive = true
         return constraint
     }
 
-    func constraintAlignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignBottomToAnchor(_ anchor: NSLayoutYAxisAnchor, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = self.bottomAnchor.constraint(equalTo: anchor, constant: -paddingBottom)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         constraint.isActive = true
         return constraint
     }
@@ -70,7 +62,7 @@ public extension UIView {
         return constraintAlignTopTo(view, paddingTop: 0.0)
     }
 
-    func constraintAlignTopTo(_ view: UIView, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignTopTo(_ view: UIView, paddingTop: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .top,
@@ -79,17 +71,15 @@ public extension UIView {
             attribute: .top,
             multiplier: 1.0,
             constant: paddingTop)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
-    
+
     /**
      ensure the top of self is aligned with or lower than another view
      can be used in conjunction with constraintAlignCenterY
      */
-    func constraintAlignTopMaxTo(_ view: UIView, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignTopMaxTo(_ view: UIView, paddingTop: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .top,
@@ -98,13 +88,11 @@ public extension UIView {
             attribute: .top,
             multiplier: 1.0,
             constant: paddingTop)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintAlignBottomTo(_ view: UIView, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignBottomTo(_ view: UIView, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .bottom,
@@ -113,13 +101,11 @@ public extension UIView {
             attribute: .bottom,
             multiplier: 1.0,
             constant: -paddingBottom)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintAlignBottomMaxTo(_ view: UIView, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignBottomMaxTo(_ view: UIView, paddingBottom: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .bottom,
@@ -128,13 +114,11 @@ public extension UIView {
             attribute: .bottom,
             multiplier: 1.0,
             constant: -paddingBottom)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintAlignLeadingTo(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignLeadingTo(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .leading,
@@ -143,16 +127,14 @@ public extension UIView {
             attribute: .leading,
             multiplier: 1.0,
             constant: paddingLeading)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
     /**
-        allows to align leading to the leading of another view but allows left side shrinking
+     allows to align leading to the leading of another view but allows left side shrinking
      */
-    func constraintAlignLeadingMaxTo(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignLeadingMaxTo(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .leading,
@@ -161,13 +143,11 @@ public extension UIView {
             attribute: .leading,
             multiplier: 1.0,
             constant: paddingLeading)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintAlignTrailingTo(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignTrailingTo(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .trailing,
@@ -176,16 +156,14 @@ public extension UIView {
             attribute: .trailing,
             multiplier: 1.0,
             constant: -paddingTrailing)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
     /**
-        allows to align trailing to the trailing of another view but allows right side shrinking
+     allows to align trailing to the trailing of another view but allows right side shrinking
      */
-    func constraintAlignTrailingMaxTo(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintAlignTrailingMaxTo(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .trailing,
@@ -194,13 +172,11 @@ public extension UIView {
             attribute: .trailing,
             multiplier: 1.0,
             constant: -paddingTrailing)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintToBottomOf(_ view: UIView, paddingTop: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintToBottomOf(_ view: UIView, paddingTop: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .top,
@@ -209,13 +185,11 @@ public extension UIView {
             attribute: .bottom,
             multiplier: 1.0,
             constant: paddingTop)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintToTrailingOf(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintToTrailingOf(_ view: UIView, paddingLeading: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .leading,
@@ -224,13 +198,11 @@ public extension UIView {
             attribute: .trailing,
             multiplier: 1.0,
             constant: paddingLeading)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintTrailingToLeadingOf(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintTrailingToLeadingOf(_ view: UIView, paddingTrailing: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: .trailing,
@@ -239,53 +211,43 @@ public extension UIView {
             attribute: .leading,
             multiplier: 1.0,
             constant: -paddingTrailing)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintCenterXTo(_ view: UIView, paddingX: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintCenterXTo(_ view: UIView, paddingX: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: self,
-                                  attribute: .centerX,
-                                  relatedBy: .equal,
-                                  toItem: view,
-                                  attribute: .centerX,
-                                  multiplier: 1.0,
-                                  constant: paddingX)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+                                            attribute: .centerX,
+                                            relatedBy: .equal,
+                                            toItem: view,
+                                            attribute: .centerX,
+                                            multiplier: 1.0,
+                                            constant: paddingX)
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintCenterYTo(_ view: UIView, paddingY: CGFloat = 0.0, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintCenterYTo(_ view: UIView, paddingY: CGFloat = 0.0, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: self,
-                                  attribute: .centerY,
-                                  relatedBy: .equal,
-                                  toItem: view,
-                                  attribute: .centerY,
-                                  multiplier: 1.0,
-                                  constant: paddingY)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+                                            attribute: .centerY,
+                                            relatedBy: .equal,
+                                            toItem: view,
+                                            attribute: .centerY,
+                                            multiplier: 1.0,
+                                            constant: paddingY)
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintHeightTo(_ height: CGFloat, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintHeightTo(_ height: CGFloat, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = heightAnchor.constraint(equalToConstant: height)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
-    func constraintWidthTo(_ width: CGFloat, priority: UILayoutPriority? = .none) -> NSLayoutConstraint {
+    func constraintWidthTo(_ width: CGFloat, priority: UILayoutPriority = .required) -> NSLayoutConstraint {
         let constraint = widthAnchor.constraint(equalToConstant: width)
-        if let priority = priority {
-            constraint.priority = priority
-        }
+        constraint.priority = priority
         return constraint
     }
 
@@ -336,36 +298,36 @@ public extension UIView {
 
         var constraints = [NSLayoutConstraint]()
 
-        if let top = top {
+        if let top {
             let constraint = topAnchor.constraint(equalTo: top, constant: topConstant)
             constraint.identifier = "top"
             constraints.append(constraint)
         }
-        if let left = left {
+        if let left {
             let constraint = leftAnchor.constraint(equalTo: left, constant: leftConstant)
             constraint.identifier = "left"
             constraints.append(constraint)
         }
 
-        if let bottom = bottom {
+        if let bottom {
             let constraint = bottomAnchor.constraint(equalTo: bottom, constant: -bottomConstant)
             constraint.identifier = "bottom"
             constraints.append(constraint)
         }
 
-        if let right = right {
+        if let right {
             let constraint = rightAnchor.constraint(equalTo: right, constant: -rightConstant)
             constraint.identifier = "right"
             constraints.append(constraint)
         }
 
-        if let centerY = centerY {
+        if let centerY {
             let constraint = centerYAnchor.constraint(equalTo: centerY, constant: centerYConstant)
             constraint.identifier = "centerY"
             constraints.append(constraint)
         }
 
-        if let centerX = centerX {
+        if let centerX {
             let constraint = centerXAnchor.constraint(equalTo: centerX, constant: centerXConstant)
             constraint.identifier = "centerX"
             constraints.append(constraint)
