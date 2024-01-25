@@ -570,6 +570,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 DispatchQueue.main.async {
                     self.updateScrollDownButtonVisibility()
                 }
+                markSeenMessagesInVisibleArea()
             }
         }
 
@@ -586,7 +587,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 if wasLastSectionScrolledToBottom {
                     scrollToBottom(animated: true)
                 }
-                self.updateScrollDownButtonVisibility()
+                updateScrollDownButtonVisibility()
+                markSeenMessagesInVisibleArea()
             }
         }
 
