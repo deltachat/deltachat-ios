@@ -554,10 +554,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             queue: OperationQueue.main
         ) { [weak self] notification in
             guard let self, let ui = notification.userInfo else { return }
-            if self.chatId == ui["chat_id"] as? Int {
-                let id = ui["message_id"] as? Int ?? 0
-                if id > 0 {
-                    let msg = self.dcContext.getMessage(id: id)
+            let chatId = ui["chat_id"] as? Int ?? 0
+            if chatId == 0 || chatId == self.chatId {
+                let messageId = ui["message_id"] as? Int ?? 0
+                if messageId > 0 {
+                    let msg = self.dcContext.getMessage(id: messageId)
                     if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
                         draft.draftMsg = msg
                         configureDraftArea(draft: draft, animated: false)
