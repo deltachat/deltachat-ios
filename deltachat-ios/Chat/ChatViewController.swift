@@ -1872,31 +1872,46 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             sendReactionsView.alpha = 0.0
         }
 
-        let width = max(messageSnapshotView.frame.width, sendReactionsView.frame.width)
-        let height = messageSnapshotView.frame.height + 10 + sendReactionsView.frame.height
+        let container: UIView
+        let yDelta: CGFloat
 
-        let container = UIStackView(frame: CGRect(0, cell.bounds.minY, width, height))
-        container.addArrangedSubview(sendReactionsView)
-        container.addArrangedSubview(messageSnapshotView)
-        container.spacing = 10
-        container.axis = .vertical
-        container.backgroundColor = .clear
+        if dcChat.canSend {
+            let width = max(messageSnapshotView.frame.width, sendReactionsView.frame.width)
+            let height = messageSnapshotView.frame.height + 10 + sendReactionsView.frame.height
 
-        messageSnapshotView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            sendReactionsView.widthAnchor.constraint(lessThanOrEqualTo: container.widthAnchor),
-            messageSnapshotView.widthAnchor.constraint(equalToConstant: messageSnapshotView.frame.width),
-        ])
+            let stackView = UIStackView(frame: CGRect(0, cell.bounds.minY, width, height))
+            stackView.addArrangedSubview(sendReactionsView)
+            stackView.addArrangedSubview(messageSnapshotView)
+            stackView.spacing = 10
+            stackView.axis = .vertical
+            stackView.backgroundColor = .clear
+
+            messageSnapshotView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                sendReactionsView.widthAnchor.constraint(lessThanOrEqualTo: stackView.widthAnchor),
+                messageSnapshotView.widthAnchor.constraint(equalToConstant: messageSnapshotView.frame.width),
+            ])
+
+            if message.isFromCurrentSender {
+                stackView.alignment = .trailing
+            } else {
+                stackView.alignment = .leading
+            }
+
+            container = stackView
+            yDelta = -24
+        } else {
+            container = messageSnapshotView
+            yDelta = 0
+        }
 
         var centerPoint = cell.convert(cell.messageBackgroundContainer.frame.origin, to: tableView)
-        centerPoint.y += 0.5 * cell.messageBackgroundContainer.frame.height - 24
+        centerPoint.y += 0.5 * cell.messageBackgroundContainer.frame.height + yDelta
 
         if message.isFromCurrentSender {
             centerPoint.x = cell.frame.width - 0.5 * container.frame.width - 6
-            container.alignment = .trailing
         } else {
             centerPoint.x = (container.center.x + cell.messageBackgroundContainer.frame.minX)
-            container.alignment = .leading
         }
 
         let previewTarget = UIPreviewTarget(container: tableView, center: centerPoint)
