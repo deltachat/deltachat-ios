@@ -553,23 +553,23 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self, let id = notification.userInfo?["message_id"] as? Int else { return }
-            if self.dcChat.canSend, id > 0 {
-                let msg = self.dcContext.getMessage(id: id)
-                if msg.isInfo,
-                   let parent = msg.parent,
-                   parent.type == DC_MSG_WEBXDC {
-                    self.refreshMessages()
-                } else {
-                    self.updateMessage(msg)
+            guard let self, let ui = notification.userInfo else { return }
+            if self.chatId == ui["chat_id"] as? Int {
+                let id = ui["message_id"] as? Int ?? 0
+                if id > 0 {
+                    let msg = self.dcContext.getMessage(id: id)
+                    if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
+                        draft.draftMsg = msg
+                        configureDraftArea(draft: draft, animated: false)
+                        return
+                    }
                 }
-            } else {
-                self.refreshMessages()
+                refreshMessages()
+                updateTitle()
                 DispatchQueue.main.async {
                     self.updateScrollDownButtonVisibility()
                 }
             }
-            self.updateTitle()
         }
 
         incomingMsgObserver = nc.addObserver(
@@ -1681,29 +1681,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
-        }
-    }
-
-    private func updateMessage(_ msg: DcMsg) {
-        if messageIds.firstIndex(of: msg.id) != nil {
-            reloadData()
-        } else {
-            // new outgoing message
-            if msg.state != DC_STATE_OUT_DRAFT,
-               msg.chatId == chatId {
-                logger.debug(">>> updateMessage: outgoing message \(msg.id)")
-                if let newMsgMarkerIndex = messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
-                    messageIds.remove(at: newMsgMarkerIndex)
-                }
-                insertMessage(msg)
-            } else if msg.type == DC_MSG_WEBXDC,
-                      msg.chatId == chatId {
-                // webxdc draft got updated
-                draft.draftMsg = msg
-                configureDraftArea(draft: draft, animated: false)
-            } else {
-                logger.debug(">>> updateMessage: unhandled message \(msg.id) - msg.chatId: \(msg.chatId) vs. chatId: \(chatId) - msg.state: \(msg.state)")
-            }
         }
     }
 
