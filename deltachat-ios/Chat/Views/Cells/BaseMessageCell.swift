@@ -172,7 +172,7 @@ public class BaseMessageCell: UITableViewCell {
         return container
     }()
 
-    private let reactionsView: ReactionsView
+    let reactionsView: ReactionsView
 
     private var showSelectionBackground: Bool
 
