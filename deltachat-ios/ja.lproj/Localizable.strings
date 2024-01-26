@@ -189,6 +189,7 @@
 "device_talk" = "デバイスのメッセージ";
 "device_talk_subtitle" = "ローカルで生成されたメッセージ";
 "device_talk_explain" = "このチャットのメッセージはアプリで生成されます。アプリ開発者はアップデートや問題点をお知らせするために使用しています。";
+// deprecated, use device_talk_welcome_message2 instead
 "edit_contact" = "連絡先を編集";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "チャットをピン留め";

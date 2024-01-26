@@ -236,6 +236,7 @@
 "device_talk" = "پیام‌های دستگاه";
 "device_talk_subtitle" = "پیام‌های  داخلی";
 "device_talk_explain" = "پیام‌ها در این گپ به صورت داخلی و توسط نرم‌افزار دلتاچت تولید شده‌اند. سازنده‌ها از این محل برای اعلان به روز‌رسانی‌ها و مشکلات پیش آمده حین کار استفاده می‌کنند. ";
+// deprecated, use device_talk_welcome_message2 instead
 "edit_contact" = "ویرایش مخاطب";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "سنجاق کردن گپ";
@@ -655,7 +656,6 @@
 
 // Reactions
 "reactions" = "واکنش‌ها";
-
 // automatically delete message
 "delete_old_messages" = "پاک کردن پیام‌های قدیمی";
 "autodel_device_title" = "پاک کردن پیام‌ها از دستگاه";

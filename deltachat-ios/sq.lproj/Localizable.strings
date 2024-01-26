@@ -242,7 +242,9 @@
 "device_talk" = "Mesazhe Pajisjeje";
 "device_talk_subtitle" = "Mesazhe të prodhuar lokalisht";
 "device_talk_explain" = "Mesazhet në këtë fjalosje prodhohen lokalisht nga aplikacioni juaj Delta Chat. Krijuesit e tij e përdorin për t’ju bërë të ditur përditësime dhe probleme gjatë përdorimit.";
+// deprecated, use device_talk_welcome_message2 instead
 "device_talk_welcome_message" = "Mirë se vini te Delta Chat! – Delta Chat duket si aplikacione të tjerë popullorë për shkëmbim mesazhesh, por nuk përmban kontroll të centralizuar, s’ju gjurmon apo shet te ente të mëdha ju, shokët tuaj, kolegët apo familjen tuaj.\n\nTeknikisht, Delta Chat është një aplikacion email me një ndërfaqe moderne. Email me rroba të reja, nëse doni kështu 👻\n\nPërdoreni Delta Chat-in me cilindo prej miliarda vetash: thjesht përdorni adresat e tyre email. Marrësit s’ka nevojë të instalojnë Delta Chat-in, të vizitojnë sajte apo të regjistrohen diku - por sigurisht, nëse duan, mund t’i drejtoni te 👉 https://get.delta.chat";
+"device_talk_welcome_message2" = "Lidhuni!\n\n🙌 Prekni “Kod QR” te skena kryesore në të dyja pajisjet. Zgjidhni “Skano Kod QR” në një pajisje dhe drejtojani tjetrës\n\n🌍 Nëse s’gjenden në të njëjtën dhomë, skanojeni përmes një thirrjeje video, ose ndani një lidhje ftese që nga “Skanoni kod QR”\n\nMandej: Shijoni punimin e shkëmbyesit të mesazheve përmes rrjetit më të madh të decentralizuar që ka ekzistuar ndonjëherë: email-it. Dhe, në kontrast me aplikacione të tjera popullore, pa kontroll të centralizuar, apo gjurmim, apo shitje të dhënash tuajat, të shokëve, kolegëve apo familjes te ente të mëdha.";
 "edit_contact" = "Përpunoni kontaktin";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fiksojeni bisedën";
@@ -677,6 +679,8 @@
 
 // Reactions
 "reactions" = "Reagime";
+// Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
+"react" = "Reagoni";
 
 // automatically delete message
 "delete_old_messages" = "Fshiji mesazhet e vjetër";
@@ -795,6 +799,8 @@
 "chat_protection_enabled_explanation" = "Tanimë për mesazhet në këtë fjalosje garantohet fshehtëzimi skaj-më-skaj.\n\nFshehtëzimi skaj-më-skaj i mban private mesazhet mes jush dhe partnerëve tuaj të fjalosjes. Ato s’mund t’i lexojë as furnizuesi i shërbimit tuaj email.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ dërgoi një mesazh nga një pajisje tjetër. Prekeni që të mësoni më tepër.";
 "chat_protection_broken_explanation" = "Fshehtëzimi skaj-më-skaj s’mund të garantohet më, ngaqë, sipas gjasash, %1$@ riinstaloi Delta Chat-in, ose dërgoi një mesazh nga një tjetër pajisje.\n\nMund t’i takoni dhe të skanoni KODIN e tyre QR sërish, që të rivendoset fshehtëzim skaj-më-skaj i garantuar.";
+"invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ lyp fshehtëzim, i cili s’është ujdisur ende për këtë fjalosje. Që të mësoni më tepër, prekeni.";
+"invalid_unencrypted_explanation" = "Për të vendosur fshehtëzim skaj-më-skaj, mund të takoheni personalisht me kontaktet dhe të skanoni kodin e tyre QR, për t’i pranuar.";
 "learn_more" = "Mësoni Më Tepër";
 
 "devicemsg_self_deleted" = "Fshitë fjalosjen “Mesazhe të ruajtur”.\n\nℹ️ Që të përdorni sërish veçorinë “Mesazhe të ruajtur”, krijoni një fjalosje të re me veten tuaj.";

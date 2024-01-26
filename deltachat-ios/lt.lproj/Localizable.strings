@@ -522,7 +522,6 @@
 
 // Reactions
 "reactions" = "Reakcijos";
-
 // automatically delete message
 "delete_old_messages" = "Ištrinti senas žinutes";
 "autodel_device_title" = "Ištrinti žinutes iš įrenginio";

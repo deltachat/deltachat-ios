@@ -244,6 +244,7 @@
 "device_talk" = "Aygıt İletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
 "device_talk_explain" = "Bu sohbetteki iletiler, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için aygıtınızda oluşturulur.";
+// deprecated, use device_talk_welcome_message2 instead
 "device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir; ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak elbette isterlerse onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
 "edit_contact" = "Kişiyi Düzenle";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
@@ -680,6 +681,8 @@
 
 // Reactions
 "reactions" = "Tepkiler";
+// Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
+"react" = "Tepki Ver";
 
 // automatically delete message
 "delete_old_messages" = "Eski İletileri Sil";
@@ -798,6 +801,8 @@
 "chat_protection_enabled_explanation" = "Artık bu sohbetteki tüm iletiler uçtan uca şifreleme güvencelidir.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. E-posta sağlayıcınız bile onları okuyamaz.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ başka bir aygıttan bir ileti gönderdi. Daha fazlasını öğrenmek için dokunun.";
 "chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvencelenemiyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
+"invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
+"invalid_unencrypted_explanation" = "Uçtan uca şifrelemeyi kurmak için kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
 
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";

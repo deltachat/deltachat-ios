@@ -194,6 +194,7 @@
 "device_talk" = "Enhetsmeddelanden";
 "device_talk_subtitle" = "Lokalt genererade meddelanden";
 "device_talk_explain" = "Meddelanden i denna chatt är lokalt genererade av din Delta Chat-app. Dess skapare använder den för att informera om app-uppdateringar och problem vid användning.";
+// deprecated, use device_talk_welcome_message2 instead
 "device_talk_welcome_message" = "Välkommen till Delta Chat! - Delta Chat ser ut och känns som andra populära meddelandeappar, men innefattar ingen centraliserad kontroll eller spårning eller säljer dig och dina vänner, kollegor eller familj till stora organisationer/företag.\n\nTekniskt är Delta Chat ett e-postprogram med modernt utseende. E-post i ny skrud, om du vill. 👻\n\nAnvänd Delta Chat med vem som helst av alla miljarder människor som har en e-postadress. Mottagaren behöver inte installera Delta Chat, besöka webbsidor eller registrera sig någonstans, men om de vill så kan du såklart visa dem till 👉 https://get.delta.chat";
 "edit_contact" = "Redigera kontakt";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
