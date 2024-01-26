@@ -13,7 +13,7 @@ enum DefaultReactions: CaseIterable {
         case .thumbsUp: return "👍"
         case .thumbsDown: return "👎"
         case .heart: return "❤️"
-        case .haha: return "😀"
+        case .haha: return "😂"
         case .sad: return "🙁"
         }
     }
