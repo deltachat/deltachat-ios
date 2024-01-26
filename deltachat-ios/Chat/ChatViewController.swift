@@ -553,39 +553,42 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self, let id = notification.userInfo?["message_id"] as? Int else { return }
-            if self.dcChat.canSend, id > 0 {
-                let msg = self.dcContext.getMessage(id: id)
-                if msg.isInfo,
-                   let parent = msg.parent,
-                   parent.type == DC_MSG_WEBXDC {
-                    self.refreshMessages()
-                } else {
-                    self.updateMessage(msg)
+            guard let self, let ui = notification.userInfo else { return }
+            let chatId = ui["chat_id"] as? Int ?? 0
+            if chatId == 0 || chatId == self.chatId {
+                let messageId = ui["message_id"] as? Int ?? 0
+                if messageId > 0 {
+                    let msg = self.dcContext.getMessage(id: messageId)
+                    if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
+                        draft.draftMsg = msg
+                        configureDraftArea(draft: draft, animated: false)
+                        return
+                    }
                 }
-            } else {
-                self.refreshMessages()
+                refreshMessages()
+                updateTitle()
                 DispatchQueue.main.async {
                     self.updateScrollDownButtonVisibility()
                 }
+                markSeenMessagesInVisibleArea()
             }
-            self.updateTitle()
         }
 
         incomingMsgObserver = nc.addObserver(
             forName: eventIncomingMsg,
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self = self, let ui = notification.userInfo else { return }
-            if self.chatId == ui["chat_id"] as? Int {
-                if let id = ui["message_id"] as? Int {
-                    if id > 0 {
-                        self.insertMessage(self.dcContext.getMessage(id: id))
-                    } else {
-                        logger.debug(">>> messageId \(id) is not > 0, message not inserted")
-                    }
+            guard let self, let ui = notification.userInfo else { return }
+            let chatId = ui["chat_id"] as? Int ?? 0
+            if chatId == 0 || chatId == self.chatId {
+                let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
+                refreshMessages()
+                updateTitle()
+                if wasLastSectionScrolledToBottom {
+                    scrollToBottom(animated: true)
                 }
-                self.updateTitle()
+                updateScrollDownButtonVisibility()
+                markSeenMessagesInVisibleArea()
             }
         }
 
@@ -931,14 +934,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                         self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
                     }
                 }
-        }
-    }
-    
-    func markSeenMessage(id: Int) {
-        if isVisibleToUser {
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                self?.dcContext.markSeenMessages(messageIds: [UInt32(id)])
-            }
         }
     }
 
@@ -1686,46 +1681,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
-        }
-    }
-
-    private func updateMessage(_ msg: DcMsg) {
-        if messageIds.firstIndex(of: msg.id) != nil {
-            reloadData()
-        } else {
-            // new outgoing message
-            if msg.state != DC_STATE_OUT_DRAFT,
-               msg.chatId == chatId {
-                logger.debug(">>> updateMessage: outgoing message \(msg.id)")
-                if let newMsgMarkerIndex = messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
-                    messageIds.remove(at: newMsgMarkerIndex)
-                }
-                insertMessage(msg)
-            } else if msg.type == DC_MSG_WEBXDC,
-                      msg.chatId == chatId {
-                // webxdc draft got updated
-                draft.draftMsg = msg
-                configureDraftArea(draft: draft, animated: false)
-            } else {
-                logger.debug(">>> updateMessage: unhandled message \(msg.id) - msg.chatId: \(msg.chatId) vs. chatId: \(chatId) - msg.state: \(msg.state)")
-            }
-        }
-    }
-
-    private func insertMessage(_ message: DcMsg) {
-        logger.debug(">>> insertMessage \(message.id)")
-        markSeenMessage(id: message.id)
-        let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
-        messageIds.append(message.id)
-        emptyStateView.isHidden = true
-
-        reloadData()
-        if UIAccessibility.isVoiceOverRunning && !message.isFromCurrentSender {
-            scrollToBottom(animated: false, focusOnVoiceOver: true)
-        } else if wasLastSectionScrolledToBottom || message.isFromCurrentSender {
-            scrollToBottom(animated: true)
-        } else {
-            updateScrollDownButtonVisibility()
         }
     }
 
