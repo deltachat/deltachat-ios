@@ -1861,6 +1861,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
               let messageSnapshotView = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) else { return nil }
 
+        cell.messageBackgroundContainer.isHidden = (reactionsHidden == false)
+        cell.reactionsView.isHidden = (reactionsHidden == false)
+
         let myReactions = dcContext.getMessageReactions(messageId: messageId.integerValue)?.reactions.filter { $0.isFromSelf } ?? []
 
         let sendReactionsView = SendReactionsView(messageId: messageId as String, myReactions: myReactions)
