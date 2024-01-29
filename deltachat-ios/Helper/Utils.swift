@@ -42,7 +42,7 @@ struct Utils {
         return window?.safeAreaInsets.bottom ?? 0
     }
 
-    public static func getInviteLink(context: DcContext, chatId: Int = 0) -> String? {
+    public static func getInviteLink(context: DcContext, chatId: Int) -> String? {
         // convert `OPENPGP4FPR:FPR#a=ADDR&n=NAME&...` to `https://i.delta.chat/#FPR&a=ADDR&n=NAME&...`
         if var data = context.getSecurejoinQr(chatId: chatId), let range = data.range(of: "#") {
             data.replaceSubrange(range, with: "&")

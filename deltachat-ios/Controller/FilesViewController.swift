@@ -288,7 +288,6 @@ extension FilesViewController {
     }
 
     public static func share(message: DcMsg, parentViewController: UIViewController, sourceView: UIView) {
-        let activityVC: UIActivityViewController
         guard let fileURL = message.fileURL else { return }
         let objectsToShare: [Any]
         if message.type == DC_MSG_WEBXDC {
@@ -302,9 +301,14 @@ extension FilesViewController {
             objectsToShare = [fileURL]
         }
 
-        activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [.copyToPasteboard]
         activityVC.popoverPresentationController?.sourceView = sourceView
+        parentViewController.present(activityVC, animated: true, completion: nil)
+    }
+
+    public static func share(text: String, parentViewController: UIViewController) {
+        let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
 }

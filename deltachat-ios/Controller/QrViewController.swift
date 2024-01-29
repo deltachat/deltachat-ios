@@ -85,10 +85,17 @@ class QrViewController: UIViewController {
     // MARK: - actions
     @objc private func showMoreOptions() {
         let alert = UIAlertController(title: String.localized("qrshow_title"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("menu_share"), style: .default, handler: share(_:)))
         alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: copyToClipboard(_:)))
         alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .default, handler: withdrawQrCode(_:)))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    @objc func share(_ action: UIAlertAction) {
+        if let inviteLink = Utils.getInviteLink(context: dcContext, chatId: chatId) {
+            FilesViewController.share(text: inviteLink, parentViewController: self)
+        }
     }
 
     @objc func copyToClipboard(_ action: UIAlertAction) {
