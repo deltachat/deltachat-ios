@@ -94,7 +94,7 @@ class QrViewController: UIViewController {
 
     @objc func share(_ action: UIAlertAction) {
         if let inviteLink = Utils.getInviteLink(context: dcContext, chatId: chatId) {
-            FilesViewController.share(text: inviteLink, parentViewController: self)
+            FilesViewController.share(url: inviteLink, parentViewController: self)
         }
     }
 

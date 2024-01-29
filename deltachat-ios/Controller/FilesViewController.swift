@@ -307,9 +307,11 @@ extension FilesViewController {
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
 
-    public static func share(text: String, parentViewController: UIViewController) {
-        let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
-        parentViewController.present(activityVC, animated: true, completion: nil)
+    public static func share(url: String, parentViewController: UIViewController) {
+        if let url = URL(string: url) {
+            let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+            parentViewController.present(activityVC, animated: true, completion: nil)
+        }
     }
 }
 
