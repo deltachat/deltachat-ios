@@ -92,7 +92,7 @@ class QrViewController: UIViewController {
     }
 
     @objc func copyToClipboard(_ action: UIAlertAction) {
-        UIPasteboard.general.string = dcContext.getSecurejoinQr(chatId: chatId)
+        UIPasteboard.general.string = Utils.getInviteLink(context: dcContext, chatId: chatId)
     }
 
     @objc func withdrawQrCode(_ action: UIAlertAction) {

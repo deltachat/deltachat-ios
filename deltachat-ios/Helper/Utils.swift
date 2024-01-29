@@ -3,6 +3,7 @@ import UIKit
 import DcCore
 
 struct Utils {
+    private static let inviteDomain = "i.delta.chat"
 
     static func isEmail(url: URL) -> Bool {
         let mailScheme = "mailto"
@@ -39,5 +40,17 @@ struct Utils {
         // iOS 11 and 12
         let window = UIApplication.shared.keyWindow
         return window?.safeAreaInsets.bottom ?? 0
+    }
+
+    public static func getInviteLink(context: DcContext, chatId: Int = 0) -> String? {
+        // convert `OPENPGP4FPR:FPR#a=ADDR&n=NAME&...` to `https://i.delta.chat/#FPR&a=ADDR&n=NAME&...`
+        if var data = context.getSecurejoinQr(chatId: chatId), let range = data.range(of: "#") {
+            data.replaceSubrange(range, with: "&")
+            if let range = data.range(of: "OPENPGP4FPR:") {
+                data.replaceSubrange(range, with: "https://" + inviteDomain + "/#")
+                return data
+            }
+        }
+        return nil
     }
 }
