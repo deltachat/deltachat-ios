@@ -1843,85 +1843,40 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        return targetedPreview(for: configuration, reactionsHidden: false)
+        return targetedPreview(for: configuration)
     }
 
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        return targetedPreview(for: configuration, reactionsHidden: true)
+        return targetedPreview(for: configuration)
     }
 
     @available(iOS 13.0, *)
-    private func targetedPreview(for configuration: UIContextMenuConfiguration, reactionsHidden: Bool) -> UITargetedPreview? {
+    private func targetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let messageId = configuration.identifier as? NSString else { return nil }
         guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
         let message = dcContext.getMessage(id: messageId.integerValue)
 
-        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
-              let messageSnapshotView = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return nil }
 
-        cell.messageBackgroundContainer.isHidden = (reactionsHidden == false)
-        cell.reactionsView.isHidden = (reactionsHidden == false)
-
-        let myReactions = dcContext.getMessageReactions(messageId: messageId.integerValue)?.reactions.filter { $0.isFromSelf } ?? []
-
-        let sendReactionsView = SendReactionsView(messageId: messageId as String, myReactions: myReactions)
-        sendReactionsView.delegate = self
-        sendReactionsView.translatesAutoresizingMaskIntoConstraints = false
-        sendReactionsView.layoutIfNeeded()
-        
-        if reactionsHidden {
-            sendReactionsView.alpha = 0.0
-        }
-
-        let container: UIView
-        let yDelta: CGFloat
-
-        if dcChat.canSend {
-            let width = max(messageSnapshotView.frame.width, sendReactionsView.frame.width)
-            let height = messageSnapshotView.frame.height + 10 + sendReactionsView.frame.height
-
-            let stackView = UIStackView(frame: CGRect(0, cell.bounds.minY, width, height))
-            stackView.addArrangedSubview(sendReactionsView)
-            stackView.addArrangedSubview(messageSnapshotView)
-            stackView.spacing = 10
-            stackView.axis = .vertical
-            stackView.backgroundColor = .clear
-
-            messageSnapshotView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                sendReactionsView.widthAnchor.constraint(lessThanOrEqualTo: stackView.widthAnchor),
-                messageSnapshotView.widthAnchor.constraint(equalToConstant: messageSnapshotView.frame.width),
-            ])
-
-            if message.isFromCurrentSender {
-                stackView.alignment = .trailing
-            } else {
-                stackView.alignment = .leading
-            }
-
-            container = stackView
-            yDelta = -24
-        } else {
-            container = messageSnapshotView
-            yDelta = 0
-        }
+        let messageSnapshotView = cell.messageBackgroundContainer
 
         var centerPoint = cell.convert(cell.messageBackgroundContainer.frame.origin, to: tableView)
-        centerPoint.y += 0.5 * cell.messageBackgroundContainer.frame.height + yDelta
+        centerPoint.y += 0.5 * cell.messageBackgroundContainer.frame.height
 
         if message.isFromCurrentSender {
-            centerPoint.x = cell.frame.width - 0.5 * container.frame.width - 6
+            centerPoint.x = cell.frame.width - 0.5 * messageSnapshotView.frame.width - 6
         } else {
-            centerPoint.x = (container.center.x + cell.messageBackgroundContainer.frame.minX)
+            centerPoint.x = (messageSnapshotView.center.x + cell.messageBackgroundContainer.frame.minX)
         }
 
         let previewTarget = UIPreviewTarget(container: tableView, center: centerPoint)
 
         let parameters = UIPreviewParameters()
+        // visible path?
         parameters.backgroundColor = .clear
-        let preview = UITargetedPreview(view: container, parameters: parameters, target: previewTarget)
+        let preview = UITargetedPreview(view: messageSnapshotView, parameters: parameters, target: previewTarget)
 
         return preview
     }
@@ -1934,9 +1889,18 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
+              let messageBackgroundContainer = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false)
+        else { return nil }
+
+        let myReactions = dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } ?? []
+
         return UIContextMenuConfiguration(
             identifier: NSString(string: "\(messageId)"),
-            previewProvider: nil,
+            previewProvider: {
+                return MessagePreviewViewController.init(messageBackgroundContainer: messageBackgroundContainer, messageId: "\(messageId)", myReactions: myReactions)
+            },
             actionProvider: { [weak self] _ in
                 guard let self else {
                     return nil

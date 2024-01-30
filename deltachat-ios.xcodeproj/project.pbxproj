@@ -206,6 +206,7 @@
 		D80F62792B59D1CC00877059 /* SendReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80F62782B59D1CC00877059 /* SendReactionsView.swift */; };
 		D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */; };
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
+		D8B1F3522B67904A00EBA4E6 /* MessagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B1F3512B67904A00EBA4E6 /* MessagePreviewViewController.swift */; };
 		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
 		D8FB04002B4F0CF100A355F8 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */; };
 /* End PBXBuildFile section */
@@ -568,6 +569,7 @@
 		D80F62782B59D1CC00877059 /* SendReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReactionsView.swift; sourceTree = "<group>"; };
 		D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewViewController.swift; sourceTree = "<group>"; };
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
+		D8B1F3512B67904A00EBA4E6 /* MessagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePreviewViewController.swift; sourceTree = "<group>"; };
 		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		DFBB6227B203C9B6FB5F4321 /* Pods-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.debug.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1056,6 +1058,7 @@
 			isa = PBXGroup;
 			children = (
 				D80F62782B59D1CC00877059 /* SendReactionsView.swift */,
+				D8B1F3512B67904A00EBA4E6 /* MessagePreviewViewController.swift */,
 			);
 			path = "Send Reaction";
 			sourceTree = "<group>";
@@ -1410,6 +1413,7 @@
 				30DED713292EE4280040835D /* LogViewController.swift in Sources */,
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
 				303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */,
+				D8B1F3522B67904A00EBA4E6 /* MessagePreviewViewController.swift in Sources */,
 				3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */,
 				3080A01D277DDB8A00E74565 /* InputItem.swift in Sources */,
 				AED62BCE247687E6009E220D /* LocationStreamingIndicator.swift in Sources */,
