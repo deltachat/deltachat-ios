@@ -284,34 +284,7 @@ extension FilesViewController {
 
     func shareAttachment(of indexPath: IndexPath) {
         let msgId = fileMessageIds[indexPath.row]
-        FilesViewController.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: self.view)
-    }
-
-    public static func share(message: DcMsg, parentViewController: UIViewController, sourceView: UIView) {
-        guard let fileURL = message.fileURL else { return }
-        let objectsToShare: [Any]
-        if message.type == DC_MSG_WEBXDC {
-            let dict = message.getWebxdcInfoDict()
-            let previewImage = message.getWebxdcPreviewImage()
-            let previewText = dict["name"] as? String ?? fileURL.lastPathComponent
-            objectsToShare = [WebxdcItemSource(title: previewText,
-                                               previewImage: previewImage,
-                                               url: fileURL)]
-        } else {
-            objectsToShare = [fileURL]
-        }
-
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityVC.excludedActivityTypes = [.copyToPasteboard]
-        activityVC.popoverPresentationController?.sourceView = sourceView
-        parentViewController.present(activityVC, animated: true, completion: nil)
-    }
-
-    public static func share(url: String, parentViewController: UIViewController) {
-        if let url = URL(string: url) {
-            let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-            parentViewController.present(activityVC, animated: true, completion: nil)
-        }
+        Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: self.view)
     }
 }
 
