@@ -1913,9 +1913,9 @@ extension ChatViewController {
         centerPoint.y += 0.5 * cell.messageBackgroundContainer.frame.height + yDelta
 
         if message.isFromCurrentSender {
-            centerPoint.x = cell.frame.width - 0.5 * container.frame.width - 6
+            centerPoint.x = cell.frame.width - 0.5 * container.frame.width - 6 - view.safeAreaInsets.right
         } else {
-            centerPoint.x = (container.center.x + cell.messageBackgroundContainer.frame.minX)
+            centerPoint.x = container.center.x + cell.messageBackgroundContainer.frame.minX + view.safeAreaInsets.left
         }
 
         let previewTarget = UIPreviewTarget(container: tableView, center: centerPoint)
