@@ -1841,17 +1841,18 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         contextMenu.performAction(action: action, indexPath: indexPath)
     }
 
-    @available(iOS 13.0, *)
+}
+
+@available(iOS 13.0, *)
+extension ChatViewController {
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return targetedPreview(for: configuration, reactionsHidden: false)
     }
 
-    @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return targetedPreview(for: configuration, reactionsHidden: true)
     }
 
-    @available(iOS 13.0, *)
     private func targetedPreview(for configuration: UIContextMenuConfiguration, reactionsHidden: Bool) -> UITargetedPreview? {
         guard let messageId = configuration.identifier as? NSString else { return nil }
         guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
@@ -1927,8 +1928,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
 
+
     // context menu for iOS 13+
-    @available(iOS 13, *)
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
@@ -1953,6 +1954,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         )
     }
+}
+
+extension ChatViewController {
 
     func showWebxdcViewFor(message: DcMsg) {
         let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
