@@ -1845,6 +1845,28 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
 @available(iOS 13.0, *)
 extension ChatViewController {
+
+    override func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        guard let messageId = configuration.identifier as? NSString, let index = messageIds.firstIndex(of: messageId.integerValue) else { return }
+
+        let indexPath = IndexPath(row: index, section: 0)
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return }
+
+        cell.messageBackgroundContainer.isHidden = true
+        cell.reactionsView.isHidden = true
+    }
+
+    override func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        guard let messageId = configuration.identifier as? NSString, let index = messageIds.firstIndex(of: messageId.integerValue) else { return }
+
+        let indexPath = IndexPath(row: index, section: 0)
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return }
+
+        cell.messageBackgroundContainer.isHidden = false
+        cell.reactionsView.isHidden = false
+    }
+
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return targetedPreview(for: configuration, reactionsHidden: false)
     }
@@ -1861,9 +1883,6 @@ extension ChatViewController {
 
         guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
               let messageSnapshotView = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) else { return nil }
-
-        cell.messageBackgroundContainer.isHidden = (reactionsHidden == false)
-        cell.reactionsView.isHidden = (reactionsHidden == false)
 
         let myReactions = dcContext.getMessageReactions(messageId: messageId.integerValue)?.reactions.filter { $0.isFromSelf } ?? []
 
