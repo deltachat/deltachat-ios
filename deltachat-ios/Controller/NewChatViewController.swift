@@ -6,10 +6,11 @@ class NewChatViewController: UITableViewController {
     private let dcContext: DcContext
 
     private let sectionNew = 0
-    private let sectionNewRowNewContact = 0
+    private let sectionNewRowScanQRCode = 0
     private let sectionNewRowNewGroup = 1
     private let sectionNewRowBroadcastList = 2
-    private var sectionNewRowCount: Int { return UserDefaults.standard.bool(forKey: "broadcast_lists") ? 3 : 2 }
+    private let sectionNewRowNewContact = 3
+    private var sectionNewRowCount: Int { return UserDefaults.standard.bool(forKey: "broadcast_lists") ? 4 : 3 }
 
     private let sectionImportedContacts = 1
 
@@ -143,6 +144,8 @@ class NewChatViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             if let actionCell = cell as? ActionCell {
                 switch row {
+                case sectionNewRowScanQRCode:
+                    actionCell.actionTitle = String.localized("qrscan_title")
                 case sectionNewRowNewGroup:
                     actionCell.actionTitle = String.localized("menu_new_group")
                 case sectionNewRowBroadcastList:
@@ -184,7 +187,11 @@ class NewChatViewController: UITableViewController {
         let section = indexPath.section
 
         if section == sectionNew {
-            if row == sectionNewRowNewGroup {
+            if row == sectionNewRowScanQRCode {
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.appCoordinator.presentQrCodeController()
+                }
+            } else if row == sectionNewRowNewGroup {
                 showNewGroupController()
             } else if row == sectionNewRowBroadcastList {
                 showNewGroupController(createBroadcast: true)
