@@ -1945,9 +1945,6 @@ extension ChatViewController {
 
         return preview
     }
-
-
-
     // context menu for iOS 13+
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
