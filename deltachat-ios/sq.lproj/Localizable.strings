@@ -596,6 +596,8 @@
 "pref_use_system_emoji_explain" = "Çaktivizo mbulimin e brendshëm Delta Chat për emoji-t";
 "pref_use_inapp_camera" = "Përdor Kamerën e Vetë Aplikacionit";
 "pref_use_inapp_camera_explain" = "Kamera e vetë aplikacionit, zakonisht, ka më pak veçori se kamera e sistemit";
+"pref_show_system_contacts" = "Të Lexojë Libër Adresash Sistemi";
+"pref_show_system_contacts_explain" = "Ofro krijimin fjalosjesh me kontakte prej libri adresash. Disa shërbime lypin fshehtëzim skaj-më-skaj së pari.";
 "pref_app_access" = "Hyrje aplikacioni";
 "pref_chats" = "Fjalosje";
 "pref_in_chat_sounds" = "Tinguj brenda fjalosjeje";
