@@ -984,6 +984,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 showProtectionEnabledDialog()
             case DC_INFO_PROTECTION_DISABLED:
                 showProtectionBrokenDialog()
+            case DC_INFO_INVALID_UNENCRYPTED_MAIL:
+                showInvalidUnencryptedDialog()
             default:
                 break
             }
@@ -1591,6 +1593,20 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let alert = UIAlertController(title: String.localized("chat_protection_enabled_explanation"), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
             self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#e2eeguarantee"), animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+    }
+
+    private func showInvalidUnencryptedDialog() {
+        let alert = UIAlertController(title: String.localized("invalid_unencrypted_explanation"), message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
+            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#howtoe2ee"), animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.appCoordinator.presentQrCodeController()
+            }
         }))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
