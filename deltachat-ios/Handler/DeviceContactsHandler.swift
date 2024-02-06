@@ -78,7 +78,7 @@ class DeviceContactsHandler {
     }
 
     public func importDeviceContacts() {
-        if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
+        if dcContext.getConfigBool("ui.ios.show_system_contacts") && CNContactStore.authorizationStatus(for: .contacts) == .authorized {
             addContactsToCore()
         }
     }

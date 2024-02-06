@@ -1,3 +1,4 @@
+import Contacts
 import UIKit
 import DcCore
 import Intents
@@ -116,6 +117,37 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         })
     }()
 
+    lazy var showSystemContactsCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_show_system_contacts"),
+            on: dcContext.getConfigBool("ui.ios.show_system_contacts") && CNContactStore.authorizationStatus(for: .contacts) == .authorized,
+            action: { cell in
+                if cell.isOn {
+                    switch CNContactStore.authorizationStatus(for: .contacts) {
+                    case .authorized:
+                        self.dcContext.setConfigBool("ui.ios.show_system_contacts", true)
+                    case .restricted, .notDetermined:
+                        CNContactStore().requestAccess(for: .contacts) { [weak self] granted, _ in
+                            DispatchQueue.main.async {
+                                if granted {
+                                    self?.dcContext.setConfigBool("ui.ios.show_system_contacts", true)
+                                } else {
+                                    cell.uiSwitch.setOn(false, animated: true)
+                                }
+                            }
+                        }
+                    case .denied:
+                        self.showSystemContactsRestrictedAlert()
+                        cell.uiSwitch.setOn(false, animated: true)
+                    @unknown default:
+                        cell.uiSwitch.setOn(false, animated: true)
+                    }
+                } else {
+                    self.dcContext.setConfigBool("ui.ios.show_system_contacts", false)
+                }
+        })
+    }()
+
     private lazy var experimentalFeaturesCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.experimentalFeatures.rawValue
@@ -151,8 +183,8 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             cells: [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
         let miscSection = SectionConfigs(
             headerTitle: nil,
-            footerTitle: nil,
-            cells: [experimentalFeaturesCell, videoChatInstanceCell])
+            footerTitle: String.localized("pref_show_system_contacts_explain"),
+            cells: [experimentalFeaturesCell, videoChatInstanceCell, showSystemContactsCell])
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
@@ -262,6 +294,15 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         }))
         askAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(askAlert, animated: true, completion: nil)
+    }
+
+    private func showSystemContactsRestrictedAlert() {
+        let alert = UIAlertController(title: String.localized("import_device_contacts"), message: String.localized("import_device_contacts_hint"), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("menu_settings"), style: .default) { _ in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        })
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 
     private func showLogViewController() {
