@@ -67,9 +67,7 @@ class GalleryViewController: UIViewController {
             }
         )
 
-        let config = ContextMenuProvider()
-        config.setMenu([showInChatItem, deleteItem])
-        return config
+        return ContextMenuProvider(menu: [showInChatItem, deleteItem])
     }()
 
     init(context: DcContext, chatId: Int) {

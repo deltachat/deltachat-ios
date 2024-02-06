@@ -195,20 +195,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func contextMenu(for indexPath: IndexPath) -> ContextMenuProvider {
-        let config = ContextMenuProvider()
         if #available(iOS 13.0, *) {
             if dcChat.canSend {
-                let mainMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
-                config.setMenu([reactionsMenu(indexPath: indexPath), mainMenu, selectMoreItem])
+                return ContextMenuProvider(menu: [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
             } else {
-                config.setMenu([replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
+                return ContextMenuProvider(menu: [replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
             }
         } else if dcChat.canSend { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
-            config.setMenu([forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
+            return ContextMenuProvider(menu: [forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
         } else {
-            config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
+            return ContextMenuProvider(menu: [forwardItem, infoItem, copyItem, deleteItem])
         }
-        return config
     }
 
     private lazy var copyItem: ContextMenuProvider.ContextMenuItem = {
@@ -1963,17 +1960,18 @@ extension ChatViewController {
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
             actionProvider: { [weak self] _ in
-                guard let self else {
-                    return nil
-                }
+                guard let self else { return nil }
+
+                let menuProvider = self.contextMenu(for: indexPath)
+
                 if self.dcContext.getMessage(id: messageId).isInfo {
-                    return self.contextMenu(for: indexPath).actionProvider(indexPath: indexPath,
-                                                           filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
+                    return menuProvider.actionProvider(indexPath: indexPath,
+                                                       filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
                 } else if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
-                    return self.contextMenu(for: indexPath).actionProvider(indexPath: indexPath)
+                    return menuProvider.actionProvider(indexPath: indexPath)
                 } else {
-                    return self.contextMenu(for: indexPath).actionProvider(indexPath: indexPath,
-                                                           filters: [ { $0.action != self.replyPrivatelyItem.action } ])
+                    return menuProvider.actionProvider(indexPath: indexPath,
+                                                       filters: [ { $0.action != self.replyPrivatelyItem.action } ])
                 }
             }
         )

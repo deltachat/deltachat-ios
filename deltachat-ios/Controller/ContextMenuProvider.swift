@@ -2,13 +2,9 @@ import UIKit
 
 class ContextMenuProvider {
 
-    var menu: [ContextMenuItem] = []
+    let menu: [ContextMenuItem]
 
     init(menu: [ContextMenuItem] = []) {
-        self.menu = menu
-    }
-
-    func setMenu(_ menu: [ContextMenuItem]) {
         self.menu = menu
     }
 
@@ -20,9 +16,7 @@ class ContextMenuProvider {
     }
 
     private func filter(_ filters: [(ContextMenuItem) throws -> Bool]?, in items: [ContextMenuItem]) -> [ContextMenuItem] {
-        guard let filters = filters else {
-            return items
-        }
+        guard let filters else { return items }
 
         var items = items
         for filter in filters {
@@ -61,8 +55,8 @@ extension ContextMenuProvider {
                         image: UIImage? = nil,
                         identifier: UIMenu.Identifier? = nil,
                         indexPath: IndexPath,
-                        filters: [(ContextMenuItem) throws -> Bool]? = []) -> UIMenu {
-
+                        filters: [(ContextMenuItem) throws -> Bool]? = []) -> UIMenu? {
+        
         var children: [UIMenuElement] = []
         let menuItems = filter(filters, in: menu)
         for item in menuItems {
@@ -73,7 +67,7 @@ extension ContextMenuProvider {
                 for submenuItem in subMenus {
                     submenuChildren.append(generateUIAction(item: submenuItem, indexPath: indexPath))
                 }
-                let submenu = UIMenu(title: "", options: .displayInline, children: submenuChildren)
+                let submenu = UIMenu(title: item.title ?? "", options: [], children: submenuChildren)
                 children.append(submenu)
             } else {
                 children.append(generateUIAction(item: item, indexPath: indexPath))
@@ -114,22 +108,13 @@ extension ContextMenuProvider {
         var onPerform: ((IndexPath) -> Void)?
         var children: [ContextMenuItem]?
 
-        init(title: String?, imageName: String?, isDestructive: Bool = false, action: Selector? = nil, children: [ContextMenuItem]? = nil, onPerform: ((IndexPath) -> Void)?) {
+        init(title: String? = nil, imageName: String? = nil, isDestructive: Bool = false, action: Selector? = nil, children: [ContextMenuItem]? = nil, onPerform: ((IndexPath) -> Void)? = nil) {
             self.title = title
             self.imageName = imageName
             self.isDestructive = isDestructive
             self.action = action
             self.onPerform = onPerform
             self.children = children
-        }
-
-        init(submenuitems: [ContextMenuItem]) {
-            title = nil
-            imageName = nil
-            isDestructive = nil
-            action = nil
-            onPerform = nil
-            children = submenuitems
         }
     }
 }
