@@ -163,7 +163,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let messageId = messageIds[indexPath.row]
         let myReactions = dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } .map { $0.emoji } ?? []
 
-
         let reactionsMenuItems = DefaultReactions.allCases.map { reaction in
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
             let checkmarkImageName: String?

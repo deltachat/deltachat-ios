@@ -206,6 +206,7 @@
 		D80F62792B59D1CC00877059 /* SendReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80F62782B59D1CC00877059 /* SendReactionsView.swift */; };
 		D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */; };
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
+		D8975E412B7285ED00E5EB9F /* ContextMenuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8975E402B7285ED00E5EB9F /* ContextMenuProvider.swift */; };
 		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
 		D8FB04002B4F0CF100A355F8 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */; };
 /* End PBXBuildFile section */
@@ -568,6 +569,7 @@
 		D80F62782B59D1CC00877059 /* SendReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReactionsView.swift; sourceTree = "<group>"; };
 		D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewViewController.swift; sourceTree = "<group>"; };
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
+		D8975E402B7285ED00E5EB9F /* ContextMenuProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuProvider.swift; sourceTree = "<group>"; };
 		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		DFBB6227B203C9B6FB5F4321 /* Pods-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.debug.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -947,6 +949,7 @@
 				AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */,
 				AE39D322249CFC1A007346A1 /* FilesViewController.swift */,
 				AE57C083255310BB003CFE70 /* ContextMenuController.swift */,
+				D8975E402B7285ED00E5EB9F /* ContextMenuProvider.swift */,
 				30DED712292EE4280040835D /* LogViewController.swift */,
 			);
 			path = Controller;
@@ -1448,6 +1451,7 @@
 				30F4E2942859213400ACA0D8 /* ChatListEditingBar.swift in Sources */,
 				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
+				D8975E412B7285ED00E5EB9F /* ContextMenuProvider.swift in Sources */,
 				30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */,
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
