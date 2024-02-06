@@ -12,13 +12,11 @@ class NewChatViewController: UITableViewController {
         case newContact
     }
 
-    private let sectionNew = 0
     private let newOptions: [NewOption]
 
-    private let sectionImportedContacts = 1
-    private var sectionContacts: Int { return deviceContactAccessGranted ? 1 : 2 }
-
-    private var sectionsCount: Int { return deviceContactAccessGranted ? 2 : 3 }
+    private let sectionNew = 0
+    private let sectionContacts = 1
+    private let sectionsCount = 2
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -60,12 +58,6 @@ class NewChatViewController: UITableViewController {
         return handler
     }()
 
-    var deviceContactAccessGranted: Bool = false {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
@@ -101,11 +93,6 @@ class NewChatViewController: UITableViewController {
         tableView.sectionHeaderHeight = UITableView.automaticDimension
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
-    }
-
     // MARK: - actions
     @objc func cancelButtonPressed() {
         dismiss(animated: true, completion: nil)
@@ -119,12 +106,6 @@ class NewChatViewController: UITableViewController {
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sectionNew {
             return newOptions.count
-        } else if section == sectionImportedContacts {
-            if deviceContactAccessGranted {
-                return isFiltering ? filteredContactIds.count : contactIds.count
-            } else {
-                return 1
-            }
         } else {
             return isFiltering ? filteredContactIds.count : contactIds.count
         }
@@ -134,12 +115,6 @@ class NewChatViewController: UITableViewController {
         let section = indexPath.section
         if section == sectionNew {
             return UITableView.automaticDimension
-        } else if section == sectionImportedContacts {
-            if deviceContactAccessGranted {
-                return ContactCell.cellHeight
-            } else {
-                return UITableView.automaticDimension
-            }
         } else {
             return ContactCell.cellHeight
         }
@@ -164,24 +139,7 @@ class NewChatViewController: UITableViewController {
                 }
             }
             return cell
-        } else if section == sectionImportedContacts {
-            // import device contacts section
-            if deviceContactAccessGranted {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-                if let contactCell = cell as? ContactCell {
-                    let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
-                    contactCell.updateCell(cellViewModel: contactCellViewModel)
-                }
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-                if let actionCell = cell as? ActionCell {
-                    actionCell.actionTitle = String.localized("import_device_contacts")
-                }
-                return cell
-            }
         } else {
-            // section contact list if device contacts are not imported
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
                 let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
@@ -207,12 +165,6 @@ class NewChatViewController: UITableViewController {
                 showNewGroupController(createBroadcast: true)
             } else if topOption == .newContact {
                 showNewContactController()
-            }
-        } else if section == sectionImportedContacts {
-            if deviceContactAccessGranted {
-                showChatAt(row: row)
-            } else {
-                showSettingsAlert()
             }
         } else {
             showChatAt(row: row)
@@ -356,28 +308,6 @@ extension NewChatViewController: ContactListDelegate {
     func deviceContactsImported() {
         contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
         tableView.reloadData()
-    }
-
-    func accessGranted() {
-        deviceContactAccessGranted = true
-    }
-
-    func accessDenied() {
-        deviceContactAccessGranted = false
-    }
-
-    private func showSettingsAlert() {
-        let alert = UIAlertController(
-            title: String.localized("import_device_contacts"),
-            message: String.localized("import_device_contacts_hint"),
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: String.localized("menu_settings"), style: .default) { _ in
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-        })
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel) { _ in
-        })
-        present(alert, animated: true)
     }
 }
 

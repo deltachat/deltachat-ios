@@ -78,28 +78,8 @@ class DeviceContactsHandler {
     }
 
     public func importDeviceContacts() {
-        switch CNContactStore.authorizationStatus(for: .contacts) {
-        case .authorized:
+        if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
             addContactsToCore()
-            contactListDelegate?.accessGranted()
-        case .denied:
-            contactListDelegate?.accessDenied()
-        case .restricted, .notDetermined:
-            store.requestAccess(for: .contacts) { [weak self] granted, _ in
-                guard let self else { return }
-                if granted {
-                    DispatchQueue.main.async {
-                        self.addContactsToCore()
-                        self.contactListDelegate?.accessGranted()
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.contactListDelegate?.accessDenied()
-                    }
-                }
-            }
-        @unknown default:
-            assertionFailure("")
         }
     }
 }
