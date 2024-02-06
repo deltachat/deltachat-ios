@@ -5,15 +5,17 @@ import DcCore
 class NewChatViewController: UITableViewController {
     private let dcContext: DcContext
 
+    enum NewOption {
+        case scanQRCode
+        case newGroup
+        case newBroadcastList
+        case newContact
+    }
+
     private let sectionNew = 0
-    private let sectionNewRowScanQRCode = 0
-    private let sectionNewRowNewGroup = 1
-    private let sectionNewRowBroadcastList = 2
-    private let sectionNewRowNewContact = 3
-    private var sectionNewRowCount: Int { return UserDefaults.standard.bool(forKey: "broadcast_lists") ? 4 : 3 }
+    private let newOptions: [NewOption]
 
     private let sectionImportedContacts = 1
-
     private var sectionContacts: Int { return deviceContactAccessGranted ? 1 : 2 }
 
     private var sectionsCount: Int { return deviceContactAccessGranted ? 2 : 3 }
@@ -67,6 +69,13 @@ class NewChatViewController: UITableViewController {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
+
+        if UserDefaults.standard.bool(forKey: "broadcast_lists") {
+            newOptions = [.scanQRCode, .newGroup, .newBroadcastList, .newContact]
+        } else {
+            newOptions = [.scanQRCode, .newGroup, .newContact]
+        }
+
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }
@@ -109,7 +118,7 @@ class NewChatViewController: UITableViewController {
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sectionNew {
-            return sectionNewRowCount
+            return newOptions.count
         } else if section == sectionImportedContacts {
             if deviceContactAccessGranted {
                 return isFiltering ? filteredContactIds.count : contactIds.count
@@ -143,12 +152,12 @@ class NewChatViewController: UITableViewController {
         if section == sectionNew {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             if let actionCell = cell as? ActionCell {
-                switch row {
-                case sectionNewRowScanQRCode:
+                switch newOptions[row] {
+                case .scanQRCode:
                     actionCell.actionTitle = String.localized("qrscan_title")
-                case sectionNewRowNewGroup:
+                case .newGroup:
                     actionCell.actionTitle = String.localized("menu_new_group")
-                case sectionNewRowBroadcastList:
+                case .newBroadcastList:
                     actionCell.actionTitle = String.localized("new_broadcast_list")
                 default:
                     actionCell.actionTitle = String.localized("menu_new_contact")
@@ -187,15 +196,16 @@ class NewChatViewController: UITableViewController {
         let section = indexPath.section
 
         if section == sectionNew {
-            if row == sectionNewRowScanQRCode {
+            let topOption = newOptions[row]
+            if topOption == .scanQRCode {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.presentQrCodeController()
                 }
-            } else if row == sectionNewRowNewGroup {
+            } else if topOption == .newGroup {
                 showNewGroupController()
-            } else if row == sectionNewRowBroadcastList {
+            } else if topOption == .newBroadcastList {
                 showNewGroupController(createBroadcast: true)
-            } else if row == sectionNewRowNewContact {
+            } else if topOption == .newContact {
                 showNewContactController()
             }
         } else if section == sectionImportedContacts {
