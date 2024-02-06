@@ -63,9 +63,7 @@ class FilesViewController: UIViewController {
             }
         )
 
-        let menu = ContextMenuProvider()
-        menu.setMenu([showInChatItem, shareItem, deleteItem])
-        return menu
+        return ContextMenuProvider(menu: [showInChatItem, shareItem, deleteItem])
     }()
 
     init(context: DcContext, chatId: Int, type1: Int32, type2: Int32, type3: Int32, title: String? = nil) {
