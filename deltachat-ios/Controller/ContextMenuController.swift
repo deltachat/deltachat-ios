@@ -223,12 +223,13 @@ extension ContextMenuProvider {
         var onPerform: ((IndexPath) -> Void)?
         var children: [ContextMenuItem]?
 
-        init(title: String, imageName: String, isDestructive: Bool = false, action: Selector, onPerform: ((IndexPath) -> Void)?) {
+        init(title: String?, imageName: String?, isDestructive: Bool = false, action: Selector? = nil, children: [ContextMenuItem]? = nil, onPerform: ((IndexPath) -> Void)?) {
             self.title = title
             self.imageName = imageName
             self.isDestructive = isDestructive
             self.action = action
             self.onPerform = onPerform
+            self.children = children
         }
 
         init(submenuitems: [ContextMenuItem]) {

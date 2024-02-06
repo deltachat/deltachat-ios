@@ -158,12 +158,49 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return dcContext.getChat(chatId: chatId)
     }()
 
-    private lazy var contextMenu: ContextMenuProvider = {
+    private func reactionsMenu(indexPath: IndexPath) -> ContextMenuProvider.ContextMenuItem {
+
+        let messageId = messageIds[indexPath.row]
+        let myReactions = dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } .map { $0.emoji } ?? []
+
+
+        let reactionsMenuItems = DefaultReactions.allCases.map { reaction in
+            let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
+            let checkmarkImageName: String?
+            if sentThisReaction {
+                checkmarkImageName = "checkmark"
+            } else {
+                checkmarkImageName = nil
+            }
+
+            return ContextMenuProvider.ContextMenuItem(title: reaction.emoji, imageName: checkmarkImageName) { [weak self] indexPath in
+                guard let self else { return }
+
+                let messageId = self.messageIds[indexPath.row]
+                if sentThisReaction {
+                    dcContext.sendReaction(messageId: messageId, reaction: nil)
+                } else {
+                    dcContext.sendReaction(messageId: messageId, reaction: reaction.emoji)
+                }
+            }
+        }
+
+        let reactionsItem = ContextMenuProvider.ContextMenuItem(
+            title: String.localized("react"),
+            imageName: "heart.circle.fill",
+            children: reactionsMenuItems,
+            onPerform: nil
+        )
+
+        return reactionsItem
+    }
+
+    private func contextMenu(for indexPath: IndexPath) -> ContextMenuProvider {
         let config = ContextMenuProvider()
         if #available(iOS 13.0, *) {
             if dcChat.canSend {
                 let mainMenu = ContextMenuProvider.ContextMenuItem(submenuitems: [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
-                config.setMenu([mainMenu, selectMoreItem])
+                config.setMenu([reactionsMenu(indexPath: indexPath), mainMenu, selectMoreItem])
             } else {
                 config.setMenu([replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
             }
@@ -173,7 +210,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             config.setMenu([forwardItem, infoItem, copyItem, deleteItem])
         }
         return config
-    }()
+    }
 
     private lazy var copyItem: ContextMenuProvider.ContextMenuItem = {
         return ContextMenuProvider.ContextMenuItem(
@@ -1813,7 +1850,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     // MARK: - Context menu
-    private func prepareContextMenu(isHidden: Bool) {
+    private func prepareContextMenu(isHidden: Bool, indexPath: IndexPath) {
         if #available(iOS 13.0, *) {
             return
         }
@@ -1821,7 +1858,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if isHidden {
             UIMenuController.shared.menuItems = nil
         } else {
-            UIMenuController.shared.menuItems = contextMenu.menuItems
+            UIMenuController.shared.menuItems = contextMenu(for: indexPath).menuItems
         }
         UIMenuController.shared.update()
     }
@@ -1829,7 +1866,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         let messageId = messageIds[indexPath.row]
         let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
-        prepareContextMenu(isHidden: isHidden)
+        prepareContextMenu(isHidden: isHidden, indexPath: indexPath)
         return !isHidden
     }
 
@@ -1849,12 +1886,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return !tableView.isEditing && contextMenu.canPerformAction(action: action)
+        return !tableView.isEditing && contextMenu(for: indexPath).canPerformAction(action: action)
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
         // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
-        contextMenu.performAction(action: action, indexPath: indexPath)
+        contextMenu(for: indexPath).performAction(action: action, indexPath: indexPath)
     }
 
 }
@@ -1931,12 +1968,12 @@ extension ChatViewController {
                     return nil
                 }
                 if self.dcContext.getMessage(id: messageId).isInfo {
-                    return self.contextMenu.actionProvider(indexPath: indexPath,
+                    return self.contextMenu(for: indexPath).actionProvider(indexPath: indexPath,
                                                            filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
                 } else if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
-                    return self.contextMenu.actionProvider(indexPath: indexPath)
+                    return self.contextMenu(for: indexPath).actionProvider(indexPath: indexPath)
                 } else {
-                    return self.contextMenu.actionProvider(indexPath: indexPath,
+                    return self.contextMenu(for: indexPath).actionProvider(indexPath: indexPath,
                                                            filters: [ { $0.action != self.replyPrivatelyItem.action } ])
                 }
             }
