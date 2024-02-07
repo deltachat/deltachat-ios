@@ -186,7 +186,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         let reactionsItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("react"),
-            imageName: "heart.circle.fill",
+            imageName: "face.smiling",
             children: reactionsMenuItems,
             onPerform: nil
         )
