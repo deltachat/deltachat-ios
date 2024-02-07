@@ -67,7 +67,15 @@ extension ContextMenuProvider {
                 for submenuItem in subMenus {
                     submenuChildren.append(generateUIAction(item: submenuItem, indexPath: indexPath))
                 }
-                let submenu = UIMenu(title: item.title ?? "", options: [], children: submenuChildren)
+                let image: UIImage?
+
+                if let imageName = item.imageName {
+                    image = UIImage(systemName: imageName)
+                } else {
+                    image = nil
+                }
+
+                let submenu = UIMenu(title: item.title ?? "", image: image, options: [], children: submenuChildren)
                 children.append(submenu)
             } else {
                 children.append(generateUIAction(item: item, indexPath: indexPath))
