@@ -2,6 +2,8 @@
 "app_name" = "Delta Chat";
 "ok" = "Gerai";
 "cancel" = "Atsisakyti";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "arba";
 "clear_search" = "Išvalyti paiešką";
 "yes" = "Taip";
 "no" = "Ne";
@@ -163,6 +165,7 @@
 "menu_copy_image_to_clipboard" = "Kopijuoti paveikslą";
 "menu_copy_email_to_clipboard" = "Kopijuoti el. paštą";
 "paste_from_clipboard" = "Įdėti iš iškarpinės";
+"ask_copy_unopenable_link_to_clipboard" = "Nuoroda „%1$d“ negali būti atverta saityno naršyklėje. Ar norite, vietoj to, nukopijuoti nurodą į iškarpinę?";
 "menu_forward" = "Persiųsti žinutę";
 "menu_reply" = "Atsakyti į žinutę";
 "menu_mute" = "Išjungti pranešimus";
@@ -183,6 +186,7 @@
 "menu_scroll_to_bottom" = "Slinkti į apačią";
 "menu_scroll_to_top" = "Slinkti į viršų";
 "menu_help" = "Žinynas";
+"what_is_webxdc" = "Kas yra „Webxdc“?";
 "privacy_policy" = "Privatumo politika";
 "menu_select_all" = "Žymėti viską";
 "menu_edit_name" = "Taisyti vardą";
@@ -223,7 +227,7 @@
 "share_location_for_two_hours" = "2 valandoms";
 "share_location_for_six_hours" = "6 valandoms";
 
-"file_saved_to" = "Failas įrašytas į \"%1$@\".";
+"file_saved_to" = "Failas įrašytas į „%1$@“.";
 
 "videochat" = "Vaizdo pokalbis";
 "videochat_invite_user_to_videochat" = "Pakviesti %1$@ į vaizdo pokalbį?";
@@ -234,6 +238,7 @@
 "videochat_tap_to_open" = "Bakstelėkite norėdami atverti";
 "videochat_instance" = "Vaizdo pokalbio egzempliorius";
 "videochat_instance_placeholder" = "Jūsų vaizdo pokalbio egzempliorius";
+"videochat_instance_example" = "Pavyzdys: https://jūsų-serveris.org/$KAMBARYS";
 "videochat_invitation" = "Pakvietimas į vaizdo pokalbį";
 "videochat_invitation_body" = "Jūs esate kviečiami į vaizdo pokalbį. Spustelėkite %1$@ jei norite prisijungti.";
 

@@ -325,7 +325,7 @@
 "chat_camera_unavailable" = "Cámara no disponible.";
 "chat_unable_to_record_audio" = "No es posible grabar audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Envíe un mensaje. Está bien si %1$@ no usa Delta Chat.";
+"chat_new_one_to_one_hint" = "Envíe un mensaje a %1$@.";
 "chat_new_broadcast_hint" = "En una difusión, los destinatarios recibirán mensajes en un chat de solo lectura contigo.";
 "chat_new_group_hint" = "Los demás sólo verán este grupo después de que hayas enviado un primer mensaje.";
 "chat_record_slide_to_cancel" = "Deslice para cancelar";

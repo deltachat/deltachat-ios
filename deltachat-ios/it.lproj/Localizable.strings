@@ -236,7 +236,7 @@
 "menu_save_log" = "Salva Log";
 "menu_more_options" = "Più Opzioni";
 "menu_learn_spelling" = "Impara l\'Ortografia";
-"menu_chat_audit_log" = "Registro di Controllo della Chat";
+"menu_chat_audit_log" = "Registro di Controllo Chat";
 "jump_to_message" = "Vai al Messaggio";
 "copy_json" = "Copia JSON";
 "replace_draft" = "Sostituisci Bozza";
@@ -598,6 +598,8 @@
 "pref_use_system_emoji_explain" = "Disabilita il supporto delle emoji integrato in Delta Chat";
 "pref_use_inapp_camera" = "Usa Fotocamera App";
 "pref_use_inapp_camera_explain" = "La fotocamera dell\'app di solito ha meno funzionalità della fotocamera di sistema";
+"pref_show_system_contacts" = "Leggi Rubrica di Sistema";
+"pref_show_system_contacts_explain" = "Offri la possibilità di creare chats con i contatti della rubrica. Alcuni provider necessitano prima della configurazione della crittografia end-to-end.";
 "pref_app_access" = "Accesso all\'App";
 "pref_chats" = "Chat";
 "pref_in_chat_sounds" = "Suoni In-Chat";

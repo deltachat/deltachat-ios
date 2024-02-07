@@ -599,6 +599,7 @@
 "pref_use_inapp_camera" = "Uygulama İçi Kamerayı Kullan";
 "pref_use_inapp_camera_explain" = "Uygulama içi kameranın genellikle sistem kamerasından daha az özelliği vardır";
 "pref_show_system_contacts" = "Sistem Adres Defterini Oku";
+"pref_show_system_contacts_explain" = "Adres defterinden gelen kişilerle sohbet oluşturmayı teklif edin. Bazı sağlayıcılara önce uçtan uca şifreleme ayarlaması gerekir.";
 "pref_app_access" = "Uygulama Erişimi";
 "pref_chats" = "Sohbetler";
 "pref_in_chat_sounds" = "Sohbet İçi Sesler";
