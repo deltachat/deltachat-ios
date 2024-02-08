@@ -63,7 +63,7 @@ public class FileHelper {
 
     public static func deleteFile(atPath: String?) {
         if Thread.isMainThread {
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global().async {
                 deleteFile(atPath)
             }
         } else {

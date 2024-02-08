@@ -42,7 +42,7 @@ public class NotificationManager {
     }
     
     public static func removeNotificationsForChat(dcContext: DcContext, chatId: Int) {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global().async {
             NotificationManager.removePendingNotificationsFor(dcContext: dcContext, chatId: chatId)
             NotificationManager.removeDeliveredNotificationsFor(dcContext: dcContext, chatId: chatId)
             NotificationManager.updateApplicationIconBadge()
@@ -70,7 +70,7 @@ public class NotificationManager {
                 logger.info("notification background task will end soon")
             }
 
-            DispatchQueue.global(qos: .background).async { [weak self] in
+            DispatchQueue.global().async { [weak self] in
                 guard let self else { return }
                 if let ui = notification.userInfo,
                    let chatId = ui["chat_id"] as? Int,

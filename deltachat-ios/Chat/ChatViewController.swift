@@ -525,7 +525,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         // things that do not affect the chatview
         // and are delayed after the view is displayed
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        DispatchQueue.global().async { [weak self] in
             guard let self else { return }
             self.dcContext.marknoticedChat(chatId: self.chatId)
         }
@@ -959,7 +959,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
            let indexPaths = tableView.indexPathsForVisibleRows {
                 let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
                 if !visibleMessagesIds.isEmpty {
-                    DispatchQueue.global(qos: .background).async { [weak self] in
+                    DispatchQueue.global().async { [weak self] in
                         self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
                     }
                 }
