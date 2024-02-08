@@ -488,30 +488,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         DispatchQueue.global().async { [weak self] in
             guard let self else { completionHandler?(.failed); return }
 
-            // we're in background, run IO for a little time
-            self.dcAccounts.startIo()
-            self.dcAccounts.maybeNetwork()
             self.pushToDebugArray("2")
 
             self.addDebugFetchTimestamp()
-
-            // create a new semaphore to make sure the received DC_CONNECTIVITY_CONNECTED really belongs to maybeNetwork() from above
-            // (maybeNetwork() sets connectivity to DC_CONNECTIVITY_CONNECTING, when fetch is done, we're back at DC_CONNECTIVITY_CONNECTED)
             self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
+            let start = CFAbsoluteTimeGetCurrent()
+
+            // backgroundFetch() pauses IO as needed
+            if !self.dcAccounts.backgroundFetch(timeout: 20) {
+                logger.error("backgroundFetch failed")
+                self.pushToDebugArray("ERR2")
+            }
+            let diff = CFAbsoluteTimeGetCurrent() - start
+
+            // wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE,
+            // marking the end of events needed to being processed.
+            // as IO was not started, random events caused by other reasons are not added.
             _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 20)
             self.dcAccounts.fetchSemaphore = nil
+            let diff2 = CFAbsoluteTimeGetCurrent() - start
 
-            // TOCHECK: it seems, we are not always reaching this point in code,
-            // semaphore?.wait() does not always exit after the given timeout and the app gets suspended -
-            // maybe that is on purpose somehow to suspend inactive apps, not sure.
-            // this does not happen often, but still.
-            // cmp. https://github.com/deltachat/deltachat-ios/pull/1542#pullrequestreview-951620906
-            logger.info("⬅️ finishing fetch")
+            logger.info("⬅️ finishing fetch in \(diff) s + \(diff2) s")
             self.pushToDebugArray(String(format: "3/%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
-
-            if !self.appIsInForeground() {
-                self.dcAccounts.stopIo()
-            }
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()

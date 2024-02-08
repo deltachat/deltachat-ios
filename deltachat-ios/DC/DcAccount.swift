@@ -71,6 +71,10 @@ public class DcAccounts {
         dc_accounts_stop_io(accountsPointer)
     }
 
+    public func backgroundFetch(timeout: UInt64) -> Bool {
+        return dc_accounts_background_fetch(accountsPointer, timeout) == 1
+    }
+
     public func select(id: Int) -> Bool {
         return dc_accounts_select_account(accountsPointer, UInt32(id)) == 1
     }
