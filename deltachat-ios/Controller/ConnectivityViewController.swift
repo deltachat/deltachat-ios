@@ -25,7 +25,7 @@ class ConnectivityViewController: WebViewViewController {
                 self.loadHtml()
             }
             isLowDataMode = monitor.currentPath.isConstrained
-            monitor.start(queue: DispatchQueue.global(qos: .background))
+            monitor.start(queue: DispatchQueue.global())
             self.connectivityMonitor = monitor
         }
     }

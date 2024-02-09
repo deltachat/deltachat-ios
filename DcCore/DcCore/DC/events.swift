@@ -156,15 +156,17 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
-            if let sem = dcAccounts.fetchSemaphore, dcAccounts.isAllWorkDone() {
-                sem.signal()
-            }
             if accountId != dcAccounts.getSelected().id {
                 return
             }
             logger.info("📡[\(accountId)] connectivity changed")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: eventConnectivityChanged, object: nil)
+            }
+
+        case DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE:
+            if let sem = dcAccounts.fetchSemaphore {
+                sem.signal()
             }
 
         case DC_EVENT_WEBXDC_STATUS_UPDATE:

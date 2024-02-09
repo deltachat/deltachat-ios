@@ -138,7 +138,7 @@ class ShareAttachment {
                 _ = self.addDcMsg(path: url.relativePath, viewType: DC_MSG_VIDEO)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
-                    DispatchQueue.global(qos: .background).async {
+                    DispatchQueue.global().async {
                         self.imageThumbnail = DcUtils.generateThumbnailFromVideo(url: url)
                         DispatchQueue.main.async {
                             self.delegate?.onThumbnailChanged()
