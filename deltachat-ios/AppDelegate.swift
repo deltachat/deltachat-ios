@@ -501,9 +501,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
             let diff = CFAbsoluteTimeGetCurrent() - start
 
-            // wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE,
-            // marking the end of events needed to being processed.
-            // as IO was not started, random events caused by other reasons are not added.
+            // wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE;
+            // without IO being started, more events that could interfere with shutdown are not added
             _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 20)
             self.dcAccounts.fetchSemaphore = nil
             let diff2 = CFAbsoluteTimeGetCurrent() - start
