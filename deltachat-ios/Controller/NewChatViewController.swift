@@ -154,16 +154,16 @@ class NewChatViewController: UITableViewController {
         let section = indexPath.section
 
         if section == sectionNew {
-            let topOption = newOptions[row]
-            if topOption == .scanQRCode {
+            let newOption = newOptions[row]
+            if newOption == .scanQRCode {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.presentQrCodeController()
                 }
-            } else if topOption == .newGroup {
+            } else if newOption == .newGroup {
                 showNewGroupController()
-            } else if topOption == .newBroadcastList {
+            } else if newOption == .newBroadcastList {
                 showNewGroupController(createBroadcast: true)
-            } else if topOption == .newContact {
+            } else if newOption == .newContact {
                 showNewContactController()
             }
         } else {
