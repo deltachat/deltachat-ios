@@ -5,7 +5,5 @@ protocol QrCodeReaderDelegate: AnyObject {
 }
 
 protocol ContactListDelegate: AnyObject {
-    func accessGranted()
-    func accessDenied()
     func deviceContactsImported()
 }

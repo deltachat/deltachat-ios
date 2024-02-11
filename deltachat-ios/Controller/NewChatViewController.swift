@@ -5,18 +5,18 @@ import DcCore
 class NewChatViewController: UITableViewController {
     private let dcContext: DcContext
 
+    enum NewOption {
+        case scanQRCode
+        case newGroup
+        case newBroadcastList
+        case newContact
+    }
+
+    private let newOptions: [NewOption]
+
     private let sectionNew = 0
-    private let sectionNewRowScanQRCode = 0
-    private let sectionNewRowNewGroup = 1
-    private let sectionNewRowBroadcastList = 2
-    private let sectionNewRowNewContact = 3
-    private var sectionNewRowCount: Int { return UserDefaults.standard.bool(forKey: "broadcast_lists") ? 4 : 3 }
-
-    private let sectionImportedContacts = 1
-
-    private var sectionContacts: Int { return deviceContactAccessGranted ? 1 : 2 }
-
-    private var sectionsCount: Int { return deviceContactAccessGranted ? 2 : 3 }
+    private let sectionContacts = 1
+    private let sectionsCount = 2
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -58,15 +58,16 @@ class NewChatViewController: UITableViewController {
         return handler
     }()
 
-    var deviceContactAccessGranted: Bool = false {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
+
+        if UserDefaults.standard.bool(forKey: "broadcast_lists") {
+            newOptions = [.scanQRCode, .newGroup, .newBroadcastList, .newContact]
+        } else {
+            newOptions = [.scanQRCode, .newGroup, .newContact]
+        }
+
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
     }
@@ -92,11 +93,6 @@ class NewChatViewController: UITableViewController {
         tableView.sectionHeaderHeight = UITableView.automaticDimension
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        deviceContactAccessGranted = CNContactStore.authorizationStatus(for: .contacts) == .authorized
-    }
-
     // MARK: - actions
     @objc func cancelButtonPressed() {
         dismiss(animated: true, completion: nil)
@@ -109,13 +105,7 @@ class NewChatViewController: UITableViewController {
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sectionNew {
-            return sectionNewRowCount
-        } else if section == sectionImportedContacts {
-            if deviceContactAccessGranted {
-                return isFiltering ? filteredContactIds.count : contactIds.count
-            } else {
-                return 1
-            }
+            return newOptions.count
         } else {
             return isFiltering ? filteredContactIds.count : contactIds.count
         }
@@ -125,12 +115,6 @@ class NewChatViewController: UITableViewController {
         let section = indexPath.section
         if section == sectionNew {
             return UITableView.automaticDimension
-        } else if section == sectionImportedContacts {
-            if deviceContactAccessGranted {
-                return ContactCell.cellHeight
-            } else {
-                return UITableView.automaticDimension
-            }
         } else {
             return ContactCell.cellHeight
         }
@@ -143,36 +127,19 @@ class NewChatViewController: UITableViewController {
         if section == sectionNew {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             if let actionCell = cell as? ActionCell {
-                switch row {
-                case sectionNewRowScanQRCode:
+                switch newOptions[row] {
+                case .scanQRCode:
                     actionCell.actionTitle = String.localized("qrscan_title")
-                case sectionNewRowNewGroup:
+                case .newGroup:
                     actionCell.actionTitle = String.localized("menu_new_group")
-                case sectionNewRowBroadcastList:
+                case .newBroadcastList:
                     actionCell.actionTitle = String.localized("new_broadcast_list")
                 default:
                     actionCell.actionTitle = String.localized("menu_new_contact")
                 }
             }
             return cell
-        } else if section == sectionImportedContacts {
-            // import device contacts section
-            if deviceContactAccessGranted {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-                if let contactCell = cell as? ContactCell {
-                    let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
-                    contactCell.updateCell(cellViewModel: contactCellViewModel)
-                }
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-                if let actionCell = cell as? ActionCell {
-                    actionCell.actionTitle = String.localized("import_device_contacts")
-                }
-                return cell
-            }
         } else {
-            // section contact list if device contacts are not imported
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
             if let contactCell = cell as? ContactCell {
                 let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
@@ -187,22 +154,17 @@ class NewChatViewController: UITableViewController {
         let section = indexPath.section
 
         if section == sectionNew {
-            if row == sectionNewRowScanQRCode {
+            let newOption = newOptions[row]
+            if newOption == .scanQRCode {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.appCoordinator.presentQrCodeController()
                 }
-            } else if row == sectionNewRowNewGroup {
+            } else if newOption == .newGroup {
                 showNewGroupController()
-            } else if row == sectionNewRowBroadcastList {
+            } else if newOption == .newBroadcastList {
                 showNewGroupController(createBroadcast: true)
-            } else if row == sectionNewRowNewContact {
+            } else if newOption == .newContact {
                 showNewContactController()
-            }
-        } else if section == sectionImportedContacts {
-            if deviceContactAccessGranted {
-                showChatAt(row: row)
-            } else {
-                showSettingsAlert()
             }
         } else {
             showChatAt(row: row)
@@ -346,28 +308,6 @@ extension NewChatViewController: ContactListDelegate {
     func deviceContactsImported() {
         contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
         tableView.reloadData()
-    }
-
-    func accessGranted() {
-        deviceContactAccessGranted = true
-    }
-
-    func accessDenied() {
-        deviceContactAccessGranted = false
-    }
-
-    private func showSettingsAlert() {
-        let alert = UIAlertController(
-            title: String.localized("import_device_contacts"),
-            message: String.localized("import_device_contacts_hint"),
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: String.localized("menu_settings"), style: .default) { _ in
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-        })
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel) { _ in
-        })
-        present(alert, animated: true)
     }
 }
 
