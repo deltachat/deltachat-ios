@@ -1074,7 +1074,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
 
             titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected)
-            titleView.layoutIfNeeded()
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
         }
