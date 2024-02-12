@@ -8,7 +8,8 @@ class QrCodeReaderController: UIViewController {
 
     private let captureSession = AVCaptureSession()
 
-    private var addHints: String?
+    private let addHints: String?
+    private let showTroubleshooting: Bool
     private var infoLabelBottomConstraint: NSLayoutConstraint?
     private var infoLabelCenterConstraint: NSLayoutConstraint?
 
@@ -16,6 +17,16 @@ class QrCodeReaderController: UIViewController {
         let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         return videoPreviewLayer
+    }()
+
+    private lazy var moreButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonPressed))
     }()
 
     private lazy var infoLabel: UILabel = {
@@ -35,10 +46,11 @@ class QrCodeReaderController: UIViewController {
         AVMetadataObject.ObjectType.qr
     ]
 
-    init(title: String, addHints: String? = nil) {
+    init(title: String, addHints: String? = nil, showTroubleshooting: Bool = false) {
+        self.addHints = addHints
+        self.showTroubleshooting = showTroubleshooting
         super.init(nibName: nil, bundle: nil)
         self.title = title
-        self.addHints = addHints // TODO: if set, show in overlay or so
     }
 
     required init?(coder: NSCoder) {
@@ -64,6 +76,10 @@ class QrCodeReaderController: UIViewController {
                     }
                 }
             })
+        }
+
+        if showTroubleshooting {
+            navigationItem.rightBarButtonItem = moreButton
         }
     }
 
@@ -185,6 +201,15 @@ class QrCodeReaderController: UIViewController {
      
     func stopSession() {
         captureSession.stopRunning()
+    }
+
+    @objc private func moreButtonPressed() {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("troubleshooting"), style: .default, handler: { _ in
+            self.navigationController?.pushViewController(HelpViewController(dcContext: DcAccounts.shared.getSelected(), fragment: "#multiclient"), animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
