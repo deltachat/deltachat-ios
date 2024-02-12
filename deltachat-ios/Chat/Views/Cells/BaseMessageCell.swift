@@ -158,9 +158,7 @@ public class BaseMessageCell: UITableViewCell {
         return button
     }()
 
-    lazy var bottomLabel: StatusView = {
-        return StatusView()
-    }()
+    let bottomLabel = StatusView()
 
     lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
@@ -180,6 +178,8 @@ public class BaseMessageCell: UITableViewCell {
 
         reactionsView = ReactionsView()
         reactionsView.translatesAutoresizingMaskIntoConstraints = false
+
+        bottomLabel.translatesAutoresizingMaskIntoConstraints = false
 
         showSelectionBackground = false
         showBottomLabelBackground = false

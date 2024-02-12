@@ -2,38 +2,63 @@ import Foundation
 import UIKit
 import DcCore
 
-public class StatusView: UIStackView {
-    private var dateLabel = UILabel()
-    private var padlockView = UIImageView()
-    private var locationView = UIImageView()
-    private var stateView = UIImageView()
+public class StatusView: UIView {
+    private let contentStackView: UIStackView
+    private let dateLabel: UILabel
+    private let padlockView: UIImageView
+    private let locationView: UIImageView
+    private let stateView: UIImageView
 
     override init(frame: CGRect) {
-        super.init(frame: frame)
 
+        dateLabel = UILabel()
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
 
-        padlockView.widthAnchor.constraint(equalToConstant: 15).isActive = true
-        padlockView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        padlockView = UIImageView()
+        padlockView.translatesAutoresizingMaskIntoConstraints = false
+        locationView = UIImageView()
+        locationView.translatesAutoresizingMaskIntoConstraints = false
+        stateView = UIImageView()
+        stateView.translatesAutoresizingMaskIntoConstraints = false
 
-        locationView.widthAnchor.constraint(equalToConstant: 8).isActive = true
-        locationView.heightAnchor.constraint(equalToConstant: 11).isActive = true
+        contentStackView = UIStackView(arrangedSubviews: [dateLabel, padlockView, locationView, stateView])
+        contentStackView.alignment = .center
+        contentStackView.spacing = 0
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        stateView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        stateView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        super.init(frame: frame)
 
-        addArrangedSubview(dateLabel)
-        addArrangedSubview(padlockView)
-        addArrangedSubview(locationView)
-        addArrangedSubview(stateView)
-        alignment = .center
-        spacing = 0
-        translatesAutoresizingMaskIntoConstraints = false
+        addSubview(contentStackView)
+
+        layer.cornerRadius = 5
+
+        setupConstraints()
     }
 
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    private func setupConstraints() {
+        let constraints = [
+
+            contentStackView.topAnchor.constraint(equalTo: topAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 5),
+            bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
+
+            padlockView.widthAnchor.constraint(equalToConstant: 15),
+            padlockView.heightAnchor.constraint(equalToConstant: 20),
+
+            locationView.widthAnchor.constraint(equalToConstant: 8),
+            locationView.heightAnchor.constraint(equalToConstant: 11),
+
+            stateView.widthAnchor.constraint(equalToConstant: 20),
+            stateView.heightAnchor.constraint(equalToConstant: 20),
+        ]
+
+        NSLayoutConstraint.activate(constraints)
     }
+
 
     public func prepareForReuse() {
         dateLabel.text = nil
