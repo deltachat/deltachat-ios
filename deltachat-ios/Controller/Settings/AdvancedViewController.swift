@@ -329,6 +329,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             if !locationStreaming {
                 let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Location streaming\"",
                                               message: "You will find a corresponding option in the attach menu (the paper clip) of each chat now.\n\n"
+                                                + "Moreover, \"Profiles\" and \"All Media\" will offer a map.\n\n"
                                                 + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
