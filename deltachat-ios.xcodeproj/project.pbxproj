@@ -195,6 +195,7 @@
 		AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */; };
 		B20462E42440A4A600367A57 /* AutodelOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E32440A4A600367A57 /* AutodelOverviewViewController.swift */; };
 		B20462E62440C99600367A57 /* AutodelOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E52440C99600367A57 /* AutodelOptionsViewController.swift */; };
+		B206C2AB2B7B8088003ACBE6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B206C2AA2B7B8088003ACBE6 /* MapViewController.swift */; };
 		B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */; };
 		B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2172F3B29C125F2002C289E /* AdvancedViewController.swift */; };
 		B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B259D64229B771D5008FB706 /* BackupTransferViewController.swift */; };
@@ -499,6 +500,7 @@
 		B20462E22440805C00367A57 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = id; path = id.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B20462E32440A4A600367A57 /* AutodelOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutodelOverviewViewController.swift; sourceTree = "<group>"; };
 		B20462E52440C99600367A57 /* AutodelOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutodelOptionsViewController.swift; sourceTree = "<group>"; };
+		B206C2AA2B7B8088003ACBE6 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B209B2042B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B209B2052B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B209B2062B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = vi; path = vi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -961,6 +963,7 @@
 				AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */,
 				302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */,
 				AE19887423EB264000B4CD5F /* HelpViewController.swift */,
+				B206C2AA2B7B8088003ACBE6 /* MapViewController.swift */,
 				304F769425DD237B0094B5E2 /* WebViewViewController.swift */,
 				304F769825DD23D70094B5E2 /* FullMessageViewController.swift */,
 				305501732798CDE1008FD5CA /* WebxdcViewController.swift */,
@@ -1577,6 +1580,7 @@
 				B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */,
 				AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */,
 				AEE6EC482283045D00EDC689 /* SelfProfileViewController.swift in Sources */,
+				B206C2AB2B7B8088003ACBE6 /* MapViewController.swift in Sources */,
 				30653081254358B10093E196 /* QuoteView.swift in Sources */,
 				3067AAC62667F3FE00525036 /* ImageFormat.swift in Sources */,
 				30EF7308252F6A3300E2C54A /* PaddingTextView.swift in Sources */,

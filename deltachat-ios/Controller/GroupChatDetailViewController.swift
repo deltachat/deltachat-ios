@@ -13,6 +13,7 @@ class GroupChatDetailViewController: UIViewController {
 
     enum ChatOption {
         case allMedia
+        case locations
         case ephemeralMessages
     }
 
@@ -137,6 +138,16 @@ class GroupChatDetailViewController: UIViewController {
         cell.textLabel?.text = String.localized("media")
         if #available(iOS 13.0, *) {
             cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
+        }
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var locationsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("locations")
+        if #available(iOS 13.0, *) {
+            cell.imageView?.image = UIImage(systemName: "map") // added in ios13
         }
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -279,23 +290,25 @@ class GroupChatDetailViewController: UIViewController {
     private func updateOptions() {
         self.editBarButtonItem.isEnabled = chat.isMailinglist || chat.canSend
 
+        self.chatOptions = [.allMedia]
+        if UserDefaults.standard.bool(forKey: "location_streaming") {
+            self.chatOptions.append(.locations)
+        }
+
         if chat.isMailinglist {
-            self.chatOptions = [.allMedia]
             self.memberManagementRows = 0
             self.chatActions = [.archiveChat, .copyToClipboard, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else if chat.isBroadcast {
-            self.chatOptions = [.allMedia]
             self.memberManagementRows = 1
             self.chatActions = [.archiveChat, .cloneChat, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: false)
         } else if chat.canSend {
-            self.chatOptions = [.allMedia, .ephemeralMessages]
+            self.chatOptions.append(.ephemeralMessages)
             self.memberManagementRows = 2
             self.chatActions = [.archiveChat, .cloneChat, .leaveGroup, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else {
-            self.chatOptions = [.allMedia]
             self.memberManagementRows = 0
             self.chatActions = [.archiveChat, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
@@ -416,6 +429,10 @@ class GroupChatDetailViewController: UIViewController {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
+    private func showLocations() {
+        navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
+    }
+
     private func showSearch() {
         if let chatViewController = navigationController?.viewControllers.last(where: {
             $0 is ChatViewController
@@ -478,6 +495,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             switch chatOptions[row] {
             case .allMedia:
                 return allMediaCell
+            case .locations:
+                return locationsCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
             }
@@ -538,6 +557,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             switch chatOptions[row] {
             case .allMedia:
                 showAllMedia()
+            case .locations:
+                showLocations()
             case .ephemeralMessages:
                 showEphemeralMessagesController()
             }

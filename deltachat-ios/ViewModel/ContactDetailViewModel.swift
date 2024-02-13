@@ -15,6 +15,7 @@ class ContactDetailViewModel {
     enum ChatOption {
         case verifiedBy
         case allMedia
+        case locations
         case ephemeralMessages
         case startChat
     }
@@ -80,6 +81,10 @@ class ContactDetailViewModel {
             chatOptions.append(.verifiedBy)
         }
         chatOptions.append(.allMedia)
+        if UserDefaults.standard.bool(forKey: "location_streaming") {
+            chatOptions.append(.locations)
+        }
+
         if chatId != 0 {
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)

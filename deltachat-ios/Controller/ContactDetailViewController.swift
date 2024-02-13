@@ -95,6 +95,20 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var locationsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("locations")
+        if #available(iOS 13.0, *) {
+            cell.imageView?.image = UIImage(systemName: "map") // added in ios13
+        }
+        cell.accessoryType = .disclosureIndicator
+        if viewModel.chatId == 0 {
+            cell.isUserInteractionEnabled = false
+            cell.textLabel?.isEnabled = false
+        }
+        return cell
+    }()
+
     private lazy var statusCell: MultilineLabelCell = {
         let cell = MultilineLabelCell()
         cell.multilineDelegate = self
@@ -179,6 +193,8 @@ class ContactDetailViewController: UITableViewController {
                 return verifiedByCell
             case .allMedia:
                 return allMediaCell
+            case .locations:
+                return locationsCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
             case .startChat:
@@ -368,6 +384,8 @@ class ContactDetailViewController: UITableViewController {
             }
         case .allMedia:
             showAllMedia()
+        case .locations:
+            showLocations()
         case .ephemeralMessages:
             showEphemeralMessagesController()
         case .startChat:
@@ -521,6 +539,10 @@ class ContactDetailViewController: UITableViewController {
 
     private func showAllMedia() {
         navigationController?.pushViewController(AllMediaViewController(dcContext: viewModel.context, chatId: viewModel.chatId), animated: true)
+    }
+
+    private func showLocations() {
+        navigationController?.pushViewController(MapViewController(dcContext: viewModel.context, chatId: viewModel.chatId), animated: true)
     }
 
     private func showSearch() {

@@ -47,6 +47,14 @@ class AllMediaViewController: UIPageViewController {
         return control
     }()
 
+    private lazy var mapButton: UIBarButtonItem = {
+        if #available(iOS 13.0, *) {
+            return UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(showMap))
+        } else {
+            return UIBarButtonItem(title: String.localized("tab_map"), style: .plain, target: self, action: #selector(showMap))
+        }
+    }()
+
     init(dcContext: DcContext, chatId: Int = 0) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -78,6 +86,11 @@ class AllMediaViewController: UIPageViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.rightBarButtonItem = chatId == 0 && UserDefaults.standard.bool(forKey: "location_streaming") ? mapButton : nil
+    }
+
     // MARK: - actions
     @objc private func segmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex < pages.count {
@@ -86,6 +99,10 @@ class AllMediaViewController: UIPageViewController {
                                direction: sender.selectedSegmentIndex > prevIndex ? .forward : .reverse, animated: true, completion: nil)
             prevIndex = sender.selectedSegmentIndex
         }
+    }
+
+    @objc private func showMap() {
+        navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
     // MARK: - factory
