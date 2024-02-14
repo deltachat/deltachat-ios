@@ -65,9 +65,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             textLabel: String.localized("pref_watch_sent_folder"),
             on: dcContext.getConfigBool("sentbox_watch"),
             action: { cell in
-                self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
-                self.dcAccounts.startIo()
         })
     }()
 
@@ -85,9 +83,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             textLabel: String.localized("pref_auto_folder_moves"),
             on: dcContext.getConfigBool("mvbox_move"),
             action: { cell in
-                self.dcAccounts.stopIo()
                 self.dcContext.setConfigBool("mvbox_move", cell.isOn)
-                self.dcAccounts.startIo()
         })
     }()
 
@@ -101,18 +97,14 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
                         message: String.localized("pref_imap_folder_warn_disable_defaults"),
                         preferredStyle: .safeActionSheet)
                     alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { _ in
-                        self.dcAccounts.stopIo()
                         self.dcContext.setConfigBool("only_fetch_mvbox", true)
-                        self.dcAccounts.startIo()
                     }))
                     alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
                         cell.uiSwitch.setOn(false, animated: true)
                     }))
                     self.navigationController?.present(alert, animated: true, completion: nil)
                 } else {
-                    self.dcAccounts.stopIo()
                     self.dcContext.setConfigBool("only_fetch_mvbox", false)
-                    self.dcAccounts.startIo()
                 }
         })
     }()
