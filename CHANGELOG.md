@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v1.43.1
+## v1.43.1 Testflight
 2024-02
 
 * add "Reactions": long tap a message to react to it ❤️
@@ -143,7 +143,7 @@
 * update to core 1.131.4
 
 
-## v1.41.8
+## v1.41.8 Testflight
 2023-11
 
 * guarantee end-to-end-encryption in one-to-one chats, if possible
