@@ -71,7 +71,11 @@ public class DcAccounts {
         return dc_accounts_background_fetch(accountsPointer, timeout) == 1
     }
 
+    public var notifyTokenPassedToServer: Bool = false // will be moved to core
+
     public func setNotifyToken(token: String) {
+        // implementation will be moved to core
+        self.notifyTokenPassedToServer = false
         if let url = URL(string: "https://notifications.delta.chat/register") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
@@ -84,6 +88,7 @@ public class DcAccounts {
                 }
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 {
                     logger.info("Notifications: request to notification server succeeded")
+                    self.notifyTokenPassedToServer = true
                 } else {
                     logger.error("Notifications: request to notification server failed: \(String(describing: response)), \(String(describing: data))")
                 }

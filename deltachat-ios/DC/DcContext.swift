@@ -1,5 +1,11 @@
 import UIKit
 
+public enum DcNotifyState: Error {
+    // will be moved to core
+    case notConnected
+    case push
+    case heartbeat
+}
 
 /// An object representing a single account
 ///
@@ -299,6 +305,11 @@ public class DcContext {
             return info
         }
         return "ErrGetInfo"
+    }
+
+    public func getNotifyState() -> DcNotifyState {
+        // implementation will be moved to core
+        return DcAccounts.shared.notifyTokenPassedToServer ? .heartbeat : .notConnected
     }
 
     public func getContactEncrInfo(contactId: Int) -> String {
