@@ -373,33 +373,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // we pass the received token to the app's notification server then.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let tokenString = tokenParts.joined()
-
-        let endpoint = "https://notifications.delta.chat/register"
-
-        logger.info("Notifications: POST token: \(tokenString) to \(endpoint)")
-
-        if let url = URL(string: endpoint) {
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            let body = "{ \"token\": \"\(tokenString)\" }"
-            request.httpBody = body.data(using: String.Encoding.utf8)
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    logger.error("Notifications: cannot POST to notification server: \(error)")
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 {
-                    logger.info("Notifications: request to notification server succeeded")
-                } else {
-                    logger.error("Notifications: request to notification server failed: \(String(describing: response)), \(String(describing: data))")
-                }
-                self.notifyToken = tokenString
-            }
-            task.resume()
-        } else {
-            logger.error("Notifications: cannot create URL for token: \(tokenString)")
-        }
+        let notifyToken = tokenParts.joined()
+        logger.info("Notifications: Token: \(notifyToken)")
+        self.notifyToken = notifyToken
+        dcAccounts.setNotifyToken(token: notifyToken)
     }
 
     // `didFailToRegisterForRemoteNotificationsWithError` is called by iOS
