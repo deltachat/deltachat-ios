@@ -62,8 +62,9 @@ class ConnectivityViewController: WebViewViewController {
     }
 
     // this method needs to be run from a background thread
-    private func getNotificationStatus(hasNotifyToken: Bool, backgroundRefreshStatus: UIBackgroundRefreshStatus) -> String {
+    private func getNotificationStatus(backgroundRefreshStatus: UIBackgroundRefreshStatus) -> String {
         let connectiviy = self.dcContext.getConnectivity()
+        let notifyState = dcContext.getNotifyState()
         let title = " <b>" + String.localized("pref_notifications") + ":</b> "
         let notificationsEnabledInDC = !UserDefaults.standard.bool(forKey: "notifications_disabled")
         var notificationsEnabledInSystem = false
@@ -104,7 +105,7 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(String.localized("bg_app_refresh_disabled"))
         }
 
-        if !hasNotifyToken || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
+        if notifyState == .notConnected || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
             return "<span class=\"red dot\"></span>"
                 .appending(title)
                 .appending(String.localized("connectivity_not_connected"))
@@ -120,6 +121,12 @@ class ConnectivityViewController: WebViewViewController {
             return "<span class=\"disabled dot\"></span>"
                 .appending(title)
                 .appending(String.localized("connectivity_low_power_mode"))
+        }
+
+        if notifyState == .push {
+            return "<span class=\"green dot\"></span>"
+                .appending(title)
+                .appending(String.localized("connectivity_connected"))
         }
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
@@ -157,10 +164,6 @@ class ConnectivityViewController: WebViewViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             // `UIApplication.shared` needs to be called from main thread
-            var hasNotifyToken = false
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                hasNotifyToken = appDelegate.notifyToken != nil
-            }
             let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
 
             // do the remaining things in background thread
@@ -189,7 +192,7 @@ class ConnectivityViewController: WebViewViewController {
                         </style>
                         """)
 
-                let notificationStatus = self.getNotificationStatus(hasNotifyToken: hasNotifyToken, backgroundRefreshStatus: backgroundRefreshStatus)
+                let notificationStatus = self.getNotificationStatus(backgroundRefreshStatus: backgroundRefreshStatus)
                 if let range = html.range(of: "</ul>") {
                     html = html.replacingCharacters(in: range, with: "<li>" + notificationStatus + "</li></ul>")
                 }
