@@ -547,6 +547,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else {
                 becomeFirstResponder()
             }
+
+            messageInputBar.backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
         }
 
         // this block ensures that if a swipe-to-dismiss gesture was cancelled, the UI recovers

@@ -475,7 +475,6 @@ open class InputBarAccessoryView: UIView {
         middleContentViewWrapper.addSubview(inputTextView)
         middleContentView = inputTextView
         setStackViewItems([sendButton], forStack: .right, animated: false)
-        backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
         blurView.fillSuperview()
     }
     
