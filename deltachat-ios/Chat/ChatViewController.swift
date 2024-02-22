@@ -81,9 +81,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
-    private lazy var messageInputBar: InputBarAccessoryView = {
-        return InputBarAccessoryView()
-    }()
+    let messageInputBar = InputBarAccessoryView()
 
     private lazy var draftArea: DraftArea = {
         let view = DraftArea()
@@ -157,6 +155,18 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private lazy var dcChat: DcChat = {
         return dcContext.getChat(chatId: chatId)
     }()
+
+    override var inputAccessoryView: UIView? {
+        if dcChat.canSend {
+            return messageInputBar
+        } else {
+            return nil
+        }
+    }
+
+    override var canBecomeFirstResponder: Bool {
+        true
+    }
 
     private func reactionsMenu(indexPath: IndexPath) -> ContextMenuProvider.ContextMenuItem {
 
@@ -246,7 +256,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             onPerform: { [weak self] indexPath in
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
-                    self.tableView.becomeFirstResponder()
+                    self.becomeFirstResponder()
                     let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
                     self.askToDeleteMessage(id: msg.id)
                 }
@@ -343,14 +353,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func loadView() {
-        super.loadView()
-        self.tableView = ChatTableView(messageInputBar: messageInputBar)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.view = self.tableView
     }
 
     override func viewDidLoad() {
@@ -468,7 +470,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
         updateTitle()
 
-        tableView.becomeFirstResponder()
+        becomeFirstResponder()
+
         if activateSearch {
             activateSearch = false
             DispatchQueue.main.async { [weak self] in
@@ -517,6 +520,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             messageInputBar.inputTextView.text = RelayHelper.shared.mailtoDraft
             RelayHelper.shared.finishRelaying()
         }
+
+        if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+            self.scrollToMessage(msgId: msgId, animated: false)
+        } else if self.isInitial {
+            self.scrollToLastUnseenMessage()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -532,11 +541,22 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         handleUserVisibility(isVisible: true)
 
+        if dcChat.canSend {
+            if wasInputBarFirstResponder {
+                messageInputBar.inputTextView.becomeFirstResponder()
+            } else {
+                becomeFirstResponder()
+            }
+        }
+
         // this block ensures that if a swipe-to-dismiss gesture was cancelled, the UI recovers
-        if wasInputBarFirstResponder {
-            messageInputBar.inputTextView.becomeFirstResponder()
-        } else {
-            tableView.becomeFirstResponder()
+        if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+            self.scrollToMessage(msgId: msgId, animated: false)
+            self.highlightedMsg = nil
+            self.updateScrollDownButtonVisibility()
+        } else if self.isInitial {
+            self.scrollToLastUnseenMessage(animated: true)
+            self.updateScrollDownButtonVisibility()
         }
     }
 
@@ -1201,18 +1221,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func scrollToLastUnseenMessage() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
-                let indexPath = IndexPath(row: markerMessageIndex, section: 0)
-                self.scrollToRow(at: indexPath, animated: false)
-            } else {
-                // scroll to bottom
-                let numberOfRows = self.tableView.numberOfRows(inSection: 0)
-                if numberOfRows > 0 {
-                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), animated: false)
-                }
+    private func scrollToLastUnseenMessage(animated: Bool = false) {
+        if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
+            let indexPath = IndexPath(row: markerMessageIndex, section: 0)
+            self.scrollToRow(at: indexPath, animated: animated)
+        } else {
+            // scroll to bottom
+            let numberOfRows = self.tableView.numberOfRows(inSection: 0)
+            if numberOfRows > 0 {
+                self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), animated: animated)
             }
         }
     }
@@ -1325,6 +1342,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         messageInputBar.inputTextView.imagePasteDelegate = self
         messageInputBar.onScrollDownButtonPressed = scrollToBottom
         messageInputBar.inputTextView.setDropInteractionDelegate(delegate: self)
+        messageInputBar.isTranslucent = true
     }
 
     private func evaluateInputBar(draft: DraftModel) {
@@ -2454,13 +2472,13 @@ extension ChatViewController: UISearchBarDelegate {
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         configureDraftArea(draft: draft)
-        tableView.becomeFirstResponder()
+        becomeFirstResponder()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.isActive = false
         configureDraftArea(draft: draft)
-        tableView.becomeFirstResponder()
+        becomeFirstResponder()
         navigationItem.searchController = nil
         reloadData()
     }
@@ -2554,7 +2572,7 @@ extension ChatViewController: WebxdcSelectorDelegate {
     func onWebxdcFromFilesSelected(url: NSURL) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            self.tableView.becomeFirstResponder()
+            self.becomeFirstResponder()
             self.onDocumentSelected(url: url)
         }
     }
