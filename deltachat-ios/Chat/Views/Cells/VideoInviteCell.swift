@@ -55,7 +55,9 @@ public class VideoInviteCell: UITableViewCell {
     }()
 
     lazy var bottomLabel: StatusView = {
-        return StatusView()
+        let statusView = StatusView()
+        statusView.translatesAutoresizingMaskIntoConstraints = false
+        return statusView
     }()
     
     private var showSelectionBackground: Bool
