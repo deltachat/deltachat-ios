@@ -500,6 +500,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         } else if isInitial {
             scrollToLastUnseenMessage()
         }
+
+        messageInputBar.scrollDownButton.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -532,7 +534,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             updateScrollDownButtonVisibility()
         } else if isInitial {
             scrollToLastUnseenMessage(animated: true)
-            updateScrollDownButtonVisibility()
         }
     }
 
@@ -1242,14 +1243,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func scrollToRow(at indexPath: IndexPath, position: UITableView.ScrollPosition = .top, animated: Bool, focusWithVoiceOver: Bool = true) {
         if UIAccessibility.isVoiceOverRunning && focusWithVoiceOver {
-            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-            self.markSeenMessagesInVisibleArea()
-            self.updateScrollDownButtonVisibility()
-            self.forceVoiceOverFocussingCell(at: indexPath) { [weak self] in
+            tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            markSeenMessagesInVisibleArea()
+            updateScrollDownButtonVisibility()
+            forceVoiceOverFocussingCell(at: indexPath) { [weak self] in
                 self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             }
         } else {
-            self.tableView.scrollToRow(at: indexPath, at: position, animated: animated)
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: animated)
         }
     }
 
