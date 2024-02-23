@@ -114,14 +114,6 @@ extension UILabel {
     }
 }
 
-extension UIScrollView {
-    func scrollToBottom(animated: Bool) {
-        let bottomOffset = CGPoint(x: contentOffset.x,
-                                   y: contentSize.height - bounds.height + adjustedContentInset.bottom)
-        setContentOffset(bottomOffset, animated: animated)
-    }
-}
-
 extension NSData {
     func sha1() -> String {
          var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
