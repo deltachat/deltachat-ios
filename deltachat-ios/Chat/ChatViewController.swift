@@ -470,37 +470,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
         updateTitle()
 
-        becomeFirstResponder()
-
         if activateSearch {
             activateSearch = false
             DispatchQueue.main.async { [weak self] in
                 self?.searchController.isActive = true
             }
-        }
-
-        if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-            UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
-                self?.scrollToMessage(msgId: msgId, animated: false)
-            }, completion: { [weak self] finished in
-                if finished {
-                    guard let self else { return }
-                    self.highlightedMsg = nil
-                    self.updateScrollDownButtonVisibility()
-                }
-            })
-        } else {
-            UIView.animate(withDuration: 0.1, delay: 0, options: .allowAnimatedContent, animations: { [weak self] in
-                guard let self else { return }
-                if self.isInitial {
-                    self.scrollToLastUnseenMessage()
-                }
-            }, completion: { [weak self] finished in
-                guard let self else { return }
-                if finished {
-                    self.updateScrollDownButtonVisibility()
-                }
-            })
         }
 
         if RelayHelper.shared.isForwarding() {
@@ -522,9 +496,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-            self.scrollToMessage(msgId: msgId, animated: false)
-        } else if self.isInitial {
-            self.scrollToLastUnseenMessage()
+            scrollToMessage(msgId: msgId, animated: false)
+        } else if isInitial {
+            scrollToLastUnseenMessage()
         }
     }
 
@@ -553,12 +527,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         // this block ensures that if a swipe-to-dismiss gesture was cancelled, the UI recovers
         if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-            self.scrollToMessage(msgId: msgId, animated: false)
-            self.highlightedMsg = nil
-            self.updateScrollDownButtonVisibility()
-        } else if self.isInitial {
-            self.scrollToLastUnseenMessage(animated: true)
-            self.updateScrollDownButtonVisibility()
+            scrollToMessage(msgId: msgId, animated: true)
+            highlightedMsg = nil
+            updateScrollDownButtonVisibility()
+        } else if isInitial {
+            scrollToLastUnseenMessage(animated: true)
+            updateScrollDownButtonVisibility()
         }
     }
 
