@@ -205,17 +205,30 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func contextMenu(for indexPath: IndexPath) -> ContextMenuProvider {
+
+        let menuItems: [ContextMenuProvider.ContextMenuItem]
+
         if #available(iOS 13.0, *) {
             if dcChat.canSend {
-                return ContextMenuProvider(menu: [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
+                let messageId = messageIds[indexPath.row]
+                let message = dcContext.getMessage(id: messageId)
+                let showReaction = message.isInfo == false && message.isSetupMessage == false && message.viewtype != nil && message.viewtype != .video
+
+                if showReaction {
+                    menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+                } else {
+                    menuItems = [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+                }
             } else {
-                return ContextMenuProvider(menu: [replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem])
+                menuItems = [replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem]
             }
         } else if dcChat.canSend { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
-            return ContextMenuProvider(menu: [forwardItem, infoItem, copyItem, deleteItem, selectMoreItem])
+            menuItems = [forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
         } else {
-            return ContextMenuProvider(menu: [forwardItem, infoItem, copyItem, deleteItem])
+            menuItems = [forwardItem, infoItem, copyItem, deleteItem]
         }
+
+        return ContextMenuProvider(menu: menuItems)
     }
 
     private lazy var copyItem: ContextMenuProvider.ContextMenuItem = {
