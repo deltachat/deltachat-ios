@@ -71,32 +71,8 @@ public class DcAccounts {
         return dc_accounts_background_fetch(accountsPointer, timeout) == 1
     }
 
-    public var notifyTokenPassedToServer: Bool = false // will be moved to core
-
-    public func setNotifyToken(token: String) {
-        // implementation will be moved to core
-        self.notifyTokenPassedToServer = false
-        if let url = URL(string: "https://notifications.delta.chat/register") {
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            let body = "{ \"token\": \"\(token)\" }"
-            request.httpBody = body.data(using: String.Encoding.utf8)
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    logger.error("Notifications: cannot POST to notification server: \(error)")
-                    return
-                }
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 {
-                    logger.info("Notifications: request to notification server succeeded")
-                    self.notifyTokenPassedToServer = true
-                } else {
-                    logger.error("Notifications: request to notification server failed: \(String(describing: response)), \(String(describing: data))")
-                }
-            }
-            task.resume()
-        } else {
-            logger.error("Notifications: cannot create URL for token: \(token)")
-        }
+    public func setPushToken(token: String) {
+        dc_accounts_set_push_device_token(accountsPointer, token)
     }
 
     public func select(id: Int) -> Bool {
