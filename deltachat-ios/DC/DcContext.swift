@@ -1,12 +1,5 @@
 import UIKit
 
-public enum DcNotifyState: Error {
-    // will be moved to core
-    case notConnected
-    case push
-    case heartbeat
-}
-
 /// An object representing a single account
 ///
 /// See [dc_context_t Class Reference](https://c.delta.chat/classdc__context__t.html)
@@ -307,9 +300,8 @@ public class DcContext {
         return "ErrGetInfo"
     }
 
-    public func getNotifyState() -> DcNotifyState {
-        // implementation will be moved to core
-        return DcAccounts.shared.notifyTokenPassedToServer ? .heartbeat : .notConnected
+    public func getPushState() -> Int32 {
+        return dc_get_push_state(contextPointer)
     }
 
     public func getContactEncrInfo(contactId: Int) -> String {

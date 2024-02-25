@@ -64,7 +64,7 @@ class ConnectivityViewController: WebViewViewController {
     // this method needs to be run from a background thread
     private func getNotificationStatus(backgroundRefreshStatus: UIBackgroundRefreshStatus) -> String {
         let connectiviy = self.dcContext.getConnectivity()
-        let notifyState = dcContext.getNotifyState()
+        let pushState = dcContext.getPushState()
         let title = " <b>" + String.localized("pref_notifications") + ":</b> "
         let notificationsEnabledInDC = !UserDefaults.standard.bool(forKey: "notifications_disabled")
         var notificationsEnabledInSystem = false
@@ -105,7 +105,7 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(String.localized("bg_app_refresh_disabled"))
         }
 
-        if notifyState == .notConnected || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
+        if pushState == DC_PUSH_NOT_CONNECTED || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
             return "<span class=\"red dot\"></span>"
                 .appending(title)
                 .appending(String.localized("connectivity_not_connected"))
@@ -123,7 +123,7 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(String.localized("connectivity_low_power_mode"))
         }
 
-        if notifyState == .push {
+        if pushState != DC_PUSH_HEARTBEAT {
             return "<span class=\"green dot\"></span>"
                 .appending(title)
                 .appending(String.localized("connectivity_connected"))
