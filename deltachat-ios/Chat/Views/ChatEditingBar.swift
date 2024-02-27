@@ -80,9 +80,9 @@ public class ChatEditingBar: UIView {
     public lazy var forwardButton: UIButton = {
         let view = UIButton()
         view.tintColor = .systemBlue
-        view.setImage( #imageLiteral(resourceName: "ic_forward_white_36pt").withRenderingMode(.alwaysTemplate), for: .normal)
+        view.setImage(UIImage(named: "ic_forward_white_36pt"), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.imageView?.contentMode = .scaleAspectFit
+        view.imageEdgeInsets = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         view.isUserInteractionEnabled = true
         view.accessibilityLabel = String.localized("forward")
         return view
@@ -92,7 +92,7 @@ public class ChatEditingBar: UIView {
         let view = UIStackView(arrangedSubviews: [copyButton, forwardButton, deleteButton, moreButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
-        view.alignment = .center
+        view.alignment = .top
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -121,7 +121,7 @@ public class ChatEditingBar: UIView {
             mainContentView.constraintAlignLeadingTo(self),
             mainContentView.constraintAlignTrailingTo(self),
             deleteButton.constraintHeightTo(36),
-            forwardButton.constraintHeightTo(26),
+            forwardButton.constraintHeightTo(36),
             copyButton.constraintHeightTo(36),
             moreButton.constraintHeightTo(36)
         ])
