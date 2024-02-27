@@ -227,25 +227,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let menuItems: [ContextMenuProvider.ContextMenuItem]
 
         if #available(iOS 13.0, *) {
-            if dcChat.canSend {
-                let messageId = messageIds[indexPath.row]
-                let message = dcContext.getMessage(id: messageId)
-                let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION
+            let messageId = messageIds[indexPath.row]
+            let message = dcContext.getMessage(id: messageId)
+            let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION  && dcChat.canSend
 
-                if showReaction {
-                    menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
-                } else {
-                    menuItems = [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
-                }
+            if showReaction {
+                menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
             } else {
-                menuItems = [replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem]
+                menuItems = [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
             }
-        } else if dcChat.canSend { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
+        } else { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
             menuItems = [forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
-        } else {
-            menuItems = [forwardItem, infoItem, copyItem, deleteItem]
         }
-
+        
         return ContextMenuProvider(menu: menuItems)
     }
 
@@ -2100,6 +2094,12 @@ extension ChatViewController {
     }
 
     func evaluateMoreButton() {
+
+        guard dcChat.canSend else {
+            editingBar.moreButton.isEnabled = false
+            return
+        }
+
         if let rows = tableView.indexPathsForSelectedRows {
             let ids = rows.compactMap { messageIds[$0.row] }
             for msgId in ids {
