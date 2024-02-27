@@ -373,7 +373,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // we pass the received token to the app's notification server then.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let notifyToken = tokenParts.joined()
+        #if DEBUG
+            let notifyToken = "sandbox:" + tokenParts.joined()
+        #else
+            let notifyToken = tokenParts.joined()
+        #endif
         logger.info("Notifications: Token: \(notifyToken)")
         self.notifyToken = notifyToken
         dcAccounts.setPushToken(token: notifyToken)
