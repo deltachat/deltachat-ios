@@ -126,17 +126,10 @@ public class ChatEditingBar: UIView {
             moreButton.constraintHeightTo(36)
         ])
 
-        let copyButtonGestureListener = UITapGestureRecognizer(target: self, action: #selector(onCopyPressed))
-        copyButton.addGestureRecognizer(copyButtonGestureListener)
-
-        let moreBtnGestureListener = UITapGestureRecognizer(target: self, action: #selector(onMorePressed))
-        moreButton.addGestureRecognizer(moreBtnGestureListener)
-
-        let forwardGestureListener = UITapGestureRecognizer(target: self, action: #selector(onForwardPressed))
-        forwardButton.addGestureRecognizer(forwardGestureListener)
-
-        let deleteGestureListener = UITapGestureRecognizer(target: self, action: #selector(onDeletePressed))
-        deleteButton.addGestureRecognizer(deleteGestureListener)
+        copyButton.addTarget(self, action: #selector(ChatEditingBar.onCopyPressed), for: .touchUpInside)
+        moreButton.addTarget(self, action: #selector(ChatEditingBar.onMorePressed), for: .touchUpInside)
+        forwardButton.addTarget(self, action: #selector(ChatEditingBar.onForwardPressed), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(ChatEditingBar.onDeletePressed), for: .touchUpInside)
     }
 
     @objc func onCopyPressed() {
