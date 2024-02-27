@@ -44,7 +44,6 @@ function_parameter_count:
 
 file_length:
   warning: 2000
-  error: 3000
   ignore_comment_only_lines: true
 
 cyclomatic_complexity:

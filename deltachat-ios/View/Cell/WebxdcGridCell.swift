@@ -3,7 +3,6 @@ import DcCore
 import SDWebImage
 
 class WebxdcGridCell: UICollectionViewCell {
-    static let reuseIdentifier = "webxdc_cell"
 
     weak var item: GalleryItem?
 
