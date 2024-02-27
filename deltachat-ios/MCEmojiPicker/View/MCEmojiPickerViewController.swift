@@ -56,6 +56,10 @@ public final class MCEmojiPickerViewController: UIViewController {
     /// The default value of this property is `true`.
     public var isDismissAfterChoosing: Bool = true
     
+    private lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancelAction))
+    }()
+
     /// Color for the selected emoji category.
     ///
     /// The default value of this property is `.systemBlue`.
@@ -151,7 +155,11 @@ public final class MCEmojiPickerViewController: UIViewController {
     }
     
     private func setupPopoverPresentationStyle() {
-        modalPresentationStyle = .popover
+        if sourceView != nil {
+            modalPresentationStyle = .popover
+        } else {
+            navigationItem.setRightBarButton(cancelButton, animated: false)
+        }
     }
     
     private func setupPreferredContentSize() {
@@ -174,7 +182,10 @@ public final class MCEmojiPickerViewController: UIViewController {
     }
     
     private func setupArrowDirections() {
-        popoverPresentationController?.permittedArrowDirections = []
+        guard let sourceView = sourceView else { return }
+        popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(
+            rawValue: arrowDirection.rawValue
+        )
     }
     
     private func setupHorizontalInset() {
@@ -236,6 +247,10 @@ extension MCEmojiPickerViewController: MCEmojiPickerViewDelegate {
     
     func didChoiceEmoji(_ emoji: MCEmoji?) {
         viewModel.selectedEmoji.value = emoji
+    }
+
+    @objc func cancelAction() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
