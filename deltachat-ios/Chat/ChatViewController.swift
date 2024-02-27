@@ -18,6 +18,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
     private var wasInputBarFirstResponder = false
+    private var reactionMessageId: Int?
 
     private lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -173,7 +174,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let messageId = messageIds[indexPath.row]
         let myReactions = dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } .map { $0.emoji } ?? []
 
-        let reactionsMenuItems = DefaultReactions.allCases.map { reaction in
+        var reactionsMenuItems = DefaultReactions.allCases.map { reaction in
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
             let checkmarkImageName: String?
             if sentThisReaction {
@@ -193,6 +194,24 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 }
             }
         }
+
+        reactionsMenuItems.append(ContextMenuProvider.ContextMenuItem(title: "•••", imageName: nil) { [weak self] indexPath in
+            guard let self else { return }
+            reactionMessageId = self.messageIds[indexPath.row]
+
+            let pickerViewController = MCEmojiPickerViewController()
+            pickerViewController.navigationItem.title = String.localized("react")
+            pickerViewController.delegate = self
+
+            let navigationController = UINavigationController(rootViewController: pickerViewController)
+            if #available(iOS 15.0, *) {
+                if let sheet = navigationController.sheetPresentationController {
+                    sheet.detents = [.medium()]
+                    sheet.preferredCornerRadius = 20
+                }
+            }
+            present(navigationController, animated: true)
+        })
 
         let reactionsItem = ContextMenuProvider.ContextMenuItem(
             title: String.localized("react"),
@@ -1984,6 +2003,14 @@ extension ChatViewController {
                 }
             }
         )
+    }
+}
+
+extension ChatViewController: MCEmojiPickerDelegate {
+    func didGetEmoji(emoji: String) {
+        if let reactionMessageId {
+            dcContext.sendReaction(messageId: reactionMessageId, reaction: emoji)
+        }
     }
 }
 
