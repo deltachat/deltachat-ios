@@ -94,9 +94,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }()
 
     private lazy var editingBar: ChatEditingBar = {
-        let view = ChatEditingBar()
+        let height = 52 + view.safeAreaInsets.bottom
+        let view = ChatEditingBar(frame: .init(0, 0, 0, height))
         view.delegate = self
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -158,12 +158,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return dcContext.getChat(chatId: chatId)
     }()
 
+    private var customInputAccessoryView: UIView?
     override var inputAccessoryView: UIView? {
-        if dcChat.canSend || dcChat.isHalfBlocked {
-            return messageInputBar
-        } else {
-            return nil
-        }
+        get { customInputAccessoryView }
+        set { customInputAccessoryView = newValue }
     }
 
     override var canBecomeFirstResponder: Bool {
@@ -922,17 +920,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         draftArea.configure(draft: draft)
         if draft.isEditing {
-            messageInputBar.setMiddleContentView(editingBar, animated: false)
-            messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
-            messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
-
+            inputAccessoryView = editingBar
+            reloadInputViews()
         } else {
+            inputAccessoryView = messageInputBar
+            reloadInputViews()
             messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
             messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
         }
+
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
 

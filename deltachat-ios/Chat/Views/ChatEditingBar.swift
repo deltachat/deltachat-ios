@@ -9,14 +9,12 @@ public protocol ChatEditingDelegate: AnyObject {
     func onMorePressed()
 }
 
-public class ChatEditingBar: UIView, InputItem {
-    public var inputBarAccessoryView: InputBarAccessoryView?
+public class ChatEditingBar: UIView {
     public var parentStackViewPosition: InputStackView.Position?
     public func textViewDidChangeAction(with textView: InputTextView) {}
     public func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
     public func keyboardEditingEndsAction() {}
     public func keyboardEditingBeginsAction() {}
-
 
     public var isEnabled: Bool {
         willSet(newValue) {
@@ -99,15 +97,15 @@ public class ChatEditingBar: UIView, InputItem {
         return view
     }()
 
-    convenience init() {
-        self.init(frame: .zero)
-
-    }
-
     public override init(frame: CGRect) {
         isEnabled = false
         super.init(frame: frame)
         self.setupSubviews()
+        if #available(iOS 13.0, *) {
+            backgroundColor = .systemBackground
+        } else {
+            backgroundColor = .white
+        }
     }
 
     required init(coder: NSCoder) {
