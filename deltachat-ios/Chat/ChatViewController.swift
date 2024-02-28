@@ -159,7 +159,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }()
 
     override var inputAccessoryView: UIView? {
-        if dcChat.canSend {
+        if dcChat.canSend || dcChat.isHalfBlocked {
             return messageInputBar
         } else {
             return nil
