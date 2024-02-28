@@ -15,6 +15,7 @@ target 'deltachat-ios' do
   pod 'SDWebImageWebPCoder', :modular_headers => true
   pod 'SDWebImageSVGKitPlugin'
   pod 'SVGKit', :modular_headers => true
+  pod 'MCEmojiPicker', :git => 'https://github.com/deltachat/MCEmojiPicker', :branch => 'main'
 
 end
 

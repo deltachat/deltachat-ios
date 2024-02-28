@@ -14,6 +14,7 @@ PODS:
   - libwebp/sharpyuv (1.3.2)
   - libwebp/webp (1.3.2):
     - libwebp/sharpyuv
+  - MCEmojiPicker (1.2.3)
   - ReachabilitySwift (5.0.0)
   - SCSiriWaveformView (1.1.2)
   - SDWebImage (5.18.8):
@@ -32,6 +33,7 @@ PODS:
   - SwiftLint (0.54.0)
 
 DEPENDENCIES:
+  - MCEmojiPicker (from `https://github.com/deltachat/MCEmojiPicker`, branch `main`)
   - ReachabilitySwift
   - SCSiriWaveformView
   - SDWebImage
@@ -56,11 +58,17 @@ SPEC REPOS:
     - SwiftLint
 
 EXTERNAL SOURCES:
+  MCEmojiPicker:
+    :branch: main
+    :git: https://github.com/deltachat/MCEmojiPicker
   Swifter:
     :branch: stable
     :git: https://github.com/httpswift/swifter.git
 
 CHECKOUT OPTIONS:
+  MCEmojiPicker:
+    :commit: d9eb480883c0a46b8813b9fe1f4e00d4df1ad071
+    :git: https://github.com/deltachat/MCEmojiPicker
   Swifter:
     :commit: 1e4f51c92d7ca486242d8bf0722b99de2c3531aa
     :git: https://github.com/httpswift/swifter.git
@@ -68,6 +76,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CocoaLumberjack: f8d89a516e7710fdb2e9b8f1560b16ec6040eef0
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
+  MCEmojiPicker: d24f72731881c05143870eefff52f586d493b982
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SCSiriWaveformView: 016392911fb442c17d6dbad68e666edb13193c02
   SDWebImage: a81bbb3ba4ea5f810f4069c68727cb118467a04a
@@ -78,6 +87,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 2ca3d0b75754193f0f3ba532291f25ae08dd1e42
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
 
-PODFILE CHECKSUM: c0cac23b96f37ab45a189ac459943a5797f86b97
+PODFILE CHECKSUM: 890a32e752f554d57e4aacafab11aa175db79c1c
 
 COCOAPODS: 1.13.0
