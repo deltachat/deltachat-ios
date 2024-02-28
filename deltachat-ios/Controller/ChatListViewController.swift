@@ -639,7 +639,7 @@ class ChatListViewController: UITableViewController {
         let accountSwitchNavigationController = UINavigationController(rootViewController: viewController)
         if #available(iOS 15.0, *) {
             if let sheet = accountSwitchNavigationController.sheetPresentationController {
-                sheet.detents = [.medium()]
+                sheet.detents = [.medium(), .large()]
                 sheet.preferredCornerRadius = 20
             }
         } else {
