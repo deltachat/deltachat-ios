@@ -232,7 +232,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if dcChat.canSend {
                 let messageId = messageIds[indexPath.row]
                 let message = dcContext.getMessage(id: messageId)
-                let showReaction = message.isInfo == false && message.isSetupMessage == false && message.viewtype != nil && message.viewtype != .video
+                let showReaction = message.isInfo == false && message.isSetupMessage == false && message.viewtype != .videoChatInvitation
 
                 if showReaction {
                     menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]

@@ -14,6 +14,7 @@ public class DcMsg {
         case video
         case voice
         case webxdc
+        case videoChatInvitation
 
         public var description: String {
             switch self {
@@ -26,6 +27,7 @@ public class DcMsg {
             case .video: return "Video"
             case .voice: return "Voice"
             case .webxdc: return "Webxdc"
+            case .videoChatInvitation: return "VideoChatInvitation"
             }
         }
     }
@@ -163,6 +165,8 @@ public class DcMsg {
             return .voice
         case DC_MSG_WEBXDC:
             return .webxdc
+        case DC_MSG_VIDEOCHAT_INVITATION:
+            return .videoChatInvitation
         default:
             return nil
         }
