@@ -22,7 +22,7 @@ public class DraftModel {
     }
     var viewType: Int32? {
         if let viewType = draftMsg?.type {
-            return Int32(viewType)
+            return viewType
         }
         return nil
     }

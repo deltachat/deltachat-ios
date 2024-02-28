@@ -25,12 +25,12 @@ class GalleryItem {
 
     private func loadThumbnail() {
         guard let url = msg.fileURL else { return }
-        switch msg.viewtype {
-        case .image, .gif:
+        switch msg.type {
+        case DC_MSG_IMAGE, DC_MSG_STICKER, DC_MSG_GIF:
             loadImageThumbnail(from: url)
-        case .video:
+        case DC_MSG_VIDEO:
             loadVideoThumbnail(from: url)
-        case .webxdc:
+        case DC_MSG_WEBXDC:
             loadWebxdcThumbnail(from: msg)
         default:
             return

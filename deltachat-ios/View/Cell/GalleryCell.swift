@@ -55,7 +55,7 @@ class GalleryCell: UICollectionViewCell {
         item.onImageLoaded = { [weak self] image in
             self?.imageView.image = image
         }
-        playButtonView.isHidden = item.msg.viewtype != .video
+        playButtonView.isHidden = item.msg.type != DC_MSG_VIDEO
         imageView.image = item.thumbnailImage
 
         contentView.isAccessibilityElement = true

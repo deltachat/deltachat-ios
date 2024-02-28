@@ -5,33 +5,6 @@ import UIKit
 /// See [dc_msg_t Class Reference](https://c.delta.chat/classdc__msg__t.html)
 public class DcMsg {
 
-    public enum MessageViewType: CustomStringConvertible {
-        case audio
-        case file
-        case gif
-        case image
-        case text
-        case video
-        case voice
-        case webxdc
-        case videoChatInvitation
-
-        public var description: String {
-            switch self {
-            // Use Internationalization, as appropriate.
-            case .audio: return "Audio"
-            case .file: return "File"
-            case .gif: return "GIF"
-            case .image: return "Image"
-            case .text: return "Text"
-            case .video: return "Video"
-            case .voice: return "Voice"
-            case .webxdc: return "Webxdc"
-            case .videoChatInvitation: return "VideoChatInvitation"
-            }
-        }
-    }
-
     var messagePointer: OpaquePointer?
 
     init(pointer: OpaquePointer?) {
@@ -141,35 +114,6 @@ public class DcMsg {
 
     public var downloadState: Int32 {
         return dc_msg_get_download_state(messagePointer)
-    }
-
-    public var viewtype: MessageViewType? {
-        switch dc_msg_get_viewtype(messagePointer) {
-        case 0:
-            return nil
-        case DC_MSG_AUDIO:
-            return .audio
-        case DC_MSG_FILE:
-            return .file
-        case DC_MSG_GIF:
-            return .gif
-        case DC_MSG_TEXT:
-            return .text
-        case DC_MSG_IMAGE:
-            return .image
-        case DC_MSG_STICKER:
-            return .image
-        case DC_MSG_VIDEO:
-            return .video
-        case DC_MSG_VOICE:
-            return .voice
-        case DC_MSG_WEBXDC:
-            return .webxdc
-        case DC_MSG_VIDEOCHAT_INVITATION:
-            return .videoChatInvitation
-        default:
-            return nil
-        }
     }
 
     public var fileURL: URL? {
@@ -287,8 +231,8 @@ public class DcMsg {
     }
 
     // DC_MSG_*
-    public var type: Int {
-        return Int(dc_msg_get_viewtype(messagePointer))
+    public var type: Int32 {
+        return dc_msg_get_viewtype(messagePointer)
     }
 
     // DC_STATE_*

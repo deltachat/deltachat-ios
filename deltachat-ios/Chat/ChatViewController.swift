@@ -232,7 +232,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if dcChat.canSend {
                 let messageId = messageIds[indexPath.row]
                 let message = dcContext.getMessage(id: messageId)
-                let showReaction = message.isInfo == false && message.isSetupMessage == false && message.viewtype != .videoChatInvitation
+                let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION
 
                 if showReaction {
                     menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
@@ -810,7 +810,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         let cell: BaseMessageCell
-        switch Int32(message.type) {
+        switch message.type {
         case DC_MSG_VIDEOCHAT_INVITATION:
             let videoInviteCell = tableView.dequeueReusableCell(withIdentifier: "video_invite", for: indexPath) as? VideoInviteCell ?? VideoInviteCell()
             videoInviteCell.showSelectionBackground(tableView.isEditing)

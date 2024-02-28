@@ -23,14 +23,14 @@ class ContextMenuController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let viewType = msg.viewtype
+        let viewType = msg.type
         var thumbnailView: UIView?
         switch viewType {
-        case .image:
+        case DC_MSG_IMAGE, DC_MSG_STICKER:
             thumbnailView = makeImageView()
-        case .video:
+        case DC_MSG_VIDEO:
             thumbnailView = makeVideoView()
-        case .gif:
+        case DC_MSG_GIF:
             thumbnailView = makeGifView()
         default:
             return
