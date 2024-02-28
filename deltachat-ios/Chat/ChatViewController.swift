@@ -339,8 +339,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             imageName: "checkmark.circle",
             action: #selector(BaseMessageCell.messageSelectMore),
             onPerform: { indexPath in
+                self.messageInputBar.inputTextView.resignFirstResponder()
+                self.resignFirstResponder()
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
+
                     let messageId = self.messageIds[indexPath.row]
                     self.setEditing(isEditing: true, selectedAtIndexPath: indexPath)
                     if UIAccessibility.isVoiceOverRunning {
@@ -573,7 +576,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
         wasInputBarFirstResponder = messageInputBar.inputTextView.isFirstResponder
         if !wasInputBarFirstResponder {
-            tableView.resignFirstResponder()
+            resignFirstResponder()
         }
     }
 
@@ -2129,6 +2132,7 @@ extension ChatViewController {
             _ = handleSelection(indexPath: indexPath)
         }
         self.updateTitle()
+        becomeFirstResponder()
     }
 
     private func setDefaultBackgroundImage(view: UIImageView) {
