@@ -400,6 +400,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
+        tableView.allowsMultipleSelectionDuringEditing = true
+        
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         if #available(iOS 13.0, *) {
@@ -448,7 +450,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
         messageInputBar.inputTextView.text = draft.text
         configureDraftArea(draft: draft, animated: false)
-        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dragInteractionEnabled = true
         tableView.dropDelegate = self
     }
