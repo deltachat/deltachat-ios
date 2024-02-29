@@ -10,7 +10,6 @@ public protocol ChatEditingDelegate: AnyObject {
 }
 
 public class ChatEditingBar: UIView {
-    public var parentStackViewPosition: InputStackView.Position?
     public func textViewDidChangeAction(with textView: InputTextView) {}
     public func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
     public func keyboardEditingEndsAction() {}

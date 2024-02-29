@@ -401,7 +401,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
         tableView.allowsMultipleSelectionDuringEditing = true
-        
+
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         if #available(iOS 13.0, *) {
@@ -1919,6 +1919,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         contextMenu(for: indexPath).performAction(action: action, indexPath: indexPath)
     }
 
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let id = messageIds[indexPath.row]
+        let message = dcContext.getMessage(id: id)
+
+        if id == DC_MSG_ID_DAYMARKER || id == DC_MSG_ID_MARKER1 {
+            return false
+        } else {
+            return (false == message.isInfo)
+        }
+    }
 }
 
 @available(iOS 13.0, *)
