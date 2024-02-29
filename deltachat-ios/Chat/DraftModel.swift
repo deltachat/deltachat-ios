@@ -21,10 +21,7 @@ public class DraftModel {
         return draftMsg?.filemime
     }
     var viewType: Int32? {
-        if let viewType = draftMsg?.type {
-            return Int32(viewType)
-        }
-        return nil
+        return draftMsg?.type
     }
 
     public init(dcContext: DcContext, chatId: Int) {
