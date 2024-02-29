@@ -170,10 +170,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         true
     }
 
+    private func getMyReactions(messageId: Int) -> [String] {
+        return dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } .map { $0.emoji } ?? []
+    }
+
     private func reactionsMenu(indexPath: IndexPath) -> ContextMenuProvider.ContextMenuItem {
 
         let messageId = messageIds[indexPath.row]
-        let myReactions = dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } .map { $0.emoji } ?? []
+        let myReactions = getMyReactions(messageId: messageId)
 
         var reactionsMenuItems = DefaultReactions.allCases.map { reaction in
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
@@ -2010,7 +2014,12 @@ extension ChatViewController {
 extension ChatViewController: MCEmojiPickerDelegate {
     func didGetEmoji(emoji: String) {
         if let reactionMessageId {
-            dcContext.sendReaction(messageId: reactionMessageId, reaction: emoji)
+            let sentThisReaction = getMyReactions(messageId: reactionMessageId).contains(where: { $0 == emoji })
+            if sentThisReaction {
+                dcContext.sendReaction(messageId: reactionMessageId, reaction: nil)
+            } else {
+                dcContext.sendReaction(messageId: reactionMessageId, reaction: emoji)
+            }
         }
     }
 }
