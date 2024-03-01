@@ -1004,11 +1004,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-
-        let messageId = messageIds[indexPath.row]
-        let message = dcContext.getMessage(id: messageId)
-        guard message.isInfo == false else { return nil }
-
         let tableViewCell = tableView.cellForRow(at: indexPath)
         if let selectableCell = tableViewCell as? SelectableCell,
            !(tableView.isEditing &&
@@ -1929,13 +1924,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let id = messageIds[indexPath.row]
-        let message = dcContext.getMessage(id: id)
-
-        if id == DC_MSG_ID_DAYMARKER || id == DC_MSG_ID_MARKER1 {
-            return false
-        } else {
-            return (false == message.isInfo)
-        }
+        return id != DC_MSG_ID_DAYMARKER && id != DC_MSG_ID_MARKER1
     }
 }
 
