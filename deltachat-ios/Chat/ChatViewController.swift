@@ -1954,10 +1954,16 @@ extension ChatViewController {
     }
 
     override func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-        guard let messageId = configuration.identifier as? NSString, let index = messageIds.firstIndex(of: messageId.integerValue) else { return }
+        guard let messageId = configuration.identifier as? NSString, let index = messageIds.firstIndex(of: messageId.integerValue) else {
+            debugPrint("booooom")
+            return
+        }
 
         let indexPath = IndexPath(row: index, section: 0)
-        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { 
+            debugPrint("booooom")
+            return
+        }
 
         cell.messageBackgroundContainer.isHidden = false
         cell.reactionsView.isHidden = false
