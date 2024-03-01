@@ -35,6 +35,7 @@ class BackgroundContainer: UIImageView {
         image = nil
         rectCorners = nil
         color = nil
+        isHidden = false
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
