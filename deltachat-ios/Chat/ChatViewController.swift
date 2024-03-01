@@ -237,8 +237,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
             if showReaction {
                 menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
-            } else {
+            } else if dcChat.canSend {
                 menuItems = [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+            } else {
+                menuItems = [replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
             }
         } else { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
             menuItems = [forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
