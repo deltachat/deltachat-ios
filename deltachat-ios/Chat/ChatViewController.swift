@@ -1004,6 +1004,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+
+        let messageId = messageIds[indexPath.row]
+        let message = dcContext.getMessage(id: messageId)
+        guard message.isInfo == false else { return nil }
+
         let tableViewCell = tableView.cellForRow(at: indexPath)
         if let selectableCell = tableViewCell as? SelectableCell,
            !(tableView.isEditing &&
