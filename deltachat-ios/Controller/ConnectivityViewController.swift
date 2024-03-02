@@ -123,7 +123,7 @@ class ConnectivityViewController: WebViewViewController {
                 .appending(String.localized("connectivity_low_power_mode"))
         }
 
-        if pushState != DC_PUSH_HEARTBEAT {
+        if pushState == DC_PUSH_CONNECTED {
             return "<span class=\"green dot\"></span>"
                 .appending(title)
                 .appending(String.localized("connectivity_connected"))
