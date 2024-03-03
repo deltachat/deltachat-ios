@@ -348,6 +348,7 @@
 "retry_send" = "Riprova l\'invio del messaggio";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Non puoi scrivere perché non sei in questo gruppo. Per partecipare, chiedi ad un altro membro.";
+// deprecated, the line is removed on desktop (was never used on other OS)
 "messaging_disabled_device_chat" = "Questa chat contiene messaggi generati localmente. Quindi non puoi scrivere alcun messaggio.";
 "messaging_disabled_mailing_list" = "L\'invio dei messaggi nelle mailing list non è ancora supportato";
 "cannot_display_unsuported_file_type" = "Impossibile visualizzare questo tipo di file: %1$@";
@@ -541,7 +542,7 @@
 
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
-"forward_to" = "Inotra a…";
+"forward_to" = "Inoltra a…";
 "share_multiple_attachments" = "Invia %1$d files alla chat selezionata?\n\nI files vengono inviati non modificati nella loro dimensione originale (ad es. immagini e video non vengono ricodificati).";
 "share_multiple_attachments_multiple_chats" = "Invia %1$d file(s) a %2$d chat?\n\nI files vengono inviati non modificati nella loro dimensione originale (ad es. immagini e video non vengono ricodificat)i.";
 "share_text_multiple_chats" = "Invia questo testo alle %1$d chat?\n\n\"%2$@\"";
@@ -891,6 +892,8 @@
 "notify_no_name_or_message" = "Nessun nome nè messaggio";
 "notifications_disabled" = "Notifiche disabilitate";
 "new_messages" = "Nuovi messaggi";
+// Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
+"new_messages_body" = "Hai nuovi messaggi";
 "n_messages_in_m_chats" = "%1$d messaggi in %2$d chats";
 
 

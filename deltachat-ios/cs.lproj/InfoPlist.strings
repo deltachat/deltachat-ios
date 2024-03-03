@@ -1,5 +1,7 @@
 NSCameraUsageDescription = "Delta Chat využívá kameru k focení, filmování a snímání QR kódů.";
 NSContactsUsageDescription = "Delta Chat používá tvé kontakty k zobrazení e-mailů na které můžeš psát. Delta Chat nemá žádné vlastní servery - tvé kontakty se nikam noposílají.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat potřebuje oprávnění ke sdílení vaší polohy po dobu, kdy jste povolili sdílení polohy. ";
+NSLocationWhenInUseUsageDescription = "Delta Chat potřebuje oprávnění ke sdílení vaší polohy po dobu, kdy jste povolili sdílení polohy. ";
 NSMicrophoneUsageDescription = "Delta Chat používá mikrofon k nahrávání hlasových zpráv a k filmování se zvukem.";
 NSPhotoLibraryUsageDescription = "Delta Chat tě nechá vybrat, které fotky z tvé galerie chceš poslat.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat chce uložit obrázky do tvé galerie fotek.";

@@ -239,6 +239,7 @@
 "retry_send" = "Torra a proare a imbiare su messàgiu";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Non podes iscrìere ca non ses in custu grupu. Pro b\'intrare pedi a un\'àteru membru.";
+// deprecated, the line is removed on desktop (was never used on other OS)
 "messaging_disabled_device_chat" = "Custa tzarrada cuntenet messàgios ingendrados localmente. Duncas non podet iscrìere messàgiu perunu.";
 "cannot_display_unsuported_file_type" = "Impossìbile ammustrare custa casta de documentu: %1$@";
 // map

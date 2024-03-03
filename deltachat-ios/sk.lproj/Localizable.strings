@@ -315,6 +315,7 @@
 "retry_send" = "Skúste správu odoslať znova";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Nemôžete písať, pretože nie ste v tejto skupine. Ak sa chcete pripojiť, požiadajte iného člena.";
+// deprecated, the line is removed on desktop (was never used on other OS)
 "messaging_disabled_device_chat" = "Táto konverzácia obsahuje miestne generované správy. Preto nemôžete písať žiadne správy.";
 "messaging_disabled_mailing_list" = "Posielanie správ do diskusných skupín (mailing list) zatiaľ nie je podporované.";
 "cannot_display_unsuported_file_type" = "Nie je možné zobraziť tento typ súboru: %1$@";

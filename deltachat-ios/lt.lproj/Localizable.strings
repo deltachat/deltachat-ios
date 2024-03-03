@@ -215,6 +215,8 @@
 "ConversationFragment_quoted_message_not_found" = "Pradinė žinutė nerasta";
 "reply_privately" = "Atsakyti privačiai";
 "source_code" = "Pirminis kodas";
+"donate" = "Paaukoti";
+
 "mute_for_one_hour" = "Išjungti 1 valandai";
 "mute_for_two_hours" = "Išjungti 2 valandoms";
 "mute_for_one_day" = "Išjungti 1 dienai";
@@ -286,6 +288,7 @@
 "save_as" = "Įrašyti kaip";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Jūs negalite rašyti, nes nesate šioje grupėje. Norėdami prisijungti, paprašykite kito nario.";
+// deprecated, the line is removed on desktop (was never used on other OS)
 "messaging_disabled_device_chat" = "Šiame pokalbyje yra vietiniu lygmeniu sukurtos žinutės. Štai kodėl negalite rašyti jokių žinučių.";
 "cannot_display_unsuported_file_type" = "Nepavyksta atvaizduoti šio failo tipo: %1$@";
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";

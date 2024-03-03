@@ -254,6 +254,7 @@
 "retry_send" = "دیسان هەوڵ بدەوە بۆ هەناردنی پەیامەکە";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "تۆ ناتوانیت لێرە بنووسیت چونکە لەم کۆڕەدا بەشدار نیت. بۆ بەشدار بوون لە ئەندامێکی کۆڕەکە داوابکە بەشدارت بکات.";
+// deprecated, the line is removed on desktop (was never used on other OS)
 "messaging_disabled_device_chat" = "ئەم وتووێژە پەیامگەلێکی تێدایە کە بە شێوازی ناوخۆیی درووستکراون. ئیدی ناتوانیت لێرە هیچ بنووسیت.";
 "cannot_display_unsuported_file_type" = "ئەم چەشنە پەڕگەیە پیشان نادرێت: %1$@";
 "attachment_failed_to_load" = "پێوەلکاوەکە دانەگیرا";

@@ -2,6 +2,9 @@
 "app_name" = "Delta Chat";
 "ok" = "Souhlas";
 "cancel" = "Zrušit";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "nebo";
+"clear_search" = "Vyčistit vyhledávání";
 "yes" = "Ano";
 "no" = "Ne";
 "select" = "Vyber";
@@ -15,6 +18,8 @@
 "automatic" = "Samočinně";
 "strict" = "Přísný";
 "open" = "Otevřít";
+"download" = "Stáhnout";
+"downloading" = "Stahuji...";
 "open_attachment" = "Otevřít přílohu";
 "join" = "Připojit se";
 "rejoin" = "Připojit zpět";
@@ -24,8 +29,15 @@
 "emoji" = "Smajlíky";
 "attachment" = "Příloha";
 "back" = "Zpět";
+// this string is deprecated; the new wording is "introduced by ..."
+"verified" = "Ověřeno";
 "close" = "Zavřít";
+"close_window" = "Zavřít okno";
 "forward" = "Přeposlat";
+"create" = "Vytvořit";
+"later" = "Později";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Přeposlat";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archivuj";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -34,17 +46,27 @@
 "ephemeral_messages" = "Samomazací zpráva";
 "ephemeral_messages_hint" = "Tato nastavení platí pro všechny účastníky Delta Chatu. Nicméně ostatní mohou kopírovat, uložit, a přeposlat zprávy, nebo používat jiné e-mailové programy.";
 "save" = "Ulož";
-"chat" = "Hovor";
+"chat" = "Chat";
 "media" = "Multimedia";
 "profile" = "Profil";
 "main_menu" = "Hlavní menu";
-"start_chat" = "Začni hovor";
+"start_chat" = "Začni chat";
 "show_full_message" = "Zobraz celou zprávu…";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Označit vše jako přečtené";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Číst";
+// Placeholder text when something is loading
+"loading" = "Nahrávám...";
+"hide" = "Schovat";
+"activate" = "Aktivovat";
 "load_remote_content" = "Nahraj vzdálené obrázky";
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Vzdálené obrázky mohou umožnit sledování vaší činnosti.\n\nNastavení také povolí stahování fontů a dalšího obsahu. Obrázky z vyrovnávací paměti nebo součásti zprávy uvidíš i při vyptutí tohoto nastavení.\n\nNahrávat vzdálené obrázky?";
 "always" = "Vždy";
+"always_load_remote_images" = "Vždy načíst vzdálené obrázky";
 "once" = "Jednou";
+"show_warning" = "Zobrazit varování";
 "show_password" = "Zobraz heslo";
 "hide_password" = "Skrýt heslo";
 "not_now" = "Teď ne";
@@ -75,6 +97,11 @@
 "this_month" = "Tento měsíc";
 "last_week" = "Minulý týden";
 "last_month" = "Minulý měsíc";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Naposledy viděn v %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Naposledy viděn %1$@";
+"last_seen_unknown" = "Naposledy viděn: Neznámý";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Já";
@@ -83,6 +110,9 @@
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Odpověď";
 "gif" = "GIF";
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
+"sticker" = "Nálepka";
+"add_to_sticker_collection" = "Přidat do sbírky nálepek ";
 "images" = "Obrázky";
 "audio" = "Zvukový záznam";
 "voice_message" = "Hlasová zpráva";
@@ -121,18 +151,21 @@
 
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nový kontakt";
-"menu_new_chat" = "Nový hovor";
+"menu_new_chat" = "Nový chat";
 "menu_new_group" = "Nová skupina";
+"clone_chat" = "Kopíruj chat";
 "menu_send" = "Poslat";
 "menu_toggle_keyboard" = "Přepni na smajlíky";
 "menu_edit_group" = "Uprav skupinu";
 "menu_group_name_and_image" = "Název a obrázek skupiny";
 "menu_show_global_map" = "Ukaž všechny polohy";
-"menu_archive_chat" = "Archivuj hovor";
-"menu_unarchive_chat" = "Rozbal hovor";
+"menu_archive_chat" = "Archivuj chat";
+"menu_unarchive_chat" = "Rozbal chat";
 "menu_add_attachment" = "Přidat přílohu";
 "menu_leave_group" = "Opustit skupinu";
-"menu_delete_chat" = "Vymaž hovor";
+"menu_delete_chat" = "Vymaž chat";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Vyčisti chat";
 "ask_delete_named_chat" = "Skutečně úplně vymazat \"%1$@\"?";
 "menu_delete_messages" = "Vymaž zprávy";
 "delete_contact" = "Vymaž kontakt";
@@ -149,7 +182,7 @@
 "menu_export_attachment" = "Ulož přílohu";
 "menu_all_media" = "Všechna multimedia";
 // Command to jump to the original message corresponding to a gallery image or document
-"show_in_chat" = "Ukaž v hovoru";
+"show_in_chat" = "Ukaž v chatu";
 "menu_share" = "Sdílet";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Zablokovat";
@@ -162,6 +195,7 @@
 "menu_help" = "Nápověda";
 "privacy_policy" = "Pravidla pro soukromí";
 "menu_select_all" = "Vyber vše";
+"select_chat" = "Vyber chat";
 "select_more" = "Vyber více";
 "menu_edit_name" = "Uprav jméno";
 "menu_settings" = "Nastavení";
@@ -178,9 +212,9 @@
 "device_talk_welcome_message" = "Vítej v Delta Chatu! – Delta Chat se chová jako všeobecně známé chatovací aplikace, ale bez centralizované kontroly, sledování. Neprodává zážitky tvých přátel, kolegů, rodiny ani tvé vlastní velkým organizacím.\n\nTechnicky je Delta Chat e-mailový program, ale s uživatelským rozhraním chatu. Převlečený e-mail, chceš-li. Delta Chat používej s kýmkoli z miliard lidí; prostě použij jejich e-mailovou adresu. Příjemce si nemusí Delta Chat instalovat, ani se přihlašovat přes nové webové stránky. Můžeš je však, budou-li chtít, odkázat na 👉 https://get.delta.chat";
 "edit_contact" = "Uprav kontakt";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
-"pin_chat" = "Připíchni hovor";
+"pin_chat" = "Připíchni chat";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
-"unpin_chat" = "Odpíchni hovor";
+"unpin_chat" = "Odpíchni chat";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Připíchnout";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
@@ -210,21 +244,21 @@
 "videochat_tap_to_open" = "Otevři stiskem";
 "videochat_instance" = "Připravený video hovor";
 "videochat_instance_placeholder" = "Tvůj připravený video hovor";
-"videochat_instance_from_qr" = "Použít \"%1$@\" k pozvání na video hovory?\n\nPokud nastaveno, můžete začít video hovor v každém hovoru jeden na jednoho. Toto nahradí jakékoli předchzí nastavení video hovorů.";
+"videochat_instance_from_qr" = "Použít \"%1$@\" k pozvání na video hovory?\n\nPokud nastaveno, můžete začít video hovor v každém chatu jeden na jednoho. Toto nahradí jakékoli předchozí nastavení video hovorů.";
 "videochat_invitation" = "Výzva k video hovoru";
 "videochat_invitation_body" = "Jste vyzváni k video hovoru, připojte se stiskem %1$@";
 
 // get confirmations
 "ask_leave_group" = "Opravdu opustit tuto skupinu?";
 "ask_forward" = "Přepošli zprávy na adresu %1$@?";
-"ask_forward_multiple" = "Přepošli zprávy do %1$d hovorů?";
+"ask_forward_multiple" = "Přepošli zprávy do %1$d chatů?";
 "ask_export_attachment" = "Uložit přílohu? Uložení příloh je zpřístupní ostatním aplikacím na tomto přístroji.\n\nPokračovat?";
 "ask_block_contact" = "Zablokovat tento kontakt? Další zprávy od tohoto kontaktu již nebudete přijímat.";
 "ask_unblock_contact" = "Odblokovat tento kontakt? Zprávy od tohoto kontaktu budete opět přijímat.";
-"ask_delete_contacts" = "Vymazat kontakty?\n\nKontakty v nastavených hovorech a kontakty ze systémového adresáře nelze nadobro vymazat.";
-"ask_delete_contact" = "Vymazat kontakt %1$@?\n\nKontakty v nastavených hovorech a kontakty ze systémového adresáře nelze nadobro vymazat.";
-"cannot_delete_contacts_in_use" = "Kontakty v nastavených hovorech nelze vymazat";
-"ask_start_chat_with" = "Hovor s %1$@?";
+"ask_delete_contacts" = "Vymazat kontakty?\n\nKontakty v nastavených chatech a kontakty ze systémového adresáře nelze nadobro vymazat.";
+"ask_delete_contact" = "Vymazat kontakt %1$@?\n\nKontakty v nastavených chatech a kontakty ze systémového adresáře nelze nadobro vymazat.";
+"cannot_delete_contacts_in_use" = "Kontakty v nastavených chatech nelze vymazat";
+"ask_start_chat_with" = "Chat s %1$@?";
 "ask_delete_value" = "Vymazat %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Odstranit %1$@ ze skupiny?";
@@ -239,21 +273,23 @@
 
 
 // chatlist and chat view
-"chat_archived_chats_title" = "Archivované hovory";
+"chat_archived_chats_title" = "Archivované chaty";
 "chat_please_enter_message" = "Zadejte zprávu, prosím.";
 "chat_camera_unavailable" = "Kamera je nedostupná.";
 "chat_unable_to_record_audio" = "Nelze nahrávatt zvuk.";
+"chat_new_broadcast_hint" = "V seznamu vysílání budou příjemci dostávat zprávy v chatu pouze pro čtení s vámi.";
 "chat_new_group_hint" = "Napiš první zprávu a umožni ostatním odpovídat do této skupiny.\n\n• Nevadí pokud všichni členové nemají Delta Chat.\n\n• Doručení první zprávy může trvat déle.";
 "chat_record_slide_to_cancel" = "Zrušit tahem";
 "chat_record_explain" = "K nahrání hlasové zprávy stiskni a drž mikrofon, uvolni pro odeslání.";
-"chat_no_chats_yet_title" = "Prázdná schránka.\nStiskem \"+\" založ nový hovor.";
-"chat_no_chats_yet_hint" = "Založ hovor s jakýmkoli uživatelem Delta Chatu a s jakýmkoli e-mailem.";
-"chat_all_archived" = "Vsechny hovory archivovány.\nStiskem \"+\" založ nový hovor.";
+"chat_no_chats_yet_title" = "Prázdná schránka.\nStiskem \"+\" založ nový chat.";
+"chat_no_chats_yet_hint" = "Založ chat s jakýmkoli uživatelem Delta Chatu a s jakýmkoli e-mailem.";
+"chat_all_archived" = "Všechny chaty archivovány.\nStiskem \"+\" založ nový chat.";
 "chat_share_with_title" = "Sdílet s";
 "chat_input_placeholder" = "Zpráva";
 "chat_archived_label" = "Archivováno";
 "chat_no_messages" = "Žádná zpráva.";
 "chat_self_talk_subtitle" = "Zprávy poslané sobě";
+"archive_empty_hint" = "Zde se zobrazí archivované chaty.";
 "saved_messages" = "Uložené zprávy";
 "saved_messages_explain" = "• Přepošli si sem zprávy pro jednoduchý přístup\n\n• Dělej si poznámky textové i hlasové\n\n• Přiložená multimedia se hned uloží";
 // Should match "Saved" from "Saved messages"
@@ -261,19 +297,28 @@
 "retry_send" = "Opakuj pokus o zaslání zprávy";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Nelze psát protože nejsi členem této skupiny. O přidání požádej jiného člena.";
-"messaging_disabled_device_chat" = "Tento hovor obsahuje samočinně vytvořené zprávy. Proto nelze psát vlastní zprávy.";
+// deprecated, the line is removed on desktop (was never used on other OS)
+"messaging_disabled_device_chat" = "Tento chat obsahuje samočinně vytvořené zprávy. Proto nelze psát vlastní zprávy.";
 "cannot_display_unsuported_file_type" = "Nelze zobrazit tento typ souboru: %1$@";
 "attachment_failed_to_load" = "Nezdařilo se načíst přílohu";
 // mailing lists
 "mailing_list" = "Hromadná zpráva";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Nejprve prosím přijměte žádost o chat.";
 // map
 "filter_map_on_time" = "Zobraz polohu v časovém rámci";
 "show_location_traces" = "Ukaž trasy";
 "add_poi" = "Pošli polohu zájmu";
 
+// chat audit log
+"chat_audit_log_empty_message" = "Zde se zobrazují systémové zprávy pro tento chat";
+"chat_audit_log_title" = "Protokol auditu pro chat %1$@";
+"chat_audit_log_description" = "Zobrazuje pouze systémové a informační zprávy; užitečné pro nalezení posledních akcí chatu bez procházení mnoha zpráv. ";
+
 // search
 "search" = "Hledej";
-"search_explain" = "Vyhledávat hovory, kontatkty a zprávy";
+"search_in_chat" = "Vyhledávat v chatu";
+"search_explain" = "Vyhledávat chaty, kontakty a zprávy";
 "search_no_result_for_x" = "Žádný výsledek pro \"%1$@\"";
 
 
@@ -287,17 +332,27 @@
 "group_add_members" = "Přidej člena";
 "group_self_not_in_group" = "Pro tuto aktivitu musíš být členem této skupiny.";
 "profile_encryption" = "Šifrování";
-"profile_shared_chats" = "Sdílené hovory";
+"profile_shared_chats" = "Sdílené chaty";
+"related_chats" = "Související chaty";
 "tab_contact" = "Kontakt";
 "tab_group" = "Skupina";
 "tab_gallery" = "Galerie";
 "tab_docs" = "Dokumenty";
 "tab_links" = "Odkazy";
 "tab_map" = "Mapa";
-"tab_gallery_empty_hint" = "Obrázky a videa sdílené v tomto hovoru budou zobrazeny zde.";
-"tab_docs_empty_hint" = "Documenty, hudba a další soubory sdílené v tomto hovoru budou zobrazeny zde.";
+"tab_gallery_empty_hint" = "Obrázky a videa sdílené v tomto chatu budou zobrazeny zde.";
+"tab_docs_empty_hint" = "Dokumenty, hudba a další soubory sdílené v tomto chatu budou zobrazeny zde.";
+"tab_image_empty_hint" = "Zde se zobrazí obrázky sdílené v tomto chatu.";
+"tab_video_empty_hint" = "Zde se zobrazí videa sdílená v tomto chatu.";
+"tab_audio_empty_hint" = "Zde se zobrazí zvukové soubory a hlasové zprávy sdílené v tomto chatu.";
+"tab_webxdc_empty_hint" = "Zde se zobrazí aplikace sdílené v tomto chatu.";
+"tab_all_media_empty_hint" = "Zde se zobrazí média sdílená v jakémkoli chatu.";
 "media_preview" = "Náhled multimedia";
 "send_message" = "Pošli zprávu";
+"multidevice_install_dc_on_other_device" = "Nainstalujte si Delta Chat do druhého zařízení (https://get.delta.chat)";
+"multidevice_tap_scan_on_other_device" = "Spusťte Delta Chat, klepněte na „Přidat jako druhé zařízení“ a naskenujte zde zobrazený kód";
+// welcome and login
+"welcome_chat_over_email" = "Chat přes e-mail.";
 "login_title" = "Přihlaš se";
 "login_header" = "Přihlaš se na váš server";
 "login_explain" = "Přihlásit se se stávajícím účtem pro e-mail.";
@@ -334,7 +389,7 @@
 "add_account" = "Přidej účet";
 "delete_account" = "Vymaž účet";
 "delete_account_ask" = "Skutečně vymazat data tvého účtu?";
-"delete_account_explain_with_name" = "Všechna data účtu \"%1$@\" budou z tohoto zařízení vymazána, včetně nastavení end-to-end šifrování, kontaktů, hovorů, zpráv a multimedií. Tento úkon nelze vrátit zpět.";
+"delete_account_explain_with_name" = "Všechna data účtu \"%1$@\" budou z tohoto zařízení vymazána, včetně nastavení end-to-end šifrování, kontaktů, hovorů, zpráv a multimédií. Tento úkon nelze vrátit zpět.";
 "try_connect_now" = "Teď se zkus připojit";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Nastavení selhalo. Chyba: %1$@";
@@ -342,9 +397,9 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Přeposlat komu ...";
-"share_multiple_attachments" = "Poslat %1$d soubory do zvoleného hovoru?\n\nSoubory budou zachovány v původní velikosti. Obrázky a videa nebudou překódována.";
-"share_multiple_attachments_multiple_chats" = "Poslat %1$d soubor(y) do %2$d hovorů?\n\nSoubory budou zachovány v původní velikosti. Obrázky a videa nebudou překódována.";
-"share_text_multiple_chats" = "Poslat tento text do %1$d hovorů?\n\n\"%2$@\"";
+"share_multiple_attachments" = "Poslat %1$d soubory do zvoleného chatu?\n\nSoubory budou zachovány v původní velikosti. Obrázky a videa nebudou překódována.";
+"share_multiple_attachments_multiple_chats" = "Poslat %1$d soubor(y) do %2$d chatu?\n\nSoubory budou zachovány v původní velikosti. Obrázky a videa nebudou překódována.";
+"share_text_multiple_chats" = "Poslat tento text do %1$d chatů?\n\n\"%2$@\"";
 "share_abort" = "Sdílení přerušeno díky chybějícím oprávnění.";
 
 
@@ -380,7 +435,7 @@
 "pref_sound" = "Zvuk";
 "pref_silent" = "Ticho";
 "pref_privacy" = "Soukromí";
-"pref_chats_and_media" = "Hovory a multimedia";
+"pref_chats_and_media" = "Chaty a multimédia";
 "pref_system_default" = "Podle systému";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Světlý";
@@ -396,9 +451,10 @@
 "pref_manage_keys" = "Správa klíčů";
 "pref_use_system_emoji" = "Použij systémové smajlíky";
 "pref_use_system_emoji_explain" = "Vypni vestavěné smajlíky Data Chatu";
+"pref_show_system_contacts_explain" = "Nabídka vytvoření chatů s kontakty z adresáře. Někteří poskytovatelé potřebují nejprve nastavení šifrování typu end-to-end. ";
 "pref_app_access" = "Přístup aplikace";
-"pref_chats" = "Hovory";
-"pref_in_chat_sounds" = "Zvuky v rámci hovoru";
+"pref_chats" = "Chaty";
+"pref_in_chat_sounds" = "Zvuky v rámci chatu";
 "pref_message_text_size" = "Velikost písma zprávy";
 "pref_view_log" = "Zobrazit záznam běhu";
 "pref_saved_log" = "Záznam běhu uložen do složky \"Downloads\"";
@@ -406,8 +462,8 @@
 "pref_log_header" = "Záznam běhu";
 "pref_other" = "Ostatní";
 "pref_backup" = "Záloha";
-"pref_backup_explain" = "Zálohuj hovory na vnější úložiště";
-"pref_backup_export_explain" = "Záloha ti pomůže nastavit novou instalaci na tomto či jiném zařízení.\n\nZáloha obsahuje všechny zprávy, kotakty a hovory, a tvé end-to-end Autocrypt nastavení. Soubor se zálohou uchovej na bezpečném místě nebo jej co nejdřív vymaž.";
+"pref_backup_explain" = "Zálohuj chaty na vnější úložiště";
+"pref_backup_export_explain" = "Záloha ti pomůže nastavit novou instalaci na tomto či jiném zařízení.\n\nZáloha obsahuje všechny zprávy, kontakty a chaty, a tvé end-to-end Autocrypt nastavení. Soubor se zálohou uchovej na bezpečném místě nebo jej co nejdřív vymaž.";
 "pref_backup_export_start_button" = "Začni zálohovat";
 "pref_backup_written_to_x" = "Záloha úspěšně zapsána v \"%1$@\"";
 "pref_managekeys_menu_title" = "Správa klíčů";
@@ -426,9 +482,11 @@
 "pref_watch_sent_folder" = "Sleduj Odchozí složku";
 "pref_send_copy_to_self" = "Posílat si kopie";
 "pref_auto_folder_moves" = "Samočinně přesouvat do složky DeltaChat ";
-"pref_auto_folder_moves_explain" = "Zprávy hovorů jsou přesouvány aby nezahlcovali Příchozí složku";
+"pref_auto_folder_moves_explain" = "Zprávy chatů jsou přesouvány, aby nezahlcovali Příchozí složku";
+"pref_only_fetch_mvbox_title" = "Pouze načíst ze složky DeltaChat";
+"pref_only_fetch_mvbox_explain" = "Ostatní složky ignorujte. Vyžaduje, aby váš server přesunul zprávy chatu do složky DeltaChat. ";
 "pref_show_emails" = "Zobrazuj běžné e-maily";
-"pref_show_emails_no" = "Ne, pouze hovory";
+"pref_show_emails_no" = "Ne, pouze chaty";
 "pref_show_emails_accepted_contacts" = "Pro přijaté kontakty";
 "pref_show_emails_all" = "Vše";
 "pref_experimental_features" = "Pokusné funkce ";
@@ -461,7 +519,7 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Skutečně smazat %1$d zprávy a všechny v budoucnu stažené zprávy \"%2$@\"?\n\n• Toto zahrnuje všechna multimedia\n\n• Zprávy budou smazány bez ohledu na jejich přečtení\n\n• \"Uložené zprávy\" budou z místního mazání vynechány";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Skutečně smazat %1$d zprávy a všechny v budoucnu stažené zprávy \"%2$@\"?\n\n⚠️ Toto zahrnuje e-maily, multimedia a \"Uložené zprávy\" ve všech složkách na serveru\n\n⚠️ Nepoužívej tuto funkci pokud chceš nechat data na serveru\n\n⚠️ Nepoužívej tuto funkci pokud máš i jiné e-mailové programy mimo Delta Chat";
+"autodel_server_ask" = "Skutečně smazat %1$d zprávy a všechny v budoucnu stažené zprávy \"%2$@\"?\n\n⚠️ Toto zahrnuje e-maily, multimédia a \"Uložené zprávy\" ve všech složkách na serveru\n\n⚠️ Nepoužívej tuto funkci pokud chceš nechat data na serveru\n\n⚠️ Nepoužívej tuto funkci pokud máš i jiné e-mailové programy mimo Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Toto zahrnuje e-maily, multimedia a \"Uložené zprávy\" ve všech složkách na serveru. Nepoužívej tuto funkci pokud chceš nechat data na serveru, nebo pokud máš i jiné e-mailové programy mimo Delta Chat";
 "autodel_confirm" = "Rozumím. Vymaž všechny zprávy";
@@ -499,7 +557,8 @@
 // system messages
 "systemmsg_read_receipt_subject" = "Zpráva otevřena";
 "systemmsg_read_receipt_body" = "Odeslaná zpráva \"%1$@\" byla příjemci zobrazena na jeho přístroji.\n\nNicméně přečtení obsahu není zaručeno.";
-"systemmsg_unknown_sender_for_chat" = "Neznámý odesilatel v tomto hovoru. Více najdeš v Popisu.";
+"systemmsg_cannot_decrypt" = "Tuto zprávu nelze dešifrovat.\n\n• Už teď by mohlo pomoci jednoduše odpovědět na tuto zprávu a požádat odesílatele, aby zprávu poslal znovu.\n\n• Pokud jste právě přeinstalovali Delta Chat, bude nejlepší, když znovu nastavíte Delta Chat a zvolíte \"Přidat jako druhé zařízení\" nebo importujete zálohu. ";
+"systemmsg_unknown_sender_for_chat" = "Neznámý odesílatel tohoto chatu. Další podrobnosti naleznete v části „informace“. ";
 "systemmsg_subject_for_new_contact" = "Zpráva od %1$@";
 "systemmsg_failed_sending_to" = "Odeslání zprávy pro %1$@ selhalo.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -555,6 +614,11 @@
 "ephemeral_timer_weeks_by_you" = "Samomazací zprávy vyprší po %1$@ týdnech ode mě.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Samomazací zprávy vyprší po %1$@ týdnech od %2$@.";
+"chat_protection_enabled_explanation" = "Nyní je zaručeno, že všechny zprávy v tomto chatu jsou šifrovány end-to-end.\n\nŠifrování end-to-end udržuje zprávy soukromé mezi vámi a vašimi partnery v chatu. Nedokáže je přečíst ani váš poskytovatel e-mailu.";
+"invalid_unencrypted_tap_to_learn_more" = "⚠️%1$@vyžaduje end-to-end šifrování, které pro tento chat ještě není nastaveno. Klepnutím se dozvíte více. ";
+"devicemsg_self_deleted" = "Smazali jste chat „Uložené zprávy“.\n\nℹ️ Chcete-li znovu použít funkci „Uložené zprávy“, vytvořte si nový chat. ";
+"devicemsg_update_reminder" = "⚠️ Vaše verze Delta Chatu může být zastaralá.\n\nTo může způsobit problémy, protože vaši partneři v chatu používají novější verze – a vám chybí nejnovější funkce 😳\nAktualizace najdete na https://get.delta.chat nebo v obchodě s aplikacemi . ";
+
 // qr code stuff
 "qr_code" = "QR kód";
 "load_qr_code_as_image" = "Nahraj QR kód z obrázku";
@@ -589,6 +653,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Změněné nastavení pro %1$@.";
 "copy_qr_data_success" = "URL z QR kódu zkopírováno do mezipaměti";
+"mailto_dialog_header_select_chat" = "Vyberte chat, kterému chcete zprávu odeslat ";
 "notify_reply_button" = "Odpověď";
 "notify_new_message" = "Nová zpráva";
 "notify_background_connection_enabled" = "Spojení na pozadí je zapnuto";
@@ -597,6 +662,9 @@
 "notify_name_and_message" = "Jméno a zpráva";
 "notify_name_only" = "Pouze jméno";
 "notify_no_name_or_message" = "Ani jméno ani zpráva";
+"n_messages_in_m_chats" = "%1$d zprávy v %2$dchatech ";
+
+
 // permissions
 "perm_required_title" = "Vyžaduj povolení";
 "perm_continue" = "Pokračuj";
@@ -604,6 +672,8 @@
 "perm_explain_access_to_mic_denied" = "K posílání zvukových zpráv jdi do nastavení aplikace, pokračuj do Povolení, a tam povol Mikrofon.";
 "perm_explain_access_to_storage_denied" = "Pro příjem a posílání souborů jdi do nastavení aplikace, pokračuj do Povolení, a tam povol Ukládání.";
 "perm_explain_access_to_location_denied" = "K posílání polohy jdi do nastavení aplikace, pokračuj do Povolení, a tam povol Polohu.";
+"perm_explain_access_to_notifications_denied" = "Chcete-li dostávat oznámení, přejděte na „Nastavení systému / Aplikace / Delta Chat“ a povolte „Oznámení“. ";
+
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Kreslením rozmazávej";
 // dc_str_* resources
@@ -631,7 +701,8 @@
 "global_menu_help_contribute_desktop" = "Přispěj na GitHubu";
 "global_menu_help_report_desktop" = "Nahlaš problém";
 "global_menu_help_about_desktop" = "O aplikaci Delta Chat";
-"no_chat_selected_suggestion_desktop" = "Vyber hovor, nebo vytvoř nový";
+"global_menu_file_open_desktop" = "Otevřít Delta Chat";
+"no_chat_selected_suggestion_desktop" = "Vyber chat, nebo vytvoř nový chat";
 "write_message_desktop" = "Napiš zprávu";
 "encryption_info_title_desktop" = "Popis šifrování";
 "delete_message_desktop" = "Vymaž zprávu";
@@ -643,11 +714,13 @@
 "select_group_image_desktop" = "Vyber obrázek skupiny";
 "export_backup_desktop" = "Ulož zálohu";
 "autocrypt_correct_desktop" = "Nastavení Autocryptu přeneseno.";
-"forget_login_confirmation_desktop" = "Smazat toto přihlášení? Vše bude smazáno, včetně nastavení tvého end-to-end šifrování, kontaktů, hovorů, zpráv a multimedií. Tuto akci nelze vrátit zpět.";
+"forget_login_confirmation_desktop" = "Smazat toto přihlášení? Vše bude smazáno, včetně nastavení tvého end-to-end šifrování, kontaktů, hovorů, zpráv a multimédii. Tuto akci nelze vrátit zpět.";
 "message_detail_sent_desktop" = "odesláno";
 "message_detail_received_desktop" = "přijato";
 "menu.view.developer.open.log.folder" = "Otevři složku se záznamem běhu";
 "menu.view.developer.open.current.log.file" = "Otevři stávající záznam běhu";
+"explain_desktop_minimized_disabled_tray_pref" = "Ikonu na panelu nelze deaktivovat, protože Delta Chat byl spuštěn s možností --minimized.";
+"switch_between_chats" = "Přepínání mezi chaty";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stav doručení: Chyba";
 "a11y_encryption_padlock" = "Zámek šifrování";
@@ -660,6 +733,9 @@
 "a11y_background_preview_label" = "Náhled pozadí";
 "a11y_disappearing_messages_activated" = "Samomazací zprávy jsou zapnuty";
 
+"import_device_contacts_hint" = "Chcete-li chatovat s kontakty ze svého zařízení, otevřete Nastavení a povolte „Kontakty“.";
+// iOS webxdc selector
+"webxdc_selector_empty_hint" = "Zde se zobrazí aplikace přijaté nebo odeslané v libovolném chatu. „Soubory“ zobrazuje právě stažené aplikace. ";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 
 
@@ -674,3 +750,5 @@
 "perm_enable_bg_already_done" = "Přijímání zpráv na pozadí je Delta Chatu již povoleno.\n\nV případě nepřicházení nových zpráv si prosím zkontroluj své systémové nastavení.";
 
 
+// device messages for updates
+"update_1_42_common" = "Co je nového:\n\n💌 individuální chaty zaručují end-to-end šifrování kontaktů se zeleným zaškrtnutím\n\n😌 pro jednoduchost všechny tyto chaty označujeme také zeleným zaškrtnutím\n\n👥 skupiny jsou vytvářeny automaticky se zaručeným end-to-end šifrováním, pokud je to možné\n\n🔄 Přijmout/Zablokovat, Archivováno, Připnuto, Ztlumit se synchronizuje na všech vašich zařízeních ";

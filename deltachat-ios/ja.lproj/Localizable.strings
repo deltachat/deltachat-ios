@@ -276,6 +276,7 @@
 "retry_send" = "メッセージの配信を再試行します";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "このグループに参加していないので書き込めません。参加するには、他のメンバーに知らせてください。";
+// deprecated, the line is removed on desktop (was never used on other OS)
 "messaging_disabled_device_chat" = "このチャットにはローカルで生成されたメッセージがありますので、メッセージを書き込めません。";
 "cannot_display_unsuported_file_type" = "%1$@形式のファイルは表示できません";
 "attachment_failed_to_load" = "添付ファイルの読み込みに失敗しました";

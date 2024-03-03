@@ -315,6 +315,7 @@
 "retry_send" = "Yritä uudelleen lähettääksesi viestin";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Et voi kirjoittaa, koska et ole ryhmän jäsen. Liittyäksesi pyydä, että joku jäsen liittää sinut ryhmään.";
+// deprecated, the line is removed on desktop (was never used on other OS)
 "messaging_disabled_device_chat" = "Tämän keskustelun viestit on luotu paikallisesti. Et voi kirjoittaa viestejä tänne.";
 "messaging_disabled_mailing_list" = "Sähköpostilistoille vastaamista ei vielä tueta";
 "cannot_display_unsuported_file_type" = "Tiedostotyypin näyttäminen epäonnistui: %1$@";

@@ -59,7 +59,7 @@
 			<key>many</key>
 			<string>%d hovorů</string>
 			<key>other</key>
-			<string>%d hovorů</string>
+			<string>%dChaty</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -199,7 +199,7 @@
 			<key>many</key>
 			<string>%d hovorů archivováno</string>
 			<key>other</key>
-			<string>%d hovorů archivováno</string>
+			<string>%d chaty archivovány</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -219,7 +219,7 @@
 			<key>many</key>
 			<string>%d hovorů rozbaleno</string>
 			<key>other</key>
-			<string>%d hovorů rozbaleno</string>
+			<string>%d chaty rozbaleny</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

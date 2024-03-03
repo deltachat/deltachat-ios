@@ -345,6 +345,7 @@
 "retry_send" = "Réessayer d\'envoyer le message";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Vous ne pouvez pas écrire car vous ne faites pas partie de ce groupe. Pour le rejoindre, demandez à un membre.";
+// deprecated, the line is removed on desktop (was never used on other OS)
 "messaging_disabled_device_chat" = "Cette discussion contient des messages générés localement. Par conséquent, l\'écriture est désactivée.";
 "messaging_disabled_mailing_list" = "Envoyer des messages dans des listes de diffusion n\'est pas encore possible";
 "cannot_display_unsuported_file_type" = "Impossible d\'afficher ce type de fichier : %1$@";
