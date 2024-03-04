@@ -90,11 +90,6 @@ public class DcAccounts {
     }
 
     public func openDatabase(writeable: Bool) {
-        var version = ""
-        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            version += " " + appVersion
-        }
-
         if var sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
             sharedDbLocation.appendPathComponent("accounts", isDirectory: true)
             accountsPointer = dc_accounts_new(sharedDbLocation.path, writeable ? 1 : 0)
