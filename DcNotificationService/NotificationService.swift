@@ -43,9 +43,9 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(bestAttemptContent)
         } else {
             if uniqueChats.count == 1 {
-                bestAttemptContent.body = String.localized(stringID: "n_messages", count: messageCount)
+                bestAttemptContent.body = "\(messageCount) messages"
             } else {
-                bestAttemptContent.body = String.localizedStringWithFormat(String.localized("n_messages_in_m_chats"), messageCount, uniqueChats.count)
+                bestAttemptContent.body = "\(messageCount) messages in \(uniqueChats.count) chats"
             }
             contentHandler(bestAttemptContent)
         }
