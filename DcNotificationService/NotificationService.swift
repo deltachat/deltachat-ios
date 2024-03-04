@@ -17,6 +17,7 @@ class NotificationService: UNNotificationServiceExtension {
         }
 
         var messageCount = 0
+        var uniqueChats: [String: Bool] = [:]
         while true {
             guard let event = eventEmitter.getNextEvent() else { break }
             if event.id == DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE { break }
@@ -25,6 +26,8 @@ class NotificationService: UNNotificationServiceExtension {
                 let chat = dcContext.getChat(chatId: event.data1Int)
                 if !UserDefaults.standard.bool(forKey: "notifications_disabled") && !chat.isMuted {
                     messageCount += 1
+                    uniqueChats["\(dcContext.id)-\(chat.id)"] = true
+
                     let msg = dcContext.getMessage(id: event.data2Int)
                     let contact = dcContext.getContact(id: msg.fromContactId)
                     bestAttemptContent.title = chat.isGroup ? chat.name : msg.getSenderName(contact)
@@ -36,7 +39,14 @@ class NotificationService: UNNotificationServiceExtension {
         if messageCount == 0 {
             let silentContent = UNMutableNotificationContent()
             contentHandler(silentContent)
+        } else if messageCount == 1 {
+            contentHandler(bestAttemptContent)
         } else {
+            if uniqueChats.count == 1 {
+                bestAttemptContent.body = String.localized(stringID: "n_messages", count: messageCount)
+            } else {
+                bestAttemptContent.body = String.localizedStringWithFormat(String.localized("n_messages_in_m_chats"), messageCount, uniqueChats.count)
+            }
             contentHandler(bestAttemptContent)
         }
     }
