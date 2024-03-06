@@ -33,10 +33,9 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             }
         }
-        bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
-        dcAccounts.closeDatabase()
 
         if messageCount == 0 {
+            dcAccounts.closeDatabase()
             let canSilenceContent = false
             if canSilenceContent {
                 let silentContent = UNMutableNotificationContent()
@@ -50,21 +49,21 @@ class NotificationService: UNNotificationServiceExtension {
                 }
                 contentHandler(bestAttemptContent)
             }
-        } else if messageCount == 1 {
-            if #available(iOS 15.0, *) {
-                bestAttemptContent.relevanceScore = 1.0
-            }
-            contentHandler(bestAttemptContent)
         } else {
-            if uniqueChats.count == 1 {
-                bestAttemptContent.body = "\(messageCount) messages"
-            } else {
-                bestAttemptContent.title = uniqueChats.values.joined(separator: ", ")
-                bestAttemptContent.body = "\(messageCount) messages in \(uniqueChats.count) chats"
+            bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
+            dcAccounts.closeDatabase()
+            if messageCount > 1 {
+                if uniqueChats.count == 1 {
+                    bestAttemptContent.body = "\(messageCount) messages"
+                } else {
+                    bestAttemptContent.title = uniqueChats.values.joined(separator: ", ")
+                    bestAttemptContent.body = "\(messageCount) messages in \(uniqueChats.count) chats"
+                }
             }
             if #available(iOS 15.0, *) {
                 bestAttemptContent.relevanceScore = 1.0
             }
+            UserDefaults.shared?.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend) // force UI updates in case app was suspended
             contentHandler(bestAttemptContent)
         }
     }
