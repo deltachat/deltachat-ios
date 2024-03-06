@@ -34,6 +34,7 @@ class NotificationService: UNNotificationServiceExtension {
             }
         }
         bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
+        dcAccounts.closeDatabase()
 
         if messageCount == 0 {
             let canSilenceContent = false
