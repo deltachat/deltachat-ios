@@ -37,15 +37,32 @@ class NotificationService: UNNotificationServiceExtension {
         }
 
         if messageCount == 0 {
-            let silentContent = UNMutableNotificationContent()
-            contentHandler(silentContent)
+            let canSilenceContent = false
+            if canSilenceContent {
+                let silentContent = UNMutableNotificationContent()
+                contentHandler(silentContent)
+            } else {
+                bestAttemptContent.sound = nil
+                bestAttemptContent.body = "No more relevant messages"
+                if #available(iOS 15.0, *) {
+                    bestAttemptContent.interruptionLevel = .passive
+                    bestAttemptContent.relevanceScore = 0.0
+                }
+                contentHandler(bestAttemptContent)
+            }
         } else if messageCount == 1 {
+            if #available(iOS 15.0, *) {
+                bestAttemptContent.relevanceScore = 1.0
+            }
             contentHandler(bestAttemptContent)
         } else {
             if uniqueChats.count == 1 {
                 bestAttemptContent.body = "\(messageCount) messages"
             } else {
                 bestAttemptContent.body = "\(messageCount) messages in \(uniqueChats.count) chats"
+            }
+            if #available(iOS 15.0, *) {
+                bestAttemptContent.relevanceScore = 1.0
             }
             contentHandler(bestAttemptContent)
         }
