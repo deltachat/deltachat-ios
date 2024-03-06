@@ -3,10 +3,8 @@ import DcCore
 
 class NotificationService: UNNotificationServiceExtension {
     let dcAccounts = DcAccounts.shared
-    var contentHandler: ((UNNotificationContent) -> Void)?
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
-        self.contentHandler = contentHandler
         guard let bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent) else { return }
 
         dcAccounts.openDatabase(writeable: false)
@@ -35,6 +33,7 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             }
         }
+        bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
 
         if messageCount == 0 {
             let canSilenceContent = false
