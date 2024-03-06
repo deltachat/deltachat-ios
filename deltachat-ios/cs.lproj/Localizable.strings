@@ -113,9 +113,12 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Nálepka";
 "add_to_sticker_collection" = "Přidat do sbírky nálepek ";
+"add_stickers_instructions" = "Chcete-li přidat nálepky, klepněte na „Otevřít složku nálepek“, vytvořte podsložku pro balíček nálepek a přetáhněte tam soubory obrázků a nálepek";
+"open_sticker_folder" = "Otevřete složku nálepek";
 "images" = "Obrázky";
 "audio" = "Zvukový záznam";
 "voice_message" = "Hlasová zpráva";
+"forwarded" = "Přeposláno";
 "forwarded_message" = "Přeposlaná zpráva";
 // %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Přeposlal %1$@";
@@ -123,7 +126,12 @@
 "documents" = "Dokumenty";
 "contact" = "Kontakt";
 "camera" = "Kamera";
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
+"capture" = "Zachyťte";
+"switch_camera" = "Přepnout fotoaparát";
+"toggle_fullscreen" = "Přepni na režim celé obrazovky ";
 "location" = "Poloha";
+"locations" = "Umístění";
 "gallery" = "Galerie";
 "images_and_videos" = "Obrázky a videa";
 "file" = "Soubor";

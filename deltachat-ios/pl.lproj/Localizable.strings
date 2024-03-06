@@ -892,6 +892,8 @@
 "notify_no_name_or_message" = "Brak nazwy lub wiadomości";
 "notifications_disabled" = "Powiadomienia wyłączone";
 "new_messages" = "Nowe wiadomości";
+// Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
+"new_messages_body" = "Masz nowe wiadomości";
 "n_messages_in_m_chats" = "%1$d wiadomości w %2$d czatach";
 
 
