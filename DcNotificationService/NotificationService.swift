@@ -29,9 +29,9 @@ class NotificationService: UNNotificationServiceExtension {
                     uniqueChats["\(dcContext.id)-\(chat.id)"] = true
 
                     let msg = dcContext.getMessage(id: event.data2Int)
-                    let contact = dcContext.getContact(id: msg.fromContactId)
-                    bestAttemptContent.title = chat.isGroup ? chat.name : msg.getSenderName(contact)
-                    bestAttemptContent.body = msg.summary(chars: 80) ?? ""
+                    let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
+                    bestAttemptContent.title = chat.isGroup ? chat.name : sender
+                    bestAttemptContent.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
                 }
             }
         }

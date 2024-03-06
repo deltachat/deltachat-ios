@@ -83,10 +83,10 @@ public class NotificationManager {
                         let msg = self.dcContext.getMessage(id: messageId)
                         let fromContact = self.dcContext.getContact(id: msg.fromContactId)
                         let accountEmail = self.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF)).email
+                        let sender = msg.getSenderName(fromContact)
                         let content = UNMutableNotificationContent()
-                        content.title = chat.isGroup ? chat.name : msg.getSenderName(fromContact)
-                        content.body =  msg.summary(chars: 80) ?? ""
-                        content.subtitle = chat.isGroup ?  msg.getSenderName(fromContact) : ""
+                        content.title = chat.isGroup ? chat.name : sender
+                        content.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
                         content.userInfo = ui
                         content.sound = .default
 
