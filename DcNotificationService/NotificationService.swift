@@ -15,7 +15,7 @@ class NotificationService: UNNotificationServiceExtension {
         }
 
         var messageCount = 0
-        var uniqueChats: [String: Bool] = [:]
+        var uniqueChats: [String: String] = [:]
         while true {
             guard let event = eventEmitter.getNextEvent() else { break }
             if event.id == DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE { break }
@@ -23,13 +23,13 @@ class NotificationService: UNNotificationServiceExtension {
                 let dcContext = dcAccounts.get(id: event.accountId)
                 let chat = dcContext.getChat(chatId: event.data1Int)
                 if !UserDefaults.standard.bool(forKey: "notifications_disabled") && !chat.isMuted {
-                    messageCount += 1
-                    uniqueChats["\(dcContext.id)-\(chat.id)"] = true
-
                     let msg = dcContext.getMessage(id: event.data2Int)
                     let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
                     bestAttemptContent.title = chat.isGroup ? chat.name : sender
                     bestAttemptContent.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
+
+                    uniqueChats["\(dcContext.id)-\(chat.id)"] = bestAttemptContent.title
+                    messageCount += 1
                 }
             }
         }
@@ -59,6 +59,7 @@ class NotificationService: UNNotificationServiceExtension {
             if uniqueChats.count == 1 {
                 bestAttemptContent.body = "\(messageCount) messages"
             } else {
+                bestAttemptContent.title = uniqueChats.values.joined(separator: ", ")
                 bestAttemptContent.body = "\(messageCount) messages in \(uniqueChats.count) chats"
             }
             if #available(iOS 15.0, *) {
