@@ -1,5 +1,23 @@
 # Delta Chat iOS Changelog
 
+## v1.44.0 Testflight
+2024-03
+
+* real PUSH notification if supported by providers as chatmail
+* send any emoji as reaction 💕
+* enlarge the account switcher by swiping up
+* offer "Select more" in read-only chats as well
+* sync self-avatar and self-signature text across devices
+* recognize "Trash" folder by name in case it is not flagged as such by the server
+* send group avatars inline so that they do not appear as unexpected attachments
+* fix: scroll down on opening chat
+* fix sending sync messages on updating self-name etc.
+* fix sometimes slow reconnects
+* more bug fixes
+* update translations and local help
+* update to core 1.136.2
+
+
 ## v1.43.1 Testflight
 2024-02
 
