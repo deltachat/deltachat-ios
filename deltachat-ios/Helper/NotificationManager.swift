@@ -43,7 +43,6 @@ public class NotificationManager {
     
     public static func removeNotificationsForChat(dcContext: DcContext, chatId: Int) {
         DispatchQueue.global().async {
-            NotificationManager.removePendingNotificationsFor(dcContext: dcContext, chatId: chatId)
             NotificationManager.removeDeliveredNotificationsFor(dcContext: dcContext, chatId: chatId)
             NotificationManager.updateApplicationIconBadge()
         }
@@ -106,13 +105,12 @@ public class NotificationManager {
                                 logger.error("Failed to copy file \(url) for notification preview generation: \(error)")
                             }
                         }
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
                         if #available(iOS 12.0, *) {
                             content.threadIdentifier = "\(accountEmail)\(chatId)"
                         }
                         let request = UNNotificationRequest(identifier: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId).\(msg.messageId)",
                                                             content: content,
-                                                            trigger: trigger)
+                                                            trigger: nil)
                         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                         logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
                     }
@@ -150,21 +148,6 @@ public class NotificationManager {
             nc.removeDeliveredNotifications(withIdentifiers: identifiers)
         }
     }
-
-    private static func removePendingNotificationsFor(dcContext: DcContext, chatId: Int) {
-        var identifiers = [String]()
-        let nc = UNUserNotificationCenter.current()
-        nc.getPendingNotificationRequests { notificationRequests in
-            let accountEmail = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF)).email
-            for request in notificationRequests {
-                if !request.identifier.containsExact(subSequence: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId)").isEmpty {
-                    identifiers.append(request.identifier)
-                }
-            }
-            nc.removePendingNotificationRequests(withIdentifiers: identifiers)
-        }
-    }
-
     
     deinit {
         NotificationCenter.default.removeObserver(self)
