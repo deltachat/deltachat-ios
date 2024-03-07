@@ -106,7 +106,7 @@ public class NotificationManager {
                             }
                         }
                         if #available(iOS 12.0, *) {
-                            content.threadIdentifier = "\(accountEmail)\(chatId)"
+                            content.threadIdentifier = "all"
                         }
                         let request = UNNotificationRequest(identifier: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId).\(msg.messageId)",
                                                             content: content,

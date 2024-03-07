@@ -7,6 +7,12 @@ class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         guard let bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent) else { return }
 
+        // as we're mixing in notifications from accounts without PUSH and we cannot add multiple notifications,
+        // it is best to move everything to the same thread
+        if #available(iOS 12.0, *) {
+            bestAttemptContent.threadIdentifier = "all"
+        }
+
         dcAccounts.openDatabase(writeable: false)
         let eventEmitter = dcAccounts.getEventEmitter()
         if !dcAccounts.backgroundFetch(timeout: 25) {
