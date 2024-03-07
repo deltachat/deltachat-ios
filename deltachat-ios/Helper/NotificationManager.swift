@@ -105,9 +105,6 @@ public class NotificationManager {
                                 logger.error("Failed to copy file \(url) for notification preview generation: \(error)")
                             }
                         }
-                        if #available(iOS 12.0, *) {
-                            content.threadIdentifier = "all"
-                        }
                         let request = UNNotificationRequest(identifier: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId).\(msg.messageId)",
                                                             content: content,
                                                             trigger: nil)
