@@ -666,7 +666,6 @@
 "pref_edit_profile" = "Chỉnh sửa hồ sơ";
 "disable_imap_idle" = "Tắt IMAP IDLE";
 "disable_imap_idle_explain" = "Không sử dụng tiện ích mở rộng IMAP IDLE ngay cả khi máy chủ hỗ trợ nó. Bật tùy chọn này sẽ trì hoãn việc truy xuất tin nhắn, chỉ bật nó để kiểm tra.";
-
 // Emoji picker and categories
 "emoji_search_results" = "Kết quả tìm kiếm";
 "emoji_not_found" = "Không tìm thấy emoji nào";

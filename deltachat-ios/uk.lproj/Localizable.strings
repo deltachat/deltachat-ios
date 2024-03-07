@@ -669,7 +669,6 @@
 "pref_edit_profile" = "Редагувати профіль";
 "disable_imap_idle" = "Вимкнути IMAP IDLE";
 "disable_imap_idle_explain" = "Не використовувати розширення IMAP IDLE навіть якщо сервер підтримує його. Увімкнення цієї опції затримає отримання повідомлень, вмикайте її лише для тестування.";
-
 // Emoji picker and categories
 "emoji_search_results" = "Результати пошуку";
 "emoji_not_found" = "Емодзі не знайдено";

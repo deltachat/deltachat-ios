@@ -669,7 +669,6 @@
 "pref_edit_profile" = "编辑个人资料";
 "disable_imap_idle" = "禁用 IMAP IDLE";
 "disable_imap_idle_explain" = "即便服务器支持，也不要使用 IMAP IDLE 扩展。启用后会造成消息获取延迟，请仅出于测试目的启用该功能。";
-
 // Emoji picker and categories
 "emoji_search_results" = "搜索结果";
 "emoji_not_found" = "未找到 emoji";

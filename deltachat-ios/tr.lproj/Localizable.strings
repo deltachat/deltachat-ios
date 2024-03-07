@@ -669,7 +669,6 @@
 "pref_edit_profile" = "Profili Düzenle";
 "disable_imap_idle" = "IMAP IDLE\'ı Etkisizleştir";
 "disable_imap_idle_explain" = "Sunucu desteklese bile IMAP IDLE uzantısını kullanmayın. Bu seçeneği etkinleştirmek ileti getirmeyi geciktirecek; yalnızca sınama için etkinleştirin.";
-
 // Emoji picker and categories
 "emoji_search_results" = "Arama Sonuçları";
 "emoji_not_found" = "Emoji bulunamadı";

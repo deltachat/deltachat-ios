@@ -669,7 +669,6 @@
 "pref_edit_profile" = "Edytuj profil";
 "disable_imap_idle" = "Wyłącz IMAP IDLE";
 "disable_imap_idle_explain" = "Nie używaj rozszerzenia IMAP IDLE, nawet jeśli serwer je obsługuje. Włączenie tej opcji opóźni pobieranie wiadomości, włącz ją tylko na testy.";
-
 // Emoji picker and categories
 "emoji_search_results" = "Wyniki wyszukiwania";
 "emoji_not_found" = "Nie znaleziono emoji";

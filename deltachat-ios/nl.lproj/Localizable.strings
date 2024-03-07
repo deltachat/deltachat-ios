@@ -669,7 +669,6 @@
 "pref_edit_profile" = "Profiel bewerken";
 "disable_imap_idle" = "IMAP IDLE uitschakelen";
 "disable_imap_idle_explain" = "Maak geen gebruik van IMAP IDLE, zelfs niet als de server het ondersteunt. Schakel deze optie in om het ophalen van berichten te vertragen. Let op: gebruik deze optie alleen voor testdoeleinden.";
-
 // Emoji picker and categories
 "emoji_search_results" = "Zoekresultaten";
 "emoji_not_found" = "Geen emoji gevonden";
