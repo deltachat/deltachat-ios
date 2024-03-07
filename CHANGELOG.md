@@ -3,7 +3,7 @@
 ## v1.44.0 Testflight
 2024-03
 
-* real PUSH notification if supported by providers as chatmail
+* PUSH notification if supported by providers as chatmail
 * send any emoji as reaction 💕
 * enlarge the account switcher by swiping up
 * offer "Select more" in read-only chats as well
