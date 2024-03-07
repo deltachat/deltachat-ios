@@ -134,10 +134,14 @@ class ChatListViewController: UITableViewController {
 
         // update messages - for new messages, do not reuse or modify strings but create new ones.
         // it is not needed to keep all past update messages, however, when deleted, also the strings should be deleted.
-        let deviceMsgLabel = "update_1_42b_ios2"
+        let deviceMsgLabel = "update_1_44c_ios2"
         if !dcAccounts.isFreshlyAdded(id: dcContext.id) {
             let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-            msg.text = String.localized("update_1_42_common") + "\n\n" + String.localized("more_info_desktop") +  ": https://get.delta.chat/#changelogs"
+            msg.text = "What\'s new:\n\n"
+            +   "❤️ Yeah! This was long-awaited: Long tap a message to react\n\n"
+            +   "🫸 PUSH notifications if suported by providers as https://nine.testrun.org\n\n"
+            +   "🔗 If you cannot scan QR codes, share them as invite links\n\n"
+            +   "… and TONS of bugfixes … https://get.delta.chat/#changelogs"
             dcContext.addDeviceMessage(label: deviceMsgLabel, msg: msg)
         } else {
             dcContext.addDeviceMessage(label: deviceMsgLabel, msg: nil)
