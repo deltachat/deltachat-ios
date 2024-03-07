@@ -137,11 +137,7 @@ class ChatListViewController: UITableViewController {
         let deviceMsgLabel = "update_1_44c_ios2"
         if !dcAccounts.isFreshlyAdded(id: dcContext.id) {
             let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-            msg.text = "What\'s new:\n\n"
-            +   "❤️ Yeah! This was long-awaited: Long tap a message to react\n\n"
-            +   "🫸 PUSH notifications if suported by providers as https://nine.testrun.org\n\n"
-            +   "🔗 If you cannot scan QR codes, share them as invite links\n\n"
-            +   "… and TONS of bugfixes … https://get.delta.chat/#changelogs"
+            msg.text = String.localizedStringWithFormat(String.localized("update_1_44_ios"), "https://get.delta.chat/#changelogs")
             dcContext.addDeviceMessage(label: deviceMsgLabel, msg: msg)
         } else {
             dcContext.addDeviceMessage(label: deviceMsgLabel, msg: nil)
