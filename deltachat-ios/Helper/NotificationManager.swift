@@ -19,7 +19,6 @@ public class NotificationManager {
     }
 
     public func reloadDcContext() {
-        NotificationManager.removeAllNotifications()
         dcContext = dcAccounts.getSelected()
     }
 
@@ -38,7 +37,6 @@ public class NotificationManager {
     public static func removeAllNotifications() {
         let nc = UNUserNotificationCenter.current()
         nc.removeAllDeliveredNotifications()
-        nc.removeAllPendingNotificationRequests()
     }
     
     public static func removeNotificationsForChat(dcContext: DcContext, chatId: Int) {
