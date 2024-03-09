@@ -55,12 +55,11 @@ class NotificationService: UNNotificationServiceExtension {
             bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
             dcAccounts.closeDatabase()
             if messageCount > 1 {
-                bestAttemptContent.userInfo["message_id"] = 0
+                bestAttemptContent.userInfo["message_id"] = nil
                 if uniqueChats.count == 1 {
                     bestAttemptContent.body = "\(messageCount) messages"
                 } else {
-                    bestAttemptContent.userInfo["account_id"] = 0
-                    bestAttemptContent.userInfo["chat_id"] = 0
+                    bestAttemptContent.userInfo["open_as_overview"] = true // leaving chat_id as is removes the notification when one of the chats is opened (does not matter which)
                     bestAttemptContent.title = uniqueChats.values.joined(separator: ", ")
                     bestAttemptContent.body = "\(messageCount) messages in \(uniqueChats.count) chats"
                 }
