@@ -38,10 +38,24 @@ public class NotificationManager {
         let nc = UNUserNotificationCenter.current()
         nc.removeAllDeliveredNotifications()
     }
-    
+
+    // set chatId to 0 to remove unspecific notifications of any account
+    // (unspecific notification are sth. as "N message in M chats")
     public static func removeNotificationsForChat(dcContext: DcContext, chatId: Int) {
         DispatchQueue.global().async {
-            NotificationManager.removeDeliveredNotificationsFor(dcContext: dcContext, chatId: chatId)
+            let nc = UNUserNotificationCenter.current()
+            nc.getDeliveredNotifications { notifications in
+                var toRemove = [String]()
+                for notification in notifications {
+                    let notificationAccountId = notification.request.content.userInfo["account_id"] as? Int ?? 0
+                    let notificationChatId = notification.request.content.userInfo["chat_id"] as? Int ?? 0
+                    if notificationChatId == chatId && (notificationAccountId == dcContext.id || chatId == 0) {
+                        toRemove.append(notification.request.identifier)
+                    }
+                }
+                nc.removeDeliveredNotifications(withIdentifiers: toRemove)
+            }
+
             NotificationManager.updateApplicationIconBadge()
         }
     }
@@ -129,20 +143,6 @@ public class NotificationManager {
                let chatId = ui["chat_id"] as? Int {
                 NotificationManager.removeNotificationsForChat(dcContext: self.dcContext, chatId: chatId)
             }
-        }
-    }
-
-    private static func removeDeliveredNotificationsFor(dcContext: DcContext, chatId: Int) {
-        var identifiers = [String]()
-        let nc = UNUserNotificationCenter.current()
-        nc.getDeliveredNotifications { notifications in
-            let accountEmail = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF)).email
-            for notification in notifications {
-                if !notification.request.identifier.containsExact(subSequence: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId)").isEmpty {
-                    identifiers.append(notification.request.identifier)
-                }
-            }
-            nc.removeDeliveredNotifications(withIdentifiers: identifiers)
         }
     }
     
