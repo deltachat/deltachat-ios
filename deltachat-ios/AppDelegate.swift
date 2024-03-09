@@ -517,17 +517,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // this method will be called if the user tapped on a notification
     func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         logger.info("Notifications: notification tapped")
+
         let userInfo = response.notification.request.content.userInfo
-        if let accountId = userInfo["account_id"] as? Int,
-           let chatId = userInfo["chat_id"] as? Int,
-           let msgId = userInfo["message_id"] as? Int {
-            if accountId != dcAccounts.getSelected().id {
-                UserDefaults.standard.setValue(dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
-                _ = dcAccounts.select(id: accountId)
+        if let accountId = userInfo["account_id"] as? Int {
+            let prevAccountId = dcAccounts.getSelected().id
+            if accountId != prevAccountId {
+                if !dcAccounts.select(id: accountId) {
+                    completionHandler()
+                    return
+                }
+                UserDefaults.standard.setValue(prevAccountId, forKey: Constants.Keys.lastSelectedAccountKey)
                 reloadDcContext()
             }
-            if !appCoordinator.isShowingChat(chatId: chatId) {
-                appCoordinator.showChat(chatId: chatId, msgId: msgId, animated: false, clearViewControllerStack: true)
+
+            if userInfo["open_as_overview"] as? Bool ?? false {
+                appCoordinator.popTabsToRootViewControllers()
+                appCoordinator.showTab(index: appCoordinator.chatsTab)
+            } else if let chatId = userInfo["chat_id"] as? Int, !appCoordinator.isShowingChat(chatId: chatId) {
+                appCoordinator.showChat(chatId: chatId, msgId: userInfo["message_id"] as? Int, animated: false, clearViewControllerStack: true)
             }
         }
 

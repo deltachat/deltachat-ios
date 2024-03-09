@@ -39,8 +39,6 @@ public class NotificationManager {
         nc.removeAllDeliveredNotifications()
     }
 
-    // set chatId to 0 to remove unspecific notifications of any account
-    // (unspecific notification are sth. as "N message in M chats")
     public static func removeNotificationsForChat(dcContext: DcContext, chatId: Int) {
         DispatchQueue.global().async {
             let nc = UNUserNotificationCenter.current()
@@ -49,7 +47,8 @@ public class NotificationManager {
                 for notification in notifications {
                     let notificationAccountId = notification.request.content.userInfo["account_id"] as? Int ?? 0
                     let notificationChatId = notification.request.content.userInfo["chat_id"] as? Int ?? 0
-                    if notificationChatId == chatId && (notificationAccountId == dcContext.id || chatId == 0) {
+                    // unspecific notifications are always removed
+                    if notificationChatId == 0 || (notificationChatId == chatId && notificationAccountId == dcContext.id) {
                         toRemove.append(notification.request.identifier)
                     }
                 }
