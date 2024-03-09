@@ -39,19 +39,15 @@ class NotificationService: UNNotificationServiceExtension {
 
         if messageCount == 0 {
             dcAccounts.closeDatabase()
-            let canSilenceContent = false
-            if canSilenceContent {
-                let silentContent = UNMutableNotificationContent()
-                contentHandler(silentContent)
-            } else {
-                bestAttemptContent.sound = nil
-                bestAttemptContent.body = "No more relevant messages"
-                if #available(iOS 15.0, *) {
-                    bestAttemptContent.interruptionLevel = .passive
-                    bestAttemptContent.relevanceScore = 0.0
-                }
-                contentHandler(bestAttemptContent)
+            // with `com.apple.developer.usernotifications.filtering` entitlement,
+            // one can use `contentHandler(UNMutableNotificationContent())` to not display a notifcation
+            bestAttemptContent.sound = nil
+            bestAttemptContent.body = "No more relevant messages"
+            if #available(iOS 15.0, *) {
+                bestAttemptContent.interruptionLevel = .passive
+                bestAttemptContent.relevanceScore = 0.0
             }
+            contentHandler(bestAttemptContent)
         } else {
             bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
             dcAccounts.closeDatabase()
