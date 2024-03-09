@@ -30,6 +30,9 @@ class NotificationService: UNNotificationServiceExtension {
                     let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
                     bestAttemptContent.title = chat.isGroup ? chat.name : sender
                     bestAttemptContent.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
+                    bestAttemptContent.userInfo["account_id"] = dcContext.id
+                    bestAttemptContent.userInfo["chat_id"] = chat.id
+                    bestAttemptContent.userInfo["message_id"] = msg.id
 
                     uniqueChats["\(dcContext.id)-\(chat.id)"] = bestAttemptContent.title
                     messageCount += 1
@@ -52,9 +55,12 @@ class NotificationService: UNNotificationServiceExtension {
             bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
             dcAccounts.closeDatabase()
             if messageCount > 1 {
+                bestAttemptContent.userInfo["message_id"] = 0
                 if uniqueChats.count == 1 {
                     bestAttemptContent.body = "\(messageCount) messages"
                 } else {
+                    bestAttemptContent.userInfo["account_id"] = 0
+                    bestAttemptContent.userInfo["chat_id"] = 0
                     bestAttemptContent.title = uniqueChats.values.joined(separator: ", ")
                     bestAttemptContent.body = "\(messageCount) messages in \(uniqueChats.count) chats"
                 }

@@ -86,7 +86,9 @@ public class NotificationManager {
                         let content = UNMutableNotificationContent()
                         content.title = chat.isGroup ? chat.name : sender
                         content.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
-                        content.userInfo = ui
+                        content.userInfo["account_id"] = self.dcContext.id
+                        content.userInfo["chat_id"] = chat.id
+                        content.userInfo["message_id"] = msg.id
                         content.sound = .default
 
                         if msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF,
