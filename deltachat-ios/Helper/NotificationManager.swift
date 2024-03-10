@@ -92,7 +92,6 @@ public class NotificationManager {
                     if !chat.isMuted {
                         let msg = self.dcContext.getMessage(id: messageId)
                         let fromContact = self.dcContext.getContact(id: msg.fromContactId)
-                        let accountEmail = self.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF)).email
                         let sender = msg.getSenderName(fromContact)
                         let content = UNMutableNotificationContent()
                         content.title = chat.isGroup ? chat.name : sender
@@ -102,25 +101,7 @@ public class NotificationManager {
                         content.userInfo["message_id"] = msg.id
                         content.sound = .default
 
-                        if msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF,
-                           let url = msg.fileURL {
-                            do {
-                                // make a copy of the file first since UNNotificationAttachment will move attached files into the attachment data store
-                                // so that they can be accessed by all of the appropriate processes
-                                let tempUrl = url.deletingLastPathComponent()
-                                    .appendingPathComponent("notification_tmp")
-                                    .appendingPathExtension(url.pathExtension)
-                                try FileManager.default.copyItem(at: url, to: tempUrl)
-                                if let attachment = try? UNNotificationAttachment(identifier: Constants.notificationIdentifier, url: tempUrl, options: nil) {
-                                    content.attachments = [attachment]
-                                }
-                            } catch let error {
-                                logger.error("Failed to copy file \(url) for notification preview generation: \(error)")
-                            }
-                        }
-                        let request = UNNotificationRequest(identifier: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId).\(msg.messageId)",
-                                                            content: content,
-                                                            trigger: nil)
+                        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
                         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                         logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
                     }

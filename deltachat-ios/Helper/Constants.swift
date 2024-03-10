@@ -15,8 +15,6 @@ struct Constants {
     }
 
     static let backgroundImageName = "BACKGROUND_IMAGE"
-    static let notificationIdentifier = "deltachat-ios-local-notifications"
-
 }
 
 struct Time {
