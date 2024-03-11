@@ -42,15 +42,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         if messageCount == 0 {
             dcAccounts.closeDatabase()
-            // with `com.apple.developer.usernotifications.filtering` entitlement,
-            // one can use `contentHandler(UNMutableNotificationContent())` to not display a notifcation
-            bestAttemptContent.sound = nil
-            bestAttemptContent.body = "No more relevant messages"
-            if #available(iOS 15.0, *) {
-                bestAttemptContent.interruptionLevel = .passive
-                bestAttemptContent.relevanceScore = 0.0
-            }
-            contentHandler(bestAttemptContent)
+            contentHandler(silenceNotification(bestAttemptContent))
         } else {
             bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
             dcAccounts.closeDatabase()
@@ -78,5 +70,17 @@ class NotificationService: UNNotificationServiceExtension {
 
         // For Delta Chat, it is just fine to do nothing - assume eg. bad network or mail servers not reachable,
         // then a "You have new messages" is the best that can be done.
+    }
+
+    private func silenceNotification(_ bestAttemptContent: UNMutableNotificationContent) -> UNMutableNotificationContent {
+        // with `com.apple.developer.usernotifications.filtering` entitlement,
+        // one can use `contentHandler(UNMutableNotificationContent())` to not display a notifcation
+        bestAttemptContent.sound = nil
+        bestAttemptContent.body = "No more relevant messages"
+        if #available(iOS 15.0, *) {
+            bestAttemptContent.interruptionLevel = .passive
+            bestAttemptContent.relevanceScore = 0.0
+        }
+        return bestAttemptContent
     }
 }
