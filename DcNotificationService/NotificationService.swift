@@ -49,11 +49,11 @@ class NotificationService: UNNotificationServiceExtension {
             if messageCount > 1 {
                 bestAttemptContent.userInfo["message_id"] = nil
                 if uniqueChats.count == 1 {
-                    bestAttemptContent.body = "\(messageCount) messages"
+                    bestAttemptContent.body = String.localized(stringID: "n_messages", parameter: messageCount)
                 } else {
                     bestAttemptContent.userInfo["open_as_overview"] = true // leaving chat_id as is removes the notification when one of the chats is opened (does not matter which)
                     bestAttemptContent.title = uniqueChats.values.joined(separator: ", ")
-                    bestAttemptContent.body = "\(messageCount) messages in \(uniqueChats.count) chats"
+                    bestAttemptContent.body = String.localized(stringID: "n_messages_in_m_chats", parameter: messageCount, uniqueChats.count)
                 }
             }
             if #available(iOS 15.0, *) {
