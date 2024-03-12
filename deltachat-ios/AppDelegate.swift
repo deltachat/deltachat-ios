@@ -55,6 +55,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         logger.info("➡️ didFinishLaunchingWithOptions")
 
+        // The NSE ("Notification Service Extension") must not run at the same time as the app.
+        // The other way round, the NSE is not started with the app running.
+        UserDefaults.setMainAppRunning()
+        var pollSeconds = 0
+        while UserDefaults.nseFetching && pollSeconds < 30 {
+            logger.info("➡️ wait for NSE to terminate")
+            usleep(1_000_000)
+            pollSeconds += 1
+        }
+        UserDefaults.setNseFetching(false) // NSE terminated unexpectedly, do not always wait 30 seconds
+
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
         let svgCoder = SDImageSVGKCoder.shared
@@ -231,6 +242,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
         applicationInForeground = true
+        UserDefaults.setMainAppRunning()
         dcAccounts.startIo()
 
         DispatchQueue.global().async { [weak self] in
@@ -271,6 +283,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // applicationDidBecomeActive() is called on initial app start _and_ after applicationWillEnterForeground()
     func applicationDidBecomeActive(_: UIApplication) {
         logger.info("➡️ applicationDidBecomeActive")
+        UserDefaults.setMainAppRunning()
         applicationInForeground = true
     }
 
@@ -286,6 +299,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
+        UserDefaults.setMainAppRunning(false)
         uninstallEventHandler()
         dcAccounts.closeDatabase()
         if let reachability = reachability {
@@ -326,6 +340,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
                 self.dcAccounts.stopIo()
+                UserDefaults.setMainAppRunning(false)
 
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling unregisterBackgroundTask()
@@ -424,8 +439,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func performFetch(completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
         // in this case, there is no need to wait for things or do sth.
-        if appIsInForeground() {
-            logger.info("➡️ app already in foreground")
+        if appIsInForeground() || UserDefaults.nseFetching {
+            logger.info("➡️ app already in foreground or NSE running")
             pushToDebugArray("OK1")
             completionHandler?(.newData)
             return
