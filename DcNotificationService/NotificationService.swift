@@ -7,15 +7,24 @@ class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         guard let bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent) else { return }
 
+        if UserDefaults.mainAppRunning {
+            contentHandler(silenceNotification(bestAttemptContent))
+            return
+        }
+        UserDefaults.setNseFetching()
+
         // as we're mixing in notifications from accounts without PUSH and we cannot add multiple notifications,
         // it is best to move everything to the same thread - and set just no threadIdentifier
 
         dcAccounts.openDatabase(writeable: false)
         let eventEmitter = dcAccounts.getEventEmitter()
+
         if !dcAccounts.backgroundFetch(timeout: 25) {
+            UserDefaults.setNseFetching(false)
             contentHandler(bestAttemptContent)
             return
         }
+        UserDefaults.setNseFetching(false)
 
         var messageCount = 0
         var uniqueChats: [String: String] = [:]
@@ -70,6 +79,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         // For Delta Chat, it is just fine to do nothing - assume eg. bad network or mail servers not reachable,
         // then a "You have new messages" is the best that can be done.
+        UserDefaults.setNseFetching(false)
     }
 
     private func silenceNotification(_ bestAttemptContent: UNMutableNotificationContent) -> UNMutableNotificationContent {
