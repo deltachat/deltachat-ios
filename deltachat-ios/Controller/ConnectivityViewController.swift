@@ -156,8 +156,8 @@ class ConnectivityViewController: WebViewViewController {
             .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
             .appending(", ")
             .appending(averageDelta / 3600 > 2 ?
-                       String.localized(stringID: "notifications_avg_hours", count: Int(averageDelta / 3600)) :
-                       String.localized(stringID: "notifications_avg_minutes", count: Int(averageDelta / 60)))
+                       String.localized(stringID: "notifications_avg_hours", parameter: Int(averageDelta / 3600)) :
+                       String.localized(stringID: "notifications_avg_minutes", parameter: Int(averageDelta / 60)))
     }
 
     private func loadHtml() {

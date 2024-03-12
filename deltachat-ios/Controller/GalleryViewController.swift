@@ -204,8 +204,8 @@ class GalleryViewController: UIViewController {
     private func askToDeleteItem(at indexPath: IndexPath) {
         let chat = dcContext.getChat(chatId: chatId)
         let title = chat.isDeviceTalk ?
-            String.localized(stringID: "ask_delete_messages_simple", count: 1) :
-            String.localized(stringID: "ask_delete_messages", count: 1)
+            String.localized(stringID: "ask_delete_messages_simple", parameter: 1) :
+            String.localized(stringID: "ask_delete_messages", parameter: 1)
         let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
         let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             self?.deleteItem(at: indexPath)

@@ -795,7 +795,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             // unread messages marker
             let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
             let freshMsgsCount = self.messageIds.count - (indexPath.row + 1)
-            cell.update(text: String.localized(stringID: "chat_n_new_messages", count: freshMsgsCount))
+            cell.update(text: String.localized(stringID: "chat_n_new_messages", parameter: freshMsgsCount))
             return cell
         }
         
@@ -1085,7 +1085,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if tableView.isEditing {
             navigationItem.titleView = nil
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
-            navigationItem.title = String.localized(stringID: "n_selected", count: cnt)
+            navigationItem.title = String.localized(stringID: "n_selected", parameter: cnt)
             self.navigationItem.setLeftBarButton(cancelButton, animated: true)
         } else {
             let subtitle: String?
@@ -1093,9 +1093,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if dcChat.isMailinglist {
                 subtitle = String.localized("mailing_list")
             } else if dcChat.isBroadcast {
-                subtitle = String.localized(stringID: "n_recipients", count: chatContactIds.count)
+                subtitle = String.localized(stringID: "n_recipients", parameter: chatContactIds.count)
             } else if dcChat.isGroup {
-                subtitle = String.localized(stringID: "n_members", count: chatContactIds.count)
+                subtitle = String.localized(stringID: "n_members", parameter: chatContactIds.count)
             } else if dcChat.isDeviceTalk {
                 subtitle = String.localized("device_talk_subtitle")
             } else if dcChat.isSelfTalk {
@@ -1500,7 +1500,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func askToDeleteChat() {
-        let title = String.localized(stringID: "ask_delete_chat", count: 1)
+        let title = String.localized(stringID: "ask_delete_chat", parameter: 1)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { [weak self] _ in
                             guard let self else { return }
@@ -1535,8 +1535,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func askToDeleteMessages(ids: [Int]) {
         let chat = dcContext.getChat(chatId: chatId)
         let title = chat.isDeviceTalk ?
-            String.localized(stringID: "ask_delete_messages_simple", count: ids.count) :
-            String.localized(stringID: "ask_delete_messages", count: ids.count)
+            String.localized(stringID: "ask_delete_messages_simple", parameter: ids.count) :
+            String.localized(stringID: "ask_delete_messages", parameter: ids.count)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
                             self.dcContext.deleteMessages(msgIds: ids)

@@ -217,9 +217,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members && !contactIdsForGroup.isEmpty {
             if createBroadcast {
-                return String.localized(stringID: "n_recipients", count: contactIdsForGroup.count)
+                return String.localized(stringID: "n_recipients", parameter: contactIdsForGroup.count)
             } else {
-                return String.localized(stringID: "n_members", count: contactIdsForGroup.count)
+                return String.localized(stringID: "n_members", parameter: contactIdsForGroup.count)
             }
         }
         return nil

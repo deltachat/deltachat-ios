@@ -617,7 +617,7 @@ class ChatListViewController: UITableViewController {
         let unreadMessages = dcAccounts.getFreshMessageCount(skipCurrent: true)
         accountButtonAvatar.setUnreadMessageCount(unreadMessages)
         if unreadMessages > 0 {
-            accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account")): \(String.localized(stringID: "n_messages", count: unreadMessages))"
+            accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account")): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
         } else {
             accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account"))"
         }
@@ -685,7 +685,7 @@ class ChatListViewController: UITableViewController {
         }
         titleView.accessibilityHint = nil
         let cnt = tableView.indexPathsForSelectedRows?.count ?? 1
-        titleView.text = String.localized(stringID: "n_selected", count: cnt)
+        titleView.text = String.localized(stringID: "n_selected", parameter: cnt)
         navigationItem.setLeftBarButton(cancelButton, animated: true)
         navigationItem.setRightBarButton(nil, animated: true)
         return true
@@ -802,7 +802,7 @@ class ChatListViewController: UITableViewController {
         }
         let alert = UIAlertController(
             title: nil,
-            message: String.localized(stringID: "ask_delete_chat", count: selected),
+            message: String.localized(stringID: "ask_delete_chat", parameter: selected),
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in

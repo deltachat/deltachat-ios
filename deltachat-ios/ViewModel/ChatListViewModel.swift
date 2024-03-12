@@ -131,12 +131,12 @@ class ChatListViewModel: NSObject {
         if showSearchResults && !searchResultSections.isEmpty {
             switch searchResultSections[section] {
             case .chats:
-                return String.localized(stringID: "n_chats", count: numberOfRowsIn(section: section))
+                return String.localized(stringID: "n_chats", parameter: numberOfRowsIn(section: section))
             case .contacts:
-                return String.localized(stringID: "n_contacts", count: numberOfRowsIn(section: section))
+                return String.localized(stringID: "n_contacts", parameter: numberOfRowsIn(section: section))
             case .messages:
                 let count = numberOfRowsIn(section: section)
-                var ret = String.localized(stringID: "n_messages", count: count)
+                var ret = String.localized(stringID: "n_messages", parameter: count)
                 if count==1000 {
                     // a count of 1000 results may be limited, see documentation of dc_search_msgs()
                     // (formatting may be "1.000" or "1,000", so just skip the first digit)

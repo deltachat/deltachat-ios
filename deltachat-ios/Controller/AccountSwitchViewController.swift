@@ -335,7 +335,7 @@ class AccountCell: UITableViewCell {
 
         accountName.text = encrypted + title
         if unreadMessages > 0 {
-            accountName.accessibilityLabel = "\(title): \(String.localized(stringID: "n_messages", count: unreadMessages))"
+            accountName.accessibilityLabel = "\(title): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
         } else {
             accountName.accessibilityLabel = title
         }
