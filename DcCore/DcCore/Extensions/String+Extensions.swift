@@ -16,9 +16,9 @@ public extension String {
         return NSLocalizedString(stringID, bundle: bundle, comment: "")
     }
 
-	static func localized(stringID: String, count: Int) -> String {
-        let formatString: String = localized(stringID)
-        let resultString: String = String.localizedStringWithFormat(formatString, count)
+    static func localized(stringID: String, parameter: CVarArg...) -> String {
+        let formatString = localized(stringID)
+        let resultString = String.localizedStringWithFormat(formatString, parameter)
         return resultString
     }
 

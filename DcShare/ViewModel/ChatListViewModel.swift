@@ -127,7 +127,7 @@ class ChatListViewModel: NSObject {
             case .contacts:
                 title = "n_contacts"
             }
-            return String.localized(stringID: title, count: numberOfRowsIn(section: section))
+            return String.localized(stringID: title, parameter: numberOfRowsIn(section: section))
         }
         return nil
     }
