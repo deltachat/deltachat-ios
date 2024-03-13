@@ -71,9 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     @objc func userDefaultsDidChange(_ notification: Notification) {
-        if let defaults = notification.object as? UserDefaults {
-            logger.info("🏀 🏀 🏀 Yeah! Notificaion changed - from NSE?")
-        }
+        logger.info("🏀 🏀 🏀 Yeah! Notificaion changed - from NSE?")
     }
 
     // finishes the app initialization which depends on the successful access to the keychain

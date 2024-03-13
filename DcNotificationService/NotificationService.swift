@@ -7,6 +7,8 @@ class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         guard let bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent) else { return }
 
+        UserDefaults.shared?.setValue("test", forKey: UserDefaults.nsePing)
+
         // as we're mixing in notifications from accounts without PUSH and we cannot add multiple notifications,
         // it is best to move everything to the same thread - and set just no threadIdentifier
 
