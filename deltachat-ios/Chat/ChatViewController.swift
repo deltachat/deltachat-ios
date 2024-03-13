@@ -163,9 +163,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         get { customInputAccessoryView }
         set { customInputAccessoryView = newValue }
     }
-
+    private var shouldBecomeFirstResponder: Bool = false
     override var canBecomeFirstResponder: Bool {
-        true
+        return shouldBecomeFirstResponder
     }
 
     private func getMyReactions(messageId: Int) -> [String] {
@@ -553,6 +553,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         handleUserVisibility(isVisible: true)
 
         if dcChat.canSend {
+            shouldBecomeFirstResponder = true
             if wasInputBarFirstResponder {
                 messageInputBar.inputTextView.becomeFirstResponder()
             } else {
@@ -590,6 +591,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         audioController.stopAnyOngoingPlaying()
         messageInputBar.inputTextView.resignFirstResponder()
         wasInputBarFirstResponder = false
+        shouldBecomeFirstResponder = false
     }
 
     override func willMove(toParent parent: UIViewController?) {
