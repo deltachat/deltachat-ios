@@ -1397,6 +1397,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }.onDeselected {
                 $0.tintColor = DcColors.primary
             }.onTouchUpInside { [weak self] _ in
+                self?.messageInputBar.inputTextView.resignFirstResponder()
                 self?.clipperButtonPressed()
             }
         ]
