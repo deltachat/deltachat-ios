@@ -150,9 +150,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
 
-    private lazy var titleView: ChatTitleView = {
-       return ChatTitleView()
-    }()
+    private let titleView = ChatTitleView()
 
     private lazy var dcChat: DcChat = {
         return dcContext.getChat(chatId: chatId)
@@ -530,6 +528,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             RelayHelper.shared.finishRelaying()
         }
 
+        if dcChat.canSend {
+            shouldBecomeFirstResponder = true
+
+            if wasInputBarFirstResponder {
+                messageInputBar.inputTextView.becomeFirstResponder()
+            } else {
+                becomeFirstResponder()
+            }
+        }
+
+
         if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
             scrollToMessage(msgId: msgId, animated: false)
         } else if isInitial {
@@ -551,23 +560,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         handleUserVisibility(isVisible: true)
+        messageInputBar.backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
 
-        if dcChat.canSend {
-            shouldBecomeFirstResponder = true
-            if wasInputBarFirstResponder {
-                messageInputBar.inputTextView.becomeFirstResponder()
-            } else {
-                becomeFirstResponder()
-            }
-
-            messageInputBar.backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
-        }
-
-        // this block ensures that if a swipe-to-dismiss gesture was cancelled, the UI recovers
         if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-            scrollToMessage(msgId: msgId, animated: true)
-            highlightedMsg = nil
-            updateScrollDownButtonVisibility()
+            scrollToMessage(msgId: msgId, animated: false)
         } else if isInitial {
             scrollToLastUnseenMessage(animated: true)
         }
@@ -579,9 +575,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
         wasInputBarFirstResponder = messageInputBar.inputTextView.isFirstResponder
-        if !wasInputBarFirstResponder {
-            resignFirstResponder()
-        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -590,26 +583,24 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         handleUserVisibility(isVisible: false)
         audioController.stopAnyOngoingPlaying()
         messageInputBar.inputTextView.resignFirstResponder()
+        if !wasInputBarFirstResponder {
+            resignFirstResponder()
+        }
+
         wasInputBarFirstResponder = false
         shouldBecomeFirstResponder = false
     }
 
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         if parent == nil {
             logger.debug(">>> ChatViewController - chat observer: remove")
             removeObservers()
             draft.save(context: dcContext)
+            keyboardManager = nil
         } else {
             logger.debug(">>> ChatViewController - chat observer: setup")
             setupObservers()
-        }
-     }
-
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        if parent == nil {
-            keyboardManager = nil
         }
     }
 
@@ -1237,7 +1228,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 let numberOfRows = self.tableView.numberOfRows(inSection: 0)
                 if numberOfRows > 0 {
                     self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
-                                     position: .bottom,
                                      animated: animated,
                                      focusWithVoiceOver: focusOnVoiceOver)
                 }
@@ -1288,7 +1278,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func scrollToRow(at indexPath: IndexPath, position: UITableView.ScrollPosition = .top, animated: Bool, focusWithVoiceOver: Bool = true) {
+    private func scrollToRow(at indexPath: IndexPath, animated: Bool, focusWithVoiceOver: Bool = true) {
         if UIAccessibility.isVoiceOverRunning && focusWithVoiceOver {
             tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             markSeenMessagesInVisibleArea()
@@ -1785,7 +1775,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func focusInputTextView() {
-        self.messageInputBar.inputTextView.becomeFirstResponder()
+        messageInputBar.inputTextView.becomeFirstResponder()
         if UIAccessibility.isVoiceOverRunning {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
                 UIAccessibility.post(notification: .layoutChanged, argument: self?.messageInputBar.inputTextView)
