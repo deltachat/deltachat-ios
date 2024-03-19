@@ -539,10 +539,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
 
-        if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-            scrollToMessage(msgId: msgId, animated: false)
-        } else if isInitial {
-            scrollToLastUnseenMessage()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+                self.scrollToMessage(msgId: msgId, animated: false)
+            } else if self.isInitial {
+                self.scrollToLastUnseenMessage()
+            }
         }
 
         messageInputBar.scrollDownButton.isHidden = true
@@ -561,12 +563,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         handleUserVisibility(isVisible: true)
         messageInputBar.backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
-
-        if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-            scrollToMessage(msgId: msgId, animated: false)
-        } else if isInitial {
-            scrollToLastUnseenMessage(animated: true)
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
