@@ -669,6 +669,9 @@
 "pref_edit_profile" = "Editar perfil";
 "disable_imap_idle" = "Deshabilitar IMAP IDLE";
 "disable_imap_idle_explain" = "No utilizar la extensión IMAP IDLE aunque el servidor la admita. Habilitar esta opción retrasará el recibo de mensajes, actívala solo para pruebas.";
+"send_stats_to_devs" = "Enviar estadísticas a los desarrolladores  de Delta Chat";
+
+
 // Emoji picker and categories
 "emoji_search_results" = "Resultados de la búsqueda";
 "emoji_not_found" = "No se encontraron emojis";
@@ -891,6 +894,8 @@
 "notify_no_name_or_message" = "Sin nombre ni mensaje";
 "notifications_disabled" = "Notificaciones deshabilitadas";
 "new_messages" = "Nuevos mensajes";
+// Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
+"new_messages_body" = "Tienes mensajes nuevos";
 "n_messages_in_m_chats" = "%1$d mensajes en %2$d chats";
 
 

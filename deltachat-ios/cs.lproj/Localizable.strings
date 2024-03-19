@@ -136,6 +136,10 @@
 "images_and_videos" = "Obrázky a videa";
 "file" = "Soubor";
 "files" = "Soubory";
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "Aplikace";
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Aplikace";
 "unknown" = "Neznámá";
 
 "green" = "Zelená";
@@ -162,6 +166,14 @@
 "menu_new_chat" = "Nový chat";
 "menu_new_group" = "Nová skupina";
 "clone_chat" = "Kopíruj chat";
+// consider keeping the term "broadcast" as in WhatsApp or Telegram
+"broadcast_list" = "Seznam vysílání";
+"broadcast_lists" = "Seznam vysílání";
+"new_broadcast_list" = "Nový seznam vysílání ";
+"add_recipients" = "Přidat příjemce ";
+"edit_broadcast_list" = "Upravit seznam vysílání ";
+"broadcast_list_name" = "Název seznamu vysílání ";
+"please_enter_broadcast_list_name" = "Zadejte název seznamu vysílání. ";
 "menu_send" = "Poslat";
 "menu_toggle_keyboard" = "Přepni na smajlíky";
 "menu_edit_group" = "Uprav skupinu";
@@ -182,25 +194,33 @@
 "menu_copy_to_clipboard" = "Kopíruj do mezipaměti";
 "menu_copy_selection_to_clipboard" = "Kopíruj výběr";
 "menu_copy_link_to_clipboard" = "Kopíruj odkaz";
+"menu_copy_text_to_clipboard" = "Zkopírujte text ";
+"menu_copy_image_to_clipboard" = "Zkopírujte obrázek";
+"menu_copy_email_to_clipboard" = "Zkopírujte E-Mail";
 "paste_from_clipboard" = "Vložit z mezipaměti";
+"ask_copy_unopenable_link_to_clipboard" = "Odkaz \"%1$d\" nelze otevřít ve webovém prohlížeči. Chcete místo toho zkopírovat odkaz do schránky? ";
 "menu_forward" = "Přeposlat zprávu";
 "menu_reply" = "Odpověz na zprávu";
 "menu_mute" = "Umlčet upozornění";
 "menu_unmute" = "Zruš umlčení";
 "menu_export_attachment" = "Ulož přílohu";
+"menu_export_attachments" = "Exportujte přílohy";
 "menu_all_media" = "Všechna multimedia";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Ukaž v chatu";
+"show_app_in_chat" = "Zobrazit aplikaci v chatu";
 "menu_share" = "Sdílet";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Zablokovat";
 "menu_block_contact" = "Zablokuj kontakt";
 "menu_unblock_contact" = "Odblokuj kontakt";
+"accept" = "Přijmout";
 "menu_play" = "Přehrát";
 "menu_pause" = "Přerušit";
 "menu_scroll_to_bottom" = "Posuň až dolů";
 "menu_scroll_to_top" = "Posuň až nahoru";
 "menu_help" = "Nápověda";
+"what_is_webxdc" = "Co je Webxdc? ";
 "privacy_policy" = "Pravidla pro soukromí";
 "menu_select_all" = "Vyber vše";
 "select_chat" = "Vyber chat";
@@ -212,6 +232,12 @@
 "menu_zoom_in" = "Přiblížit";
 "menu_zoom_out" = "Oddálit";
 "menu_save_log" = "Uložit záznam běhu";
+"menu_more_options" = "Více možností";
+"menu_learn_spelling" = "Naučte se pravopis";
+"menu_chat_audit_log" = "Audit chat protokolu";
+"jump_to_message" = "Přejít na zprávu";
+"copy_json" = "Zkopírujte JSON";
+"replace_draft" = "Nahraďte koncept";
 "title_share_location" = "Sdílet polohu se všemi členy skupiny";
 "device_talk" = "Zprávy přístroje";
 "device_talk_subtitle" = "Samovytvořené zprávy";
