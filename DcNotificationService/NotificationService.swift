@@ -85,8 +85,10 @@ class NotificationService: UNNotificationServiceExtension {
     private func silenceNotification(_ bestAttemptContent: UNMutableNotificationContent) -> UNMutableNotificationContent {
         // with `com.apple.developer.usernotifications.filtering` entitlement,
         // one can use `contentHandler(UNMutableNotificationContent())` to not display a notifcation
+        // and remove all "irrelevant" handling
         bestAttemptContent.sound = nil
-        bestAttemptContent.body = "No more relevant messages"
+        bestAttemptContent.body = String.localized("videochat_tap_to_open")
+        bestAttemptContent.userInfo["irrelevant"] = true
         if #available(iOS 15.0, *) {
             bestAttemptContent.interruptionLevel = .passive
             bestAttemptContent.relevanceScore = 0.0

@@ -173,6 +173,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             increaseDebugCounter("notify-remote-launch")
             pushToDebugArray("📡'")
             performFetch()
+        } else {
+            NotificationManager.removeIrrelevantNotifications()
         }
 
         if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
@@ -254,6 +256,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
 
             AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
+
+            NotificationManager.removeIrrelevantNotifications()
         }
     }
 
@@ -437,6 +441,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     private func performFetch(completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {
+        NotificationManager.removeIrrelevantNotifications()
+
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
         // in this case, there is no need to wait for things or do sth.
         if appIsInForeground() || UserDefaults.nseFetching {
