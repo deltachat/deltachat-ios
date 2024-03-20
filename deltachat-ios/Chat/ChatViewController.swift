@@ -887,6 +887,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func configureContactRequestBar() {
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
+        shouldBecomeFirstResponder = true
 
         let bar: ChatContactRequestBar
         if dcChat.isProtectionBroken {
