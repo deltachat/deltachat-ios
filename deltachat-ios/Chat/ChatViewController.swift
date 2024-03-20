@@ -2143,6 +2143,7 @@ extension ChatViewController {
             _ = handleSelection(indexPath: indexPath)
         }
         self.updateTitle()
+        shouldBecomeFirstResponder = isEditing
         becomeFirstResponder()
     }
 
