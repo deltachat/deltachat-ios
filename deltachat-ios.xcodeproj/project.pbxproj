@@ -198,6 +198,9 @@
 		B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */; };
 		B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2172F3B29C125F2002C289E /* AdvancedViewController.swift */; };
 		B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B259D64229B771D5008FB706 /* BackupTransferViewController.swift */; };
+		B2636B5C2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */; };
+		B2636B5D2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */; };
+		B2636B5E2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */; };
 		B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */; };
 		B29BE2FB2BAB93EC002DBF1F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		B29BE2FC2BAB93EC002DBF1F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
@@ -520,6 +523,7 @@
 		B25FD2642952387200E79E00 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B25FD2652952387200E79E00 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B25FD2662952387200E79E00 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = el; path = el.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B26B3BC6236DC3DC008ED35A /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		B27729C12767A747006E00EB /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B27729C22767A747006E00EB /* bg */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bg; path = bg.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -820,6 +824,7 @@
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
+				B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */,
 				3022E6C022E8768800763272 /* InfoPlist.strings */,
 				3060119E22DDE24000C1CE6F /* Localizable.strings */,
 				306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */,
@@ -1290,6 +1295,7 @@
 				30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */,
 				3057028724C5C88300D84EFC /* Localizable.stringsdict in Resources */,
 				304F5E44244F571C00462538 /* Assets.xcassets in Resources */,
+				B2636B5D2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */,
 				30E8F2512449EA0E00CE2C90 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1301,6 +1307,7 @@
 				7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */,
 				AE1988AB23EB3C7600B4CD5F /* Assets in Resources */,
 				3022E6BE22E8768800763272 /* InfoPlist.strings in Resources */,
+				B2636B5C2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */,
 				AE1988A723EB382A00B4CD5F /* Help in Resources */,
 				3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */,
 				7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */,
@@ -1313,6 +1320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2636B5E2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */,
 				B29BE2FB2BAB93EC002DBF1F /* Localizable.strings in Resources */,
 				B29BE2FC2BAB93EC002DBF1F /* Localizable.stringsdict in Resources */,
 			);
