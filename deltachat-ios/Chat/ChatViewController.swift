@@ -446,6 +446,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func configureUIForWriting() {
+        shouldBecomeFirstResponder = true
         configureMessageInputBar()
         draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
         messageInputBar.inputTextView.text = draft.text
@@ -654,7 +655,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if chatModifiedObserver == nil {
             chatModifiedObserver = nc.addObserver(
                 forName: eventChatModified,
-                object: nil, queue: OperationQueue.main
+                object: nil,
+                queue: OperationQueue.main
             ) { [weak self] notification in
                 guard let self, let ui = notification.userInfo else { return }
                 if self.chatId == ui["chat_id"] as? Int {
@@ -663,6 +665,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                         if self.messageInputBar.isHidden {
                             self.configureUIForWriting()
                             self.messageInputBar.isHidden = false
+                            self.becomeFirstResponder()
                         }
                     } else if self.dcChat.isProtectionBroken {
                         self.configureContactRequestBar()
