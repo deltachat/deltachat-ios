@@ -1,6 +1,19 @@
 # Delta Chat iOS Changelog
 
-## v1.44.0 Testflight
+## v1.44.1 Testflight
+2024-03
+
+* nicer summaries by using some emojs for attachment types
+* fix: add white background to transparent avatars
+* fix crashes when exporting or importing huge accounts
+* fix: remove leading whitespace from subject
+* fix problem with sharing the same key by several accounts
+* fix busy looping eg. during key import
+* fix remote group membership changes always overriding local ones
+* update to core 1.136.6
+
+
+## v1.44.0
 2024-03
 
 * PUSH notification if supported by providers as chatmail
