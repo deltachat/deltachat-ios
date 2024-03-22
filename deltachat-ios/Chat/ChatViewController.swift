@@ -670,6 +670,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     } else if self.dcChat.isProtectionBroken {
                         self.configureContactRequestBar()
                         self.messageInputBar.isHidden = false
+                        self.becomeFirstResponder()
                     } else if !self.dcChat.isContactRequest {
                         if !self.messageInputBar.isHidden {
                             self.messageInputBar.isHidden = true
