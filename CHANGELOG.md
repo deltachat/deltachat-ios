@@ -3,13 +3,21 @@
 ## v1.44.1 Testflight
 2024-03
 
+* show message content in PUSH notifications (unless disabled in the system settings)
 * nicer summaries by using some emojs for attachment types
+* "Message long-tap / Select More" added for read-only chats
+* paste QR codes from any QR code page
+* fix: open chats directly at the end, no more visible scrolling
+* fix input bar displayed during attach or info sometimes
+* fix: do not play a sound or switch on display for muted chat's PUSH notifications
+* fix: not not add notifications for reactions
 * fix: add white background to transparent avatars
 * fix crashes when exporting or importing huge accounts
 * fix: remove leading whitespace from subject
 * fix problem with sharing the same key by several accounts
 * fix busy looping eg. during key import
 * fix remote group membership changes always overriding local ones
+* update translations
 * update to core 1.136.6
 
 
