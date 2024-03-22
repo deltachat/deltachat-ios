@@ -19,7 +19,6 @@ public class NotificationManager {
     }
 
     public func reloadDcContext() {
-        NotificationManager.removeAllNotifications()
         dcContext = dcAccounts.getSelected()
     }
 
@@ -38,14 +37,39 @@ public class NotificationManager {
     public static func removeAllNotifications() {
         let nc = UNUserNotificationCenter.current()
         nc.removeAllDeliveredNotifications()
-        nc.removeAllPendingNotificationRequests()
     }
-    
+
     public static func removeNotificationsForChat(dcContext: DcContext, chatId: Int) {
         DispatchQueue.global().async {
-            NotificationManager.removePendingNotificationsFor(dcContext: dcContext, chatId: chatId)
-            NotificationManager.removeDeliveredNotificationsFor(dcContext: dcContext, chatId: chatId)
+            let nc = UNUserNotificationCenter.current()
+            nc.getDeliveredNotifications { notifications in
+                var toRemove = [String]()
+                for notification in notifications {
+                    let notificationAccountId = notification.request.content.userInfo["account_id"] as? Int ?? 0
+                    let notificationChatId = notification.request.content.userInfo["chat_id"] as? Int ?? 0
+                    // unspecific notifications are always removed
+                    if notificationChatId == 0 || (notificationChatId == chatId && notificationAccountId == dcContext.id) {
+                        toRemove.append(notification.request.identifier)
+                    }
+                }
+                nc.removeDeliveredNotifications(withIdentifiers: toRemove)
+            }
+
             NotificationManager.updateApplicationIconBadge()
+        }
+    }
+
+    public static func removeIrrelevantNotifications() {
+        let nc = UNUserNotificationCenter.current()
+        nc.getDeliveredNotifications { notifications in
+            var toRemove = [String]()
+            for notification in notifications {
+                let irrelevant = notification.request.content.userInfo["irrelevant"] as? Bool ?? false
+                if irrelevant {
+                    toRemove.append(notification.request.identifier)
+                }
+            }
+            nc.removeDeliveredNotifications(withIdentifiers: toRemove)
         }
     }
 
@@ -82,37 +106,16 @@ public class NotificationManager {
                     if !chat.isMuted {
                         let msg = self.dcContext.getMessage(id: messageId)
                         let fromContact = self.dcContext.getContact(id: msg.fromContactId)
-                        let accountEmail = self.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF)).email
+                        let sender = msg.getSenderName(fromContact)
                         let content = UNMutableNotificationContent()
-                        content.title = chat.isGroup ? chat.name : msg.getSenderName(fromContact)
-                        content.body =  msg.summary(chars: 80) ?? ""
-                        content.subtitle = chat.isGroup ?  msg.getSenderName(fromContact) : ""
-                        content.userInfo = ui
+                        content.title = chat.isGroup ? chat.name : sender
+                        content.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
+                        content.userInfo["account_id"] = self.dcContext.id
+                        content.userInfo["chat_id"] = chat.id
+                        content.userInfo["message_id"] = msg.id
                         content.sound = .default
 
-                        if msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF,
-                           let url = msg.fileURL {
-                            do {
-                                // make a copy of the file first since UNNotificationAttachment will move attached files into the attachment data store
-                                // so that they can be accessed by all of the appropriate processes
-                                let tempUrl = url.deletingLastPathComponent()
-                                    .appendingPathComponent("notification_tmp")
-                                    .appendingPathExtension(url.pathExtension)
-                                try FileManager.default.copyItem(at: url, to: tempUrl)
-                                if let attachment = try? UNNotificationAttachment(identifier: Constants.notificationIdentifier, url: tempUrl, options: nil) {
-                                    content.attachments = [attachment]
-                                }
-                            } catch let error {
-                                logger.error("Failed to copy file \(url) for notification preview generation: \(error)")
-                            }
-                        }
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-                        if #available(iOS 12.0, *) {
-                            content.threadIdentifier = "\(accountEmail)\(chatId)"
-                        }
-                        let request = UNNotificationRequest(identifier: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId).\(msg.messageId)",
-                                                            content: content,
-                                                            trigger: trigger)
+                        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
                         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                         logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
                     }
@@ -136,35 +139,6 @@ public class NotificationManager {
             }
         }
     }
-
-    private static func removeDeliveredNotificationsFor(dcContext: DcContext, chatId: Int) {
-        var identifiers = [String]()
-        let nc = UNUserNotificationCenter.current()
-        nc.getDeliveredNotifications { notifications in
-            let accountEmail = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF)).email
-            for notification in notifications {
-                if !notification.request.identifier.containsExact(subSequence: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId)").isEmpty {
-                    identifiers.append(notification.request.identifier)
-                }
-            }
-            nc.removeDeliveredNotifications(withIdentifiers: identifiers)
-        }
-    }
-
-    private static func removePendingNotificationsFor(dcContext: DcContext, chatId: Int) {
-        var identifiers = [String]()
-        let nc = UNUserNotificationCenter.current()
-        nc.getPendingNotificationRequests { notificationRequests in
-            let accountEmail = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF)).email
-            for request in notificationRequests {
-                if !request.identifier.containsExact(subSequence: "\(Constants.notificationIdentifier).\(accountEmail).\(chatId)").isEmpty {
-                    identifiers.append(request.identifier)
-                }
-            }
-            nc.removePendingNotificationRequests(withIdentifiers: identifiers)
-        }
-    }
-
     
     deinit {
         NotificationCenter.default.removeObserver(self)

@@ -29,6 +29,7 @@ in Xcode:
    b) increase the build number in the same dialog
    c) navigate to "DcShare / Build Settings / Versioning"
       and adapt "Marketing Version" and "Current Project Version"
+   d) same for "DcNotificationService"
 
 6. a) select "Any iOS Device (arm64)" in the toolbar
    b) select menu "Product/Archive"

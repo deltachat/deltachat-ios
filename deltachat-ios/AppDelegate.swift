@@ -55,6 +55,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         logger.info("➡️ didFinishLaunchingWithOptions")
 
+        // The NSE ("Notification Service Extension") must not run at the same time as the app.
+        // The other way round, the NSE is not started with the app running.
+        UserDefaults.setMainAppRunning()
+        var pollSeconds = 0
+        while UserDefaults.nseFetching && pollSeconds < 30 {
+            logger.info("➡️ wait for NSE to terminate")
+            usleep(1_000_000)
+            pollSeconds += 1
+        }
+        UserDefaults.setNseFetching(false) // NSE terminated unexpectedly, do not always wait 30 seconds
+
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
         let svgCoder = SDImageSVGKCoder.shared
@@ -162,6 +173,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             increaseDebugCounter("notify-remote-launch")
             pushToDebugArray("📡'")
             performFetch()
+        } else {
+            NotificationManager.removeIrrelevantNotifications()
         }
 
         if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
@@ -231,6 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
         applicationInForeground = true
+        UserDefaults.setMainAppRunning()
         dcAccounts.startIo()
 
         DispatchQueue.global().async { [weak self] in
@@ -242,6 +256,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
 
             AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
+
+            NotificationManager.removeIrrelevantNotifications()
         }
     }
 
@@ -271,6 +287,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // applicationDidBecomeActive() is called on initial app start _and_ after applicationWillEnterForeground()
     func applicationDidBecomeActive(_: UIApplication) {
         logger.info("➡️ applicationDidBecomeActive")
+        UserDefaults.setMainAppRunning()
         applicationInForeground = true
     }
 
@@ -286,6 +303,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
+        UserDefaults.setMainAppRunning(false)
         uninstallEventHandler()
         dcAccounts.closeDatabase()
         if let reachability = reachability {
@@ -326,6 +344,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
                 self.dcAccounts.stopIo()
+                UserDefaults.setMainAppRunning(false)
 
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling unregisterBackgroundTask()
@@ -422,10 +441,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     private func performFetch(completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {
+        NotificationManager.removeIrrelevantNotifications()
+
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
         // in this case, there is no need to wait for things or do sth.
-        if appIsInForeground() {
-            logger.info("➡️ app already in foreground")
+        if appIsInForeground() || UserDefaults.nseFetching {
+            logger.info("➡️ app already in foreground or NSE running")
             pushToDebugArray("OK1")
             completionHandler?(.newData)
             return
@@ -516,15 +537,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // this method will be called if the user tapped on a notification
     func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if !response.notification.request.identifier.containsExact(subSequence: Constants.notificationIdentifier).isEmpty {
-            logger.info("Notifications: notification tapped")
-            let userInfo = response.notification.request.content.userInfo
-             if let chatId = userInfo["chat_id"] as? Int,
-                 let msgId = userInfo["message_id"] as? Int {
-                 if !appCoordinator.isShowingChat(chatId: chatId) {
-                     appCoordinator.showChat(chatId: chatId, msgId: msgId, animated: false, clearViewControllerStack: true)
-                 }
-             }
+        let userInfo = response.notification.request.content.userInfo
+        if let accountId = userInfo["account_id"] as? Int {
+            let prevAccountId = dcAccounts.getSelected().id
+            if accountId != prevAccountId {
+                if !dcAccounts.select(id: accountId) {
+                    completionHandler()
+                    return
+                }
+                UserDefaults.standard.setValue(prevAccountId, forKey: Constants.Keys.lastSelectedAccountKey)
+                reloadDcContext()
+            }
+
+            if userInfo["open_as_overview"] as? Bool ?? false {
+                appCoordinator.popTabsToRootViewControllers()
+                appCoordinator.showTab(index: appCoordinator.chatsTab)
+            } else if let chatId = userInfo["chat_id"] as? Int, !appCoordinator.isShowingChat(chatId: chatId) {
+                appCoordinator.showChat(chatId: chatId, msgId: userInfo["message_id"] as? Int, animated: false, clearViewControllerStack: true)
+            }
         }
 
         completionHandler()
