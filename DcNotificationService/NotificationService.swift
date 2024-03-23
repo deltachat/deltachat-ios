@@ -8,7 +8,7 @@ class NotificationService: UNNotificationServiceExtension {
         guard let bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent) else { return }
 
         if UserDefaults.mainAppRunning {
-            contentHandler(silenceNotification(bestAttemptContent))
+            contentHandler(silenceNotification())
             return
         }
         UserDefaults.setNseFetching()
@@ -56,7 +56,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         if messageCount == 0 {
             dcAccounts.closeDatabase()
-            contentHandler(silenceNotification(bestAttemptContent))
+            contentHandler(silenceNotification())
         } else {
             bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
             dcAccounts.closeDatabase()
@@ -87,17 +87,17 @@ class NotificationService: UNNotificationServiceExtension {
         UserDefaults.setNseFetching(false)
     }
 
-    private func silenceNotification(_ bestAttemptContent: UNMutableNotificationContent) -> UNMutableNotificationContent {
-        // with `com.apple.developer.usernotifications.filtering` entitlement,
-        // one can use `contentHandler(UNMutableNotificationContent())` to not display a notifcation
-        // and remove all "irrelevant" handling
-        bestAttemptContent.sound = nil
-        bestAttemptContent.body = String.localized("videochat_tap_to_open")
-        bestAttemptContent.userInfo["irrelevant"] = true
-        if #available(iOS 15.0, *) {
-            bestAttemptContent.interruptionLevel = .passive
-            bestAttemptContent.relevanceScore = 0.0
+    private func silenceNotification() -> UNMutableNotificationContent {
+        if #available(iOS 13.3, *) {
+            // do not show anything; requires `com.apple.developer.usernotifications.filtering` entitlement
+            return UNMutableNotificationContent()
+        } else {
+            // do not play a sound at least
+            let content = UNMutableNotificationContent()
+            content.sound = nil
+            content.title = String.localized("new_messages")
+            content.body = String.localized("videochat_tap_to_open")
+            return content
         }
-        return bestAttemptContent
     }
 }

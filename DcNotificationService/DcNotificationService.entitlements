@@ -10,5 +10,7 @@
 	<array>
 		<string>$(AppIdentifierPrefix)group.chat.delta.ios</string>
 	</array>
+	<key>com.apple.developer.usernotifications.filtering</key>
+	<true/>
 </dict>
 </plist>
