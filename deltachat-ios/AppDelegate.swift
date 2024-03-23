@@ -299,7 +299,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
-        UserDefaults.setMainAppRunning(false)
         uninstallEventHandler()
         dcAccounts.closeDatabase()
         if let reachability = reachability {
@@ -439,9 +438,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func performFetch(completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {
         // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
         // in this case, there is no need to wait for things or do sth.
-        if appIsInForeground() || UserDefaults.nseFetching {
-            logger.info("➡️ app already in foreground or NSE running")
+        if appIsInForeground() {
+            logger.info("➡️ app already in foreground")
             pushToDebugArray("OK1")
+            completionHandler?(.newData)
+            return
+        }
+
+        // Skip fetch if NSE is running (IO cannot be started twice, but also performance wise).
+        // On return, as the app is in background, reset `mainAppRunning` flag.
+        // (for resilience reasons, in case the app crashed, NSE would never run otherwise)
+        if UserDefaults.nseFetching {
+            logger.info("➡️ NSE already running")
+            pushToDebugArray("OK4")
+            UserDefaults.setMainAppRunning(false)
             completionHandler?(.newData)
             return
         }
@@ -458,6 +468,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if nowTimestamp < bgIoTimestamp + 60 {
             logger.info("➡️ fetch was just executed, skipping")
             pushToDebugArray("OK2")
+            UserDefaults.setMainAppRunning(false)
             completionHandler?(.newData)
             return
         }
@@ -470,6 +481,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("⬅️ finishing fetch by system urgency requests")
             self?.pushToDebugArray("ERR1")
             self?.dcAccounts.stopIo()
+            UserDefaults.setMainAppRunning(false)
             completionHandler?(.newData)
             if backgroundTask != .invalid {
                 UIApplication.shared.endBackgroundTask(backgroundTask)
@@ -510,6 +522,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
             usleep(1_000_000)
             logger.info("⬅️ fetch done")
+
+            if !appIsInForeground() {
+                UserDefaults.setMainAppRunning(false)
+            }
+
             completionHandler?(.newData)
             if backgroundTask != .invalid {
                 self.pushToDebugArray("OK3")
@@ -610,6 +627,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func uninstallEventHandler() {
         shouldShutdownEventLoop = true
         dcAccounts.stopIo() // stopIo will generate atleast one event to the event handler can shut down
+        UserDefaults.setMainAppRunning(false)
         eventShutdownSemaphore.wait()
         shouldShutdownEventLoop = false
     }
