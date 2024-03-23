@@ -59,20 +59,6 @@ public class NotificationManager {
         }
     }
 
-    public static func removeIrrelevantNotifications() {
-        let nc = UNUserNotificationCenter.current()
-        nc.getDeliveredNotifications { notifications in
-            var toRemove = [String]()
-            for notification in notifications {
-                let irrelevant = notification.request.content.userInfo["irrelevant"] as? Bool ?? false
-                if irrelevant {
-                    toRemove.append(notification.request.identifier)
-                }
-            }
-            nc.removeDeliveredNotifications(withIdentifiers: toRemove)
-        }
-    }
-
     private func initObservers() {
         anyIncomingMsgObserver = NotificationCenter.default.addObserver(
             forName: eventIncomingMsgAnyAccount,
