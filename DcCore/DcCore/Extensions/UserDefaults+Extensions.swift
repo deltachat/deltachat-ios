@@ -4,20 +4,20 @@ public extension UserDefaults {
     static var hasSavedKeyToKeychain = "hasSavedKeyToKeychain"
     static var upgradedKeychainEntry = "upgradedKeychainEntry_"
     static var debugArrayKey = "notify-fetch-info"
-    static var mainAppRunningKey = "mainAppRunning"
+    static var mainIoRunningKey = "mainIoRunning"
     static var nseFetchingKey = "nseFetching"
 
     static var shared: UserDefaults? {
         return UserDefaults(suiteName: "group.chat.delta.ios")
     }
 
-    static var mainAppRunning: Bool {
-        return shared?.bool(forKey: mainAppRunningKey) ?? false
+    static var mainIoRunning: Bool {
+        return shared?.bool(forKey: mainIoRunningKey) ?? false
     }
 
-    static func setMainAppRunning(_ value: Bool = true) {
+    static func setMainIoRunning(_ value: Bool = true) {
         UserDefaults.pushToDebugArray(value ? "➡️" : "🛑")
-        shared?.setValue(value, forKey: mainAppRunningKey)
+        shared?.setValue(value, forKey: mainIoRunningKey)
     }
 
     static var nseFetching: Bool {

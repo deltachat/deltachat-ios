@@ -9,7 +9,7 @@ class NotificationService: UNNotificationServiceExtension {
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         UserDefaults.pushToDebugArray("🤜")
 
-        if UserDefaults.mainAppRunning {
+        if UserDefaults.mainIoRunning {
             UserDefaults.pushToDebugArray("ABORT4")
             contentHandler(silenceNotification())
             return

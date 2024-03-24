@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         // The NSE ("Notification Service Extension") must not run at the same time as the app.
         // The other way round, the NSE is not started with the app running.
-        UserDefaults.setMainAppRunning()
+        UserDefaults.setMainIoRunning()
         var pollSeconds = 0
         while UserDefaults.nseFetching && pollSeconds < 30 {
             logger.info("➡️ wait for NSE to terminate")
@@ -241,7 +241,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillEnterForeground(_: UIApplication) {
         logger.info("➡️ applicationWillEnterForeground")
         applicationInForeground = true
-        UserDefaults.setMainAppRunning()
+        UserDefaults.setMainIoRunning()
         dcAccounts.startIo()
 
         DispatchQueue.global().async { [weak self] in
@@ -282,7 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // applicationDidBecomeActive() is called on initial app start _and_ after applicationWillEnterForeground()
     func applicationDidBecomeActive(_: UIApplication) {
         logger.info("➡️ applicationDidBecomeActive")
-        UserDefaults.setMainAppRunning()
+        UserDefaults.setMainIoRunning()
         applicationInForeground = true
     }
 
@@ -338,7 +338,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
                 self.dcAccounts.stopIo()
-                UserDefaults.setMainAppRunning(false)
+                UserDefaults.setMainIoRunning(false)
 
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling unregisterBackgroundTask()
@@ -473,7 +473,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             logger.info("⬅️ finishing fetch by system urgency requests")
             UserDefaults.pushToDebugArray("ERR1")
             self?.dcAccounts.stopIo()
-            UserDefaults.setMainAppRunning(false)
+            UserDefaults.setMainIoRunning(false)
             completionHandler?(.newData)
             if backgroundTask != .invalid {
                 UIApplication.shared.endBackgroundTask(backgroundTask)
@@ -490,7 +490,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
 
             // backgroundFetch() pauses IO as needed
-            UserDefaults.setMainAppRunning()
+            UserDefaults.setMainIoRunning()
 
             if !self.dcAccounts.backgroundFetch(timeout: 20) {
                 logger.error("backgroundFetch failed")
@@ -498,7 +498,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
 
             if !appIsInForeground() {
-                UserDefaults.setMainAppRunning(false) // this also improves resilience: if we crashed before, NSE would never run otherwise
+                UserDefaults.setMainIoRunning(false) // this also improves resilience: if we crashed before, NSE would never run otherwise
             }
 
             // wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE;
@@ -614,7 +614,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func uninstallEventHandler() {
         shouldShutdownEventLoop = true
         dcAccounts.stopIo() // stopIo will generate atleast one event to the event handler can shut down
-        UserDefaults.setMainAppRunning(false)
+        UserDefaults.setMainIoRunning(false)
         eventShutdownSemaphore.wait()
         shouldShutdownEventLoop = false
     }
