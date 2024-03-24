@@ -6,8 +6,11 @@ class NotificationService: UNNotificationServiceExtension {
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         guard let bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent) else { return }
+        let nowTimestamp = Double(Date().timeIntervalSince1970)
+        UserDefaults.pushToDebugArray("🤜")
 
         if UserDefaults.mainAppRunning {
+            UserDefaults.pushToDebugArray("ABORT4")
             contentHandler(silenceNotification())
             return
         }
@@ -20,6 +23,7 @@ class NotificationService: UNNotificationServiceExtension {
         let eventEmitter = dcAccounts.getEventEmitter()
 
         if !dcAccounts.backgroundFetch(timeout: 25) {
+            UserDefaults.pushToDebugArray("ERR3")
             UserDefaults.setNseFetching(false)
             contentHandler(bestAttemptContent)
             return
@@ -56,6 +60,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         if messageCount == 0 {
             dcAccounts.closeDatabase()
+            UserDefaults.pushToDebugArray(String(format: "OK0 %.3fs", Double(Date().timeIntervalSince1970) - nowTimestamp))
             contentHandler(silenceNotification())
         } else {
             bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
@@ -74,6 +79,7 @@ class NotificationService: UNNotificationServiceExtension {
                 bestAttemptContent.relevanceScore = 1.0
             }
             UserDefaults.shared?.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend) // force UI updates in case app was suspended
+            UserDefaults.pushToDebugArray(String(format: "OK1 %d %.3fs", messageCount, Double(Date().timeIntervalSince1970) - nowTimestamp))
             contentHandler(bestAttemptContent)
         }
     }
@@ -84,6 +90,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         // For Delta Chat, it is just fine to do nothing - assume eg. bad network or mail servers not reachable,
         // then a "You have new messages" is the best that can be done.
+        UserDefaults.pushToDebugArray("ERR4")
         UserDefaults.setNseFetching(false)
     }
 

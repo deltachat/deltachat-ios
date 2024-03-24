@@ -76,18 +76,6 @@ public class LogViewController: UIViewController {
 
         info += "\n" + dcContext.getInfo() + "\n"
 
-        for name in ["notify-remote-launch", "notify-remote-receive", "notify-local-wakeup"] {
-            let cnt = UserDefaults.standard.integer(forKey: name + "-count")
-
-            let startDbl = UserDefaults.standard.double(forKey: name + "-start")
-            let startStr = startDbl==0.0 ? "" : " since " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: startDbl)
-
-            let timestampDbl = UserDefaults.standard.double(forKey: name + "-last")
-            let timestampStr = timestampDbl==0.0 ? "" : ", last " + DateUtils.getExtendedRelativeTimeSpanString(timeStamp: timestampDbl)
-
-            info += "\(name)=\(cnt)x\(startStr)\(timestampStr)\n"
-        }
-
         info += "notify-timestamps="
         if let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double] {
             for currTimestamp in timestamps {
@@ -96,12 +84,18 @@ public class LogViewController: UIViewController {
         }
         info += "\n"
 
-        info += "notify-fetch-info2="
-        if let infos = UserDefaults.standard.array(forKey: "notify-fetch-info2")  as? [String] {
+        info += UserDefaults.debugArrayKey + "="
+        if let infos = UserDefaults.shared?.array(forKey: UserDefaults.debugArrayKey)  as? [String] {
+            var lastTime = ""
             for currInfo in infos {
-                info += currInfo
-                    .replacingOccurrences(of: "📡", with: "\n📡")
-                    .replacingOccurrences(of: "🏠", with: "\n🏠") + " "
+                let currInfo = currInfo.split(separator: "|", maxSplits: 2)
+                if let time = currInfo.first, let value = currInfo.last {
+                    if time != lastTime {
+                        info += time + ":"
+                        lastTime = String(time)
+                    }
+                    info += value + " "
+                }
             }
         }
         info += "\n"

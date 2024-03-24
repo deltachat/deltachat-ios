@@ -170,8 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if let notificationOption = launchOptions?[.remoteNotification] {
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
-            increaseDebugCounter("notify-remote-launch")
-            pushToDebugArray("📡'")
+            UserDefaults.pushToDebugArray("📡'")
             performFetch()
         }
 
@@ -417,8 +416,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // (at some point it would be nice if we get a clear signal from the core)
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
-        increaseDebugCounter("notify-remote-receive")
-        pushToDebugArray("📡")
+        UserDefaults.pushToDebugArray("📡")
         performFetch(completionHandler: completionHandler)
     }
 
@@ -430,28 +428,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // we have 30 seconds time for our job, things are quite similar as in `didReceiveRemoteNotification`
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("➡️ Notifications: performFetchWithCompletionHandler")
-        increaseDebugCounter("notify-local-wakeup")
-        pushToDebugArray("🏠")
+        UserDefaults.pushToDebugArray("🏠")
         performFetch(completionHandler: completionHandler)
     }
 
     private func performFetch(completionHandler: ((UIBackgroundFetchResult) -> Void)? = nil) {
-        // `didReceiveRemoteNotification` as well as `performFetchWithCompletionHandler` might be called if we're in foreground,
-        // in this case, there is no need to wait for things or do sth.
+        // `didReceiveRemoteNotification` and`performFetchWithCompletionHandler` might be called if we're fetching instantly in foreground already
         if appIsInForeground() {
             logger.info("➡️ app already in foreground")
-            pushToDebugArray("OK1")
+            UserDefaults.pushToDebugArray("ABORT1")
             completionHandler?(.newData)
             return
         }
 
-        // Skip fetch if NSE is running (IO cannot be started twice, but also performance wise).
-        // On return, as the app is in background, reset `mainAppRunning` flag.
-        // (for resilience reasons, in case the app crashed, NSE would never run otherwise)
+        // abort if NSE is runnig; core cannot start I/O twice
         if UserDefaults.nseFetching {
             logger.info("➡️ NSE already running")
-            pushToDebugArray("OK4")
-            UserDefaults.setMainAppRunning(false)
+            UserDefaults.pushToDebugArray("ABORT2")
+            UserDefaults.setMainAppRunning(false) // for resilience reasons: on crashes, NSE would never run otherwise
             completionHandler?(.newData)
             return
         }
@@ -467,7 +461,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         if nowTimestamp < bgIoTimestamp + 60 {
             logger.info("➡️ fetch was just executed, skipping")
-            pushToDebugArray("OK2")
+            UserDefaults.pushToDebugArray("ABORT3")
             UserDefaults.setMainAppRunning(false)
             completionHandler?(.newData)
             return
@@ -479,7 +473,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, this handler is not used as we are taking care of timings below.
             logger.info("⬅️ finishing fetch by system urgency requests")
-            self?.pushToDebugArray("ERR1")
+            UserDefaults.pushToDebugArray("ERR1")
             self?.dcAccounts.stopIo()
             UserDefaults.setMainAppRunning(false)
             completionHandler?(.newData)
@@ -489,34 +483,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        pushToDebugArray("1")
-
         // move work to non-main thread to not block UI (otherwise, in case we get suspended, the app is blocked totally)
         // (we are using `qos: default` as `qos: .background` may be delayed by tens of minutes)
         DispatchQueue.global().async { [weak self] in
             guard let self else { completionHandler?(.failed); return }
 
-            self.pushToDebugArray("2")
-
             self.addDebugFetchTimestamp()
             self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
-            let start = CFAbsoluteTimeGetCurrent()
 
             // backgroundFetch() pauses IO as needed
             if !self.dcAccounts.backgroundFetch(timeout: 20) {
                 logger.error("backgroundFetch failed")
-                self.pushToDebugArray("ERR2")
+                UserDefaults.self.pushToDebugArray("ERR2")
             }
-            let diff = CFAbsoluteTimeGetCurrent() - start
 
             // wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE;
             // without IO being started, more events that could interfere with shutdown are not added
             _ = self.dcAccounts.fetchSemaphore?.wait(timeout: .now() + 20)
             self.dcAccounts.fetchSemaphore = nil
-            let diff2 = CFAbsoluteTimeGetCurrent() - start
 
-            logger.info("⬅️ finishing fetch in \(diff) s + \(diff2) s")
-            self.pushToDebugArray(String(format: "3/%.3fs", Double(Date().timeIntervalSince1970)-nowTimestamp))
+            let diff = Double(Date().timeIntervalSince1970) - nowTimestamp
+            logger.info("⬅️ finishing fetch in \(diff) s")
 
             // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
@@ -527,9 +514,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 UserDefaults.setMainAppRunning(false)
             }
 
+            UserDefaults.pushToDebugArray(String(format: "OK3 %.3fs", diff))
             completionHandler?(.newData)
             if backgroundTask != .invalid {
-                self.pushToDebugArray("OK3")
                 UIApplication.shared.endBackgroundTask(backgroundTask)
                 backgroundTask = .invalid
             }
@@ -632,24 +619,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         shouldShutdownEventLoop = false
     }
 
-    // Values calculated for debug log view
-    private func increaseDebugCounter(_ name: String) {
-        let nowDate = Date()
-        let nowTimestamp = Double(nowDate.timeIntervalSince1970)
-
-        let startTimestamp = UserDefaults.standard.double(forKey: name + "-start")
-        if nowTimestamp > startTimestamp + 60*60*24 {
-            let cal: Calendar = Calendar(identifier: .gregorian)
-            let newStartDate: Date = cal.date(bySettingHour: 0, minute: 0, second: 0, of: nowDate)!
-            UserDefaults.standard.set(0, forKey: name + "-count")
-            UserDefaults.standard.set(Double(newStartDate.timeIntervalSince1970), forKey: name + "-start")
-        }
-
-        let cnt = UserDefaults.standard.integer(forKey: name + "-count")
-        UserDefaults.standard.set(cnt + 1, forKey: name + "-count")
-        UserDefaults.standard.set(nowTimestamp, forKey: name + "-last")
-    }
-
     // Values calculated for connectivity view
     private func addDebugFetchTimestamp() {
         let nowTimestamp = Double(Date().timeIntervalSince1970)
@@ -662,17 +631,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         slidingTimeframe.append(nowTimestamp)
         UserDefaults.standard.set(slidingTimeframe, forKey: Constants.Keys.notificationTimestamps)
-    }
-
-    private func pushToDebugArray(_ value: String) {
-        let name = "notify-fetch-info2"
-        let values = UserDefaults.standard.array(forKey: name)
-        var slidingValues = [String]()
-        if values != nil, let values = values as? [String] {
-            slidingValues = values.suffix(512)
-        }
-        slidingValues.append(value+"/"+DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)))
-        UserDefaults.standard.set(slidingValues, forKey: name)
     }
 
     private func setStockTranslations() {
