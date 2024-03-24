@@ -445,7 +445,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if UserDefaults.nseFetching {
             logger.info("➡️ NSE already running")
             UserDefaults.pushToDebugArray("ABORT2")
-            UserDefaults.setMainAppRunning(false) // for resilience reasons: on crashes, NSE would never run otherwise
             completionHandler?(.newData)
             return
         }
@@ -462,7 +461,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if nowTimestamp < bgIoTimestamp + 60 {
             logger.info("➡️ fetch was just executed, skipping")
             UserDefaults.pushToDebugArray("ABORT3")
-            UserDefaults.setMainAppRunning(false)
             completionHandler?(.newData)
             return
         }
@@ -492,9 +490,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
 
             // backgroundFetch() pauses IO as needed
+            UserDefaults.setMainAppRunning()
+
             if !self.dcAccounts.backgroundFetch(timeout: 20) {
                 logger.error("backgroundFetch failed")
                 UserDefaults.self.pushToDebugArray("ERR2")
+            }
+
+            if !appIsInForeground() {
+                UserDefaults.setMainAppRunning(false) // this also improves resilience: if we crashed before, NSE would never run otherwise
             }
 
             // wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE;
@@ -509,10 +513,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // we increase the probabilty that this happens by waiting a moment before calling completionHandler()
             usleep(1_000_000)
             logger.info("⬅️ fetch done")
-
-            if !appIsInForeground() {
-                UserDefaults.setMainAppRunning(false)
-            }
 
             UserDefaults.pushToDebugArray(String(format: "OK3 %.3fs", diff))
             completionHandler?(.newData)
