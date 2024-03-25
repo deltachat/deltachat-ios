@@ -16,7 +16,7 @@ public extension UserDefaults {
     }
 
     static func setMainIoRunning(_ value: Bool = true) {
-        UserDefaults.pushToDebugArray(value ? "➡️" : "🛑")
+        UserDefaults.pushToDebugArray(value ? "▶️" : "⏸️")
         shared?.setValue(value, forKey: mainIoRunningKey)
     }
 
