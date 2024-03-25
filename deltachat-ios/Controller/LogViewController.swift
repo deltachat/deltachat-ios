@@ -91,7 +91,7 @@ public class LogViewController: UIViewController {
                 let currInfo = currInfo.split(separator: "|", maxSplits: 2)
                 if let time = currInfo.first, let value = currInfo.last {
                     if time != lastTime {
-                        info += time + ":"
+                        info += "\n" + time + " "
                         lastTime = String(time)
                     }
                     info += value + " "
