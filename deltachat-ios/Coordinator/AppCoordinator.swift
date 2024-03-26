@@ -39,29 +39,29 @@ class AppCoordinator: NSObject {
     private func createQrNavigationController() -> UINavigationController {
         let root = QrPageController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
-        let settingsImage: UIImage?
+        let qrCodeTabImage: UIImage?
         if #available(iOS 13.0, *) {
-            settingsImage = UIImage(systemName: "qrcode")
+            qrCodeTabImage = UIImage(systemName: "qrcode")
         } else {
-            settingsImage = UIImage(named: "qr_code")
+            qrCodeTabImage = UIImage(named: "qr_code")
         }
-        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: settingsImage, tag: qrTab)
+        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: qrCodeTabImage, tag: qrTab)
         return nav
     }
 
     private func createAllMediaNavigationController() -> UINavigationController {
         let root = AllMediaViewController(dcContext: dcAccounts.getSelected())
         let nav = UINavigationController(rootViewController: root)
-        let settingsImage = UIImage(named: "photo.on.rectangle")
-        nav.tabBarItem = UITabBarItem(title: String.localized("menu_all_media"), image: settingsImage, tag: chatsTab)
+        let allMediaTabImage = UIImage(named: "photo.on.rectangle")
+        nav.tabBarItem = UITabBarItem(title: String.localized("menu_all_media"), image: allMediaTabImage, tag: allMediaTab)
         return nav
     }
 
     private func createChatsNavigationController() -> UINavigationController {
         let root = ChatListViewController(dcContext: dcAccounts.getSelected(), dcAccounts: dcAccounts, isArchive: false)
         let nav = UINavigationController(rootViewController: root)
-        let settingsImage = UIImage(named: "ic_chat")
-        nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: settingsImage, tag: chatsTab)
+        let chatTabImage = UIImage(named: "ic_chat")
+        nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: chatTabImage, tag: chatsTab)
         return nav
     }
 
