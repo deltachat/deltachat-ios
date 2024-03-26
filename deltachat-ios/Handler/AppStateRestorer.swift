@@ -1,6 +1,6 @@
 import UIKit
 
-class AppStateRestorer: NSObject, UITabBarControllerDelegate {
+class AppStateRestorer {
 
     private let lastActiveTabKey = "last_active_tab2"
     private let lastActiveChatId = "last_active_chat_id"
@@ -15,8 +15,6 @@ class AppStateRestorer: NSObject, UITabBarControllerDelegate {
         case settingsTab = 13
         case firstLaunch = 0
     }
-
-    private override init() {}
 
     static let shared: AppStateRestorer = AppStateRestorer()
 

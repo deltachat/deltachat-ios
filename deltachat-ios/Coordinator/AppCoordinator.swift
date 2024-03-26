@@ -4,7 +4,7 @@ import MobileCoreServices
 import DcCore
 
 // MARK: - AppCoordinator
-class AppCoordinator {
+class AppCoordinator: NSObject {
 
     private let window: UIWindow
     private let dcAccounts: DcAccounts
@@ -30,7 +30,7 @@ class AppCoordinator {
         let chatsNavController = createChatsNavigationController()
         let settingsNavController = createSettingsNavigationController()
         let tabBarController = UITabBarController()
-        tabBarController.delegate = appStateRestorer
+        tabBarController.delegate = self
         tabBarController.viewControllers = [allMediaNavController, qrNavController, chatsNavController, settingsNavController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
@@ -83,6 +83,7 @@ class AppCoordinator {
         self.window = window
         self.dcAccounts = dcAccounts
         let dcContext = dcAccounts.getSelected()
+        super.init()
         initializeRootController()
 
         let lastActiveTab = appStateRestorer.restoreLastActiveTab()
@@ -270,5 +271,22 @@ class AppCoordinator {
                                                   createChatsNavigationController(),
                                                   createSettingsNavigationController()], animated: false)
         presentTabBarController()
+    }
+}
+
+extension AppCoordinator: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let navigationController = viewController as? UINavigationController,
+           let chatListViewController = navigationController.viewControllers.first as? ChatListViewController,
+           let chatsTab = tabBarController.selectedViewController as? UINavigationController,
+           chatsTab.topViewController == chatListViewController {
+            chatListViewController.tableView.scrollToTop(animated: true)
+        }
+
+        return true
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        appStateRestorer.tabBarController(tabBarController, didSelect: viewController)
     }
 }
