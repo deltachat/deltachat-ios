@@ -276,6 +276,7 @@ class AppCoordinator: NSObject {
 
 extension AppCoordinator: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        // if the chatlist is already visible when tapping, scroll chatlist to top
         if let navigationController = viewController as? UINavigationController,
            let chatListViewController = navigationController.viewControllers.first as? ChatListViewController,
            let chatsTab = tabBarController.selectedViewController as? UINavigationController,
