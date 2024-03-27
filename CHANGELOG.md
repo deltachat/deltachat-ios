@@ -4,7 +4,7 @@
 2024-03
 
 * show message content in PUSH notifications (unless disabled in the system settings)
-* nicer summaries by using some emojs for attachment types
+* nicer summaries by using some emojis for attachment types
 * "Message long-tap / Select More" added for read-only chats
 * paste QR codes from any QR code page
 * fix: open chats directly at the end, no more visible scrolling
