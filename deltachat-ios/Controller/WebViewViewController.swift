@@ -157,7 +157,6 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     private func updateAccessoryBar() {
         handleSearchResultCount { [weak self] result in
             guard let self else { return }
-            logger.debug("found \(result) elements")
             self.searchAccessoryBar.isEnabled = result > 0
             self.handleCurrentlySelected { [weak self] position in
                 self?.searchAccessoryBar.updateSearchResult(sum: result, position: position == -1 ? 0 : position + 1)
@@ -238,7 +237,6 @@ extension WebViewViewController: UISearchBarDelegate, UISearchControllerDelegate
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         debounceTimer?.invalidate()
         debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { [weak self] _ in
-            logger.debug("search for \(searchText)")
             if searchText.isEmpty {
                 self?.removeAllHighlights()
             } else {
@@ -266,12 +264,10 @@ extension WebViewViewController: UISearchBarDelegate, UISearchControllerDelegate
 
 extension WebViewViewController: ChatSearchDelegate {
     func onSearchPreviousPressed() {
-        logger.debug("onSearchPrevious pressed")
         self.searchPrevious()
     }
 
     func onSearchNextPressed() {
-        logger.debug("onSearchNextPressed pressed")
         self.searchNext()
     }
 }
