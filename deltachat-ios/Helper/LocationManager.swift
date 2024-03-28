@@ -65,15 +65,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        logger.debug("LOCATION: didUpdateLocations")
-
         guard let newLocation = locations.last else {
-            logger.debug("LOCATION: new location is emtpy")
             return
         }
 
         let isBetter = isBetterLocation(newLocation: newLocation, lastLocation: lastLocation)
-        logger.debug("LOCATION: isBetterLocation: \(isBetter)")
         if isBetter {
             if dcContext.isSendingLocationsToChat(chatId: 0) {
                 dcContext.setLocation(latitude: newLocation.coordinate.latitude,
@@ -96,7 +92,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        logger.debug("LOCATION MANAGER: didChangeAuthorization: \(status)")
         switch status {
         case .denied, .restricted:
             disableLocationStreamingInAllChats()
@@ -150,17 +145,14 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func isMoreAccurate(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
-//        logger.debug("LOCATION: isMoreAccurate \(lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 0)")
         return lastLocation.horizontalAccuracy - newLocation.horizontalAccuracy > 0
     }
 
     func hasLocationChanged(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
-//        logger.debug("LOCATION: hasLocationChanged \(newLocation.distance(from: lastLocation) > 10)")
         return newLocation.distance(from: lastLocation) > 10
     }
 
     func hasLocationSignificantlyChanged(newLocation: CLLocation, lastLocation: CLLocation) -> Bool {
-//        logger.debug("LOCATION: hasLocationSignificantlyChanged \(newLocation.distance(from: lastLocation) > 30)")
         return newLocation.distance(from: lastLocation) > 30
     }
 
@@ -169,7 +161,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
      */
     func isNewLocationOutdated(newLocation: CLLocation) -> Bool {
         let timeDelta = DateUtils.getRelativeTimeInSeconds(timeStamp: Double(newLocation.timestamp.timeIntervalSince1970))
- //       logger.debug("LOCATION: isLocationOutdated timeDelta: \(timeDelta) -> \(Double(Time.fiveMinutes)) -> \(timeDelta < Double(Time.fiveMinutes))")
         return timeDelta > Double(Time.fiveMinutes)
     }
     

@@ -323,12 +323,10 @@ class WebxdcViewController: WebViewViewController {
                 decisionHandler(.cancel)
                 return
             } else if url.scheme != INTERNALSCHEMA {
-                logger.debug("cancel loading: \(url)")
                 decisionHandler(.cancel)
                 return
             }
         }
-        logger.debug("loading: \(String(describing: navigationAction.request.url))")
         decisionHandler(.allow)
     }
     
@@ -427,8 +425,8 @@ extension WebxdcViewController: WKScriptMessageHandler {
                 logger.error("could not convert param \(message.body) to string")
                 return
             }
-            logger.debug("webxdc log msg: "+msg)
-            
+            logger.info("webxdc log msg: " + msg)
+
         case .sendStatusUpdate:
             guard let dict = message.body as? [String: AnyObject],
                   let payloadDict = dict["payload"] as?  [String: AnyObject],
@@ -466,7 +464,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
             }
 
         default:
-            logger.debug("another method was called")
+            break
         }
     }
 }
@@ -523,8 +521,6 @@ extension WebxdcViewController: WKURLSchemeHandler {
             urlSchemeTask.didReceive(response)
             urlSchemeTask.didReceive(data)
             urlSchemeTask.didFinish()
-        } else {
-            logger.debug("not loading \(String(describing: urlSchemeTask.request.url))")
         }
     }
     

@@ -14,22 +14,16 @@ protocol MediaPickerDelegate: AnyObject {
 
 extension MediaPickerDelegate {
     func onImageSelected(image: UIImage) {
-        logger.debug("image selected")
     }
     func onImageSelected(url: NSURL) {
-        logger.debug("image selected: \(url)")
     }
     func onVideoSelected(url: NSURL) {
-        logger.debug("video selected: \(url)")
     }
     func onVoiceMessageRecorded(url: NSURL) {
-        logger.debug("voice message recorded: \(url)")
     }
     func onVoiceMessageRecorderClosed() {
-        logger.debug("Voice Message recorder closed.")
     }
     func onDocumentSelected(url: NSURL) {
-        logger.debug("document selected: \(url)")
     }
 }
 

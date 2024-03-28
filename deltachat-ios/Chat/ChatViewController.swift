@@ -591,12 +591,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         if parent == nil {
-            logger.debug(">>> ChatViewController - chat observer: remove")
             removeObservers()
             draft.save(context: dcContext)
             keyboardManager = nil
         } else {
-            logger.debug(">>> ChatViewController - chat observer: setup")
             setupObservers()
         }
     }
@@ -2249,7 +2247,6 @@ extension ChatViewController: BaseMessageCellDelegate {
         if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {
             UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
         }
-        logger.debug("phone number tapped \(sanitizedNumber)")
     }
 
     @objc func commandTapped(command: String, indexPath: IndexPath) {
@@ -2267,7 +2264,6 @@ extension ChatViewController: BaseMessageCellDelegate {
             return
         }
         if Utils.isEmail(url: url) {
-            logger.debug("tapped on contact")
             let email = Utils.getEmailFrom(url)
             self.askToChatWith(email: email)
         } else {
@@ -2457,7 +2453,6 @@ extension ChatViewController: ChatEditingDelegate {
 // MARK: - ChatSearchDelegate
 extension ChatViewController: ChatSearchDelegate {
     func onSearchPreviousPressed() {
-        logger.debug("onSearch Previous Pressed")
         if searchResultIndex == 0 && !searchMessageIds.isEmpty {
             searchResultIndex = searchMessageIds.count - 1
         } else {
@@ -2469,7 +2464,6 @@ extension ChatViewController: ChatSearchDelegate {
     }
 
     func onSearchNextPressed() {
-        logger.debug("onSearch Next Pressed")
         if searchResultIndex == searchMessageIds.count - 1 {
             searchResultIndex = 0
         } else {
@@ -2484,7 +2478,6 @@ extension ChatViewController: ChatSearchDelegate {
 // MARK: UISearchResultUpdating
 extension ChatViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        logger.debug("searchbar: \(String(describing: searchController.searchBar.text))")
         debounceTimer?.invalidate()
         debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
             let searchText = searchController.searchBar.text ?? ""

@@ -106,7 +106,6 @@ class ShareViewController: SLComposeServiceViewController {
 
         if selectedChatId == nil {
             selectedChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
-            logger.debug("selected chatID: \(String(describing: selectedChatId))")
         }
 
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
@@ -194,7 +193,6 @@ class ShareViewController: SLComposeServiceViewController {
 
             item?.title = String.localized("forward_to")
             item?.value = selectedChat?.name
-            logger.debug("configurationItems chat name: \(String(describing: selectedChat?.name))")
             item?.tapHandler = {
                 let chatListController = ChatListController(dcContext: self.dcContext, chatListDelegate: self)
                 self.pushConfigurationViewController(chatListController)

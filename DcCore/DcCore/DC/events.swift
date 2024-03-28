@@ -27,17 +27,17 @@ public class DcEventHandler {
         let accountId = event.accountId
 
         if event.id >= DC_EVENT_ERROR && event.id <= 499 {
-            logger.error("📡[\(accountId)] \(event.data2String)")
+            logger.error("[\(accountId)] \(event.data2String)")
             return
         }
 
         switch event.id {
 
         case DC_EVENT_INFO:
-            logger.info("📡[\(accountId)] \(event.data2String)")
+            logger.info("[\(accountId)] \(event.data2String)")
 
         case DC_EVENT_WARNING:
-            logger.warning("📡[\(accountId)] \(event.data2String)")
+            logger.warning("[\(accountId)] \(event.data2String)")
 
         case DC_EVENT_CONFIGURE_PROGRESS:
             logger.info("📡[\(accountId)] configure: \(Int(data1))")
@@ -66,9 +66,6 @@ public class DcEventHandler {
                     "errorMessage": self.dcAccounts.get(id: accountId).lastErrorString,
                 ])
             }
-
-        case DC_EVENT_IMAP_CONNECTED, DC_EVENT_SMTP_CONNECTED:
-            logger.info("📡[\(accountId)] network: \(event.data2String)")
 
         case DC_EVENT_MSGS_CHANGED, DC_EVENT_REACTIONS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
             if accountId != dcAccounts.getSelected().id {
@@ -127,9 +124,6 @@ public class DcEventHandler {
                     "chat_id": Int(data1),
                 ])
             }
-
-        case DC_EVENT_SMTP_MESSAGE_SENT:
-            logger.info("📡[\(accountId)] smtp sent: \(event.data2String)")
 
         case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
             if accountId != dcAccounts.getSelected().id {
