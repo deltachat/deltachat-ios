@@ -1,9 +1,11 @@
 import UIKit
 import DcCore
+import OSLog
 
 public class LogViewController: UIViewController {
 
     private let dcContext: DcContext
+    private let loadingIndicator = "\n\nLoading log ..."
 
     private lazy var logText: UITextView = {
         let label = UITextView()
@@ -24,10 +26,6 @@ public class LogViewController: UIViewController {
     }
 
     public override func viewDidLoad() {
-        setupSubviews()
-    }
-
-    private func setupSubviews() {
         self.view.addSubview(logText)
         self.view.backgroundColor = DcColors.defaultBackgroundColor
         self.view.addConstraints([
@@ -36,8 +34,19 @@ public class LogViewController: UIViewController {
             logText.constraintAlignTrailingToAnchor(view.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 12),
             logText.constraintAlignBottomToAnchor(view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 12)
         ])
+
         logText.text = getDebugVariables(dcContext: dcContext)
         logText.setContentOffset(.zero, animated: false)
+
+        DispatchQueue.global().async { [weak self] in
+            if let log = self?.getLogLines() {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    let debugVariables = self.logText.text.replacingOccurrences(of: self.loadingIndicator, with: "")
+                    self.logText.text = debugVariables + "\n" + log
+                }
+            }
+        }
     }
 
     @objc
@@ -91,16 +100,45 @@ public class LogViewController: UIViewController {
                 let currInfo = currInfo.split(separator: "|", maxSplits: 2)
                 if let time = currInfo.first, let value = currInfo.last {
                     if time != lastTime {
-                        info += "\n" + time + " "
+                        info += "\n[" + time + "] "
                         lastTime = String(time)
                     }
                     info += value + " "
                 }
             }
         }
-        info += "\n"
+        info += loadingIndicator
 
         return info
     }
 
+    public func getLogLines() -> String {
+        var log = ""
+
+        if #available(iOS 15.0, *) {
+            do {
+                let store = try OSLogStore(scope: .currentProcessIdentifier)
+                let position = store.position(timeIntervalSinceLatestBoot: 1)
+                var entries: [String] = []
+                entries = try store
+                    .getEntries(at: position)
+                    .compactMap { $0 as? OSLogEntryLog }
+                    .filter { $0.subsystem == DcLogger.subsystem }
+                    .map { "[\($0.date.formatted())] \($0.composedMessage)" }
+                if entries.isEmpty {
+                    log += "\nEmpty log returned, maybe running in a Simulator."
+                } else {
+                    for entry in entries {
+                        log += "\n" + entry
+                    }
+                }
+            } catch {
+                log += "\nCannot get log: \(error.localizedDescription)"
+            }
+        }
+
+        log += "\n\nTo get the full log, use Console.app on a Mac."
+
+        return log
+    }
 }
