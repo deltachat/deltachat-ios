@@ -649,7 +649,6 @@ extension BaseMessageCell: MessageLabelDelegate {
 
     public func didSelectURL(_ url: URL) {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
-            logger.debug("did select URL")
             baseDelegate?.urlTapped(url: url, indexPath: indexPath)
         }
     }
@@ -662,7 +661,6 @@ extension BaseMessageCell: MessageLabelDelegate {
 
     public func didSelectCommand(_ command: String) {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
-            logger.debug("did select command \(command)")
             baseDelegate?.commandTapped(command: command, indexPath: indexPath)
         }
     }

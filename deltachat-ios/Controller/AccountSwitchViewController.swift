@@ -216,7 +216,6 @@ class AccountSwitchViewController: UITableViewController {
     }
 
     @objc private func editAction() {
-        logger.debug("edit Action")
         title = String.localized("delete_account")
         navigationItem.setLeftBarButton(nil, animated: true)
         navigationItem.setRightBarButton(cancelEditButton, animated: true)
@@ -225,7 +224,6 @@ class AccountSwitchViewController: UITableViewController {
     }
 
     @objc private func cancelEditAction() {
-        logger.debug("cancel Action")
         title = String.localized("switch_account")
         navigationItem.setLeftBarButton(editButton, animated: false)
         navigationItem.setRightBarButton(doneButton, animated: false)
@@ -234,7 +232,6 @@ class AccountSwitchViewController: UITableViewController {
     }
 
     @objc private func doneAction() {
-        logger.debug("done Action")
         dismiss(animated: true)
     }
 }

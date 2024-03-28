@@ -220,7 +220,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func recordingButtonAction() {
-        logger.debug("start recording")
         self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
         cancelRecordingButton.isEnabled = true
         doneButton.isEnabled = true
@@ -242,21 +241,18 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func continueRecordingButtonAction() {
-        logger.debug("continue recording")
         self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
         isRecordingPaused = false
         audioRecorder?.record()
     }
 
     @objc func pauseRecordingButtonAction() {
-        logger.debug("pause")
         isRecordingPaused = true
         audioRecorder?.pause()
         self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, continueRecordingButton, flexItem], animated: true)
     }
 
     @objc func cancelRecordingAction() {
-        logger.debug("cancel recording")
         isRecordingPaused = false
         cancelRecordingButton.isEnabled = false
         doneButton.isEnabled = false
@@ -266,13 +262,11 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func cancelAction() {
-        logger.debug("cancel Action")
         cancelRecordingAction()
         dismiss(animated: true, completion: nil)
     }
 
     @objc func doneAction() {
-        logger.debug("done with Action")
         isRecordingPaused = false
         audioRecorder?.stop()
         if let delegate = self.delegate {
