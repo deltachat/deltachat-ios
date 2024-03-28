@@ -43,4 +43,15 @@ public class DcLogger {
             os_log("💙 %{public}s", log: .default, type: .default /* .default equals notice() and is persisted */, message)
         }
     }
+
+    // debug() marked as DEBUG as these lines are for, well debugging. and should not being released. otherwise, use info()
+    #if DEBUG
+    public func debug(_ message: String) {
+        if #available(iOS 14.0, *) {
+            (osLog as? Logger)?.debug("💚 \(message, privacy: .public)")
+        } else {
+            os_log("💚 %{public}s", log: .default, type: .debug, message)
+        }
+    }
+    #endif
 }
