@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v1.44.1 Testflight
+## v1.44.1
 2024-03
 
 * show message content in PUSH notifications (unless disabled in the system settings)
