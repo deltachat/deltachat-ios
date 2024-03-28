@@ -414,7 +414,7 @@ class WebxdcViewController: WebViewViewController {
     }
 
     private func shareWebxdc(_ action: UIAlertAction) {
-        Utils.share(message: dcContext.getMessage(id: messageId), parentViewController: self, sourceView: self.view)
+        Utils.share(message: dcContext.getMessage(id: messageId), parentViewController: self, sourceItem: moreButton)
     }
 }
 

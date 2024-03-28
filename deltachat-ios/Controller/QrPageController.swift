@@ -123,7 +123,7 @@ class QrPageController: UIPageViewController {
 
     @objc func share(_ action: UIAlertAction) {
         if let inviteLink = Utils.getInviteLink(context: dcContext, chatId: 0) {
-            Utils.share(url: inviteLink, parentViewController: self)
+            Utils.share(url: inviteLink, parentViewController: self, sourceItem: moreButton)
         }
     }
 

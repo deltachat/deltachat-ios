@@ -54,7 +54,7 @@ struct Utils {
         return nil
     }
 
-    public static func share(message: DcMsg, parentViewController: UIViewController, sourceView: UIView) {
+    public static func share(message: DcMsg, parentViewController: UIViewController, sourceView: UIView? = nil, sourceItem: UIBarButtonItem? = nil) {
         guard let fileURL = message.fileURL else { return }
         let objectsToShare: [Any]
         if message.type == DC_MSG_WEBXDC {
@@ -70,13 +70,21 @@ struct Utils {
 
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [.copyToPasteboard]
-        activityVC.popoverPresentationController?.sourceView = sourceView
+        if let sourceItem {
+            activityVC.popoverPresentationController?.barButtonItem = sourceItem
+        } else if let sourceView {
+            activityVC.popoverPresentationController?.sourceView = sourceView
+        } else {
+            logger.error("set sourceView or sourceItem to avoid iPad crashes")
+            return
+        }
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
 
-    public static func share(url: String, parentViewController: UIViewController) {
+    public static func share(url: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
         if let url = URL(string: url) {
             let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+            activityVC.popoverPresentationController?.barButtonItem = sourceItem
             parentViewController.present(activityVC, animated: true, completion: nil)
         }
     }

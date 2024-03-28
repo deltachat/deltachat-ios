@@ -281,8 +281,10 @@ extension FilesViewController {
     }
 
     func shareAttachment(of indexPath: IndexPath) {
-        let msgId = fileMessageIds[indexPath.row]
-        Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: self.view)
+        if let cell = tableView.cellForRow(at: indexPath) {
+            let msgId = fileMessageIds[indexPath.row]
+            Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: cell.contentView)
+        }
     }
 }
 
