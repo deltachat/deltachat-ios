@@ -7,6 +7,18 @@ public class LogViewController: UIViewController {
     private let dcContext: DcContext
     private let loadingIndicator = "\n\nLoading log ..."
 
+    private lazy var shareButton: UIBarButtonItem = {
+        let button: UIBarButtonItem
+        if #available(iOS 13.0, *) {
+            button = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonPressed))
+        } else {
+            button = UIBarButtonItem(title: String.localized("menu_share"), style: .plain, target: self, action: #selector(shareButtonPressed))
+        }
+        button.accessibilityLabel = String.localized("menu_share")
+        button.isEnabled = false
+        return button
+    }()
+
     private lazy var logText: UITextView = {
         let label = UITextView()
         label.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
@@ -44,9 +56,12 @@ public class LogViewController: UIViewController {
                     guard let self else { return }
                     let debugVariables = self.logText.text.replacingOccurrences(of: self.loadingIndicator, with: "")
                     self.logText.text = debugVariables + "\n" + log
+                    self.shareButton.isEnabled = true
                 }
             }
         }
+
+        navigationItem.rightBarButtonItem = shareButton
     }
 
     @objc
@@ -140,5 +155,13 @@ public class LogViewController: UIViewController {
         log += "\n\nTo get the full log, use Console.app on a Mac."
 
         return log
+    }
+
+    // MARK: - actions
+
+    @objc private func shareButtonPressed() {
+        if let text = logText.text {
+            Utils.share(text: text, parentViewController: self, sourceItem: shareButton)
+        }
     }
 }
