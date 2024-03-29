@@ -29,12 +29,6 @@ class ContextMenuProvider {
         return items
     }
 
-    public func getMenuItems(filters: [(ContextMenuItem) throws -> Bool]) -> [UIMenuItem] {
-        return filter(filters, in: menu)
-            .filter({ $0.title != nil && $0.action != nil })
-            .map({ return UIMenuItem(title: $0.title!, action: $0.action!) })
-    }
-
     func canPerformAction(action: Selector) -> Bool {
         return !menu.filter {
             $0.action == action
