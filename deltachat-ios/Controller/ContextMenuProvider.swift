@@ -45,10 +45,7 @@ class ContextMenuProvider {
 // MARK: - iOS13+ action menu
 @available(iOS 13, *)
 extension ContextMenuProvider {
-    func actionProvider(title: String = "",
-                        image: UIImage? = nil,
-                        identifier: UIMenu.Identifier? = nil,
-                        indexPath: IndexPath,
+    func actionProvider(indexPath: IndexPath,
                         filters: [(ContextMenuItem) throws -> Bool]? = []) -> UIMenu? {
         
         var children: [UIMenuElement] = []
@@ -77,9 +74,9 @@ extension ContextMenuProvider {
         }
 
         return UIMenu(
-            title: title,
-            image: image,
-            identifier: identifier,
+            title: "",
+            image: nil,
+            identifier: nil,
             children: children
         )
     }
