@@ -234,14 +234,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION  && dcChat.canSend
 
             if showReaction {
-                menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+                menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, copyItem, deleteItem]
             } else if dcChat.canSend {
-                menuItems = [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+                menuItems = [replyItem, replyPrivatelyItem, forwardItem, copyItem, deleteItem]
             } else {
-                menuItems = [replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+                menuItems = [replyPrivatelyItem, forwardItem, copyItem, deleteItem]
             }
         } else { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
-            menuItems = [forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+            menuItems = [forwardItem, copyItem, deleteItem]
         }
         
         return ContextMenuProvider(menu: menuItems)
@@ -260,21 +260,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         )
     }()
 
-    private lazy var infoItem: ContextMenuProvider.ContextMenuItem = {
-        return ContextMenuProvider.ContextMenuItem(
-            title: String.localized("info"),
-            imageName: "info",
-            action: #selector(BaseMessageCell.messageInfo),
-            onPerform: { [weak self] indexPath in
-                guard let self else { return }
-                let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
-                let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
-                if let ctrl = self.navigationController {
-                    ctrl.pushViewController(msgViewController, animated: true)
-                }
-            }
-        )
-    }()
+    private func info(at indexPath: IndexPath) {
+        let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
+        let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
+        if let ctrl = self.navigationController {
+            ctrl.pushViewController(msgViewController, animated: true)
+        }
+    }
 
     private lazy var deleteItem: ContextMenuProvider.ContextMenuItem = {
         return ContextMenuProvider.ContextMenuItem(
@@ -333,33 +325,20 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         )
     }()
 
-    private lazy var selectMoreItem: ContextMenuProvider.ContextMenuItem = {
-        return ContextMenuProvider.ContextMenuItem(
-            title: String.localized("select_more"),
-            imageName: "checkmark.circle",
-            action: #selector(BaseMessageCell.messageSelectMore),
-            onPerform: { indexPath in
-                self.messageInputBar.inputTextView.resignFirstResponder()
-                self.resignFirstResponder()
-                DispatchQueue.main.async { [weak self] in
-                    guard let self else { return }
+    private func selectMore(at indexPath: IndexPath) {
+        messageInputBar.inputTextView.resignFirstResponder()
+        resignFirstResponder()
 
-                    let messageId = self.messageIds[indexPath.row]
-                    self.setEditing(isEditing: true, selectedAtIndexPath: indexPath)
-                    if UIAccessibility.isVoiceOverRunning {
-                        self.forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
-                    }
-                }
-            }
-        )
-    }()
+        setEditing(isEditing: true, selectedAtIndexPath: indexPath)
+        if UIAccessibility.isVoiceOverRunning {
+            forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
+        }
+    }
 
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
     private lazy var audioController = AudioController(dcContext: dcContext, chatId: chatId, delegate: self)
 
-    private lazy var keyboardManager: KeyboardManager? = {
-        return KeyboardManager()
-    }()
+    private var keyboardManager: KeyboardManager? = KeyboardManager()
 
     private var highlightedMsg: Int?
 
@@ -1883,19 +1862,22 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             return
         }
 
-        if isHidden {
-            UIMenuController.shared.menuItems = nil
-        } else {
-            UIMenuController.shared.menuItems = contextMenu(for: indexPath).menuItems
-        }
-        UIMenuController.shared.update()
+        // TODO: Reenable
+//        if isHidden {
+//            UIMenuController.shared.menuItems = nil
+//        } else {
+//            UIMenuController.shared.menuItems = contextMenu(for: indexPath).menuItems
+//        }
+//        UIMenuController.shared.update()
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        let messageId = messageIds[indexPath.row]
-        let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
-        prepareContextMenu(isHidden: isHidden, indexPath: indexPath)
-        return !isHidden
+        // TODO: Reenable
+        return false
+//        let messageId = messageIds[indexPath.row]
+//        let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
+//        prepareContextMenu(isHidden: isHidden, indexPath: indexPath)
+//        return !isHidden
     }
 
     @objc(tableView:canHandleDropSession:)
@@ -1914,12 +1896,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return !tableView.isEditing && contextMenu(for: indexPath).canPerformAction(action: action)
+        return false
+//        return !tableView.isEditing && contextMenu(for: indexPath).canPerformAction(action: action)
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
         // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
-        contextMenu(for: indexPath).performAction(action: action, indexPath: indexPath)
+        // TODO: Reenable
+
+//        contextMenu(for: indexPath).performAction(action: action, indexPath: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -2004,17 +1989,94 @@ extension ChatViewController {
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
 
-                let menuProvider = self.contextMenu(for: indexPath)
+//                let menuProvider = self.contextMenu(for: indexPath)
+                // has these filters:
+                // if show reactions:
+                    // [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+                // else if dcChat.canSend
+                    // [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+                // else
+                // [replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
 
+                // plus additional filters
+                let children: [UIMenuElement]
                 if self.dcContext.getMessage(id: messageId).isInfo {
-                    return menuProvider.actionProvider(indexPath: indexPath,
-                                                       filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
-                } else if self.isGroupChat && !self.dcContext.getMessage(id: messageId).isFromCurrentSender {
-                    return menuProvider.actionProvider(indexPath: indexPath)
+                    children = [
+                        UIAction(
+                            title: String.localized("info"),
+                            image: UIImage(systemName: "info"),
+                            handler: { [weak self] _ in
+                                guard let self else { return }
+                                DispatchQueue.main.async {
+                                    self.info(at: indexPath)
+                                }
+                            }),
+                        UIAction(
+                            title: String.localized("select_more"),
+                            image: UIImage(systemName: "checkmark.circle"),
+                            handler: { [weak self] _ in
+                                guard let self else { return }
+                                DispatchQueue.main.async {
+                                    self.selectMore(at: indexPath)
+                                }
+                            }
+                        )
+                    ]
+                    // all except reply or reply privately
+                    //                    return menuProvider.actionProvider(indexPath: indexPath,
+                    //                                                       filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
+                } else if self.isGroupChat && (self.dcContext.getMessage(id: messageId).isFromCurrentSender == false) {
+                    // all children that have been part of this
+                    //                    return menuProvider.actionProvider(indexPath: indexPath)
+                    children = [
+                        UIAction(
+                            title: String.localized("info"),
+                            image: UIImage(systemName: "info"),
+                            handler: { [weak self] _ in
+                                guard let self else { return }
+                                DispatchQueue.main.async {
+                                    self.info(at: indexPath)
+                                }
+                            }),
+                        UIAction(
+                            title: String.localized("select_more"),
+                            image: UIImage(systemName: "checkmark.circle"),
+                            handler: { [weak self] _ in
+                                guard let self else { return }
+                                DispatchQueue.main.async {
+                                    self.selectMore(at: indexPath)
+                                }
+                            }
+                        )
+                    ]
                 } else {
-                    return menuProvider.actionProvider(indexPath: indexPath,
-                                                       filters: [ { $0.action != self.replyPrivatelyItem.action } ])
+                    // all children except replyPrivately
+                    //                    return menuProvider.actionProvider(indexPath: indexPath,
+                    //                                                       filters: [ { $0.action != self.replyPrivatelyItem.action } ])
+                    children = [
+                        UIAction(
+                            title: String.localized("info"),
+                            image: UIImage(systemName: "info"),
+                            handler: { [weak self] _ in
+                                guard let self else { return }
+                                DispatchQueue.main.async {
+                                    self.info(at: indexPath)
+                                }
+                            }),
+                        UIAction(
+                            title: String.localized("select_more"),
+                            image: UIImage(systemName: "checkmark.circle"),
+                            handler: { [weak self] _ in
+                                guard let self else { return }
+                                DispatchQueue.main.async {
+                                    self.selectMore(at: indexPath)
+                                }
+                            }
+                        )
+                    ]
                 }
+
+                return UIMenu(children: children)
             }
         )
     }
