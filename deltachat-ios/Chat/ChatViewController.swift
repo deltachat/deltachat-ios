@@ -1772,7 +1772,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         return false
-//        return !tableView.isEditing && contextMenu(for: indexPath).canPerformAction(action: action)
+//        return (tableView.isEditing == false) && contextMenu(for: indexPath).canPerformAction(action: action)
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
@@ -1898,7 +1898,7 @@ extension ChatViewController {
                 present(navigationController, animated: true)
             }
         )
-        
+
         let menu = UIMenu(
             title: String.localized("react"),
             image: UIImage(systemName: "face.smiling"),
@@ -1934,86 +1934,54 @@ extension ChatViewController {
             actionProvider: { [weak self] _ in
                 guard let self else { return UIMenu() }
 
-//                let menuProvider = self.contextMenu(for: indexPath)
-                // has these filters:
-                // if show reactions:
-                    // [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
-                // else if dcChat.canSend
-                    // [replyItem, replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
-                // else
-                // [replyPrivatelyItem, forwardItem, infoItem, copyItem, deleteItem, selectMoreItem]
+                let message = dcContext.getMessage(id: messageId)
 
-                // plus additional filters
-                let children: [UIMenuElement]
-                //                if self.dcContext.getMessage(id: messageId).isInfo {
-                children = [
-                    reactionsMenu(indexPath: indexPath),
-                    UIMenu(options: [.displayInline], children: [
+                var children: [UIMenuElement] = []
+
+                let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION && dcChat.canSend
+                if showReaction {
+                    children.append(reactionsMenu(indexPath: indexPath))
+                }
+
+                let replyMenuChildren: [UIMenuElement]
+                let messageIsFromMe = message.isFromCurrentSender
+
+                if message.isInfo {
+                    replyMenuChildren = []
+                } else if dcChat.canSend && self.isGroupChat && messageIsFromMe == false {
+                    replyMenuChildren = [
                         menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
                         menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
-                        menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward", indexPath: indexPath, action: { self.forward(at: $0 ) })
-                    ]),
+                    ]
+                } else if self.isGroupChat && messageIsFromMe == false {
+                    replyMenuChildren = [
+                        menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
+                    ]
+                } else if dcChat.canSend {
+                    replyMenuChildren = [
+                        menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
+                    ]
+                } else {
+                    replyMenuChildren = []
+                }
+
+                if replyMenuChildren.isEmpty == false {
+                    children.append(
+                        UIMenu(options: [.displayInline], children: replyMenuChildren)
+                    )
+                }
+
+                // these are always there
+                children.append(contentsOf: [
+                    menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward", indexPath: indexPath, action: { self.forward(at: $0 ) }),
                     menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: { self.info(at: $0 ) }),
                     menuAction(localizationKey: "global_menu_edit_copy_desktop", systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copy(at: $0 ) }),
                     menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.delete(at: $0 ) }),
 
                     UIMenu(options: [.displayInline], children: [
                         menuAction(localizationKey: "select_more", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
-                    ]),
-                ]
-                    // all except reply or reply privately
-                    //                    return menuProvider.actionProvider(indexPath: indexPath,
-                    //                                                       filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
-//                } else if self.isGroupChat && (self.dcContext.getMessage(id: messageId).isFromCurrentSender == false) {
-                    // all children that have been part of this
-                    //                    return menuProvider.actionProvider(indexPath: indexPath)
-//                    children = [
-//                        UIAction(
-//                            title: String.localized("info"),
-//                            image: UIImage(systemName: "info"),
-//                            handler: { [weak self] _ in
-//                                guard let self else { return }
-//                                DispatchQueue.main.async {
-//                                    self.info(at: indexPath)
-//                                }
-//                            }),
-//                        UIAction(
-//                            title: String.localized("select_more"),
-//                            image: UIImage(systemName: "checkmark.circle"),
-//                            handler: { [weak self] _ in
-//                                guard let self else { return }
-//                                DispatchQueue.main.async {
-//                                    self.selectMore(at: indexPath)
-//                                }
-//                            }
-//                        )
-//                    ]
-//                } else {
-                    // all children except replyPrivately
-                    //                    return menuProvider.actionProvider(indexPath: indexPath,
-                    //                                                       filters: [ { $0.action != self.replyPrivatelyItem.action } ])
-//                    children = [
-//                        UIAction(
-//                            title: String.localized("info"),
-//                            image: UIImage(systemName: "info"),
-//                            handler: { [weak self] _ in
-//                                guard let self else { return }
-//                                DispatchQueue.main.async {
-//                                    self.info(at: indexPath)
-//                                }
-//                            }),
-//                        UIAction(
-//                            title: String.localized("select_more"),
-//                            image: UIImage(systemName: "checkmark.circle"),
-//                            handler: { [weak self] _ in
-//                                guard let self else { return }
-//                                DispatchQueue.main.async {
-//                                    self.selectMore(at: indexPath)
-//                                }
-//                            }
-//                        )
-//                    ]
-//                }
+                    ])
+                ])
 
                 return UIMenu(children: children)
             }
