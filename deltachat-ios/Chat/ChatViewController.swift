@@ -224,41 +224,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return reactionsItem
     }
 
-    private func contextMenu(for indexPath: IndexPath) -> ContextMenuProvider {
-
-        let menuItems: [ContextMenuProvider.ContextMenuItem]
-
-        if #available(iOS 13.0, *) {
-            let messageId = messageIds[indexPath.row]
-            let message = dcContext.getMessage(id: messageId)
-            let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION  && dcChat.canSend
-
-            if showReaction {
-                menuItems = [reactionsMenu(indexPath: indexPath), replyItem, replyPrivatelyItem, forwardItem, copyItem, deleteItem]
-            } else if dcChat.canSend {
-                menuItems = [replyItem, replyPrivatelyItem, forwardItem, copyItem, deleteItem]
-            } else {
-                menuItems = [replyPrivatelyItem, forwardItem, copyItem, deleteItem]
-            }
-        } else { // skips some options on iOS <13 because of limited horizontal space (reply is still available by swiping)
-            menuItems = [forwardItem, copyItem, deleteItem]
-        }
-        
-        return ContextMenuProvider(menu: menuItems)
+    private func copy(at indexPath: IndexPath) {
+        let id = self.messageIds[indexPath.row]
+        self.copyToClipboard(ids: [id])
     }
-
-    private lazy var copyItem: ContextMenuProvider.ContextMenuItem = {
-        return ContextMenuProvider.ContextMenuItem(
-            title: String.localized("global_menu_edit_copy_desktop"),
-            imageName: "doc.on.doc",
-            action: #selector(BaseMessageCell.messageCopy),
-            onPerform: { [weak self] indexPath in
-                guard let self else { return }
-                let id = self.messageIds[indexPath.row]
-                self.copyToClipboard(ids: [id])
-            }
-        )
-    }()
 
     private func info(at indexPath: IndexPath) {
         let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
@@ -268,62 +237,22 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private lazy var deleteItem: ContextMenuProvider.ContextMenuItem = {
-        return ContextMenuProvider.ContextMenuItem(
-            title: String.localized("delete"),
-            imageName: "trash",
-            isDestructive: true,
-            action: #selector(BaseMessageCell.messageDelete),
-            onPerform: { [weak self] indexPath in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self else { return }
-                    self.becomeFirstResponder()
-                    let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
-                    self.askToDeleteMessage(id: msg.id)
-                }
-            }
-        )
-    }()
+    private func delete(at indexPath: IndexPath) {
+        becomeFirstResponder()
+        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
+        askToDeleteMessage(id: msg.id)
+    }
 
-    private lazy var forwardItem: ContextMenuProvider.ContextMenuItem = {
-        return ContextMenuProvider.ContextMenuItem(
-            title: String.localized("forward"),
-            imageName: "ic_forward_white_36pt",
-            action: #selector(BaseMessageCell.messageForward),
-            onPerform: { [weak self] indexPath in
-                guard let self else { return }
-                let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
-                RelayHelper.shared.setForwardMessage(messageId: msg.id)
-                self.navigationController?.popViewController(animated: true)
-            }
-        )
-    }()
+    private func forward(at indexPath: IndexPath) {
+        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
+        RelayHelper.shared.setForwardMessage(messageId: msg.id)
+        navigationController?.popViewController(animated: true)
+    }
 
-    private lazy var replyItem: ContextMenuProvider.ContextMenuItem = {
-        return ContextMenuProvider.ContextMenuItem(
-            title: String.localized("notify_reply_button"),
-            imageName: "arrowshape.turn.up.left.fill",
-            action: #selector(BaseMessageCell.messageReply),
-            onPerform: { [weak self] indexPath in
-                self?.keepKeyboard = true
-                DispatchQueue.main.async { [weak self] in
-                    self?.replyToMessage(at: indexPath)
-                }
-            }
-        )
-    }()
-
-    private lazy var replyPrivatelyItem: ContextMenuProvider.ContextMenuItem = {
-        return ContextMenuProvider.ContextMenuItem(
-            title: String.localized("reply_privately"),
-            imageName: "arrowshape.turn.up.left",
-            action: #selector(BaseMessageCell.messageReplyPrivately),
-            onPerform: { [weak self] indexPath in
-                guard let self else { return }
-                self.replyPrivatelyToMessage(at: indexPath)
-            }
-        )
-    }()
+    private func reply(at indexPath: IndexPath) {
+        keepKeyboard = true
+        replyToMessage(at: indexPath)
+    }
 
     private func selectMore(at indexPath: IndexPath) {
         messageInputBar.inputTextView.resignFirstResponder()
@@ -1987,7 +1916,7 @@ extension ChatViewController {
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
             actionProvider: { [weak self] _ in
-                guard let self else { return nil }
+                guard let self else { return UIMenu() }
 
 //                let menuProvider = self.contextMenu(for: indexPath)
                 // has these filters:
@@ -2000,81 +1929,136 @@ extension ChatViewController {
 
                 // plus additional filters
                 let children: [UIMenuElement]
-                if self.dcContext.getMessage(id: messageId).isInfo {
-                    children = [
+                //                if self.dcContext.getMessage(id: messageId).isInfo {
+                children = [
+                    UIMenu(options: [.displayInline], children: [
                         UIAction(
-                            title: String.localized("info"),
-                            image: UIImage(systemName: "info"),
+                            title: String.localized("notify_reply_button"),
+                            image: UIImage(systemName: "arrowshape.turn.up.left.fill"),
                             handler: { [weak self] _ in
                                 guard let self else { return }
                                 DispatchQueue.main.async {
-                                    self.info(at: indexPath)
+                                    self.reply(at: indexPath)
                                 }
-                            }),
+                            }
+                        ),
                         UIAction(
-                            title: String.localized("select_more"),
-                            image: UIImage(systemName: "checkmark.circle"),
+                            title: String.localized("reply_privately"),
+                            image: UIImage(systemName: "arrowshape.turn.up.left"),
                             handler: { [weak self] _ in
                                 guard let self else { return }
                                 DispatchQueue.main.async {
-                                    self.selectMore(at: indexPath)
+                                    self.replyPrivatelyToMessage(at: indexPath)
+                                }
+                            }
+                        ),
+                        UIAction(
+                            title: String.localized("forward"),
+                            image: UIImage(systemName: "arrowshape.forward"),
+                            handler: { [weak self] _ in
+                                guard let self else { return }
+                                DispatchQueue.main.async {
+                                    self.forward(at: indexPath)
                                 }
                             }
                         )
-                    ]
+                    ]),
+                    UIAction(
+                        title: String.localized("info"),
+                        image: UIImage(systemName: "info"),
+                        handler: { [weak self] _ in
+                            guard let self else { return }
+                            DispatchQueue.main.async {
+                                self.info(at: indexPath)
+                            }
+                        }),
+                    UIAction(
+                        title: String.localized("global_menu_edit_copy_desktop"),
+                        image: UIImage(systemName: "doc.on.doc"),
+                        handler: { [weak self] _ in
+                            guard let self else { return }
+
+                            DispatchQueue.main.async {
+                                self.copy(at: indexPath)
+                            }
+                        }
+                    ),
+                    UIAction(
+                        title: String.localized("delete"),
+                        image: UIImage(systemName: "trash"),
+                        attributes: [.destructive],
+                        handler: { [weak self] _ in
+                            guard let self else { return }
+
+                            DispatchQueue.main.async {
+                                self.delete(at: indexPath)
+                            }
+                        }
+                    ),
+                    UIAction(
+                        title: String.localized("select_more"),
+                        image: UIImage(systemName: "checkmark.circle"),
+                        handler: { [weak self] _ in
+                            guard let self else { return }
+                            DispatchQueue.main.async {
+                                self.selectMore(at: indexPath)
+                            }
+                        }
+                    )
+                ]
                     // all except reply or reply privately
                     //                    return menuProvider.actionProvider(indexPath: indexPath,
                     //                                                       filters: [ { $0.action != self.replyItem.action && $0.action != self.replyPrivatelyItem.action } ])
-                } else if self.isGroupChat && (self.dcContext.getMessage(id: messageId).isFromCurrentSender == false) {
+//                } else if self.isGroupChat && (self.dcContext.getMessage(id: messageId).isFromCurrentSender == false) {
                     // all children that have been part of this
                     //                    return menuProvider.actionProvider(indexPath: indexPath)
-                    children = [
-                        UIAction(
-                            title: String.localized("info"),
-                            image: UIImage(systemName: "info"),
-                            handler: { [weak self] _ in
-                                guard let self else { return }
-                                DispatchQueue.main.async {
-                                    self.info(at: indexPath)
-                                }
-                            }),
-                        UIAction(
-                            title: String.localized("select_more"),
-                            image: UIImage(systemName: "checkmark.circle"),
-                            handler: { [weak self] _ in
-                                guard let self else { return }
-                                DispatchQueue.main.async {
-                                    self.selectMore(at: indexPath)
-                                }
-                            }
-                        )
-                    ]
-                } else {
+//                    children = [
+//                        UIAction(
+//                            title: String.localized("info"),
+//                            image: UIImage(systemName: "info"),
+//                            handler: { [weak self] _ in
+//                                guard let self else { return }
+//                                DispatchQueue.main.async {
+//                                    self.info(at: indexPath)
+//                                }
+//                            }),
+//                        UIAction(
+//                            title: String.localized("select_more"),
+//                            image: UIImage(systemName: "checkmark.circle"),
+//                            handler: { [weak self] _ in
+//                                guard let self else { return }
+//                                DispatchQueue.main.async {
+//                                    self.selectMore(at: indexPath)
+//                                }
+//                            }
+//                        )
+//                    ]
+//                } else {
                     // all children except replyPrivately
                     //                    return menuProvider.actionProvider(indexPath: indexPath,
                     //                                                       filters: [ { $0.action != self.replyPrivatelyItem.action } ])
-                    children = [
-                        UIAction(
-                            title: String.localized("info"),
-                            image: UIImage(systemName: "info"),
-                            handler: { [weak self] _ in
-                                guard let self else { return }
-                                DispatchQueue.main.async {
-                                    self.info(at: indexPath)
-                                }
-                            }),
-                        UIAction(
-                            title: String.localized("select_more"),
-                            image: UIImage(systemName: "checkmark.circle"),
-                            handler: { [weak self] _ in
-                                guard let self else { return }
-                                DispatchQueue.main.async {
-                                    self.selectMore(at: indexPath)
-                                }
-                            }
-                        )
-                    ]
-                }
+//                    children = [
+//                        UIAction(
+//                            title: String.localized("info"),
+//                            image: UIImage(systemName: "info"),
+//                            handler: { [weak self] _ in
+//                                guard let self else { return }
+//                                DispatchQueue.main.async {
+//                                    self.info(at: indexPath)
+//                                }
+//                            }),
+//                        UIAction(
+//                            title: String.localized("select_more"),
+//                            image: UIImage(systemName: "checkmark.circle"),
+//                            handler: { [weak self] _ in
+//                                guard let self else { return }
+//                                DispatchQueue.main.async {
+//                                    self.selectMore(at: indexPath)
+//                                }
+//                            }
+//                        )
+//                    ]
+//                }
 
                 return UIMenu(children: children)
             }
