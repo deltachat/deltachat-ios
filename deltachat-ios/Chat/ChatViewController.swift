@@ -1912,6 +1912,20 @@ extension ChatViewController {
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
+
+        func menuAction(localizationKey: String, attributes: UIAction.Attributes = [], systemImageName: String, indexPath: IndexPath, action: @escaping (IndexPath) -> Void) -> UIAction {
+            UIAction(
+                title: String.localized(localizationKey),
+                image: UIImage(systemName: systemImageName),
+                attributes: attributes,
+                handler: { _ in
+                    DispatchQueue.main.async {
+                        action(indexPath)
+                    }
+                }
+            )
+        }
+
         return UIContextMenuConfiguration(
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
@@ -1932,79 +1946,17 @@ extension ChatViewController {
                 //                if self.dcContext.getMessage(id: messageId).isInfo {
                 children = [
                     UIMenu(options: [.displayInline], children: [
-                        UIAction(
-                            title: String.localized("notify_reply_button"),
-                            image: UIImage(systemName: "arrowshape.turn.up.left.fill"),
-                            handler: { [weak self] _ in
-                                guard let self else { return }
-                                DispatchQueue.main.async {
-                                    self.reply(at: indexPath)
-                                }
-                            }
-                        ),
-                        UIAction(
-                            title: String.localized("reply_privately"),
-                            image: UIImage(systemName: "arrowshape.turn.up.left"),
-                            handler: { [weak self] _ in
-                                guard let self else { return }
-                                DispatchQueue.main.async {
-                                    self.replyPrivatelyToMessage(at: indexPath)
-                                }
-                            }
-                        ),
-                        UIAction(
-                            title: String.localized("forward"),
-                            image: UIImage(systemName: "arrowshape.forward"),
-                            handler: { [weak self] _ in
-                                guard let self else { return }
-                                DispatchQueue.main.async {
-                                    self.forward(at: indexPath)
-                                }
-                            }
-                        )
+                        menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
+                        menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
+                        menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward", indexPath: indexPath, action: { self.forward(at: $0 ) })
                     ]),
-                    UIAction(
-                        title: String.localized("info"),
-                        image: UIImage(systemName: "info"),
-                        handler: { [weak self] _ in
-                            guard let self else { return }
-                            DispatchQueue.main.async {
-                                self.info(at: indexPath)
-                            }
-                        }),
-                    UIAction(
-                        title: String.localized("global_menu_edit_copy_desktop"),
-                        image: UIImage(systemName: "doc.on.doc"),
-                        handler: { [weak self] _ in
-                            guard let self else { return }
+                    menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: { self.info(at: $0 ) }),
+                    menuAction(localizationKey: "global_menu_edit_copy_desktop", systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copy(at: $0 ) }),
+                    menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.delete(at: $0 ) }),
 
-                            DispatchQueue.main.async {
-                                self.copy(at: indexPath)
-                            }
-                        }
-                    ),
-                    UIAction(
-                        title: String.localized("delete"),
-                        image: UIImage(systemName: "trash"),
-                        attributes: [.destructive],
-                        handler: { [weak self] _ in
-                            guard let self else { return }
-
-                            DispatchQueue.main.async {
-                                self.delete(at: indexPath)
-                            }
-                        }
-                    ),
-                    UIAction(
-                        title: String.localized("select_more"),
-                        image: UIImage(systemName: "checkmark.circle"),
-                        handler: { [weak self] _ in
-                            guard let self else { return }
-                            DispatchQueue.main.async {
-                                self.selectMore(at: indexPath)
-                            }
-                        }
-                    )
+                    UIMenu(options: [.displayInline], children: [
+                        menuAction(localizationKey: "select_more", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
+                    ]),
                 ]
                     // all except reply or reply privately
                     //                    return menuProvider.actionProvider(indexPath: indexPath,
