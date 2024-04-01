@@ -166,64 +166,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return shouldBecomeFirstResponder
     }
 
-    private func getMyReactions(messageId: Int) -> [String] {
-        return dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } .map { $0.emoji } ?? []
-    }
-
-    private func reactionsMenu(indexPath: IndexPath) -> ContextMenuProvider.ContextMenuItem {
-
-        let messageId = messageIds[indexPath.row]
-        let myReactions = getMyReactions(messageId: messageId)
-
-        var reactionsMenuItems = DefaultReactions.allCases.map { reaction in
-            let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
-            let checkmarkImageName: String?
-            if sentThisReaction {
-                checkmarkImageName = "checkmark"
-            } else {
-                checkmarkImageName = nil
-            }
-
-            return ContextMenuProvider.ContextMenuItem(title: reaction.emoji, imageName: checkmarkImageName) { [weak self] indexPath in
-                guard let self else { return }
-
-                let messageId = self.messageIds[indexPath.row]
-                if sentThisReaction {
-                    dcContext.sendReaction(messageId: messageId, reaction: nil)
-                } else {
-                    dcContext.sendReaction(messageId: messageId, reaction: reaction.emoji)
-                }
-            }
-        }
-
-        reactionsMenuItems.append(ContextMenuProvider.ContextMenuItem(title: "•••", imageName: nil) { [weak self] indexPath in
-            guard let self else { return }
-            reactionMessageId = self.messageIds[indexPath.row]
-
-            let pickerViewController = MCEmojiPickerViewController()
-            pickerViewController.navigationItem.title = String.localized("react")
-            pickerViewController.delegate = self
-
-            let navigationController = UINavigationController(rootViewController: pickerViewController)
-            if #available(iOS 15.0, *) {
-                if let sheet = navigationController.sheetPresentationController {
-                    sheet.detents = [.medium(), .large()]
-                    sheet.preferredCornerRadius = 20
-                }
-            }
-            present(navigationController, animated: true)
-        })
-
-        let reactionsItem = ContextMenuProvider.ContextMenuItem(
-            title: String.localized("react"),
-            imageName: "face.smiling",
-            children: reactionsMenuItems,
-            onPerform: nil
-        )
-
-        return reactionsItem
-    }
-
     private func copy(at indexPath: IndexPath) {
         let id = self.messageIds[indexPath.row]
         self.copyToClipboard(ids: [id])
@@ -262,6 +204,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if UIAccessibility.isVoiceOverRunning {
             forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
         }
+    }
+
+    private func getMyReactions(messageId: Int) -> [String] {
+        return dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } .map { $0.emoji } ?? []
     }
 
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and update audio cell UI accordingly.
@@ -1906,6 +1852,62 @@ extension ChatViewController {
 
         return preview
     }
+
+    private func reactionsMenu(indexPath: IndexPath) -> UIMenu {
+
+        let messageId = messageIds[indexPath.row]
+        let myReactions = getMyReactions(messageId: messageId)
+
+        var reactionsMenuItems = DefaultReactions.allCases.map { reaction in
+            let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
+            let selectedImage: UIImage?
+            if sentThisReaction {
+                selectedImage = UIImage(systemName: "checkmark")
+            } else {
+                selectedImage = nil
+            }
+
+            return UIAction(title: reaction.emoji, image: selectedImage) { [weak self] _ in
+                guard let self else { return }
+
+                let messageId = self.messageIds[indexPath.row]
+                if sentThisReaction {
+                    dcContext.sendReaction(messageId: messageId, reaction: nil)
+                } else {
+                    dcContext.sendReaction(messageId: messageId, reaction: reaction.emoji)
+                }
+            }
+        }
+
+        reactionsMenuItems.append(
+            UIAction(title: "•••") { [weak self] _ in
+                guard let self else { return }
+                reactionMessageId = self.messageIds[indexPath.row]
+
+                let pickerViewController = MCEmojiPickerViewController()
+                pickerViewController.navigationItem.title = String.localized("react")
+                pickerViewController.delegate = self
+
+                let navigationController = UINavigationController(rootViewController: pickerViewController)
+                if #available(iOS 15.0, *) {
+                    if let sheet = navigationController.sheetPresentationController {
+                        sheet.detents = [.medium(), .large()]
+                        sheet.preferredCornerRadius = 20
+                    }
+                }
+                present(navigationController, animated: true)
+            }
+        )
+        
+        let menu = UIMenu(
+            title: String.localized("react"),
+            image: UIImage(systemName: "face.smiling"),
+            options: [],
+            children: reactionsMenuItems
+        )
+        return menu
+    }
+
     // context menu for iOS 13+
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
@@ -1945,6 +1947,7 @@ extension ChatViewController {
                 let children: [UIMenuElement]
                 //                if self.dcContext.getMessage(id: messageId).isInfo {
                 children = [
+                    reactionsMenu(indexPath: indexPath),
                     UIMenu(options: [.displayInline], children: [
                         menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
                         menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
