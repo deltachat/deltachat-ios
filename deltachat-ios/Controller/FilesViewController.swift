@@ -208,7 +208,6 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     private func prepareContextMenu(indexPath: IndexPath) {
-//
         if #available(iOS 13.0, *) {
             return
         }
@@ -240,7 +239,6 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
             previewProvider: nil,
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
-                // delete, show in chat, share
                 let menu = UIMenu(children: [
                     UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0) }),
                     UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareAttachment(of: $0) }),

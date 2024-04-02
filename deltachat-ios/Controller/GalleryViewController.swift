@@ -314,8 +314,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
                 return contextMenuController
             },
             actionProvider: { [weak self] _ in
-                // showInChatItem, deleteItem
-                guard let self else { return UIMenu() }
+                guard let self else { return nil }
 
                 let menu = UIMenu(children: [
                     UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.askToDeleteItem(at: $0 ) }),
