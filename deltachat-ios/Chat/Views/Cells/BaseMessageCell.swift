@@ -588,53 +588,6 @@ public class BaseMessageCell: UITableViewCell {
         reactionsView.prepareForReuse()
     }
 
-    // MARK: - Context menu
-    @available(*, deprecated)
-    @objc func messageInfo(_ sender: Any?) {
-        self.performAction(#selector(BaseMessageCell.messageInfo(_:)), with: sender)
-    }
-
-    @available(*, deprecated)
-    @objc func messageDelete(_ sender: Any?) {
-        self.performAction(#selector(BaseMessageCell.messageDelete(_:)), with: sender)
-    }
-
-    @available(*, deprecated)
-    @objc func messageForward(_ sender: Any?) {
-        self.performAction(#selector(BaseMessageCell.messageForward(_:)), with: sender)
-    }
-
-    @available(*, deprecated)
-    @objc func messageReply(_ sender: Any?) {
-        self.performAction(#selector(BaseMessageCell.messageReply(_:)), with: sender)
-    }
-
-    @available(*, deprecated)
-    @objc func messageReplyPrivately(_ sender: Any?) {
-        self.performAction(#selector(BaseMessageCell.messageReplyPrivately(_:)), with: sender)
-    }
-
-    @available(*, deprecated)
-    @objc func messageCopy(_ sender: Any?) {
-        self.performAction(#selector(BaseMessageCell.messageCopy(_:)), with: sender)
-    }
-
-    @available(*, deprecated)
-    @objc func messageSelectMore(_ sender: Any?) {
-        self.performAction(#selector(BaseMessageCell.messageSelectMore(_:)), with: sender)
-    }
-
-    @available(*, deprecated)
-    func performAction(_ action: Selector, with sender: Any?) {
-        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
-            // Trigger action in tableView delegate (UITableViewController)
-            tableView.delegate?.tableView?(tableView,
-                                           performAction: action,
-                                           forRowAt: indexPath,
-                                           withSender: sender)
-        }
-    }
-
     @objc func reactionsViewTapped(_ sender: Any?) {
         guard let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) else { return }
 
