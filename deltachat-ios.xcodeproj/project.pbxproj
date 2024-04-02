@@ -211,6 +211,7 @@
 		B2D4B63B29C38D1900B47DA8 /* ChatsAndMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */; };
 		B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F899E029F96A67003797D5 /* AllMediaViewController.swift */; };
 		D80F62792B59D1CC00877059 /* DefaultReactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80F62782B59D1CC00877059 /* DefaultReactions.swift */; };
+		D84738D22BBC1C2C00ECD52B /* LegacyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84738D12BBC1C2C00ECD52B /* LegacyMenuItem.swift */; };
 		D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */; };
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
 		D8975E412B7285ED00E5EB9F /* ContextMenuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8975E402B7285ED00E5EB9F /* ContextMenuProvider.swift */; };
@@ -586,6 +587,7 @@
 		B9CDCE77DAE9389E205F094C /* Pods-DcShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.release.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.release.xcconfig"; sourceTree = "<group>"; };
 		D30610767F4AF8040B739987 /* Pods-deltachat-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deltachat-ios.debug.xcconfig"; path = "Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		D80F62782B59D1CC00877059 /* DefaultReactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultReactions.swift; sourceTree = "<group>"; };
+		D84738D12BBC1C2C00ECD52B /* LegacyMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMenuItem.swift; sourceTree = "<group>"; };
 		D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewViewController.swift; sourceTree = "<group>"; };
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
 		D8975E402B7285ED00E5EB9F /* ContextMenuProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuProvider.swift; sourceTree = "<group>"; };
@@ -995,6 +997,7 @@
 		AE851AC2227C695000ED86F0 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D84738D02BBC1C2000ECD52B /* Menu */,
 				30238CFE28A5554C00EF14AC /* FileHelper.swift */,
 				3067AAC52667F3FE00525036 /* ImageFormat.swift */,
 				305702A024C6453700D84EFC /* TypeAlias.swift */,
@@ -1100,6 +1103,14 @@
 				D80F62782B59D1CC00877059 /* DefaultReactions.swift */,
 			);
 			path = "Send Reaction";
+			sourceTree = "<group>";
+		};
+		D84738D02BBC1C2000ECD52B /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D84738D12BBC1C2C00ECD52B /* LegacyMenuItem.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		D84AED252B566BF700D753F6 /* Reactions */ = {
@@ -1553,6 +1564,7 @@
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
 				305702A124C6453700D84EFC /* TypeAlias.swift in Sources */,
 				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,
+				D84738D22BBC1C2C00ECD52B /* LegacyMenuItem.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListViewController.swift in Sources */,
 				30C7D5EC28F47E620078D24C /* InitialsBadge.swift in Sources */,
 				B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */,

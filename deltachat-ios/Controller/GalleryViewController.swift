@@ -268,17 +268,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     // MARK: - Context menu
-
-    class LegacyMenuItem: UIMenuItem {
-        var indexPath: IndexPath?
-
-        convenience init(title: String, action: Selector, indexPath: IndexPath?) {
-            self.init(title: title, action: action)
-
-            self.indexPath = indexPath
-        }
-    }
-
     private func contextMenu(for indexPath: IndexPath) -> [LegacyMenuItem] {
         return [
             LegacyMenuItem(title: String.localized("delete"), action: #selector(GalleryViewController.askToDeleteItem(_:)), indexPath: indexPath),
