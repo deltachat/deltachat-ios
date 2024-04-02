@@ -1768,6 +1768,21 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
+    @objc private func react(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        reactionMessageId = self.messageIds[indexPath.row]
+
+        let pickerViewController = MCEmojiPickerViewController()
+        pickerViewController.navigationItem.title = String.localized("react")
+        pickerViewController.delegate = self
+
+        let navigationController = UINavigationController(rootViewController: pickerViewController)
+        present(navigationController, animated: true)
+
+    }
+
     // MARK: - UIMenuItems (< iOS 15)
     class LegacyMenuItem: UIMenuItem {
         var indexPath: IndexPath?
@@ -1784,13 +1799,21 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let message = dcContext.getMessage(id: messageId)
 
         // TODO: Menu contains the same entries as from below
-        let menu = [
+
+        var menu: [LegacyMenuItem] = []
+
+        let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION && dcChat.canSend
+        if showReaction {
+            menu.append(LegacyMenuItem(title: String.localized("react"), action: #selector(ChatViewController.react(_:)), indexPath: indexPath))
+        }
+
+        menu.append(contentsOf: [
             LegacyMenuItem(title: String.localized("forward"), action: #selector(ChatViewController.forward(_:)), indexPath: indexPath),
             LegacyMenuItem(title: String.localized("info"), action: #selector(ChatViewController.info(_:)), indexPath: indexPath),
             LegacyMenuItem(title: String.localized("global_menu_edit_copy_desktop"), action: #selector(ChatViewController.copyMessage(_:)), indexPath: indexPath),
             LegacyMenuItem(title: String.localized("delete"), action: #selector(ChatViewController.deleteMessage(_:)), indexPath: indexPath),
             LegacyMenuItem(title: String.localized("select_more"), action: #selector(ChatViewController.selectMore(_:)), indexPath: indexPath)
-        ]
+        ])
 
         return menu
     }
@@ -1824,9 +1847,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
         // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
-        // TODO: Reenable
-
-//        contextMenu(for: indexPath).performAction(action: action, indexPath: indexPath)
+        // Does intentionally nothing.
     }
 
 
