@@ -2028,19 +2028,6 @@ extension ChatViewController {
             return nil
         }
 
-        func menuAction(localizationKey: String, attributes: UIAction.Attributes = [], systemImageName: String, indexPath: IndexPath, action: @escaping (IndexPath) -> Void) -> UIAction {
-            UIAction(
-                title: String.localized(localizationKey),
-                image: UIImage(systemName: systemImageName),
-                attributes: attributes,
-                handler: { _ in
-                    DispatchQueue.main.async {
-                        action(indexPath)
-                    }
-                }
-            )
-        }
-
         return UIContextMenuConfiguration(
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
@@ -2063,16 +2050,16 @@ extension ChatViewController {
                     replyMenuChildren = []
                 } else if dcChat.canSend && self.isGroupChat && messageIsFromMe == false {
                     replyMenuChildren = [
-                        menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
-                        menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
+                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
+                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
                     ]
                 } else if self.isGroupChat && messageIsFromMe == false {
                     replyMenuChildren = [
-                        menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
+                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
                     ]
                 } else if dcChat.canSend {
                     replyMenuChildren = [
-                        menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
+                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
                     ]
                 } else {
                     replyMenuChildren = []
@@ -2086,13 +2073,13 @@ extension ChatViewController {
 
                 // these are always there
                 children.append(contentsOf: [
-                    menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward", indexPath: indexPath, action: { self.forward(at: $0 ) }),
-                    menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: { self.info(at: $0 ) }),
-                    menuAction(localizationKey: "global_menu_edit_copy_desktop", systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copyMessage(at: $0 ) }),
-                    menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteMessage(at: $0 ) }),
+                    UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward", indexPath: indexPath, action: { self.forward(at: $0 ) }),
+                    UIAction.menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: { self.info(at: $0 ) }),
+                    UIAction.menuAction(localizationKey: "global_menu_edit_copy_desktop", systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copyMessage(at: $0 ) }),
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteMessage(at: $0 ) }),
 
                     UIMenu(options: [.displayInline], children: [
-                        menuAction(localizationKey: "select_more", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
+                        UIAction.menuAction(localizationKey: "select_more", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
                     ])
                 ])
 

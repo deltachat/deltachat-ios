@@ -307,19 +307,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             return nil
         }
 
-        func menuAction(localizationKey: String, attributes: UIAction.Attributes = [], systemImageName: String, indexPath: IndexPath, action: @escaping (IndexPath) -> Void) -> UIAction {
-            UIAction(
-                title: String.localized(localizationKey),
-                image: UIImage(systemName: systemImageName),
-                attributes: attributes,
-                handler: { _ in
-                    DispatchQueue.main.async {
-                        action(indexPath)
-                    }
-                }
-            )
-        }
-
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: {
@@ -331,8 +318,8 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
                 guard let self else { return UIMenu() }
 
                 let menu = UIMenu(children: [
-                    menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.askToDeleteItem(at: $0 ) }),
-                    menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0 ) })
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.askToDeleteItem(at: $0 ) }),
+                    UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0 ) })
                 ])
                 return menu
             }
