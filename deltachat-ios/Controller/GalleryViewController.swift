@@ -275,7 +275,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         ]
     }
 
-    // context menu for iOS 12
+    // context menu for iOS 13
     private func prepareContextMenu(indexPath: IndexPath) {
 
         if #available(iOS 13.0, *) {
