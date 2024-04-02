@@ -1798,21 +1798,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     // MARK: - UIMenuItems (< iOS 15)
-    class LegacyMenuItem: UIMenuItem {
-        var indexPath: IndexPath?
-
-        convenience init(title: String, action: Selector, indexPath: IndexPath?) {
-            self.init(title: title, action: action)
-
-            self.indexPath = indexPath
-        }
-    }
-
     private func contextMenu(for indexPath: IndexPath) -> [LegacyMenuItem] {
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
-
-        // TODO: Menu contains the same entries as from below
 
         var menu: [LegacyMenuItem] = []
 
