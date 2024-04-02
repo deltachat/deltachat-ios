@@ -48,28 +48,6 @@ class GalleryViewController: UIViewController {
         return label
     }()
 
-    private lazy var contextMenu: ContextMenuProvider = {
-        let deleteItem = ContextMenuProvider.ContextMenuItem(
-            title: String.localized("delete"),
-            imageName: "trash",
-            isDestructive: true,
-            action: #selector(GalleryCell.itemDelete(_:)),
-            onPerform: { [weak self] indexPath in
-                self?.askToDeleteItem(at: indexPath)
-            }
-        )
-        let showInChatItem = ContextMenuProvider.ContextMenuItem(
-            title: String.localized("show_in_chat"),
-            imageName: "doc.text.magnifyingglass",
-            action: #selector(GalleryCell.showInChat(_:)),
-            onPerform: { [weak self] indexPath in
-                self?.redirectToMessage(of: indexPath)
-            }
-        )
-
-        return ContextMenuProvider(menu: [showInChatItem, deleteItem])
-    }()
-
     init(context: DcContext, chatId: Int) {
         self.dcContext = context
         self.chatId = chatId
@@ -98,12 +76,6 @@ class GalleryViewController: UIViewController {
             addObservers()
         }
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupContextMenuIfNeeded()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         if !isOnScreen() {
@@ -131,11 +103,6 @@ class GalleryViewController: UIViewController {
         timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
         emptyStateView.addCenteredTo(parentView: view)
-    }
-
-    private func setupContextMenuIfNeeded() {
-        UIMenuController.shared.menuItems = contextMenu.menuItems
-        UIMenuController.shared.update()
     }
 
     private func addObservers() {
@@ -198,28 +165,6 @@ class GalleryViewController: UIViewController {
             let msg = dcContext.getMessage(id: msgId)
             timeLabel.update(date: msg.sentDate)
         }
-    }
-
-    // MARK: - actions
-    private func askToDeleteItem(at indexPath: IndexPath) {
-        let chat = dcContext.getChat(chatId: chatId)
-        let title = chat.isDeviceTalk ?
-            String.localized(stringID: "ask_delete_messages_simple", parameter: 1) :
-            String.localized(stringID: "ask_delete_messages", parameter: 1)
-        let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-        let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
-            self?.deleteItem(at: indexPath)
-        })
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
-    }
-
-    private func deleteItem(at indexPath: IndexPath) {
-        let msgId = mediaMessageIds.remove(at: indexPath.row)
-        self.dcContext.deleteMessage(msgId: msgId)
-        self.grid.deleteItems(at: [indexPath])
     }
 }
 
@@ -286,29 +231,104 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         timeLabel.hide(animated: true)
     }
 
-    // MARK: - context menu
-    // context menu for iOS 11, 12
+    // MARK: - Actions
+    @objc private func askToDeleteItem(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        askToDeleteItem(at: indexPath)
+    }
+
+    @objc private func redirectToMessage(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        redirectToMessage(of: indexPath)
+    }
+
+    private func askToDeleteItem(at indexPath: IndexPath) {
+        let chat = dcContext.getChat(chatId: chatId)
+        let title = chat.isDeviceTalk ?
+        String.localized(stringID: "ask_delete_messages_simple", parameter: 1) :
+        String.localized(stringID: "ask_delete_messages", parameter: 1)
+        let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
+        let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+            self?.deleteItem(at: indexPath)
+        })
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
+    private func deleteItem(at indexPath: IndexPath) {
+        let msgId = mediaMessageIds.remove(at: indexPath.row)
+        self.dcContext.deleteMessage(msgId: msgId)
+        self.grid.deleteItems(at: [indexPath])
+    }
+
+    // MARK: - Context menu
+
+    class LegacyMenuItem: UIMenuItem {
+        var indexPath: IndexPath?
+
+        convenience init(title: String, action: Selector, indexPath: IndexPath?) {
+            self.init(title: title, action: action)
+
+            self.indexPath = indexPath
+        }
+    }
+
+    private func contextMenu(for indexPath: IndexPath) -> [LegacyMenuItem] {
+        return [
+            LegacyMenuItem(title: String.localized("delete"), action: #selector(GalleryViewController.askToDeleteItem(_:)), indexPath: indexPath),
+            LegacyMenuItem(title: String.localized("show_in_chat"), action: #selector(GalleryViewController.redirectToMessage(_:)), indexPath: indexPath)
+        ]
+    }
+
+    // context menu for iOS 12
+    private func prepareContextMenu(indexPath: IndexPath) {
+
+        if #available(iOS 13.0, *) {
+            return
+        }
+
+        UIMenuController.shared.menuItems = contextMenu(for: indexPath)
+        UIMenuController.shared.update()
+    }
+
     func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+        prepareContextMenu(indexPath: indexPath)
         return true
     }
 
     func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return contextMenu.canPerformAction(action: action)
+        let actionIsPartOfMenu = contextMenu(for: indexPath).compactMap { $0.action }.first { $0 == action } != nil
+        return actionIsPartOfMenu
     }
 
     func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-
-        contextMenu.performAction(action: action, indexPath: indexPath)
+        // Intentionally does nothing.
     }
 
     // context menu for iOS 13+
     @available(iOS 13, *)
-    func collectionView(
-        _ collectionView: UICollectionView,
-        contextMenuConfigurationForItemAt indexPath: IndexPath,
-        point: CGPoint) -> UIContextMenuConfiguration? {
-            guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
             return nil
+        }
+
+        func menuAction(localizationKey: String, attributes: UIAction.Attributes = [], systemImageName: String, indexPath: IndexPath, action: @escaping (IndexPath) -> Void) -> UIAction {
+            UIAction(
+                title: String.localized(localizationKey),
+                image: UIImage(systemName: systemImageName),
+                attributes: attributes,
+                handler: { _ in
+                    DispatchQueue.main.async {
+                        action(indexPath)
+                    }
+                }
+            )
         }
 
         return UIContextMenuConfiguration(
@@ -318,7 +338,14 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
                 return contextMenuController
             },
             actionProvider: { [weak self] _ in
-                self?.contextMenu.actionProvider(indexPath: indexPath)
+                // showInChatItem, deleteItem
+                guard let self else { return UIMenu() }
+
+                let menu = UIMenu(children: [
+                    menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.askToDeleteItem(at: $0 ) }),
+                    menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0 ) })
+                ])
+                return menu
             }
         )
     }
