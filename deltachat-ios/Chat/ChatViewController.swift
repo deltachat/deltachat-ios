@@ -166,46 +166,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return shouldBecomeFirstResponder
     }
 
-    private func copy(at indexPath: IndexPath) {
-        let id = self.messageIds[indexPath.row]
-        self.copyToClipboard(ids: [id])
-    }
-
-    private func info(at indexPath: IndexPath) {
-        let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
-        let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
-        if let ctrl = self.navigationController {
-            ctrl.pushViewController(msgViewController, animated: true)
-        }
-    }
-
-    private func delete(at indexPath: IndexPath) {
-        becomeFirstResponder()
-        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
-        askToDeleteMessage(id: msg.id)
-    }
-
-    private func forward(at indexPath: IndexPath) {
-        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
-        RelayHelper.shared.setForwardMessage(messageId: msg.id)
-        navigationController?.popViewController(animated: true)
-    }
-
-    private func reply(at indexPath: IndexPath) {
-        keepKeyboard = true
-        replyToMessage(at: indexPath)
-    }
-
-    private func selectMore(at indexPath: IndexPath) {
-        messageInputBar.inputTextView.resignFirstResponder()
-        resignFirstResponder()
-
-        setEditing(isEditing: true, selectedAtIndexPath: indexPath)
-        if UIAccessibility.isVoiceOverRunning {
-            forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
-        }
-    }
-
     private func getMyReactions(messageId: Int) -> [String] {
         return dcContext.getMessageReactions(messageId: messageId)?.reactions.filter { $0.isFromSelf } .map { $0.emoji } ?? []
     }
@@ -1731,29 +1691,144 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    // MARK: - Context menu
+    // MARK: - Actions
+
+    @objc private func copyMessage(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        copyMessage(at: indexPath)
+    }
+
+    private func copyMessage(at indexPath: IndexPath) {
+        let id = self.messageIds[indexPath.row]
+        self.copyToClipboard(ids: [id])
+    }
+
+    @objc private func info(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        info(at: indexPath)
+    }
+
+    private func info(at indexPath: IndexPath) {
+        let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
+        let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
+        if let ctrl = self.navigationController {
+            ctrl.pushViewController(msgViewController, animated: true)
+        }
+    }
+
+    @objc private func deleteMessage(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        deleteMessage(at: indexPath)
+    }
+
+    private func deleteMessage(at indexPath: IndexPath) {
+        becomeFirstResponder()
+        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
+        askToDeleteMessage(id: msg.id)
+    }
+
+    @objc private func forward(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        forward(at: indexPath)
+    }
+
+    private func forward(at indexPath: IndexPath) {
+        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
+        RelayHelper.shared.setForwardMessage(messageId: msg.id)
+        navigationController?.popViewController(animated: true)
+    }
+
+    private func reply(at indexPath: IndexPath) {
+        keepKeyboard = true
+        replyToMessage(at: indexPath)
+    }
+
+    @objc private func selectMore(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        selectMore(at: indexPath)
+    }
+
+    private func selectMore(at indexPath: IndexPath) {
+        messageInputBar.inputTextView.resignFirstResponder()
+        resignFirstResponder()
+
+        setEditing(isEditing: true, selectedAtIndexPath: indexPath)
+        if UIAccessibility.isVoiceOverRunning {
+            forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
+        }
+    }
+
+    // MARK: - UIMenuItems (< iOS 15)
+    class LegacyMenuItem: UIMenuItem {
+        var indexPath: IndexPath?
+
+        convenience init(title: String, action: Selector, indexPath: IndexPath?) {
+            self.init(title: title, action: action)
+
+            self.indexPath = indexPath
+        }
+    }
+
+    private func contextMenu(for indexPath: IndexPath) -> [LegacyMenuItem] {
+        let messageId = messageIds[indexPath.row]
+        let message = dcContext.getMessage(id: messageId)
+
+        // TODO: Menu contains the same entries as from below
+        let menu = [
+            LegacyMenuItem(title: String.localized("forward"), action: #selector(ChatViewController.forward(_:)), indexPath: indexPath),
+            LegacyMenuItem(title: String.localized("info"), action: #selector(ChatViewController.info(_:)), indexPath: indexPath),
+            LegacyMenuItem(title: String.localized("global_menu_edit_copy_desktop"), action: #selector(ChatViewController.copyMessage(_:)), indexPath: indexPath),
+            LegacyMenuItem(title: String.localized("delete"), action: #selector(ChatViewController.deleteMessage(_:)), indexPath: indexPath),
+            LegacyMenuItem(title: String.localized("select_more"), action: #selector(ChatViewController.selectMore(_:)), indexPath: indexPath)
+        ]
+
+        return menu
+    }
+
     private func prepareContextMenu(isHidden: Bool, indexPath: IndexPath) {
+
         if #available(iOS 13.0, *) {
             return
         }
 
-        // TODO: Reenable
-//        if isHidden {
-//            UIMenuController.shared.menuItems = nil
-//        } else {
-//            UIMenuController.shared.menuItems = contextMenu(for: indexPath).menuItems
-//        }
-//        UIMenuController.shared.update()
+        if isHidden {
+            UIMenuController.shared.menuItems = nil
+        } else {
+            UIMenuController.shared.menuItems = contextMenu(for: indexPath)
+        }
+        UIMenuController.shared.update()
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        // TODO: Reenable
-        return false
-//        let messageId = messageIds[indexPath.row]
-//        let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
-//        prepareContextMenu(isHidden: isHidden, indexPath: indexPath)
-//        return !isHidden
+        let messageId = messageIds[indexPath.row]
+        let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
+        prepareContextMenu(isHidden: isHidden, indexPath: indexPath)
+        return !isHidden
     }
+
+    override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        let actionIsPartOfMenu = contextMenu(for: indexPath).compactMap { $0.action }.first { $0 == action } != nil
+
+        return (tableView.isEditing == false) && actionIsPartOfMenu
+    }
+
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
+        // TODO: Reenable
+
+//        contextMenu(for: indexPath).performAction(action: action, indexPath: indexPath)
+    }
+
 
     @objc(tableView:canHandleDropSession:)
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
@@ -1770,17 +1845,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return self.dropInteraction.dropInteraction(performDrop: coordinator.session)
     }
 
-    override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-//        return (tableView.isEditing == false) && contextMenu(for: indexPath).canPerformAction(action: action)
-    }
-
-    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
-        // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
-        // TODO: Reenable
-
-//        contextMenu(for: indexPath).performAction(action: action, indexPath: indexPath)
-    }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let id = messageIds[indexPath.row]
@@ -1975,8 +2039,8 @@ extension ChatViewController {
                 children.append(contentsOf: [
                     menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward", indexPath: indexPath, action: { self.forward(at: $0 ) }),
                     menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: { self.info(at: $0 ) }),
-                    menuAction(localizationKey: "global_menu_edit_copy_desktop", systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copy(at: $0 ) }),
-                    menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.delete(at: $0 ) }),
+                    menuAction(localizationKey: "global_menu_edit_copy_desktop", systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copyMessage(at: $0 ) }),
+                    menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteMessage(at: $0 ) }),
 
                     UIMenu(options: [.displayInline], children: [
                         menuAction(localizationKey: "select_more", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
