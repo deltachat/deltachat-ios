@@ -1746,9 +1746,23 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         navigationController?.popViewController(animated: true)
     }
 
+    @objc private func reply(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        reply(at: indexPath)
+    }
+
     private func reply(at indexPath: IndexPath) {
         keepKeyboard = true
         replyToMessage(at: indexPath)
+    }
+
+    @objc private func replyPrivately(_ sender: Any) {
+        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
+              let indexPath = menuItem.indexPath else { return }
+
+        replyPrivatelyToMessage(at: indexPath)
     }
 
     @objc private func selectMore(_ sender: Any) {
@@ -1805,6 +1819,32 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION && dcChat.canSend
         if showReaction {
             menu.append(LegacyMenuItem(title: String.localized("react"), action: #selector(ChatViewController.react(_:)), indexPath: indexPath))
+        }
+
+        let messageIsFromMe = message.isFromCurrentSender
+
+        let replyMenuEntries: [LegacyMenuItem]
+        if message.isInfo {
+            replyMenuEntries = []
+        } else if dcChat.canSend && self.isGroupChat && messageIsFromMe == false {
+            replyMenuEntries = [
+                LegacyMenuItem(title: String.localized("notify_reply_button"), action: #selector(ChatViewController.reply(_:)), indexPath: indexPath),
+                LegacyMenuItem(title: String.localized("reply_privately"), action: #selector(ChatViewController.replyPrivately(_:)), indexPath: indexPath),
+            ]
+        } else if self.isGroupChat && messageIsFromMe == false {
+            replyMenuEntries = [
+                LegacyMenuItem(title: String.localized("reply_privately"), action: #selector(ChatViewController.replyPrivately(_:)), indexPath: indexPath),
+            ]
+        } else if dcChat.canSend {
+            replyMenuEntries = [
+                LegacyMenuItem(title: String.localized("notify_reply_button"), action: #selector(ChatViewController.reply(_:)), indexPath: indexPath),
+            ]
+        } else {
+            replyMenuEntries = []
+        }
+
+        if replyMenuEntries.isEmpty == false {
+            menu.append(contentsOf: replyMenuEntries)
         }
 
         menu.append(contentsOf: [
