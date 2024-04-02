@@ -2032,7 +2032,7 @@ extension ChatViewController {
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
             actionProvider: { [weak self] _ in
-                guard let self else { return UIMenu() }
+                guard let self else { return nil }
 
                 let message = dcContext.getMessage(id: messageId)
 
