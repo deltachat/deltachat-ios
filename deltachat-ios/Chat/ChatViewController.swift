@@ -1852,12 +1852,20 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             return
         }
 
+        guard let rect = tableView.cellForRow(at: indexPath)?.frame else { return }
+        UIMenuController.shared.setTargetRect(rect, in: tableView)
+
         if isHidden {
             UIMenuController.shared.menuItems = nil
+            UIMenuController.shared.isMenuVisible = false
         } else {
             UIMenuController.shared.menuItems = contextMenu(for: indexPath)
+            UIMenuController.shared.isMenuVisible = true
         }
+
         UIMenuController.shared.update()
+        shouldBecomeFirstResponder = true
+        becomeFirstResponder()
     }
 
     override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
