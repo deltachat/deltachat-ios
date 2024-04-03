@@ -93,3 +93,8 @@ If you want to import/export a backup this is the location you want to put it (i
 ```
 ~/Library/Containers/98CC2CD0-7DED-4E02-9C0A-B4FF287AA877/Data/Documents
 ```
+
+# LICENSE
+
+Copyright 2018-2024 merlinux Gmbh,
+licensed under the GPLV3 or later version: https://www.gnu.org/licenses/gpl-3.0.html
