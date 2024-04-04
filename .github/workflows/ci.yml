@@ -1,0 +1,15 @@
+name: CI
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          show-progress: false
+      - run: sudo xcode-select --switch /Applications/Xcode_15.3.app/Contents/Developer
+      - run: cargo install cargo-lipo
+      - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone SE (3rd generation)" | xcbeautify --renderer github-actions
