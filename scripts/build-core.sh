@@ -15,8 +15,10 @@ rustup target add aarch64-apple-ios x86_64-apple-ios --toolchain `cat ../rust-to
 
 # --xcode-integ determines --release and --targets from Xcode's env vars.
 # Depending your setup, specify the rustup toolchain explicitly.
+#
+# --no-sanitize-env prevents removal of IPHONEOS_DEPLOYMENT_TARGET variable.
 RUSTFLAGS="-C lto=on -C embed-bitcode=yes" \
-  cargo +`cat ../rust-toolchain` lipo --xcode-integ --manifest-path "$DIR/deltachat-core-rust/deltachat-ffi/Cargo.toml" --features jsonrpc
+  cargo +`cat ../rust-toolchain` lipo --xcode-integ --no-sanitize-env --manifest-path "$DIR/deltachat-core-rust/deltachat-ffi/Cargo.toml" --features jsonrpc
 
 # cargo-lipo drops result in different folder, depending on the config.
 if [[ $CONFIGURATION = "Debug" ]]; then
