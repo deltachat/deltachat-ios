@@ -757,7 +757,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
-        if !canReply(message: message) {
+        if !canReply(to: message) {
             return nil
         }
 
@@ -980,11 +980,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         self.reloadData()
     }
 
-    private func canReply(message: DcMsg) -> Bool {
+    private func canReply(to message: DcMsg) -> Bool {
         return message.id != DC_MSG_ID_MARKER1 && message.id != DC_MSG_ID_DAYMARKER && !message.isInfo && message.type != DC_MSG_VIDEOCHAT_INVITATION && dcChat.canSend
     }
 
-    private func canReplyPrivately(message: DcMsg) -> Bool {
+    private func canReplyPrivately(to message: DcMsg) -> Bool {
         return dcChat.isGroup && !message.isFromCurrentSender
     }
 
@@ -1783,12 +1783,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         var menu: [LegacyMenuItem] = []
 
-        if canReply(message: message) {
+        if canReply(to: message) {
             menu.append(LegacyMenuItem(title: String.localized("react"), action: #selector(ChatViewController.react(_:)), indexPath: indexPath))
             menu.append(LegacyMenuItem(title: String.localized("notify_reply_button"), action: #selector(ChatViewController.reply(_:)), indexPath: indexPath))
         }
 
-        if canReplyPrivately(message: message) {
+        if canReplyPrivately(to: message) {
             menu.append(LegacyMenuItem(title: String.localized("reply_privately"), action: #selector(ChatViewController.replyPrivately(_:)), indexPath: indexPath))
         }
 
@@ -1929,14 +1929,14 @@ extension ChatViewController {
         return preview
     }
 
-    private func reactionsMenuItems(appendTo: inout [UIMenuElement], indexPath: IndexPath) {
+    private func appendReactionItems(to menuElements: inout [UIMenuElement], indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let myReactions = getMyReactions(messageId: messageId)
 
         for reaction in DefaultReactions.allCases {
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
             let title = sentThisReaction ? (reaction.emoji + "✓") : reaction.emoji
-            appendTo.append(UIAction(title: title) { [weak self] _ in
+            menuElements.append(UIAction(title: title) { [weak self] _ in
                 guard let self else { return }
 
                 let messageId = self.messageIds[indexPath.row]
@@ -1948,7 +1948,7 @@ extension ChatViewController {
             })
         }
 
-        appendTo.append(
+        menuElements.append(
             UIAction(title: "•••") { [weak self] _ in
                 guard let self else { return }
                 reactionMessageId = self.messageIds[indexPath.row]
@@ -1984,13 +1984,13 @@ extension ChatViewController {
                 let message = dcContext.getMessage(id: messageId)
                 var children: [UIMenuElement] = []
 
-                if canReply(message: message) {
+                if canReply(to: message) {
                     if #available(iOS 16.0, *) {
                         // together with preferredElementSize below, this shows the reaction options in a row
-                        reactionsMenuItems(appendTo: &children, indexPath: indexPath)
+                        appendReactionItems(to: &children, indexPath: indexPath)
                     } else {
                         var items: [UIMenuElement] = []
-                        reactionsMenuItems(appendTo: &items, indexPath: indexPath)
+                        appendReactionItems(to: &items, indexPath: indexPath)
                         children.append(UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: items))
                     }
                     children.append(
@@ -1998,7 +1998,7 @@ extension ChatViewController {
                     )
                 }
 
-                if canReplyPrivately(message: message) {
+                if canReplyPrivately(to: message) {
                     children.append(
                         UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) })
                     )
