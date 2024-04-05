@@ -1983,11 +1983,12 @@ extension ChatViewController {
                 guard let self else { return nil }
                 let message = dcContext.getMessage(id: messageId)
                 var children: [UIMenuElement] = []
+                var preferredElementSizeSmall = false
 
                 if canReply(to: message) {
                     if #available(iOS 16.0, *) {
-                        // together with preferredElementSize below, this shows the reaction options in a row
                         appendReactionItems(to: &children, indexPath: indexPath)
+                        preferredElementSizeSmall = true
                     } else {
                         var items: [UIMenuElement] = []
                         appendReactionItems(to: &items, indexPath: indexPath)
@@ -2014,7 +2015,7 @@ extension ChatViewController {
                 ])
 
                 let menu = UIMenu(children: children)
-                if #available(iOS 16.0, *) {
+                if preferredElementSizeSmall, #available(iOS 16.0, *) {
                     menu.preferredElementSize = .small
                 }
                 return menu
