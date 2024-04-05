@@ -81,7 +81,6 @@ class MapViewController: WebxdcViewController {
         let begin = end - 24*60*60
         let (json, maxLocationId) = dcContext.getLocations(chatId: chatId, timestampBegin: begin, timestampEnd: 0, lastLocationId: lastLocationId)
         lastLocationId = max(maxLocationId, lastLocationId)
-        UIPasteboard.general.string = json // TODO: remove this line, useful for debugging to get JSON out
         return json
     }
 }
