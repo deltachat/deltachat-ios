@@ -756,12 +756,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let messageId = messageIds[indexPath.row]
-        if messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER || !dcChat.canSend {
-            return nil
-        }
-
         let message = dcContext.getMessage(id: messageId)
-        if message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION {
+        if !canReply(to: message) {
             return nil
         }
 
@@ -982,6 +978,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         self.showEmptyStateView(self.messageIds.isEmpty)
         self.reloadData()
+    }
+
+    private func canReply(to message: DcMsg) -> Bool {
+        return message.id != DC_MSG_ID_MARKER1 && message.id != DC_MSG_ID_DAYMARKER && !message.isInfo && message.type != DC_MSG_VIDEOCHAT_INVITATION && dcChat.canSend
+    }
+
+    private func canReplyPrivately(to message: DcMsg) -> Bool {
+        return dcChat.isGroup && !message.isFromCurrentSender
     }
 
     private func isLastRowScrolledToBottom() -> Bool {
@@ -1693,18 +1697,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     // MARK: - Actions
 
-    @objc private func copyMessage(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        copyMessage(at: indexPath)
-    }
-
-    private func copyMessage(at indexPath: IndexPath) {
-        let id = self.messageIds[indexPath.row]
-        self.copyToClipboard(ids: [id])
-    }
-
     @objc private func info(_ sender: Any) {
         guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
               let indexPath = menuItem.indexPath else { return }
@@ -1718,19 +1710,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if let ctrl = self.navigationController {
             ctrl.pushViewController(msgViewController, animated: true)
         }
-    }
-
-    @objc private func deleteMessage(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        deleteMessage(at: indexPath)
-    }
-
-    private func deleteMessage(at indexPath: IndexPath) {
-        becomeFirstResponder()
-        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
-        askToDeleteMessage(id: msg.id)
     }
 
     @objc private func forward(_ sender: Any) {
@@ -1804,43 +1783,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         var menu: [LegacyMenuItem] = []
 
-        let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION && dcChat.canSend
-        if showReaction {
+        if canReply(to: message) {
             menu.append(LegacyMenuItem(title: String.localized("react"), action: #selector(ChatViewController.react(_:)), indexPath: indexPath))
+            menu.append(LegacyMenuItem(title: String.localized("notify_reply_button"), action: #selector(ChatViewController.reply(_:)), indexPath: indexPath))
         }
 
-        let messageIsFromMe = message.isFromCurrentSender
-
-        let replyMenuEntries: [LegacyMenuItem]
-        if message.isInfo {
-            replyMenuEntries = []
-        } else if dcChat.canSend && self.isGroupChat && messageIsFromMe == false {
-            replyMenuEntries = [
-                LegacyMenuItem(title: String.localized("notify_reply_button"), action: #selector(ChatViewController.reply(_:)), indexPath: indexPath),
-                LegacyMenuItem(title: String.localized("reply_privately"), action: #selector(ChatViewController.replyPrivately(_:)), indexPath: indexPath),
-            ]
-        } else if self.isGroupChat && messageIsFromMe == false {
-            replyMenuEntries = [
-                LegacyMenuItem(title: String.localized("reply_privately"), action: #selector(ChatViewController.replyPrivately(_:)), indexPath: indexPath),
-            ]
-        } else if dcChat.canSend {
-            replyMenuEntries = [
-                LegacyMenuItem(title: String.localized("notify_reply_button"), action: #selector(ChatViewController.reply(_:)), indexPath: indexPath),
-            ]
-        } else {
-            replyMenuEntries = []
-        }
-
-        if replyMenuEntries.isEmpty == false {
-            menu.append(contentsOf: replyMenuEntries)
+        if canReplyPrivately(to: message) {
+            menu.append(LegacyMenuItem(title: String.localized("reply_privately"), action: #selector(ChatViewController.replyPrivately(_:)), indexPath: indexPath))
         }
 
         menu.append(contentsOf: [
             LegacyMenuItem(title: String.localized("forward"), action: #selector(ChatViewController.forward(_:)), indexPath: indexPath),
             LegacyMenuItem(title: String.localized("info"), action: #selector(ChatViewController.info(_:)), indexPath: indexPath),
-            LegacyMenuItem(title: String.localized("global_menu_edit_copy_desktop"), action: #selector(ChatViewController.copyMessage(_:)), indexPath: indexPath),
-            LegacyMenuItem(title: String.localized("delete"), action: #selector(ChatViewController.deleteMessage(_:)), indexPath: indexPath),
-            LegacyMenuItem(title: String.localized("select_more"), action: #selector(ChatViewController.selectMore(_:)), indexPath: indexPath)
+            LegacyMenuItem(title: String.localized("menu_more_options"), action: #selector(ChatViewController.selectMore(_:)), indexPath: indexPath)
         ])
 
         return menu
@@ -1974,21 +1929,14 @@ extension ChatViewController {
         return preview
     }
 
-    private func reactionsMenu(indexPath: IndexPath) -> UIMenu {
-
+    private func appendReactionItems(to menuElements: inout [UIMenuElement], indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let myReactions = getMyReactions(messageId: messageId)
 
-        var reactionsMenuItems = DefaultReactions.allCases.map { reaction in
+        for reaction in DefaultReactions.allCases {
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
-            let selectedImage: UIImage?
-            if sentThisReaction {
-                selectedImage = UIImage(systemName: "checkmark")
-            } else {
-                selectedImage = nil
-            }
-
-            return UIAction(title: reaction.emoji, image: selectedImage) { [weak self] _ in
+            let title = sentThisReaction ? (reaction.emoji + "✓") : reaction.emoji
+            menuElements.append(UIAction(title: title) { [weak self] _ in
                 guard let self else { return }
 
                 let messageId = self.messageIds[indexPath.row]
@@ -1997,10 +1945,10 @@ extension ChatViewController {
                 } else {
                     dcContext.sendReaction(messageId: messageId, reaction: reaction.emoji)
                 }
-            }
+            })
         }
 
-        reactionsMenuItems.append(
+        menuElements.append(
             UIAction(title: "•••") { [weak self] _ in
                 guard let self else { return }
                 reactionMessageId = self.messageIds[indexPath.row]
@@ -2019,14 +1967,6 @@ extension ChatViewController {
                 present(navigationController, animated: true)
             }
         )
-
-        let menu = UIMenu(
-            title: String.localized("react"),
-            image: UIImage(systemName: "face.smiling"),
-            options: [],
-            children: reactionsMenuItems
-        )
-        return menu
     }
 
     // context menu for iOS 13+
@@ -2041,57 +1981,44 @@ extension ChatViewController {
             previewProvider: nil,
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
-
                 let message = dcContext.getMessage(id: messageId)
-
                 var children: [UIMenuElement] = []
+                var preferredElementSizeSmall = false
 
-                let showReaction = message.isInfo == false && message.isSetupMessage == false && message.type != DC_MSG_VIDEOCHAT_INVITATION && dcChat.canSend
-                if showReaction {
-                    children.append(reactionsMenu(indexPath: indexPath))
-                }
-
-                let replyMenuChildren: [UIMenuElement]
-                let messageIsFromMe = message.isFromCurrentSender
-
-                if message.isInfo {
-                    replyMenuChildren = []
-                } else if dcChat.canSend && self.isGroupChat && messageIsFromMe == false {
-                    replyMenuChildren = [
-                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
-                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
-                    ]
-                } else if self.isGroupChat && messageIsFromMe == false {
-                    replyMenuChildren = [
-                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) }),
-                    ]
-                } else if dcChat.canSend {
-                    replyMenuChildren = [
-                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) }),
-                    ]
-                } else {
-                    replyMenuChildren = []
-                }
-
-                if replyMenuChildren.isEmpty == false {
+                if canReply(to: message) {
+                    if #available(iOS 16.0, *) {
+                        appendReactionItems(to: &children, indexPath: indexPath)
+                        preferredElementSizeSmall = true
+                    } else {
+                        var items: [UIMenuElement] = []
+                        appendReactionItems(to: &items, indexPath: indexPath)
+                        children.append(UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: items))
+                    }
                     children.append(
-                        UIMenu(options: [.displayInline], children: replyMenuChildren)
+                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) })
+                    )
+                }
+
+                if canReplyPrivately(to: message) {
+                    children.append(
+                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) })
                     )
                 }
 
                 // these are always there
                 children.append(contentsOf: [
-                    UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward", indexPath: indexPath, action: { self.forward(at: $0 ) }),
+                    UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward.fill", indexPath: indexPath, action: { self.forward(at: $0 ) }),
                     UIAction.menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: { self.info(at: $0 ) }),
-                    UIAction.menuAction(localizationKey: "global_menu_edit_copy_desktop", systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copyMessage(at: $0 ) }),
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteMessage(at: $0 ) }),
-
                     UIMenu(options: [.displayInline], children: [
-                        UIAction.menuAction(localizationKey: "select_more", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
+                        UIAction.menuAction(localizationKey: "menu_more_options", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
                     ])
                 ])
 
-                return UIMenu(children: children)
+                let menu = UIMenu(children: children)
+                if preferredElementSizeSmall, #available(iOS 16.0, *) {
+                    menu.preferredElementSize = .small
+                }
+                return menu
             }
         )
     }
