@@ -16,7 +16,13 @@ class MapViewController: WebxdcViewController {
                 let chatId = dcContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
                 let msg = dcContext.newMessage(viewType: DC_MSG_WEBXDC)
                 msg.setFile(filepath: path.path)
-                msgId = dcContext.sendMessage(chatId: chatId, message: msg) // TODO: this should be hidden by core somehow
+                msg.text =  "Thanks for trying out the experimental feature 🧪 \"Location streaming\"\n\n"
+                        +   "This message is needed temporarily for development and debugging. "
+                        +   "To see locations, POIs and tracks on the map, "
+                        +   "do not open it here but from \"All Media\" or from chat \"Profiles\".\n\n"
+                        +   "If you want to quit the experimental feature, "
+                        +   "you can disable it at \"Settings / Advanced\" and delete this message."
+                msgId = dcContext.sendMessage(chatId: chatId, message: msg)
                 UserDefaults.standard.setValue(msgId, forKey: msgIdConfigKey + String(dcContext.id))
             }
         }
