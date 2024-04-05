@@ -734,6 +734,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_NEW_GROUP_SEND_FIRST_MESSAGE, localizationKey: "chat_new_group_hint")
         dcContext.setStockTranslation(id: DC_STR_MESSAGE_ADD_MEMBER, localizationKey: "member_x_added")
         dcContext.setStockTranslation(id: DC_STR_INVALID_UNENCRYPTED_MAIL, localizationKey: "invalid_unencrypted_tap_to_learn_more")
+        dcContext.setStockTranslation(id: DC_STR_YOU_REACTED, localizationKey: "reaction_by_you")
+        dcContext.setStockTranslation(id: DC_STR_REACTED_BY, localizationKey: "reaction_by_other")
     }
 
     func appIsInForeground() -> Bool {
