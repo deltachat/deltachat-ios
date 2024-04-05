@@ -689,7 +689,6 @@
 "reactions" = "Tepkiler";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Tepki Ver";
-
 // automatically delete message
 "delete_old_messages" = "Eski İletileri Sil";
 "autodel_device_title" = "İletileri Aygıttan Sil";

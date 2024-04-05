@@ -689,7 +689,6 @@
 "reactions" = "Реакции";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Реагировать";
-
 // automatically delete message
 "delete_old_messages" = "Удалить старые сообщения";
 "autodel_device_title" = "Удалять сообщения с устройства";
