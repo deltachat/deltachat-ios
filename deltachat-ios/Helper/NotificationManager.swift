@@ -22,9 +22,19 @@ public class NotificationManager {
         dcContext = dcAccounts.getSelected()
     }
 
-    public static func updateApplicationIconBadge(forceZero: Bool = false) {
+    public static func updateBadgeCounters(forceZero: Bool = false) {
         DispatchQueue.main.async {
-            UIApplication.shared.applicationIconBadgeNumber = forceZero ? 0 : DcAccounts.shared.getFreshMessageCount()
+            let number = forceZero ? 0 : DcAccounts.shared.getFreshMessageCount()
+
+            // update badge counter on iOS homescreen
+            UIApplication.shared.applicationIconBadgeNumber = number
+
+            // update badge counter on our tabbar
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+               let appCoordinator = appDelegate.appCoordinator,
+               let chatsNavigationController = appCoordinator.tabBarController.viewControllers?[appCoordinator.chatsTab] {
+                chatsNavigationController.tabBarItem.badgeValue = number > 0 ? "\(number)" : nil
+            }
         }
     }
 
@@ -55,7 +65,7 @@ public class NotificationManager {
                 nc.removeDeliveredNotifications(withIdentifiers: toRemove)
             }
 
-            NotificationManager.updateApplicationIconBadge()
+            NotificationManager.updateBadgeCounters()
         }
     }
 
@@ -65,7 +75,7 @@ public class NotificationManager {
             object: nil, queue: OperationQueue.main
         ) { _ in
             if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-                NotificationManager.updateApplicationIconBadge()
+                NotificationManager.updateBadgeCounters()
             }
         }
 

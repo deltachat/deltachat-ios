@@ -230,7 +230,7 @@ class AppCoordinator: NSObject {
         // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
         // to avoid appearing an old number of a previous installation, we reset the counter manually.
         // but even when this changes in ios, we need the reset as we allow account-deletion also in-app.
-        NotificationManager.updateApplicationIconBadge(forceZero: true)
+        NotificationManager.updateBadgeCounters(forceZero: true)
     }
 
     func presentTabBarController() {
@@ -271,6 +271,7 @@ class AppCoordinator: NSObject {
                                                   createChatsNavigationController(),
                                                   createSettingsNavigationController()], animated: false)
         presentTabBarController()
+        NotificationManager.updateBadgeCounters()
     }
 }
 
