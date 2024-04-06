@@ -284,6 +284,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("➡️ applicationDidBecomeActive")
         UserDefaults.setMainIoRunning()
         applicationInForeground = true
+        NotificationManager.updateBadgeCounters()
     }
 
     func applicationWillResignActive(_: UIApplication) {

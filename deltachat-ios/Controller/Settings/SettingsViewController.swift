@@ -246,7 +246,7 @@ internal final class SettingsViewController: UITableViewController {
             NotificationManager.removeAllNotifications()
         }
         UserDefaults.standard.synchronize()
-        NotificationManager.updateApplicationIconBadge(forceZero: !sender.isOn)
+        NotificationManager.updateBadgeCounters(forceZero: !sender.isOn)
     }
 
     // MARK: - updates
