@@ -1957,34 +1957,37 @@ extension ChatViewController {
 
         let showPicker = myReactions.isEmpty || myReactionChecked
         let title: String
+        let accessibilityLabel: String?
         if showPicker {
             title = "•••"
+            accessibilityLabel = String.localized("pref_other")
         } else {
             title = (myReactions.first ?? "?") + "✓"
+            accessibilityLabel = nil
         }
-        menuElements.append(
-            UIAction(title: title) { [weak self] _ in
-                guard let self else { return }
-                let messageId = self.messageIds[indexPath.row]
-                if showPicker {
-                    reactionMessageId = messageId
-                    let pickerViewController = MCEmojiPickerViewController()
-                    pickerViewController.navigationItem.title = String.localized("react")
-                    pickerViewController.delegate = self
+        let action = UIAction(title: title) { [weak self] _ in
+            guard let self else { return }
+            let messageId = self.messageIds[indexPath.row]
+            if showPicker {
+                reactionMessageId = messageId
+                let pickerViewController = MCEmojiPickerViewController()
+                pickerViewController.navigationItem.title = String.localized("react")
+                pickerViewController.delegate = self
 
-                    let navigationController = UINavigationController(rootViewController: pickerViewController)
-                    if #available(iOS 15.0, *) {
-                        if let sheet = navigationController.sheetPresentationController {
-                            sheet.detents = [.medium(), .large()]
-                            sheet.preferredCornerRadius = 20
-                        }
+                let navigationController = UINavigationController(rootViewController: pickerViewController)
+                if #available(iOS 15.0, *) {
+                    if let sheet = navigationController.sheetPresentationController {
+                        sheet.detents = [.medium(), .large()]
+                        sheet.preferredCornerRadius = 20
                     }
-                    present(navigationController, animated: true)
-                } else {
-                    dcContext.sendReaction(messageId: messageId, reaction: nil)
                 }
+                present(navigationController, animated: true)
+            } else {
+                dcContext.sendReaction(messageId: messageId, reaction: nil)
             }
-        )
+        }
+        action.accessibilityLabel = accessibilityLabel
+        menuElements.append(action)
     }
 
     // context menu for iOS 13+
