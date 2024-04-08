@@ -1932,10 +1932,17 @@ extension ChatViewController {
     private func appendReactionItems(to menuElements: inout [UIMenuElement], indexPath: IndexPath) {
         let messageId = messageIds[indexPath.row]
         let myReactions = getMyReactions(messageId: messageId)
+        var myReactionChecked = false
 
         for reaction in DefaultReactions.allCases {
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
-            let title = sentThisReaction ? (reaction.emoji + "✓") : reaction.emoji
+            let title: String
+            if sentThisReaction {
+                title = reaction.emoji + "✓"
+                myReactionChecked = true
+            } else {
+                title = reaction.emoji
+            }
             menuElements.append(UIAction(title: title) { [weak self] _ in
                 guard let self else { return }
 
@@ -1948,23 +1955,34 @@ extension ChatViewController {
             })
         }
 
+        let showPicker = myReactions.isEmpty || myReactionChecked
+        let title: String
+        if showPicker {
+            title = "•••"
+        } else {
+            title = (myReactions.first ?? "?") + "✓"
+        }
         menuElements.append(
-            UIAction(title: "•••") { [weak self] _ in
+            UIAction(title: title) { [weak self] _ in
                 guard let self else { return }
-                reactionMessageId = self.messageIds[indexPath.row]
+                let messageId = self.messageIds[indexPath.row]
+                if showPicker {
+                    reactionMessageId = messageId
+                    let pickerViewController = MCEmojiPickerViewController()
+                    pickerViewController.navigationItem.title = String.localized("react")
+                    pickerViewController.delegate = self
 
-                let pickerViewController = MCEmojiPickerViewController()
-                pickerViewController.navigationItem.title = String.localized("react")
-                pickerViewController.delegate = self
-
-                let navigationController = UINavigationController(rootViewController: pickerViewController)
-                if #available(iOS 15.0, *) {
-                    if let sheet = navigationController.sheetPresentationController {
-                        sheet.detents = [.medium(), .large()]
-                        sheet.preferredCornerRadius = 20
+                    let navigationController = UINavigationController(rootViewController: pickerViewController)
+                    if #available(iOS 15.0, *) {
+                        if let sheet = navigationController.sheetPresentationController {
+                            sheet.detents = [.medium(), .large()]
+                            sheet.preferredCornerRadius = 20
+                        }
                     }
+                    present(navigationController, animated: true)
+                } else {
+                    dcContext.sendReaction(messageId: messageId, reaction: nil)
                 }
-                present(navigationController, animated: true)
             }
         )
     }
