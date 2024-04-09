@@ -226,10 +226,6 @@ public class DcMsg {
         dc_msg_set_dimension(messagePointer, Int32(width), Int32(height))
     }
 
-    public func setLocation(lat: Double, lng: Double) {
-        dc_msg_set_location(messagePointer, lat, lng)
-    }
-
     public var filesize: Int {
         return Int(dc_msg_get_filebytes(messagePointer))
     }

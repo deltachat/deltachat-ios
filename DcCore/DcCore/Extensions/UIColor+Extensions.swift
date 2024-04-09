@@ -64,16 +64,4 @@ public extension UIColor {
         return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
     }
 
-    var hexValue: String {
-        var color = self
-        if color.cgColor.numberOfComponents < 4 {
-            let c = color.cgColor.components!
-            color = UIColor(red: c[0], green: c[0], blue: c[0], alpha: c[1])
-        }
-        if color.cgColor.colorSpace!.model != .rgb {
-            return "#FFFFFF"
-        }
-        let c = color.cgColor.components!
-        return String(format: "#%02X%02X%02X", Int(c[0]*255.0), Int(c[1]*255.0), Int(c[2]*255.0))
-    }
 }

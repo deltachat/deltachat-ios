@@ -13,7 +13,6 @@ public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphe
 public let eventMsgsNoticed = Notification.Name(rawValue: "eventMsgsNoticed")
 public let eventConnectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
 public let eventWebxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
-public let eventLocationChanged = Notification.Name(rawValue: "eventLocationChanged")
 
 public class DcEventHandler {
     let dcAccounts: DcAccounts
@@ -173,15 +172,6 @@ public class DcEventHandler {
                 NotificationCenter.default.post(name: eventWebxdcStatusUpdate, object: nil, userInfo: [
                     "message_id": Int(data1),
                 ])
-            }
-
-        case DC_EVENT_LOCATION_CHANGED:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
-            logger.info("📡[\(accountId)] location changed for contact \(data1)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventLocationChanged, object: nil)
             }
 
         default:
