@@ -414,14 +414,6 @@ class WebxdcViewController: WebViewViewController {
     private func shareWebxdc(_ action: UIAlertAction) {
         Utils.share(message: dcContext.getMessage(id: messageId), parentViewController: self, sourceItem: moreButton)
     }
-
-    func sendWebxdcStatusUpdate(payload: String, description: String) -> Bool {
-        return dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payload, description: description)
-    }
-
-    func getWebxdcStatusUpdates(lastKnownSerial: Int) -> String {
-        return dcContext.getWebxdcStatusUpdates(msgId: messageId, lastKnownSerial: lastKnownSerial)
-    }
 }
 
 extension WebxdcViewController: WKScriptMessageHandler {
@@ -444,7 +436,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
                       logger.error("Failed to parse status update parameters \(message.body)")
                       return
                   }
-            _ = sendWebxdcStatusUpdate(payload: payloadString, description: description)
+            _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
 
         case .sendToChat:
             if let dict = message.body as? [String: AnyObject] {
@@ -485,7 +477,7 @@ extension WebxdcViewController: WKURLSchemeHandler {
             let statusCode: Int
             if url.path == "/webxdc-update.json" || url.path == "webxdc-update.json" {
                 let lastKnownSerial = Int(url.query ?? "0") ?? 0
-                data = Data(getWebxdcStatusUpdates(lastKnownSerial: lastKnownSerial).utf8)
+                data = Data(dcContext.getWebxdcStatusUpdates(msgId: messageId, lastKnownSerial: lastKnownSerial).utf8)
                 mimeType = "application/json; charset=utf-8"
                 statusCode = 200
             } else {

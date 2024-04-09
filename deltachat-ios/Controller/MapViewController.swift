@@ -3,27 +3,19 @@ import WebKit
 import DcCore
 
 class MapViewController: WebxdcViewController {
-    private let chatId: Int
     private var locationChangedObserver: NSObjectProtocol?
-    private var lastLocationId: Int = 0
+    private let isGlobalMap: Bool
 
     init(dcContext: DcContext, chatId: Int) {
-        self.chatId = chatId
-        let msgIdConfigKey = "maps_webxdc_msg_id16."
-        var msgId = UserDefaults.standard.integer(forKey: msgIdConfigKey + String(dcContext.id))
-        if !dcContext.msgExists(id: msgId) {
+        isGlobalMap = chatId == 0
+        var msgId = dcContext.initWebxdcIntegration(DC_INTEGRATION_MAPS, for: chatId)
+        if msgId == 0 {
             if let path = Bundle.main.url(forResource: "maps", withExtension: "xdc", subdirectory: "Assets") {
-                let chatId = dcContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
                 let msg = dcContext.newMessage(viewType: DC_MSG_WEBXDC)
                 msg.setFile(filepath: path.path)
-                msg.text =  "Thanks for trying out the experimental feature 🧪 \"Location streaming\"\n\n"
-                        +   "This message is needed temporarily for development and debugging. "
-                        +   "To see locations, POIs and tracks on the map, "
-                        +   "do not open it here but from \"All Media\" or from chat \"Profiles\".\n\n"
-                        +   "If you want to quit the experimental feature, "
-                        +   "you can disable it at \"Settings / Advanced\" and delete this message."
-                msgId = dcContext.sendMessage(chatId: chatId, message: msg)
-                UserDefaults.standard.setValue(msgId, forKey: msgIdConfigKey + String(dcContext.id))
+                msg.setDefaultWebxdcIntegration()
+                dcContext.sendMessage(chatId: dcContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF)), message: msg)
+                msgId = dcContext.initWebxdcIntegration(DC_INTEGRATION_MAPS, for: chatId)
             }
         }
         super.init(dcContext: dcContext, messageId: msgId)
@@ -49,7 +41,7 @@ class MapViewController: WebxdcViewController {
 
     override func refreshWebxdcInfo() {
         super.refreshWebxdcInfo()
-        title = String.localized(chatId == 0 ? "menu_show_global_map" : "locations")
+        title = String.localized(isGlobalMap ? "menu_show_global_map" : "locations")
     }
 
     // MARK: - setup
@@ -64,29 +56,5 @@ class MapViewController: WebxdcViewController {
         if let locationChangedObserver = self.locationChangedObserver {
             NotificationCenter.default.removeObserver(locationChangedObserver)
         }
-    }
-
-
-    // MARK: - handle updates
-
-    override func sendWebxdcStatusUpdate(payload: String, description: String) -> Bool {
-        guard let data: Data = payload.data(using: .utf8),
-              let dict = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: AnyObject],
-              let payload = dict["payload"] as? [String: AnyObject] else {
-           return false
-        }
-
-        let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-        msg.text = payload["label"] as? String ?? "ErrLabel"
-        msg.setLocation(lat: payload["lat"] as? Double ?? 0.0, lng: payload["lng"] as? Double ?? 0.0)
-        return dcContext.sendMessage(chatId: chatId == 0 ? dcContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF)) : chatId, message: msg) != 0
-    }
-
-    override func getWebxdcStatusUpdates(lastKnownSerial: Int) -> String {
-        let end = Int64(Date().timeIntervalSince1970)
-        let begin = end - 24*60*60
-        let (json, maxLocationId) = dcContext.getLocations(chatId: chatId, timestampBegin: begin, timestampEnd: 0, lastLocationId: lastLocationId)
-        lastLocationId = max(maxLocationId, lastLocationId)
-        return json
     }
 }

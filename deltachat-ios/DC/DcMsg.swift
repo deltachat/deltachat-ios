@@ -222,6 +222,10 @@ public class DcMsg {
         dc_msg_set_file(messagePointer, filepath, mimeType)
     }
 
+    public func setDefaultWebxdcIntegration() {
+        dc_msg_set_default_webxdc_integration(messagePointer)
+    }
+
     public func setDimension(width: CGFloat, height: CGFloat) {
         dc_msg_set_dimension(messagePointer, Int32(width), Int32(height))
     }
