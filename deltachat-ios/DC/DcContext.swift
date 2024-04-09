@@ -54,25 +54,13 @@ public class DcContext {
         return DcMsg(pointer: messagePointer)
     }
 
-    public func msgExists(id: Int) -> Bool {
-        if id <= DC_MSG_ID_LAST_SPECIAL {
-            return false
-        } else {
-            let messagePointer = dc_get_msg(contextPointer, UInt32(id))
-            let exists = messagePointer != nil && dc_msg_get_chat_id(messagePointer) != DC_CHAT_ID_TRASH
-            dc_msg_unref(messagePointer)
-            return exists
-        }
-    }
-
     public func getMessage(id: Int) -> DcMsg {
         let messagePointer = dc_get_msg(contextPointer, UInt32(id))
         return DcMsg(pointer: messagePointer)
     }
 
-    @discardableResult
-    public func sendMessage(chatId: Int, message: DcMsg) -> Int {
-        return Int(dc_send_msg(contextPointer, UInt32(chatId), message.messagePointer))
+    public func sendMessage(chatId: Int, message: DcMsg) {
+        dc_send_msg(contextPointer, UInt32(chatId), message.messagePointer)
     }
 
     public func downloadFullMessage(id: Int) {
@@ -88,6 +76,14 @@ public class DcContext {
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
+    }
+
+    public func setWebxdcIntegration(filepath: String?) {
+        dc_set_webxdc_integration(contextPointer, filepath)
+    }
+
+    public func initWebxdcIntegration(for chatId: Int) -> Int {
+        return Int(dc_init_webxdc_integration(contextPointer, UInt32(chatId)))
     }
 
     public func sendVideoChatInvitation(chatId: Int) -> Int {
@@ -542,72 +538,6 @@ public class DcContext {
 
     public func setLocation(latitude: Double, longitude: Double, accuracy: Double) {
         dc_set_location(contextPointer, latitude, longitude, accuracy)
-    }
-
-    public func getLocations(chatId: Int, timestampBegin: Int64, timestampEnd: Int64, lastLocationId: Int) -> (String, Int) {
-        var names = [Int: String]()
-        var colors = [Int: String]()
-        var maxLocationId = 0
-
-        let jsonEncoder = JSONEncoder()
-        var json: String
-        json = "["
-            let array = dc_get_locations(contextPointer, UInt32(chatId), 0, timestampBegin, timestampEnd)
-            let arrayCnt = dc_array_get_cnt(array)
-            for i in (0 ..< arrayCnt).reversed() { // most recent position is reported last
-                let locationId = Int(dc_array_get_id(array, i))
-                if locationId > lastLocationId {
-                    maxLocationId = max(maxLocationId, locationId)
-                    if json != "[" {
-                        json += "," // JSON is picky about commas after the last element
-                    }
-
-                    let contactId = Int(dc_array_get_contact_id(array, i))
-                    if names[contactId] == nil {
-                        let contact = getContact(id: contactId)
-                        names[contactId] = contact.displayName
-                        colors[contactId] = contact.color.hexValue
-                    }
-
-                    let isIndependet = dc_array_is_independent(array, i) != 0
-                    var label: String = ""
-                    let name: String = names[contactId] ?? "ErrName"
-                    if isIndependet {
-                        if let cString = dc_array_get_marker(array, i) {
-                            label = String(cString: cString) // get_marker() returns one-char labels only
-                            dc_str_unref(cString)
-                        } else {
-                            let msgId = Int(dc_array_get_msg_id(array, i))
-                            if msgId != 0 {
-                                label = String((getMessage(id: msgId).text ?? "").prefix(256))
-                            }
-                        }
-                    }
-
-                    let jsonName = (try? String(data: jsonEncoder.encode(name), encoding: .utf8) ?? "\"\"")  ?? "\"\""
-                    let jsonLabel = (try? String(data: jsonEncoder.encode(label), encoding: .utf8) ?? "\"\"")  ?? "\"\""
-                    json += """
-                        {
-                            "payload": {
-                                "action": "pos",
-                                "contactId": \(contactId),
-                                "lat": \(dc_array_get_latitude(array, i)),
-                                "lng": \(dc_array_get_longitude(array, i)),
-                                "independent": \(isIndependet),
-                                "timestamp": \(dc_array_get_timestamp(array, i)),
-                                "label": \(jsonLabel),
-                                "name": \(jsonName),
-                                "color": "\(colors[contactId] ?? "#ff0000")"
-                            },
-                            "serial": \(locationId),
-                            "max_serial": \(locationId)
-                        }
-                    """
-                }
-            }
-            dc_array_unref(array)
-        json += "]"
-        return (json, maxLocationId)
     }
 
     public func searchMessages(chatId: Int = 0, searchText: String) -> [Int] {
