@@ -597,6 +597,7 @@ public class BaseMessageCell: UITableViewCell {
 
 // MARK: - MessageLabelDelegate
 extension BaseMessageCell: MessageLabelDelegate {
+
     public func didSelectAddress(_ addressComponents: [String: String]) {}
 
     public func didSelectDate(_ date: Date) {}
@@ -611,6 +612,12 @@ extension BaseMessageCell: MessageLabelDelegate {
     public func didSelectURL(_ url: URL) {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             baseDelegate?.urlTapped(url: url, indexPath: indexPath)
+        }
+    }
+    
+    public func didLongPressURL(_ url: URL) {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.urlLongTapped(url: url, indexPath: indexPath)
         }
     }
 
@@ -641,6 +648,7 @@ public protocol BaseMessageCellDelegate: AnyObject {
     func commandTapped(command: String, indexPath: IndexPath) // `/command`
     func phoneNumberTapped(number: String, indexPath: IndexPath)
     func urlTapped(url: URL, indexPath: IndexPath) // url is eg. `https://foo.bar`
+    func urlLongTapped(url: URL, indexPath: IndexPath) // url is eg. `https://foo.bar` or email address
     func imageTapped(indexPath: IndexPath, previewError: Bool)
     func avatarTapped(indexPath: IndexPath)
     func textTapped(indexPath: IndexPath)

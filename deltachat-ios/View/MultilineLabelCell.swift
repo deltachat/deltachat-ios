@@ -81,6 +81,10 @@ extension MultilineLabelCell: MessageLabelDelegate {
     public func didSelectURL(_ url: URL) {
         multilineDelegate?.urlTapped(url: url)
     }
+    
+    public func didLongPressURL(_ url: URL) {
+        multilineDelegate?.urlLongTapped(url: url)
+    }
 
     public func didSelectTransitInformation(_ transitInformation: [String: String]) {}
 
@@ -96,4 +100,5 @@ extension MultilineLabelCell: MessageLabelDelegate {
 public protocol MultilineLabelCellDelegate: AnyObject {
     func phoneNumberTapped(number: String)
     func urlTapped(url: URL)
+    func urlLongTapped(url: URL)
 }

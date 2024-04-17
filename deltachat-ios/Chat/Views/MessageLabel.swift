@@ -481,15 +481,16 @@ open class MessageLabel: UILabel {
 //                transformedAddressComponents[key.rawValue] = value
 //            }
 //            handleAddress(transformedAddressComponents)
-        case let .phoneNumber(phoneNumber):
-            guard let phoneNumber = phoneNumber else { return false }
-            handlePhoneNumber(phoneNumber)
+//        case let .phoneNumber(phoneNumber):
+//            guard let phoneNumber = phoneNumber else { return false }
+//            handlePhoneNumber(phoneNumber)
 //        case let .date(date):
 //            guard let date = date else { return false }
 //            handleDate(date)
         case let .link(url):
             guard let url = url else { return false }
-            handleURL(url)
+            handleLongPressURL(url)
+            return true
 
 //        case let .custom(pattern, match):
 //            guard let match = match else { return false }
@@ -506,7 +507,6 @@ open class MessageLabel: UILabel {
         default:
             return false
         }
-        return false
     }
 
     /// swiftlint:disable cyclomatic_complexity
@@ -560,6 +560,10 @@ open class MessageLabel: UILabel {
 
     private func handleURL(_ url: URL) {
         delegate?.didSelectURL(url)
+    }
+    
+    private func handleLongPressURL(_ url: URL) {
+        delegate?.didLongPressURL(url)
     }
 
     private func handlePhoneNumber(_ phoneNumber: String) {
