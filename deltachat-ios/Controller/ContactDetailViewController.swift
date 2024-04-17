@@ -578,6 +578,7 @@ class ContactDetailViewController: UITableViewController {
 }
 
 extension ContactDetailViewController: MultilineLabelCellDelegate {
+    
     func phoneNumberTapped(number: String) {
         let sanitizedNumber = number.filter("0123456789".contains)
         if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {
@@ -607,5 +608,10 @@ extension ContactDetailViewController: MultilineLabelCellDelegate {
         } else {
             UIApplication.shared.open(url)
         }
+    }
+    
+    func urlLongTapped(url: URL) {
+        // TODO: custom behaviour, also make sure it gets called, currently it's not implemented in the contacts detail table view
+        self.urlTapped(url: url)
     }
 }

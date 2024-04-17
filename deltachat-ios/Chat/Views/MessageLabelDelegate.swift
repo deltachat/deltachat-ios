@@ -50,6 +50,9 @@ public protocol MessageLabelDelegate: AnyObject {
     /// - Parameters:
     ///   - url: The selected URL.
     func didSelectURL(_ url: URL)
+    
+    /// Triggerd when a long press occurs on a detected URL
+    func didLongPressURL(_ url: URL)
 
     /// Triggered when a tap occurs on detected transit information.
     ///
