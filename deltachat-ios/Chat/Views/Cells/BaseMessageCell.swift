@@ -279,7 +279,7 @@ public class BaseMessageCell: UITableViewCell {
     open func handleTapGesture(_ gesture: UIGestureRecognizer) {
         guard gesture.state == .ended else { return }
         let touchLocation = gesture.location(in: messageLabel)
-        let isHandled = messageLabel.label.handleGesture(touchLocation)
+        let isHandled = messageLabel.label.handleGesture(touchLocation, longTap: false)
         if !isHandled, let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             self.baseDelegate?.textTapped(indexPath: indexPath)
         }

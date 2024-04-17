@@ -2027,7 +2027,16 @@ extension ChatViewController {
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
-
+        // Check if the long tap is on a link (or other message text element with custom long tap behavior)
+        if let msgcell = tableView.cellForRow(at: indexPath) as? BaseMessageCell {
+            let label = msgcell.messageLabel.label
+            let localTouchLocation = tableView.convert(point, to: label)
+            let handled = label.handleGesture(localTouchLocation, longTap: true)
+            if handled {
+                return nil
+            }
+        }
+        
         return UIContextMenuConfiguration(
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
