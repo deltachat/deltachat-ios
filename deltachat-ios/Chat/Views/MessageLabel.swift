@@ -452,17 +452,59 @@ open class MessageLabel: UILabel {
 
     }
 
-  open func handleGesture(_ touchLocation: CGPoint) -> Bool {
+    open func handleGesture(_ touchLocation: CGPoint, longTap: Bool) -> Bool {
 
         guard let index = stringIndex(at: touchLocation) else { return false }
 
         for (detectorType, ranges) in rangesForDetectors {
             for (range, value) in ranges {
                 if range.contains(index) {
-                    handleGesture(for: detectorType, value: value)
+                    if longTap {
+                        return handleLongTapGesture(for: detectorType, value: value)
+                    } else {
+                        handleGesture(for: detectorType, value: value)
+                    }
                     return true
                 }
             }
+        }
+        return false
+    }
+    
+    /// @returns whether item was handled
+    private func handleLongTapGesture(for detectorType: DetectorType, value: NewMessageTextCheckingType) -> Bool {
+        switch value {
+//        case let .addressComponents(addressComponents):
+//            var transformedAddressComponents = [String: String]()
+//            guard let addressComponents = addressComponents else { return false }
+//            addressComponents.forEach { (key, value) in
+//                transformedAddressComponents[key.rawValue] = value
+//            }
+//            handleAddress(transformedAddressComponents)
+        case let .phoneNumber(phoneNumber):
+            guard let phoneNumber = phoneNumber else { return false }
+            handlePhoneNumber(phoneNumber)
+//        case let .date(date):
+//            guard let date = date else { return false }
+//            handleDate(date)
+        case let .link(url):
+            guard let url = url else { return false }
+            handleURL(url)
+
+//        case let .custom(pattern, match):
+//            guard let match = match else { return false }
+//            switch detectorType {
+//            case .hashtag:
+//                handleHashtag(match)
+//            case .mention:
+//                handleMention(match)
+//            case .command:
+//                handleCommand(match)
+//            default:
+//                handleCustom(pattern, match: match)
+//            }
+        default:
+            return false
         }
         return false
     }
