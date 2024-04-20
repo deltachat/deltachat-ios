@@ -689,9 +689,9 @@
 "reactions" = "Reaktionen";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Reagieren";
-// %1$s will be replaced by an emoji. %2$s will be replaced by message summary. Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and no summary will be shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
+// %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
 "reaction_by_you" = "Sie reagieren mit %1$@ auf \"%2$@\"";
-// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary. Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and no summary will be shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
+// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
 "reaction_by_other" = "%1$@ reagiert mit %2$@ auf \"%3$@\"";
 
 // automatically delete message
@@ -830,6 +830,7 @@
 "load_qr_code_as_image" = "QR-Code als Bild laden";
 "qrscan_title" = "QR-Code scannen";
 "qrscan_hint" = "Kamera über den QR-Code halten";
+"qrscan_hint_desktop" = "QR-Code zur Kamera führen";
 "qrscan_failed" = "QR-Code kann nicht dekodiert werden.";
 "qrscan_ask_join_group" = "Der Gruppe \"%1$@\" beitreten?";
 "qrscan_fingerprint_mismatch" = "Der gescannte Fingerabdruck stimmt nicht mit dem zuletzt für %1$@ gesehenen Fingerabdruck überein.";

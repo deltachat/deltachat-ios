@@ -689,9 +689,9 @@
 "reactions" = "Reactions";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "React";
-// %1$s will be replaced by an emoji. %2$s will be replaced by message summary. Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and no summary will be shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
+// %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
 "reaction_by_you" = "You reacted %1$@ to \"%2$@\"";
-// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary. Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and no summary will be shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
+// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
 "reaction_by_other" = "%1$@ reacted %2$@ to \"%3$@\"";
 
 // automatically delete message
@@ -829,7 +829,8 @@
 "qr_code" = "QR Code";
 "load_qr_code_as_image" = "Load QR Code as Image";
 "qrscan_title" = "Scan QR Code";
-"qrscan_hint" = "Hold your camera over the QR code.";
+"qrscan_hint" = "Hold your camera over the QR code";
+"qrscan_hint_desktop" = "Move the QR code to the camera";
 "qrscan_failed" = "QR code could not be decoded";
 "qrscan_ask_join_group" = "Do you want to join the group \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "The scanned fingerprint does not match the last seen for %1$@.";

@@ -689,6 +689,11 @@
 "reactions" = "Реакції";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Реакція";
+// %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
+"reaction_by_you" = "Ви відреагували %1$@ на \"%2$@\"";
+// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
+"reaction_by_other" = "%1$@ відреагували %2$@ на \"%3$@\"";
+
 // automatically delete message
 "delete_old_messages" = "Видалити старі повідомлення";
 "autodel_device_title" = "Видалити повідомлення з пристрою";
@@ -825,6 +830,7 @@
 "load_qr_code_as_image" = "Завантажити зображення QR-коду";
 "qrscan_title" = "Сканувати QR-код";
 "qrscan_hint" = "Наведіть камеру на QR-код";
+"qrscan_hint_desktop" = "Піднесіть QR-код до камери";
 "qrscan_failed" = "Неможливо декодувати QR-код";
 "qrscan_ask_join_group" = "Приєднатися до групи «%1$@»?";
 "qrscan_fingerprint_mismatch" = "Відсканований відбиток не збігається з останнім відомим відбитком %1$@";
