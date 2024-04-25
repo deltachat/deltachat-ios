@@ -322,10 +322,6 @@ class WebxdcViewController: WebViewViewController {
                 openChatFor(url: url)
                 decisionHandler(.cancel)
                 return
-            } else if url.scheme.lowercased() == "openpgp4fpr" {
-                UIApplication.shared.open(url)
-                decisionHandler(.cancel)
-                return
             } else if url.scheme != INTERNALSCHEMA {
                 decisionHandler(.cancel)
                 return
