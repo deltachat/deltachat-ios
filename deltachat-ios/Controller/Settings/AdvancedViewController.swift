@@ -15,7 +15,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case autocryptPreferences
         case sendAutocryptMessage
         case manageKeys
-        case experimentalFeatures
         case videoChat
         case viewLog
     }
@@ -140,19 +139,48 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         })
     }()
 
-    private lazy var experimentalFeaturesCell: ActionCell = {
-        let cell = ActionCell()
-        cell.tag = CellTags.experimentalFeatures.rawValue
-        cell.actionTitle = String.localized("pref_experimental_features")
-        return cell
-    }()
-
     private lazy var videoChatInstanceCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.videoChat.rawValue
         cell.textLabel?.text = String.localized("videochat_instance")
         cell.accessoryType = .disclosureIndicator
         return cell
+    }()
+
+    lazy var broadcastListsCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("broadcast_lists"),
+            on: UserDefaults.standard.bool(forKey: "broadcast_lists"),
+            action: { cell in
+                UserDefaults.standard.set(cell.isOn, forKey: "broadcast_lists")
+                if cell.isOn {
+                    let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Broadcast Lists\"!",
+                        message: "You can now create new \"Broadcast Lists\" from the \"New Chat\" dialog\n\n"
+                               + "In case you are using more than one device, broadcast lists are currently not synced between them\n\n"
+                               + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                    self.navigationController?.present(alert, animated: true, completion: nil)
+                }
+        })
+    }()
+
+    lazy var locationStreamingCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_on_demand_location_streaming"),
+            on: UserDefaults.standard.bool(forKey: "location_streaming"),
+            action: { cell in
+                UserDefaults.standard.set(cell.isOn, forKey: "location_streaming")
+                if cell.isOn {
+                    let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Location streaming\"",
+                        message: "You will find a corresponding option in the attach menu (the paper clip) of each chat now.\n\n"
+                               + "Moreover, \"Profiles\" and \"All Media\" will offer a map.\n\n"
+                               + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                    self.navigationController?.present(alert, animated: true, completion: nil)
+                }
+        })
     }()
 
     private lazy var viewLogCell: UITableViewCell = {
@@ -173,15 +201,19 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             headerTitle: String.localized("pref_imap_folder_handling"),
             footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
             cells: [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
-        let miscSection = SectionConfigs(
-            headerTitle: nil,
+        let experimentalSection = SectionConfigs(
+            headerTitle: String.localized("pref_experimental_features"),
+            footerTitle: nil,
+            cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell])
+        let appAccessSection = SectionConfigs(
+            headerTitle: String.localized("pref_app_access"),
             footerTitle: String.localized("pref_show_system_contacts_explain"),
-            cells: [experimentalFeaturesCell, videoChatInstanceCell, showSystemContactsCell])
+            cells: [showSystemContactsCell])
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
             cells: [viewLogCell])
-        return [autocryptSection, folderSection, miscSection, viewLogSection]
+        return [autocryptSection, folderSection, experimentalSection, appAccessSection, viewLogSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -246,7 +278,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .manageKeys: showManageKeysDialog()
-        case .experimentalFeatures: showExperimentalDialog()
         case .videoChat: showVideoChatInstance()
         case .viewLog: showLogViewController()
         }
@@ -300,50 +331,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     private func showLogViewController() {
         let controller = LogViewController(dcContext: dcContext)
         navigationController?.pushViewController(controller, animated: true)
-    }
-
-    private func showExperimentalDialog() {
-        let alert = UIAlertController(title: String.localized("pref_experimental_features"), message: nil, preferredStyle: .safeActionSheet)
-
-        let broadcastLists = UserDefaults.standard.bool(forKey: "broadcast_lists")
-        alert.addAction(UIAlertAction(title: (broadcastLists ? "✔︎ " : "") + String.localized("broadcast_lists"),
-                                      style: .default, handler: { [weak self] _ in
-            guard let self else { return }
-            UserDefaults.standard.set(!broadcastLists, forKey: "broadcast_lists")
-            if !broadcastLists {
-                let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Broadcast Lists\"!",
-                                              message: "You can now create new \"Broadcast Lists\" from the \"New Chat\" dialog\n\n"
-                                                + "In case you are using more than one device, broadcast lists are currently not synced between them\n\n"
-                                                + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                self.navigationController?.present(alert, animated: true, completion: nil)
-            }
-        }))
-
-        let locationStreaming = UserDefaults.standard.bool(forKey: "location_streaming")
-        let title = (locationStreaming ? "✔︎ " : "") + String.localized("pref_on_demand_location_streaming")
-        alert.addAction(UIAlertAction(title: title, style: .default, handler: { [weak self] _ in
-            guard let self else { return }
-            UserDefaults.standard.set(!locationStreaming, forKey: "location_streaming")
-            if !locationStreaming {
-                let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Location streaming\"",
-                                              message: "You will find a corresponding option in the attach menu (the paper clip) of each chat now.\n\n"
-                                                + "Moreover, \"Profiles\" and \"All Media\" will offer a map.\n\n"
-                                                + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                self.navigationController?.present(alert, animated: true, completion: nil)
-            } else if self.dcContext.isSendingLocationsToChat(chatId: 0) {
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                    return
-                }
-                appDelegate.locationManager.disableLocationStreamingInAllChats()
-            }
-        }))
-
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 
     private func showManageKeysDialog() {
