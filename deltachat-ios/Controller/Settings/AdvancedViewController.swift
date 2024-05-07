@@ -12,6 +12,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }
 
     private enum CellTags: Int {
+        case showEmails
         case autocryptPreferences
         case sendAutocryptMessage
         case manageKeys
@@ -30,6 +31,15 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     var progressObserver: NSObjectProtocol?
 
     // MARK: - cells
+    private lazy var showEmailsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.showEmails.rawValue
+        cell.textLabel?.text = String.localized("pref_show_emails")
+        cell.accessoryType = .disclosureIndicator
+        cell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
+        return cell
+    }()
+
     private lazy var autocryptSwitch: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isOn = dcContext.e2eeEnabled
@@ -204,7 +214,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: nil,
-            cells: [viewLogCell])
+            cells: [showEmailsCell, viewLogCell])
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
@@ -284,6 +294,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         tableView.deselectRow(at: indexPath, animated: false)
 
         switch cellTag {
+        case .showEmails: showClassicMailController()
         case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .manageKeys: showManageKeysDialog()
@@ -343,6 +354,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         navigationController?.pushViewController(controller, animated: true)
     }
 
+    private func showClassicMailController() {
+        let controller = EmailOptionsViewController(dcContext: dcContext)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
     private func showAccountSettingsController() {
         let controller = AccountSetupController(dcAccounts: dcAccounts, editView: true)
         navigationController?.pushViewController(controller, animated: true)
@@ -396,6 +412,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
     // MARK: - updates
     private func updateCells() {
+        showEmailsCell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
         videoChatInstanceCell.detailTextLabel?.text = VideoChatInstanceViewController.getValString(val: dcContext.getConfig("webrtc_instance") ?? "")
     }
 

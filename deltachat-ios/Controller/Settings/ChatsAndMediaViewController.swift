@@ -11,7 +11,6 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
     }
 
     private enum CellTags: Int {
-        case showEmails
         case blockedContacts
         case receiptConfirmation
         case exportBackup
@@ -28,14 +27,7 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
     var progressObserver: NSObjectProtocol?
 
     // MARK: - cells
-    private lazy var showEmailsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.showEmails.rawValue
-        cell.textLabel?.text = String.localized("pref_show_emails")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
-        return cell
-    }()
+
 
     private lazy var blockedContactsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
@@ -109,7 +101,7 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [showEmailsCell, blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
+            cells: [blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
                     autodelCell, receiptConfirmationCell]
         )
         let exportBackupSection = SectionConfigs(
@@ -188,7 +180,6 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
         tableView.deselectRow(at: indexPath, animated: false)
 
         switch cellTag {
-        case .showEmails: showClassicMail()
         case .blockedContacts: showBlockedContacts()
         case .autodel: showAutodelOptions()
         case .mediaQuality: showMediaQuality()
@@ -237,7 +228,6 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
     }
 
     private func updateCells() {
-        showEmailsCell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
         mediaQualityCell.detailTextLabel?.text = MediaQualityViewController.getValString(val: dcContext.getConfigInt("media_quality"))
         downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(
             val: dcContext.getConfigInt("download_limit"))
@@ -245,11 +235,6 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
     }
 
     // MARK: - coordinator
-    private func showClassicMail() {
-        let settingsClassicViewController = EmailOptionsViewController(dcContext: dcContext)
-        navigationController?.pushViewController(settingsClassicViewController, animated: true)
-    }
-
     private func  showMediaQuality() {
         let mediaQualityController = MediaQualityViewController(dcContext: dcContext)
         navigationController?.pushViewController(mediaQualityController, animated: true)
