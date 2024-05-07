@@ -244,8 +244,6 @@
 "device_talk" = "Mensajes del dispositivo";
 "device_talk_subtitle" = "Mensajes generados localmente";
 "device_talk_explain" = "Los mensajes en este chat son generados localmente por tu aplicación Delta Chat. Los creadores lo usan para informar sobre actualizaciones y problemas durante el uso de la aplicación.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "¡Bienvenido a Delta Chat! – Delta Chat parece como otras aplicaciones de mensajería populares, pero sin control centralizado, seguimiento ni venta de tus datos, o los de tus amigos, colegas o familiares a grandes organizaciones.\n\nTécnicamente, Delta Chat es una aplicación de correo electrónico con una interfaz de chat moderna. Correo electrónico en un nuevo vestido si quieres 👻\n\nUsa Delta Chat con cualquiera de miles de millones de personas: solo necesitas su dirección de correo electrónico. Los destinatarios no necesitan instalar Delta Chat, visitar sitios web o registrarse en ningún lugar - sin embargo, por supuesto, si lo desean, puedes indicarles 👉 https://get.delta.chat";
 "device_talk_welcome_message2" = "¡Ponte en contacto!\n\n🙌 Toca \"Código QR\" en la pantalla principal de ambos dispositivos. Elija \"Escanear código QR\" en un dispositivo y apúntelo al otro\n\n🌍 Si no está en la misma habitación, escanee mediante videollamada o comparta un enlace de invitación desde \"Escanear código QR\"\n\nEntonces: disfrute de su experiencia de mensajería a través de la red descentralizada más grande que jamás haya existido: el correo electrónico. Y a diferencia de otras aplicaciones populares, sin control central ni seguimiento ni venta de usted, amigos, colegas o familiares a grandes organizaciones.";
 "edit_contact" = "Editar contacto";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
@@ -348,8 +346,6 @@
 "retry_send" = "Reintentar enviar mensaje";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "No puedes escribir porque no estás en este grupo. Para unirte, pregúntale a otro miembro.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Este chat contiene mensajes generados localmente. Por eso no puedes escribir ningún mensaje.";
 "messaging_disabled_mailing_list" = "Todavía no se admite el envío de mensajes en listas de correo";
 "cannot_display_unsuported_file_type" = "No se puede mostrar este tipo de archivo: %1$@";
 "attachment_failed_to_load" = "Fallo al cargar el adjunto";
@@ -486,7 +482,6 @@
 "part_of_total_used" = "%1$@ de %2$@ usado";
 
 
-// welcome and login
 "welcome_chat_over_email" = "Charla por correo electrónico.";
 "scan_invitation_code" = "Escanear código de invitación";
 "login_title" = "Iniciar sesión";
@@ -714,7 +709,9 @@
 "autodel_after_1_year" = "Luego de 1 año";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt es una nueva especificación abierta para cifrado automático de correo electrónico de extremo a extremo. Su configuración de extremo a extremo es creada automáticamente cuando se necesita y puede transferirla entre dispositivos con los Mensajes de Configuración de Autocrypt.";
 "autocrypt_send_asm_title" = "Enviar Mensaje de Configuración de Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \"Mensaje de Configuración de Autocrypt\" comparte de forma segura su configuración de extremo a extremo con otras aplicaciones compatibles con Autocrypt.\n\nLa configuración se cifrará mediante un código de configuración que se muestra aquí y debe escribirse en el otro dispositivo.";
@@ -853,8 +850,6 @@
 "qrshow_join_contact_no_connection_toast" = "No hay conexión a Internet, no se puede configurar con código QR.";
 "qraccount_ask_create_and_login" = "¿Crear una nueva dirección de correo en \"%1$@\" e ingresar allí?";
 "qraccount_ask_create_and_login_another" = "¿Crear una nueva dirección de correo en \"%1$@\" e ingresar ahí?\n\nTu cuenta existente no será eliminada. Usar el ítem \"Cambiar cuenta\" para cambiar entre tus cuentas.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Ingreso satisfactorio—tu dirección de email es %1$@\n\nSi lo deseas, puedes ingresar un nombre y una imagen de perfil, que será mostrada a los usuarios que escribas.";
 "set_name_and_avatar_explain" = "Establece un nombre que tus contactos puedan reconocer. También puedes establecer una foto de perfil.";
 "please_enter_name" = "Por favor, introduce un nombre.";
 "qraccount_qr_code_cannot_be_used" = "El código QR escaneado no puede ser usado para configurar una nueva cuenta.";
@@ -1031,7 +1026,3 @@
 "perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
 
 
-// device messages for updates
-"update_1_42_common" = "Novedades:\n\n💌 Los chats privados garantizan el cifrado de extremo a extremo para los contactos introducidos via QR\n\n😌 Para la simplicidad de todos, marcamos estos contactos y chats con marcas de verificación verdes\n\n👥 Los grupos se crean automáticamente con cifrado de extremo a extremo garantizado si es posible\n\n🔄 Aceptar/bloquear, archivar, fijar y silenciar se sincronizan en todos tus dispositivos";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_42_android" = "Esté atento a más mejoras en la cámara, mensajes de voz, copia de respaldo, lector de pantalla, fondos de pantalla por cuenta, seleccionar todo en la galería, webxdc en modo horizontal… o léalos en %1$@";

@@ -39,9 +39,9 @@
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "重新发送";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
-"archive" = "归档";
+"archive" = "存档";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
-"unarchive" = "解档";
+"unarchive" = "取消存档";
 "mute" = "静音";
 "ephemeral_messages" = "消息定时销毁";
 "ephemeral_messages_hint" = "对本聊天内使用 Delta Chat 的成员有效；不过，这些成员还是能够保存、复制和转发消息，以及使用其他的电子邮件客户端。";
@@ -51,7 +51,7 @@
 "profile" = "概要";
 "main_menu" = "主菜单";
 "start_chat" = "开始聊天";
-"show_full_message" = "显示完整消息… ";
+"show_full_message" = "显示完整消息…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "将所有标记为已读";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -79,7 +79,7 @@
 "next" = "下一步";
 "error" = "错误";
 "error_x" = "错误：%1$@";
-"no_app_to_handle_data" = "无法找到用于处理此类数据的应用程序。";
+"no_app_to_handle_data" = "找不到用于处理此类数据的应用。";
 "no_browser_installed" = "没有安装浏览器。";
 "file_not_found" = "无法找到 %1$@。";
 "copied_to_clipboard" = "已复制到剪贴板。";
@@ -98,10 +98,10 @@
 "last_week" = "上周";
 "last_month" = "上个月";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
-"last_seen_at" = "最后见到时间：%1$@";
+"last_seen_at" = "最后上线于：%1$@";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
-"last_seen_relative" = "上次在线 %1$@";
-"last_seen_unknown" = "最后见到时间：未知";
+"last_seen_relative" = "最后上线 %1$@";
+"last_seen_unknown" = "最后上线：未知";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -181,8 +181,8 @@
 "menu_edit_group" = "编辑群组";
 "menu_group_name_and_image" = "群组名称和图像";
 "menu_show_global_map" = "显示所有位置";
-"menu_archive_chat" = "归档聊天";
-"menu_unarchive_chat" = "解档聊天";
+"menu_archive_chat" = "存档聊天";
+"menu_unarchive_chat" = "取消存档聊天";
 "menu_add_attachment" = "添加附件";
 "menu_leave_group" = "离开群组";
 "menu_delete_chat" = "删除聊天";
@@ -244,8 +244,6 @@
 "device_talk" = "设备消息";
 "device_talk_subtitle" = "本地生成的消息";
 "device_talk_explain" = "此聊天中的消息是由 Delta Chat 应用本地生成的。 它的制作者使用它来通知应用更新和使用过程中出现的问题。";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "欢迎使用 Delta Chat！ – Delta Chat 看起来、用起来就跟其他流行的通讯应用一样，但是却不涉及中心化的控制、跟踪以及将您、朋友、同事或家庭出卖给大型组织。\n\n从技术上来说，Delta Chat 是具有现代聊天界面的电子邮件应用程序。若您愿意，电子邮件将装扮一新👻\n\n与数十亿人中的任何人一起使用 Delta Chat：只需使用他们的电子邮件地址即可。收件人不需要安装 Delta Chat、访问网站或是在什么地方注册 - 当然，如果他们愿意，您可以指给他们👉 https://get.delta.chat";
 "device_talk_welcome_message2" = "取得联系！\n\n🙌 轻按两台设备主屏上的“二维码”。 在其中一台设备上选择“扫描二维码”，并将其对准另一台设备上显示的二维码\n\n🌍 如果双方不在同一个房间内，可以通过视频通话进行扫描，或从“扫描二维码”那里分享一个邀请链接\n\n接下来： 通过有史以来存在的最大去中心化网络：电子邮件来享受收发消息。和其他流行的即时聊天应用相比，DeltaChat 没有中央控制，不跟踪您本人、您的好友、同事或家人，也不售卖你们的数据给大型组织。";
 "edit_contact" = "编辑联系人";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
@@ -320,7 +318,7 @@
 
 
 // chatlist and chat view
-"chat_archived_chats_title" = "已归档聊天";
+"chat_archived_chats_title" = "已存档聊天";
 "chat_please_enter_message" = "请输入消息。";
 "chat_camera_unavailable" = "相机不可用。";
 "chat_unable_to_record_audio" = "无法录制音频。";
@@ -332,14 +330,14 @@
 "chat_record_explain" = "按住来录制语音消息，松开来发送";
 "chat_no_chats_yet_title" = "收件箱为空。\n按“+”来开始新聊天。";
 "chat_no_chats_yet_hint" = "您可以与其他 Delta Chat 用户以及任意电子邮件地址聊天。";
-"chat_all_archived" = "所有聊天已归档。\n按\"+\"来开始新聊天。";
+"chat_all_archived" = "所有聊天已存档。\n按“+”来开始新聊天。";
 "chat_share_with_title" = "分享给";
 "chat_input_placeholder" = "输入消息…";
-"chat_archived_label" = "已归档";
+"chat_archived_label" = "已存档";
 "chat_request_label" = "请求";
 "chat_no_messages" = "没有消息。";
 "chat_self_talk_subtitle" = "发给自己的消息";
-"archive_empty_hint" = "被归档的聊天将显示于此。";
+"archive_empty_hint" = "已存档的聊天将显示在此处。";
 "saved_messages" = "保存的消息";
 "saved_messages_explain" = "• 转发消息于此以便于访问\n\n• 做笔记或语音备忘录\n\n• 附加媒体以保存它们";
 // Should match "Saved" from "Saved messages"
@@ -348,8 +346,6 @@
 "retry_send" = "尝试重发消息";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "您必须在此群组之中才能发送消息。要加入，请询问其他成员。";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "此聊天用于本地生成的消息。您不能在这里编写消息。";
 "messaging_disabled_mailing_list" = "尚不支持在邮件列表中发送消息";
 "cannot_display_unsuported_file_type" = "无法显示此类文件：%1$@";
 "attachment_failed_to_load" = "加载附件失败";
@@ -487,6 +483,31 @@
 
 
 // welcome and login
+// Primary button on the welcome screen, allows to create an instant account
+"onboarding_create_instant_account" = "让我们开始吧！";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+"onboarding_alternative_logins" = "我已经有登录凭据了";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "手动登录";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "个人资料";
+// This is a link to the default Privacy Policy
+"instant_onboarding_agree_default" = "阅读隐私政策";
+// The placeholder will be replaced by instance name, the whole text will link to the instance page
+"instant_onboarding_agree_instance" = "关于 %1$@ 上的个人资料";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "同意 & 创建个人资料";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "探索其他选项";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+"instant_onboarding_group_info" = "创建个人资料加入“%1$@” 群。";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+"instant_onboarding_contact_info" = "创建个人资料和 %1$@ 聊天";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "你想新建个人资料并开始和 %1$@ 聊天吗？";
+// Question shown when group's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "你想新建个人资料并加入 \"%1$@\" 聊天群吗？";
+
 "welcome_chat_over_email" = "通过电子邮件聊天。";
 "scan_invitation_code" = "扫描邀请码";
 "login_title" = "登录";
@@ -561,8 +582,8 @@
 "pref_your_name" = "您的名称";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "签名档";
-"pref_enter_sends" = "回车键发送";
-"pref_enter_sends_explain" = "按回车键发送文本消息";
+"pref_enter_sends" = "Enter 键发送";
+"pref_enter_sends_explain" = "按 Enter 键发送文本消息";
 "pref_outgoing_media_quality" = "发出媒体质量";
 "pref_outgoing_balanced" = "平衡";
 "pref_outgoing_worse" = "体积小，但质量更差";
@@ -594,6 +615,8 @@
 "pref_incognito_keyboard_explain" = "请求输入法禁用个性化学习";
 "pref_read_receipts" = "已读回执";
 "pref_read_receipts_explain" = "禁用已读回执后，您将无法看到其他人的已读回执。";
+"pref_server" = "服务器";
+"pref_encryption" = "加密";
 "pref_manage_keys" = "管理密钥";
 "pref_use_system_emoji" = "使用系统 emoji";
 "pref_use_system_emoji_explain" = "关闭 Delta Chat 内置 emoji 支持";
@@ -719,7 +742,9 @@
 "autodel_after_1_year" = "1 年后";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt 是一种用于自动端到端电子邮件加密的全新开放规范。\n\n您的端到端设置会根据需要自动创建；之后您可以使用 Autocrypt 设置消息在设备间传输此设置。";
 "autocrypt_send_asm_title" = "发送 Autocrypt 设置消息";
 "autocrypt_send_asm_explain_before" = "Autocrypt 设置消息安全地共享您的端到端设置至其他兼容 Autocrypt 的应用程序。\n\n该设置将通过在此显示的、必须在另一台设备上输入的设置码进行加密。";
@@ -859,8 +884,6 @@
 "qrshow_join_contact_no_connection_toast" = "没有互联网连接，无法进行二维码设置。";
 "qraccount_ask_create_and_login" = "在“%1$@”创建新的电子邮件地址并登录？";
 "qraccount_ask_create_and_login_another" = "在“%1$@”创建新的电子邮件地址并登录？\n\n已存在的账户不会被删除。使用“切换账户”来在账户之间切换。";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "登录成功——电子邮件地址是 %1$@\n\n如果您愿意，您现在可以去设置一个名称和个人资料图片。它们将显示给您发消息到的人。";
 "set_name_and_avatar_explain" = "设置一个你的联系人认得出的名字。你还可以设置头像图片";
 "please_enter_name" = "请输入名字";
 "qraccount_qr_code_cannot_be_used" = "无法使用扫描到的二维码建立新账户。";
@@ -1038,8 +1061,5 @@
 
 
 // device messages for updates
-"update_1_42_common" = "新变化\n\n💌 对引入的联系人，一对一聊天确保端到端加密\n\n😌 为了方便识别，这样的联系人和聊天会带有绿色钩形符号\n\n👥 如果可能，自动创建确保端到端加密的群\n\n🔄 在所有设备间同步接受/拦截、存档、固定、静音";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_42_android" = "留心相机、语音消息、backup-all、屏幕阅读器、不同账户壁纸、图库全选、webxdc landscape 等方面的更多改进… 或访问 %1$@ 进行了解";
-"update_1_44_android" = "变化：\n\n❤️ 耶！等待已久的功能来了： 长按消息做出反应\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n🔵 计算所有账户的未读消息并显示在标题中\n\n… 以及修复许多 bug … %1$@\n\n帮助改进应用：使用”设置/高级、发送统计数据\" 帮助开发者为实际使用而更好地优化。发送前你可以查看数据";
-"update_1_44_ios" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出反应\n\n🫸 支持PUSH 通知，不过需要提供商像 https://nine.testrun.org 一样支持该功能\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n… 以及修复许多 bug … %1$@";
+"update_1_44_android" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出回应\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n🔵 计算所有账户的未读消息并显示在标题中\n\n… 以及修复许多 bug … %1$@\n\n帮助改进应用：使用“设置/高级、发送统计数据”帮助开发者为实际使用而更好地优化。发送前你可以查看数据";
+"update_1_44_ios" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出回应\n\n🫸 支持推送通知，不过需要提供商像 https://nine.testrun.org 一样支持该功能\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n… 以及修复许多 bug … %1$@";

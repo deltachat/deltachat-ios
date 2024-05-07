@@ -242,8 +242,6 @@
 "device_talk" = "Zprávy přístroje";
 "device_talk_subtitle" = "Samovytvořené zprávy";
 "device_talk_explain" = "Zprávy v tomto hovoru jsou vytvořeny aplikací Delta Chat. Její tvůrci tak informují o aktualizacích a potížích při používání.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Vítej v Delta Chatu! – Delta Chat se chová jako všeobecně známé chatovací aplikace, ale bez centralizované kontroly, sledování. Neprodává zážitky tvých přátel, kolegů, rodiny ani tvé vlastní velkým organizacím.\n\nTechnicky je Delta Chat e-mailový program, ale s uživatelským rozhraním chatu. Převlečený e-mail, chceš-li. Delta Chat používej s kýmkoli z miliard lidí; prostě použij jejich e-mailovou adresu. Příjemce si nemusí Delta Chat instalovat, ani se přihlašovat přes nové webové stránky. Můžeš je však, budou-li chtít, odkázat na 👉 https://get.delta.chat";
 "edit_contact" = "Uprav kontakt";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Připíchni chat";
@@ -331,8 +329,6 @@
 "retry_send" = "Opakuj pokus o zaslání zprávy";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Nelze psát protože nejsi členem této skupiny. O přidání požádej jiného člena.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Tento chat obsahuje samočinně vytvořené zprávy. Proto nelze psát vlastní zprávy.";
 "cannot_display_unsuported_file_type" = "Nelze zobrazit tento typ souboru: %1$@";
 "attachment_failed_to_load" = "Nezdařilo se načíst přílohu";
 // mailing lists
@@ -385,7 +381,6 @@
 "send_message" = "Pošli zprávu";
 "multidevice_install_dc_on_other_device" = "Nainstalujte si Delta Chat do druhého zařízení (https://get.delta.chat)";
 "multidevice_tap_scan_on_other_device" = "Spusťte Delta Chat, klepněte na „Přidat jako druhé zařízení“ a naskenujte zde zobrazený kód";
-// welcome and login
 "welcome_chat_over_email" = "Chat přes e-mail.";
 "login_title" = "Přihlaš se";
 "login_header" = "Přihlaš se na váš server";
@@ -571,7 +566,9 @@
 "autodel_after_1_year" = "Po 1 roce";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt je nový, otevřený technický popis samočinného end-to-end šifrování.\n\nNastavení šifrování se vytváří samočinně dle potřeby a mužeš si ho přenášet mezi zařízeními zasláním zprávy s Nastavením Autocryptu.";
 "autocrypt_send_asm_title" = "Pošli Nastavení Autocryptu";
 "autocrypt_send_asm_explain_before" = "Pomocí Nastavení Autocryptu lze bezpečně sdílet nastavení šifrování této aplikace s jinou, která také používá Autocrypt.\n\nNastavení je zašifrované zobrazeným kódem, který musí být vložen i na druhém zařízení.";
@@ -678,8 +675,6 @@
 "qrshow_join_contact_no_connection_toast" = "Nejsi připojen k Internetu. Nastavení QR kódem nelze provést. ";
 "qraccount_ask_create_and_login" = "Vytvořit nový e-mail na \"%1$@\" a připojit se k němu?";
 "qraccount_ask_create_and_login_another" = "Vytvořit nový e-mail na \"%1$@\" a připojit se k němu?\n\nTvůj původní ůčet nebude smazán. Použij \"Přepni účet\" k přepnutí na jiný účet.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Úspěšné přihlášení - tvůj e-mail je %1$@\n\nNyní můžeš zadat jméno a profilový obrázek. Ty se budou zobrazovat lidem, kterým budeš posílat zprávy.";
 "qraccount_qr_code_cannot_be_used" = "Sejmutý QR kód neumožňuje nastavení nového účtu.";
 "qraccount_use_on_new_install" = "Sejmutý QR kód je k nastavení nového účtu. Tento QR kód můžeš použít když budeš provádět novou instalaci Delta Chatu.";
 "contact_verified" = "%1$@ ověřen.";
@@ -784,5 +779,3 @@
 "perm_enable_bg_already_done" = "Přijímání zpráv na pozadí je Delta Chatu již povoleno.\n\nV případě nepřicházení nových zpráv si prosím zkontroluj své systémové nastavení.";
 
 
-// device messages for updates
-"update_1_42_common" = "Co je nového:\n\n💌 individuální chaty zaručují end-to-end šifrování kontaktů se zeleným zaškrtnutím\n\n😌 pro jednoduchost všechny tyto chaty označujeme také zeleným zaškrtnutím\n\n👥 skupiny jsou vytvářeny automaticky se zaručeným end-to-end šifrováním, pokud je to možné\n\n🔄 Přijmout/Zablokovat, Archivováno, Připnuto, Ztlumit se synchronizuje na všech vašich zařízeních ";

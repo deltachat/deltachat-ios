@@ -244,8 +244,6 @@
 "device_talk" = "Berichten op apparaat";
 "device_talk_subtitle" = "Lokaal gegenereerde berichten";
 "device_talk_explain" = "Berichten in dit gesprek worden geplaatst door de app zelf. Zo blijf je op de hoogte van app-updates en gebruiksproblemen.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Welkom bij Delta Chat! Delta Chat lijkt heel erg op andere chatapps, maar is toch écht anders! Zo is er geen centraal beheer, wordt je niet gevolgd en worden jouw gegevens of die van je vrienden/familie niet verkocht aan bedrijven.\n\nTechnisch gesproken is het een e-mailapp in een modern jasje (of moderne jurk 👻).\n\nGebruik Delta Chat om te communiceren met iedereen die een e-mailadres heeft. Ontvangers hoeven het niet te installeren, naar een website te gaan of ergens te registreren. Maar als ze dat willen, kun je ze natuurlijk altíjd doorverwijzen naar 👉 https://get.delta.chat";
 "device_talk_welcome_message2" = "Kom in contact!\n\n🙌 Druk op beide apparaten op het hoofdscherm op ‘QR-code’. Kies vervolgens ‘QR-code scannen’ op het ene apparaat en houd hem boven het andere.\n\n🌍 Als jullie niet ter plaatse zijn, scan de code dan via een videogesprek of deel de code via een uitnodigingslink (‘QR-code delen’).\n\nDaarna kunnen jullie beide vertrouwen op het voeren van gesprekken via het grootste gedecentraliseerde netwerk ooit: e-mail. En in tegenstelling tot andere populaire apps, is er geen centraal beheer, word je niet gevolgd en worden de gegevens van jou, je vrienden, collega\'s en familieleden niet verkocht.";
 "edit_contact" = "Contactpersoon bewerken";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
@@ -348,8 +346,6 @@
 "retry_send" = "Bericht opnieuw versturen";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Alleen leden kunnen berichten versturen aan deze groep. Vraag aan een lid om lid te worden.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Je kunt geen berichten versturen omdat dit gesprek alleen lokaal gegenereerde berichten bevat.";
 "messaging_disabled_mailing_list" = "Het versturen van berichten naar mailinglijsten wordt nog niet ondersteund";
 "cannot_display_unsuported_file_type" = "Het volgende bestandstype kan niet worden getoond: %1$@";
 "attachment_failed_to_load" = "De bijlage kan niet worden geladen";
@@ -487,6 +483,31 @@
 
 
 // welcome and login
+// Primary button on the welcome screen, allows to create an instant account
+"onboarding_create_instant_account" = "Aan de slag!";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+"onboarding_alternative_logins" = "Ik heb al een account";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Zelf alles invullen";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Mijn profiel";
+// This is a link to the default Privacy Policy
+"instant_onboarding_agree_default" = "Privacybeleid lezen";
+// The placeholder will be replaced by instance name, the whole text will link to the instance page
+"instant_onboarding_agree_instance" = "Over profielen op %1$@";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Akkoord gaan en profiel aanmaken";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Andere opties bekijken";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+"instant_onboarding_group_info" = "Maak een profiel aan om deel te nemen aan de groep ‘%1$@’.";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+"instant_onboarding_contact_info" = "Maak een profiel aan om een gesprek te voeren met ‘%1$@’.";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Wil je een nieuw profiel aanmaken en een gesprek beginnen met ‘%1$@’?";
+// Question shown when group's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Wil je een nieuw profiel aanmaken en deelnemen aan ‘%1$@’?";
+
 "welcome_chat_over_email" = "Chatten via e-mail.";
 "scan_invitation_code" = "Uitnodigingscode scannen";
 "login_title" = "Inloggen";
@@ -594,6 +615,8 @@
 "pref_incognito_keyboard_explain" = "Verzoek het toetsenbord om geen persoonlijke woorden op te nemen";
 "pref_read_receipts" = "Leesbevestigingen";
 "pref_read_receipts_explain" = "Als je leesbevestigingen uitschakelt, dan zie je geen leesbevestigingen van anderen.";
+"pref_server" = "Server";
+"pref_encryption" = "Versleuteling";
 "pref_manage_keys" = "Sleutels beheren";
 "pref_use_system_emoji" = "Systeememoji gebruiken";
 "pref_use_system_emoji_explain" = "Schakel Delta Chat\'s ingebouwde emoji-ondersteuning uit";
@@ -719,7 +742,9 @@
 "autodel_after_1_year" = "Na 1 jaar";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt is een nieuwe, open specificatie voor het automatisch instellen van eind-tot-eindversleuteling.\n\nJe instellingen worden, indien nodig, automatisch aangemaakt en kunnen worden overgezet naar andere apparaten middels instelberichten.";
 "autocrypt_send_asm_title" = "Autocrypt-instelbericht versturen";
 "autocrypt_send_asm_explain_before" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
@@ -859,8 +884,6 @@
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
 "qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?";
 "qraccount_ask_create_and_login_another" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Het inloggen is gelukt - je e-mailadres is ‘%1$@’.\n\nAls je wilt kun je nu een naam en profielfoto instellen. Je naam en foto worden getoond aan de mensen waarmee je communiceert.";
 "set_name_and_avatar_explain" = "Kies een naam die herkenbaar is voor je contactpersonen en, desgewenst, een profielfoto.";
 "please_enter_name" = "Voer een naam in.";
 "qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
@@ -1038,8 +1061,5 @@
 
 
 // device messages for updates
-"update_1_42_common" = "Wijzigingslog:\n\n💌 een-op-eengesprekken hebben voortaan gegarandeerd eind-tot-eindversleuteling bij gebruik van goedgekeurde contactpersonen\n\n😌 omwille van eenvoud worden zulke contactpersonen en gesprekken voorzien van groene vinkjes\n\n👥 groepen worden automatisch voorzien van gegarandeerde eind-tot-eindversleuteling (indien mogelijk)\n\n🔄 goedgekeurd, geblokkeerd, gearchiveerd, vastgemaakt en genegeerd wordt voortaan naar alle apparaten gesynchroniseerd";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_42_android" = "Binnenkort beschikbaar: verbeteringen aan de camera, spraakberichten, reservekopieën, schermlezer, achtergronden per account, galerijselectie, webxdc in horizontale modus… of lees alles op %1$@";
 "update_1_44_android" = "Wijzigingslog:\n\n❤️ Jaaaa! Eindelijk een langverwachte functie toegevoegd: een bericht lang ingedrukt houden om te reageren\n\n🔗 Als je geen QR-codes kunt scannen, dan kun je ze voortaan delen als uitnodigingslinks\n\n🔵 Voortaan wordt het aantal ongelezen berichten van alle accounts in de titel getoond\n\n… en vele, vele bugs opgelost… %1$@\n\nHelp de app te verbeteren: via ‘Instellingen → Geavanceerd → Statistieken versturen’ kun je de ontwikkelaars helpen om inzicht te krijgen in het dagelijks gebruik. Je kunt alle te versturen gegevens vooraf inzien.";
 "update_1_44_ios" = "Wijzigingslog:\n\n❤️ Jaaaa! Eindelijk een langverwachte functie toegevoegd: een bericht lang ingedrukt houden om te reageren\n\n🫸 PUSHmeldingen, indien ondersteund door diensten als https://nine.testrun.org\n\n🔗 Als je geen QR-codes kunt scannen, dan kun je ze voortaan delen als uitnodigingslinks\n\n🔵 Voortaan wordt het aantal ongelezen berichten van alle accounts in de titel getoond\n\n… en vele, vele bugs opgelost… %1$@";

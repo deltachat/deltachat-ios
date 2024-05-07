@@ -189,7 +189,6 @@
 "device_talk" = "デバイスのメッセージ";
 "device_talk_subtitle" = "ローカルで生成されたメッセージ";
 "device_talk_explain" = "このチャットのメッセージはアプリで生成されます。アプリ開発者はアップデートや問題点をお知らせするために使用しています。";
-// deprecated, use device_talk_welcome_message2 instead
 "edit_contact" = "連絡先を編集";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "チャットをピン留め";
@@ -276,8 +275,6 @@
 "retry_send" = "メッセージの配信を再試行します";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "このグループに参加していないので書き込めません。参加するには、他のメンバーに知らせてください。";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "このチャットにはローカルで生成されたメッセージがありますので、メッセージを書き込めません。";
 "cannot_display_unsuported_file_type" = "%1$@形式のファイルは表示できません";
 "attachment_failed_to_load" = "添付ファイルの読み込みに失敗しました";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -499,7 +496,9 @@
 "autodel_after_1_year" = "1年後";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "自動暗号化";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "自動暗号化機能は新しくて開けた仕様での一対一のﾒｰﾙ暗号化を行います｡\n \n この一対一暗号化は自動暗号化設定用ﾒｯｾｰｼﾞを転送して設定します｡";
 "autocrypt_send_asm_title" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
 "autocrypt_send_asm_explain_before" = "｢自動暗号化設定用メッセージ｣は安全に一対一暗号化設定を対応するアプリケーションとの間に設定します｡\n \n 受信側は設定時に表示されるパスコードを入力する必要が有ります｡";

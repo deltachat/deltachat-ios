@@ -215,8 +215,6 @@
 "device_talk" = "Správy zariadenia";
 "device_talk_subtitle" = "Miestne generované správy";
 "device_talk_explain" = "Správy v tejto konverzácií sú generované lokálne vašou aplikáciou Delta Chat. Jeho tvorcovia ho používajú na informovanie o aktualizáciách aplikácií a problémoch počas používania.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Vitajte na chatu Delta! - Delta Chat vyzerá a vyzerá ako iné populárne aplikácie pre komunikáciu, nezahŕňa však centralizované riadenie, sledovanie ani predaj vašich priateľov, kolegov alebo rodiny veľkým organizáciám.\n\nTechnicky je Delta Chat e-mailová aplikácia s moderným rozhraním pre chat. . Ak budete chcieť, pošlite e-mail v novom šate 👻\n\nPoužite program Delta Chat s kýmkoľvek z miliárd ľudí: stačí použiť jeho e-mailovú adresu. Príjemcovia nemusia inštalovať Delta Chat, navštevovať webové stránky alebo sa kdekoľvek registrovať - samozrejme, ak sa im páči, môžete ich odkázať na 👉 https://get.delta.chat";
 "edit_contact" = "Upraviť kontakt";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Pripnúť konverzáciu";
@@ -315,8 +313,6 @@
 "retry_send" = "Skúste správu odoslať znova";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Nemôžete písať, pretože nie ste v tejto skupine. Ak sa chcete pripojiť, požiadajte iného člena.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Táto konverzácia obsahuje miestne generované správy. Preto nemôžete písať žiadne správy.";
 "messaging_disabled_mailing_list" = "Posielanie správ do diskusných skupín (mailing list) zatiaľ nie je podporované.";
 "cannot_display_unsuported_file_type" = "Nie je možné zobraziť tento typ súboru: %1$@";
 "attachment_failed_to_load" = "Prílohu sa nepodarilo načítať";
@@ -410,7 +406,6 @@
 "part_of_total_used" = "%1$@ z %2$@využitých ";
 
 
-// welcome and login
 "welcome_chat_over_email" = "Chatovanie cez e-mail.";
 "scan_invitation_code" = "Skenovať kód pozvánky";
 "login_title" = "Prihlásiť sa";
@@ -621,7 +616,9 @@
 "autodel_after_1_year" = "Po 1 roku";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autokrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autokrypt je nová a otvorená špecifikácia automatického šifrovania e-mailov typu end-to-end.\n\nVaše komplexné nastavenie sa vytvára automaticky podľa potreby a môžete ho medzi zariadeniami prenášať pomocou správ o nastavení automatického šifrovania.";
 "autocrypt_send_asm_title" = "Pošlite správu s nastavením autokryptovania";
 "autocrypt_send_asm_explain_before" = "Správa o nastavení automatického šifrovania bezpečne zdieľa vaše komplexné nastavenie s ostatnými aplikáciami kompatibilnými s automatickým šifrovaním.\n\nNastavenie bude šifrované tu zobrazeným nastavovacím kódom a musí byť zadané na druhom zariadení.";
@@ -747,8 +744,6 @@
 "qrshow_join_contact_no_connection_toast" = "Nie je pripojenie na internet, nedá sa nastaviť kód QR.";
 "qraccount_ask_create_and_login" = "Vytvoriť novú e-mailovú adresu na „%1$@“ a prihlásiť sa tam?";
 "qraccount_ask_create_and_login_another" = "Vytvorte novú e-mailovú adresu na „%1$@“ a prihláste sa tam?\n\nVáš existujúci účet nebude odstránený. Medzi položkami môžete prepínať pomocou položky „Prepnúť účet“.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Prihlásenie bolo úspešné - vaša e-mailová adresa je %1$@\n\nlf chcete, teraz môžete zadať meno a profilový obrázok, ktoré sa zobrazia ľuďom, s ktorými si píšete.";
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na založenie nového účtu.";
 "qraccount_use_on_new_install" = "Naskenovaný QR kód slúži na založenie nového účtu. QR kód môžete naskenovať pri nastavovaní novej inštalácie Delta Chat.";
 // the placeholder will be replaced by the e-mail address of the account

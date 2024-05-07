@@ -244,8 +244,6 @@
 "device_talk" = "Aygıt İletileri";
 "device_talk_subtitle" = "Yerel olarak oluşturulan iletiler";
 "device_talk_explain" = "Bu sohbetteki iletiler, uygulama güncelleştirmeleri ve kullanım sırasındaki sorunlar hakkında bilgilendirmek için aygıtınızda oluşturulur.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Delta Chat\'e hoş geldiniz! – Delta Chat, diğer yaygın ulak uygulamaları gibi görünür ve hissettirir; ama merkezi denetim, izleme içermez ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmaz.\n\nTeknik olarak Delta Chat, çağdaş bir sohbet arabirimli bir e-posta uygulamasıdır. 👻 olacaksanız, e-posta yeni bir elbisedir\n\nMilyarlarca insanın herhangi biriyle Delta Chat kullanın: Yalnızca onların e-posta adresini kullanın. Alıcıların Delta Chat\'i kurması, web sitelerini ziyaret etmesi ya da herhangi bir yere kaydolması gerekmez - ancak elbette isterlerse onlara 👉 https://get.delta.chat adresini işaret edebilirsiniz";
 "device_talk_welcome_message2" = "İletişime geçin!\n\n🙌 Her iki aygıtın ana ekranındaki \"QR Kodu\"na dokunun. Bir aygıtta \"QR Kodunu Tara\"yı seçin ve onu diğerine doğrultun\n\n🌍 Aynı odada değilse, video araması aracılığıyla tarayın ya da \"QR Kodu\"ndan bir çağırma bağlantısı paylaşın\n\nDaha sonra: Şimdiye kadar varolan en büyük merkezi olmayan ağ üzerinden ulak deneyiminizin keyfini çıkarın: E-posta. Ve diğer yaygın uygulamaların tersine, merkezi denetim ya da izleme olmadan ya da sizi, arkadaşlarınızı, iş arkadaşlarınızı ya da ailenizi büyük kuruluşlara satmadan.";
 "edit_contact" = "Kişiyi Düzenle";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
@@ -348,8 +346,6 @@
 "retry_send" = "İletiyi göndermeyi yeniden dene";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Bir ileti göndermek için bu öbekte olmalısınız. Katılmak için başka bir üyeye sorun.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Bu sohbet, yerel olarak oluşturulan iletileri içerir; yazma etkisizleştirilir.";
 "messaging_disabled_mailing_list" = "Posta listelerine iletiler gönderme henüz desteklenmiyor";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
@@ -487,13 +483,38 @@
 
 
 // welcome and login
+// Primary button on the welcome screen, allows to create an instant account
+"onboarding_create_instant_account" = "Başlayalım!";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+"onboarding_alternative_logins" = "Zaten Bir Girişim Var";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Elle Giriş";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Profiliniz";
+// This is a link to the default Privacy Policy
+"instant_onboarding_agree_default" = "Gizlilik İlkesi\'ni Okuyun";
+// The placeholder will be replaced by instance name, the whole text will link to the instance page
+"instant_onboarding_agree_instance" = "%1$@ üzerindeki profiller hakkında";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Kabul Et & Profil Oluştur";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Diğer Seçenekleri Keşfet";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+"instant_onboarding_group_info" = "\"%1$@\" öbeğine katılmak için bir profil oluşturun.";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+"instant_onboarding_contact_info" = "%1$@ ile sohbet etmek için bir profil oluşturun.";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Yeni bir profil oluşturmak ve %1$@ ile sohbet etmeye başlamak istiyor musunuz?";
+// Question shown when group's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Yeni bir profil oluşturmak ve \"%1$@\" sohbet öbeğine katılmak istiyor musunuz?";
+
 "welcome_chat_over_email" = "E-Posta Üzerinden Sohbet.";
 "scan_invitation_code" = "Çağrı Kodunu Tara";
 "login_title" = "Giriş Yap";
 "login_header" = "E-Posta Hesabınıza Giriş Yapın";
 "login_explain" = "Varolan bir e-posta hesabıyla giriş yapın";
 "login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'in web ayarlarından etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
-"login_no_servers_hint" = "Delta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
+"login_no_servers_hint" = "Delta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
 "login_inbox" = "Gelen Kutusu";
 "login_imap_login" = "IMAP Giriş Adı";
 "login_imap_server" = "IMAP Sunucusu";
@@ -514,7 +535,7 @@
 "login_socks5_user" = "SOCKS5 Kullanıcısı";
 "login_socks5_password" = "SOCKS5 Parolası";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
-"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta Üzerinden Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat sunucuları yoktur; verileriniz aygıtınızda kalır.";
+"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta Üzerinden Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
 "login_certificate_checks" = "Sertifika Denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";
@@ -689,6 +710,11 @@
 "reactions" = "Tepkiler";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Tepki Ver";
+// %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
+"reaction_by_you" = "\"%2$@\" öğesine %1$@ ile tepki verdiniz";
+// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
+"reaction_by_other" = "%1$@, \"%3$@\" öğesine %2$@ ile tepki verdi";
+
 // automatically delete message
 "delete_old_messages" = "Eski İletileri Sil";
 "autodel_device_title" = "İletileri Aygıttan Sil";
@@ -714,7 +740,9 @@
 "autodel_after_1_year" = "1 yıl sonra";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt, otomatik uçtan uca e-posta şifrelemesi için yeni ve açık bir belirtimdir.\n\nUçtan uca ayarlamanız, gerektiğinde otomatik olarak oluşturulur ve Autocrypt Ayarlama İletileri ile aygıtlar arasında aktarabilirsiniz.";
 "autocrypt_send_asm_title" = "Autocrypt Ayarlama İletisi Gönder";
 "autocrypt_send_asm_explain_before" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır.\n\nAyarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
@@ -824,7 +852,8 @@
 "qr_code" = "QR Kodu";
 "load_qr_code_as_image" = "QR Kodunu Görsel Olarak Yükle";
 "qrscan_title" = "QR Kodu Tara";
-"qrscan_hint" = "Kameranızı QR kodunun üzerinde tutun.";
+"qrscan_hint" = "Kameranızı QR kodunun üzerinde tutun";
+"qrscan_hint_desktop" = "QR kodunu kameraya taşıyın";
 "qrscan_failed" = "QR kodu çözülemedi";
 "qrscan_ask_join_group" = "\"%1$@\" öbeğine katılmak istiyor musunuz?";
 "qrscan_fingerprint_mismatch" = "Taranan parmak izi, %1$@ için son görülenle eşleşmiyor.";
@@ -853,8 +882,6 @@
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
 "qraccount_ask_create_and_login" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada giriş yapılsın mı?";
 "qraccount_ask_create_and_login_another" = "\"%1$@\" üzerinde yeni e-posta adresi oluşturulsun ve orada giriş yapılsın mı?\n\nVarolan hesabınız silinmeyecek. Hesaplarınız arasında geçiş yapmak için \"Hesabı Değiştir\" öğesini kullanın.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Giriş başarılı—e-posta adresiniz %1$@\n\nİsterseniz şimdi yazdığınız insanlara görüntülenecek bir ad ve bir profil görseli girebilirsiniz.";
 "set_name_and_avatar_explain" = "Kişilerinizin tanıyacağı bir ad ayarlayın. Bir profil görseli de ayarlayabilirsiniz.";
 "please_enter_name" = "Lütfen bir ad girin.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir hesap ayarlamak için kullanılamıyor.";
@@ -1032,7 +1059,5 @@
 
 
 // device messages for updates
-"update_1_42_common" = "Ne yeni:\n\n💌 bire bir sohbetler artık yeşil bir onay kutusu bulunan kişiler için uçtan uca şifrelemeyi güvenceler\n\n😌 Herkesin basitliği için bu sohbetleri yeşil onay imleriyle imliyoruz\n\n👥 olanaklıysa, otomatik olarak öbekler güvencelenen uçtan uca şifrelemeyle oluşturulur\n\n🔄 Kabul edilen/Engellenen, Arşivlenen, Sabitlenen, Sessize Alınan aygıtlarınız arasında eşzamanlanır";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_42_android" = "Kamera, sesli iletiler, tümünü yedekleme, ekran okuyucusu, hesap başına duvar kâğıtları, galeride tümünü seç, webxdc manzarasındaki daha fazla iyileştirmeye dikkat edin … ya da onları %1$@ adresinde okuyun";
 "update_1_44_android" = "Ne yeni:\n\n❤️ Evet! Bu uzun zamandır bekleniyordu: Tepki vermek için bir iletiye uzun dokunun\n\n🔗 QR kodlarını tarayamıyorsanız, onları çağırma bağlantısı olarak paylaşın\n\n🔵 Artık tüm hesapların okunmayan iletileri sayılır ve başlıkta gösterilir\n\n… ve TONLARCA hata düzeltmesi … %1$@\n\nUygulamanın iyileştirilmesine yardımcı olun: Gerçek dünya kullanımını daha da iyileştirmek için \"Ayarlar / Gelişmiş / İstatistikleri gönder\"i kullanarak geliştiricilere yardımcı olun. Göndermeden önce verilerinizi inceleyebilirsiniz";
+"update_1_44_ios" = "Ne yeni:\n\n❤️ Evet! Bu uzun zamandır bekleniyordu: Tepki vermek için bir iletiye uzun dokunun\n\n🫸 https://nine.testrun.org gibi sağlayıcılar tarafından destekleniyorsa ANLIK bildirimler\n\n🔗 QR kodlarını tarayamıyorsanız, onları çağırma bağlantısı olarak paylaşın\n\n… ve TONLARCA hata düzeltmesi … %1$@";

@@ -229,8 +229,6 @@
 "device_talk" = "Mensagens desse aparelho";
 "device_talk_subtitle" = "Mensagens geradas localmente";
 "device_talk_explain" = "Mensagens nesta conversa são geradas localmente pelo app Delta Chat. Essas mensagens são para informar sobre atualizações do app e problemas durante seu uso.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Bem vindo ao Delta Chat! - O Delta Chat se parece com outros aplicativos de mensagens populares, mas não envolve controle centralizado, rastreamento ou venda de você, amigos, colegas ou família para grandes organizações.\n\nTecnicamente, o Delta Chat é um aplicativo de e-mail com uma interface de bate-papo moderna. E-mail de cara nova se você 👻\n\nUtilize o Delta Chat com qualquer pessoa dentre bilhões de pessoas: basta usar o endereço de e-mail. Os destinatários não precisam instalar o Delta Chat, visitar sites ou se inscrever em qualquer lugar - no entanto, é claro, se quiserem, você pode direcioná-los para 👉 https://get.delta.chat";
 "edit_contact" = "Editar contato";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fixar conversa";
@@ -329,8 +327,6 @@
 "retry_send" = "Tentar enviar mensagem novamente";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Você não pode escrever porque não está neste grupo. Para entrar, peça a outro membro.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Esta conversa contém mensagens geradas localmente. Portanto, você não pode escrever nenhuma mensagem.";
 "messaging_disabled_mailing_list" = "O envio de mensagens para lista de e-mails ainda não é suportado ";
 "cannot_display_unsuported_file_type" = "Não é possível exibir este tipo de arquivo: %1$@";
 "attachment_failed_to_load" = "Falha ao carregar anexo";
@@ -460,7 +456,6 @@
 "part_of_total_used" = "%1$@ de %2$@ usado";
 
 
-// welcome and login
 "welcome_chat_over_email" = "Bate-papo por E-mail";
 "scan_invitation_code" = "Escanear Código De Convite";
 "login_title" = "Acessar";
@@ -671,7 +666,9 @@
 "autodel_after_1_year" = "Após 1 ano";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "A criptografia automática (Autocrypt) é um padrão novo e aberto para criptografia de e-mail de ponta a ponta. \n\n A sua configuração é feita automaticamente conforme necessário e pode ser compartilhada entre dispositivos diferentes com \"mensagens de configuração do Autocrypt\".";
 "autocrypt_send_asm_title" = "Enviar \"mensagem de configuração do Autocrypt\"?";
 "autocrypt_send_asm_explain_before" = "A \"mensagem de configuração do Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis. \n\nA configuração será criptografada por um código de configuração que será exibido aqui e deverá ser digitado no outro dispositivo.";
@@ -797,8 +794,6 @@
 "qrshow_join_contact_no_connection_toast" = "Sem conexão à rede não é possível realizar configuração por código QR.";
 "qraccount_ask_create_and_login" = "Criar novo endereço de e-mail em \"%1$@\" e entrar nele?";
 "qraccount_ask_create_and_login_another" = "Criar novo endereço de e-mail em \"%1$@\"  e entrar nele?\n\n nSua conta existente não será excluída. Use o item \"Trocar conta\" para alternar entre suas contas.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Entrada bem-sucedida - seu endereço de e-mail é %1$@\n\nSe desejar, agora você pode inserir um nome e uma imagem do perfil que será exibida para as pessoas para quem você escrever.";
 "qraccount_qr_code_cannot_be_used" = "O código QR lido não pode ser usado para configurar uma nova conta.";
 "qraccount_use_on_new_install" = "O código QR digitalizado é para configurar uma nova conta. Você pode ler o código QR ao configurar uma nova instalação Delta Chat.";
 // the placeholder will be replaced by the e-mail address of the account

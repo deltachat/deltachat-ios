@@ -140,8 +140,6 @@
 "device_talk" = "Gailuaren mezuak";
 "device_talk_subtitle" = "Lokalki sortutako mezuak";
 "device_talk_explain" = "Txat honetako mezuak zure Delta Chat aplikazioak sortu ditu lokalki. Egileek aplikazioaren eguneraketei buruz eta erabileran arazoei buruz informatzeko erabiltzen dute.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Ongi etorri Delta Chat-era! Delta Chat beste bat bateko mezularitza aplikazioen itxura du, baina ez du kontrol zentralizaturik, ez dizu jarraitzen edo saltzen, ez zu ez zure lagunak, lankideak edo familia elkarte handi bati.\n\nTeknikoki, Delta Chat e-mail aplikazio bat da interfaze berri batekin. E-maila jantzi berri batekin esan genezake 👻\n\nErabili Delta Chat milaka miloika pertsonekin,  erabili bere e-mail helbidea eta kitto. Hartzaileek ez dute zertan Delta Chat instalatu behar, ez webguneak bisitatu edo izena eman inon. Hala ere, jakina, instalatu nahi badute hona bideratu ditzakezu 👉 https://get.delta.chat";
 "edit_contact" = "Editatu kontaktua";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Finkatu txata";
@@ -374,7 +372,9 @@
 "autodel_after_1_year" = "Urtebete eta gero";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt e-maila muturretik muturrera zifratzeko espezifikazio berri eta ireki bat da.\n\nZure muturretik muturrerako ezarpena automatikoki sortzend a behar denean eta gailutik gailura eraman dezakezu Autocrypt ezarpen mezuekin.";
 "autocrypt_send_asm_title" = "Bidali Autocrypt ezarpen mezua";
 "autocrypt_send_asm_explain_before" = "\"Autocrypt ezarpen mezua\" batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
@@ -434,8 +434,6 @@
 "qrshow_join_contact_hint" = "Eskaneatu hau %1$@ erabiltzailearen kontaktua ezartzeko";
 "qrshow_join_contact_no_connection_toast" = "Ez dago Internet konexiorik, ezin da QR kode bidezko ezarpena aplikatu";
 "qraccount_ask_create_and_login" = "Sortu kontu berria \"%1$@\" zerbitzarian eta saioa han hasi?";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Saioa ongi hasi duzu, zure e-mail helbidea %1$@ da\n\n Nahiez gero, izen eta abatar bat jarri ditzakezu, zure harremanek ikusiko dituztenak";
 "qraccount_qr_code_cannot_be_used" = "Eskaneatutako QR kodea ezin da kontu berri bat ezartzeko erabili.";
 "qraccount_use_on_new_install" = "Eskaneatutako QR kodea kontu berri bat ezartzeko da. QR kodea Delta Chat instalazio berri batean eskaneatu dezakezu.";
 "contact_verified" = "%1$@ egiaztatuta.";

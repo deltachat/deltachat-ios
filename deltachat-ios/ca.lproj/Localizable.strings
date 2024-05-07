@@ -239,8 +239,6 @@
 "device_talk" = "Missatges del dispositiu";
 "device_talk_subtitle" = "Missatges generats localment";
 "device_talk_explain" = "Els missatges d\'aquest xat són generats localment per la vostra app de Delta Chat. Els seus creadors els usen per informar-vos d\'actualitzacions de l\'app i problemes durant el seu ús.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Benvingut a Delta Chat! – Delta Chat te la pinta d\'altres apps de missatgeria, però no comporta un control centralitzat, ni un seguiment o una venda teva ni dels teus amics, col·legues o família a una corporació.\n\nTecnicament, Delta Chat és una aplicació de  correu electrònic amb una interfície de xat moderna. Per dir-ho així, correu electrònic en un vestit nou 👻\n\nUseu Delta Chat amb qualsevol dels milers de milions de persones: només us cal la seva adreça de correu electrònic. Als destinataris no els cal instal·lar-se Delta Chat, visitar webs o donar-se d\'alta enlloc - tot i que, només faltaria, si volen, els podeu adreçar a 👉 https://get.delta.chat";
 "edit_contact" = "Edita el contacte";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fixa el xat";
@@ -337,8 +335,6 @@
 "retry_send" = "Torna a provar d\'enviar el missatge";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "No hi podeu escriure perquè no sou en aquest grup. Per ser-hi, demaneu-ho a un altre membre.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Aquest xat només té missatges generats localment. A més no hi podeu escriure cap missatge.";
 "messaging_disabled_mailing_list" = "L\'enviament de missatges a una llista de correu encara no funciona";
 "cannot_display_unsuported_file_type" = "Aquest tipus de fitxer: %1$@ no es pot mostrar";
 "attachment_failed_to_load" = "La càrrega de l\'adjunt ha fallat";
@@ -438,7 +434,6 @@
 "part_of_total_used" = "%1$@ de %2$@ usats";
 
 
-// welcome and login
 "welcome_chat_over_email" = "Xateja via Email";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
 "login_title" = "Identifiqueu-vos";
@@ -549,7 +544,9 @@
 "pref_show_emails_accepted_contacts" = "Per a contactes acceptats";
 "pref_show_emails_all" = "Tot";
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt és una especificació nova i oberta per al xifratge automàtic de correu electrònic d\'extrem a extrem.\n\nLa vostra configuració d\'extrem a extrem es crea automàticament segons calgui i es pot transferir entre dispositius amb els missatges de configuració Autocrypt.";
 "autocrypt_send_asm_title" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \"missatge de configuració Autocrypt\" comparteix de forma segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles amb Autocrypt.\n\nLa configuració es xifrarà amb un codi de configuració que es mostrarà aquí i que haureu d\'escriure a l’altre dispositiu.";

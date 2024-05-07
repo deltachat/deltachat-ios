@@ -236,7 +236,6 @@
 "device_talk" = "پیام‌های دستگاه";
 "device_talk_subtitle" = "پیام‌های  داخلی";
 "device_talk_explain" = "پیام‌ها در این گپ به صورت داخلی و توسط نرم‌افزار دلتاچت تولید شده‌اند. سازنده‌ها از این محل برای اعلان به روز‌رسانی‌ها و مشکلات پیش آمده حین کار استفاده می‌کنند. ";
-// deprecated, use device_talk_welcome_message2 instead
 "edit_contact" = "ویرایش مخاطب";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "سنجاق کردن گپ";
@@ -336,8 +335,6 @@
 "retry_send" = "برای ارسال پیام دوباره تلاش کنید. ";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "نمی‌توانید بنویسید چرا که در این گروه نیستید. برای عضو شدن از یکی از اعضا درخواست کنید. ";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "این گپ شامل پیام‌های تولید شده به صورت داخلی است. برای همین نمی‌توانید پیامی بنویسید. ";
 "messaging_disabled_mailing_list" = "ارسال پیام در فهرست‌های پستی فعلاً پشتیبانی نمی‌شود.";
 "cannot_display_unsuported_file_type" = "امکان نمایش این نوع پرونده وجود ندارد: %1$@";
 "attachment_failed_to_load" = "ناموفق در بارگیری ضمیمه";
@@ -470,7 +467,6 @@
 "part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
 
 
-// welcome and login
 "welcome_chat_over_email" = "روی رایانامه گپ بزنید.";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
 "login_title" = "ورود";
@@ -682,7 +678,9 @@
 "autodel_after_1_year" = "بعد از ۱ سال";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "اتوکریپت";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "اتوکریپت  یک ویژگی جدید و باز برای رمزگذاری سرتاسر خودکار رایانامه است.\n\n تنظیمات رمزگذاری سرتاسر در هنگام نیاز به صورت خودکار ایجاد می‌شود و می‌توانید آن را  با پیام‌های تنظیم اتوکریپت بین دستگاه‌ها انتقال دهید. ";
 "autocrypt_send_asm_title" = "ارسال پیام برپاسازی اتوکریپت";
 "autocrypt_send_asm_explain_before" = "پیام برپاسازی اتوکریپت تنظیمات رمزگذاری سرتاسر شما را به شکلی امن با دیگر برنامه‌ها به اشتراک می‌گذارد.\n\n تنظیمات با یک کد برپاسازی که در اینجا نمایش داده می‌شود رمزگذاری می‌شوند و باید در دستگاه دیگر تایپ شود. ";
@@ -806,8 +804,6 @@
 "qrshow_join_contact_hint" = "برای ارتباط با %1$@ این را اسکن کنید.";
 "qrshow_join_contact_no_connection_toast" = "اتصال اینترنت نیست. نمیتوان نصب کد کیوآر را انجام داد. ";
 "qraccount_ask_create_and_login" = "ایجاد رایانامهٔ جدید روی «%1$@» و ورود به آنجا؟";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "ورود موفق—نشانی رایانامهٔ شما %1$@است.\n\n اگر دوست دارید می‌توانید اکنون یک نام وارد کرده و تصویر نمایه‌ای که هنگام نوشتن برای دیگران نشان داده می‌شود را انتخاب نمایید. ";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه اندازی اکانت جدید استفاده کرد. ";
 "qraccount_use_on_new_install" = "کد کیوآر اسکن شده برای راه اندازی یک اکانت جدید است. می‌توانید در حال تنظیم یک دلتاچت تازه نصب شده کیوآر  را اسکن کنید.";
 // the placeholder will be replaced by the e-mail address of the account

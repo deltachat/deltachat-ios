@@ -221,8 +221,6 @@
 "device_talk" = "Pesan perangkat";
 "device_talk_subtitle" = "Pesan-pesan buatan lokal";
 "device_talk_explain" = "Pesan dalam obrolan ini dihasilkan dalam aplikasi Delta Chat anda secara lokal. Para penciptanya memakai obrolan ini untuk memberi tahu aplikasi mutakhir dan masalah-masalah selama digunakan.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Selamat datang di Delta Chat! – Delta Chat tampak dan terasa seperti aplikasi percakapan populer lainnya, tapi tidak menggunakan kontrol yang tersentralisasi, melacak atau menjual anda, teman, kolega atau keluarga ke organisasi-organisasi besar.\n\nSecara teknis, Delta Chat merupakan sebuah aplikasi surel dengan tampilan obrolan modern. Katakanlah surel dengan tampilan baru 👻\n\nGunakan Delta Chat dengan siapa pun dari milyaran orang di luar sana: cukup gunakan alamat surel mereka. Penerima tak harus mengunduh Delta Chat, kunjungi laman atau daftar di mana pun - karena tentu saja, jika mereka menyukai anda, ajaklah mereka ke 👉 https://get.delta.chat";
 "edit_contact" = "Edit kontak";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Pin obrolan";
@@ -490,7 +488,9 @@
 "autodel_after_1_year" = "Setelah 1 tahun";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt adalah spesifikasi baru dan terbuka untuk enkripsi otomatis dimana surel yang dikirim hanya akan terlihat oleh si penerima yang disebut dengan istilah end-to-end atau ujung ke ujung.\n\nPengaturan ujung ke ujung ini dibuat secara otomatis sesuai kebutuhan dan dapat Anda transfer antar perangkat berkat Autocrypt Setup Messages.";
 "autocrypt_send_asm_title" = "Kirim Pengaturan Pesan Autocrypt";
 "autocrypt_send_asm_explain_before" = "Pengaturan Pesan Autocrypt membagi pengaturan ujung ke ujung Anda secara aman dengan aplikasi Autocrypt-compliant lain.\n\nPengaturan ini akan dienkripsi oleh kode pengaturan yang ditampilkan disini dan harus diketik di perangkat lainnya.";
@@ -553,8 +553,6 @@
 "qrshow_join_contact_no_connection_toast" = "Tidak ada koneksi internet, tidak bisa menjalankan kode pengaturan QR.";
 "qraccount_ask_create_and_login" = "Buat alamat email baru di \"%1$@\" dan login di sana?";
 "qraccount_ask_create_and_login_another" = "Buat alamat email baru di\"%1$@\" dan masuk ke sana?\n\nAkun yang sudah ada tidak akan di hapus. Gunakankan item \"Ganti akun\" untuk mengganti akun anda";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Login berhasil—alamat surel Anda %1$@\n\nKalau mau, masukkan satu nama dan gambar avatar yang dapat dilihat oleh orang yang ngobrol dengan Anda.";
 "qraccount_qr_code_cannot_be_used" = "Kode QR yang dipindai tidak dapat digunakan untuk mengatur akun baru.";
 "qraccount_use_on_new_install" = "Kode QR yang dipindai adalah untuk mengatur akun baru. Anda dapat memindai kode QR saat mengatur instalasi Delta Chat baru.";
 "contact_verified" = "%1$@diverifikasi.";

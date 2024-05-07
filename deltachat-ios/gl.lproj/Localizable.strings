@@ -221,8 +221,6 @@
 "device_talk" = "Mensaxes do dispositivo";
 "device_talk_subtitle" = "Mensaxes xeradas localmente";
 "device_talk_explain" = "As mensaxes de esta conversa xéranse localmente na túa app Delta Chat. Os creadores utilízanas para informar acerca de actualizacións e problemas durante a utilización.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Benvida a Delta Chat! – Delta Chat ten o aspecto de outras apps de mensaxería, pero non implica que teña un control centralizado, rastrexo ou que te venda a ti, aos teus amigos, colegas ou familia as megacorporacións.\n\nTécnicamente, Delta Chat é unha aplicación de correo electrónico cunha interface moderna de mensaxería. O correo travestido, se así o prefires 👻\n\nUtiliza Delta Chat con millóns de persoas: simplemente utiliza o seu enderezo de correo electrónico. Os correspondentes non precisan instalar Delta Chat, visitar sitios web ou rexistrarse en ningún lugar - claro que, por suposto, se queren, podes convidalos a  👉 https://get.delta.chat";
 "edit_contact" = "Editar contacto";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fixar conversa";
@@ -321,8 +319,6 @@
 "retry_send" = "Reintentar o envío da mensaxe";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Non podes escribir porque non estás no grupo. Para unirte, solicítallo a outro membro.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "A conversa contén mensaxes creados localmente. Polo tanto non podes escribir ningunha mensaxe.";
 "messaging_disabled_mailing_list" = "Aínda non está soportado o envío de emails a listas de correo";
 "cannot_display_unsuported_file_type" = "Non se pode motrar este tipo de ficheiro: %1$@";
 "attachment_failed_to_load" = "Erro ao cargar o anexo";
@@ -421,7 +417,6 @@
 "part_of_total_used" = "Utilizado %1$@ de %2$@";
 
 
-// welcome and login
 "welcome_chat_over_email" = "Chat a través de Email.";
 "scan_invitation_code" = "Escanear código de convite";
 "login_title" = "Acceder";
@@ -632,7 +627,9 @@
 "autodel_after_1_year" = "Após 1 ano";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt é un xeito novo de cifrado extremo-a-extremo automático do correo electrónico.\n\nOs axustes extremo-a-extremo créanse de xeito automático cando se precisan e son transferidos entre dispositivos con Mensaxes de Configuración Autocrypt.";
 "autocrypt_send_asm_title" = "Enviar Mensaxe de Configuración Autocrypt";
 "autocrypt_send_asm_explain_before" = "Unha Mensaxe de Configuración Autocrypt comparte de xeito seguro o teu cifrado extremo-a-extremo con outras apps compatibles con Autocrypt.\n\nO axuste realízase cifrado e protexido cun código que se debe escribir no outro dispositivo.";
@@ -731,8 +728,6 @@
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode facer o axuste por código QR";
 "qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e acceder ali?";
 "qraccount_ask_create_and_login_another" = "Crear un novo enderezo de email en \"%1$@\" e acceder?\n\nNon se eliminará a conta actual. Usa \"Cambiar de conta\" para cambiar entre as túas contas.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Conexión correcta—o teu enderezo é %1$@\n\nSe queres, agora podes escribir un nome e unha imaxe de avatar que será mostrado ás persoas coas que te comunicas.";
 "qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";
 "qraccount_use_on_new_install" = "O código QR escaneado é para crear unha nova conta. Podes escanear o código QR cando configures unha nova instalación de Delta Chat.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.

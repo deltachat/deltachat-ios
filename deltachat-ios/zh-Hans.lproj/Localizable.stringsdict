@@ -111,7 +111,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>选中了 %d</string>
+			<string>%d 已选择</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>
@@ -181,7 +181,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 个聊天已归档</string>
+			<string>%d 个聊天已存档</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -195,7 +195,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 个聊天已解档</string>
+			<string>%d 个聊天已取消存档</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

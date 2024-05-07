@@ -1,7 +1,7 @@
 NSCameraUsageDescription = "Lejimi i përdorimi të kamerës ju bën të mundur të bëni foto dhe video.";
-NSContactsUsageDescription = "Lejimi i përdorimi të librit tuaj të adresave kamerës ju bën të mundur të bisedoni me kontakte prej pajisjes tuaj.";
-NSLocationAlwaysAndWhenInUseUsageDescription = "Që të mund t’u tregojë të tjerëve vendndodhjen tuaj, Delta Chat lyp lejen vendore, për aq kohë sa keni aktivizuar tregim vendndodhjeje.";
-NSLocationWhenInUseUsageDescription = "Që të mund t’u tregojë të tjerëve vendndodhjen tuaj, Delta Chat lyp lejen vendore, për aq kohë sa keni aktivizuar tregim vendndodhjeje.";
-NSMicrophoneUsageDescription = "Lejimi i përdorimi të mikrofonit ju bën të mundur të bëni incizoni audio.";
-NSPhotoLibraryUsageDescription = "Lejimi i përdorimi të fototekës tuaj ju bën të mundur të ngarkoni figura prej saj.";
+NSContactsUsageDescription = "Lejimi i përdorimi të librit tuaj të adresave ju bën të mundur të bisedoni me kontakte prej pajisjes tuaj.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Që të mund t’u tregojë të tjerëve vendndodhjen tuaj, Delta Chat lyp leje, për aq kohë sa keni aktivizuar tregim vendndodhjeje.";
+NSLocationWhenInUseUsageDescription = "Që të mund t’u tregojë të tjerëve vendndodhjen tuaj, Delta Chat lyp leje, për aq kohë sa keni aktivizuar tregim vendndodhjeje.";
+NSMicrophoneUsageDescription = "Delta Chat-i përdor mikrofonin tuaj për të incizuar dhe dërguar mesazhe zanorë dhe video me zë.";
+NSPhotoLibraryUsageDescription = "Delta Chat-i do t’ju lejojë të zgjidhni cilat foto të dërgohen nga fototeka juaj.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat dëshiron të ruajë figura në fototekën tuaj.";

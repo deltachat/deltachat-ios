@@ -244,8 +244,6 @@
 "device_talk" = "Messaggi del Dispositivo";
 "device_talk_subtitle" = "Messaggi generati localmente";
 "device_talk_explain" = "I messaggi in questa chat vengono generati localmente da Delta Chat. Gli sviluppatori li usano per informarti sugli aggiornamenti o sui problemi di utilizzo.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Benvenuto in Delta Chat! - Delta Chat ha l\'aspetto e lo stile di altre popolari applicazioni di messaggistica, ma non costringe a un controllo centralizzato, al tracciamento o alla vendita dei dati personali tuoi, dei tuoi amici, colleghi o familiari a grandi organizzazioni.\n\nTecnicamente, Delta Chat è un\'applicazione di posta elettronica con un\'interfaccia moderna. L\'e-mail in una nuova veste 👻\n\nUtilizza Delta Chat con chiunque: basta conoscere il loro indirizzo e-mail. I destinatari non hanno bisogno di installare Delta Chat, visitare siti web o iscriversi da nessuna parte - ma, naturalmente se lo desiderano, puoi suggerirgli 👉 https://get.delta.chat";
 "device_talk_welcome_message2" = "Mettiti in contatto!\n\n🙌 Tocca \"Codice QR\" sulla schermata principale di entrambi i dispositivi. Scegli \"Scansiona codice QR\" su un dispositivo e puntalo verso l\'altro\n\n🌍 Se non siete nella stessa stanza, esegui la scansione tramite videochiamata o condividi un collegamento di invito da \"Scansiona codice QR\"\n\nQuindi: goditi la ​​tua esperienza di messaggistica sulla più grande rete decentralizzata mai esistita: l\'E-mail. E a differenza di altre app popolari, senza controllo centrale né monitoraggio o vendita dati tuoi, dei tuoi amici, colleghi o familiari a grandi organizzazioni.";
 "edit_contact" = "Modifica Contatto";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
@@ -348,8 +346,6 @@
 "retry_send" = "Riprova l\'invio del messaggio";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Non puoi scrivere perché non sei in questo gruppo. Per partecipare, chiedi ad un altro membro.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Questa chat contiene messaggi generati localmente. Quindi non puoi scrivere alcun messaggio.";
 "messaging_disabled_mailing_list" = "L\'invio dei messaggi nelle mailing list non è ancora supportato";
 "cannot_display_unsuported_file_type" = "Impossibile visualizzare questo tipo di file: %1$@";
 "attachment_failed_to_load" = "Impossibile caricare l\'allegato";
@@ -487,6 +483,31 @@
 
 
 // welcome and login
+// Primary button on the welcome screen, allows to create an instant account
+"onboarding_create_instant_account" = "Iniziamo!";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+"onboarding_alternative_logins" = "Ho Già un Account";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Accesso Manuale";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Il Tuo Profilo";
+// This is a link to the default Privacy Policy
+"instant_onboarding_agree_default" = "Leggi l\'Informativa Riservatezza";
+// The placeholder will be replaced by instance name, the whole text will link to the instance page
+"instant_onboarding_agree_instance" = "Informazioni profili su %1$@";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Accetto & Crea Profilo";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Esplora Altre Opzioni";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+"instant_onboarding_group_info" = "Crea un profilo per unirti al gruppo \"%1$@\".";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+"instant_onboarding_contact_info" = "Crea un profilo per chattare con %1$@.";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Vuoi creare un nuovo profilo e iniziare a chattare con %1$@?";
+// Question shown when group's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Vuoi creare un nuovo profilo e unirti al \"%1$@\" gruppo chat?";
+
 "welcome_chat_over_email" = "Chat via E-mail.";
 "scan_invitation_code" = "Scansiona Invito";
 "login_title" = "Login";
@@ -594,6 +615,8 @@
 "pref_incognito_keyboard_explain" = "Richiedi alla tastiera di disattivare l\'apprendimento personalizzato";
 "pref_read_receipts" = "Ricevute di Lettura";
 "pref_read_receipts_explain" = "Se le tue ricevute di lettura sono disabilitate non potrai vedere quelle degli altri.";
+"pref_server" = "Server";
+"pref_encryption" = "Criptazione";
 "pref_manage_keys" = "Gestisci Chiavi";
 "pref_use_system_emoji" = "Usa Emoji di Sistema";
 "pref_use_system_emoji_explain" = "Disabilita il supporto delle emoji integrato in Delta Chat";
@@ -719,7 +742,9 @@
 "autodel_after_1_year" = "Dopo 1 anno";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt è una nuova specifica aperta per la cifratura end-to-end delle email.\n\nLa tua configurazione end-to-end viene creata automaticamente quando necessario e puoi trasferirla tra dispositivi tramite i Messaggi di configurazione.";
 "autocrypt_send_asm_title" = "Messaggio di Configurazione Autocrypt ";
 "autocrypt_send_asm_explain_before" = "Un \'Messaggio di configurazione Autocrypt\' condivide in sicurezza le tue impostazioni end-to-end con altre app compatibili. Le impostazioni sono criptate con un codice mostrato qui che deve essere inserito nell\'altro dispositivo.";
@@ -830,6 +855,7 @@
 "load_qr_code_as_image" = "Carica il Codice QR come immagine";
 "qrscan_title" = "Scansiona Codice QR";
 "qrscan_hint" = "Posiziona la camera sopra il codice QR";
+"qrscan_hint_desktop" = "Sposta il codice QR sulla fotocamera";
 "qrscan_failed" = "Impossibile decodificare il codice QR";
 "qrscan_ask_join_group" = "Vuoi entrare nel gruppo \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "Il codice scansionato non corrisponde all\'ultimo conosciuto per %1$@";
@@ -858,8 +884,6 @@
 "qrshow_join_contact_no_connection_toast" = "Nessuna connessione internet, impossibile effettuare l\'impostazione tramite codice QR.";
 "qraccount_ask_create_and_login" = "Creo un nuovo indirizzo email su \"%1$@\" e accedo?";
 "qraccount_ask_create_and_login_another" = "Crea un nuovo indirizzo e-mail su \"%1$@\" e accedi qui?\n\nIl tuo account esistente non verrà eliminato. Utilizza la voce \"Cambia account\" per passare da un account all\'altro.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Accesso completato—il tuo indirizzo email è %1$@\n\nSe vuoi, puoi inserire un nome e un\'immagine profilo che verranno mostrati a chi ti scrive.";
 "set_name_and_avatar_explain" = "Imposta un nome che i tuoi contatti riconosceranno. Puoi anche impostare un\'immagine del profilo.";
 "please_enter_name" = "Inserisci un nome.";
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo account.";
@@ -1037,8 +1061,5 @@
 
 
 // device messages for updates
-"update_1_42_common" = "Novità:\n\n💌 le chat individuali garantiscono ora la crittografia end-to-end per i contatti invitati\n\n😌 per la semplicità di tutti, contrassegniamo questi contatti e chat con segni di spunta verdi\n\n👥 i gruppi sono creati automaticamente con crittografia end-to-end garantita, se possibile\n\n🔄 Accettato/Bloccato, Archiviato, Appuntato, Disattivato viene sincronizzato su tutti i tuoi dispositivi";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_42_android" = "Tieni d\'occhio gli ulteriori miglioramenti nella fotocamera, nei messaggi vocali, nel backup di tutto, nella lettura dello schermo, negli sfondi per account, nella selezione di tutte le gallerie, nel panorama webxdc... oppure leggili su %1$@";
 "update_1_44_android" = "Novità:\n\n❤️ Sì! Questo era atteso da tempo: tocca a lungo un messaggio per reagire\n\n🔗 Se non riesci a scansionare i codici QR, condividili come link di invito\n\n🔵 I messaggi non letti di tutti gli account vengono ora conteggiati e mostrati nel titolo\n\n… e TONNELLATE di correzioni bug … %1$@\n\nAiuta a migliorare l\'app: usa \"Impostazioni/Avanzate/Invia statistiche\" per aiutare gli sviluppatori a ottimizzare meglio per l\'utilizzo nel mondo reale. È possibile rivedere i dati prima dell\'invio";
 "update_1_44_ios" = "Novità:\n\n❤️ Sì! Questo era atteso da tempo: tocca a lungo un messaggio per reagire\n\n🫸 Notifiche PUSH se supportate dai provider come https://nine.testrun.org\n\n🔗 Se non riesci a scansionare i codici QR, condividili come link di invito\n\n... e TONNELLATE di correzioni bug ... %1$@";

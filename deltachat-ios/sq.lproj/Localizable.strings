@@ -4,7 +4,7 @@
 "cancel" = "Anuloje";
 // the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "ose";
-"clear_search" = "Spastroje kërkimin";
+"clear_search" = "Spastroje Kërkimin";
 "yes" = "Po";
 "no" = "Jo";
 "select" = "Përzgjidhni";
@@ -20,11 +20,11 @@
 "open" = "Hap";
 "download" = "Shkarkoje";
 "downloading" = "Po shkarkohet…";
-"open_attachment" = "Hape bashkëngjitjen";
+"open_attachment" = "Hap Bashkëngjitjen";
 "join" = "Hyni";
 "rejoin" = "Rihyni";
 "delete" = "Fshije";
-"info" = "Të dhëna";
+"info" = "Hollësi";
 "update" = "Përditësoje";
 "emoji" = "Emoji";
 "attachment" = "Bashkëngjitje";
@@ -43,32 +43,32 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Çarkivoje";
 "mute" = "Heshtoje";
-"ephemeral_messages" = "Mesazhe që zhduken";
+"ephemeral_messages" = "Mesazhe Që Zhduken";
 "ephemeral_messages_hint" = "Këto rregullime zbatohen mbi krejt pjesëmarrësit që përdorin Delta Chat-in. Sidoqoftë, ata mund të kopjojnë, ruajnë dhe përcjellin mesazhe ose të përdorin klientë të tjerë email-i.";
 "save" = "Ruaje";
 "chat" = "Fjalosje";
 "media" = "Media";
-"profile" = "Profile";
-"main_menu" = "Menuja kryesore";
-"start_chat" = "Nisni fjalosje";
-"show_full_message" = "Shfaq mesazhin e plotë…";
+"profile" = "Profil";
+"main_menu" = "Menuja Kryesore";
+"start_chat" = "Nisni Fjalosje";
+"show_full_message" = "Shfaq Mesazhin e Plotë…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
-"mark_all_as_read" = "Krejt të Lexuar";
+"mark_all_as_read" = "Vëru Shenjë të Tërave Si të Lexuar";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
-"mark_as_read_short" = "I lexuar";
+"mark_as_read_short" = "Të lexuar";
 // Placeholder text when something is loading
 "loading" = "Po ngarkohet…";
 "hide" = "Fshihe";
 "activate" = "Aktivizoje";
-"load_remote_content" = "Ngarko figura të largëta";
+"load_remote_content" = "Ngarko Figura të Largëta";
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Figurat e largëta mund të përdoren për t’ju ndjekur.\n\nRregullimi lejon gjithashtu të ngarkohen shkronja dhe lëndë tjetër. Edhe nëse është e çaktivizuar, prapë mund të shihni figura të trupëzuara ose të ruajtura në fshehtinë.\n\nTë ngarkohen figura të largëta?";
 "always" = "Përherë";
 "always_load_remote_images" = "Ngarko Përherë Figura të Largëta";
-"once" = "Vetëm njëherë";
+"once" = "Vetëm një herë";
 "show_warning" = "Shfaq Sinjalizim";
-"show_password" = "Shfaqe fjalëkalimin";
-"hide_password" = "Fshihe fjalëkalimin";
+"show_password" = "Shfaqe Fjalëkalimin";
+"hide_password" = "Fshihe Fjalëkalimin";
 "not_now" = "Jo tani";
 "never" = "Kurrë";
 "one_moment" = "Një çast…";
@@ -84,10 +84,10 @@
 "file_not_found" = "S\’u gjet dot %1$@.";
 "copied_to_clipboard" = "U kopjua në të papastër.";
 "contacts_headline" = "Kontakte";
-"email_address" = "Adresë email";
+"email_address" = "Adresë Email";
 "bad_email_address" = "Adresë email e keqe.";
 "password" = "Fjalëkalim";
-"existing_password" = "Fjalëkalimi ekzistues";
+"existing_password" = "Fjalëkalimi Ekzistues";
 "now" = "Tani";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Rrezik";
@@ -111,7 +111,7 @@
 "image" = "Figurë";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Përgjigje";
-"gif" = "Gif";
+"gif" = "GIF";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Ngjitës";
 "add_to_sticker_collection" = "Shtoje te Koleksion Ngjitësish";
@@ -119,27 +119,27 @@
 "open_sticker_folder" = "Hap Dosje Ngjitësish";
 "images" = "Figura";
 "audio" = "Audio";
-"voice_message" = "Mesazh zanor";
+"voice_message" = "Mesazh Zanor";
 "forwarded" = "Përcjellë";
-"forwarded_message" = "Mesazhi u përcoll";
+"forwarded_message" = "Mesazhi u Përcoll";
 // %1$s will be replaced by the name or the e-mail address of the person who forwards the message
 "forwarded_by" = "Përcjellë nga %1$@";
 "video" = "Video";
 "documents" = "Dokumente";
 "contact" = "Kontakt";
 "camera" = "Kamerë";
-"switch_camera" = "Ndërro kamera";
-"toggle_fullscreen" = "Kalo në / Dil nga mënyra sa krejt ekrani";
+"switch_camera" = "Ndërro Kamera";
+"toggle_fullscreen" = "Kalo në / Dil nga mënyra “Sa krejt ekrani”";
 "location" = "Vendndodhje";
 "locations" = "Vendndodhje";
 "gallery" = "Galeri";
-"images_and_videos" = "Figura dhe video";
+"images_and_videos" = "Figura dhe Video";
 "file" = "Kartelë";
 "files" = "Kartela";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_app" = "Aplikacion Privat";
+"webxdc_app" = "Aplikacion";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_apps" = "Aplikacione Private";
+"webxdc_apps" = "Aplikacione";
 "unknown" = "E panjohur";
 
 "green" = "E gjelbër";
@@ -147,8 +147,8 @@
 "blue" = "Blu";
 "orange" = "Portokalli";
 "cyan" = "Gurkali";
-"purple" = "E purpurt ";
-"magenta" = "I purpurt";
+"purple" = "E purpurt";
+"magenta" = "Rozë";
 "white" = "E bardhë";
 
 "zoom" = "Zoom";
@@ -162,9 +162,9 @@
 "slow" = "Ngadalë";
 
 // menu labels (or icon, buttons...)
-"menu_new_contact" = "Kontakt i ri";
-"menu_new_chat" = "Fjalosje e re";
-"menu_new_group" = "Grup i ri";
+"menu_new_contact" = "Kontakt i Ri";
+"menu_new_chat" = "Fjalosje e Re";
+"menu_new_group" = "Grup i Ri";
 "clone_chat" = "Klononi Fjalosjen";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Listë Transmetimi";
@@ -175,87 +175,85 @@
 "broadcast_list_name" = "Emër Liste Transmetimesh";
 "please_enter_broadcast_list_name" = "Ju lutemi, jepni një emër për listën e transmetimeve";
 "menu_send" = "Dërgoje";
-"menu_toggle_keyboard" = "Shfaq/fshih tastierë emoji";
-"menu_edit_group" = "Përpunoni grup";
-"menu_group_name_and_image" = "Emër dhe figurë grupi";
-"menu_show_global_map" = "Shfaqi krejt vendndodhjet";
-"menu_archive_chat" = "Arkivoje fjalosjen";
-"menu_unarchive_chat" = "Çarkivoje fjalosjen";
-"menu_add_attachment" = "Shtoni bashkëngjitje";
-"menu_leave_group" = "Braktiseni grupin";
-"menu_delete_chat" = "Fshije fjalosjen";
+"menu_toggle_keyboard" = "Shfaq/fshih Tastierë Emoji-sh";
+"menu_edit_group" = "Përpunoni Grup";
+"menu_group_name_and_image" = "Emër dhe Figurë Grupi";
+"menu_show_global_map" = "Krejt Vendndodhjet";
+"menu_archive_chat" = "Arkivoje Fjalosjen";
+"menu_unarchive_chat" = "Çarkivoje Fjalosjen";
+"menu_add_attachment" = "Shtoni Bashkëngjitje";
+"menu_leave_group" = "Braktiseni Grupin";
+"menu_delete_chat" = "Fshije Fjalosjen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Spastroje Fjalosjen";
 "ask_delete_named_chat" = "Jeni i sigurt se doni të fshihet “%1$@”?";
-"menu_delete_messages" = "Fshiji mesazhet";
-"delete_contact" = "Fshije kontaktin";
-"menu_delete_location" = "Të fshihet kjo vendndodhje?";
-"menu_message_details" = "Hollësi mesazhi";
-"menu_copy_to_clipboard" = "Kopjoje në të papastër";
-"menu_copy_selection_to_clipboard" = "Kopjoje përzgjedhjen";
-"menu_copy_link_to_clipboard" = "Kopjoje lidhjen";
-"menu_copy_text_to_clipboard" = "Kopjo tekstin";
-"menu_copy_image_to_clipboard" = "Kopjo figurën";
-"menu_copy_email_to_clipboard" = "Kopjo Email";
-"paste_from_clipboard" = "Ngjite prej të papastre";
+"menu_delete_messages" = "Fshiji Mesazhet";
+"delete_contact" = "Fshije Kontaktin";
+"menu_delete_location" = "Të fshihet kjo Vendndodhje?";
+"menu_message_details" = "Hollësi Mesazhi";
+"menu_copy_to_clipboard" = "Kopjoje në të Papastër";
+"menu_copy_selection_to_clipboard" = "Kopjoje Përzgjedhjen";
+"menu_copy_link_to_clipboard" = "Kopjoje Lidhjen";
+"menu_copy_text_to_clipboard" = "Kopjo Tekstin";
+"menu_copy_image_to_clipboard" = "Kopjo Figurën";
+"menu_copy_email_to_clipboard" = "Kopjo Email-in";
+"paste_from_clipboard" = "Ngjite prej të Papastre";
 "ask_copy_unopenable_link_to_clipboard" = "Lidhja “%1$d” s’mund të hapet te shfletuesi. Doni, në vend të kësaj, të kopjohet lidhja në të papastër?";
-"menu_forward" = "Përcille mesazhin";
-"menu_reply" = "Përgjigju mesazhit";
-"menu_mute" = "Heshto njoftimet";
+"menu_forward" = "Përcille Mesazhin";
+"menu_reply" = "Përgjigjuni Mesazhit";
+"menu_mute" = "Heshto Njoftimet";
 "menu_unmute" = "Çheshtoji";
-"menu_export_attachment" = "Eksporto bashkëngjitje";
+"menu_export_attachment" = "Eksporto Bashkëngjitje";
 "menu_export_attachments" = "Eksporto Bashkëngjitje";
-"menu_all_media" = "Krejt mediat";
+"menu_all_media" = "Krejt Mediat";
 // Command to jump to the original message corresponding to a gallery image or document
-"show_in_chat" = "Shfaqe në fjalosje";
+"show_in_chat" = "Shfaqe në Fjalosje";
 "show_app_in_chat" = "Shfaqe Aplikacionin në Fjalosje";
 "menu_share" = "Ndajeni me të tjerë";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bllokoje";
-"menu_block_contact" = "Bllokoje kontaktin";
-"menu_unblock_contact" = "Zhbllokoje kontaktin";
+"menu_block_contact" = "Bllokoje Kontaktin";
+"menu_unblock_contact" = "Zhbllokoje Kontaktin";
 "accept" = "Pranoje";
 "menu_play" = "Luaje";
 "menu_pause" = "Pushoje";
-"menu_scroll_to_bottom" = "Rrëshqit drejt fundit";
-"menu_scroll_to_top" = "Rrëshqit sipër në krye";
+"menu_scroll_to_bottom" = "Rrëshqit drejt Fundit";
+"menu_scroll_to_top" = "Rrëshqit sipër në Krye";
 "menu_help" = "Ndihmë";
 "what_is_webxdc" = "Ç’është Webxdc?";
 "privacy_policy" = "Rregulla Privatësie";
-"menu_select_all" = "Përzgjidhi krejt";
+"menu_select_all" = "Përzgjidhi Krejt";
 "select_chat" = "Përzgjidhni Fjalosje";
 "select_more" = "Përzgjidhni më tepër";
-"menu_edit_name" = "Përpunoni emrin";
+"menu_edit_name" = "Përpunoni Emrin";
 "menu_settings" = "Rregullime";
 "menu_advanced" = "Të mëtejshme";
-"menu_view_profile" = "Shihini profilin";
+"menu_view_profile" = "Shihini Profilin";
 "menu_zoom_in" = "Zmadhim";
 "menu_zoom_out" = "Zvogëlim";
-"menu_save_log" = "Ruaje regjistrin";
-"menu_more_options" = "Më tepër mundësi";
-"menu_learn_spelling" = "Mëso drejtshkrim";
+"menu_save_log" = "Ruaje Regjistrin";
+"menu_more_options" = "Më Tepër Mundësi";
+"menu_learn_spelling" = "Mëso Drejtshkrim";
 "menu_chat_audit_log" = "Regjistër Auditimi Fjalosjeje";
-"jump_to_message" = "Hidhu te mesazh";
+"jump_to_message" = "Hidhu te Mesazh";
 "copy_json" = "Kopjo JSON";
-"replace_draft" = "Zëvendëso skicë";
-"title_share_location" = "Jepua vendndodhjen krejt anëtarëve të grupit";
+"replace_draft" = "Zëvendëso Skicë";
+"title_share_location" = "Tregojua vendndodhjen krejt anëtarëve të grupit";
 "device_talk" = "Mesazhe Pajisjeje";
 "device_talk_subtitle" = "Mesazhe të prodhuar lokalisht";
 "device_talk_explain" = "Mesazhet në këtë fjalosje prodhohen lokalisht nga aplikacioni juaj Delta Chat. Krijuesit e tij e përdorin për t’ju bërë të ditur përditësime dhe probleme gjatë përdorimit.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Mirë se vini te Delta Chat! – Delta Chat duket si aplikacione të tjerë popullorë për shkëmbim mesazhesh, por nuk përmban kontroll të centralizuar, s’ju gjurmon apo shet te ente të mëdha ju, shokët tuaj, kolegët apo familjen tuaj.\n\nTeknikisht, Delta Chat është një aplikacion email me një ndërfaqe moderne. Email me rroba të reja, nëse doni kështu 👻\n\nPërdoreni Delta Chat-in me cilindo prej miliarda vetash: thjesht përdorni adresat e tyre email. Marrësit s’ka nevojë të instalojnë Delta Chat-in, të vizitojnë sajte apo të regjistrohen diku - por sigurisht, nëse duan, mund t’i drejtoni te 👉 https://get.delta.chat";
 "device_talk_welcome_message2" = "Lidhuni!\n\n🙌 Prekni “Kod QR” te skena kryesore në të dyja pajisjet. Zgjidhni “Skano Kod QR” në një pajisje dhe drejtojani tjetrës\n\n🌍 Nëse s’gjenden në të njëjtën dhomë, skanojeni përmes një thirrjeje video, ose ndani një lidhje ftese që nga “Skanoni kod QR”\n\nMandej: Shijoni punimin e shkëmbyesit të mesazheve përmes rrjetit më të madh të decentralizuar që ka ekzistuar ndonjëherë: email-it. Dhe, në kontrast me aplikacione të tjera popullore, pa kontroll të centralizuar, apo gjurmim, apo shitje të dhënash tuajat, të shokëve, kolegëve apo familjes te ente të mëdha.";
-"edit_contact" = "Përpunoni kontaktin";
+"edit_contact" = "Përpunoni Kontaktin";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
-"pin_chat" = "Fiksojeni bisedën";
+"pin_chat" = "Fiksojeni Bisedën";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
-"unpin_chat" = "Hiqeni bisedën nga e fiksuar";
+"unpin_chat" = "Hiqeni Bisedën Nga e Fiksuar";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin" = "Fiksoje";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Çfiksoje";
 "ConversationFragment_quoted_message_not_found" = "S’u gjet mesazhi origjinal";
-"reply_privately" = "Përgjigjuni privatisht";
+"reply_privately" = "Përgjigjuni Privatisht";
 "source_code" = "Kod Burim";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Shtoje te Skena e Kreut";
@@ -267,25 +265,25 @@
 "mute_for_seven_days" = "Heshtoji për 7 ditë";
 "mute_forever" = "Heshtoje përgjithmonë";
 
-"share_location_for_5_minutes" = "për 5 minuta";
-"share_location_for_30_minutes" = "për 30 minuta";
-"share_location_for_one_hour" = "për 1 orë";
-"share_location_for_two_hours" = "për 2 orë";
-"share_location_for_six_hours" = "për 6 orë";
+"share_location_for_5_minutes" = "Për 5 minuta";
+"share_location_for_30_minutes" = "Për 30 minuta";
+"share_location_for_one_hour" = "Për 1 orë";
+"share_location_for_two_hours" = "Për 2 orë";
+"share_location_for_six_hours" = "Për 6 orë";
 
 "file_saved_to" = "Kartela u ruajt te “%1$@”.";
 
-"videochat" = "Fjalosje me video";
+"videochat" = "Fjalosje me Video";
 "videochat_invite_user_to_videochat" = "Të ftohet %1$@ te një thirrje me video?";
 "videochat_invite_user_hint" = "Kjo lyp në të dy anët një aplikacion të përputhshëm ose një shfletues të përputhshëm";
 "videochat_contact_invited_hint" = "%1$@ ftoi te një fjalosje me video.";
 "videochat_you_invited_hint" = "Ftuat te një fjalosje me video.";
-"videochat_tap_to_join" = "Prekeni që të hyni";
-"videochat_tap_to_open" = "Prekeni që të hapet";
-"videochat_instance" = "Instancë fjalosjeje me video";
-"videochat_instance_placeholder" = "Instanca juaj e fjalosjes me video";
-"videochat_instance_example" = "Shembuj: https://meet.jit.si/$ROOM, ose basicwebrtc:https://shërbyesi-juaj";
-"videochat_instance_explain_2" = "Nëse është aktivizuar fjalosje me video, mund të nisni një fjalosje me video prej secilës fjalosje. Fjalosjet me video kanë të domosdoshëm në të dy skajet një aplikacion të përputhshëm ose një shfletues të përputhshëm.";
+"videochat_tap_to_join" = "Prekeni që të Hyni";
+"videochat_tap_to_open" = "Prekeni që të Hapet";
+"videochat_instance" = "Instancë Fjalosjeje me Video";
+"videochat_instance_placeholder" = "Instanca juaj e Fjalosjes me Video";
+"videochat_instance_example" = "Shembull: https://shërbyesi-juaj.org/$ROOM";
+"videochat_instance_explain_2" = "Nëse është aktivizuar, mund të nisni një fjalosje me video prej secilës fjalosje. Kjo lyp në të dy skajet një aplikacion të përputhshëm, ose një shfletues të përputhshëm.";
 "videochat_instance_from_qr" = "Të përdoret “%1$@” për të ftuar të tjerë në fjalosje me video?\n\nPasi të ujdiset kjo, mund të filloni një fjalosje me video që prej një fjalosjeje tek-për-tek. Kështu do të zëvendësohet rregullimi i mëparshëm për fjalosje video, në pastë.";
 "videochat_invitation" = "Ftesë për fjalosje me video";
 "videochat_invitation_body" = "Jeni ftuar në një fjalosje video, klikoni mbi %1$@ që të hyni në të.";
@@ -318,14 +316,14 @@
 
 
 // chatlist and chat view
-"chat_archived_chats_title" = "Fjalosje të arkivuara";
+"chat_archived_chats_title" = "Fjalosje të Arkivuara";
 "chat_please_enter_message" = "Ju lutemi, jepni një mesazh.";
 "chat_camera_unavailable" = "Kamerë jo gati.";
 "chat_unable_to_record_audio" = "S\’arrihet të incizohet audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
-"chat_new_one_to_one_hint" = "Dërgoni një mesazh. S’ka problem nëse %1$@ nuk përdor Delta Chat.";
+"chat_new_one_to_one_hint" = "Dërgoni një mesazh për %1$@.";
 "chat_new_broadcast_hint" = "Në një listë transmetimesh, marrësit do të marrin mesazhe në një fjalosje të llojit “vetëm lexim” me ju.";
-"chat_new_group_hint" = "Hartoni mesazhin e parë, duke u lejuar të tjerëve të përgjigjen brenda këtij grupi.\n\n• S\’ka problem nëse Delta Chat-in s\’e përdorin  të tërë anëtarë.\n\n• Dërgimi i mesazhit të parë mund të zgjasë ca.";
+"chat_new_group_hint" = "Të tjerët do ta shohin këtë grup pasi të keni dërguar një mesazh të parë.";
 "chat_record_slide_to_cancel" = "Rrëshqiteni që të anulohet";
 "chat_record_explain" = "Prekeni dhe mbajeni të prekur që të incizoni një mesazh zanor; lëshojeni, që të dërgohet";
 "chat_no_chats_yet_title" = "Kuti mesazhesh e zbrazët.\nShtypni “+” që të nisni një fjalosje të re.";
@@ -334,11 +332,11 @@
 "chat_share_with_title" = "Ndajeni me ";
 "chat_input_placeholder" = "Mesazh";
 "chat_archived_label" = "Arkivuar";
-"chat_request_label" = "Kërkoje";
+"chat_request_label" = "Kërkesë";
 "chat_no_messages" = "S\’ka mesazhe.";
-"chat_self_talk_subtitle" = "Mesazhe që i kam dërguar vetes";
+"chat_self_talk_subtitle" = "Mesazhe Vetes";
 "archive_empty_hint" = "Nëse arkivoni fjalosje, ato do të shfaqen këtu.";
-"saved_messages" = "Mesazhe të ruajtur";
+"saved_messages" = "Mesazhe të Ruajtur";
 "saved_messages_explain" = "• Përcillini mesazhet këtu për përdorim të lehtë\n\n• Mbani shënime ose kujtesa zanore\n\n• Bashkëngjitni media për t’i ruajtur";
 // Should match "Saved" from "Saved messages"
 "saved" = "Të ruajtur";
@@ -346,21 +344,19 @@
 "retry_send" = "Riprovo të dërgosh mesazhin";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "S’mund të shkruani, ngaqë s’jeni në këtë grup. Për t’u bërë pjesë, kërkojani një anëtari tjetër.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Kjo fjalosje përmban mesazhe të prodhuar lokalisht. Ndaj s’mund të shkruani ndonjë mesazh.";
 "messaging_disabled_mailing_list" = "Dërgimi i mesazheve në lista postimesh nuk mbulohet ende";
 "cannot_display_unsuported_file_type" = "S’mund të shfaqet ky lloj kartelash: %1$@";
 "attachment_failed_to_load" = "S’u arrit të ngarkohet bashkëngjitje";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
-"lock_recording" = "Kyçe incizimin";
+"lock_recording" = "Kyçe Incizimin";
 
 // mailing lists
-"mailing_list" = "Listë postimesh";
+"mailing_list" = "Listë Postimesh";
 "mailing_list_profile_info" = "Ndryshime në emër dhe figurë liste postimesh aplikohen vetëm në këtë pajisje.";
 
 // webxdc
 // "Start..." button for an app
-"start_app" = "Fillo…";
+"start_app" = "Niseni…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Ju lutemi, së pari pranoni kërkesën për fjalosje.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -376,7 +372,7 @@
 // chat audit log
 "chat_audit_log_empty_message" = "Mesazhet e sistemit në këtë fjalosje do të shfaqen këtu";
 "chat_audit_log_title" = "Regjistër Auditimi Fjalosjeje %1$@";
-"chat_audit_log_description" = "Kjo pamje ju shfaq vetëm mesazhe sistemi dhe informacionesh. E dobishme për gjetjen e veprimeve të fundit pa u dashur të parakalohet nëpër mjaft mesazhe normale.";
+"chat_audit_log_description" = "Shfaq vetëm mesazhe sistemi dhe informacionesh; e dobishme për gjetjen e veprimeve të fundit pa u dashur të parakalohet nëpër mjaft mesazhe.";
 
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -397,16 +393,16 @@
 
 
 // create/edit groups, contact/group profile
-"group_name" = "Emër grupi";
-"group_avatar" = "Avatar grupi";
-"remove_group_image" = "Hiqe figurën e grupit";
-"change_group_image" = "Ndryshoni figurën e grupit";
-"group_create_button" = "Krijoni grup";
+"group_name" = "Emër Grupi";
+"group_avatar" = "Avatar Grupi";
+"remove_group_image" = "Hiqe Figurën e Grupit";
+"change_group_image" = "Ndryshoni Figurë Grupi";
+"group_create_button" = "Krijoni Grup";
 "group_please_enter_group_name" = "Ju lutemi, jepni një emër për grupin.";
-"group_add_members" = "Shtoni anëtarë";
-"group_self_not_in_group" = "Duhet të jeni anëtar i grupit që të kryeni këtë veprim.";
+"group_add_members" = "Shtoni Anëtarë";
+"group_self_not_in_group" = "Që të kryeni këtë veprim, duhet të jeni anëtar i grupit.";
 "profile_encryption" = "Fshehtëzim";
-"profile_shared_chats" = "Fjalosje të përbashkëta";
+"profile_shared_chats" = "Fjalosje të Përbashkëta";
 "related_chats" = "Fjalosje të Afërta";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grup";
@@ -418,15 +414,15 @@
 "tab_docs_empty_hint" = "Dokumentet, muzika dhe kartela të tjera të dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_image_empty_hint" = "Figurat e dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_video_empty_hint" = "Videot e dhëna në këtë fjalosje do të shfaqen këtu.";
-"tab_audio_empty_hint" = "Kartelat Audio dhe Mesazhet Zanore të dhëna në këtë fjalosje do të shfaqen këtu.";
+"tab_audio_empty_hint" = "Kartelat audio dhe mesazhet zanore të dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_webxdc_empty_hint" = "Këtu do të shfaqen aplikacione private të përbashkët në këtë fjalosje ";
 "tab_all_media_empty_hint" = "Këtu do të duke media e dhënë në çfarëdo fjalosjeje.";
-"media_preview" = "Paraparje media";
+"media_preview" = "Paraparje Mediash";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Mozaik Përpjesëtimor  ";
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Mozaik Katror";
-"send_message" = "Dërgo mesazh";
+"send_message" = "Dërgo Mesazh";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ ndryshoi adresën e vet nga %2$@ në %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
@@ -485,25 +481,50 @@
 
 
 // welcome and login
+// Primary button on the welcome screen, allows to create an instant account
+"onboarding_create_instant_account" = "Le T’ia Fillojmë!";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+"onboarding_alternative_logins" = "Kam Krendenciale Tashmë";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Hyrje Dorazi";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Profili Juaj";
+// This is a link to the default Privacy Policy
+"instant_onboarding_agree_default" = "Lexoni Rregullat e Privatësisë";
+// The placeholder will be replaced by instance name, the whole text will link to the instance page
+"instant_onboarding_agree_instance" = "Rreth profilesh në %1$@";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Pranojeni & Krijoni Profil";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Eksploroni Mundësi të Tjera";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+"instant_onboarding_group_info" = "Krijoni një profil, që të merrni pjesë te grupi “%1$@”.";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+"instant_onboarding_contact_info" = "Krijoni një profil, që të bisedoni me %1$@.";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Doni të krijohet një profil i ri dhe të fillohet të bisedohet me %1$@?";
+// Question shown when group's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Doni të krijohet një profil i ri dhe të hyhet te grupi “%1$@” i fjalosjeve?";
+
 "welcome_chat_over_email" = "Fjalosje përmes Email-i";
 "scan_invitation_code" = "Skanoni Kod Ftese";
-"login_title" = "Hyrje";
-"login_header" = "Hyrje te shërbyesi juaj";
-"login_explain" = "Hyrje me një llogari email ekzistuese.";
+"login_title" = "Hyni";
+"login_header" = "Hyni te Llogaria juaj Email";
+"login_explain" = "Hyni me një llogari email ekzistuese.";
 "login_subheader" = "Për shërbime të njohura email-i, rregullimet shtesë caktohen automatikisht. Ndonjëherë shërbyesi IMAP lyp të aktivizohet te pjesa e dukshme web. Për ndihmë këshillohuni me shërbimin tuaj email ose shokë tuajt.";
 "login_no_servers_hint" = "S\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
 "login_inbox" = "Të marrë";
-"login_imap_login" = "Emër hyrjeje në IMAP";
+"login_imap_login" = "Emër Hyrjeje në IMAP";
 "login_imap_server" = "Shërbyes IMAP";
 "login_imap_port" = "Portë IMAP";
 "login_imap_security" = "Siguri IMAP";
 "login_outbox" = "Të dërguar";
-"login_smtp_login" = "Emër hyrjeje SMTP";
+"login_smtp_login" = "Emër Hyrjeje SMTP";
 "login_smtp_password" = "Fjalëkalim SMTP";
 "login_smtp_server" = "Shërbyes SMTP";
 "login_smtp_port" = "Portë SMTP";
 "login_smtp_security" = "Siguri SMTP";
-"login_auth_method" = "Metodë autorizimi";
+"login_auth_method" = "Metodë Autorizimi";
 // the word "SOCKS5" here and in the following strings should not be translated in most cases
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Përdor SOCKS5";
@@ -512,23 +533,23 @@
 "login_socks5_user" = "Përdorues SOCKS5";
 "login_socks5_password" = "Fjalëkalim SOCKS5";
 "login_info_oauth2_title" = "Të vazhdohet me rregullimin e thjeshtuar?";
-"login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth2).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të veprojë si aplikacioni juaj për Fjalosje Përmes Email-i.\n\nS\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
-"login_certificate_checks" = "Kontrolle dëshmish";
+"login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth 2.0).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të veprojë si aplikacioni juaj për Fjalosje Përmes Email-i.\n\nS\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
+"login_certificate_checks" = "Kontrolle Dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";
 "login_error_server" = "Ju lutemi, jepni një shërbyes / adresë IP të vlefshme";
 "login_error_port" = "Ju lutemi, jepni një portë të vlefshme (1–65535)";
 "login_error_required_fields" = "Ju lutemi, jepni një adresë email dhe fjalëkalim të vlefshëm";
-"import_backup_title" = "Importo kopjeruajtje";
+"import_backup_title" = "Rikthe prej Kopjeruajtje";
 "import_backup_ask" = "U gjet kopjeruajtje te “%1$@”.\n\nDoni të importohen dhe përdoren krejt të dhënat dhe rregullimet prej atij?";
 "import_backup_no_backup_found" = "S\’u gjetën kopjeruajtje.\n\nKopjojeni kopjeruajtjen te “%1$@” dhe riprovoni. Ndryshe, shtypni “Filloni të shkëmbeni mesazhe”, që të vazhdoni me procesin normal të rregullimit.";
 // Translators: %1$s will be replaced by the e-mail address
-"login_error_cannot_login" = "S\’bëhet dot hyrja si %1$@. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
+"login_error_cannot_login" = "S\’bëhet dot hyrja si “%1$@”. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
-"used_settings" = "Rregullime të përdorura";
-"switch_account" = "Ndërroni llogari";
-"add_account" = "Shtoni llogari";
-"delete_account" = "Fshije llogarinë";
+"used_settings" = "Rregullime të përdorura:";
+"switch_account" = "Ndërroni Llogari";
+"add_account" = "Shtoni Llogari";
+"delete_account" = "Fshije Llogarinë";
 "delete_account_ask" = "Jeni i sigurt se doni të fshihen të dhënat e llogarisë tuaj?";
 "delete_account_explain_with_name" = "Krejt të dhënat e llogarisë për “%1$@” në këtë pajisje do të fshihen, përfshi ato të ujdisjes tuaj për fshehtëzim skaj-më-skaj, kontakte, fjalosje, mesazhe dhe media. Ky veprim s’mund të zhbëhet.";
 "unconfigured_account" = "Llogari e paformësuar";
@@ -540,9 +561,9 @@
 
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
-"forward_to" = "Përcilljani …";
-"share_multiple_attachments" = "Të dërgohen %1$d kartela te fjalosja e përzgjedhur?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale, p.sh., figurat dhe videot nuk rikodohen.";
-"share_multiple_attachments_multiple_chats" = "Doni të dërgohet %1$d kartelë(a) te 2 %2$d fjalosje?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale, p.sh., figura dhe video nuk rikodohen.";
+"forward_to" = "Përcilljani…";
+"share_multiple_attachments" = "Të dërgohen %1$d kartela te fjalosja e përzgjedhur?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale (p.sh., figurat dhe videot nuk rikodohen).";
+"share_multiple_attachments_multiple_chats" = "Doni të dërgohet %1$d kartelë(a) te %2$d fjalosje?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale (p.sh., figura dhe video nuk rikodohen).";
 "share_text_multiple_chats" = "Të dërgohet ky tekst te %1$d fjalosje?\n\n“%2$@”";
 "share_abort" = "Ndarja me të tjerë dështoi ngaqë mungojnë leje.";
 
@@ -550,25 +571,25 @@
 // preferences
 "pref_using_custom" = "Po përdoret vetjak: %1$@";
 "pref_using_default" = "Po përdoret parazgjedhje: %1$@";
-"pref_profile_info_headline" = "Të dhëna tuajat të profilit";
-"pref_profile_photo" = "Foto profili";
-"pref_blocked_contacts" = "Kontakte të bllokuar";
+"pref_profile_info_headline" = "Hollësi Profili Tuajt";
+"pref_profile_photo" = "Foto Profili";
+"pref_blocked_contacts" = "Kontakte të Bllokuar";
 "blocked_empty_hint" = "Nëse bllokoni kontakte, do të shfaqen këtu.";
-"pref_password_and_account_settings" = "Fjalëkalim dhe llogari";
-"pref_who_can_see_profile_explain" = "Fotoja dhe emri juaj i profilit do të shfaqen tok me mesazhet, kur komunikoni me përdorues të tjerë. Informacioni i dërguar tashmë s\’mund të fshihet apo të hiqet.";
+"pref_password_and_account_settings" = "Fjalëkalim dhe Llogari";
+"pref_who_can_see_profile_explain" = "Fotoja juaj e profilit, emri dhe nënshkrimi do të dërgohen tok me mesazhet tuaj, kur komunikoni me përdorues të tjerë.";
 "pref_your_name" = "Emri juaj";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
-"pref_default_status_label" = "Tekst nënshkrimi";
-"pref_enter_sends" = "Tasti Enter dërgon";
+"pref_default_status_label" = "Tekst Nënshkrimi";
+"pref_enter_sends" = "Tasti Enter Dërgon";
 "pref_enter_sends_explain" = "Shtypja e tastit Enter do të dërgojë mesazhe tekst";
-"pref_outgoing_media_quality" = "Cilësi mediash në dalje";
+"pref_outgoing_media_quality" = "Cilësi Mediash Në Dalje";
 "pref_outgoing_balanced" = "E baraspeshuar";
 "pref_outgoing_worse" = "Cilësia më e ulët, madhësi e vogël";
 "pref_vibrate" = "Dridhu";
-"pref_screen_security" = "Siguri ekrani";
+"pref_screen_security" = "Siguri Ekrani";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Kërko të bllokohen foto ekrani në lista të freskëta dhe brenda aplikacionit";
-"pref_screen_security_please_restart_hint" = "QË të hyjnë në fuqi rregullimet mbi sigurinë e ekranit, ju lutemi, rinisni aplikacionin.";
+"pref_screen_security_please_restart_hint" = "Që të hyjnë në fuqi rregullimet mbi sigurinë e ekranit, ju lutemi, rinisni aplikacionin.";
 "pref_notifications" = "Njoftime";
 "pref_notifications_show" = "Shfaqi";
 "pref_notifications_priority" = "Përparësi";
@@ -579,7 +600,7 @@
 "pref_sound" = "Tingull";
 "pref_silent" = "Heshtazi";
 "pref_privacy" = "Privatësi";
-"pref_chats_and_media" = "Fjalosje dhe media";
+"pref_chats_and_media" = "Fjalosje dhe Media";
 "pref_system_default" = "Parazgjedhje sistemi";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "E çelët";
@@ -587,64 +608,63 @@
 "pref_appearance" = "Dukje";
 "pref_theme" = "Temë";
 "pref_language" = "Gjuhë";
-"pref_incognito_keyboard" = "Mos ruaj gjë";
+"pref_incognito_keyboard" = "Tastierë Incognito";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Kërkoji tastierës të çaktivizojë nxënie të personalizuar";
-"pref_read_receipts" = "Lexoni dëftesa";
-"pref_read_receipts_explain" = "Nëse leximi i dëftesave është i çaktivizuar, s\’do të jeni në gjendje të shihni mesazh “Lexoni dëftesa” prej të tjerësh";
-"pref_manage_keys" = "Administroni kyçe";
-"pref_use_system_emoji" = "Përdor emoji sistemi";
+"pref_read_receipts" = "Dëftesa Leximi";
+"pref_read_receipts_explain" = "Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi prej të tjerësh.";
+"pref_manage_keys" = "Administroni Kyçe";
+"pref_use_system_emoji" = "Përdor Emoji Sistemi";
 "pref_use_system_emoji_explain" = "Çaktivizo mbulimin e brendshëm Delta Chat për emoji-t";
 "pref_use_inapp_camera" = "Përdor Kamerën e Vetë Aplikacionit";
 "pref_use_inapp_camera_explain" = "Kamera e vetë aplikacionit, zakonisht, ka më pak veçori se kamera e sistemit";
 "pref_show_system_contacts" = "Të Lexojë Libër Adresash Sistemi";
-"pref_show_system_contacts_explain" = "Ofro krijimin fjalosjesh me kontakte prej libri adresash. Disa shërbime lypin fshehtëzim skaj-më-skaj së pari.";
-"pref_app_access" = "Hyrje aplikacioni";
+"pref_show_system_contacts_explain" = "Ofro krijim fjalosjesh me kontakte prej libri adresash. Disa shërbime lypin ujdisje fshehtëzimi skaj-më-skaj së pari.";
 "pref_chats" = "Fjalosje";
-"pref_in_chat_sounds" = "Tinguj brenda fjalosjeje";
-"pref_message_text_size" = "Madhësi shkronjash mesazhi";
-"pref_view_log" = "Shihni regjistrin";
-"pref_saved_log" = "Regjistri u ruajt te dosja Shkarkime";
+"pref_in_chat_sounds" = "Tinguj Brenda Fjalosjeje";
+"pref_message_text_size" = "Madhësi Shkronjash Mesazhi";
+"pref_view_log" = "Shihni Regjistrin";
+"pref_saved_log" = "Regjistri u ruajt te dosja “Shkarkime”";
 "pref_save_log_failed" = "Dështoi ruajtja e regjistrit";
 "pref_log_header" = "Regjistër";
 "pref_other" = "Të tjera";
 "pref_backup" = "Kopjeruajtje";
-"pref_backup_explain" = "Kopjeruaji fjalosjet në depozitim të jashtëm";
+"pref_backup_explain" = "Kopjeruaji Fjalosjet në Depozitim të Jashtëm";
 "pref_backup_export_explain" = "Një kopjeruajtje ju lejon të rregulloni një instalim të ri në këtë apo në një tjetër pajisje.\n\nKopjeruajtja do të përmbajë krejt mesazhet, kontaktet dhe fjalosjet, si dhe rregullimin tuaj për Autocrypt skaj-më-skaj. Mbajeni kartelën e kopjeruajtjes diku të parrezik, përndryshe fshijeni as më shpejt që të jetë e mundur.";
 // the placeholder will be replaced by the name of the account's email address
 "pref_backup_export_x" = "Eksporto %1$@";
 // the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksporto krejt llogaritë e %1$d";
-"pref_backup_export_start_button" = "Fillo kopjeruajtjen";
-"pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te %1$@";
-"pref_managekeys_menu_title" = "Administroni kyçe";
-"pref_managekeys_export_secret_keys" = "Eksportoni kyçe të fshehtë";
+"pref_backup_export_start_button" = "Nis Kopjeruajtjen";
+"pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te “%1$@”";
+"pref_managekeys_menu_title" = "Administroni Kyçe";
+"pref_managekeys_export_secret_keys" = "Eksportoni Kyçe të Fshehtë";
 "pref_managekeys_export_explain" = "Të eksportohen kyçet e fshehtë te “%1$@”?";
-"pref_managekeys_import_secret_keys" = "Importoni kyçe të fshehtë";
-"pref_managekeys_import_explain" = "Të importohen kyçe të fshehtë prej “%1$@”?\n\n• Kyçet e fshehtë ekzistues s\’do të fshihen\n\n• Kyçi i fundit i importuar do të përdoret si kyçi i ri parazgjedhje, hiq rastin ku përmban te emri i kartelës fjalën “legacy”";
+"pref_managekeys_import_secret_keys" = "Importoni Kyçe të Fshehtë";
+"pref_managekeys_import_explain" = "Të importohen kyçe të fshehtë prej “%1$@”?\n\n• Kyçet e fshehtë ekzistues s\’do të fshihen\n\n• Kyçi i fundit i importuar do të përdoret si kyçi i ri parazgjedhje, hiq rastin kur përmban te emri i kartelës fjalën “legacy”";
 "pref_managekeys_secret_keys_exported_to_x" = "Kyçe të fshehtë shkruar me sukses te “%1$@”.";
 "pref_managekeys_secret_keys_imported_from_x" = "U importuan kyçe të fshehtë nga “%1$@”.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Sfond";
-"pref_background_btn_default" = "Përdor figurën parazgjedhje";
-"pref_background_btn_gallery" = "Përzgjidhni nga galeri";
-"pref_imap_folder_handling" = "Trajtim dosjeje IMAP";
-"pref_imap_folder_warn_disable_defaults" = "Nëse e çaktivizoni këtë mundësi, garantoni që shërbyesi juaj dhe klientët tuaj të tjerët të jenë formësuar për këtë.\n\nPërndryshe gjërat mund të mos punojnë fare.";
-"pref_watch_sent_folder" = "Vëzhgo dosje Të dërguarish";
-"pref_send_copy_to_self" = "Dërgojini kopje vetes";
+"pref_background_btn_default" = "Përdor Figurën Parazgjedhje";
+"pref_background_btn_gallery" = "Përzgjidhni Nga Galeri";
+"pref_imap_folder_handling" = "Trajtim Dosjesh IMAP";
+"pref_imap_folder_warn_disable_defaults" = "Nëse e ndryshoni këtë mundësi, garantoni që shërbyesi juaj dhe klientët tuaj të tjerët të jenë formësuar për këtë.\n\nPërndryshe gjërat mund të mos punojnë fare.";
+"pref_watch_sent_folder" = "Vëzhgo Dosje Të dërguarish";
+"pref_send_copy_to_self" = "Dërgojini Kopje Vetes";
 "pref_send_copy_to_self_explain" = "E domosdoshme kur kjo llogari përdoret në një numër pajisjesh.";
-"pref_auto_folder_moves" = "Lëvizje të Vetvetishme te dosja DeltaChat";
+"pref_auto_folder_moves" = "Kaloji vetvetiu te Dosja DeltaChat";
 "pref_auto_folder_moves_explain" = "Bisedat zhvendosen, që të shmanget rrëmuja te dosja Të marrë";
 "pref_only_fetch_mvbox_title" = "Sill Vetëm nga Dosje DeltaChat";
 "pref_only_fetch_mvbox_explain" = "Shpërfill dosje të tjera. Lyp që shërbyesi juaj të kalojë mesazhe fjalosjeje te dosje DeltaChat.";
-"pref_show_emails" = "Shfaq email-e klasikë";
+"pref_show_emails" = "Shfaq Email-e Klasikë";
 "pref_show_emails_no" = "Jo, vetëm fjalosje";
 "pref_show_emails_accepted_contacts" = "Për kontakte të pranuar";
 "pref_show_emails_all" = "Krejt";
-"pref_experimental_features" = "Veçori eksperimentale";
+"pref_experimental_features" = "Veçori Eksperimentale";
 "pref_developer_mode" = "Mënyra Zhvillues";
 "pref_developer_mode_explain" = "Aktivizon mundësi diagnostikimi dhe mund ta bëjë aplikacionin më pak të qëndrueshëm. Vetëm për zhvillues.";
-"pref_background_default" = "Sfond parazgjedhje";
+"pref_background_default" = "Figurë parazgjedhje";
 "pref_background_default_color" = "Ngjyrë parazgjedhje";
 "pref_background_custom_image" = "Figurë vetjake";
 "pref_background_custom_color" = "Ngjyrë vetjake";
@@ -659,20 +679,20 @@
 "n_bytes_message" = "Mesazh %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Shkarko maksimumin e mundshëm deri më %1$@";
-"profile_image_select" = "Përzgjidhni figurë profili";
+"profile_image_select" = "Përzgjidhni Figurë Profili";
 "select_your_new_profile_image" = "Përzgjidhni figurën tuaj të re të profilit";
-"profile_image_delete" = "Fshini figurën e profilit";
-"pref_show_tray_icon" = "Shfaq ikonë paneli";
-"pref_edit_profile" = "Përpunoni profil";
+"profile_image_delete" = "Fshini Figurën e Profilit";
+"pref_show_tray_icon" = "Shfaq Ikonë Paneli";
+"pref_edit_profile" = "Përpunoni Profil";
 "disable_imap_idle" = "Çaktivizo IMAP IDLE";
 "disable_imap_idle_explain" = "Mos e përdor zgjerimin IMAP IDLE, edhe kur shërbyesi e mbulon. Aktivizimi i kësaj mundësie do të vonojë marrjen e mesazheve, aktivizojeni vetëm për testime.";
 "send_stats_to_devs" = "Dërgojuni zhvilluesve të Delta Chat-it statistika";
 
 
 // Emoji picker and categories
-"emoji_search_results" = "Përfundime kërkimi";
+"emoji_search_results" = "Përfundime Kërkimi";
 "emoji_not_found" = "S’u gjetën emoji";
-"emoji_recent" = "Përdorur së fundi";
+"emoji_recent" = "Përdorur Së Fundi";
 "emoji_people" = "Njerëz & Trupi";
 "emoji_nature" = "Kafshë & Natyrë";
 "emoji_foods" = "Ushqim & Pije";
@@ -692,11 +712,11 @@
 "reaction_by_other" = "%1$@ reagoi me %2$@ ndaj “%3$@”";
 
 // automatically delete message
-"delete_old_messages" = "Fshiji mesazhet e vjetër";
-"autodel_device_title" = "Fshini mesazhe prej pajisjes";
-"autodel_server_title" = "Fshini mesazhe prej shërbyesi";
+"delete_old_messages" = "Fshiji Mesazhet e Vjetër";
+"autodel_device_title" = "Fshiji Mesazhet prej Pajisjes";
+"autodel_server_title" = "Fshiji Mesazhe prej Shërbyesi";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_device_ask" = "Doni të fshihen %1$d mesazhe tani dhe krejt mesazhet e prurë rishtazi “%2$@” në të ardhmen?\n\n• Kjo përfshin krejt mediat\n\n• Mesazhi do të fshihet, qoftë kur e kanë parë, qoftë kur s’e kanë parë\n\n• “Mesazhe të ruajtur” do të anashkalohen nga fshirja vendore";
+"autodel_device_ask" = "Doni të fshihen %1$d mesazhe tani dhe krejt mesazhet e prurë rishtazi “%2$@” në të ardhmen?\n\n• Kjo përfshin krejt mediat\n\n• Mesazhi do të fshihet, qoftë kur është parë, qoftë kur s’është parë\n\n• “Mesazhe të ruajtur” do të anashkalohen nga fshirja vendore";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_server_ask" = "Doni të fshihen tani %1$d mesazhe dhe krejt mesazhet e prurë rishtas “%2$@” më vonë në të ardhmen?\n\n⚠️ Kjo përfshin email-et, media dhe “Mesazhe të ruajtur” në krejt dosjet e shërbyesit\n\n⚠️ Mos e përdorni këtë funksion, nëse doni të mbani të dhënat në shërbyes\n\n⚠️ Mos e përdorni këtë funksion, nëse po përdorni klientë të tjerët përkrah Delta Chat-it";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
@@ -716,26 +736,28 @@
 "autodel_after_1_year" = "Pas 1 viti";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt-i është një protokoll i ri dhe i hapur për fshehtëzim automatik email-esh skaj-më-skaj.\n\nRregullimi skaj-më-skaj për ju krijohet vetvetiu kur duhet dhe mund ta shpërngulni nga një pajisje në tjetër përmes Mesazhesh Rregullimi Autocrypt-i.";
 "autocrypt_send_asm_title" = "Dërgo Mesazh Rregullimi Autocrypt-i";
-"autocrypt_send_asm_explain_before" = "Një “Mesazh Rregullimi Autocrypt-i“ ua jep, në mënyrë të parrezik, rregullimin tuaj skaj-më-skaj pajisjeve të tjera që përdorin Autocrypt-in.\n\nRregullimi do të fshehtëzohet përmes një kodi rregullimi i cili shfaqet këtu dhe duhet dhënë te pajisja tjetër.";
+"autocrypt_send_asm_explain_before" = "Një “Mesazh Rregullimi Autocrypt-i“ ua jep, në mënyrë të parrezik, rregullimin tuaj për fshehtëzimin skaj-më-skaj pajisjeve të tjera që përdorin Autocrypt-in.\n\nRregullimi do të fshehtëzohet përmes një kodi rregullimi i cili shfaqet këtu dhe duhet dhënë te pajisja tjetër.";
 "autocrypt_send_asm_button" = "Dërgo Mesazh Rregullimi Autocrypt-i";
 "autocrypt_send_asm_explain_after" = "Rregullimi juaj u dërgua te ju. Kaloni te pajisja tjetër dhe hapni mesazhin e rregullimit. Do t\’ju kërkohet një kod rregullimi. Shtypni atje shifrat vijuese.\n\nPasi të keni mbaruar, pajisja juaj tjetër do të jetë gati të përdorë Autocrypt-in.";
-"autocrypt_prefer_e2ee" = "Parapëlqe fshehtëzim skaj-më-skaj";
+"autocrypt_prefer_e2ee" = "Parapëlqe Fshehtëzim Skaj-Më-Skaj";
 "autocrypt_asm_subject" = "Mesazh Rregullimi Autocrypt-i";
 "autocrypt_asm_general_body" = "Ky është Mesazhi i Rregullimit të Autocrypt-it i përdorur për të shpërngulur rregullimin tuaj skaj-më-skaj në klientë të tjerë.\n\nQë ta shfshehtëzoni rregullimin tuaj, hapeni mesazhin te një klient që mund të përdorë Autocrypt-in dhe jepni kodin e rregullimit të treguar te pajisja që e prodhoi.";
 "autocrypt_asm_click_body" = "Ky është mesazhi i Rregullimit të Autocrypt-it i përdorur për të shpërngulur mes klientësh rregullimin tuaj skaj-më-skaj.\n\nPër ta fshehtëzuar dhe përdorur rregullimin tuaj, prekni ose klikoni mbi këtë mesazh.";
 "autocrypt_continue_transfer_title" = "Mesazh Rregullimi Autocrypt-i";
 "autocrypt_continue_transfer_please_enter_code" = "Ju lutemi, jepni kodin e rregullimit që është shfaqur te pajisja tjetër.";
-"autocrypt_continue_transfer_succeeded" = "Rregullimi skaj-më-skaj u shpërngul. Kjo pajisje tani është gati të përdorë Autocrypt-in me të njëjtin rregullim si pajisja tjetër.";
+"autocrypt_continue_transfer_succeeded" = "Rregullimi për fshehtëzim skaj-më-skaj u shpërngul. Kjo pajisje tani është gati të përdorë Autocrypt-in me të njëjtin rregullim si pajisja tjetër.";
 "autocrypt_continue_transfer_retry" = "Riprovo";
 "autocrypt_bad_setup_code" = "Kod i gabuar rregullimi. Ju lutemi, riprovoni.\n\nNëse s\’e mbani mend kodin e rregullimit, thjesht dërgoni një tjetër Mesazh Rregullimi Autocrypt-i prej pajisjes tjetër.";
 
 
 // system messages
-"systemmsg_read_receipt_subject" = "Dëftesë leximi";
-"systemmsg_read_receipt_body" = "Kjo është dëftesë leximi për mesazhin “%1$@”.\n\nDo të thotë që mesazhi u shfaq te pajisja e marrësit, jo domosdo që lënda u lexua.";
+"systemmsg_read_receipt_subject" = "Mesazhi u hap";
+"systemmsg_read_receipt_body" = "Mesazhi “%1$@” që dërguat, u shfaq në ekranin e marrësit.\n\nKjo s’është garanci se lënda u lexua.";
 "systemmsg_cannot_decrypt" = "Ky mesazh s’mund të shfshehtëzohet.\n\n• Mundet t’ju ndihë thjesht t’i përgjigjeni këtij mesazhi dhe t’i kërkoni dërguesit ta ridërgojë mesazhin.\n\n• Nëse sapo riinstaluat Delta Chat-in, atëherë më e mira është të riujdisni Delta Chat-in tani dhe të zgjidhni “Shtoje si pajisje të dytë”, ose të importoni një kopjeruajtje.";
 "systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
 "systemmsg_subject_for_new_contact" = "Mesazh nga %1$@";
@@ -804,10 +826,10 @@
 "ephemeral_timer_weeks_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ javë nga %2$@.";
 // this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
 "chat_protection_broken" = "%1$@ dërgoi një mesazh nga një pajisje tjetër.";
-"chat_protection_enabled_tap_to_learn_more" = "Nga sot e tutje për mesazhet garantohet fshehtëzimi skaj-më-skaj. Prekeni që të mësoni më tepër.";
+"chat_protection_enabled_tap_to_learn_more" = "Nga sot e tutje për mesazhet garantohet fshehtëzimi skaj-më-skaj. Prekeni, që të mësoni më tepër.";
 "chat_protection_enabled_explanation" = "Tanimë për mesazhet në këtë fjalosje garantohet fshehtëzimi skaj-më-skaj.\n\nFshehtëzimi skaj-më-skaj i mban private mesazhet mes jush dhe partnerëve tuaj të fjalosjes. Ato s’mund t’i lexojë as furnizuesi i shërbimit tuaj email.";
-"chat_protection_broken_tap_to_learn_more" = "%1$@ dërgoi një mesazh nga një pajisje tjetër. Prekeni që të mësoni më tepër.";
-"chat_protection_broken_explanation" = "Fshehtëzimi skaj-më-skaj s’mund të garantohet më, ngaqë, sipas gjasash, %1$@ riinstaloi Delta Chat-in, ose dërgoi një mesazh nga një tjetër pajisje.\n\nMund t’i takoni dhe të skanoni KODIN e tyre QR sërish, që të rivendoset fshehtëzim skaj-më-skaj i garantuar.";
+"chat_protection_broken_tap_to_learn_more" = "%1$@ dërgoi një mesazh nga një pajisje tjetër. Prekeni, që të mësoni më tepër.";
+"chat_protection_broken_explanation" = "Fshehtëzimi skaj-më-skaj s’mund të garantohet më, ngaqë, sipas gjasash, %1$@ riinstaloi Delta Chat-in, ose dërgoi një mesazh nga një tjetër pajisje.\n\nMund ta takoni dhe të skanoni sërish KODIN e tij QR, që të rivendoset fshehtëzim skaj-më-skaj i garantuar.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ lyp fshehtëzim, i cili s’është ujdisur ende për këtë fjalosje. Që të mësoni më tepër, prekeni.";
 "invalid_unencrypted_explanation" = "Për të vendosur fshehtëzim skaj-më-skaj, mund të takoheni personalisht me kontaktet dhe të skanoni kodin e tyre QR, për t’i pranuar.";
 "learn_more" = "Mësoni Më Tepër";
@@ -820,43 +842,42 @@
 "devicemsg_update_reminder" = "⚠️ Versioni juaj i Delta Chat-it duket të jetë i vjetruar.\n\nKjo mund të shkaktojë probleme, ngaqë partnerët tuaj të fjalosjes përdorin versione të rinj - dhe ju mungojnë veçoritë më të reja 😳\nPër përditësime, ju lutemi, shihni te https://get.delta.chat ose te shitorja juaj e aplikacioneve.";
 
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
-"enter_system_secret_to_continue" = "Që të vazhdohet, ju lutemi, jepni të fshehtën tuaj të përcaktuar nga sistemi.";
+"enter_system_secret_to_continue" = "Që të vazhdohet, shkyçeni";
 
 // qr code stuff
 "qr_code" = "Kod QR";
-"load_qr_code_as_image" = "Ngarkoje kodin QR si figurë";
-"qrscan_title" = "Skanoni kod QR";
-"qrscan_hint" = "Vendoseni kamerën tuaj përmbi kodin QR";
+"load_qr_code_as_image" = "Ngarkoje Kodin QR si Figurë";
+"qrscan_title" = "Skanoni Kod QR";
+"qrscan_hint" = "Mbajeni kamerën tuaj përmbi kodin QR";
+"qrscan_hint_desktop" = "Kalojeni kodin QR te kamera";
 "qrscan_failed" = "Kodi QR s’u shkodua dot";
 "qrscan_ask_join_group" = "Doni të bëheni pjesë e grupit “%1$@”?";
 "qrscan_fingerprint_mismatch" = "Shenjat e gishtave të skanuar nuk përputhen me shenjat e gishtave parë së fundi për %1$@.";
-"qrscan_no_addr_found" = "Ky kod QR përmban shenja gishtash, por jo adresë email.\n\nPër një verifikim out-of-band, ju lutemi, së pari vendosni me marrësin një lidhje të fshehtëzuar.";
+"qrscan_no_addr_found" = "Ky kod QR përmban shenja gishtash, por jo adresë email.\n\nPër një verifikim “out-of-band”, ju lutemi, së pari vendosni me marrësin një lidhje të fshehtëzuar.";
 "qrscan_contains_text" = "Tekst kodi QR të skanuar:\n\n%1$@";
 "qrscan_contains_url" = "URL kodi QR të skanuar:\n\n%1$@";
 "qrscan_fingerprint_label" = "Shenja gishtash";
 "withdraw_verifycontact_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u lidhur me ju.\n\nKodin QR mund ta çaktivizoni këtu dhe ta riaktivizoni duke e riskanuar.";
 "withdraw_verifygroup_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e grupit “%1$@”.\n\nKodin QR mund ta çaktivizoni këtu dhe ta riaktivizoni duke e riskanuar.";
-"withdraw_qr_code" = "Çaktivizoni kodin QR";
+"withdraw_qr_code" = "Çaktivizoni Kodin QR";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Ky kod QR mund të skanohet nga të tjerë për të ujdisur kontakt me ju.\n\nKodi QR s’është aktiv në këtë pajisje.";
 // "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e grupit “%1$@”.\n\nKodi QR s’është aktiv në këtë pajisje.";
-"revive_qr_code" = "Aktivizoni kod QR";
-"qrshow_title" = "Kod QR ftese";
+"revive_qr_code" = "Aktivizoni Kod QR";
+"qrshow_title" = "Kod QR Ftese";
 "qrshow_x_joining" = "%1$@ vjen.";
-"qrshow_x_verified" = "%1$@ u verifikua.";
-"qrshow_x_has_joined_group" = "%1$@ u bë pjesë e grupit në mënyrë të sigurt.";
-"qrshow_join_group_title" = "Kod QR ftese";
+"qrshow_x_verified" = "%1$@ u prezantua.";
+"qrshow_x_has_joined_group" = "%1$@ u bë pjesë e grupit.";
+"qrshow_join_group_title" = "Kod QR Ftese";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
-"qrshow_join_group_hint" = "Që të bëheni pjesë e grupit “%1$@”, skanoni këtë.";
-"qrshow_join_contact_title" = "Kod QR ftese";
+"qrshow_join_group_hint" = "Për t’u bërë pjesë e grupit “%1$@”, skanojeni";
+"qrshow_join_contact_title" = "Kod QR Ftese";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
-"qrshow_join_contact_hint" = "Skanojeni këtë që të rregullohet një kontakt %1$@";
+"qrshow_join_contact_hint" = "Që të bisedoni me %1$@, skanojeni";
 "qrshow_join_contact_no_connection_toast" = "S\’ka lidhje në internet, s\’bëhet dot ujdisja e kodit QR.";
 "qraccount_ask_create_and_login" = "Të krijohet adresë email e re te “%1$@” dhe të bëhet hyrja atje?";
 "qraccount_ask_create_and_login_another" = "Të krijohet adresë e re email në “%1$@” dhe të bëhet hyrja atje?\n\nLlogaria juaj ekzistuese s’do të fshihet. Që të kaloni nga një llogari në tjetrën, përdorni zërin “Ndërroni llogari”.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Hyrje e suksesshme—adresa juaj email është %1$@\n\nNëse doni, tani mund të jepni një emër dhe një figurë avatari që do t’u shfaqet personave që ju shkruajnë.";
 "set_name_and_avatar_explain" = "Caktoni një emër, që kontaktet tuaj do ta njohin. Mundeni edhe të caktoni një emër profili.";
 "please_enter_name" = "Ju lutemi, jepni një emër.";
 "qraccount_qr_code_cannot_be_used" = "Kodi QR i skanuar s’mund të përdoret për të ujdisur një llogari të re.";
@@ -870,12 +891,12 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";
 "contact_verified" = "%1$@ u verifikua.";
-"contact_not_verified" = "S\’verifikohet dot %1$@";
+"contact_not_verified" = "S’vendoset dot fshehtëzim i garantuar skaj-më-skaj me %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-"verified_by" = "Verifikuar nga %1$@";
-"verified_by_you" = "Verifikuar nga ju";
+"verified_by" = "Sjellë nga %1$@";
+"verified_by_you" = "Sjellë nga unë";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
-"contact_setup_changed" = "U ndryshua rregullimi për %1$@";
+"contact_setup_changed" = "U ndryshua udjisja për %1$@";
 "verified_contact_required_explain" = "Që të garantohet fshehtëzim skaj-më-skaj, mund të shtoni në këtë grup vetëm kontakte me shenjën e gjelbër të verifikimit.\n\nMund të takoheni drejtpërsëdrejti me kontakte të paverifikuar dhe të skanoni kodin e tyre QR për t’i verifikuar ata.";
 "copy_qr_data_success" = "URL-ja QR u kopjua në të papastër";
 "mailto_dialog_header_select_chat" = "Përzgjidhni fjalosje ku të dërgohet mesazhi";
@@ -885,7 +906,7 @@
 
 // notifications 
 "notify_dismiss" = "Hidhe tej";
-"notify_reply_button" = "Përgjigju";
+"notify_reply_button" = "Përgjigjuni";
 "notify_new_message" = "Mesazh i ri";
 "notify_background_connection_enabled" = "U vendos lidhje në prapaskenë";
 "notify_priority_high" = "E lartë";
@@ -903,15 +924,15 @@
 // permissions
 "perm_required_title" = "Lypset leje";
 "perm_continue" = "Vazhdo";
-"perm_explain_access_to_camera_denied" = "Delta Chat lyp leje mbi Kamerën që të mund të bëjë foto apo video, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni “Leje” dhe aktivizojini për “Kamerën”.";
-"perm_explain_access_to_mic_denied" = "Delta Chat lyp leje mbi Mikrofonin që të mund të dërgojë mesazhe audio, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni “Leje” dhe aktivizojini për “Mikrofonin”.";
-"perm_explain_access_to_storage_denied" = "Delta Chat lyp leje mbi Depozitimin që të mund të bashkëngjisë apo eksportojë foto, video ose audio, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni “Leje” dhe aktivizojini për “Depozitimin”.";
-"perm_explain_access_to_location_denied" = "Delta Chat lyp leje mbi Vendndodhjen që të mund të bashkëngjisë një vendndodhje, por kjo i është mohuar. Ju lutemi, vazhdoni te menuja e rregullimeve të aplikacionit, përzgjidhni “Leje” dhe aktivizojini për “Vendndodhjen”.";
+"perm_explain_access_to_camera_denied" = "Që të mund të bëhen foto apo video, kaloni te rregullimet e aplikacionit, përzgjidhni “Leje” dhe aktivizoni “Kamerën”.";
+"perm_explain_access_to_mic_denied" = "Që të mund të dërgohen mesazhe audio, kaloni te rregullime aplikacioni, përzgjidhni “Leje” dhe aktivizoni “Mikrofonin”.";
+"perm_explain_access_to_storage_denied" = "Që të merren apo dërgohen kartela, kaloni te rregullime aplikacioni, përzgjidhni “Leje” dhe aktivizoni “Depozitimin”.";
+"perm_explain_access_to_location_denied" = "Që të mund të bashkëngjitet një vendndodhje, kaloni te rregullimet e aplikacionit, përzgjidhni “Leje” dhe aktivizoni “Vendndodhjen”.";
 "perm_explain_access_to_notifications_denied" = "Që të merrni njoftime, kaloni te “Rregullime Sistemi / Aplikacione / Delta Chat” dhe aktivizoni “Njoftime”.";
 
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Që të turbullohet, vizatoni kudo qoftë";
-"ImageEditorHud_add_text" = "Shtoni tekst";
+"ImageEditorHud_add_text" = "Shtoni Tekst";
 "ImageEditorHud_blur" = "Turbulloje";
 "ImageEditorHud_brush_marker" = "Penel Shënimesh";
 "ImageEditorHud_brush_highlight" = "Penel Theksimesh";
@@ -926,7 +947,7 @@
 "about_offical_app_desktop" = "Ky është aplikacioni zyrtar Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Ky program licencohet sipas GNU GPL version 3 dhe kodi burim mund të kihet që prej GitHub-i.";
 "welcome_desktop" = "Mirë se vini në Delta Chat";
-"global_menu_preferences_language_desktop" = "Zgjidhni Gjuhë…";
+"global_menu_preferences_language_desktop" = "Gjuhë";
 "global_menu_file_desktop" = "Kartelë";
 "global_menu_file_quit_desktop" = "Dilni";
 "global_menu_edit_desktop" = "Përpunoni";
@@ -944,21 +965,21 @@
 "global_menu_help_contribute_desktop" = "Jepni ndihmesë në GitHub";
 "global_menu_help_report_desktop" = "Njoftoni një Problem";
 "global_menu_help_about_desktop" = "Rreth Delta Chat-it";
-"global_menu_file_open_desktop" = "Hap Fjalosje Delta";
+"global_menu_file_open_desktop" = "Hap Delta Chat-in";
 "global_menu_minimize_to_tray" = "Minimizoje";
 "no_chat_selected_suggestion_desktop" = "Përzgjidhni një fjalosje ose krijoni një të tillë të re";
 "write_message_desktop" = "Shkruani një mesazh";
-"encryption_info_title_desktop" = "Të dhëna fshehtëzimi";
-"delete_message_desktop" = "Fshije mesazhin";
-"more_info_desktop" = "Më tepër të dhëna";
+"encryption_info_title_desktop" = "Hollësi Fshehtëzimi";
+"delete_message_desktop" = "Fshije Mesazhin";
+"more_info_desktop" = "Më tepër Hollësi";
 "timestamp_format_m_desktop" = "D MMM";
 "remove_desktop" = "Hiqe";
 "save_desktop" = "Ruaje";
 "name_desktop" = "Emër";
-"select_group_image_desktop" = "Përzgjidhni figurë grupi";
-"export_backup_desktop" = "Eksportoni kopjeruajtje";
-"autocrypt_correct_desktop" = "Rregullimi Autocrypt u shpërngul me sukses!";
-"forget_login_confirmation_desktop" = "Të fshihet kjo hyrje? Do të fshihet gjithçka, përfshi rregullimin tuaj për skaj-më-skaj, kontaktet, fjalosjet, mesazhet dhe mediat. Ky veprim është përfundimtar dhe s\’mund të prapësohet.";
+"select_group_image_desktop" = "Përzgjidhni Figurë Grupi";
+"export_backup_desktop" = "Eksportoni Kopjeruajtje";
+"autocrypt_correct_desktop" = "Ujdisja e Autocrypt-it u shpërngul.";
+"forget_login_confirmation_desktop" = "Të fshihet kjo hyrje? Do të fshihet gjithçka, përfshi rregullimin tuaj për skaj-më-skaj, kontaktet, fjalosjet, mesazhet dhe mediat. Ky veprim s\’mund të zhbëhet.";
 "account_info_hover_tooltip_desktop2" = "Email: %1$@\nMadhësi: %2$@\nID  Llogarie: %3$@";
 "message_detail_sent_desktop" = "të dërguar";
 "message_detail_received_desktop" = "të marrë";
@@ -967,7 +988,7 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Ikona e panelit s’mund të çaktivizohet, ngaqë Delta Chat qe nisur me mundësinë --minimized.";
 "no_spellcheck_suggestions_found" = "S’u gjetën sugjerimi drejtshkrimi.";
 "show_window" = "Shfaq Dritare";
-"login_socks5_experimental_warning" = "Mbulimi për SOCKS5 aktualisht është eksperimental. Ju lutemi, përdoreni duke pasur parasysh rrezikun. Nëse shtypni një adresë te fusha e email-it, do të ketë kërkim DNS që nuk do të kalohet përmes SOCKS5.";
+"login_socks5_experimental_warning" = "Mbulimi për SOCKS5 aktualisht është eksperimental. Ju lutemi, përdoreni duke pasur vetë përgjegjësinë. Nëse shtypni një adresë te fusha e email-it, do të ketë kërkim DNS që nuk do të kalohet përmes SOCKS5.";
 
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Kombinim tastesh";
@@ -1021,19 +1042,16 @@
 
 
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Njoftime në prapaskenë";
+"pref_background_notifications" = "Njoftime Në Prapaskenë";
 "pref_background_notifications_explain" = "Përdor një lidhje në prapaskenë me shërbyesin tuaj dhe lyp shpërfillje optimizimesh baterie.";
 "pref_background_notifications_rationale" = "Që të ruhet lidhja me shërbyesin tuaj të email-eve dhe të merren mesazhe në prapaskenë, në hapin pasues shpërfillini optimizimet për baterinë.\n\nDelta Chat-i përdor pak burime dhe kujdeset të mos e shterojë baterinë tuaj.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Lidhje e qëndrueshme në prapaskenë";
+"pref_reliable_service" = "Lidhje e Qëndrueshme Në Prapaskenë";
 "pref_reliable_service_explain" = "Lyp një njoftim permanent";
 "perm_enable_bg_reminder_title" = "Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.";
 "perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
 
 
 // device messages for updates
-"update_1_42_common" = "Ç’ka të re:\n\n💌 tanimë, fjalosjet tek-për-tek garantojnë fshehtëzim skaj-më-skaj për kontakte të prezantuar\n\n😌 për thjeshtësi për këdo, u vëmë shenjë këtyre kontakteve dhe fjalosjeve me shenja të gjelbra\n\n👥 grupet krijohen automatikisht me fshehtëzim skaj-më-skaj të garantuar, nëse është e mundur\n\n🔄 Pranoje/Bllokuar, Arkivuar, Fiksuar, Heshtoje njëkohësohen në krejt pajisjet tuaja";
-// placeholder will be replaced by the URL https://get.delta.chat/#changelogs
-"update_1_42_android" = "Shihni për më tepër përmirësime në kamera, mesazhe zanorë, kopjeruajtje tërësore, lexues ekrani, sfonde sipas llogarish, përzgjedhje figurash të krejt galerisë, peizazh webxdc … ose lexoni për to në %1$@";
 "update_1_44_android" = "Ç’ka të re:\n\n❤️ Po! Kjo ka kohë që pritej: Prekni gjatë mbi një mesazh, për të reaguar\n\n🔗 Nëse nuk skanoni dot kode QR, jepini si lidhje ftesë\n\n🔵 Tashmë mesazhet e palexuar të krejt llogarive numërohen dhe numri shfaqet te titulli\n\n… dhe TONELATA ndreqje të metash … %1$@\n\nNdihmoni të përmirësohet aplikacioni: Përdorni “Rregullime / Të thelluara / Dërgo statistika”, për të ndihmuar zhvilluesit ta bëjnë më optimal për përdorim të përditshëm. Para se të dërgohen, të dhënat mund t’i shqyrtoni";
 "update_1_44_ios" = "Ç’ka të re:\n\n❤️ Po! Kjo ka kohë që pritej: Prekni gjatë mbi një mesazh, për të reaguar\n\n🫸 Njoftime PUSH, nëse kjo mbulohet nga furnizuesit e shërbimeve internet, b.f., https://nine.testrun.org\n\n🔗 Nëse nuk skanoni dot kode QR, jepini si lidhje ftesë\n\n… dhe TONELATA ndreqje të metash … %1$@";

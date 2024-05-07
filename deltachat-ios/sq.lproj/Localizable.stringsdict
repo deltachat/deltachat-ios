@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Të fshihet %d fjalosje? S’do të duket më te lista e bisedave, mesazhet e saj do të mbeten te shërbyesi.</string>
+			<string>Të fshihet %d fjalosje? S’do të duket më te lista e bisedave; mesazhet e saj do të mbeten te shërbyesi.</string>
 			<key>other</key>
-			<string>Të fshihen %d fjalosje? S\’do të duken më te lista e fjalosjeve, mesazhet e tyre do të mbeten te shërbyesi.</string>
+			<string>Të fshihen %d fjalosje? S\’do të duken më te lista e fjalosjeve; mesazhet e tyre do të mbeten te shërbyesi.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

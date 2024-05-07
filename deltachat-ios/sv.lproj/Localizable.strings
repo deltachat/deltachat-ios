@@ -194,8 +194,6 @@
 "device_talk" = "Enhetsmeddelanden";
 "device_talk_subtitle" = "Lokalt genererade meddelanden";
 "device_talk_explain" = "Meddelanden i denna chatt är lokalt genererade av din Delta Chat-app. Dess skapare använder den för att informera om app-uppdateringar och problem vid användning.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Välkommen till Delta Chat! - Delta Chat ser ut och känns som andra populära meddelandeappar, men innefattar ingen centraliserad kontroll eller spårning eller säljer dig och dina vänner, kollegor eller familj till stora organisationer/företag.\n\nTekniskt är Delta Chat ett e-postprogram med modernt utseende. E-post i ny skrud, om du vill. 👻\n\nAnvänd Delta Chat med vem som helst av alla miljarder människor som har en e-postadress. Mottagaren behöver inte installera Delta Chat, besöka webbsidor eller registrera sig någonstans, men om de vill så kan du såklart visa dem till 👉 https://get.delta.chat";
 "edit_contact" = "Redigera kontakt";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Fäst chatten";
@@ -284,8 +282,6 @@
 "retry_send" = "Skicka om meddelandet";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Du kan inte skriva eftersom du inte är med i denna grupp. Be en medlem bjuda in dig, för att gå med";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Den här chatten innehåller meddelanden som har genererats lokalt. Därför kan du inte skriva meddelanden.";
 "messaging_disabled_mailing_list" = "Att skicka meddelande till e-postlistor stöds inte ännu";
 "cannot_display_unsuported_file_type" = "Denna filtyp kan inte visas: %1$@";
 "attachment_failed_to_load" = "Bilagan kunde inte visas";
@@ -472,7 +468,9 @@
 "autodel_after_1_year" = "Efter 1 år";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt är en ny och öppen specifikation för automatisk slutpunkt-till-slutpunkt e-postkryptering.\n\nDin slutpunkt-till-slutpunkt-inställning skapas automatiskt vid behov och du kan överföra den mellan olika enheter med Autocrypt inställningsmeddelanden.";
 "autocrypt_send_asm_title" = "Skicka Autocrypt inställningsmeddelande";
 "autocrypt_send_asm_explain_before" = "Ett meddelande för att ställa in Autocrypt, delar den informationen med andra Autocrypt-anpassade program på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den mottagande enheten.";
@@ -555,8 +553,6 @@
 "qrshow_join_contact_no_connection_toast" = "Ingen internetanslutning, kan inte utföra QR-kod-inställning.";
 "qraccount_ask_create_and_login" = "Skapa ny e-postadress på \"%1$@\" och logga in där?";
 "qraccount_ask_create_and_login_another" = "Vill du skapa en ny e-postadress på \"%1$@\" och logga in där?\n\nDitt befintliga konto kommer inte att tas bort. Använd \"Byt konto\" för att växla mellan dina konton.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Inloggning slutförd. - Din e-postadress är %1$@\n\nOm du vill, kan du nu ange ett namn och en bild som visas för folk du skriver till.";
 "qraccount_qr_code_cannot_be_used" = "Den skannade QR-koden kan inte användas för att konfigurera ett nytt konto.";
 "qraccount_use_on_new_install" = "Den skannade QR-koden är till för att konfigurera ett nytt konto. Du kan skanna QR-koden när du konfigurerar en ny Delta Chat-installation.";
 "contact_verified" = "%1$@ verifierad.";

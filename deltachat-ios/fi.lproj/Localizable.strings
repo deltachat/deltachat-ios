@@ -215,8 +215,6 @@
 "device_talk" = "Laitteen viestit";
 "device_talk_subtitle" = "Paikallisesti luodut viestit";
 "device_talk_explain" = "Viestit tässä keskustelussa luodaan paikallisesti Delta Chat -sovelluksessa. Kehittäjät ilmoittavat niiden avulla sovelluksen päivityksistä ja mahdollisista ongelmista.";
-// deprecated, use device_talk_welcome_message2 instead
-"device_talk_welcome_message" = "Tervetuloa Delta Chatiin! – Delta Chat näyttää ja tuntuu samalta kuin suositut pikaviestintäsovellukset, kuitenkin ilman keskitettyä kontrollia, seurantaa tai käyttäjien tietojen myymistä isoille yrityksille.\n\nTeknisesti Delta Chat on sähköpostisovellus nykyaikaisella pikaviestikäyttöliittymällä. Sähköposti uusissa vaatteissa, jos niin voi sanoa 👻\n\nDelta Chat toimii miljardien ihmisten kanssa: lähetä vain viesti heidän sähköpostiosoitteeseensa. Viestien vastaanottajien ei tarvitse asentaa Delta Chatia, käydä nettisivustoilla tai liittyä mihinkään - paitsi jos he haluavat. Silloin voit ohjata heidät osoitteeseen 👉 https://get.delta.chat";
 "edit_contact" = "Muokkaa yhteystietoa";
 // Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
 "pin_chat" = "Kiinnitä keskustelu";
@@ -315,8 +313,6 @@
 "retry_send" = "Yritä uudelleen lähettääksesi viestin";
 // reasons for a disabled message composer
 "messaging_disabled_not_in_group" = "Et voi kirjoittaa, koska et ole ryhmän jäsen. Liittyäksesi pyydä, että joku jäsen liittää sinut ryhmään.";
-// deprecated, the line is removed on desktop (was never used on other OS)
-"messaging_disabled_device_chat" = "Tämän keskustelun viestit on luotu paikallisesti. Et voi kirjoittaa viestejä tänne.";
 "messaging_disabled_mailing_list" = "Sähköpostilistoille vastaamista ei vielä tueta";
 "cannot_display_unsuported_file_type" = "Tiedostotyypin näyttäminen epäonnistui: %1$@";
 "attachment_failed_to_load" = "Liitteiden lataaminen epäonnistui";
@@ -414,7 +410,6 @@
 "part_of_total_used" = "%1$@ / %2$@ käytössä";
 
 
-// welcome and login
 "welcome_chat_over_email" = "Chattaa sähköpostilla.";
 "scan_invitation_code" = "Skannaa kutsukoodi";
 "login_title" = "Kirjaudu sisään";
@@ -625,7 +620,9 @@
 "autodel_after_1_year" = "1 vuoden päästä";
 
 // autocrypt
+// deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
+// deprecated, the button "Send Autocrypt Setup Message" is enough
 "autocrypt_explain" = "Autocrypt on uusi ja avoin spesifikaatio sähköpostien automaattiselle päästä-päähän-salaukselle.\n\nPäästä-päähän-salauksen asetukset luodaan automaattisesti tarpeen mukaan ja ne voidaan siirtää laitteiden välillä Autocrypt-asetusviestien avulla.";
 "autocrypt_send_asm_title" = "Lähetä Autocrypt-asetusviesti";
 "autocrypt_send_asm_explain_before" = "Autocrypt-asetusviesti jakaa turvallisesti päästä-päähän-salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa.\n\nAsetuksen salataan tässä näytettävällä asetuskoodilla, joka on syötettävä toiseen laitteeseen.";
@@ -751,8 +748,6 @@
 "qrshow_join_contact_no_connection_toast" = "Ei internetyhteyttä, QR-koodin luominen ei onnistu.";
 "qraccount_ask_create_and_login" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?";
 "qraccount_ask_create_and_login_another" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?\n\nNykyistä tiliäsi ei poisteta. Käytä valintaa \"Vaihda tiliä\" vaihtaaksesi tilien välillä.";
-// deprecated, use set_name_and_avatar_explain instead
-"qraccount_success_enter_name" = "Kirjautuminen onnistui - sähköpostiosoitteesa on %1$@\n\nVoit nyt halutessasi antaa nimen ja profiilikuvan, jotka näytetään muille kirjoittaessasi heille.";
 "qraccount_qr_code_cannot_be_used" = "Uutta tiliä ei voida luoda skannatulla QR-koodilla.";
 "qraccount_use_on_new_install" = "Skannattu QR-koodi on käytössä uuden tilin luomiseksi. Voit skannata QR-koodin uuden Delta Chat -asennuksen yhteydessä.";
 // the placeholder will be replaced by the e-mail address of the account
