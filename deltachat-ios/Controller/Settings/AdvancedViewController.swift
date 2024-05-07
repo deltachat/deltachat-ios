@@ -192,15 +192,10 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }()
 
     private lazy var sections: [SectionConfigs] = {
-        let autocryptSection = SectionConfigs(
-            headerTitle: String.localized("autocrypt"),
-            footerTitle: String.localized("autocrypt_explain"),
-            cells: [autocryptPreferencesCell, manageKeysCell, sendAutocryptMessageCell]
-        )
-        let folderSection = SectionConfigs(
-            headerTitle: String.localized("pref_imap_folder_handling"),
-            footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
-            cells: [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
+        let viewLogSection = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: nil,
+            cells: [viewLogCell])
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
@@ -209,11 +204,16 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             headerTitle: String.localized("pref_app_access"),
             footerTitle: String.localized("pref_show_system_contacts_explain"),
             cells: [showSystemContactsCell])
-        let viewLogSection = SectionConfigs(
-            headerTitle: nil,
+        let autocryptSection = SectionConfigs(
+            headerTitle: String.localized("pref_encryption"),
             footerTitle: nil,
-            cells: [viewLogCell])
-        return [autocryptSection, folderSection, experimentalSection, appAccessSection, viewLogSection]
+            cells: [autocryptPreferencesCell, manageKeysCell, sendAutocryptMessageCell]
+        )
+        let serverSection = SectionConfigs(
+            headerTitle: String.localized("pref_server"),
+            footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
+            cells: [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
+        return [viewLogSection, experimentalSection, appAccessSection, autocryptSection, serverSection]
     }()
 
     init(dcAccounts: DcAccounts) {
