@@ -2,16 +2,15 @@ import UIKit
 import DcCore
 
 class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
+
+    private struct SectionConfigs {
+        let headerTitle: String?
+        let footerTitle: String?
+        let cells: [UITableViewCell]
+    }
+
     private let dcContext: DcContext
     private let dcAccounts: DcAccounts
-
-    private let section1 = 0
-    private let section1Name = 0
-    private let section1Avatar = 1
-    private let section1Status = 2
-    private let section1RowCount = 3
-
-    private let sectionCount = 1
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -36,6 +35,15 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
         cell.textFieldDelegate = self
         cell.textField.returnKeyType = .default
         return cell
+    }()
+
+    private lazy var sections: [SectionConfigs] = {
+        let nameSection = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: String.localized("pref_who_can_see_profile_explain"),
+            cells: [nameCell, avatarSelectionCell, statusCell]
+        )
+        return [nameSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -65,38 +73,23 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionCount
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == section1 {
-            return section1RowCount
-        }
-        return 0
+        return sections[section].cells.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == section1 {
-            switch indexPath.row {
-            case section1Avatar:
-                return avatarSelectionCell
-            case section1Name:
-                return nameCell
-            case section1Status:
-                return statusCell
-            default:
-               break
-            }
-        }
-        return UITableViewCell()
+        return sections[indexPath.section].cells[indexPath.row]
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].headerTitle
     }
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-        if section == section1 {
-            return String.localized("pref_who_can_see_profile_explain")
-        } else {
-            return nil
-        }
+        return sections[section].footerTitle
     }
 
     // MARK: - actions
