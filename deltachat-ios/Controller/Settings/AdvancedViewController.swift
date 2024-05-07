@@ -17,6 +17,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case manageKeys
         case videoChat
         case viewLog
+        case accountSettings
     }
 
     private var dcContext: DcContext
@@ -56,6 +57,14 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let cell = ActionCell()
         cell.tag = CellTags.manageKeys.rawValue
         cell.actionTitle = String.localized("pref_manage_keys")
+        return cell
+    }()
+
+    private lazy var accountSettingsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("pref_password_and_account_settings")
+        cell.accessoryType = .disclosureIndicator
+        cell.tag = CellTags.accountSettings.rawValue
         return cell
     }()
 
@@ -212,7 +221,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let serverSection = SectionConfigs(
             headerTitle: String.localized("pref_server"),
             footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
-            cells: [sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
+            cells: [accountSettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
         return [viewLogSection, experimentalSection, appAccessSection, autocryptSection, serverSection]
     }()
 
@@ -280,6 +289,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         case .manageKeys: showManageKeysDialog()
         case .videoChat: showVideoChatInstance()
         case .viewLog: showLogViewController()
+        case .accountSettings: showAccountSettingsController()
         }
     }
 
@@ -330,6 +340,11 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
     private func showLogViewController() {
         let controller = LogViewController(dcContext: dcContext)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
+    private func showAccountSettingsController() {
+        let controller = AccountSetupController(dcAccounts: dcAccounts, editView: true)
         navigationController?.pushViewController(controller, animated: true)
     }
 
