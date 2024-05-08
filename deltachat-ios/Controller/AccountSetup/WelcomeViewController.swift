@@ -18,31 +18,17 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
-        view.onLogin = { [weak self] in
+        view.onSignUp = { [weak self] in
             guard let self else { return }
-            self.showAccountSetupController()
         }
-        view.onAddSecondDevice  = { [weak self] in
+        view.onLogIn = { [weak self] in
             guard let self else { return }
-            let qrReader = QrCodeReaderController(title: String.localized("multidevice_receiver_title"),
-                        addHints: "➊ " + String.localized("multidevice_same_network_hint") + "\n\n"
-                            +     "➋ " + String.localized("multidevice_open_settings_on_other_device") + "\n\n"
-                            +     String.localized("multidevice_experimental_hint"),
-                        showTroubleshooting: true)
-            qrReader.delegate = self
-            self.qrCodeReader = qrReader
-            self.navigationController?.pushViewController(qrReader, animated: true)
-        }
-        view.onScanQRCode  = { [weak self] in
-            guard let self else { return }
-            let qrReader = QrCodeReaderController(title: String.localized("scan_invitation_code"))
-            qrReader.delegate = self
-            self.qrCodeReader = qrReader
-            self.navigationController?.pushViewController(qrReader, animated: true)
-        }
-        view.onImportBackup = { [weak self] in
-            guard let self else { return }
-            self.restoreBackup()
+            let alert = UIAlertController(title: String.localized("onboarding_alternative_logins"), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("multidevice_receiver_title"), style: .default, handler: addAsSecondDevice(_:)))
+            alert.addAction(UIAlertAction(title: String.localized("import_backup_title"), style: .default, handler: restoreBackup(_:)))
+            alert.addAction(UIAlertAction(title: String.localized("manual_account_setup_option"), style: .default, handler: showAccountSetupController(_:)))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -151,6 +137,17 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     // MARK: - actions
 
+    private func addAsSecondDevice(_ action: UIAlertAction) {
+        let qrReader = QrCodeReaderController(title: String.localized("multidevice_receiver_title"),
+                    addHints: "➊ " + String.localized("multidevice_same_network_hint") + "\n\n"
+                        +     "➋ " + String.localized("multidevice_open_settings_on_other_device") + "\n\n"
+                        +     String.localized("multidevice_experimental_hint"),
+                    showTroubleshooting: true)
+        qrReader.delegate = self
+        qrCodeReader = qrReader
+        navigationController?.pushViewController(qrReader, animated: true)
+    }
+
     private func createAccountFromQRCode(qrCode: String) {
         if dcAccounts.getSelected().isConfigured() {
             UserDefaults.standard.setValue(dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
@@ -200,7 +197,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         }
     }
 
-    private func showAccountSetupController() {
+    private func showAccountSetupController(_ action: UIAlertAction) {
         let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
         accountSetupController.onLoginSuccess = {
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -233,8 +230,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         appDelegate.reloadDcContext()
     }
 
-    private func restoreBackup() {
-        logger.info("restoring backup")
+    private func restoreBackup(_ action: UIAlertAction) {
         if dcContext.isConfigured() {
             return
         }
@@ -431,10 +427,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
 // MARK: - WelcomeContentView
 class WelcomeContentView: UIView {
 
-    var onLogin: VoidFunction?
-    var onAddSecondDevice: VoidFunction?
-    var onScanQRCode: VoidFunction?
-    var onImportBackup: VoidFunction?
+    var onSignUp: VoidFunction?
+    var onLogIn: VoidFunction?
 
     var minContainerHeight: CGFloat = 0 {
         didSet {
@@ -470,15 +464,15 @@ class WelcomeContentView: UIView {
     }()
 
     private lazy var buttonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [loginButton, addSecondDeviceButton, qrCodeButton, importBackupButton])
+        let stack = UIStackView(arrangedSubviews: [signUpButton, logInButton])
         stack.axis = .vertical
         stack.spacing = 15
         return stack
     }()
 
-    private lazy var loginButton: UIButton = {
+    private lazy var signUpButton: UIButton = {
         let button = UIButton(type: .roundedRect)
-        let title = String.localized("login_header").uppercased()
+        let title = String.localized("onboarding_create_instant_account").uppercased()
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         button.setTitleColor(.white, for: .normal)
@@ -487,37 +481,17 @@ class WelcomeContentView: UIView {
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 15, bottom: 8, right: 15)
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
-        button.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signUpButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
 
-    private lazy var addSecondDeviceButton: UIButton = {
+    private lazy var logInButton: UIButton = {
         let button = UIButton()
-        let title = String.localized("multidevice_receiver_title")
+        let title = String.localized("onboarding_alternative_logins")
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        button.addTarget(self, action: #selector(addSecondDeviceButtonPressed(_:)), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var qrCodeButton: UIButton = {
-        let button = UIButton()
-        let title = String.localized("scan_invitation_code")
-        button.setTitleColor(UIColor.systemBlue, for: .normal)
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        button.addTarget(self, action: #selector(qrCodeButtonPressed(_:)), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var importBackupButton: UIButton = {
-        let button = UIButton()
-        let title = String.localized("import_backup_title")
-        button.setTitleColor(UIColor.systemBlue, for: .normal)
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        button.addTarget(self, action: #selector(importBackupButtonPressed(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(logInButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
 
@@ -575,7 +549,7 @@ class WelcomeContentView: UIView {
         buttonContainerGuide.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         buttonContainerGuide.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
 
-        loginButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        signUpButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
 
         container.addSubview(buttonStack)
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
@@ -601,21 +575,13 @@ class WelcomeContentView: UIView {
     }
 
     // MARK: - actions
-     @objc private func loginButtonPressed(_ sender: UIButton) {
-         onLogin?()
-     }
+    @objc private func signUpButtonPressed(_ sender: UIButton) {
+        onSignUp?()
+    }
 
-     @objc private func addSecondDeviceButtonPressed(_ sender: UIButton) {
-         onAddSecondDevice?()
-     }
-
-     @objc private func qrCodeButtonPressed(_ sender: UIButton) {
-         onScanQRCode?()
-     }
-
-     @objc private func importBackupButtonPressed(_ sender: UIButton) {
-         onImportBackup?()
-     }
+    @objc private func logInButtonPressed(_ sender: UIButton) {
+        onLogIn?()
+    }
 }
 
 extension WelcomeViewController: MediaPickerDelegate {
