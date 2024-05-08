@@ -20,6 +20,8 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         let view = WelcomeContentView()
         view.onSignUp = { [weak self] in
             guard let self else { return }
+            let controller = InstantOnboardingViewController(dcAccounts: dcAccounts)
+            navigationController?.pushViewController(controller, animated: true)
         }
         view.onLogIn = { [weak self] in
             guard let self else { return }
