@@ -1,18 +1,15 @@
 import UIKit
 import DcCore
 
-class InstantOnboardingViewController: UITableViewController, MediaPickerDelegate, ProgressAlertHandler {
 
-    private struct SectionConfigs {
-        let headerTitle: String?
-        let footerTitle: String?
-        let cells: [UITableViewCell]
-    }
+class InstantOnboardingViewController: UIViewController, MediaPickerDelegate, ProgressAlertHandler {
 
     private let dcContext: DcContext
     private let dcAccounts: DcAccounts
     weak var progressAlert: UIAlertController?
     var progressObserver: NSObjectProtocol?
+
+    var contentView: InstantOnboardingView { view as! InstantOnboardingView }
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -20,59 +17,31 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
         return mediaPicker
     }()
 
-    private lazy var avatarSelectionCell: AvatarSelectionCell = {
-        return AvatarSelectionCell(image: dcContext.getSelfAvatarImage())
-    }()
-
-    private lazy var nameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
-        cell.setText(text: dcContext.displayname)
-        cell.textFieldDelegate = self
-        cell.textField.returnKeyType = .default
-        return cell
-    }()
-
-    private lazy var sections: [SectionConfigs] = {
-        let nameSection = SectionConfigs(
-            headerTitle: nil,
-            footerTitle: String.localized("set_name_and_avatar_explain"),
-            cells: [nameCell, avatarSelectionCell]
-        )
-        return [nameSection]
-    }()
-
-    private lazy var acceptAndCreateButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(
-            title: String.localized("instant_onboarding_create"),
-            style: .done,
-            target: self,
-            action: #selector(acceptAndCreateButtonPressed))
-        return button
-    }()
-
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
-        super.init(style: .grouped)
+
+        super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
-    }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.rightBarButtonItem = acceptAndCreateButton
         title = String.localized("pref_profile_info_headline")
-        avatarSelectionCell.onAvatarTapped = { [weak self] in
-            self?.onAvatarTapped()
-        }
-        tableView.rowHeight = UITableView.automaticDimension
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        dcContext.displayname = nameCell.getText()
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    override func loadView() {
+        super.loadView()
+
+        let contentView = InstantOnboardingView(frame: .zero)
+        contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(InstantOnboardingViewController.textDidChangeNotification(notification:)),
+            name: UITextField.textDidChangeNotification,
+            object: contentView.nameTextField
+        )
+
+        self.view = contentView
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -82,25 +51,21 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
         }
     }
 
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
+    // MARK: - Notifications
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].cells.count
-    }
+    @objc func textDidChangeNotification(notification: Notification) {
+        guard let textField = notification.object as? UITextField,
+              let text = textField.text else { return }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return sections[indexPath.section].cells[indexPath.row]
-    }
+        let buttonShouldBeEnabled = (text.isEmpty == false)
+        contentView.agreeButton.isEnabled = buttonShouldBeEnabled
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].headerTitle
-    }
+        if buttonShouldBeEnabled {
+            contentView.agreeButton.backgroundColor = .systemBlue
+        } else {
+            contentView.agreeButton.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.6)
+        }
 
-    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-        return sections[section].footerTitle
     }
 
     // MARK: - actions
@@ -114,7 +79,6 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
         dcContext.selfavatar = nil
-        updateAvatarCell()
     }
 
     private func onAvatarTapped() {
@@ -131,17 +95,13 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
 
     func onImageSelected(image: UIImage) {
         AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
-        updateAvatarCell()
-    }
-
-    private func updateAvatarCell() {
-        self.avatarSelectionCell.setAvatar(image: dcContext.getSelfAvatarImage())
     }
 
     // MARK: - action: configuration
     @objc private func acceptAndCreateButtonPressed() {
         addProgressAlertListener(dcAccounts: self.dcAccounts, progressName: eventConfigureProgress, onSuccess: self.handleCreateSuccess)
         showProgressAlert(title: String.localized("add_account"), dcContext: self.dcContext)
+
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
             let success = self.dcContext.setConfigFromQR(qrCode: "dcaccount:https://nine.testrun.org/new") // TODO: this may be replaced by a scanned QR code or tapped invite-link
@@ -162,15 +122,7 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
         if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
             appDelegate.registerForNotifications()
         }
+
         appDelegate.reloadDcContext()
-    }
-}
-
-
-extension InstantOnboardingViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

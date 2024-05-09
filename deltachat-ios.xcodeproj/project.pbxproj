@@ -216,6 +216,7 @@
 		D84738D22BBC1C2C00ECD52B /* LegacyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84738D12BBC1C2C00ECD52B /* LegacyMenuItem.swift */; };
 		D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */; };
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
+		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
 		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
 		D8FB04002B4F0CF100A355F8 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */; };
 /* End PBXBuildFile section */
@@ -593,6 +594,7 @@
 		D84738D12BBC1C2C00ECD52B /* LegacyMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMenuItem.swift; sourceTree = "<group>"; };
 		D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewViewController.swift; sourceTree = "<group>"; };
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
+		D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantOnboardingView.swift; sourceTree = "<group>"; };
 		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		DFBB6227B203C9B6FB5F4321 /* Pods-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.debug.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -902,8 +904,8 @@
 		AE18F28B228C17630007B1BE /* AccountSetup */ = {
 			isa = PBXGroup;
 			children = (
+				D8A0729E2BED0FC8001A4C7C /* Instand Onboarding */,
 				AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */,
-				B2D255962BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift */,
 				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
 				30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */,
 				AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */,
@@ -1123,6 +1125,15 @@
 				D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */,
 			);
 			path = Reactions;
+			sourceTree = "<group>";
+		};
+		D8A0729E2BED0FC8001A4C7C /* Instand Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B2D255962BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift */,
+				D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */,
+			);
+			path = "Instand Onboarding";
 			sourceTree = "<group>";
 		};
 		D8FB03FE2B4F0CE500A355F8 /* Reactions */ = {
@@ -1646,6 +1657,7 @@
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
 				21D54500299415B9008B54D5 /* Character+Extentions.swift in Sources */,
 				30238CFF28A5554C00EF14AC /* FileHelper.swift in Sources */,
+				D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */,
 				AE851AD0227DF50900ED86F0 /* GroupChatDetailViewController.swift in Sources */,
 				30FDB72124D838240066C48D /* BaseMessageCell.swift in Sources */,
 				7A451DB01FB1F84900177250 /* AppCoordinator.swift in Sources */,
