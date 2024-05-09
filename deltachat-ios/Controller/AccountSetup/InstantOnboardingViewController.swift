@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class InstantOnboardingViewController: UITableViewController, MediaPickerDelegate {
+class InstantOnboardingViewController: UITableViewController, MediaPickerDelegate, ProgressAlertHandler {
 
     private struct SectionConfigs {
         let headerTitle: String?
@@ -11,6 +11,8 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
 
     private let dcContext: DcContext
     private let dcAccounts: DcAccounts
+    weak var progressAlert: UIAlertController?
+    var progressObserver: NSObjectProtocol?
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -39,6 +41,15 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
         return [nameSection]
     }()
 
+    private lazy var acceptAndCreateButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            title: String.localized("instant_onboarding_create"),
+            style: .done,
+            target: self,
+            action: #selector(acceptAndCreateButtonPressed))
+        return button
+    }()
+
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
@@ -52,6 +63,7 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = acceptAndCreateButton
         title = String.localized("pref_profile_info_headline")
         avatarSelectionCell.onAvatarTapped = { [weak self] in
             self?.onAvatarTapped()
@@ -61,6 +73,13 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
 
     override func viewWillDisappear(_ animated: Bool) {
         dcContext.displayname = nameCell.getText()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        if let observer = progressObserver {
+            NotificationCenter.default.removeObserver(observer)
+            progressObserver = nil
+        }
     }
 
     // MARK: - Table view data source
@@ -119,6 +138,32 @@ class InstantOnboardingViewController: UITableViewController, MediaPickerDelegat
         self.avatarSelectionCell.setAvatar(image: dcContext.getSelfAvatarImage())
     }
 
+    // MARK: - action: configuration
+    @objc private func acceptAndCreateButtonPressed() {
+        addProgressAlertListener(dcAccounts: self.dcAccounts, progressName: eventConfigureProgress, onSuccess: self.handleCreateSuccess)
+        showProgressAlert(title: String.localized("add_account"), dcContext: self.dcContext)
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            let success = self.dcContext.setConfigFromQR(qrCode: "dcaccount:https://nine.testrun.org/new") // TODO: this may be replaced by a scanned QR code or tapped invite-link
+            DispatchQueue.main.async {
+                if success {
+                    self.dcAccounts.stopIo()
+                    self.dcContext.configure()
+                } else {
+                    self.updateProgressAlert(error: self.dcContext.lastErrorString, completion: nil)
+                }
+            }
+        }
+
+    }
+
+    private func handleCreateSuccess() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+            appDelegate.registerForNotifications()
+        }
+        appDelegate.reloadDcContext()
+    }
 }
 
 
