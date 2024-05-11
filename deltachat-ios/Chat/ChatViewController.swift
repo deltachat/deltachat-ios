@@ -1370,14 +1370,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
             refreshMessages()
         } else {
-            confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
-                              actionTitle: String.localized("menu_forward"),
-                              actionHandler: { _ in
-                                RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
-                                self.dismiss(animated: true, completion: nil)},
-                              cancelHandler: { _ in
-                                self.dismiss(animated: false, completion: nil)
-                                self.navigationController?.popViewController(animated: true)})
+            DispatchQueue.main.async { [weak self] in
+                self?.confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
+                                        actionTitle: String.localized("menu_forward"),
+                                        actionHandler: { [weak self] _ in
+                                            guard let self else { return }
+                                            RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
+                                        },
+                                        cancelHandler: { [weak self] _ in
+                                            self?.navigationController?.popViewController(animated: true)
+                                        })
+            }
         }
     }
 
