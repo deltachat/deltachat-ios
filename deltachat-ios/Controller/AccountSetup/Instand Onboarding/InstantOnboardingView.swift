@@ -13,7 +13,7 @@ class InstantOnboardingView: UIView {
 
         nameTextField = UITextField()
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.placeholder = "Your Name"
+        nameTextField.placeholder = String.localized("pref_your_name")
         nameTextField.borderStyle = .roundedRect
 
         hintLabel = UILabel()
