@@ -219,20 +219,32 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
             cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell])
-        let appAccessSection = SectionConfigs(
-            headerTitle: String.localized("pref_app_access"),
-            footerTitle: String.localized("pref_show_system_contacts_explain"),
-            cells: [showSystemContactsCell])
-        let autocryptSection = SectionConfigs(
-            headerTitle: String.localized("pref_encryption"),
-            footerTitle: nil,
-            cells: [autocryptPreferencesCell, manageKeysCell, sendAutocryptMessageCell]
-        )
-        let serverSection = SectionConfigs(
-            headerTitle: String.localized("pref_server"),
-            footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
-            cells: [accountSettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
-        return [viewLogSection, experimentalSection, appAccessSection, autocryptSection, serverSection]
+
+        if dcContext.isChatmail {
+            let autocryptSection = SectionConfigs(
+                headerTitle: String.localized("pref_encryption"),
+                footerTitle: nil,
+                cells: [manageKeysCell, sendAutocryptMessageCell])
+            let serverSection = SectionConfigs(
+                headerTitle: String.localized("pref_server"),
+                footerTitle: nil,
+                cells: [accountSettingsCell])
+            return [viewLogSection, experimentalSection, autocryptSection, serverSection]
+        } else {
+            let appAccessSection = SectionConfigs(
+                headerTitle: String.localized("pref_app_access"),
+                footerTitle: String.localized("pref_show_system_contacts_explain"),
+                cells: [showSystemContactsCell])
+            let autocryptSection = SectionConfigs(
+                headerTitle: String.localized("pref_encryption"),
+                footerTitle: nil,
+                cells: [autocryptPreferencesCell, manageKeysCell, sendAutocryptMessageCell])
+            let serverSection = SectionConfigs(
+                headerTitle: String.localized("pref_server"),
+                footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
+                cells: [accountSettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
+            return [viewLogSection, experimentalSection, appAccessSection, autocryptSection, serverSection]
+        }
     }()
 
     init(dcAccounts: DcAccounts) {
