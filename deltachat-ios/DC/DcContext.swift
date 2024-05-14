@@ -682,4 +682,8 @@ public class DcContext {
         get { return getConfigInt("show_emails") }
         set { setConfigInt("show_emails", newValue) }
     }
+
+    public var isChatmail: Bool {
+        return getConfigInt("is_chatmail") == 1
+    }
 }
