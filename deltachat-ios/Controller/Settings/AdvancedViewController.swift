@@ -221,7 +221,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
             cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell])
 
         if dcContext.isChatmail {
-            let autocryptSection = SectionConfigs(
+            let encryptionSection = SectionConfigs(
                 headerTitle: String.localized("pref_encryption"),
                 footerTitle: nil,
                 cells: [manageKeysCell, sendAutocryptMessageCell])
@@ -229,13 +229,13 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
                 headerTitle: String.localized("pref_server"),
                 footerTitle: nil,
                 cells: [accountSettingsCell])
-            return [viewLogSection, experimentalSection, autocryptSection, serverSection]
+            return [viewLogSection, experimentalSection, encryptionSection, serverSection]
         } else {
             let appAccessSection = SectionConfigs(
                 headerTitle: String.localized("pref_app_access"),
                 footerTitle: String.localized("pref_show_system_contacts_explain"),
                 cells: [showSystemContactsCell])
-            let autocryptSection = SectionConfigs(
+            let encryptionSection = SectionConfigs(
                 headerTitle: String.localized("pref_encryption"),
                 footerTitle: nil,
                 cells: [autocryptPreferencesCell, manageKeysCell, sendAutocryptMessageCell])
@@ -243,7 +243,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
                 headerTitle: String.localized("pref_server"),
                 footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
                 cells: [accountSettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
-            return [viewLogSection, experimentalSection, appAccessSection, autocryptSection, serverSection]
+            return [viewLogSection, experimentalSection, appAccessSection, encryptionSection, serverSection]
         }
     }()
 
