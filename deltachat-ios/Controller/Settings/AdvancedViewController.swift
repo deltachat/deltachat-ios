@@ -56,17 +56,17 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         return cell
     }()
 
-    private lazy var sendAutocryptMessageCell: ActionCell = {
-        let cell = ActionCell()
+    private lazy var sendAutocryptMessageCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.sendAutocryptMessage.rawValue
-        cell.actionTitle = String.localized("autocrypt_send_asm_title")
+        cell.textLabel?.text = String.localized("autocrypt_send_asm_title")
         return cell
     }()
 
-    private lazy var manageKeysCell: ActionCell = {
-        let cell = ActionCell()
+    private lazy var manageKeysCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.manageKeys.rawValue
-        cell.actionTitle = String.localized("pref_manage_keys")
+        cell.textLabel?.text = String.localized("pref_manage_keys")
         return cell
     }()
 
