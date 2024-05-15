@@ -36,6 +36,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         let contentView = InstantOnboardingView(avatarImage: dcContext.getSelfAvatarImage())
         contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
         contentView.imageButton.addTarget(self, action: #selector(InstantOnboardingViewController.onAvatarTapped), for: .touchUpInside)
+        contentView.privacyButton.addTarget(self, action: #selector(InstantOnboardingViewController.showPrivacy(_:)), for: .touchUpInside)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(InstantOnboardingViewController.textDidChangeNotification(notification:)),
@@ -82,6 +83,14 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
         dcContext.selfavatar = nil
         contentView.imageButton.setImage(UIImage(named: "person.crop.circle"), for: .normal)
+    }
+
+    @objc private func showPrivacy(_ sender: UIButton) {
+        guard let url = URL(string: "https://nine.testrun.org/privacy.html") else { return }
+
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
     }
 
     @objc
