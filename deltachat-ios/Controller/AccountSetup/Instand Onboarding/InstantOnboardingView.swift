@@ -6,6 +6,9 @@ class InstantOnboardingView: UIView {
 
     let nameTextField: UITextField
     let hintLabel: UILabel
+    private let hintLabelWrapper: UIView
+    let privacyButton: UIButton
+    private let privacyButtonWrapper: UIView
     let agreeButton: UIButton
 
     private let contentStackView: UIStackView
@@ -30,8 +33,13 @@ class InstantOnboardingView: UIView {
         nameTextField.borderStyle = .roundedRect
 
         hintLabel = UILabel()
+        hintLabel.translatesAutoresizingMaskIntoConstraints = false
         hintLabel.numberOfLines = 0
         hintLabel.text = String.localized("set_name_and_avatar_explain")
+
+        hintLabelWrapper = UIView()
+        hintLabelWrapper.translatesAutoresizingMaskIntoConstraints = false
+        hintLabelWrapper.addSubview(hintLabel)
 
         agreeButton = UIButton()
         agreeButton.setTitle(String.localized("instant_onboarding_create"), for: .normal)
@@ -40,14 +48,24 @@ class InstantOnboardingView: UIView {
         agreeButton.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.6)
         agreeButton.contentEdgeInsets.top = 8
         agreeButton.contentEdgeInsets.bottom = 8
+        agreeButton.isEnabled = false
 
-        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabel, agreeButton])
+        privacyButton = UIButton(type: .system)
+        privacyButton.translatesAutoresizingMaskIntoConstraints = false
+        privacyButton.setTitle(String.localized("instant_onboarding_agree_default"), for: .normal)
+
+        privacyButtonWrapper = UIView()
+        privacyButtonWrapper.translatesAutoresizingMaskIntoConstraints = false
+        privacyButtonWrapper.addSubview(privacyButton)
+
+        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
         contentStackView.setCustomSpacing(32, after: imageButton)
         contentStackView.setCustomSpacing(16, after: nameTextField)
-        contentStackView.setCustomSpacing(16, after: hintLabel)
+        contentStackView.setCustomSpacing(8, after: hintLabelWrapper)
+        contentStackView.setCustomSpacing(16, after: privacyButtonWrapper)
 
         contentScrollView = UIScrollView()
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,6 +106,18 @@ class InstantOnboardingView: UIView {
 
             imageButton.widthAnchor.constraint(equalToConstant: 150),
             imageButton.heightAnchor.constraint(equalToConstant: 150),
+
+            privacyButtonWrapper.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
+            privacyButton.topAnchor.constraint(equalTo: privacyButtonWrapper.topAnchor),
+            privacyButton.leadingAnchor.constraint(equalTo: privacyButtonWrapper.leadingAnchor),
+            privacyButtonWrapper.trailingAnchor.constraint(greaterThanOrEqualTo: privacyButton.trailingAnchor),
+            privacyButtonWrapper.bottomAnchor.constraint(equalTo: privacyButton.bottomAnchor),
+
+            hintLabelWrapper.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
+            hintLabel.topAnchor.constraint(equalTo: hintLabelWrapper.topAnchor),
+            hintLabel.leadingAnchor.constraint(equalTo: hintLabelWrapper.leadingAnchor),
+            hintLabelWrapper.trailingAnchor.constraint(greaterThanOrEqualTo: hintLabel.trailingAnchor),
+            hintLabelWrapper.bottomAnchor.constraint(equalTo: hintLabel.bottomAnchor),
         ]
 
         NSLayoutConstraint.activate(constraints)
