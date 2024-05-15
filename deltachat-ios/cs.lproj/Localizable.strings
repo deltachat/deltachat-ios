@@ -380,6 +380,7 @@
 "media_preview" = "Náhled multimedia";
 "send_message" = "Pošli zprávu";
 "multidevice_install_dc_on_other_device" = "Nainstalujte si Delta Chat do druhého zařízení (https://get.delta.chat)";
+// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Spusťte Delta Chat, klepněte na „Přidat jako druhé zařízení“ a naskenujte zde zobrazený kód";
 "welcome_chat_over_email" = "Chat přes e-mail.";
 "login_title" = "Přihlaš se";

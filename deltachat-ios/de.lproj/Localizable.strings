@@ -437,7 +437,8 @@
 "multidevice_same_network_hint" = "Beide Geräte müssen im selben Wi-Fi oder Netzwerk sein.";
 "multidevice_this_creates_a_qr_code" = "Erstellt einen QR-Code, den ein Zweitgerät scannen kann, um das Konto zu kopieren.";
 "multidevice_install_dc_on_other_device" = "Delta Chat auf dem anderen Gerät installieren (https://get.delta.chat)";
-"multidevice_tap_scan_on_other_device" = "Delta Chat starten, \"Als Zweitgerät hinzufügen\" wählen und den QR-Code scannen";
+// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Delta Chat starten, \"Ich habe bereits ein Login / Als Zweitgerät hinzufügen\" wählen und den QR-Code scannen";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Scannen, um ein zweites Gerät für %1$@ hinzuzufügen";
 "multidevice_receiver_title" = "Als Zweitgerät hinzufügen";
@@ -896,6 +897,8 @@
 "secure_join_started" = "%1$@ hat dich zu dieser Gruppe eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ antwortet. Warte, zur Gruppe hinzugefügt zu werden...";
+"secure_join_wait" = "Garantierte Ende-zu-Ende-Verschlüsselung wird aufgebaut, bitte warten...";
+"secure_join_wait_timeout" = "Noch konnte keine garantierte Ende-zu-Ende-Verschlüsselung aufgebaut werden, aber Sie können bereits eine Nachricht senden.";
 "contact_verified" = "%1$@ eingeführt.";
 "contact_not_verified" = "Kann keine garantierte Ende-zu-Ende-Verschlüsselung mit %1$@ herstellen.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

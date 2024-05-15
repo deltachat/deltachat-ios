@@ -437,6 +437,7 @@
 "multidevice_same_network_hint" = "让两台设备连接相同的 Wi-Fi 或网络";
 "multidevice_this_creates_a_qr_code" = "这会创建供第二台设备扫描、用于复制此账户的二维码。";
 "multidevice_install_dc_on_other_device" = "在你的其他设备上安装 Delta Chat (https://get.delta.chat)";
+// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "启动 Delta Chat 应用，点击“添加为第二台设备”并扫描显示的二维码";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "扫描此处为 %1$@ 设置第二台设备";
@@ -896,8 +897,10 @@
 "secure_join_started" = "%1$@ 邀请你加入此群组。\n\n等待 %2$@ 的设备回复…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ 已回复，等待被加入群组…";
+"secure_join_wait" = "正在建立有保证的端到端加密，请稍候…";
+"secure_join_wait_timeout" = "无法建立有保证的端到端加密，但您可能已经发送了一条消息。";
 "contact_verified" = "%1$@ 已验证。";
-"contact_not_verified" = "无法验证 %1$@。";
+"contact_not_verified" = "无法与 %1$@ 建立有保证的端到端加密。";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "验证人 %1$@";
 "verified_by_you" = "由您验证";

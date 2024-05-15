@@ -437,7 +437,8 @@
 "multidevice_same_network_hint" = "Make sure both devices are on the same Wi-Fi or network";
 "multidevice_this_creates_a_qr_code" = "This creates a QR code that the second device can scan to copy the account.";
 "multidevice_install_dc_on_other_device" = "Install Delta Chat on your other device (https://get.delta.chat)";
-"multidevice_tap_scan_on_other_device" = "Start Delta Chat, tap “Add as Second Device” and scan the code shown here";
+// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Start Delta Chat, tap “I Already Have a Login / Add as Second Device” and scan the code shown here";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Scan to set up second device for %1$@";
 "multidevice_receiver_title" = "Add as Second Device";
@@ -896,6 +897,8 @@
 "secure_join_started" = "%1$@ invited you to join this group.\n\nWaiting for the device of %2$@ to reply…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ replied, waiting for being added to the group…";
+"secure_join_wait" = "Establishing guaranteed end-to-end encryption, please wait…";
+"secure_join_wait_timeout" = "Could not yet establish guaranteed end-to-end encryption, but you may already send a message.";
 "contact_verified" = "%1$@ introduced.";
 "contact_not_verified" = "Cannot establish guaranteed end-to-end encryption with %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

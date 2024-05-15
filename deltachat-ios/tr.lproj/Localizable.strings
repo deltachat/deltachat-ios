@@ -437,7 +437,8 @@
 "multidevice_same_network_hint" = "Her iki aygıtın da aynı Wi-Fi\'da ya da ağda olduğundan emin olun";
 "multidevice_this_creates_a_qr_code" = "Bu, ikinci aygıtın hesabı kopyalamak için tarayabileceği bir QR kodu oluşturur.";
 "multidevice_install_dc_on_other_device" = "Delta Chat\'i diğer aygıtınıza kurun (https://get.delta.chat)";
-"multidevice_tap_scan_on_other_device" = "Delta Chat\'i başlatın, “İkinci Aygıt Olarak Ekle”ye dokunun ve burada gösterilen kodu tarayın";
+// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Delta Chat\'i başlatın, “Zaten Bir Girişim Var / İkinci Aygıt Olarak Ekle”ye dokunun ve burada gösterilen kodu tarayın";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "%1$@ için ikinci aygıtı ayarlamak üzere tarayın";
 "multidevice_receiver_title" = "İkinci Aygıt Olarak Ayarla";
@@ -573,7 +574,7 @@
 // preferences
 "pref_using_custom" = "Özel kullanılıyor: %1$@";
 "pref_using_default" = "Varsayılan kullanılıyor: %1$@";
-"pref_profile_info_headline" = "Profil Bilginiz";
+"pref_profile_info_headline" = "Profiliniz";
 "pref_profile_photo" = "Profil Görseli";
 "pref_blocked_contacts" = "Engellenen Kişiler";
 "blocked_empty_hint" = "Engellenen kişiler burada görünecek.";
@@ -615,6 +616,8 @@
 "pref_incognito_keyboard_explain" = "Kişiselleştirilen öğrenmeyi etkisizleştirmek için klavye iste";
 "pref_read_receipts" = "Okundu Onayları";
 "pref_read_receipts_explain" = "Okundu onayları etkisizleştirilirse, diğerlerinden gelen okundu onaylarını göremeyeceksiniz.";
+"pref_server" = "Sunucu";
+"pref_encryption" = "Şifreleme";
 "pref_manage_keys" = "Anahtarları Yönet";
 "pref_use_system_emoji" = "Sistem Emojisini Kullan";
 "pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
@@ -894,6 +897,8 @@
 "secure_join_started" = "%1$@ sizi bu öbeğe katılmaya çağırdı.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ yanıtladı; öbeğe eklenmesi bekleniyor…";
+"secure_join_wait" = "Güvenceli uçtan uca şifreleme kuruluyor, lütfen bekleyin…";
+"secure_join_wait_timeout" = "Henüz güvenceli uçtan uca şifreleme kurulamadı; ama zaten bir ileti gönderebilirsiniz.";
 "contact_verified" = "%1$@ tanıtıldı.";
 "contact_not_verified" = "%1$@ ile güvencelenen uçtan uca şifreleme kurulamıyor.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

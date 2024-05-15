@@ -435,6 +435,7 @@
 "multidevice_same_network_hint" = "Sigurohuni se të dy pajisjet janë në të njëjtin rrjet Wi-Fi ose klasik";
 "multidevice_this_creates_a_qr_code" = "Kjo krijon një kod QR që pajisja e dytë mund ta skanojë për të kopjuar llogarinë.";
 "multidevice_install_dc_on_other_device" = "Instaloni Delta Chat-in në pajisjen tuaj tjetër (https://get.delta.chat)";
+// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Nisni Delta Chat-in, prekni mbi “Shtoje si Pajisje të Dytë” dhe skanoni kodin e treguar këtu";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Skanojeni, që të ujdisni pajise të dytë për %1$@";
@@ -613,6 +614,8 @@
 "pref_incognito_keyboard_explain" = "Kërkoji tastierës të çaktivizojë nxënie të personalizuar";
 "pref_read_receipts" = "Dëftesa Leximi";
 "pref_read_receipts_explain" = "Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi prej të tjerësh.";
+"pref_server" = "Shërbyes";
+"pref_encryption" = "Fshehtëzim";
 "pref_manage_keys" = "Administroni Kyçe";
 "pref_use_system_emoji" = "Përdor Emoji Sistemi";
 "pref_use_system_emoji_explain" = "Çaktivizo mbulimin e brendshëm Delta Chat për emoji-t";
@@ -890,6 +893,8 @@
 "secure_join_started" = "%1$@ ju ftoi të bëheni pjesë e këtij grupi.\n\nPo pritet për pajisjen e %2$@ që të përgjigjet…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";
+"secure_join_wait" = "Po vendoset fshehtëzim skaj-më-skaj i garantuar, ju lutemi, pritni…";
+"secure_join_wait_timeout" = "S’u vendos dot fshehtëzim skaj-më-skaj i garantuar, por mundeni tashmë të dërgoni një mesazh.";
 "contact_verified" = "%1$@ u verifikua.";
 "contact_not_verified" = "S’vendoset dot fshehtëzim i garantuar skaj-më-skaj me %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

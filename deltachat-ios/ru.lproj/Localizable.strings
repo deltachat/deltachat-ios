@@ -437,6 +437,7 @@
 "multidevice_same_network_hint" = "Подключите оба устройства к одной и той же сети Wi-Fi";
 "multidevice_this_creates_a_qr_code" = "Это создает QR-код, который второе устройство может отсканировать для копирования учетной записи.";
 "multidevice_install_dc_on_other_device" = "Установите Delta Chat на другое устройство (https://get.delta.chat)";
+// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Запустите Delta Chat, нажмите \"Добавить второе устройство\" и отсканируйте показанный здесь код";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Отсканируйте, чтобы настроить второе устройство для %1$@";
@@ -481,6 +482,32 @@
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ из %2$@ используется";
 
+
+// welcome and login
+// Primary button on the welcome screen, allows to create an instant account
+"onboarding_create_instant_account" = "Давайте начнём!";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+"onboarding_alternative_logins" = "У меня уже есть логин";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Войти вручную";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Личный профиль";
+// This is a link to the default Privacy Policy
+"instant_onboarding_agree_default" = "Просмотреть Политику конфиденциальности";
+// The placeholder will be replaced by instance name, the whole text will link to the instance page
+"instant_onboarding_agree_instance" = "О профилях на %1$@";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Принять и создать профиль";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Просмотреть другие опции";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+"instant_onboarding_group_info" = "Создайть профиль чтобы присоединиться к группе \"%1$@\".";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+"instant_onboarding_contact_info" = "Создайть профиль чтобы пообщаться с \"%1$@\".";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Хотите создать новый профиль и начать общаться с %1$@?";
+// Question shown when group's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Вы хотите создать новый профиль и присоединиться к чату группы \"%1$@\"?";
 
 "welcome_chat_over_email" = "Чат через электронную почту.";
 "scan_invitation_code" = "Сканировать код приглашения";
@@ -589,6 +616,8 @@
 "pref_incognito_keyboard_explain" = "Запрос клавиатуре на отключение в обучении персонализированных подсказок";
 "pref_read_receipts" = "Уведомления о прочтении";
 "pref_read_receipts_explain" = "Если уведомления о прочтении отключены, вы не будете видеть подтверждения прочтения сообщений другими пользователями";
+"pref_server" = "Сервер";
+"pref_encryption" = "Шифрование";
 "pref_manage_keys" = "Управление ключами";
 "pref_use_system_emoji" = "Использовать системные эмодзи";
 "pref_use_system_emoji_explain" = "Отключить поддержку встроенных эмодзи Delta Chat";
@@ -827,6 +856,7 @@
 "load_qr_code_as_image" = "Загрузить QR-код как изображение";
 "qrscan_title" = "Сканировать QR-код";
 "qrscan_hint" = "Наведите камеру на QR-код";
+"qrscan_hint_desktop" = "Поднесите QR-код к камере";
 "qrscan_failed" = "QR-код не может быть декодирован";
 "qrscan_ask_join_group" = "Присоединиться к группе «%1$@»?";
 "qrscan_fingerprint_mismatch" = "Отсканированный отпечаток не совпадает с последним известным отпечатком %1$@";

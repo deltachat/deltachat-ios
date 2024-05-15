@@ -437,7 +437,8 @@
 "multidevice_same_network_hint" = "Переконайтеся, що обидва пристрої підключено до однієї мережі Wi-Fi";
 "multidevice_this_creates_a_qr_code" = "Це створить QR-код, який другий пристрій може сканувати, щоб скопіювати обліковий запис.";
 "multidevice_install_dc_on_other_device" = "Установіть Delta Chat на Ваш інший пристрій (https://get.delta.chat)";
-"multidevice_tap_scan_on_other_device" = "Запустіть Delta Chat, натисніть «Додати як другий пристрій» і відскануйте показаний тут код";
+// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Запустіть Delta Chat, торкніться \"У мене вже є логін / Додати як другий пристрій\" і відскануйте код, показаний тут";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Скануйте, щоб налаштувати другий пристрій %1$@";
 "multidevice_receiver_title" = "Додати як другий пристрій";
@@ -896,6 +897,8 @@
 "secure_join_started" = "%1$@ запросив (-ла) Вас приєднатися до цієї групи.\n\nОчікуємо на відповідь від пристрою %2$@…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ відповіли, очікуємо на додавання до групи…";
+"secure_join_wait" = "Встановлення гарантованого наскрізного шифрування, будь ласка, зачекайте...";
+"secure_join_wait_timeout" = "Ще не вдалося встановити гарантоване наскрізне шифрування, але ви вже можете надсилати повідомлення.";
 "contact_verified" = "%1$@ представив (-ла).";
 "contact_not_verified" = "Не вдається встановити гарантоване наскрізне шифрування з %1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
