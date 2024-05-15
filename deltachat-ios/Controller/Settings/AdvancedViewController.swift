@@ -12,8 +12,8 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
     }
 
     private enum CellTags: Int {
+        case defaultTagValue = 0
         case showEmails
-        case autocryptPreferences
         case sendAutocryptMessage
         case manageKeys
         case videoChat
@@ -49,7 +49,6 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
     private lazy var autocryptPreferencesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.tag = CellTags.autocryptPreferences.rawValue
         cell.textLabel?.text = String.localized("autocrypt_prefer_e2ee")
         cell.accessoryView = autocryptSwitch
         cell.selectionStyle = .none
@@ -307,12 +306,12 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
         switch cellTag {
         case .showEmails: showClassicMailController()
-        case .autocryptPreferences: break
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
         case .manageKeys: showManageKeysDialog()
         case .videoChat: showVideoChatInstance()
         case .viewLog: showLogViewController()
         case .accountSettings: showAccountSettingsController()
+        case .defaultTagValue: break
         }
     }
 
