@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 
-class InstantOnboardingViewController: UIViewController, MediaPickerDelegate, ProgressAlertHandler {
+class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     private let dcContext: DcContext
     private let dcAccounts: DcAccounts
@@ -11,7 +11,8 @@ class InstantOnboardingViewController: UIViewController, MediaPickerDelegate, Pr
 
     var contentView: InstantOnboardingView { view as! InstantOnboardingView }
 
-    private lazy var mediaPicker: MediaPicker? = {
+    // TODO: Maybe use DI instead of lazily computed property?
+    private lazy var mediaPicker: MediaPicker = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
         mediaPicker.delegate = self
         return mediaPicker
@@ -22,8 +23,8 @@ class InstantOnboardingViewController: UIViewController, MediaPickerDelegate, Pr
         self.dcContext = dcAccounts.getSelected()
 
         super.init(nibName: nil, bundle: nil)
-        hidesBottomBarWhenPushed = true
 
+        hidesBottomBarWhenPushed = true
         title = String.localized("pref_profile_info_headline")
     }
 
@@ -32,8 +33,9 @@ class InstantOnboardingViewController: UIViewController, MediaPickerDelegate, Pr
     override func loadView() {
         super.loadView()
 
-        let contentView = InstantOnboardingView(frame: .zero)
+        let contentView = InstantOnboardingView(avatarImage: dcContext.getSelfAvatarImage())
         contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
+        contentView.imageButton.addTarget(self, action: #selector(InstantOnboardingViewController.onAvatarTapped), for: .touchUpInside)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(InstantOnboardingViewController.textDidChangeNotification(notification:)),
@@ -70,17 +72,19 @@ class InstantOnboardingViewController: UIViewController, MediaPickerDelegate, Pr
 
     // MARK: - actions
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showPhotoGallery()
+        mediaPicker.showPhotoGallery()
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showCamera(allowCropping: true, supportedMediaTypes: .photo)
+        mediaPicker.showCamera(allowCropping: true, supportedMediaTypes: .photo)
     }
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
         dcContext.selfavatar = nil
+        contentView.imageButton.setImage(UIImage(named: "person.crop.circle"), for: .normal)
     }
 
+    @objc
     private func onAvatarTapped() {
         let alert = UIAlertController(title: String.localized("pref_profile_photo"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
@@ -93,9 +97,6 @@ class InstantOnboardingViewController: UIViewController, MediaPickerDelegate, Pr
         self.present(alert, animated: true, completion: nil)
     }
 
-    func onImageSelected(image: UIImage) {
-        AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
-    }
 
     // MARK: - action: configuration
     @objc private func acceptAndCreateButtonPressed() {
@@ -124,5 +125,12 @@ class InstantOnboardingViewController: UIViewController, MediaPickerDelegate, Pr
         }
 
         appDelegate.reloadDcContext()
+    }
+}
+
+extension InstantOnboardingViewController: MediaPickerDelegate {
+    func onImageSelected(image: UIImage) {
+        AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
+        contentView.imageButton.setImage(image, for: .normal)
     }
 }

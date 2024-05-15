@@ -2,6 +2,8 @@ import UIKit
 
 class InstantOnboardingView: UIView {
 
+    let imageButton: UIButton
+
     let nameTextField: UITextField
     let hintLabel: UILabel
     let agreeButton: UIButton
@@ -9,7 +11,18 @@ class InstantOnboardingView: UIView {
     private let contentStackView: UIStackView
     private let contentScrollView: UIScrollView
 
-    override init(frame: CGRect) {
+    init(avatarImage: UIImage?) {
+
+        imageButton = UIButton()
+        imageButton.translatesAutoresizingMaskIntoConstraints = false
+        if let avatarImage {
+            imageButton.setImage(avatarImage, for: .normal)
+        } else {
+            imageButton.setImage(UIImage(named: "person.crop.circle"), for: .normal)
+        }
+        imageButton.layer.masksToBounds = true
+        imageButton.layer.cornerRadius = 75
+
 
         nameTextField = UITextField()
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -28,18 +41,20 @@ class InstantOnboardingView: UIView {
         agreeButton.contentEdgeInsets.top = 8
         agreeButton.contentEdgeInsets.bottom = 8
 
-        contentStackView = UIStackView(arrangedSubviews: [nameTextField, hintLabel, agreeButton])
+        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabel, agreeButton])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
-        contentStackView.spacing = 8
+        contentStackView.setCustomSpacing(32, after: imageButton)
+        contentStackView.setCustomSpacing(16, after: nameTextField)
+        contentStackView.setCustomSpacing(16, after: hintLabel)
 
         contentScrollView = UIScrollView()
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         contentScrollView.addSubview(contentStackView)
         contentScrollView.keyboardDismissMode = .onDrag
 
-        super.init(frame: frame)
+        super.init(frame: .zero)
 
         if #available(iOS 13.0, *) {
             backgroundColor = .systemGroupedBackground
@@ -70,6 +85,9 @@ class InstantOnboardingView: UIView {
             contentStackView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor, constant: -32),
             nameTextField.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
             agreeButton.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
+
+            imageButton.widthAnchor.constraint(equalToConstant: 150),
+            imageButton.heightAnchor.constraint(equalToConstant: 150),
         ]
 
         NSLayoutConstraint.activate(constraints)
