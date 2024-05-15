@@ -25,7 +25,8 @@ class InstantOnboardingView: UIView {
         }
         imageButton.layer.masksToBounds = true
         imageButton.layer.cornerRadius = 75
-
+        imageButton.contentVerticalAlignment = .fill
+        imageButton.contentHorizontalAlignment = .fill
 
         nameTextField = UITextField()
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
