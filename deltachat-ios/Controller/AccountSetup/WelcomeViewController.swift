@@ -293,6 +293,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     }
 }
 
+// MARK: - QrCodeReaderDelegate
 extension WelcomeViewController: QrCodeReaderDelegate {
     func handleQrCode(_ code: String) {
         let lot = dcContext.checkQR(qrCode: code)
