@@ -171,9 +171,10 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     // MARK: - Notifications
     @objc private func keyboardWillShow(_ notification: Notification) {
-        guard let userInfo = notification.userInfo else { return }
+        guard let userInfo = notification.userInfo,
+              var keyboardFrame: CGRect = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
+              let contentView = contentView else { return }
 
-        var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = view.convert(keyboardFrame, from: nil)
 
         var contentInset = contentView.contentScrollView.contentInset
@@ -185,9 +186,9 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     }
 
     @objc private func keyboardWillHide(_ notification: Notification) {
-        contentView.spacer.isHidden = false
-        contentView.bottomSpacer.isHidden = true
-        contentView.contentScrollView.contentInset = UIEdgeInsets.zero
+        contentView?.spacer.isHidden = false
+        contentView?.bottomSpacer.isHidden = true
+        contentView?.contentScrollView.contentInset = UIEdgeInsets.zero
     }
 
     // MARK: - action: configuration
