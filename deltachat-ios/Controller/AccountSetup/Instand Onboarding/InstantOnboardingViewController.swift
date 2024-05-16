@@ -9,7 +9,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     weak var progressAlert: UIAlertController?
     var progressObserver: NSObjectProtocol?
 
-    var contentView: InstantOnboardingView { view as! InstantOnboardingView }
+    var contentView: InstantOnboardingView? { view as? InstantOnboardingView }
 
     // TODO: Maybe use DI instead of lazily computed property?
     private lazy var mediaPicker: MediaPicker = {
@@ -61,12 +61,12 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
               let text = textField.text else { return }
 
         let buttonShouldBeEnabled = (text.isEmpty == false)
-        contentView.agreeButton.isEnabled = buttonShouldBeEnabled
+        contentView?.agreeButton.isEnabled = buttonShouldBeEnabled
 
         if buttonShouldBeEnabled {
-            contentView.agreeButton.backgroundColor = .systemBlue
+            contentView?.agreeButton.backgroundColor = .systemBlue
         } else {
-            contentView.agreeButton.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.6)
+            contentView?.agreeButton.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.6)
         }
 
     }
@@ -82,7 +82,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
         dcContext.selfavatar = nil
-        contentView.imageButton.setImage(UIImage(named: "person.crop.circle"), for: .normal)
+        contentView?.imageButton.setImage(UIImage(named: "person.crop.circle"), for: .normal)
     }
 
     @objc private func showPrivacy(_ sender: UIButton) {
@@ -105,7 +105,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
         self.present(alert, animated: true, completion: nil)
     }
-
 
     // MARK: - action: configuration
     @objc private func acceptAndCreateButtonPressed() {
@@ -140,6 +139,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 extension InstantOnboardingViewController: MediaPickerDelegate {
     func onImageSelected(image: UIImage) {
         AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
-        contentView.imageButton.setImage(image, for: .normal)
+        contentView?.imageButton.setImage(image, for: .normal)
     }
 }
