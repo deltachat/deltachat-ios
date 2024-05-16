@@ -48,10 +48,14 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        if let observer = progressObserver {
-            NotificationCenter.default.removeObserver(observer)
-            progressObserver = nil
+        if let progressObserver {
+            NotificationCenter.default.removeObserver(progressObserver)
+            self.progressObserver = nil
         }
+
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: contentView?.nameTextField)
     }
 
     // MARK: - Notifications
