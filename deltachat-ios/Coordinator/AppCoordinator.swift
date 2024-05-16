@@ -223,10 +223,19 @@ class AppCoordinator: NSObject {
     }
 
     func presentWelcomeController(accountCode: String? = nil) {
-        loginNavController.setViewControllers([
-            WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode),
-            InstantOnboardingViewController(dcAccounts: dcAccounts, qrCodeData: accountCode)
-        ], animated: false)
+
+        let viewControllers: [UIViewController]
+
+        if let accountCode {
+            viewControllers = [
+                WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode),
+                InstantOnboardingViewController(dcAccounts: dcAccounts, qrCodeData: accountCode)
+            ]
+        } else {
+            viewControllers = [WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode)]
+        }
+
+        loginNavController.setViewControllers(viewControllers, animated: false)
         window.rootViewController = loginNavController
         window.makeKeyAndVisible()
 
