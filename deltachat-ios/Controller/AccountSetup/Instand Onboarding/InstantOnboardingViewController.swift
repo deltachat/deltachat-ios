@@ -62,6 +62,10 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
         contentView.imageButton.addTarget(self, action: #selector(InstantOnboardingViewController.onAvatarTapped), for: .touchUpInside)
         contentView.privacyButton.addTarget(self, action: #selector(InstantOnboardingViewController.showPrivacy(_:)), for: .touchUpInside)
+        contentView.otherOptionsButton.addTarget(self, action: #selector(InstantOnboardingViewController.showOtherOptions(_:)), for: .touchUpInside)
+        contentView.scanQRCodeButton.addTarget(self, action: #selector(InstantOnboardingViewController.scanQRCode(_:)), for: .touchUpInside)
+
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(InstantOnboardingViewController.textDidChangeNotification(notification:)),
@@ -120,6 +124,19 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
+    }
+
+    @objc private func showOtherOptions(_ sender: UIButton) {
+
+        guard let url = URL(string: "https://delta.chat/en/chatmail") else { return }
+
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    @objc private func scanQRCode(_ sender: UIButton) {
+        // TODO: Implement
     }
 
     @objc

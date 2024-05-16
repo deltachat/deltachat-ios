@@ -11,6 +11,10 @@ class InstantOnboardingView: UIView {
     private let privacyButtonWrapper: UIView
     let agreeButton: UIButton
 
+    let otherOptionsButton: UIButton
+    let scanQRCodeButton: UIButton
+    private let bottomButtonStackview: UIStackView
+
     private let contentStackView: UIStackView
     private let contentScrollView: UIScrollView
 
@@ -59,10 +63,24 @@ class InstantOnboardingView: UIView {
         privacyButtonWrapper.translatesAutoresizingMaskIntoConstraints = false
         privacyButtonWrapper.addSubview(privacyButton)
 
-        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton])
+        otherOptionsButton = UIButton(type: .system)
+        otherOptionsButton.translatesAutoresizingMaskIntoConstraints = false
+        otherOptionsButton.setTitle(String.localized("instant_onboarding_show_more_instances"), for: .normal)
+
+        scanQRCodeButton = UIButton(type: .system)
+        scanQRCodeButton.translatesAutoresizingMaskIntoConstraints = false
+        scanQRCodeButton.setTitle(String.localized("qrscan_title"), for: .normal)
+
+        bottomButtonStackview = UIStackView(arrangedSubviews: [otherOptionsButton, UIView(), scanQRCodeButton])
+        bottomButtonStackview.translatesAutoresizingMaskIntoConstraints = false
+        bottomButtonStackview.axis = .horizontal
+        bottomButtonStackview.distribution = .fill
+
+        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, UIView(), bottomButtonStackview])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
+        contentStackView.distribution = .fill
         contentStackView.setCustomSpacing(32, after: imageButton)
         contentStackView.setCustomSpacing(16, after: nameTextField)
         contentStackView.setCustomSpacing(8, after: hintLabelWrapper)
@@ -91,10 +109,10 @@ class InstantOnboardingView: UIView {
 
     private func setupConstraints() {
         let constraints = [
-            contentScrollView.topAnchor.constraint(equalTo: topAnchor),
+            contentScrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             contentScrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
-            bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
+            safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
 
             contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor, constant: 16),
@@ -102,6 +120,7 @@ class InstantOnboardingView: UIView {
             contentScrollView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
 
             contentStackView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor, constant: -32),
+            contentStackView.heightAnchor.constraint(equalTo: contentScrollView.heightAnchor),
             nameTextField.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
             agreeButton.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
 
@@ -119,6 +138,8 @@ class InstantOnboardingView: UIView {
             hintLabel.leadingAnchor.constraint(equalTo: hintLabelWrapper.leadingAnchor),
             hintLabelWrapper.trailingAnchor.constraint(greaterThanOrEqualTo: hintLabel.trailingAnchor),
             hintLabelWrapper.bottomAnchor.constraint(equalTo: hintLabel.bottomAnchor),
+
+            bottomButtonStackview.widthAnchor.constraint(equalTo: contentStackView.widthAnchor)
         ]
 
         NSLayoutConstraint.activate(constraints)
