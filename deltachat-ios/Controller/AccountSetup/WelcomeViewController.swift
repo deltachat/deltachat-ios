@@ -388,7 +388,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                 self?.dismissQRReader()
             }
         ))
-        if let qrCodeReader = qrCodeReader {
+        if let qrCodeReader {
             qrCodeReader.present(alert, animated: true)
         } else {
             self.present(alert, animated: true)
