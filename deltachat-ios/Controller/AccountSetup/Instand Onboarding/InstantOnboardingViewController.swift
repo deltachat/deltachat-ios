@@ -66,8 +66,13 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     override func loadView() {
         super.loadView()
-
-        let contentView = InstantOnboardingView(avatarImage: dcContext.getSelfAvatarImage())
+        let customProvider: String?
+        if qrCodeData != nil {
+            customProvider = providerHostURL.host
+        } else {
+            customProvider = nil
+        }
+        let contentView = InstantOnboardingView(avatarImage: dcContext.getSelfAvatarImage(), customProvider: customProvider)
         contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
         contentView.imageButton.addTarget(self, action: #selector(InstantOnboardingViewController.onAvatarTapped), for: .touchUpInside)
         contentView.privacyButton.addTarget(self, action: #selector(InstantOnboardingViewController.showPrivacy(_:)), for: .touchUpInside)

@@ -20,7 +20,7 @@ class InstantOnboardingView: UIView {
     let spacer: UIView
     let bottomSpacer: UIView
 
-    init(avatarImage: UIImage?) {
+    init(avatarImage: UIImage?, customProvider: String?) {
 
         imageButton = UIButton()
         imageButton.translatesAutoresizingMaskIntoConstraints = false
@@ -59,8 +59,11 @@ class InstantOnboardingView: UIView {
 
         privacyButton = UIButton(type: .system)
         privacyButton.translatesAutoresizingMaskIntoConstraints = false
-        privacyButton.setTitle(String.localized("instant_onboarding_agree_default"), for: .normal)
-
+        if let customProvider {
+            privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_instance", parameter: customProvider), for: .normal)
+        } else {
+            privacyButton.setTitle(String.localized("instant_onboarding_agree_default"), for: .normal)
+        }
         privacyButtonWrapper = UIView()
         privacyButtonWrapper.translatesAutoresizingMaskIntoConstraints = false
         privacyButtonWrapper.addSubview(privacyButton)
