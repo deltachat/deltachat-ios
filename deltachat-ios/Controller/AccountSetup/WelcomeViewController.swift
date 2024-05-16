@@ -449,12 +449,7 @@ class WelcomeContentView: UIView {
     }()
 
     private var container = UIView()
-
-    private var logoView: UIImageView = {
-        let image = #imageLiteral(resourceName: "background_intro")
-        let view = UIImageView(image: image)
-        return view
-    }()
+    private var logoView = UIImageView(image: UIImage(named: "dc_logo"))
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -571,7 +566,7 @@ class WelcomeContentView: UIView {
 
     private func calculateLogoHeight() -> CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return  UIApplication.shared.statusBarOrientation.isLandscape ? UIScreen.main.bounds.height * 0.5 : UIScreen.main.bounds.width * 0.75
+            return  UIApplication.shared.statusBarOrientation.isLandscape ? UIScreen.main.bounds.height * 0.5 : UIScreen.main.bounds.width * 0.5
         } else {
             return 275
         }
