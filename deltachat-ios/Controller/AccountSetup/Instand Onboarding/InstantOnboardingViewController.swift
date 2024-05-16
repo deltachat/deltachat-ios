@@ -20,7 +20,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         mediaPicker.delegate = self
         return mediaPicker
     }()
-
     
     /// Creates Instant Onboarding-Screen. You can inject some QR-Code-Data to change the chatmail provider
     /// If `qrCodeData` is `nil`, the default server is used, currently it's `nine.testrun.org`
@@ -51,6 +50,9 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
         hidesBottomBarWhenPushed = true
         title = String.localized("pref_profile_info_headline")
+
+        NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -101,7 +103,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         } else {
             contentView?.agreeButton.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.6)
         }
-
     }
 
     // MARK: - actions
@@ -150,6 +151,27 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
+    }
+
+    // MARK: - Notifications
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else { return }
+
+        var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = view.convert(keyboardFrame, from: nil)
+
+        var contentInset = contentView.contentScrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+
+        contentView.contentScrollView.contentInset = contentInset
+        contentView.spacer.isHidden = true
+        contentView.bottomSpacer.isHidden = false
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        contentView.spacer.isHidden = false
+        contentView.bottomSpacer.isHidden = true
+        contentView.contentScrollView.contentInset = UIEdgeInsets.zero
     }
 
     // MARK: - action: configuration

@@ -16,7 +16,9 @@ class InstantOnboardingView: UIView {
     private let bottomButtonStackview: UIStackView
 
     private let contentStackView: UIStackView
-    private let contentScrollView: UIScrollView
+    private(set) var contentScrollView: UIScrollView
+    let spacer: UIView
+    let bottomSpacer: UIView
 
     init(avatarImage: UIImage?) {
 
@@ -71,12 +73,16 @@ class InstantOnboardingView: UIView {
         scanQRCodeButton.translatesAutoresizingMaskIntoConstraints = false
         scanQRCodeButton.setTitle(String.localized("qrscan_title"), for: .normal)
 
+        spacer = UIView()
+        bottomSpacer = UIView()
+        bottomSpacer.isHidden = true
+
         bottomButtonStackview = UIStackView(arrangedSubviews: [otherOptionsButton, UIView(), scanQRCodeButton])
         bottomButtonStackview.translatesAutoresizingMaskIntoConstraints = false
         bottomButtonStackview.axis = .horizontal
         bottomButtonStackview.distribution = .fill
 
-        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, UIView(), bottomButtonStackview])
+        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, spacer, bottomButtonStackview, bottomSpacer])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
@@ -85,6 +91,7 @@ class InstantOnboardingView: UIView {
         contentStackView.setCustomSpacing(16, after: nameTextField)
         contentStackView.setCustomSpacing(8, after: hintLabelWrapper)
         contentStackView.setCustomSpacing(16, after: privacyButtonWrapper)
+        contentStackView.setCustomSpacing(16, after: agreeButton)
 
         contentScrollView = UIScrollView()
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
