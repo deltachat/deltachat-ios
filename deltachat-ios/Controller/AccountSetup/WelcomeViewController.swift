@@ -83,7 +83,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if canCancel {
             navigationItem.leftBarButtonItem = cancelButton
         }
-        if let accountCode = accountCode {
+        if let accountCode {
             handleQrCode(accountCode)
         }
     }
