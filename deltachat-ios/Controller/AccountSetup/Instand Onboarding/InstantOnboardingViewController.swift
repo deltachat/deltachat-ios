@@ -11,6 +11,9 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     var contentView: InstantOnboardingView? { view as? InstantOnboardingView }
 
+    private var providerHostURL: URL
+    private var qrCodeData: String?
+
     // TODO: Maybe use DI instead of lazily computed property?
     private lazy var mediaPicker: MediaPicker = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -18,9 +21,31 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         return mediaPicker
     }()
 
-    init(dcAccounts: DcAccounts) {
+    
+    /// Creates Instant Onboarding-Screen. You can inject some QR-Code-Data to change the chatmail provider
+    /// If `qrCodeData` is `nil`, the default server is used, currently it's `nine.testrun.org`
+    /// - Parameters:
+    ///   - dcAccounts: Account to be used
+    ///   - qrCodeData: DeltaChat QR Code Data
+    init(dcAccounts: DcAccounts, qrCodeData: String? = nil) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
+
+        if let qrCodeData {
+            let parsedQrCode = dcContext.checkQR(qrCode: qrCodeData)
+            if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT,
+               let host = parsedQrCode.text1,
+               let url = URL(string: "https://\(host)") {
+                self.providerHostURL = url
+                self.qrCodeData = qrCodeData
+            } else {
+                self.providerHostURL = URL(string: "https://nine.testrun.org")!
+                self.qrCodeData = nil
+            }
+        } else {
+            self.providerHostURL = URL(string: "https://nine.testrun.org")!
+            self.qrCodeData = nil
+        }
 
         super.init(nibName: nil, bundle: nil)
 
@@ -90,7 +115,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     }
 
     @objc private func showPrivacy(_ sender: UIButton) {
-        guard let url = URL(string: "https://nine.testrun.org/privacy.html") else { return }
+        let url = providerHostURL.appendingPathComponent("/privacy.html")
 
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
@@ -117,7 +142,9 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
-            let success = self.dcContext.setConfigFromQR(qrCode: "dcaccount:https://nine.testrun.org/new") // TODO: this may be replaced by a scanned QR code or tapped invite-link
+
+            let qrCodeData = self.qrCodeData ?? "dcaccount:https://nine.testrun.org/new"
+            let success = self.dcContext.setConfigFromQR(qrCode: qrCodeData)
             DispatchQueue.main.async {
                 if success {
                     self.dcAccounts.stopIo()
