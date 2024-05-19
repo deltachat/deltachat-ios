@@ -64,6 +64,16 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
+    deinit {
+        if let progressObserver {
+            NotificationCenter.default.removeObserver(progressObserver)
+        }
+
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: contentView?.nameTextField)
+    }
+
     override func loadView() {
         super.loadView()
         let customProvider: String?
@@ -88,17 +98,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         )
 
         self.view = contentView
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        if let progressObserver {
-            NotificationCenter.default.removeObserver(progressObserver)
-            self.progressObserver = nil
-        }
-
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: contentView?.nameTextField)
     }
 
     // MARK: - Notifications
