@@ -52,7 +52,7 @@ class InstantOnboardingView: UIView {
         agreeButton.setTitle(String.localized("instant_onboarding_create"), for: .normal)
         agreeButton.translatesAutoresizingMaskIntoConstraints = false
         agreeButton.layer.cornerRadius = 8
-        agreeButton.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.3)
+        agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
         agreeButton.contentEdgeInsets.top = 8
         agreeButton.contentEdgeInsets.bottom = 8
         agreeButton.isEnabled = false

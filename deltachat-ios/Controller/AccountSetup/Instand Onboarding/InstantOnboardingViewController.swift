@@ -113,7 +113,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         if buttonShouldBeEnabled {
             contentView?.agreeButton.backgroundColor = .systemBlue
         } else {
-            contentView?.agreeButton.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.3)
+            contentView?.agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
         }
     }
 
