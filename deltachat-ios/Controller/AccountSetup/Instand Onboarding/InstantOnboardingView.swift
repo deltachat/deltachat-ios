@@ -20,7 +20,7 @@ class InstantOnboardingView: UIView {
     let spacer: UIView
     let bottomSpacer: UIView
 
-    init(avatarImage: UIImage?, customProvider: String?) {
+    init(avatarImage: UIImage?, name: String?, customProvider: String?) {
 
         imageButton = UIButton()
         imageButton.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +35,7 @@ class InstantOnboardingView: UIView {
         imageButton.contentHorizontalAlignment = .fill
 
         nameTextField = UITextField()
+        nameTextField.text = name
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.placeholder = String.localized("pref_your_name")
         nameTextField.borderStyle = .roundedRect
@@ -52,10 +53,8 @@ class InstantOnboardingView: UIView {
         agreeButton.setTitle(String.localized("instant_onboarding_create"), for: .normal)
         agreeButton.translatesAutoresizingMaskIntoConstraints = false
         agreeButton.layer.cornerRadius = 8
-        agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
         agreeButton.contentEdgeInsets.top = 8
         agreeButton.contentEdgeInsets.bottom = 8
-        agreeButton.isEnabled = false
 
         privacyButton = UIButton(type: .system)
         privacyButton.translatesAutoresizingMaskIntoConstraints = false
@@ -113,6 +112,7 @@ class InstantOnboardingView: UIView {
         addSubview(contentScrollView)
 
         setupConstraints()
+        validateTextfield(text: nameTextField.text)
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -153,5 +153,22 @@ class InstantOnboardingView: UIView {
         ]
 
         NSLayoutConstraint.activate(constraints)
+    }
+
+    func validateTextfield(text: String?) {
+        let buttonShouldBeEnabled: Bool
+
+        if let text {
+            buttonShouldBeEnabled = (text.isEmpty == false)
+        } else {
+            buttonShouldBeEnabled = false
+        }
+        agreeButton.isEnabled = buttonShouldBeEnabled
+
+        if buttonShouldBeEnabled {
+            agreeButton.backgroundColor = .systemBlue
+        } else {
+            agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
+        }
     }
 }
