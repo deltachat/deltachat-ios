@@ -82,7 +82,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         } else {
             customProvider = nil
         }
-        let contentView = InstantOnboardingView(avatarImage: dcContext.getSelfAvatarImage(), customProvider: customProvider)
+        let contentView = InstantOnboardingView(avatarImage: dcContext.getSelfAvatarImage(), name: dcContext.displayname, customProvider: customProvider)
         contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
         contentView.imageButton.addTarget(self, action: #selector(InstantOnboardingViewController.onAvatarTapped), for: .touchUpInside)
         contentView.privacyButton.addTarget(self, action: #selector(InstantOnboardingViewController.showPrivacy(_:)), for: .touchUpInside)
@@ -100,20 +100,19 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         self.view = contentView
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        dcContext.displayname = contentView?.nameTextField.text
+    }
+
     // MARK: - Notifications
 
     @objc func textDidChangeNotification(notification: Notification) {
         guard let textField = notification.object as? UITextField,
               let text = textField.text else { return }
 
-        let buttonShouldBeEnabled = (text.isEmpty == false)
-        contentView?.agreeButton.isEnabled = buttonShouldBeEnabled
-
-        if buttonShouldBeEnabled {
-            contentView?.agreeButton.backgroundColor = .systemBlue
-        } else {
-            contentView?.agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
-        }
+        contentView?.validateTextfield(text: text)
     }
 
     // MARK: - actions
