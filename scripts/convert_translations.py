@@ -65,7 +65,7 @@ def generate_stringsdict(plurals: list, xml: TextIO) -> None:
                 xml.write(f"\t\t\t<string>{item.text}</string>\n")
         xml.write("\t\t</dict>\n")
         xml.write("\t</dict>\n")
-    xml.write("</dict>")
+    xml.write("</dict>\n")
     xml.write("</plist>")
 
 
