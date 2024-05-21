@@ -86,6 +86,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
         contentView.imageButton.addTarget(self, action: #selector(InstantOnboardingViewController.onAvatarTapped), for: .touchUpInside)
         contentView.privacyButton.addTarget(self, action: #selector(InstantOnboardingViewController.showPrivacy(_:)), for: .touchUpInside)
+        contentView.otherOptionsButton.addTarget(self, action: #selector(InstantOnboardingViewController.showOtherOptions(_:)), for: .touchUpInside)
 
         NotificationCenter.default.addObserver(
             self,
@@ -163,6 +164,13 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
+    }
+
+    @objc private func showOtherOptions(_ sender: UIButton) {
+        //TODO: Show alert with three actions
+        // 1. instant_onboarding_other_server -> showOtherOptions
+        // 2. manual_account_setup_option -> WelcomeViewController.showAccountSetupController
+        // 3. scan_invitation_code -> scanQRCode
     }
 
     // MARK: - Notifications

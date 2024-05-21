@@ -10,6 +10,7 @@ class InstantOnboardingView: UIView {
     let privacyButton: UIButton
     private let privacyButtonWrapper: UIView
     let agreeButton: UIButton
+    let otherOptionsButton: UIButton
 
     private let contentStackView: UIStackView
     private(set) var contentScrollView: UIScrollView
@@ -56,7 +57,11 @@ class InstantOnboardingView: UIView {
         privacyButtonWrapper.translatesAutoresizingMaskIntoConstraints = false
         privacyButtonWrapper.addSubview(privacyButton)
 
-        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, UIView()])
+        otherOptionsButton = UIButton(type: .system)
+        otherOptionsButton.setTitle(String.localized("instant_onboarding_show_more_instances"), for: .normal)
+        otherOptionsButton.translatesAutoresizingMaskIntoConstraints = false
+
+        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, otherOptionsButton, UIView()])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
@@ -65,7 +70,7 @@ class InstantOnboardingView: UIView {
         contentStackView.setCustomSpacing(16, after: nameTextField)
         contentStackView.setCustomSpacing(8, after: hintLabelWrapper)
         contentStackView.setCustomSpacing(16, after: privacyButtonWrapper)
-        contentStackView.setCustomSpacing(64, after: agreeButton)
+        contentStackView.setCustomSpacing(16, after: agreeButton)
 
         contentScrollView = UIScrollView()
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
