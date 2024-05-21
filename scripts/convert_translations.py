@@ -66,7 +66,7 @@ def generate_stringsdict(plurals: list, xml: TextIO) -> None:
         xml.write("\t\t</dict>\n")
         xml.write("\t</dict>\n")
     xml.write("</dict>\n")
-    xml.write("</plist>")
+    xml.write("</plist>\n")
 
 
 def get_resources(paths: list[Path]):
