@@ -69,6 +69,16 @@ def generate_stringsdict(plurals: list, xml: TextIO) -> None:
     xml.write("</plist>\n")
 
 
+def normalize_text(text: str) -> str:
+    text = re.sub(r"([^\\])(\")", r"\1\\\2", text)  # escape double quotes
+    text = text.replace("&quot;", r"\"")
+    text = text.replace("&lt;", "<")
+    text = text.replace("&gt;", ">")
+    text = text.replace("&amp;", "&")
+    text = text.replace("$s", "$@")
+    return text.replace("%s", "%1$@")
+
+
 def get_resources(paths: list[Path]):
     for path in paths:
         resources = etree.parse(path).getroot()
@@ -76,7 +86,7 @@ def get_resources(paths: list[Path]):
         plurals = len(resources.findall("plurals"))
         logging.info(f"Processing {str(path)!r}: {strings} strings, {plurals} plurals")
         for element in resources:
-            yield element
+            yield path, element
 
 
 def main() -> None:
@@ -85,22 +95,23 @@ def main() -> None:
     localizable = args.output / "Localizable.strings"
     infoplist = args.output / "InfoPlist.strings"
     plurals = []
+    plurals_keys: dict[str, str] = {}
+    strings_keys: dict[str, str] = {}
 
     with localizable.open("w") as loc, infoplist.open("w") as inf:
-        for element in get_resources(args.input):
+        for path, element in get_resources(args.input):
             if element.tag is etree.Comment:
                 for line in element.text.strip().split("\n"):
                     loc.write(f"// {line}\n")
             elif element.tag == "string":
                 name = element.attrib["name"]
-                text = element.text
-                text = re.sub(r"([^\\])(\")", r"\1\\\2", text)  # escape double quotes
-                text = text.replace("&quot;", r"\"")
-                text = text.replace("&lt;", "<")
-                text = text.replace("&gt;", ">")
-                text = text.replace("&amp;", "&")
-                text = text.replace("$s", "$@")
-                text = text.replace("%s", "%1$@")
+                if name in strings_keys:
+                    logging.error(
+                        f'On file {path}: <string name="{name}"> found but an element with the same name was already added from file {strings_keys[name]}'
+                    )
+                    sys.exit(1)
+                strings_keys[name] = path
+                text = normalize_text(element.text)
 
                 if text.count("%1$@") > 1:
                     msg = "Placeholder mismatch. A source file contained "
@@ -122,6 +133,13 @@ def main() -> None:
                 else:
                     loc.write(f""""{name}" = "{text}";\n""")
             elif element.tag == "plurals":
+                name = element.attrib["name"]
+                if name in plurals_keys:
+                    logging.error(
+                        f'On file {path}: <plurals name="{name}"> found but an element with the same name was already added from file {plurals_keys[name]}'
+                    )
+                    sys.exit(1)
+                plurals_keys[name] = path
                 plurals.append(element)
             else:
                 logging.warning("Unexpected element was ignored: %s", element)
