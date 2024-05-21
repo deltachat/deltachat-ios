@@ -45,7 +45,7 @@ def generate_stringsdict(plurals: list, xml: TextIO) -> None:
         '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n'
     )
     xml.write('<plist version="1.0">\n')
-    xml.write("<dict>")
+    xml.write("<dict>\n")
     for elem in plurals:
         key = elem.attrib["name"]
         xml.write(f"\t<key>{key}</key>\n")
@@ -117,6 +117,7 @@ def main() -> None:
                     logging.error(msg)
 
                 if name.startswith("InfoPlist_"):
+                    name = name.removeprefix("InfoPlist_")
                     inf.write(f"""{name} = "{text}";\n""")
                 else:
                     loc.write(f""""{name}" = "{text}";\n""")
@@ -126,8 +127,7 @@ def main() -> None:
                 logging.warning("Unexpected element was ignored: %s", element)
 
         with (args.output / "Localizable.stringsdict").open("w") as strdict:
-            if plurals:
-                generate_stringsdict(plurals, strdict)
+            generate_stringsdict(plurals or [], strdict)
 
 
 if __name__ == "__main__":
