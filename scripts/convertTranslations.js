@@ -2,7 +2,7 @@ var fs = require('fs');
 
 function parseAndroid(data) {
 
-  const rgxKeyValue = /<string name\s*=\s*"(.*)"\s*>(.*)<\/string>/;
+  const rgxKeyValue = /<string name\s*=\s*"(.*?)".*?>(.*)<\/string>/;
   const rgxCommentBlock = /<!-- ?(.*?) ?-->/;
   const rgxCommentStart = /<!-- ?(.*)/;
   const rgxCommentEnd = /(.*?) ?-->/;
