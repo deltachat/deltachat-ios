@@ -105,7 +105,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "Ben";
 "draft" = "Taslak";
 "image" = "Görsel";
@@ -143,7 +142,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Uygulamalar";
 "unknown" = "Bilinmeyen";
-
 "green" = "Yeşil";
 "red" = "Kırmızı";
 "blue" = "Mavi";
@@ -152,17 +150,14 @@
 "purple" = "Mor";
 "magenta" = "Eflatun";
 "white" = "Beyaz";
-
 "zoom" = "Yakınlaştır";
 "extra_small" = "Çok küçük";
 "small" = "Küçük";
 "normal" = "Normal";
 "large" = "Büyük";
 "extra_large" = "Çok büyük";
-
 "fast" = "Hızlı";
 "slow" = "Yavaş";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Yeni Kişi";
 "menu_new_classic_contact" = "Elle Kişi Ekle";
@@ -262,21 +257,17 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Ana Ekrana Ekle";
 "donate" = "Bağış";
-
 "mute_for_one_hour" = "1 saatliğine sessize al";
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
 "mute_for_seven_days" = "7 günlüğüne sessize al";
 "mute_forever" = "Sonsuza dek sessize al";
-
 "share_location_for_5_minutes" = "5 dakikalığına";
 "share_location_for_30_minutes" = "30 dakikalığına";
 "share_location_for_one_hour" = "1 saatliğine";
 "share_location_for_two_hours" = "2 saatliğine";
 "share_location_for_six_hours" = "6 saatliğine";
-
 "file_saved_to" = "Dosya \"%1$@\" üzerine kaydedildi.";
-
 "videochat" = "Video Sohbeti";
 "videochat_invite_user_to_videochat" = "%1$@ bir video sohbetine çağrılsın mı?";
 "videochat_invite_user_hint" = "Bu, her iki uçta da uyumlu bir uygulama ya da tarayıcı gerektirir.";
@@ -291,7 +282,6 @@
 "videochat_instance_from_qr" = "\"%1$@\" diğerlerini video sohbetlerine çağırmak için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Bu, video sohbetleri için herhangi bir önceki ayarın yerini alır.";
 "videochat_invitation" = "Video sohbeti çağrısı";
 "videochat_invitation_body" = "Bir video sohbetine çağrıldınız; katılmak için %1$@ öğesini tıklayın.";
-
 // get confirmations
 "ask_leave_group" = "Bu öbekten ayrılmak istediğinizden emin misiniz?";
 "ask_delete_message" = "Bu iletiyi silmek istediğinizden emin misiniz?";
@@ -310,15 +300,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "%1$@ yayın listesinden kaldırılsın mı?";
 "open_url_confirmation" = "Bu bağlantıyı açmak istiyor musunuz?";
-
-
 // contact list
 "contacts_title" = "Kişiler";
 "contacts_enter_name_or_email" = "Ad ya da e-posta adresi girin";
 "contacts_type_email_above" = "Yukarıya e-posta adresi yazın";
 "contacts_empty_hint" = "Kişi yok.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Arşivlenen Sohbetler";
 "chat_please_enter_message" = "Lütfen bir ileti girin.";
@@ -354,11 +340,9 @@
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Kaydı Kilitle";
-
 // mailing lists
 "mailing_list" = "Posta Listesi";
 "mailing_list_profile_info" = "Posta listesi adındaki ve görselindeki değişiklikler yalnızca bu aygıtta uygulanır.";
-
 // webxdc
 // "Start..." button for an app
 "start_app" = "Başlat…";
@@ -368,17 +352,14 @@
 "send_file_to" = "\"%1$@\" dosyasını gönder…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "İletiyi gönder…";
-
 // map
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
 "show_location_traces" = "İzleri göster";
 "add_poi" = "İlgi çekici noktayı gönder";
-
 // chat audit log
 "chat_audit_log_empty_message" = "Bu sohbet için sistem iletileri burada görünür";
 "chat_audit_log_title" = "%1$@ için Sohbet Denetim Günlüğü";
 "chat_audit_log_description" = "Yalnızca sistem ve bilgi iletilerini gösterir; birçok ileti arasında kaydırmadan son sohbet eylemlerini bulmak için kullanışlıdır.";
-
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "%1$@ için yeniden sorma";
@@ -387,16 +368,12 @@
 "puny_code_warning_question" = "%1$@ bağlantısını ziyaret etmek istediğinizden emin misiniz?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Farklı abecelerden benzer görünen karakterleri kullanarak karakterleri yanlış temsil edebilecek bir bağlantı izlediniz. Aşağıdaki %1$@ etiketli bağlantıyı izlemek, Latin olmayan karakterler için normal olan %2$@ dönüşümüyle sonuçlanacak. Böyle karakterleri beklemediyseniz, bu bağlantı zararlı olabilir.";
-
-
 // search
 "search" = "Ara";
 "search_in_chat" = "Sohbette Ara";
 "search_files" = "Dosyalar Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
 "search_no_result_for_x" = "\"%1$@\" için sonuç bulunamadı";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Öbek Adı";
 "group_avatar" = "Öbek Görseli";
@@ -432,8 +409,6 @@
 "aeap_addr_changed" = "%1$@, %2$@ adresini %3$@ olarak değiştirdi";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "%1$@ e-posta adresinizi %2$@ olarak değiştirdiniz.\n\nŞimdi bir doğrulanan öbeğe ileti gönderirseniz, oradaki kişiler yeni adresinizle eskisini otomatik olarak değiştirecek.\n\nTüm e-postaları yeni e-posta adresinize iletmek için eski e-posta sağlayıcınızı ayarlamanız önemle önerilir. Yoksa henüz yeni adresinizi almamış olan kişilerin iletilerini kaçırabilirsiniz.";
-
-
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "İkinci Aygıt Ekle";
@@ -460,7 +435,6 @@
 // Shown beside progress bar, stay short
 "transferring" = "Aktarılıyor…";
 "troubleshooting" = "Sorun Giderme";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Gelen İletiler";
@@ -484,12 +458,10 @@
 "messages" = "İletiler";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ / %2$@ kullanıldı";
-
-
 // welcome and login
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Yeni Profil Oluştur";
-// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup" 
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Zaten Bir Profilim Var";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Klasik E-Posta Girişi";
@@ -514,7 +486,6 @@
 "instant_onboarding_confirm_contact" = "Yeni bir profil oluşturmak ve %1$@ ile sohbet etmeye başlamak istiyor musunuz?";
 // Question shown when group's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Yeni bir profil oluşturmak ve \"%1$@\" sohbet öbeğine katılmak istiyor musunuz?";
-
 "welcome_chat_over_email" = "Güvenli Merkezi Olmayan Sohbet";
 "scan_invitation_code" = "Çağrı Kodunu Tara";
 "login_title" = "Giriş Yap";
@@ -569,7 +540,6 @@
 "sync_all" = "Tümünü Eşzamanla";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Yapılandırma başarısız. Hata: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "İlet…";
@@ -577,8 +547,6 @@
 "share_multiple_attachments_multiple_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir (ör. görseller ve videolar yeniden kodlanmaz).";
 "share_text_multiple_chats" = "Bu metin %1$d sohbete gönderilsin mi?\n\n\"%2$@\"";
 "share_abort" = "Eksik izinlerden dolayı paylaşımdan vazgeçildi.";
-
-
 // preferences
 "pref_using_custom" = "Özel kullanılıyor: %1$@";
 "pref_using_default" = "Varsayılan kullanılıyor: %1$@";
@@ -704,8 +672,6 @@
 "disable_imap_idle" = "IMAP IDLE\'ı Etkisizleştir";
 "disable_imap_idle_explain" = "Sunucu desteklese bile IMAP IDLE uzantısını kullanmayın. Bu seçeneği etkinleştirmek ileti getirmeyi geciktirecek; yalnızca sınama için etkinleştirin.";
 "send_stats_to_devs" = "Delta Chat\'in geliştiricilerine istatistikleri gönder";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "Arama Sonuçları";
 "emoji_not_found" = "Emoji bulunamadı";
@@ -718,7 +684,6 @@
 "emoji_objects" = "Nesneler";
 "emoji_symbols" = "Semboller";
 "emoji_flags" = "Bayraklar";
-
 // Reactions
 "reactions" = "Tepkiler";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
@@ -727,7 +692,6 @@
 "reaction_by_you" = "\"%2$@\" öğesine %1$@ ile tepki verdiniz";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
 "reaction_by_other" = "%1$@, \"%3$@\" öğesine %2$@ ile tepki verdi";
-
 // automatically delete message
 "delete_old_messages" = "Eski İletileri Sil";
 "autodel_device_title" = "İletileri Aygıttan Sil";
@@ -751,7 +715,6 @@
 "autodel_after_4_weeks" = "4 hafta sonra";
 "after_5_weeks" = "5 hafta sonra";
 "autodel_after_1_year" = "1 yıl sonra";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -770,8 +733,6 @@
 "autocrypt_continue_transfer_succeeded" = "Uçtan uca ayarlaması aktarıldı. Bu aygıt artık aynı ayarlamayla diğer aygıt gibi Autocrypt kullanmaya hazır.";
 "autocrypt_continue_transfer_retry" = "Yeniden Dene";
 "autocrypt_bad_setup_code" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.\n\nAyarlama kodunu anımsamıyorsanız, diğer aygıttan yeni bir Autocrypt Ayarlama İletisi gönderin.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "İleti açıldı";
 "systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunduğunun güvencesi değildir.";
@@ -850,17 +811,14 @@
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
 "invalid_unencrypted_explanation" = "Uçtan uca şifrelemeyi kurmak için kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
-
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Sağlayıcınızın depolaması dolmak üzere: %1$@%% zaten kullanımda.\n\nDepolama tam dolduğunda iletileri alamayabilirsiniz.\n\n👉 Lütfen sağlayıcınızın web arabiriminden eski verileri silip silemeyeceğinizi denetleyin ve \"Ayarlar / Sohbetler ve Ortamlar / Eski İletileri Sil\"i etkinleştirmeyi düşünün. Herhangi bir zamanda şu anki depolama kullanımınızı \"Ayarlar / Bağlanabilirlik\"ten denetleyebilirsiniz.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Aygıtınızdaki tarih ya da saat yanlış görünüyor (%1$@).\n\nİletilerinizin doğru şekilde alınmasını sağlamak için saatinizi ⏰🔧 ayarlayın.";
 "devicemsg_update_reminder" = "⚠️ Delta Chat sürümünüz eski olabilir.\n\nBu, sorunlara neden olabilir; çünkü sohbet ortaklarınız daha yeni sürümleri kullanıyor - ve en yeni özellikleri kaybediyorsunuz 😳\nGüncelleştirmeler için lütfen https://get.delta.chat ya da uygulama mağazanızı denetleyin.";
-
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Sürdürmek için kilidi açın";
-
 // qr code stuff
 "qr_code" = "QR Kodu";
 "load_qr_code_as_image" = "QR Kodunu Görsel Olarak Yükle";
@@ -923,8 +881,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ zaten bir taslak ileti; onu değiştirmek istiyor musunuz?";
 "mailto_link_could_not_be_decoded" = "mailto bağlantısının kodu çözülemedi: %1$@";
-
-// notifications 
+// notifications
 "notify_dismiss" = "Kapat";
 "notify_reply_button" = "Yanıtla";
 "notify_new_message" = "Yeni ileti";
@@ -939,8 +896,6 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Yeni iletileriniz var";
 "n_messages_in_m_chats" = "%2$d sohbette %1$d ileti";
-
-
 // permissions
 "perm_required_title" = "İzin gerekli";
 "perm_continue" = "Sürdür";
@@ -949,7 +904,6 @@
 "perm_explain_access_to_storage_denied" = "Dosyalar almak ya da göndermek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Depolama\"yı etkinleştirin.";
 "perm_explain_access_to_location_denied" = "Bir konum iliştirmek için uygulama ayarlarına gidin, \"İzinler\"i seçin ve \"Konum\"u etkinleştirin.";
 "perm_explain_access_to_notifications_denied" = "Bildirimler almak için \"Sistem Ayarları / Uygulamalar / Delta Chat\"e gidin ve \"Bildirimler\"i etkinleştirin.";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Bulanıklaştırmak için herhangi bir yere çizin";
 "ImageEditorHud_add_text" = "Metin Ekle";
@@ -959,10 +913,8 @@
 "ImageEditorHud_crop" = "Kırp";
 "ImageEditorHud_flip" = "Çevir";
 "ImageEditorHud_rotate" = "Döndür";
-
 // dc_str_* resources
 "encrypted_message" = "Şifrelenen ileti";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Bu, resmî Delta Chat Masaüstü uygulamasıdır.";
 "about_licensed_under_desktop" = "Bu yazılım, GNU GPL sürüm 3 altında lisanslıdır ve kaynak kodu GitHub\'da kullanılabilir.";
@@ -1010,7 +962,6 @@
 "no_spellcheck_suggestions_found" = "Yazım önerileri bulunamadı.";
 "show_window" = "Pencereyi Göster";
 "login_socks5_experimental_warning" = "SOCKS5 desteği şu anda deneysel. Lütfen riski size ait olarak kullanın. E-posta alanına bir adres yazarsanız, SOCKS5 üzerinden tünellenmeyen DNS araması olacak.";
-
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tuş Bağları";
 "switch_between_chats" = "Sohbetler Arasında Geçiş Yap";
@@ -1021,7 +972,6 @@
 "focus_message_input" = "İleti Girişine Odaklan";
 "force_refresh_network" = "Ağı Yenilemeye Zorla";
 "insert_newline" = "Yeni Satır Ekle";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Teslimat durumu: Hata";
 "a11y_encryption_padlock" = "Şifreleme asma kilidi";
@@ -1033,7 +983,6 @@
 "a11y_message_context_menu_btn_label" = "İleti eylemleri";
 "a11y_background_preview_label" = "Duvar kâğıdı önizlemesi";
 "a11y_disappearing_messages_activated" = "Kaybolan iletiler etkinleştirildi";
-
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Konum paylaşımını durdur";
 "a11y_voice_message_hint_ios" = "Kaydettikten sonra göndermek için çift dokunun. Kaydı atmak için iki parmakla sarın.";
@@ -1062,8 +1011,6 @@
 "shortcut_step1_tap_share_btn" = "Paylaş düğmesini tıklayın";
 "shortcut_step2_tap_add_to_home_screen" = "Uygulamayı ana ekranınıza eklemek için \"Ana Ekrana Ekle\"yi seçin.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Arka Plan Bildirimleri";
 "pref_background_notifications_explain" = "Sunucunuza bir arka plan bağlantısı kullanır ve pil iyileştirmelerinin yoksayılmasını gerektirir.";
@@ -1073,8 +1020,6 @@
 "pref_reliable_service_explain" = "Kalıcı bir bildirim gerektirir";
 "perm_enable_bg_reminder_title" = "Delta Chat arka plandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
-
-
 // device messages for updates
 "update_1_44_android" = "Ne yeni:\n\n❤️ Evet! Bu uzun zamandır bekleniyordu: Tepki vermek için bir iletiye uzun dokunun\n\n🔗 QR kodlarını tarayamıyorsanız, onları çağırma bağlantısı olarak paylaşın\n\n🔵 Artık tüm hesapların okunmayan iletileri sayılır ve başlıkta gösterilir\n\n… ve TONLARCA hata düzeltmesi … %1$@\n\nUygulamanın iyileştirilmesine yardımcı olun: Gerçek dünya kullanımını daha da iyileştirmek için \"Ayarlar / Gelişmiş / İstatistikleri gönder\"i kullanarak geliştiricilere yardımcı olun. Göndermeden önce verilerinizi inceleyebilirsiniz";
 "update_1_44_ios" = "Ne yeni:\n\n❤️ Evet! Bu uzun zamandır bekleniyordu: Tepki vermek için bir iletiye uzun dokunun\n\n🫸 https://nine.testrun.org gibi sağlayıcılar tarafından destekleniyorsa ANLIK bildirimler\n\n🔗 QR kodlarını tarayamıyorsanız, onları çağırma bağlantısı olarak paylaşın\n\n… ve TONLARCA hata düzeltmesi … %1$@";

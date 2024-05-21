@@ -52,7 +52,6 @@
 "gallery" = "Galeria";
 "file" = "Ficheiro";
 "unknown" = "Desconhecido";
-
 "green" = "Verde";
 "red" = "Vermelho";
 "blue" = "Azul";
@@ -61,15 +60,12 @@
 "purple" = "Roxo";
 "magenta" = "Magenta";
 "white" = "Branco";
-
 "small" = "Pequeno";
 "normal" = "Normal";
 "large" = "Grande";
 "extra_large" = "Extra grande";
-
 "fast" = "Rápido";
 "slow" = "Lento";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Novo contacto";
 "menu_new_chat" = "Nova chat";
@@ -112,7 +108,6 @@
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
-
 // get confirmations
 "ask_leave_group" = "Tem certeza que deseja deixar este grupo?";
 "ask_forward" = "Reencaminhar mensages para %1$@?";
@@ -127,8 +122,6 @@
 "contacts_enter_name_or_email" = "Digite o nome ou endereço de e-mail";
 "contacts_type_email_above" = "Digite o endereço de e-mail acima";
 "contacts_empty_hint" = "Sem contactos";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "chats arquivadas";
 "chat_please_enter_message" = "Por favor introduza uma mensagem.";
@@ -146,8 +139,6 @@
 "search" = "Pesquisar";
 "search_explain" = "Pesquisar chats, contactos, emensagens";
 "search_no_result_for_x" = "Nenhum resultado encontrado para \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Nome do grupo";
 "group_avatar" = "Avatar do grupo";
@@ -273,8 +264,6 @@
 "autocrypt_continue_transfer_succeeded" = "Configuração de ponta a ponta transferida. Este dispositivo está agora pronto para usar Autocrypt com a mesma configuração que o outro dispositivo.";
 "autocrypt_continue_transfer_retry" = "Tentar novamente";
 "autocrypt_bad_setup_code" = "Código de configuração inválido Por favor, tente novamente.\n\nSe não se lembrar do código de configuração, basta re-enviar outra Mensagem de Configuração de Autocrypt do outro dispositivo.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Ler recibos";
 "systemmsg_read_receipt_body" = "Este é um recibo de confirmação de leitura da mensagem \"%1$@\".\n\nEsta mensagem foi exibida no dispositivo do destinatário, não necessariamente que o conteúdo foi lido.";
@@ -335,7 +324,6 @@
 "perm_explain_access_to_location_denied" = "O Delta Chat necessita permissão de acesso à localização para anexar um local, mas ele negado. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões \"e ative \"Localização\".";
 // dc_str_* resources
 "encrypted_message" = "Mensagem encriptada";
-
 "global_menu_preferences_language_desktop" = "Escolha o seu idioma...";
 "global_menu_file_desktop" = "Arquivo";
 "global_menu_file_quit_desktop" = "Sair";

@@ -67,7 +67,6 @@
 "gallery" = "காட்சி கூடம்";
 "file" = "கோப்பு";
 "unknown" = "முன் தெரிந்திராத";
-
 "green" = "பச்சை";
 "red" = "சிவப்பு";
 "blue" = "நீலம்";
@@ -76,15 +75,12 @@
 "purple" = "ஊதா";
 "magenta" = "கருநீலம்";
 "white" = "வெள்ளை";
-
 "small" = "சிறிய";
 "normal" = "சாதாரணமாக";
 "large" = "பெரிய";
 "extra_large" = "கூடுதல் பெரியது";
-
 "fast" = "வேகமாக";
 "slow" = "மெதுவாக";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "புதிய தொடர்பு";
 "menu_new_chat" = "புது அரட்டை";
@@ -115,13 +111,11 @@
 "mute_for_one_day" = "1 நாள் இதற்காக ஊமையாக்கு";
 "mute_for_seven_days" = "7 நாட்கள் இதற்காக ஊமையாக்கு";
 "mute_forever" = "எப்போதுமே ஊமையாக்கு";
-
 "share_location_for_5_minutes" = "5 நிமிடங்கள் ";
 "share_location_for_30_minutes" = "30 நிமிடங்கள் ";
 "share_location_for_one_hour" = "1 மணி";
 "share_location_for_two_hours" = "2 மணிகள்";
 "share_location_for_six_hours" = "6 மணிகள்";
-
 // get confirmations
 "ask_leave_group" = "இந்த குழுவில் இருந்து வெளியேறவா ?";
 "ask_forward" = "தேர்வு செய்யப்பட்ட செய்திகளை இவற்றுக்கு %1$@ முன்னோக்கி அனுப்பவா ?";
@@ -129,8 +123,6 @@
 // contact list
 "contacts_title" = "தொடர்புகள்";
 "contacts_empty_hint" = "எந்த தொடர்புகளும் இல்லை";
-
-
 "chat_record_slide_to_cancel" = "ரத்து செய்ய திரையில் சறுக்கவும்";
 "chat_share_with_title" = "பகிர்";
 "chat_input_placeholder" = "சேதி";
@@ -208,7 +200,6 @@
 "perm_continue" = "தொடர்";
 // dc_str_* resources
 "encrypted_message" = "மறைகுறியாக்கப்பட்ட செய்தி";
-
 "welcome_desktop" = "Delta Chat க்கு வரவேற்கிறது.";
 "global_menu_preferences_language_desktop" = "நிறவடிவமைப்பு";
 "global_menu_file_desktop" = "கோப்பு";

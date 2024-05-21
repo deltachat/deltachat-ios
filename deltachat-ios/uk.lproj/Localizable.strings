@@ -105,7 +105,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "Я";
 "draft" = "Чернетка";
 "image" = "Зображення";
@@ -143,7 +142,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Застосунки";
 "unknown" = "Невідомо";
-
 "green" = "Зелений";
 "red" = "Червоний";
 "blue" = "Синій";
@@ -152,17 +150,14 @@
 "purple" = "Пурпурний";
 "magenta" = "Пурпурний";
 "white" = "Білий";
-
 "zoom" = "Масштаб";
 "extra_small" = "Найменший";
 "small" = "Маленький";
 "normal" = "Звичайний";
 "large" = "Великий";
 "extra_large" = "Величезний";
-
 "fast" = "Швидко";
 "slow" = "Повільно";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Новий контакт";
 "menu_new_classic_contact" = "Додати контакт вручну";
@@ -261,21 +256,17 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Додати на домашній екран";
 "donate" = "Пожертвувати";
-
 "mute_for_one_hour" = "Відключити сповіщення на 1 годину";
 "mute_for_two_hours" = "Відключити сповіщення на 2 години";
 "mute_for_one_day" = "Відключити сповіщення на 1 день";
 "mute_for_seven_days" = "Відключити сповіщення на 7 днів";
 "mute_forever" = "Вимкнути сповіщення назавжди";
-
 "share_location_for_5_minutes" = "на 5 хвилин";
 "share_location_for_30_minutes" = "на 30 хвилин";
 "share_location_for_one_hour" = "на 1 годину";
 "share_location_for_two_hours" = "на 2 години";
 "share_location_for_six_hours" = "на 6 годин";
-
 "file_saved_to" = "Файл збережено до \"%1$@\".";
-
 "videochat" = "Відео чат";
 "videochat_invite_user_to_videochat" = "Запросити %1$@ у відео чат?";
 "videochat_invite_user_hint" = "Для цього обидві сторони повинні встановити сумісний додаток або браузер.";
@@ -290,7 +281,6 @@
 "videochat_instance_from_qr" = "Використовувати \"%1$@\" аби запросити інших у відеочат?\n\nПісля встановлення Ви можете розпочати відеочат із кожного індивідуального чату. Це замінить попереднє налаштування для відеочату, якщо воно є.";
 "videochat_invitation" = "Запрошення до відео чату";
 "videochat_invitation_body" = "Вас запрошено у відео-чат, клікніть %1$@ аби приєднатися.";
-
 // get confirmations
 "ask_leave_group" = "Ви впевнені, що хочете залишити цю групу?";
 "ask_delete_message" = "Ви впевнені, що хочете видалити це повідомлення?";
@@ -309,15 +299,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Видалити %1$@ зі списку трансляцій?";
 "open_url_confirmation" = "Ви впевнені, що хочете відкрити це посилання?";
-
-
 // contact list
 "contacts_title" = "Контакти";
 "contacts_enter_name_or_email" = "Введіть ім\'я або адресу електронної пошти";
 "contacts_type_email_above" = "Введіть адресу електронної пошти вище";
 "contacts_empty_hint" = "Немає контактів.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Заархівовані чати";
 "chat_please_enter_message" = "Будь ласка, введіть повідомлення.";
@@ -353,11 +339,9 @@
 "attachment_failed_to_load" = "Не вдалося завантажити вкладення";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Заблокувати запис";
-
 // mailing lists
 "mailing_list" = "Список адресатів";
 "mailing_list_profile_info" = "Зміни в назві списку розсилки та зображенні стосуються лише цього пристрою.";
-
 // webxdc
 // "Start..." button for an app
 "start_app" = "Старт...";
@@ -367,17 +351,14 @@
 "send_file_to" = "Надіслати \"%1$@\" до…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Надіслати повідомлення до...";
-
 // map
 "filter_map_on_time" = "Показати місця у часовому проміжку";
 "show_location_traces" = "Показати треки";
 "add_poi" = "Надіслати точку інтересу";
-
 // chat audit log
 "chat_audit_log_empty_message" = "Тут відображатимуться системні повідомлення для цього чату";
 "chat_audit_log_title" = "Журнал аудиту чату для %1$@";
 "chat_audit_log_description" = "На цьому екрані відображаються лише системні та інформаційні повідомлення. Корисно для пошуку останніх дій чату без прокрутки багатьох звичайних повідомлень.";
-
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Не запитувати знову для %1$@";
@@ -386,16 +367,12 @@
 "puny_code_warning_question" = "Ви впевнені, що хочете відвідати %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Це посилання може спотворювати символи, використовуючи подібні до них символи з різних алфавітів. Перехід за посиланням %1$@ приведе на %2$@, що є нормальним для нелатинських символів. Якщо Ви не очікували таких символів, це посилання може бути шкідливим";
-
-
 // search
 "search" = "Пошук";
 "search_in_chat" = "Шукати в чаті";
 "search_files" = "Шукати файли";
 "search_explain" = "Пошук чатів, контактів і повідомлень";
 "search_no_result_for_x" = "Запит \"%1$@\" не дав результатів";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Назва групи";
 "group_avatar" = "Аватар групи";
@@ -431,8 +408,6 @@
 "aeap_addr_changed" = "%1$@ змінили їх адресу з %2$@ на %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Ви змінили електронну адресу з %1$@ на %2$@.\n\nЯкщо зараз Ви відправите повідомлення в підтверджену групу, контакти в ній автоматично замінять Вашу стару адресу на нову.\n\nРекомендується налаштувати старий обліковий запис електронної пошти на пересилання всіх електронних листів на Вашу нову електронну адресу. Інакше Ви можете пропустити повідомлення контактів, які ще не отримали Вашу нову адресу.";
-
-
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Додати другий пристрій";
@@ -459,7 +434,6 @@
 // Shown beside progress bar, stay short
 "transferring" = "Передача…";
 "troubleshooting" = "Вирішення проблем";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Вхідні повідомлення";
@@ -483,12 +457,10 @@
 "messages" = "Повідомлення";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Використано %1$@ з %2$@";
-
-
 // welcome and login
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Почнемо!";
-// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup" 
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "У мене вже є логін";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Класичний вхід до електронної пошти";
@@ -513,7 +485,6 @@
 "instant_onboarding_confirm_contact" = "Бажаєте створити новий профіль і почати спілкуватися з %1$@?";
 // Question shown when group's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Ви хочете створити новий профіль і приєднатися до групи чату \"%1$@\"?";
-
 "welcome_chat_over_email" = "Безпечний децентралізований чат";
 "scan_invitation_code" = "Сканувати код запрошення";
 "login_title" = "Увійти";
@@ -568,7 +539,6 @@
 "sync_all" = "Синхронізувати все";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Помилка конфігурації: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Переслати...";
@@ -576,8 +546,6 @@
 "share_multiple_attachments_multiple_chats" = "Надіслати %1$d файл (файлів) у %2$d чати?\n\nФайли надсилаються незмінними в оригінальному розмірі (тобто зображення та відео не перекодовуються).";
 "share_text_multiple_chats" = "Надіслати цей текст у %1$d чати?\n\n\"%2$@\"";
 "share_abort" = "Надсилання обірване через відсутність дозволів.";
-
-
 // preferences
 "pref_using_custom" = "Використовувати персоналізовано: %1$@";
 "pref_using_default" = "Використовувати за замовчуванням: %1$@";
@@ -703,8 +671,6 @@
 "disable_imap_idle" = "Вимкнути IMAP IDLE";
 "disable_imap_idle_explain" = "Не використовувати розширення IMAP IDLE навіть якщо сервер підтримує його. Увімкнення цієї опції затримає отримання повідомлень, вмикайте її лише для тестування.";
 "send_stats_to_devs" = "Надсилати статистику розробникам Delta Chat";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "Результати пошуку";
 "emoji_not_found" = "Емодзі не знайдено";
@@ -717,7 +683,6 @@
 "emoji_objects" = "Об\'єкти";
 "emoji_symbols" = "Символи";
 "emoji_flags" = "Прапори";
-
 // Reactions
 "reactions" = "Реакції";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
@@ -726,7 +691,6 @@
 "reaction_by_you" = "Ви відреагували %1$@ на \"%2$@\"";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
 "reaction_by_other" = "%1$@ відреагували %2$@ на \"%3$@\"";
-
 // automatically delete message
 "delete_old_messages" = "Видалити старі повідомлення";
 "autodel_device_title" = "Видалити повідомлення з пристрою";
@@ -750,7 +714,6 @@
 "autodel_after_4_weeks" = "Через 4 тижні";
 "after_5_weeks" = "Через 5 тижнів";
 "autodel_after_1_year" = "Через 1 рік";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -769,8 +732,6 @@
 "autocrypt_continue_transfer_succeeded" = "Параметри наскрізного шифрування успішно передані. Цей пристрій буде використовувати такі ж параметри Autocrypt, як і інший.";
 "autocrypt_continue_transfer_retry" = "Повторити";
 "autocrypt_bad_setup_code" = "Неправильний інсталяційний код. Спробуйте ще раз.\n\nЯкщо інсталяційний код загублений, надішліть з іншого пристрою ще одне повідомлення з налаштуваннями Autocrypt.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Сповіщення про прочитання.";
 "systemmsg_read_receipt_body" = "Це підтвердження того, що повідомлення \"%1$@\" було відкрито на пристрої одержувача. Дане підтвердження не означає, що повідомлення було прочитано.";
@@ -849,17 +810,14 @@
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ вимагає наскрізного шифрування, яке ще не налаштоване для цього чату. Натисніть, щоб дізнатися більше.";
 "invalid_unencrypted_explanation" = "Щоб установити наскрізне шифрування, Ви можете зустрітися з контактами особисто та відсканувати їхній QR-код, щоб додати їх.";
 "learn_more" = "Дізнатися більше";
-
 "devicemsg_self_deleted" = "Ви видалили чат \"Збережені повідомлення\".\n\nℹ️ Аби використовувати функцію \"Збережені повідомлення\" знову, створіть новий чат самі із собою.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Сховище вашого провайдера електронної пошти майже заповнено, уже використовується %1$@%%.\n\nМожливо, Ви не зможете отримувати повідомлення, коли сховище буде заповнене.\n\n👉 Перевірте, чи можна видалити старі дані у веб-інтерфейсі провайдера та ввімкніть \"Налаштування / Видалити старі повідомлення\". Ви можете будь-коли перевірити своє поточне використання сховища в \"Налаштування / Підключення\". ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Дата й час на вашому пристрої видаються неточними (%1$@).\n\nНалаштуйте свій годинник ⏰🔧 для правильного отримання повідомлень.";
 "devicemsg_update_reminder" = "⚠️ Ваша версія Delta Chat може бути застарілою.\n\nЦе може спричинити проблеми, оскільки Ваші співрозмовники в чаті використовують новіші версії, а Вам не вистачає найновіших функцій 😳 \nПеревірте оновлення на https://get.delta.chat або в магазині додатків. ";
-
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Введіть захисний код, щоб продовжити.";
-
 // qr code stuff
 "qr_code" = "QR-код";
 "load_qr_code_as_image" = "Завантажити зображення QR-коду";
@@ -922,8 +880,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ уже містить чернетку повідомлення, бажаєте її замінити?";
 "mailto_link_could_not_be_decoded" = "неможливо декодувати посилання mailto: %1$@";
-
-// notifications 
+// notifications
 "notify_dismiss" = "Відхилити";
 "notify_reply_button" = "Відповісти";
 "notify_new_message" = "Нове повідомлення";
@@ -938,8 +895,6 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "У вас нові повідомлення";
 "n_messages_in_m_chats" = "%1$d повідомлень в %2$d чатах";
-
-
 // permissions
 "perm_required_title" = "Потрібен дозвіл";
 "perm_continue" = "Продовжити";
@@ -948,7 +903,6 @@
 "perm_explain_access_to_storage_denied" = "Для збереження або передавання фотографій перейдіть до налаштувань додатку, оберіть \"Дозволи\" та ввімкніть \"Сховище\"";
 "perm_explain_access_to_location_denied" = "Щоб передати місцезнаходження, додатку потрібен доступ до геоданих пристрою, але зараз його не надано. Для надання доступу перейдіть у системне меню налаштувань, у розділі \"Додатки\" знайдіть Delta Chat, оберіть \"Дозволи\" і надайте доступ до місцезнаходження пристрою.";
 "perm_explain_access_to_notifications_denied" = "Щоб отримувати сповіщення зайдіть у \"Налаштування системи / Застосунки / Delta Chat\" і увімкніть \"Сповіщення\"";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Малюйте будь-де для розмиття";
 "ImageEditorHud_add_text" = "Додати текст";
@@ -958,10 +912,8 @@
 "ImageEditorHud_crop" = "Обрізати";
 "ImageEditorHud_flip" = "Обернути";
 "ImageEditorHud_rotate" = "Обертати";
-
 // dc_str_* resources
 "encrypted_message" = "Зашифроване повідомлення";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Це офіційний додаток Delta Chat для ПК.";
 "about_licensed_under_desktop" = "Це програмне забезпечення ліцензується за GNU GPL версії 3, а початковий код доступний на GitHub.";
@@ -1009,7 +961,6 @@
 "no_spellcheck_suggestions_found" = "Пропозицій щодо написання не знайдено.";
 "show_window" = "Показати вікно";
 "login_socks5_experimental_warning" = "Підтримка SOCKS5 наразі експериментальна. Використовуйте її на власний ризик. Якщо Ви введете адресу в поле \"e-mail\", буде здійснено запит до DNS, який не буде тунельовано через SOCKS5.";
-
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Сполучення клавіш";
 "switch_between_chats" = "Переключитися між чатами";
@@ -1020,7 +971,6 @@
 "focus_message_input" = "Сфокусуватись на вводі повідомлення";
 "force_refresh_network" = "Примусове оновлення мережі";
 "insert_newline" = "Вставити новий рядок";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Статус доставки: Помилка";
 "a11y_encryption_padlock" = "Замок шифрування";
@@ -1032,7 +982,6 @@
 "a11y_message_context_menu_btn_label" = "Дії з повідомленням";
 "a11y_background_preview_label" = "Попередній перегляд фону";
 "a11y_disappearing_messages_activated" = "Зникнення повідомлень увімкнено";
-
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Припинити надсилати геодані";
 "a11y_voice_message_hint_ios" = "Після запису двічі торкніться для відправки. Щоб скинути запис, проведіть двома пальцями.";
@@ -1061,8 +1010,6 @@
 "shortcut_step1_tap_share_btn" = "Натисніть кнопку \"Поділитися\"";
 "shortcut_step2_tap_add_to_home_screen" = "Виберіть \"Додати на головний екран\", щоб додати застосунок на головний екран.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Фонові сповіщення";
 "pref_background_notifications_explain" = "Використовує фонове з\'єднання з Вашим сервером та потребує ігнорування оптимізації батареї.";
@@ -1072,8 +1019,6 @@
 "pref_reliable_service_explain" = "Потребує постійного оповіщення";
 "perm_enable_bg_reminder_title" = "Натисніть тут, щоб отримувати повідомлення, коли Delta Chat знаходиться у фоновому режимі.";
 "perm_enable_bg_already_done" = "Ви вже дозволили Delta Chat отримувати повідомлення у фоновому режимі.\n\nЯкщо повідомлення досі не приходять у фоновому режимі, перевірте налаштування системи.";
-
-
 // device messages for updates
 "update_1_44_android" = "Що нового:\n\n❤️ Так! Це було довгоочікувано: Довге натискання на повідомлення, щоб відреагувати\n\n🔗 Якщо ви не можете сканувати QR-коди, діліться ними як посилання-запрошення\n\n🔵 Непрочитані повідомлення всіх акаунтів тепер підраховуються і показуються в заголовку\n\n... і ТОННИ виправлень... %1$@\n\nДопомагайте покращувати додаток: Використовуйте \"Налаштування / Додатково / Надсилати статистику\", щоб допомогти розробникам краще оптимізувати додаток для реального використання. Ви можете переглянути дані перед відправкою";
 "update_1_44_ios" = "Що нового:\n\n❤️ Так! Це було довгоочікувано: Довге натискання на повідомлення, щоб відреагувати\n\n🫸 PUSH-сповіщення, якщо підтримується провайдерами, як https://nine.testrun.org\n\n🔗 Якщо ви не можете відсканувати QR-коди, діліться ними як посиланнями-запрошеннями\n\n... і ТОННИ виправлень ... %1$@";

@@ -67,7 +67,6 @@
 "gallery" = "గ్యాలరీ";
 "file" = "ఫైల్";
 "unknown" = "తెలియని";
-
 "green" = "ఆకు పచ్చ";
 "red" = "ఎరుపు";
 "blue" = "నీలం";
@@ -76,15 +75,12 @@
 "purple" = "ఊదా";
 "magenta" = "మజెంటా";
 "white" = "తెలుపు";
-
 "small" = "చిన్న";
 "normal" = "సాధారణంగా";
 "large" = "పెద్ద";
 "extra_large" = "చాలా పెద్దది";
-
 "fast" = "త్వరగా";
 "slow" = "మెల్లిగా";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "కొత్త పరిచయం";
 "menu_new_chat" = "క్రొత్త చాట్";
@@ -125,8 +121,6 @@
 // contact list
 "contacts_title" = "కాంటాక్ట్స్";
 "contacts_empty_hint" = "ఇంకా ఏ పరిచయాలూ లేవు.";
-
-
 "chat_archived_chats_title" = "ఆర్కైవ్ చేసిన చాట్స్";
 "chat_record_slide_to_cancel" = "రద్దు చేయడానికి స్లైడ్ చేయి";
 "chat_share_with_title" = "తో పంచు";
@@ -199,7 +193,6 @@
 "perm_continue" = "కొనసాగించు";
 // dc_str_* resources
 "encrypted_message" = "ఎంక్రిప్ట్ చెసిన సందేశం";
-
 "welcome_desktop" = "Delta Chat కి స్వాగతం.";
 "global_menu_file_desktop" = "ఫైల్";
 "global_menu_edit_desktop" = "మార్చు";

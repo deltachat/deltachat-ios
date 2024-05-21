@@ -109,7 +109,6 @@
 "file" = "Arkiv";
 "files" = "Filer";
 "unknown" = "Okänd";
-
 "green" = "Grön";
 "red" = "Röd";
 "blue" = "Blå";
@@ -118,17 +117,14 @@
 "purple" = "Lila";
 "magenta" = "Magenta";
 "white" = "Vit";
-
 "zoom" = "Zoom";
 "extra_small" = "Extra liten";
 "small" = "Liten";
 "normal" = "Normal";
 "large" = "Stor";
 "extra_large" = "Extra stor";
-
 "fast" = "Snabb";
 "slow" = "Långsam";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Ny kontakt";
 "menu_new_chat" = "Ny chatt";
@@ -210,15 +206,12 @@
 "mute_for_one_day" = "Tysta 1 dag";
 "mute_for_seven_days" = "Tysta 7 dagar";
 "mute_forever" = "Tysta för evigt";
-
 "share_location_for_5_minutes" = "i 5 minuter";
 "share_location_for_30_minutes" = "i 30 minuter";
 "share_location_for_one_hour" = "i 1 timma";
 "share_location_for_two_hours" = "i 2 timmar";
 "share_location_for_six_hours" = "i 6 timmar";
-
 "file_saved_to" = "Filen är sparad i \"%1$@\".";
-
 "videochat" = "Videochatt";
 "videochat_invite_user_to_videochat" = "Vill du bjuda in %1$@ till en videochatt?";
 "videochat_invite_user_hint" = "Detta kräver ett kompatibelt program eller en kompatibel webbläsare i bägge ändar.";
@@ -231,7 +224,6 @@
 "videochat_instance_from_qr" = "Vill du använda \"%1$@\" för att bjuda in andra till videochattar?\n\nNär det väl är inställt kan du starta en videochatt från vilken en-till-en-chatt som helst. Detta ersätter den tidigare inställningen för eventuella videochattar.";
 "videochat_invitation" = "Videochattinbjudan";
 "videochat_invitation_body" = "Du är inbjuden till en videochatt, klicka på %1$@ för att ansluta.";
-
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
 "ask_delete_message" = "Är du säker på att du vill radera detta meddelande?";
@@ -248,15 +240,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Ta bort %1$@ från gruppen?";
 "open_url_confirmation" = "Vill du öppna denna länk?";
-
-
 // contact list
 "contacts_title" = "Kontakter";
 "contacts_enter_name_or_email" = "Ange namn eller e-postadress";
 "contacts_type_email_above" = "Skriv in e-postadressen ovan";
 "contacts_empty_hint" = "Inga kontakter.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Arkiverade chattar";
 "chat_please_enter_message" = "Skriv ett meddelande.";
@@ -292,13 +280,10 @@
 "filter_map_on_time" = "Visa platser inom tidsramen";
 "show_location_traces" = "Visa spår";
 "add_poi" = "Skicka intressant plats";
-
 // search
 "search" = "Sök";
 "search_explain" = "Sök efter chattar, kontakter och meddelanden";
 "search_no_result_for_x" = "Inga resultat hittades för \" %1$@ \"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Gruppnamn";
 "group_avatar" = "Gruppbild";
@@ -365,8 +350,6 @@
 "share_multiple_attachments_multiple_chats" = "Vill du skicka %1$d fil(er) till %2$d chattar?\n\nFilerna skickas oförändrade i ursprunglig storlek, t.ex. bilder och videor kodas inte om.";
 "share_text_multiple_chats" = "Vill du skicka denna text till %1$d chattar?\n\n\"%2$@\"";
 "share_abort" = "Delningen avbröts på grund av saknad behörighet.";
-
-
 // preferences
 "pref_using_custom" = "Använder anpassat: %1$@";
 "pref_using_default" = "Använder standard: %1$@";
@@ -470,7 +453,6 @@
 "autodel_after_1_week" = "Efter 1 vecka";
 "autodel_after_4_weeks" = "Efter 4 veckor";
 "autodel_after_1_year" = "Efter 1 år";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -489,8 +471,6 @@
 "autocrypt_continue_transfer_succeeded" = "Slutpunkt-till-slutpunkt-inställningar överförda. Enheten är nu redo att använda Autocrypt med samma inställningar som den andra enheten.";
 "autocrypt_continue_transfer_retry" = "Försök igen";
 "autocrypt_bad_setup_code" = "Felaktig inställningskod. Försök igen.\n\nOm du inte kommer ihåg inställningskoden, kan du skicka ett nytt Autocrypt inställningsmeddelande från den andra enheten.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Meddelande öppnat";
 "systemmsg_read_receipt_body" = "\"%1$@\" meddelandet du skickade visades på mottagarens skärm.\n\nDet är ingen garanti för att innehållet har lästs.";
@@ -583,7 +563,6 @@
 "ImageEditorHud_draw_anywhere_to_blur" = "Rita var som helst för att smeta ut";
 // dc_str_* resources
 "encrypted_message" = "Krypterat meddelande";
-
 "welcome_desktop" = "Välkommen till Delta Chat";
 "global_menu_preferences_language_desktop" = "Språk";
 "global_menu_file_desktop" = "Arkiv";
@@ -631,8 +610,6 @@
 "a11y_message_context_menu_btn_label" = "Meddelandeåtgärder";
 "a11y_background_preview_label" = "Förhandsvisning i bakgrunden";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Bakgrundsaviseringar";
 "pref_background_notifications_explain" = "Använder en bakgrundsanslutning till din server och kräver undantagna batterioptimeringar.";
@@ -642,5 +619,3 @@
 "pref_reliable_service_explain" = "Kräver permanent avisering";
 "perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
 "perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";
-
-

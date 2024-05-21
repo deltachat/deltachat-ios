@@ -61,7 +61,6 @@
 "gallery" = "Galéria";
 "file" = "Fájl";
 "unknown" = "Ismeretlen";
-
 "green" = "Zöld";
 "red" = "Piros";
 "blue" = "Kék";
@@ -70,15 +69,12 @@
 "purple" = "Lila";
 "magenta" = "Magenta";
 "white" = "Fehér";
-
 "small" = "Kicsi";
 "normal" = "Normál";
 "large" = "Nagy";
 "extra_large" = "Nagyon nagy";
-
 "fast" = "Gyors";
 "slow" = "Lassú";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Új partner";
 "menu_new_chat" = "Új beszélgetés";
@@ -123,13 +119,11 @@
 "mute_for_one_day" = "Némítás 1 napra";
 "mute_for_seven_days" = "Némítás 7 napra";
 "mute_forever" = "Némítás örökre";
-
 "share_location_for_5_minutes" = "5 percig";
 "share_location_for_30_minutes" = "30 percig";
 "share_location_for_one_hour" = "1 óráig";
 "share_location_for_two_hours" = "2 óráig";
 "share_location_for_six_hours" = "6 óráig";
-
 // get confirmations
 "ask_leave_group" = "Biztosan ki akarsz lépni a csoportból?";
 "ask_forward" = "Továbbítod az üzenetet %1$@ részére?";
@@ -139,8 +133,6 @@
 // contact list
 "contacts_title" = "Kontaktok";
 "contacts_empty_hint" = "Még nincs partner.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Archivált beszélgetések";
 "chat_new_group_hint" = "Írj egy kezdőüzenetet, hogy a többiek válaszolhassanak a csoportban.\n\n• Nincs gond, ha nem használja minden tag a Delta Chatet.\n\n• Az első üzenet kézbesítése kicsit lassabb lehet.";
@@ -251,7 +243,6 @@
 "perm_continue" = "Folytatás";
 // dc_str_* resources
 "encrypted_message" = "Titkosított üzenet";
-
 "welcome_desktop" = "Üdvözöl a Delta Chat!";
 "global_menu_preferences_language_desktop" = "Válassz nyelvet...";
 "global_menu_file_desktop" = "Fájl";

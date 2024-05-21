@@ -65,7 +65,6 @@
 "gallery" = "Galerija";
 "file" = "Datoteka";
 "unknown" = "Nepoznato";
-
 "green" = "Zeleno";
 "red" = "Crveno";
 "blue" = "Plavo";
@@ -73,15 +72,12 @@
 "cyan" = "Cijan";
 "magenta" = "Magenta";
 "white" = "Bijelo";
-
 "small" = "Mala";
 "normal" = "Normalna";
 "large" = "Velika";
 "extra_large" = "Ekstra velika";
-
 "fast" = "Brzo";
 "slow" = "Sporo";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Novi kontakt";
 "menu_new_group" = "Nova grupa";
@@ -111,8 +107,6 @@
 // contact list
 "contacts_title" = "Kontakti";
 "contacts_empty_hint" = "Nema kontakata.";
-
-
 "chat_please_enter_message" = "Molimo unesite poruku.";
 "chat_camera_unavailable" = "Kamera nije dostupna.";
 "chat_record_slide_to_cancel" = "Kliznite za otkazivanje";
@@ -125,8 +119,6 @@
 // search
 "search" = "Traži";
 "search_no_result_for_x" = "Nema pronađenih rezultata za \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Naziv grupe";
 "group_avatar" = "Grupni avatar";

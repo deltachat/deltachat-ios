@@ -103,7 +103,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "Moi";
 "draft" = "Brouillon";
 "image" = "Image";
@@ -141,7 +140,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Applis";
 "unknown" = "Inconnu";
-
 "green" = "Vert";
 "red" = "Rouge";
 "blue" = "Bleu";
@@ -150,17 +148,14 @@
 "purple" = "Pourpre";
 "magenta" = "Magenta";
 "white" = "Blanc";
-
 "zoom" = "Zoom";
 "extra_small" = "Très petit";
 "small" = "Petit";
 "normal" = "Normal";
 "large" = "Grand";
 "extra_large" = "Très grand";
-
 "fast" = "Rapide";
 "slow" = "Lent";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nouveau contact";
 "menu_new_chat" = "Nouvelle discussion";
@@ -257,21 +252,17 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Ajouter à l\'écran d\'accueil";
 "donate" = "Faire un don";
-
 "mute_for_one_hour" = "Désactiver pour 1 heure";
 "mute_for_two_hours" = "Désactiver pour 2 heures";
 "mute_for_one_day" = "Désactiver pour 1 jour";
 "mute_for_seven_days" = "Désactiver pour 7 jours";
 "mute_forever" = "Désactiver pour toujours";
-
 "share_location_for_5_minutes" = "pour 5 minutes";
 "share_location_for_30_minutes" = "pour 30 minutes";
 "share_location_for_one_hour" = "pour 1 heure";
 "share_location_for_two_hours" = "pour 2 heures";
 "share_location_for_six_hours" = "pour 6 heures";
-
 "file_saved_to" = "Fichier enregistré dans \"%1$@\".";
-
 "videochat" = "Discussion vidéo";
 "videochat_invite_user_to_videochat" = "Inviter %1$@ à une discussion vidéo ?";
 "videochat_invite_user_hint" = "Cela requiert une application compatible ou un navigateur compatible des deux côtés.";
@@ -286,7 +277,6 @@
 "videochat_instance_from_qr" = "Utiliser « %1$@ » pour inviter d\'autres personnes à des discussions vidéo ?\n\nUne fois configuré, vous pouvez discuter en vidéo dans chaque discussion privée. Remplace vos préférences de configurations précédentes pour les discussions vidéos.";
 "videochat_invitation" = "Invitation à une discussion vidéo";
 "videochat_invitation_body" = "Vous êtes invité à une discussion vidéo, cliquez sur %1$@ pour la rejoindre.";
-
 // get confirmations
 "ask_leave_group" = "Voulez-vous vraiment quitter ce groupe ?";
 "ask_delete_message" = "Voulez-vous vraiment supprimer ce message ?";
@@ -305,15 +295,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Retirer %1$@ de la liste de diffusion ?";
 "open_url_confirmation" = "Voulez-vous ouvrir ce lien ?";
-
-
 // contact list
 "contacts_title" = "Contacts";
 "contacts_enter_name_or_email" = "Entrer le nom ou l\'adresse de courriel";
 "contacts_type_email_above" = "Saisir l\'adresse de courriel au-dessus";
 "contacts_empty_hint" = "Aucun contact.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Discussions archivées";
 "chat_please_enter_message" = "Veuillez saisir un message.";
@@ -349,11 +335,9 @@
 "attachment_failed_to_load" = "Échec du chargement de la pièce jointe";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Maintenir l\'enregistrement";
-
 // mailing lists
 "mailing_list" = "Liste de diffusion";
 "mailing_list_profile_info" = "Les changements du nom et de l\'avatar de la liste de diffusion s\'appliquent uniquement sur cet appareil.";
-
 // webxdc
 // "Start..." button for an app
 "start_app" = "Démarrer...";
@@ -363,17 +347,14 @@
 "send_file_to" = "Envoyer \"%1$@\" à";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Envoyer un message à";
-
 // map
 "filter_map_on_time" = "Afficher les positions pour une période";
 "show_location_traces" = "Afficher les traces";
 "add_poi" = "Afficher les points d\'intérêt";
-
 // chat audit log
 "chat_audit_log_empty_message" = "Les messages systèmes de cette discussion apparaissent ici";
 "chat_audit_log_title" = "Journal d\'audit de la discussion pour %1$@";
 "chat_audit_log_description" = "Cette vue montre seulement les messages système et d\'information. Utile pour trouver les dernières actions dans la discussion sans défiler à travers beaucoup de messages normaux.";
-
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Ne pas demander à nouveau pour %1$@";
@@ -382,16 +363,12 @@
 "puny_code_warning_question" = "Voulez-vous vraiment visiter %1$@ ?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Ce lien pourait avoir des caractères mal représentés dû à l\'utilisation de caractères similaires des alphabets différents. Suivre le lien marqué %1$@ aménera à %2$@ qui est normale avec des caractères non-latins. Si vous ne vous attendez pas à de tel caractères ce lien est potentiellement dangereux";
-
-
 // search
 "search" = "Chercher";
 "search_in_chat" = "Chercher dans la discussion";
 "search_files" = "Chercher dans les fichiers";
 "search_explain" = "Rechercher des discussions, des contacts ou des messages";
 "search_no_result_for_x" = "Aucun résultat trouvé pour \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Nom du groupe";
 "group_avatar" = "Image du groupe";
@@ -427,8 +404,6 @@
 "aeap_addr_changed" = "%1$@ a changé son adresse de %2$@ à %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Vous avez changé votre adresse courriel de %1$@ à %2$@.\n\nSi vous envoyez maintenant un message à un groupe connu, votre ancienne adresse sera automatiquement remplacée par la nouvelle chez tous vos contacts dans ce groupe.\n\nIl est fortement conseillé de configurer votre ancien fournisseur de courriel de sorte à transférer tous vos courriels à votre nouvelle adresse. Sinon, vous risquez de manquer des messages de contacts qui n\'ont pas encore reçu votre nouvelle adresse.";
-
-
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Ajouter un deuxième appareil";
@@ -455,7 +430,6 @@
 // Shown beside progress bar, stay short
 "transferring" = "Transfert...";
 "troubleshooting" = "Dépannage";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Messages entrants";
@@ -479,8 +453,6 @@
 "messages" = "Messages";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ sur %2$@ utilisé";
-
-
 "scan_invitation_code" = "Scanner le code d\'invitation";
 "login_title" = "Connexion";
 // for classic email, we use the classical term "Account"
@@ -534,7 +506,6 @@
 "sync_all" = "Tout synchroniser";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Échec de la configuration. Erreur : %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Transférer à …";
@@ -542,8 +513,6 @@
 "share_multiple_attachments_multiple_chats" = "Envoyer %1$d fichier(s) à %2$d discussions ?\n\nLes fichiers sont envoyés sans modification, à leur taille originale (ie. les images et les vidéos ne sont pas réencodées).";
 "share_text_multiple_chats" = "Envoyer ce texte à %1$d discussions ?\n\n« %2$@ »";
 "share_abort" = "Partage annulé en raison de permissions manquantes.";
-
-
 // preferences
 "pref_using_custom" = "Usage de la personnalisation : %1$@";
 "pref_using_default" = "Utilisation par défaut : %1$@";
@@ -676,7 +645,6 @@
 "emoji_objects" = "Objets";
 "emoji_symbols" = "Symboles";
 "emoji_flags" = "Drapeaux";
-
 // Reactions
 "reactions" = "Réactions";
 // automatically delete message
@@ -702,7 +670,6 @@
 "autodel_after_4_weeks" = "Après 4 semaines";
 "after_5_weeks" = "Après 5 semaines";
 "autodel_after_1_year" = "Après 1 année";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -721,8 +688,6 @@
 "autocrypt_continue_transfer_succeeded" = "Configuration de bout en bout transférée. Cet appareil est maintenant prêt à utiliser Autocrypt avec la même configuration que l\'autre appareil.";
 "autocrypt_continue_transfer_retry" = "Ré-essayer";
 "autocrypt_bad_setup_code" = "Mauvais code d\'installation. Veuillez réessayer. Si vous ne vous souvenez pas du code d\'installation, envoyez simplement un autre message d\'installation Autocrypt depuis l\'autre appareil.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Accusé de lecture";
 "systemmsg_read_receipt_body" = "Ceci est un accusé de lecture pour le message \"%1$@\".\n\nCela signifie que le message a été affiché sur l\'appareil du destinataire, pas forcément que le contenu ait été lu.";
@@ -796,17 +761,14 @@
 "chat_protection_broken_tap_to_learn_more" = "%1$@ a envoyé un message depuis un nouvel appareil. Appuyez pour en savoir plus.";
 "chat_protection_broken_explanation" = "Le chiffrement de bout en bout ne peut plus être garanti, probablement parce que %1$@ a réinstallé Delta Chat ou envoyé un message depuis un nouvel appareil.\n\nVous pouvez convenir d\'une rencontre physique afin de scanner à nouveau son code QR pour ré-instaurer la garantie du chiffrement de bout en bout.";
 "learn_more" = "En savoir plus";
-
 "devicemsg_self_deleted" = "Vous avez supprimé la discussion \"Messages sauvegardés\".\n\nℹ️ Pour utiliser la fonctionnalité \"Message enregistrés\" à nouveau, commencez une nouvelle discussion avec vous-même.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Bientôt plus d\'espace de stockage chez votre fournisseur, %1$@%% utilisés.\n\nVous ne serez peut-être plus en mesure de recevoir des messages quand votre espace de stockage sera plein.\n\n👉 Veuillez vérifier si vous avez d\'anciens éléments à supprimer directement sur l\'interface web de votre fournisseur et envisagez d\'activer \"Paramètres / Supprimer les anciens messages\". Vous pouvez vérifier à tout moment le volume d\'espace de stockage en cours d\'utilisation depuis \"Paramètres / Connectivité\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ L\'heure ou la date de votre appareil semble erronée (%1$@).\n\nRéglez votre horloge ⏰🔧 pour que vos messages soient bien reçus.";
 "devicemsg_update_reminder" = "⚠️ Votre version de Delta Chat semble obsolète.\n\nCela risque de créer des dysfonctionnements parce que vos contacts utilisent des versions plus récentes - en plus, vous ratez les nouvelles fonctionnalités 😳\n Rendez-vous sur https://get.delta.chat ou sur votre magasin d\'applications pour effectuer la mise à jour !";
-
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Déverrouillez votre appareil pour continuer";
-
 // qr code stuff
 "qr_code" = "Code QR";
 "load_qr_code_as_image" = "Charger le code QR comme une image";
@@ -864,8 +826,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@a déjà un message en brouillon, voulez-vous le remplacer?";
 "mailto_link_could_not_be_decoded" = "Le lien mailto n\'a pas pu être décodé: %1$@";
-
-// notifications 
+// notifications
 "notify_dismiss" = "Rejeter";
 "notify_reply_button" = "Répondre";
 "notify_new_message" = "Nouveau message";
@@ -878,8 +839,6 @@
 "notifications_disabled" = "Notifications désactivées";
 "new_messages" = "Nouveaux messages";
 "n_messages_in_m_chats" = "%1$d messages dans %2$d discussions";
-
-
 // permissions
 "perm_required_title" = "Autorisation requise";
 "perm_continue" = "Continuez";
@@ -888,7 +847,6 @@
 "perm_explain_access_to_storage_denied" = "Pour recevoir ou envoyer des fichiers, aller dans les Paramètres de l\'application, sélectionner \"Autorisations\" et autoriser \"Stockage\".";
 "perm_explain_access_to_location_denied" = "Pour joindre une position, aller au menu paramètres de l\'application, sélectionnez \"Autorisations\" et activez \"Position\".";
 "perm_explain_access_to_notifications_denied" = "Pour recevoir les notifications, accédez à \"Paramètres système / Applications / Delta Chat\" et activez les \"Notifications\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Dessinez n\'importe où pour flouter";
 "ImageEditorHud_add_text" = "Ajouter du texte";
@@ -898,10 +856,8 @@
 "ImageEditorHud_crop" = "Rogner";
 "ImageEditorHud_flip" = "Tourner";
 "ImageEditorHud_rotate" = "Pivoter";
-
 // dc_str_* resources
 "encrypted_message" = "Message chiffré";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ceci est l\'application de bureau Delta Chat officielle.";
 "about_licensed_under_desktop" = "Ce logiciel est sous licence GNU GPL version 3 et le code source est disponible sur GitHub.";
@@ -949,7 +905,6 @@
 "no_spellcheck_suggestions_found" = "Aucune propositions de correction trouvées.";
 "show_window" = "Afficher la fenêtre";
 "login_socks5_experimental_warning" = "Le support de SOCK5 est actuellement expérimental. Utilisez le à vos risques et périls. Si vous saisissez une adresse de courriel, une requête DNS sera effectuée sans passer par SOCK5.";
-
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Raccourcis clavier";
 "switch_between_chats" = "Naviguer entre les discussions";
@@ -960,7 +915,6 @@
 "focus_message_input" = "Focaliser la saisie de message";
 "force_refresh_network" = "Forcer la recharge du réseau";
 "insert_newline" = "Insérer nouvelle ligne";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "État de la livraison : Erreur";
 "a11y_encryption_padlock" = "Cadenas de chiffrement";
@@ -972,7 +926,6 @@
 "a11y_message_context_menu_btn_label" = "Actions sur le message";
 "a11y_background_preview_label" = "Aperçu de l\'arrière-plan";
 "a11y_disappearing_messages_activated" = "Messages éphémères activés";
-
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Arrêter de partager la position";
 "a11y_voice_message_hint_ios" = "Après l\'enregistrement, poussez deux fois pour envoyer. Pour le supprimer, balayez l\'écran avec deux doigts.";
@@ -1001,8 +954,6 @@
 "shortcut_step1_tap_share_btn" = "Cliquer sur le bouton « Partager ».";
 "shortcut_step2_tap_add_to_home_screen" = "Sélectionner « Ajouter à l\'écran d\'accueil » pour ajouter l\'appli à votre écran d\'accueil.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Notifications d\'arrière-plan";
 "pref_background_notifications_explain" = "Utilise une connexion à votre serveur en arrière-plan et requiert la désactivation de l\'optimisation de la batterie";
@@ -1012,5 +963,3 @@
 "pref_reliable_service_explain" = "Requiert une notification permanente";
 "perm_enable_bg_reminder_title" = "Touchez ici pour recevoir des messages pendant que DeltaChat est en arrière-plan.";
 "perm_enable_bg_already_done" = "Vous avez déjà autorisé Delta Chat à recevoir des messages en arrière plan.\n\nSi vous ne les recevez toujours pas en arrière plan, vérifiez les paramètres de votre système.";
-
-

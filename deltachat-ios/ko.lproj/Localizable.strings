@@ -90,7 +90,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "나";
 "draft" = "임시 저장";
 "image" = "이미지";
@@ -124,7 +123,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "개인 앱";
 "unknown" = "알 수 없음";
-
 "green" = "초록";
 "red" = "빨강";
 "blue" = "파랑";
@@ -133,17 +131,14 @@
 "purple" = "보라";
 "magenta" = "자홍";
 "white" = "흰색";
-
 "zoom" = "줌";
 "extra_small" = "더 작게";
 "small" = "작게";
 "normal" = "보통";
 "large" = "크게";
 "extra_large" = "더 크게";
-
 "fast" = "빠르게";
 "slow" = "느리게";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "대화상대 추가";
 "menu_new_chat" = "채팅 시작";
@@ -234,15 +229,12 @@
 "mute_for_one_day" = "1일 동안 알림 끄기";
 "mute_for_seven_days" = "7일 동안 알림 끄기";
 "mute_forever" = "영구히 음소거";
-
 "share_location_for_5_minutes" = "5분 동안";
 "share_location_for_30_minutes" = "30분 동안";
 "share_location_for_one_hour" = "1시간 동안";
 "share_location_for_two_hours" = "2시간 동안";
 "share_location_for_six_hours" = "6시간 동안";
-
 "file_saved_to" = "파일 \"%1$@\"에 저장됨.";
-
 "videochat" = "비디오 채팅";
 "videochat_invite_user_to_videochat" = "%1$@를 비디오 채팅에 초대하시겠습니까?";
 "videochat_contact_invited_hint" = "%1$@이 비디오 채팅에 초대함";
@@ -256,7 +248,6 @@
 "videochat_instance_from_qr" = "\"%1$@\"를 사용하여 다른 사람을 화상 채팅에 초대하시겠습니까?\n\n설정되면 각 채팅에서 비디오 채팅을 시작할 수 있습니다. 이것은 비디오 채팅에 대한 이전 설정을 대체합니다.";
 "videochat_invitation" = "비디오 채팅 초대";
 "videochat_invitation_body" = "당신은 비디오 채팅에 초대되었습니다. 참여를 위해 %1$@를 클릭하세요.";
-
 // get confirmations
 "ask_leave_group" = "이 그룹에서 나가시겠습니까?";
 "ask_delete_message" = "이 메시지를 삭제하시겠습니까?";
@@ -275,15 +266,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "브로드 캐스트 목록에서 %1$@을/를 제거하시겠습니까?";
 "open_url_confirmation" = "이 링크를 여시겠습니까?";
-
-
 // contact list
 "contacts_title" = "연락처";
 "contacts_enter_name_or_email" = "이름 또는 이메일 주소를 입력하세요.";
 "contacts_type_email_above" = "위에 이메일 주소를 입력하세요.";
 "contacts_empty_hint" = "대화상대가 없습니다";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "보관된 채팅";
 "chat_please_enter_message" = "메시지를 입력하세요.";
@@ -319,7 +306,6 @@
 // mailing lists
 "mailing_list" = "메일 목록";
 "mailing_list_profile_info" = "메일링 목록 이름 및 이미지의 변경 사항은 이 장치에만 적용됩니다.";
-
 // webxdc
 // "Start..." button for an app
 "start_app" = "시작...";
@@ -329,11 +315,9 @@
 "filter_map_on_time" = "시간 범위 내 위치 표시";
 "show_location_traces" = "기록 보기";
 "add_poi" = "관심 지점 전송";
-
 // chat audit log
 "chat_audit_log_empty_message" = "이 채팅의 시스템 메시지가 여기에 나타납니다.";
 "chat_audit_log_description" = "시스템 및 정보 메시지만 표시합니다. 많은 메시지를 스크롤하지 않고 마지막 채팅 작업을 찾을 때 유용합니다.";
-
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "%1$@에 대해 다시 묻지 마시오";
@@ -342,14 +326,10 @@
 "puny_code_warning_question" = "정말 %1$@에 방문하시겠습니까?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "이 링크는 서로 다른 알파벳의 유사하게 생긴 문자를 잘못 전달할 수 있습니다. %1$@ 링크를 따라가면 라틴어가 아닌 문자의 경우 정상적인 %2$@로 이어집니다. 이러한 문자를 예상하지 못한 경우 이 링크는 안전하지 않을 수 있습니다.";
-
-
 // search
 "search" = "검색";
 "search_explain" = "채팅, 연락, 메시지를 찾으시오";
 "search_no_result_for_x" = "\"%1$@\"에 대한 검색 결과가 없음";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "그룹 이름";
 "group_avatar" = "그룹 이미지";
@@ -378,8 +358,6 @@
 "aeap_addr_changed" = "%1$@의 주소가 %2$@에서 %3$@로 변경됨.";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "이메일 주소를 %1$@에서 %2$@로 바꿨습니다.\n\n확인된 그룹으로 메시지를 보내면 해당 그룹의 연락처가 자동으로 이전 주소를 새 주소로 대체합니다.\n\n모든 이메일을 새 이메일 주소로 전달하도록 이전 이메일 공급자를 설정하는 것이 좋습니다. 그렇지 않으면 새 주소를 받지 못한 연락처의 메시지를 놓칠 수 있습니다.";
-
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "수신 메시지";
@@ -403,8 +381,6 @@
 "messages" = "메시지";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%2$@중 %1$@ 사용됨";
-
-
 "scan_invitation_code" = "초대 코드 스캔";
 "login_title" = "로그인";
 // for classic email, we use the classical term "Account"
@@ -456,7 +432,6 @@
 "sync_all" = "모두 동기화";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "구성 실패. 에러: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "채팅방 선택";
@@ -464,8 +439,6 @@
 "share_multiple_attachments_multiple_chats" = "%1$d 파일을 %2$d 채팅으로 보내시겠습니까?\n\n파일은 원래 크기로 수정되지 않고 전송됩니다(예: 이미지와 비디오가 다시 인코딩되지 않음).";
 "share_text_multiple_chats" = "\"%2$@\"를 %1$d 채팅에 보내시겠습니까?";
 "share_abort" = "권한이 없어 공유가 중단되었습니다.";
-
-
 // preferences
 "pref_using_custom" = "사용자 정의 사용: %1$@";
 "pref_using_default" = "기본값 사용: %1$@";
@@ -603,7 +576,6 @@
 "autodel_after_4_weeks" = "4주 후";
 "after_5_weeks" = "5주 후";
 "autodel_after_1_year" = "1년 후";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "자동암호화";
@@ -620,8 +592,6 @@
 "autocrypt_continue_transfer_please_enter_code" = "다른 장치에 표시된 설정 코드를 입력하십시오.";
 "autocrypt_continue_transfer_retry" = "재시도";
 "autocrypt_bad_setup_code" = "잘못된 설정 코드입니다. 다시 시도하십시오.\n\n설정 코드가 기억나지 않으면 다른 장치에서 새 자동 암호화 설치 메시지를 보냅니다.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "메시지 열림";
 "systemmsg_read_receipt_body" = "보낸 \"%1$@\" 메시지가 수신자의 화면에 표시되었습니다.\n\n이것은 내용이 읽혔다는 것을 보장하지 않습니다.";
@@ -692,10 +662,8 @@
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ 장치의 날짜 또는 시간이 정확하지 않은 것 같습니다(%1$@).\n\n메시지가 올바르게 수신되도록 시계 ⏰🔧를 조정하세요.";
 "devicemsg_update_reminder" = "⚠️ 델타 채팅 버전이 오래되었을 수 있습니다.\n\n채팅 파트너가 최신 버전을 사용하기 때문에 문제가 발생할 수 있습니다.  당신은 최신 기능이 없습니다. 😳\n https://get.delta.chat 또는 앱 스토어에서 업데이트를 확인하십시오.";
-
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "계속하려면 시스템 정의 암호를 입력하십시오.";
-
 // qr code stuff
 "qr_code" = "QR 코드";
 "load_qr_code_as_image" = "QR 코드를 이미지로 로드";
@@ -749,8 +717,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@에 이미 임시 저장된 메시지가 있습니다. 바꾸시겠습니까?";
 "mailto_link_could_not_be_decoded" = "링크로 보내는 메일을 디코딩할 수 없습니다: %1$@";
-
-// notifications 
+// notifications
 "notify_dismiss" = "무시하기";
 "notify_reply_button" = "답장하기";
 "notify_new_message" = "새 메시지";
@@ -776,10 +743,8 @@
 "ImageEditorHud_crop" = "자르기";
 "ImageEditorHud_flip" = "뒤집기";
 "ImageEditorHud_rotate" = "돌리기";
-
 // dc_str_* resources
 "encrypted_message" = "암호화된 메시지";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "이것은 Delta Chat 데스크톱 공식 앱입니다.";
 "about_licensed_under_desktop" = "이 소프트웨어는 GNU GPL 버전 3에 따라 라이센스가 부여되며 소스 코드는 GitHub에서 사용할 수 있습니다.";
@@ -830,7 +795,6 @@
 // command to put the cursor to the search input field
 "focus_search_input" = "집중 탐색";
 "insert_newline" = "줄바꿈 삽입";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "전송 상태: 오류";
 "a11y_delivery_status_sending" = "전송 상태: 전송 중";
@@ -840,7 +804,6 @@
 "a11y_delivery_status_invalid" = "잘못된 전송 상태";
 "a11y_background_preview_label" = "배경 미리보기";
 "a11y_disappearing_messages_activated" = "사라지는 메시지 활성화됨";
-
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "위치 공유 중지";
 "a11y_voice_message_hint_ios" = "녹화가 끝나면 두 번 눌러 전송합니다. 기록을 삭제하려면 두 손가락으로 문지르십시오.";
@@ -869,8 +832,6 @@
 "shortcut_step1_tap_share_btn" = "공유 버튼을 누르시오";
 "shortcut_step2_tap_add_to_home_screen" = "홈 화면에 앱을 추가하려면 \"홈 화면에 추가\"를 선택합니다.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "백그라운드 알림";
 "pref_background_notifications_explain" = "서버에 대한 백그라운드 연결을 사용하며 무시된 배터리 최적화가 필요합니다.";
@@ -879,5 +840,3 @@
 "pref_reliable_service" = "안정적인 백그라운드 연결";
 "perm_enable_bg_reminder_title" = "Delta Chat이 백그라운드에 있는 동안 메시지를 받으려면 여기를 누르십시오.";
 "perm_enable_bg_already_done" = "이미 Delta Chat 에서 백그라운드로 메시지를 수신하도록 허용했습니다.\n\n메시지가 여전히 백그라운드로 도착하지 않으면 시스템 설정도 확인하십시오.";
-
-

@@ -98,7 +98,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "Mi";
 "draft" = "Malneto";
 "image" = "Bildo";
@@ -133,7 +132,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apoj";
 "unknown" = "Nekonata";
-
 "green" = "Verda";
 "red" = "Ruĝa";
 "blue" = "Blua";
@@ -142,17 +140,14 @@
 "purple" = "Purpura";
 "magenta" = "Malva";
 "white" = "Blanka";
-
 "zoom" = "Grandeco";
 "extra_small" = "Ege malgranda";
 "small" = "Malgranda";
 "normal" = "Normala";
 "large" = "Granda";
 "extra_large" = "Tre granda";
-
 "fast" = "Rapida";
 "slow" = "Malrapida";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nova kontakto";
 "menu_new_chat" = "Nova babilo";
@@ -239,15 +234,12 @@
 "mute_for_one_day" = "Silentigi por 1 tago";
 "mute_for_seven_days" = "Silentigi por 7 tagoj";
 "mute_forever" = "Silentigi por ĉiam";
-
 "share_location_for_5_minutes" = "por 5 minutoj";
 "share_location_for_30_minutes" = "por 30 minutoj";
 "share_location_for_one_hour" = "por 1 horo";
 "share_location_for_two_hours" = "por 2 horoj";
 "share_location_for_six_hours" = "por 6 horoj";
-
 "file_saved_to" = "Dosiero konservita kiel \"%1$@\".";
-
 // get confirmations
 "ask_leave_group" = "Ĉu vi estas certa, ke vi volas forlasi tiun ĉi grupon?";
 "ask_forward" = "Plusendi mesaĝojn al %1$@?";
@@ -260,8 +252,6 @@
 "contacts_enter_name_or_email" = "Enigi nomon aŭ retadreson";
 "contacts_type_email_above" = "Enigu retadreson supren";
 "contacts_empty_hint" = "Neniu kontakto.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Enarĥivigitaj babiloj";
 "chat_please_enter_message" = "Bonvolu enigi mesaĝon.";
@@ -281,13 +271,10 @@
 "retry_send" = "Reprovi sendi mesaĝon";
 "show_location_traces" = "Montri spurojn";
 "add_poi" = "Sendi punkton de intereso";
-
 // search
 "search" = "Serĉi";
 "search_explain" = "Serĉi babilojn, kontaktojn, kaj mesaĝojn";
 "search_no_result_for_x" = "Neniu rezulto trovita por \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Grup-nomo";
 "group_avatar" = "Bildo de la grupo";
@@ -336,8 +323,6 @@
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Plusendi al…";
 "share_abort" = "Kunhavigado ĉesis pro manko de permesoj.";
-
-
 "pref_profile_photo" = "Profilbildo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
 // for classic email, we use the classical term "Account"

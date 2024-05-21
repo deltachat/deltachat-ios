@@ -116,7 +116,6 @@
 "file" = "檔案";
 "files" = "檔案";
 "unknown" = "未知";
-
 "green" = "綠色";
 "red" = "紅色";
 "blue" = "藍色";
@@ -125,17 +124,14 @@
 "purple" = "紫色";
 "magenta" = "洋紅色";
 "white" = "白色";
-
 "zoom" = "縮放";
 "extra_small" = "最小";
 "small" = "小";
 "normal" = "正常";
 "large" = "大";
 "extra_large" = "最大";
-
 "fast" = "快";
 "slow" = "慢";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "新增聯絡人";
 "menu_new_chat" = "新增對話";
@@ -223,15 +219,12 @@
 "mute_for_one_day" = "靜音1天";
 "mute_for_seven_days" = "靜音7天";
 "mute_forever" = "永遠靜音";
-
 "share_location_for_5_minutes" = "5分鐘";
 "share_location_for_30_minutes" = "30分鐘";
 "share_location_for_one_hour" = "1小時";
 "share_location_for_two_hours" = "2小時";
 "share_location_for_six_hours" = "6小時";
-
 "file_saved_to" = "檔案已儲存至\"%1$@\"。";
-
 "videochat" = "視訊通話";
 "videochat_invite_user_to_videochat" = "邀請%1$@至視訊通話？";
 "videochat_invite_user_hint" = "這個動作需要雙方有相容的應用程式或瀏覽器。";
@@ -244,7 +237,6 @@
 "videochat_instance_from_qr" = "要使用\"%1$@\"來邀請其他人加入視訊通話嗎？\n\n一旦設定完成，你可以在每個聊天室內開啟視訊通話。這將會取代先前的視訊通話設定。";
 "videochat_invitation" = "視訊通話邀請";
 "videochat_invitation_body" = "你被邀請至視訊電話，點擊%1$@以加入。";
-
 // get confirmations
 "ask_leave_group" = "確定要離開本群組？";
 "ask_delete_message" = "你確定要刪除這則訊息？";
@@ -267,8 +259,6 @@
 "contacts_enter_name_or_email" = "請輸入姓名或email地址";
 "contacts_type_email_above" = "請在上面輸入email地址";
 "contacts_empty_hint" = "找不到聯絡人。";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "封存的對話";
 "chat_please_enter_message" = "請輸入訊息";
@@ -290,13 +280,10 @@
 "filter_map_on_time" = "顯示指定時間內的所在地";
 "show_location_traces" = "顯示移動足跡";
 "add_poi" = "傳送興趣點";
-
 // search
 "search" = "搜尋";
 "search_explain" = "搜尋對話紀錄、聯絡人以及訊息";
 "search_no_result_for_x" = "找不到 %1$@";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "群組名稱";
 "group_avatar" = "群組頭像";
@@ -347,8 +334,6 @@
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "轉發給...";
 "share_abort" = "共享失敗。權限不足。";
-
-
 // preferences
 "pref_using_custom" = "使用自訂值: %1$@";
 "pref_using_default" = "使用預設值: %1$@";
@@ -442,8 +427,6 @@
 "autocrypt_continue_transfer_succeeded" = "已傳送端到端加密設定，本裝置已套用和其它裝置相同的AutoCrypt設定。";
 "autocrypt_continue_transfer_retry" = "重試一次";
 "autocrypt_bad_setup_code" = "錯誤的設定碼，請再試一次。\n\n如果你忘記設定碼的話，只要在另一台裝置重新發送一次AutoCrypt設定訊息即可。";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "收執回條";
 "systemmsg_read_receipt_body" = "這是訊息 %1$@ 的收執回條，表示本訊息已經顯示在收件人的裝置上了，但不代表收件人已讀。";
