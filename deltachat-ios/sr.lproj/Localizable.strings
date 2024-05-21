@@ -99,7 +99,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "Ја";
 "draft" = "Нацрт";
 "image" = "Слика";
@@ -134,7 +133,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Приватне апликације";
 "unknown" = "Непознато";
-
 "green" = "Зелена";
 "red" = "Црвена";
 "blue" = "Плава";
@@ -143,17 +141,14 @@
 "purple" = "Пурпурна";
 "magenta" = "Љубичаста";
 "white" = "Бела";
-
 "zoom" = "Увеличање";
 "extra_small" = "Малецка";
 "small" = "Мала";
 "normal" = "Нормална";
 "large" = "Велика";
 "extra_large" = "Огромна";
-
 "fast" = "Брзо";
 "slow" = "Споро";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Нови контакт";
 "menu_new_chat" = "Ново ћаскање";
@@ -247,15 +242,12 @@
 "mute_for_one_day" = "Утишај на 1 дан";
 "mute_for_seven_days" = "Утишај на 7 дана";
 "mute_forever" = "Утишај заувек";
-
 "share_location_for_5_minutes" = "на 5 минута";
 "share_location_for_30_minutes" = "За 30 минута";
 "share_location_for_one_hour" = "За 1 сат";
 "share_location_for_two_hours" = "За 2 сата";
 "share_location_for_six_hours" = "За 6 сати";
-
 "file_saved_to" = "Фајл је снимљен у „%1$@“.";
-
 "videochat" = "Видео ћаскање";
 "videochat_invite_user_to_videochat" = "Позови %1$@у видео ћаскање?";
 "videochat_invite_user_hint" = "Ово захтева компатибилну апликацију или прегледач на оба краја.";
@@ -270,7 +262,6 @@
 "videochat_instance_from_qr" = "Да ли желите да користите „%1$@“ да позовете друге у видео ћаскање?\n\nКада ово поставите, можете да започнете видео ћаскање из сваког ћаскања. Ово замењује све претходне поставке за видео ћаскање.";
 "videochat_invitation" = "Позив за видео ћаскање";
 "videochat_invitation_body" = "Позвани сте у видео ћаскање, кликни %1$@да придружиш.";
-
 // get confirmations
 "ask_leave_group" = "Да ли заиста желите да напустите ову групу?";
 "ask_delete_message" = "Да ли желите да избришете ову поруку?";
@@ -289,15 +280,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Да ли желите да уклоните %1$@ са листе за емитовање?";
 "open_url_confirmation" = "Да ли желите да отворите ову везу?";
-
-
 // contact list
 "contacts_title" = "Контакти";
 "contacts_enter_name_or_email" = "Унесите име или е-адресу";
 "contacts_type_email_above" = "Унесите е-адресу изнад";
 "contacts_empty_hint" = "Још нема контаката.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Архивирана ћаскања";
 "chat_please_enter_message" = "Унесите поруку.";
@@ -332,11 +319,9 @@
 "attachment_failed_to_load" = "Учитавање прилога је неуспешно";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Закључај снимање";
-
 // mailing lists
 "mailing_list" = "Списак имејл адреса";
 "mailing_list_profile_info" = "Промене имена и слике са листе за слање примењују се само на овом уређају.";
-
 // webxdc
 // "Start..." button for an app
 "start_app" = "Покретање...";
@@ -346,12 +331,10 @@
 "filter_map_on_time" = "Прикажи положаје у временском периоду?";
 "show_location_traces" = "Прикажи трагове";
 "add_poi" = "Пошаљи интересантно место";
-
 // chat audit log
 "chat_audit_log_empty_message" = "Поруке оперативног система за ово ћаскање ће се појавити овде.";
 "chat_audit_log_title" = "Дневник ревизије ћаскања за %1$@";
 "chat_audit_log_description" = "Приказује само информативне и поруке оперативног система; корисно за проналажење последњих радњи ћаскања без листања кроз много порука.";
-
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Не питај поново за %1$@";
@@ -360,14 +343,10 @@
 "puny_code_warning_question" = "Јесте ли сигурни да желите да приступите %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Ова веза може погрешно приказати знакове са сличним изгледом из различитих алфабета. Праћење означене везе %1$@ ће довести до %2$@ што је нормално за нелатинске знакове. Ако нисте очекивали такве ликове, ова веза би могла бити штетна.";
-
-
 // search
 "search" = "Претрага";
 "search_explain" = "Претражи ћаскања, контакте и поруке";
 "search_no_result_for_x" = "Нема резултата за „%1$@“";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Назив групе";
 "group_avatar" = "Слика групе";
@@ -397,8 +376,6 @@
 "aeap_addr_changed" = "%1$@је променио њихову адресу %2$@у %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Ви сте променили вашу имејл адресу %1$@у %2$@.\n\nАко сада пошаљете поруку провереној групи, тамошњи контакти ће аутоматски заменити стару адресу новом.\n\nПрепоручљиво је да подесите свог предходног имејл провајдера да прослеђује све имејл поруке на вашу нову имејл адресу. У супротном бисте могли да пропустите поруке од контаката који још нису добили вашу нову адресу.";
-
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Долазеће поруке";
@@ -422,8 +399,6 @@
 "messages" = "Поруке";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@од %2$@искоришћени";
-
-
 "scan_invitation_code" = "Скенирај код позива за приступ.";
 "login_title" = "Пријави се";
 // for classic email, we use the classical term "Account"
@@ -477,7 +452,6 @@
 "sync_all" = "Синхронизуј све";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Конфигурисање није успело. Грешка: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Проследи за…";
@@ -485,8 +459,6 @@
 "share_multiple_attachments_multiple_chats" = "Пошаљи %1$d фајл(ове) у %2$d ћаскања?\n\nДатотеке се шаљу неизмењене у оригиналној величини (нпр. слике и видео снимци се не кодирају поново).";
 "share_text_multiple_chats" = "Пошаљи овај текст %1$dиз ћаскања?\n\n„%2$@“";
 "share_abort" = "Дељење прекинуто због неодговарајуће дозволе.";
-
-
 // preferences
 "pref_using_custom" = "Користи поручен: %1$@";
 "pref_using_default" = "Користи уобичајено: %1$@";
@@ -611,7 +583,6 @@
 "emoji_objects" = "Предмети";
 "emoji_symbols" = "Симболи";
 "emoji_flags" = "Заставе";
-
 // automatically delete message
 "delete_old_messages" = "Избриши старе поруке";
 "autodel_device_title" = "Избриши поруке са уређаја";
@@ -635,7 +606,6 @@
 "autodel_after_4_weeks" = "За 4 недеље";
 "after_5_weeks" = "За 5 недеља";
 "autodel_after_1_year" = "За 1 годину";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Аутошифровање";
@@ -654,8 +624,6 @@
 "autocrypt_continue_transfer_succeeded" = "Подешавање с-краја-на-крај је пренето. Овај уређај је сада спреман за коришћење аутоматског шифровања са истим подешавањем као и други уређај.";
 "autocrypt_continue_transfer_retry" = "Покушај поново";
 "autocrypt_bad_setup_code" = "Погрешан кôд за подешавање. Покушајте поново.\n\nАко се не сећате кôда за подешавање, пошаљите нову поруку за подешавање аутоматског шифровања са другог уређаја.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Порука је отворена";
 "systemmsg_read_receipt_body" = "Порука „%1$@“ коју сте послали била је приказана на екрану примаоца.\n\nОво није гаранција да је садржај прочитан.";
@@ -728,10 +696,8 @@
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Изгледа да датум или време на вашем уређају нису тачни (%1$@).\n\nПодесите сат ⏰🔧 да бисте били сигурни да ће ваше поруке бити правилно примљене.";
 "devicemsg_update_reminder" = "⚠️ Ваша Delta Chat верзија је можда застарела.\n\nОво може да изазове проблеме јер ваши контакти за ћаскање користе новије верзије - а вама недостају најновије функционалности 😳\nДа би ажурирали апликацију проверите https://get.delta.chat или продавницу за апликација.";
-
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Унесите своју системску тајну да бисте наставили.";
-
 // qr code stuff
 "qr_code" = "Бар-кôд";
 "load_qr_code_as_image" = "Учитај бар-кôд као слику";
@@ -787,8 +753,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ већ има нацрт поруке, да ли желите да је замените?";
 "mailto_link_could_not_be_decoded" = "mailto веза не може бити декодирана: %1$@";
-
-// notifications 
+// notifications
 "notify_dismiss" = "Одбаци";
 "notify_reply_button" = "Одговори";
 "notify_new_message" = "Нова порука";
@@ -814,10 +779,8 @@
 "ImageEditorHud_crop" = "Одрежи";
 "ImageEditorHud_flip" = "Окрени";
 "ImageEditorHud_rotate" = "Обрни";
-
 // dc_str_* resources
 "encrypted_message" = "Шифрована порука";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ово је званична Delta Chat апликација за рачунар.";
 "about_licensed_under_desktop" = "Овај програм је лиценциран под ГНУ ГПЛ верзија 3 лиценцом и изворни код је доступан на Гитхабу.";
@@ -865,7 +828,6 @@
 "no_spellcheck_suggestions_found" = "Нема предлога за исправке правописа.";
 "show_window" = "Прикажи прозор";
 "login_socks5_experimental_warning" = "SOCKS5 подршка је тренутно у експерименталној фази. Користе је на личну одговорност. Ако унесете е-адресу у поље за е-адресу, следи захтев за ДНС претрагу која неће ићи кроз SOCKS5 тунел.";
-
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Комбинације тастера";
 "switch_between_chats" = "Пребацивање између ћаскања";
@@ -876,7 +838,6 @@
 "focus_message_input" = "Фокус на унос поруке";
 "force_refresh_network" = "Принуди на освежавање мреже";
 "insert_newline" = "Додај нову линију";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Статус испоруке: Грешка";
 "a11y_encryption_padlock" = "Катанац за шифровање";
@@ -888,7 +849,6 @@
 "a11y_message_context_menu_btn_label" = "Радње над порукама";
 "a11y_background_preview_label" = "Провири у позадини";
 "a11y_disappearing_messages_activated" = "Нестајуће поруке су активиране";
-
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Престаните са дељењем положаја";
 "a11y_voice_message_hint_ios" = "Након снимања, двапут додирните да бисте послали. Да бисте одбацили снимак, трљајте га са два прста.";
@@ -917,8 +877,6 @@
 "shortcut_step1_tap_share_btn" = "Кликните на дугме за дељење";
 "shortcut_step2_tap_add_to_home_screen" = "Изаберите „Додај на почетни екран“ да бисте апликацију додали на почетни екран.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Обавештења у позадини";
 "pref_background_notifications_explain" = "Користи везу у позадини са вашим сервером и захтева да поставке игноришу оптимизације ефикасности батерије.";
@@ -928,5 +886,3 @@
 "pref_reliable_service_explain" = "Захтева трајна обавештења";
 "perm_enable_bg_reminder_title" = "Додирните овде да би примали поруке када је Delta Chat у позадини.";
 "perm_enable_bg_already_done" = "Ви сте већ омогућили Delta Chat-у достављање порука у позадини.\n\nАко поруке и даље не стижу у позадини, погледајте поставке у оперативном систему.";
-
-

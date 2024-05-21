@@ -113,7 +113,6 @@
 "file" = "ឯកសារ";
 "files" = "ឯកសារ";
 "unknown" = "មិនស្គាល់";
-
 "green" = "ពណ៌បៃតង";
 "red" = "ក្រហម";
 "blue" = "ពណ៌ខៀវ";
@@ -122,17 +121,14 @@
 "purple" = "ពណ៌ស្វាយ";
 "magenta" = "ពណ៌ស្វាយខ្ចី";
 "white" = "ពណ៌ស";
-
 "zoom" = "ពង្រីក";
 "extra_small" = "តូចបំផុត";
 "small" = "តូច";
 "normal" = "ធម្មតា";
 "large" = "ធំ";
 "extra_large" = "ធំបំផុត";
-
 "fast" = "រហ័ស";
 "slow" = "យឺត";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "ទំនាក់ទំនងថ្មី";
 "menu_new_chat" = "សន្ទនាថ្មី";
@@ -219,15 +215,12 @@
 "mute_for_one_day" = "ធ្វើឲ្យមិនឃើញមិនលឺរយៈពេល១ថ្ងៃ";
 "mute_for_seven_days" = "ធ្វើឲ្យមិនឃើញមិនលឺរយៈពេល៧ថ្ងៃ";
 "mute_forever" = "ធ្វើឲ្យមិនឃើញមិនលឺរយៈរហូត";
-
 "share_location_for_5_minutes" = "រយៈពេល៥នាទី";
 "share_location_for_30_minutes" = "រយៈពេល៣០នាទី";
 "share_location_for_one_hour" = "រយៈពេល១ម៉ោង";
 "share_location_for_two_hours" = "រយៈពេល២ម៉ោង";
 "share_location_for_six_hours" = "រយៈពេល៦ម៉ោង";
-
 "file_saved_to" = "ឯកសារបានរក្សាទុកនៅ \"%1$@\"។";
-
 "videochat" = "សន្ទនាវីដេអូ";
 "videochat_invite_user_to_videochat" = "អញ្ជើញ %1$@ ទៅកាន់សន្ទនាវីដេអូ?";
 "videochat_invite_user_hint" = "តម្រូវឲ្យមានកម្មវិធីដែលមានសមត្ថភាព រឺកម្មវិធីរុករកដែលស្របគ្នាដល់ទីបញ្ចប់";
@@ -240,7 +233,6 @@
 "videochat_instance_from_qr" = "ប្រើ \"%1$@\" ដើម្បីអញ្ជើញអ្នកផ្សេងទៀតទៅកាន់សន្ទនាវីដេអូ?\n\nកំណត់ម្តង អ្នកអាចចាប់ផ្តើមសន្ទនាវីដេអូ ពីការសន្ទនាមួយទៅមួយទៀត។ បើធ្វើសន្ទនាវីដេអូនេះនឹងជំនួសការកំណត់មុនៗ។";
 "videochat_invitation" = "ការអញ្ជើញសន្ទនាវីដេអូ";
 "videochat_invitation_body" = "អ្នកត្រូវបានអញ្ជើញដើម្បីសន្ទនាជាវីដេអូ។ ចុច %1$@ ដើម្បីចូលរួម។";
-
 // get confirmations
 "ask_leave_group" = "តើអ្នកប្រាកដហើយថាចង់ចាកចេញពីក្រុមនេះ?";
 "ask_delete_message" = "តើអ្នកប្រាកដថា ចង់លុបសារនេះ?";
@@ -259,15 +251,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "លុប %1$@ ពីបញ្ជីចាក់ផ្សាយ?";
 "open_url_confirmation" = "តើអ្នកចង់បើកតំណនេះ?";
-
-
 // contact list
 "contacts_title" = "បញ្ជីទំនាក់ទំនង";
 "contacts_enter_name_or_email" = "សរសេរឈ្មោះឬអាសយដ្ឋានអ៊ីមែលនៅទីនេះ";
 "contacts_type_email_above" = "វាយបញ្ចូលអាសយដ្ឋានអ៊ីមែលខាងលើ";
 "contacts_empty_hint" = "មិនមានទំនាក់ទំនងទេ។";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "ការសន្ទនាដែលបានទុកក្នុងប័ណ្ណសារ";
 "chat_please_enter_message" = "សូមសរសេរសារមួយ។";
@@ -299,21 +287,17 @@
 "attachment_failed_to_load" = "បានបរាជ័យ ក្នុងការផ្ទុកឯកសារភ្ជាប់។";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "ចាក់សោរ ការថត";
-
 // mailing lists
 "mailing_list" = "អ៊ីម៉ែលការផ្សាយ";
 "mailing_list_profile_info" = "ការផ្លាស់ប្តូរឈ្មោះឬរូបភាពនៅលើ បញ្ជីប៉ុស្តិ៍សំបុត្រ អនុវត្តចំពោះឧបករណ៍នេះប៉ុណ្ណោះ។";
-
 // map
 "filter_map_on_time" = "បង្ហាញទីតាំងនៅក្នុងស៊ុមពេលវេលា";
 "show_location_traces" = "បង្ហាញដាន";
 "add_poi" = "ផ្ញើចំណុចចំណាប់អារម្មណ៍";
-
 // chat audit log
 "chat_audit_log_empty_message" = "សារប្រព័ន្ធ នៃសន្ទនានេះ នឹងបង្ហាញនៅទីនេះ។";
 "chat_audit_log_title" = "កំណត់ហេតុសវនកម្មជជែកកំសាន្តសម្រាប់ %1$@";
 "chat_audit_log_description" = "ទិដ្ឋភាពនេះ បង្ហាញតែប្រព័ន្ធ និងពត៌មានសារ។ ប្រយោជន៍សម្រាប់ការស្វែងរកសកម្មភាពសារចុងក្រោយ ដោយគ្មានរមូរតាមសារធម្មតា។";
-
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "កុំសួរម្តងទៀតសម្រាប់ %1$@";
@@ -322,14 +306,10 @@
 "puny_code_warning_question" = "តើអ្នកប្រាកដថា អ្នកចង់ទៅលេង %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "អ្នកបានធ្វើតាមតំណ ដែលអាចបង្ហាញពីតួអក្សរខុស ដោយប្រើរូបស្រដៀងគ្នាពីអក្ខរក្រមផ្សេងៗ។ ការធ្វើតាមតំណភ្ជាប់ដែលមានស្លាក %1$@ នឹងនាំទៅដល់ %2$@ ដែលមិនមែនជាតួអក្សរឡាតាំងធម្មតា។ ប្រសិនបើអ្នកមិនបាន រំពឹងគិតថាមានតួអក្សរបែបនេះ តំណនេះអាចបង្កគ្រោះថ្នាក់។";
-
-
 // search
 "search" = "ស្វែងរក";
 "search_explain" = "ស្វែងរកការសន្ទនា ទំនាក់ទំនង និងសារ។";
 "search_no_result_for_x" = "រកមិនឃើញលទ្ធផលសម្រាប់ \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "ឈ្មោះរបស់ក្រុម";
 "group_avatar" = "រូបភាពរបស់ក្រុម";
@@ -374,8 +354,6 @@
 "messages" = "សារ";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "បានប្រើ %1$@ នៃ %2$@";
-
-
 "login_title" = "កត់ចូល";
 // for classic email, we use the classical term "Account"
 "login_header" = "កត់ចូលទៅម៉ាសុីនមេរបស់អ្នក";
@@ -428,7 +406,6 @@
 "sync_all" = "ធ្វើសមកាលកម្មទាំងអស់";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "ការកំណត់រចនាសម្ព័ន្ឌ បរាជ័យ។ កំហុស៖ %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "បញ្ជូនទៅ…";
@@ -436,8 +413,6 @@
 "share_multiple_attachments_multiple_chats" = "ផ្ញើឯកសារ %1$d ទៅ សន្ទនា %2$d?\n\nឯកសារដែលបានផ្ញើហើយ មិនកែប្រែបានក្នុងទំហំដើមរបស់វា។ នេះ​មានន័យថា រូបភាព និងវីដេអូមិនត្រូវបានថតទុកទេ។";
 "share_text_multiple_chats" = "ផ្ញើអត្ថបទនេះទៅសន្ទនា %1$d?\n\n\"%2$@\"";
 "share_abort" = "ការខកខានចែករំលែក ដល់ពេលកំណត់បាត់បង់សិទ្ធ។";
-
-
 // preferences
 "pref_using_custom" = "ដោយប្រើតាមទម្លាប់: %1$@";
 "pref_using_default" = "ដោយប្រើលំនាំដើម";
@@ -555,7 +530,6 @@
 "emoji_objects" = "វត្ថុ";
 "emoji_symbols" = "និមិត្តសញ្ញា";
 "emoji_flags" = "ទង់ជាតិ";
-
 // automatically delete message
 "delete_old_messages" = "លុបសារចាស់";
 "autodel_device_title" = "លុបសារពីឧបករណ៍";
@@ -579,7 +553,6 @@
 "autodel_after_4_weeks" = "បន្ទាប់ពី ៤អាទិត្យ";
 "after_5_weeks" = "ក្រោយរយៈពេល៣០៥សប្តាហ៍";
 "autodel_after_1_year" = "បន្ទាប់ពី ១ឆ្នាំ";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "អ៊ិនគ្រីបស្វ័យប្រវត្តិ (ផ្ញើនិងទទួលសារដោយសម្ងាត់)";
@@ -598,8 +571,6 @@
 "autocrypt_continue_transfer_succeeded" = "ការតម្លើងឧបករណ៍ដល់ឧបករណ៍បានផ្ទេរហើយ។ ឧបករណ៍នេះរួចរាល់ហើយដើម្បីប្រើប្រាស់ អ៊ិនគ្រីបស្វ័យប្រវត្តិ មានតម្លើងដូចគ្នាឧបករណ៍ផ្សេងទៀត។";
 "autocrypt_continue_transfer_retry" = "ព្យាយាមម្តងទៀត";
 "autocrypt_bad_setup_code" = "កូដតម្លើងមិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត\n\nប្រសិនបើអ្នកមិនចងចាំកូដតម្លើង ចូរផ្ញើសារតម្លើងចាក់អ៊ិនគ្រីបស្វ័យប្រវត្តិថ្មីមួយពីឧបករណ៍ផ្សេងទៀត។";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "សារត្រូវបានបើក";
 "systemmsg_read_receipt_body" = "\"%1$@\" សារដែលអ្នកបានផ្ញើត្រូវបានបង្ហាញនៅលើ អេក្រង់របស់អ្នកទទួល\n\nនេះមិនមែនជាការធានាថា មាតិកាត្រួវបានអានទេ។";
@@ -665,10 +636,8 @@
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ កាលបរិច្ឆេទ ឬពេលវេលានៃឧបករណ៍របស់អ្នកហាក់ដូចជាមិនត្រឹមត្រូវ (%1$@)។\n\n កែតម្រូវនាឡិការបស់អ្នក ⏰🔧 ដើម្បីធានាថា សាររបស់អ្នកត្រូវបានទទួលត្រឹមត្រូវ។";
 "devicemsg_update_reminder" = "⚠️កំណែ Delta Chat របស់អ្នកប្រហែលជាហួសសម័យហើយ។\n\n នេះអាចបណ្តាលឱ្យមានបញ្ហាដោយសារតែដៃគូជជែករបស់អ្នកប្រើកំណែថ្មីជាង - ហើយអ្នកកំពុងបាត់លក្ខណៈពិសេសចុងក្រោយ 😳\n សូមពិនិត្យមើល https://get.delta.chat ឬហាងកម្មវិធីរបស់អ្នកដើម្បីទទួលបានព័ត៌មានថ្មីៗ ។";
-
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "សូមបញ្ចូល ប្រព័ន្ធកំណត់ដោយសម្ងាត់របស់អ្នក ដើម្បីបន្ត។";
-
 // qr code stuff
 "qr_code" = "QR កូដ";
 "load_qr_code_as_image" = "ផ្ទុកកូដ QR ជារូបភាព";
@@ -712,7 +681,6 @@
 "copy_qr_data_success" = "បានចម្លង QR-url ទៅក្តារខ្ទាស់";
 "mailto_dialog_header_select_chat" = "ជ្រើសរើសការជជែក ដើម្បីផ្ញើសារទៅកាន់";
 "mailto_link_could_not_be_decoded" = "សំបុត្រទៅតំណភ្ជាប់ មិនអាចឌិកូដទេ: %1$@";
-
 "notify_reply_button" = "ឆ្លើយតប";
 "notify_new_message" = "សារថ្មី";
 "notify_background_connection_enabled" = "តំណភ្ជាប់ផ្ទៃខាងក្រោយបានបើក";
@@ -737,10 +705,8 @@
 "ImageEditorHud_crop" = "កាត់";
 "ImageEditorHud_flip" = "ត្រឡប់";
 "ImageEditorHud_rotate" = "បង្វិល";
-
 // dc_str_* resources
 "encrypted_message" = "សារដែលបានធ្វើឲ្យសម្ងាត់";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "នេះគឺជាសា Delta Chat ផ្លូវការ នៅលើកម្មវិធីកុំព្យូទ័រលើតុ";
 "about_licensed_under_desktop" = "សូហ្វវែ Delta Chat នេះគឺបានអាជ្ញាប័ណ្ណនៅក្រោម GNU GPL ជំនាន់ ៣ និងប្រភពកូដ គឺអាចរកបាននៅលើ GitHub";
@@ -796,10 +762,7 @@
 "a11y_message_context_menu_btn_label" = "សកម្មភាពសារ";
 "a11y_background_preview_label" = "ការមើលផ្ទៃខាងក្រោយ";
 "a11y_disappearing_messages_activated" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈ បានធ្វើឱ្យសកម្ម";
-
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "ការជូនដំណឹងផ្ទៃខាងក្រោយ";
 "pref_background_notifications_explain" = "ប្រើតំណភ្ជាប់ផ្ទៃខាងក្រោយទៅម៉ាសុីនមេរបស់អ្មក និងបដិសេធការទាមទារបង្កើនប្រសិទ្ធភាពថ្ម។";
@@ -809,5 +772,3 @@
 "pref_reliable_service_explain" = "តម្រូវការជូនដំណឹងជាអចិន្រ្តៃយ៍";
 "perm_enable_bg_reminder_title" = "ប៉ះទីនេះដើម្បីទទួលសារកំឡុងពេល សា Delta Chat គឺស្ថិតនៅក្នុងផ្ទៃខាងក្រោយ។";
 "perm_enable_bg_already_done" = "អ្នកបានអនុញ្ញាតរួចរាល់ហើយឲ្យសា Delta Chat ដើម្បីទទួលសារនៅផ្ទៃខាងក្រោយ\n\nប្រសិនបើ សារនៅតែមិនមកដល់ផ្ទៃខាងក្រោយ សូមពិនិត្យការការកំណត់ប្រពន្ធ័របស់អ្នកផងដែរ។";
-
-

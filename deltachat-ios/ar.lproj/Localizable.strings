@@ -66,7 +66,6 @@
 "file" = "ملف";
 "files" = "الملفات";
 "unknown" = "مجهول";
-
 "green" = "أخضر";
 "red" = "أحمر";
 "blue" = "أزرق";
@@ -75,15 +74,12 @@
 "purple" = "بنفسجي";
 "magenta" = "وردي";
 "white" = "أبيض";
-
 "small" = "صغير";
 "normal" = "عادي";
 "large" = "كبيرة";
 "extra_large" = "كبيرة جداً";
-
 "fast" = "سريع";
 "slow" = "بطيء";
-
 "menu_new_chat" = "محادثة جديدة";
 "menu_new_group" = "فريق جديد";
 "menu_send" = "إرسال";
@@ -122,8 +118,6 @@
 "contacts_title" = "جهات الإتصا";
 "contacts_enter_name_or_email" = "ادخل الإسم أو البريد الإلكتروني";
 "contacts_empty_hint" = "لا توجد جهات اتصال.";
-
-
 "chat_camera_unavailable" = "الكاميرا غير متاحة.";
 "chat_share_with_title" = "شارك مع";
 "chat_input_placeholder" = "رسالة";
@@ -212,7 +206,6 @@
 "perm_continue" = "استمر";
 // dc_str_* resources
 "encrypted_message" = "رسالة مشفرة";
-
 "global_menu_preferences_language_desktop" = "اختر اللغة…";
 "global_menu_file_desktop" = "الملف";
 "global_menu_edit_desktop" = "تعديل";

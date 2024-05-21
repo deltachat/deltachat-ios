@@ -105,7 +105,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "Tôi";
 "draft" = "Bản nháp";
 "image" = "Hình ảnh";
@@ -143,7 +142,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Ứng dụng";
 "unknown" = "Không rõ";
-
 "green" = "Xanh";
 "red" = "Đỏ";
 "blue" = "Lam";
@@ -152,17 +150,14 @@
 "purple" = "Tím";
 "magenta" = "Đỏ tươi";
 "white" = "Trắng";
-
 "zoom" = "Thu phóng";
 "extra_small" = "Cực nhỏ";
 "small" = "Nhỏ";
 "normal" = "Bình thường";
 "large" = "Lớn";
 "extra_large" = "Cực lớn";
-
 "fast" = "Nhanh";
 "slow" = "Chậm";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Liên hệ mới";
 "menu_new_chat" = "Trò chuyện mới";
@@ -259,21 +254,17 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Thêm vào Màn hình chính";
 "donate" = "Quyên tặng";
-
 "mute_for_one_hour" = "Tắt tiếng trong 1 giờ";
 "mute_for_two_hours" = "Tắt tiếng trong 2 giờ";
 "mute_for_one_day" = "Tắt tiếng trong 1 ngày";
 "mute_for_seven_days" = "Tắt tiếng trong 7 ngày";
 "mute_forever" = "Tắt tiếng vĩnh viễn";
-
 "share_location_for_5_minutes" = "Trong 5 phút";
 "share_location_for_30_minutes" = "Trong 30 phút";
 "share_location_for_one_hour" = "Trong 1 giờ";
 "share_location_for_two_hours" = "Trong 2 giờ";
 "share_location_for_six_hours" = "Trong 6 giờ";
-
 "file_saved_to" = "Tệp đã được lưu vào \"%1$@\".";
-
 "videochat" = "Trò chuyện video";
 "videochat_invite_user_to_videochat" = "Mời %1$@ trò chuyện video?";
 "videochat_invite_user_hint" = "Điều này yêu cầu ứng dụng hoặc trình duyệt tương thích ở cả hai đầu.";
@@ -288,7 +279,6 @@
 "videochat_instance_from_qr" = "Sử dụng \"%1$@\" để mời người khác trò chuyện video?\n\nSau khi thiết lập, bạn có thể bắt đầu trò chuyện video từ mỗi cuộc trò chuyện. Điều này sẽ thay thế mọi cài đặt trước đó cho trò chuyện video.";
 "videochat_invitation" = "Lời mời trò chuyện video";
 "videochat_invitation_body" = "Bạn được mời tham gia cuộc trò chuyện video, hãy nhấp vào %1$@ để tham gia.";
-
 // get confirmations
 "ask_leave_group" = "Bạn có chắc chắn muốn rời khỏi nhóm này không?";
 "ask_delete_message" = "Bạn có chắc chắn muốn xóa tin nhắn này?";
@@ -307,15 +297,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Loại %1$@ khỏi danh sách phát sóng?";
 "open_url_confirmation" = "Bạn có muốn mở liên kết này không?";
-
-
 // contact list
 "contacts_title" = "Danh bạ";
 "contacts_enter_name_or_email" = "Nhập tên hoặc địa chỉ e-mail";
 "contacts_type_email_above" = "Nhập địa chỉ e-mail ở trên";
 "contacts_empty_hint" = "Không có liên hệ nào.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Cuộc trò chuyện đã lưu trữ";
 "chat_please_enter_message" = "Vui lòng nhập tin nhắn.";
@@ -351,11 +337,9 @@
 "attachment_failed_to_load" = "Không tải được tệp đính kèm";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Khóa ghi âm";
-
 // mailing lists
 "mailing_list" = "Danh sách gửi thư";
 "mailing_list_profile_info" = "Những thay đổi về tên và hình ảnh danh sách gửi thư chỉ áp dụng trên thiết bị này.";
-
 // webxdc
 // "Start..." button for an app
 "start_app" = "Bắt đầu…";
@@ -365,17 +349,14 @@
 "send_file_to" = "Gửi \"%1$@\" tới…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Gửi tin nhắn tới…";
-
 // map
 "filter_map_on_time" = "Hiển thị vị trí trong khung thời gian";
 "show_location_traces" = "Hiển thị dấu vết";
 "add_poi" = "Gửi điểm ưa thích";
-
 // chat audit log
 "chat_audit_log_empty_message" = "Tin nhắn hệ thống cho cuộc trò chuyện này xuất hiện ở đây";
 "chat_audit_log_title" = "Nhật ký kiểm tra trò chuyện cho %1$@";
 "chat_audit_log_description" = "Chỉ hiển thị thông báo hệ thống và thông tin; hữu ích cho việc tìm kiếm các hành động trò chuyện cuối cùng mà không cần phải cuộn qua nhiều tin nhắn.";
-
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Đừng hỏi lại %1$@";
@@ -384,16 +365,12 @@
 "puny_code_warning_question" = "Bạn có chắc chắn muốn ghé thăm %1$@ không?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Liên kết này có thể trình bày sai các ký tự có hình dáng tương tự từ các bảng chữ cái khác nhau. Đi theo liên kết có nhãn %1$@ sẽ dẫn đến %2$@, điều này là bình thường đối với các ký tự không phải Latinh. Nếu bạn không mong đợi những ký tự như vậy thì liên kết này có thể có hại.";
-
-
 // search
 "search" = "Tìm kiếm";
 "search_in_chat" = "Tìm kiếm trong Trò chuyện";
 "search_files" = "Tìm kiếm tập tin";
 "search_explain" = "Tìm kiếm cuộc trò chuyện, danh bạ và tin nhắn";
 "search_no_result_for_x" = "Không tìm thấy kết quả nào cho \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Tên nhóm";
 "group_avatar" = "Hình ảnh nhóm";
@@ -429,8 +406,6 @@
 "aeap_addr_changed" = "%1$@ đã thay đổi địa chỉ của họ từ %2$@ thành %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Bạn đã thay đổi địa chỉ email của mình từ %1$@ thành %2$@.\n\nNếu bây giờ bạn gửi thư đến một nhóm đã được xác minh, những người liên hệ ở đó sẽ tự động thay thế địa chỉ cũ bằng địa chỉ mới của bạn.\n\nĐiều đó thật tuyệt vời khuyên bạn nên thiết lập nhà cung cấp email cũ để chuyển tiếp tất cả email đến địa chỉ email mới của bạn. Nếu không, bạn có thể bỏ lỡ tin nhắn của những người chưa nhận được địa chỉ mới của bạn.";
-
-
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Thêm thiết bị thứ hai";
@@ -457,7 +432,6 @@
 // Shown beside progress bar, stay short
 "transferring" = "Đang chuyển…";
 "troubleshooting" = "Khắc phục sự cố";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Tin nhắn đến";
@@ -481,8 +455,6 @@
 "messages" = "Tin nhắn";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ trong tổng số %2$@ đã được sử dụng";
-
-
 "scan_invitation_code" = "Quét mã mời";
 "login_title" = "Đăng nhập";
 // for classic email, we use the classical term "Account"
@@ -536,7 +508,6 @@
 "sync_all" = "Đồng bộ hóa tất cả";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Cấu hình không thành công. Lỗi: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Chuyển tiếp tới…";
@@ -544,8 +515,6 @@
 "share_multiple_attachments_multiple_chats" = "Gửi %1$d tệp tới %2$d cuộc trò chuyện?\n\nCác tệp được gửi không được sửa đổi ở kích thước ban đầu (ví dụ: hình ảnh và video không được mã hóa lại).";
 "share_text_multiple_chats" = "Gửi văn bản này tới %1$d cuộc trò chuyện?\n\n\"%2$@\"";
 "share_abort" = "Chia sẻ bị hủy do thiếu quyền.";
-
-
 // preferences
 "pref_using_custom" = "Sử dụng tùy chỉnh: %1$@";
 "pref_using_default" = "Sử dụng mặc định: %1$@";
@@ -678,7 +647,6 @@
 "emoji_objects" = "Đối tượng";
 "emoji_symbols" = "Ký hiệu";
 "emoji_flags" = "Cờ";
-
 // Reactions
 "reactions" = "Phản ứng";
 // automatically delete message
@@ -704,7 +672,6 @@
 "autodel_after_4_weeks" = "Sau 4 tuần";
 "after_5_weeks" = "Sau 5 tuần";
 "autodel_after_1_year" = "Sau 1 năm";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -723,8 +690,6 @@
 "autocrypt_continue_transfer_succeeded" = "Đã chuyển thiết lập end-to-end. Thiết bị này hiện đã sẵn sàng sử dụng Autocrypt với cùng thiết lập như thiết bị kia.";
 "autocrypt_continue_transfer_retry" = "Thử lại";
 "autocrypt_bad_setup_code" = "Mã thiết lập sai. Vui lòng thử lại.\n\nNếu bạn không nhớ mã thiết lập, hãy gửi Tin nhắn thiết lập Autocrypt mới từ thiết bị kia.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Đã mở tin nhắn";
 "systemmsg_read_receipt_body" = "Tin nhắn \"%1$@\" bạn gửi đã được hiển thị trên màn hình của người nhận.\n\nĐiều này không đảm bảo rằng nội dung đã được đọc.";
@@ -801,17 +766,14 @@
 "chat_protection_broken_tap_to_learn_more" = "%1$@ đã gửi tin nhắn từ một thiết bị khác. Nhấn để tìm hiểu thêm.";
 "chat_protection_broken_explanation" = "Mã hóa hai đầu không còn được đảm bảo nữa, có thể vì %1$@ đã cài đặt lại Delta Chat hoặc đã gửi tin nhắn từ một thiết bị khác.\n\nBạn có thể gặp trực tiếp họ và quét lại mã QR của họ để thiết lập lại tính năng mã hóa hai đầu được đảm bảo kết thúc mã hóa.";
 "learn_more" = "Tìm hiểu thêm";
-
 "devicemsg_self_deleted" = "Bạn đã xóa cuộc trò chuyện \"Tin nhắn đã lưu\".\n\nℹ️ Để sử dụng lại tính năng \"Tin nhắn đã lưu\", hãy tạo một cuộc trò chuyện mới với chính bạn.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Bộ nhớ nhà cung cấp của bạn sắp hết: %1$@%% đã được sử dụng.\n\nBạn có thể không nhận được tin nhắn nếu bộ nhớ đầy.\n\n 👉 Vui lòng kiểm tra xem bạn có thể xóa không dữ liệu cũ trong giao diện web của nhà cung cấp và cân nhắc bật \"Cài đặt / Xóa tin nhắn cũ\". Bạn có thể kiểm tra mức sử dụng bộ nhớ hiện tại của mình bất kỳ lúc nào tại \"Cài đặt / Kết nối\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Ngày hoặc giờ trên thiết bị của bạn có vẻ không chính xác (%1$@).\n\nĐiều chỉnh đồng hồ của bạn ⏰🔧 để đảm bảo tin nhắn của bạn được nhận chính xác.";
 "devicemsg_update_reminder" = "⚠️ Phiên bản Delta Chat của bạn có thể đã lỗi thời.\n\nĐiều này có thể gây ra sự cố vì đối tác trò chuyện của bạn sử dụng các phiên bản mới hơn - và bạn đang thiếu các tính năng mới nhất 😳\nVui lòng kiểm tra https://get.delta.chat hoặc cửa hàng ứng dụng của bạn để biết thông tin cập nhật .";
-
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Mở khóa để tiếp tục";
-
 // qr code stuff
 "qr_code" = "Mã QR";
 "load_qr_code_as_image" = "Tải mã QR dưới dạng hình ảnh";
@@ -869,8 +831,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ đã có tin nhắn nháp, bạn có muốn thay thế nó không?";
 "mailto_link_could_not_be_decoded" = "không thể giải mã được liên kết mailto: %1$@";
-
-// notifications 
+// notifications
 "notify_dismiss" = "Loại bỏ";
 "notify_reply_button" = "Trả lời";
 "notify_new_message" = "Tin nhắn mới";
@@ -883,8 +844,6 @@
 "notifications_disabled" = "Đã tắt thông báo";
 "new_messages" = "Tin nhắn mới";
 "n_messages_in_m_chats" = "%1$d tin nhắn trong %2$d cuộc trò chuyện";
-
-
 // permissions
 "perm_required_title" = "Cần có sự cho phép";
 "perm_continue" = "Tiếp tục";
@@ -893,7 +852,6 @@
 "perm_explain_access_to_storage_denied" = "Để nhận hoặc gửi tệp, hãy đi tới cài đặt ứng dụng, chọn \"Quyền\" và bật \"Bộ nhớ\".";
 "perm_explain_access_to_location_denied" = "Để đính kèm một vị trí, hãy đi tới cài đặt ứng dụng, chọn \"Quyền\" và bật \"Vị trí\".";
 "perm_explain_access_to_notifications_denied" = "Để nhận thông báo, hãy đi tới \"Cài đặt hệ thống / Ứng dụng / Delta Chat\" và bật \"Thông báo\".";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Vẽ bất cứ nơi nào để làm mờ";
 "ImageEditorHud_add_text" = "Thêm văn bản";
@@ -903,10 +861,8 @@
 "ImageEditorHud_crop" = "Cắt";
 "ImageEditorHud_flip" = "Lật";
 "ImageEditorHud_rotate" = "Xoay";
-
 // dc_str_* resources
 "encrypted_message" = "Tin nhắn được mã hóa";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Đây là ứng dụng Delta Chat Desktop chính thức.";
 "about_licensed_under_desktop" = "Phần mềm này được cấp phép theo GNU GPL phiên bản 3 và mã nguồn có sẵn trên GitHub.";
@@ -954,7 +910,6 @@
 "no_spellcheck_suggestions_found" = "Không tìm thấy gợi ý chính tả.";
 "show_window" = "Hiển thị cửa sổ";
 "login_socks5_experimental_warning" = "Hỗ trợ SOCKS5 hiện đang thử nghiệm. Vui lòng sử dụng có nguy cơ của riêng bạn. Nếu bạn nhập một địa chỉ vào trường e-mail, việc tra cứu DNS sẽ không được chuyển qua SOCKS5.";
-
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tổ hợp phím";
 "switch_between_chats" = "Chuyển đổi giữa các cuộc trò chuyện";
@@ -965,7 +920,6 @@
 "focus_message_input" = "Nhập tin nhắn tập trung";
 "force_refresh_network" = "Buộc làm mới mạng";
 "insert_newline" = "Chèn dòng mới";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Trạng thái vận chuyển: Lỗi";
 "a11y_encryption_padlock" = "Ổ khóa mã hóa";
@@ -977,7 +931,6 @@
 "a11y_message_context_menu_btn_label" = "Hành động tin nhắn";
 "a11y_background_preview_label" = "Xem trước hình nền";
 "a11y_disappearing_messages_activated" = "Đã kích hoạt tin nhắn biến mất";
-
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Dừng chia sẻ vị trí";
 "a11y_voice_message_hint_ios" = "Sau khi ghi, nhấn đúp để gửi. Để loại bỏ bản ghi, hãy chà bằng hai ngón tay.";
@@ -1006,8 +959,6 @@
 "shortcut_step1_tap_share_btn" = "Nhấp vào nút chia sẻ";
 "shortcut_step2_tap_add_to_home_screen" = "Chọn \"Thêm vào màn hình chính\" để thêm ứng dụng vào màn hình chính của bạn.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Thông báo nền";
 "pref_background_notifications_explain" = "Sử dụng kết nối nền tới máy chủ của bạn và yêu cầu bỏ qua tối ưu hóa pin.";
@@ -1017,5 +968,3 @@
 "pref_reliable_service_explain" = "Yêu cầu thông báo vĩnh viễn";
 "perm_enable_bg_reminder_title" = "Nhấn vào đây để nhận tin nhắn khi Delta Chat ở chế độ nền.";
 "perm_enable_bg_already_done" = "Bạn đã cho phép Delta Chat nhận tin nhắn trong nền.\n\nNếu tin nhắn vẫn không đến trong nền, vui lòng kiểm tra cài đặt hệ thống của bạn.";
-
-

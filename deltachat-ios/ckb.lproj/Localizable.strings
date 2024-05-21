@@ -94,7 +94,6 @@
 "file" = "پەڕگە";
 "files" = "پەڕگەکان";
 "unknown" = "نەناسراو";
-
 "green" = "سەوز";
 "red" = "سوور";
 "blue" = "شین";
@@ -103,17 +102,14 @@
 "purple" = "ئەرخەوانی";
 "magenta" = "سووری ئەرخەوانی";
 "white" = "سپی";
-
 "zoom" = "نزیک کردنەوە";
 "extra_small" = "زۆر بچووک";
 "small" = "بچووک";
 "normal" = "ئاسایی";
 "large" = "گەورە";
 "extra_large" = "زۆر گەورە";
-
 "fast" = "خێرا";
 "slow" = "خاو";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "بەردەنگی نوێ";
 "menu_new_chat" = "وتووێژی نوێ";
@@ -183,15 +179,12 @@
 "mute_for_one_day" = "بێدەنگ کردن بۆ ماوەی 1 ڕۆژ";
 "mute_for_seven_days" = "بێدەنگ کردن بۆ ماوەی 7 ڕۆژ";
 "mute_forever" = "بێدەنگ کردن بۆ هەمیشە";
-
 "share_location_for_5_minutes" = "بۆ ماوەی 5 خولەک";
 "share_location_for_30_minutes" = "بۆ ماوەی 30 خولەک";
 "share_location_for_one_hour" = "بۆ ماوەی 1 کاتژمێر";
 "share_location_for_two_hours" = "بۆ ماوەی 2 کاتژمێر";
 "share_location_for_six_hours" = "بۆ ماوەی 6 کاتژمێر";
-
 "file_saved_to" = "پەڕگەکە پاشەکەوت کرا لە \"%1$@\".";
-
 "videochat" = "وتووێژی ڤیدیۆیی";
 "videochat_invite_user_to_videochat" = "بانگهێشتی %1$@ دەکەی بۆ وتووێژی ڤیدیۆیی؟";
 "videochat_invite_user_hint" = "نەرمامێر یان وێبگەڕێکی گونجاو، لەلایەن هەردووکتانەوە، پێویستە.";
@@ -204,7 +197,6 @@
 "videochat_instance_from_qr" = "%1$@ بەکار دەهێنی بۆ بانگهێشتی کەسانی دیکە بۆ وتووێژی ڤیدیۆیی؟\n\n بەم چەشنە، دەتوانیت لە هەموو وتووێژێکی دووقۆڵیدا وتووێژێکی ڤیدیۆیی دەستپێبکەیت. ئەمە جێگای ڕێکخستنەکانی پێشووتر، لەسەر وتووێژی ڤیدیۆیی، دەگرێتەوە. ئەگەر ڕێکخستنێک بووبێت.";
 "videochat_invitation" = "بانگهێشتی وتووێژی ڤیدیۆیی";
 "videochat_invitation_body" = "تۆ بانگهێشت کراوی بۆ وتووێژێکی ڤیدیۆیی، بۆ بەشدار بوون لەسەر %1$@ کرتە بکە.";
-
 // get confirmations
 "ask_leave_group" = "دڵنیای دەتەوێت ئەم کۆڕە بەجێ بێڵیت؟";
 "ask_forward" = "ئەو پەیامانە دەنێریت بۆ %1$@؟";
@@ -220,15 +212,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@لە کۆڕ دەخەیتەدەر؟";
 "open_url_confirmation" = "دەتەوێت ئەم بەستەرە بکەیتەوە؟";
-
-
 // contact list
 "contacts_title" = "بەردەنگەکان";
 "contacts_enter_name_or_email" = "ناو یان ئیمەیل بنووسە";
 "contacts_type_email_above" = "ئیمەیلەکە لە سەرەوە بنووسە";
 "contacts_empty_hint" = "هیچ بەردەنگێک نییە";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "وتووێژە ئەرشیڤکراوەکان";
 "chat_please_enter_message" = "تکایە پەیامێک بنووسە";
@@ -264,8 +252,6 @@
 "search" = "گەڕان";
 "search_explain" = "بگەڕە بۆ وتووێژەکان و بەردەنگەکان و پەیامەکان";
 "search_no_result_for_x" = "هیچ ئەنجامێک نەدۆزرایەوە بۆ \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "ناوی کۆڕ";
 "group_avatar" = "وێنەی کۆڕ";
@@ -421,7 +407,6 @@
 "emoji_objects" = "شتومەک";
 "emoji_symbols" = "هێماکان";
 "emoji_flags" = "ئاڵاکان";
-
 // automatically delete message
 "delete_old_messages" = "سڕینەوەی پەیامە کۆنەکان";
 "autodel_device_title" = "سڕینەوەی پەیامەکان لەسەر مۆبایەلەکت";
@@ -439,7 +424,6 @@
 "autodel_after_4_weeks" = "پاش 4 حەوتە";
 "after_5_weeks" = "پاش 5 حەوتە";
 "autodel_after_1_year" = "پاش 1 ساڵ";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "ئۆتۆکریپت";
@@ -500,7 +484,6 @@
 "perm_explain_access_to_location_denied" = "بۆ لکاندنی شوێنێک، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"شوێن\" چالاک بکەوە.";
 // dc_str_* resources
 "encrypted_message" = "پەیامی شفرەکراو";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "ئەمە نەرمامێری فەرمی دێڵتا چاتە بۆ کۆمپووتەری ڕوومێز.";
 "welcome_desktop" = "بەخێر بێن بۆ دێڵتا چات";
@@ -540,14 +523,9 @@
 "a11y_delivery_status_invalid" = "دۆخی گەیشتن ناڕەوایە";
 "a11y_message_context_menu_btn_label" = "چالاکییەکانی پەیام";
 "a11y_disappearing_messages_activated" = "پەیامە خۆشارەوەکان چالاک کرا";
-
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "وریاکەرەوەکانی پشتخان";
 "pref_reliable_service_explain" = "وریاکەرەوەیەکی هەمیشەیی پێویستە";
 "perm_enable_bg_reminder_title" = "بۆ وەرگرتنی پەیامەکان لەو کاتانەدا کە دێڵتا چات لە پشتخانەوەیە، لێرە کرتە بکە.";
 "perm_enable_bg_already_done" = "تۆ ئێستا ڕێگەت بە دێڵتا چات دا کە لە پشتخانەوە پەیامەکان وەربگرێت.\n\n ئەگەر هێشتا لە پشخاندا پەیامەکان نایەن، سەرنجێکیش لە ڕێکخستنەکانی سیستەم بدەوە.";
-
-

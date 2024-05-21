@@ -106,7 +106,6 @@
 "file" = "Fil";
 "files" = "Filer";
 "unknown" = "Ukendt";
-
 "green" = "Grøn";
 "red" = "Rød";
 "blue" = "Blå";
@@ -115,17 +114,14 @@
 "purple" = "Lilla";
 "magenta" = "Magentarød";
 "white" = "Hvid";
-
 "zoom" = "Zoom";
 "extra_small" = "Ekstra lille";
 "small" = "Lille";
 "normal" = "Normal";
 "large" = "Stor";
 "extra_large" = "Ekstra stor";
-
 "fast" = "Hurtig";
 "slow" = "Langsom";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Ny kontakt";
 "menu_new_chat" = "Ny samtale";
@@ -202,15 +198,12 @@
 "mute_for_one_day" = "Dæmp i 1 dag";
 "mute_for_seven_days" = "Dæmp i 7 dage";
 "mute_forever" = "Stille for altid";
-
 "share_location_for_5_minutes" = "i 5 minutter";
 "share_location_for_30_minutes" = "i 30 minutter";
 "share_location_for_one_hour" = "i 1 time";
 "share_location_for_two_hours" = "i 2 timer";
 "share_location_for_six_hours" = "i 6 timer";
-
 "file_saved_to" = "Fil gemt til \"%1$@\".";
-
 "videochat" = "Videochat";
 "videochat_invite_user_to_videochat" = "Invitér %1$@ til en videochat?";
 "videochat_invite_user_hint" = "Dette kræver en kompatibel app eller en kompatibel webbrowser hos både afsender og modtager.";
@@ -223,7 +216,6 @@
 "videochat_instance_from_qr" = "Brug \"%1$@\" til at invitere andre til videochats?\n\nNår det er sat kan du starte en videochat fra hver en-til-en chat. Dette vil erstatte den tidligere indstilling for videochats hvis den findes.";
 "videochat_invitation" = "Videochat-invitation";
 "videochat_invitation_body" = "Du er inviteret til en videochat, klik %1$@ for at tilslutte dig.";
-
 // get confirmations
 "ask_leave_group" = "Forlad denne gruppe?";
 "ask_delete_message" = "Er du sikker på at du vil slette denne besked?";
@@ -240,15 +232,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Fjern %1$@ fra gruppe?";
 "open_url_confirmation" = "Vil du åbne dette link?";
-
-
 // contact list
 "contacts_title" = "Kontakter";
 "contacts_enter_name_or_email" = "Indtast navn eller e-mailadresse";
 "contacts_type_email_above" = "Indtast e-mailadresse ovenover";
 "contacts_empty_hint" = "Ingen kontakter";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Arkiverede samtaler";
 "chat_please_enter_message" = "Indtast besked";
@@ -279,13 +267,10 @@
 "filter_map_on_time" = "Vis placeringer i tidsramme";
 "show_location_traces" = "Vis spor";
 "add_poi" = "Send interessepunkt";
-
 // search
 "search" = "Søg";
 "search_explain" = "Søg efter samtaler, kontakter og beskeder";
 "search_no_result_for_x" = "Ingen resultater fundet for  \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Gruppenavn";
 "group_avatar" = "Gruppeikon";
@@ -325,8 +310,6 @@
 "messages" = "Beskeder";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ af %2$@ brugt";
-
-
 "login_title" = "Login";
 // for classic email, we use the classical term "Account"
 "login_header" = "Login til server";
@@ -377,7 +360,6 @@
 "sync_all" = "Synkroniser Alle";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfiguration mislykkedes. Fejl: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Videresend til …";
@@ -385,8 +367,6 @@
 "share_multiple_attachments_multiple_chats" = "Send %1$d file(er) til %2$d samtaler?\n\nFilerne bliver sendt umodificeret i deres originale størrelse, f.eks. billeder og videoer bliver ikke ændret.";
 "share_text_multiple_chats" = "Send denne tekst til %1$d samtaler?\n\n\"%2$@\"";
 "share_abort" = "Deling afbrudt på grund af manglende tilladelser.";
-
-
 // preferences
 "pref_using_custom" = "Bruger tilpasset: %1$@";
 "pref_using_default" = "Bruger standard: %1$@";
@@ -493,7 +473,6 @@
 "emoji_objects" = "Objekter";
 "emoji_symbols" = "Symboler";
 "emoji_flags" = "Flag";
-
 // automatically delete message
 "delete_old_messages" = "Slet gamle beskeder";
 "autodel_device_title" = "Slet beskeder fra enhed";
@@ -517,7 +496,6 @@
 "autodel_after_4_weeks" = "Efter 4 uger";
 "after_5_weeks" = "Efter 5 uger";
 "autodel_after_1_year" = "Efter 1 år";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -536,8 +514,6 @@
 "autocrypt_continue_transfer_succeeded" = "Ende-til-ende opsætning overført. Enheden er nu klar til at bruge Autocrypt med samme opsætning som den anden enhed.";
 "autocrypt_continue_transfer_retry" = "Prøv igen";
 "autocrypt_bad_setup_code" = "Ugyldig opsætningskode. Prøv igen.\n\nKan opsætningskoden ikke huskes, send blot en anden Autocrypt opsætning besked fra den anden enhed.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Besked åbnet";
 "systemmsg_read_receipt_body" = "Beskeden \"%1$@\" du har sendt blev vist på modtagerens skærm.\n\nDette er ikke en garanti for at indholdet blev læst.";
@@ -650,10 +626,8 @@
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Tegn hvor som helst for at sløre";
 "ImageEditorHud_rotate" = "Roter";
-
 // dc_str_* resources
 "encrypted_message" = "Krypteret besked";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Dette er den officielle Delta Chat Desktop app.";
 "about_licensed_under_desktop" = "Denne software er licenseret under GNU GPL version 3 og kildekoden er tilgængelig på GitHub";
@@ -705,10 +679,7 @@
 "a11y_message_context_menu_btn_label" = "Beskedhandlinger";
 "a11y_background_preview_label" = "Baggrundsvisning";
 "a11y_disappearing_messages_activated" = "Beskeder med tidsudløb aktiveret";
-
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Baggrundsnotifikationer";
 "pref_background_notifications_explain" = "Benytter en forbindelse til din server i baggrunden og kræver at batterioptimeringer bliver ignoreret.";
@@ -718,5 +689,3 @@
 "pref_reliable_service_explain" = "Kræver en permanent forbindelse";
 "perm_enable_bg_reminder_title" = "Tryk her for at modtage beskeder når Delta Chat er i baggrunden.";
 "perm_enable_bg_already_done" = "Du har allerede tilladt Delta Chat at modtage beskeder i baggrunden.\n\nHvis beskeder ikke ankommer i baggrunden, undersøg dine systemindstillinger.";
-
-

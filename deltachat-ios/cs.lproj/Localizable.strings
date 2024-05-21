@@ -141,7 +141,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Aplikace";
 "unknown" = "Neznámá";
-
 "green" = "Zelená";
 "red" = "Červená";
 "blue" = "Modrá";
@@ -150,17 +149,14 @@
 "purple" = "Purpurová";
 "magenta" = "Fialová";
 "white" = "Bílá";
-
 "zoom" = "Zvětšit";
 "extra_small" = "Velmi malá";
 "small" = "Malá";
 "normal" = "Normální";
 "large" = "Velká";
 "extra_large" = "Velmi velká";
-
 "fast" = "Rychle";
 "slow" = "Pomalu";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nový kontakt";
 "menu_new_chat" = "Nový chat";
@@ -258,15 +254,12 @@
 "mute_for_one_day" = "Umlčet na 1 den";
 "mute_for_seven_days" = "Umlčet na 7 dní";
 "mute_forever" = "Umlčet na pořád";
-
 "share_location_for_5_minutes" = "na 5 minut";
 "share_location_for_30_minutes" = "na 30 minut";
 "share_location_for_one_hour" = "na 1 hodinu";
 "share_location_for_two_hours" = "na 2 hodiny";
 "share_location_for_six_hours" = "na 6 hodin";
-
 "file_saved_to" = "Soubor uložen do \"%1$@\".";
-
 "videochat" = "Video hovor";
 "videochat_invite_user_to_videochat" = "Pozvi %1$@ na video hovor?";
 "videochat_invite_user_hint" = "Toto vyžaduje odpovídající prohlížeč na obou koncích.";
@@ -279,7 +272,6 @@
 "videochat_instance_from_qr" = "Použít \"%1$@\" k pozvání na video hovory?\n\nPokud nastaveno, můžete začít video hovor v každém chatu jeden na jednoho. Toto nahradí jakékoli předchozí nastavení video hovorů.";
 "videochat_invitation" = "Výzva k video hovoru";
 "videochat_invitation_body" = "Jste vyzváni k video hovoru, připojte se stiskem %1$@";
-
 // get confirmations
 "ask_leave_group" = "Opravdu opustit tuto skupinu?";
 "ask_forward" = "Přepošli zprávy na adresu %1$@?";
@@ -295,15 +287,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Odstranit %1$@ ze skupiny?";
 "open_url_confirmation" = "Otevřít tento odkaz?";
-
-
 // contact list
 "contacts_title" = "Kontakty";
 "contacts_enter_name_or_email" = "Zadej jméno nebo e-mail";
 "contacts_type_email_above" = "Zadej e-mail nahoře";
 "contacts_empty_hint" = "Žádné kontakty";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Archivované chaty";
 "chat_please_enter_message" = "Zadejte zprávu, prosím.";
@@ -340,19 +328,15 @@
 "filter_map_on_time" = "Zobraz polohu v časovém rámci";
 "show_location_traces" = "Ukaž trasy";
 "add_poi" = "Pošli polohu zájmu";
-
 // chat audit log
 "chat_audit_log_empty_message" = "Zde se zobrazují systémové zprávy pro tento chat";
 "chat_audit_log_title" = "Protokol auditu pro chat %1$@";
 "chat_audit_log_description" = "Zobrazuje pouze systémové a informační zprávy; užitečné pro nalezení posledních akcí chatu bez procházení mnoha zpráv. ";
-
 // search
 "search" = "Hledej";
 "search_in_chat" = "Vyhledávat v chatu";
 "search_explain" = "Vyhledávat chaty, kontakty a zprávy";
 "search_no_result_for_x" = "Žádný výsledek pro \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Název skupiny";
 "group_avatar" = "Obrázek skupiny";
@@ -425,7 +409,6 @@
 "try_connect_now" = "Teď se zkus připojit";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Nastavení selhalo. Chyba: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Přeposlat komu ...";
@@ -433,8 +416,6 @@
 "share_multiple_attachments_multiple_chats" = "Poslat %1$d soubor(y) do %2$d chatu?\n\nSoubory budou zachovány v původní velikosti. Obrázky a videa nebudou překódována.";
 "share_text_multiple_chats" = "Poslat tento text do %1$d chatů?\n\n\"%2$@\"";
 "share_abort" = "Sdílení přerušeno díky chybějícím oprávnění.";
-
-
 // preferences
 "pref_using_custom" = "Nastaven vlastní: %1$@";
 "pref_using_default" = "Nastaven výchozí: %1$@";
@@ -544,7 +525,6 @@
 "emoji_objects" = "Objekty";
 "emoji_symbols" = "Symboly";
 "emoji_flags" = "Vlajky";
-
 // automatically delete message
 "delete_old_messages" = "Vymaž staré zprávy";
 "autodel_device_title" = "Vymaž zprávy z přístroje";
@@ -568,7 +548,6 @@
 "autodel_after_4_weeks" = "Po 4 týdnech";
 "after_5_weeks" = "Po 5 týdnech";
 "autodel_after_1_year" = "Po 1 roce";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -587,8 +566,6 @@
 "autocrypt_continue_transfer_succeeded" = "Nastavení šifrování bylo přeneseno. Toto zařízení je připraveno k užívání Autocryptu se stejným nastavením jako předchozí zařízení.";
 "autocrypt_continue_transfer_retry" = "Zkus znovu";
 "autocrypt_bad_setup_code" = "Neplatný kód. Zkus to znovu, prosím.\n\nPokud neznáš kód, zkus z prvního přístroje poslat Nastavení Autocryptu znovu.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Zpráva otevřena";
 "systemmsg_read_receipt_body" = "Odeslaná zpráva \"%1$@\" byla příjemci zobrazena na jeho přístroji.\n\nNicméně přečtení obsahu není zaručeno.";
@@ -653,7 +630,6 @@
 "invalid_unencrypted_tap_to_learn_more" = "⚠️%1$@vyžaduje end-to-end šifrování, které pro tento chat ještě není nastaveno. Klepnutím se dozvíte více. ";
 "devicemsg_self_deleted" = "Smazali jste chat „Uložené zprávy“.\n\nℹ️ Chcete-li znovu použít funkci „Uložené zprávy“, vytvořte si nový chat. ";
 "devicemsg_update_reminder" = "⚠️ Vaše verze Delta Chatu může být zastaralá.\n\nTo může způsobit problémy, protože vaši partneři v chatu používají novější verze – a vám chybí nejnovější funkce 😳\nAktualizace najdete na https://get.delta.chat nebo v obchodě s aplikacemi . ";
-
 // qr code stuff
 "qr_code" = "QR kód";
 "load_qr_code_as_image" = "Nahraj QR kód z obrázku";
@@ -697,8 +673,6 @@
 "notify_name_only" = "Pouze jméno";
 "notify_no_name_or_message" = "Ani jméno ani zpráva";
 "n_messages_in_m_chats" = "%1$d zprávy v %2$dchatech ";
-
-
 // permissions
 "perm_required_title" = "Vyžaduj povolení";
 "perm_continue" = "Pokračuj";
@@ -707,12 +681,10 @@
 "perm_explain_access_to_storage_denied" = "Pro příjem a posílání souborů jdi do nastavení aplikace, pokračuj do Povolení, a tam povol Ukládání.";
 "perm_explain_access_to_location_denied" = "K posílání polohy jdi do nastavení aplikace, pokračuj do Povolení, a tam povol Polohu.";
 "perm_explain_access_to_notifications_denied" = "Chcete-li dostávat oznámení, přejděte na „Nastavení systému / Aplikace / Delta Chat“ a povolte „Oznámení“. ";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Kreslením rozmazávej";
 // dc_str_* resources
 "encrypted_message" = "Šifrovaná zpráva";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Toto je původní aplikace Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Tento software je pod licencí GNU GPL verze 3 a zdrojový kód je k mání na GitHubu.";
@@ -766,13 +738,10 @@
 "a11y_message_context_menu_btn_label" = "Akce se zprávou";
 "a11y_background_preview_label" = "Náhled pozadí";
 "a11y_disappearing_messages_activated" = "Samomazací zprávy jsou zapnuty";
-
 "import_device_contacts_hint" = "Chcete-li chatovat s kontakty ze svého zařízení, otevřete Nastavení a povolte „Kontakty“.";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Zde se zobrazí aplikace přijaté nebo odeslané v libovolném chatu. „Soubory“ zobrazuje právě stažené aplikace. ";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "Upozornění v pozadí";
 "pref_background_notifications_explain" = "V pozadí udržuje spojení s tvým serverem. Vyžaduje nedbání optimalizací baterie.";
@@ -782,5 +751,3 @@
 "pref_reliable_service_explain" = "Vyžaduje neustálé upozornění";
 "perm_enable_bg_reminder_title" = "Stiskni zde a přijímání zpráv bude probíhat při chodu Delta Chatu na pozadí.";
 "perm_enable_bg_already_done" = "Přijímání zpráv na pozadí je Delta Chatu již povoleno.\n\nV případě nepřicházení nových zpráv si prosím zkontroluj své systémové nastavení.";
-
-

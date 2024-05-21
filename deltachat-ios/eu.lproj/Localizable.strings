@@ -78,7 +78,6 @@
 "gallery" = "Galeria";
 "file" = "Fitxategia";
 "unknown" = "Ezezaguna";
-
 "green" = "Berdea";
 "red" = "Gorria";
 "blue" = "Urdina";
@@ -87,15 +86,12 @@
 "purple" = "Morea";
 "magenta" = "Magenta";
 "white" = "Zuria";
-
 "small" = "Txikia";
 "normal" = "Arrunta";
 "large" = "Handia";
 "extra_large" = "Oso handia";
-
 "fast" = "Azkarra";
 "slow" = "Motela";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Kontaktu berria";
 "menu_new_chat" = "Txat berria";
@@ -154,15 +150,12 @@
 "mute_for_one_day" = "Mututu egun bat";
 "mute_for_seven_days" = "Mututu 7 egun";
 "mute_forever" = "Mututu betirako";
-
 "share_location_for_5_minutes" = "5 minutuz";
 "share_location_for_30_minutes" = "30 minutuz";
 "share_location_for_one_hour" = "Ordu 1";
 "share_location_for_two_hours" = "2 orduz";
 "share_location_for_six_hours" = "6 orduz";
-
 "file_saved_to" = "Fitxategia \"%1$@\" helbidean gordeta";
-
 // get confirmations
 "ask_leave_group" = "Ziur talde honetatik atera nahi duzula?";
 "ask_forward" = "Birbidali mezuak %1$@ erabiltzaileari?";
@@ -180,8 +173,6 @@
 "contacts_enter_name_or_email" = "Sartu izena edo e-mail helbidea";
 "contacts_type_email_above" = "Idatzi e-mail helbidea goian";
 "contacts_empty_hint" = "Kontakturik ez";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Artxibatutako txatak";
 "chat_please_enter_message" = "Idatzi mezu bat.";
@@ -206,13 +197,10 @@
 "filter_map_on_time" = "Erakutsi kokalekuak denbora markoan";
 "show_location_traces" = "Erakutsi lorratzak";
 "add_poi" = "Bidali interesezko puntua";
-
 // search
 "search" = "Bilatu";
 "search_explain" = "Bilatu txatak, kontaktuak, eta mezuak.";
 "search_no_result_for_x" = "Ez da emaitzarik aurkitu \"%1$@\" bilaketarentzat";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Taldearen izena";
 "group_avatar" = "Taldearen abatarra";
@@ -274,8 +262,6 @@
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Birbidali honi …";
 "share_abort" = "Partekatzea eten da baimenak falta direlako.";
-
-
 // preferences
 "pref_using_custom" = "Pertsonalizatua erabiltzen: %1$@";
 "pref_using_default" = "Lehenetsia erabiltzen: %1$@";
@@ -374,7 +360,6 @@
 "autodel_after_1_week" = "Aste bat eta gero";
 "autodel_after_4_weeks" = "4 aste eta gero";
 "autodel_after_1_year" = "Urtebete eta gero";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -393,8 +378,6 @@
 "autocrypt_continue_transfer_succeeded" = "Muturretik muturrerako ezarpena transferituta. Gailu hau Autocrypt erabiltzeko prest dago orain, beste gailuaren ezarpen berdinarekin.";
 "autocrypt_continue_transfer_retry" = "Saiatu berriro";
 "autocrypt_bad_setup_code" = "Ezarpen kode okerra. Saiatu berriro mesedez.\n\nEz baduzu ezarpen kodea gogoratzen, bidali beste Autocrypt ezarpen mezu bat beste gailutik.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Irakurragiria";
 "systemmsg_read_receipt_body" = "Hau \"%1$@\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
@@ -462,7 +445,6 @@
 "perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Kokalekua\".";
 // dc_str_* resources
 "encrypted_message" = "Zifratutako mezua";
-
 "welcome_desktop" = "Ongi etorri Delta Chat-era";
 "global_menu_preferences_language_desktop" = "Hautatu hizkuntza...";
 "global_menu_file_desktop" = "Fitxategia";
@@ -515,5 +497,3 @@
 "pref_reliable_service_explain" = "Etengabeko jakinarazpena eskatzen du";
 "perm_enable_bg_reminder_title" = "Sakatu hemen mezuak jasotzeko Delta Chat bigarren planoan dagoenean.";
 "perm_enable_bg_already_done" = "Dagoeneko baimendu diozu Delta Chat aplikazioari bigarren planoan mezuak jasotzea,\n\nOraindik ere mezuak heltzen ez badira, egiaztatu ere zure sistemaren ezarpenak.";
-
-

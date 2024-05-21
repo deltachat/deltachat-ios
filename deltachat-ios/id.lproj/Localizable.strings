@@ -98,7 +98,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "Saya";
 "draft" = "Draf";
 "image" = "Gambar";
@@ -133,7 +132,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Aplikasi";
 "unknown" = "Tak dikenal";
-
 "green" = "Hijau";
 "red" = "Merah";
 "blue" = "Biru";
@@ -142,17 +140,14 @@
 "purple" = "Ungu";
 "magenta" = "Magenta";
 "white" = "Putih";
-
 "zoom" = "Perbesar";
 "extra_small" = "Sangat kecil";
 "small" = "Kecil";
 "normal" = "Normal";
 "large" = "Besar";
 "extra_large" = "Sangat besar";
-
 "fast" = "Cepat";
 "slow" = "Lambat";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Kontak baru";
 "menu_new_chat" = "Obrolan baru";
@@ -237,15 +232,12 @@
 "mute_for_one_day" = "Diamkan untuk 1 hari";
 "mute_for_seven_days" = "Diamkan untuk 7 hari";
 "mute_forever" = "Diamkan seterusnya";
-
 "share_location_for_5_minutes" = "untuk 5 menit";
 "share_location_for_30_minutes" = "untuk 30 menit";
 "share_location_for_one_hour" = "untuk 1 jam";
 "share_location_for_two_hours" = "untuk 2 jam";
 "share_location_for_six_hours" = "untuk 6 jam";
-
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
-
 "videochat" = "Obrolan video";
 "videochat_invite_user_to_videochat" = "Undang %1$@ ke obrolan video?";
 "videochat_contact_invited_hint" = "%1$@ diundang ke obrolan video.";
@@ -256,7 +248,6 @@
 "videochat_instance_from_qr" = "Gunakan \"%1$@\" untuk mengundang orang lain ke obrolan video? Setelah diatur, Anda dapat memulai obrolan video dari setiap obrolan. Ini menggantikan pengaturan sebelumnya untuk obrolan video.";
 "videochat_invitation" = "Undangan obrolan video";
 "videochat_invitation_body" = "Anda diundang ke obrolan video, klik %1$@ untuk bergabung.";
-
 // get confirmations
 "ask_leave_group" = "Apakah anda yakin untuk keluar dari grup ini?";
 "ask_forward" = "Teruskan pesan ke %1$@?";
@@ -271,15 +262,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Hapus %1$@ dari grup?";
 "open_url_confirmation" = "Apakah anda ingin membuka pranala ini?";
-
-
 // contact list
 "contacts_title" = "Kontak";
 "contacts_enter_name_or_email" = "Masukkan nama atau alamat email";
 "contacts_type_email_above" = "Ketik alamat email di atas";
 "contacts_empty_hint" = "Tidak ada kontak.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Obrolan terarsip";
 "chat_please_enter_message" = "Silakan masukkan pesan.";
@@ -308,13 +295,10 @@
 "filter_map_on_time" = "Tunjukkan lokasi dalam jangka waktu";
 "show_location_traces" = "Tunjukkan jejak";
 "add_poi" = "Kirim titik menarik";
-
 // search
 "search" = "Cari";
 "search_explain" = "Mencari obrolan, kontak dan pesan";
 "search_no_result_for_x" = "Tak ada hasil dari \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Nama grup";
 "group_avatar" = "Avatar grup";
@@ -377,13 +361,10 @@
 "try_connect_now" = "Coba hubungkan sekarang";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfigurasi gagal. Error: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Diteruskan ke…";
 "share_abort" = "Pembagian dibatalkan karena tidak ada izin.";
-
-
 // preferences
 "pref_using_custom" = "Menggunakan custom: %1$@";
 "pref_using_default" = "Menggunakan default: %1$@";
@@ -490,7 +471,6 @@
 "autodel_after_4_weeks" = "Setelah 4 minggu";
 "after_5_weeks" = "Setelah 5 minggu";
 "autodel_after_1_year" = "Setelah 1 tahun";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -509,8 +489,6 @@
 "autocrypt_continue_transfer_succeeded" = "Pengaturan ujung ke ujung sudah ditransfer. Sekarang perangkat ini sudah siap dengan pengaturan Autocrypt yang sama dengan perangkat lain.";
 "autocrypt_continue_transfer_retry" = "Ulangi";
 "autocrypt_bad_setup_code" = "Kode pengaturan jelek. Ayo cakepan lagi.\n\nKalau Anda lupa kode pengaturan, kirim lagi Autocrypt Setup Message dari perangkat lainnya.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Pesan dibuka";
 "systemmsg_read_receipt_body" = "Pesan \"%1$@\" yang Anda kirimkan tampak di layar penerima.\n\nIni bukan jaminan kalau isinya dibaca.";
@@ -584,7 +562,6 @@
 "ImageEditorHud_draw_anywhere_to_blur" = "Gambar di mana saja untuk diburamkan";
 // dc_str_* resources
 "encrypted_message" = "Pesan terenkripsi";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ini adalah aplikasi resmi Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Perangkat lunak ini berlisensi di bawah GNU GPL versi 3 dan kode sumber tersedia di GitHub.";
@@ -631,5 +608,3 @@
 "a11y_delivery_status_read" = "Status pengiriman: Dibaca";
 "a11y_delivery_status_invalid" = "Status pengiriman tidak valid";
 "a11y_background_preview_label" = "Pratampil latar belakang";
-
-

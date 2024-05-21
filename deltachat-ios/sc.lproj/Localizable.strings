@@ -90,7 +90,6 @@
 "file" = "Documentu";
 "files" = "Documentos";
 "unknown" = "Disconnotu";
-
 "green" = "Birde";
 "red" = "Ruju";
 "blue" = "Biaitu";
@@ -99,17 +98,14 @@
 "purple" = "Pùrpura";
 "magenta" = "Magenta";
 "white" = "Biancu";
-
 "zoom" = "Ismànnia";
 "extra_small" = "Minore meda";
 "small" = "Minore";
 "normal" = "Normale";
 "large" = "Largu";
 "extra_large" = "Largu meda";
-
 "fast" = "Lestru";
 "slow" = "Lentu";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Cuntatu nou";
 "menu_new_chat" = "Tzarrada noa";
@@ -169,15 +165,12 @@
 "mute_for_one_day" = "A sa muda pro 1 die";
 "mute_for_seven_days" = "A sa muda pro 7 dies";
 "mute_forever" = "A sa muda pro semper";
-
 "share_location_for_5_minutes" = "pro 5 minutos";
 "share_location_for_30_minutes" = "pro 30 minutos";
 "share_location_for_one_hour" = "pro 1 ora";
 "share_location_for_two_hours" = "pro 2 oras";
 "share_location_for_six_hours" = "pro 6 oras";
-
 "file_saved_to" = "Documentu sarvadu in \"%1$@\".";
-
 "videochat" = "Vìdeu-tzarrada";
 "videochat_invite_user_to_videochat" = "Cheres invitare %1$@ a una vìdeu-tzarrada?";
 "videochat_invite_user_hint" = "Custu bisòngiat de un\'aplicatzione cumpatìbile o unu navigadore cumpatìbile dae ambas alas.";
@@ -190,7 +183,6 @@
 "videochat_instance_from_qr" = "Cheres impreare \"%1$@\" pro invitare calicun\'àteru a sa vìdeu-tzarrada?\n\nA pustis de s\'impostatzione, podes fàghere incumentzare una vìdeu-tzarrada dae cada tzarrada unu-a-unu. Custu at a remplasare sas impostatziones antepostas pro sas vìdeu-tzarradas, si bi nde fiant.";
 "videochat_invitation" = "Invitu a sa vìdeu-tzarrada";
 "videochat_invitation_body" = "Ses invitadu a una vìdeu-tzarrada. Incarca %1$@ pro bi pigare parte.";
-
 // get confirmations
 "ask_leave_group" = "Ses seguru de chèrrere lassare custu grupu?";
 "ask_forward" = "Inoltrare su messàgiu a %1$@?";
@@ -205,15 +197,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Cheres bogare %1$@dae su grupu?";
 "open_url_confirmation" = "Cheres abèrrere custu ligàmene?";
-
-
 // contact list
 "contacts_title" = "Cuntatos";
 "contacts_enter_name_or_email" = "Inserta su nùmene o s\'indiritzu de posta eletrònica";
 "contacts_type_email_above" = "Inserta s\'indiritzu de posta eletrònica inoghe in subra";
 "contacts_empty_hint" = "Perunu cuntatu.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Tzarradas archiviadas";
 "chat_please_enter_message" = "Pro praghere inserta unu messàgiu.";
@@ -243,13 +231,10 @@
 "filter_map_on_time" = "Ammustra sas positziones in su tempus";
 "show_location_traces" = "Ammustra sas rastas";
 "add_poi" = "Imbia puntu de interesse";
-
 // search
 "search" = "Chirca";
 "search_explain" = "Chirca in sas tzarradas, sos cuntatos e sos messàgios";
 "search_no_result_for_x" = "Perunu resurtadu pro \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Nùmene de su grupu";
 "group_avatar" = "Avatar de su grupu";
@@ -312,7 +297,6 @@
 "try_connect_now" = "Proa a ti collegare como";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Configuratzione fallida. Errore: %1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Inoltra a...";
@@ -320,8 +304,6 @@
 "share_multiple_attachments_multiple_chats" = "Cheres imbiare %1$d documentu(os) a %2$d tzarradas?\n\nSos documentos benint imbiados chene modìficas a sa mannària originale issoro, a es. sas immàgines e sos vìdeos non benint torrados a codificare.";
 "share_text_multiple_chats" = "Cheres inviare custu testu a %1$d tzarradas?\n\n\"%2$@\"";
 "share_abort" = "Cumpartzidura annullada pro permissos chi mancant.";
-
-
 // preferences
 "pref_using_custom" = "Personalizatziones impreadas: %1$@";
 "pref_using_default" = "Predefinidos impreados: %1$@";
@@ -434,7 +416,6 @@
 "autodel_after_1_week" = "A pustis de 1 chida";
 "autodel_after_4_weeks" = "A pustis de 4 chidas";
 "autodel_after_1_year" = "A pustis de 1 annu";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";

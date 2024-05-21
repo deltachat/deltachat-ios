@@ -105,7 +105,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "Jo";
 "draft" = "Esborrany";
 "image" = "Imatge";
@@ -142,7 +141,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps";
 "unknown" = "Desconegut";
-
 "green" = "Verd";
 "red" = "Vermell";
 "blue" = "Blau";
@@ -151,17 +149,14 @@
 "purple" = "Morat";
 "magenta" = "Magenta";
 "white" = "Blanc";
-
 "zoom" = "Zoom";
 "extra_small" = "Més petit";
 "small" = "Petit";
 "normal" = "Normal";
 "large" = "Gran";
 "extra_large" = "Molt gran";
-
 "fast" = "Ràpid";
 "slow" = "Lent";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Contacte nou";
 "menu_new_chat" = "Nova conversa";
@@ -254,21 +249,17 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Afegeix a la finestra d\'inici";
 "donate" = "Fes un donatiu";
-
 "mute_for_one_hour" = "Silencia 1 hora";
 "mute_for_two_hours" = "Silencia 2 hores";
 "mute_for_one_day" = "Silencia 1 dia";
 "mute_for_seven_days" = "Silencia 7 dies";
 "mute_forever" = "Sempre silenciat";
-
 "share_location_for_5_minutes" = "durant 5 minuts";
 "share_location_for_30_minutes" = "durant 30 minuts";
 "share_location_for_one_hour" = "durant 1 hora";
 "share_location_for_two_hours" = "durant 2 hores";
 "share_location_for_six_hours" = "durant 6 hores";
-
 "file_saved_to" = "Fitxer desat a \"%1$@\".";
-
 "videochat" = "Vídeo xat";
 "videochat_invite_user_to_videochat" = "Voleu convidar %1$@ a un vídeo xat?";
 "videochat_invite_user_hint" = "Això requereix una app compatible o un navegador compatible a ambdós extrems.";
@@ -281,7 +272,6 @@
 "videochat_instance_example" = "Exemples: https://meet.jit.si/$ROOM o basicwebrtc:https://your-server";
 "videochat_invitation" = "Invitació a un vídeo xat";
 "videochat_invitation_body" = "Heu sigut convidats a un vídeo xat, cliqueu %1$@ per unir-vos-hi.";
-
 // get confirmations
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
 "ask_delete_message" = "Esteu segur de voler esborrar aquest missatge?";
@@ -299,15 +289,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Voleu eliminar %1$@ de la llista de difusió?";
 "open_url_confirmation" = "Voleu obrir aquest enllaç?";
-
-
 // contact list
 "contacts_title" = "Llista de contactes";
 "contacts_enter_name_or_email" = "Introduïu el vostre nom o la vostra adreça de correu electrònic";
 "contacts_type_email_above" = "Escriviu l\'adreça d\'email superior";
 "contacts_empty_hint" = "Cap contacte.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Xats arxivats";
 "chat_please_enter_message" = "Si us plau, escriviu un missatge";
@@ -341,11 +327,9 @@
 "attachment_failed_to_load" = "La càrrega de l\'adjunt ha fallat";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Bloqueja la gravació";
-
 // mailing lists
 "mailing_list" = "Llista de correu";
 "mailing_list_profile_info" = "Els canvis al nom i la imatge de la llista de correu només s\'aplicaran en aquest dispositiu.";
-
 // webxdc
 // "Start..." button for an app
 "start_app" = "Comença...";
@@ -355,12 +339,10 @@
 "send_file_to" = "Envia \"%1$@\" a…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Envia el missatge a...";
-
 // map
 "filter_map_on_time" = "Mostra les ubicacions al llarg del temps";
 "show_location_traces" = "Mostra el rastre";
 "add_poi" = "Envia el punt d\'interès";
-
 // chat audit log
 "chat_audit_log_empty_message" = "Els missatges de sistema d\'aquest xat es mostraran aquí";
 "chat_audit_log_title" = "Registre de l\'auditoria del xat per %1$@";
@@ -376,8 +358,6 @@
 "search_files" = "Busca els fitxers";
 "search_explain" = "Busca als xats, contactes i missatges";
 "search_no_result_for_x" = "No s\'han trobat resultats per \"%1$@\"";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "Nom del grup";
 "group_avatar" = "Imatge del grup";
@@ -433,8 +413,6 @@
 "messages" = "Missatges";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usats";
-
-
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
 "login_title" = "Identifiqueu-vos";
 // for classic email, we use the classical term "Account"
@@ -471,8 +449,6 @@
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Reenvia a ...";
 "share_abort" = "S\'ha avortat la compartició per falta de permisos.";
-
-
 // preferences
 "pref_using_custom" = "Ús personalitzat: %1$@";
 "pref_using_default" = "Ús per defecte: %1$@";
@@ -562,8 +538,6 @@
 "autocrypt_continue_transfer_succeeded" = "S\'ha transferit la configuració d\'extrem a extrem. Aquest dispositiu ja està preparat per utilitzar Autocrypt amb la mateixa configuració que l’altre dispositiu.";
 "autocrypt_continue_transfer_retry" = "Torna-ho a provar";
 "autocrypt_bad_setup_code" = "Codi de configuració incorrecte. Siusplau torneu-ho a provar.\n\nSi no recordeu el codi de configuració Autocrypt, envieu-ne un de nou des de l’altre dispositiu.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Confirmació de lectura";
 "systemmsg_read_receipt_body" = "Confirmació de lectura del missatge \"%1$@\".\n\nVol dir que el missatge s\'ha mostrat al dispositiu del receptor, no necessàriament que s\'hagi llegit.";
@@ -624,7 +598,6 @@
 "perm_explain_access_to_location_denied" = "Delta Chat necessita accedir a la ubicació per poder-la adjuntar, però li ha estat denegada de forma permanent. Vés a les preferències del menú de l\'aplicació, tria \"Permisos i activa-hi la \"Ubicació\".";
 // dc_str_* resources
 "encrypted_message" = "Missatge encriptat";
-
 "global_menu_preferences_language_desktop" = "Trieu l\'idioma...";
 "global_menu_file_desktop" = "Arxiva";
 "global_menu_file_quit_desktop" = "Surt";

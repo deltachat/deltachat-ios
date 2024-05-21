@@ -105,7 +105,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-
 "self" = "我";
 "draft" = "草稿";
 "image" = "图像";
@@ -143,7 +142,6 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "私人应用";
 "unknown" = "未知";
-
 "green" = "绿色";
 "red" = "红色";
 "blue" = "蓝色";
@@ -152,17 +150,14 @@
 "purple" = "紫色";
 "magenta" = "洋红色";
 "white" = "白色";
-
 "zoom" = "缩放";
 "extra_small" = "特小";
 "small" = "小";
 "normal" = "正常";
 "large" = "大";
 "extra_large" = "特大";
-
 "fast" = "快";
 "slow" = "慢";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "新建联系人";
 "menu_new_classic_contact" = "手动添加联系人";
@@ -262,21 +257,17 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "添加到主屏幕";
 "donate" = "捐赠";
-
 "mute_for_one_hour" = "静音 1 小时";
 "mute_for_two_hours" = "静音 2 小时";
 "mute_for_one_day" = "静音 1 天";
 "mute_for_seven_days" = "静音 7 天";
 "mute_forever" = "永久静音";
-
 "share_location_for_5_minutes" = "5 分钟";
 "share_location_for_30_minutes" = "30 分钟";
 "share_location_for_one_hour" = "1 小时";
 "share_location_for_two_hours" = "2 小时";
 "share_location_for_six_hours" = "6 小时";
-
 "file_saved_to" = "文件已保存到 “%1$@”。";
-
 "videochat" = "视频聊天";
 "videochat_invite_user_to_videochat" = "邀请 %1$@ 参加视频聊天？";
 "videochat_invite_user_hint" = "需要双方均装有兼容的应用或浏览器。";
@@ -291,7 +282,6 @@
 "videochat_instance_from_qr" = "使用“%1$@”邀请其他人参加视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置。";
 "videochat_invitation" = "视频聊天邀请";
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
-
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
 "ask_delete_message" = "您确定要删除这条消息吗？";
@@ -310,15 +300,11 @@
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "从广播列表中移除 %1$@？";
 "open_url_confirmation" = "您要打开此链接吗？";
-
-
 // contact list
 "contacts_title" = "联系人";
 "contacts_enter_name_or_email" = "输入名称或电子邮件地址";
 "contacts_type_email_above" = "在上方输入电子邮件地址";
 "contacts_empty_hint" = "没有联系人。";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "已存档聊天";
 "chat_please_enter_message" = "请输入消息。";
@@ -354,11 +340,9 @@
 "attachment_failed_to_load" = "加载附件失败";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "锁定录音";
-
 // mailing lists
 "mailing_list" = "邮件列表";
 "mailing_list_profile_info" = "邮件列表名称和图像的更改仅适用于此设备。 ";
-
 // webxdc
 // "Start..." button for an app
 "start_app" = "开始…";
@@ -368,17 +352,14 @@
 "send_file_to" = "发送“%1$@\"到...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "发送消息到...";
-
 // map
 "filter_map_on_time" = "显示时间范围内的位置";
 "show_location_traces" = "显示轨迹";
 "add_poi" = "发送兴趣点";
-
 // chat audit log
 "chat_audit_log_empty_message" = "此聊天的系统消息会出现在这里";
 "chat_audit_log_title" = "%1$@ 的聊天审计日志";
 "chat_audit_log_description" = "仅显示系统消息和信息类消息。可用于查找最后的聊天操作而无需滚动许多普通消息。";
-
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "不再询问 %1$@";
@@ -387,16 +368,12 @@
 "puny_code_warning_question" = "您确定要访问 %1$@ 吗？";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "你将被转到一个链接，该链接可能通过使用来自不同字母表的相似字符对自己进行了伪装。打开标记为 %1$@ 的链接将把你带到以 ascii 码编码的 %2$@ 。如果这样的字符出乎你的意料，那么这个链接可能是有害的。";
-
-
 // search
 "search" = "搜索";
 "search_in_chat" = "搜索聊天";
 "search_files" = "搜索文件";
 "search_explain" = "搜索聊天、联系人和消息";
 "search_no_result_for_x" = "没有找到有关\"%1$@\"的结果";
-
-
 // create/edit groups, contact/group profile
 "group_name" = "群组名称";
 "group_avatar" = "群组图像";
@@ -432,8 +409,6 @@
 "aeap_addr_changed" = "%1$@ 将邮箱从 %2$@ 更改为 %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "你将邮箱从 %1$@ 改为了 %2$@。\n\n如果你现在发送一条消息到已验证群组，那里的联系人将自动用你的新邮箱替换旧邮箱。\n\n我们建议你将旧邮箱配置为转发所有邮件到新邮箱。否则，你可能收不到还不知道你新邮箱的联系人发过来的消息。";
-
-
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "添加第二台设备";
@@ -460,7 +435,6 @@
 // Shown beside progress bar, stay short
 "transferring" = "传输中…";
 "troubleshooting" = "故障排除";
-
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "消息接收";
@@ -484,12 +458,10 @@
 "messages" = "消息";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "已使用 %1$@，共 %2$@";
-
-
 // welcome and login
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "让我们开始吧！";
-// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup" 
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "我已经有登录凭据了";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "传统电子邮件登录";
@@ -514,7 +486,6 @@
 "instant_onboarding_confirm_contact" = "你想新建个人资料并开始和 %1$@ 聊天吗？";
 // Question shown when group's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "你想新建个人资料并加入 \"%1$@\" 聊天群吗？";
-
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "扫描邀请码";
 "login_title" = "登录";
@@ -569,7 +540,6 @@
 "sync_all" = "同步所有";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "配置失败。错误：%1$@";
-
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "转发给…";
@@ -577,8 +547,6 @@
 "share_multiple_attachments_multiple_chats" = "发送 %1$d 个文件到 %2$d 个聊天？\n\n文件将以原样发送（例如：图像和视频不会被重新编码）。";
 "share_text_multiple_chats" = "发送这段文字到 %1$d 个聊天？\n\n\"%2$@“";
 "share_abort" = "由于缺少权限，分享中止。";
-
-
 // preferences
 "pref_using_custom" = "使用自定义值： %1$@";
 "pref_using_default" = "使用默认值： %1$@";
@@ -704,8 +672,6 @@
 "disable_imap_idle" = "禁用 IMAP IDLE";
 "disable_imap_idle_explain" = "即便服务器支持，也不要使用 IMAP IDLE 扩展。启用后会造成消息获取延迟，请仅出于测试目的启用该功能。";
 "send_stats_to_devs" = "发送统计数据给 Delta Chat 开发者";
-
-
 // Emoji picker and categories
 "emoji_search_results" = "搜索结果";
 "emoji_not_found" = "未找到 emoji";
@@ -718,7 +684,6 @@
 "emoji_objects" = "物品";
 "emoji_symbols" = "符号";
 "emoji_flags" = "旗帜";
-
 // Reactions
 "reactions" = "回应";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
@@ -727,7 +692,6 @@
 "reaction_by_you" = "你对 “%2$@” 回应了 %1$@";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
 "reaction_by_other" = "%1$@ 对 “%3$@” 回应了 %2$@";
-
 // automatically delete message
 "delete_old_messages" = "删除旧消息";
 "autodel_device_title" = "从设备删除消息";
@@ -751,7 +715,6 @@
 "autodel_after_4_weeks" = "4 周后";
 "after_5_weeks" = "5 周后";
 "autodel_after_1_year" = "1 年后";
-
 // autocrypt
 // deprecated, used "Encryption" if a headline is needed
 "autocrypt" = "Autocrypt";
@@ -770,8 +733,6 @@
 "autocrypt_continue_transfer_succeeded" = "端到端设置已传输。此设备已准备好用与另一台设备相同的设置来使用 Autocrypt 了。";
 "autocrypt_continue_transfer_retry" = "重试";
 "autocrypt_bad_setup_code" = "错误的设置码，请重试。\n\n如果您忘记了设置码，从另一台设备发送一个新的 Autocrypt 设置消息即可。";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "消息已被打开";
 "systemmsg_read_receipt_body" = "您发送的“%1$@”消息已在接收者的屏幕上显示过。\n\n这并不保证内容已被阅读。";
@@ -850,17 +811,14 @@
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@要求端到端加密，而此聊天尚未建立端到端加密。轻按了解更多。";
 "invalid_unencrypted_explanation" = "要建立端到端加密，你可以亲自和联系人碰面并扫描联系人的二维码";
 "learn_more" = "了解更多";
-
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️邮件服务商提供的存储空间快满了，已使用 %1$@%%。\n\n如果存储空间用光，您可能无法接收消息。\n\n👉请检查是否可以在提供商的网页界面上删除旧数据，或考虑启用“设置/删除旧消息”。您可以在“设置/连接状态”中查看当前的存储使用情况。";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟⏰🔧以确保能够正确接收消息。";
 "devicemsg_update_reminder" = "⚠️您的 Delta Chat 版本可能过时了。\n\n这可能会在您的聊天伙伴使用更新的版本时造成问题。并且您缺失了最新功能😳\n请浏览 https://get.delta.chat 或应用商店来获取更新。";
-
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "解锁以继续";
-
 // qr code stuff
 "qr_code" = "二维码";
 "load_qr_code_as_image" = "从图像加载二维码";
@@ -923,8 +881,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ 已经有一条草稿信息，要替换它吗？";
 "mailto_link_could_not_be_decoded" = "无法解码 mailto 链接：%1$@";
-
-// notifications 
+// notifications
 "notify_dismiss" = "不予理会";
 "notify_reply_button" = "回复";
 "notify_new_message" = "新消息";
@@ -939,8 +896,6 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "你有新消息";
 "n_messages_in_m_chats" = "%1$d 条消息，位于 %2$d 个聊天内";
-
-
 // permissions
 "perm_required_title" = "需要权限";
 "perm_continue" = "继续";
@@ -949,7 +904,6 @@
 "perm_explain_access_to_storage_denied" = "要发送或接收文件，请转至应用设置，选择“权限”，然后启用“存储”。";
 "perm_explain_access_to_location_denied" = "要附加位置，请转至应用设置，选择“权限”，然后启用“位置”。";
 "perm_explain_access_to_notifications_denied" = "要接收通知，请转到“系统设置/应用/Delta Chat\"并开启”通知“。";
-
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "对任意地方涂抹以进行模糊";
 "ImageEditorHud_add_text" = "添加文字";
@@ -959,10 +913,8 @@
 "ImageEditorHud_crop" = "裁剪";
 "ImageEditorHud_flip" = "翻转";
 "ImageEditorHud_rotate" = "旋转";
-
 // dc_str_* resources
 "encrypted_message" = "加密的消息";
-
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "这是 Delta Chat 官方桌面应用。";
 "about_licensed_under_desktop" = "本软件在 GNU GPL 版本 3 下获得授权，其源代码可从 GitHub 获得。";
@@ -1010,7 +962,6 @@
 "no_spellcheck_suggestions_found" = "未找到拼写建议";
 "show_window" = "显示窗口";
 "login_socks5_experimental_warning" = "SOCKS5 支持目前还处于试验阶段。请自行承担使用风险。如果您在电子邮件字段中输入一个地址，会有不流经 SOCKS5 隧道的 DNS 查找流量。";
-
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "按键绑定";
 "switch_between_chats" = "在不同聊天间切换";
@@ -1021,7 +972,6 @@
 "focus_message_input" = "聚焦消息输入";
 "force_refresh_network" = "强制刷新网络";
 "insert_newline" = "插入新行";
-
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "发送状态：错误";
 "a11y_encryption_padlock" = "加密挂锁";
@@ -1033,7 +983,6 @@
 "a11y_message_context_menu_btn_label" = "消息操作";
 "a11y_background_preview_label" = "背景预览";
 "a11y_disappearing_messages_activated" = "消息定时销毁已激活";
-
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "停止共享位置";
 "a11y_voice_message_hint_ios" = "录音后轻按两次发送。要丢弃录音，用两根手指左右滑动。";
@@ -1062,8 +1011,6 @@
 "shortcut_step1_tap_share_btn" = "点击分享按钮";
 "shortcut_step2_tap_add_to_home_screen" = "选择“添加到主屏幕”来将应用添加到主屏幕。";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-
-
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_background_notifications" = "后台通知";
 "pref_background_notifications_explain" = "使用到服务器的后台连接。需要忽略电池优化。";
@@ -1073,8 +1020,6 @@
 "pref_reliable_service_explain" = "需要一个持久通知";
 "perm_enable_bg_reminder_title" = "点击此处以在 Delta Chat 处于后台时接收消息。";
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
-
-
 // device messages for updates
 "update_1_44_android" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出回应\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n🔵 计算所有账户的未读消息并显示在标题中\n\n… 以及修复许多 bug … %1$@\n\n帮助改进应用：使用“设置/高级、发送统计数据”帮助开发者为实际使用而更好地优化。发送前你可以查看数据";
 "update_1_44_ios" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出回应\n\n🫸 支持推送通知，不过需要提供商像 https://nine.testrun.org 一样支持该功能\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n… 以及修复许多 bug … %1$@";

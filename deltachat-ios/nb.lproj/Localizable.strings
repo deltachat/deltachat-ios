@@ -84,7 +84,6 @@
 "file" = "Fil";
 "files" = "Filer";
 "unknown" = "Ukjent";
-
 "green" = "Grønn";
 "red" = "Rød";
 "blue" = "Blå";
@@ -93,15 +92,12 @@
 "purple" = "Purple";
 "magenta" = "Magenta";
 "white" = "Hvit";
-
 "small" = "Liten";
 "normal" = "Normal";
 "large" = "Stor";
 "extra_large" = "Ekstra stor";
-
 "fast" = "Raskt";
 "slow" = "Langsomt";
-
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Ny kontakt";
 "menu_new_chat" = "Ny chat";
@@ -160,15 +156,12 @@
 "mute_for_one_day" = "Demp i 1 dag";
 "mute_for_seven_days" = "Demp i 7 dager";
 "mute_forever" = "Alltid dempet";
-
 "share_location_for_5_minutes" = "i 5 minutter";
 "share_location_for_30_minutes" = "i 30 minutter";
 "share_location_for_one_hour" = "i 1 time";
 "share_location_for_two_hours" = "i 2 timer";
 "share_location_for_six_hours" = "i 6 timer";
-
 "file_saved_to" = "Lagre fil til \"%1$@\".";
-
 "videochat" = "Videochat";
 "videochat_invite_user_to_videochat" = "Inviter %1$@ til en videochat?";
 "videochat_invite_user_hint" = "Dette krever en kompatibel app, eller en kompatible nettleser i begge ender.";
@@ -181,7 +174,6 @@
 "videochat_instance_from_qr" = "Bruk \"%1$@\" til å invitere andre til videochatter?\n\nNår satt, kan dere starte videochatter til hverandre en-til-en. Dette vil erstatte, eventuelle, tidligere innstillinger for videochatter.";
 "videochat_invitation" = "Videochatinvitasjon";
 "videochat_invitation_body" = "Du er invitert til en videochat, klikk %1$@ for å bli med.";
-
 // get confirmations
 "ask_leave_group" = "Er du sikker på at du vil forlate denne gruppen?";
 "ask_forward" = "Videresend meldinger til %1$@?";
@@ -200,8 +192,6 @@
 "contacts_enter_name_or_email" = "Skriv navn eller e-postadresse";
 "contacts_type_email_above" = "Skriv e-postadresse over";
 "contacts_empty_hint" = "Ingen kontakter.";
-
-
 // chatlist and chat view
 "chat_archived_chats_title" = "Arkiverte sludringer";
 "chat_please_enter_message" = "Vennligst skiv en melding.";
@@ -320,8 +310,6 @@
 "autocrypt_continue_transfer_succeeded" = "Nøkkel overført. Denne enheten er nå klar til å bruke Autocrypt med samme nøkkel som den andre enheten.";
 "autocrypt_continue_transfer_retry" = "Prøv igjen";
 "autocrypt_bad_setup_code" = "Feil oppsettskode. Prøv igjen.\n\nHvis du ikke husker den, sett igang nøkkeloverføringen på en andre enheten igjen.";
-
-
 // system messages
 "systemmsg_read_receipt_subject" = "Meldingskvittering";
 "systemmsg_read_receipt_body" = "Dette er en meldingskvittering for meldingen \"%1$@\".\n\nDenne meldingskvitteringen bekrefter bare at meldingen ble vist på mottakerens enhet. Det finnes ingen garanti for at mottakeren har lest meldingsinnholdet.";
@@ -374,7 +362,6 @@
 "perm_continue" = "Fortsett";
 // dc_str_* resources
 "encrypted_message" = "Kryptert melding";
-
 "welcome_desktop" = "Velkommen til Delta Chat";
 "global_menu_preferences_language_desktop" = "Språk";
 "global_menu_edit_desktop" = "Rediger";
