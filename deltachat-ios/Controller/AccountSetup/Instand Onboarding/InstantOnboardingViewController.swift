@@ -86,9 +86,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
         contentView.imageButton.addTarget(self, action: #selector(InstantOnboardingViewController.onAvatarTapped), for: .touchUpInside)
         contentView.privacyButton.addTarget(self, action: #selector(InstantOnboardingViewController.showPrivacy(_:)), for: .touchUpInside)
-        contentView.otherOptionsButton.addTarget(self, action: #selector(InstantOnboardingViewController.showOtherOptions(_:)), for: .touchUpInside)
-        contentView.scanQRCodeButton.addTarget(self, action: #selector(InstantOnboardingViewController.scanQRCode(_:)), for: .touchUpInside)
-
 
         NotificationCenter.default.addObserver(
             self,
@@ -180,13 +177,9 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         contentInset.bottom = keyboardFrame.size.height + 20
 
         contentView.contentScrollView.contentInset = contentInset
-        contentView.spacer.isHidden = true
-        contentView.bottomSpacer.isHidden = false
     }
 
     @objc private func keyboardWillHide(_ notification: Notification) {
-        contentView?.spacer.isHidden = false
-        contentView?.bottomSpacer.isHidden = true
         contentView?.contentScrollView.contentInset = UIEdgeInsets.zero
     }
 
