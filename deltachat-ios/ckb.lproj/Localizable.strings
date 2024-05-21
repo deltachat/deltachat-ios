@@ -238,6 +238,7 @@
 "chat_record_slide_to_cancel" = "بیخشێنە بۆ وازهێنان";
 "chat_record_explain" = "کرتە بکە و دەست لەسەری ڕابگرە بۆ تۆمارکردنی پەیامێکی دەنگی، پاشان دەستبەردە بۆ هەناردنی.";
 "chat_no_chats_yet_title" = "هاتنگە بەتاڵە. \n \"+\" لێبدە بۆ دەستپێکی وتووێژێکی نوێ.";
+// deprecated
 "chat_no_chats_yet_hint" = "دەتوانیت لەگەڵ بەکارهێنەرانی دیکەی دێڵتاچات و هەروەها هەر ناونیشانێکی ئیمەیلدا وتووێژ بکەیت.";
 "chat_all_archived" = "هەموو وتووێژەکان ئەرشیڤ کران. \n بۆ دەستپێکردنی وتووێژێکی نوێ، \"+\" لێبدە.";
 "chat_share_with_title" = "هاوبەش کردن لەگەڵ";
@@ -287,7 +288,9 @@
 "media_preview" = "پێشدیتنی ڕەنگاڵە";
 "send_message" = "پەیام بنێرە";
 "login_title" = "بچۆ ژوورەوە";
+// for classic email, we use the classical term "Account"
 "login_header" = "بچۆ ژوورەوە بۆ سێرڤێرەکەی خۆت";
+// for classic email, we use the classical term "Account"
 "login_explain" = "بچۆ ژوورەوە بە ناونیشانی ئیمەیلێکەوە";
 "login_subheader" = "بۆ دابینکەرە ناسراوەکانی ئیمەیلەکان، ڕێکخستنە زیادییەکان خۆکارانە ڕێکدەخرێن. هەندێجار دەبێت IMAP لەنێو ڕێکخستنەکانی وێبدا چالاک بکرێنەوە. بۆ ڕێنمایی وەرگرتن، لەگەڵ دابینکەری ئیمەیلەکەتان یان هاوڕێکانتان ڕاوێژ بکەن.";
 "login_no_servers_hint" = "دێڵتاچات هیچ سێرڤەرێکی نییە، داتاکانتان لەسەر ئامرێکەتان دەمێنێتەوە.";
@@ -332,6 +335,7 @@
 "pref_profile_photo" = "وێنەی لادیمەن";
 "pref_blocked_contacts" = "هەژمارە ئاستەنگکراوەکان";
 "blocked_empty_hint" = "ئەگەر هەژمارێک ئاستەنگ بکەیت، لێرەدا پیشان دەدرێت.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "هەژمار و تێپەڕوشە";
 "pref_your_name" = "ناو";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".

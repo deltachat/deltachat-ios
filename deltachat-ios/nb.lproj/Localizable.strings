@@ -211,6 +211,7 @@
 "chat_record_slide_to_cancel" = "Dra for å avbryte";
 "chat_record_explain" = "Trykk og hold for å ta opp en melding, slipp for å sende";
 "chat_no_chats_yet_title" = "Tøm innboksen.\nTrykk \"+\" for å starte en ny chat.";
+// deprecated
 "chat_no_chats_yet_hint" = "Du kan chatte med andre Delta Chat-brukere og med hvilken som helst annen e-postadresse.";
 "chat_all_archived" = "Alle chatter er arkivert\nTrykk \"+\" for å starte en ny chat.";
 "chat_share_with_title" = "Del med";
@@ -254,6 +255,7 @@
 "pref_profile_info_headline" = "Din profilinfo";
 "pref_profile_photo" = "Profilbilde";
 "pref_blocked_contacts" = "Blokkerte kontakter";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Kontoinnstillinger";
 "pref_your_name" = "Mitt navn";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".

@@ -148,6 +148,7 @@
 "pref_profile_info_headline" = "మీ రూప సమాచారం";
 "pref_profile_photo" = "రూపచిత్రం";
 "pref_blocked_contacts" = "నిరోధించిన పరిచయాలు";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "ఖాతా సెట్టింగులు";
 "pref_your_name" = "మీ పేరు";
 "pref_enter_sends" = "\"ఎంటర్\" నొక్కితే పంపు";

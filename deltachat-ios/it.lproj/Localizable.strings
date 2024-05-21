@@ -165,6 +165,8 @@
 
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nuovo Contatto";
+"menu_new_classic_contact" = "Aggiungi Contatto Manualmente";
+"new_classic_contact_explain" = "I contatti aggiunti manualmente possono essere utilizzati per inviare testo all\' e-mail classica e non sono garantiti con crittografia end-to-end.";
 "menu_new_chat" = "Nuova Chat";
 "menu_new_group" = "Nuovo Gruppo";
 "clone_chat" = "Clona Chat";
@@ -329,6 +331,7 @@
 "chat_record_slide_to_cancel" = "Scorri per annullare";
 "chat_record_explain" = "Tocca e mantieni per registrare un messaggio vocale, rilascia per inviare ";
 "chat_no_chats_yet_title" = "Casella vuota.\nPremi \"+\" per iniziare una chat.";
+// deprecated
 "chat_no_chats_yet_hint" = "Puoi chattare con altri utenti Delta Chat o con qualsiasi indirizzo email.";
 "chat_all_archived" = "Chat archiviate.\nPremi \"+\" per iniziare una nuova chat.";
 "chat_share_with_title" = "Condividi con";
@@ -484,22 +487,25 @@
 
 
 // welcome and login
-// Primary button on the welcome screen, allows to create an instant account
+// Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Iniziamo!";
-// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup" 
 "onboarding_alternative_logins" = "Ho Già un Account";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "Accesso Manuale";
+"manual_account_setup_option" = "Accesso E-Mail Classico";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Il Tuo Profilo";
-// This is a link to the default Privacy Policy
+// deprecated
 "instant_onboarding_agree_default" = "Leggi l\'Informativa Riservatezza";
+// The placeholder will be replaced by the default onboarding server
+"instant_onboarding_agree_default2" = "Informativa sulla Riservatezza per %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
 "instant_onboarding_agree_instance" = "Informazioni profili su %1$@";
 // Confirmation button on the instant onboarding screen
-"instant_onboarding_create" = "Accetto & Crea Profilo";
+"instant_onboarding_create" = "Accetto & Creo Profilo";
 // Secondary, link-like button to open a page with other possible instances
-"instant_onboarding_show_more_instances" = "Esplora Altre Opzioni";
+"instant_onboarding_show_more_instances" = "Usa Altro Server";
+"instant_onboarding_other_server" = "Elenco Server Chatmail";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Crea un profilo per unirti al gruppo \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
@@ -509,11 +515,13 @@
 // Question shown when group's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Vuoi creare un nuovo profilo e unirti al \"%1$@\" gruppo chat?";
 
-"welcome_chat_over_email" = "Chat via E-mail.";
+"welcome_chat_over_email" = "Chat Decentralizzata Sicura";
 "scan_invitation_code" = "Scansiona Invito";
 "login_title" = "Login";
-"login_header" = "Accedi al tuo Account E-Mail";
-"login_explain" = "Accedi con un indirizzo e-mail esistente";
+// for classic email, we use the classical term "Account"
+"login_header" = "Accedi al tuo Profilo E-Mail";
+// for classic email, we use the classical term "Account"
+"login_explain" = "Accedi con un profilo e-mail esistente";
 "login_subheader" = "Per i fornitori email conosciuti, le impostazioni aggiuntive vengono configurate automaticamente. A volte, IMAP deve essere abilitato dall\'interfaccia web dell\'email. Se riscontri problemi contatta il tuo fornitore email o i tuoi amici per aiutarti.";
 "login_no_servers_hint" = "Non esistono server di Delta Chat, i tuoi dati restano nel tuo dispositivo!";
 "login_inbox" = "In Arrivo";
@@ -578,7 +586,8 @@
 "pref_profile_photo" = "Foto Profilo";
 "pref_blocked_contacts" = "Contatti Bloccati";
 "blocked_empty_hint" = "Se blocchi dei contatti, verranno elencati qui.";
-"pref_password_and_account_settings" = "Password e Account";
+// for classic email, we use the classical term "Account"
+"pref_password_and_account_settings" = "Password e Profilo";
 "pref_who_can_see_profile_explain" = "L\'immagine del tuo profilo e il tuo nome saranno mostrati insieme ai tuoi messaggi quando comunicherai con altri utenti. Le informazioni già inviate non possono essere cancellate o rimosse.";
 "pref_your_name" = "Il tuo Nome";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
@@ -637,9 +646,9 @@
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Backup Chats su Memoria Esterna";
 "pref_backup_export_explain" = "Un backup ti aiuta a impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni Autocrypt. Tienilo al sicuro o eliminalo il prima possibile. ";
-// the placeholder will be replaced by the name of the account's email address
+// the placeholder will be replaced by the name of the profile's email address
 "pref_backup_export_x" = "Esporta %1$@";
-// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+// the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Esporta tutti i %1$d accounts";
 "pref_backup_export_start_button" = "Avvia Backup";
 "pref_backup_written_to_x" = "Backup scritto con successo in %1$@";
@@ -658,7 +667,8 @@
 "pref_imap_folder_warn_disable_defaults" = "Se disabiliti questa opzione assicurati che il tuo server e gli altri client siano configurati allo stesso modo.\n\nAltrimenti le cose potrebbero non funzionare affatto.";
 "pref_watch_sent_folder" = "Controlla Cartella Inviata";
 "pref_send_copy_to_self" = "Auto-invia Copia";
-"pref_send_copy_to_self_explain" = "Richiesto quando si utilizza questo account su più dispositivi.";
+// for classic email, we use the classical term "Account"
+"pref_send_copy_to_self_explain" = "Richiesto quando si utilizza questo profilo su più dispositivi.";
 "pref_auto_folder_moves" = "Sposta nella Cartella DeltaChat";
 "pref_auto_folder_moves_explain" = "Le chat vengono spostate per evitare di riempire la cartella In Arrivo";
 "pref_only_fetch_mvbox_title" = "Recupera dalla Cartella DeltaChat";
@@ -888,10 +898,11 @@
 "set_name_and_avatar_explain" = "Imposta un nome che i tuoi contatti riconosceranno. Puoi anche impostare un\'immagine del profilo.";
 "please_enter_name" = "Inserisci un nome.";
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo account.";
+// deprecated
 "qraccount_use_on_new_install" = "Il codice QR scansionato serve a creare un nuovo account. Puoi scansionare il codice quando configuri una nuova installazione di Delta Chat.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Accedere a \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Accedere a \"%1$@\"?\n\nIl tuo account esistente non verrà cancellato. Usa la voce \"Cambia Account\" per passare da un account all\'altro.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";
@@ -989,7 +1000,8 @@
 "export_backup_desktop" = "Esporta Backup";
 "autocrypt_correct_desktop" = "Configurazione di Autocrypt trasferita.";
 "forget_login_confirmation_desktop" = "Eliminare questo accesso? Tutto verrà eliminato, inclusa la configurazione end-to-end, i contatti, le chat, i messaggi e i media. Questa azione non può essere annullata.";
-"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nDimensione: %2$@\nAccount Id: %3$@";
+// deprecated
+"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nDimensione: %2$@\nProfilo Id: %3$@";
 "message_detail_sent_desktop" = "inviato";
 "message_detail_received_desktop" = "ricevuto";
 "menu.view.developer.open.log.folder" = "Apri Cartella dei Log";
@@ -1064,5 +1076,5 @@
 
 
 // device messages for updates
-"update_1_44_android" = "Novità:\n\n❤️ Sì! Questo era atteso da tempo: tocca a lungo un messaggio per reagire\n\n🔗 Se non riesci a scansionare i codici QR, condividili come link di invito\n\n🔵 I messaggi non letti di tutti gli account vengono ora conteggiati e mostrati nel titolo\n\n… e TONNELLATE di correzioni bug … %1$@\n\nAiuta a migliorare l\'app: usa \"Impostazioni/Avanzate/Invia statistiche\" per aiutare gli sviluppatori a ottimizzare meglio per l\'utilizzo nel mondo reale. È possibile rivedere i dati prima dell\'invio";
+"update_1_44_android" = "Novità:\n\n❤️ Sì! Questo era atteso da tempo: tocca a lungo un messaggio per reagire\n\n🔗 Se non riesci a scansionare i codici QR, condividili come link di invito\n\n🔵 I messaggi non letti di tutti i profili vengono ora conteggiati e mostrati nel titolo\n\n… e TONNELLATE di correzioni bug … %1$@\n\nAiuta a migliorare l\'app: usa \"Impostazioni/Avanzate/Invia statistiche\" per aiutare gli sviluppatori a ottimizzare meglio per l\'utilizzo nel mondo reale. È possibile rivedere i dati prima dell\'invio";
 "update_1_44_ios" = "Novità:\n\n❤️ Sì! Questo era atteso da tempo: tocca a lungo un messaggio per reagire\n\n🫸 Notifiche PUSH se supportate dai provider come https://nine.testrun.org\n\n🔗 Se non riesci a scansionare i codici QR, condividili come link di invito\n\n... e TONNELLATE di correzioni bug ... %1$@";

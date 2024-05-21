@@ -261,6 +261,7 @@
 "chat_record_slide_to_cancel" = "スライドしてキャンセル";
 "chat_record_explain" = "長押しして録音して、離すと送ります。";
 "chat_no_chats_yet_title" = "受信箱が空です。\n＋でチャットを開始します。";
+// deprecated
 "chat_no_chats_yet_hint" = "あなたはDelta Chat利用者や普通のメールアドレスとチャットを出来ます｡";
 "chat_all_archived" = "すべてのチャットがアーカイブされました。\n＋でチャットを開始します。";
 "chat_share_with_title" = "共有";
@@ -323,7 +324,9 @@
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "接続済み";
 "login_title" = "ログイン";
+// for classic email, we use the classical term "Account"
 "login_header" = "自分のメールサーバーにログインする";
+// for classic email, we use the classical term "Account"
 "login_explain" = "既存のメールアカウントにログインする";
 "login_subheader" = "主なメールサーバーは自動で設定されます｡一般にIMAPはサーバー側で有効に設定する必要が有ります｡サーバー提供者や詳しい人に確認しましょう｡";
 "login_no_servers_hint" = "Delta Chatには専用サーバーが有りません｡つまりあなたのデータ･個人情報はこの端末内に保存されています｡";
@@ -379,6 +382,7 @@
 "pref_profile_photo" = "アイコン画像";
 "pref_blocked_contacts" = "ブロックされた人";
 "blocked_empty_hint" = "ブロックされた連絡先がここに表示されます。";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "パスワードとアカウント";
 "pref_who_can_see_profile_explain" = "アイコン画像や名前は他のユーザーに連絡するとメッセージとともに表示されます。既に送信された情報を削除することができます。";
 "pref_your_name" = "あなたの名前";

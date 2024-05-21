@@ -329,6 +329,7 @@
 "chat_record_slide_to_cancel" = "Сдвиньте для отмены";
 "chat_record_explain" = "Нажмите и удерживайте для записи голосового сообщения, отпустите для отправки";
 "chat_no_chats_yet_title" = "Пустой ящик.\nНажмите на \"+\" для начала нового чата.";
+// deprecated
 "chat_no_chats_yet_hint" = "Вы можете общаться с другими пользователями Delta Chat и с любым адресом электронной почты.";
 "chat_all_archived" = "Все чаты заархивированы.\nНажмите на \"+\" для начала нового чата.";
 "chat_share_with_title" = "Поделиться с";
@@ -484,22 +485,18 @@
 
 
 // welcome and login
-// Primary button on the welcome screen, allows to create an instant account
+// Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Давайте начнём!";
-// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup" 
 "onboarding_alternative_logins" = "У меня уже есть логин";
-// Button, allows to log in to existing email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "Войти вручную";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Личный профиль";
-// This is a link to the default Privacy Policy
+// deprecated
 "instant_onboarding_agree_default" = "Просмотреть Политику конфиденциальности";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
 "instant_onboarding_agree_instance" = "О профилях на %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Принять и создать профиль";
-// Secondary, link-like button to open a page with other possible instances
-"instant_onboarding_show_more_instances" = "Просмотреть другие опции";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Создайть профиль чтобы присоединиться к группе \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
@@ -509,10 +506,11 @@
 // Question shown when group's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Вы хотите создать новый профиль и присоединиться к чату группы \"%1$@\"?";
 
-"welcome_chat_over_email" = "Чат через электронную почту.";
 "scan_invitation_code" = "Сканировать код приглашения";
 "login_title" = "Логин";
+// for classic email, we use the classical term "Account"
 "login_header" = "Войти в ваш имэйл-аккаунт";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Войти с существующим аккаунтом эл.почты";
 "login_subheader" = "Для известных почтовых систем, дополнительные настройки устанавливаются автоматически. Иногда для IMAP требуется разрешение в веб-интерфейсе. Проконсультируйтесь с технической поддержкой вашей почтовой службы или друзьями, для получения помощи.";
 "login_no_servers_hint" = "У Delta Chat нет собственных серверов, ваши данные остаются только на вашем устройстве!";
@@ -578,6 +576,7 @@
 "pref_profile_photo" = "Изображение профиля";
 "pref_blocked_contacts" = "Заблокированные контакты";
 "blocked_empty_hint" = "Если вы заблокируете контакты, они будут показаны здесь.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Пароль и аккаунт";
 "pref_who_can_see_profile_explain" = "Изображение профиля, имя и подпись будут отправлены вместе с сообщениями при общении с другими пользователями.";
 "pref_your_name" = "Ваше имя";
@@ -637,9 +636,9 @@
 "pref_backup" = "Резервное копирование";
 "pref_backup_explain" = "Сохранить чаты на внешний носитель";
 "pref_backup_export_explain" = "Резервное копирование позволяет восстанавливать предыдущие настройки приложения во время новой установки на этом или другом устройстве.\n\nРезервная копия содержит все сообщения, контакты и чаты, а также параметры сквозного шифрования Autocrypt.  После того, как резервная копия будет создана, как можно скорее перенесите её в надёжное место.";
-// the placeholder will be replaced by the name of the account's email address
+// the placeholder will be replaced by the name of the profile's email address
 "pref_backup_export_x" = "Экспортировать %1$@";
-// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+// the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Экспортировать все %1$d аккаунтов";
 "pref_backup_export_start_button" = "Начать резервное копирование";
 "pref_backup_written_to_x" = "Резервная копия успешно записана на %1$@";
@@ -658,6 +657,7 @@
 "pref_imap_folder_warn_disable_defaults" = "При отключении этого параметра убедитесь, что сервер и ваши другие приложения для работы с электронной почтой настроены таким же образом.\n\nВ противном случае, всё может перестать работать.";
 "pref_watch_sent_folder" = "Следить за папкой Исходящие";
 "pref_send_copy_to_self" = "Отправлять копию себе";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Требуется при использовании этого аккаунта на нескольких устройствах.";
 "pref_auto_folder_moves" = "Автоматически Перемещать в папку DeltaChat";
 "pref_auto_folder_moves_explain" = "Сообщения чатов переносятся, чтобы избежать путаницы в папке «Входящие»";
@@ -888,10 +888,11 @@
 "set_name_and_avatar_explain" = "Укажите имя, под которым вас будут видеть ваши контакты. Также можно установить изображение профиля.";
 "please_enter_name" = "Введите имя.";
 "qraccount_qr_code_cannot_be_used" = "Отсканированный QR-код не может быть использован для создания нового аккаунта.";
+// deprecated
 "qraccount_use_on_new_install" = "Отсканированный QR-код предназначен для создания нового аккаунта. Вы можете отсканировать QR-код при установке Delta Chat.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Войти в «%1$@»?";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Войти в «%1$@»?\n\nВаш существующий аккаунт не будет удален. Используйте пункт «Сменить аккаунт» чтобы переключаться между аккаунтами.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ пригласил вас в группу.\n\nОжидаем ответа от %2$@…";
@@ -987,6 +988,7 @@
 "export_backup_desktop" = "Экспорт резервной копии";
 "autocrypt_correct_desktop" = "Настройки Autocrypt успешно переданы!";
 "forget_login_confirmation_desktop" = "Удалить эту учётную запись? Все данные будут удалены, включая настройки сквозного шифрования, контакты, чаты, сообщения и медиа файлы. Это действие нельзя будет отменить.";
+// deprecated
 "account_info_hover_tooltip_desktop2" = "Эл.почта: %1$@\nРазмер: %2$@\nПуть: %3$@";
 "message_detail_sent_desktop" = "Отправлено";
 "message_detail_received_desktop" = "получено";

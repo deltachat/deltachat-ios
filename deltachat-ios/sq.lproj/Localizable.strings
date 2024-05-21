@@ -163,6 +163,8 @@
 
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Kontakt i Ri";
+"menu_new_classic_contact" = "Shtoni Kontakt Dorazi";
+"new_classic_contact_explain" = "Kontaktet e shtuar dorazi mund të përdoren për të dërguar tekst te email klasik dhe për ta s’garantohet fshehtëzim skaj-më-skaj.";
 "menu_new_chat" = "Fjalosje e Re";
 "menu_new_group" = "Grup i Ri";
 "clone_chat" = "Klononi Fjalosjen";
@@ -327,6 +329,7 @@
 "chat_record_slide_to_cancel" = "Rrëshqiteni që të anulohet";
 "chat_record_explain" = "Prekeni dhe mbajeni të prekur që të incizoni një mesazh zanor; lëshojeni, që të dërgohet";
 "chat_no_chats_yet_title" = "Kuti mesazhesh e zbrazët.\nShtypni “+” që të nisni një fjalosje të re.";
+// deprecated
 "chat_no_chats_yet_hint" = "Mund të bisedoni me përdorues të tjerë të Delta Chat-it dhe me çfarëdo adrese email.";
 "chat_all_archived" = "Krejt fjalosjet janë të arkivuara.\nShtypni “+” që të nisni një bisedë të re.";
 "chat_share_with_title" = "Ndajeni me ";
@@ -482,22 +485,24 @@
 
 
 // welcome and login
-// Primary button on the welcome screen, allows to create an instant account
+// Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Le T’ia Fillojmë!";
-// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup", "Manual Login" 
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup" 
 "onboarding_alternative_logins" = "Kam Krendenciale Tashmë";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "Hyrje Dorazi";
+"manual_account_setup_option" = "Hyrje Klasike Me Email";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profili Juaj";
-// This is a link to the default Privacy Policy
+// deprecated
 "instant_onboarding_agree_default" = "Lexoni Rregullat e Privatësisë";
+// The placeholder will be replaced by the default onboarding server
+"instant_onboarding_agree_default2" = "Rregulla Privatësie për %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
 "instant_onboarding_agree_instance" = "Rreth profilesh në %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Pranojeni & Krijoni Profil";
 // Secondary, link-like button to open a page with other possible instances
-"instant_onboarding_show_more_instances" = "Eksploroni Mundësi të Tjera";
+"instant_onboarding_show_more_instances" = "Përdor Shërbyes Tjetër";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Krijoni një profil, që të merrni pjesë te grupi “%1$@”.";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
@@ -507,10 +512,12 @@
 // Question shown when group's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Doni të krijohet një profil i ri dhe të hyhet te grupi “%1$@” i fjalosjeve?";
 
-"welcome_chat_over_email" = "Fjalosje përmes Email-i";
+"welcome_chat_over_email" = "Fjalosje e Decentralizuar, e Parrezik";
 "scan_invitation_code" = "Skanoni Kod Ftese";
 "login_title" = "Hyni";
+// for classic email, we use the classical term "Account"
 "login_header" = "Hyni te Llogaria juaj Email";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Hyni me një llogari email ekzistuese.";
 "login_subheader" = "Për shërbime të njohura email-i, rregullimet shtesë caktohen automatikisht. Ndonjëherë shërbyesi IMAP lyp të aktivizohet te pjesa e dukshme web. Për ndihmë këshillohuni me shërbimin tuaj email ose shokë tuajt.";
 "login_no_servers_hint" = "S\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
@@ -576,6 +583,7 @@
 "pref_profile_photo" = "Foto Profili";
 "pref_blocked_contacts" = "Kontakte të Bllokuar";
 "blocked_empty_hint" = "Nëse bllokoni kontakte, do të shfaqen këtu.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Fjalëkalim dhe Llogari";
 "pref_who_can_see_profile_explain" = "Fotoja juaj e profilit, emri dhe nënshkrimi do të dërgohen tok me mesazhet tuaj, kur komunikoni me përdorues të tjerë.";
 "pref_your_name" = "Emri juaj";
@@ -634,9 +642,9 @@
 "pref_backup" = "Kopjeruajtje";
 "pref_backup_explain" = "Kopjeruaji Fjalosjet në Depozitim të Jashtëm";
 "pref_backup_export_explain" = "Një kopjeruajtje ju lejon të rregulloni një instalim të ri në këtë apo në një tjetër pajisje.\n\nKopjeruajtja do të përmbajë krejt mesazhet, kontaktet dhe fjalosjet, si dhe rregullimin tuaj për Autocrypt skaj-më-skaj. Mbajeni kartelën e kopjeruajtjes diku të parrezik, përndryshe fshijeni as më shpejt që të jetë e mundur.";
-// the placeholder will be replaced by the name of the account's email address
+// the placeholder will be replaced by the name of the profile's email address
 "pref_backup_export_x" = "Eksporto %1$@";
-// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+// the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksporto krejt llogaritë e %1$d";
 "pref_backup_export_start_button" = "Nis Kopjeruajtjen";
 "pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te “%1$@”";
@@ -655,6 +663,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Nëse e ndryshoni këtë mundësi, garantoni që shërbyesi juaj dhe klientët tuaj të tjerët të jenë formësuar për këtë.\n\nPërndryshe gjërat mund të mos punojnë fare.";
 "pref_watch_sent_folder" = "Vëzhgo Dosje Të dërguarish";
 "pref_send_copy_to_self" = "Dërgojini Kopje Vetes";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "E domosdoshme kur kjo llogari përdoret në një numër pajisjesh.";
 "pref_auto_folder_moves" = "Kaloji vetvetiu te Dosja DeltaChat";
 "pref_auto_folder_moves_explain" = "Bisedat zhvendosen, që të shmanget rrëmuja te dosja Të marrë";
@@ -884,10 +893,11 @@
 "set_name_and_avatar_explain" = "Caktoni një emër, që kontaktet tuaj do ta njohin. Mundeni edhe të caktoni një emër profili.";
 "please_enter_name" = "Ju lutemi, jepni një emër.";
 "qraccount_qr_code_cannot_be_used" = "Kodi QR i skanuar s’mund të përdoret për të ujdisur një llogari të re.";
+// deprecated
 "qraccount_use_on_new_install" = "Kodi QR i skanuar është për ujdisje të një llogarie të re. Kodin QR mund ta skanoni kur ujdisni një instalim të ri të Delta Chat-it.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Të hyhet si “%1$@”?";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Të hyhet si “%1$@”?\n\nLlogaria juaj ekzistuese s’do të fshihet. Që të kaloni nga një llogari e juaja në një tjetër, përdorni zërin “Ndërroni Llogari”.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ju ftoi të bëheni pjesë e këtij grupi.\n\nPo pritet për pajisjen e %2$@ që të përgjigjet…";
@@ -985,6 +995,7 @@
 "export_backup_desktop" = "Eksportoni Kopjeruajtje";
 "autocrypt_correct_desktop" = "Ujdisja e Autocrypt-it u shpërngul.";
 "forget_login_confirmation_desktop" = "Të fshihet kjo hyrje? Do të fshihet gjithçka, përfshi rregullimin tuaj për skaj-më-skaj, kontaktet, fjalosjet, mesazhet dhe mediat. Ky veprim s\’mund të zhbëhet.";
+// deprecated
 "account_info_hover_tooltip_desktop2" = "Email: %1$@\nMadhësi: %2$@\nID  Llogarie: %3$@";
 "message_detail_sent_desktop" = "të dërguar";
 "message_detail_received_desktop" = "të marrë";

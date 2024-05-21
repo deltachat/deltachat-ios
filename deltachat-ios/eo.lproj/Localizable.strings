@@ -269,6 +269,7 @@
 "chat_unable_to_record_audio" = "Ne povas registri aŭdaĵon.";
 "chat_record_slide_to_cancel" = "Gliti por nuligi";
 "chat_record_explain" = "Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi";
+// deprecated
 "chat_no_chats_yet_hint" = "Vi povas babili kun aliaj uzantoj de Delta Chat kaj kun iu ajn retadreso.";
 "chat_all_archived" = "Ĉiuj babiloj enarĥivigitaj.\nPremu \"+\" por komenci novan babilon.";
 "chat_share_with_title" = "Kunhavigi kun";
@@ -305,6 +306,7 @@
 "media_preview" = "Aŭdvida antaŭrigardo";
 "send_message" = "Sendi mesaĝon";
 "login_title" = "Ensaluti";
+// for classic email, we use the classical term "Account"
 "login_header" = "Ensaluti al via servilo";
 "login_inbox" = "Ricevujo";
 "login_imap_login" = "IMAP salutnomo";
@@ -338,6 +340,7 @@
 
 "pref_profile_photo" = "Profilbildo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Pasvorto kaj konto";
 "pref_your_name" = "Via nomo";
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";

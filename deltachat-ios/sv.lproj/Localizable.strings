@@ -266,6 +266,7 @@
 "chat_record_slide_to_cancel" = "Svep för att avbryta";
 "chat_record_explain" = "Tryck och håll ner för att spela in ett röstmeddelande, släpp för att skicka.";
 "chat_no_chats_yet_title" = "Tom inkorg.\nTryck på \"+\" för att starta en ny chatt.";
+// deprecated
 "chat_no_chats_yet_hint" = "Du kan chatta med andra Delta Chat-användare och med vilken e-postadress som helst.";
 "chat_all_archived" = "Alla chattar arkiverade.\nTryck på \"+\" för att starta en ny chatt.";
 "chat_share_with_title" = "Dela med";
@@ -320,7 +321,9 @@
 "media_preview" = "Förhandsvisning av media";
 "send_message" = "Skicka meddelande";
 "login_title" = "Logga in";
+// for classic email, we use the classical term "Account"
 "login_header" = "Logga in på din server";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Logga in med ett befintligt e-postkonto";
 "login_subheader" = "För kända e-postleverantörer installeras ytterligare inställningar automatiskt. Ibland måste IMAP aktiveras i webbinställningarna. Kontakta din e-postleverantör eller vänner för hjälp.";
 "login_no_servers_hint" = "Det finns ingen Delta Chat-server, din data stannar på din enhet.";
@@ -370,6 +373,7 @@
 "pref_profile_info_headline" = "Din profilinformation";
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockerade kontakter";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Lösenord och konto";
 "pref_who_can_see_profile_explain" = "Din profilbild och ditt namn visas tillsammans med dina meddelanden när du kommunicerar med andra användare. Information som redan skickats kan inte tas bort eller flyttas.";
 "pref_your_name" = "Ditt namn";
@@ -554,6 +558,7 @@
 "qraccount_ask_create_and_login" = "Skapa ny e-postadress på \"%1$@\" och logga in där?";
 "qraccount_ask_create_and_login_another" = "Vill du skapa en ny e-postadress på \"%1$@\" och logga in där?\n\nDitt befintliga konto kommer inte att tas bort. Använd \"Byt konto\" för att växla mellan dina konton.";
 "qraccount_qr_code_cannot_be_used" = "Den skannade QR-koden kan inte användas för att konfigurera ett nytt konto.";
+// deprecated
 "qraccount_use_on_new_install" = "Den skannade QR-koden är till för att konfigurera ett nytt konto. Du kan skanna QR-koden när du konfigurerar en ny Delta Chat-installation.";
 "contact_verified" = "%1$@ verifierad.";
 "contact_not_verified" = "Kan inte verifiera %1$@.";

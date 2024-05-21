@@ -278,6 +278,7 @@
 "chat_record_slide_to_cancel" = "滑動以取消";
 "chat_record_explain" = "按住不放錄音，放開後傳送";
 "chat_no_chats_yet_title" = "目前沒有對話\n請按 + 開始新的對話";
+// deprecated
 "chat_no_chats_yet_hint" = "你可以和其它 Delta Chat 的使用者對話，也可以和任何 email 信箱對話。";
 "chat_all_archived" = "已封存所有的對話\n請按 + 開始新的對話";
 "chat_share_with_title" = "分享給...";
@@ -315,6 +316,7 @@
 "tab_docs_empty_hint" = "本對話中共享的文件、音樂和其它檔案會顯示在這裡。";
 "media_preview" = "媒體預覽";
 "login_title" = "登入";
+// for classic email, we use the classical term "Account"
 "login_header" = "登入你的伺服器";
 "login_subheader" = "我們能自動處理大多數常見的郵件伺服器設定。有時候你需要在 web 界面上手動打開 IMAP 服務，請詢問郵件服務商或請朋友幫忙。";
 "login_no_servers_hint" = "Delta Chat 沒有伺服器，你的資料只會存在你自己的裝置上!";

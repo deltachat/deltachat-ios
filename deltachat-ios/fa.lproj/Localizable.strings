@@ -318,6 +318,7 @@
 "chat_record_slide_to_cancel" = "برای لغو بکشید.";
 "chat_record_explain" = "برای ضبط پیام صوتی فشار داده و نگهدارید، برای ارسال رها کنید. ";
 "chat_no_chats_yet_title" = "جعبهٔ ورودی خالی. \n برای شروع گپ جدید «+» را فشار دهید.";
+// deprecated
 "chat_no_chats_yet_hint" = "می‌توانید با دیگر کاربران دلتاچت و هر نشانی رایانامه‌ای گپ بزنید.";
 "chat_all_archived" = "تمام گپ‌ها بایگانی شده‌اند. /n برای شروع گپ جدید، «+» را فشار دهید. ";
 "chat_share_with_title" = "اشتراک گذاری با";
@@ -468,10 +469,11 @@
 "part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
 
 
-"welcome_chat_over_email" = "روی رایانامه گپ بزنید.";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
 "login_title" = "ورود";
+// for classic email, we use the classical term "Account"
 "login_header" = "به سرور خود وارد شوید";
+// for classic email, we use the classical term "Account"
 "login_explain" = "ورود با یک رایانامه موجود";
 "login_subheader" = "برای ارائه‌دهندگان شناخته شده تنظبمات اضافه به صورت خودکار انجام می‌شود. گاهی اوقات IMAP باید در تنظیمات رایانامهٔ شما فعال شود. از ارائه‌دهندهٔ رایانامه یا دوستانتان در این مورد کمک بگیرید.";
 "login_no_servers_hint" = "دلتاچت هیچ سروری ندارد، داده‌های شما در دستگاه شما باقی می‌ماند.";
@@ -536,6 +538,7 @@
 "pref_profile_photo" = "تصویر نمایه";
 "pref_blocked_contacts" = "مخاطبین مسدود شده";
 "blocked_empty_hint" = "اگر مخاطبی را مسدود کنید اینجا نمایش داده می‌شود";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "رمزعبور و حساب کاربری";
 "pref_who_can_see_profile_explain" = "وقتی با دیگر کاربران گپ می‌زنید، تصویر نمایه، نام و امضایتان در کنار پیام‌هایتان فرستاده می‌شوند.";
 "pref_your_name" = "اسم شما";
@@ -606,6 +609,7 @@
 "pref_imap_folder_warn_disable_defaults" = "اگر این گزینه را غیر فعال می‌کنید از اینکه سرور شما و حساب‌هایتان هم بر این اساس تنظیم شده باشند.\n\n در غیر این صورت ممکن است هیچ چیز کار نکند. ";
 "pref_watch_sent_folder" = "پوشه ارسال شده‌ها را نگاه کن";
 "pref_send_copy_to_self" = "ارسال رونوشت به خودم";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "درصورت استفاده از این حساب در چند دستگاه مورد نیاز است. ";
 "pref_auto_folder_moves" = "انتقال خودکار به پوشه دلتاچت";
 "pref_auto_folder_moves_explain" = "گپ‌ها برای جلوگیری از پر شدن صندوق ورودی جابه‌جا شدند";
@@ -806,10 +810,11 @@
 "qrshow_join_contact_no_connection_toast" = "اتصال اینترنت نیست. نمیتوان نصب کد کیوآر را انجام داد. ";
 "qraccount_ask_create_and_login" = "ایجاد رایانامهٔ جدید روی «%1$@» و ورود به آنجا؟";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه اندازی اکانت جدید استفاده کرد. ";
+// deprecated
 "qraccount_use_on_new_install" = "کد کیوآر اسکن شده برای راه اندازی یک اکانت جدید است. می‌توانید در حال تنظیم یک دلتاچت تازه نصب شده کیوآر  را اسکن کنید.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "آیا به \"%1$@\" وارد شوید؟";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "آیا به \"%1$@\" وارد شوید؟\n\nحساب موجود شما حذف نخواهد شد. برای جابه‌جایی میان حساب‌هایتان از \"تغییر حساب\" استفاده کنید.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 // placeholder will be replaced by the name of the inviter.
@@ -894,6 +899,7 @@
 "export_backup_desktop" = "صادر کردن نسخه پشتیبان";
 "autocrypt_correct_desktop" = "برپاسازی اتوکریپت انتقال یافت.";
 "forget_login_confirmation_desktop" = "پاک کردن این ورود؟ همه‌چیز پاک می‌شود که شامل رمزگذاری سرتاسر، مخاطبین، گپ‌ها، پیام‌ها و رسانه می‌شود. این عملیات قابل بازگردانی نیست.";
+// deprecated
 "message_detail_sent_desktop" = "ارسال شد";
 "message_detail_received_desktop" = "دریافت شد";
 "menu.view.developer.open.log.folder" = "پوشه گزارش را باز کن";
