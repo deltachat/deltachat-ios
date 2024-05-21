@@ -39,9 +39,9 @@ for (( i=0; i<${#IOS_TRANSLATIONS[@]}; i++ )) {
 
     if [[ $LANG_DIR == "en" && -f untranslated.xml ]] 
     then
-        node convertTranslations.js $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml untranslated.xml ${OUTPUT_DIR}
+        python3 convert_translations.py $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml untranslated.xml ${OUTPUT_DIR}
     else 
-        node convertTranslations.js $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml ${OUTPUT_DIR}
+        python3 convert_translations.py $TMP_ANDROID_TRANSLATIONS/$LANG_DIR/strings.xml ${OUTPUT_DIR}
     fi
 }
 
