@@ -133,6 +133,7 @@ def main() -> None:
                 else:
                     loc.write(f""""{name}" = "{text}";\n""")
             elif element.tag == "plurals":
+                name = element.attrib["name"]
                 if name in plurals_keys:
                     logging.error(
                         f'On file {path}: <plurals name="{name}"> found but an element with the same name was already added from file {plurals_keys[name]}'
