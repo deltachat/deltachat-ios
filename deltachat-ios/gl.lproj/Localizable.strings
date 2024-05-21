@@ -302,6 +302,7 @@
 "chat_record_slide_to_cancel" = "Desliza para cancelar";
 "chat_record_explain" = "Toca e mantén para gravar mensaxe de voz, solta para enviar";
 "chat_no_chats_yet_title" = "Caixa de entrada baldeira.\n Preme \"+\" para iniciar conversa.";
+// deprecated
 "chat_no_chats_yet_hint" = "Podes conversar con outra usuaria Delta Chat e con calquera enderezo de correo.";
 "chat_all_archived" = "Arquiváronse todas as conversas.\nPreme \"+\" para iniciar unha nova.";
 "chat_share_with_title" = "Compartir con";
@@ -417,10 +418,11 @@
 "part_of_total_used" = "Utilizado %1$@ de %2$@";
 
 
-"welcome_chat_over_email" = "Chat a través de Email.";
 "scan_invitation_code" = "Escanear código de convite";
 "login_title" = "Acceder";
+// for classic email, we use the classical term "Account"
 "login_header" = "Accede ao teu servidor";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Accede cunha conta de correo existente";
 "login_subheader" = "Para os provedores de correo máis frecuentes os axustes establécense automaticamente. Porén poderías ter que activar IMAP nos seus axustes. Consulta o teu provedor de correo ou aos amigos se tes dúbidas.";
 "login_no_servers_hint" = "Non hai servidores Delta Chat, os teus datos permanecen no dispositivo.";
@@ -486,6 +488,7 @@
 "pref_profile_photo" = "Imaxe de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
 "blocked_empty_hint" = "Móstranse aquí os contactos que bloqueas.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Contrasinal e conta";
 "pref_who_can_see_profile_explain" = "A túa foto de perfil e nome móstranse xunto coas túas mensaxes ao comunicarte con outras persoas. A información xa enviada non se pode agochar o borrar.";
 "pref_your_name" = "O teu nome";
@@ -556,6 +559,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Se desactivas esta opción, asegúrate de que o servidor e os teus outros clientes están configurados de xeito acorde.\n\nSe non, algo podería fallar.";
 "pref_watch_sent_folder" = "Vixiar cartafol Enviados";
 "pref_send_copy_to_self" = "Enviar copia a ti mesmo";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Requerido se utilizas esta conta en varios dispositivos.";
 "pref_auto_folder_moves" = "Mover automáticamente ao cartafol DeltaChat";
 "pref_auto_folder_moves_explain" = "As conversas móvense do cartafol de Entrada para evitar saturalo.";
@@ -729,6 +733,7 @@
 "qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e acceder ali?";
 "qraccount_ask_create_and_login_another" = "Crear un novo enderezo de email en \"%1$@\" e acceder?\n\nNon se eliminará a conta actual. Usa \"Cambiar de conta\" para cambiar entre as túas contas.";
 "qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";
+// deprecated
 "qraccount_use_on_new_install" = "O código QR escaneado é para crear unha nova conta. Podes escanear o código QR cando configures unha nova instalación de Delta Chat.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ convidoute a este grupo.\n\nAgardando a que responda o dispositivo de %2$@ ...";
@@ -811,6 +816,7 @@
 "export_backup_desktop" = "Exportar respaldo";
 "autocrypt_correct_desktop" = "Axuste Autocrypt transferido.";
 "forget_login_confirmation_desktop" = "Eliminar esta conexión? Borrarase todo, incluíndo os axustes de cifrado, contactos, conversas, mensaxes e ficheiros de medios. Esta acción non ten volta atrás.";
+// deprecated
 "account_info_hover_tooltip_desktop2" = "Email: %1$@ \nTamaño: %2$@ \nId. da conta: %3$@";
 "message_detail_sent_desktop" = "enviado";
 "message_detail_received_desktop" = "recibido";

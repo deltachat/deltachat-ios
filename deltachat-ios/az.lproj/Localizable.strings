@@ -170,6 +170,7 @@
 "chat_record_slide_to_cancel" = "Ləğv etmək üçün sürüşdürün";
 "chat_record_explain" = "Bir səsli mesajı yazmaq üçün toxunun və saxlayın, göndərmək üçün buraxın";
 "chat_no_chats_yet_title" = "Qutu boşdur.\nYeni çata başlamaq üçün \"+\" işarəsinə toxunun. ";
+// deprecated
 "chat_no_chats_yet_hint" = "Digər Delta Chat istifadəçiləri ilə və hər hansı bir e-poçt ünvanı ilə söhbət edə bilərsiniz.";
 "chat_all_archived" = "Bütün çatlar saxlanıldı.\nYeni çata başlamaq üçün \"+\" işarəsinə toxunun. ";
 "chat_share_with_title" = "Göndər ";
@@ -209,7 +210,9 @@
 "tab_docs_empty_hint" = "Bu söhbətdə paylaşılan sənədlər, musiqi və digər fayllar burada göstəriləcək.";
 "media_preview" = "Fayllara baxmaq";
 "login_title" = "Daxil ol";
+// for classic email, we use the classical term "Account"
 "login_header" = "Serverinə daxil ol";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Mövcud e-mail hesabı ilə daxil olun";
 "login_subheader" = "Məlum elektron poçt provayderləri üçün əlavə parametrlər avtomatik olaraq quraşdırılır. Bəzən IMAP-ın web məkanında aktiv olması lazımdır. Yardım üçün e-poçt provayderinizə və ya dostlarınıza müraciət edin.";
 "login_no_servers_hint" = "Delta Chat serverləri yoxdur, məlumatlarınız cihazınızda qalır!";

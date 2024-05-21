@@ -310,6 +310,7 @@
 "chat_record_slide_to_cancel" = "Приплъзнете, за да откажете";
 "chat_record_explain" = "Докоснете и задръжте, за да запишете гласово съобщение, отпуснете, за да го изпратите";
 "chat_no_chats_yet_title" = "Празна входяща кутия.\nНатиснете \"+\", за да започнете нов чат";
+// deprecated
 "chat_no_chats_yet_hint" = "Можете да чатите с други потребители на Delta Chat и с кой да е адрес за електронна поща";
 "chat_all_archived" = "Всички чатове са архивирани.\nНатиснете \"+\", за да започнете нов чат";
 "chat_share_with_title" = "Споделяне с";
@@ -452,10 +453,11 @@
 "part_of_total_used" = "Използвани са %1$@ от %2$@";
 
 
-"welcome_chat_over_email" = "Чат през email.";
 "scan_invitation_code" = "Сканиране на код за покана";
 "login_title" = "Влизане";
+// for classic email, we use the classical term "Account"
 "login_header" = "Влизане във Вашия акаунт за електронна поща";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Влизане със съществуващ акаунт за електронна поща";
 "login_subheader" = "За известните доставчици на електронна поща допълнителните настройки се попълват автоматично. Понякога е необходимо да се разреши IMAP в уеб настройките. Потърсете помощ от Вашия доставчик на електронна поща или приятели.";
 "login_no_servers_hint" = "Delta Chat няма сървъри, Вашите данни стоят на Вашето устройство.";
@@ -521,6 +523,7 @@
 "pref_profile_photo" = "Изображение на профила";
 "pref_blocked_contacts" = "Блокирани контакти";
 "blocked_empty_hint" = "Блокираните контакти ще се появяват тук.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Парола и акаунт";
 "pref_who_can_see_profile_explain" = "Изображението, името и подписът от Вашия профил ще бъдат изпратени заедно с Вашите съобщения, когато общувате с други потребители.";
 "pref_your_name" = "Вашето име";
@@ -591,6 +594,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Ако промение тази опция, се уверете, че Вашият сървър и другите Ви клиенти са конфигурирани по съответен начин.\n\nВ противен случай е възможно нещата въобще да не работят.";
 "pref_watch_sent_folder" = "Да бъде наблюдавана папката \"Изпратени\"";
 "pref_send_copy_to_self" = "Изпращане на копие до себе си";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Изисква се, когато този акант се използва на повече от едно устройство.";
 "pref_auto_folder_moves" = "Автоматично преместване в папката DeltaChat";
 "pref_auto_folder_moves_explain" = "Разговорите са преместени, за да се избегне претрупване на папката \"Входящи\"";
@@ -791,10 +795,11 @@
 "qraccount_ask_create_and_login" = "Да бъде ли създаден нов адрес за електронна поща на \"%1$@\" и да бъде ли осъществено влизане там?";
 "qraccount_ask_create_and_login_another" = "Да бъде ли създаден нов адрес за електронна поща в \"%1$@\" и да бъде ли осъществено влизане там?\n\nВашият съществуващ акаунт няма да бъде изтрит. Използвайте опцията \"Превключване към друг акаунт\", за да превключвате между Вашите акаунти.";
 "qraccount_qr_code_cannot_be_used" = "Не може да бъде създаден нов акаунт със сканирания QR код.";
+// deprecated
 "qraccount_use_on_new_install" = "Сканираният QR код е за установяване на нов акаунт. Можете да сканирате QR кода, когато създавате нова инсталация на Delta Chat.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Желаете ли да влезете в \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Желаете ли да влезете в \"%1$@\"?\n\nСъщестуващият Ви акаунт няма да бъде изтрит. Превключвайте между акаунтите си чрез \"Превключване към друг акаунт\".";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ Ви покани да се присъедините към тази група.\n\nИзчаква се устройството на %2$@ да отговори…";
@@ -879,6 +884,7 @@
 "export_backup_desktop" = "Експорт на резервно копие";
 "autocrypt_correct_desktop" = "Найстроката на Autocrypt е прехвърлена.";
 "forget_login_confirmation_desktop" = "Да бъде ли изтрита тази регистрация? Всичко ще бъде изтрито, включително Вашата настройка за криптиране \"от край до край\", контакти, чатове, съобщения и медийни файлове. Това действие не може да бъде отменено.";
+// deprecated
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nРазмер: %2$@\n Идентификатор на акаунт: %3$@";
 "message_detail_sent_desktop" = "изпратено";
 "message_detail_received_desktop" = "получено";

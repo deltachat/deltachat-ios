@@ -328,6 +328,7 @@
 "chat_record_slide_to_cancel" = "Trượt để hủy";
 "chat_record_explain" = "Nhấn và giữ để ghi tin nhắn thoại, thả ra để gửi";
 "chat_no_chats_yet_title" = "Hộp thư đến trống.\nNhấn \"+\" để bắt đầu cuộc trò chuyện mới.";
+// deprecated
 "chat_no_chats_yet_hint" = "Bạn có thể trò chuyện với những người dùng Delta Chat khác và với bất kỳ địa chỉ e-mail nào.";
 "chat_all_archived" = "Tất cả các cuộc trò chuyện đã được lưu trữ.\nNhấn \"+\" để bắt đầu cuộc trò chuyện mới.";
 "chat_share_with_title" = "Chia sẻ với";
@@ -482,10 +483,11 @@
 "part_of_total_used" = "%1$@ trong tổng số %2$@ đã được sử dụng";
 
 
-"welcome_chat_over_email" = "Trò chuyện qua E-Mail.";
 "scan_invitation_code" = "Quét mã mời";
 "login_title" = "Đăng nhập";
+// for classic email, we use the classical term "Account"
 "login_header" = "Đăng nhập vào tài khoản E-Mail của bạn";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Đăng nhập bằng tài khoản e-mail hiện có";
 "login_subheader" = "Đối với các nhà cung cấp e-mail đã biết, cài đặt bổ sung sẽ được thiết lập tự động. Đôi khi IMAP cần được bật trong cài đặt web. Hãy tham khảo nhà cung cấp e-mail hoặc bạn bè của bạn để được trợ giúp.";
 "login_no_servers_hint" = "Không có máy chủ Delta Chat, dữ liệu của bạn vẫn còn trên thiết bị của bạn.";
@@ -551,6 +553,7 @@
 "pref_profile_photo" = "Ảnh hồ sơ";
 "pref_blocked_contacts" = "Liên hệ bị chặn";
 "blocked_empty_hint" = "Các liên hệ bị chặn sẽ xuất hiện ở đây.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Mật khẩu và tài khoản";
 "pref_who_can_see_profile_explain" = "Ảnh hồ sơ, tên và chữ ký của bạn sẽ được gửi cùng với tin nhắn của bạn khi giao tiếp với người dùng khác.";
 "pref_your_name" = "Tên của bạn";
@@ -606,9 +609,9 @@
 "pref_backup" = "Sao lưu";
 "pref_backup_explain" = "Sao lưu cuộc trò chuyện vào bộ nhớ ngoài";
 "pref_backup_export_explain" = "Bản sao lưu giúp bạn thiết lập cài đặt mới trên thiết bị này hoặc trên thiết bị khác.\n\nBản sao lưu sẽ chứa tất cả tin nhắn, danh bạ và cuộc trò chuyện cũng như thiết lập Autocrypt hai đầu của bạn. Giữ tập tin sao lưu ở nơi an toàn hoặc xóa nó càng sớm càng tốt.";
-// the placeholder will be replaced by the name of the account's email address
+// the placeholder will be replaced by the name of the profile's email address
 "pref_backup_export_x" = "Xuất %1$@";
-// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+// the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Xuất tất cả tài khoản %1$d";
 "pref_backup_export_start_button" = "Bắt đầu sao lưu";
 "pref_backup_written_to_x" = "Sao lưu được ghi thành công vào \"%1$@\".";
@@ -627,6 +630,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Nếu bạn thay đổi tùy chọn này, hãy đảm bảo rằng máy chủ và các máy khách khác của bạn được cấu hình tương ứng.\n\nNếu không, mọi thứ có thể không hoạt động.";
 "pref_watch_sent_folder" = "Xem thư mục đã gửi";
 "pref_send_copy_to_self" = "Gửi bản sao cho chính mình";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Bắt buộc khi sử dụng tài khoản này trên nhiều thiết bị.";
 "pref_auto_folder_moves" = "Tự động di chuyển đến Thư mục DeltaChat";
 "pref_auto_folder_moves_explain" = "Các cuộc trò chuyện được di chuyển để tránh làm lộn xộn Hộp thư đến";
@@ -842,10 +846,11 @@
 "qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
 "qraccount_ask_create_and_login_another" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 "qraccount_qr_code_cannot_be_used" = "Mã QR được quét không thể được sử dụng để thiết lập tài khoản mới.";
+// deprecated
 "qraccount_use_on_new_install" = "Mã QR được quét là để thiết lập một tài khoản mới. Bạn có thể quét mã QR khi thiết lập cài đặt Delta Chat mới.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Đăng nhập vào \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Đăng nhập vào \"%1$@\"?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ đã mời bạn tham gia nhóm này.\n\nĐang chờ thiết bị của %2$@ trả lời…";
@@ -939,6 +944,7 @@
 "export_backup_desktop" = "Xuất bản sao lưu";
 "autocrypt_correct_desktop" = "Đã chuyển thiết lập Autocrypt.";
 "forget_login_confirmation_desktop" = "Xóa thông tin đăng nhập này? Mọi thứ sẽ bị xóa, bao gồm thiết lập đầu cuối, danh bạ, cuộc trò chuyện, tin nhắn và phương tiện của bạn. Hành động này không thể hoàn tác được.";
+// deprecated
 "account_info_hover_tooltip_desktop2" = "E-mail: %1$@\nKích thước: %2$@\nId tài khoản: %3$@";
 "message_detail_sent_desktop" = "đã gửi";
 "message_detail_received_desktop" = "đã nhận được";

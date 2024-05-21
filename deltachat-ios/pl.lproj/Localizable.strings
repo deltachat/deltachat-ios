@@ -329,6 +329,7 @@
 "chat_record_slide_to_cancel" = "PRZESUŃ, BY ANULOWAĆ";
 "chat_record_explain" = "Dotknij i przytrzymaj, aby nagrać wiadomość głosową, zwolnij, aby wysłać";
 "chat_no_chats_yet_title" = "Pusta skrzynka odbiorcza.\nNaciśnij \"+\" aby rozpocząć nowy czat.";
+// deprecated
 "chat_no_chats_yet_hint" = "Możesz rozmawiać z innymi użytkownikami Delta Chat i z dowolnym adresem e-mail.";
 "chat_all_archived" = "Wszystkie czaty zarchiwizowane.\nNaciśnij „+” aby rozpocząć nowy czat.";
 "chat_share_with_title" = "Udostępnij";
@@ -483,10 +484,11 @@
 "part_of_total_used" = "%1$@ z %2$@ ";
 
 
-"welcome_chat_over_email" = "Rozmawiaj przez e-mail.";
 "scan_invitation_code" = "Zeskanuj kod zaproszenia";
 "login_title" = "Zaloguj się";
+// for classic email, we use the classical term "Account"
 "login_header" = "Zaloguj się na swoje konto e-mail";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Zaloguj się przy użyciu istniejącego konta e-mail";
 "login_subheader" = "Dla znanych dostawców usług poczty elektronicznej poniższe ustawienia są ustawiane automatycznie. Czasami IMAP musi być włączony w interfejsie WWW. O pomoc należy zwrócić się do usługodawcy e-mail lub znajomych.";
 "login_no_servers_hint" = "Nie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
@@ -552,6 +554,7 @@
 "pref_profile_photo" = "Zdjęcie profilowe";
 "pref_blocked_contacts" = "Zablokowane kontakty";
 "blocked_empty_hint" = "Zablokowane kontakty, zostaną pokazane tutaj.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Hasło i konto";
 "pref_who_can_see_profile_explain" = "Twoje zdjęcie profilowe i nazwa będą wyświetlane wraz z wiadomościami podczas komunikacji z innymi użytkownikami. Już wysłanych informacji nie można skasować ani usunąć.";
 "pref_your_name" = "Twoja nazwa";
@@ -609,9 +612,9 @@
 "pref_backup" = "Kopia zapasowa";
 "pref_backup_explain" = "Wykonaj kopię zapasową czatów na pamięci zewnętrznej";
 "pref_backup_export_explain" = "Kopia zapasowa pomaga skonfigurować nową instalację na tym lub na innym urządzeniu.\n\nKopia zapasowa będzie zawierała wszystkie wiadomości, kontakty i czaty oraz pełną konfigurację  funkcji automatycznego szyfrowania typu end-to-end. Przechowuj plik kopii zapasowej w bezpiecznym miejscu lub usuń go jak najszybciej.";
-// the placeholder will be replaced by the name of the account's email address
+// the placeholder will be replaced by the name of the profile's email address
 "pref_backup_export_x" = "Eksportuj %1$@";
-// the placeholder will be replaced by the number of accounts to export; the number is always larger than 1
+// the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksportuj wszystkie %1$d konta";
 "pref_backup_export_start_button" = "Utwórz kopię";
 "pref_backup_written_to_x" = "Kopia zapasowa została pomyślnie zapisana do %1$@";
@@ -630,6 +633,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Jeśli wyłączysz tę opcję, upewnij się, że twój serwer i inni klienci są odpowiednio skonfigurowani.\n\nW przeciwnym razie wszystko może w ogóle nie działać.";
 "pref_watch_sent_folder" = "Pokaż katalog Wysłane";
 "pref_send_copy_to_self" = "Wyślij kopię do siebie";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Wymagane kiedy korzystasz z tego konta na wielu urządzeniach.";
 "pref_auto_folder_moves" = "Automatyczne przenoszenie do folderu DeltaChat";
 "pref_auto_folder_moves_explain" = "Rozmowy na czacie są przenoszone, aby nie zaśmiecać folderu Skrzynka odbiorcza";
@@ -860,10 +864,11 @@
 "set_name_and_avatar_explain" = "Ustaw nazwę, którą rozpoznają twoje kontakty. Możesz także ustawić zdjęcie profilowe.";
 "please_enter_name" = "Wpisz nazwę.";
 "qraccount_qr_code_cannot_be_used" = "Zeskanowanego kodu QR nie można użyć do założenia nowego konta.";
+// deprecated
 "qraccount_use_on_new_install" = "Zeskanowany kod QR służy do zakładania nowego konta. Możesz zeskanować kod QR podczas konfigurowania nowej instalacji Delta Chat.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Zalogować się do „%1$@”?";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Zalogować się do „%1$@”?\n\nTwoje istniejące konto nie zostanie usunięte. Użyj opcji „Przełącz konto”, aby przełączyć się między swoimi kontami.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "Użytkownik %1$@ zaprosił cię do dołączenia do tej grupy.\n\nCzekam na odpowiedź urządzenia %2$@…";
@@ -959,6 +964,7 @@
 "export_backup_desktop" = "Eksport kopii zapasowej";
 "autocrypt_correct_desktop" = "Pomyślnie przetransferowano konfigurację Autocrypt!";
 "forget_login_confirmation_desktop" = "Usunąć ten login? Wszystko zostanie usunięte, w tym kompletna konfiguracja end-to-end, kontakty, czaty, wiadomości i multimedia. Ta akcja jest ostateczna i nie można jej odwrócić.";
+// deprecated
 "account_info_hover_tooltip_desktop2" = "E-mail: %1$@\nRozmiar: %2$@\nID konta: %3$@";
 "message_detail_sent_desktop" = "wysłane";
 "message_detail_received_desktop" = "odebrane";

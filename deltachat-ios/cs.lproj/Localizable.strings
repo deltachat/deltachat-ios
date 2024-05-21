@@ -314,6 +314,7 @@
 "chat_record_slide_to_cancel" = "Zrušit tahem";
 "chat_record_explain" = "K nahrání hlasové zprávy stiskni a drž mikrofon, uvolni pro odeslání.";
 "chat_no_chats_yet_title" = "Prázdná schránka.\nStiskem \"+\" založ nový chat.";
+// deprecated
 "chat_no_chats_yet_hint" = "Založ chat s jakýmkoli uživatelem Delta Chatu a s jakýmkoli e-mailem.";
 "chat_all_archived" = "Všechny chaty archivovány.\nStiskem \"+\" založ nový chat.";
 "chat_share_with_title" = "Sdílet s";
@@ -382,9 +383,10 @@
 "multidevice_install_dc_on_other_device" = "Nainstalujte si Delta Chat do druhého zařízení (https://get.delta.chat)";
 // "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Spusťte Delta Chat, klepněte na „Přidat jako druhé zařízení“ a naskenujte zde zobrazený kód";
-"welcome_chat_over_email" = "Chat přes e-mail.";
 "login_title" = "Přihlaš se";
+// for classic email, we use the classical term "Account"
 "login_header" = "Přihlaš se na váš server";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Přihlásit se se stávajícím účtem pro e-mail.";
 "login_subheader" = "Pro standardní poskytovatele jsou nastavení dopněna samočinně. Někdy je potřeba umožnit IMAP ve webovém rozhraní nastavení. Obraťte se na poskytovatele e-mailu nebo přátele.";
 "login_no_servers_hint" = "Delta Chat nemá žádné vlastní servery, tvá data zůstávají na tvém přístroji.";
@@ -440,6 +442,7 @@
 "pref_profile_photo" = "Obrázek profilu";
 "pref_blocked_contacts" = "Blokované kontakty";
 "blocked_empty_hint" = "Zablokované kontakty se zobrazí zde.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Heslo a účet";
 "pref_who_can_see_profile_explain" = "Tvůj profilový obrázek a jméno budou zobrazeny vedle zpráv poslaných ostatním uživatelům. Data která jsou již jednou odeslaná nelze smazat ani odstranit. ";
 "pref_your_name" = "Tvé jméno";
@@ -677,6 +680,7 @@
 "qraccount_ask_create_and_login" = "Vytvořit nový e-mail na \"%1$@\" a připojit se k němu?";
 "qraccount_ask_create_and_login_another" = "Vytvořit nový e-mail na \"%1$@\" a připojit se k němu?\n\nTvůj původní ůčet nebude smazán. Použij \"Přepni účet\" k přepnutí na jiný účet.";
 "qraccount_qr_code_cannot_be_used" = "Sejmutý QR kód neumožňuje nastavení nového účtu.";
+// deprecated
 "qraccount_use_on_new_install" = "Sejmutý QR kód je k nastavení nového účtu. Tento QR kód můžeš použít když budeš provádět novou instalaci Delta Chatu.";
 "contact_verified" = "%1$@ ověřen.";
 "contact_not_verified" = "Nelze ověřit %1$@.";

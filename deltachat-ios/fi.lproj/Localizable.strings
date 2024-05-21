@@ -296,6 +296,7 @@
 "chat_record_slide_to_cancel" = "Pyyhkäise peruuttaaksesi";
 "chat_record_explain" = "Pidä painettuna nauhoittaaksesi ääniviestin, irrota lähettääksesi";
 "chat_no_chats_yet_title" = "Saapuneet-kansio on tyhjä\nPaina \"+\" aloittaaksesi uuden keskustelun.";
+// deprecated
 "chat_no_chats_yet_hint" = "Voit keskustella Delta Chat -käyttäjien kanssa tai minkä tahansa sähköpostiosoitteen kanssa.";
 "chat_all_archived" = "Kaikki keskustelut arkistoitu.\nPaina \"+\" aloittaaksesi uuden keskustelun.";
 "chat_share_with_title" = "Jaa";
@@ -410,10 +411,11 @@
 "part_of_total_used" = "%1$@ / %2$@ käytössä";
 
 
-"welcome_chat_over_email" = "Chattaa sähköpostilla.";
 "scan_invitation_code" = "Skannaa kutsukoodi";
 "login_title" = "Kirjaudu sisään";
+// for classic email, we use the classical term "Account"
 "login_header" = "Kirjaudu palvelimellesi";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Kirjaudu olemassa olevalla sähköpostitilillä";
 "login_subheader" = "Tunnetuille sähköpostipalveluntarjoajille muut asetukset luodaan automaattisesti. Joskus IMAP täytyy laittaa päälle verkkoasetuksissa. Kysy apua palveluntarjoajaltasi tai ystäviltäsi.";
 "login_no_servers_hint" = "Delta Chatilla ei ole palvelimia, tietosi säilyvät sinun laitteellasi.";
@@ -479,6 +481,7 @@
 "pref_profile_photo" = "Profiilikuva";
 "pref_blocked_contacts" = "Estetyt yhteystiedot";
 "blocked_empty_hint" = "Estämäsi yhteystiedot näkyvät tässä";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Salasana ja tili";
 "pref_who_can_see_profile_explain" = "Profiilikuvasi, nimesi ja allekirjoituksesi lähetetään yhdessä viestiesi kanssa muille käyttäjille.";
 "pref_your_name" = "Nimesi";
@@ -549,6 +552,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Jos poistat tämän asetuksen käytöstä, varmista, että palvelimessasi ja muissa asiakasohjelmissasi on oikeat asetukset.\n\nMuuten ne eivät ehkä toimi ollenkaan.";
 "pref_watch_sent_folder" = "Tarkkaile Lähetetyt-kansiota";
 "pref_send_copy_to_self" = "Lähetä kopio itselle";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Vaaditaan käytettäessä tiliä usealla laitteella.";
 "pref_auto_folder_moves" = "Siirrä automaattisesti DeltaChat-kansioon";
 "pref_auto_folder_moves_explain" = "Pikaviestikeskustelut siirretään Saapuneet-kansion sotkemisen välttämiseksi";
@@ -749,10 +753,11 @@
 "qraccount_ask_create_and_login" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?";
 "qraccount_ask_create_and_login_another" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?\n\nNykyistä tiliäsi ei poisteta. Käytä valintaa \"Vaihda tiliä\" vaihtaaksesi tilien välillä.";
 "qraccount_qr_code_cannot_be_used" = "Uutta tiliä ei voida luoda skannatulla QR-koodilla.";
+// deprecated
 "qraccount_use_on_new_install" = "Skannattu QR-koodi on käytössä uuden tilin luomiseksi. Voit skannata QR-koodin uuden Delta Chat -asennuksen yhteydessä.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Haluatko kirjautua osoitteella \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Haluatko kirjautua osoitteella \"%1$@\"?\n\nNykyistä tiliäsi ei poisteta. Käytä \"Vaihda tiliä\" -kohtaa vaihtaaksesi tiliesi välillä.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ kutsui sinut tähän ryhmään.\n\nOdotetaan vastausta yhteystiedon %2$@ laitteelta...";
@@ -835,6 +840,7 @@
 "export_backup_desktop" = "Vie varmuuskopio";
 "autocrypt_correct_desktop" = "Autocrypt-asetukset siirretty.";
 "forget_login_confirmation_desktop" = "Poista tämä kirjautuminen? Kaikki tiedot poistetaan, mukaan lukien päästä-päähän-salauksen asetukset, yhteystiedot, keskustelut, viestit ja media. Tämä toiminto on peruuttamaton.";
+// deprecated
 "account_info_hover_tooltip_desktop2" = "Sähköposti: %1$@\nKoko: %2$@\nTilin tunniste: %3$@";
 "message_detail_sent_desktop" = "lähetetty";
 "message_detail_received_desktop" = "vastaanotettu";

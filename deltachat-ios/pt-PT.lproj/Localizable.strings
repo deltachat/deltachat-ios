@@ -158,6 +158,7 @@
 "profile_encryption" = "Encriptação";
 "media_preview" = "Visualização de mídia";
 "login_title" = "Login";
+// for classic email, we use the classical term "Account"
 "login_header" = "Login no seu servidor";
 "login_subheader" = "Para os provedores de e-mail conhecidos as configurações adicionais são configuradas automaticamente. Por vezes, o IMAP precisa estar activado no frontend da web. Consulte seu provedor de e-mail ou amigos para obter ajuda.";
 "login_inbox" = "Caixa de entrada";

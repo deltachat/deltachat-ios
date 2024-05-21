@@ -309,6 +309,7 @@
 "chat_record_slide_to_cancel" = "Превуците за отказивање";
 "chat_record_explain" = "Додирните и држите за снимање гласовне поруке, пустите за слање";
 "chat_no_chats_yet_title" = "Сандуче је празно.\nПритисните „+“ да почнете ново ћаскање.";
+// deprecated
 "chat_no_chats_yet_hint" = "Можете ћаскати са другим Delta Chat корисницима и са онима који имају било коју другу е-адресу.";
 "chat_all_archived" = "Сва ћаскања су архивирана.\nПритисните „+“ да почнете ново ћаскање.";
 "chat_share_with_title" = "Подели са";
@@ -423,10 +424,11 @@
 "part_of_total_used" = "%1$@од %2$@искоришћени";
 
 
-"welcome_chat_over_email" = "Ћаскање преко е-поште.";
 "scan_invitation_code" = "Скенирај код позива за приступ.";
 "login_title" = "Пријави се";
+// for classic email, we use the classical term "Account"
 "login_header" = "Пријавите се у ваш налог е-поште";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Пријавите се преко постојећег налога е-поште";
 "login_subheader" = "За познате пружаоце услуге е-поште, додатне поставке се одређују аутоматски. Каткад, морате омогућити ИМАП у поставкама на веб сучељу ваше е-поште.\n\nПосаветујте се са пружаоцем услуге е-поште или пријатељима ако наиђете на проблеме.";
 "login_no_servers_hint" = "Не постоји сервер Делта ћаскања. Апликација користи само сервер ваше е-поште.";
@@ -492,6 +494,7 @@
 "pref_profile_photo" = "Слика профила";
 "pref_blocked_contacts" = "Блокирани контакти";
 "blocked_empty_hint" = "Блокирани контакти ће се појавити овде.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Лозинка и налог";
 "pref_who_can_see_profile_explain" = "Слика вашег профила, име и потпис ће бити послан заједно са вашом поруком када комуницирате са другим корисницима.";
 "pref_your_name" = "Ваше име";
@@ -562,6 +565,7 @@
 "pref_imap_folder_warn_disable_defaults" = "Ако промените ову опцију, морате проверити да су ваш сервер и ваши други клијенти конфигурисани у складу са тим.\n\nУ супротном апликација можда уопште неће функционисати.";
 "pref_watch_sent_folder" = "Посматрај директоријум са пошиљкама";
 "pref_send_copy_to_self" = "Пошаљи копију поруке себи";
+// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Обавезно када користите овај налог на више уређаја.";
 "pref_auto_folder_moves" = "Аутоматски премести у DeltaChat директоријум";
 "pref_auto_folder_moves_explain" = "Ћаскања се померају да би се избегло затрпавање пријемног сандучета";
@@ -762,10 +766,11 @@
 "qraccount_ask_create_and_login" = "Направите нову е-адресу на „%1$@“ и приступите јој тамо?";
 "qraccount_ask_create_and_login_another" = "Направите нову е-адресу на „%1$@“ и приступите јој тамо?\n\nВаш постојећи налог неће бити избрисан. Користите „Промени налог“ да пређете са једног налога на други.";
 "qraccount_qr_code_cannot_be_used" = "Очитани бар-кôд не може бити коришћен да подеси нови налог.";
+// deprecated
 "qraccount_use_on_new_install" = "Очитани бар-кôд је за подешавање новог налога. Можете очитати овај бар-кôд за подешавања после инсталације Delta Chat апликације.";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Пријави се у „%1$@“?";
-// the placeholder will be replaced by the e-mail address of the account
+// the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Пријави се у „%1$@“? Ваш постојећи налог неће бити избрисан. Користите „Промени налог“ опцију да прелазите са једног на други налог.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@вас је позвао да се придружите групи.\n\nЧекамо да уређај од %2$@одговори...";
@@ -850,6 +855,7 @@
 "export_backup_desktop" = "Извези резервну копију";
 "autocrypt_correct_desktop" = "Поставке за аутошифровање су послате.";
 "forget_login_confirmation_desktop" = "Да ли желите да избришете овај налог? Све ће бити избрисано, укључујући и ваше подешавање с-краја-на-крај шифровања, контакти, ћаскања, поруке и медији. Ова радња се не може опозвати.";
+// deprecated
 "account_info_hover_tooltip_desktop2" = "Е-пошта: %1$@\nВеличина: %2$@\nИдентификатор налога: %3$@";
 "message_detail_sent_desktop" = "послато";
 "message_detail_received_desktop" = "примљено";

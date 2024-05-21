@@ -319,6 +319,7 @@
 "chat_record_slide_to_cancel" = "Llisca per cancel·lar";
 "chat_record_explain" = "Mantingues premut per gravar un missatge de veu i deixa anar per enviar-lo";
 "chat_no_chats_yet_title" = "Safata d\'entrada buida.\nPrem \"+\" per començar un xat nou.";
+// deprecated
 "chat_no_chats_yet_hint" = "Pots xatejar amb altres usuaris de Delta Chat i amb qualsevol adreça de correu electrònic.";
 "chat_all_archived" = "Tots els xats s\'han arxivat.\nPrem \"+\" per començar-ne un de nou.";
 "chat_share_with_title" = "Comparteix amb";
@@ -434,9 +435,9 @@
 "part_of_total_used" = "%1$@ de %2$@ usats";
 
 
-"welcome_chat_over_email" = "Xateja via Email";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
 "login_title" = "Identifiqueu-vos";
+// for classic email, we use the classical term "Account"
 "login_header" = "Identifiqueu-vos al vostre servidor";
 "login_subheader" = "Als proveïdors de mail coneguts els paràmetres es configuren automàticament. De vegades l\'IMAP s\'ha d\'activar a la interfície web. Consulta el teu proveïdor de correu electrònic o a un amic perquè t\'ajudi. ";
 "login_no_servers_hint" = "No hi ha servidors de Delta Chat: les teves dades es queden al teu dispositiu!";

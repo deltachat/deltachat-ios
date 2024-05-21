@@ -258,6 +258,7 @@
 "chat_record_slide_to_cancel" = "Træk for at annullere";
 "chat_record_explain" = "Tryk og hold for at optage talebesked, slip for at sende.";
 "chat_no_chats_yet_title" = "Tom indbakke.\nTryk \"+\" for at starte ny samtale.";
+// deprecated
 "chat_no_chats_yet_hint" = "Du kan have samtaler med andre Delta Chat brugere og med enhver e-mailadresse.";
 "chat_all_archived" = "Alle samtaler er arkiveret.\nTryk \"+\" for at starte ny samtale.";
 "chat_share_with_title" = "Del med";
@@ -327,7 +328,9 @@
 
 
 "login_title" = "Login";
+// for classic email, we use the classical term "Account"
 "login_header" = "Login til server";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Login med en eksisterende e-mailkonto";
 "login_subheader" = "For kendte e-mailudbydere opsættes yderligere indstillinger automatisk. Nogle gange skal IMAP aktiveres i brugerfladen. Kontakt din e-mailudbyder eller venner for at få hjælp.";
 "login_no_servers_hint" = "Der er ingen Delta Chat server, data forbliver på enhed!";
@@ -391,6 +394,7 @@
 "pref_profile_photo" = "Profilbillede";
 "pref_blocked_contacts" = "Blokerede kontakter";
 "blocked_empty_hint" = "Hvis du blokerer kontakter, bliver de vist her.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Adgangskode og konto";
 "pref_who_can_see_profile_explain" = "Profilbillede og navn vises sammen med beskeder, når der kommunikeres med andre brugere. Allerede sendt information kan ikke slettes eller fjernes.";
 "pref_your_name" = "Dit navn";
@@ -621,6 +625,7 @@
 "qraccount_ask_create_and_login" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?";
 "qraccount_ask_create_and_login_another" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?\n\nDin eksisterende konto bliver ikke slettet. Brug \"Skift konto\" for at skifte imellem dine konti.";
 "qraccount_qr_code_cannot_be_used" = "Den skannede QR-kode kan ikke bruges til at opsætte en ny konto.";
+// deprecated
 "qraccount_use_on_new_install" = "Den skannede QR-kode er til at opsætte en ny konto. Du kan skanne QR-kode når du opsætter en ny Delta Chat installation.";
 "contact_verified" = "%1$@ bekræftet.";
 "contact_not_verified" = "Kan ikke bekræfte %1$@";

@@ -144,6 +144,7 @@
 "tab_map" = "الخريطة";
 "media_preview" = "معاينة الصورة";
 "login_title" = "الولوج";
+// for classic email, we use the classical term "Account"
 "login_header" = "الإتصال بخادومك";
 "login_inbox" = "صندوق الوارد";
 "login_imap_login" = "مستخدم IMAP";
@@ -166,6 +167,7 @@
 "pref_profile_info_headline" = "معلومات ملفك التعريفي";
 "pref_profile_photo" = "صورة الملف التعريفي";
 "pref_blocked_contacts" = "المراسلون المحبوسون";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "الكلمة السرية والحساب";
 "pref_your_name" = "اسمك";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".

@@ -223,6 +223,7 @@
 "chat_record_slide_to_cancel" = "Iscurre pro annulare";
 "chat_record_explain" = "Incarca e mantene incarcadu pro registrare unu messàgiu vocale, lassa pro imbiare";
 "chat_no_chats_yet_title" = "Cartella de intrada bòida.\nIncarca \"+\" pro abèrrere una tzarrada noa.";
+// deprecated
 "chat_no_chats_yet_hint" = "Podes tzarrare cun àteros impreadores de Delta Chat e cun cale si siat indiritzu de posta eletrònica.";
 "chat_all_archived" = "Tzarradas archiviadas.\nIncarca \"+\" pro abèrrere una tzarrada noa.";
 "chat_share_with_title" = "Cumpartzi cun";
@@ -271,7 +272,9 @@
 "media_preview" = "Anteprima de su documentu multimediale";
 "send_message" = "Imbia messàgiu";
 "login_title" = "Intra";
+// for classic email, we use the classical term "Account"
 "login_header" = "Intra in su servidore tuo";
+// for classic email, we use the classical term "Account"
 "login_explain" = "Intra cun un\'indiritzu de posta eletrònica chi esistat";
 "login_subheader" = "Pro sos frunidores de posta eletrònica connotos sas impostatziones additzionales benint impostadas in automàticu. Cada tantu s\'IMAP cheret abilitadu in sas impostatziones web. Si ti serbit agiudu pedi a su frunidore de posta eletrònica tuo o a sos amigos tuos.";
 "login_no_servers_hint" = "No esistint serbidores de Delta Chat, sos datos tuos abarrant in su dispositivu tuo.";
@@ -326,6 +329,7 @@
 "pref_profile_photo" = "Fotografia de profilu";
 "pref_blocked_contacts" = "Cuntatos blocados";
 "blocked_empty_hint" = "Si as a blocare cuntatos ant a èssere allistados inoghe.";
+// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Crae de intrada e contu";
 "pref_who_can_see_profile_explain" = "S\'immàgine de profilu tua e su nùmene tuo ant a èssere ammustrados in paris cun sos messàgios tuos cando ses comunichende cun àteros impreadores. Sas informatziones giai imbiadas non podent èssere iscantzelladas o bogadas.";
 "pref_your_name" = "Su nùmene tuo";
