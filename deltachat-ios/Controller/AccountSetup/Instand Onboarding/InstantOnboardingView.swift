@@ -58,11 +58,6 @@ class InstantOnboardingView: UIView {
 
         privacyButton = UIButton(type: .system)
         privacyButton.translatesAutoresizingMaskIntoConstraints = false
-        if let customProvider {
-            privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_instance", parameter: customProvider), for: .normal)
-        } else {
-            privacyButton.setTitle(String.localized("instant_onboarding_agree_default"), for: .normal)
-        }
         privacyButtonWrapper = UIView()
         privacyButtonWrapper.translatesAutoresizingMaskIntoConstraints = false
         privacyButtonWrapper.addSubview(privacyButton)
@@ -113,6 +108,7 @@ class InstantOnboardingView: UIView {
 
         setupConstraints()
         validateTextfield(text: nameTextField.text)
+        updateContent(with: customProvider)
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -169,6 +165,14 @@ class InstantOnboardingView: UIView {
             agreeButton.backgroundColor = .systemBlue
         } else {
             agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
+        }
+    }
+
+    func updateContent(with customProvider: String?) {
+        if let customProvider {
+            privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_instance", parameter: customProvider), for: .normal)
+        } else {
+            privacyButton.setTitle(String.localized("instant_onboarding_agree_default"), for: .normal)
         }
     }
 }
