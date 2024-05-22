@@ -117,7 +117,16 @@ class QrPageController: UIPageViewController {
             alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .default, handler: withdrawQrCode(_:)))
         }
         alert.addAction(UIAlertAction(title: String.localized("paste_from_clipboard"), style: .default, handler: pasteFromClipboard(_:)))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        if qrSegmentControl.selectedSegmentIndex == 1 {
+            alert.addAction(UIAlertAction(title: String.localized("menu_new_classic_contact"), style: .default, handler: { [weak self] _ in
+                guard let self else { return }
+
+                let newContactController = NewContactController(dcContext: self.dcContext)
+                self.navigationController?.pushViewController(newContactController, animated: true)
+            }))
+        }
+
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         self.present(alert, animated: true, completion: nil)
     }
 
