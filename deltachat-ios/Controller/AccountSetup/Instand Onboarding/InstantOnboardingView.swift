@@ -22,10 +22,11 @@ class InstantOnboardingView: UIView {
         if let avatarImage {
             imageButton.setImage(avatarImage, for: .normal)
         } else {
-            imageButton.setImage(UIImage(named: "person.crop.circle"), for: .normal)
+            imageButton.setImage(UIImage(named: "camera"), for: .normal)
         }
+        imageButton.backgroundColor = .lightGray
         imageButton.layer.masksToBounds = true
-        imageButton.layer.cornerRadius = 75
+        imageButton.layer.cornerRadius = 50
         imageButton.contentVerticalAlignment = .fill
         imageButton.contentHorizontalAlignment = .fill
 
@@ -66,7 +67,7 @@ class InstantOnboardingView: UIView {
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
         contentStackView.distribution = .fill
-        contentStackView.setCustomSpacing(32, after: imageButton)
+        contentStackView.setCustomSpacing(16, after: imageButton)
         contentStackView.setCustomSpacing(16, after: nameTextField)
         contentStackView.setCustomSpacing(8, after: hintLabelWrapper)
         contentStackView.setCustomSpacing(16, after: privacyButtonWrapper)
@@ -102,7 +103,7 @@ class InstantOnboardingView: UIView {
             safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
             safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
 
-            contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
+            contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: 16),
             contentStackView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor, constant: 16),
             contentScrollView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 16),
             contentScrollView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
@@ -112,8 +113,8 @@ class InstantOnboardingView: UIView {
             nameTextField.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
             agreeButton.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
 
-            imageButton.widthAnchor.constraint(equalToConstant: 150),
-            imageButton.heightAnchor.constraint(equalToConstant: 150),
+            imageButton.widthAnchor.constraint(equalToConstant: 100),
+            imageButton.heightAnchor.constraint(equalToConstant: 100),
 
             privacyButtonWrapper.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
             privacyButton.topAnchor.constraint(equalTo: privacyButtonWrapper.topAnchor),
