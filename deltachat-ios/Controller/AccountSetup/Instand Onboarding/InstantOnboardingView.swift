@@ -62,7 +62,7 @@ class InstantOnboardingView: UIView {
         otherOptionsButton.setTitle(String.localized("instant_onboarding_show_more_instances"), for: .normal)
         otherOptionsButton.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, otherOptionsButton, UIView()])
+        contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, otherOptionsButton])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
@@ -106,10 +106,10 @@ class InstantOnboardingView: UIView {
             contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: 16),
             contentStackView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor, constant: 16),
             contentScrollView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 16),
-            contentScrollView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
+            contentScrollView.bottomAnchor.constraint(greaterThanOrEqualTo: contentStackView.bottomAnchor),
 
             contentStackView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor, constant: -32),
-            contentStackView.heightAnchor.constraint(equalTo: contentScrollView.heightAnchor),
+            contentStackView.heightAnchor.constraint(lessThanOrEqualTo: contentScrollView.heightAnchor),
             nameTextField.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
             agreeButton.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
 

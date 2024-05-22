@@ -98,6 +98,10 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         self.view = contentView
     }
 
+    override func viewDidLoad() {
+        contentView?.nameTextField.becomeFirstResponder()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
