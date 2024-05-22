@@ -101,7 +101,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        dcContext.displayname = contentView?.nameTextField.text
+        storeImageAndName()
     }
 
     // MARK: - Notifications
@@ -150,7 +150,10 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     @objc private func showOtherOptions(_ sender: UIButton) {
         let alertController = UIAlertController(title: String.localized("instant_onboarding_show_more_instances"), message: nil, preferredStyle: .safeActionSheet)
-        let otherServersAction = UIAlertAction(title: String.localized("instant_onboarding_other_server"), style: .default) { _ in
+        let otherServersAction = UIAlertAction(title: String.localized("instant_onboarding_other_server"), style: .default) { [weak self] _ in
+
+            self?.storeImageAndName()
+
             guard let url = URL(string: "https://delta.chat/en/chatmail") else { return }
 
             if UIApplication.shared.canOpenURL(url) {
@@ -242,6 +245,10 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         }
 
         appDelegate.reloadDcContext()
+    }
+
+    private func storeImageAndName() {
+        dcContext.displayname = contentView?.nameTextField.text
     }
 }
 
