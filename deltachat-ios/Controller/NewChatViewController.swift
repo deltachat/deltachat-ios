@@ -62,11 +62,17 @@ class NewChatViewController: UITableViewController {
         self.dcContext = dcContext
         self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
 
+        var newOptions: [NewOption]
         if UserDefaults.standard.bool(forKey: "broadcast_lists") {
-            newOptions = [.scanQRCode, .newGroup, .newBroadcastList, .newContact]
+            newOptions = [.scanQRCode, .newGroup, .newBroadcastList]
         } else {
-            newOptions = [.scanQRCode, .newGroup, .newContact]
+            newOptions = [.scanQRCode, .newGroup]
         }
+
+        if self.dcContext.isChatmail == false {
+            newOptions.append(.newContact)
+        }
+        self.newOptions = newOptions
 
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
@@ -129,13 +135,13 @@ class NewChatViewController: UITableViewController {
             if let actionCell = cell as? ActionCell {
                 switch newOptions[row] {
                 case .scanQRCode:
-                    actionCell.actionTitle = String.localized("qrscan_title")
+                    actionCell.actionTitle = String.localized("menu_new_contact")
                 case .newGroup:
                     actionCell.actionTitle = String.localized("menu_new_group")
                 case .newBroadcastList:
                     actionCell.actionTitle = String.localized("new_broadcast_list")
-                default:
-                    actionCell.actionTitle = String.localized("menu_new_contact")
+                case .newContact:
+                    actionCell.actionTitle = String.localized("menu_new_classic_contact")
                 }
             }
             return cell
