@@ -28,8 +28,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
             let alert = UIAlertController(title: String.localized("onboarding_alternative_logins"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("multidevice_receiver_title"), style: .default, handler: addAsSecondDevice(_:)))
             alert.addAction(UIAlertAction(title: String.localized("import_backup_title"), style: .default, handler: restoreBackup(_:)))
-            alert.addAction(UIAlertAction(title: String.localized("manual_account_setup_option"), style: .default, handler: showAccountSetupController(_:)))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             present(alert, animated: true, completion: nil)
         }
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -197,16 +196,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.reloadDcContext()
         }
-    }
-
-    private func showAccountSetupController(_ action: UIAlertAction) {
-        let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
-        accountSetupController.onLoginSuccess = {
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.reloadDcContext()
-            }
-        }
-        self.navigationController?.pushViewController(accountSetupController, animated: true)
     }
 
     @objc private func cancelAccountCreation() {
