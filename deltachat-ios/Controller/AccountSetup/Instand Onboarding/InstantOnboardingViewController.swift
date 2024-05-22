@@ -135,24 +135,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         }
     }
 
-    @objc private func showOtherOptions(_ sender: UIButton) {
-
-        guard let url = URL(string: "https://delta.chat/en/chatmail") else { return }
-
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
-        }
-    }
-
-    @objc private func scanQRCode(_ sender: UIButton) {
-        let qrReader = QrCodeReaderController(title: String.localized("scan_invitation_code"))
-        qrReader.delegate = self
-
-        navigationController?.pushViewController(qrReader, animated: true)
-
-        self.qrCodeReader = qrReader
-    }
-
     @objc
     private func onAvatarTapped() {
         let alert = UIAlertController(title: String.localized("pref_profile_photo"), message: nil, preferredStyle: .safeActionSheet)
@@ -167,10 +149,50 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     }
 
     @objc private func showOtherOptions(_ sender: UIButton) {
-        //TODO: Show alert with three actions
-        // 1. instant_onboarding_other_server -> showOtherOptions
-        // 2. manual_account_setup_option -> WelcomeViewController.showAccountSetupController
-        // 3. scan_invitation_code -> scanQRCode
+        let alertController = UIAlertController(title: String.localized("instant_onboarding_show_more_instances"), message: nil, preferredStyle: .safeActionSheet)
+        let otherServersAction = UIAlertAction(title: String.localized("instant_onboarding_other_server"), style: .default) { _ in
+            guard let url = URL(string: "https://delta.chat/en/chatmail") else { return }
+
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
+
+        let manualAccountSetup = UIAlertAction(title: String.localized("manual_account_setup_option"), style: .default) { _ in
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+
+                let accountSetupController = AccountSetupController(dcAccounts: self.dcAccounts, editView: false)
+                accountSetupController.onLoginSuccess = {
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.reloadDcContext()
+                    }
+                }
+                self.navigationController?.pushViewController(accountSetupController, animated: true)
+            }
+        }
+
+        let scanQRCode = UIAlertAction(title: String.localized("scan_invitation_code"), style: .default) { [weak self] _ in
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+
+                let qrReader = QrCodeReaderController(title: String.localized("scan_invitation_code"))
+                qrReader.delegate = self
+
+                navigationController?.pushViewController(qrReader, animated: true)
+
+                self.qrCodeReader = qrReader
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
+
+        alertController.addAction(otherServersAction)
+        alertController.addAction(manualAccountSetup)
+        alertController.addAction(scanQRCode)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true)
     }
 
     // MARK: - Notifications
