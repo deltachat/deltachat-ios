@@ -113,25 +113,8 @@ class NewContactController: UITableViewController {
         return cells[row]
     }
 
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.text = String.localized("new_classic_contact_explain")
-        label.font = .preferredFont(forTextStyle: .callout)
-        if #available(iOS 13.0, *) {
-            label.textColor = .secondaryLabel
-        }
-
-        let wrapper = UIView()
-        wrapper.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: wrapper.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            label.topAnchor.constraint(equalTo: wrapper.safeAreaLayoutGuide.topAnchor, constant: 16),
-            wrapper.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: 16),
-            wrapper.bottomAnchor.constraint(equalTo: label.bottomAnchor),
-        ])
-        return wrapper
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return String.localized("new_classic_contact_explain")
     }
 
     // MARK: - coordinator
