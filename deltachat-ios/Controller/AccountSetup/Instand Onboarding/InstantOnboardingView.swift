@@ -32,6 +32,7 @@ class InstantOnboardingView: UIView {
 
         nameTextField = UITextField()
         nameTextField.text = name
+        nameTextField.textAlignment = .center
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.placeholder = String.localized("pref_your_name")
         nameTextField.borderStyle = .roundedRect
