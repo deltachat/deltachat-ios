@@ -954,12 +954,7 @@
 "shortcut_step1_tap_share_btn" = "Cliquer sur le bouton « Partager ».";
 "shortcut_step2_tap_add_to_home_screen" = "Sélectionner « Ajouter à l\'écran d\'accueil » pour ajouter l\'appli à votre écran d\'accueil.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Notifications d\'arrière-plan";
-"pref_background_notifications_explain" = "Utilise une connexion à votre serveur en arrière-plan et requiert la désactivation de l\'optimisation de la batterie";
 "pref_background_notifications_rationale" = "Pour maintenir une connexion à votre serveur de courriel et recevoir les messages en arrière-plan, ignorez l\'optimisation de la batterie à l\'étape suivante.\n\nDelta Chat utilise peu de ressources et prend garde à ne pas vider votre batterie.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Connexion d\'arrière-plan fiable";
-"pref_reliable_service_explain" = "Requiert une notification permanente";
 "perm_enable_bg_reminder_title" = "Touchez ici pour recevoir des messages pendant que DeltaChat est en arrière-plan.";
 "perm_enable_bg_already_done" = "Vous avez déjà autorisé Delta Chat à recevoir des messages en arrière plan.\n\nSi vous ne les recevez toujours pas en arrière plan, vérifiez les paramètres de votre système.";

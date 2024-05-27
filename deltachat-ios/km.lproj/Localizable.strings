@@ -763,12 +763,7 @@
 "a11y_background_preview_label" = "ការមើលផ្ទៃខាងក្រោយ";
 "a11y_disappearing_messages_activated" = "កម្មវិធីសារដែលនឹងបាត់បន្ទាប់ពីមួយរយៈ បានធ្វើឱ្យសកម្ម";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "ការជូនដំណឹងផ្ទៃខាងក្រោយ";
-"pref_background_notifications_explain" = "ប្រើតំណភ្ជាប់ផ្ទៃខាងក្រោយទៅម៉ាសុីនមេរបស់អ្មក និងបដិសេធការទាមទារបង្កើនប្រសិទ្ធភាពថ្ម។";
 "pref_background_notifications_rationale" = "ដើម្បីថែរក្សាតំណភ្ជាប់ទៅម៉ាសុីនបម្រើអុីម៉េលរបស់អ្នក និងទទួលសារនៅផ្ទៃខាងក្រោយ។ បដិសេធការបង្កើនប្រសិទ្ធភាពថ្ម នៅក្នុងជំហានបន្ទាប់។\n\nសាហារីសង្ឃ ប្រើធនធានបន្តិចបន្តួច និងយកចិត្តទុកដាក់មិនបង្ហូរថ្មរបស់អ្នក។";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "តំណភ្ជាប់ផ្ទៃខាងក្រោយដែលទុកចិត្តបាន";
-"pref_reliable_service_explain" = "តម្រូវការជូនដំណឹងជាអចិន្រ្តៃយ៍";
 "perm_enable_bg_reminder_title" = "ប៉ះទីនេះដើម្បីទទួលសារកំឡុងពេល សា Delta Chat គឺស្ថិតនៅក្នុងផ្ទៃខាងក្រោយ។";
 "perm_enable_bg_already_done" = "អ្នកបានអនុញ្ញាតរួចរាល់ហើយឲ្យសា Delta Chat ដើម្បីទទួលសារនៅផ្ទៃខាងក្រោយ\n\nប្រសិនបើ សារនៅតែមិនមកដល់ផ្ទៃខាងក្រោយ សូមពិនិត្យការការកំណត់ប្រពន្ធ័របស់អ្នកផងដែរ។";

@@ -1012,14 +1012,19 @@
 "shortcut_step2_tap_add_to_home_screen" = "选择“添加到主屏幕”来将应用添加到主屏幕。";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "后台通知";
-"pref_background_notifications_explain" = "使用到服务器的后台连接。需要忽略电池优化。";
+"pref_instant_delivery" = "即时传送";
+"pref_push_notifications" = "使用推送服务";
+"pref_push_notifications_explain" = "Chatmail 服务器的可靠推送通知";
+"pref_push_ask_disable" = "停用推送服务吗？\n\n这可能导致通知延迟。";
+"pref_background_notifications" = "使用后台连接";
+"pref_background_notifications_explain" = "需要忽略电池优化，请在推送服务不可用时使用它";
+"pref_reliable_service" = "强制后台连接";
+"pref_reliable_service_explain" = "会形成永久通知";
 "pref_background_notifications_rationale" = "要保持到电子邮件服务器的连接并在后台接收消息，请在下一步中忽略电池优化。\n\nDelta Chat 仅使用少量的资源并且会注意不去耗尽电池电量。";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "可靠后台连接";
-"pref_reliable_service_explain" = "需要一个持久通知";
 "perm_enable_bg_reminder_title" = "点击此处以在 Delta Chat 处于后台时接收消息。";
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
 // device messages for updates
 "update_1_44_android" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出回应\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n🔵 计算所有账户的未读消息并显示在标题中\n\n… 以及修复许多 bug … %1$@\n\n帮助改进应用：使用“设置/高级、发送统计数据”帮助开发者为实际使用而更好地优化。发送前你可以查看数据";
 "update_1_44_ios" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出回应\n\n🫸 支持推送通知，不过需要提供商像 https://nine.testrun.org 一样支持该功能\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n… 以及修复许多 bug … %1$@";
+"update_1_46_android" = "新用户引导流程 🐣 以及更多信息：\n\n⚡️ 注册安全的快速聊天邮件服务器（https://delta.chat/chatmail）或使用传统的电子邮件服务器\n\n👉 为任何聊天邮件服务器推送通知\n\n👤 通过“附加联系人”安全地连接您的朋友\n\n🥰 使用任何表情符号进行回应\n\n📌 直接从搜索中固定聊天…以及更多信息，请访问 %1$@";

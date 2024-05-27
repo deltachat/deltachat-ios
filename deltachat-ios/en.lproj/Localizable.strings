@@ -1012,17 +1012,22 @@
 "shortcut_step2_tap_add_to_home_screen" = "Select \"Add to Home Screen\" to add the app to your home screen.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Background Notifications";
-"pref_background_notifications_explain" = "Uses a background connection to your server and requires ignored battery optimizations.";
+"pref_instant_delivery" = "Instant Delivery";
+"pref_push_notifications" = "Use Push Service";
+"pref_push_notifications_explain" = "Reliable Push Notifications for Chatmail-Servers";
+"pref_push_ask_disable" = "Disable using Push Service?\n\nThis may result in delayed notifications.";
+"pref_background_notifications" = "Use Background Connection";
+"pref_background_notifications_explain" = "Requires ignored battery optimizations, use if Push Service is unavailable";
+"pref_reliable_service" = "Force Background Connection";
+"pref_reliable_service_explain" = "Causes a permanent notification";
 "pref_background_notifications_rationale" = "To maintain connection to your e-mail server and receive messages in the background, ignore battery optimizations in the next step.\n\nDelta Chat uses few resources and takes care not to drain your battery.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Reliable Background Connection";
-"pref_reliable_service_explain" = "Requires a permanent notification";
 "perm_enable_bg_reminder_title" = "Tap here to receive messages while Delta Chat is in the background.";
 "perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 // device messages for updates
 "update_1_44_android" = "What\'s new:\n\n❤️ Yeah! This was long-awaited: Long tap a message to react\n\n🔗 If you cannot scan QR codes, share them as invite links\n\n🔵 Unread messages of all accounts are counted and shown in title now\n\n… and TONS of bugfixes … %1$@\n\nHelp improving the app: Use \"Settings / Advanced / Send statistics\" to help devs to optimize better for real-world usage. You can review the data before sending";
 "update_1_44_ios" = "What\'s new:\n\n❤️ Yeah! This was long-awaited: Long tap a message to react\n\n🫸 PUSH notifications if supported by providers as https://nine.testrun.org\n\n🔗 If you cannot scan QR codes, share them as invite links\n\n… and TONS of bugfixes … %1$@";
+"update_1_46_android" = "New Onboarding 🐣 and More:\n\n⚡️ Sign up to secure fast chatmail servers (https://delta.chat/chatmail) or use classic e-mail servers\n\n👉 PUSH notifications for any chatmail server\n\n👤 Connect your friends securely via \"Attach contacts\"\n\n🥰 React with any emoji\n\n📌 Pin chats directly from search … and MORE at %1$@";
 // iOS specific untranslated strings
 "connectivity_low_data_mode" = "Disabled by system's \"Low Data Mode\".";
 "connectivity_low_power_mode" = "Disabled by system's \"Low Power Mode\".";

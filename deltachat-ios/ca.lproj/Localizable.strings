@@ -631,4 +631,5 @@
 "message_detail_received_desktop" = "rebut";
 "menu.view.developer.open.log.folder" = "Obre la carpeta de registre";
 "menu.view.developer.open.current.log.file" = "Obre el fitxer de registre actual";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Prem aquí per rebre missatges mentre Delta Chat és en segon pla.";

@@ -877,12 +877,7 @@
 "shortcut_step1_tap_share_btn" = "Кликните на дугме за дељење";
 "shortcut_step2_tap_add_to_home_screen" = "Изаберите „Додај на почетни екран“ да бисте апликацију додали на почетни екран.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Обавештења у позадини";
-"pref_background_notifications_explain" = "Користи везу у позадини са вашим сервером и захтева да поставке игноришу оптимизације ефикасности батерије.";
 "pref_background_notifications_rationale" = "Да би сте одржавали везу са вашим сервером за е-пошту и да би сте примали поруке у позадини, игноришите оптимизације ефикасности батерије у следећем кораку.\n\nDelta Chat не користи много енергије и води рачуна да вам не испразни батерију.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Поуздана веза у позадини";
-"pref_reliable_service_explain" = "Захтева трајна обавештења";
 "perm_enable_bg_reminder_title" = "Додирните овде да би примали поруке када је Delta Chat у позадини.";
 "perm_enable_bg_already_done" = "Ви сте већ омогућили Delta Chat-у достављање порука у позадини.\n\nАко поруке и даље не стижу у позадини, погледајте поставке у оперативном систему.";

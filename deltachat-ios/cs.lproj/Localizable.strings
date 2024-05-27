@@ -742,12 +742,7 @@
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Zde se zobrazí aplikace přijaté nebo odeslané v libovolném chatu. „Soubory“ zobrazuje právě stažené aplikace. ";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Upozornění v pozadí";
-"pref_background_notifications_explain" = "V pozadí udržuje spojení s tvým serverem. Vyžaduje nedbání optimalizací baterie.";
 "pref_background_notifications_rationale" = "K udržení spojení s e-mailovým serverem a přijímání zpráv na pozadí vyber v následujícím kroce nedbání optimalizací baterie.\n\nDelta Chat používá jen málo zdroje a snaží se šetřit tvou baterii.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Spolehlivé spojení na pozadí";
-"pref_reliable_service_explain" = "Vyžaduje neustálé upozornění";
 "perm_enable_bg_reminder_title" = "Stiskni zde a přijímání zpráv bude probíhat při chodu Delta Chatu na pozadí.";
 "perm_enable_bg_already_done" = "Přijímání zpráv na pozadí je Delta Chatu již povoleno.\n\nV případě nepřicházení nových zpráv si prosím zkontroluj své systémové nastavení.";
