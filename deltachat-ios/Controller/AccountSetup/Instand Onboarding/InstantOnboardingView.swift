@@ -115,7 +115,6 @@ class InstantOnboardingView: UIView {
             contentStackView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor, constant: -32),
             contentStackView.heightAnchor.constraint(lessThanOrEqualTo: contentScrollView.heightAnchor),
             nameTextField.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
-            agreeButton.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
 
             imageButton.widthAnchor.constraint(equalToConstant: 100),
             imageButton.heightAnchor.constraint(equalToConstant: 100),
