@@ -459,12 +459,11 @@ class WelcomeContentView: UIView {
 
     private lazy var signUpButton: UIButton = {
         let button = UIButton(type: .roundedRect)
-        let title = String.localized("onboarding_create_instant_account").uppercased()
+        let title = String.localized("onboarding_create_instant_account")
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = DcColors.primary
-        let insets = button.contentEdgeInsets
+        button.backgroundColor = .systemBlue
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 15, bottom: 8, right: 15)
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
