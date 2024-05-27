@@ -71,7 +71,7 @@ class InstantOnboardingView: UIView {
         contentStackView.setCustomSpacing(16, after: imageButton)
         contentStackView.setCustomSpacing(16, after: nameTextField)
         contentStackView.setCustomSpacing(8, after: hintLabelWrapper)
-        contentStackView.setCustomSpacing(16, after: privacyButtonWrapper)
+        contentStackView.setCustomSpacing(32, after: privacyButtonWrapper)
         contentStackView.setCustomSpacing(16, after: agreeButton)
 
         contentScrollView = UIScrollView()
