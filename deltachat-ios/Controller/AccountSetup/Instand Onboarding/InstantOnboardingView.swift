@@ -83,8 +83,8 @@ class InstantOnboardingView: UIView {
         super.init(frame: .zero)
 
         if #available(iOS 13.0, *) {
-            backgroundColor = .systemGroupedBackground
-            nameTextField.backgroundColor = .systemBackground
+            backgroundColor = .systemBackground
+            nameTextField.backgroundColor = .secondarySystemBackground
         } else {
             backgroundColor = .systemGray
         }
