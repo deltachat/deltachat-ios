@@ -4,6 +4,8 @@ import DcCore
 
 class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
+    static let defaultChatmailDomain: String = "nine.testrun.org"
+
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     weak var progressAlert: UIAlertController?
@@ -29,7 +31,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     }()
     
     /// Creates Instant Onboarding-Screen. You can inject some QR-Code-Data to change the chatmail provider
-    /// If `qrCodeData` is `nil`, the default server is used, currently it's `nine.testrun.org`
+    /// If `qrCodeData` is `nil`, the default server is used
     /// - Parameters:
     ///   - dcAccounts: Account to be used
     ///   - qrCodeData: DeltaChat QR Code Data
@@ -45,11 +47,11 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
                 self.providerHostURL = url
                 self.qrCodeData = qrCodeData
             } else {
-                self.providerHostURL = URL(string: "https://nine.testrun.org")!
+                self.providerHostURL = URL(string: "https://" + InstantOnboardingViewController.defaultChatmailDomain)!
                 self.qrCodeData = nil
             }
         } else {
-            self.providerHostURL = URL(string: "https://nine.testrun.org")!
+            self.providerHostURL = URL(string: "https://" + InstantOnboardingViewController.defaultChatmailDomain)!
             self.qrCodeData = nil
         }
 

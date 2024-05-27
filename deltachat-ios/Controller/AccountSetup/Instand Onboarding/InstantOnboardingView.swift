@@ -153,7 +153,7 @@ class InstantOnboardingView: UIView {
         if let customProvider {
             privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_instance", parameter: customProvider), for: .normal)
         } else {
-            privacyButton.setTitle(String.localized("instant_onboarding_agree_default"), for: .normal)
+            privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_default2", parameter: InstantOnboardingViewController.defaultChatmailDomain), for: .normal)
         }
     }
 }
