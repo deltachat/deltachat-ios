@@ -423,4 +423,5 @@
 "message_detail_received_desktop" = "qəbul olundu";
 "menu.view.developer.open.log.folder" = "Loq mələfini açın";
 "menu.view.developer.open.current.log.file" = "Loq-faylı açın";
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Delta Chat arxa fonda mesajları almaq üçün bura toxunun.";

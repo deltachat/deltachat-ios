@@ -958,12 +958,7 @@ GNU GPL ورژن ۳
 "shortcut_step1_tap_share_btn" = "روی دکمه اشتراک کلیک کنید";
 "shortcut_step2_tap_add_to_home_screen" = "برای افزودن برنامه به صفحه اصلی خود، «افزودن به صفحه اصلی» را انتخاب کنید.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "اعلان‌های پیش زمینه";
-"pref_background_notifications_explain" = "از یک ارتباط پیش زمینه به سرور شما استفاده می کند و برای استفاده از آن باید تنظیمات بهینه سازی مصرف باتری غیرفعال شود.";
 "pref_background_notifications_rationale" = "برای حفظ ارتباطتان با سرور رایانامه و دریافت پیامها در پیش زمینه، در گام بعدی، تنظیمات بهینه سازی باتری را نادیده بگیرید. \n\n دلتاچت از منابع کمی استفاده میکند و مراقب است باتری شما را بیش از حد مصرف نکند. ";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "اتصالات پیش زمینه قابل اطمینان";
-"pref_reliable_service_explain" = "به یک اعلان دائمی احتیاج دارد.";
 "perm_enable_bg_reminder_title" = "برای دریافت پیام‌ها به صورت پس زمینه در دلتاچت این جا را ضربه بزنید. ";
 "perm_enable_bg_already_done" = "قبلا اجازه دسترسی به فعالیت در پس زمینه را به دلتاچت داده‌اید. \n\n اگر پیام‌ها هنوز هم در شرایط پس زمینه نمی‌آمد لطفا تنظیمات سیستم را نیز بررسی نمایید. ";

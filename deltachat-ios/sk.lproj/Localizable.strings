@@ -856,12 +856,7 @@
 "shortcut_step1_tap_share_btn" = "Kliknite na tlačidlo pre zdieľanie";
 "shortcut_step2_tap_add_to_home_screen" = "Vyberte \"Pridať na domovskú obrazovku\" pre pridanie aplikácie na domovskú obrazovku.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Oznámenia na pozadí";
-"pref_background_notifications_explain" = "Používa pripojenie na pozadí k vášmu serveru a vyžaduje ignorované optimalizácie batérie.";
 "pref_background_notifications_rationale" = "Ak chcete zachovať pripojenie k svojmu e-mailovému serveru a prijímať správy na pozadí, v ďalšom kroku ignorujte optimalizáciu batérie. \n\nDelta Chat využíva málo zdrojov a dbá na to, aby sa batéria nevybíjala.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Spoľahlivé pripojenie na pozadí";
-"pref_reliable_service_explain" = "Vyžaduje trvalé upozornenie";
 "perm_enable_bg_reminder_title" = "Klepnutím sem prijmete správy, zatiaľ čo je Delta Chat na pozadí.";
 "perm_enable_bg_already_done" = "Službe Delta Chat ste už povolili príjem správ na pozadí.\n\nAk správy stále neprichádzajú na pozadí, skontrolujte tiež svoje systémové nastavenia.";

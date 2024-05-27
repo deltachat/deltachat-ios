@@ -743,11 +743,7 @@
 // iOS notification settings
 "disabled_in_dc" = "Išjungta Delta Chat programėlėje";
 "disabled_in_system_settings" = "Išjungta sistemos nustatymuose";
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Foniniai pranešimai";
 "pref_background_notifications_rationale" = "Norėdami palaikyti ryšį su savo el. pašto serveriu ir gauti žinutes fone, kitame žingsnyje nepaisykite akumuliatoriaus optimizavimų (leiskite vykdyti programą fone).\n\nDelta Chat naudoja nedaug išteklių ir rūpinasi, kad neeikvotų jūsų akumuliatoriaus energijos.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Patikimas foninis ryšys";
-"pref_reliable_service_explain" = "Reikalauja pastovaus pranešimo";
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";
 "perm_enable_bg_already_done" = "Jūs jau leidote Delta Chat gauti žinutes fone.\n\nJei žinutės vis tiek nepristatomos fone, patikrinkite taip pat savo sistemos nustatymus.";

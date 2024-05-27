@@ -909,12 +909,7 @@
 "shortcut_step1_tap_share_btn" = "Clique no botão Compartilhar";
 "shortcut_step2_tap_add_to_home_screen" = "Selecione \"Adicionar à tela inicial\" para adicionar o aplicativo à sua tela inicial.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Notificações de segundo plano";
-"pref_background_notifications_explain" = "Usa uma conexão de segundo plano com seu servidor e requer otimizações de bateria ignoradas.";
 "pref_background_notifications_rationale" = "Para manter a conexão com seu servidor de e-mail e receber mensagens em segundo plano, ignore as otimizações de bateria na próxima etapa.\n\nO Delta Chat usa poucos recursos e toma cuidado para não descarregar a bateria.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Conexão de segundo plano confiável";
-"pref_reliable_service_explain" = "Requer uma notificação permanente";
 "perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens enquanto o Delta Chat estiver em segundo plano.";
 "perm_enable_bg_already_done" = "Você já permitiu que o Delta Chat receba mensagens em segundo plano.\n\nSe as mensagens ainda não chegarem em segundo plano, verifique também as configurações do sistema.";

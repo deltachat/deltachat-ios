@@ -959,12 +959,7 @@
 "shortcut_step1_tap_share_btn" = "Nhấp vào nút chia sẻ";
 "shortcut_step2_tap_add_to_home_screen" = "Chọn \"Thêm vào màn hình chính\" để thêm ứng dụng vào màn hình chính của bạn.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Thông báo nền";
-"pref_background_notifications_explain" = "Sử dụng kết nối nền tới máy chủ của bạn và yêu cầu bỏ qua tối ưu hóa pin.";
 "pref_background_notifications_rationale" = "Để duy trì kết nối với máy chủ e-mail của bạn và nhận tin nhắn ở chế độ nền, hãy bỏ qua tối ưu hóa pin trong bước tiếp theo.\n\nDelta Chat sử dụng ít tài nguyên và chú ý không làm tiêu hao pin của bạn.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Kết nối nền đáng tin cậy";
-"pref_reliable_service_explain" = "Yêu cầu thông báo vĩnh viễn";
 "perm_enable_bg_reminder_title" = "Nhấn vào đây để nhận tin nhắn khi Delta Chat ở chế độ nền.";
 "perm_enable_bg_already_done" = "Bạn đã cho phép Delta Chat nhận tin nhắn trong nền.\n\nNếu tin nhắn vẫn không đến trong nền, vui lòng kiểm tra cài đặt hệ thống của bạn.";

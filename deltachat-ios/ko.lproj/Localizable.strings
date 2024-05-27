@@ -832,11 +832,7 @@
 "shortcut_step1_tap_share_btn" = "공유 버튼을 누르시오";
 "shortcut_step2_tap_add_to_home_screen" = "홈 화면에 앱을 추가하려면 \"홈 화면에 추가\"를 선택합니다.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "백그라운드 알림";
-"pref_background_notifications_explain" = "서버에 대한 백그라운드 연결을 사용하며 무시된 배터리 최적화가 필요합니다.";
 "pref_background_notifications_rationale" = "이메일 서버에 대한 연결을 유지하고 백그라운드에서 메시지를 수신하려면 다음 단계에서 배터리 최적화를 무시하십시오.\n\nDelta Chat은 리소스를 거의 사용하지 않으며 배터리가 소모되지 않도록 주의합니다.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "안정적인 백그라운드 연결";
 "perm_enable_bg_reminder_title" = "Delta Chat이 백그라운드에 있는 동안 메시지를 받으려면 여기를 누르십시오.";
 "perm_enable_bg_already_done" = "이미 Delta Chat 에서 백그라운드로 메시지를 수신하도록 허용했습니다.\n\n메시지가 여전히 백그라운드로 도착하지 않으면 시스템 설정도 확인하십시오.";

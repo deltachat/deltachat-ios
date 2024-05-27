@@ -862,12 +862,7 @@
 "shortcut_step1_tap_share_btn" = "Napauta jakamispainiketta.";
 "shortcut_step2_tap_add_to_home_screen" = "Valitse \"Lisää aloitusnäytölle\" lisätäksesi sovelluksen puhelimesi aloitusnäytölle.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Ilmoitukset taustalla";
-"pref_background_notifications_explain" = "Käyttää yhteyttä palvelimeesi taustalla. Akun käytön optimointi on poistettava käytöstä.";
 "pref_background_notifications_rationale" = "Yhteyden ylläpitämiseksi sähköpostipalvelimen kanssa ja viestien vastaanottamiseksi taustalla, poista akun käytön optimointi käytöstä seuraavassa vaiheessa.\n\nDelta Chat käyttää vain vähän laitteen suorituskyvystä, eikä juurikaan kuluta akkua.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Luotettava yhteys taustalla";
-"pref_reliable_service_explain" = "Vaatii pysyvän ilmoituksen";
 "perm_enable_bg_reminder_title" = "Napauta vastaanottaaksesi viestejä, kun Delta Chat on taustalla.";
 "perm_enable_bg_already_done" = "Annoit jo luvan viestien vastaanottamiselle taustalla.\n\nJos et saa viestejä taustalla, tarkista myös järjestelmäasetukset.";

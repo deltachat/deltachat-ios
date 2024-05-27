@@ -465,10 +465,15 @@
 "instant_onboarding_title" = "Личный профиль";
 // deprecated
 "instant_onboarding_agree_default" = "Просмотреть Политику конфиденциальности";
+// The placeholder will be replaced by the default onboarding server
+"instant_onboarding_agree_default2" = "Политика конфиденциальности %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
 "instant_onboarding_agree_instance" = "О профилях на %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Принять и создать профиль";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Выбрать другой сервер";
+"instant_onboarding_other_server" = "Список серверов Chatmail";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Создайть профиль чтобы присоединиться к группе \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
@@ -681,7 +686,7 @@
 // %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
 "reaction_by_you" = "Вы отреагировали %1$@ на \"%2$@\"";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
-"reaction_by_other" = "%1$@отреагировал %2$@ на \"%3$@\"";
+"reaction_by_other" = "%1$@ отреагировал %2$@ на \"%3$@\"";
 // automatically delete message
 "delete_old_messages" = "Удалить старые сообщения";
 "autodel_device_title" = "Удалять сообщения с устройства";
@@ -839,7 +844,7 @@
 "qrshow_join_group_hint" = "Отсканируйте код, чтобы присоединиться к группе «%1$@».";
 "qrshow_join_contact_title" = "QR-код приглашения";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
-"qrshow_join_contact_hint" = "Отсканируйте, чтобы создать контакт с %1$@";
+"qrshow_join_contact_hint" = "Отсканируйте чтобы начать чат с %1$@";
 "qrshow_join_contact_no_connection_toast" = "Нет соединения к интернету, невозможно начать процесс настройки по QR-коду.";
 "qraccount_ask_create_and_login" = "Создать новый адрес электронной почты на \"%1$@\" и войти?";
 "qraccount_ask_create_and_login_another" = "Создать новый адрес почты на \"%1$@\" и войти?\n\nВаш существующий аккаунт не будет удалён. Используйте пункт меню «Сменить аккаунт», чтобы переключаться между аккаунтами.";
@@ -932,7 +937,7 @@
 "encryption_info_title_desktop" = "Информация о шифровании";
 "delete_message_desktop" = "Удалить сообщение";
 "more_info_desktop" = "Больше информации";
-"timestamp_format_m_desktop" = "МММ Д";
+"timestamp_format_m_desktop" = "D MMM";
 "remove_desktop" = "Удалить";
 "save_desktop" = "Сохранить";
 "name_desktop" = "Имя";
@@ -999,13 +1004,8 @@
 "shortcut_step1_tap_share_btn" = "Нажмите кнопку «поделиться»";
 "shortcut_step2_tap_add_to_home_screen" = "Выберите «Добавить на главный экран», чтобы добавить приложение на ваш главный экран.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Фоновые уведомления";
-"pref_background_notifications_explain" = "Используется фоновое соединение с вашим сервером игнорируя требования по оптимизации батареи.";
 "pref_background_notifications_rationale" = "Чтобы поддерживать соединение с вашим сервером и получать уведомления в фоновом режиме, отключите оптимизацию батареи на следующем шаге.\n\nDelta Chat использует мало ресурсов и старается не расходовать вашу батарею.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Надёжное фоновое соединение";
-"pref_reliable_service_explain" = "Требует постоянного уведомления";
 "perm_enable_bg_reminder_title" = "Нажмите здесь, чтобы получать сообщения, когда Delta Chat находится в фоновом режиме.";
 "perm_enable_bg_already_done" = " 
 Вы уже разрешили Delta Chat получать сообщения в фоне.\n\nЕсли сообщения всё ещё не приходят в фоне, пожалуйста, проверьте также системные настройки.";

@@ -610,12 +610,7 @@
 "a11y_message_context_menu_btn_label" = "Meddelandeåtgärder";
 "a11y_background_preview_label" = "Förhandsvisning i bakgrunden";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Bakgrundsaviseringar";
-"pref_background_notifications_explain" = "Använder en bakgrundsanslutning till din server och kräver undantagna batterioptimeringar.";
 "pref_background_notifications_rationale" = "För att behålla anslutningen till din e-postserver och fortsätta ta emot meddelanden i bakgrunden, behöver du skippa batterioptimeringen i nästa steg.\n\nDelta Chat använder små resurser och ser till att inte dra ur ditt batteri.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Tillförlitlig bakgrundsanslutning";
-"pref_reliable_service_explain" = "Kräver permanent avisering";
 "perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
 "perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";

@@ -862,12 +862,7 @@
 "shortcut_step1_tap_share_btn" = "Κάντε κλικ στο κουμπί κοινής χρήσης";
 "shortcut_step2_tap_add_to_home_screen" = "Επιλέξτε \"Προσθήκη στην αρχική οθόνη\" για να προσθέσετε την εφαρμογή στην αρχική σας οθόνη.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// android specific strings, developers: please take care to remove strings that are no longer used!
-"pref_background_notifications" = "Ειδοποιήσεις Παρασκηνίου";
-"pref_background_notifications_explain" = "Χρησιμοποιεί μια σύνδεση στο παρασκήνιο με τον διακομιστή σας και απαιτεί αγνοημένες βελτιστοποιήσεις μπαταρίας.";
 "pref_background_notifications_rationale" = "Για να διατηρήσετε τη σύνδεση με τον διακομιστή e-mail σας και να λαμβάνετε μηνύματα στο παρασκήνιο, αγνοήστε τις βελτιστοποιήσεις μπαταρίας στο επόμενο βήμα.\n\nΤο Delta Chat χρησιμοποιεί λίγους πόρους και φροντίζει να μην εξαντλήσει την μπαταρία σας.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"pref_reliable_service" = "Αξιόπιστη σύνδεση στο παρασκήνιο";
-"pref_reliable_service_explain" = "Απαιτεί μία μόνιμη ειδοποίηση";
 "perm_enable_bg_reminder_title" = "Πατήστε εδώ για να λαμβάνετε μηνύματα ενώ το Delta Chat είναι στο παρασκήνιο.";
 "perm_enable_bg_already_done" = "Επιτρέψατε ήδη στο Delta Chat να λαμβάνει μηνύματα στο παρασκήνιο.\n\nΕάν τα μηνύματα εξακολουθούν να μην φτάνουν στο παρασκήνιο, ελέγξτε τις ρυθμίσεις του συστήματός σας.";
