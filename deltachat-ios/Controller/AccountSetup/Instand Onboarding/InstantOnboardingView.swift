@@ -39,6 +39,7 @@ class InstantOnboardingView: UIView {
         hintLabel = UILabel()
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
         hintLabel.numberOfLines = 0
+        hintLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         hintLabel.text = String.localized("set_name_and_avatar_explain")
 
         hintLabelWrapper = UIView()
