@@ -147,8 +147,10 @@ class InstantOnboardingView: UIView {
 
         if buttonShouldBeEnabled {
             agreeButton.backgroundColor = .systemBlue
+            otherOptionsButton.setTitleColor(.systemBlue, for: .normal)
         } else {
             agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
+            otherOptionsButton.setTitleColor(UIColor.systemGray.withAlphaComponent(0.5), for: .normal)
         }
     }
 
