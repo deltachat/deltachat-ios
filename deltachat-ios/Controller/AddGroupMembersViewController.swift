@@ -7,7 +7,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     private var isBroadcast: Bool = false
 
     private lazy var sections: [AddGroupMemberSections] = {
-        if isVerifiedGroup {
+        if isVerifiedGroup || dcContext.isChatmail {
             return [.memberList]
         } else {
             return [.newContact, .memberList]
@@ -24,7 +24,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     private lazy var newContactCell: ActionCell = {
         let cell = ActionCell()
         cell.actionColor = UIColor.systemBlue
-        cell.actionTitle = String.localized("menu_new_contact")
+        cell.actionTitle = String.localized("menu_new_classic_contact")
         return cell
     }()
 
