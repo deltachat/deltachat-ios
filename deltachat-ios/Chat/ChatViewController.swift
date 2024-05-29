@@ -654,6 +654,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 audioController.update(audioMessageCell, with: message.id)
                 cell = audioMessageCell
             }
+        case DC_MSG_VCARD:
+            cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
+            message.text = "👤 Contact"
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
