@@ -388,6 +388,23 @@ public class DcContext {
         }
     }
 
+    public func parseVcard(path: String) -> [DcVcardContact]? {
+        if let data = DcAccounts.shared.blockingCall(method: "parse_vcard", params: [path as AnyObject]) {
+            do {
+                return try JSONDecoder().decode(DcVcardContactResult.self, from: data).result
+            } catch {
+                logger.error("cannot parse vcard: \(error)")
+            }
+        }
+        return nil
+    }
+
+    public func importVcard(path: String) -> [Int]? {
+        DcAccounts.shared.blockingCall(method: "import_vcard", params: [path as AnyObject])
+        return nil
+    }
+
+
     public func deleteMessage(msgId: Int) {
         dc_delete_msgs(contextPointer, [UInt32(msgId)], 1)
     }
