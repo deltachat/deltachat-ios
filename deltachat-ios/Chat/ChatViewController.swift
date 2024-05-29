@@ -853,6 +853,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
+        } else if message.type == DC_MSG_VCARD {
+            didTapVcard(msg: message)
         } else if message.isInfo {
             switch message.infoType {
             case DC_INFO_WEBXDC_INFO_MESSAGE:
@@ -2117,6 +2119,15 @@ extension ChatViewController {
         navigationController?.present(inputDlg, animated: true, completion: nil)
     }
 
+    func didTapVcard(msg: DcMsg) {
+        let name = "foo bar"
+        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), name), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
     func handleUIMenu() -> Bool {
         if UIMenuController.shared.isMenuVisible {
             UIMenuController.shared.setMenuVisible(false, animated: true)
@@ -2267,6 +2278,8 @@ extension ChatViewController: BaseMessageCellDelegate {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
         if message.isSetupMessage {
             didTapAsm(msg: message, orgText: "")
+        } else if message.type == DC_MSG_VCARD {
+            didTapVcard(msg: message)
         }
     }
 
