@@ -736,7 +736,7 @@
 "encryption_info_title_desktop" = "ពត៌មានពីការធ្វើឲ្យសារជាសម្ងាត់";
 "delete_message_desktop" = "លុបសារ";
 "more_info_desktop" = "ពត៌មានបន្ថែម";
-"timestamp_format_m_desktop" = "ខែ ថ្ងៃ";
+"timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "យកចេញ";
 "save_desktop" = "រក្សាទុក";
 "name_desktop" = "ឈ្មោះ";
