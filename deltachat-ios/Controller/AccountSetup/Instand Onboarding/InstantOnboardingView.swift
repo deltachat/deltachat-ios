@@ -32,6 +32,7 @@ class InstantOnboardingView: UIView {
 
         nameTextField = UITextField()
         nameTextField.text = name
+        nameTextField.textAlignment = .center
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.placeholder = String.localized("pref_your_name")
         nameTextField.borderStyle = .roundedRect
@@ -39,6 +40,7 @@ class InstantOnboardingView: UIView {
         hintLabel = UILabel()
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
         hintLabel.numberOfLines = 0
+        hintLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         hintLabel.text = String.localized("set_name_and_avatar_explain")
 
         hintLabelWrapper = UIView()
@@ -47,10 +49,11 @@ class InstantOnboardingView: UIView {
 
         agreeButton = UIButton()
         agreeButton.setTitle(String.localized("instant_onboarding_create"), for: .normal)
+        agreeButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        agreeButton.setTitleColor(.white, for: .normal)
         agreeButton.translatesAutoresizingMaskIntoConstraints = false
-        agreeButton.layer.cornerRadius = 8
-        agreeButton.contentEdgeInsets.top = 8
-        agreeButton.contentEdgeInsets.bottom = 8
+        agreeButton.layer.cornerRadius = 5
+        agreeButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 15, bottom: 8, right: 15)
 
         privacyButton = UIButton(type: .system)
         privacyButton.translatesAutoresizingMaskIntoConstraints = false
@@ -60,6 +63,7 @@ class InstantOnboardingView: UIView {
 
         otherOptionsButton = UIButton(type: .system)
         otherOptionsButton.setTitle(String.localized("instant_onboarding_show_more_instances"), for: .normal)
+        otherOptionsButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         otherOptionsButton.translatesAutoresizingMaskIntoConstraints = false
 
         contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, otherOptionsButton])
@@ -70,7 +74,7 @@ class InstantOnboardingView: UIView {
         contentStackView.setCustomSpacing(16, after: imageButton)
         contentStackView.setCustomSpacing(16, after: nameTextField)
         contentStackView.setCustomSpacing(8, after: hintLabelWrapper)
-        contentStackView.setCustomSpacing(16, after: privacyButtonWrapper)
+        contentStackView.setCustomSpacing(32, after: privacyButtonWrapper)
         contentStackView.setCustomSpacing(16, after: agreeButton)
 
         contentScrollView = UIScrollView()
@@ -81,8 +85,8 @@ class InstantOnboardingView: UIView {
         super.init(frame: .zero)
 
         if #available(iOS 13.0, *) {
-            backgroundColor = .systemGroupedBackground
-            nameTextField.backgroundColor = .systemBackground
+            backgroundColor = .systemBackground
+            nameTextField.backgroundColor = .secondarySystemBackground
         } else {
             backgroundColor = .systemGray
         }
@@ -111,7 +115,6 @@ class InstantOnboardingView: UIView {
             contentStackView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor, constant: -32),
             contentStackView.heightAnchor.constraint(lessThanOrEqualTo: contentScrollView.heightAnchor),
             nameTextField.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
-            agreeButton.widthAnchor.constraint(equalTo: contentStackView.widthAnchor),
 
             imageButton.widthAnchor.constraint(equalToConstant: 100),
             imageButton.heightAnchor.constraint(equalToConstant: 100),
@@ -144,8 +147,10 @@ class InstantOnboardingView: UIView {
 
         if buttonShouldBeEnabled {
             agreeButton.backgroundColor = .systemBlue
+            otherOptionsButton.setTitleColor(.systemBlue, for: .normal)
         } else {
             agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
+            otherOptionsButton.setTitleColor(UIColor.systemGray.withAlphaComponent(0.5), for: .normal)
         }
     }
 
@@ -153,7 +158,7 @@ class InstantOnboardingView: UIView {
         if let customProvider {
             privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_instance", parameter: customProvider), for: .normal)
         } else {
-            privacyButton.setTitle(String.localized("instant_onboarding_agree_default"), for: .normal)
+            privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_default2", parameter: InstantOnboardingViewController.defaultChatmailDomain), for: .normal)
         }
     }
 }
