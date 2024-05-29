@@ -227,12 +227,17 @@ class AppCoordinator: NSObject {
         let viewControllers: [UIViewController]
 
         if let accountCode {
-            viewControllers = [
-                WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode),
-                InstantOnboardingViewController(dcAccounts: dcAccounts, qrCodeData: accountCode)
-            ]
+            let qr = dcAccounts.getSelected().checkQR(qrCode: accountCode)
+            if qr.state == DC_QR_BACKUP {
+                viewControllers = [WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode)]
+            } else {
+                viewControllers = [
+                    WelcomeViewController(dcAccounts: dcAccounts),
+                    InstantOnboardingViewController(dcAccounts: dcAccounts, qrCodeData: accountCode)
+                ]
+            }
         } else {
-            viewControllers = [WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode)]
+            viewControllers = [WelcomeViewController(dcAccounts: dcAccounts)]
         }
 
         loginNavController.setViewControllers(viewControllers, animated: false)
