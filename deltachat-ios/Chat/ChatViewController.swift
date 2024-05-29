@@ -657,6 +657,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         case DC_MSG_VCARD:
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
             message.text = "👤 Contact"
+            if let file = message.file, let vcards = dcContext.parseVcard(path: file), let vcard = vcards.first {
+                message.text = "👤 " + vcard.displayName
+            }
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
