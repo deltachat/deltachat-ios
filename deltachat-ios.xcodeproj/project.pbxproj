@@ -177,7 +177,6 @@
 		AE8F503524753DFE007FEE0B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8F503424753DFE007FEE0B /* GalleryViewController.swift */; };
 		AE9DAF0D22C1215D004C9591 /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0C22C1215D004C9591 /* EditContactController.swift */; };
 		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
-		AEA0F6A124474146009F887B /* ProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
 		AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */; };
@@ -478,7 +477,6 @@
 		AE8F503424753DFE007FEE0B /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		AE9DAF0C22C1215D004C9591 /* EditContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
 		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
-		AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewController.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateRestorer.swift; sourceTree = "<group>"; };
@@ -909,7 +907,6 @@
 				AEE56D752253431E007DC082 /* AccountSetupController.swift */,
 				30C0D49C237C4908008E2A0E /* CertificateCheckController.swift */,
 				AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */,
-				AEA0F6A024474146009F887B /* ProfileInfoViewController.swift */,
 			);
 			path = AccountSetup;
 			sourceTree = "<group>";
@@ -1612,7 +1609,6 @@
 				AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */,
 				3052C60A253F082E007D13EA /* MessageLabelDelegate.swift in Sources */,
 				AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */,
-				AEA0F6A124474146009F887B /* ProfileInfoViewController.swift in Sources */,
 				303492A5257546B400A523D0 /* DraftPreview.swift in Sources */,
 				305961D02346125100C80F33 /* NSAttributedString+Extensions.swift in Sources */,
 				21D6C941260623F500D0755A /* NotificationManager.swift in Sources */,
