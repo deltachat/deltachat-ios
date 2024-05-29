@@ -400,7 +400,13 @@ public class DcContext {
     }
 
     public func importVcard(path: String) -> [Int]? {
-        DcAccounts.shared.blockingCall(method: "import_vcard", params: [path as AnyObject])
+        if let data = DcAccounts.shared.blockingCall(method: "import_vcard", params: [id as AnyObject, path as AnyObject]) {
+            do {
+                return try JSONDecoder().decode(DcVcardImportResult.self, from: data).result
+            } catch {
+                logger.error("cannot import vcard: \(error)")
+            }
+        }
         return nil
     }
 

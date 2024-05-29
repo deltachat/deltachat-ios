@@ -23,3 +23,7 @@ public struct DcVcardContact: Decodable {
 struct DcVcardContactResult: Decodable {
     let result: [DcVcardContact]
 }
+
+struct DcVcardImportResult: Decodable {
+    let result: [Int]
+}
