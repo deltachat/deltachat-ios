@@ -7,7 +7,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private let accountCode: String?
     private var backupProgressObserver: NSObjectProtocol?
     var progressObserver: NSObjectProtocol?
-    var onProgressSuccess: VoidFunction?
     private var securityScopedResource: NSURL?
 
     private lazy var scrollView: UIScrollView = {
@@ -59,16 +58,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         self.accountCode = accountCode
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
-        onProgressSuccess = { [weak self] in
-            guard let self else { return }
-            let profileInfoController = ProfileInfoViewController(context: self.dcContext)
-            profileInfoController.onClose = {
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.reloadDcContext()
-                }
-            }
-            self.navigationController?.setViewControllers([profileInfoController], animated: true)
-        }
     }
 
     required init?(coder: NSCoder) {
@@ -147,43 +136,6 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
         qrReader.delegate = self
         qrCodeReader = qrReader
         navigationController?.pushViewController(qrReader, animated: true)
-    }
-
-    private func createAccountFromQRCode(qrCode: String) {
-        if dcAccounts.getSelected().isConfigured() {
-            UserDefaults.standard.setValue(dcAccounts.getSelected().id, forKey: Constants.Keys.lastSelectedAccountKey)
-            _ = dcAccounts.add()
-        }
-        let accountId = dcAccounts.getSelected().id
-
-        if accountId != 0 {
-            dcContext = dcAccounts.get(id: accountId)
-            addProgressAlertListener(dcAccounts: self.dcAccounts,
-                                     progressName: eventConfigureProgress,
-                                     onSuccess: self.handleLoginSuccess)
-            showProgressAlert(title: String.localized("login_header"), dcContext: self.dcContext)
-            DispatchQueue.global().async { [weak self] in
-                guard let self else { return }
-                let success = self.dcContext.setConfigFromQR(qrCode: qrCode)
-                DispatchQueue.main.async {
-                    if success {
-                        self.dcAccounts.stopIo()
-                        self.dcContext.configure()
-                    } else {
-                        self.updateProgressAlert(error: self.dcContext.lastErrorString,
-                                                 completion: self.accountCode != nil ? self.cancelAccountCreation : nil)
-                    }
-                }
-            }
-        }
-    }
-
-    private func handleLoginSuccess() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-            appDelegate.registerForNotifications()
-        }
-        onProgressSuccess?()
     }
 
     private func handleBackupRestoreSuccess() {
@@ -286,56 +238,10 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 extension WelcomeViewController: QrCodeReaderDelegate {
     func handleQrCode(_ code: String) {
         let lot = dcContext.checkQR(qrCode: code)
-        if let domain = lot.text1, lot.state == DC_QR_ACCOUNT {
-            let title = String.localizedStringWithFormat(
-                String.localized(dcAccounts.getAll().count > 1 ? "qraccount_ask_create_and_login_another" : "qraccount_ask_create_and_login"),
-                domain)
-            confirmQrAccountAlert(title: title, qrCode: code)
-        } else if let email = lot.text1, lot.state == DC_QR_LOGIN {
-            let title = String.localizedStringWithFormat(
-                String.localized(dcAccounts.getAll().count > 1 ? "qrlogin_ask_login_another" : "qrlogin_ask_login"),
-                email)
-            confirmQrAccountAlert(title: title, qrCode: code)
-        } else if lot.state == DC_QR_BACKUP {
+        if lot.state == DC_QR_BACKUP {
              confirmSetupNewDevice(qrCode: code)
         } else {
             qrErrorAlert()
-        }
-    }
-
-    private func confirmQrAccountAlert(title: String, qrCode: String) {
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-
-        let okAction = UIAlertAction(
-            title: String.localized("ok"),
-            style: .default,
-            handler: { [weak self] _ in
-                guard let self else { return }
-                self.dismissQRReader()
-                self.createAccountFromQRCode(qrCode: qrCode)
-            }
-        )
-
-        let qrCancelAction = UIAlertAction(
-            title: String.localized("cancel"),
-            style: .cancel,
-            handler: { [weak self] _ in
-                guard let self else { return }
-                self.dismissQRReader()
-                // if an injected accountCode exists, the WelcomeViewController was only opened to handle that
-                // cancelling the action should also dismiss the whole controller
-                if self.accountCode != nil {
-                    self.cancelAccountCreation()
-                }
-            }
-        )
-
-        alert.addAction(okAction)
-        alert.addAction(qrCancelAction)
-        if qrCodeReader != nil {
-            qrCodeReader?.present(alert, animated: true)
-        } else {
-            self.present(alert, animated: true)
         }
     }
 
