@@ -2,16 +2,26 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Mégse";
+// the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "vagy";
+"clear_search" = "Keresés kiürítése";
 "yes" = "Igen";
 "no" = "Nem";
+"select" = "Kiválasztás";
 "on" = "Be";
 "off" = "Ki";
 "def" = "Alapértelmezett";
+"default_value" = "Alapértelmezett (%1$@)";
+"default_value_as_above" = "Alapértelmezett (ugyanaz, mint fent)";
 "custom" = "Egyéni";
 "none" = "Egyik sem";
 "automatic" = "Automatikus";
 "strict" = "Szigorú";
 "open" = "Megnyitás";
+"download" = "Letöltés";
+"downloading" = "Letöltés...";
+"open_attachment" = "Csatolmány megnyitása";
+"join" = "Csatlakozás";
 "delete" = "Törlés";
 "info" = "Infó";
 "emoji" = "Emoji";
