@@ -145,12 +145,12 @@ class ChatListViewController: UITableViewController {
 
         if dcContext.isAnyDatabaseEncrypted() {
             let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-            msg.text = "⚠️ \"Encrypted Accounts\" are unsupported!\n\n"
+            msg.text = "⚠️ \"Encrypted Profiles\" are unsupported!\n\n"
             +   "👉 To exit the experiment and avoid problems in future versions:\n\n"
-            +   "- Open encrypted account in the account switcher (marked by \"⚠️\")\n\n"
+            +   "- Open encrypted profile in the profile switcher (marked by \"⚠️\")\n\n"
             +   "- Do \"Settings / Chats and Media / Export Backup\"\n\n"
-            +   "- In the account switcher, do \"Add Account / Restore from Backup\"\n\n"
-            +   "- If successful, you'll have the account duplicated. Only then, delete the encrypted one marked by \"⚠️\""
+            +   "- In the account profile, do \"Add Profile / I Already Have a Profile / Restore from Backup\"\n\n"
+            +   "- If successful, you'll have the profile duplicated. Only then, delete the encrypted one marked by \"⚠️\""
             dcContext.addDeviceMessage(label: "ios-encrypted-accounts-unsupported7", msg: msg)
         }
     }
