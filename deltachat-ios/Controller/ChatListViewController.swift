@@ -151,7 +151,7 @@ class ChatListViewController: UITableViewController {
             +   "- Do \"Settings / Chats and Media / Export Backup\"\n\n"
             +   "- In the account switcher, do \"Add Account / Restore from Backup\"\n\n"
             +   "- If successful, you'll have the account duplicated. Only then, delete the encrypted one marked by \"⚠️\""
-            dcContext.addDeviceMessage(label: "ios-encrypted-accounts-unsupported6", msg: msg)
+            dcContext.addDeviceMessage(label: "ios-encrypted-accounts-unsupported7", msg: msg)
         }
     }
 
