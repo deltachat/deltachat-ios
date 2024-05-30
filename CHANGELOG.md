@@ -1,5 +1,63 @@
 # Delta Chat iOS Changelog
 
+## v1.46.0 Testflight
+2024-05
+
+* new onboarding: you can create a new profile with one tap on "Create New Profile" -
+  or use an existing login or second-device-setup as usual
+* only show PUSH notifications if there is real content
+* make received VCards tappable (attaching VCards is in the making :)
+* "Profiles" are names as such throughout the app;
+  note that these profiles exist on the device only, there is nothing persisted on the server
+* adding contacts manually at "New Chat / New Contact / Add Contact Manually"
+* faster reactions: access the reactions directly from the context menu, cleanup menu
+* show reactions in summaries
+* new map for - still experimental - location streaming (enable at "Settings / Advanced")
+* advanced settings resorted, you'll also find "password & account" and "show classic emails" there
+* improve resilience by adding references to the last three messages
+* one-to-one chats are read-only during reasonable run of securejoin
+* if securejoin is taking longer than expected, a warning is shown and messages can be sent
+* improve resilience by including more entries in DNS fallback cache
+* improve anonymous mailing lists by not adding hostname to Message-ID
+* hide folder options if not supported by the used account
+* subsequent taps on the "Chats" icon scroll that chatlist to the top
+* show sum of unread chats on the chatlist's "Chats" icon
+* use "universal logging system", making the logs available in tools like "Console.app"
+* show recent log lines at "Advanced / View Log", if supported by the system
+* support openpgp4fpr links inside webxdc
+* fix: preserve upper-/lowercase of links from HTML-messages
+* fix: rescan folders on "Watch Sent Folder" changes
+* fix sometimes wrong sender name in "Message Info"
+* fix: do not send avatar in securejoin messages before contact verification
+* fix: avoid being re-added to groups just left
+* fix: do not auto-delete webxdc apps that have recent updates
+* fix: improve moving messages on gmail
+* fix: improve chat assignments of not downloaded messages
+* fix: do not create ad-hoc groups from partial downloads
+* fix: improve connectivity on startup by adding backoff for IMAP connections
+* fix: mark contact request messages as seen on IMAP server
+* fix: convert images to RGB8 before encoding into JPEG to fix sending of large RGBA images
+* fix: do not convert large GIF to JPEG
+* fix receiving Autocrypt Setup Messages from K-9
+* fix: delete expired locations and POIs with deleted chats
+* fix: send locations more reliable
+* fix: do not fail to send encrypted quotes to unencrypted chats, replace quote by "..." instead
+* fix: always use correct "Saved Messages" icon when the chat is recreated
+* fix: add white background to transparent avatars
+* fix crashes when exporting or importing huge accounts
+* fix: remove leading whitespace from subject
+* fix problem with sharing the same key by several accounts
+* fix busy looping eg. during key import
+* fix remote group membership changes always overriding local ones
+* fix webxdc links for securejoin
+* fix: use the last header of multiple ones with the same name; this is the one DKIM was using
+* fix migration of legacy databases
+* fix: do not mark the message with locations as seen
+* fix crashes when sharing on iPads
+* update translations and local help
+* update to core 1.139.6
+
+
 ## v1.44.1
 2024-03
 
