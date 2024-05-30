@@ -8,19 +8,19 @@ public class ContactCardView: UIView {
 
     public var horizontalLayout: Bool {
         get {
-            return fileStackView.axis == .horizontal
+            return contactStackView.axis == .horizontal
         }
         set {
             if newValue {
-                fileStackView.axis = .horizontal
+                contactStackView.axis = .horizontal
                 imageWidthConstraint?.isActive = true
                 imageHeightConstraint?.isActive = true
-                fileStackView.alignment = .center
+                contactStackView.alignment = .center
             } else {
-                fileStackView.axis = .vertical
+                contactStackView.axis = .vertical
                 imageWidthConstraint?.isActive = false
                 imageHeightConstraint?.isActive = false
-                fileStackView.alignment = .leading
+                contactStackView.alignment = .leading
             }
         }
     }
@@ -29,15 +29,15 @@ public class ContactCardView: UIView {
     // depending on the file type, if false the view will be configured according to horizontalLayout Bool
     public var allowLayoutChange: Bool = true
 
-    private lazy var fileStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [fileImageView, fileMetadataStackView])
+    private lazy var contactStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [profileImageView, fileMetadataStackView])
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 6
         return stackView
     }()
 
-    lazy var fileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -46,21 +46,21 @@ public class ContactCardView: UIView {
     }()
 
     private lazy var fileMetadataStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [fileTitle, fileSubtitle])
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, addressLabel])
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.clipsToBounds = true
         return stackView
     }()
 
-    lazy var fileTitle: UILabel = {
+    lazy var nameLabel: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         isAccessibilityElement = false
         return title
     }()
 
-    private lazy var fileSubtitle: UILabel = {
+    private lazy var addressLabel: UILabel = {
         let subtitle = UILabel()
         subtitle.translatesAutoresizingMaskIntoConstraints = false
         subtitle.numberOfLines = 1
@@ -74,44 +74,43 @@ public class ContactCardView: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(fileStackView)
-        fileStackView.fillSuperview()
-        imageWidthConstraint = fileImageView.constraintWidthTo(50)
-        imageHeightConstraint = fileImageView.constraintHeightTo(50 * 1.3, priority: .defaultLow)
+        addSubview(contactStackView)
+        contactStackView.fillSuperview()
+        imageWidthConstraint = profileImageView.constraintWidthTo(50)
+        imageHeightConstraint = profileImageView.constraintHeightTo(50 * 1.3, priority: .defaultLow)
         horizontalLayout = true
     }
 
     required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    public func configure(message: DcMsg) {
-        guard message.type == DC_MSG_VCARD else { return }
+    public func configure(message: DcMsg, dcContext: DcContext) {
+        guard message.type == DC_MSG_VCARD,
+              let file = message.file,
+              let vcard = dcContext.parseVcard(path: file)?.first else { return }
 
-        fileImageView.layer.cornerRadius = 0
-        if let vcard = message.file {
-            //TODO: get image date from vcard.profileImage
-            fileImageView.image = UIImage(named: "ic_attach_file_36pt")
+        profileImageView.layer.cornerRadius = 0
+        if let profileImageString = vcard.profileImage, let profileImage = UIImage.fromBase64(string: profileImageString) {
+            profileImageView.image = profileImage
         } else {
-            //TODO: Replace with SF Symbol `person.circle`
-            fileImageView.image = UIImage(named: "ic_attach_file_36pt")
+            profileImageView.image = UIImage(named: "person.crop.circle")
             horizontalLayout = true
         }
-        fileTitle.numberOfLines = 3
-        fileTitle.lineBreakMode = .byCharWrapping
-        fileTitle.font = UIFont.preferredFont(forTextStyle: .headline)
-        fileSubtitle.font = UIFont.preferredFont(forTextStyle: .caption2)
-        fileTitle.text = message.filename
-        fileSubtitle.text = message.getPrettyFileSize()
+        nameLabel.numberOfLines = 3
+        nameLabel.lineBreakMode = .byCharWrapping
+        nameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        nameLabel.text = vcard.displayName
 
+        addressLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
+        addressLabel.text = vcard.addr
     }
-
 
     public func configureAccessibilityLabel() -> String {
         var accessibilityFileTitle = ""
         var accessiblityFileSubtitle = ""
-        if let fileTitleText = fileTitle.text {
+        if let fileTitleText = nameLabel.text {
             accessibilityFileTitle = fileTitleText
         }
-        if let subtitleText = fileSubtitle.text {
+        if let subtitleText = addressLabel.text {
             accessiblityFileSubtitle = subtitleText
         }
 
@@ -119,6 +118,6 @@ public class ContactCardView: UIView {
     }
 
     public func prepareForReuse() {
-        fileImageView.image = nil
+        profileImageView.image = nil
     }
 }

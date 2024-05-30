@@ -10,7 +10,7 @@ public class ContactCardCell: BaseMessageCell {
     private var spacerHeight: NSLayoutConstraint?
     var spacerWidth: NSLayoutConstraint?
 
-    lazy var fileView = ContactCardView()
+    lazy var contactView = ContactCardView()
 
     override func setupSubviews() {
         super.setupSubviews()
@@ -18,16 +18,16 @@ public class ContactCardCell: BaseMessageCell {
         spacerHeight = spacerView.constraintHeightTo(8, priority: .defaultHigh)
         spacerHeight?.isActive = true
         spacerWidth = spacerView.constraintWidthTo(280, priority: UILayoutPriority(rawValue: 400))
-        mainContentView.addArrangedSubview(fileView)
+        mainContentView.addArrangedSubview(contactView)
         mainContentView.addArrangedSubview(spacerView)
         mainContentView.addArrangedSubview(messageLabel)
-        fileView.horizontalLayout = true
+        contactView.horizontalLayout = true
         mainContentViewHorizontalPadding = 12
     }
 
     public override func prepareForReuse() {
         super.prepareForReuse()
-        fileView.prepareForReuse()
+        contactView.prepareForReuse()
     }
 
     override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
@@ -38,8 +38,8 @@ public class ContactCardCell: BaseMessageCell {
             spacerHeight?.isActive = false
         }
 
-        fileView.configure(message: msg)
-        accessibilityLabel = "\(String.localized("document")), \(fileView.configureAccessibilityLabel())"
+        contactView.configure(message: msg, dcContext: dcContext)
+        accessibilityLabel = "\(String.localized("document")), \(contactView.configureAccessibilityLabel())"
         super.update(dcContext: dcContext,
                      msg: msg,
                      messageStyle: messageStyle,
