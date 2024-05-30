@@ -13,3 +13,11 @@ extension String {
         return Data(data).base64EncodedString()
     }
 }
+
+extension UIImage {
+    public static func fromBase64(string: String) -> UIImage? {
+        guard let imageData = Data(base64Encoded: string) else { return nil }
+
+        return UIImage(data: imageData)
+    }
+}
