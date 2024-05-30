@@ -2123,9 +2123,9 @@ extension ChatViewController {
     }
 
     func didTapVcard(msg: DcMsg) {
-        guard let file = msg.file else { return }
-        guard let vcards = dcContext.parseVcard(path: file) else { return }
-        guard let vcard = vcards.first else { return }
+        guard let file = msg.file,
+              let vcards = dcContext.parseVcard(path: file),
+              let vcard = vcards.first else { return }
         
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), vcard.displayName), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
