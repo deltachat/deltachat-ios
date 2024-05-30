@@ -149,7 +149,7 @@ class ChatListViewController: UITableViewController {
             +   "👉 To exit the experiment and avoid problems in future versions:\n\n"
             +   "- Open encrypted profile in the profile switcher (marked by \"⚠️\")\n\n"
             +   "- Do \"Settings / Chats and Media / Export Backup\"\n\n"
-            +   "- In the account profile, do \"Add Profile / I Already Have a Profile / Restore from Backup\"\n\n"
+            +   "- In the profile switcher, do \"Add Profile / I Already Have a Profile / Restore from Backup\"\n\n"
             +   "- If successful, you'll have the profile duplicated. Only then, delete the encrypted one marked by \"⚠️\""
             dcContext.addDeviceMessage(label: "ios-encrypted-accounts-unsupported7", msg: msg)
         }
