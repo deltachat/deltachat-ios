@@ -223,7 +223,7 @@
 			<key>one</key>
 			<string>%d csevegés visszavonva az az archiválásból</string>
 			<key>other</key>
-			<string>%d csevegés visszavonva az az archiválásból</string>
+			<string>%d csevegés visszavonva az archiválásból</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
