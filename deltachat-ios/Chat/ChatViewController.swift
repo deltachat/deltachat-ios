@@ -2130,6 +2130,7 @@ extension ChatViewController {
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), vcard.displayName), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             if let ids = self.dcContext.importVcard(path: file) {
+                print("importing ids: \(ids)")
             }
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
