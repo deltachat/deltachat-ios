@@ -352,6 +352,8 @@
 "send_file_to" = "\"%1$@\" dosyasını gönder…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "İletiyi gönder…";
+"enable_realtime" = "Gerçek Zamanlı Webxdc Kanalları";
+"enable_realtime_explain" = "Aygıtlar arasında doğrudan bağlantılar oluşturmak için Webxdc gerçek zamanlı API\'lerini etkinleştirin.";
 // map
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
 "show_location_traces" = "İzleri göster";
