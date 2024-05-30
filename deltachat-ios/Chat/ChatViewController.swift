@@ -211,6 +211,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.register(VideoInviteCell.self, forCellReuseIdentifier: "video_invite")
         tableView.register(WebxdcCell.self, forCellReuseIdentifier: "webxdc")
+        tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .interactive
@@ -655,11 +656,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 cell = audioMessageCell
             }
         case DC_MSG_VCARD:
-            cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
-            message.text = "👤 Contact"
-            if let file = message.file, let vcards = dcContext.parseVcard(path: file), let vcard = vcards.first {
-                message.text = "👤 " + vcard.displayName
-            }
+            cell = tableView.dequeueReusableCell(withIdentifier: ContactCardCell.reuseIdentifier, for: indexPath) as! ContactCardCell
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
         }
