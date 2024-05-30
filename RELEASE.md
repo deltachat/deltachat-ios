@@ -36,7 +36,7 @@ in Xcode:
       (codesign may ask for a password, this _may_ be empty and "Enter" will do)
    c) on success, a dialog with all releases on the machine is shown;
       select the most recent,
-      then "Distribute App / Testflight & App Store", use defaults, "Distribute"
+      then "Distribute App / App Store Connec", use defaults, "Distribute"
 
 on https://appstoreconnect.apple.com :
 
