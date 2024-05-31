@@ -21,7 +21,6 @@ public class ContactCardCell: BaseMessageCell {
         mainContentView.addArrangedSubview(contactView)
         mainContentView.addArrangedSubview(spacerView)
         mainContentView.addArrangedSubview(messageLabel)
-        contactView.horizontalLayout = true
         mainContentViewHorizontalPadding = 12
     }
 
