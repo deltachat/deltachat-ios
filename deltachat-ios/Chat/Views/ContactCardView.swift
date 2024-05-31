@@ -6,34 +6,12 @@ public class ContactCardView: UIView {
     private var imageWidthConstraint: NSLayoutConstraint?
     private var imageHeightConstraint: NSLayoutConstraint?
 
-    public var horizontalLayout: Bool {
-        get {
-            return contactStackView.axis == .horizontal
-        }
-        set {
-            if newValue {
-                contactStackView.axis = .horizontal
-                imageWidthConstraint?.isActive = true
-                imageHeightConstraint?.isActive = true
-                contactStackView.alignment = .center
-            } else {
-                contactStackView.axis = .vertical
-                imageWidthConstraint?.isActive = false
-                imageHeightConstraint?.isActive = false
-                contactStackView.alignment = .leading
-            }
-        }
-    }
-
-    // allow to automatically switch between small and large preview of a file,
-    // depending on the file type, if false the view will be configured according to horizontalLayout Bool
-    public var allowLayoutChange: Bool = true
-
     private lazy var contactStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [profileImageView, fileMetadataStackView])
+        let stackView = UIStackView(arrangedSubviews: [profileImageView, profileDetailsStackView])
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = 6
+        stackView.spacing = 8
+        stackView.alignment = .center
         return stackView
     }()
 
@@ -41,44 +19,45 @@ public class ContactCardView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 25
         isAccessibilityElement = false
         return imageView
     }()
 
-    private lazy var fileMetadataStackView: UIStackView = {
+    private lazy var profileDetailsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nameLabel, addressLabel])
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.clipsToBounds = true
         return stackView
     }()
 
     lazy var nameLabel: UILabel = {
-        let title = UILabel()
-        title.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 3
+        label.lineBreakMode = .byCharWrapping
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
         isAccessibilityElement = false
-        return title
+        return label
     }()
 
     private lazy var addressLabel: UILabel = {
-        let subtitle = UILabel()
-        subtitle.translatesAutoresizingMaskIntoConstraints = false
-        subtitle.numberOfLines = 1
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = UIFont.preferredFont(forTextStyle: .caption2)
         isAccessibilityElement = false
-        return subtitle
+        return label
     }()
-
-    convenience init() {
-        self.init(frame: .zero)
-    }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(contactStackView)
         contactStackView.fillSuperview()
         imageWidthConstraint = profileImageView.constraintWidthTo(50)
-        imageHeightConstraint = profileImageView.constraintHeightTo(50 * 1.3, priority: .defaultLow)
-        horizontalLayout = true
+        imageHeightConstraint = profileImageView.constraintHeightTo(50)
+        imageWidthConstraint?.isActive = true
+        imageHeightConstraint?.isActive = true
     }
 
     required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -88,19 +67,13 @@ public class ContactCardView: UIView {
               let file = message.file,
               let vcard = dcContext.parseVcard(path: file)?.first else { return }
 
-        profileImageView.layer.cornerRadius = 0
         if let profileImageString = vcard.profileImage, let profileImage = UIImage.fromBase64(string: profileImageString) {
             profileImageView.image = profileImage
         } else {
             profileImageView.image = UIImage(named: "person.crop.circle")
-            horizontalLayout = true
         }
-        nameLabel.numberOfLines = 3
-        nameLabel.lineBreakMode = .byCharWrapping
-        nameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        nameLabel.text = vcard.displayName
 
-        addressLabel.font = UIFont.preferredFont(forTextStyle: .caption2)
+        nameLabel.text = vcard.displayName
         addressLabel.text = vcard.addr
     }
 
