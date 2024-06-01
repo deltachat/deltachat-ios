@@ -283,7 +283,8 @@ extension QrPageController: QrCodeReaderDelegate {
 
         case DC_QR_ACCOUNT, DC_QR_LOGIN, DC_QR_BACKUP:
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.appCoordinator.presentWelcomeController(accountCode: code)
+                _ = dcAccounts.add()
+                appDelegate.reloadDcContext(accountCode: code)
             }
 
         case DC_QR_WEBRTC_INSTANCE:
