@@ -17,7 +17,7 @@ public struct DcVcardContact: Decodable {
     public let color: String
 
     // Last update timestamp.
-    public let timestamp: Int64
+    public let timestamp: Int64?
 }
 
 struct DcVcardContactResult: Decodable {
