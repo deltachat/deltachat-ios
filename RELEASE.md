@@ -51,7 +51,8 @@ on https://appstoreconnect.apple.com :
 
 8. for a **Regular release**, open "My Apps/Delta Chat iOS/iOS App+ (first item)"
    a) enter the version number (without leading "v")
-   b) fill out "what's new", use CHANGELOG.md as a template
+   b) fill out "what's new", use CHANGELOG.md as a template, add the line:
+      "These features will roll out over the coming days. Thanks for using Delta Chat!"
    c) select a build
    d) make sure, the credentials for the apple-review-team are working
    e) select "Release update over 7-day period using phased release"
