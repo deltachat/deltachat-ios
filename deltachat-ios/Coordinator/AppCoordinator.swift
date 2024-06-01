@@ -197,7 +197,15 @@ class AppCoordinator: NSObject {
     func handleQRCode(_ code: String) {
         if code.lowercased().starts(with: "dcaccount:")
            || code.lowercased().starts(with: "dclogin:") {
-            presentWelcomeController(accountCode: code)
+            if dcAccounts.getSelected().isConfigured() {
+                // if account is configured it means we didn't come from Welcome screen nor from QR scanner,
+                // instead, user clicked a dcaccount:// URI directly, so we need to switch to a new account:
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                _ = dcAccounts.add()
+                appDelegate.reloadDcContext(accountCode: code)
+            } else {
+                presentWelcomeController(accountCode: code)
+            }
         } else {
             showTab(index: qrTab)
             if let navController = self.tabBarController.selectedViewController as? UINavigationController,
