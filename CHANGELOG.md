@@ -3,7 +3,7 @@
 ## v1.46.2
 2024-06
 
-* fix: force adding profiles when scanning/tapping QR codes outside "Add Profile"
+* fix: create new profile when scanning/tapping QR codes outside "Add Profile"
 * fix: timestamp in vcards is optional
 * update translations
 * using core 1.139.6
