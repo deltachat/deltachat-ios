@@ -1,6 +1,15 @@
 # Delta Chat iOS Changelog
 
-## v1.46.0 Testflight
+## v1.46.2
+2024-06
+
+* fix: force adding profiles when scanning/tapping QR codes outside "Add Profile"
+* fix: timestamp in vcards is optional
+* update translations
+* using core 1.139.6
+
+
+## v1.46.0
 2024-05
 
 * new onboarding: you can create a new profile with one tap on "Create New Profile" -
