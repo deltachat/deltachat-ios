@@ -130,7 +130,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
         dcContext.selfavatar = nil
-        contentView?.imageButton.setImage(UIImage(named: "person.crop.circle"), for: .normal)
+        contentView?.imageButton.setImage(UIImage(named: "camera"), for: .normal)
     }
 
     @objc private func showPrivacy(_ sender: UIButton) {
