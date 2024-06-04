@@ -15,11 +15,8 @@ public class ContactCardView: UIView {
         return stackView
     }()
 
-    lazy var profileImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 25
+    lazy var profileImageView: InitialsBadge = {
+        let imageView = InitialsBadge(size: 50)
         isAccessibilityElement = false
         return imageView
     }()
@@ -68,9 +65,11 @@ public class ContactCardView: UIView {
               let vcard = dcContext.parseVcard(path: file)?.first else { return }
 
         if let profileImageString = vcard.profileImage, let profileImage = UIImage.fromBase64(string: profileImageString) {
-            profileImageView.image = profileImage
+            profileImageView.setImage(profileImage)
         } else {
-            profileImageView.image = UIImage(named: "person.crop.circle")
+            let color = UIColor(hexString: vcard.color)
+            profileImageView.setColor(color)
+            profileImageView.setName(vcard.displayName)
         }
 
         nameLabel.text = vcard.displayName
@@ -91,6 +90,5 @@ public class ContactCardView: UIView {
     }
 
     public func prepareForReuse() {
-        profileImageView.image = nil
     }
 }
