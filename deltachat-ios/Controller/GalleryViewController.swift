@@ -316,10 +316,29 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
 
-                let menu = UIMenu(children: [
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.askToDeleteItem(at: $0 ) }),
-                    UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0 ) })
-                ])
+                let menu = UIMenu(
+                    children: [
+                        UIMenu(
+                            options: [.displayInline],
+                            children: [UIAction.menuAction(localizationKey: "show_in_chat",
+                                                           systemImageName: "doc.text.magnifyingglass",
+                                                           indexPath: indexPath,
+                                                           action: {
+                                                               self.redirectToMessage(of: $0 )
+                                                           })]
+                        ),
+                        UIMenu(
+                            options: [.displayInline],
+                            children: [UIAction.menuAction(localizationKey: "delete",
+                                                           attributes: [.destructive],
+                                                           systemImageName: "trash",
+                                                           indexPath: indexPath,
+                                                           action: {
+                                                               self.askToDeleteItem(at: $0 )
+                                                           })]
+                        ),
+                    ]
+                )
                 return menu
             }
         )
