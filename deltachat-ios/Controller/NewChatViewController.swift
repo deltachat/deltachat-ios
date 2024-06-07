@@ -94,8 +94,8 @@ class NewChatViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false
         }
-        tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
-        tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
+        tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         tableView.sectionHeaderHeight = UITableView.automaticDimension
     }
 
@@ -129,29 +129,28 @@ class NewChatViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
-
+        
         if section == sectionNew {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-            if let actionCell = cell as? ActionCell {
-                switch newOptions[row] {
-                case .scanQRCode:
-                    actionCell.actionTitle = String.localized("menu_new_contact")
-                case .newGroup:
-                    actionCell.actionTitle = String.localized("menu_new_group")
-                case .newBroadcastList:
-                    actionCell.actionTitle = String.localized("new_broadcast_list")
-                case .newContact:
-                    actionCell.actionTitle = String.localized("menu_new_classic_contact")
-                }
+            guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No Action Cell") }
+            
+            switch newOptions[row] {
+            case .scanQRCode:
+                actionCell.actionTitle = String.localized("menu_new_contact")
+            case .newGroup:
+                actionCell.actionTitle = String.localized("menu_new_group")
+            case .newBroadcastList:
+                actionCell.actionTitle = String.localized("new_broadcast_list")
+            case .newContact:
+                actionCell.actionTitle = String.localized("menu_new_classic_contact")
             }
-            return cell
+            
+            return actionCell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-            if let contactCell = cell as? ContactCell {
-                let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
-                contactCell.updateCell(cellViewModel: contactCellViewModel)
-            }
-            return cell
+            guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else { fatalError("ContactCell expected") }
+
+            let contactCellViewModel = self.contactViewModelBy(row: indexPath.row)
+            contactCell.updateCell(cellViewModel: contactCellViewModel)
+            return contactCell
         }
     }
 
