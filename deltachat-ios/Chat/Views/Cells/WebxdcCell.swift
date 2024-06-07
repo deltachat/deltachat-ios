@@ -3,7 +3,7 @@ import DcCore
 
 public class WebxdcCell: FileTextCell {
 
-    static let reuseIdentifier = "WebxdcCell"
+    override class var reuseIdentifier: String { "WebxdcCell" }
 
     override func setupSubviews() {
         super.setupSubviews()
