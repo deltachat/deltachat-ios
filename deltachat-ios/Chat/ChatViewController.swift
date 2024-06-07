@@ -205,7 +205,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundView = backgroundContainer
-        tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
+        tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.reuseIdentifier)
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
@@ -651,8 +651,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         case DC_MSG_FILE:
             if message.isSetupMessage {
-                cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
+                guard let textCell = tableView.dequeueReusableCell(withIdentifier: TextMessageCell.reuseIdentifier, for: indexPath) as? TextMessageCell else { fatalError("No TextMessageCell") }
                 message.text = String.localized("autocrypt_asm_click_body")
+
+                cell = textCell
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
             }
@@ -671,7 +673,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         case DC_MSG_VCARD:
             cell = tableView.dequeueReusableCell(withIdentifier: ContactCardCell.reuseIdentifier, for: indexPath) as? ContactCardCell ?? ContactCardCell()
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath) as? TextMessageCell ?? TextMessageCell()
+            guard let textCell = tableView.dequeueReusableCell(withIdentifier: TextMessageCell.reuseIdentifier, for: indexPath) as? TextMessageCell else { fatalError("No TextMessageCell") }
+
+            cell = textCell
         }
 
         var showAvatar = isGroupChat && !message.isFromCurrentSender
