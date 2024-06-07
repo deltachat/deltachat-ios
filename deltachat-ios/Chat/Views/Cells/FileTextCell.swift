@@ -5,6 +5,8 @@ import SDWebImage
 
 public class FileTextCell: BaseMessageCell {
 
+    static let reuseIdentifier = "FileTextCell"
+
     private var spacerHeight: NSLayoutConstraint?
     var spacerWidth: NSLayoutConstraint?
 

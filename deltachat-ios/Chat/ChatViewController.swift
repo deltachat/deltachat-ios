@@ -207,7 +207,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.backgroundView = backgroundContainer
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.reuseIdentifier)
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
-        tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
+        tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.register(VideoInviteCell.self, forCellReuseIdentifier: VideoInviteCell.reuseIdentifier)
@@ -656,13 +656,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
                 cell = textCell
             } else {
-                cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
+                guard let fileCell = tableView.dequeueReusableCell(withIdentifier: FileTextCell.reuseIdentifier, for: indexPath) as? FileTextCell else { fatalError("No FileTextCell") }
+
+                cell = fileCell
             }
         case DC_MSG_WEBXDC:
                 cell = tableView.dequeueReusableCell(withIdentifier: "webxdc", for: indexPath) as? WebxdcCell ?? WebxdcCell()
         case DC_MSG_AUDIO, DC_MSG_VOICE:
             if message.isUnsupportedMediaFile {
-                cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) as? FileTextCell ?? FileTextCell()
+                guard let fileCell = tableView.dequeueReusableCell(withIdentifier: FileTextCell.reuseIdentifier, for: indexPath) as? FileTextCell else { fatalError("No FileTextCell") }
+
+                cell = fileCell
             } else {
                 let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(
                     withIdentifier: "audio",
