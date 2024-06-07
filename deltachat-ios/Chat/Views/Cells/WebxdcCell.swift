@@ -3,6 +3,8 @@ import DcCore
 
 public class WebxdcCell: FileTextCell {
 
+    static let reuseIdentifier = "WebxdcCell"
+
     override func setupSubviews() {
         super.setupSubviews()
         fileView.fileImageView.isUserInteractionEnabled = true

@@ -210,7 +210,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: AudioMessageCell.reuseIdentifier)
         tableView.register(VideoInviteCell.self, forCellReuseIdentifier: VideoInviteCell.reuseIdentifier)
-        tableView.register(WebxdcCell.self, forCellReuseIdentifier: "webxdc")
+        tableView.register(WebxdcCell.self, forCellReuseIdentifier: WebxdcCell.reuseIdentifier)
         tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
@@ -660,7 +660,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 cell = fileCell
             }
         case DC_MSG_WEBXDC:
-                cell = tableView.dequeueReusableCell(withIdentifier: "webxdc", for: indexPath) as? WebxdcCell ?? WebxdcCell()
+            guard let xdcCell = tableView.dequeueReusableCell(withIdentifier: WebxdcCell.reuseIdentifier, for: indexPath) as? WebxdcCell else { return fatalError("No WebxdcCell") }
+
+            cell = xdsCell
         case DC_MSG_AUDIO, DC_MSG_VOICE:
             if message.isUnsupportedMediaFile {
                 guard let fileCell = tableView.dequeueReusableCell(withIdentifier: FileTextCell.reuseIdentifier, for: indexPath) as? FileTextCell else { fatalError("No FileTextCell") }
