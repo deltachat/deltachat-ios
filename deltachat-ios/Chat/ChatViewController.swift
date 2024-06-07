@@ -209,7 +209,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
         tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
-        tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
+        tableView.register(AudioMessageCell.self, forCellReuseIdentifier: AudioMessageCell.reuseIdentifier)
         tableView.register(VideoInviteCell.self, forCellReuseIdentifier: VideoInviteCell.reuseIdentifier)
         tableView.register(WebxdcCell.self, forCellReuseIdentifier: "webxdc")
         tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
@@ -668,9 +668,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
                 cell = fileCell
             } else {
-                let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(
-                    withIdentifier: "audio",
-                    for: indexPath) as? AudioMessageCell ?? AudioMessageCell()
+                guard let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(
+                    withIdentifier: AudioMessageCell.reuseIdentifier,
+                    for: indexPath) as? AudioMessageCell else { fatalError("No AudioMessageCell") }
+
                 audioController.update(audioMessageCell, with: message.id)
                 cell = audioMessageCell
             }
