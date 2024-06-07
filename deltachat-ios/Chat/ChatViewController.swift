@@ -207,7 +207,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: "image")
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
-        tableView.register(InfoMessageCell.self, forCellReuseIdentifier: "info")
+        tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
         tableView.register(VideoInviteCell.self, forCellReuseIdentifier: "video_invite")
         tableView.register(WebxdcCell.self, forCellReuseIdentifier: "webxdc")
@@ -592,7 +592,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         let id = messageIds[indexPath.row]
         if id == DC_MSG_ID_DAYMARKER {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoMessageCell.reuseIdentifier, for: indexPath) as? InfoMessageCell else {
+                fatalError("WTF?! Wrong Cell, expected InfoMessageCell")
+            }
+            
             if messageIds.count > indexPath.row + 1 {
                 var nextMessageId = messageIds[indexPath.row + 1]
                 if nextMessageId == DC_MSG_ID_MARKER1 && messageIds.count > indexPath.row + 2 {
@@ -607,7 +610,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             return cell
         } else if id == DC_MSG_ID_MARKER1 {
             // unread messages marker
-            let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoMessageCell.reuseIdentifier, for: indexPath) as? InfoMessageCell else {
+                fatalError("WTF?! Wrong Cell, expected InfoMessageCell")
+            }
+
             let freshMsgsCount = self.messageIds.count - (indexPath.row + 1)
             cell.update(text: String.localized(stringID: "chat_n_new_messages", parameter: freshMsgsCount))
             return cell
@@ -615,7 +621,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         
         let message = dcContext.getMessage(id: id)
         if message.isInfo {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "info", for: indexPath) as? InfoMessageCell ?? InfoMessageCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoMessageCell.reuseIdentifier, for: indexPath) as? InfoMessageCell else {
+                fatalError("WTF?! Wrong Cell, expected InfoMessageCell")
+            }
+
             cell.showSelectionBackground(tableView.isEditing)
             if message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent {
                 cell.update(text: message.text, image: parent.getWebxdcPreviewImage())
