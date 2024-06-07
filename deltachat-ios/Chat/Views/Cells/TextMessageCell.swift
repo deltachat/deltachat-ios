@@ -4,6 +4,8 @@ import UIKit
 
 class TextMessageCell: BaseMessageCell {
 
+    static let reuseIdentifier = "TextMessageCell"
+
     override func setupSubviews() {
         super.setupSubviews()
         mainContentView.addArrangedSubview(messageLabel)
