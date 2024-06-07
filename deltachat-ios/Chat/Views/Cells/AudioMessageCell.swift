@@ -11,6 +11,8 @@ public protocol AudioMessageCellDelegate: AnyObject {
 
 public class AudioMessageCell: BaseMessageCell {
 
+    static let reuseIdentifier = "AudioMessageCell"
+
     public weak var delegate: AudioMessageCellDelegate?
 
     lazy var audioPlayerView: AudioPlayerView = {
