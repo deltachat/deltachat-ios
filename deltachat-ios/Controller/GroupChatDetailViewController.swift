@@ -61,9 +61,8 @@ class GroupChatDetailViewController: UIViewController {
 
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
-        table.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
-        table.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
+        table.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
+        table.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         table.delegate = self
         table.dataSource = self
         table.tableHeaderView = groupHeader
@@ -502,9 +501,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             }
         case .members:
             if isMemberManagementRow(row: row) {
-                guard let actionCell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? ActionCell else {
-                safe_fatalError("could not dequeue action cell")
-                break
+                guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else {
+                    fatalError("could not dequeue action cell")
                 }
                 if row == membersRowAddMembers {
                     actionCell.actionTitle = String.localized(chat.isBroadcast ? "add_recipients" : "group_add_members")
@@ -516,9 +514,8 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return actionCell
             }
 
-            guard let contactCell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as? ContactCell else {
-                safe_fatalError("could not dequeue contactCell cell")
-                break
+            guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else {
+                fatalError("could not dequeue contactCell cell")
             }
             let contactId: Int = getGroupMemberIdFor(row)
             let cellData = ContactCellData(
@@ -544,8 +541,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return copyToClipboardCell
             }
         }
-        // should never get here
-        return UITableViewCell(frame: .zero)
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
