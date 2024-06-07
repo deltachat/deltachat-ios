@@ -91,9 +91,8 @@ class AccountSwitchViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == accountSection {
-            guard let cell: AccountCell = tableView.dequeueReusableCell(withIdentifier: AccountCell.reuseIdentifier, for: indexPath) as? AccountCell else {
-                safe_fatalError("unsupported cell type")
-                return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AccountCell.reuseIdentifier, for: indexPath) as? AccountCell else {
+                fatalError("No AccountCell")
             }
 
             let selectedAccountId = dcAccounts.getSelected().id
