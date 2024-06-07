@@ -205,7 +205,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         super.viewDidLoad()
         tableView.backgroundView = backgroundContainer
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: "text")
-        tableView.register(ImageTextCell.self, forCellReuseIdentifier: "image")
+        tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
@@ -595,7 +595,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoMessageCell.reuseIdentifier, for: indexPath) as? InfoMessageCell else {
                 fatalError("WTF?! Wrong Cell, expected InfoMessageCell")
             }
-            
+
             if messageIds.count > indexPath.row + 1 {
                 var nextMessageId = messageIds[indexPath.row + 1]
                 if nextMessageId == DC_MSG_ID_MARKER1 && messageIds.count > indexPath.row + 2 {
@@ -643,7 +643,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             return videoInviteCell
 
         case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
-            cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? ImageTextCell ?? ImageTextCell()
+            guard let imageCell = tableView.dequeueReusableCell(withIdentifier: ImageTextCell.reuseIdentifier, for: indexPath) as? ImageTextCell else { fatalError("No ImageTextCell") }
+            return imageCell
 
         case DC_MSG_FILE:
             if message.isSetupMessage {

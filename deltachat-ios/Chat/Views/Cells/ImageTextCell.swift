@@ -4,6 +4,9 @@ import DcCore
 import SDWebImage
 
 class ImageTextCell: BaseMessageCell {
+
+    static let reuseIdentifier = "ImageTextCell"
+
     let minImageWidth: CGFloat = 125
     var imageHeightConstraint: NSLayoutConstraint?
     var imageWidthConstraint: NSLayoutConstraint?
