@@ -3,6 +3,8 @@ import DcCore
 
 class InfoMessageCell: UITableViewCell {
 
+    static let reuseIdentifier = "InfoMessageCell"
+
     private var showSelectionBackground: Bool
     private var trailingConstraint: NSLayoutConstraint?
     private var trailingConstraintEditingMode: NSLayoutConstraint?
