@@ -11,7 +11,7 @@ class MessageInfoViewController: UITableViewController {
         self.message = message
         super.init(style: .grouped)
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: MessageInfoViewController.reuseIdentifier)
     }
 
     required init?(coder _: NSCoder) {
@@ -30,7 +30,7 @@ class MessageInfoViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: MessageInfoViewController.reuseIdentifier, for: indexPath)
 
         if indexPath.section == 0 {
             if indexPath.row == 0 {
