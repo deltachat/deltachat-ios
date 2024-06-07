@@ -4,6 +4,8 @@ import DcCore
 
 public class VideoInviteCell: UITableViewCell {
 
+    static let reuseIdentifier = "VideoInviteCell"
+
     private lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
         container.image = UIImage(color: DcColors.systemMessageBackgroundColor)

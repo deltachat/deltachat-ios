@@ -209,7 +209,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.register(FileTextCell.self, forCellReuseIdentifier: "file")
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: "audio")
-        tableView.register(VideoInviteCell.self, forCellReuseIdentifier: "video_invite")
+        tableView.register(VideoInviteCell.self, forCellReuseIdentifier: VideoInviteCell.reuseIdentifier)
         tableView.register(WebxdcCell.self, forCellReuseIdentifier: "webxdc")
         tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
@@ -637,7 +637,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let cell: BaseMessageCell
         switch message.type {
         case DC_MSG_VIDEOCHAT_INVITATION:
-            let videoInviteCell = tableView.dequeueReusableCell(withIdentifier: "video_invite", for: indexPath) as? VideoInviteCell ?? VideoInviteCell()
+            guard let videoInviteCell = tableView.dequeueReusableCell(withIdentifier: VideoInviteCell.reuseIdentifier, for: indexPath) as? VideoInviteCell
+            else { fatalError("VideoInviteCell expected") }
+
             videoInviteCell.showSelectionBackground(tableView.isEditing)
             videoInviteCell.update(dcContext: dcContext, msg: message)
             return videoInviteCell
