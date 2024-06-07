@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -6,7 +8,7 @@ FILENAME="libdeltachat.a"
 DIR="../deltachat-ios/libraries"
 
 # Delete old build, if any.
-rm -f "${DIR}/${FILENAME}"
+rm -f "${DIR}/${FILENAME}" || true
 
 rustc `cat ../rust-toolchain` --version
 
