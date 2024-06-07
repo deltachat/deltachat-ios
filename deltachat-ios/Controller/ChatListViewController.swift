@@ -441,8 +441,10 @@ class ChatListViewController: UITableViewController {
             }
         case .profile:
             assertionFailure("CellData type profile not allowed")
-            return UITableViewCell()
         }
+
+        assertionFailure("This should never happen")
+        return UITableViewCell()
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
