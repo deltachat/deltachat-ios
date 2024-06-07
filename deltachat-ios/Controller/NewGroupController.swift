@@ -100,8 +100,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
         doneButton = UIBarButtonItem(title: String.localized("create"), style: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
-        tableView.register(ContactCell.self, forCellReuseIdentifier: "contactCell")
-        tableView.register(ActionCell.self, forCellReuseIdentifier: "actionCell")
+        tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
+        tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         self.hideKeyboardOnTap()
         checkDoneButton()
     }
@@ -159,31 +159,28 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 return groupNameCell
             }
         case .invite:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
+            guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No ActionCell") }
             if inviteRows[row] == .addMembers {
-                if let actionCell = cell as? ActionCell {
-                    actionCell.actionTitle = String.localized(createBroadcast ? "add_recipients" : "group_add_members")
-                    actionCell.actionColor = UIColor.systemBlue
-                    actionCell.isUserInteractionEnabled = true
-                }
+                actionCell.actionTitle = String.localized(createBroadcast ? "add_recipients" : "group_add_members")
+                actionCell.actionColor = UIColor.systemBlue
+                actionCell.isUserInteractionEnabled = true
             }
-            return cell
+            return actionCell
         case .members:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
-            if let contactCell = cell as? ContactCell {
-                let contact = dcContext.getContact(id: groupContactIds[row])
-                let displayName = contact.displayName
-                contactCell.titleLabel.text = displayName
-                contactCell.subtitleLabel.text = contact.email
-                contactCell.avatar.setName(displayName)
-                contactCell.avatar.setColor(contact.color)
-                if let profileImage = contact.profileImage {
-                    contactCell.avatar.setImage(profileImage)
-                }
-                contactCell.setVerified(isVerified: contact.isVerified)
-                contactCell.selectionStyle = .none
+            guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else { fatalError("No ContactCell") }
+
+            let contact = dcContext.getContact(id: groupContactIds[row])
+            let displayName = contact.displayName
+            contactCell.titleLabel.text = displayName
+            contactCell.subtitleLabel.text = contact.email
+            contactCell.avatar.setName(displayName)
+            contactCell.avatar.setColor(contact.color)
+            if let profileImage = contact.profileImage {
+                contactCell.avatar.setImage(profileImage)
             }
-            return cell
+            contactCell.setVerified(isVerified: contact.isVerified)
+            contactCell.selectionStyle = .none
+            return contactCell
         }
     }
 
