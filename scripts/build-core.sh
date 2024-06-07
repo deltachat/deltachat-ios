@@ -8,7 +8,7 @@ FILENAME="libdeltachat.a"
 DIR="../deltachat-ios/libraries"
 
 # Delete old build, if any.
-rm -f "${DIR}/${FILENAME}" || true
+rm -f "${DIR}/${FILENAME}"
 
 rustc `cat ../rust-toolchain` --version
 
