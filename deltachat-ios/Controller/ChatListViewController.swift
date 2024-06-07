@@ -8,10 +8,6 @@ class ChatListViewController: UITableViewController {
     var isArchive: Bool
     private var accountSwitchTransitioningDelegate: PartialScreenModalTransitioningDelegate!
 
-    private let chatCellReuseIdentifier = "chat_cell"
-    private let deadDropCellReuseIdentifier = "deaddrop_cell"
-    private let contactCellReuseIdentifier = "contact_cell"
-
     private var msgChangedObserver: NSObjectProtocol?
     private var msgsNoticedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
@@ -40,9 +36,7 @@ class ChatListViewController: UITableViewController {
         return searchController
     }()
 
-    private lazy var archiveCell: ContactCell = {
-        return ContactCell()
-    }()
+    private let archiveCell = ContactCell()
 
     private lazy var newButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
@@ -307,9 +301,7 @@ class ChatListViewController: UITableViewController {
 
     // MARK: - configuration
     private func configureTableView() {
-        tableView.register(ContactCell.self, forCellReuseIdentifier: chatCellReuseIdentifier)
-        tableView.register(ContactCell.self, forCellReuseIdentifier: deadDropCellReuseIdentifier)
-        tableView.register(ContactCell.self, forCellReuseIdentifier: contactCellReuseIdentifier)
+        tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         tableView.rowHeight = ContactCell.cellHeight
         tableView.allowsMultipleSelectionDuringEditing = true
     }
@@ -415,9 +407,8 @@ class ChatListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let viewModel = viewModel else {
-            return UITableViewCell()
-        }
+        guard let viewModel else { return UITableViewCell() }
+
         let cellData = viewModel.cellDataFor(section: indexPath.section, row: indexPath.row)
         switch cellData.type {
         case .chat(let chatData):
@@ -427,22 +418,21 @@ class ChatListViewController: UITableViewController {
                 chatCell.updateCell(cellViewModel: cellData)
                 chatCell.delegate = self
                 return chatCell
-            } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: chatCellReuseIdentifier, for: indexPath) as? ContactCell {
+            } else if let chatCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
                 chatCell.updateCell(cellViewModel: cellData)
                 chatCell.delegate = self
                 return chatCell
             }
         case .contact:
             safe_assert(viewModel.searchActive)
-            if let contactCell = tableView.dequeueReusableCell(withIdentifier: contactCellReuseIdentifier, for: indexPath) as? ContactCell {
+            if let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
                 contactCell.updateCell(cellViewModel: cellData)
                 return contactCell
             }
         case .profile:
-            safe_fatalError("CellData type profile not allowed")
+            assertionFailure("CellData type profile not allowed")
+            return UITableViewCell()
         }
-        safe_fatalError("Could not find/dequeue or recycle UITableViewCell.")
-        return UITableViewCell()
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
