@@ -2666,7 +2666,13 @@ extension ChatViewController: UITextViewDelegate {
 // MARK: - ChatInputTextViewPasteDelegate
 extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
-        sendSticker(image)
+        let isSticker = image.size.equalTo(CGSize(width: 140, height: 140))
+
+        if isSticker {
+            sendSticker(image)
+        } else {
+            stageImage(image)
+        }
     }
 }
 
