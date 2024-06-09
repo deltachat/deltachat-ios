@@ -143,6 +143,16 @@ class ChatListViewController: UITableViewController {
             dcContext.addDeviceMessage(label: deviceMsgLabel, msg: nil)
         }
 
+        // if the device message was added already for another profile,
+        // mark the chat as being read, including any welcome messages
+        if UserDefaults.standard.string(forKey: Constants.Keys.lastDeviceMessageLabel) == deviceMsgLabel {
+            let deviceChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_DEVICE))
+            if deviceChatId != 0 {
+                dcContext.marknoticedChat(chatId: deviceChatId)
+            }
+        }
+        UserDefaults.standard.set(deviceMsgLabel, forKey: Constants.Keys.lastDeviceMessageLabel)
+
         if dcContext.isAnyDatabaseEncrypted() {
             let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
             msg.text = "⚠️ \"Encrypted Profiles\" are unsupported!\n\n"
