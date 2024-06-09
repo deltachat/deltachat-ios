@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.cargo/bin:$PATH"
 
