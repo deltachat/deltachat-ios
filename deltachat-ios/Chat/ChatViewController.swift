@@ -1571,7 +1571,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func showContactList(_ action: UIAlertAction) {
-        //TODO: Show contact list
+        
+        let contactList = SendContactViewController(dcContext: dcContext)
+        contactList.delegate = self
+
+        let navigationController = UINavigationController(rootViewController: contactList)
+        if #available(iOS 15.0, *) {
+            if let sheet = navigationController.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 20
+            }
+        }
+
+        present(navigationController, animated: true)
     }
 
     private func locationStreamingButtonPressed(_ action: UIAlertAction) {
@@ -2799,4 +2811,10 @@ extension ChatViewController: ChatDropInteractionDelegate {
             messageInputBar.inputTextView.text = updatedText
         }
     }
+}
+
+// MARK: - SendContactViewControllerDelegate
+
+extension ChatViewController: SendContactViewControllerDelegate {
+
 }
