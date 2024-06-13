@@ -124,7 +124,7 @@ class ChatCellViewModel: AvatarCellViewModel {
 }
 
 extension ContactCellViewModel {
-    static func make(contactId: Int, searchText: String?, dcContext: DcContext) -> ContactCellViewModel {
+    static func make(contactId: Int, searchText: String? = nil, dcContext: DcContext) -> ContactCellViewModel {
         let contact = dcContext.getContact(id: contactId)
         let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
         let emailIndexes = contact.email.containsExact(subSequence: searchText)
