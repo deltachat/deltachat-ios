@@ -1285,6 +1285,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
         let documentAction = UIAlertAction(title: String.localized("files"), style: .default, handler: documentActionPressed(_:))
         let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))
+        let sendContactAction = UIAlertAction(title: String.localized("contact"), style: .default, handler: showContactList(_:))
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),
                                                     style: isLocationStreaming ? .destructive : .default,
@@ -1309,6 +1310,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             alert.addAction(locationStreamingAction)
         }
+
+        alert.addAction(sendContactAction)
+
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: {
             // unfortunately, voiceMessageAction.accessibilityHint does not work,
@@ -1562,6 +1566,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
         showPhotoVideoLibrary(delegate: self)
+    }
+
+    private func showContactList(_ action: UIAlertAction) {
+        //TODO: Show contact list
     }
 
     private func locationStreamingButtonPressed(_ action: UIAlertAction) {
