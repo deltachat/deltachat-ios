@@ -647,7 +647,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
             guard let imageCell = tableView.dequeueReusableCell(withIdentifier: ImageTextCell.reuseIdentifier, for: indexPath) as? ImageTextCell else { fatalError("No ImageTextCell") }
-            return imageCell
+            cell = imageCell
 
         case DC_MSG_FILE:
             if message.isSetupMessage {
