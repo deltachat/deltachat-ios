@@ -678,7 +678,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 cell = audioMessageCell
             }
         case DC_MSG_VCARD:
-            cell = tableView.dequeueReusableCell(withIdentifier: ContactCardCell.reuseIdentifier, for: indexPath) as? ContactCardCell ?? ContactCardCell()
+            guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCardCell.reuseIdentifier, for: indexPath) as? ContactCardCell else { fatalError("No ContactCardCell") }
+
+            cell = contactCell
         default:
             guard let textCell = tableView.dequeueReusableCell(withIdentifier: TextMessageCell.reuseIdentifier, for: indexPath) as? TextMessageCell else { fatalError("No TextMessageCell") }
 
