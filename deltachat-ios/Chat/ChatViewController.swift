@@ -20,6 +20,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var keepKeyboard: Bool = false
     private var wasInputBarFirstResponder = false
     private var reactionMessageId: Int?
+    private var contextMenuVisible = false
 
     private lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -699,9 +700,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func updateScrollDownButtonVisibility() {
-        messageInputBar.scrollDownButton.isHidden = messageIds.isEmpty || isLastRowVisible(checkTopCellPostion: true,
-                                                                                           checkBottomCellPosition: true,
-                                                                                           allowPartialVisibility: true)
+        let scrollDownButtonHidden = contextMenuVisible || messageIds.isEmpty || isLastRowVisible(checkTopCellPostion: true,
+                                                                                                  checkBottomCellPosition: true,
+                                                                                                  allowPartialVisibility: true)
+        
+        messageInputBar.scrollDownButton.isHidden = scrollDownButtonHidden
     }
 
     private func configureContactRequestBar() {
@@ -1884,6 +1887,9 @@ extension ChatViewController {
 
         cell.messageBackgroundContainer.isHidden = true
         cell.reactionsView.isHidden = true
+        contextMenuVisible = true
+
+        updateScrollDownButtonVisibility()
     }
 
     override func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
@@ -1900,6 +1906,9 @@ extension ChatViewController {
 
         cell.messageBackgroundContainer.isHidden = false
         cell.reactionsView.isHidden = false
+        contextMenuVisible = false
+
+        updateScrollDownButtonVisibility()
     }
 
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
