@@ -1578,7 +1578,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let navigationController = UINavigationController(rootViewController: contactList)
         if #available(iOS 15.0, *) {
             if let sheet = navigationController.sheetPresentationController {
-                sheet.detents = [.medium()]
+                sheet.detents = [.large(), .medium()]
                 sheet.preferredCornerRadius = 20
             }
         }
@@ -1668,6 +1668,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
                 UIAccessibility.post(notification: .layoutChanged, argument: self?.messageInputBar.inputTextView)
             })
+        }
+    }
+
+    private func stageVCard(url: URL) {
+        keepKeyboard = true
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.draft.setAttachment(viewType: DC_MSG_VCARD, path: url.relativePath)
+            self.configureDraftArea(draft: self.draft)
+            self.focusInputTextView()
+            FileHelper.deleteFile(atPath: url.relativePath)
         }
     }
 
@@ -2503,7 +2514,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if let filePath = draft.attachment, let viewType = draft.viewType {
             switch viewType {
-            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO, DC_MSG_WEBXDC:
+            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO, DC_MSG_WEBXDC, DC_MSG_VCARD:
                 self.sendAttachmentMessage(viewType: viewType, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
             default:
                 logger.warning("Unsupported viewType for drafted messages.")
@@ -2816,5 +2827,15 @@ extension ChatViewController: ChatDropInteractionDelegate {
 // MARK: - SendContactViewControllerDelegate
 
 extension ChatViewController: SendContactViewControllerDelegate {
+    func contactSelected(_ viewController: SendContactViewController, contactId: Int) {
+        guard let vcardData = dcContext.makeVCard(contactIds: [contactId]),
+              let fileName = FileHelper.saveData(data: vcardData,
+                                                 name: UUID().uuidString,
+                                                 suffix: "vcf",
+                                                 directory: .cachesDirectory),
+              let vcardURL = URL(string: fileName)
+        else { return }
 
+        stageVCard(url: vcardURL)
+    }
 }
