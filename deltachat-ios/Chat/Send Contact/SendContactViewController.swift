@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 protocol SendContactViewControllerDelegate: AnyObject {
-
+    func contactSelected(_ viewController: SendContactViewController, contactId: Int)
 }
 
 /**
@@ -65,7 +65,10 @@ extension SendContactViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
+        let contactId = contactIds[indexPath.row]
+        delegate?.contactSelected(self, contactId: contactId)
 
+        dismiss(animated: true)
     }
 }
 
