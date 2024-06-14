@@ -14,9 +14,18 @@ public class DocumentPreview: DraftPreview {
         return view
     }()
 
+    lazy var contactCardView: ContactCardView = {
+        let view = ContactCardView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+
     override func setupSubviews() {
         super.setupSubviews()
         mainContentView.addSubview(fileView)
+        mainContentView.addSubview(contactCardView)
+
         addConstraints([
             fileView.constraintAlignTopTo(mainContentView),
             fileView.constraintAlignLeadingTo(mainContentView, paddingLeading: 8),
@@ -24,6 +33,14 @@ public class DocumentPreview: DraftPreview {
             fileView.constraintAlignTrailingTo(mainContentView),
             mainContentView.constraintHeightTo(75, priority: .required)
         ])
+
+        addConstraints([
+            contactCardView.constraintAlignTopTo(mainContentView),
+            contactCardView.constraintAlignLeadingTo(mainContentView, paddingLeading: 8),
+            contactCardView.constraintAlignBottomTo(mainContentView),
+            contactCardView.constraintAlignTrailingTo(mainContentView)
+        ])
+
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fileViewTapped))
         fileView.addGestureRecognizer(gestureRecognizer)
     }
@@ -47,9 +64,19 @@ public class DocumentPreview: DraftPreview {
                 tmpMsg.setFile(filepath: path)
                 tmpMsg.text = draft.text
             }
-            fileView.configure(message: tmpMsg)
-            fileView.fileTitle.numberOfLines = 2
-            self.delegate?.onAttachmentAdded()
+
+            if viewType == DC_MSG_VCARD {
+                contactCardView.isHidden = false
+                fileView.isHidden = true
+                contactCardView.configure(message: tmpMsg, dcContext: draft.dcContext)
+            } else {
+                contactCardView.isHidden = true
+                fileView.isHidden = false
+                fileView.configure(message: tmpMsg)
+                fileView.fileTitle.numberOfLines = 2
+            }
+
+            delegate?.onAttachmentAdded()
             accessibilityLabel = "\(String.localized("attachment")), \(fileView.configureAccessibilityLabel())"
             isHidden = false
         } else {
