@@ -1658,13 +1658,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func stageVCard(url: URL) {
         keepKeyboard = true
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.draft.setAttachment(viewType: DC_MSG_VCARD, path: url.relativePath)
-            self.configureDraftArea(draft: self.draft)
-            self.focusInputTextView()
-            FileHelper.deleteFile(atPath: url.relativePath)
-        }
+
+        draft.setAttachment(viewType: DC_MSG_VCARD, path: url.relativePath)
+        configureDraftArea(draft: draft)
+        focusInputTextView()
+        FileHelper.deleteFile(atPath: url.relativePath)
     }
 
     private func stageDocument(url: NSURL) {
