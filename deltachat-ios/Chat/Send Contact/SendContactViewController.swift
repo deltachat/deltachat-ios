@@ -36,6 +36,9 @@ class SendContactViewController: UIViewController {
 
         view.addSubview(tableView)
         setupConstraints()
+
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SendContactViewController.cancel(_:)))
+        navigationItem.rightBarButtonItem = cancelButton
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -49,6 +52,12 @@ class SendContactViewController: UIViewController {
         ]
 
         NSLayoutConstraint.activate(constraints)
+    }
+
+    // MARK: - Actions
+
+    @objc func cancel(_ sender: Any) {
+        dismiss(animated: true)
     }
 }
 
