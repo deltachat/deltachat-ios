@@ -37,7 +37,7 @@ public class DocumentPreview: DraftPreview {
     override public func configure(draft: DraftModel) {
         if !draft.isEditing,
            let viewType = draft.viewType,
-           viewType == DC_MSG_FILE || viewType == DC_MSG_WEBXDC,
+           [DC_MSG_WEBXDC, DC_MSG_FILE, DC_MSG_VCARD].contains(viewType),
            let path = draft.attachment {
             var tmpMsg: DcMsg
             if let draftMsg = draft.draftMsg {
