@@ -1,37 +1,35 @@
 import UIKit
 import DcCore
 
-public class DocumentPreview: DraftPreview {
+public class ContactCardPreview: DraftPreview {
 
     weak var delegate: DraftPreviewDelegate?
 
-    lazy var fileView: FileView = {
-        let view = FileView()
+    lazy var contactCardView: ContactCardView = {
+        let view = ContactCardView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.allowLayoutChange = false
-        view.fileTitle.numberOfLines = 2
         view.isUserInteractionEnabled = true
         return view
     }()
 
     override func setupSubviews() {
         super.setupSubviews()
-        mainContentView.addSubview(fileView)
+        mainContentView.addSubview(contactCardView)
 
         addConstraints([
-            fileView.constraintAlignTopTo(mainContentView),
-            fileView.constraintAlignLeadingTo(mainContentView, paddingLeading: 8),
-            fileView.constraintAlignBottomTo(mainContentView),
-            fileView.constraintAlignTrailingTo(mainContentView),
+            contactCardView.constraintAlignTopTo(mainContentView),
+            contactCardView.constraintAlignLeadingTo(mainContentView, paddingLeading: 8),
+            contactCardView.constraintAlignBottomTo(mainContentView),
+            contactCardView.constraintAlignTrailingTo(mainContentView),
             mainContentView.constraintHeightTo(75, priority: .required)
         ])
 
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fileViewTapped))
-        fileView.addGestureRecognizer(gestureRecognizer)
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(contactCardViewTapped))
+        contactCardView.addGestureRecognizer(gestureRecognizer)
     }
     
     override public func cancel() {
-        fileView.prepareForReuse()
+        contactCardView.prepareForReuse()
         delegate?.onCancelAttachment()
         accessibilityLabel = nil
     }
@@ -39,7 +37,7 @@ public class DocumentPreview: DraftPreview {
     override public func configure(draft: DraftModel) {
         if !draft.isEditing,
            let viewType = draft.viewType,
-           [DC_MSG_WEBXDC, DC_MSG_FILE].contains(viewType),
+           viewType == DC_MSG_VCARD,
            let path = draft.attachment {
             var tmpMsg: DcMsg
             if let draftMsg = draft.draftMsg {
@@ -50,18 +48,17 @@ public class DocumentPreview: DraftPreview {
                 tmpMsg.text = draft.text
             }
 
-            fileView.configure(message: tmpMsg)
-            fileView.fileTitle.numberOfLines = 2
+            contactCardView.configure(message: tmpMsg, dcContext: draft.dcContext)
 
             delegate?.onAttachmentAdded()
-            accessibilityLabel = "\(String.localized("attachment")), \(fileView.configureAccessibilityLabel())"
+            accessibilityLabel = "\(String.localized("attachment")), \(contactCardView.configureAccessibilityLabel())"
             isHidden = false
         } else {
             isHidden = true
         }
     }
 
-    @objc func fileViewTapped() {
-        delegate?.onAttachmentTapped()
+    @objc func contactCardViewTapped() {
+//        delegate?.onAttachmentTapped()
     }
 }

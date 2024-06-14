@@ -17,11 +17,12 @@ public class DraftArea: UIView, InputItem {
             quotePreview.delegate = newValue
             mediaPreview.delegate = newValue
             documentPreview.delegate = newValue
+            contactCardPreview.delegate = newValue
         }
     }
 
     lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [quotePreview, mediaPreview, documentPreview])
+        let view = UIStackView(arrangedSubviews: [quotePreview, mediaPreview, documentPreview, contactCardPreview])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         return view
@@ -46,9 +47,14 @@ public class DraftArea: UIView, InputItem {
         return view
     }()
 
+    lazy var contactCardPreview: ContactCardPreview = {
+        let view = ContactCardPreview()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     convenience init() {
         self.init(frame: .zero)
-
     }
 
     public override init(frame: CGRect) {
@@ -74,6 +80,7 @@ public class DraftArea: UIView, InputItem {
         quotePreview.configure(draft: draft)
         mediaPreview.configure(draft: draft)
         documentPreview.configure(draft: draft)
+        contactCardPreview.configure(draft: draft)
         chatInputBar.configure(draft: draft)
     }
 
@@ -87,6 +94,7 @@ public class DraftArea: UIView, InputItem {
         quotePreview.cancel()
         mediaPreview.cancel()
         documentPreview.cancel()
+        contactCardPreview.cancel()
         if let chatInputBar = inputBarAccessoryView {
             chatInputBar.cancel()
         }

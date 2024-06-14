@@ -217,6 +217,7 @@
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
 		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
 		D8C19DCE2C1B456700B32F6D /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */; };
+		D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */; };
 		D8CDEFE02C087CDA00146773 /* ContactCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */; };
 		D8CDEFE22C087D1000146773 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFE12C087D1000146773 /* ContactCardView.swift */; };
 		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
@@ -597,6 +598,7 @@
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
 		D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantOnboardingView.swift; sourceTree = "<group>"; };
 		D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendContactViewController.swift; sourceTree = "<group>"; };
+		D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardPreview.swift; sourceTree = "<group>"; };
 		D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardCell.swift; sourceTree = "<group>"; };
 		D8CDEFE12C087D1000146773 /* ContactCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardView.swift; sourceTree = "<group>"; };
 		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
@@ -810,6 +812,7 @@
 				30349290256441E200A523D0 /* QuotePreview.swift */,
 				303492A4257546B400A523D0 /* DraftPreview.swift */,
 				303492AC2577CAC300A523D0 /* FileView.swift */,
+				D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */,
 				D8CDEFE12C087D1000146773 /* ContactCardView.swift */,
 				303492B22577E40700A523D0 /* DocumentPreview.swift */,
 				303492CA257A814200A523D0 /* DraftArea.swift */,
@@ -1538,6 +1541,7 @@
 				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,
 				3080A037277DE30100E74565 /* UITextView+Extensions.swift in Sources */,
 				3080A027277DE12D00E74565 /* InputBarButtonItem.swift in Sources */,
+				D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */,
 				30238CFB28A501C300EF14AC /* WebxdcSelector.swift in Sources */,
 				AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */,
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
