@@ -388,6 +388,18 @@ public class DcContext {
         }
     }
 
+    public func makeVCard(contactIds: [Int]) -> Data? {
+        guard let vcardRPCResult = DcAccounts.shared.blockingCall(method: "make_vcard", params: [id as AnyObject, contactIds as AnyObject]) else { return nil }
+
+        do {
+            let vcard = try JSONDecoder().decode(DcVCardMakeResult.self, from: vcardRPCResult).result
+            return vcard.data(using: .utf8)
+        } catch {
+            logger.error("cannot make vcard: \(error)")
+            return nil
+        }
+    }
+
     public func parseVcard(path: String) -> [DcVcardContact]? {
         if let data = DcAccounts.shared.blockingCall(method: "parse_vcard", params: [path as AnyObject]) {
             do {

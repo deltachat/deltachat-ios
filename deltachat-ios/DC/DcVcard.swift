@@ -27,3 +27,7 @@ struct DcVcardContactResult: Decodable {
 struct DcVcardImportResult: Decodable {
     let result: [Int]
 }
+
+struct DcVCardMakeResult: Decodable {
+    let result: String
+}
