@@ -1335,7 +1335,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func showMoreMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("resend"), style: .default, handler: onResendActionPressed(_:)))
+        if canResend() {
+            alert.addAction(UIAlertAction(title: String.localized("resend"), style: .default, handler: onResendActionPressed(_:)))
+        }
+        if canShare() {
+            alert.addAction(UIAlertAction(title: String.localized("menu_share"), style: .default, handler: onShareActionPressed(_:)))
+        }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
@@ -1345,6 +1350,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
             dcContext.resendMessages(msgIds: selectedMsgIds)
             setEditing(isEditing: false)
+        }
+    }
+
+    private func onShareActionPressed(_ action: UIAlertAction) {
+        if let rows = tableView.indexPathsForSelectedRows {
+            let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
+            if let msgId = selectedMsgIds.first {
+                Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: self.view)
+                setEditing(isEditing: false)
+            }
         }
     }
 
@@ -2202,29 +2217,41 @@ extension ChatViewController {
         if let indexPaths = tableView.indexPathsForSelectedRows,
            !indexPaths.isEmpty {
             editingBar.isEnabled = true
+            evaluateMoreButton()
         } else {
             editingBar.isEnabled = false
         }
-        evaluateMoreButton()
+
     }
 
-    func evaluateMoreButton() {
-
-        guard dcChat.canSend else {
-            editingBar.moreButton.isEnabled = false
-            return
-        }
-
-        if let rows = tableView.indexPathsForSelectedRows {
-            let ids = rows.compactMap { messageIds[$0.row] }
-            for msgId in ids {
+    private func canResend() -> Bool {
+        if dcChat.canSend, let rows = tableView.indexPathsForSelectedRows {
+            let msgIds = rows.compactMap { messageIds[$0.row] }
+            for msgId in msgIds {
                 if !dcContext.getMessage(id: msgId).isFromCurrentSender {
-                    editingBar.moreButton.isEnabled = false
-                    return
+                    return false
                 }
             }
-            editingBar.moreButton.isEnabled = true
+            return true
+        } else {
+            return false
         }
+    }
+
+    private func canShare() -> Bool {
+        if tableView.indexPathsForSelectedRows?.count == 1,
+           let rows = tableView.indexPathsForSelectedRows {
+            let msgIds = rows.compactMap { messageIds[$0.row] }
+            if let msgId = msgIds.first {
+                let msg = dcContext.getMessage(id: msgId)
+                return msg.file != nil
+            }
+        }
+        return false
+    }
+
+    private func evaluateMoreButton() {
+        editingBar.moreButton.isEnabled = canShare() || canResend()
     }
 
     func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {

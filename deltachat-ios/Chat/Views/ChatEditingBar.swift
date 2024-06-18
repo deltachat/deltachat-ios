@@ -17,9 +17,7 @@ public class ChatEditingBar: UIView {
 
     public var isEnabled: Bool {
         willSet(newValue) {
-            if !newValue {
-                moreButton.isEnabled = newValue
-            }
+            moreButton.isEnabled = newValue
             deleteButton.isEnabled = newValue
             forwardButton.isEnabled = newValue
             copyButton.isEnabled = newValue
@@ -39,7 +37,7 @@ public class ChatEditingBar: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         view.imageView?.contentMode = .scaleAspectFit
-        view.accessibilityLabel = String.localized("resend")
+        view.accessibilityLabel = String.localized("menu_more_options")
         return view
     }()
 
