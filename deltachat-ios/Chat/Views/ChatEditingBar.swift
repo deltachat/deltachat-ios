@@ -54,6 +54,7 @@ public class ChatEditingBar: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.imageView?.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
+        view.accessibilityLabel = String.localized("menu_copy_text_to_clipboard")
         return view
     }()
 
