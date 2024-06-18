@@ -64,10 +64,10 @@ public class ChatEditingBar: UIView {
 
         if #available(iOS 13.0, *) {
             view.setImage(UIImage(systemName: "trash"), for: .normal)
-            view.tintColor = .systemBlue
+            view.tintColor = .systemRed
         } else {
             view.setTitle(String.localized("delete"), for: .normal)
-            view.setTitleColor(.systemBlue, for: .normal)
+            view.setTitleColor(.systemRed, for: .normal)
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
