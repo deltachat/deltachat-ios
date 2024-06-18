@@ -1771,6 +1771,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         replyToMessage(at: indexPath)
     }
 
+    private func copyToClipboard(at indexPath: IndexPath) {
+        copyToClipboard(ids: [self.messageIds[indexPath.row]])
+    }
+
     @objc private func replyPrivately(_ sender: Any) {
         guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
               let indexPath = menuItem.indexPath else { return }
@@ -2069,6 +2073,7 @@ extension ChatViewController {
                 // these are always there
                 children.append(contentsOf: [
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.forward.fill", indexPath: indexPath, action: { self.forward(at: $0 ) }),
+                    UIAction.menuAction(localizationKey: "global_menu_edit_copy_desktop", systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copyToClipboard(at: $0 ) }),
                     UIAction.menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: { self.info(at: $0 ) }),
                     UIMenu(options: [.displayInline], children: [
                         UIAction.menuAction(localizationKey: "menu_more_options", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
