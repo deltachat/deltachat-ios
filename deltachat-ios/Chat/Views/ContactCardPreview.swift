@@ -59,6 +59,5 @@ public class ContactCardPreview: DraftPreview {
     }
 
     @objc func contactCardViewTapped() {
-//        delegate?.onAttachmentTapped()
     }
 }
