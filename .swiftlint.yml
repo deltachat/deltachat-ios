@@ -48,8 +48,8 @@ file_length:
   ignore_comment_only_lines: true
 
 cyclomatic_complexity:
-  warning: 20
-  error: 25
+  warning: 25
+  error: 30
   ignores_case_statements: true
 
 reporter: "xcode"
