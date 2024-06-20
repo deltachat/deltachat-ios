@@ -5,12 +5,6 @@ protocol SendContactViewControllerDelegate: AnyObject {
     func contactSelected(_ viewController: SendContactViewController, contactId: Int)
 }
 
-/**
- - [ ] Empty State
- - [ ] Select Contact
- - [ ] Cancel-button
- */
-
 class SendContactViewController: UIViewController {
 
     private let context: DcContext
