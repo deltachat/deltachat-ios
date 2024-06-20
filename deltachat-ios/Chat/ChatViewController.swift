@@ -1315,7 +1315,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         alert.addAction(sendContactAction)
 
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in self.shouldBecomeFirstResponder = true }))
+        shouldBecomeFirstResponder = false
         self.present(alert, animated: true, completion: {
             // unfortunately, voiceMessageAction.accessibilityHint does not work,
             // but this hack does the trick
@@ -1551,14 +1552,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func webxdcButtonPressed(_ action: UIAlertAction) {
+        shouldBecomeFirstResponder = true
         showWebxdcSelector()
     }
 
     private func documentActionPressed(_ action: UIAlertAction) {
+        shouldBecomeFirstResponder = true
         showDocumentLibrary()
     }
 
     private func voiceMessageButtonPressed(_ action: UIAlertAction) {
+        shouldBecomeFirstResponder = true
         showVoiceMessageRecorder()
     }
 
@@ -1567,11 +1571,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
+        shouldBecomeFirstResponder = true
         showPhotoVideoLibrary(delegate: self)
     }
 
     private func showContactList(_ action: UIAlertAction) {
-        
+        shouldBecomeFirstResponder = true
+
         let contactList = SendContactViewController(dcContext: dcContext)
         contactList.delegate = self
 
@@ -1587,6 +1593,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func locationStreamingButtonPressed(_ action: UIAlertAction) {
+        shouldBecomeFirstResponder = true
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         if isLocationStreaming {
             locationStreamingFor(seconds: 0)
