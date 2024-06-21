@@ -86,7 +86,8 @@ class AutodelOptionsViewController: UITableViewController {
                 return String.localized(option.descr)
             }
         }
-        return "Err"
+ 
+        return "After \(val) seconds"
     }
 
     func valToIndex(val: Int) -> Int {
