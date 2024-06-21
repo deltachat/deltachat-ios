@@ -15,7 +15,7 @@
 			<key>one</key>
 			<string>%d minuutti</string>
 			<key>other</key>
-			<string>%d minuuttia</string>
+			<string>%d min</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>

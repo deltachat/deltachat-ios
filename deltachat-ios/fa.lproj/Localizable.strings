@@ -114,6 +114,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "استیکر";
 "add_to_sticker_collection" = "افزودن به مجموعه استیکر";
+"open_sticker_folder" = "بازکردن پوشه استیکر";
 "images" = "تصاویر";
 "audio" = "صدا";
 "voice_message" = "پیام صوتی";
@@ -158,6 +159,7 @@
 "slow" = "آهسته";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "مخاطب جدید";
+"menu_new_classic_contact" = "اضافه کردن مخاطب به صورت دستی";
 "menu_new_chat" = "گپ جدید";
 "menu_new_group" = "گروه جدید";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
@@ -189,6 +191,7 @@
 "menu_copy_image_to_clipboard" = "رونوشت گرفتن از تصویر";
 "menu_copy_email_to_clipboard" = "کپی کردن رایانامه";
 "paste_from_clipboard" = "چسباندن از حافظه";
+"ask_copy_unopenable_link_to_clipboard" = "نمی توان لینک \"%1$d\" را در مرورگر باز کرد. می خواهید در عوض لینک را کپی کنید؟";
 "menu_forward" = "هدایت پیام";
 "menu_reply" = "پاسخ به پیام";
 "menu_mute" = "ساکت کردن اعلان";
@@ -210,6 +213,7 @@
 "menu_scroll_to_bottom" = "رفتن به پایین";
 "menu_scroll_to_top" = "رفن تا بالا";
 "menu_help" = "کمک";
+"what_is_webxdc" = "Webxdc چیست؟";
 "privacy_policy" = "خط مشی رازداری";
 "menu_select_all" = "انتخاب همه";
 "select_chat" = "انتخاب چت";
@@ -307,7 +311,7 @@ https://meet.jit.si/$ROOM
 "chat_new_group_hint" = "نوشتن اولین پیام به دیگران امکان می‌دهد در این گروه پاسخ دهند. \n\n• مشکلی نیست اگر همه اعضا از دلتاچت استفاده نکنند\n\n• دریافت اولین پیام ممکن است به زمان بیشتری نیاز داشته باشد. ";
 "chat_record_slide_to_cancel" = "برای لغو بکشید.";
 "chat_record_explain" = "برای ضبط پیام صوتی فشار داده و نگهدارید، برای ارسال رها کنید. ";
-"chat_no_chats_yet_title" = "جعبهٔ ورودی خالی. \n برای شروع گپ جدید «+» را فشار دهید.";
+"chat_no_chats_yet_title" = "گفتگویی وجود ندارد.\nبرای شروع گفتگو جدید دکمه «+» را فشار دهید.";
 // deprecated
 "chat_no_chats_yet_hint" = "می‌توانید با دیگر کاربران دلتاچت و هر نشانی رایانامه‌ای گپ بزنید.";
 "chat_all_archived" = "تمام گپ‌ها بایگانی شده‌اند. /n برای شروع گپ جدید، «+» را فشار دهید. ";
@@ -403,7 +407,7 @@ https://meet.jit.si/$ROOM
 "multidevice_this_creates_a_qr_code" = "این یک کد QR ایجاد می‌کند که دستگاه دوم می‌تواند برای کپی حساب اسکن کند.";
 "multidevice_install_dc_on_other_device" = "دلتاچت را روی دستگاه دیگر خود نصب کنید (https://get.delta.chat)";
 // "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
-"multidevice_tap_scan_on_other_device" = "دلتاچت را اجرا کنید، روی «افزودن به عنوان دستگاه دوم» بزنید و کد نشان داده شده در اینجا را پویش کنید";
+"multidevice_tap_scan_on_other_device" = "دلتاچت را باز کنید، روی «افزودن به عنوان دستگاه دوم» بزنید و کد نشان داده شده در اینجا را اسکن کنید";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "برای راه اندازی دستگاه دوم برای %1$@ اسکن کنید";
 "multidevice_receiver_title" = "افزودن به عنوان دستگاه دوم";
@@ -445,6 +449,19 @@ https://meet.jit.si/$ROOM
 "messages" = "پیام‌ها";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
+// welcome and login
+// Primary button on the welcome screen, allows to create an instant profile
+"onboarding_create_instant_account" = "ایجاد حساب کاربری جدید";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
+"onboarding_alternative_logins" = "از قبل یک حساب کاربری دارم";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "ساخت حساب کاربری با حساب ایمیل عادی";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "حساب شما";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "استفاده از یک سرور دیگر";
+"instant_onboarding_other_server" = "لیست سرورهای Chatmail";
+"welcome_chat_over_email" = "گفتگو غیرمتمرکز و ایمن";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
 "login_title" = "ورود";
 // for classic email, we use the classical term "Account"
@@ -493,7 +510,7 @@ https://meet.jit.si/$ROOM
 "add_account" = "افزودن حساب کاربری";
 "delete_account" = "حذف حساب کاربری";
 "delete_account_ask" = "آیا از حذف حساب کاربری اطمینان دارید؟";
-"delete_account_explain_with_name" = "همه اطلاعات حساب مربوط به \"%1$@\" روی این دستگاه پاک می‌شود که شامل تنظیمات رمزگذاری گیرنده به گیرنده ، مخاطبین، پیام‌ها و رسانه می‌شود. این عمل قابل بازگشت نیست.";
+"delete_account_explain_with_name" = "همه اطلاعات حساب مربوط به \"%1$@\" روی این دستگاه پاک می‌شود؛ که شامل تنظیمات رمزگذاری سرتاسر، مخاطبین، گفتگو ها پیام‌ها، رسانه ها می‌شود. این عمل قابل بازگشت نیست.";
 "unconfigured_account" = "حساب تنظیم نشده";
 "unconfigured_account_hint" = "بازکردن حساب برای تنظیم آن";
 "try_connect_now" = "اکنون برای اتصال تلاش کنید";
@@ -553,9 +570,13 @@ https://meet.jit.si/$ROOM
 "pref_incognito_keyboard_explain" = "درخواست دهید که صفحه کلید رفتارهای شخصی شما را یاد نگیرد";
 "pref_read_receipts" = "رسید خوانده شدن";
 "pref_read_receipts_explain" = "اگر رسید خوانده شدن غیرفعال باشد، نمی‌توانید اعلام خوانده شدن توسط دیگران را ببینید.";
+"pref_server" = "سرور";
+"pref_encryption" = "رمزگذاری";
 "pref_manage_keys" = "مدیریت کلیدها";
 "pref_use_system_emoji" = "استفاده از شکلک‌های سیستم";
 "pref_use_system_emoji_explain" = "غیرفعال کردن شکلک‌های داخلی دلتاچت";
+"pref_use_inapp_camera" = "استفاده از دوربین درون‌برنامه";
+"pref_use_inapp_camera_explain" = "دوربین درون‌برنامه معمولا امکانات کمتری نسبت به دوربین سیستم دارد";
 "pref_app_access" = "دسترسی نرم‌افزار";
 "pref_chats" = "گپ‌ها";
 "pref_in_chat_sounds" = "صداهای درون‌گپی";
@@ -568,6 +589,10 @@ https://meet.jit.si/$ROOM
 "pref_backup" = "نسخه پشتیبان";
 "pref_backup_explain" = "تهیهٔ پشتیبان از گپ‌ها در ذخیره‌گاه خارجی";
 "pref_backup_export_explain" = "تهیهٔ پشتیبان به شما  کمک می‌کند روی این دستگاه یا دستگاه دیگر نرم‌افزار را دوباره نصب کنید.\n\nپشتیبان حاوی تمام پیام‌ها، مخاطبین، گپ‌ها و برپاسازی اتوکریپت سرتاسر شما خواهد بود. پروندهٔ پشتیبانی را در یک جای امن نگه دارید و در اسرع وقت آن را پاک کنید.";
+// the placeholder will be replaced by the name of the profile's email address
+"pref_backup_export_x" = "برون‏بُرد(اکسپورت) %1$@";
+// the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
+"pref_backup_export_all" = "برون‏بُرد(اکسپورت) هر %1$d حساب ";
 "pref_backup_export_start_button" = "شروع تهیه نسخه پشتیبان";
 "pref_backup_written_to_x" = "نسخه پشتیبان با موفقیت در\"%1$@\" ذخیره شد.";
 "pref_managekeys_menu_title" = "مدیریت کلیدها";
@@ -619,6 +644,7 @@ https://meet.jit.si/$ROOM
 "profile_image_delete" = "حذف تصویر نمایه";
 "pref_show_tray_icon" = "نمایش نمادک در زیر صفحه";
 "pref_edit_profile" = "ویرایش نمایه";
+"send_stats_to_devs" = "ارسال آمار برای تولیدکنندگان دلتاچت";
 // Emoji picker and categories
 "emoji_search_results" = "نتایج جستجو";
 "emoji_not_found" = "شکلکی پیدا نشد";
@@ -633,6 +659,12 @@ https://meet.jit.si/$ROOM
 "emoji_flags" = "پرچم‌ها";
 // Reactions
 "reactions" = "واکنش‌ها";
+// Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
+"react" = "واکنش";
+// %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
+"reaction_by_you" = "شما به «%2$@» واکنش %1$@ را نشان دادید";
+// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
+"reaction_by_other" = "%1$@ به «%3$@» واکنش %2$@ را نشان داد";
 // automatically delete message
 "delete_old_messages" = "پاک کردن پیام‌های قدیمی";
 "autodel_device_title" = "پاک کردن پیام‌ها از دستگاه";
@@ -688,6 +720,8 @@ https://meet.jit.si/$ROOM
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "تصویر گروه توسط %1$@ تغییر کرد. ";
 // %1$s will be replaced by name and address of the contact added to the group
+"member_x_added" = "%1$@ عضو شد.";
+// %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "شما %1$@ را به عنوان عضو جدید اضافه کردید. ";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
 "add_member_by_other" = "عضو جدید با نام %1$@ توسط %2$@ افزوده شد. ";
@@ -740,12 +774,17 @@ https://meet.jit.si/$ROOM
 "ephemeral_timer_weeks_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ هفته تنظیم کردید.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ هفته تنظیم شد.";
+// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+"chat_protection_broken" = "%1$@ پیامی را از دستگاه دیگری ارسال کرد.";
+"chat_protection_enabled_tap_to_learn_more" = "رمزنگاری سرتاسر پیام ها از این به بعد تضمین می شود. برای اطلاعات بیشتر ضربه بزنید.";
+"chat_protection_enabled_explanation" = "رمزنگاری سرتاسر پیام های این گفتگو اکنون تضمین می شود. رمزنگاری سرتاسر باعث می شود پیام های شما بین شما و مخاطبین شما محرمانه بماند. حتی سرویس پست الکترونیک شما هم نمی تواند آنها را بخواند.";
+"chat_protection_broken_tap_to_learn_more" = "%1$@ پیامی را از دستگاه دیگری ارسال کرد. برای اطلاعات بیشتر ضربه بزنید.";
 "learn_more" = "بیشتر بدانید";
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "هشدار⚠️، میزان فضای در دسترس ارایه‌دهنده شما در حال تمام شدن است. %1$@ از %% استفاده شده است. 
-اگر فضای ذخیره کاملا پر شده باشد دیگر امکان دریافت پیام را نخواهید داشت.  
-👉  لطفا پیام‌های قدیمی در رایانامه خود را از طریق نسخه وب رایانامه پاک کنید. همچنین می‌توانید گزینه پاک کردن پیام‌های قدیمی در دلتاچت را فعال نمایید. هروقت خواستید می‌توانید فضای در دسترس را از تنظیمات/اتصالات بررسی کنید. ";
+"devicemsg_storage_exceeding" = "هشدار⚠️، میزان فضای در دسترس سرور شما در حال تمام شدن است. %1$@ از %% استفاده شده است. 
+اگر فضا کاملا پر شده باشد دیگر امکان دریافت پیام را نخواهید داشت.  
+👈 لطفا پیام‌های قدیمی در رایانامه خود را از طریق نسخه وب رایانامه پاک کنید. همچنین می‌توانید گزینه پاک کردن پیام‌های قدیمی در دلتاچت را فعال نمایید. هروقت خواستید می‌توانید فضای در دسترس را از تنظیمات/اتصالات بررسی کنید. ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "هشدار⚠️ به نظر می‌رسد زمان و تاریخ دستگاه شما دقیق نیست(%1$@).
 ساعت دستگاه خود را تنظیم کنید ⏰🔧 تا پیام‌ها به درستی دریافت شوند. ";
@@ -788,6 +827,8 @@ https://meet.jit.si/$ROOM
 "qraccount_ask_create_and_login" = "ایجاد رایانامهٔ جدید روی «%1$@» و ورود به آنجا؟";
 "qraccount_ask_create_and_login_another" = "نشانی جدید رایانامه روی «%1$@» ایجاد شده  و به آن وارد شود؟
  حساب فعلی شما پاک نمی‌شود. از بخش «تغییر حساب کاربری» برای جابجایی بین حساب‌ها استفاده کنید";
+"set_name_and_avatar_explain" = "اسمی انتخاب کنید که مخاطبینتان با آن شما را بشناسند. می توانید برای خود عکسی هم انتخاب کنید.";
+"please_enter_name" = "لطفا یک اسم وارد کنید.";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه اندازی اکانت جدید استفاده کرد. ";
 // deprecated
 "qraccount_use_on_new_install" = "کد کیوآر اسکن شده برای راه اندازی یک اکانت جدید است. می‌توانید در حال تنظیم یک دلتاچت تازه نصب شده کیوآر  را اسکن کنید.";
@@ -800,10 +841,13 @@ https://meet.jit.si/$ROOM
 در انتظار دستگاه %2$@ برای پاسخگویی...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "کاربر %1$@ پاسخ داد، در انتظار اضافه شدن به گروه...";
+"secure_join_wait" = "در حال برقراری رمزگذاری سرتاسر تضمین‌شده، لطفا صبر کنید...";
+"secure_join_wait_timeout" = "اکنون نمی توانیم رمزگذاری سرتاسر تضمین‌شده را برقرار کنیم. با این وجود می توانید پیام ارسال کنید.";
 "contact_verified" = "%1$@ تأیید شد.";
 "contact_not_verified" = "امکان تایید رمزگذاری در مبدا، برای %1$@وجود ندارد.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "احراز هویت شده توسط %1$@";
+"verified_by_you" = "تأیید شده توسط من";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "تنظیمات برای %1$@ تغییر کرد. ";
 "copy_qr_data_success" = "آدرس کیوآر در حافظه ذخیر شد";
@@ -823,6 +867,8 @@ https://meet.jit.si/$ROOM
 "notify_no_name_or_message" = "بدون نام یا پیام";
 "notifications_disabled" = "اعلان‌ها غیرفعال شد";
 "new_messages" = "پیام‌های جدید";
+// Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
+"new_messages_body" = "شما پیام های جدیدی دارید";
 "n_messages_in_m_chats" = "%1$d پیام در %2$d گفتگو";
 // permissions
 "perm_required_title" = "مجوز لازم است";
@@ -958,6 +1004,10 @@ GNU GPL ورژن ۳
 "shortcut_step1_tap_share_btn" = "روی دکمه اشتراک کلیک کنید";
 "shortcut_step2_tap_add_to_home_screen" = "برای افزودن برنامه به صفحه اصلی خود، «افزودن به صفحه اصلی» را انتخاب کنید.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+"pref_push_notifications" = "استفاده از Push Service";
+"pref_background_notifications" = "استفاده از اتصال پس زمینه";
+"pref_reliable_service" = "اجبار کردن اتصال پس زمینه";
+"pref_reliable_service_explain" = "اعلانی دائمی نشان می دهد";
 "pref_background_notifications_rationale" = "برای حفظ ارتباطتان با سرور رایانامه و دریافت پیامها در پیش زمینه، در گام بعدی، تنظیمات بهینه سازی باتری را نادیده بگیرید. \n\n دلتاچت از منابع کمی استفاده میکند و مراقب است باتری شما را بیش از حد مصرف نکند. ";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "برای دریافت پیام‌ها به صورت پس زمینه در دلتاچت این جا را ضربه بزنید. ";

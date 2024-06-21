@@ -54,6 +54,7 @@
 "show_full_message" = "Shfaq Mesazhin e Plotë…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Vëru Shenjë të Tërave Si të Lexuar";
+"mark_as_read" = "Vëri Shenjë Si të Lexuar";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Të lexuar";
 // Placeholder text when something is loading

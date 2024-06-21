@@ -17,7 +17,7 @@
 			<key>few</key>
 			<string>%d минуты</string>
 			<key>many</key>
-			<string>%d минут </string>
+			<string>%d минут</string>
 			<key>other</key>
 			<string>%d мин</string>
 		</dict>
@@ -53,11 +53,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d  чатов</string>
+			<string>%d чат</string>
 			<key>few</key>
-			<string>%d  чатов</string>
+			<string>%d чата</string>
 			<key>many</key>
-			<string>%d  чатов</string>
+			<string>%d чатов</string>
 			<key>other</key>
 			<string>%d чатов</string>
 		</dict>
@@ -73,11 +73,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d </string>
+			<string>%d контакт</string>
 			<key>few</key>
-			<string>%d contact</string>
+			<string>%d контакта</string>
 			<key>many</key>
-			<string>%d  контактов</string>
+			<string>%d контактов</string>
 			<key>other</key>
 			<string>%d контактов</string>
 		</dict>
@@ -93,11 +93,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d message</string>
+			<string>%d сообщение</string>
 			<key>few</key>
-			<string>%d messages</string>
+			<string>%d сообщения</string>
 			<key>many</key>
-			<string>%d messages</string>
+			<string>%d сообщений</string>
 			<key>other</key>
 			<string>%d сообщений</string>
 		</dict>
@@ -113,11 +113,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d  участников</string>
+			<string>%d участник</string>
 			<key>few</key>
-			<string>%d member</string>
+			<string>%d участника</string>
 			<key>many</key>
-			<string>%d member</string>
+			<string>%d участников</string>
 			<key>other</key>
 			<string>%d участников</string>
 		</dict>
@@ -213,11 +213,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete %d message here and on the server?</string>
+			<string>Удалить %d сообщение здесь и на сервере?</string>
 			<key>few</key>
-			<string>Удалить %d сообщений здесь и на сервере?</string>
+			<string>Удалить %d сообщения здесь и на сервере?</string>
 			<key>many</key>
-			<string>Delete %d message here and on the server?</string>
+			<string>Удалить %d сообщений здесь и на сервере?</string>
 			<key>other</key>
 			<string>Удалить %d сообщений здесь и на сервере?</string>
 		</dict>
@@ -253,13 +253,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d chat archived</string>
+			<string>%d чат заархивирован</string>
 			<key>few</key>
-			<string>%d chat archived</string>
+			<string>%d чата заархивировано</string>
 			<key>many</key>
-			<string>%d чатов архивировано</string>
+			<string>%d чатов заархивировано</string>
 			<key>other</key>
-			<string>%d архивированных чатов</string>
+			<string>%d чатов заархивировано</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -273,9 +273,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d chat unarchived</string>
+			<string>%d чат разархивирован</string>
 			<key>few</key>
-			<string>%d chat unarchived</string>
+			<string>%d чата разархивировано</string>
 			<key>many</key>
 			<string>%d чатов разархивировано</string>
 			<key>other</key>

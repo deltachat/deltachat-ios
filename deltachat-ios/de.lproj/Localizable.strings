@@ -54,6 +54,7 @@
 "show_full_message" = "Ganze Nachricht anzeigen…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Alles Gelesen";
+"mark_as_read" = "Gelesen";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Gelesen";
 // Placeholder text when something is loading
@@ -189,7 +190,7 @@
 "menu_delete_messages" = "Nachrichten löschen";
 "delete_contact" = "Kontakt löschen";
 "menu_delete_location" = "Diesen Standort löschen?";
-"menu_message_details" = "Nachrichtendetails";
+"menu_message_details" = "Nachrichteninfo";
 "menu_copy_to_clipboard" = "In Zwischenablage kopieren";
 "menu_copy_selection_to_clipboard" = "Auswahl kopieren";
 "menu_copy_link_to_clipboard" = "Link kopieren";
@@ -691,9 +692,9 @@
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Reagieren";
 // %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
-"reaction_by_you" = "Sie reagieren mit %1$@ auf \"%2$@\"";
+"reaction_by_you" = "Sie reagierten mit %1$@ auf \"%2$@\"";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
-"reaction_by_other" = "%1$@ reagiert mit %2$@ auf \"%3$@\"";
+"reaction_by_other" = "%1$@ reagierte mit %2$@ auf \"%3$@\"";
 // automatically delete message
 "delete_old_messages" = "Alte Nachrichten löschen";
 "autodel_device_title" = "Nachrichten vom Gerät löschen";

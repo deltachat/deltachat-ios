@@ -54,6 +54,7 @@
 "show_full_message" = "Volledig bericht tonen…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Alles markeren als gelezen";
+"mark_as_read" = "Markeren als gelezen";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Gelezen";
 // Placeholder text when something is loading

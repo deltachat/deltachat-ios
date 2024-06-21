@@ -54,6 +54,7 @@
 "show_full_message" = "Pokaż całą wiadomość…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Wszys. przeczyt.";
+"mark_as_read" = "Oznacz jako przeczytane";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Przeczytane";
 // Placeholder text when something is loading
@@ -109,7 +110,7 @@
 "draft" = "Szkic";
 "image" = "Obraz";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
-"reply_noun" = "Odpowiedź";
+"reply_noun" = "Odpowiedz";
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Naklejka";

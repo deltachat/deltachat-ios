@@ -47,7 +47,7 @@
 			<key>one</key>
 			<string>%d beszélgetés</string>
 			<key>other</key>
-			<string>%d beszélgetés</string>
+			<string>%d csevegés</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>

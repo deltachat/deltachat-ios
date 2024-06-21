@@ -39,9 +39,9 @@
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Изпращане отново";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
-"archive" = "Поставяне в архив";
+"archive" = "Архивиране";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
-"unarchive" = "Премахване от архив";
+"unarchive" = "Деархивиране";
 "mute" = "Изключване на звука";
 "ephemeral_messages" = "Изчезващи съобщения";
 "ephemeral_messages_hint" = "Приложимо за всички членове на този чат, ако използват Delta Chat; в противен случай те пак могат да копират, записват и препращат съобщения или да използват други клиенти за електронна поща.";
@@ -178,8 +178,8 @@
 "menu_edit_group" = "Редактиране на група";
 "menu_group_name_and_image" = "Име и изображение на група";
 "menu_show_global_map" = "Показване на всички местоположения";
-"menu_archive_chat" = "Поставяне на чата в архив";
-"menu_unarchive_chat" = "Премахване на чата от архив";
+"menu_archive_chat" = "Архивиране на чата";
+"menu_unarchive_chat" = "Деархивиране на чата";
 "menu_add_attachment" = "Добавяне на прикачен файл";
 "menu_leave_group" = "Напускане на групата";
 "menu_delete_chat" = "Изтриване на чата";
@@ -326,7 +326,7 @@
 "chat_request_label" = "Заявка";
 "chat_no_messages" = "Няма съобщения.";
 "chat_self_talk_subtitle" = "Съобщения към себе си";
-"archive_empty_hint" = "Чатовете, поставени в архив, ще се показват тук.";
+"archive_empty_hint" = "Архивираните чатове ще се показват тук.";
 "saved_messages" = "Запазени съобщения";
 "saved_messages_explain" = "• Препращайте съобщения тук за лесен достъп\n\n• Взимайте си текстови или гласови бележки\n\n• Прикрепяйте медийни файлове, за да ги запазите";
 // Should match "Saved" from "Saved messages"
