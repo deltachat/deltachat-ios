@@ -16,7 +16,7 @@ class SendContactViewController: UIViewController {
     var delegate: SendContactViewControllerDelegate?
     let searchController: UISearchController
     let emptySearchStateLabel: EmptyStateLabel
-    private lazy var emptySearchStateLabelWidthConstraint: NSLayoutConstraint?
+    private var emptySearchStateLabelWidthConstraint: NSLayoutConstraint?
 
     init(dcContext: DcContext) {
         tableView = UITableView()
@@ -72,6 +72,7 @@ class SendContactViewController: UIViewController {
     // MARK: - Actions
 
     @objc func cancel(_ sender: Any) {
+        searchController.isActive = false
         dismiss(animated: true)
     }
 }
