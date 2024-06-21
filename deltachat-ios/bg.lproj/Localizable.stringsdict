@@ -207,7 +207,7 @@
 			<key>one</key>
 			<string>%d чат е архивиран</string>
 			<key>other</key>
-			<string>%d чата са поставени в архив</string>
+			<string>%d чата са архивирани</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -223,7 +223,7 @@
 			<key>one</key>
 			<string>%d чат е възстановен от архив</string>
 			<key>other</key>
-			<string>%d чата са премахнати от архив</string>
+			<string>%d чата са деархивирани</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
