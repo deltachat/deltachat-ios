@@ -1,5 +1,34 @@
 # Delta Chat iOS Changelog
 
+## v1.46.5
+2024-06
+
+* contacts can be attached as "Cards" at "Attach / Contact";
+  when the receiver taps the cards, guaranteed end-to-end encrypted can be established
+* nicer display of "Contact Cards" (vcards), including the contact's avatar
+* fewer traffic in larger chatmail groups by allowing more than 50 recipients per time
+* tweak chat and gallery context menus
+* share voice messages from the chat's context menu at "More Options"
+  (images/videos/files can be easier shared from the previews)
+* device update message is added as unread only for the first account
+* best guess on pasting images and stage them instead of sending immediately;
+  stickers, as usually tapped from the keyboard, are still send immediately
+* use same "Delete Old Messages" options as on android/desktop
+* fix: hide chat's scroll-down-button when the context menu is displayed
+* fix input bar showing up when attach menu is opened
+* fix migrated address losing verified status and key on experimental AEAP
+* fix: allow creation of groups by outgoing messages without recipients
+* fix: avoid group splits by preferring ID from encrypted header over references for new groups
+* fix: do not fail to send images with wrong extensions
+* fix: retry sending MDNs on temporary error
+* fix: do not miss new messages while expunging the folder
+* fix missing logging info lines
+* fix: remove group member locally even if sending fails
+* fix: revert group member addition if the corresponding message couldn't be sent
+* update translations and local help
+* update to core 1.140.2
+
+
 ## v1.46.2
 2024-06
 
