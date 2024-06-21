@@ -13,11 +13,11 @@ class AutodelOptionsViewController: UITableViewController {
     private static let autodelDeviceOptions: [Options] = {
         return [
             Options(value: 0, descr: "never"),
-            Options(value: 3600, descr: "autodel_after_1_hour"),
-            Options(value: 86400, descr: "autodel_after_1_day"),
-            Options(value: 604800, descr: "autodel_after_1_week"),
-            Options(value: 2419200, descr: "autodel_after_4_weeks"),
-            Options(value: 31536000, descr: "autodel_after_1_year"),
+            Options(value: 60 * 60, descr: "autodel_after_1_hour"),
+            Options(value: 24 * 60 * 60, descr: "autodel_after_1_day"),
+            Options(value: 7 * 24 * 60 * 60, descr: "autodel_after_1_week"),
+            Options(value: 5 * 7 * 24 * 60 * 60, descr: "after_5_weeks"),
+            Options(value: 365 * 24 * 60 * 60, descr: "autodel_after_1_year"),
         ]
     }()
 
@@ -25,11 +25,11 @@ class AutodelOptionsViewController: UITableViewController {
         return [
             Options(value: 0, descr: "never"),
             Options(value: 1, descr: "autodel_at_once"),
-            Options(value: 3600, descr: "autodel_after_1_hour"),
-            Options(value: 86400, descr: "autodel_after_1_day"),
-            Options(value: 604800, descr: "autodel_after_1_week"),
-            Options(value: 2419200, descr: "autodel_after_4_weeks"),
-            Options(value: 31536000, descr: "autodel_after_1_year"),
+            Options(value: 60 * 60, descr: "autodel_after_1_hour"),
+            Options(value: 24 * 60 * 60, descr: "autodel_after_1_day"),
+            Options(value: 7 * 24 * 60 * 60, descr: "autodel_after_1_week"),
+            Options(value: 5 * 7 * 24 * 60 * 60, descr: "after_5_weeks"),
+            Options(value: 365 * 24 * 60 * 60, descr: "autodel_after_1_year"),
         ]
     }()
 
