@@ -48,7 +48,7 @@ class ChatListEditingBar: UIView {
     }()
 
     private lazy var deleteButton: UIButton = {
-        return createUIButton(imageName: "trash", imageDescription: String.localized("delete"))
+        return createUIButton(imageName: "trash", imageDescription: String.localized("delete"), tintColor: .systemRed)
     }()
 
     private lazy var archiveButton: UIButton = {
@@ -68,22 +68,22 @@ class ChatListEditingBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createUIButton(imageName: String, imageDescription: String) -> UIButton {
+    private func createUIButton(imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue) -> UIButton {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled = true
         button.imageView?.contentMode = .scaleAspectFit
-        configureButtonLayout(button, imageName: imageName, imageDescription: imageDescription)
+        configureButtonLayout(button, imageName: imageName, imageDescription: imageDescription, tintColor: tintColor)
         return button
     }
     
-    private func configureButtonLayout(_ button: UIButton, imageName: String, imageDescription: String) {
+    private func configureButtonLayout(_ button: UIButton, imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue) {
         if #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: imageName), for: .normal)
-            button.tintColor = .systemBlue
+            button.tintColor = tintColor
         } else {
             button.setTitle(imageDescription, for: .normal)
-            button.setTitleColor(.systemBlue, for: .normal)
+            button.setTitleColor(tintColor, for: .normal)
         }
         button.accessibilityLabel = description
     }
