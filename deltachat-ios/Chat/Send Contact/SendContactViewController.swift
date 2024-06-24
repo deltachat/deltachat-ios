@@ -82,11 +82,10 @@ extension SendContactViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        searchController.isActive = false
-
         let contactId = filteredContactIds[indexPath.row]
         delegate?.contactSelected(self, contactId: contactId)
 
+        searchController.isActive = false
         dismiss(animated: true)
     }
 }
