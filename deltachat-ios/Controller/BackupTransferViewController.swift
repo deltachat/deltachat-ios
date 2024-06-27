@@ -33,25 +33,11 @@ class BackupTransferViewController: UIViewController {
         return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonPressed))
     }()
 
-    private lazy var statusLine: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = String.localized("preparing_account")
-        label.textColor = DcColors.defaultTextColor
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.font = .preferredFont(forTextStyle: .body)
-        return label
-    }()
-
-    private lazy var qrContentView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.accessibilityHint = String.localized("qr_code")
-        return view
-    }()
+    private let statusLine: UILabel
+    private let experimentalLine: UILabel
+    private let qrContentView: UIImageView
+    private let contentStackView: UIStackView
+    private let contentScrollView: UIScrollView
 
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let progress = UIActivityIndicatorView(style: .gray)
@@ -62,24 +48,54 @@ class BackupTransferViewController: UIViewController {
         return progress
     }()
 
-    private lazy var experimentalLine: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = String.localized("multidevice_experimental_hint")
-        label.textColor = DcColors.defaultTextColor
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.font = .preferredFont(forTextStyle: .body)
-        return label
-    }()
-
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
+
+        statusLine = UILabel()
+        statusLine.translatesAutoresizingMaskIntoConstraints = false
+        statusLine.text = String.localized("preparing_account")
+        statusLine.textColor = DcColors.defaultTextColor
+        statusLine.textAlignment = .center
+        statusLine.numberOfLines = 0
+        statusLine.lineBreakMode = .byWordWrapping
+        statusLine.font = .preferredFont(forTextStyle: .body)
+
+        qrContentView = UIImageView()
+        qrContentView.contentMode = .scaleAspectFit
+        qrContentView.translatesAutoresizingMaskIntoConstraints = false
+        qrContentView.accessibilityHint = String.localized("qr_code")
+
+        experimentalLine = UILabel()
+        experimentalLine.translatesAutoresizingMaskIntoConstraints = false
+        experimentalLine.text = String.localized("multidevice_experimental_hint")
+        experimentalLine.textColor = DcColors.defaultTextColor
+        experimentalLine.textAlignment = .center
+
+        experimentalLine.numberOfLines = 0
+        experimentalLine.lineBreakMode = .byWordWrapping
+        experimentalLine.font = .preferredFont(forTextStyle: .body)
+
+        contentStackView = UIStackView(arrangedSubviews: [statusLine, qrContentView, experimentalLine])
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        contentStackView.setCustomSpacing(10, after: statusLine)
+        contentStackView.setCustomSpacing(10, after: qrContentView)
+        contentStackView.axis = .vertical
+        contentStackView.alignment = .center
+
+        contentScrollView = UIScrollView()
+        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentScrollView.addSubview(contentStackView)
+
         super.init(nibName: nil, bundle: nil)
-        hidesBottomBarWhenPushed = true
+
+        view.addSubview(contentScrollView)
+        view.addSubview(activityIndicator)
+        view.backgroundColor = DcColors.defaultBackgroundColor
+
         setupSubviews()
+
+        hidesBottomBarWhenPushed = true
         title = String.localized("multidevice_title")
     }
 
@@ -165,7 +181,7 @@ class BackupTransferViewController: UIViewController {
                 } else if permille == 1000 {
                     self.transferState = TranferState.success
                     self.navigationItem.leftBarButtonItem = nil // "Cancel" no longer fits as things are done
-                    statusLineText = String.localized("done") + "😀"
+                    statusLineText = String.localized("done") + " 😀"
                     hideQrCode = true
                 }
 
@@ -175,6 +191,7 @@ class BackupTransferViewController: UIViewController {
 
                 if hideQrCode && !self.qrContentView.isHidden {
                     self.statusLine.textAlignment = .center
+                    experimentalLine.isHidden = true
                     self.qrContentView.isHidden = true
                 }
             }
@@ -183,10 +200,7 @@ class BackupTransferViewController: UIViewController {
 
     // MARK: - setup
     private func setupSubviews() {
-        view.addSubview(statusLine)
-        view.addSubview(experimentalLine)
-        view.addSubview(qrContentView)
-        view.addSubview(activityIndicator)
+
 
         let qrDefaultWidth = qrContentView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75)
         qrDefaultWidth.priority = UILayoutPriority(500)
@@ -195,32 +209,38 @@ class BackupTransferViewController: UIViewController {
         qrMinWidth.priority = UILayoutPriority(999)
         qrMinWidth.isActive = true
 
-        view.addConstraints([
-            statusLine.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            statusLine.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            statusLine.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
-            experimentalLine.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            experimentalLine.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            experimentalLine.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
-            qrContentView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 1.05),
-            qrContentView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 60),
-            qrContentView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+        let constraints = [
+            qrContentView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
+
             activityIndicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             activityIndicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             activityIndicator.constraintHeightTo(100),
-            activityIndicator.constraintWidthTo(100)
-        ])
+            activityIndicator.constraintWidthTo(100),
+
+            contentScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            contentScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
+
+            contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: 20),
+            contentStackView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor, constant: 20),
+            contentScrollView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 20),
+            contentScrollView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor, constant: 20),
+
+            contentStackView.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor, constant: -40),
+        ]
+
+        NSLayoutConstraint.activate(constraints)
+
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        view.backgroundColor = DcColors.defaultBackgroundColor
     }
     
     private func getQrImage(svg: String?) -> UIImage? {
-        if let svg = svg {
-            let svgData = svg.data(using: .utf8)
-            return SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])
-        }
-        return nil
+        guard let svg else { return nil }
+
+        let svgData = svg.data(using: .utf8)
+        return SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])
     }
 
     private func showLastErrorAlert(_ errorContext: String) {
