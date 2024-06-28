@@ -1278,10 +1278,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     @objc private func clipperButtonPressed() {
-        showClipperOptions()
-    }
-
-    private func showClipperOptions() {
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
         let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
@@ -1316,7 +1313,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         alert.addAction(sendContactAction)
 
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in self.shouldBecomeFirstResponder = true }))
+
         shouldBecomeFirstResponder = false
+        messageInputBar.inputTextView.resignFirstResponder()
+
         self.present(alert, animated: true, completion: {
             // unfortunately, voiceMessageAction.accessibilityHint does not work,
             // but this hack does the trick
@@ -1670,6 +1670,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func focusInputTextView() {
+        shouldBecomeFirstResponder = true
+        becomeFirstResponder()
         messageInputBar.inputTextView.becomeFirstResponder()
         if UIAccessibility.isVoiceOverRunning {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
@@ -2754,9 +2756,7 @@ extension ChatViewController: AudioControllerDelegate {
 extension ChatViewController: UITextViewDelegate {
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         if keepKeyboard {
-            DispatchQueue.main.async { [weak self] in
-                self?.messageInputBar.inputTextView.becomeFirstResponder()
-            }
+            self.messageInputBar.inputTextView.becomeFirstResponder()
             keepKeyboard = false
             return false
         }
