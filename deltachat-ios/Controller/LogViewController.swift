@@ -6,6 +6,7 @@ public class LogViewController: UIViewController {
 
     private let dcContext: DcContext
     private let loadingIndicator = "\n\nLoading log ..."
+    private var bottomConstraint: NSLayoutConstraint?
 
     private lazy var shareButton: UIBarButtonItem = {
         let button: UIBarButtonItem
@@ -20,10 +21,10 @@ public class LogViewController: UIViewController {
     }()
 
     private lazy var logText: UITextView = {
-        let label = UITextView()
-        label.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        let textView = UITextView()
+        textView.contentInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
     }()
 
     init(dcContext: DcContext) {
@@ -38,14 +39,18 @@ public class LogViewController: UIViewController {
     }
 
     public override func viewDidLoad() {
-        self.view.addSubview(logText)
-        self.view.backgroundColor = DcColors.defaultBackgroundColor
-        self.view.addConstraints([
+        view.addSubview(logText)
+        view.backgroundColor = DcColors.defaultBackgroundColor
+
+        let bottomConstraint = view.bottomAnchor.constraint(equalTo: logText.bottomAnchor)
+
+        view.addConstraints([
             logText.constraintAlignTopToAnchor(view.safeAreaLayoutGuide.topAnchor),
-            logText.constraintAlignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 12),
-            logText.constraintAlignTrailingToAnchor(view.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 12),
-            logText.constraintAlignBottomToAnchor(view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 12)
+            logText.constraintAlignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor),
+            logText.constraintAlignTrailingToAnchor(view.safeAreaLayoutGuide.trailingAnchor),
+            bottomConstraint
         ])
+        self.bottomConstraint = bottomConstraint
 
         logText.text = getDebugVariables(dcContext: dcContext)
         logText.setContentOffset(.zero, animated: false)
@@ -62,6 +67,9 @@ public class LogViewController: UIViewController {
         }
 
         navigationItem.rightBarButtonItem = shareButton
+
+        NotificationCenter.default.addObserver(self, selector: #selector(LogViewController.keyboardDidShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LogViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     @objc
@@ -163,5 +171,19 @@ public class LogViewController: UIViewController {
         if let text = logText.text {
             Utils.share(text: text, parentViewController: self, sourceItem: shareButton)
         }
+    }
+
+    // MARK: - Notifications
+
+    @objc func keyboardDidShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+        else { return }
+
+        bottomConstraint?.constant = keyboardFrame.height
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        bottomConstraint?.constant = 12
     }
 }
