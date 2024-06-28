@@ -200,8 +200,6 @@ class BackupTransferViewController: UIViewController {
 
     // MARK: - setup
     private func setupSubviews() {
-
-
         let qrDefaultWidth = qrContentView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75)
         qrDefaultWidth.priority = UILayoutPriority(500)
         qrDefaultWidth.isActive = true
