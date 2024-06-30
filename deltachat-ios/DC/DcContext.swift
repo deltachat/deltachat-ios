@@ -90,8 +90,8 @@ public class DcContext {
         DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_advertisement", params: [id as AnyObject, messageId as AnyObject])
     }
 
-    public func sendWebxdcRealtimeData(messageId: Int) { // TODO: pass data when we know the format
-        DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_data", params: [id as AnyObject, messageId as AnyObject])
+    public func sendWebxdcRealtimeData(messageId: Int, uint8Array: [UInt8]) {
+        DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_data", params: [id as AnyObject, messageId as AnyObject, uint8Array as AnyObject])
     }
 
     public func leaveWebxdcRealtime(messageId: Int) {
