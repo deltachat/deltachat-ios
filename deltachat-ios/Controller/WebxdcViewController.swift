@@ -5,12 +5,12 @@ import DcCore
 class WebxdcViewController: WebViewViewController {
     
     enum WebxdcHandler: String {
-        case log  = "log"
-        case sendStatusUpdate = "sendStatusUpdateHandler"
-        case sendToChat = "sendToChat"
-        case sendRealtimeAdvertisement = "sendRealtimeAdvertisement"
-        case sendRealtimeData = "sendRealtimeData"
-        case leaveRealtime = "leaveRealtime"
+        case log
+        case sendStatusUpdate
+        case sendToChat
+        case sendRealtimeAdvertisement
+        case sendRealtimeData
+        case leaveRealtime
     }
     let INTERNALSCHEMA = "webxdc"
     
@@ -144,7 +144,7 @@ class WebxdcViewController: WebViewViewController {
                     payload: payload,
                     descr: descr
                 };
-                webkit.messageHandlers.sendStatusUpdateHandler.postMessage(parameter);
+                webkit.messageHandlers.sendStatusUpdate.postMessage(parameter);
             },
 
             sendToChat: async (message) => {
