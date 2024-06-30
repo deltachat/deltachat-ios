@@ -504,8 +504,8 @@ extension WebxdcViewController: WKScriptMessageHandler {
             dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
 
         case .sendRealtimeData:
-            if let jsonIntArray = message.body as? [UInt8] {
-                // TODO: dcContext.sendWebxdcRealtimeData(messageId: messageId)
+            if let uint8Array = message.body as? [UInt8] {
+                dcContext.sendWebxdcRealtimeData(messageId: messageId, uint8Array: uint8Array)
             }
 
         case .leaveRealtime:
