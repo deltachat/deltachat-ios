@@ -107,7 +107,7 @@ class WebxdcViewController: WebViewViewController {
                 if ((!data) instanceof Uint8Array) {
                   throw new Error('realtime listener data must be a Uint8Array')
                 }
-                // TODO: InternalJSApi.sendRealtimeData(JSON.stringify(Array.from(data)));
+                webkit.messageHandlers.sendRealtimeData.postMessage(Array.from(data));
               },
               __receive: (data) => {
                 if (listener) {
@@ -504,7 +504,9 @@ extension WebxdcViewController: WKScriptMessageHandler {
             dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
 
         case .sendRealtimeData:
-            dcContext.sendWebxdcRealtimeData(messageId: messageId)
+            if let jsonIntArray = message.body as? [UInt8] {
+                // TODO: dcContext.sendWebxdcRealtimeData(messageId: messageId)
+            }
 
         case .leaveRealtime:
             dcContext.leaveWebxdcRealtime(messageId: messageId)
