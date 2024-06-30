@@ -6,7 +6,6 @@ class WebxdcViewController: WebViewViewController {
     
     enum WebxdcHandler: String {
         case log  = "log"
-        case setUpdateListener = "setUpdateListener"
         case sendStatusUpdate = "sendStatusUpdateHandler"
         case sendToChat = "sendToChat"
         case sendRealtimeAdvertisement = "sendRealtimeAdvertisement"
@@ -229,7 +228,6 @@ class WebxdcViewController: WebViewViewController {
         let contentController = WKUserContentController()
         
         contentController.add(self, name: WebxdcHandler.sendStatusUpdate.rawValue)
-        contentController.add(self, name: WebxdcHandler.setUpdateListener.rawValue)
         contentController.add(self, name: WebxdcHandler.log.rawValue)
         contentController.add(self, name: WebxdcHandler.sendToChat.rawValue)
         contentController.add(self, name: WebxdcHandler.sendRealtimeAdvertisement.rawValue)
@@ -457,7 +455,7 @@ class WebxdcViewController: WebViewViewController {
 
 extension WebxdcViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        let handler = WebxdcHandler(rawValue: message.name)
+        guard let handler = WebxdcHandler(rawValue: message.name) else { return }
         switch handler {
         case .log:
             guard let msg = message.body as? String else {
@@ -510,9 +508,6 @@ extension WebxdcViewController: WKScriptMessageHandler {
 
         case .leaveRealtime:
             dcContext.leaveWebxdcRealtime(messageId: messageId)
-
-        default:
-            break
         }
     }
 }
