@@ -86,6 +86,18 @@ public class DcContext {
         return Int(dc_init_webxdc_integration(contextPointer, UInt32(chatId)))
     }
 
+    public func sendWebxdcRealtimeAdvertisement(messageId: Int) {
+        DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_advertisement", params: [id as AnyObject, messageId as AnyObject])
+    }
+
+    public func sendWebxdcRealtimeData(messageId: Int) { // TODO: pass data when we know the format
+        DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_data", params: [id as AnyObject, messageId as AnyObject])
+    }
+
+    public func leaveWebxdcRealtime(messageId: Int) {
+        DcAccounts.shared.blockingCall(method: "leave_webxdc_realtime", params: [id as AnyObject, messageId as AnyObject])
+    }
+
     public func sendVideoChatInvitation(chatId: Int) -> Int {
         return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
     }

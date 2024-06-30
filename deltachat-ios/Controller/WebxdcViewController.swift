@@ -9,6 +9,9 @@ class WebxdcViewController: WebViewViewController {
         case setUpdateListener = "setUpdateListener"
         case sendStatusUpdate = "sendStatusUpdateHandler"
         case sendToChat = "sendToChat"
+        case sendRealtimeAdvertisement = "sendRealtimeAdvertisement"
+        case sendRealtimeData = "sendRealtimeData"
+        case leaveRealtime = "leaveRealtime"
     }
     let INTERNALSCHEMA = "webxdc"
     
@@ -96,11 +99,36 @@ class WebxdcViewController: WebViewViewController {
             }
           }
 
+          const createRealtimeChannel = () => {
+            let listener = null;
+            return {
+              setListener: (li) => listener = li,
+              leave: () => webkit.messageHandlers.leaveRealtime.postMessage(""),
+              send: (data) => {
+                if ((!data) instanceof Uint8Array) {
+                  throw new Error('realtime listener data must be a Uint8Array')
+                }
+                // TODO: InternalJSApi.sendRealtimeData(JSON.stringify(Array.from(data)));
+              },
+              __receive: (data) => {
+                if (listener) {
+                  listener(data);
+                }
+              },
+            };
+        }
+
           return {
             selfAddr: decodeURI("\((addr ?? "unknown"))"),
         
             selfName: decodeURI("\((displayname ?? "unknown"))"),
         
+            joinRealtimeChannel: () => {
+              realtimeChannel = createRealtimeChannel();
+              webkit.messageHandlers.sendRealtimeAdvertisement.postMessage("");
+              return realtimeChannel;
+            },
+
             setUpdateListener: (cb, serial) => {
                 update_listener = cb
                 return window.__webxdcUpdate()
@@ -204,7 +232,10 @@ class WebxdcViewController: WebViewViewController {
         contentController.add(self, name: WebxdcHandler.setUpdateListener.rawValue)
         contentController.add(self, name: WebxdcHandler.log.rawValue)
         contentController.add(self, name: WebxdcHandler.sendToChat.rawValue)
-        
+        contentController.add(self, name: WebxdcHandler.sendRealtimeAdvertisement.rawValue)
+        contentController.add(self, name: WebxdcHandler.sendRealtimeData.rawValue)
+        contentController.add(self, name: WebxdcHandler.leaveRealtime.rawValue)
+
         let scriptSource = """
             window.RTCPeerConnection = ()=>{};
             RTCPeerConnection = ()=>{};
@@ -247,6 +278,10 @@ class WebxdcViewController: WebViewViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        dcContext.leaveWebxdcRealtime(messageId: messageId)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
@@ -466,6 +501,15 @@ extension WebxdcViewController: WKScriptMessageHandler {
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
+
+        case .sendRealtimeAdvertisement:
+            dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
+
+        case .sendRealtimeData:
+            dcContext.sendWebxdcRealtimeData(messageId: messageId)
+
+        case .leaveRealtime:
+            dcContext.leaveWebxdcRealtime(messageId: messageId)
 
         default:
             break
