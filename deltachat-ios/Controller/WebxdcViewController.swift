@@ -74,6 +74,8 @@ class WebxdcViewController: WebViewViewController {
           let should_run_again = false;
           let running = false;
           let lastSerial = 0;
+          let realtimeChannel = null;
+
           window.__webxdcUpdate = async () => {
             if (running) {
                 should_run_again = true
@@ -96,6 +98,12 @@ class WebxdcViewController: WebViewViewController {
                 if (should_run_again) {
                     await window.__webxdcUpdate()
                 }
+            }
+          }
+
+          window.__webxdcRealtimeData = (intArray) => {
+            if (realtimeChannel) {
+              realtimeChannel.__receive(Uint8Array.from(intArray))
             }
           }
 
@@ -334,7 +342,9 @@ class WebxdcViewController: WebViewViewController {
         ) { [weak self] notification in
             guard let self, let userInfo = notification.userInfo, let messageId = userInfo["message_id"] as? Int else { return }
             if messageId == self.messageId, let data = userInfo["data"] as? Data {
-                // TODO: pass to js-land
+                let byteArray = [UInt8](data)
+                let commaSeparatedString = byteArray.map { String($0) }.joined(separator: ",")
+                webView.evaluateJavaScript("window.__webxdcRealtimeData([" + commaSeparatedString + "])")
             }
         }
 
