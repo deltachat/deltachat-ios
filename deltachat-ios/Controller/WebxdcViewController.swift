@@ -17,6 +17,7 @@ class WebxdcViewController: WebViewViewController {
     var messageId: Int
     var msgChangedObserver: NSObjectProtocol?
     var webxdcUpdateObserver: NSObjectProtocol?
+    var webxdcRealtimeDataObserver: NSObjectProtocol?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
     private var allowInternet: Bool = false
@@ -326,6 +327,17 @@ class WebxdcViewController: WebViewViewController {
             }
         }
 
+        webxdcRealtimeDataObserver = nc.addObserver(
+            forName: eventWebxdcRealtimeData,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] notification in
+            guard let self, let userInfo = notification.userInfo, let messageId = userInfo["message_id"] as? Int else { return }
+            if messageId == self.messageId, let data = userInfo["data"] as? Data {
+                // TODO: pass to js-land
+            }
+        }
+
         msgChangedObserver = nc.addObserver(
             forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
@@ -342,6 +354,9 @@ class WebxdcViewController: WebViewViewController {
         let nc = NotificationCenter.default
         if let webxdcUpdateObserver = webxdcUpdateObserver {
             nc.removeObserver(webxdcUpdateObserver)
+        }
+        if let webxdcRealtimeDataObserver {
+            nc.removeObserver(webxdcRealtimeDataObserver)
         }
         if let msgChangedObserver = msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
