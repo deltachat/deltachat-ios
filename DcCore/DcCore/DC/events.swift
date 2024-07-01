@@ -179,11 +179,10 @@ public class DcEventHandler {
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            logger.info("📡[\(accountId)] webxdc realtime data")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: eventWebxdcRealtimeData, object: nil, userInfo: [
                     "message_id": Int(data1),
-                    // TODO: forward data from data2 (length + bytes)
+                    "data": event.data2Data,
                 ])
             }
 

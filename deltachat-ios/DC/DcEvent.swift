@@ -37,4 +37,11 @@ public class DcEvent {
         dc_str_unref(cString)
         return swiftString
     }
+
+    public var data2Data: Data {
+        guard let cPtr = dc_event_get_data2_str(eventPointer) else { return Data() }
+        let data = Data(bytes: cPtr, count: data2Int)
+        dc_str_unref(cPtr)
+        return data
+    }
 }
