@@ -201,6 +201,23 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         })
     }()
 
+    lazy var realtimeChannelsCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: "Realtime Channels",
+            on: dcContext.getConfigBool("webxdc_realtime_enabled"),
+            action: { cell in
+                self.dcContext.setConfigBool("webxdc_realtime_enabled", cell.isOn)
+                if cell.isOn {
+                    let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Realtime Channels\"",
+                        message: "\"Realtime Channels\" allow to create direct connections between devices.\n\n"
+                               + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                    self.navigationController?.present(alert, animated: true, completion: nil)
+                }
+        })
+    }()
+
     private lazy var viewLogCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.viewLog.rawValue
@@ -217,7 +234,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
-            cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell])
+            cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell, realtimeChannelsCell])
 
         if dcContext.isChatmail {
             let encryptionSection = SectionConfigs(

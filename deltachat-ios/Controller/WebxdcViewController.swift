@@ -5,16 +5,19 @@ import DcCore
 class WebxdcViewController: WebViewViewController {
     
     enum WebxdcHandler: String {
-        case log  = "log"
-        case setUpdateListener = "setUpdateListener"
-        case sendStatusUpdate = "sendStatusUpdateHandler"
-        case sendToChat = "sendToChat"
+        case log
+        case sendStatusUpdate
+        case sendToChat
+        case sendRealtimeAdvertisement
+        case sendRealtimeData
+        case leaveRealtime
     }
     let INTERNALSCHEMA = "webxdc"
     
     var messageId: Int
     var msgChangedObserver: NSObjectProtocol?
     var webxdcUpdateObserver: NSObjectProtocol?
+    var webxdcRealtimeDataObserver: NSObjectProtocol?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
     private var allowInternet: Bool = false
@@ -71,6 +74,8 @@ class WebxdcViewController: WebViewViewController {
           let should_run_again = false;
           let running = false;
           let lastSerial = 0;
+          let realtimeChannel = null;
+
           window.__webxdcUpdate = async () => {
             if (running) {
                 should_run_again = true
@@ -96,11 +101,42 @@ class WebxdcViewController: WebViewViewController {
             }
           }
 
+          window.__webxdcRealtimeData = (intArray) => {
+            if (realtimeChannel) {
+              realtimeChannel.__receive(Uint8Array.from(intArray))
+            }
+          }
+
+          const createRealtimeChannel = () => {
+            let listener = null;
+            return {
+              setListener: (li) => listener = li,
+              leave: () => webkit.messageHandlers.leaveRealtime.postMessage(""),
+              send: (data) => {
+                if ((!data) instanceof Uint8Array) {
+                  throw new Error('realtime listener data must be a Uint8Array')
+                }
+                webkit.messageHandlers.sendRealtimeData.postMessage(Array.from(data));
+              },
+              __receive: (data) => {
+                if (listener) {
+                  listener(data);
+                }
+              },
+            };
+        }
+
           return {
             selfAddr: decodeURI("\((addr ?? "unknown"))"),
         
             selfName: decodeURI("\((displayname ?? "unknown"))"),
         
+            joinRealtimeChannel: () => {
+              realtimeChannel = createRealtimeChannel();
+              webkit.messageHandlers.sendRealtimeAdvertisement.postMessage("");
+              return realtimeChannel;
+            },
+
             setUpdateListener: (cb, serial) => {
                 update_listener = cb
                 return window.__webxdcUpdate()
@@ -117,7 +153,7 @@ class WebxdcViewController: WebViewViewController {
                     payload: payload,
                     descr: descr
                 };
-                webkit.messageHandlers.sendStatusUpdateHandler.postMessage(parameter);
+                webkit.messageHandlers.sendStatusUpdate.postMessage(parameter);
             },
 
             sendToChat: async (message) => {
@@ -201,10 +237,12 @@ class WebxdcViewController: WebViewViewController {
         let contentController = WKUserContentController()
         
         contentController.add(self, name: WebxdcHandler.sendStatusUpdate.rawValue)
-        contentController.add(self, name: WebxdcHandler.setUpdateListener.rawValue)
         contentController.add(self, name: WebxdcHandler.log.rawValue)
         contentController.add(self, name: WebxdcHandler.sendToChat.rawValue)
-        
+        contentController.add(self, name: WebxdcHandler.sendRealtimeAdvertisement.rawValue)
+        contentController.add(self, name: WebxdcHandler.sendRealtimeData.rawValue)
+        contentController.add(self, name: WebxdcHandler.leaveRealtime.rawValue)
+
         let scriptSource = """
             window.RTCPeerConnection = ()=>{};
             RTCPeerConnection = ()=>{};
@@ -247,6 +285,10 @@ class WebxdcViewController: WebViewViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        dcContext.leaveWebxdcRealtime(messageId: messageId)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
@@ -293,6 +335,19 @@ class WebxdcViewController: WebViewViewController {
             }
         }
 
+        webxdcRealtimeDataObserver = nc.addObserver(
+            forName: eventWebxdcRealtimeData,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] notification in
+            guard let self, let userInfo = notification.userInfo, let messageId = userInfo["message_id"] as? Int else { return }
+            if messageId == self.messageId, let data = userInfo["data"] as? Data {
+                let byteArray = [UInt8](data)
+                let commaSeparatedString = byteArray.map { String($0) }.joined(separator: ",")
+                webView.evaluateJavaScript("window.__webxdcRealtimeData([" + commaSeparatedString + "])")
+            }
+        }
+
         msgChangedObserver = nc.addObserver(
             forName: eventMsgsChangedReadDeliveredFailed,
             object: nil,
@@ -309,6 +364,9 @@ class WebxdcViewController: WebViewViewController {
         let nc = NotificationCenter.default
         if let webxdcUpdateObserver = webxdcUpdateObserver {
             nc.removeObserver(webxdcUpdateObserver)
+        }
+        if let webxdcRealtimeDataObserver {
+            nc.removeObserver(webxdcRealtimeDataObserver)
         }
         if let msgChangedObserver = msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
@@ -422,7 +480,7 @@ class WebxdcViewController: WebViewViewController {
 
 extension WebxdcViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        let handler = WebxdcHandler(rawValue: message.name)
+        guard let handler = WebxdcHandler(rawValue: message.name) else { return }
         switch handler {
         case .log:
             guard let msg = message.body as? String else {
@@ -467,8 +525,16 @@ extension WebxdcViewController: WKScriptMessageHandler {
                 self.present(alert, animated: true, completion: nil)
             }
 
-        default:
-            break
+        case .sendRealtimeAdvertisement:
+            dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
+
+        case .sendRealtimeData:
+            if let uint8Array = message.body as? [UInt8] {
+                dcContext.sendWebxdcRealtimeData(messageId: messageId, uint8Array: uint8Array)
+            }
+
+        case .leaveRealtime:
+            dcContext.leaveWebxdcRealtime(messageId: messageId)
         }
     }
 }

@@ -13,6 +13,7 @@ public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphe
 public let eventMsgsNoticed = Notification.Name(rawValue: "eventMsgsNoticed")
 public let eventConnectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
 public let eventWebxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
+public let eventWebxdcRealtimeData = Notification.Name(rawValue: "eventWebxdcRealtimeData")
 
 public class DcEventHandler {
     let dcAccounts: DcAccounts
@@ -171,6 +172,17 @@ public class DcEventHandler {
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: eventWebxdcStatusUpdate, object: nil, userInfo: [
                     "message_id": Int(data1),
+                ])
+            }
+
+        case DC_EVENT_WEBXDC_REALTIME_DATA:
+            if accountId != dcAccounts.getSelected().id {
+                return
+            }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: eventWebxdcRealtimeData, object: nil, userInfo: [
+                    "message_id": Int(data1),
+                    "data": event.data2Data,
                 ])
             }
 
