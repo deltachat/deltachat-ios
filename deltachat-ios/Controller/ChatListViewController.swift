@@ -574,13 +574,13 @@ class ChatListViewController: UITableViewController {
         }
     }
 
-    func setLongTapEditing(_ editing: Bool, initialIndexPath: [IndexPath]? = nil) {
+    func setLongTapEditing(_ editing: Bool, initialIndexPath: IndexPath? = nil) {
         setEditing(editing, animated: true)
         if editing {
+            tableView.selectRow(at: initialIndexPath, animated: true, scrollPosition: .none)
             addEditingView()
             if let viewModel = viewModel {
-                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows) ||
-                                           viewModel.hasOnlyPinnedChatsSelected(in: initialIndexPath)
+                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
             }
         } else {
             removeEditingView()
@@ -691,7 +691,7 @@ class ChatListViewController: UITableViewController {
             return false
         }
         titleView.accessibilityHint = nil
-        let cnt = tableView.indexPathsForSelectedRows?.count ?? 1
+        let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
         titleView.text = String.localized(stringID: "n_selected", parameter: cnt)
         navigationItem.setLeftBarButton(cancelButton, animated: true)
         navigationItem.setRightBarButton(markReadButton, animated: true)
@@ -925,9 +925,7 @@ extension ChatListViewController: ContactCellDelegate {
             guard let chatList = viewModel?.chatList else { return }
             if chatList.getChatId(index: indexPath.row) != Int(DC_CHAT_ID_ARCHIVED_LINK) {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                setLongTapEditing(true, initialIndexPath: [indexPath])
-                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
-                updateMarkReadButton()
+                setLongTapEditing(true, initialIndexPath: indexPath)
             }
         }
     }
