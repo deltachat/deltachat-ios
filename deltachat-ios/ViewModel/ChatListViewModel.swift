@@ -234,6 +234,14 @@ class ChatListViewModel: NSObject {
         }
     }
 
+    func markUnreadSelectedChats(in indexPaths: [IndexPath]?) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            dcContext.marknoticedChat(chatId: chatId)
+            NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
+        }
+    }
+
     func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
@@ -259,6 +267,16 @@ class ChatListViewModel: NSObject {
     func pinChat(chatId: Int, pinned: Bool, notifyListener: Bool = false) {
         self.dcContext.setChatVisibility(chatId: chatId, visibility: pinned ? DC_CHAT_VISIBILITY_NORMAL : DC_CHAT_VISIBILITY_PINNED)
         updateChatList(notifyListener: notifyListener)
+    }
+
+    func hasAnyUnreadChatSelected(in indexPaths: [IndexPath]?) -> Bool {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            if dcContext.getUnreadMessages(chatId: chatId) > 0 {
+                return true
+            }
+        }
+        return false
     }
 
     func hasOnlyPinnedChatsSelected(in indexPaths: [IndexPath]?) -> Bool {

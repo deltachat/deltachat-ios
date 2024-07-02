@@ -49,8 +49,8 @@ class ChatListViewController: UITableViewController {
         return button
     }()
 
-    private lazy var markArchivedReadButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: String.localized("mark_as_read_short"), style: .plain, target: self, action: #selector(markArchivedReadPressed))
+    private lazy var markReadButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: String.localized("mark_as_read_short"), style: .plain, target: self, action: #selector(markReadPressed))
         return button
     }()
 
@@ -387,8 +387,13 @@ class ChatListViewController: UITableViewController {
         }
     }
 
-    @objc func markArchivedReadPressed() {
-        dcContext.marknoticedChat(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK))
+    @objc func markReadPressed() {
+        if isArchive {
+            dcContext.marknoticedChat(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK))
+        } else if isEditing {
+            viewModel?.markUnreadSelectedChats(in: tableView.indexPathsForSelectedRows)
+            setLongTapEditing(false)
+        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -569,13 +574,13 @@ class ChatListViewController: UITableViewController {
         }
     }
 
-    func setLongTapEditing(_ editing: Bool, initialIndexPath: [IndexPath]? = nil) {
+    func setLongTapEditing(_ editing: Bool, initialIndexPath: IndexPath? = nil) {
         setEditing(editing, animated: true)
         if editing {
+            tableView.selectRow(at: initialIndexPath, animated: true, scrollPosition: .none)
             addEditingView()
             if let viewModel = viewModel {
-                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows) ||
-                                           viewModel.hasOnlyPinnedChatsSelected(in: initialIndexPath)
+                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
             }
         } else {
             removeEditingView()
@@ -663,9 +668,9 @@ class ChatListViewController: UITableViewController {
             titleView.text = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(nil, animated: true)
-                navigationItem.setRightBarButton(markArchivedReadButton, animated: true)
+                navigationItem.setRightBarButton(markReadButton, animated: true)
             }
-            updateMarkArchivedReadButton()
+            updateMarkReadButton()
         } else {
             titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
             if !handleMultiSelectionTitle() {
@@ -686,19 +691,18 @@ class ChatListViewController: UITableViewController {
             return false
         }
         titleView.accessibilityHint = nil
-        let cnt = tableView.indexPathsForSelectedRows?.count ?? 1
+        let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
         titleView.text = String.localized(stringID: "n_selected", parameter: cnt)
         navigationItem.setLeftBarButton(cancelButton, animated: true)
-        navigationItem.setRightBarButton(nil, animated: true)
+        navigationItem.setRightBarButton(markReadButton, animated: true)
+        updateMarkReadButton()
         return true
     }
 
     func handleChatListUpdate() {
-        if let viewModel = viewModel, viewModel.isEditing {
+        if let viewModel, viewModel.isEditing {
             viewModel.setPendingChatListUpdate()
-            return
-        }
-        if Thread.isMainThread {
+        } else if Thread.isMainThread {
             tableView.reloadData()
             handleEmptyStateLabel()
         } else {
@@ -708,13 +712,15 @@ class ChatListViewController: UITableViewController {
                 self.handleEmptyStateLabel()
             }
         }
-        if isArchive {
-            updateMarkArchivedReadButton()
-        }
+        updateMarkReadButton()
     }
     
-    func updateMarkArchivedReadButton() {
-        self.markArchivedReadButton.isEnabled = dcContext.getUnreadMessages(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK)) != 0
+    func updateMarkReadButton() {
+        if isArchive {
+            self.markReadButton.isEnabled = dcContext.getUnreadMessages(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK)) != 0
+        } else if tableView.isEditing {
+            self.markReadButton.isEnabled = viewModel?.hasAnyUnreadChatSelected(in: tableView.indexPathsForSelectedRows) ?? false
+        }
     }
 
     private func handleEmptyStateLabel() {
@@ -919,8 +925,7 @@ extension ChatListViewController: ContactCellDelegate {
             guard let chatList = viewModel?.chatList else { return }
             if chatList.getChatId(index: indexPath.row) != Int(DC_CHAT_ID_ARCHIVED_LINK) {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                setLongTapEditing(true, initialIndexPath: [indexPath])
-                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                setLongTapEditing(true, initialIndexPath: indexPath)
             }
         }
     }
