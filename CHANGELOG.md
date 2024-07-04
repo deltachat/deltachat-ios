@@ -1,5 +1,19 @@
 # Delta Chat iOS Changelog
 
+## v1.46.6
+2024-07
+
+* add search to "Attach / Contact"
+* add option to mark all selected chats as being "Read" (long tap a chat to start select mode)
+* add experimental realtime channels to create direct connections between devices
+* tint "Delete" buttons red consistently
+* fix "Add Second Device" layout for small screens
+* fix: don't let keyboard cover parts of the log
+* fix message input bar sometimes disappearing
+* update translations and local help
+* using core 1.140.2
+
+
 ## v1.46.5
 2024-06
 
