@@ -925,6 +925,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func updateTitle() {
+        titleView.translatesAutoresizingMaskIntoConstraints = false
+        
         if tableView.isEditing {
             navigationItem.titleView = nil
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
