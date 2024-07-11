@@ -72,8 +72,8 @@ public class DcEventHandler {
                 ])
             }
         case DC_EVENT_MSGS_CHANGED:
-            guard accountId == dcAccounts.getSelected().id { return }
-            
+            guard accountId == dcAccounts.getSelected().id else { return }
+
             logger.info("📡[\(accountId)] msgs changed: \(data1), \(data2)")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .messageChanged, object: nil, userInfo: [
