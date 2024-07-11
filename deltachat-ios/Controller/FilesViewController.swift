@@ -13,6 +13,7 @@ class FilesViewController: UIViewController {
     private let chatId: Int
 
     private var msgChangedObserver: NSObjectProtocol?
+    private var msgReadDelivedReactionFailedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
 
     private lazy var tableView: UITableView = {
@@ -84,7 +85,11 @@ class FilesViewController: UIViewController {
 
     private func addObservers() {
         msgChangedObserver = NotificationCenter.default.addObserver(
-            forName: eventMsgsChangedReadDeliveredFailed, object: nil, queue: nil) { [weak self] _ in
+            forName: .messageChanged, object: nil, queue: nil) { [weak self] _ in
+                self?.refreshInBg()
+            }
+        msgReadDelivedReactionFailedObserver = NotificationCenter.default.addObserver(
+            forName: .messageReadDeliveredFailedReaction, object: nil, queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
         incomingMsgObserver = NotificationCenter.default.addObserver(

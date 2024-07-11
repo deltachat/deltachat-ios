@@ -1,7 +1,11 @@
 import UIKit
 import UserNotifications
 
-public let eventMsgsChangedReadDeliveredFailed = Notification.Name(rawValue: "eventMsgsChangedReadDeliveredFailed")
+extension Notification.Name {
+    public static let messageChanged = Notification.Name(rawValue: "eventMsgsChanged")
+    public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
+}
+
 public let eventIncomingMsg = Notification.Name(rawValue: "eventIncomingMsg")
 public let eventIncomingMsgAnyAccount = Notification.Name(rawValue: "eventIncomingMsgAnyAccount")
 public let eventImexProgress = Notification.Name(rawValue: "eventImexProgress")
@@ -67,14 +71,23 @@ public class DcEventHandler {
                     "errorMessage": self.dcAccounts.get(id: accountId).lastErrorString,
                 ])
             }
-
-        case DC_EVENT_MSGS_CHANGED, DC_EVENT_REACTIONS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
+        case DC_EVENT_MSGS_CHANGED:
+            guard accountId == dcAccounts.getSelected().id { return }
+            
             logger.info("📡[\(accountId)] msgs changed: \(data1), \(data2)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventMsgsChangedReadDeliveredFailed, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .messageChanged, object: nil, userInfo: [
+                    "message_id": Int(data2),
+                    "chat_id": Int(data1),
+                ])
+            }
+
+        case DC_EVENT_REACTIONS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
+            guard accountId == dcAccounts.getSelected().id else { return }
+
+            logger.info("📡[\(accountId)] msgs reaction/read/delivered/failed: \(data1), \(data2)")
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .messageReadDeliveredFailedReaction, object: nil, userInfo: [
                     "message_id": Int(data2),
                     "chat_id": Int(data1),
                 ])
