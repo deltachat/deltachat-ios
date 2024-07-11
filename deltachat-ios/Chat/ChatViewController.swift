@@ -449,9 +449,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     @objc private func handleMsgReadDeliveredReactionFailed(_ notification: Notification) {
-
-        // if not visible -> do nothing
-        guard let ui = notification.userInfo else { return }
+         guard let ui = notification.userInfo else { return }
         let chatId = ui["chat_id"] as? Int ?? 0
         if chatId == 0 || chatId == self.chatId {
             let messageId = ui["message_id"] as? Int ?? 0
@@ -487,7 +485,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if msgReadDeliveredReactionFailedObserver == nil {
             msgReadDeliveredReactionFailedObserver = nc.addObserver(
-                forName: .messageChanged,
+                forName: .messageReadDeliveredFailedReaction,
                 object: nil,
                 queue: OperationQueue.main
             ) { [weak self] notification in
