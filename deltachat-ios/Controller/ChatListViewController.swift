@@ -9,6 +9,7 @@ class ChatListViewController: UITableViewController {
     private var accountSwitchTransitioningDelegate: PartialScreenModalTransitioningDelegate!
 
     private var msgChangedObserver: NSObjectProtocol?
+    private var msgReadDeliveredReactionFailedObserver: NSObjectProtocol?
     private var msgsNoticedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
     private var incomingMsgAnyAccountObserver: NSObjectProtocol?
@@ -202,7 +203,7 @@ class ChatListViewController: UITableViewController {
                                                      }
 
         msgChangedSearchResultObserver = nc.addObserver(
-            forName: eventMsgsChangedReadDeliveredFailed,
+            forName: .messageChanged,
             object: nil,
             queue: nil) { [weak self] _ in
             guard let self else { return }
@@ -215,7 +216,13 @@ class ChatListViewController: UITableViewController {
         }
 
         msgChangedObserver = nc.addObserver(
-            forName: eventMsgsChangedReadDeliveredFailed,
+            forName: .messageChanged,
+            object: nil,
+            queue: nil) { [weak self] _ in
+                self?.refreshInBg()
+            }
+        msgReadDeliveredReactionFailedObserver = nc.addObserver(
+            forName: .messageReadDeliveredFailedReaction,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
@@ -266,29 +273,32 @@ class ChatListViewController: UITableViewController {
     private func removeObservers() {
         let nc = NotificationCenter.default
         // remove observers with a block
-        if let msgChangedResultObserver = self.msgChangedSearchResultObserver {
-            nc.removeObserver(msgChangedResultObserver)
+        if let msgChangedSearchResultObserver {
+            nc.removeObserver(msgChangedSearchResultObserver)
         }
-        if let msgChangedObserver = self.msgChangedObserver {
+        if let msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
         }
-        if let incomingMsgObserver = self.incomingMsgObserver {
+        if let incomingMsgObserver {
             nc.removeObserver(incomingMsgObserver)
         }
-        if let incomingMsgAnyAccountObserver = self.incomingMsgAnyAccountObserver {
+        if let incomingMsgAnyAccountObserver {
             nc.removeObserver(incomingMsgAnyAccountObserver)
         }
-        if let msgsNoticedObserver = self.msgsNoticedObserver {
+        if let msgsNoticedObserver {
             nc.removeObserver(msgsNoticedObserver)
         }
-        if let chatModifiedObserver = self.chatModifiedObserver {
+        if let chatModifiedObserver {
             nc.removeObserver(chatModifiedObserver)
         }
-        if let contactsChangedObserver = self.contactsChangedObserver {
+        if let contactsChangedObserver {
             nc.removeObserver(contactsChangedObserver)
         }
-        if let connectivityChangedObserver = self.connectivityChangedObserver {
+        if let connectivityChangedObserver {
             nc.removeObserver(connectivityChangedObserver)
+        }
+        if let msgReadDeliveredReactionFailedObserver {
+            nc.removeObserver(msgReadDeliveredReactionFailedObserver)
         }
         // remove non-block observers
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)

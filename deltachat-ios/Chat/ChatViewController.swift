@@ -12,6 +12,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var dcContext: DcContext
     private var messageIds: [Int] = []
     private var msgChangedObserver: NSObjectProtocol?
+    private var msgReadDeliveredReactionFailedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
     private var chatModifiedObserver: NSObjectProtocol?
     private var ephemeralTimerModifiedObserver: NSObjectProtocol?
@@ -415,39 +416,82 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
+    // MARK: - Notifications
+
+    @objc private func handleMessageChanged(_ notification: Notification) {
+
+        // if not visible -> do nothing
+        guard let ui = notification.userInfo else { return }
+        let chatId = ui["chat_id"] as? Int ?? 0
+        if chatId == 0 || chatId == self.chatId {
+            let messageId = ui["message_id"] as? Int ?? 0
+            if messageId > 0 {
+                let msg = self.dcContext.getMessage(id: messageId)
+                if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
+                    draft.draftMsg = msg
+                    configureDraftArea(draft: draft, animated: false)
+                    return
+                }
+            }
+
+            if isLastRowScrolledToBottom() {
+                scrollToBottom(animated: true)
+            }
+
+            refreshMessages()
+            updateTitle()
+            DispatchQueue.main.async {
+                self.updateScrollDownButtonVisibility()
+            }
+            markSeenMessagesInVisibleArea()
+
+        }
+    }
+
+    @objc private func handleMsgReadDeliveredReactionFailed(_ notification: Notification) {
+
+        // if not visible -> do nothing
+        guard let ui = notification.userInfo else { return }
+        let chatId = ui["chat_id"] as? Int ?? 0
+        if chatId == 0 || chatId == self.chatId {
+            let messageId = ui["message_id"] as? Int ?? 0
+            if messageId > 0 {
+                let msg = self.dcContext.getMessage(id: messageId)
+                if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
+                    draft.draftMsg = msg
+                    configureDraftArea(draft: draft, animated: false)
+                    return
+                }
+            }
+
+            refreshMessages()
+            updateTitle()
+            DispatchQueue.main.async {
+                self.updateScrollDownButtonVisibility()
+            }
+            markSeenMessagesInVisibleArea()
+        }
+    }
+
     private func setupObservers() {
         let nc = NotificationCenter.default
         if msgChangedObserver == nil {
             msgChangedObserver = nc.addObserver(
-                forName: eventMsgsChangedReadDeliveredFailed,
+                forName: .messageChanged,
                 object: nil,
                 queue: OperationQueue.main
             ) { [weak self] notification in
+                self?.handleMessageChanged(notification)
+            }
+        }
 
-                guard let self, let ui = notification.userInfo else { return }
-                let chatId = ui["chat_id"] as? Int ?? 0
-                if chatId == 0 || chatId == self.chatId {
-                    let messageId = ui["message_id"] as? Int ?? 0
-                    if messageId > 0 {
-                        let msg = self.dcContext.getMessage(id: messageId)
-                        if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
-                            draft.draftMsg = msg
-                            configureDraftArea(draft: draft, animated: false)
-                            return
-                        }
-                    }
-
-                    if isLastRowScrolledToBottom() {
-                        scrollToBottom(animated: true)
-                    }
-
-                    refreshMessages()
-                    updateTitle()
-                    DispatchQueue.main.async {
-                        self.updateScrollDownButtonVisibility()
-                    }
-                    markSeenMessagesInVisibleArea()
-                }
+        if msgReadDeliveredReactionFailedObserver == nil {
+            msgReadDeliveredReactionFailedObserver = nc.addObserver(
+                forName: .messageChanged,
+                object: nil,
+                queue: OperationQueue.main
+            ) { [weak self] notification in
+                self?.handleMsgReadDeliveredReactionFailed(notification)
             }
         }
 
@@ -525,6 +569,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let nc = NotificationCenter.default
         if let msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
+        }
+        if let msgReadDeliveredReactionFailedObserver {
+            nc.removeObserver(msgReadDeliveredReactionFailedObserver)
         }
         if let incomingMsgObserver {
             nc.removeObserver(incomingMsgObserver)

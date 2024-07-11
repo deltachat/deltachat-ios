@@ -16,6 +16,7 @@ class WebxdcViewController: WebViewViewController {
     
     var messageId: Int
     var msgChangedObserver: NSObjectProtocol?
+    var msgReadDeliveredReactionFailedObserver: NSObjectProtocol?
     var webxdcUpdateObserver: NSObjectProtocol?
     var webxdcRealtimeDataObserver: NSObjectProtocol?
     var webxdcName: String = ""
@@ -349,7 +350,7 @@ class WebxdcViewController: WebViewViewController {
         }
 
         msgChangedObserver = nc.addObserver(
-            forName: eventMsgsChangedReadDeliveredFailed,
+            forName: .messageChanged,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
@@ -358,6 +359,18 @@ class WebxdcViewController: WebViewViewController {
                 self.refreshWebxdcInfo()
             }
         }
+
+        msgReadDeliveredReactionFailedObserver = nc.addObserver(
+            forName: .messageReadDeliveredFailedReaction,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] notification in
+            guard let self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
+            if messageId == self.messageId {
+                self.refreshWebxdcInfo()
+            }
+        }
+
     }
     
     private func removeObservers() {
@@ -368,8 +381,11 @@ class WebxdcViewController: WebViewViewController {
         if let webxdcRealtimeDataObserver {
             nc.removeObserver(webxdcRealtimeDataObserver)
         }
-        if let msgChangedObserver = msgChangedObserver {
+        if let msgChangedObserver {
             nc.removeObserver(msgChangedObserver)
+        }
+        if let msgReadDeliveredReactionFailedObserver {
+            nc.removeObserver(msgReadDeliveredReactionFailedObserver)
         }
         shortcutManager = nil
     }

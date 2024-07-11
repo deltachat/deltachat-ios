@@ -11,6 +11,7 @@ class GalleryViewController: UIViewController {
     private let gridDefaultSpacing: CGFloat = 5
 
     private var msgChangedObserver: NSObjectProtocol?
+    private var msgReadDeliveredReactionFailedObserver: NSObjectProtocol?
     private var incomingMsgObserver: NSObjectProtocol?
 
     private lazy var gridLayout: GridCollectionViewFlowLayout = {
@@ -106,8 +107,12 @@ class GalleryViewController: UIViewController {
     }
 
     private func addObservers() {
+        msgReadDeliveredReactionFailedObserver = NotificationCenter.default.addObserver(
+            forName: .messageReadDeliveredFailedReaction, object: nil, queue: nil) { [weak self] _ in
+                self?.refreshInBg()
+            }
         msgChangedObserver = NotificationCenter.default.addObserver(
-            forName: eventMsgsChangedReadDeliveredFailed, object: nil, queue: nil) { [weak self] _ in
+            forName: .messageChanged, object: nil, queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
         incomingMsgObserver = NotificationCenter.default.addObserver(
@@ -117,10 +122,13 @@ class GalleryViewController: UIViewController {
     }
 
     private func removeObservers() {
-        if let msgChangedObserver = self.msgChangedObserver {
+        if let msgChangedObserver {
             NotificationCenter.default.removeObserver(msgChangedObserver)
         }
-        if let incomingMsgObserver = self.incomingMsgObserver {
+        if let msgReadDeliveredReactionFailedObserver {
+            NotificationCenter.default.removeObserver(msgReadDeliveredReactionFailedObserver)
+        }
+        if let incomingMsgObserver {
             NotificationCenter.default.removeObserver(incomingMsgObserver)
         }
     }
