@@ -436,6 +436,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                             return
                         }
                     }
+
+                    if isLastRowScrolledToBottom() {
+                        scrollToBottom(animated: true)
+                    }
+
                     refreshMessages()
                     updateTitle()
                     DispatchQueue.main.async {
@@ -1664,7 +1669,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             guard let self else { return }
             let message = self.dcContext.newMessage(viewType: DC_MSG_TEXT)
             message.text = text
-            if let quoteMessage = quoteMessage {
+            if let quoteMessage {
                 message.quoteMessage = quoteMessage
             }
             self.dcContext.sendMessage(chatId: self.chatId, message: message)
