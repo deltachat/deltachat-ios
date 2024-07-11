@@ -419,9 +419,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     // MARK: - Notifications
 
     @objc private func handleMessageChanged(_ notification: Notification) {
-
-        // if not visible -> do nothing
         guard let ui = notification.userInfo else { return }
+
         let chatId = ui["chat_id"] as? Int ?? 0
         if chatId == 0 || chatId == self.chatId {
             let messageId = ui["message_id"] as? Int ?? 0
@@ -440,16 +439,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
             refreshMessages()
             updateTitle()
-            DispatchQueue.main.async {
-                self.updateScrollDownButtonVisibility()
-            }
             markSeenMessagesInVisibleArea()
 
         }
     }
 
     @objc private func handleMsgReadDeliveredReactionFailed(_ notification: Notification) {
-         guard let ui = notification.userInfo else { return }
+        guard let ui = notification.userInfo else { return }
+
         let chatId = ui["chat_id"] as? Int ?? 0
         if chatId == 0 || chatId == self.chatId {
             let messageId = ui["message_id"] as? Int ?? 0
@@ -464,9 +461,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
             refreshMessages()
             updateTitle()
-            DispatchQueue.main.async {
-                self.updateScrollDownButtonVisibility()
-            }
             markSeenMessagesInVisibleArea()
         }
     }
