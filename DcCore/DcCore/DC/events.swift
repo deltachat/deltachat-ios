@@ -9,14 +9,16 @@ extension Notification.Name {
     public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "eventIncomingMsgAnyAccount")
     public static let messagesNoticed = Notification.Name(rawValue: "eventMsgsNoticed")
 
+    // Chats
     public static let chatModified = Notification.Name(rawValue: "eventChatModified")
 
+    // Contacts
+    public static let contactsChanged = Notification.Name(rawValue: "eventContactsChanged")
 }
 
 public let eventImexProgress = Notification.Name(rawValue: "eventImexProgress")
 public let eventConfigureProgress = Notification.Name(rawValue: "eventConfigureProgress")
 public let eventSecureInviterProgress = Notification.Name(rawValue: "eventSecureInviterProgress")
-public let eventContactsChanged = Notification.Name(rawValue: "eventContactsChanged")
 
 public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
 public let eventConnectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
@@ -162,7 +164,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] contact changed: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventContactsChanged, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .contactsChanged, object: nil, userInfo: [
                     "contact_id": Int(data1)
                 ])
             }
