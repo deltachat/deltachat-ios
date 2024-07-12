@@ -117,8 +117,8 @@ class GalleryViewController: UIViewController {
                 self?.refreshInBg()
             }
         incomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: eventIncomingMsg, object: nil, queue: nil) { [weak self] _ in
-                self?.refreshInBg()
+            forName: .incomingMessage, object: nil, queue: nil) { [weak self] notification in
+                self?.handleIncomingMessage(notification)
             }
     }
 
@@ -135,6 +135,10 @@ class GalleryViewController: UIViewController {
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
+        refreshInBg()
+    }
+
+    @objc private func handleIncomingMessage(_ notification: Notification) {
         refreshInBg()
     }
 

@@ -229,10 +229,10 @@ class ChatListViewController: UITableViewController {
                 self?.refreshInBg()
             }
         incomingMsgObserver = nc.addObserver(
-            forName: eventIncomingMsg,
+            forName: .incomingMessage,
             object: nil,
-            queue: nil) { [weak self] _ in
-                self?.refreshInBg()
+            queue: nil) { [weak self] notification in
+                self?.handleIncomingMessage(notification)
             }
         incomingMsgAnyAccountObserver = nc.addObserver(
             forName: eventIncomingMsgAnyAccount,
@@ -309,6 +309,10 @@ class ChatListViewController: UITableViewController {
            appDelegate.appIsInForeground() {
             viewModel.updateSearchResults(for: self.searchController)
         }
+        refreshInBg()
+    }
+
+    @objc private func handleIncomingMessage(_ notification: Notification) {
         refreshInBg()
     }
 

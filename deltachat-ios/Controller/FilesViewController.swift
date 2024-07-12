@@ -93,7 +93,7 @@ class FilesViewController: UIViewController {
                 self?.refreshInBg()
             }
         incomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: eventIncomingMsg, object: nil, queue: nil) { [weak self] _ in
+            forName: .incomingMessage, object: nil, queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
     }
