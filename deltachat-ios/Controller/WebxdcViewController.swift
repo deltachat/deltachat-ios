@@ -350,7 +350,7 @@ class WebxdcViewController: WebViewViewController {
         }
 
         msgChangedObserver = nc.addObserver(
-            forName: .messageChanged,
+            forName: .messagesChanged,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in

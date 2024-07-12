@@ -203,7 +203,7 @@ class ChatListViewController: UITableViewController {
                                                      }
 
         msgChangedSearchResultObserver = nc.addObserver(
-            forName: .messageChanged,
+            forName: .messagesChanged,
             object: nil,
             queue: nil) { [weak self] _ in
             guard let self else { return }
@@ -216,7 +216,7 @@ class ChatListViewController: UITableViewController {
         }
 
         msgChangedObserver = nc.addObserver(
-            forName: .messageChanged,
+            forName: .messagesChanged,
             object: nil,
             queue: nil) { [weak self] _ in
                 self?.refreshInBg()
