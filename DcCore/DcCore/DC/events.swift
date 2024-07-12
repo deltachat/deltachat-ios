@@ -18,11 +18,8 @@ extension Notification.Name {
     // Progress
     public static let importExportProgress = Notification.Name(rawValue: "eventImexProgress")
     public static let configurationProgress = Notification.Name(rawValue: "eventConfigureProgress")
-
+    public static let secureJoinInviterProgress = Notification.Name(rawValue: "secureJoinInviterProgress")
 }
-
-
-public let eventSecureInviterProgress = Notification.Name(rawValue: "eventSecureInviterProgress")
 
 public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
 public let eventConnectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
@@ -155,7 +152,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] securejoin inviter: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventSecureInviterProgress, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .secureJoinInviterProgress, object: nil, userInfo: [
                     "progress": Int(data2),
                     "error": Int(data2) == 0,
                     "done": Int(data2) == 1000,
