@@ -19,10 +19,11 @@ extension Notification.Name {
     public static let importExportProgress = Notification.Name(rawValue: "eventImexProgress")
     public static let configurationProgress = Notification.Name(rawValue: "eventConfigureProgress")
     public static let secureJoinInviterProgress = Notification.Name(rawValue: "secureJoinInviterProgress")
+
+    public static let connectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
 }
 
 public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
-public let eventConnectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
 public let eventWebxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
 public let eventWebxdcRealtimeData = Notification.Name(rawValue: "eventWebxdcRealtimeData")
 
@@ -176,7 +177,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] connectivity changed")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventConnectivityChanged, object: nil)
+                NotificationCenter.default.post(name: .connectivityChanged, object: nil)
             }
 
         case DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE:

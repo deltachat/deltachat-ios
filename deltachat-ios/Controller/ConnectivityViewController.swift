@@ -29,21 +29,22 @@ class ConnectivityViewController: WebViewViewController {
             self.connectivityMonitor = monitor
         }
     }
-
+    
     // called everytime the view will appear
     override func viewWillAppear(_ animated: Bool) {
+        let nc = NotificationCenter.default
         // set connectivity changed observer before we acutally init html,
         // otherwise, we may miss events and the html is not correct.
-        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: eventConnectivityChanged,
+        connectivityChangedObserver = nc.addObserver(forName: .connectivityChanged,
                                                      object: nil,
-                                                     queue: nil) { [weak self] _ in
-                                                        self?.loadHtml()
-                                                     }
-        lowPowerModeObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSProcessInfoPowerStateDidChange,
-                                                                      object: nil,
-                                                                      queue: nil) { [weak self] _ in
-                                                                         self?.loadHtml()
-                                                                      }
+                                                     queue: nil) { [weak self] notification in
+            self?.handleConnectivityChanged(notification)
+        }
+        lowPowerModeObserver = nc.addObserver(forName: NSNotification.Name.NSProcessInfoPowerStateDidChange,
+                                              object: nil,
+                                              queue: nil) { [weak self] _ in
+            self?.loadHtml()
+        }
         loadHtml()
     }
 
@@ -158,6 +159,10 @@ class ConnectivityViewController: WebViewViewController {
             .appending(averageDelta / 3600 > 2 ?
                        String.localized(stringID: "notifications_avg_hours", parameter: Int(averageDelta / 3600)) :
                        String.localized(stringID: "notifications_avg_minutes", parameter: Int(averageDelta / 60)))
+    }
+
+    @objc private func handleConnectivityChanged(_ notification: Notification) {
+        loadHtml()
     }
 
     private func loadHtml() {

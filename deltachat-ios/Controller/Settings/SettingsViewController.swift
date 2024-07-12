@@ -165,14 +165,13 @@ internal final class SettingsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        let nc = NotificationCenter.default
         // set connectivity changed observer before we acutally init `connectivityCell.detailTextLabel` in `updateCells()`,
         // otherwise, we may miss events and the label is not correct.
-        connectivityChangedObserver = NotificationCenter.default.addObserver(forName: eventConnectivityChanged,
-                                                                             object: nil,
-                                                                             queue: nil) { [weak self] _ in
-            guard let self else { return }
-            self.connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
-                                                                                        connectedString: String.localized("connectivity_connected"))
+        connectivityChangedObserver = nc.addObserver(forName: .connectivityChanged,
+                                                     object: nil,
+                                                     queue: nil) { [weak self] notification in
+            self?.handleConnectivityChanged(notification)
         }
 
         updateCells()
@@ -233,6 +232,13 @@ internal final class SettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return sections[section].footerTitle
+    }
+
+    // MARK: - Notifications
+
+    @objc private func handleConnectivityChanged(_ notification: Notification) {
+        connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
+                                                                               connectedString: String.localized("connectivity_connected"))
     }
 
     // MARK: - actions
