@@ -24,9 +24,10 @@ extension Notification.Name {
     // Webxdc
     public static let webxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
     public static let webxdcRealtimeDataReceived = Notification.Name(rawValue: "eventWebxdcRealtimeData")
+
+    public static let ephemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
 }
 
-public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
 
 public class DcEventHandler {
     let dcAccounts: DcAccounts
@@ -128,7 +129,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] ephemeral timer modified: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventEphemeralTimerModified, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .ephemeralTimerModified, object: nil, userInfo: [
                     "chat_id": Int(data1),
                 ])
             }

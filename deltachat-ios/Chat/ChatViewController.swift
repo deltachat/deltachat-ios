@@ -418,6 +418,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     // MARK: - Notifications
 
+    @objc private func handleEphemeralTimerModified(_ notification: Notification) {
+        updateTitle()
+    }
+
     @objc private func handleChatModified(_ notification: Notification) {
         guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
 
@@ -545,11 +549,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if ephemeralTimerModifiedObserver == nil {
             ephemeralTimerModifiedObserver = nc.addObserver(
-                forName: eventEphemeralTimerModified,
+                forName: .ephemeralTimerModified,
                 object: nil, queue: OperationQueue.main
-            ) { [weak self] _ in
-                guard let self else { return }
-                self.updateTitle()
+            ) { [weak self] notification in
+                self?.handleEphemeralTimerModified(notification)
             }
         }
 
