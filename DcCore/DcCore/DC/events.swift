@@ -5,9 +5,9 @@ extension Notification.Name {
     public static let messagesChanged = Notification.Name(rawValue: "eventMsgsChanged")
     public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
     public static let incomingMessage = Notification.Name(rawValue: "eventIncomingMsg")
+    public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "eventIncomingMsgAnyAccount")
 }
 
-public let eventIncomingMsgAnyAccount = Notification.Name(rawValue: "eventIncomingMsgAnyAccount")
 public let eventImexProgress = Notification.Name(rawValue: "eventImexProgress")
 public let eventConfigureProgress = Notification.Name(rawValue: "eventConfigureProgress")
 public let eventSecureInviterProgress = Notification.Name(rawValue: "eventSecureInviterProgress")
@@ -126,7 +126,7 @@ public class DcEventHandler {
 
         case DC_EVENT_INCOMING_MSG:
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventIncomingMsgAnyAccount, object: nil)
+                NotificationCenter.default.post(name: .incomingMessageOnAnyAccount, object: nil)
             }
             if accountId != dcAccounts.getSelected().id {
                 return

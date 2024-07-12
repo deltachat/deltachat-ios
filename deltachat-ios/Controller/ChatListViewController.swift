@@ -235,10 +235,10 @@ class ChatListViewController: UITableViewController {
                 self?.handleIncomingMessage(notification)
             }
         incomingMsgAnyAccountObserver = nc.addObserver(
-            forName: eventIncomingMsgAnyAccount,
+            forName: .incomingMessageOnAnyAccount,
             object: nil,
-            queue: nil) { [weak self] _ in
-                self?.updateAccountButton()
+            queue: nil) { [weak self] notification in
+                self?.handleIncomingMessageOnAnyAccount(notification)
             }
         chatModifiedObserver = nc.addObserver(
             forName: eventChatModified,
@@ -314,6 +314,10 @@ class ChatListViewController: UITableViewController {
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
         refreshInBg()
+    }
+
+    @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
+        updateAccountButton()
     }
 
     private func setupSubviews() {
