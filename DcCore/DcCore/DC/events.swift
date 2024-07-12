@@ -14,9 +14,12 @@ extension Notification.Name {
 
     // Contacts
     public static let contactsChanged = Notification.Name(rawValue: "eventContactsChanged")
+
+    // Progress
+    public static let importExportProgress = Notification.Name(rawValue: "eventImexProgress")
 }
 
-public let eventImexProgress = Notification.Name(rawValue: "eventImexProgress")
+
 public let eventConfigureProgress = Notification.Name(rawValue: "eventConfigureProgress")
 public let eventSecureInviterProgress = Notification.Name(rawValue: "eventSecureInviterProgress")
 
@@ -70,7 +73,7 @@ public class DcEventHandler {
 
         case DC_EVENT_IMEX_PROGRESS:
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventImexProgress, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .importExportProgress, object: nil, userInfo: [
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": Int(data1) == 1000,

@@ -155,47 +155,54 @@ class BackupTransferViewController: UIViewController {
             UIApplication.shared.isIdleTimerDisabled = false
         } else {
             UIApplication.shared.isIdleTimerDisabled = true
-            imexObserver = NotificationCenter.default.addObserver(forName: eventImexProgress, object: nil, queue: nil) { [weak self] notification in
-                guard let self, let ui = notification.userInfo, let permille = ui["progress"] as? Int else { return }
-                if self.isFinishing { return }
-                var statusLineText: String?
-                var hideQrCode = false
-
-                if permille == 0 {
-                    if self.transferState != TranferState.error {
-                        self.transferState = TranferState.error
-                        self.showLastErrorAlert("Error")
-                    }
-                    hideQrCode = true
-                } else if permille <= 350 {
-                    statusLineText = nil
-                } else if permille <= 400 {
-                    statusLineText = nil
-                } else if permille <= 450 {
-                    statusLineText = String.localized("receiver_connected")
-                    hideQrCode = true
-                } else if permille < 1000 {
-                    let percent = (permille-450)/5
-                    statusLineText = String.localized("transferring") + " \(percent)%" // TODO: use a scrollbar, show precide percentage only for receiver
-                    hideQrCode = true
-                } else if permille == 1000 {
-                    self.transferState = TranferState.success
-                    self.navigationItem.leftBarButtonItem = nil // "Cancel" no longer fits as things are done
-                    statusLineText = String.localized("done") + " 😀"
-                    hideQrCode = true
-                }
-
-                if let statusLineText = statusLineText {
-                    self.statusLine.text = statusLineText
-                }
-
-                if hideQrCode && !self.qrContentView.isHidden {
-                    self.statusLine.textAlignment = .center
-                    experimentalLine.isHidden = true
-                    self.qrContentView.isHidden = true
-                }
+            imexObserver = NotificationCenter.default.addObserver(forName: .importExportProgress, object: nil, queue: nil) { [weak self] notification in
+                self?.handleImportExportProgress(notification)
             }
         }
+    }
+
+    // MARK: - Notifications
+
+    @objc private func handleImportExportProgress(_ notification: Notification) {
+        guard let ui = notification.userInfo, let permille = ui["progress"] as? Int, isFinishing == false else { return }
+
+        var statusLineText: String?
+        var hideQrCode = false
+
+        if permille == 0 {
+            if self.transferState != TranferState.error {
+                self.transferState = TranferState.error
+                self.showLastErrorAlert("Error")
+            }
+            hideQrCode = true
+        } else if permille <= 350 {
+            statusLineText = nil
+        } else if permille <= 400 {
+            statusLineText = nil
+        } else if permille <= 450 {
+            statusLineText = String.localized("receiver_connected")
+            hideQrCode = true
+        } else if permille < 1000 {
+            let percent = (permille-450)/5
+            statusLineText = String.localized("transferring") + " \(percent)%" // TODO: use a scrollbar, show precide percentage only for receiver
+            hideQrCode = true
+        } else if permille == 1000 {
+            self.transferState = TranferState.success
+            self.navigationItem.leftBarButtonItem = nil // "Cancel" no longer fits as things are done
+            statusLineText = String.localized("done") + " 😀"
+            hideQrCode = true
+        }
+
+        if let statusLineText = statusLineText {
+            self.statusLine.text = statusLineText
+        }
+
+        if hideQrCode && !self.qrContentView.isHidden {
+            self.statusLine.textAlignment = .center
+            experimentalLine.isHidden = true
+            self.qrContentView.isHidden = true
+        }
+
     }
 
     // MARK: - setup
