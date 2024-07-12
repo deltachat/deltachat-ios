@@ -241,10 +241,10 @@ class ChatListViewController: UITableViewController {
                 self?.handleIncomingMessageOnAnyAccount(notification)
             }
         chatModifiedObserver = nc.addObserver(
-            forName: eventChatModified,
+            forName: .chatModified,
             object: nil,
-            queue: nil) { [weak self] _ in
-                self?.refreshInBg()
+            queue: nil) { [weak self] notification in
+                self?.handleChatModified(notification)
             }
         contactsChangedObserver = nc.addObserver(
             forName: eventContactsChanged,
@@ -301,6 +301,10 @@ class ChatListViewController: UITableViewController {
     }
 
     // MARK: - Notifications
+
+    @objc private func handleChatModified(_ notification: Notification) {
+        refreshInBg()
+    }
 
     @objc private func handleMessagesNoticed(_ notification: Notification) {
         refreshInBg()

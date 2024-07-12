@@ -250,20 +250,13 @@ class GroupChatDetailViewController: UIViewController {
             }
         }
         chatModifiedObserver = nc.addObserver(
-            forName: eventChatModified,
+            forName: .chatModified,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
-            guard let self else { return }
-            if let ui = notification.userInfo,
-               self.chatId == ui["chat_id"] as? Int {
-                self.updateHeader()
-                self.updateGroupMembers()
-                self.updateOptions()
-                self.tableView.reloadData()
+                self?.handleChatModified(notification)
             }
-        }
     }
-    
+
     private func removeObservers() {
         let nc = NotificationCenter.default
         if let msgChangedObserver = self.incomingMsgsObserver {
@@ -279,10 +272,21 @@ class GroupChatDetailViewController: UIViewController {
 
     // MARK: - Notifications
 
+    @objc private func handleChatModified(_ notification: Notification) {
+
+        guard let ui = notification.userInfo,
+              chatId == ui["chat_id"] as? Int else { return }
+
+        updateHeader()
+        updateGroupMembers()
+        updateOptions()
+        tableView.reloadData()
+    }
+
     @objc private func handleIncomingMessage(_ notification: Notification) {
         guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
 
-        self.updateMediaCellValues()
+        updateMediaCellValues()
     }
 
     // MARK: - update
