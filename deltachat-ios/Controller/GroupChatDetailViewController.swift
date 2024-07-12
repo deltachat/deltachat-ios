@@ -48,10 +48,6 @@ class GroupChatDetailViewController: UIViewController {
 
     // stores contactIds
     private var groupMemberIds: [Int] = []
-    
-    private var incomingMsgsObserver: NSObjectProtocol?
-    private var ephemeralTimerObserver: NSObjectProtocol?
-    private var chatModifiedObserver: NSObjectProtocol?
 
     // MARK: - subviews
 
@@ -170,6 +166,10 @@ class GroupChatDetailViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
         setupSubviews()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleChatModified(_:)), name: .chatModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleEphemeralTimerModified(_:)), name: .ephemeralTimerModified, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -206,8 +206,6 @@ class GroupChatDetailViewController: UIViewController {
         updateGroupMembers()
         updateOptions()
         tableView.reloadData()
-
-        setupObservers()
         updateHeader()
         updateMediaCellValues()
         updateEphemeralTimerCellValue()
@@ -218,11 +216,6 @@ class GroupChatDetailViewController: UIViewController {
         AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
     }
 
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        removeObservers()
-    }
-    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory !=
             traitCollection.preferredContentSizeCategory {
@@ -230,43 +223,6 @@ class GroupChatDetailViewController: UIViewController {
         }
     }
     
-    // MARK: - observers
-    private func setupObservers() {
-        let nc = NotificationCenter.default
-        incomingMsgsObserver = nc.addObserver(
-            forName: .incomingMessage,
-            object: nil,
-            queue: OperationQueue.main) { [weak self] notification in
-                self?.handleIncomingMessage(notification)
-        }
-        ephemeralTimerObserver = nc.addObserver(
-            forName: .ephemeralTimerModified,
-            object: nil,
-            queue: OperationQueue.main) { [weak self] notification in
-                self?.handleEphemeralTimerModified(notification)
-
-        }
-        chatModifiedObserver = nc.addObserver(
-            forName: .chatModified,
-            object: nil,
-            queue: OperationQueue.main) { [weak self] notification in
-                self?.handleChatModified(notification)
-            }
-    }
-
-    private func removeObservers() {
-        let nc = NotificationCenter.default
-        if let msgChangedObserver = self.incomingMsgsObserver {
-            nc.removeObserver(msgChangedObserver)
-        }
-        if let ephemeralTimerObserver = self.ephemeralTimerObserver {
-            nc.removeObserver(ephemeralTimerObserver)
-        }
-        if let chatModifiedObserver = self.chatModifiedObserver {
-            nc.removeObserver(chatModifiedObserver)
-        }
-    }
-
     // MARK: - Notifications
 
     @objc private func handleEphemeralTimerModified(_ notification: Notification) {
@@ -274,7 +230,9 @@ class GroupChatDetailViewController: UIViewController {
               let chatId = ui["chat_id"] as? Int,
               self.chatId == chatId else { return }
 
-        self.updateEphemeralTimerCellValue()
+        DispatchQueue.main.async { [weak self] in
+            self?.updateEphemeralTimerCellValue()
+        }
     }
 
     @objc private func handleChatModified(_ notification: Notification) {
@@ -282,16 +240,20 @@ class GroupChatDetailViewController: UIViewController {
         guard let ui = notification.userInfo,
               chatId == ui["chat_id"] as? Int else { return }
 
-        updateHeader()
-        updateGroupMembers()
-        updateOptions()
-        tableView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.updateHeader()
+            self?.updateGroupMembers()
+            self?.updateOptions()
+            self?.tableView.reloadData()
+        }
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
         guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
 
-        updateMediaCellValues()
+        DispatchQueue.main.async { [weak self] in
+            self?.updateMediaCellValues()
+        }
     }
 
     // MARK: - update
