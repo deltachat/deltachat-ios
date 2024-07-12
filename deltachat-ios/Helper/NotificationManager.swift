@@ -4,7 +4,7 @@ import DcCore
 import UIKit
 
 public class NotificationManager {
-    
+
     var anyIncomingMsgObserver: NSObjectProtocol?
     var incomingMsgObserver: NSObjectProtocol?
     var msgsNoticedObserver: NSObjectProtocol?
@@ -89,19 +89,22 @@ public class NotificationManager {
         }
 
         msgsNoticedObserver =  NotificationCenter.default.addObserver(
-            forName: eventMsgsNoticed,
+            forName: .messagesNoticed,
             object: nil, queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self else { return }
-            if !UserDefaults.standard.bool(forKey: "notifications_disabled"),
-               let ui = notification.userInfo,
-               let chatId = ui["chat_id"] as? Int {
-                NotificationManager.removeNotificationsForChat(dcContext: self.dcContext, chatId: chatId)
-            }
+            self?.handleMessagesNoticed(notification)
         }
     }
 
     // MARK: - Notifications
+
+    @objc private func handleMessagesNoticed(_ notification: Notification) {
+        guard UserDefaults.standard.bool(forKey: "notifications_disabled") == false,
+           let ui = notification.userInfo,
+              let chatId = ui["chat_id"] as? Int else { return }
+        
+        NotificationManager.removeNotificationsForChat(dcContext: self.dcContext, chatId: chatId)
+    }
 
     @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
         guard UserDefaults.standard.bool(forKey: "notifications_disabled") == false else { return }

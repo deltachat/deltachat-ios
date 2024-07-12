@@ -6,6 +6,8 @@ extension Notification.Name {
     public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
     public static let incomingMessage = Notification.Name(rawValue: "eventIncomingMsg")
     public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "eventIncomingMsgAnyAccount")
+    public static let messagesNoticed = Notification.Name(rawValue: "eventMsgsNoticed")
+
 }
 
 public let eventImexProgress = Notification.Name(rawValue: "eventImexProgress")
@@ -14,7 +16,6 @@ public let eventSecureInviterProgress = Notification.Name(rawValue: "eventSecure
 public let eventContactsChanged = Notification.Name(rawValue: "eventContactsChanged")
 public let eventChatModified = Notification.Name(rawValue: "eventChatModified")
 public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
-public let eventMsgsNoticed = Notification.Name(rawValue: "eventMsgsNoticed")
 public let eventConnectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
 public let eventWebxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
 public let eventWebxdcRealtimeData = Notification.Name(rawValue: "eventWebxdcRealtimeData")
@@ -98,7 +99,7 @@ public class DcEventHandler {
                 return
             }
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventMsgsNoticed, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .messagesNoticed, object: nil, userInfo: [
                     "chat_id": Int(data1),
                 ])
             }
