@@ -18,6 +18,10 @@ public class NotificationManager {
         initObservers()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     public func reloadDcContext() {
         dcContext = dcAccounts.getSelected()
     }
@@ -80,47 +84,10 @@ public class NotificationManager {
         }
 
         incomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: eventIncomingMsg,
+            forName: .incomingMessage,
             object: nil, queue: OperationQueue.main
-        ) { notification in
-            // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
-            let backgroundTask = UIApplication.shared.beginBackgroundTask {
-                // we cannot easily stop the task,
-                // however, this handler should not be called as adding the notification should not take 30 seconds.
-                logger.info("notification background task will end soon")
-            }
-
-            DispatchQueue.global().async { [weak self] in
-                guard let self else { return }
-                if let ui = notification.userInfo,
-                   let chatId = ui["chat_id"] as? Int,
-                   let messageId = ui["message_id"] as? Int,
-                   !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-
-                    let chat = self.dcContext.getChat(chatId: chatId)
-
-                    if !chat.isMuted {
-                        let msg = self.dcContext.getMessage(id: messageId)
-                        let fromContact = self.dcContext.getContact(id: msg.fromContactId)
-                        let sender = msg.getSenderName(fromContact)
-                        let content = UNMutableNotificationContent()
-                        content.title = chat.isGroup ? chat.name : sender
-                        content.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
-                        content.userInfo["account_id"] = self.dcContext.id
-                        content.userInfo["chat_id"] = chat.id
-                        content.userInfo["message_id"] = msg.id
-                        content.sound = .default
-
-                        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
-                        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                        logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
-                    }
-                }
-
-                // this line should always be reached
-                // and balances the call to `beginBackgroundTask` above.
-                UIApplication.shared.endBackgroundTask(backgroundTask)
-            }
+        ) { [weak self] notification in
+            self?.handleIncomingMessage(notification)
         }
 
         msgsNoticedObserver =  NotificationCenter.default.addObserver(
@@ -135,9 +102,47 @@ public class NotificationManager {
             }
         }
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+
+    // MARK: - Notifications
+
+    @objc private func handleIncomingMessage(_ notification: Notification) {
+        // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
+        let backgroundTask = UIApplication.shared.beginBackgroundTask {
+            // we cannot easily stop the task,
+            // however, this handler should not be called as adding the notification should not take 30 seconds.
+            logger.info("notification background task will end soon")
+        }
+
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            if let ui = notification.userInfo,
+               let chatId = ui["chat_id"] as? Int,
+               let messageId = ui["message_id"] as? Int,
+               !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+
+                let chat = self.dcContext.getChat(chatId: chatId)
+
+                if !chat.isMuted {
+                    let msg = self.dcContext.getMessage(id: messageId)
+                    let fromContact = self.dcContext.getContact(id: msg.fromContactId)
+                    let sender = msg.getSenderName(fromContact)
+                    let content = UNMutableNotificationContent()
+                    content.title = chat.isGroup ? chat.name : sender
+                    content.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
+                    content.userInfo["account_id"] = self.dcContext.id
+                    content.userInfo["chat_id"] = chat.id
+                    content.userInfo["message_id"] = msg.id
+                    content.sound = .default
+
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                    logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
+                }
+            }
+
+            // this line should always be reached
+            // and balances the call to `beginBackgroundTask` above.
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+        }
     }
-    
 }

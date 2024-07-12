@@ -274,20 +274,10 @@ class ContactDetailViewController: UITableViewController {
             }
         }
         incomingMsgsObserver = nc.addObserver(
-            forName: eventIncomingMsg,
+            forName: .incomingMessage,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
-            guard let self else { return }
-            if let ui = notification.userInfo,
-               let chatId = ui["chat_id"] as? Int {
-                if self.viewModel.getSharedChatIds().contains(chatId) {
-                    self.viewModel.updateSharedChats()
-                    if self.viewModel.chatId == chatId {
-                        self.updateCellValues()
-                    }
-                    self.tableView.reloadData()
-                }
-            }
+                self?.handleIncomingMessage(notification)
         }
     }
 
@@ -299,6 +289,19 @@ class ContactDetailViewController: UITableViewController {
         if let incomingMsgsObserver = self.incomingMsgsObserver {
             nc.removeObserver(incomingMsgsObserver)
         }
+    }
+
+    // MARK: - Notifications
+
+    @objc private func handleIncomingMessage(_ notification: Notification) {
+        guard let ui = notification.userInfo,
+              let chatId = ui["chat_id"] as? Int, viewModel.getSharedChatIds().contains(chatId) else { return }
+
+        viewModel.updateSharedChats()
+        if viewModel.chatId == chatId {
+            updateCellValues()
+        }
+        tableView.reloadData()
     }
 
     // MARK: - updates

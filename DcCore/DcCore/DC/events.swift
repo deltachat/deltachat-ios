@@ -4,9 +4,9 @@ import UserNotifications
 extension Notification.Name {
     public static let messagesChanged = Notification.Name(rawValue: "eventMsgsChanged")
     public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
+    public static let incomingMessage = Notification.Name(rawValue: "eventIncomingMsg")
 }
 
-public let eventIncomingMsg = Notification.Name(rawValue: "eventIncomingMsg")
 public let eventIncomingMsgAnyAccount = Notification.Name(rawValue: "eventIncomingMsgAnyAccount")
 public let eventImexProgress = Notification.Name(rawValue: "eventImexProgress")
 public let eventConfigureProgress = Notification.Name(rawValue: "eventConfigureProgress")
@@ -133,7 +133,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] incoming message \(data2)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventIncomingMsg, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .incomingMessage, object: nil, userInfo: [
                     "message_id": Int(data2),
                     "chat_id": Int(data1),
                 ])

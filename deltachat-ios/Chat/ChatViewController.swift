@@ -464,6 +464,22 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
+    @objc private func handleIncomingMessage(_ notification: Notification) {
+        guard let ui = notification.userInfo else { return }
+        
+        let chatId = ui["chat_id"] as? Int ?? 0
+        if chatId == 0 || chatId == self.chatId {
+            let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
+            refreshMessages()
+            updateTitle()
+            if wasLastSectionScrolledToBottom {
+                scrollToBottom(animated: true)
+            }
+            updateScrollDownButtonVisibility()
+            markSeenMessagesInVisibleArea()
+        }
+    }
+
     private func setupObservers() {
         let nc = NotificationCenter.default
         if msgChangedObserver == nil {
@@ -488,21 +504,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if incomingMsgObserver == nil {
             incomingMsgObserver = nc.addObserver(
-                forName: eventIncomingMsg,
+                forName: .incomingMessage,
                 object: nil, queue: OperationQueue.main
             ) { [weak self] notification in
-                guard let self, let ui = notification.userInfo else { return }
-                let chatId = ui["chat_id"] as? Int ?? 0
-                if chatId == 0 || chatId == self.chatId {
-                    let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
-                    refreshMessages()
-                    updateTitle()
-                    if wasLastSectionScrolledToBottom {
-                        scrollToBottom(animated: true)
-                    }
-                    updateScrollDownButtonVisibility()
-                    markSeenMessagesInVisibleArea()
-                }
+                self?.handleIncomingMessage(notification)
             }
         }
 
