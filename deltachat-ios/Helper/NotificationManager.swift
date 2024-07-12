@@ -5,17 +5,16 @@ import UIKit
 
 public class NotificationManager {
 
-    var anyIncomingMsgObserver: NSObjectProtocol?
-    var incomingMsgObserver: NSObjectProtocol?
-    var msgsNoticedObserver: NSObjectProtocol?
-
     private let dcAccounts: DcAccounts
     private var dcContext: DcContext
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
-        initObservers()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessageOnAnyAccount(_:)), name: .incomingMessageOnAnyAccount, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: .messagesNoticed, object: nil)
     }
 
     deinit {
@@ -70,29 +69,6 @@ public class NotificationManager {
             }
 
             NotificationManager.updateBadgeCounters()
-        }
-    }
-
-    private func initObservers() {
-        anyIncomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: .incomingMessageOnAnyAccount,
-            object: nil, queue: OperationQueue.main
-        ) { [weak self] notification in
-            self?.handleIncomingMessageOnAnyAccount(notification)
-        }
-
-        incomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: .incomingMessage,
-            object: nil, queue: OperationQueue.main
-        ) { [weak self] notification in
-            self?.handleIncomingMessage(notification)
-        }
-
-        msgsNoticedObserver =  NotificationCenter.default.addObserver(
-            forName: .messagesNoticed,
-            object: nil, queue: OperationQueue.main
-        ) { [weak self] notification in
-            self?.handleMessagesNoticed(notification)
         }
     }
 
