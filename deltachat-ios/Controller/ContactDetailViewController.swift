@@ -115,12 +115,12 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private var incomingMsgsObserver: NSObjectProtocol?
-    private var contactChangedObserver: NSObjectProtocol?
-
     init(dcContext: DcContext, contactId: Int) {
         self.viewModel = ContactDetailViewModel(dcContext: dcContext, contactId: contactId)
         super.init(style: .grouped)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(ContactDetailViewController.handleContactsChanged(_:)), name: .contactsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ContactDetailViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -143,18 +143,12 @@ class ContactDetailViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupObservers()
         updateHeader() // maybe contact name has been edited
         updateCellValues()
         tableView.reloadData()
 
         // see comment in GroupChatDetailViewController.viewWillAppear()
         AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeObservers()
     }
 
     // MARK: - setup and configuration
@@ -260,51 +254,30 @@ class ContactDetailViewController: UITableViewController {
         return viewModel.footerFor(section: section)
     }
 
-    // MARK: - observers
-    private func setupObservers() {
-        let nc = NotificationCenter.default
-        contactChangedObserver = nc.addObserver(
-            forName: .contactsChanged,
-            object: nil,
-            queue: OperationQueue.main) { [weak self] notification in
-                self?.handleContactsChanged(notification)
-            }
-        incomingMsgsObserver = nc.addObserver(
-            forName: .incomingMessage,
-            object: nil,
-            queue: OperationQueue.main) { [weak self] notification in
-                self?.handleIncomingMessage(notification)
-        }
-    }
-
-    private func removeObservers() {
-        let nc = NotificationCenter.default
-        if let contactChangedObserver = self.contactChangedObserver {
-            nc.removeObserver(contactChangedObserver)
-        }
-        if let incomingMsgsObserver = self.incomingMsgsObserver {
-            nc.removeObserver(incomingMsgsObserver)
-        }
-    }
-
     // MARK: - Notifications
 
     @objc private func handleContactsChanged(_ notification: Notification) {
         guard let ui = notification.userInfo,
               viewModel.contactId == ui["contact_id"] as? Int else { return }
-        
-        self.updateHeader()
-    }
 
+        DispatchQueue.main.async { [weak self] in
+            self?.updateHeader()
+        }
+    }
+    
     @objc private func handleIncomingMessage(_ notification: Notification) {
         guard let ui = notification.userInfo,
               let chatId = ui["chat_id"] as? Int, viewModel.getSharedChatIds().contains(chatId) else { return }
-
-        viewModel.updateSharedChats()
-        if viewModel.chatId == chatId {
-            updateCellValues()
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            
+            self.viewModel.updateSharedChats()
+            if self.viewModel.chatId == chatId {
+                self.updateCellValues()
+            }
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
     }
 
     // MARK: - updates
