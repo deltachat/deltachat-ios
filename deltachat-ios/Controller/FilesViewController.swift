@@ -85,8 +85,8 @@ class FilesViewController: UIViewController {
 
     private func addObservers() {
         msgChangedObserver = NotificationCenter.default.addObserver(
-            forName: .messagesChanged, object: nil, queue: nil) { [weak self] _ in
-                self?.refreshInBg()
+            forName: .messagesChanged, object: nil, queue: nil) { [weak self] notification in
+                self?.handleMessagesChanged(notification)
             }
         msgReadDelivedReactionFailedObserver = NotificationCenter.default.addObserver(
             forName: .messageReadDeliveredFailedReaction, object: nil, queue: nil) { [weak self] _ in
@@ -105,6 +105,11 @@ class FilesViewController: UIViewController {
         if let incomingMsgObserver = self.incomingMsgObserver {
             NotificationCenter.default.removeObserver(incomingMsgObserver)
         }
+    }
+
+    // MARK: - Notifications
+    @objc private func handleMessagesChanged(_ notification: Notification) {
+        refreshInBg()
     }
 
     private var inBgRefresh = false

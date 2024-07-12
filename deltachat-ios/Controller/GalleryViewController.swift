@@ -106,10 +106,11 @@ class GalleryViewController: UIViewController {
         emptyStateView.addCenteredTo(parentView: view)
     }
 
+    // MARK: - Notifications
     private func addObservers() {
         msgReadDeliveredReactionFailedObserver = NotificationCenter.default.addObserver(
-            forName: .messageReadDeliveredFailedReaction, object: nil, queue: nil) { [weak self] _ in
-                self?.refreshInBg()
+            forName: .messageReadDeliveredFailedReaction, object: nil, queue: nil) { [weak self] notification in
+                self?.handleMessagesChanged(notification)
             }
         msgChangedObserver = NotificationCenter.default.addObserver(
             forName: .messagesChanged, object: nil, queue: nil) { [weak self] _ in
@@ -131,6 +132,10 @@ class GalleryViewController: UIViewController {
         if let incomingMsgObserver {
             NotificationCenter.default.removeObserver(incomingMsgObserver)
         }
+    }
+
+    @objc private func handleMessagesChanged(_ notification: Notification) {
+        refreshInBg()
     }
 
     private var inBgRefresh = false

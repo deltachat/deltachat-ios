@@ -440,7 +440,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             refreshMessages()
             updateTitle()
             markSeenMessagesInVisibleArea()
-
         }
     }
 
