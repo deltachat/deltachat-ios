@@ -295,7 +295,7 @@ class ContactDetailViewController: UITableViewController {
         
         self.updateHeader()
     }
-    
+
     @objc private func handleIncomingMessage(_ notification: Notification) {
         guard let ui = notification.userInfo,
               let chatId = ui["chat_id"] as? Int, viewModel.getSharedChatIds().contains(chatId) else { return }

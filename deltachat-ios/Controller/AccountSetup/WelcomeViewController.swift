@@ -190,46 +190,50 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private func addProgressHudBackupListener(importByFile: Bool) {
         UIApplication.shared.isIdleTimerDisabled = true
         backupProgressObserver = NotificationCenter.default.addObserver(
-            forName: eventImexProgress,
+            forName: .importExportProgress,
             object: nil,
             queue: nil
         ) { [weak self] notification in
-            guard let self else { return }
-            if let ui = notification.userInfo {
-                if let error = ui["error"] as? Bool, error {
-                    UIApplication.shared.isIdleTimerDisabled = false
-                    if self.dcContext.isConfigured() {
-                        let accountId = self.dcContext.id
-                        _ = self.dcAccounts.remove(id: accountId)
-                        KeychainManager.deleteAccountSecret(id: accountId)
-                        _ = self.dcAccounts.add()
-                        self.dcContext = self.dcAccounts.getSelected()
-                        self.navigationItem.title = String.localized(self.canCancel ? "add_account" : "welcome_desktop")
-                    }
-                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
-                    self.stopAccessingSecurityScopedResource()
-                    self.removeBackupProgressObserver()
-                } else if let done = ui["done"] as? Bool, done {
-                    UIApplication.shared.isIdleTimerDisabled = false
-                    self.dcAccounts.startIo()
-                    self.updateProgressAlertSuccess(completion: self.handleBackupRestoreSuccess)
-                    self.stopAccessingSecurityScopedResource()
-                } else if importByFile {
-                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
-                } else {
-                    guard let permille = ui["progress"] as? Int else { return }
-                    var statusLineText = ""
-                    if permille <= 100 {
-                        statusLineText = String.localized("preparing_account")
-                    } else if permille <= 950 {
-                        let percent = ((permille-100)*100)/850
-                        statusLineText = String.localized("transferring") + " \(percent)%"
-                    } else {
-                        statusLineText = "Finishing..." // range not used, should not happen
-                    }
-                    self.updateProgressAlert(message: statusLineText)
-                }
+            self?.handleImportExportProgress(notification, importByFile: importByFile)
+        }
+    }
+
+    // MARK: - Notifications
+    @objc private func handleImportExportProgress(_ notification: Notification, importByFile: Bool) {
+        guard let ui = notification.userInfo else { return }
+
+        if let error = ui["error"] as? Bool, error {
+            UIApplication.shared.isIdleTimerDisabled = false
+            if dcContext.isConfigured() {
+                let accountId = dcContext.id
+                _ = dcAccounts.remove(id: accountId)
+                KeychainManager.deleteAccountSecret(id: accountId)
+                _ = dcAccounts.add()
+                dcContext = dcAccounts.getSelected()
+                navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
             }
+            updateProgressAlert(error: ui["errorMessage"] as? String)
+            stopAccessingSecurityScopedResource()
+            removeBackupProgressObserver()
+        } else if let done = ui["done"] as? Bool, done {
+            UIApplication.shared.isIdleTimerDisabled = false
+            dcAccounts.startIo()
+            updateProgressAlertSuccess(completion: handleBackupRestoreSuccess)
+            stopAccessingSecurityScopedResource()
+        } else if importByFile {
+            updateProgressAlertValue(value: ui["progress"] as? Int)
+        } else {
+            guard let permille = ui["progress"] as? Int else { return }
+            var statusLineText = ""
+            if permille <= 100 {
+                statusLineText = String.localized("preparing_account")
+            } else if permille <= 950 {
+                let percent = ((permille-100)*100)/850
+                statusLineText = String.localized("transferring") + " \(percent)%"
+            } else {
+                statusLineText = "Finishing..." // range not used, should not happen
+            }
+            updateProgressAlert(message: statusLineText)
         }
     }
 }
