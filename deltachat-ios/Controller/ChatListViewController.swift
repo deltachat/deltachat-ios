@@ -181,7 +181,7 @@ class ChatListViewController: UITableViewController {
             tableView.scrollToTop()
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startTimer()
@@ -195,26 +195,26 @@ class ChatListViewController: UITableViewController {
     // MARK: - setup
     private func addObservers() {
         let nc = NotificationCenter.default
-        
-        connectivityChangedObserver = nc.addObserver(forName: eventConnectivityChanged,
-                                                     object: nil,
-                                                     queue: nil) { [weak self] _ in
-                                                        self?.updateTitle()
-                                                     }
 
+        connectivityChangedObserver = nc.addObserver(forName: .connectivityChanged,
+                                                     object: nil,
+                                                     queue: nil) { [weak self] notification in
+            self?.connectivityChanged(notification)
+        }
+        
         msgChangedSearchResultObserver = nc.addObserver(
             forName: .messagesChanged,
             object: nil,
             queue: nil) { [weak self] notification in
                 self?.handleMessagesChanged(notification)
-        }
+            }
 
         msgChangedObserver = nc.addObserver(
             forName: .messagesChanged,
             object: nil,
             queue: nil) { [weak self] notification in
                 self?.handleMessagesChanged(notification)
-        }
+            }
 
         msgReadDeliveredReactionFailedObserver = nc.addObserver(
             forName: .messageReadDeliveredFailedReaction,
@@ -301,6 +301,10 @@ class ChatListViewController: UITableViewController {
     }
 
     // MARK: - Notifications
+
+    @objc private func connectivityChanged(_ notification: Notification) {
+        updateTitle()
+    }
 
     @objc private func handleContactsChanged(_ notification: Notification) {
         refreshInBg()
