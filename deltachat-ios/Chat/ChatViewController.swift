@@ -794,7 +794,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
         messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
         messageInputBar.setStackViewItems([], forStack: .top, animated: false)
-        messageInputBar.onScrollDownButtonPressed = scrollToBottom
+        messageInputBar.onScrollDownButtonPressed = { [weak self] in
+            self?.scrollToBottom()
+        }
         inputAccessoryView = messageInputBar
     }
 
@@ -1250,7 +1252,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         configureInputBarItems()
         messageInputBar.inputTextView.delegate = self
         messageInputBar.inputTextView.imagePasteDelegate = self
-        messageInputBar.onScrollDownButtonPressed = scrollToBottom
+        messageInputBar.onScrollDownButtonPressed = { [weak self] in
+            self?.scrollToBottom()
+        }
         messageInputBar.inputTextView.setDropInteractionDelegate(delegate: self)
         messageInputBar.isTranslucent = true
     }
