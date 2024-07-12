@@ -24,8 +24,6 @@ internal final class SettingsViewController: UITableViewController {
     private var dcContext: DcContext
     internal let dcAccounts: DcAccounts
 
-    private var connectivityChangedObserver: NSObjectProtocol?
-
     // MARK: - cells
     private lazy var profileCell: ContactCell = {
         let cell = ContactCell(style: .default, reuseIdentifier: nil)
@@ -149,6 +147,10 @@ internal final class SettingsViewController: UITableViewController {
         self.dcContext = dcAccounts.getSelected()
         self.dcAccounts = dcAccounts
         super.init(style: .grouped)
+
+        // set connectivity changed observer before we acutally init `connectivityCell.detailTextLabel` in `updateCells()`,
+        // otherwise, we may miss events and the label is not correct.
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.handleConnectivityChanged(_:)), name: .connectivityChanged, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -165,23 +167,8 @@ internal final class SettingsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let nc = NotificationCenter.default
-        // set connectivity changed observer before we acutally init `connectivityCell.detailTextLabel` in `updateCells()`,
-        // otherwise, we may miss events and the label is not correct.
-        connectivityChangedObserver = nc.addObserver(forName: .connectivityChanged,
-                                                     object: nil,
-                                                     queue: nil) { [weak self] notification in
-            self?.handleConnectivityChanged(notification)
-        }
 
         updateCells()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        if let connectivityChangedObserver = self.connectivityChangedObserver {
-            NotificationCenter.default.removeObserver(connectivityChangedObserver)
-        }
     }
 
     // MARK: - UITableViewDelegate + UITableViewDatasource
@@ -237,8 +224,12 @@ internal final class SettingsViewController: UITableViewController {
     // MARK: - Notifications
 
     @objc private func handleConnectivityChanged(_ notification: Notification) {
-        connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
-                                                                               connectedString: String.localized("connectivity_connected"))
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+
+            self.connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
+                                                                                   connectedString: String.localized("connectivity_connected"))
+        }
     }
 
     // MARK: - actions
