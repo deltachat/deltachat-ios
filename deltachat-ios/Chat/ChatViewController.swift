@@ -11,11 +11,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private var dcContext: DcContext
     private var messageIds: [Int] = []
-    private var msgChangedObserver: NSObjectProtocol?
-    private var msgReadDeliveredReactionFailedObserver: NSObjectProtocol?
-    private var incomingMsgObserver: NSObjectProtocol?
-    private var chatModifiedObserver: NSObjectProtocol?
-    private var ephemeralTimerModifiedObserver: NSObjectProtocol?
     private var isInitial = true
     private var isVisibleToUser: Bool = false
     private var keepKeyboard: Bool = false
@@ -197,6 +192,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
+
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMsgReadDeliveredReactionFailed(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleChatModified(_:)), name: .chatModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleEphemeralTimerModified(_:)), name: .ephemeralTimerModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
+
     }
 
     required init?(coder _: NSCoder) {
@@ -408,64 +412,72 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         if parent == nil {
-            removeObservers()
+            // going back to previous screen
             draft.save(context: dcContext)
             keyboardManager = nil
-        } else {
-            setupObservers()
         }
     }
 
     // MARK: - Notifications
 
     @objc private func handleEphemeralTimerModified(_ notification: Notification) {
-        updateTitle()
+        DispatchQueue.main.async { [weak self] in
+            self?.updateTitle()
+        }
     }
 
     @objc private func handleChatModified(_ notification: Notification) {
         guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
 
-        dcChat = dcContext.getChat(chatId: chatId)
-        if dcChat.canSend {
-            if messageInputBar.isHidden {
-                configureUIForWriting()
-                messageInputBar.isHidden = false
-                becomeFirstResponder()
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+
+            dcChat = self.dcContext.getChat(chatId: chatId)
+            if dcChat.canSend {
+                if self.messageInputBar.isHidden {
+                    self.configureUIForWriting()
+                    self.messageInputBar.isHidden = false
+                    self.becomeFirstResponder()
+                }
+            } else if dcChat.isProtectionBroken {
+                self.configureContactRequestBar()
+                self.messageInputBar.isHidden = false
+                self.becomeFirstResponder()
+            } else if !dcChat.isContactRequest {
+                if !self.messageInputBar.isHidden {
+                    self.messageInputBar.isHidden = true
+                }
             }
-        } else if dcChat.isProtectionBroken {
-            configureContactRequestBar()
-            messageInputBar.isHidden = false
-            becomeFirstResponder()
-        } else if !dcChat.isContactRequest {
-            if !messageInputBar.isHidden {
-                messageInputBar.isHidden = true
-            }
+            self.updateTitle()
         }
-        updateTitle()
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
-
         let chatId = ui["chat_id"] as? Int ?? 0
-        if chatId == 0 || chatId == self.chatId {
-            let messageId = ui["message_id"] as? Int ?? 0
-            if messageId > 0 {
-                let msg = self.dcContext.getMessage(id: messageId)
-                if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
-                    draft.draftMsg = msg
-                    configureDraftArea(draft: draft, animated: false)
-                    return
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+
+            if chatId == 0 || chatId == self.chatId {
+                let messageId = ui["message_id"] as? Int ?? 0
+                if messageId > 0 {
+                    let msg = self.dcContext.getMessage(id: messageId)
+                    if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
+                        self.draft.draftMsg = msg
+                        self.configureDraftArea(draft: draft, animated: false)
+                        return
+                    }
                 }
-            }
 
-            if isLastRowScrolledToBottom() {
-                scrollToBottom(animated: true)
-            }
+                if self.isLastRowScrolledToBottom() {
+                    self.scrollToBottom(animated: true)
+                }
 
-            refreshMessages()
-            updateTitle()
-            markSeenMessagesInVisibleArea()
+                self.refreshMessages()
+                self.updateTitle()
+                self.markSeenMessagesInVisibleArea()
+            }
         }
     }
 
@@ -473,120 +485,45 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         guard let ui = notification.userInfo else { return }
 
         let chatId = ui["chat_id"] as? Int ?? 0
-        if chatId == 0 || chatId == self.chatId {
-            let messageId = ui["message_id"] as? Int ?? 0
-            if messageId > 0 {
-                let msg = self.dcContext.getMessage(id: messageId)
-                if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
-                    draft.draftMsg = msg
-                    configureDraftArea(draft: draft, animated: false)
-                    return
-                }
-            }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
 
-            refreshMessages()
-            updateTitle()
-            markSeenMessagesInVisibleArea()
+            if chatId == 0 || chatId == self.chatId {
+                let messageId = ui["message_id"] as? Int ?? 0
+                if messageId > 0 {
+                    let msg = self.dcContext.getMessage(id: messageId)
+                    if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
+                        self.draft.draftMsg = msg
+                        self.configureDraftArea(draft: draft, animated: false)
+                        return
+                    }
+                }
+
+                self.refreshMessages()
+                self.updateTitle()
+                self.markSeenMessagesInVisibleArea()
+            }
         }
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
         
-        let chatId = ui["chat_id"] as? Int ?? 0
-        if chatId == 0 || chatId == self.chatId {
-            let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
-            refreshMessages()
-            updateTitle()
-            if wasLastSectionScrolledToBottom {
-                scrollToBottom(animated: true)
-            }
-            updateScrollDownButtonVisibility()
-            markSeenMessagesInVisibleArea()
-        }
-    }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
 
-    private func setupObservers() {
-        let nc = NotificationCenter.default
-        if msgChangedObserver == nil {
-            msgChangedObserver = nc.addObserver(
-                forName: .messagesChanged,
-                object: nil,
-                queue: OperationQueue.main
-            ) { [weak self] notification in
-                self?.handleMessagesChanged(notification)
+            let chatId = ui["chat_id"] as? Int ?? 0
+            if chatId == 0 || chatId == self.chatId {
+                let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
+                refreshMessages()
+                updateTitle()
+                if wasLastSectionScrolledToBottom {
+                    scrollToBottom(animated: true)
+                }
+                updateScrollDownButtonVisibility()
+                markSeenMessagesInVisibleArea()
             }
         }
-
-        if msgReadDeliveredReactionFailedObserver == nil {
-            msgReadDeliveredReactionFailedObserver = nc.addObserver(
-                forName: .messageReadDeliveredFailedReaction,
-                object: nil,
-                queue: OperationQueue.main
-            ) { [weak self] notification in
-                self?.handleMsgReadDeliveredReactionFailed(notification)
-            }
-        }
-
-        if incomingMsgObserver == nil {
-            incomingMsgObserver = nc.addObserver(
-                forName: .incomingMessage,
-                object: nil, queue: OperationQueue.main
-            ) { [weak self] notification in
-                self?.handleIncomingMessage(notification)
-            }
-        }
-
-        if chatModifiedObserver == nil {
-            chatModifiedObserver = nc.addObserver(
-                forName: .chatModified,
-                object: nil,
-                queue: OperationQueue.main
-            ) { [weak self] notification in
-                self?.handleChatModified(notification)
-            }
-        }
-
-        if ephemeralTimerModifiedObserver == nil {
-            ephemeralTimerModifiedObserver = nc.addObserver(
-                forName: .ephemeralTimerModified,
-                object: nil, queue: OperationQueue.main
-            ) { [weak self] notification in
-                self?.handleEphemeralTimerModified(notification)
-            }
-        }
-
-        nc.addObserver(self,
-                       selector: #selector(applicationDidBecomeActive(_:)),
-                       name: UIApplication.didBecomeActiveNotification,
-                       object: nil)
-
-        nc.addObserver(self,
-                       selector: #selector(applicationWillResignActive(_:)),
-                       name: UIApplication.willResignActiveNotification,
-                       object: nil)
-    }
-    
-    private func removeObservers() {
-        let nc = NotificationCenter.default
-        if let msgChangedObserver {
-            nc.removeObserver(msgChangedObserver)
-        }
-        if let msgReadDeliveredReactionFailedObserver {
-            nc.removeObserver(msgReadDeliveredReactionFailedObserver)
-        }
-        if let incomingMsgObserver {
-            nc.removeObserver(incomingMsgObserver)
-        }
-        if let chatModifiedObserver {
-            nc.removeObserver(chatModifiedObserver)
-        }
-        if let ephemeralTimerModifiedObserver {
-            nc.removeObserver(ephemeralTimerModifiedObserver)
-        }
-
-        nc.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-        nc.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -1131,14 +1068,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     
     private func scrollToBottom(animated: Bool, focusOnVoiceOver: Bool = false) {
         if !messageIds.isEmpty {
-            DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
-                let numberOfRows = self.tableView.numberOfRows(inSection: 0)
-                if numberOfRows > 0 {
-                    self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
-                                     animated: animated,
-                                     focusWithVoiceOver: focusOnVoiceOver)
-                }
+            let numberOfRows = self.tableView.numberOfRows(inSection: 0)
+            if numberOfRows > 0 {
+                self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
+                                 animated: animated,
+                                 focusWithVoiceOver: focusOnVoiceOver)
             }
         }
     }
@@ -1436,7 +1370,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                           actionHandler: { [weak self] _ in
                             guard let self else { return }
                             // remove message observers early to avoid careless calls to dcContext methods
-                            self.removeObservers()
                             self.dcContext.deleteChat(chatId: self.chatId)
                             self.navigationController?.popViewController(animated: true)
                           })
