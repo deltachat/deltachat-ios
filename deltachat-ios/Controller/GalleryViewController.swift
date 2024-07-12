@@ -10,10 +10,6 @@ class GalleryViewController: UIViewController {
     private var galleryItemCache: [Int: GalleryItem] = [:]
     private let gridDefaultSpacing: CGFloat = 5
 
-    private var msgChangedObserver: NSObjectProtocol?
-    private var msgReadDeliveredReactionFailedObserver: NSObjectProtocol?
-    private var incomingMsgObserver: NSObjectProtocol?
-
     private lazy var gridLayout: GridCollectionViewFlowLayout = {
         let layout = GridCollectionViewFlowLayout()
         layout.minimumLineSpacing = gridDefaultSpacing
@@ -53,6 +49,10 @@ class GalleryViewController: UIViewController {
         self.dcContext = context
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.handleMessageReadDeliveredFailedReaction(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -69,14 +69,6 @@ class GalleryViewController: UIViewController {
         }
     }
 
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        if parent == nil {
-            removeObservers()
-        } else {
-            addObservers()
-        }
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         if !isOnScreen() {
@@ -107,31 +99,9 @@ class GalleryViewController: UIViewController {
     }
 
     // MARK: - Notifications
-    private func addObservers() {
-        msgReadDeliveredReactionFailedObserver = NotificationCenter.default.addObserver(
-            forName: .messageReadDeliveredFailedReaction, object: nil, queue: nil) { [weak self] notification in
-                self?.handleMessagesChanged(notification)
-            }
-        msgChangedObserver = NotificationCenter.default.addObserver(
-            forName: .messagesChanged, object: nil, queue: nil) { [weak self] _ in
-                self?.refreshInBg()
-            }
-        incomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: .incomingMessage, object: nil, queue: nil) { [weak self] notification in
-                self?.handleIncomingMessage(notification)
-            }
-    }
 
-    private func removeObservers() {
-        if let msgChangedObserver {
-            NotificationCenter.default.removeObserver(msgChangedObserver)
-        }
-        if let msgReadDeliveredReactionFailedObserver {
-            NotificationCenter.default.removeObserver(msgReadDeliveredReactionFailedObserver)
-        }
-        if let incomingMsgObserver {
-            NotificationCenter.default.removeObserver(incomingMsgObserver)
-        }
+    @objc private func handleMessageReadDeliveredFailedReaction(_ notification: Notification) {
+        refreshInBg()
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
