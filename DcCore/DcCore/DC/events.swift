@@ -18,7 +18,6 @@ extension Notification.Name {
     // Progress
     public static let importExportProgress = Notification.Name(rawValue: "eventImexProgress")
     public static let configurationProgress = Notification.Name(rawValue: "eventConfigureProgress")
-    public static let secureJoinInviterProgress = Notification.Name(rawValue: "secureJoinInviterProgress")
 
     public static let connectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
 }
@@ -144,19 +143,6 @@ public class DcEventHandler {
                 NotificationCenter.default.post(name: .incomingMessage, object: nil, userInfo: [
                     "message_id": Int(data2),
                     "chat_id": Int(data1),
-                ])
-            }
-
-        case DC_EVENT_SECUREJOIN_INVITER_PROGRESS:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
-            logger.info("📡[\(accountId)] securejoin inviter: \(data1)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .secureJoinInviterProgress, object: nil, userInfo: [
-                    "progress": Int(data2),
-                    "error": Int(data2) == 0,
-                    "done": Int(data2) == 1000,
                 ])
             }
 
