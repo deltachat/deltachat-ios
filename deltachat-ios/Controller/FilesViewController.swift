@@ -12,10 +12,6 @@ class FilesViewController: UIViewController {
     private let dcContext: DcContext
     private let chatId: Int
 
-    private var msgChangedObserver: NSObjectProtocol?
-    private var msgReadDelivedReactionFailedObserver: NSObjectProtocol?
-    private var incomingMsgObserver: NSObjectProtocol?
-
     private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.register(DocumentGalleryFileCell.self, forCellReuseIdentifier: DocumentGalleryFileCell.reuseIdentifier)
@@ -47,6 +43,11 @@ class FilesViewController: UIViewController {
         self.type3 = type3
         super.init(nibName: nil, bundle: nil)
         self.title = title
+
+        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleMessageReadDeliveredFailedReaction(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
+
     }
 
     required init?(coder: NSCoder) {
@@ -62,15 +63,6 @@ class FilesViewController: UIViewController {
         }
     }
 
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        if parent == nil {
-            removeObservers()
-        } else {
-            addObservers()
-        }
-    }
-
     // MARK: - setup
     private func setupSubviews() {
         view.addSubview(tableView)
@@ -83,32 +75,16 @@ class FilesViewController: UIViewController {
         emptyStateView.addCenteredTo(parentView: view)
     }
 
-    private func addObservers() {
-        msgChangedObserver = NotificationCenter.default.addObserver(
-            forName: .messagesChanged, object: nil, queue: nil) { [weak self] notification in
-                self?.handleMessagesChanged(notification)
-            }
-        msgReadDelivedReactionFailedObserver = NotificationCenter.default.addObserver(
-            forName: .messageReadDeliveredFailedReaction, object: nil, queue: nil) { [weak self] _ in
-                self?.refreshInBg()
-            }
-        incomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: .incomingMessage, object: nil, queue: nil) { [weak self] _ in
-                self?.refreshInBg()
-            }
-    }
-
-    private func removeObservers() {
-        if let msgChangedObserver = self.msgChangedObserver {
-            NotificationCenter.default.removeObserver(msgChangedObserver)
-        }
-        if let incomingMsgObserver = self.incomingMsgObserver {
-            NotificationCenter.default.removeObserver(incomingMsgObserver)
-        }
-    }
-
     // MARK: - Notifications
     @objc private func handleMessagesChanged(_ notification: Notification) {
+        refreshInBg()
+    }
+
+    @objc private func handleMessageReadDeliveredFailedReaction(_ notification: Notification) {
+        refreshInBg()
+    }
+
+    @objc private func handleIncomingMessage(_ notification: Notification) {
         refreshInBg()
     }
 
