@@ -418,6 +418,28 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     // MARK: - Notifications
 
+    @objc private func handleChatModified(_ notification: Notification) {
+        guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
+
+        dcChat = dcContext.getChat(chatId: chatId)
+        if dcChat.canSend {
+            if messageInputBar.isHidden {
+                configureUIForWriting()
+                messageInputBar.isHidden = false
+                becomeFirstResponder()
+            }
+        } else if dcChat.isProtectionBroken {
+            configureContactRequestBar()
+            messageInputBar.isHidden = false
+            becomeFirstResponder()
+        } else if !dcChat.isContactRequest {
+            if !messageInputBar.isHidden {
+                messageInputBar.isHidden = true
+            }
+        }
+        updateTitle()
+    }
+
     @objc private func handleMessagesChanged(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
 
@@ -513,30 +535,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if chatModifiedObserver == nil {
             chatModifiedObserver = nc.addObserver(
-                forName: eventChatModified,
+                forName: .chatModified,
                 object: nil,
                 queue: OperationQueue.main
             ) { [weak self] notification in
-                guard let self, let ui = notification.userInfo else { return }
-                if self.chatId == ui["chat_id"] as? Int {
-                    self.dcChat = self.dcContext.getChat(chatId: self.chatId)
-                    if self.dcChat.canSend {
-                        if self.messageInputBar.isHidden {
-                            self.configureUIForWriting()
-                            self.messageInputBar.isHidden = false
-                            self.becomeFirstResponder()
-                        }
-                    } else if self.dcChat.isProtectionBroken {
-                        self.configureContactRequestBar()
-                        self.messageInputBar.isHidden = false
-                        self.becomeFirstResponder()
-                    } else if !self.dcChat.isContactRequest {
-                        if !self.messageInputBar.isHidden {
-                            self.messageInputBar.isHidden = true
-                        }
-                    }
-                    self.updateTitle()
-                }
+                self?.handleChatModified(notification)
             }
         }
 

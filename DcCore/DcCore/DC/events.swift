@@ -2,11 +2,14 @@ import UIKit
 import UserNotifications
 
 extension Notification.Name {
+    // Messages
     public static let messagesChanged = Notification.Name(rawValue: "eventMsgsChanged")
     public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
     public static let incomingMessage = Notification.Name(rawValue: "eventIncomingMsg")
     public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "eventIncomingMsgAnyAccount")
     public static let messagesNoticed = Notification.Name(rawValue: "eventMsgsNoticed")
+
+    public static let chatModified = Notification.Name(rawValue: "eventChatModified")
 
 }
 
@@ -14,7 +17,7 @@ public let eventImexProgress = Notification.Name(rawValue: "eventImexProgress")
 public let eventConfigureProgress = Notification.Name(rawValue: "eventConfigureProgress")
 public let eventSecureInviterProgress = Notification.Name(rawValue: "eventSecureInviterProgress")
 public let eventContactsChanged = Notification.Name(rawValue: "eventContactsChanged")
-public let eventChatModified = Notification.Name(rawValue: "eventChatModified")
+
 public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
 public let eventConnectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
 public let eventWebxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
@@ -110,7 +113,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] chat modified: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventChatModified, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .chatModified, object: nil, userInfo: [
                     "chat_id": Int(data1),
                 ])
             }
