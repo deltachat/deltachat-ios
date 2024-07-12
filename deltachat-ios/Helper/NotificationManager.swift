@@ -75,12 +75,10 @@ public class NotificationManager {
 
     private func initObservers() {
         anyIncomingMsgObserver = NotificationCenter.default.addObserver(
-            forName: eventIncomingMsgAnyAccount,
+            forName: .incomingMessageOnAnyAccount,
             object: nil, queue: OperationQueue.main
-        ) { _ in
-            if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-                NotificationManager.updateBadgeCounters()
-            }
+        ) { [weak self] notification in
+            self?.handleIncomingMessageOnAnyAccount(notification)
         }
 
         incomingMsgObserver = NotificationCenter.default.addObserver(
@@ -104,6 +102,12 @@ public class NotificationManager {
     }
 
     // MARK: - Notifications
+
+    @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
+        guard UserDefaults.standard.bool(forKey: "notifications_disabled") == false else { return }
+
+        NotificationManager.updateBadgeCounters()
+    }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
