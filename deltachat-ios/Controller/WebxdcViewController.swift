@@ -15,10 +15,6 @@ class WebxdcViewController: WebViewViewController {
     let INTERNALSCHEMA = "webxdc"
     
     var messageId: Int
-    var msgChangedObserver: NSObjectProtocol?
-    var msgReadDeliveredReactionFailedObserver: NSObjectProtocol?
-    var webxdcUpdateObserver: NSObjectProtocol?
-    var webxdcRealtimeDataObserver: NSObjectProtocol?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
     private var allowInternet: Bool = false
@@ -280,6 +276,11 @@ class WebxdcViewController: WebViewViewController {
         self.messageId = messageId
         self.shortcutManager = ShortcutManager(dcContext: dcContext, messageId: messageId)
         super.init(dcContext: dcContext)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleMessageReadDeliveredReactionFailed(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcStatusUpdate(_:)), name: .webxdcStatusUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcRealtimeDataReceived(_:)), name: .webxdcRealtimeDataReceived, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -300,11 +301,6 @@ class WebxdcViewController: WebViewViewController {
         super.willMove(toParent: parent)
         let willBeRemoved = parent == nil
         navigationController?.interactivePopGestureRecognizer?.isEnabled = willBeRemoved
-        if willBeRemoved {
-            removeObservers()
-        } else {
-            addObservers()
-        }
     }
 
     func refreshWebxdcInfo() {
@@ -323,62 +319,6 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
-    private func addObservers() {
-        let nc = NotificationCenter.default
-        webxdcUpdateObserver = nc.addObserver(
-            forName: .webxdcStatusUpdate,
-            object: nil,
-            queue: OperationQueue.main
-        ) { [weak self] notification in
-            self?.handleWebxdcStatusUpdate(notification)
-        }
-
-        webxdcRealtimeDataObserver = nc.addObserver(
-            forName: .webxdcRealtimeDataReceived,
-            object: nil,
-            queue: OperationQueue.main
-        ) { [weak self] notification in
-            self?.handleWebxdcRealtimeDataReceived(notification)
-        }
-
-        msgChangedObserver = nc.addObserver(
-            forName: .messagesChanged,
-            object: nil,
-            queue: OperationQueue.main
-        ) { [weak self] notification in
-            self?.handleMessagesChanged(notification)
-        }
-
-        msgReadDeliveredReactionFailedObserver = nc.addObserver(
-            forName: .messageReadDeliveredFailedReaction,
-            object: nil,
-            queue: OperationQueue.main
-        ) { [weak self] notification in
-            guard let self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
-            if messageId == self.messageId {
-                self.refreshWebxdcInfo()
-            }
-        }
-
-    }
-    
-    private func removeObservers() {
-        let nc = NotificationCenter.default
-        if let webxdcUpdateObserver = webxdcUpdateObserver {
-            nc.removeObserver(webxdcUpdateObserver)
-        }
-        if let webxdcRealtimeDataObserver {
-            nc.removeObserver(webxdcRealtimeDataObserver)
-        }
-        if let msgChangedObserver {
-            nc.removeObserver(msgChangedObserver)
-        }
-        if let msgReadDeliveredReactionFailedObserver {
-            nc.removeObserver(msgReadDeliveredReactionFailedObserver)
-        }
-        shortcutManager = nil
-    }
-
     // MARK: - Notifications
 
     @objc private func handleWebxdcRealtimeDataReceived(_ notification: Notification) {
@@ -390,14 +330,19 @@ class WebxdcViewController: WebViewViewController {
 
         let byteArray = [UInt8](data)
         let commaSeparatedString = byteArray.map { String($0) }.joined(separator: ",")
-        webView.evaluateJavaScript("window.__webxdcRealtimeData([" + commaSeparatedString + "])")
+
+        DispatchQueue.main.async { [weak self] in
+            self?.webView.evaluateJavaScript("window.__webxdcRealtimeData([" + commaSeparatedString + "])")
+        }
     }
 
     @objc private func handleWebxdcStatusUpdate(_ notification: Notification) {
         guard let messageId = notification.userInfo?["message_id"] as? Int,
               messageId == self.messageId else { return }
 
-        self.updateWebxdc()
+        DispatchQueue.main.async { [weak self] in
+            self?.updateWebxdc()
+        }
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
@@ -405,7 +350,19 @@ class WebxdcViewController: WebViewViewController {
               messageId == self.messageId
         else { return }
 
-        self.refreshWebxdcInfo()
+        DispatchQueue.main.async { [weak self] in
+            self?.refreshWebxdcInfo()
+        }
+    }
+
+    @objc private func handleMessageReadDeliveredReactionFailed(_ notification: Notification) {
+        guard let messageId = notification.userInfo?["message_id"] as? Int,
+              messageId == self.messageId
+        else { return }
+
+        DispatchQueue.main.async { [weak self] in
+            self?.refreshWebxdcInfo()
+        }
     }
 
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
