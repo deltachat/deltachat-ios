@@ -264,15 +264,11 @@ class ContactDetailViewController: UITableViewController {
     private func setupObservers() {
         let nc = NotificationCenter.default
         contactChangedObserver = nc.addObserver(
-            forName: eventContactsChanged,
+            forName: .contactsChanged,
             object: nil,
             queue: OperationQueue.main) { [weak self] notification in
-            guard let self else { return }
-            if let ui = notification.userInfo,
-               self.viewModel.contactId == ui["contact_id"] as? Int {
-                self.updateHeader()
+                self?.handleContactsChanged(notification)
             }
-        }
         incomingMsgsObserver = nc.addObserver(
             forName: .incomingMessage,
             object: nil,
@@ -293,6 +289,13 @@ class ContactDetailViewController: UITableViewController {
 
     // MARK: - Notifications
 
+    @objc private func handleContactsChanged(_ notification: Notification) {
+        guard let ui = notification.userInfo,
+              viewModel.contactId == ui["contact_id"] as? Int else { return }
+        
+        self.updateHeader()
+    }
+    
     @objc private func handleIncomingMessage(_ notification: Notification) {
         guard let ui = notification.userInfo,
               let chatId = ui["chat_id"] as? Int, viewModel.getSharedChatIds().contains(chatId) else { return }
