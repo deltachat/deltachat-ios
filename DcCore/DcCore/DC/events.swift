@@ -17,10 +17,11 @@ extension Notification.Name {
 
     // Progress
     public static let importExportProgress = Notification.Name(rawValue: "eventImexProgress")
+    public static let configurationProgress = Notification.Name(rawValue: "eventConfigureProgress")
+
 }
 
 
-public let eventConfigureProgress = Notification.Name(rawValue: "eventConfigureProgress")
 public let eventSecureInviterProgress = Notification.Name(rawValue: "eventSecureInviterProgress")
 
 public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
@@ -58,7 +59,7 @@ public class DcEventHandler {
             DispatchQueue.main.async {
                 let done = Int(data1) == 1000
 
-                NotificationCenter.default.post(name: eventConfigureProgress, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .configurationProgress, object: nil, userInfo: [
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": done,

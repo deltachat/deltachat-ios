@@ -479,7 +479,14 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
-        addProgressHudLoginListener()
+        progressObserver = NotificationCenter.default.addObserver(
+            forName: .configurationProgress,
+            object: nil,
+            queue: nil
+        ) { [weak self] notification in
+            self?.handleConfigurationProgress(notification)
+        }
+
         resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
         dcContext.addr = emailAddress
         dcContext.mailPw = password
@@ -555,32 +562,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     private func launchOAuthBrowserWindow(url: URL) {
         UIApplication.shared.open(url) // this opens safari as seperate app
-    }
-
-    private func addProgressHudLoginListener() {
-        progressObserver = NotificationCenter.default.addObserver(
-            forName: eventConfigureProgress,
-            object: nil,
-            queue: nil
-        ) { notification in
-            if let ui = notification.userInfo {
-                if let error = ui["error"] as? Bool, error {
-                    self.dcAccounts.startIo()
-                    var errorMessage = ui["errorMessage"] as? String
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        if let reachability = appDelegate.reachability, reachability.connection == .unavailable {
-                            errorMessage = String.localized("login_error_no_internet_connection")
-                        }
-                    }
-                    self.updateProgressAlert(error: errorMessage)
-                } else if let done = ui["done"] as? Bool, done {
-                    self.dcAccounts.startIo()
-                    self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
-                } else {
-                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
-                }
-            }
-        }
     }
 
     private func evaluateAdvancedSetup() {
@@ -664,6 +645,28 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     @objc private func emailCellEdited() {
         if providerInfoShowing {
             updateProviderInfo()
+        }
+    }
+
+    // MARK: - Notifications
+
+    @objc private func handleConfigurationProgress(_ notification: Notification) {
+        guard let ui = notification.userInfo else { return }
+
+        if let error = ui["error"] as? Bool, error {
+            self.dcAccounts.startIo()
+            var errorMessage = ui["errorMessage"] as? String
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                if let reachability = appDelegate.reachability, reachability.connection == .unavailable {
+                    errorMessage = String.localized("login_error_no_internet_connection")
+                }
+            }
+            self.updateProgressAlert(error: errorMessage)
+        } else if let done = ui["done"] as? Bool, done {
+            self.dcAccounts.startIo()
+            self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
+        } else {
+            self.updateProgressAlertValue(value: ui["progress"] as? Int)
         }
     }
 
