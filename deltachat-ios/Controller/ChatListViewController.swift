@@ -8,16 +8,6 @@ class ChatListViewController: UITableViewController {
     var isArchive: Bool
     private var accountSwitchTransitioningDelegate: PartialScreenModalTransitioningDelegate!
 
-    private var msgChangedObserver: NSObjectProtocol?
-    private var msgReadDeliveredReactionFailedObserver: NSObjectProtocol?
-    private var msgsNoticedObserver: NSObjectProtocol?
-    private var incomingMsgObserver: NSObjectProtocol?
-    private var incomingMsgAnyAccountObserver: NSObjectProtocol?
-    private var chatModifiedObserver: NSObjectProtocol?
-    private var contactsChangedObserver: NSObjectProtocol?
-    private var connectivityChangedObserver: NSObjectProtocol?
-    private var msgChangedSearchResultObserver: NSObjectProtocol?
-
     private weak var timer: Timer?
 
     private lazy var titleView: UILabel = {
@@ -115,6 +105,17 @@ class ChatListViewController: UITableViewController {
             // this needs more love :)
             self.view.backgroundColor = UIColor.systemBackground
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessageOnAnyAccount(_:)), name: .incomingMessageOnAnyAccount, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleConnectivityChanged(_:)), name: .connectivityChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleContactsChanged(_:)), name: .contactsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMsgReadDeliveredReactionFailed(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMessagesNoticed(_:)), name: .messagesNoticed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleChatModified(_:)), name: .chatModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -160,15 +161,6 @@ class ChatListViewController: UITableViewController {
         }
     }
 
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        if parent == nil {
-            removeObservers()
-        } else {
-            addObservers()
-        }
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -192,121 +184,19 @@ class ChatListViewController: UITableViewController {
         stopTimer()
     }
 
-    // MARK: - setup
-    private func addObservers() {
-        let nc = NotificationCenter.default
-
-        connectivityChangedObserver = nc.addObserver(forName: .connectivityChanged,
-                                                     object: nil,
-                                                     queue: nil) { [weak self] notification in
-            self?.connectivityChanged(notification)
-        }
-        
-        msgChangedSearchResultObserver = nc.addObserver(
-            forName: .messagesChanged,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                self?.handleMessagesChanged(notification)
-            }
-
-        msgChangedObserver = nc.addObserver(
-            forName: .messagesChanged,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                self?.handleMessagesChanged(notification)
-            }
-
-        msgReadDeliveredReactionFailedObserver = nc.addObserver(
-            forName: .messageReadDeliveredFailedReaction,
-            object: nil,
-            queue: nil) { [weak self] _ in
-                self?.refreshInBg()
-            }
-        msgsNoticedObserver = nc.addObserver(
-            forName: .messagesNoticed,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                self?.handleMessagesNoticed(notification)
-            }
-        incomingMsgObserver = nc.addObserver(
-            forName: .incomingMessage,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                self?.handleIncomingMessage(notification)
-            }
-        incomingMsgAnyAccountObserver = nc.addObserver(
-            forName: .incomingMessageOnAnyAccount,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                self?.handleIncomingMessageOnAnyAccount(notification)
-            }
-        chatModifiedObserver = nc.addObserver(
-            forName: .chatModified,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                self?.handleChatModified(notification)
-            }
-        contactsChangedObserver = nc.addObserver(
-            forName: .contactsChanged,
-            object: nil,
-            queue: nil) { [weak self] notification in
-                self?.handleContactsChanged(notification)
-            }
-
-        nc.addObserver(
-            self,
-            selector: #selector(applicationDidBecomeActive(_:)),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil)
-        nc.addObserver(
-            self,
-            selector: #selector(applicationWillResignActive(_:)),
-            name: UIApplication.willResignActiveNotification,
-            object: nil)
-    }
-
-    private func removeObservers() {
-        let nc = NotificationCenter.default
-        // remove observers with a block
-        if let msgChangedSearchResultObserver {
-            nc.removeObserver(msgChangedSearchResultObserver)
-        }
-        if let msgChangedObserver {
-            nc.removeObserver(msgChangedObserver)
-        }
-        if let incomingMsgObserver {
-            nc.removeObserver(incomingMsgObserver)
-        }
-        if let incomingMsgAnyAccountObserver {
-            nc.removeObserver(incomingMsgAnyAccountObserver)
-        }
-        if let msgsNoticedObserver {
-            nc.removeObserver(msgsNoticedObserver)
-        }
-        if let chatModifiedObserver {
-            nc.removeObserver(chatModifiedObserver)
-        }
-        if let contactsChangedObserver {
-            nc.removeObserver(contactsChangedObserver)
-        }
-        if let connectivityChangedObserver {
-            nc.removeObserver(connectivityChangedObserver)
-        }
-        if let msgReadDeliveredReactionFailedObserver {
-            nc.removeObserver(msgReadDeliveredReactionFailedObserver)
-        }
-        // remove non-block observers
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
-    }
-
     // MARK: - Notifications
 
-    @objc private func connectivityChanged(_ notification: Notification) {
-        updateTitle()
+    @objc private func handleConnectivityChanged(_ notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            self?.updateTitle()
+        }
     }
 
     @objc private func handleContactsChanged(_ notification: Notification) {
+        refreshInBg()
+    }
+
+    @objc private func handleMsgReadDeliveredReactionFailed(_ notification: Notification) {
         refreshInBg()
     }
 
@@ -319,13 +209,17 @@ class ChatListViewController: UITableViewController {
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-           let viewModel = self.viewModel,
-           viewModel.searchActive,
-           appDelegate.appIsInForeground() {
-            viewModel.updateSearchResults(for: self.searchController)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+               let viewModel = self.viewModel,
+               viewModel.searchActive,
+               appDelegate.appIsInForeground() {
+                viewModel.updateSearchResults(for: self.searchController)
+            }
+
+            self.refreshInBg()
         }
-        refreshInBg()
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
