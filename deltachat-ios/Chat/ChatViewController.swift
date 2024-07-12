@@ -418,7 +418,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     // MARK: - Notifications
 
-    @objc private func handleMessageChanged(_ notification: Notification) {
+    @objc private func handleMessagesChanged(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
 
         let chatId = ui["chat_id"] as? Int ?? 0
@@ -469,11 +469,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let nc = NotificationCenter.default
         if msgChangedObserver == nil {
             msgChangedObserver = nc.addObserver(
-                forName: .messageChanged,
+                forName: .messagesChanged,
                 object: nil,
                 queue: OperationQueue.main
             ) { [weak self] notification in
-                self?.handleMessageChanged(notification)
+                self?.handleMessagesChanged(notification)
             }
         }
 

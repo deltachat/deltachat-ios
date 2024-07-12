@@ -2,7 +2,7 @@ import UIKit
 import UserNotifications
 
 extension Notification.Name {
-    public static let messageChanged = Notification.Name(rawValue: "eventMsgsChanged")
+    public static let messagesChanged = Notification.Name(rawValue: "eventMsgsChanged")
     public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
 }
 
@@ -76,7 +76,7 @@ public class DcEventHandler {
 
             logger.info("📡[\(accountId)] msgs changed: \(data1), \(data2)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .messageChanged, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .messagesChanged, object: nil, userInfo: [
                     "message_id": Int(data2),
                     "chat_id": Int(data1),
                 ])

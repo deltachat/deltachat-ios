@@ -85,7 +85,7 @@ class FilesViewController: UIViewController {
 
     private func addObservers() {
         msgChangedObserver = NotificationCenter.default.addObserver(
-            forName: .messageChanged, object: nil, queue: nil) { [weak self] _ in
+            forName: .messagesChanged, object: nil, queue: nil) { [weak self] _ in
                 self?.refreshInBg()
             }
         msgReadDelivedReactionFailedObserver = NotificationCenter.default.addObserver(
