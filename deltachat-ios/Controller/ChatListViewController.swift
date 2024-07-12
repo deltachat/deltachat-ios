@@ -205,22 +205,17 @@ class ChatListViewController: UITableViewController {
         msgChangedSearchResultObserver = nc.addObserver(
             forName: .messagesChanged,
             object: nil,
-            queue: nil) { [weak self] _ in
-            guard let self else { return }
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-               let viewModel = self.viewModel,
-               viewModel.searchActive,
-               appDelegate.appIsInForeground() {
-                viewModel.updateSearchResults(for: self.searchController)
-            }
+            queue: nil) { [weak self] notification in
+                self?.handleMessagesChanged(notification)
         }
 
         msgChangedObserver = nc.addObserver(
             forName: .messagesChanged,
             object: nil,
-            queue: nil) { [weak self] _ in
-                self?.refreshInBg()
-            }
+            queue: nil) { [weak self] notification in
+                self?.handleMessagesChanged(notification)
+        }
+
         msgReadDeliveredReactionFailedObserver = nc.addObserver(
             forName: .messageReadDeliveredFailedReaction,
             object: nil,
@@ -304,7 +299,19 @@ class ChatListViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
-    
+
+    // MARK: - Notifications
+
+    @objc private func handleMessagesChanged(_ notification: Notification) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+           let viewModel = self.viewModel,
+           viewModel.searchActive,
+           appDelegate.appIsInForeground() {
+            viewModel.updateSearchResults(for: self.searchController)
+        }
+        refreshInBg()
+    }
+
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
         navigationItem.backButtonTitle = isArchive ? String.localized("chat_archived_label") : String.localized("pref_chats")

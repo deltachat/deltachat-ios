@@ -354,10 +354,7 @@ class WebxdcViewController: WebViewViewController {
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
-            if messageId == self.messageId {
-                self.refreshWebxdcInfo()
-            }
+            self?.handleMessagesChanged(notification)
         }
 
         msgReadDeliveredReactionFailedObserver = nc.addObserver(
@@ -388,6 +385,14 @@ class WebxdcViewController: WebViewViewController {
             nc.removeObserver(msgReadDeliveredReactionFailedObserver)
         }
         shortcutManager = nil
+    }
+
+    @objc private func handleMessagesChanged(_ notification: Notification) {
+        guard let messageId = notification.userInfo?["message_id"] as? Int,
+              messageId == self.messageId
+        else { return }
+
+        self.refreshWebxdcInfo()
     }
 
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
