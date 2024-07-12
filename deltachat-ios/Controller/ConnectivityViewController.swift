@@ -3,10 +3,24 @@ import DcCore
 import Network
 
 class ConnectivityViewController: WebViewViewController {
-    private var connectivityChangedObserver: NSObjectProtocol?
-    private var lowPowerModeObserver: NSObjectProtocol?
+
     private var connectivityMonitor: AnyObject?
     private var isLowDataMode: Bool = false
+
+    override init(dcContext: DcContext) {
+        super.init(dcContext: dcContext)
+
+        // set connectivity changed observer before we actually init html,
+        // otherwise, we may miss events and the html is not correct.
+        NotificationCenter.default.addObserver(self, selector: #selector(ConnectivityViewController.handleConnectivityChanged(_:)), name: .connectivityChanged, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(ConnectivityViewController.handleLowerPowerModeChanged(_:)),
+                                               name: NSNotification.Name.NSProcessInfoPowerStateDidChange,
+                                               object: nil
+        )
+    }
+    
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     // called only once after loading
     override func viewDidLoad() {
@@ -32,31 +46,12 @@ class ConnectivityViewController: WebViewViewController {
     
     // called everytime the view will appear
     override func viewWillAppear(_ animated: Bool) {
-        let nc = NotificationCenter.default
-        // set connectivity changed observer before we acutally init html,
-        // otherwise, we may miss events and the html is not correct.
-        connectivityChangedObserver = nc.addObserver(forName: .connectivityChanged,
-                                                     object: nil,
-                                                     queue: nil) { [weak self] notification in
-            self?.handleConnectivityChanged(notification)
-        }
-        lowPowerModeObserver = nc.addObserver(forName: NSNotification.Name.NSProcessInfoPowerStateDidChange,
-                                              object: nil,
-                                              queue: nil) { [weak self] _ in
-            self?.loadHtml()
-        }
+        super.viewWillAppear(animated)
         loadHtml()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        if let connectivityChangedObserver = self.connectivityChangedObserver {
-            NotificationCenter.default.removeObserver(connectivityChangedObserver)
-        }
-
-        if let lowPowerModeObserver = self.lowPowerModeObserver {
-            NotificationCenter.default.removeObserver(lowPowerModeObserver)
-        }
-
+        super.viewWillDisappear(animated)
         if #available(iOS 13.0, *) {
             (connectivityMonitor as? NWPathMonitor)?.cancel()
         }
@@ -159,6 +154,11 @@ class ConnectivityViewController: WebViewViewController {
             .appending(averageDelta / 3600 > 2 ?
                        String.localized(stringID: "notifications_avg_hours", parameter: Int(averageDelta / 3600)) :
                        String.localized(stringID: "notifications_avg_minutes", parameter: Int(averageDelta / 60)))
+    }
+
+
+    @objc private func handleLowerPowerModeChanged(_ notification: Notification) {
+        loadHtml()
     }
 
     @objc private func handleConnectivityChanged(_ notification: Notification) {
