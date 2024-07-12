@@ -20,11 +20,13 @@ extension Notification.Name {
     public static let configurationProgress = Notification.Name(rawValue: "eventConfigureProgress")
 
     public static let connectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
+
+    // Webxdc
+    public static let webxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
+    public static let webxdcRealtimeDataReceived = Notification.Name(rawValue: "eventWebxdcRealtimeData")
 }
 
 public let eventEphemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
-public let eventWebxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
-public let eventWebxdcRealtimeData = Notification.Name(rawValue: "eventWebxdcRealtimeData")
 
 public class DcEventHandler {
     let dcAccounts: DcAccounts
@@ -177,7 +179,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] webxdc update")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventWebxdcStatusUpdate, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .webxdcStatusUpdate, object: nil, userInfo: [
                     "message_id": Int(data1),
                 ])
             }
@@ -187,7 +189,7 @@ public class DcEventHandler {
                 return
             }
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: eventWebxdcRealtimeData, object: nil, userInfo: [
+                NotificationCenter.default.post(name: .webxdcRealtimeDataReceived, object: nil, userInfo: [
                     "message_id": Int(data1),
                     "data": event.data2Data,
                 ])

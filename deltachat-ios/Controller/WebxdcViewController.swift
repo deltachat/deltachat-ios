@@ -326,27 +326,19 @@ class WebxdcViewController: WebViewViewController {
     private func addObservers() {
         let nc = NotificationCenter.default
         webxdcUpdateObserver = nc.addObserver(
-            forName: eventWebxdcStatusUpdate,
+            forName: .webxdcStatusUpdate,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self, let messageId = notification.userInfo?["message_id"] as? Int else { return }
-            if messageId == self.messageId {
-                self.updateWebxdc()
-            }
+            self?.handleWebxdcStatusUpdate(notification)
         }
 
         webxdcRealtimeDataObserver = nc.addObserver(
-            forName: eventWebxdcRealtimeData,
+            forName: .webxdcRealtimeDataReceived,
             object: nil,
             queue: OperationQueue.main
         ) { [weak self] notification in
-            guard let self, let userInfo = notification.userInfo, let messageId = userInfo["message_id"] as? Int else { return }
-            if messageId == self.messageId, let data = userInfo["data"] as? Data {
-                let byteArray = [UInt8](data)
-                let commaSeparatedString = byteArray.map { String($0) }.joined(separator: ",")
-                webView.evaluateJavaScript("window.__webxdcRealtimeData([" + commaSeparatedString + "])")
-            }
+            self?.handleWebxdcRealtimeDataReceived(notification)
         }
 
         msgChangedObserver = nc.addObserver(
@@ -385,6 +377,27 @@ class WebxdcViewController: WebViewViewController {
             nc.removeObserver(msgReadDeliveredReactionFailedObserver)
         }
         shortcutManager = nil
+    }
+
+    // MARK: - Notifications
+
+    @objc private func handleWebxdcRealtimeDataReceived(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let messageId = userInfo["message_id"] as? Int,
+              messageId == self.messageId,
+              let data = userInfo["data"] as? Data
+        else { return }
+
+        let byteArray = [UInt8](data)
+        let commaSeparatedString = byteArray.map { String($0) }.joined(separator: ",")
+        webView.evaluateJavaScript("window.__webxdcRealtimeData([" + commaSeparatedString + "])")
+    }
+
+    @objc private func handleWebxdcStatusUpdate(_ notification: Notification) {
+        guard let messageId = notification.userInfo?["message_id"] as? Int,
+              messageId == self.messageId else { return }
+
+        self.updateWebxdc()
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
