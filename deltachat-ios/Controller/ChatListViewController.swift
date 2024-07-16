@@ -412,7 +412,8 @@ class ChatListViewController: UITableViewController {
             tableView.rowHeight = ContactCell.cellHeight
         }
     }
-    private func quitSearch(animated: Bool) {
+
+    func quitSearch(animated: Bool) {
         searchController.searchBar.text = nil
         self.viewModel?.endSearch()
         searchController.dismiss(animated: animated) {
