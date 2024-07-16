@@ -190,7 +190,7 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
     private func addProgressHudBackupListener(importByFile: Bool) {
         UIApplication.shared.isIdleTimerDisabled = true
         backupProgressObserver = NotificationCenter.default.addObserver(
-            forName: .importExportProgress,
+            forName: Event.importExportProgress,
             object: nil,
             queue: nil
         ) { [weak self] notification in

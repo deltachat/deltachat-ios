@@ -480,7 +480,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
         progressObserver = NotificationCenter.default.addObserver(
-            forName: .configurationProgress,
+            forName: Event.configurationProgress,
             object: nil,
             queue: nil
         ) { [weak self] notification in

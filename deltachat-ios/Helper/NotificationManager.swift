@@ -12,9 +12,9 @@ public class NotificationManager {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessageOnAnyAccount(_:)), name: .incomingMessageOnAnyAccount, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: .messagesNoticed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
     }
 
     deinit {

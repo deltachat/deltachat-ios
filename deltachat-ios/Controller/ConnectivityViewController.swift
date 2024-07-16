@@ -12,7 +12,7 @@ class ConnectivityViewController: WebViewViewController {
 
         // set connectivity changed observer before we actually init html,
         // otherwise, we may miss events and the html is not correct.
-        NotificationCenter.default.addObserver(self, selector: #selector(ConnectivityViewController.handleConnectivityChanged(_:)), name: .connectivityChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ConnectivityViewController.handleConnectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(ConnectivityViewController.handleLowerPowerModeChanged(_:)),
                                                name: NSNotification.Name.NSProcessInfoPowerStateDidChange,

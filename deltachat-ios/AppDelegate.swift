@@ -271,7 +271,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
             userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .messagesChanged, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
                     "message_id": Int(0),
                     "chat_id": Int(0),
                 ])

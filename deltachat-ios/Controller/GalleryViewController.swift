@@ -50,9 +50,12 @@ class GalleryViewController: UIViewController {
         self.chatId = chatId
         super.init(nibName: nil, bundle: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.handleMessageReadDeliveredFailedReaction(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(GalleryViewController.handleMessageReadDeliveredFailedReaction(_:)),
+                                               name: Event.messageReadDeliveredFailedReaction,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GalleryViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
     }
 
     required init?(coder: NSCoder) {
