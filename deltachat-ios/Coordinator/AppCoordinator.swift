@@ -305,9 +305,14 @@ extension AppCoordinator: UITabBarControllerDelegate {
         // if the chatlist is already visible when tapping, scroll chatlist to top
         if let navigationController = viewController as? UINavigationController,
            let chatListViewController = navigationController.viewControllers.first as? ChatListViewController,
+           let viewModel = chatListViewController.viewModel,
            let chatsTab = tabBarController.selectedViewController as? UINavigationController,
            chatsTab.topViewController == chatListViewController {
-            chatListViewController.tableView.scrollToTop(animated: true)
+            if viewModel.searchActive {
+                chatListViewController.quitSearch(animated: true) // this includes scrollToTop()
+            } else {
+                chatListViewController.tableView.scrollToTop(animated: true)
+            }
         }
 
         return true
