@@ -106,14 +106,14 @@ class ChatListViewController: UITableViewController {
             self.view.backgroundColor = UIColor.systemBackground
         }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessageOnAnyAccount(_:)), name: .incomingMessageOnAnyAccount, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleConnectivityChanged(_:)), name: .connectivityChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleContactsChanged(_:)), name: .contactsChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMsgReadDeliveredReactionFailed(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMessagesNoticed(_:)), name: .messagesNoticed, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleChatModified(_:)), name: .chatModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleConnectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleContactsChanged(_:)), name: Event.contactsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMsgReadDeliveredReactionFailed(_:)), name: Event.messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleChatModified(_:)), name: Event.chatModified, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
     }

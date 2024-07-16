@@ -119,8 +119,8 @@ class ContactDetailViewController: UITableViewController {
         self.viewModel = ContactDetailViewModel(dcContext: dcContext, contactId: contactId)
         super.init(style: .grouped)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(ContactDetailViewController.handleContactsChanged(_:)), name: .contactsChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ContactDetailViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ContactDetailViewController.handleContactsChanged(_:)), name: Event.contactsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ContactDetailViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
     }
 
     required init?(coder _: NSCoder) {

@@ -193,11 +193,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         super.init(nibName: nil, bundle: nil)
         hidesBottomBarWhenPushed = true
 
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMsgReadDeliveredReactionFailed(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleChatModified(_:)), name: .chatModified, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleEphemeralTimerModified(_:)), name: .ephemeralTimerModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMsgReadDeliveredReactionFailed(_:)), name: Event.messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleChatModified(_:)), name: Event.chatModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleEphemeralTimerModified(_:)), name: Event.ephemeralTimerModified, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
 

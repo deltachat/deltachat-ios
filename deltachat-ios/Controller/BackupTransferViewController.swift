@@ -155,7 +155,7 @@ class BackupTransferViewController: UIViewController {
             UIApplication.shared.isIdleTimerDisabled = false
         } else {
             UIApplication.shared.isIdleTimerDisabled = true
-            imexObserver = NotificationCenter.default.addObserver(forName: .importExportProgress, object: nil, queue: nil) { [weak self] notification in
+            imexObserver = NotificationCenter.default.addObserver(forName: Event.importExportProgress, object: nil, queue: nil) { [weak self] notification in
                 self?.handleImportExportProgress(notification)
             }
         }

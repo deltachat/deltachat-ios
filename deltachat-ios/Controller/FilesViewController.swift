@@ -44,9 +44,9 @@ class FilesViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.title = title
 
-        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleMessageReadDeliveredFailedReaction(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleIncomingMessage(_:)), name: .incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleMessageReadDeliveredFailedReaction(_:)), name: Event.messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FilesViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
 
     }
 

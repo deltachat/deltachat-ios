@@ -277,10 +277,13 @@ class WebxdcViewController: WebViewViewController {
         self.shortcutManager = ShortcutManager(dcContext: dcContext, messageId: messageId)
         super.init(dcContext: dcContext)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleMessagesChanged(_:)), name: .messagesChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleMessageReadDeliveredReactionFailed(_:)), name: .messageReadDeliveredFailedReaction, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcStatusUpdate(_:)), name: .webxdcStatusUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcRealtimeDataReceived(_:)), name: .webxdcRealtimeDataReceived, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(WebxdcViewController.handleMessageReadDeliveredReactionFailed(_:)),
+                                               name: Event.messageReadDeliveredFailedReaction,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcStatusUpdate(_:)), name: Event.webxdcStatusUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcRealtimeDataReceived(_:)), name: Event.webxdcRealtimeDataReceived, object: nil)
     }
     
     required init?(coder: NSCoder) {

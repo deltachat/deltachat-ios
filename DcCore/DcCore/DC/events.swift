@@ -1,31 +1,31 @@
 import UIKit
 import UserNotifications
 
-extension Notification.Name {
+public enum Event {
     // Messages
-    public static let messagesChanged = Notification.Name(rawValue: "eventMsgsChanged")
+    public static let messagesChanged = Notification.Name(rawValue: "messagesChanged")
     public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
-    public static let incomingMessage = Notification.Name(rawValue: "eventIncomingMsg")
-    public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "eventIncomingMsgAnyAccount")
-    public static let messagesNoticed = Notification.Name(rawValue: "eventMsgsNoticed")
+    public static let incomingMessage = Notification.Name(rawValue: "incomingMessage")
+    public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "incomingMessageOnAnyAccount")
+    public static let messagesNoticed = Notification.Name(rawValue: "messagesNoticed")
 
     // Chats
-    public static let chatModified = Notification.Name(rawValue: "eventChatModified")
+    public static let chatModified = Notification.Name(rawValue: "chatModified")
 
     // Contacts
-    public static let contactsChanged = Notification.Name(rawValue: "eventContactsChanged")
+    public static let contactsChanged = Notification.Name(rawValue: "contactsChanged")
 
     // Progress
-    public static let importExportProgress = Notification.Name(rawValue: "eventImexProgress")
-    public static let configurationProgress = Notification.Name(rawValue: "eventConfigureProgress")
+    public static let importExportProgress = Notification.Name(rawValue: "importExportProgress")
+    public static let configurationProgress = Notification.Name(rawValue: "configurationProgress")
 
-    public static let connectivityChanged = Notification.Name(rawValue: "eventConnectivityChanged")
+    public static let connectivityChanged = Notification.Name(rawValue: "connectivityChanged")
 
     // Webxdc
-    public static let webxdcStatusUpdate = Notification.Name(rawValue: "eventWebxdcStatusUpdate")
-    public static let webxdcRealtimeDataReceived = Notification.Name(rawValue: "eventWebxdcRealtimeData")
+    public static let webxdcStatusUpdate = Notification.Name(rawValue: "webxdcStatusUpdate")
+    public static let webxdcRealtimeDataReceived = Notification.Name(rawValue: "webxdcRealtimeDataReceived")
 
-    public static let ephemeralTimerModified =  Notification.Name(rawValue: "eventEphemeralTimerModified")
+    public static let ephemeralTimerModified =  Notification.Name(rawValue: "ephemeralTimerModified")
 }
 
 
@@ -59,7 +59,7 @@ public class DcEventHandler {
             DispatchQueue.main.async {
                 let done = Int(data1) == 1000
 
-                NotificationCenter.default.post(name: .configurationProgress, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.configurationProgress, object: nil, userInfo: [
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": done,
@@ -74,7 +74,7 @@ public class DcEventHandler {
 
         case DC_EVENT_IMEX_PROGRESS:
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .importExportProgress, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.importExportProgress, object: nil, userInfo: [
                     "progress": Int(data1),
                     "error": Int(data1) == 0,
                     "done": Int(data1) == 1000,
@@ -86,7 +86,7 @@ public class DcEventHandler {
 
             logger.info("📡[\(accountId)] msgs changed: \(data1), \(data2)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .messagesChanged, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
                     "message_id": Int(data2),
                     "chat_id": Int(data1),
                 ])
@@ -97,7 +97,7 @@ public class DcEventHandler {
 
             logger.info("📡[\(accountId)] msgs reaction/read/delivered/failed: \(data1), \(data2)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .messageReadDeliveredFailedReaction, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.messageReadDeliveredFailedReaction, object: nil, userInfo: [
                     "message_id": Int(data2),
                     "chat_id": Int(data1),
                 ])
@@ -108,7 +108,7 @@ public class DcEventHandler {
                 return
             }
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .messagesNoticed, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.messagesNoticed, object: nil, userInfo: [
                     "chat_id": Int(data1),
                 ])
             }
@@ -119,7 +119,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] chat modified: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .chatModified, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.chatModified, object: nil, userInfo: [
                     "chat_id": Int(data1),
                 ])
             }
@@ -129,21 +129,21 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] ephemeral timer modified: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .ephemeralTimerModified, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.ephemeralTimerModified, object: nil, userInfo: [
                     "chat_id": Int(data1),
                 ])
             }
 
         case DC_EVENT_INCOMING_MSG:
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .incomingMessageOnAnyAccount, object: nil)
+                NotificationCenter.default.post(name: Event.incomingMessageOnAnyAccount, object: nil)
             }
             if accountId != dcAccounts.getSelected().id {
                 return
             }
             logger.info("📡[\(accountId)] incoming message \(data2)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .incomingMessage, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.incomingMessage, object: nil, userInfo: [
                     "message_id": Int(data2),
                     "chat_id": Int(data1),
                 ])
@@ -155,7 +155,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] contact changed: \(data1)")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .contactsChanged, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.contactsChanged, object: nil, userInfo: [
                     "contact_id": Int(data1)
                 ])
             }
@@ -166,7 +166,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] connectivity changed")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .connectivityChanged, object: nil)
+                NotificationCenter.default.post(name: Event.connectivityChanged, object: nil)
             }
 
         case DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE:
@@ -180,7 +180,7 @@ public class DcEventHandler {
             }
             logger.info("📡[\(accountId)] webxdc update")
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .webxdcStatusUpdate, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.webxdcStatusUpdate, object: nil, userInfo: [
                     "message_id": Int(data1),
                 ])
             }
@@ -190,7 +190,7 @@ public class DcEventHandler {
                 return
             }
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .webxdcRealtimeDataReceived, object: nil, userInfo: [
+                NotificationCenter.default.post(name: Event.webxdcRealtimeDataReceived, object: nil, userInfo: [
                     "message_id": Int(data1),
                     "data": event.data2Data,
                 ])

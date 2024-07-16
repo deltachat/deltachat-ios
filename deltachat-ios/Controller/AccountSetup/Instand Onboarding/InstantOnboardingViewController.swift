@@ -224,7 +224,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     // MARK: - action: configuration
     @objc private func acceptAndCreateButtonPressed() {
-        addProgressAlertListener(dcAccounts: self.dcAccounts, progressName: .configurationProgress, onSuccess: self.handleCreateSuccess)
+        addProgressAlertListener(dcAccounts: self.dcAccounts, progressName: Event.configurationProgress, onSuccess: self.handleCreateSuccess)
         showProgressAlert(title: String.localized("add_account"), dcContext: self.dcContext)
 
         DispatchQueue.global().async { [weak self] in
