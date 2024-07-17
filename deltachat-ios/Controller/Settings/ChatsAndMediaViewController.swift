@@ -154,8 +154,8 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         let nc = NotificationCenter.default
-        if let backupProgressObserver = self.progressObserver {
-            nc.removeObserver(backupProgressObserver)
+        if let progressObserver {
+            nc.removeObserver(progressObserver)
         }
     }
 
