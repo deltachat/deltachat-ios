@@ -12,7 +12,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
     var progressObserver: NSObjectProtocol?
     private var qrCodeReader: QrCodeReaderController?
     private var securityScopedResource: NSURL?
-    private var backupProgressObserver: NSObjectProtocol?
     private lazy var canCancel: Bool = {
         // "cancel" removes selected unconfigured account, so there needs to be at least one other account
         return dcAccounts.getAll().count >= 2
@@ -70,10 +69,6 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
         if let progressObserver {
             NotificationCenter.default.removeObserver(progressObserver)
         }
-
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: contentView?.nameTextField)
     }
 
     override func loadView() {
