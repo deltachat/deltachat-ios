@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         signal(SIGPIPE, SIG_IGN)
 
         logger.info("➡️ didFinishLaunchingWithOptions")
+        UserDefaults.standard.populateDefaultEmojis()
 
         // The NSE ("Notification Service Extension") must not run at the same time as the app.
         // The other way round, the NSE is not started with the app running.
