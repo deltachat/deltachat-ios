@@ -1920,7 +1920,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         reactionMessageId = self.messageIds[indexPath.row]
 
-        let pickerViewController = MCEmojiPickerViewController()
+        let pickerViewController = MCEmojiPickerViewController(frequentlyUsedEmojis: .deltaChatDefaultEmojis)
         pickerViewController.navigationItem.title = String.localized("react")
         pickerViewController.delegate = self
 
@@ -2129,7 +2129,7 @@ extension ChatViewController {
             let messageId = self.messageIds[indexPath.row]
             if showPicker {
                 reactionMessageId = messageId
-                let pickerViewController = MCEmojiPickerViewController()
+                let pickerViewController = MCEmojiPickerViewController(frequentlyUsedEmojis: .deltaChatDefaultEmojis)
                 pickerViewController.navigationItem.title = String.localized("react")
                 pickerViewController.delegate = self
 
@@ -2903,4 +2903,14 @@ extension ChatViewController: SendContactViewControllerDelegate {
 
         stageVCard(url: vcardURL)
     }
+}
+
+extension [MCEmoji] {
+    static let deltaChatDefaultEmojis = [
+        MCEmoji(emojiKeys: [0x2764, 0xFE0F], isSkinToneSupport: false, searchKey: "redHeart", version: 0.6),
+        MCEmoji(emojiKeys: [0x1F44D], isSkinToneSupport: true, searchKey: "thumbsUp", version: 0.6),
+        MCEmoji(emojiKeys: [0x1F44E], isSkinToneSupport: true, searchKey: "thumbsDown", version: 0.6),
+        MCEmoji(emojiKeys: [0x1F602], isSkinToneSupport: false, searchKey: "faceWithTearsOfJoy", version: 0.6),
+        MCEmoji(emojiKeys: [0x1F615], isSkinToneSupport: false, searchKey: "confusedFace", version: 1.0)
+    ]
 }
