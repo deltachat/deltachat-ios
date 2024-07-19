@@ -93,7 +93,7 @@ public final class MCEmojiPickerViewController: UIViewController {
     // MARK: - Private Properties
     
     private var generator: UIImpactFeedbackGenerator? = UIImpactFeedbackGenerator(style: .light)
-    private var viewModel: MCEmojiPickerViewModelProtocol = MCEmojiPickerViewModel()
+    private var viewModel: MCEmojiPickerViewModelProtocol
     private lazy var emojiPickerView: MCEmojiPickerView = {
         let categories = viewModel.emojiCategories.map { $0.type }
         return MCEmojiPickerView(categoryTypes: categories, delegate: self)
@@ -101,7 +101,8 @@ public final class MCEmojiPickerViewController: UIViewController {
     
     // MARK: - Initializers
     
-    public init() {
+    public init(frequentlyUsedEmojis: [MCEmoji]? = nil) {
+        viewModel = MCEmojiPickerViewModel(frequentlyUsedEmojis: frequentlyUsedEmojis)
         super.init(nibName: nil, bundle: nil)
         setupPopoverPresentationStyle()
         setupDelegates()

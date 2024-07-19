@@ -33,7 +33,7 @@ PODS:
   - SwiftLint (0.54.0)
 
 DEPENDENCIES:
-  - MCEmojiPicker (from `https://github.com/deltachat/MCEmojiPicker`, branch `main`)
+  - MCEmojiPicker (from `https://github.com/deltachat/MCEmojiPicker`, branch `deltachat-2112-frequently-used-emojis`)
   - ReachabilitySwift
   - SCSiriWaveformView
   - SDWebImage
@@ -59,7 +59,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   MCEmojiPicker:
-    :branch: main
+    :branch: deltachat-2112-frequently-used-emojis
     :git: https://github.com/deltachat/MCEmojiPicker
   Swifter:
     :branch: stable
@@ -67,7 +67,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MCEmojiPicker:
-    :commit: d9eb480883c0a46b8813b9fe1f4e00d4df1ad071
+    :commit: 34970594b7da3152f96e98882a4e8dce0544a6b4
     :git: https://github.com/deltachat/MCEmojiPicker
   Swifter:
     :commit: 1e4f51c92d7ca486242d8bf0722b99de2c3531aa
@@ -87,6 +87,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 2ca3d0b75754193f0f3ba532291f25ae08dd1e42
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
 
-PODFILE CHECKSUM: 890a32e752f554d57e4aacafab11aa175db79c1c
+PODFILE CHECKSUM: 859eb16890c1f15330379786b097756aa292c42f
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.15.2

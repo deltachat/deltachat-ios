@@ -23,7 +23,7 @@
 import Foundation
 
 /// The main model for interacting with emojis.
-struct MCEmoji {
+public struct MCEmoji {
     
     // MARK: - Types
     
@@ -133,7 +133,7 @@ struct MCEmoji {
 }
 
 /// This enumeration allows you to determine which skin tones can be set for `MCEmoji`.
-enum MCEmojiSkinTone: Int, CaseIterable {
+public enum MCEmojiSkinTone: Int, CaseIterable {
     case none = 1
     case light = 2
     case mediumLight = 3

@@ -65,7 +65,8 @@ final class MCEmojiPickerViewModel: MCEmojiPickerViewModelProtocol {
     
     // MARK: - Initializers
     
-    init(unicodeManager: MCUnicodeManagerProtocol = MCUnicodeManager()) {
+    init(frequentlyUsedEmojis: [MCEmoji]? = nil) {
+        let unicodeManager = MCUnicodeManager(frequentlyUsedEmojis: frequentlyUsedEmojis)
         allEmojiCategories = unicodeManager.getEmojisForCurrentIOSVersion()
         // Increment usage of each emoji upon selection
         selectedEmoji.bind { emoji in

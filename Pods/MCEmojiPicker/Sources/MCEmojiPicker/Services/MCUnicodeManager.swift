@@ -45,10 +45,12 @@ final class MCUnicodeManager: MCUnicodeManagerProtocol {
     
     /// The maximum number of frequently used emojis to include in the `frequentlyUsed` category.
     public let maxFrequentlyUsedEmojisCount: Int
-    
+    public let frequentlyUsedEmojis: [MCEmoji]?
+
     // MARK: - Initializers
     
-    public init(maxFrequentlyUsedEmojis: Int = 30) {
+    public init(maxFrequentlyUsedEmojis: Int = 30, frequentlyUsedEmojis: [MCEmoji]? = nil) {
+        self.frequentlyUsedEmojis = frequentlyUsedEmojis
         self.maxFrequentlyUsedEmojisCount = maxFrequentlyUsedEmojis
     }
     
@@ -66,22 +68,28 @@ final class MCUnicodeManager: MCUnicodeManagerProtocol {
     
     // MARK: - Private Methods
 
-    /// Returns the top n (`maxFrequentlyUsedEmojis`) emojis by usage, for emojis with a `usageCount` > 0.
+    /// Returns either the preset, so called "frequently used" emojis
+    /// or
+    /// return the top n (`maxFrequentlyUsedEmojis`) emojis by usage, for emojis with a `usageCount` > 0.
     private func getFrequentlyUsedEmojis() -> [MCEmoji] {
-        Array(
-            defaultEmojis
-                .flatMap({ $0.emojis })
-                .filter({ $0.usageCount > 0 })
-                .sorted(by: { lhs, rhs in
-                    let (aUsage, bUsage) = (lhs.usage, rhs.usage)
-                    guard aUsage.count != bUsage.count else {
-                        // Break ties with most recent usage
-                        return lhs.lastUsage > rhs.lastUsage
-                    }
-                    return aUsage.count > bUsage.count
-                })
-                .prefix(maxFrequentlyUsedEmojisCount)
-        )
+        if let frequentlyUsedEmojis {
+            return frequentlyUsedEmojis
+        } else {
+            return Array(
+                defaultEmojis
+                    .flatMap({ $0.emojis })
+                    .filter({ $0.usageCount > 0 })
+                    .sorted(by: { lhs, rhs in
+                        let (aUsage, bUsage) = (lhs.usage, rhs.usage)
+                        guard aUsage.count != bUsage.count else {
+                            // Break ties with most recent usage
+                            return lhs.lastUsage > rhs.lastUsage
+                        }
+                        return aUsage.count > bUsage.count
+                    })
+                    .prefix(maxFrequentlyUsedEmojisCount)
+            )
+        }
     }
 
     // MARK: - Private Properties
