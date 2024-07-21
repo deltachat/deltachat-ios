@@ -2,7 +2,7 @@ import SafariServices
 import UIKit
 import DcCore
 
-class AccountSetupController: UITableViewController, ProgressAlertHandler {
+class AccountSetupController: UITableViewController, LegacyProgressAlertHandler {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     private var skipOauth = false

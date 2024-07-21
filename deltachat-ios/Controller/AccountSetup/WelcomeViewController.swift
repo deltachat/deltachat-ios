@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class WelcomeViewController: UIViewController, ProgressAlertHandler {
+class WelcomeViewController: UIViewController, LegacyProgressAlertHandler {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     private let accountCode: String?

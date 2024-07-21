@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 
-class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
+class InstantOnboardingViewController: UIViewController, LegacyProgressAlertHandler {
 
     static let defaultChatmailDomain: String = "nine.testrun.org"
 
