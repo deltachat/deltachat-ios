@@ -2026,7 +2026,7 @@ extension ChatViewController {
         let myReactions = getMyReactions(messageId: messageId)
         var myReactionChecked = false
 
-        for reaction in DefaultReactions.allCases {
+        for reaction in [DefaultReactions.thumbsUp, .thumbsDown, .heart] {
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
             let title: String
             if sentThisReaction {

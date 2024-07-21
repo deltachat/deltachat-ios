@@ -3,6 +3,7 @@ import Foundation
 extension UserDefaults {
     func populateDefaultEmojis() {
         let keys = DefaultReactions.allCases
+            .reversed()
             .map { return "\($0.emoji)-usage-timestamps" }
 
         for key in keys {
