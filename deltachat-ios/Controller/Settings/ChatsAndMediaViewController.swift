@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 import Intents
 
-internal final class ChatsAndMediaViewController: UITableViewController, ProgressAlertHandler {
+internal final class ChatsAndMediaViewController: UITableViewController, LegacyProgressAlertHandler {
 
     private struct SectionConfigs {
         let headerTitle: String?
@@ -22,7 +22,7 @@ internal final class ChatsAndMediaViewController: UITableViewController, Progres
     private var dcContext: DcContext
     internal let dcAccounts: DcAccounts
 
-    // MARK: - ProgressAlertHandler
+    // MARK: - LegacyProgressAlertHandler
     weak var progressAlert: UIAlertController?
     var progressObserver: NSObjectProtocol?
 

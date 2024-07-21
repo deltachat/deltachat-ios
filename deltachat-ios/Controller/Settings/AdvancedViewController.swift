@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import Intents
 
-internal final class AdvancedViewController: UITableViewController, ProgressAlertHandler {
+internal final class AdvancedViewController: UITableViewController, LegacyProgressAlertHandler {
 
     private struct SectionConfigs {
         let headerTitle: String?
@@ -26,7 +26,7 @@ internal final class AdvancedViewController: UITableViewController, ProgressAler
 
     private let externalPathDescr = "File Sharing/Delta Chat"
 
-    // MARK: - ProgressAlertHandler
+    // MARK: - LegacyProgressAlertHandler
     weak var progressAlert: UIAlertController?
     var progressObserver: NSObjectProtocol?
 

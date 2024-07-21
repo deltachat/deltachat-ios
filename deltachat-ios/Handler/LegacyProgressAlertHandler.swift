@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-protocol ProgressAlertHandler: UIViewController {
+protocol LegacyProgressAlertHandler: UIViewController {
     var progressAlert: UIAlertController? { get set }   // needs to be implemented as weak
     var progressObserver: NSObjectProtocol? { get set } // set to nil in viewDidDisappear
     func showProgressAlert(title: String, dcContext: DcContext)
@@ -11,7 +11,7 @@ protocol ProgressAlertHandler: UIViewController {
     func addProgressAlertListener(dcAccounts: DcAccounts, progressName: Notification.Name, onSuccess: @escaping VoidFunction)
 }
 
-extension ProgressAlertHandler {
+extension LegacyProgressAlertHandler {
 
     func showProgressAlert(title: String, dcContext: DcContext) {
         let progressAlert = makeProgressAlert(dcContext: dcContext)
