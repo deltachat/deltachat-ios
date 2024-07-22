@@ -241,10 +241,7 @@ class InstantOnboardingViewController: UIViewController, ProgressAlertHandler {
 
     private func handleCreateSuccess() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-            appDelegate.registerForNotifications()
-        }
-
+        appDelegate.registerForNotifications()
         appDelegate.reloadDcContext()
     }
 

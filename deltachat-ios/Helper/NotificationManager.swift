@@ -75,16 +75,13 @@ public class NotificationManager {
     // MARK: - Notifications
 
     @objc private func handleMessagesNoticed(_ notification: Notification) {
-        guard UserDefaults.standard.bool(forKey: "notifications_disabled") == false,
-           let ui = notification.userInfo,
-              let chatId = ui["chat_id"] as? Int else { return }
-        
+        guard let ui = notification.userInfo,
+            let chatId = ui["chat_id"] as? Int else { return }
+
         NotificationManager.removeNotificationsForChat(dcContext: self.dcContext, chatId: chatId)
     }
 
     @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
-        guard UserDefaults.standard.bool(forKey: "notifications_disabled") == false else { return }
-
         NotificationManager.updateBadgeCounters()
     }
 
@@ -101,7 +98,7 @@ public class NotificationManager {
             if let ui = notification.userInfo,
                let chatId = ui["chat_id"] as? Int,
                let messageId = ui["message_id"] as? Int,
-               !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+               self.dcContext.isMuted() {
 
                 let chat = self.dcContext.getChat(chatId: chatId)
 

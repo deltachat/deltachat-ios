@@ -147,9 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 DispatchQueue.global().async { [weak self] in
                     guard let self else { return }
                     self.dcAccounts.maybeNetwork()
-                    if self.notifyToken == nil &&
-                        self.dcAccounts.getSelected().isConfigured() &&
-                        !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+                    if self.notifyToken == nil && self.dcAccounts.getSelected().isConfigured() {
                         self.registerForNotifications()
                     }
                 }
@@ -175,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             performFetch()
         }
 
-        if dcAccounts.getSelected().isConfigured() && !UserDefaults.standard.bool(forKey: "notifications_disabled") {
+        if dcAccounts.getSelected().isConfigured() {
             registerForNotifications()
         }
 

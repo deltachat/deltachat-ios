@@ -526,6 +526,14 @@ public class DcContext {
         setConfig(key, String(value))
     }
 
+    public func isMuted() -> Bool {
+        return getConfigBool("is_muted")
+    }
+
+    public func setMuted(_ muted: Bool) {
+        setConfigBool("is_muted", muted)
+    }
+
     public func getUnreadMessages(chatId: Int) -> Int {
         return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
     }

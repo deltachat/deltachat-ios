@@ -140,14 +140,8 @@ class WelcomeViewController: UIViewController, ProgressAlertHandler {
 
     private func handleBackupRestoreSuccess() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-        if !UserDefaults.standard.bool(forKey: "notifications_disabled") {
-            appDelegate.registerForNotifications()
-        }
-
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.reloadDcContext()
-        }
+        appDelegate.registerForNotifications()
+        appDelegate.reloadDcContext()
     }
 
     @objc private func cancelAccountCreation() {

@@ -38,7 +38,7 @@ class NotificationService: UNNotificationServiceExtension {
             if event.id == DC_EVENT_INCOMING_MSG {
                 let dcContext = dcAccounts.get(id: event.accountId)
                 let chat = dcContext.getChat(chatId: event.data1Int)
-                if !UserDefaults.standard.bool(forKey: "notifications_disabled") && !chat.isMuted {
+                if !dcContext.isMuted() && !chat.isMuted {
                     let msg = dcContext.getMessage(id: event.data2Int)
                     let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
                     if chat.isGroup {

@@ -62,7 +62,7 @@ class ConnectivityViewController: WebViewViewController {
         let connectiviy = self.dcContext.getConnectivity()
         let pushState = dcContext.getPushState()
         let title = " <b>" + String.localized("pref_notifications") + ":</b> "
-        let notificationsEnabledInDC = !UserDefaults.standard.bool(forKey: "notifications_disabled")
+        let notificationsEnabledInDC = !dcContext.isMuted()
         var notificationsEnabledInSystem = false
         let semaphore = DispatchSemaphore(value: 0)
         DispatchQueue.global(qos: .userInitiated).async {

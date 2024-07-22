@@ -47,7 +47,7 @@ internal final class SettingsViewController: UITableViewController {
 
     private lazy var notificationSwitch: UISwitch = {
         let switchControl = UISwitch()
-        switchControl.isOn = !UserDefaults.standard.bool(forKey: "notifications_disabled")
+        switchControl.isOn = !dcContext.isMuted()
         switchControl.addTarget(self, action: #selector(handleNotificationToggle(_:)), for: .valueChanged)
         return switchControl
     }()
@@ -234,7 +234,7 @@ internal final class SettingsViewController: UITableViewController {
 
     // MARK: - actions
     @objc private func handleNotificationToggle(_ sender: UISwitch) {
-        UserDefaults.standard.set(!sender.isOn, forKey: "notifications_disabled")
+        dcContext.setMuted(!sender.isOn)
         if sender.isOn {
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.registerForNotifications()
