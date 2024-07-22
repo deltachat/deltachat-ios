@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d分前</string>
+			<string>%d分鐘前</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -98,6 +98,20 @@
 			<string>d</string>
 			<key>other</key>
 			<string>%d位對象</string>
+		</dict>
+	</dict>
+	<key>n_selected</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>已選取 %d 個</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

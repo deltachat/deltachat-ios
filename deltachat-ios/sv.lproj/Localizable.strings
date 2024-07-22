@@ -191,11 +191,11 @@
 "device_talk_subtitle" = "Lokalt genererade meddelanden";
 "device_talk_explain" = "Meddelanden i denna chatt är lokalt genererade av din Delta Chat-app. Dess skapare använder den för att informera om app-uppdateringar och problem vid användning.";
 "edit_contact" = "Redigera kontakt";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Fäst chatten";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Lösgör chatten";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fäst";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Lösgör";
@@ -451,6 +451,7 @@
 "autodel_after_1_hour" = "Efter 1 timma";
 "autodel_after_1_day" = "Efter 1 dag";
 "autodel_after_1_week" = "Efter 1 vecka";
+// deprecated
 "autodel_after_4_weeks" = "Efter 4 veckor";
 "autodel_after_1_year" = "Efter 1 år";
 // autocrypt

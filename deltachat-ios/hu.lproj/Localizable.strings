@@ -244,11 +244,11 @@
 "device_talk_explain" = "Ebben a csevegésben üzenetek jelennek meg az eszközön, amelyek az alkalmazás frissítéseiről és a használat során felmerülő problémákról tájékoztatnak.";
 "device_talk_welcome_message2" = "Lépjen kapcsolatba az ismerőseivel!\n\n🙌 Koppintson a „QR-kódra” mind a két eszköz főképernyőjén. Válassza a „QR-kód beolvasása” lehetőséget az egyik eszközön, és irányítsa a másik eszközre\n\n🌍 Ha nem ugyanabban a szobában tartózkodnak az ismerősével, akkor szkenneljen videohíváson keresztül, vagy ossza meg a meghívó hivatkozást a „QR-kód bolvasása”-ból.\n\nMajd: Élvezze az üzenetküldés-élményt a valaha létezett legnagyobb decentralizált hálózaton keresztül, ami az e-mail és - más népszerű alkalmazásokkal ellentétben - központi kiszolgáló vagy nyomon követés nélkül, illetve anélkül, hogy önt, ismerőseit, kollégáit vagy családját nagy szervezeteknek adná el.";
 "edit_contact" = "Névjegy szerkesztése";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Csevegés kitűzése";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Csevegés kitűzésének visszavonása";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Kitűzés";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Kitűzés visszavonása";
@@ -418,7 +418,7 @@
 "multidevice_same_network_hint" = "Győződjön meg róla, hogy mindkét eszköz ugyanazon a Wi-Fi-n vagy hálózaton van-e";
 "multidevice_this_creates_a_qr_code" = "Ez egy QR-kódot hoz létre, amelyet a második eszközön beolvashat a profil másolásához.";
 "multidevice_install_dc_on_other_device" = "Telepítse a Delta Chat-et a másik eszközére (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Indítsa el a Delta Chat-et, koppintson a „Már van bejelentkezésem / Hozzáadás második eszközként” lehetőségre, és olvassa be az itt látható kódot.";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Második eszköz beállításának beolvasása a(z) %1$@ számára";
@@ -705,6 +705,8 @@
 "autodel_server_ask" = "Szeretné törölni a %1$d üzenetet most és az összes újonnan érkező „%2$@” üzenetet a jövőben?\n\n⚠️ Ez magába foglalja az e-maileket, a médiát és a „Mentett üzeneteket” minden kiszolgáló mappában\n\n⚠️ Ne használja ezt a funkciót, ha az adatokat a kiszolgálón szeretné tartani\n\n⚠️ Ne használja ezt a funkciót, ha a Delta Chat mellett más e-mail klienseket is használ.";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Ez magában foglalja az e-maileket, a médiát és a „Mentett üzeneteket” az összes kiszolgálómappában. Ne használja ezt a funkciót, ha a kiszolgálón szeretné megtartani az adatokat, vagy ha a Delta Chat mellett más e-mail klienseket is használ.";
+"autodel_server_warn_multi_device_title" = "Egyszeri törlés bekapcsolása";
+"autodel_server_warn_multi_device" = "Ha az egyszeri törlés engedélyezve van, akkor nem használhatja ezt a profilt több eszközről.";
 "autodel_confirm" = "Értem, törölje ezeket az üzeneteket";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Egyszer";
@@ -715,6 +717,7 @@
 "autodel_after_1_hour" = "1 óra elteltével";
 "autodel_after_1_day" = "1 nap elteltével";
 "autodel_after_1_week" = "1 hét elteltével";
+// deprecated
 "autodel_after_4_weeks" = "4 hét elteltével";
 "after_5_weeks" = "5 hét elteltével";
 "autodel_after_1_year" = "1 év elteltével";

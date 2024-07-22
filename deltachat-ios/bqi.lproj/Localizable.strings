@@ -188,9 +188,9 @@
 "device_talk" = "payomā dasgā";
 "device_talk_subtitle" = "payomā mêni";
 "edit_contact" = "ālêštê homdang";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "disniďên goftoloft";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "disniďên";
 "source_code" = "kodê bončak";
 "mute_for_one_hour" = "bî dong kerdên si 1 sāat";
@@ -296,6 +296,7 @@
 "autodel_after_1_hour" = "ba\'ďê 1 sāat";
 "autodel_after_1_day" = "ba\'ďê 1 ru";
 "autodel_after_1_week" = "ba\'ďê 1 hafta";
+// deprecated
 "autodel_after_4_weeks" = "ba\'ďê 4 hafta";
 "after_5_weeks" = "ba\'ďê 5 hafta";
 "autodel_after_1_year" = "ba\'ďê 1 sāl";

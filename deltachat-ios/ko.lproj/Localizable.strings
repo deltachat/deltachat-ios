@@ -211,11 +211,11 @@
 "device_talk_subtitle" = "로컬에서 생성된 메시지";
 "device_talk_explain" = "이 채팅의 메시지는 델타 채팅 앱에서 로컬로 생성됩니다. 제작자는 이것을 앱 업데이트와 사용 중 발생하는 문제에 대해 알리기 위해 사용한다.";
 "edit_contact" = "연락처 수정";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "채팅 고정";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "채팅 고정 해제";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "고정";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "고정 해제";
@@ -573,6 +573,7 @@
 "autodel_after_1_hour" = "1시간 후";
 "autodel_after_1_day" = "1일 후";
 "autodel_after_1_week" = "1주 후";
+// deprecated
 "autodel_after_4_weeks" = "4주 후";
 "after_5_weeks" = "5주 후";
 "autodel_after_1_year" = "1년 후";

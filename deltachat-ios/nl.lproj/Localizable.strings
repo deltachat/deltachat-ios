@@ -244,11 +244,11 @@
 "device_talk_explain" = "Berichten in dit gesprek worden geplaatst door de app zelf. Zo blijf je op de hoogte van app-updates en gebruiksproblemen.";
 "device_talk_welcome_message2" = "Kom in contact!\n\n🙌 Druk op beide apparaten op het hoofdscherm op ‘QR-code’. Kies vervolgens ‘QR-code scannen’ op het ene apparaat en houd hem boven het andere.\n\n🌍 Als jullie niet ter plaatse zijn, scan de code dan via een videogesprek of deel de code via een uitnodigingslink (‘QR-code delen’).\n\nDaarna kunnen jullie beide vertrouwen op het voeren van gesprekken via het grootste gedecentraliseerde netwerk ooit: e-mail. En in tegenstelling tot andere populaire apps, is er geen centraal beheer, word je niet gevolgd en worden de gegevens van jou, je vrienden, collega\'s en familieleden niet verkocht.";
 "edit_contact" = "Contactpersoon bewerken";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Gesprek vastmaken";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Gesprek losmaken";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Vastmaken";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Losmaken";
@@ -418,8 +418,8 @@
 "multidevice_same_network_hint" = "Zorg ervoor dat beide apparaten verbonden zijn met hetzelfde (wifi)netwerk";
 "multidevice_this_creates_a_qr_code" = "Hiermee wordt een QR-code samengesteld die door het tweede apparaat kan worden gescand om het account te kopiëren.";
 "multidevice_install_dc_on_other_device" = "Installeer Delta Chat op je andere apparaat (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
-"multidevice_tap_scan_on_other_device" = "Start Delta Chat, druk op ‘Toevoegen als secundair apparaat’ en scan de hier getoonde code";
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Start Delta Chat, druk op ‘Ik heb al een profiel → Toevoegen als secundair apparaat’ en scan de hier getoonde code";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Scan om een secundair apparaat voor %1$@ in te stellen";
 "multidevice_receiver_title" = "Toevoegen als secundair apparaat";
@@ -705,6 +705,8 @@
 "autodel_server_ask" = "Wil je nu %1$d berichten verwijderen en toekomstige berichten ‘%2$@’,?\n\n⚠️ Dit omvat alle berichten, media en het gesprek ‘Bewaarde berichten’.\n\n⚠️ Gebruik deze functie niet als je je gegevens wilt bewaren op de server\n\n⚠️ Gebruik deze functie niet als je ook andere e-mailclients gebruikt";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Dit omvat alle berichten, media en het gesprek ‘Bewaarde berichten’. Gebruik deze functie niet als je je gegevens wilt bewaren op de server of als je ook andere e-mailclients gebruikt.";
+"autodel_server_warn_multi_device_title" = "Onmiddellijke verwijdering inschakelen";
+"autodel_server_warn_multi_device" = "Let op: als je deze optie inschakelt, dan kun je geen meerdere apparaten tegelijk meer gebruiken met dit profiel.";
 "autodel_confirm" = "Ik begrijp het; verwijder alle berichten";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Direct";
@@ -715,6 +717,7 @@
 "autodel_after_1_hour" = "Na 1 uur";
 "autodel_after_1_day" = "Na 1 dag";
 "autodel_after_1_week" = "Na 1 week";
+// deprecated
 "autodel_after_4_weeks" = "Na 4 weken";
 "after_5_weeks" = "Na 5 weken";
 "autodel_after_1_year" = "Na 1 jaar";
@@ -954,7 +957,7 @@
 "select_group_image_desktop" = "Kies een groepsafbeelding";
 "export_backup_desktop" = "Reservekopie exporteren";
 "autocrypt_correct_desktop" = "Autocrypt-instellingen overgedragen!";
-"forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd: je eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";
+"forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd: je eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie is onomkeerbaar.";
 // deprecated
 "account_info_hover_tooltip_desktop2" = "E-mail: %1$@\nGrootte: %2$@\nAccount-id: %3$@";
 "message_detail_sent_desktop" = "verstuurd";

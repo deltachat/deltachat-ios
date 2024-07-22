@@ -221,11 +221,11 @@
 "device_talk_subtitle" = "Loke generitaj mesaĝoj";
 "device_talk_explain" = "Mesaĝoj en tiu ĉi babilo estas surloke generataj de via Delta Chat apo. Ĝiaj kreintoj uzas ilin por informi pri apaj ĝisdatigoj kaj problemoj dum uzado.";
 "edit_contact" = "Redakti kontakton";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Alpingli babilon";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Depingli babilon";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Alpingli";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Depingli";

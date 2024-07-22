@@ -152,11 +152,11 @@
 "device_talk_subtitle" = "Messàgios ingendrados localmente";
 "device_talk_explain" = "Sos messàgios in custa tzarrada benint ingendrados localmente dae s\'aplicatzone Delta Chat tua. Sos isvilupadores los impreant pro informare a pitzu de sos agiornamentos de s\'aplicatzione e de problemas durante s\'impreu.";
 "edit_contact" = "Modìfica su cuntatu";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Apica sa tzarrada";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Isbloca sa tzarrada";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Apica";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Isbloca";
@@ -414,6 +414,7 @@
 "autodel_after_1_hour" = "A pustis de 1 ora";
 "autodel_after_1_day" = "A pustis de 1 die";
 "autodel_after_1_week" = "A pustis de 1 chida";
+// deprecated
 "autodel_after_4_weeks" = "A pustis de 4 chidas";
 "autodel_after_1_year" = "A pustis de 1 annu";
 // autocrypt

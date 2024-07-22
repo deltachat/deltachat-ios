@@ -204,11 +204,11 @@
 "device_talk_subtitle" = "Vietiniu mastu sugeneruotos žinutės";
 "device_talk_explain" = "Šiame pokalbyje esančios žinutės yra generuojamos jūsų įrenginyje, kad naudojimosi metu būtumėte informuoti apie programėlės atnaujinimus ir problemas.";
 "edit_contact" = "Taisyti adresatą";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Prisegti pokalbį";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Atsegti pokalbį";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Prisegti";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Atsegti";
@@ -541,6 +541,7 @@
 "autodel_after_1_hour" = "Po 1 valandos";
 "autodel_after_1_day" = "Po 1 dienos";
 "autodel_after_1_week" = "Po 1 savaitės";
+// deprecated
 "autodel_after_4_weeks" = "Po 4 savaičių";
 "after_5_weeks" = "Po 5 savaičių";
 "autodel_after_1_year" = "Po 1 metų";

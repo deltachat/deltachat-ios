@@ -225,11 +225,11 @@
 "device_talk_subtitle" = "Mensagens geradas localmente";
 "device_talk_explain" = "Mensagens nesta conversa são geradas localmente pelo app Delta Chat. Essas mensagens são para informar sobre atualizações do app e problemas durante seu uso.";
 "edit_contact" = "Editar contato";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Fixar conversa";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Desafixar conversa";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fixar";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desafixar";
@@ -388,7 +388,7 @@
 "multidevice_same_network_hint" = "Certifique-se de que ambos os dispositivos estejam na mesma Wi-Fi ou na mesma rede";
 "multidevice_this_creates_a_qr_code" = "Isso cria um código QR que outro dispositivo pode digitalizar para copiar a conta.";
 "multidevice_install_dc_on_other_device" = "Instalar o Delta Chat em seu outro dispositivo (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Inicie o Delta Chat, clique em \"Adicionar como outro dispositivo\" e escaneie o código mostrado aqui";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Escaneie para configurar outro dispositivo para %1$@";
@@ -635,6 +635,7 @@
 "autodel_after_1_hour" = "Após 1 hora";
 "autodel_after_1_day" = "Após 1 dia";
 "autodel_after_1_week" = "Após 1 semana";
+// deprecated
 "autodel_after_4_weeks" = "Após 4 semanas";
 "after_5_weeks" = "Após 5 semanas ";
 "autodel_after_1_year" = "Após 1 ano";

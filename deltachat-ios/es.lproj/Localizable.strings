@@ -54,6 +54,7 @@
 "show_full_message" = "Mostrar mensaje completo…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marcar todo como leído";
+"mark_as_read" = "Marcar como leído";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Leído";
 // Placeholder text when something is loading
@@ -243,11 +244,11 @@
 "device_talk_explain" = "Los mensajes en este chat son generados localmente por tu aplicación Delta Chat. Los creadores lo usan para informar sobre actualizaciones y problemas durante el uso de la aplicación.";
 "device_talk_welcome_message2" = "¡Ponte en contacto!\n\n🙌 Toca \"Código QR\" en la pantalla principal de ambos dispositivos. Elija \"Escanear código QR\" en un dispositivo y apúntelo al otro\n\n🌍 Si no está en la misma habitación, escanee mediante videollamada o comparta un enlace de invitación desde \"Escanear código QR\"\n\nEntonces: disfrute de su experiencia de mensajería a través de la red descentralizada más grande que jamás haya existido: el correo electrónico. Y a diferencia de otras aplicaciones populares, sin control central ni seguimiento ni venta de usted, amigos, colegas o familiares a grandes organizaciones.";
 "edit_contact" = "Editar contacto";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Anclar chat";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Desanclar chat";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Anclar";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desanclar";
@@ -352,6 +353,8 @@
 "send_file_to" = "Enviar \"%1$@\" a…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Enviar mensaje a…";
+"enable_realtime" = "Canales Webxdc en tiempo real";
+"enable_realtime_explain" = "Habilitar la API de tiempo real de Webxdc para poder crear conexiones directas entre dispositivos.";
 // map
 "filter_map_on_time" = "Mostrar ubicaciones en el marco de tiempo";
 "show_location_traces" = "Mostrar trazas";
@@ -415,7 +418,7 @@
 "multidevice_same_network_hint" = "Asegúrate de que ambos dispositivos estén conectados en la misma red o Wi-Fi";
 "multidevice_this_creates_a_qr_code" = "Esto crea un código QR que el otro dispositivo puede escanear para copiar la cuenta.";
 "multidevice_install_dc_on_other_device" = "Instala Delta Chat en tu otro dispositivo (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Inicia Delta Chat, toca \"Añadir desde otro dispositivo\" y escanea el código mostrado aquí";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Escanea para configurar otro dispositivo para %1$@";
@@ -702,6 +705,8 @@
 "autodel_server_ask" = "¿Deseas borrar %1$d mensajes ahora y todos los mensajes recibidos en \"%2$@\"  al futuro?\n\n⚠️ Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función sis quieres mantener tus datos en el servidor o si estas usando otros clientes de correo más allá de Delta Chat\n\n⚠️ No uses esta función si deseas mantener tus datos en el servidor\n\n⚠️ No uses esta función si estás usando otros clientes de correo más allá de Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Esto incluye correos, multimedia  y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo además de Delta Chat";
+"autodel_server_warn_multi_device_title" = "Activar la eliminación inmediata";
+"autodel_server_warn_multi_device" = "Si habilita la eliminación inmediata, no podrá utilizar varios dispositivos en este perfil.";
 "autodel_confirm" = "Comprendo, borrar todos estos mensajes";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Inmediatamente";
@@ -712,6 +717,7 @@
 "autodel_after_1_hour" = "Luego de 1 hora";
 "autodel_after_1_day" = "Luego de 1 día";
 "autodel_after_1_week" = "Luego de 1 semana";
+// deprecated
 "autodel_after_4_weeks" = "Luego de 4 semanas";
 "after_5_weeks" = "Luego de 5 semanas";
 "autodel_after_1_year" = "Luego de 1 año";
