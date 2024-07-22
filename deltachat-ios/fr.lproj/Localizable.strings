@@ -238,11 +238,11 @@
 "device_talk_subtitle" = "Messages générés localement";
 "device_talk_explain" = "Les messages dans cette discussion sont générés localement par votre application Delta Chat. Cela vous permet de recevoir des informations concernant les mises à jour et problèmes rencontrés à l\'utilisation.";
 "edit_contact" = "Mettre à jour le contact";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Épingler la discussion";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Désépingler la discussion";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Épingler";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Désépingler";
@@ -410,7 +410,7 @@
 "multidevice_same_network_hint" = "Vérifiez que les deux appareils sont bien connectés au même Wi-Fi ou réseau.";
 "multidevice_this_creates_a_qr_code" = "Crée un code QR que vous pouvez scanner avec le deuxième appareil pour copier le compte.";
 "multidevice_install_dc_on_other_device" = "Installer Delta Chat sur votre autre appareil (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Lancez Delta Chat, appuyez sur \"Ajouter comme deuxième appareil\" et scannez le code affiché ici.";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Scanner pour configurer un deuxième appareil pour %1$@";
@@ -667,6 +667,7 @@
 "autodel_after_1_hour" = "Après 1 heure";
 "autodel_after_1_day" = "Après 1 jour";
 "autodel_after_1_week" = "Après 1 semaine";
+// deprecated
 "autodel_after_4_weeks" = "Après 4 semaines";
 "after_5_weeks" = "Après 5 semaines";
 "autodel_after_1_year" = "Après 1 année";

@@ -211,11 +211,11 @@
 "device_talk_subtitle" = "Τοπικά Μηνύματα";
 "device_talk_explain" = "Τα μηνύματα σε αυτήν τη συνομιλία δημιουργούνται στη συσκευή σας για την ενημέρωση σχετικά με ενημερώσεις και προβλήματα κατά τη χρήση της εφαρμογής";
 "edit_contact" = "Επεξεργασία Επαφής";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Καρφίτσωμα Συνομιλίας";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Ξεκαρφίτσωμα Συνομιλίας";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Καρφίτσωμα";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Ξεκαρφίτσωμα";
@@ -590,6 +590,7 @@
 "autodel_after_1_hour" = "Μετά από 1 ώρα";
 "autodel_after_1_day" = "Μετά από 1 μέρα";
 "autodel_after_1_week" = "Μετά από 1 εβδομάδα";
+// deprecated
 "autodel_after_4_weeks" = "Μετά από 4 εβδομάδες";
 "after_5_weeks" = "Μετά από 5 εβδομάδες";
 "autodel_after_1_year" = "Μετά από 1 χρόνο";

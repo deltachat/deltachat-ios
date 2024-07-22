@@ -244,11 +244,11 @@
 "device_talk_explain" = "此聊天中的消息是由 Delta Chat 应用本地生成的。 它的制作者使用它来通知应用更新和使用过程中出现的问题。";
 "device_talk_welcome_message2" = "取得联系！\n\n🙌 轻按两台设备主屏上的“二维码”。 在其中一台设备上选择“扫描二维码”，并将其对准另一台设备上显示的二维码\n\n🌍 如果双方不在同一个房间内，可以通过视频通话进行扫描，或从“扫描二维码”那里分享一个邀请链接\n\n接下来： 通过有史以来存在的最大去中心化网络：电子邮件来享受收发消息。和其他流行的即时聊天应用相比，DeltaChat 没有中央控制，不跟踪您本人、您的好友、同事或家人，也不售卖你们的数据给大型组织。";
 "edit_contact" = "编辑联系人";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "固定聊天";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "取消固定聊天";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "固定";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "取消固定";
@@ -418,7 +418,7 @@
 "multidevice_same_network_hint" = "让两台设备连接相同的 Wi-Fi 或网络";
 "multidevice_this_creates_a_qr_code" = "这会创建供第二台设备扫描、用于复制此账户的二维码。";
 "multidevice_install_dc_on_other_device" = "在你的其他设备上安装 Delta Chat (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "启动 Delta Chat 应用，点击“添加为第二台设备”并扫描显示的二维码";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "扫描此处为 %1$@ 设置第二台设备";
@@ -705,6 +705,8 @@
 "autodel_server_ask" = "您是否要立即删除 %1$d 条消息，并在之后于消息收到 %2$@ 删除它们？\n\n⚠️ 这包括服务器所有文件夹中的电子邮件、媒体和“保存的消息”\n\n⚠️ 如果您想在服务器上保留数据，请不要使用此功能\n\n⚠️ 如果您正在使用 Delta Chat 之外的电子邮件客户端，请不要使用此功能";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "这包括所有服务器文件夹中的电子邮件、媒体和\"保存的消息\"。如果您想在服务器上保存数据，或者您正在使用除 Delta Chat 之外的其他电子邮件客户端，请不要使用此功能。";
+"autodel_server_warn_multi_device_title" = "开启一次性删除";
+"autodel_server_warn_multi_device" = "如果您启用一次删除，则无法在此配置文件中使用多个设备。";
 "autodel_confirm" = "我了解，将这些消息全部删除";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "立刻";
@@ -715,6 +717,7 @@
 "autodel_after_1_hour" = "1 小时后";
 "autodel_after_1_day" = "1 天后";
 "autodel_after_1_week" = "1 周后";
+// deprecated
 "autodel_after_4_weeks" = "4 周后";
 "after_5_weeks" = "5 周后";
 "autodel_after_1_year" = "1 年后";

@@ -211,11 +211,11 @@
 "device_talk_subtitle" = "Miestne generované správy";
 "device_talk_explain" = "Správy v tejto konverzácií sú generované lokálne vašou aplikáciou Delta Chat. Jeho tvorcovia ho používajú na informovanie o aktualizáciách aplikácií a problémoch počas používania.";
 "edit_contact" = "Upraviť kontakt";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Pripnúť konverzáciu";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Odopnúť konverzáciu";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Pripnúť";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Uvoľniť";
@@ -588,6 +588,7 @@
 "autodel_after_1_hour" = "Po 1 hodine";
 "autodel_after_1_day" = "Po 1 dni";
 "autodel_after_1_week" = "Po 1 týždni";
+// deprecated
 "autodel_after_4_weeks" = "Po 4 týždňoch";
 "after_5_weeks" = "Po 5 týždňoch";
 "autodel_after_1_year" = "Po 1 roku";

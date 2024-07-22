@@ -143,11 +143,11 @@
 "device_talk_subtitle" = "Lokalt genererte meldinger";
 "device_talk_explain" = "Meldinger i denne chatten blir generert lokalt av Delta Chat-appen. Produsentene bruker den for å informere om appoppdateringer og problemer under bruk.";
 "edit_contact" = "Rediger kontakt";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Fest chat";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Løsne chat";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fest";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Løsn";

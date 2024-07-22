@@ -219,11 +219,11 @@
 "device_talk_subtitle" = "Mesaje generate la nivel local";
 "device_talk_explain" = "Mesajele din acest chat sunt generate pe dispozitivul dumneavoastră pentru a vă informa cu privire la actualizările app-ului și la problemele apărute în timpul utilizării.";
 "edit_contact" = "Editați Contactul";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Fixați Chat";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Desprindeți Chat-ul";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fixați";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desprindeți";
@@ -378,7 +378,7 @@
 "multidevice_same_network_hint" = "Asigurați-vă că ambele dispozitive se află în aceeași rețea Wi-Fi sau în aceeași rețea";
 "multidevice_this_creates_a_qr_code" = "Astfel se creează un cod QR pe care cel de-al doilea dispozitiv îl poate scana pentru a copia contul.";
 "multidevice_install_dc_on_other_device" = "Instalați Delta Chat pe celălalt dispozitiv (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Porniți Delta Chat, atingeți \" Adăugați ca al doilea dispozitiv\" și scanați codul afișat aici";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Scanare pentru a configura un al doilea dispozitiv pentru %1$@";

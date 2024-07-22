@@ -137,11 +137,11 @@
 "device_talk_subtitle" = "Lokalki sortutako mezuak";
 "device_talk_explain" = "Txat honetako mezuak zure Delta Chat aplikazioak sortu ditu lokalki. Egileek aplikazioaren eguneraketei buruz eta erabileran arazoei buruz informatzeko erabiltzen dute.";
 "edit_contact" = "Editatu kontaktua";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Finkatu txata";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Desfinkatu txata";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Finkatu";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desfinkatu";
@@ -358,6 +358,7 @@
 "autodel_after_1_hour" = "Ordubete eta gero";
 "autodel_after_1_day" = "Egun bat eta gero";
 "autodel_after_1_week" = "Aste bat eta gero";
+// deprecated
 "autodel_after_4_weeks" = "4 aste eta gero";
 "autodel_after_1_year" = "Urtebete eta gero";
 // autocrypt

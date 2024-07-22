@@ -235,11 +235,11 @@
 "device_talk_subtitle" = "Missatges generats localment";
 "device_talk_explain" = "Els missatges d\'aquest xat són generats localment per la vostra app de Delta Chat. Els seus creadors els usen per informar-vos d\'actualitzacions de l\'app i problemes durant el seu ús.";
 "edit_contact" = "Edita el contacte";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Fixa el xat";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Desfixa el xat";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fixa";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desfixa";

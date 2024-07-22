@@ -224,11 +224,11 @@
 "device_talk_subtitle" = "Поруке генерисане на уређају";
 "device_talk_explain" = "Поруке у овом ћаскању се генеришу на вашем уређају да обавештавају о ажурирањима апликација и проблемима током коришћења.";
 "edit_contact" = "Измени контакт";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Закачи ћаскање";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Откачи ћаскање";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Закачи";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Откачи";
@@ -603,6 +603,7 @@
 "autodel_after_1_hour" = "За 1 сат";
 "autodel_after_1_day" = "За 1 дан";
 "autodel_after_1_week" = "За 1 недељу";
+// deprecated
 "autodel_after_4_weeks" = "За 4 недеље";
 "after_5_weeks" = "За 5 недеља";
 "autodel_after_1_year" = "За 1 годину";

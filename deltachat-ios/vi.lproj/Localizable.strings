@@ -240,11 +240,11 @@
 "device_talk_subtitle" = "Tin nhắn được tạo cục bộ";
 "device_talk_explain" = "Tin nhắn trong cuộc trò chuyện này được tạo trên thiết bị của bạn để thông báo về các bản cập nhật ứng dụng và sự cố trong quá trình sử dụng.";
 "edit_contact" = "Chỉnh sửa liên hệ";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Ghim trò chuyện";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Bỏ ghim cuộc trò chuyện";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Ghim";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Bỏ ghim";
@@ -412,7 +412,7 @@
 "multidevice_same_network_hint" = "Đảm bảo cả hai thiết bị đều sử dụng cùng một Wi-Fi hoặc mạng";
 "multidevice_this_creates_a_qr_code" = "Thao tác này sẽ tạo mã QR mà thiết bị thứ hai có thể quét để sao chép tài khoản.";
 "multidevice_install_dc_on_other_device" = "Cài đặt Delta Chat trên thiết bị khác của bạn (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Bắt đầu Delta Chat, nhấn vào “Thêm làm thiết bị thứ hai” và quét mã được hiển thị ở đây";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Quét để thiết lập thiết bị thứ hai cho %1$@";
@@ -669,6 +669,7 @@
 "autodel_after_1_hour" = "Sau 1 giờ";
 "autodel_after_1_day" = "Sau 1 ngày";
 "autodel_after_1_week" = "Sau 1 tuần";
+// deprecated
 "autodel_after_4_weeks" = "Sau 4 tuần";
 "after_5_weeks" = "Sau 5 tuần";
 "autodel_after_1_year" = "Sau 1 năm";

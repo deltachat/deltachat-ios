@@ -217,11 +217,11 @@
 "device_talk_subtitle" = "Pesan-pesan buatan lokal";
 "device_talk_explain" = "Pesan dalam obrolan ini dihasilkan dalam aplikasi Delta Chat anda secara lokal. Para penciptanya memakai obrolan ini untuk memberi tahu aplikasi mutakhir dan masalah-masalah selama digunakan.";
 "edit_contact" = "Edit kontak";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Pin obrolan";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Lepas pin obrolan";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Sematkan";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Lepas pin";
@@ -468,6 +468,7 @@
 "autodel_after_1_hour" = "Setelah 1 jam";
 "autodel_after_1_day" = "Setelah 1 hari";
 "autodel_after_1_week" = "Setelah 1 minggu";
+// deprecated
 "autodel_after_4_weeks" = "Setelah 4 minggu";
 "after_5_weeks" = "Setelah 5 minggu";
 "autodel_after_1_year" = "Setelah 1 tahun";

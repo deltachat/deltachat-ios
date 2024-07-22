@@ -244,11 +244,11 @@
 "device_talk_explain" = "I messaggi in questa chat vengono generati localmente da Delta Chat. Gli sviluppatori li usano per informarti sugli aggiornamenti o sui problemi di utilizzo.";
 "device_talk_welcome_message2" = "Mettiti in contatto!\n\n🙌 Tocca \"Codice QR\" sulla schermata principale di entrambi i dispositivi. Scegli \"Scansiona codice QR\" su un dispositivo e puntalo verso l\'altro\n\n🌍 Se non siete nella stessa stanza, esegui la scansione tramite videochiamata o condividi un collegamento di invito da \"Scansiona codice QR\"\n\nQuindi: goditi la ​​tua esperienza di messaggistica sulla più grande rete decentralizzata mai esistita: l\'E-mail. E a differenza di altre app popolari, senza controllo centrale né monitoraggio o vendita dati tuoi, dei tuoi amici, colleghi o familiari a grandi organizzazioni.";
 "edit_contact" = "Modifica Contatto";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Fissa Chat";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Sblocca Chat";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fissa";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Sblocca";
@@ -418,7 +418,7 @@
 "multidevice_same_network_hint" = "Assicurati che entrambi i dispositivi siano sulla stessa rete o Wi-Fi.";
 "multidevice_this_creates_a_qr_code" = "In questo modo si crea un codice QR che il secondo dispositivo può scansionare per copiare l\'account.";
 "multidevice_install_dc_on_other_device" = "Installa Delta Chat sull\'altro dispositivo (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Avvia Delta Chat, tocca \"Aggiungi come secondo dispositivo\" e scansiona il codice qui mostrato";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Scansiona per impostare un secondo dispositivo per %1$@";
@@ -705,6 +705,8 @@
 "autodel_server_ask" = "Vuoi eliminare %1$d messaggi ora e tutti i messaggi appena recuperati \"%2$@\" nel futuro?\n\n⚠️ Ciò include emails, contenuti multimediali e \"Messaggi salvati\" in tutte le cartelle del server\n\n⚠️ Non utilizzare questa funzione se vuoi mantenere i dati sul server\n\n⚠️ Non utilizzare questa funzione se stai utilizzando altri client di posta elettronica oltre a Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Questo include email, media e \"Messaggi salvati\" in tutte le cartelle del server. Non utilizzare questa funzione se desideri mantenere i dati sul server o se stai utilizzando altri client di posta elettronica oltre a Delta Chat.";
+"autodel_server_warn_multi_device_title" = "Attiva l\'eliminazione immediata";
+"autodel_server_warn_multi_device" = "Se abiliti l\'eliminazione immediata non potrai utilizzare più dispositivi su questo profilo.";
 "autodel_confirm" = "Ho capito, elimina tutti i messaggi";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Subito";
@@ -715,6 +717,7 @@
 "autodel_after_1_hour" = "Dopo 1 ora";
 "autodel_after_1_day" = "Dopo 1 giorno";
 "autodel_after_1_week" = "Dopo 1 settimana";
+// deprecated
 "autodel_after_4_weeks" = "Dopo 4 settimane";
 "after_5_weeks" = "Dopo 5 settimane";
 "autodel_after_1_year" = "Dopo 1 anno";

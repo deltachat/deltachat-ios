@@ -244,11 +244,11 @@
 "device_talk_explain" = "Messages in this chat are generated on your device to inform about app updates and problems during usage.";
 "device_talk_welcome_message2" = "Get in contact!\n\n🙌 Tap \"QR code\" on the main screen of both devices. Choose \"Scan QR Code\" on one device, and point it at the other\n\n🌍 If not in the same room, scan via video call or share an invite link from \"Scan QR code\"\n\nThen: Enjoy your messenger experience over the largest decentralized network that ever existed: E-mail. And in contrast to other popular apps, without central control or tracking or selling you, friends, colleagues or family out to large organizations.";
 "edit_contact" = "Edit Contact";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Pin Chat";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "Unpin Chat";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Pin";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Unpin";
@@ -418,8 +418,8 @@
 "multidevice_same_network_hint" = "Make sure both devices are on the same Wi-Fi or network";
 "multidevice_this_creates_a_qr_code" = "This creates a QR code that the second device can scan to copy the profile.";
 "multidevice_install_dc_on_other_device" = "Install Delta Chat on your other device (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
-"multidevice_tap_scan_on_other_device" = "Start Delta Chat, tap “I Already Have a Login / Add as Second Device” and scan the code shown here";
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Start Delta Chat, tap “I Already Have a Profile / Add as Second Device” and scan the code shown here";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "Scan to set up second device for %1$@";
 "multidevice_receiver_title" = "Add as Second Device";
@@ -705,9 +705,11 @@
 "autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n⚠️ This includes e-mails, media and \"Saved messages\" in all server folders\n\n⚠️ Do not use this function if you want to keep data on the server\n\n⚠️ Do not use this function if you are using other e-mail clients besides Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "This includes e-mails, media and \"Saved messages\" in all server folders. Do not use this function if you want to keep data on the server or if you are using other e-mail clients besides Delta Chat.";
+"autodel_server_warn_multi_device_title" = "Turn on at-once deletion";
+"autodel_server_warn_multi_device" = "If you enable at-once deletion you cannot use multiple devices on this profile.";
 "autodel_confirm" = "I understand, delete all these messages";
 // "At once" in the meaning of "Immediately", without any intervening time.
-"autodel_at_once" = "At once";
+"autodel_at_once" = "At once after Download";
 "after_30_seconds" = "After 30 seconds";
 "after_1_minute" = "After 1 minute";
 "after_5_minutes" = "After 5 minutes";
@@ -715,6 +717,7 @@
 "autodel_after_1_hour" = "After 1 hour";
 "autodel_after_1_day" = "After 1 day";
 "autodel_after_1_week" = "After 1 week";
+// deprecated
 "autodel_after_4_weeks" = "After 4 weeks";
 "after_5_weeks" = "After 5 weeks";
 "autodel_after_1_year" = "After 1 year";
@@ -954,7 +957,7 @@
 "select_group_image_desktop" = "Select Group Image";
 "export_backup_desktop" = "Export Backup";
 "autocrypt_correct_desktop" = "Autocrypt setup transferred.";
-"forget_login_confirmation_desktop" = "Delete this login? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
+"forget_login_confirmation_desktop" = "Delete this profile? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
 // deprecated
 "account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nSize: %2$@\nAccount Id: %3$@";
 "message_detail_sent_desktop" = "sent";

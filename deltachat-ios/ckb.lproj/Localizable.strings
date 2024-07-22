@@ -164,11 +164,11 @@
 "device_talk_subtitle" = "پەیامە درووستکراوە ناوخۆییەکان";
 "device_talk_explain" = "پەیامەکانی نێو ئەم وتووێژە بە شێوازی ناوخۆیی لەلایەن نەرمامێری دێڵتاچاتەکەتەوە درووست کراون. درووستکەرانی نەرمامێرەکە کەڵکی لێ دەگرن بۆ ئاگادار کردنەوەی بەکارهێنەران سەبارەت بە وەشانە نوێکانی نەرمامێرەکە و کێشە و گرفتەکانی.";
 "edit_contact" = "دەستکاری بەردەنگ";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "دەرزیلەکردنی چات";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "لابردنی دەرزیلە";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "دەرزیلە بکە";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "دەرزیلە لابە";
@@ -421,6 +421,7 @@
 "autodel_after_1_hour" = "پاش 1 کاتژمێر";
 "autodel_after_1_day" = "پاش 1 ڕۆژ";
 "autodel_after_1_week" = "پاش 1 حەوتە";
+// deprecated
 "autodel_after_4_weeks" = "پاش 4 حەوتە";
 "after_5_weeks" = "پاش 5 حەوتە";
 "autodel_after_1_year" = "پاش 1 ساڵ";

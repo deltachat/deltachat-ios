@@ -54,6 +54,7 @@
 "show_full_message" = "نمایش پیام کامل...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "همه را خوانده شده بزن";
+"mark_as_read" = "علامت زدن به عنوان خوانده شده";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "خوانده شد";
 // Placeholder text when something is loading
@@ -160,6 +161,8 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "مخاطب جدید";
 "menu_new_classic_contact" = "اضافه کردن مخاطب به صورت دستی";
+"new_classic_contact_explain" = "مخاطبینی که دستی اضافه شده‌اند می توانند برای ارسال پیام به حساب ایمیل معمولی
+ استفاده شوند و رمزگذاری سرتاسر آنها تضمین نمی‌شود.";
 "menu_new_chat" = "گپ جدید";
 "menu_new_group" = "گروه جدید";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
@@ -191,7 +194,7 @@
 "menu_copy_image_to_clipboard" = "رونوشت گرفتن از تصویر";
 "menu_copy_email_to_clipboard" = "کپی کردن رایانامه";
 "paste_from_clipboard" = "چسباندن از حافظه";
-"ask_copy_unopenable_link_to_clipboard" = "نمی توان لینک \"%1$d\" را در مرورگر باز کرد. می خواهید در عوض لینک را کپی کنید؟";
+"ask_copy_unopenable_link_to_clipboard" = "نمی توان لینک \"%1$d\" را در مرورگر باز کرد. آیا می خواهید در عوض لینک را کپی کنید؟";
 "menu_forward" = "هدایت پیام";
 "menu_reply" = "پاسخ به پیام";
 "menu_mute" = "ساکت کردن اعلان";
@@ -236,11 +239,11 @@
 "device_talk_subtitle" = "پیام‌های  داخلی";
 "device_talk_explain" = "پیام‌ها در این گپ به صورت داخلی و توسط نرم‌افزار دلتاچت تولید شده‌اند. سازنده‌ها از این محل برای اعلان به روز‌رسانی‌ها و مشکلات پیش آمده حین کار استفاده می‌کنند. ";
 "edit_contact" = "ویرایش مخاطب";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "سنجاق کردن گپ";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin_chat" = "کندن گپ از سنجاق";
-// Verb "to pin", making something sticky, not a noun or appreviation for "pin number".
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "سنجاق‌کردن";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "سنجاق برداری";
@@ -406,7 +409,7 @@ https://meet.jit.si/$ROOM
 "multidevice_same_network_hint" = "مطمئن شوید هر دو دستگاه در یک وای‌فای یا شبکه هستند";
 "multidevice_this_creates_a_qr_code" = "این یک کد QR ایجاد می‌کند که دستگاه دوم می‌تواند برای کپی حساب اسکن کند.";
 "multidevice_install_dc_on_other_device" = "دلتاچت را روی دستگاه دیگر خود نصب کنید (https://get.delta.chat)";
-// "I Already Have a Login / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "دلتاچت را باز کنید، روی «افزودن به عنوان دستگاه دوم» بزنید و کد نشان داده شده در اینجا را اسکن کنید";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "برای راه اندازی دستگاه دوم برای %1$@ اسکن کنید";
@@ -455,12 +458,14 @@ https://meet.jit.si/$ROOM
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "از قبل یک حساب کاربری دارم";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "ساخت حساب کاربری با حساب ایمیل عادی";
+"manual_account_setup_option" = "ساخت حساب کاربری با حساب ایمیل معمولی";
 // Instant onboarding title (there is not more to do than to set name and avatar)
-"instant_onboarding_title" = "حساب شما";
+"instant_onboarding_title" = "نمایه شما";
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "استفاده از یک سرور دیگر";
 "instant_onboarding_other_server" = "لیست سرورهای Chatmail";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+"instant_onboarding_contact_info" = "برای گفتگو با %1$@ یک حساب کاربری کنید.";
 "welcome_chat_over_email" = "گفتگو غیرمتمرکز و ایمن";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
 "login_title" = "ورود";
@@ -510,7 +515,7 @@ https://meet.jit.si/$ROOM
 "add_account" = "افزودن حساب کاربری";
 "delete_account" = "حذف حساب کاربری";
 "delete_account_ask" = "آیا از حذف حساب کاربری اطمینان دارید؟";
-"delete_account_explain_with_name" = "همه اطلاعات حساب مربوط به \"%1$@\" روی این دستگاه پاک می‌شود؛ که شامل تنظیمات رمزگذاری سرتاسر، مخاطبین، گفتگو ها پیام‌ها، رسانه ها می‌شود. این عمل قابل بازگشت نیست.";
+"delete_account_explain_with_name" = "همه اطلاعات حساب مربوط به «%1$@» روی این دستگاه پاک می‌شود. این شامل تنظیمات رمزگذاری سرتاسر، مخاطبین، گفتگو ها، پیام‌ها و رسانه ها می‌شود. این عمل قابل بازگردانی نیست.";
 "unconfigured_account" = "حساب تنظیم نشده";
 "unconfigured_account_hint" = "بازکردن حساب برای تنظیم آن";
 "try_connect_now" = "اکنون برای اتصال تلاش کنید";
@@ -592,7 +597,7 @@ https://meet.jit.si/$ROOM
 // the placeholder will be replaced by the name of the profile's email address
 "pref_backup_export_x" = "برون‏بُرد(اکسپورت) %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
-"pref_backup_export_all" = "برون‏بُرد(اکسپورت) هر %1$d حساب ";
+"pref_backup_export_all" = "برون‏بُرد (اکسپورت) همه%1$d حساب ها";
 "pref_backup_export_start_button" = "شروع تهیه نسخه پشتیبان";
 "pref_backup_written_to_x" = "نسخه پشتیبان با موفقیت در\"%1$@\" ذخیره شد.";
 "pref_managekeys_menu_title" = "مدیریت کلیدها";
@@ -685,6 +690,7 @@ https://meet.jit.si/$ROOM
 "autodel_after_1_hour" = "بعد از ۱ ساعت";
 "autodel_after_1_day" = "بعد از ۱  روز";
 "autodel_after_1_week" = "بعد از ۱ هفته";
+// deprecated
 "autodel_after_4_weeks" = "بعد از۴ هفته";
 "after_5_weeks" = "بعد از ۵ هفته";
 "autodel_after_1_year" = "بعد از ۱ سال";
