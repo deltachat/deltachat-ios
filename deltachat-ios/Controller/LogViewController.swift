@@ -83,8 +83,6 @@ public class LogViewController: UIViewController {
         let systemVersion = UIDevice.current.systemVersion
         info += "iosVersion=\(systemVersion)\n"
 
-        let notifyEnabled = !UserDefaults.standard.bool(forKey: "notifications_disabled")
-        info += "notify-enabled=\(notifyEnabled)\n"
         info += "any-database-encrypted=\(dcContext.isAnyDatabaseEncrypted())\n"
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
