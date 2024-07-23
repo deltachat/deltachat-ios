@@ -46,7 +46,6 @@ public class InitialsBadge: UIView {
     
     private lazy var unreadMessageCounter: MessageCounter = {
         let view = MessageCounter(count: 0, size: 20)
-        view.backgroundColor = DcColors.unreadBadge
         view.isHidden = true
         view.isAccessibilityElement = false
         return view
@@ -136,9 +135,10 @@ public class InitialsBadge: UIView {
         recentlySeenView.isHidden = !seen
     }
     
-    public func setUnreadMessageCount(_ messageNo: Int) {
-        unreadMessageCounter.setCount(messageNo)
-        unreadMessageCounter.isHidden = messageNo == 0
+    public func setUnreadMessageCount(_ messageCount: Int, isMuted: Bool = false) {
+        unreadMessageCounter.setCount(messageCount)
+        unreadMessageCounter.backgroundColor = isMuted ? DcColors.unreadBadgeMuted : DcColors.unreadBadge
+        unreadMessageCounter.isHidden = messageCount == 0
     }
 
     public func reset() {

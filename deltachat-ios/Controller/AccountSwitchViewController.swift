@@ -327,7 +327,7 @@ class AccountCell: UITableViewCell {
         }
 
         let unreadMessages = dcContext.getFreshMessages().count
-        accountAvatar.setUnreadMessageCount(unreadMessages)
+        accountAvatar.setUnreadMessageCount(unreadMessages, isMuted: dcContext.isMuted())
 
         accountName.text = encrypted + title
         if unreadMessages > 0 {
