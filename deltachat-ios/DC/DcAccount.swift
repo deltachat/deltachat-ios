@@ -120,7 +120,10 @@ public class DcAccounts {
         let skipId = skipCurrent ? getSelected().id : -1
         for accountId in getAll() {
             if accountId != skipId {
-                freshCount += get(id: accountId).getFreshMessages().count
+                let dcContext = get(id: accountId)
+                if !dcContext.isMuted() {
+                    freshCount += dcContext.getFreshMessages().count
+                }
             }
         }
         return freshCount
