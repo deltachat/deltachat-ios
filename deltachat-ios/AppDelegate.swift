@@ -75,6 +75,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcAccounts.openDatabase(writeable: true)
         migrateToDcAccounts()
 
+        // migrating global notifications pref. to per-account config, added 2024-07, can be removed after some time
+        if UserDefaults.standard.bool(forKey: "notifications_disabled") {
+            for accountId in dcAccounts.getAll() {
+                dcAccounts.get(id: accountId).setMuted(true)
+            }
+            UserDefaults.standard.removeObject(forKey: "notifications_disabled")
+        }
+        // /migrating global notifications
+
         self.launchOptions = launchOptions
         continueDidFinishLaunchingWithOptions()
         return true
