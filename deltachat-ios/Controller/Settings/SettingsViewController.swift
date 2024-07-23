@@ -243,7 +243,7 @@ internal final class SettingsViewController: UITableViewController {
             NotificationManager.removeAllNotifications()
         }
         UserDefaults.standard.synchronize()
-        NotificationManager.updateBadgeCounters(forceZero: !sender.isOn)
+        NotificationManager.updateBadgeCounters()
         NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
     }
 
