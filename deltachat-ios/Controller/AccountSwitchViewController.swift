@@ -259,10 +259,21 @@ class AccountCell: UITableViewCell {
     var selectedAccount: Int?
     var accountId: Int?
 
-    public lazy var stateIndicator: UIImageView = {
+    lazy var stateIndicator: UIImageView = {
         let view: UIImageView = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
+        return view
+    }()
+
+    lazy var mutedIndicator: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        view.tintColor = DcColors.middleGray
+        view.image = #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
+        view.contentMode = .scaleAspectFit
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -294,14 +305,17 @@ class AccountCell: UITableViewCell {
 
     func setupSubviews() {
         contentView.addSubview(accountAvatar)
+        contentView.addSubview(mutedIndicator)
         contentView.addSubview(accountName)
         contentView.addSubview(stateIndicator)
         let margins = contentView.layoutMarginsGuide
         contentView.addConstraints([
             accountAvatar.constraintCenterYTo(contentView),
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
+            mutedIndicator.constraintCenterYTo(contentView),
+            mutedIndicator.constraintToTrailingOf(accountAvatar, paddingLeading: 12),
             accountName.constraintAlignTopToAnchor(margins.topAnchor),
-            accountName.constraintToTrailingOf(accountAvatar, paddingLeading: 20),
+            accountName.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
             accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
             accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
             stateIndicator.constraintCenterYTo(contentView),
@@ -328,6 +342,8 @@ class AccountCell: UITableViewCell {
 
         let unreadMessages = dcContext.getFreshMessages().count
         accountAvatar.setUnreadMessageCount(unreadMessages, isMuted: dcContext.isMuted())
+
+        mutedIndicator.isHidden = !dcContext.isMuted()
 
         accountName.text = encrypted + title
         if unreadMessages > 0 {
