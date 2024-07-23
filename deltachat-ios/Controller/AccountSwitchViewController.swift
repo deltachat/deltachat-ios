@@ -246,27 +246,27 @@ class AccountCell: UITableViewCell {
         return 54
     }
 
-    var isLargeText: Bool {
+    private var isLargeText: Bool {
         return UIFont.preferredFont(forTextStyle: .body).pointSize > 36
     }
 
-    lazy var accountAvatar: InitialsBadge = {
+    private lazy var accountAvatar: InitialsBadge = {
         let avatar = InitialsBadge(size: 37)
         avatar.isAccessibilityElement = false
         return avatar
     }()
 
-    var selectedAccount: Int?
-    var accountId: Int?
+    private var selectedAccount: Int?
+    private var accountId: Int?
 
-    lazy var stateIndicator: UIImageView = {
+    private lazy var stateIndicator: UIImageView = {
         let view: UIImageView = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         return view
     }()
 
-    lazy var mutedIndicator: UIImageView = {
+    private lazy var mutedIndicator: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
@@ -277,7 +277,7 @@ class AccountCell: UITableViewCell {
         return view
     }()
 
-    lazy var accountName: UILabel = {
+    private lazy var accountName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
@@ -303,7 +303,7 @@ class AccountCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupSubviews() {
+    private func setupSubviews() {
         contentView.addSubview(accountAvatar)
         contentView.addSubview(mutedIndicator)
         contentView.addSubview(accountName)
@@ -327,7 +327,7 @@ class AccountCell: UITableViewCell {
         stateIndicator.isHidden = true
     }
 
-    public func updateCell(selectedAccount: Int, showAccountDeletion: Bool, dcContext: DcContext) {
+    func updateCell(selectedAccount: Int, showAccountDeletion: Bool, dcContext: DcContext) {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
