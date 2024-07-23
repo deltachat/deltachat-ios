@@ -280,8 +280,8 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isMuted: Bool, isContactRequest: Bool, isArchiveLink: Bool, isVerified: Bool) {
-        unreadMessageCounter.backgroundColor = isMuted || isArchiveLink ? DcColors.unreadBadgeMuted : DcColors.unreadBadge
+    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isChatMuted: Bool = false, isAccountMuted: Bool = false, isContactRequest: Bool, isArchiveLink: Bool, isVerified: Bool) {
+        unreadMessageCounter.backgroundColor = isChatMuted || isAccountMuted || isArchiveLink  ? DcColors.unreadBadgeMuted : DcColors.unreadBadge
         verifiedIndicator.isHidden = !isVerified
 
         if isLargeText {
@@ -327,7 +327,7 @@ class ContactCell: UITableViewCell {
         }
 
         contactRequest.isHidden = !isContactRequest
-        mutedIndicator.isHidden = !isMuted
+        mutedIndicator.isHidden = !isChatMuted
         locationStreamingIndicator.isHidden = !isLocationStreaming
     }
 
@@ -392,7 +392,8 @@ class ContactCell: UITableViewCell {
                                 status: chatData.summary.state,
                                 visibility: visibility,
                                 isLocationStreaming: chat.isSendingLocations,
-                                isMuted: chat.isMuted,
+                                isChatMuted: chat.isMuted,
+                                isAccountMuted: cellViewModel.dcContext.isMuted(),
                                 isContactRequest: isContactRequest,
                                 isArchiveLink: chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK,
                                 isVerified: chat.isProtected)
@@ -411,7 +412,6 @@ class ContactCell: UITableViewCell {
                                 status: 0,
                                 visibility: 0,
                                 isLocationStreaming: false,
-                                isMuted: false,
                                 isContactRequest: false,
                                 isArchiveLink: false,
                                 isVerified: contact.isVerified)
@@ -430,7 +430,6 @@ class ContactCell: UITableViewCell {
             status: 0,
             visibility: 0,
             isLocationStreaming: false,
-            isMuted: false,
             isContactRequest: false,
             isArchiveLink: false,
             isVerified: false)
