@@ -75,15 +75,15 @@ class SecuritySettingsController: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }
-        selectedIndex = indexPath.row
+        selectedIndex = indexPath.row // TODO: callback to AccountSetupController here
     }
 
     @objc func okButtonPressed() {
         switch securityType {
         case .IMAPSecurity:
-            dcContext.setConfigInt("mail_security", Int(options[selectedIndex]))
+            dcContext.setConfigInt("mail_security", Int(options[selectedIndex])) // TODO: setting here is too soon
         case .SMTPSecurity:
-            dcContext.setConfigInt("send_security", Int(options[selectedIndex]))
+            dcContext.setConfigInt("send_security", Int(options[selectedIndex])) // TODO: setting here is too soon
         }
         navigationController?.popViewController(animated: true)
     }

@@ -76,6 +76,7 @@ class CertificateCheckController: UITableViewController {
     }
 
     private func selectItem(at index: Int? ) {
+        // TODO: callback to AccountSetupController here
         if let oldIndex = selectedIndex {
             let cell = tableView.cellForRow(at: IndexPath.init(row: oldIndex, section: 0))
             cell?.accessoryType = .none
@@ -89,7 +90,7 @@ class CertificateCheckController: UITableViewController {
     }
 
     @objc private func okButtonPressed() {
-        dcContext.certificateChecks = currentValue
+        dcContext.certificateChecks = currentValue // TODO: setting here is too soon
         navigationController?.popViewController(animated: true)
     }
 
