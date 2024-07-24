@@ -507,10 +507,6 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
     }
 
-    @objc func closeButtonPressed() {
-        dismiss(animated: true, completion: nil)
-    }
-
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
         return false
