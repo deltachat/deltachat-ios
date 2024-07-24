@@ -247,12 +247,13 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
+    private var cancelButton: UIBarButtonItem {
+        let button =  UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        return button
+    }
+
     private lazy var loginButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(
-            title: String.localized("login_title"),
-            style: .done,
-            target: self,
-            action: #selector(loginButtonPressed))
+        let button = UIBarButtonItem(title: String.localized("login_title"), style: .done, target: self, action: #selector(loginButtonPressed))
         button.isEnabled = !dcContext.isConfigured()
         return button
     }()
@@ -282,6 +283,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         } else {
             title = String.localized("login_header")
         }
+        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = loginButton
         emailCell.setText(text: dcContext.addr ?? nil)
         passwordCell.setText(text: dcContext.mailPw ?? nil)
@@ -412,6 +414,10 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
             tableView.deleteRows(at: advancedIndexPaths, with: .fade)
         }
         tableView.reloadData() // needed to force a redraw
+    }
+
+    @objc private func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
     }
 
     @objc private func loginButtonPressed() {
