@@ -216,6 +216,7 @@
 		D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */; };
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
 		D85DF9782C4A96CB00A01408 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DF9772C4A96CB00A01408 /* UserDefaults+Extensions.swift */; };
+		D85DF9802C5250E200A01408 /* ProgressAlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */; };
 		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
 		D8C19DCE2C1B456700B32F6D /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */; };
 		D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */; };
@@ -598,6 +599,7 @@
 		D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewViewController.swift; sourceTree = "<group>"; };
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
 		D85DF9772C4A96CB00A01408 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAlertHandler.swift; sourceTree = "<group>"; };
 		D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantOnboardingView.swift; sourceTree = "<group>"; };
 		D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendContactViewController.swift; sourceTree = "<group>"; };
 		D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardPreview.swift; sourceTree = "<group>"; };
@@ -1070,6 +1072,7 @@
 				AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */,
 				AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */,
 				AEE700242438E0E500D6992E /* LegacyProgressAlertHandler.swift */,
+				D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -1641,6 +1644,7 @@
 				305961D02346125100C80F33 /* NSAttributedString+Extensions.swift in Sources */,
 				21D6C941260623F500D0755A /* NotificationManager.swift in Sources */,
 				3080A023277DE09900E74565 /* SeparatorLine.swift in Sources */,
+				D85DF9802C5250E200A01408 /* ProgressAlertHandler.swift in Sources */,
 				302B84C72396770B001C261F /* RelayHelper.swift in Sources */,
 				B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
