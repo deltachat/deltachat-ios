@@ -14,23 +14,19 @@ protocol LegacyProgressAlertHandler: UIViewController {
 extension LegacyProgressAlertHandler {
 
     func showProgressAlert(title: String, dcContext: DcContext) {
-        let progressAlert = makeProgressAlert(dcContext: dcContext)
-        progressAlert.actions[0].isEnabled = true
-        progressAlert.title = title
-        progressAlert.message = String.localized("one_moment")
-        self.present(progressAlert, animated: true, completion: nil)
-        self.progressAlert = progressAlert
-    }
 
-    private func makeProgressAlert(dcContext: DcContext) -> UIAlertController {
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(
+        let progressAlert = UIAlertController(title: title, message: String.localized("one_moment"), preferredStyle: .alert)
+        let cancelAction = UIAlertAction(
             title: String.localized("cancel"),
             style: .cancel,
             handler: { _ in
                 dcContext.stopOngoingProcess()
-        }))
-        return alert
+        })
+        cancelAction.isEnabled = false
+        progressAlert.addAction(cancelAction)
+
+        self.present(progressAlert, animated: true, completion: nil)
+        self.progressAlert = progressAlert
     }
 
     func updateProgressAlertValue(value: Int?) {
