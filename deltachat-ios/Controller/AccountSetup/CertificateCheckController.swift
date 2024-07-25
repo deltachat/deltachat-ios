@@ -1,6 +1,10 @@
 import UIKit
 import DcCore
 
+protocol CertificateCheckDelegate: AnyObject {
+    func onCertificateCheckChanged(newValue: Int)
+}
+
 class CertificateCheckController: UITableViewController {
 
     var options = [Int(DC_CERTCK_AUTO),
@@ -9,7 +13,7 @@ class CertificateCheckController: UITableViewController {
 
     var currentValue: Int
     var selectedIndex: Int?
-    let dcContext: DcContext
+    weak var delegate: CertificateCheckDelegate?
 
     var okButton: UIBarButtonItem {
         let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
@@ -29,9 +33,8 @@ class CertificateCheckController: UITableViewController {
         })
     }
 
-    init(dcContext: DcContext, sectionTitle: String?) {
-        self.dcContext = dcContext
-        self.currentValue = dcContext.certificateChecks
+    init(initValue: Int, sectionTitle: String?) {
+        self.currentValue = initValue
         for (index, value) in options.enumerated() where currentValue == value {
             selectedIndex = index
         }
@@ -76,7 +79,6 @@ class CertificateCheckController: UITableViewController {
     }
 
     private func selectItem(at index: Int? ) {
-        // TODO: callback to AccountSetupController here
         if let oldIndex = selectedIndex {
             let cell = tableView.cellForRow(at: IndexPath.init(row: oldIndex, section: 0))
             cell?.accessoryType = .none
@@ -90,7 +92,7 @@ class CertificateCheckController: UITableViewController {
     }
 
     @objc private func okButtonPressed() {
-        dcContext.certificateChecks = currentValue // TODO: setting here is too soon
+        delegate?.onCertificateCheckChanged(newValue: currentValue)
         navigationController?.popViewController(animated: true)
     }
 
