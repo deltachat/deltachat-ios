@@ -1,15 +1,13 @@
 import UIKit
 import DcCore
 
-
-class InstantOnboardingViewController: UIViewController, LegacyProgressAlertHandler {
+class InstantOnboardingViewController: UIViewController {
 
     static let defaultChatmailDomain: String = "nine.testrun.org"
 
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
-    weak var progressAlert: UIAlertController?
-    var progressObserver: NSObjectProtocol?
+
     private var qrCodeReader: QrCodeReaderController?
     private var securityScopedResource: NSURL?
     private lazy var canCancel: Bool = {
@@ -21,6 +19,8 @@ class InstantOnboardingViewController: UIViewController, LegacyProgressAlertHand
 
     private var providerHostURL: URL
     private var qrCodeData: String?
+
+    var progressAlertHandler: ProgressAlertHandler?
 
     // TODO: Maybe use DI instead of lazily computed property?
     private lazy var mediaPicker: MediaPicker = {
@@ -64,12 +64,6 @@ class InstantOnboardingViewController: UIViewController, LegacyProgressAlertHand
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-
-    deinit {
-        if let progressObserver {
-            NotificationCenter.default.removeObserver(progressObserver)
-        }
-    }
 
     override func loadView() {
         super.loadView()
@@ -219,8 +213,11 @@ class InstantOnboardingViewController: UIViewController, LegacyProgressAlertHand
 
     // MARK: - action: configuration
     @objc private func acceptAndCreateButtonPressed() {
-        addProgressAlertListener(dcAccounts: self.dcAccounts, progressName: Event.configurationProgress, onSuccess: self.handleCreateSuccess)
-        showProgressAlert(title: String.localized("add_account"), dcContext: self.dcContext)
+        let progressAlertHandler = ProgressAlertHandler(dcAccounts: dcAccounts, notification: Event.configurationProgress, onSuccess: { [weak self] in
+            self?.handleCreateSuccess()
+        })
+        progressAlertHandler.dataSource = self
+        progressAlertHandler.showProgressAlert(title: String.localized("add_account"), dcContext: self.dcContext)
 
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
@@ -232,11 +229,12 @@ class InstantOnboardingViewController: UIViewController, LegacyProgressAlertHand
                     self.dcAccounts.stopIo()
                     self.dcContext.configure()
                 } else {
-                    self.updateProgressAlert(error: self.dcContext.lastErrorString, completion: nil)
+                    progressAlertHandler.updateProgressAlert(error: self.dcContext.lastErrorString, completion: nil)
                 }
             }
         }
 
+        self.progressAlertHandler = progressAlertHandler
     }
 
     private func handleCreateSuccess() {
@@ -293,5 +291,11 @@ extension InstantOnboardingViewController: QrCodeReaderDelegate {
     private func dismissQRReader() {
         self.navigationController?.popViewController(animated: true)
         self.qrCodeReader = nil
+    }
+}
+
+extension InstantOnboardingViewController: ProgressAlertHandlerDataSource {
+    func viewController() -> UIViewController {
+        self
     }
 }
