@@ -1,6 +1,7 @@
 import UIKit
 import DcCore
 
+@available(*, deprecated, message: "Replace with ProgressAlertHandler-class")
 protocol LegacyProgressAlertHandler: UIViewController {
     var progressAlert: UIAlertController? { get set }   // needs to be implemented as weak
     var progressObserver: NSObjectProtocol? { get set } // set to nil in viewDidDisappear
