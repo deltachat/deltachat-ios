@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import Intents
 
-internal final class AdvancedViewController: UITableViewController, LegacyProgressAlertHandler {
+internal final class AdvancedViewController: UITableViewController {
 
     private struct SectionConfigs {
         let headerTitle: String?
@@ -26,9 +26,7 @@ internal final class AdvancedViewController: UITableViewController, LegacyProgre
 
     private let externalPathDescr = "File Sharing/Delta Chat"
 
-    // MARK: - LegacyProgressAlertHandler
-    weak var progressAlert: UIAlertController?
-    var progressObserver: NSObjectProtocol?
+    var progressAlertHandler: ProgressAlertHandler?
 
     // MARK: - cells
     private lazy var showEmailsCell: UITableViewCell = {
@@ -286,21 +284,6 @@ internal final class AdvancedViewController: UITableViewController, LegacyProgre
         updateCells()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        addProgressAlertListener(dcAccounts: dcAccounts, progressName: Event.importExportProgress) { [weak self] in
-            guard let self else { return }
-            self.progressAlert?.dismiss(animated: true)
-        }
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        if let progressObserver {
-            NotificationCenter.default.removeObserver(progressObserver)
-        }
-    }
-
     // MARK: - UITableViewDelegate + UITableViewDatasource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -426,9 +409,14 @@ internal final class AdvancedViewController: UITableViewController, LegacyProgre
     }
 
     private func startImex(what: Int32, passphrase: String? = nil) {
+
+        let progressHandler = ProgressAlertHandler(dcAccounts: self.dcAccounts, notification: Event.importExportProgress)
+        progressHandler.dataSource = self
+
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
-            showProgressAlert(title: String.localized(what==DC_IMEX_IMPORT_SELF_KEYS ? "pref_managekeys_import_secret_keys" : "pref_managekeys_export_secret_keys"), dcContext: dcContext)
+            let alertTitle = String.localized(what==DC_IMEX_IMPORT_SELF_KEYS ? "pref_managekeys_import_secret_keys" : "pref_managekeys_export_secret_keys")
+            progressHandler.showProgressAlert(title: alertTitle, dcContext: dcContext)
             DispatchQueue.main.async {
                 self.dcAccounts.stopIo()
                 self.dcContext.imex(what: what, directory: documents[0], passphrase: passphrase)
@@ -436,6 +424,8 @@ internal final class AdvancedViewController: UITableViewController, LegacyProgre
         } else {
             logger.error("document directory not found")
         }
+
+        self.progressAlertHandler = progressHandler
     }
 
     // MARK: - updates
@@ -448,5 +438,11 @@ internal final class AdvancedViewController: UITableViewController, LegacyProgre
     private func showVideoChatInstance() {
         let videoInstanceController = VideoChatInstanceViewController(dcContext: dcContext)
         navigationController?.pushViewController(videoInstanceController, animated: true)
+    }
+}
+
+extension AdvancedViewController: ProgressAlertHandlerDataSource {
+    func viewController() -> UIViewController {
+        self
     }
 }
