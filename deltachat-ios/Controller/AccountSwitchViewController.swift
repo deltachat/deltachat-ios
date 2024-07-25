@@ -271,7 +271,7 @@ class AccountCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
         view.tintColor = DcColors.middleGray
-        view.image = #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
+        view.image = UIImage(named: "volume_off")?.withRenderingMode(.alwaysTemplate)
         view.contentMode = .scaleAspectFit
         view.isAccessibilityElement = false
         return view
