@@ -341,23 +341,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         if sections[section] == basicSection {
             return String.localized("login_no_servers_hint")
         } else if sections[section] == advancedSection {
-            if advancedSectionShowing && dcContext.isConfigured() {
-                var info = String.localized("used_settings") + "\n"
-                info += "IMAP "
-                info += SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("mail_security"))) + " "
-                info += (dcContext.getConfig("configured_mail_user") ?? "unset") + ":***@"
-                info += (dcContext.getConfig("configured_mail_server") ?? "unset") + ":"
-                info += (dcContext.getConfig("configured_mail_port") ?? "unset") + "\n"
-                info += "SMTP "
-                info += SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("send_security"))) + " "
-                info += (dcContext.getConfig("configured_send_user") ?? "unset") + ":***@"
-                info += (dcContext.getConfig("configured_send_server") ?? "unset") +  ":"
-                info += (dcContext.getConfig("configured_send_port") ?? "unset") + "\n\n"
-                info += String.localized("login_subheader")
-                return info
-            } else {
-                return String.localized("login_subheader")
-            }
+            return String.localized("login_subheader")
         } else {
             return nil
         }
