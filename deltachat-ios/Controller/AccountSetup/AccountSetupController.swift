@@ -230,7 +230,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }()
 
     lazy var certCheckCell: UITableViewCell = {
-        let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
+        let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_certificate_checks")
         cell.detailTextLabel?.text = certCheckType
@@ -238,6 +238,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
+
+    lazy var certValue: Int = dcContext.certificateChecks
 
     lazy var viewLogCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
@@ -589,6 +591,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                 }
             }
         }
+        dcContext.certificateChecks = certValue
     }
 
     private func handleLoginSuccess() {
@@ -607,7 +610,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     private func initSelectionCells() {
         imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("mail_security")))
         smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(dcContext.getConfigInt("send_security")))
-        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: dcContext.certificateChecks)
+        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
     }
 
     private func resignFirstResponderOnAllCells() {
@@ -677,7 +680,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func showCertCheckOptions() {
-        let certificateCheckController = CertificateCheckController(dcContext: dcContext, sectionTitle: String.localized("login_certificate_checks"))
+        let certificateCheckController = CertificateCheckController(initValue: certValue, sectionTitle: String.localized("login_certificate_checks"))
+        certificateCheckController.delegate = self
         navigationController?.pushViewController(certificateCheckController, animated: true)
     }
 
@@ -729,5 +733,11 @@ extension AccountSetupController: UITextFieldDelegate {
             })
             updateProviderInfo()
         }
+    }
+}
+
+extension AccountSetupController: CertificateCheckDelegate {
+    func onCertificateCheckChanged(newValue: Int) {
+        certValue = newValue
     }
 }
