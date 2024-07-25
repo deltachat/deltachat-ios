@@ -1,14 +1,17 @@
 import UIKit
 import DcCore
 
+protocol SecuritySettingsDelegate: AnyObject {
+    func onSecuritySettingsChanged(type: SecurityType, newValue: Int)
+}
+
 class SecuritySettingsController: UITableViewController {
 
     private var options: [Int32] = [DC_SOCKET_AUTO, DC_SOCKET_SSL, DC_SOCKET_STARTTLS, DC_SOCKET_PLAIN]
 
     private var selectedIndex: Int
-
     private var securityType: SecurityType
-    private let dcContext: DcContext
+    weak var delegate: SecuritySettingsDelegate?
 
     private var okButton: UIBarButtonItem {
         let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
@@ -28,15 +31,9 @@ class SecuritySettingsController: UITableViewController {
         }
     }
 
-    init(dcContext: DcContext, title: String, type: SecurityType) {
+    init(initValue: Int, title: String, type: SecurityType) {
         self.securityType = type
-        self.dcContext = dcContext
-        switch securityType {
-        case .IMAPSecurity:
-            selectedIndex = options.firstIndex(of: Int32(dcContext.getConfigInt("mail_security"))) ?? 0
-        case .SMTPSecurity:
-            selectedIndex = options.firstIndex(of: Int32(dcContext.getConfigInt("send_security"))) ?? 0
-        }
+        selectedIndex = options.firstIndex(of: Int32(initValue)) ?? 0
         super.init(style: .grouped)
         self.title = title
     }
@@ -79,12 +76,7 @@ class SecuritySettingsController: UITableViewController {
     }
 
     @objc func okButtonPressed() {
-        switch securityType {
-        case .IMAPSecurity:
-            dcContext.setConfigInt("mail_security", Int(options[selectedIndex])) // TODO: setting here is too soon
-        case .SMTPSecurity:
-            dcContext.setConfigInt("send_security", Int(options[selectedIndex])) // TODO: setting here is too soon
-        }
+        delegate?.onSecuritySettingsChanged(type: securityType, newValue: Int(options[selectedIndex]))
         navigationController?.popViewController(animated: true)
     }
 
