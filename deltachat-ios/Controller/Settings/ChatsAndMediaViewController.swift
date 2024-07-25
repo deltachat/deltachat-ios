@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 import Intents
 
-internal final class ChatsAndMediaViewController: UITableViewController, LegacyProgressAlertHandler {
+internal final class ChatsAndMediaViewController: UITableViewController {
 
     private struct SectionConfigs {
         let headerTitle: String?
@@ -21,13 +21,9 @@ internal final class ChatsAndMediaViewController: UITableViewController, LegacyP
 
     private var dcContext: DcContext
     internal let dcAccounts: DcAccounts
-
-    // MARK: - LegacyProgressAlertHandler
-    weak var progressAlert: UIAlertController?
-    var progressObserver: NSObjectProtocol?
+    var progressAlertHandler: ProgressAlertHandler?
 
     // MARK: - cells
-
 
     private lazy var blockedContactsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
@@ -135,30 +131,6 @@ internal final class ChatsAndMediaViewController: UITableViewController, LegacyP
         updateCells()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        addProgressAlertListener(dcAccounts: dcAccounts, progressName: Event.importExportProgress) { [weak self] in
-            guard let self else { return }
-
-            self.progressAlert?.dismiss(animated: true) {
-                let alert = UIAlertController(
-                    title: String.localized("backup_successful"),
-                    message: String.localizedStringWithFormat(String.localized("backup_successful_explain_ios"), "\(String.localized("Files")) ➔ Delta Chat"),
-                    preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        let nc = NotificationCenter.default
-        if let progressObserver {
-            nc.removeObserver(progressObserver)
-        }
-    }
-
     // MARK: - UITableViewDelegate + UITableViewDatasource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -201,7 +173,23 @@ internal final class ChatsAndMediaViewController: UITableViewController, LegacyP
 
     private func createBackup() {
         let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { [weak self] _ in
+            guard let self else { return }
+
+            let progressHandler = ProgressAlertHandler(dcAccounts: self.dcAccounts, notification: Event.importExportProgress) { [weak self] in
+                guard let self else { return }
+
+                let alert = UIAlertController(
+                    title: String.localized("backup_successful"),
+                    message: String.localizedStringWithFormat(String.localized("backup_successful_explain_ios"), "\(String.localized("Files")) ➔ Delta Chat"),
+                    preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            progressHandler.dataSource = self
+
+            self.progressAlertHandler = progressHandler
+
             self.dismiss(animated: true, completion: nil)
             self.startImex(what: DC_IMEX_EXPORT_BACKUP)
         }))
@@ -217,7 +205,7 @@ internal final class ChatsAndMediaViewController: UITableViewController, LegacyP
     private func startImex(what: Int32, passphrase: String? = nil) {
         let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if !documents.isEmpty {
-            showProgressAlert(title: String.localized("export_backup_desktop"), dcContext: dcContext)
+            progressAlertHandler?.showProgressAlert(title: String.localized("export_backup_desktop"), dcContext: dcContext)
             DispatchQueue.main.async {
                 self.dcAccounts.stopIo()
                 self.dcContext.imex(what: what, directory: documents[0], passphrase: passphrase)
@@ -253,5 +241,11 @@ internal final class ChatsAndMediaViewController: UITableViewController, LegacyP
     private func showAutodelOptions() {
         let settingsAutodelOverviewController = AutodelOverviewViewController(dcContext: dcContext)
         navigationController?.pushViewController(settingsAutodelOverviewController, animated: true)
+    }
+}
+
+extension ChatsAndMediaViewController: ProgressAlertHandlerDataSource {
+    func viewController() -> UIViewController {
+        self
     }
 }
