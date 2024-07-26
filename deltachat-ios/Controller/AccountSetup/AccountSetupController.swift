@@ -465,6 +465,7 @@ class AccountSetupController: UITableViewController {
         let progressAlertHandler = ProgressAlertHandler(dcAccounts: dcAccounts, notification: Event.configurationProgress, checkForInternetConnectivity: true) { [weak self] in
             self?.handleLoginSuccess()
         }
+        progressAlertHandler.dataSource = self
 
         resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
         dcContext.addr = emailAddress
