@@ -10,12 +10,14 @@ class ProgressAlertHandler {
     let dcAccounts: DcAccounts
     weak var dataSource: ProgressAlertHandlerDataSource?
     var onSuccess: (() -> Void)?
+    let checkForInternetConnectivity: Bool
     private var progressAlertController: UIAlertController?
 
     // add Completion block
-    init(dcAccounts: DcAccounts, notification: Notification.Name, onSuccess: (() -> Void)? = nil) {
+    init(dcAccounts: DcAccounts, notification: Notification.Name, checkForInternetConnectivity: Bool = false, onSuccess: (() -> Void)? = nil) {
         self.dcAccounts = dcAccounts
         self.onSuccess = onSuccess
+        self.checkForInternetConnectivity = checkForInternetConnectivity
 
         NotificationCenter.default.addObserver(self, selector: #selector(Self.handleNotification(_:)), name: notification, object: nil)
     }
@@ -25,7 +27,17 @@ class ProgressAlertHandler {
 
         if ui["error"] as? Bool ?? false {
             dcAccounts.startIo()
-            self.updateProgressAlert(error: ui["errorMessage"] as? String)
+
+            var errorMessage: String? = ui["errorMessage"] as? String
+            // override if we need to check for connectiviy issues
+            if checkForInternetConnectivity,
+               let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+               let reachability = appDelegate.reachability,
+               reachability.connection == .unavailable {
+                errorMessage = String.localized("login_error_no_internet_connection")
+            }
+
+            self.updateProgressAlert(error: errorMessage)
         } else if ui["done"] as? Bool ?? false {
             dcAccounts.startIo()
             self.updateProgressAlertSuccess(completion: onSuccess)
