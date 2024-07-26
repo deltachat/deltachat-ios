@@ -2,14 +2,12 @@ import SafariServices
 import UIKit
 import DcCore
 
-class AccountSetupController: UITableViewController, LegacyProgressAlertHandler {
+class AccountSetupController: UITableViewController {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     private var skipOauth = false
-    var progressObserver: NSObjectProtocol?
     var onLoginSuccess: (() -> Void)?
-
-    private var oauth2Observer: NSObjectProtocol?
+    var progressAlertHandler: ProgressAlertHandler?
 
     private let tagEmailCell = 0
     private let tagPasswordCell = 1
@@ -62,10 +60,6 @@ class AccountSetupController: UITableViewController, LegacyProgressAlertHandler 
     private var providerInfoShowing: Bool = false
 
     private var provider: DcProvider?
-
-    // MARK: - the progress dialog
-
-    weak var progressAlert: UIAlertController?
 
     // MARK: - cells
 
@@ -306,17 +300,6 @@ class AccountSetupController: UITableViewController, LegacyProgressAlertHandler 
 
     override func viewWillDisappear(_ animated: Bool) {
         resignFirstResponderOnAllCells()
-        progressObserver = nil
-    }
-
-    override func viewDidDisappear(_: Bool) {
-        let nc = NotificationCenter.default
-        if let configureProgressObserver = self.progressObserver {
-            nc.removeObserver(configureProgressObserver)
-        }
-        if let oauth2Observer = self.oauth2Observer {
-            nc.removeObserver(oauth2Observer)
-        }
     }
 
     // MARK: - Table view data source
@@ -478,12 +461,9 @@ class AccountSetupController: UITableViewController, LegacyProgressAlertHandler 
     }
 
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
-        progressObserver = NotificationCenter.default.addObserver(
-            forName: Event.configurationProgress,
-            object: nil,
-            queue: nil
-        ) { [weak self] notification in
-            self?.handleConfigurationProgress(notification)
+
+        let progressAlertHandler = ProgressAlertHandler(dcAccounts: dcAccounts, notification: Event.configurationProgress, checkForInternetConnectivity: true) { [weak self] in
+            self?.handleLoginSuccess()
         }
 
         resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
@@ -497,53 +477,14 @@ class AccountSetupController: UITableViewController, LegacyProgressAlertHandler 
         print("oAuth-Flag when loggin in: \(dcContext.getAuthFlags())")
         dcAccounts.stopIo()
         dcContext.configure()
-        showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
+        progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
+
+        self.progressAlertHandler = progressAlertHandler
     }
 
     // returns true if needed
     private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
         return false
-
-        // don't use oauth2 for now as not yet supported by deltachat-rust.
-//
-//         if skipOauth {
-//             // user has previously denied oAuth2-setup
-//             return false
-//         }
-//
-//         guard let oAuth2UrlPointer = dc_get_oauth2_url(mailboxPointer, emailAddress, "chat.delta:/auth") else {
-//             //MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL)) -- do not reset, there may be different values
-//             return false
-//         }
-//
-//         let oAuth2Url = String(cString: oAuth2UrlPointer)
-//
-//         if let url = URL(string: oAuth2Url) {
-//             let title = "Continue with simplified setup"
-//             let message = "The entered e-mail address supports a simplified setup (oAuth2).\n\nIn the next step, please allow Delta Chat to act as your Chat with E-Mail app.\n\nThere are no Delta Chat servers, your data stays on your device."
-//
-//             let oAuthAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//             let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
-//                 [weak self] _ in // TODO: refactor usages of `self` to `self?` when this code is used again
-//                 let nc = NotificationCenter.default
-//                 self.oauth2Observer = nc.addObserver(self, selector: #selector(self.oauthLoginApproved), name: NSNotification.Name("oauthLoginApproved"), object: nil)
-//                 self.launchOAuthBrowserWindow(url: url)
-//             })
-//             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-//                 _ in
-//                 MRConfig.setAuthFlags(flags: Int(DC_LP_AUTH_NORMAL))
-//                 self.skipOauth = true
-//                 handleCancel?()
-//
-//             })
-//             oAuthAlertController.addAction(confirm)
-//             oAuthAlertController.addAction(cancel)
-//
-//             present(oAuthAlertController, animated: true, completion: nil)
-//             return true
-//         } else {
-//             return false
-//         }
     }
 
     @objc func oauthLoginApproved(notification: Notification) {
@@ -643,28 +584,6 @@ class AccountSetupController: UITableViewController, LegacyProgressAlertHandler 
         }
     }
 
-    // MARK: - Notifications
-
-    @objc private func handleConfigurationProgress(_ notification: Notification) {
-        guard let ui = notification.userInfo else { return }
-
-        if let error = ui["error"] as? Bool, error {
-            self.dcAccounts.startIo()
-            var errorMessage = ui["errorMessage"] as? String
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                if let reachability = appDelegate.reachability, reachability.connection == .unavailable {
-                    errorMessage = String.localized("login_error_no_internet_connection")
-                }
-            }
-            self.updateProgressAlert(error: errorMessage)
-        } else if let done = ui["done"] as? Bool, done {
-            self.dcAccounts.startIo()
-            self.updateProgressAlertSuccess(completion: self.handleLoginSuccess)
-        } else {
-            self.updateProgressAlertValue(value: ui["progress"] as? Int)
-        }
-    }
-
     // MARK: - coordinator
 
     private func showLogViewController() {
@@ -728,11 +647,18 @@ extension AccountSetupController: UITextFieldDelegate {
     }
 }
 
+extension AccountSetupController: ProgressAlertHandlerDataSource {
+    func viewController() -> UIViewController {
+        self
+    }
+}
+
 extension AccountSetupController: CertificateCheckDelegate {
     func onCertificateCheckChanged(newValue: Int) {
         certValue = newValue
     }
 }
+
 
 class AccountSetupSecurityValue: SecuritySettingsDelegate {
     var value: Int
