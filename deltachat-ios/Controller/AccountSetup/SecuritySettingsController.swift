@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 protocol SecuritySettingsDelegate: AnyObject {
-    func onSecuritySettingsChanged(type: SecurityType, newValue: Int)
+    func onSecuritySettingsChanged(newValue: Int)
 }
 
 class SecuritySettingsController: UITableViewController {
@@ -10,7 +10,6 @@ class SecuritySettingsController: UITableViewController {
     private var options: [Int32] = [DC_SOCKET_AUTO, DC_SOCKET_SSL, DC_SOCKET_STARTTLS, DC_SOCKET_PLAIN]
 
     private var selectedIndex: Int
-    private var securityType: SecurityType
     weak var delegate: SecuritySettingsDelegate?
 
     private var okButton: UIBarButtonItem {
@@ -31,8 +30,7 @@ class SecuritySettingsController: UITableViewController {
         }
     }
 
-    init(initValue: Int, title: String, type: SecurityType) {
-        self.securityType = type
+    init(initValue: Int, title: String) {
         selectedIndex = options.firstIndex(of: Int32(initValue)) ?? 0
         super.init(style: .grouped)
         self.title = title
@@ -72,22 +70,17 @@ class SecuritySettingsController: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }
-        selectedIndex = indexPath.row // TODO: callback to AccountSetupController here
+        selectedIndex = indexPath.row
     }
 
     @objc func okButtonPressed() {
-        delegate?.onSecuritySettingsChanged(type: securityType, newValue: Int(options[selectedIndex]))
+        delegate?.onSecuritySettingsChanged(newValue: Int(options[selectedIndex]))
         navigationController?.popViewController(animated: true)
     }
 
     @objc func cancelButtonPressed() {
         navigationController?.popViewController(animated: true)
     }
-}
-
-enum SecurityType {
-     case IMAPSecurity
-     case SMTPSecurity
 }
 
 class SecurityConverter {

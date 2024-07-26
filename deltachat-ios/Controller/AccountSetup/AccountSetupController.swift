@@ -165,7 +165,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
-    lazy var imapSecurityValue: Int = dcContext.getConfigInt("mail_security")
+    let imapSecurityValue: AccountSetupSecurityValue
 
     lazy var smtpServerCell: TextFieldCell = {
         let cell = TextFieldCell(
@@ -231,7 +231,7 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
         return cell
     }()
 
-    lazy var smtpSecurityValue: Int = dcContext.getConfigInt("send_security")
+    let smtpSecurityValue: AccountSetupSecurityValue
 
     lazy var certCheckCell: UITableViewCell = {
         let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
@@ -272,6 +272,9 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
 
         self.sections.append(basicSection)
         self.sections.append(advancedSection)
+
+        self.imapSecurityValue = AccountSetupSecurityValue(initValue: dcContext.getConfigInt("mail_security"))
+        self.smtpSecurityValue = AccountSetupSecurityValue(initValue: dcContext.getConfigInt("send_security"))
 
         super.init(style: .grouped)
         hidesBottomBarWhenPushed = true
@@ -579,8 +582,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
                 }
             }
         }
-        dcContext.setConfigInt("mail_security", imapSecurityValue)
-        dcContext.setConfigInt("send_security", smtpSecurityValue)
+        dcContext.setConfigInt("mail_security", imapSecurityValue.value)
+        dcContext.setConfigInt("send_security", smtpSecurityValue.value)
         dcContext.certificateChecks = certValue
     }
 
@@ -598,8 +601,8 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func initSelectionCells() {
-        imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(imapSecurityValue))
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(smtpSecurityValue))
+        imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(imapSecurityValue.value))
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(smtpSecurityValue.value))
         certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
     }
 
@@ -676,14 +679,14 @@ class AccountSetupController: UITableViewController, ProgressAlertHandler {
     }
 
     private func showImapSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(initValue: imapSecurityValue, title: String.localized("login_imap_security"), type: SecurityType.IMAPSecurity)
-        securitySettingsController.delegate = self
+        let securitySettingsController = SecuritySettingsController(initValue: imapSecurityValue.value, title: String.localized("login_imap_security"))
+        securitySettingsController.delegate = imapSecurityValue
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
     private func showSmtpSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(initValue: smtpSecurityValue, title: String.localized("login_smtp_security"), type: SecurityType.SMTPSecurity)
-        securitySettingsController.delegate = self
+        let securitySettingsController = SecuritySettingsController(initValue: smtpSecurityValue.value, title: String.localized("login_smtp_security"))
+        securitySettingsController.delegate = smtpSecurityValue
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
@@ -731,11 +734,14 @@ extension AccountSetupController: CertificateCheckDelegate {
     }
 }
 
-extension AccountSetupController: SecuritySettingsDelegate {
-    func onSecuritySettingsChanged(type: SecurityType, newValue: Int) {
-        switch type {
-        case .IMAPSecurity: imapSecurityValue = newValue
-        case .SMTPSecurity: smtpSecurityValue = newValue
-        }
+class AccountSetupSecurityValue: SecuritySettingsDelegate {
+    var value: Int
+
+    init(initValue: Int) {
+        value = initValue
+    }
+
+    func onSecuritySettingsChanged(newValue: Int) {
+        value = newValue
     }
 }
