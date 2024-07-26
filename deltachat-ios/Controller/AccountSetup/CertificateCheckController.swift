@@ -15,16 +15,6 @@ class CertificateCheckController: UITableViewController {
     var selectedIndex: Int?
     weak var delegate: CertificateCheckDelegate?
 
-    var okButton: UIBarButtonItem {
-        let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
-        return button
-    }
-
-    var cancelButton: UIBarButtonItem {
-        let button =  UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
-        return button
-    }
-
     var staticCells: [UITableViewCell] {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
@@ -44,13 +34,6 @@ class CertificateCheckController: UITableViewController {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        navigationItem.rightBarButtonItem = okButton
-        navigationItem.leftBarButtonItem = cancelButton
     }
 
     // MARK: - Table view data source
@@ -89,18 +72,10 @@ class CertificateCheckController: UITableViewController {
             currentValue = options[newIndex]
         }
         selectedIndex = index
-    }
-
-    @objc private func okButtonPressed() {
         delegate?.onCertificateCheckChanged(newValue: currentValue)
-        navigationController?.popViewController(animated: true)
     }
 
-    @objc private func cancelButtonPressed() {
-        navigationController?.popViewController(animated: true)
-    }
-
-   class ValueConverter {
+    class ValueConverter {
         static func convertHexToString(value: Int) -> String {
             switch value {
             case Int(DC_CERTCK_AUTO):

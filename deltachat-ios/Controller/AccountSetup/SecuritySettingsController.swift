@@ -12,16 +12,6 @@ class SecuritySettingsController: UITableViewController {
     private var selectedIndex: Int
     weak var delegate: SecuritySettingsDelegate?
 
-    private var okButton: UIBarButtonItem {
-        let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
-        return button
-    }
-
-    private var cancelButton: UIBarButtonItem {
-        let button =  UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
-        return button
-    }
-
     private var staticCells: [UITableViewCell] {
         return options.map {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
@@ -38,12 +28,6 @@ class SecuritySettingsController: UITableViewController {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.rightBarButtonItem = okButton
-        navigationItem.leftBarButtonItem = cancelButton
     }
 
     // MARK: - Table view data source
@@ -71,15 +55,7 @@ class SecuritySettingsController: UITableViewController {
             cell.accessoryType = .checkmark
         }
         selectedIndex = indexPath.row
-    }
-
-    @objc func okButtonPressed() {
         delegate?.onSecuritySettingsChanged(newValue: Int(options[selectedIndex]))
-        navigationController?.popViewController(animated: true)
-    }
-
-    @objc func cancelButtonPressed() {
-        navigationController?.popViewController(animated: true)
     }
 }
 
