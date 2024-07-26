@@ -23,7 +23,6 @@ extension LegacyProgressAlertHandler {
             handler: { _ in
                 dcContext.stopOngoingProcess()
         })
-        cancelAction.isEnabled = false
         progressAlert.addAction(cancelAction)
 
         self.present(progressAlert, animated: true, completion: nil)
