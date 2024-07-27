@@ -1,12 +1,12 @@
 import UIKit
 import DcCore
 
-class WelcomeViewController: UIViewController, LegacyProgressAlertHandler {
+class WelcomeViewController: UIViewController {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     private let accountCode: String?
+    @available(*, deprecated, message: "Remove")
     private var backupProgressObserver: NSObjectProtocol?
-    var progressObserver: NSObjectProtocol?
     private var securityScopedResource: NSURL?
 
     private lazy var scrollView: UIScrollView = {
@@ -14,6 +14,8 @@ class WelcomeViewController: UIViewController, LegacyProgressAlertHandler {
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
+
+    var progressAlertHandler: ProgressAlertHandler
 
     private lazy var welcomeView: WelcomeContentView = {
         let view = WelcomeContentView()
@@ -50,14 +52,18 @@ class WelcomeViewController: UIViewController, LegacyProgressAlertHandler {
     }()
 
     private var qrCodeReader: QrCodeReaderController?
-    weak var progressAlert: UIAlertController?
 
     init(dcAccounts: DcAccounts, accountCode: String? = nil) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
         self.accountCode = accountCode
+
+        progressAlertHandler = ProgressAlertHandler(dcAccounts: dcAccounts)
+
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
+
+        progressAlertHandler.dataSource = self
     }
 
     required init?(coder: NSCoder) {
@@ -87,10 +93,6 @@ class WelcomeViewController: UIViewController, LegacyProgressAlertHandler {
      }
 
     override func viewDidDisappear(_ animated: Bool) {
-        if let observer = self.progressObserver {
-            NotificationCenter.default.removeObserver(observer)
-            self.progressObserver = nil
-        }
         removeBackupProgressObserver()
     }
 
@@ -176,7 +178,7 @@ class WelcomeViewController: UIViewController, LegacyProgressAlertHandler {
 
     private func importBackup(at filepath: String) {
         logger.info("restoring backup: \(filepath)")
-        showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
+        progressAlertHandler.showProgressAlert(title: String.localized("import_backup_title"), dcContext: dcContext)
         dcAccounts.stopIo()
         dcContext.imex(what: DC_IMEX_IMPORT_BACKUP, directory: filepath)
     }
@@ -206,16 +208,16 @@ class WelcomeViewController: UIViewController, LegacyProgressAlertHandler {
                 dcContext = dcAccounts.getSelected()
                 navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
             }
-            updateProgressAlert(error: ui["errorMessage"] as? String)
+            progressAlertHandler.updateProgressAlert(error: ui["errorMessage"] as? String)
             stopAccessingSecurityScopedResource()
             removeBackupProgressObserver()
         } else if let done = ui["done"] as? Bool, done {
             UIApplication.shared.isIdleTimerDisabled = false
             dcAccounts.startIo()
-            updateProgressAlertSuccess(completion: handleBackupRestoreSuccess)
+            progressAlertHandler.updateProgressAlertSuccess(completion: handleBackupRestoreSuccess)
             stopAccessingSecurityScopedResource()
         } else if importByFile {
-            updateProgressAlertValue(value: ui["progress"] as? Int)
+            progressAlertHandler.updateProgressAlertValue(value: ui["progress"] as? Int)
         } else {
             guard let permille = ui["progress"] as? Int else { return }
             var statusLineText = ""
@@ -227,7 +229,7 @@ class WelcomeViewController: UIViewController, LegacyProgressAlertHandler {
             } else {
                 statusLineText = "Finishing..." // range not used, should not happen
             }
-            updateProgressAlert(message: statusLineText)
+            progressAlertHandler.updateProgressAlert(message: statusLineText)
         }
     }
 }
@@ -262,7 +264,7 @@ extension WelcomeViewController: QrCodeReaderDelegate {
                      self.dcContext = self.dcAccounts.get(id: accountId)
                      self.dismissQRReader()
                      self.addProgressHudBackupListener(importByFile: false)
-                     self.showProgressAlert(title: String.localized("multidevice_receiver_title"), dcContext: self.dcContext)
+                     self.progressAlertHandler.showProgressAlert(title: String.localized("multidevice_receiver_title"), dcContext: self.dcContext)
                      self.dcAccounts.stopIo()
                      DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                          guard let self else { return }
@@ -488,5 +490,11 @@ extension WelcomeViewController: MediaPickerDelegate {
         } else {
             stopAccessingSecurityScopedResource()
         }
+    }
+}
+
+extension WelcomeViewController: ProgressAlertHandlerDataSource {
+    func viewController() -> UIViewController {
+        self
     }
 }
