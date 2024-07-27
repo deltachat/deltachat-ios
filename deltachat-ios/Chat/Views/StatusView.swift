@@ -96,13 +96,13 @@ public class StatusView: UIView {
 
         switch Int32(state) {
         case DC_DOWNLOAD_IN_PROGRESS, DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            stateView.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").maskWithColor(color: tintColor)
+            stateView.image = UIImage(named: "ic_hourglass_empty_white_36pt")?.maskWithColor(color: tintColor)
         case DC_STATE_OUT_DELIVERED:
-            stateView.image = #imageLiteral(resourceName: "ic_done_36pt").maskWithColor(color: tintColor)
+            stateView.image = UIImage(named: "ic_done_36pt")?.maskWithColor(color: tintColor)
         case DC_STATE_OUT_MDN_RCVD:
-            stateView.image = #imageLiteral(resourceName: "ic_done_all_36pt").maskWithColor(color: tintColor)
+            stateView.image = UIImage(named: "ic_done_all_36pt")?.maskWithColor(color: tintColor)
         case DC_STATE_OUT_FAILED:
-            stateView.image = #imageLiteral(resourceName: "ic_error_36pt")
+            stateView.image = UIImage(named: "ic_error_36pt")
         default:
             stateView.image = nil
         }

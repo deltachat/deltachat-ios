@@ -28,7 +28,7 @@ public class VideoInviteCell: UITableViewCell {
         view.setColor(DcColors.systemMessageBackgroundColor)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        view.setImage(#imageLiteral(resourceName: "ic_videochat").withRenderingMode(.alwaysTemplate))
+        view.setImage(UIImage(named: "ic_videochat")?.withRenderingMode(.alwaysTemplate))
         view.tintColor = .white
         view.imagePadding = 3
         return view

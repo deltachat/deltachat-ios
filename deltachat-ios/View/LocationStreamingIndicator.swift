@@ -26,7 +26,7 @@ class LocationStreamingIndicator: UIImageView {
 
     private func setup(size: CGFloat) {
         tintColor = DcColors.checkmarkGreen
-        image =  #imageLiteral(resourceName: "ic_location").withRenderingMode(.alwaysTemplate)
+        image =  UIImage(named: "ic_location")?.withRenderingMode(.alwaysTemplate)
         translatesAutoresizingMaskIntoConstraints = false
         constraintHeightTo(size, priority: .defaultLow).isActive = true
         constraintWidthTo(aspectRatio * size).isActive = true
