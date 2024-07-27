@@ -89,7 +89,7 @@ class ContactCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
         view.tintColor = DcColors.middleGray
-        view.image = #imageLiteral(resourceName: "pinned_chatlist").withRenderingMode(.alwaysTemplate)
+        view.image = UIImage(named: "pinned_chatlist")?.withRenderingMode(.alwaysTemplate)
         view.isHidden = true
         view.contentMode = .scaleAspectFit
         view.isAccessibilityElement = false
@@ -101,7 +101,7 @@ class ContactCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
         view.tintColor = DcColors.middleGray
-        view.image = #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
+        view.image = UIImage(named: "volume_off")?.withRenderingMode(.alwaysTemplate)
         view.isHidden = true
         view.contentMode = .scaleAspectFit
         view.isAccessibilityElement = false
@@ -309,13 +309,13 @@ class ContactCell: UITableViewCell {
         } else {
             switch Int32(status) {
             case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_hourglass_empty_white_36pt").maskWithColor(color: DcColors.middleGray)
+                deliveryStatusIndicator.image = UIImage(named: "ic_hourglass_empty_white_36pt")?.maskWithColor(color: DcColors.middleGray)
             case DC_STATE_OUT_DELIVERED:
-                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_done_36pt")
+                deliveryStatusIndicator.image = UIImage(named: "ic_done_36pt")
             case DC_STATE_OUT_FAILED:
-                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_error_36pt")
+                deliveryStatusIndicator.image = UIImage(named: "ic_error_36pt")
             case DC_STATE_OUT_MDN_RCVD:
-                deliveryStatusIndicator.image = #imageLiteral(resourceName: "ic_done_all_36pt")
+                deliveryStatusIndicator.image = UIImage(named: "ic_done_all_36pt")
             default:
                 deliveryStatusIndicator.image = nil
             }

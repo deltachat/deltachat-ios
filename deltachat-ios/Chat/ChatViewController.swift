@@ -114,7 +114,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private lazy var muteItem: UIBarButtonItem = {
         let imageView = UIImageView()
         imageView.tintColor = DcColors.defaultTextColor
-        imageView.image =  #imageLiteral(resourceName: "volume_off").withRenderingMode(.alwaysTemplate)
+        imageView.image =  UIImage(named: "volume_off")?.withRenderingMode(.alwaysTemplate)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
@@ -124,7 +124,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private lazy var ephemeralMessageItem: UIBarButtonItem = {
         let imageView = UIImageView()
         imageView.tintColor = DcColors.defaultTextColor
-        imageView.image =  #imageLiteral(resourceName: "ephemeral_timer").withRenderingMode(.alwaysTemplate)
+        imageView.image =  UIImage(named: "ephemeral_timer")?.withRenderingMode(.alwaysTemplate)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
@@ -1230,7 +1230,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             InputBarButtonItem()
                 .configure {
                     $0.spacing = .fixed(0)
-                    let clipperIcon = #imageLiteral(resourceName: "ic_attach_file_36pt").withRenderingMode(.alwaysTemplate)
+                    let clipperIcon = UIImage(named: "ic_attach_file_36pt")?.withRenderingMode(.alwaysTemplate)
                     $0.image = clipperIcon
                     $0.tintColor = DcColors.primary
                     $0.setSize(CGSize(width: 40, height: 40), animated: false)
