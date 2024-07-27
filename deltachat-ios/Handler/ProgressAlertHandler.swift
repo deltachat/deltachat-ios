@@ -13,7 +13,13 @@ class ProgressAlertHandler {
     let checkForInternetConnectivity: Bool
     private var progressAlertController: UIAlertController?
 
-    // add Completion block
+    /// Use this is you want to handle notifications yourself.
+    /// This way you can just use the alert-handler for the alert-part and it's not updating itself.
+    init(dcAccounts: DcAccounts, onSuccess: (() -> Void)? = nil) {
+        self.dcAccounts = dcAccounts
+        self.checkForInternetConnectivity = false
+    }
+
     init(dcAccounts: DcAccounts, notification: Notification.Name, checkForInternetConnectivity: Bool = false, onSuccess: (() -> Void)? = nil) {
         self.dcAccounts = dcAccounts
         self.onSuccess = onSuccess
