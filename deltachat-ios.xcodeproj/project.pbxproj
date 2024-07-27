@@ -189,7 +189,6 @@
 		AEE56D80225504DB007DC082 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE56D7F225504DB007DC082 /* Extensions.swift */; };
 		AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */; };
 		AEE6EC482283045D00EDC689 /* SelfProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EC472283045D00EDC689 /* SelfProfileViewController.swift */; };
-		AEE700252438E0E500D6992E /* LegacyProgressAlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE700242438E0E500D6992E /* LegacyProgressAlertHandler.swift */; };
 		AEF53BD5248904BF00D309C1 /* GalleryTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */; };
 		AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */; };
 		B20462E42440A4A600367A57 /* AutodelOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E32440A4A600367A57 /* AutodelOverviewViewController.swift */; };
@@ -495,7 +494,6 @@
 		AEE56D7F225504DB007DC082 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AEE6EC3E2282C59C00EDC689 /* GroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersViewController.swift; sourceTree = "<group>"; };
 		AEE6EC472283045D00EDC689 /* SelfProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfProfileViewController.swift; sourceTree = "<group>"; };
-		AEE700242438E0E500D6992E /* LegacyProgressAlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyProgressAlertHandler.swift; sourceTree = "<group>"; };
 		AEF53BD4248904BF00D309C1 /* GalleryTimeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryTimeLabel.swift; sourceTree = "<group>"; };
 		AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderInfoCell.swift; sourceTree = "<group>"; };
 		B2006EBF2A7FB4990055EE3F /* bqi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bqi; path = bqi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1071,7 +1069,6 @@
 			children = (
 				AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */,
 				AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */,
-				AEE700242438E0E500D6992E /* LegacyProgressAlertHandler.swift */,
 				D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */,
 			);
 			path = Handler;
@@ -1588,7 +1585,6 @@
 				303492CB257A814200A523D0 /* DraftArea.swift in Sources */,
 				AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */,
 				B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */,
-				AEE700252438E0E500D6992E /* LegacyProgressAlertHandler.swift in Sources */,
 				D80F62792B59D1CC00877059 /* DefaultReactions.swift in Sources */,
 				30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */,
 				30238CFD28A5028300EF14AC /* WebxdcGridCell.swift in Sources */,
