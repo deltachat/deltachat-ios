@@ -9,7 +9,6 @@ protocol LegacyProgressAlertHandler: UIViewController {
     func updateProgressAlertValue(value: Int?)
     func updateProgressAlert(error: String?, completion: VoidFunction?)
     func updateProgressAlertSuccess(completion: VoidFunction?)
-    func addProgressAlertListener(dcAccounts: DcAccounts, progressName: Notification.Name, onSuccess: @escaping VoidFunction)
 }
 
 extension LegacyProgressAlertHandler {
@@ -65,26 +64,5 @@ extension LegacyProgressAlertHandler {
                 onComplete?()
             }
         })
-    }
-
-    func addProgressAlertListener(dcAccounts: DcAccounts, progressName: Notification.Name, onSuccess: @escaping VoidFunction) {
-        progressObserver = NotificationCenter.default.addObserver(
-            forName: progressName,
-            object: nil,
-            queue: nil
-        ) { [weak self] notification in
-            guard let self else { return }
-            if let ui = notification.userInfo {
-                if ui["error"] as? Bool ?? false {
-                    dcAccounts.startIo()
-                    self.updateProgressAlert(error: ui["errorMessage"] as? String)
-                } else if ui["done"] as? Bool ?? false {
-                    dcAccounts.startIo()
-                    self.updateProgressAlertSuccess(completion: onSuccess)
-                } else {
-                    self.updateProgressAlertValue(value: ui["progress"] as? Int)
-                }
-            }
-        }
     }
 }
