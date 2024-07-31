@@ -7,12 +7,9 @@ protocol CertificateCheckDelegate: AnyObject {
 
 class CertificateCheckController: UITableViewController {
 
-    var options = [Int(DC_CERTCK_AUTO),
-                   Int(DC_CERTCK_STRICT),
-                   Int(DC_CERTCK_ACCEPT_INVALID_CERTIFICATES)]
-
-    var currentValue: Int
-    var selectedIndex: Int?
+    private let options = [Int(DC_CERTCK_AUTO), Int(DC_CERTCK_STRICT), Int(DC_CERTCK_ACCEPT_INVALID_CERTIFICATES)]
+    private var currentValue: Int
+    private var selectedIndex: Int?
     weak var delegate: CertificateCheckDelegate?
 
     var staticCells: [UITableViewCell] {

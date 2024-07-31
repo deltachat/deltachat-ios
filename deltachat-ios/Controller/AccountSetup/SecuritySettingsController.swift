@@ -7,8 +7,7 @@ protocol SecuritySettingsDelegate: AnyObject {
 
 class SecuritySettingsController: UITableViewController {
 
-    private var options: [Int32] = [DC_SOCKET_AUTO, DC_SOCKET_SSL, DC_SOCKET_STARTTLS, DC_SOCKET_PLAIN]
-
+    private let options: [Int32] = [DC_SOCKET_AUTO, DC_SOCKET_SSL, DC_SOCKET_STARTTLS, DC_SOCKET_PLAIN]
     private var selectedIndex: Int
     weak var delegate: SecuritySettingsDelegate?
 
