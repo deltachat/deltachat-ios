@@ -648,8 +648,6 @@ extension AccountSetupController: UITextFieldDelegate {
     }
 }
 
-extension AccountSetupController: ProgressAlertHandlerDataSource {}
-
 extension AccountSetupController: CertificateCheckDelegate {
     func onCertificateCheckChanged(newValue: Int) {
         certValue = newValue
