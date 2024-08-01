@@ -441,8 +441,4 @@ internal final class AdvancedViewController: UITableViewController {
     }
 }
 
-extension AdvancedViewController: ProgressAlertHandlerDataSource {
-    func viewController() -> UIViewController {
-        self
-    }
-}
+extension AdvancedViewController: ProgressAlertHandlerDataSource {}
