@@ -5,7 +5,6 @@ class WelcomeViewController: UIViewController {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     private let accountCode: String?
-    @available(*, deprecated, message: "Remove")
     private var backupProgressObserver: NSObjectProtocol?
     private var securityScopedResource: NSURL?
 
@@ -92,14 +91,9 @@ class WelcomeViewController: UIViewController {
         welcomeView.minContainerHeight = size.height - view.safeAreaInsets.top
      }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        removeBackupProgressObserver()
-    }
-
     private func removeBackupProgressObserver() {
-        if let backupProgressObserver = self.backupProgressObserver {
+        if let backupProgressObserver {
             NotificationCenter.default.removeObserver(backupProgressObserver)
-            self.backupProgressObserver = nil
         }
     }
 
@@ -215,6 +209,7 @@ class WelcomeViewController: UIViewController {
             UIApplication.shared.isIdleTimerDisabled = false
             dcAccounts.startIo()
             progressAlertHandler.updateProgressAlertSuccess(completion: handleBackupRestoreSuccess)
+            removeBackupProgressObserver()
             stopAccessingSecurityScopedResource()
         } else if importByFile {
             progressAlertHandler.updateProgressAlertValue(value: ui["progress"] as? Int)
