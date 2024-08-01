@@ -243,5 +243,3 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         navigationController?.pushViewController(settingsAutodelOverviewController, animated: true)
     }
 }
-
-extension ChatsAndMediaViewController: ProgressAlertHandlerDataSource {}

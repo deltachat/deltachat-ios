@@ -440,5 +440,3 @@ internal final class AdvancedViewController: UITableViewController {
         navigationController?.pushViewController(videoInstanceController, animated: true)
     }
 }
-
-extension AdvancedViewController: ProgressAlertHandlerDataSource {}

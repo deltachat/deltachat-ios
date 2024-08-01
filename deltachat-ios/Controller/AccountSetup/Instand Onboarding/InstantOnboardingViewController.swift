@@ -293,5 +293,3 @@ extension InstantOnboardingViewController: QrCodeReaderDelegate {
         self.qrCodeReader = nil
     }
 }
-
-extension InstantOnboardingViewController: ProgressAlertHandlerDataSource {}

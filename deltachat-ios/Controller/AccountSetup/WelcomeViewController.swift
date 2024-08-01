@@ -487,5 +487,3 @@ extension WelcomeViewController: MediaPickerDelegate {
         }
     }
 }
-
-extension WelcomeViewController: ProgressAlertHandlerDataSource {}
