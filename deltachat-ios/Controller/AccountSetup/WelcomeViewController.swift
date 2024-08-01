@@ -488,8 +488,4 @@ extension WelcomeViewController: MediaPickerDelegate {
     }
 }
 
-extension WelcomeViewController: ProgressAlertHandlerDataSource {
-    func viewController() -> UIViewController {
-        self
-    }
-}
+extension WelcomeViewController: ProgressAlertHandlerDataSource {}

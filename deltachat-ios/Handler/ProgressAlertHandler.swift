@@ -5,6 +5,12 @@ protocol ProgressAlertHandlerDataSource: AnyObject {
     func viewController() -> UIViewController
 }
 
+extension UIViewController: ProgressAlertHandlerDataSource {
+    func viewController() -> UIViewController {
+        self
+    }
+}
+
 class ProgressAlertHandler {
 
     let dcAccounts: DcAccounts

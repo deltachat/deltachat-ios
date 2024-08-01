@@ -244,8 +244,4 @@ internal final class ChatsAndMediaViewController: UITableViewController {
     }
 }
 
-extension ChatsAndMediaViewController: ProgressAlertHandlerDataSource {
-    func viewController() -> UIViewController {
-        self
-    }
-}
+extension ChatsAndMediaViewController: ProgressAlertHandlerDataSource {}
