@@ -1,6 +1,6 @@
 # Release checklist
 
-on the command-line:
+on the command-line, in a PR called "update-core-and-stuff-DATE":
 
 1. update core:
    ```
@@ -10,10 +10,17 @@ on the command-line:
    ```
 
 2. update translations:
-   $ ./scripts/tx-pull-translations.sh
+   `./scripts/tx-pull-translations.sh`
+   then commit
 
 3. update local help:
-   $ ./scripts/create-local-help.sh
+   `./scripts/create-local-help.sh`
+   then commit
+
+the "update-core-and-stuff-DATE" PR can be merged without review
+(as everyrhing was already reviewed in their repos).
+
+then, create a "bump-to-VERSION" PR:
 
 4. a) update CHANGELOG.md
       from https://github.com/deltachat/deltachat-core-rust/blob/main/CHANGELOG.md
