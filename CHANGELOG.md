@@ -17,6 +17,7 @@
 * improve caching of DNS results
 * focus on name for QR code titles
 * report first error instead of the last on connection failure
+* fix battery drain due to endless IMAP loop
 * fix: keep "chatmail" state after failed reconfiguration
 * fix issues with failed backup imports
 * fix: avoid group creation on member removal messages
