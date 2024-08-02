@@ -118,11 +118,10 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] chat modified: \(data1)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.chatModified, object: nil, userInfo: [
-                    "chat_id": Int(data1),
-                ])
-            }
+
+            NotificationCenter.default.post(name: Event.chatModified, object: nil, userInfo: [
+                "chat_id": Int(data1),
+            ])
         case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
             if accountId != dcAccounts.getSelected().id {
                 return
