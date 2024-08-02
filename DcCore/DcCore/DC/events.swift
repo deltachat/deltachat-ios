@@ -73,14 +73,13 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_IMEX_PROGRESS:
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.importExportProgress, object: nil, userInfo: [
-                    "progress": Int(data1),
-                    "error": Int(data1) == 0,
-                    "done": Int(data1) == 1000,
-                    "errorMessage": self.dcAccounts.get(id: accountId).lastErrorString,
-                ])
-            }
+            
+            NotificationCenter.default.post(name: Event.importExportProgress, object: nil, userInfo: [
+                "progress": Int(data1),
+                "error": Int(data1) == 0,
+                "done": Int(data1) == 1000,
+                "errorMessage": self.dcAccounts.get(id: accountId).lastErrorString,
+            ])
         case DC_EVENT_MSGS_CHANGED:
             guard accountId == dcAccounts.getSelected().id else { return }
 
