@@ -96,12 +96,11 @@ public class DcEventHandler {
             guard accountId == dcAccounts.getSelected().id else { return }
 
             logger.info("📡[\(accountId)] msgs reaction/read/delivered/failed: \(data1), \(data2)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.messageReadDeliveredFailedReaction, object: nil, userInfo: [
-                    "message_id": Int(data2),
-                    "chat_id": Int(data1),
-                ])
-            }
+
+            NotificationCenter.default.post(name: Event.messageReadDeliveredFailedReaction, object: nil, userInfo: [
+                "message_id": Int(data2),
+                "chat_id": Int(data1),
+            ])
 
         case DC_EVENT_MSGS_NOTICED:
             if accountId != dcAccounts.getSelected().id {
