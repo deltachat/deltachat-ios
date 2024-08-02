@@ -8,6 +8,20 @@
 * End search when tapping on "Chats" multiple times (#2239)
 * Small code improvements that help make development easier (#2230, #2234, #2236, #2250, #2251)
 * Reduce memory footprint (#2235)
+* search non-english messages case-insensitive
+* display attached contact's names in summaries and quotes
+* protect From: and To: metadata where possible
+* do not reveal sender's language metadata in read receipts
+* allow importing contacts exported by Proton Mail
+* no unarchiving of groups on member removal messages
+* improve caching of DNS results
+* focus on name for QR code titles
+* report first error instead of the last on connection failure
+* fix: keep "chatmail" state after failed reconfiguration
+* fix issues with failed backup imports
+* fix: avoid group creation on member removal messages
+* fix downloading partially downloaded messages
+* fix various networking bugs
 * Minor UI/UX-fixes (#2231, #2247)
 * update translations and local help (#2244, $2255)
 * update core to 1.142.2
