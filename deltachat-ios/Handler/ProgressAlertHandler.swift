@@ -37,24 +37,29 @@ class ProgressAlertHandler {
     @objc private func handleNotification(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
 
-        if ui["error"] as? Bool ?? false {
-            dcAccounts.startIo()
+        DispatchQueue.main.async { [weak self] in
 
-            var errorMessage: String? = ui["errorMessage"] as? String
-            // override if we need to check for connectiviy issues
-            if checkForInternetConnectivity,
-               let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-               let reachability = appDelegate.reachability,
-               reachability.connection == .unavailable {
-                errorMessage = String.localized("login_error_no_internet_connection")
+            guard let self else { return }
+
+            if ui["error"] as? Bool ?? false {
+                dcAccounts.startIo()
+                
+                var errorMessage: String? = ui["errorMessage"] as? String
+                // override if we need to check for connectiviy issues
+                if checkForInternetConnectivity,
+                   let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                   let reachability = appDelegate.reachability,
+                   reachability.connection == .unavailable {
+                    errorMessage = String.localized("login_error_no_internet_connection")
+                }
+                
+                self.updateProgressAlert(error: errorMessage)
+            } else if ui["done"] as? Bool ?? false {
+                dcAccounts.startIo()
+                self.updateProgressAlertSuccess(completion: onSuccess)
+            } else {
+                self.updateProgressAlertValue(value: ui["progress"] as? Int)
             }
-
-            self.updateProgressAlert(error: errorMessage)
-        } else if ui["done"] as? Bool ?? false {
-            dcAccounts.startIo()
-            self.updateProgressAlertSuccess(completion: onSuccess)
-        } else {
-            self.updateProgressAlertValue(value: ui["progress"] as? Int)
         }
     }
 

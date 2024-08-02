@@ -182,7 +182,7 @@ class WelcomeViewController: UIViewController {
         backupProgressObserver = NotificationCenter.default.addObserver(
             forName: Event.importExportProgress,
             object: nil,
-            queue: nil
+            queue: OperationQueue.main
         ) { [weak self] notification in
             self?.handleImportExportProgress(notification, importByFile: importByFile)
         }
