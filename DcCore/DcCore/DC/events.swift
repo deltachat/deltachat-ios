@@ -56,20 +56,19 @@ public class DcEventHandler {
 
         case DC_EVENT_CONFIGURE_PROGRESS:
             logger.info("📡[\(accountId)] configure: \(Int(data1))")
-            DispatchQueue.main.async {
+
                 let done = Int(data1) == 1000
-
-                NotificationCenter.default.post(name: Event.configurationProgress, object: nil, userInfo: [
-                    "progress": Int(data1),
-                    "error": Int(data1) == 0,
-                    "done": done,
-                    "errorMessage": event.data2String,
-                ])
-
-                if done {
-                    UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
-                    UserDefaults.standard.synchronize()
-                }
+            
+            NotificationCenter.default.post(name: Event.configurationProgress, object: nil, userInfo: [
+                "progress": Int(data1),
+                "error": Int(data1) == 0,
+                "done": done,
+                "errorMessage": event.data2String,
+            ])
+            
+            if done {
+                UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
+                UserDefaults.standard.synchronize()
             }
 
         case DC_EVENT_IMEX_PROGRESS:
