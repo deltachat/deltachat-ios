@@ -107,11 +107,10 @@ public class DcEventHandler {
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.messagesNoticed, object: nil, userInfo: [
-                    "chat_id": Int(data1),
-                ])
-            }
+            
+            NotificationCenter.default.post(name: Event.messagesNoticed, object: nil, userInfo: [
+                "chat_id": Int(data1),
+            ])
 
         case DC_EVENT_CHAT_MODIFIED:
             if accountId != dcAccounts.getSelected().id {
