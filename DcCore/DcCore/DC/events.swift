@@ -173,22 +173,19 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] webxdc update")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.webxdcStatusUpdate, object: nil, userInfo: [
-                    "message_id": Int(data1),
-                ])
-            }
+            NotificationCenter.default.post(name: Event.webxdcStatusUpdate, object: nil, userInfo: [
+                "message_id": Int(data1),
+            ])
 
         case DC_EVENT_WEBXDC_REALTIME_DATA:
             if accountId != dcAccounts.getSelected().id {
                 return
             }
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.webxdcRealtimeDataReceived, object: nil, userInfo: [
-                    "message_id": Int(data1),
-                    "data": event.data2Data,
-                ])
-            }
+
+            NotificationCenter.default.post(name: Event.webxdcRealtimeDataReceived, object: nil, userInfo: [
+                "message_id": Int(data1),
+                "data": event.data2Data,
+            ])
 
         default:
             break
