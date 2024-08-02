@@ -128,11 +128,10 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] ephemeral timer modified: \(data1)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.ephemeralTimerModified, object: nil, userInfo: [
-                    "chat_id": Int(data1),
-                ])
-            }
+
+            NotificationCenter.default.post(name: Event.ephemeralTimerModified, object: nil, userInfo: [
+                "chat_id": Int(data1),
+            ])
 
         case DC_EVENT_INCOMING_MSG:
             
