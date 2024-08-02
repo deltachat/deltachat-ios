@@ -26,7 +26,8 @@ then, create a "bump-to-VERSION" PR:
       from https://github.com/deltachat/deltachat-core-rust/blob/main/CHANGELOG.md
       and https://github.com/deltachat/deltachat-ios/pulls?q=is%3Apr+is%3Aclosed+sort%3Aupdated-desc
    b) add used core version to CHANGELOG.md
-   c) add a device message to ChatListController::viewDidLoad()
+   c) on major changes,
+      add a device message to ChatListController::viewDidLoad()
       or remove the old one
 
 in Xcode:
