@@ -142,12 +142,11 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] incoming message \(data2)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.incomingMessage, object: nil, userInfo: [
-                    "message_id": Int(data2),
-                    "chat_id": Int(data1),
-                ])
-            }
+            
+            NotificationCenter.default.post(name: Event.incomingMessage, object: nil, userInfo: [
+                "message_id": Int(data2),
+                "chat_id": Int(data1),
+            ])
 
         case DC_EVENT_CONTACTS_CHANGED:
             if accountId != dcAccounts.getSelected().id {
