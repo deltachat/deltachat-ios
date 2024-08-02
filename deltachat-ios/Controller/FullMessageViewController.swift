@@ -95,7 +95,6 @@ class FullMessageViewController: WebViewViewController {
 
     @objc func alwaysActionPressed(_ action: UIAlertAction) {
         UserDefaults.standard.set(true, forKey: "html_load_remote_content")
-        UserDefaults.standard.synchronize()
         loadContentOnce = false
         loadUnrestricedHtml()
     }
@@ -103,7 +102,6 @@ class FullMessageViewController: WebViewViewController {
     @objc func onceActionPressed(_ action: UIAlertAction) {
         if !isHalfBlocked {
             UserDefaults.standard.set(false, forKey: "html_load_remote_content")
-            UserDefaults.standard.synchronize()
         }
         loadContentOnce = true
         loadUnrestricedHtml()
@@ -112,7 +110,6 @@ class FullMessageViewController: WebViewViewController {
     @objc func neverActionPressed(_ action: UIAlertAction) {
         if !isHalfBlocked {
             UserDefaults.standard.set(false, forKey: "html_load_remote_content")
-            UserDefaults.standard.synchronize()
         }
         loadContentOnce = false
         loadRestrictedHtml()

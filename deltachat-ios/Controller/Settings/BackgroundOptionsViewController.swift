@@ -141,7 +141,6 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
     @objc private func onDefaultSelected() {
         setDefault(backgroundContainer)
         UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
-        UserDefaults.standard.synchronize()
     }
 
     private func setDefault(_ imageView: UIImageView) {
@@ -156,7 +155,6 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
     func onImageSelected(image: UIImage) {
         if let path = ImageFormat.saveImage(image: image, name: Constants.backgroundImageName) {
             UserDefaults.standard.set(URL(fileURLWithPath: path).lastPathComponent, forKey: Constants.Keys.backgroundImageName)
-            UserDefaults.standard.synchronize()
             backgroundContainer.sd_setImage(with: URL(fileURLWithPath: path), placeholderImage: nil, options: .refreshCached, completed: nil)
         } else {
             logger.error("failed to save background image")

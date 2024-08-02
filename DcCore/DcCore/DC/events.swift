@@ -56,8 +56,8 @@ public class DcEventHandler {
 
         case DC_EVENT_CONFIGURE_PROGRESS:
             logger.info("📡[\(accountId)] configure: \(Int(data1))")
-
-                let done = Int(data1) == 1000
+            
+            let done = Int(data1) == 1000
             
             NotificationCenter.default.post(name: Event.configurationProgress, object: nil, userInfo: [
                 "progress": Int(data1),
@@ -68,9 +68,8 @@ public class DcEventHandler {
             
             if done {
                 UserDefaults.standard.set(true, forKey: Constants.Keys.deltachatUserProvidedCredentialsKey)
-                UserDefaults.standard.synchronize()
             }
-
+            
         case DC_EVENT_IMEX_PROGRESS:
             
             NotificationCenter.default.post(name: Event.importExportProgress, object: nil, userInfo: [
