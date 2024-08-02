@@ -1,5 +1,17 @@
 # Delta Chat iOS Changelog
 
+## v1.46.8
+2024-08
+
+* Mute based on profiles (#2245)
+* Add default reactions if there are none (yet) (#2241)
+* End search when tapping on "Chats" multiple times (#2239)
+* Small code improvements that help make development easier (#2230, #2234, #2236, #2250, #2251)
+* Reduce memory footprint (#2235)
+* Minor UI/UX-fixes (#2231, #2247)
+* update translations and local help (#2244, $2255)
+* update core to 1.142.2
+
 ## v1.46.6
 2024-07
 
