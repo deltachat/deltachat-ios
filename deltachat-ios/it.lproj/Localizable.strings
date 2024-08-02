@@ -192,6 +192,10 @@
 "menu_delete_location" = "Elimino questa Posizione?";
 "menu_message_details" = "Dettagli Messaggio";
 "menu_copy_to_clipboard" = "Copia negli Appunti";
+"share_invite_link" = "Condividi Link d\'Invito";
+"invite_friends" = "Invita Gli Amici";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Contattami su Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Copia Selezione";
 "menu_copy_link_to_clipboard" = "Copia Link";
 "menu_copy_text_to_clipboard" = "Copia Testo";
@@ -531,6 +535,7 @@
 "login_error_cannot_login" = "Impossibile accedere come \"%1$@\". Verifica che l\'indirizzo email e la password siano corretti.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accetta certificati non validi";
+// deprecated
 "used_settings" = "Impostazioni in uso:";
 "switch_account" = "Cambia Account";
 "add_account" = "Aggiungi Account";
@@ -740,7 +745,9 @@
 "autocrypt_continue_transfer_retry" = "Riprova";
 "autocrypt_bad_setup_code" = "Codice configurazione non valido. Riprova.\n\nSe non ricordi il codice di configurazione invia un altro Messaggio di configurazione Autocrypt dall\'altro dispositivo.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Ricevuta di lettura";
+// deprecated
 "systemmsg_read_receipt_body" = "Questa è una ricevuta di lettura del messaggio \"%1$@\".\n\nCiò significa che il messaggio è stato mostrato nel dispositivo del destinatario, ma non necessariamente che il contenuto è stato letto.";
 "systemmsg_cannot_decrypt" = "Questo messaggio non può essere decrittografato.\n\n• Potrebbe essere già utile rispondere semplicemente a questo messaggio e chiedere al mittente d\'inviare nuovamente il messaggio.\n\n• Se hai appena reinstallato Delta Chat, è meglio se riconfiguri ora Delta Chat e scegli \"Aggiungi come secondo dispositivo\" o importa un backup.";
 "systemmsg_unknown_sender_for_chat" = "Mittente sconosciuto per questa chat. Vedi \'info\' per maggiori dettagli.";
@@ -816,6 +823,7 @@
 "chat_protection_broken_explanation" = "La crittografia end-to-end non può più essere garantita, probabilmente perché %1$@ ha reinstallato Delta Chat o inviato un messaggio da un altro dispositivo.\n\nPuoi incontrarlo di persona e scansionare nuovamente il suo Codice QR per ristabilire la crittografia end-to-end garantita.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ richiede la crittografia end-to-end che non è ancora configurata per questa chat. Tocca per saperne di più.";
 "invalid_unencrypted_explanation" = "Per stabilire la crittografia end-to-end, potresti incontrare i contatti di persona e scansionare il loro codice QR per presentarli.";
+"encryption_required_for_new_contact" = "È richiesta la crittografia end-to-end, ma non è ancora configurata per %1$@.\n\nPuoi condividere con loro il link d\'invito o incontrarli di persona e scansionare il loro Codice QR.";
 "learn_more" = "Per Saperne di Più";
 "devicemsg_self_deleted" = "Hai eliminato la chat \"Messaggi salvati\".\n\nℹ️ Per utilizzare nuovamente la funzione \"Messaggi salvati\", crea una nuova chat con te stesso.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -1019,8 +1027,11 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Consegna Istantanea";
+// deprecated
 "pref_push_notifications" = "Utilizza Servizio Push";
+// deprecated
 "pref_push_notifications_explain" = "Notifiche Push Affidabili per Server-Chatmail";
+// deprecated
 "pref_push_ask_disable" = "Disabilitare Servizio Push?\n\nCiò potrebbe causare ritardi nelle notifiche.";
 "pref_background_notifications" = "Utilizza Connessione Background";
 "pref_background_notifications_explain" = "Richiede ignora ottimizzazioni della batteria, da utilizzare se il Servizio Push non è disponibile";

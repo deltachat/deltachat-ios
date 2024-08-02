@@ -531,6 +531,7 @@
 "login_error_cannot_login" = "Nem lehetett bejelentkezni ide: „%1$@”. Ellenőrizze, hogy a megadott e-mail cím és a jelszó helyes-e.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Érvénytelen tanúsítványok elfogadása";
+// deprecated
 "used_settings" = "Használt beállítások:";
 "switch_account" = "Profilváltás";
 "add_account" = "Profil hozzáadása";
@@ -740,7 +741,9 @@
 "autocrypt_continue_transfer_retry" = "Újra";
 "autocrypt_bad_setup_code" = "Rossz beállítási kód. Próbálja újra.\n\nHa nem emlékszik a beállítási kódra, küldjön új Autocrypt Beállítás üzenetet a másik eszközről.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Üzenet megnyitva";
+// deprecated
 "systemmsg_read_receipt_body" = "Az Ön által küldött „%1$@” tartalmú üzenet megjelent a címzett képernyőjén.\n\nEz nem garancia arra, hogy a tartalmat elolvasták.";
 "systemmsg_cannot_decrypt" = "Ez az üzenet nem dekódolható.\n\n• Már az is segíthet, ha egyszerűen válaszol erre az üzenetre, és megkéri a feladóját, hogy küldje el újra az üzenetet.\n\n• Ha most telepítette újra a Delta Chat-et, akkor a legjobb, ha most újraindítja a Delta Chat-et, és kiválasztja a „Második eszközként való hozzáadás” lehetőséget, vagy importál egy biztonsági mentést.";
 "systemmsg_unknown_sender_for_chat" = "Az üzenet küldője ismeretlen ebben a csevegésben. További részletekért nézze meg az \'Infót\'.";
@@ -1019,8 +1022,11 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Azonnali kézbesítés";
+// deprecated
 "pref_push_notifications" = "Push szolgáltatás használata";
+// deprecated
 "pref_push_notifications_explain" = "Megbízható push értesítések a chatmail kiszolgálókhoz";
+// deprecated
 "pref_push_ask_disable" = "Push szolgáltatás letiltása?\n\nEz késleltetett értesítéseket eredményezhet.";
 "pref_background_notifications" = "Háttérkapcsolat használata";
 "pref_background_notifications_explain" = "Figyelmen kívül hagyott akkumulátor-optimalizációt igényel, akkor használja, ha a Push szolgáltatás nem érhető el";

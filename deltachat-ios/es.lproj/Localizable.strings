@@ -192,6 +192,10 @@
 "menu_delete_location" = "¿Eliminar esta ubicación?";
 "menu_message_details" = "Detalles del mensaje";
 "menu_copy_to_clipboard" = "Copiar al portapapeles";
+"share_invite_link" = "Compartir enlace de invitación";
+"invite_friends" = "Invitar amigos";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Contáctame en Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Copiar selección";
 "menu_copy_link_to_clipboard" = "Copiar enlace";
 "menu_copy_text_to_clipboard" = "Copiar texto";
@@ -531,6 +535,7 @@
 "login_error_cannot_login" = "No se puede iniciar sesión como \"%1$@\". Por favor, compruebe si la dirección de correo y la contraseña son correctas.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Aceptar certificados no válidos";
+// deprecated
 "used_settings" = "Ajustes usados:";
 "switch_account" = "Cambiar cuenta";
 "add_account" = "Agregar cuenta";
@@ -740,7 +745,9 @@
 "autocrypt_continue_transfer_retry" = "Reintentar";
 "autocrypt_bad_setup_code" = "Código de configuración incorrecto. Inténtelo de nuevo.\n\nSi no recuerda el código de configuración, solo envíe otro Mensaje de Configuración de Autocrypt desde el otro dispositivo.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Recibo de lectura";
+// deprecated
 "systemmsg_read_receipt_body" = "El mensaje \"%1$@\" que enviaste se mostró en la pantalla del destinatario.\n\nEsto no garantiza que el contenido haya sido leído.";
 "systemmsg_cannot_decrypt" = "Este mensaje no se puede descifrar.\n\n• Podría ayudar simplemente responder a este mensaje y pedir al remitente que lo envíe de nuevo.\n\n• Si acabas de reinstalar Delta Chat, es mejor que configures Delta Chat de nuevo y elijas \"Agregar como segundo dispositivo\" o importes una copia de seguridad.";
 "systemmsg_unknown_sender_for_chat" = "Remitente desconocido. Mira \"info\" para más detalles.";
@@ -816,6 +823,7 @@
 "chat_protection_broken_explanation" = "El cifrado de extremo a extremo ya no se puede garantizar, probablemente porque %1$@ reinstaló Delta Chat o envió un mensaje desde otro dispositivo.\n\nPueden encontrarse en persona y escanear su código QR nuevamente para restablecer el cifrado de extremo a extremo garantizado.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requiere cifrado de extremo a extremo que aún no está configurado para este chat. Toca para obtener más información.";
 "invalid_unencrypted_explanation" = "Para establecer un cifrado de extremo a extremo, puede reunirse con los contactos en persona y escanear su código QR.";
+"encryption_required_for_new_contact" = "Se requiere cifrado de extremo a extremo, pero aún no está disponible para %1$@.\n\nPuede compartir su enlace de invitación o reunirse en persona y escanear su código QR.";
 "learn_more" = "Aprender más";
 "devicemsg_self_deleted" = "Eliminaste los chats de los \"Mensajes guardados\". \n\nℹ️ Para volver a usar los\"Mensajes guardados\", debes crear un chat contigo mismo.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -1019,8 +1027,11 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Entrega inmediata";
+// deprecated
 "pref_push_notifications" = "Usar servicio Push";
+// deprecated
 "pref_push_notifications_explain" = "Notificaciones Push estables para servidores de chatmail";
+// deprecated
 "pref_push_ask_disable" = "¿Desactivar el uso del servicio Push?\n\nEsto puede provocar retrasos en las notificaciones.";
 "pref_background_notifications" = "Usar conexión en segundo plano";
 "pref_background_notifications_explain" = "Requiere desactivar las optimizaciones de batería, utilícelas si el servicio Push no está disponible";
@@ -1034,3 +1045,4 @@
 "update_1_44_android" = "Novedades:\n\n❤️ ¡Sí! Esto era muy esperado: toque prolongadamente un mensaje para reaccionar\n\n🔗 Si no puede escanear códigos QR, compártalos como enlaces de invitación\n\n🔵 Los mensajes no leídos de todas las cuentas se cuentan y se muestran en el título ahora\n\n… y TONELADAS de correcciones de errores… %1$@\n\nAyuda a mejorar la aplicación: usa \"Configuración/Avanzado/Enviar estadísticas\" para ayudar a los desarrolladores a optimizar mejor el uso en el mundo real. Puedes revisar los datos antes de enviar";
 "update_1_44_ios" = "Novedades:\n\n❤️ ¡Sí! Esto era muy esperado: toque prolongadamente un mensaje para reaccionar\n\n🫸 Notificaciones PUSH para proveedores que lo soporten, como https://nine.testrun.org\n\n🔗 Si no puede escanear códigos QR, compártalos como enlaces de invitación\n\n… y TONELADAS de correcciones de errores… %1$@";
 "update_1_46_android" = "Nueva pantalla de bienvenida 🐣 y más:\n\n⚡️ Regístrese en servidores de chatmail rápidos y seguros (https://delta.chat/chatmail) o use servidores de correo electrónico clásicos\n\n👉 Notificaciones PUSH para cualquier servidor de chatmail\n\n👤 Presenta un amigo a otro de forma segura usando \"Adjuntar Contacto\"\n\n🥰 Reacciona con cualquier emoji\n\n📌 Ancla chats directamente desde los resultados de la búsqueda... y MUCHO más en %1$@";
+"update_1_46_ios" = "Nueva pantalla inicial 🐣 y más:\n\n⚡️ Regístrese en servidores de chatmail rápidos y seguros (https://delta.chat/chatmail) o use servidores de correo electrónico clásicos\n\n👉 Notificaciones PUSH para cualquier servidor de chatmail\n\n👤 Reciba \"Contactos adjuntos\" y conéctese con sus amigos\n\n🥰 Selección de reacción más rápida... y MÁS en %1$@";

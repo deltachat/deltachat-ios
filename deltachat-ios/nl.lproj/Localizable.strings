@@ -531,6 +531,7 @@
 "login_error_cannot_login" = "Het inloggen als ‘%1$@’ is mislukt. Controleer je e-mailadres en wachtwoord.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Ongeldige certificaten accepteren";
+// deprecated
 "used_settings" = "Gebruikte instellingen:";
 "switch_account" = "Ander account kiezen";
 "add_account" = "Account toevoegen";
@@ -740,7 +741,9 @@
 "autocrypt_continue_transfer_retry" = "Opnieuw";
 "autocrypt_bad_setup_code" = "Onjuist; probeer het opnieuw.\n\nAls je je code niet meer weet, verstuur dan nóg een Autocrypt-instelbericht vanaf het andere apparaat.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Leesbevestiging";
+// deprecated
 "systemmsg_read_receipt_body" = "Het door jou verstuurde bericht, “%1$@”, heeft het scherm van de ontvanger bereikt.\n\nDit betekent echter niet dat het ook gelezen is.";
 "systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd, voeg het dan toe als tweede apparaat of importeer een reservekopie.";
 "systemmsg_unknown_sender_for_chat" = "Dit gesprek bevat een onbekende afzender. Zie ‘Informatie’ voor meer informatie.";
@@ -1019,8 +1022,11 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Onmiddellijke bezorging";
+// deprecated
 "pref_push_notifications" = "Push-afleverdienst gebruiken";
+// deprecated
 "pref_push_notifications_explain" = "Betrouwbare pushmeldingen voor chatmailservers";
+// deprecated
 "pref_push_ask_disable" = "Weet je zeker dat je de push-afleverdienst wilt uitschakelen?\n\nDit kan leiden tot vertraagde meldingen.";
 "pref_background_notifications" = "Achtergrondverbinding gebruiken";
 "pref_background_notifications_explain" = "Hiervoor is het verplicht dat accu-optimalisering wordt uitgeschakeld. Let op: gebruik alleen indien de push-afleverdienst niet beschikbaar is.";

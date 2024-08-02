@@ -531,6 +531,7 @@
 "login_error_cannot_login" = "Не вдалося увійти як \"%1$@\". Будь ласка, перевірте правильність адреси електронної пошти та паролю.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Приймати недійсні сертифікати";
+// deprecated
 "used_settings" = "Використані налаштування:";
 "switch_account" = "Перемкнути обліковий запис";
 "add_account" = "Додати обліковий запис";
@@ -740,7 +741,9 @@
 "autocrypt_continue_transfer_retry" = "Повторити";
 "autocrypt_bad_setup_code" = "Неправильний інсталяційний код. Спробуйте ще раз.\n\nЯкщо інсталяційний код загублений, надішліть з іншого пристрою ще одне повідомлення з налаштуваннями Autocrypt.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Сповіщення про прочитання.";
+// deprecated
 "systemmsg_read_receipt_body" = "Це підтвердження того, що повідомлення \"%1$@\" було відкрито на пристрої одержувача. Дане підтвердження не означає, що повідомлення було прочитано.";
 "systemmsg_cannot_decrypt" = "Це повідомлення неможливо розшифрувати.\n\n- Можливо, допоможе просто відповісти на це повідомлення і попросити відправника надіслати повідомлення ще раз.\n\n- Якщо ви щойно переінсталювали Delta Chat, то краще за все переналаштувати Delta Chat зараз і вибрати \"Додати як другий пристрій\" або імпортувати резервну копію.";
 "systemmsg_unknown_sender_for_chat" = "Невідомий відправник для цього чату. Дивіться \"Інформацію\" для деталей.";
@@ -1019,8 +1022,11 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Миттєва доставка";
+// deprecated
 "pref_push_notifications" = "Використовувати Push-сервіс";
+// deprecated
 "pref_push_notifications_explain" = "Надійні push-сповіщення для Chatmail-серверів";
+// deprecated
 "pref_push_ask_disable" = "Вимкнути використання Push-сервісу?\n\nЦе може призвести до затримки сповіщень.";
 "pref_background_notifications" = "Використовувати фонове підключення";
 "pref_background_notifications_explain" = "Потребує ігнорування оптимізації батареї, використовуйте, якщо Push-сервіс недоступний";

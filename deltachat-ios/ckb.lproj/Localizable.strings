@@ -302,6 +302,7 @@
 "import_backup_no_backup_found" = "هیچ یەدەکێک نەدۆزرایەوە.\n\n یەدەکەکە کۆپی بکە بۆ\"%1$@\" و دیسان هەوڵبدەوە. یان بۆ بەردەوامبوون لەسەر پرۆسەی ئاسایی دامەزراندنەکە، دەستبنە بە \"دەستپێکی نامەنووسین\"دا .";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "\"%1$@\" ناتوانێت بچێتە ژوورەوە. سەرنج بدە بزانە ئیمەیل و تێپەڕوشەکە درووستە.";
+// deprecated
 "used_settings" = "ڕێکخستنە بەکارهێنراوەکان:";
 "switch_account" = "گۆڕینی هەژمار";
 "add_account" = "زیادکردنی هەژمار";
@@ -436,6 +437,7 @@
 "autocrypt_continue_transfer_title" = "پەیامی ڕێکخستنی ئۆتۆکریپت";
 "autocrypt_continue_transfer_retry" = "دیسان هەوڵدانەوە";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "پەیامەکە کرایەوە";
 "systemmsg_unknown_sender_for_chat" = "پەیامنێری ئەم وتووێژە نەناسراوە. بۆ وردەکاری زۆرتر سەیری \'زانیارییەکان\' بکە.";
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";

@@ -427,6 +427,7 @@
 "login_error_cannot_login" = "Δεν είναι δυνατή η είσοδος ως \"%1$@\". Ελέγξτε εάν η διεύθυνση e-mail και ο κωδικός πρόσβασης είναι σωστά.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Αποδοχή μη έγκυρων πιστοποιητικών";
+// deprecated
 "used_settings" = "Χρησιμοποιούμενες ρυθμίσεις:";
 "switch_account" = "Αλλαγή λογαριασμού";
 "add_account" = "Προσθήκη Λογαριασμού";
@@ -613,7 +614,9 @@
 "autocrypt_continue_transfer_retry" = "Επανάληψη";
 "autocrypt_bad_setup_code" = "Εσφαλμένος κωδικός εγκατάστασης. Δοκιμάστε ξανά.\n\nΕάν δεν θυμάστε τον κωδικό ρύθμισης, στείλτε ένα νέο μήνυμα ρύθμισης αυτόματης κρυπτογράφησης από την άλλη συσκευή.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Το μήνυμα ανοίχτηκε";
+// deprecated
 "systemmsg_read_receipt_body" = "Το μήνυμα \"%1$@\" που στείλατε εμφανίστηκε στην οθόνη του παραλήπτη.\n\nΑυτό δεν αποτελεί εγγύηση για την ανάγνωση του περιεχομένου.";
 "systemmsg_unknown_sender_for_chat" = "Άγνωστος αποστολέας για αυτήν τη συνομιλία. Δείτε \"πληροφορίες\" για περισσότερες λεπτομέρειες.";
 "systemmsg_subject_for_new_contact" = "Μήνυμα από τον/την %1$@";

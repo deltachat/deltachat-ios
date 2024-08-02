@@ -192,6 +192,10 @@
 "menu_delete_location" = "Delete this Location?";
 "menu_message_details" = "Message Info";
 "menu_copy_to_clipboard" = "Copy to Clipboard";
+"share_invite_link" = "Share Invite Link";
+"invite_friends" = "Invite Friends";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Contact me on Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Copy Selection";
 "menu_copy_link_to_clipboard" = "Copy Link";
 "menu_copy_text_to_clipboard" = "Copy Text";
@@ -531,6 +535,7 @@
 "login_error_cannot_login" = "Cannot login as \"%1$@\". Please check if the e-mail address and the password are correct.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accept invalid certificates";
+// deprecated
 "used_settings" = "Used settings:";
 "switch_account" = "Switch Profile";
 "add_account" = "Add Profile";
@@ -740,7 +745,9 @@
 "autocrypt_continue_transfer_retry" = "Retry";
 "autocrypt_bad_setup_code" = "Bad setup code. Please try again.\n\nIf you do not remember the setup code, send a new Autocrypt Setup Message from the other device.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Message opened";
+// deprecated
 "systemmsg_read_receipt_body" = "The \"%1$@\" message you sent was displayed on the screen of the recipient.\n\nThis is no guarantee the content was read.";
 "systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• If you just re-installed Delta Chat then it is best if you re-setup Delta Chat now and choose \"Add as second device\" or import a backup.";
 "systemmsg_unknown_sender_for_chat" = "Unknown sender for this chat. See \'info\' for more details.";
@@ -816,6 +823,7 @@
 "chat_protection_broken_explanation" = "End-to-end encryption cannot be guaranteed anymore, likely because %1$@ reinstalled Delta Chat or sent a message from another device.\n\nYou may meet them in person and scan their QR code again to reestablish guaranteed end-to-end encryption.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requires end-to-end encryption which is not setup for this chat yet. Tap to learn more.";
 "invalid_unencrypted_explanation" = "To establish end-to-end-encryption, you may meet contacts in person and scan their QR Code to introduce them.";
+"encryption_required_for_new_contact" = "End-to-end encryption is required but it is not setup for %1$@ yet.\n\nYou may share your invite link with them or meet in person and scan their QR Code.";
 "learn_more" = "Learn More";
 "devicemsg_self_deleted" = "You deleted the \"Saved messages\" chat.\n\nℹ️ To use the \"Saved messages\" feature again, create a new chat with yourself.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -1019,11 +1027,14 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Instant Delivery";
+// deprecated
 "pref_push_notifications" = "Use Push Service";
+// deprecated
 "pref_push_notifications_explain" = "Reliable Push Notifications for Chatmail-Servers";
+// deprecated
 "pref_push_ask_disable" = "Disable using Push Service?\n\nThis may result in delayed notifications.";
 "pref_background_notifications" = "Use Background Connection";
-"pref_background_notifications_explain" = "Requires ignored battery optimizations, use if Push Service is unavailable";
+"pref_background_notifications_explain" = "Requires ignored battery optimizations, use if notifications don\'t arrive on time";
 "pref_reliable_service" = "Force Background Connection";
 "pref_reliable_service_explain" = "Causes a permanent notification";
 "pref_background_notifications_rationale" = "To maintain connection to your e-mail server and receive messages in the background, ignore battery optimizations in the next step.\n\nDelta Chat uses few resources and takes care not to drain your battery.";

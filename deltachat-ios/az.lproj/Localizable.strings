@@ -331,6 +331,7 @@
 "autocrypt_continue_transfer_retry" = "Təkrar cəhd et";
 "autocrypt_bad_setup_code" = "Yanlış quraşdırma kodu. Yenidən cəhd edin.\n\nƏgər quraşdırma kodunu xatırlamırsınız, başqa bir cihazdan başqa bir Autocrypt quraşdırma mesajı göndərin.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Qəbul olunanları oxuyun";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Qrupun adı \"%1$@\" - dən \"%2$@\" - yə deyişildi məndən. ";

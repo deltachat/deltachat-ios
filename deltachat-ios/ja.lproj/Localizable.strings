@@ -340,6 +340,7 @@
 "login_error_cannot_login" = "%1$@としてログインできません。メールアドレスとパスワードを確認してください。";
 // TLS certificate checks
 "accept_invalid_certificates" = "無効な証明書を受け入れます";
+// deprecated
 "used_settings" = "使用した設定：";
 "switch_account" = "アカウントを切り替え";
 "add_account" = "アカウントを追加";
@@ -492,6 +493,7 @@
 "autocrypt_continue_transfer_title" = "自動暗号化設定用ﾒｯｾｰｼﾞ";
 "autocrypt_continue_transfer_retry" = "再試行";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "既読";
 "systemmsg_subject_for_new_contact" = "%1$@さんからのメッセージ";
 "systemmsg_failed_sending_to" = "%1$@さんへのメッセージ送信に失敗しました。";

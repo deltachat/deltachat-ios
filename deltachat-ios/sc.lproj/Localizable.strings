@@ -289,6 +289,7 @@
 "login_error_cannot_login" = "Impossìbile atzèdere comente \"%1$@\". pro paghere verìfica si s\'indiritzu de posta eletrònica e sa crae de intrada sunt curretos.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Atzetat tzertificados non vàlidos";
+// deprecated
 "used_settings" = "Impostatziones impreadas:";
 "switch_account" = "Càmbia contu";
 "add_account" = "Annanghe unu contu";

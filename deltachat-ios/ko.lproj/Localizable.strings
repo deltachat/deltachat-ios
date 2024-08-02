@@ -420,6 +420,7 @@
 "import_backup_no_backup_found" = "백업을 찾을 수 없습니다.\n\n\"%1$@\"에 백업을 복사하고 다시 시도하십시오. 또는 \"메시징 시작\"을 눌러 일반 설정을 계속하십시오.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "\"%1$@\"에 로그인 할 수 없음. 이메일 주소와 비밀번호가 맞는지 확인하시오.";
+// deprecated
 "used_settings" = "사용된 설정:";
 "switch_account" = "계정 전환";
 "add_account" = "계정 추가";
@@ -594,7 +595,9 @@
 "autocrypt_continue_transfer_retry" = "재시도";
 "autocrypt_bad_setup_code" = "잘못된 설정 코드입니다. 다시 시도하십시오.\n\n설정 코드가 기억나지 않으면 다른 장치에서 새 자동 암호화 설치 메시지를 보냅니다.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "메시지 열림";
+// deprecated
 "systemmsg_read_receipt_body" = "보낸 \"%1$@\" 메시지가 수신자의 화면에 표시되었습니다.\n\n이것은 내용이 읽혔다는 것을 보장하지 않습니다.";
 "systemmsg_unknown_sender_for_chat" = "이 채팅의 발신자를 알 수 없습니다. 자세한 내용은 \'info\'를 확인하세요.";
 "systemmsg_subject_for_new_contact" = "%1$@가 보낸 메시지";
