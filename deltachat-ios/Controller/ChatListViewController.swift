@@ -227,8 +227,8 @@ class ChatListViewController: UITableViewController {
     }
 
     @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
-        DispatchQueue.main.async {
-            updateAccountButton()
+        DispatchQueue.main.async { [weak self] in
+            self?.updateAccountButton()
         }
     }
 
