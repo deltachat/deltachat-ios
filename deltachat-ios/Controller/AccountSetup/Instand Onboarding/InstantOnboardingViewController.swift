@@ -238,9 +238,11 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     private func handleCreateSuccess() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.registerForNotifications()
-        appDelegate.reloadDcContext()
+        DispatchQueue.main.async {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            appDelegate.registerForNotifications()
+            appDelegate.reloadDcContext()
+        }
     }
 
     private func storeImageAndName() {
