@@ -161,9 +161,7 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] connectivity changed")
-            DispatchQueue.main.async {
                 NotificationCenter.default.post(name: Event.connectivityChanged, object: nil)
-            }
 
         case DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE:
             if let sem = dcAccounts.fetchSemaphore {
