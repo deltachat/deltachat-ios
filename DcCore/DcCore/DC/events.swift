@@ -85,12 +85,11 @@ public class DcEventHandler {
             guard accountId == dcAccounts.getSelected().id else { return }
 
             logger.info("📡[\(accountId)] msgs changed: \(data1), \(data2)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
-                    "message_id": Int(data2),
-                    "chat_id": Int(data1),
-                ])
-            }
+            
+            NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
+                "message_id": Int(data2),
+                "chat_id": Int(data1),
+            ])
 
         case DC_EVENT_REACTIONS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
             guard accountId == dcAccounts.getSelected().id else { return }
