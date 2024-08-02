@@ -539,7 +539,9 @@
 "autocrypt_continue_transfer_retry" = "Torna-ho a provar";
 "autocrypt_bad_setup_code" = "Codi de configuració incorrecte. Siusplau torneu-ho a provar.\n\nSi no recordeu el codi de configuració Autocrypt, envieu-ne un de nou des de l’altre dispositiu.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Confirmació de lectura";
+// deprecated
 "systemmsg_read_receipt_body" = "Confirmació de lectura del missatge \"%1$@\".\n\nVol dir que el missatge s\'ha mostrat al dispositiu del receptor, no necessàriament que s\'hagi llegit.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Nom del grup \"%1$@\" canviat a \"%2$@\" per mi.";

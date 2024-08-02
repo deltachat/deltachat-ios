@@ -192,6 +192,10 @@
 "menu_delete_location" = "Usunąć tę lokalizację?";
 "menu_message_details" = "Szczegóły wiadomości";
 "menu_copy_to_clipboard" = "Kopiuj do schowka";
+"share_invite_link" = "Udostępnij link zaproszenia";
+"invite_friends" = "Zaproś znajomych";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Skontaktuj się ze mną przez Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Kopiuj zaznaczenie";
 "menu_copy_link_to_clipboard" = "Kopiuj link";
 "menu_copy_text_to_clipboard" = "Kopiuj tekst";
@@ -531,6 +535,7 @@
 "login_error_cannot_login" = "Nie można się zalogować jako „%1$@. Sprawdź, czy adres e-mail i hasło są poprawne.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Zaakceptuj nieprawidłowe certyfikaty";
+// deprecated
 "used_settings" = "Użyte ustawienia:";
 "switch_account" = "Przełącz konto";
 "add_account" = "Dodaj konto";
@@ -740,7 +745,9 @@
 "autocrypt_continue_transfer_retry" = "Powtórz";
 "autocrypt_bad_setup_code" = "Zły kod konfiguracyjny. Spróbuj ponownie.\n\nJeśli nie pamiętasz kodu konfiguracji, po prostu uruchom ponownie transfer klucza na drugim urządzeniu.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Potwierdzenie odczytu";
+// deprecated
 "systemmsg_read_receipt_body" = "To jest potwierdzenie odczytu dla wiadomości ”%1$@„.\n\nTo potwierdzenie odczytu tylko informuje, że wiadomość została wyświetlona na urządzeniu odbiorcy. Nie ma gwarancji, że odbiorca przeczytał treść wiadomości.";
 "systemmsg_cannot_decrypt" = "Tej wiadomości nie można odszyfrować.\n\n• Możesz teraz pomóc odpowiadając po prostu na tą wiadomość i poprosić nadawcę o ponowne wysłanie wiadomości.\n\n• Jeśli właśnie ponownie zainstalowałeś Delta Chat, najlepiej będzie, jeśli ponownie skonfigurujesz Delta Chat teraz i wybierzesz „Dodaj jako drugie urządzenie” lub zaimportujesz kopię zapasową.";
 "systemmsg_unknown_sender_for_chat" = "Nieznany nadawca tego czatu. Więcej szczegółów znajdziesz w sekcji „Informacje”.";
@@ -816,6 +823,7 @@
 "chat_protection_broken_explanation" = "Nie można już zagwarantować szyfrowania end-to-end, prawdopodobnie z powodu ponownej instalacji Delta Chat przez %1$@ lub wysłania wiadomości z innego urządzenia.\n\nMożesz spotkać się z tą osobą osobiście i ponownie zeskanować jej kod QR, aby przywrócić gwarantowane szyfrowanie end-to-end.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ wymaga szyfrowania end-to-end, które nie zostało jeszcze skonfigurowane dla tego czatu. Dotknij, aby dowiedzieć się więcej.";
 "invalid_unencrypted_explanation" = "Aby ustanowić szyfrowanie end-to-end, możesz spotkać się z kontaktami osobiście i zeskanować ich kod QR, żeby ich wprowadzić.";
+"encryption_required_for_new_contact" = "Wymagane jest szyfrowanie end-to-end, ale nie zostało ono jeszcze skonfigurowane dla %1$@.\n\nMożesz udostępnić im swój link zaproszenia lub spotkać się osobiście i zeskanować ich kod QR.";
 "learn_more" = "Czytaj więcej";
 "devicemsg_self_deleted" = "Usunięto czat „Zapisane wiadomości”.\n\nℹ️ Aby ponownie użyć funkcji „Zapisane wiadomości”, utwórz nowy czat ze sobą.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -1019,8 +1027,11 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Natychmiastowe dostarczenie";
+// deprecated
 "pref_push_notifications" = "Użyj usługi push";
+// deprecated
 "pref_push_notifications_explain" = "Niezawodne powiadomienia push dla serwerów chatmail";
+// deprecated
 "pref_push_ask_disable" = "Wyłączyć korzystanie z usługi Push?\n\nMoże to skutkować opóźnieniami w powiadomieniach.";
 "pref_background_notifications" = "Użyj połączenia w tle";
 "pref_background_notifications_explain" = "Wymaga zignorowania optymalizacji baterii. Użyj, jeśli usługa Push jest niedostępna";

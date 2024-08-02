@@ -527,6 +527,7 @@
 "login_error_cannot_login" = "S\’bëhet dot hyrja si “%1$@”. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
+// deprecated
 "used_settings" = "Rregullime të përdorura:";
 "switch_account" = "Ndërroni Llogari";
 "add_account" = "Shtoni Llogari";
@@ -734,7 +735,9 @@
 "autocrypt_continue_transfer_retry" = "Riprovo";
 "autocrypt_bad_setup_code" = "Kod i gabuar rregullimi. Ju lutemi, riprovoni.\n\nNëse s\’e mbani mend kodin e rregullimit, thjesht dërgoni një tjetër Mesazh Rregullimi Autocrypt-i prej pajisjes tjetër.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Mesazhi u hap";
+// deprecated
 "systemmsg_read_receipt_body" = "Mesazhi “%1$@” që dërguat, u shfaq në ekranin e marrësit.\n\nKjo s’është garanci se lënda u lexua.";
 "systemmsg_cannot_decrypt" = "Ky mesazh s’mund të shfshehtëzohet.\n\n• Mundet t’ju ndihë thjesht t’i përgjigjeni këtij mesazhi dhe t’i kërkoni dërguesit ta ridërgojë mesazhin.\n\n• Nëse sapo riinstaluat Delta Chat-in, atëherë më e mira është të riujdisni Delta Chat-in tani dhe të zgjidhni “Shtoje si pajisje të dytë”, ose të importoni një kopjeruajtje.";
 "systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
@@ -1011,7 +1014,9 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Dërgim i Menjëhershëm";
+// deprecated
 "pref_push_notifications" = "Përdor Shërbim Push";
+// deprecated
 "pref_push_ask_disable" = "Të çaktivizohet përdorimi i Shërbimit Push?\n\nKjo mund të sjellë njoftime të vonuara.";
 "pref_background_notifications" = "Përdor Lidhje Në Prapaskenë";
 "pref_background_notifications_explain" = "Lyp shpërfillje optimizimesh baterie, përdoreni nëse Shërbimi Push është jashtë funksionimi";

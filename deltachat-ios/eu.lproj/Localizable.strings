@@ -253,6 +253,7 @@
 "login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Onartu ziurtagiri baliogabeak";
+// deprecated
 "used_settings" = "Erabilitako ezarpenak:";
 "switch_account" = "Aldatu kontua";
 "add_account" = "Gehitu kontua";
@@ -380,7 +381,9 @@
 "autocrypt_continue_transfer_retry" = "Saiatu berriro";
 "autocrypt_bad_setup_code" = "Ezarpen kode okerra. Saiatu berriro mesedez.\n\nEz baduzu ezarpen kodea gogoratzen, bidali beste Autocrypt ezarpen mezu bat beste gailutik.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Irakurragiria";
+// deprecated
 "systemmsg_read_receipt_body" = "Hau \"%1$@\" mezuaren irakurragiri bat da.\n\nHonek mezua jasotzailearen gailuan bistaratu dela esan nahi du, ez edukia irakurri dela.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Nik: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";

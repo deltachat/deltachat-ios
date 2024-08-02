@@ -400,6 +400,7 @@
 "login_error_cannot_login" = "Přihlášení jako \"%1$@\" selhalo. Zkontrolujte si prosím ještě jednou e-mail a heslo.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Přijmout neplatné certifikáty";
+// deprecated
 "used_settings" = "Použité nastavení";
 "switch_account" = "Přepni účet";
 "add_account" = "Přidej účet";
@@ -568,7 +569,9 @@
 "autocrypt_continue_transfer_retry" = "Zkus znovu";
 "autocrypt_bad_setup_code" = "Neplatný kód. Zkus to znovu, prosím.\n\nPokud neznáš kód, zkus z prvního přístroje poslat Nastavení Autocryptu znovu.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Zpráva otevřena";
+// deprecated
 "systemmsg_read_receipt_body" = "Odeslaná zpráva \"%1$@\" byla příjemci zobrazena na jeho přístroji.\n\nNicméně přečtení obsahu není zaručeno.";
 "systemmsg_cannot_decrypt" = "Tuto zprávu nelze dešifrovat.\n\n• Už teď by mohlo pomoci jednoduše odpovědět na tuto zprávu a požádat odesílatele, aby zprávu poslal znovu.\n\n• Pokud jste právě přeinstalovali Delta Chat, bude nejlepší, když znovu nastavíte Delta Chat a zvolíte \"Přidat jako druhé zařízení\" nebo importujete zálohu. ";
 "systemmsg_unknown_sender_for_chat" = "Neznámý odesílatel tohoto chatu. Další podrobnosti naleznete v části „informace“. ";

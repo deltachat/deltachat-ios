@@ -451,6 +451,7 @@
 "import_backup_no_backup_found" = "找不到備份\n\n請把備份複製到 %1$@ 然後再試一次，或是按「開始傳送訊息」進行標準設定。";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "無法登入 %1$@。請確定 email 帳號和密碼是否正確。 ";
+// deprecated
 "used_settings" = "已使用的設定：";
 "switch_account" = "切換個人檔案";
 "add_account" = "新增個人檔案";
@@ -604,7 +605,9 @@
 "autocrypt_continue_transfer_retry" = "重試一次";
 "autocrypt_bad_setup_code" = "錯誤的設定碼，請再試一次。\n\n如果你忘記設定碼的話，只要在另一台裝置重新發送一次AutoCrypt設定訊息即可。";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "收執回條";
+// deprecated
 "systemmsg_read_receipt_body" = "這是訊息 %1$@ 的收執回條，表示本訊息已經顯示在收件人的裝置上了，但不代表收件人已讀。";
 "systemmsg_subject_for_new_contact" = "來自 %1$@ 的訊息";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name

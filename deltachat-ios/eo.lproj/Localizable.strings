@@ -316,6 +316,7 @@
 "import_backup_title" = "Importi savkopion";
 // TLS certificate checks
 "accept_invalid_certificates" = "Akcepti nevalidajn atestilojn";
+// deprecated
 "used_settings" = "Uzitaj agordoj:";
 "delete_account" = "Forigi konton";
 "delete_account_ask" = "Ĉu vi certas, ke vi volas forigi ĉiujn datumojn de vi konto?";

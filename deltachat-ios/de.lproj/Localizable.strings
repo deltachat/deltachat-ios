@@ -192,6 +192,10 @@
 "menu_delete_location" = "Diesen Standort löschen?";
 "menu_message_details" = "Nachrichteninfo";
 "menu_copy_to_clipboard" = "In Zwischenablage kopieren";
+"share_invite_link" = "Einladungslink teilen";
+"invite_friends" = "Freunde einladen";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Kontaktiere mich auf Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Auswahl kopieren";
 "menu_copy_link_to_clipboard" = "Link kopieren";
 "menu_copy_text_to_clipboard" = "Text kopieren";
@@ -531,6 +535,7 @@
 "login_error_cannot_login" = "Login als \"%1$@\" nicht möglich. Bitte E-Mail-Adresse und Passwort auf Richtigkeit überprüfen.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Ungültige Zertifikate akzeptieren";
+// deprecated
 "used_settings" = "Verwendete Einstellungen:";
 "switch_account" = "Profil wechseln";
 "add_account" = "Profil hinzufügen";
@@ -740,7 +745,9 @@
 "autocrypt_continue_transfer_retry" = "Wiederholen";
 "autocrypt_bad_setup_code" = "Ungültiger Setup-Code. Bitte versuchen Sie es erneut.\n\nWenn Sie den Setup-Code nicht mehr haben, können Sie auf dem anderen Gerät jederzeit eine neue Autocrypt-Setup-Nachricht mit einem neuen Setup-Code erzeugen.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Empfangsbestätigung";
+// deprecated
 "systemmsg_read_receipt_body" = "Ihre Nachricht \"%1$@\" wurde auf dem Empfangsgerät angezeigt.\n\nDas ist keine Garantie dafür, dass sie auch gelesen wurde.";
 "systemmsg_cannot_decrypt" = "Diese Nachricht kann nicht entschlüsselt werden.\n\n• Es kann bereits helfen, auf diese Nachricht zu antworten und den Absender zu bitten, die Nachricht noch einmal zu senden.\n\n• Wenn Sie Delta Chat gerade neu installiert haben, ist es am besten, wenn Sie Delta Chat mit \"Als Zweitgerät hinzufügen\" neu einrichten oder ein Backup importieren.";
 "systemmsg_unknown_sender_for_chat" = "Absender ist für diesen Chat unbekannt. Siehe \"Info\" für weitere Details,";
@@ -816,6 +823,7 @@
 "chat_protection_broken_explanation" = "Die Ende-zu-Ende-Verschlüsselung kann nicht mehr garantiert werden, wahrscheinlich weil %1$@ Delta Chat neu installiert oder eine Nachricht von einem anderen Gerät gesendet hat.\n\n Sie können ihn persönlich treffen und seinen QR-Code erneut scannen, um die garantierte Ende-zu-Ende-Verschlüsselung wiederherzustellen.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ verlangt eine Ende-zu-Ende-Verschlüsselung, die für diesen Chat noch nicht hergestellt wurde. Tippen, um mehr zu erfahren.";
 "invalid_unencrypted_explanation" = "Um eine Ende-zu-Ende-Verschlüsselung herzustellen, können Sie Kontakte persönlich treffen und ihren QR-Code scannen.";
+"encryption_required_for_new_contact" = "Ende-zu-Ende-Verschlüsselung ist notwendig, aber für %1$@ nicht eingerichtet.\n\nZum Herstellen der Ende-zu-Ende-Verschlüsselung, können Sie Ihren Einladungslink teilen oder den Kontakt persönlich zum QR-Code-Scannen treffen.";
 "learn_more" = "Mehr erfahren";
 "devicemsg_self_deleted" = "Sie haben den Chat \"Gespeicherte Nachrichten\" gelöscht.\n\nℹ️ Um die Funktion \"Gespeicherte Nachrichten\" erneut zu verwenden, erstellen Sie einfach einen Chat mit sich selbst.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -1019,11 +1027,14 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Sofortige Benachrichtigungen";
+// deprecated
 "pref_push_notifications" = "Push-Dienst verwenden";
+// deprecated
 "pref_push_notifications_explain" = "Zuverlässige Push-Benachrichtigungen für Chatmail-Server";
+// deprecated
 "pref_push_ask_disable" = "Push-Dienst nicht mehr verwenden? Dies kann zu verzögerten Benachrichtigungen führen.";
 "pref_background_notifications" = "Hintergrundverbindung verwenden";
-"pref_background_notifications_explain" = "Erfordert das Deaktivieren der Akku-Optimierungen, empfohlen, wenn kein Push-Dienst verfügbar ist";
+"pref_background_notifications_explain" = "Erfordert das Deaktivieren der Akku-Optimierungen; empfohlen, wenn Nachrichten nicht rechtzeitig ankommen";
 "pref_reliable_service" = "Hintergrundverbindung erzwingen";
 "pref_reliable_service_explain" = "Verursacht eine permanente Benachrichtigung";
 "pref_background_notifications_rationale" = "Um die Verbindung zu Ihrem E-Mail-Server aufrechtzuerhalten und Nachrichten im Hintergrund zu empfangen, ignorieren Sie im nächsten Schritt die \"Akku-Optimierungen\".\n\nDelta Chat verbraucht nur minimale Ressourcen und achtet darauf, den Akku zu schonen.";

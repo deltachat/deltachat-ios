@@ -338,6 +338,7 @@
 "login_error_cannot_login" = "Kan inte logga in som \"%1$@\". Kontrollera om e-postadressen och lösenordet är korrekt.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptera ogiltiga certifikat";
+// deprecated
 "used_settings" = "Använda inställningar:";
 "switch_account" = "Byt konto";
 "add_account" = "Lägg till konto";
@@ -473,7 +474,9 @@
 "autocrypt_continue_transfer_retry" = "Försök igen";
 "autocrypt_bad_setup_code" = "Felaktig inställningskod. Försök igen.\n\nOm du inte kommer ihåg inställningskoden, kan du skicka ett nytt Autocrypt inställningsmeddelande från den andra enheten.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Meddelande öppnat";
+// deprecated
 "systemmsg_read_receipt_body" = "\"%1$@\" meddelandet du skickade visades på mottagarens skärm.\n\nDet är ingen garanti för att innehållet har lästs.";
 "systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";

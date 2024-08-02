@@ -510,6 +510,7 @@ https://meet.jit.si/$ROOM
 "login_error_cannot_login" = "نتوانست به عنوان «%1$@» وارد شود. لطفاً صحت نشانی رایانامه و گذرواژه را بررسی کنید. ";
 // TLS certificate checks
 "accept_invalid_certificates" = "پذیرش گواهینامه‌های نامعتبر";
+// deprecated
 "used_settings" = "تنظیمات استفاده شده:";
 "switch_account" = "تغییر حساب کاربری";
 "add_account" = "افزودن حساب کاربری";
@@ -713,7 +714,9 @@ https://meet.jit.si/$ROOM
 "autocrypt_continue_transfer_retry" = "تلاش مجدد";
 "autocrypt_bad_setup_code" = "کد برپاسازی نادرست. لطفاً دوباره تلاش کنید. \n\n اگر کد برپاسازی را فراموش کرده‌اید یک پیام برپاسازی اتوکریپت جدید را از دستگاه دیگر ارسال کنید. ";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "پیام باز شد";
+// deprecated
 "systemmsg_read_receipt_body" = "پیام\"%1$@\" که ارسال کرده بودید در ثفحه گیرنده نمایش داده شد\n\n. تضمینی وجود ندارد که محتوای پیام را خوانده باشد. ";
 "systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از%1$@";
@@ -1010,6 +1013,7 @@ GNU GPL ورژن ۳
 "shortcut_step1_tap_share_btn" = "روی دکمه اشتراک کلیک کنید";
 "shortcut_step2_tap_add_to_home_screen" = "برای افزودن برنامه به صفحه اصلی خود، «افزودن به صفحه اصلی» را انتخاب کنید.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+// deprecated
 "pref_push_notifications" = "استفاده از Push Service";
 "pref_background_notifications" = "استفاده از اتصال پس زمینه";
 "pref_reliable_service" = "اجبار کردن اتصال پس زمینه";

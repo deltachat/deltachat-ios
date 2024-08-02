@@ -350,6 +350,7 @@
 "login_error_cannot_login" = "Kan ikke logge ind som  \"%1$@\". Kontroller om e-mailadresse og adgangskode er korrekt.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptér ugyldige certifikater";
+// deprecated
 "used_settings" = "Benyttede indstillinger:";
 "switch_account" = "Skift konto";
 "add_account" = "Tilføj konto";
@@ -516,7 +517,9 @@
 "autocrypt_continue_transfer_retry" = "Prøv igen";
 "autocrypt_bad_setup_code" = "Ugyldig opsætningskode. Prøv igen.\n\nKan opsætningskoden ikke huskes, send blot en anden Autocrypt opsætning besked fra den anden enhed.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Besked åbnet";
+// deprecated
 "systemmsg_read_receipt_body" = "Beskeden \"%1$@\" du har sendt blev vist på modtagerens skærm.\n\nDette er ikke en garanti for at indholdet blev læst.";
 "systemmsg_unknown_sender_for_chat" = "Ukent afsender af denne chat. Se \'info\' for flere detaljer.";
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";

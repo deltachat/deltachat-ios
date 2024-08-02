@@ -153,6 +153,7 @@
 "login_certificate_checks" = "التحقق مِن الشهادة";
 "login_error_mail" = "يرجى إدخال عنوان بريد إلكتروني صالح";
 "import_backup_title" = "استيراد نسخة احتياطية";
+// deprecated
 "used_settings" = "الإعدادات المُستَخدَمة:";
 "delete_account" = "حذف الحساب";
 // preferences

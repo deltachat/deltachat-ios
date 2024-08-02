@@ -530,6 +530,7 @@
 "login_error_cannot_login" = "Не удалось войти с логином \"%1$@\". Убедитесь, что адрес эл. почты и пароль указаны верно.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Принимать недействительные сертификаты";
+// deprecated
 "used_settings" = "Используемые настройки:";
 "switch_account" = "Сменить Профиль";
 "add_account" = "Добавить Профиль";
@@ -737,7 +738,9 @@
 "autocrypt_continue_transfer_retry" = "Повторить";
 "autocrypt_bad_setup_code" = "Неверный установочный код. Попробуйте ввести его ещё раз.\n\nЕсли установочный код утерян, отправьте с другого устройства ещё одно сообщение с параметрами Autocrypt.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Уведомление о прочтении";
+// deprecated
 "systemmsg_read_receipt_body" = "Это подтверждение того, что сообщение \"%1$@\" было открыто на устройстве получателя. Данное подтверждение не означает, что сообщение было прочитано.";
 "systemmsg_cannot_decrypt" = "Это сообщение не может быть расшифровано.\n\n• Возможно, вам поможет простой ответ на это сообщение и просьба отправителю, отправить сообщение еще раз.\n\n• Если вы только что переустановили Delta Chat, лучше всего перенастроить Delta Chat сейчас и выбрать «Добавить как второе устройство» или импортировать резервную копию.";
 "systemmsg_unknown_sender_for_chat" = "Неизвестный отправитель для данного чата. Смотрите \"информацию\" для подробностей.";
@@ -1016,8 +1019,11 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Мгновенная Доставка";
+// deprecated
 "pref_push_notifications" = "Использовать Службу Push";
+// deprecated
 "pref_push_notifications_explain" = "Надёжные Push Уведомления для Серверов Chatmail";
+// deprecated
 "pref_push_ask_disable" = "Отключить использование Службы Push?\n\nЭто может привести к задержке уведомлений.";
 "pref_background_notifications" = "Использовать Фоновое Соединение";
 "pref_background_notifications_explain" = "Требуется отключение оптимизации батареи, используется, если служба Push Уведомлений недоступна";

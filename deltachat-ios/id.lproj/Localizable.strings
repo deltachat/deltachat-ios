@@ -353,6 +353,7 @@
 "login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Terima sertifikat yang tidak sah";
+// deprecated
 "used_settings" = "Setelan yang digunakan:";
 "switch_account" = "Alihkan akun";
 "add_account" = "Tambah akun";
@@ -491,7 +492,9 @@
 "autocrypt_continue_transfer_retry" = "Ulangi";
 "autocrypt_bad_setup_code" = "Kode pengaturan jelek. Ayo cakepan lagi.\n\nKalau Anda lupa kode pengaturan, kirim lagi Autocrypt Setup Message dari perangkat lainnya.";
 // system messages
+// deprecated
 "systemmsg_read_receipt_subject" = "Pesan dibuka";
+// deprecated
 "systemmsg_read_receipt_body" = "Pesan \"%1$@\" yang Anda kirimkan tampak di layar penerima.\n\nIni bukan jaminan kalau isinya dibaca.";
 "systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
