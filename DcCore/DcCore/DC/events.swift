@@ -151,11 +151,10 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] contact changed: \(data1)")
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: Event.contactsChanged, object: nil, userInfo: [
-                    "contact_id": Int(data1)
-                ])
-            }
+                
+            NotificationCenter.default.post(name: Event.contactsChanged, object: nil, userInfo: [
+                "contact_id": Int(data1)
+            ])
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
             if accountId != dcAccounts.getSelected().id {
