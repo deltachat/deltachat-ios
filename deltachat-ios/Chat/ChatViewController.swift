@@ -1371,7 +1371,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func askToDeleteChat() {
-        let title = String.localized(stringID: "ask_delete_chat", parameter: 1)
+        let chat = dcContext.getChat(chatId: chatId)
+        let title = String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { [weak self] _ in
                             guard let self else { return }
