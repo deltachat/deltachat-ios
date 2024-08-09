@@ -746,11 +746,17 @@ class ChatListViewController: UITableViewController {
         if selected == 0 {
             return
         }
-        let alert = UIAlertController(
-            title: nil,
-            message: String.localized(stringID: "ask_delete_chat", parameter: selected),
-            preferredStyle: .safeActionSheet
-        )
+
+        let message: String
+        if selected == 1,
+           let chatIds = viewModel?.chatIdsFor(indexPaths: tableView.indexPathsForSelectedRows),
+           let chatId = chatIds.first {
+            message = String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name)
+        } else {
+            message = String.localized(stringID: "ask_delete_chat", parameter: selected)
+        }
+
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             guard let self, let viewModel = self.viewModel else { return }
             viewModel.deleteChats(indexPaths: self.tableView.indexPathsForSelectedRows)
