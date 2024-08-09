@@ -71,7 +71,6 @@ public class DcEventHandler {
             }
             
         case DC_EVENT_IMEX_PROGRESS:
-            
             NotificationCenter.default.post(name: Event.importExportProgress, object: nil, userInfo: [
                 "progress": Int(data1),
                 "error": Int(data1) == 0,
