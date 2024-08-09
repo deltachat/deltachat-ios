@@ -117,6 +117,7 @@ public class DcEventHandler {
             NotificationCenter.default.post(name: Event.chatModified, object: nil, userInfo: [
                 "chat_id": Int(data1),
             ])
+
         case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
             if accountId != dcAccounts.getSelected().id {
                 return
@@ -155,7 +156,7 @@ public class DcEventHandler {
                 return
             }
             logger.info("📡[\(accountId)] connectivity changed")
-                NotificationCenter.default.post(name: Event.connectivityChanged, object: nil)
+            NotificationCenter.default.post(name: Event.connectivityChanged, object: nil)
 
         case DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE:
             if let sem = dcAccounts.fetchSemaphore {
