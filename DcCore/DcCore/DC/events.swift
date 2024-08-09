@@ -78,6 +78,7 @@ public class DcEventHandler {
                 "done": Int(data1) == 1000,
                 "errorMessage": self.dcAccounts.get(id: accountId).lastErrorString,
             ])
+
         case DC_EVENT_MSGS_CHANGED:
             guard accountId == dcAccounts.getSelected().id else { return }
 
