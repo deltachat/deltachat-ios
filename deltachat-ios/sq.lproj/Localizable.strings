@@ -184,12 +184,15 @@
 "menu_delete_chat" = "Fshije Fjalosjen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Spastroje Fjalosjen";
-"ask_delete_named_chat" = "Jeni i sigurt se doni të fshihet “%1$@”?";
 "menu_delete_messages" = "Fshiji Mesazhet";
 "delete_contact" = "Fshije Kontaktin";
 "menu_delete_location" = "Të fshihet kjo Vendndodhje?";
 "menu_message_details" = "Hollësi Mesazhi";
 "menu_copy_to_clipboard" = "Kopjoje në të Papastër";
+"share_invite_link" = "Jepuni Lidhje Ftese";
+"invite_friends" = "Ftoni Shokë";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Lidhuni me mua në Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Kopjoje Përzgjedhjen";
 "menu_copy_link_to_clipboard" = "Kopjoje Lidhjen";
 "menu_copy_text_to_clipboard" = "Kopjo Tekstin";
@@ -283,6 +286,7 @@
 "videochat_invitation_body" = "Jeni ftuar në një fjalosje video, klikoni mbi %1$@ që të hyni në të.";
 // get confirmations
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
+"ask_delete_named_chat" = "Jeni i sigurt se doni të fshihet “%1$@”?";
 "ask_delete_message" = "Jeni i sigurt se doni të fshihet ky mesazh?";
 "ask_forward" = "Të përcillen mesazhet te %1$@?";
 "ask_forward_multiple" = "Të përcillen mesazhet te %1$d fjalosje?";
@@ -813,6 +817,7 @@
 "chat_protection_broken_explanation" = "Fshehtëzimi skaj-më-skaj s’mund të garantohet më, ngaqë, sipas gjasash, %1$@ riinstaloi Delta Chat-in, ose dërgoi një mesazh nga një tjetër pajisje.\n\nMund ta takoni dhe të skanoni sërish KODIN e tij QR, që të rivendoset fshehtëzim skaj-më-skaj i garantuar.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ lyp fshehtëzim, i cili s’është ujdisur ende për këtë fjalosje. Që të mësoni më tepër, prekeni.";
 "invalid_unencrypted_explanation" = "Për të vendosur fshehtëzim skaj-më-skaj, mund të takoheni personalisht me kontaktet dhe të skanoni kodin e tyre QR, për t’i pranuar.";
+"encryption_required_for_new_contact" = "Është i domosdoshëm fshehtëzim skaj-më-skaj, por për %1$@ s’është ujdisur ende i tillë.\n\nMund t’i jepni lidhjen e ftesës tuaj, ose të takoheni personalisht dhe të skanoni kodin e tij QR.";
 "learn_more" = "Mësoni Më Tepër";
 "devicemsg_self_deleted" = "Fshitë fjalosjen “Mesazhe të ruajtur”.\n\nℹ️ Që të përdorni sërish veçorinë “Mesazhe të ruajtur”, krijoni një fjalosje të re me veten tuaj.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%

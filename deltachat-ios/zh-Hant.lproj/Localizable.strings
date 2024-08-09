@@ -183,7 +183,6 @@
 "menu_delete_chat" = "刪除對話";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "清除對話";
-"ask_delete_named_chat" = "你確定你要刪除\"%1$@\"？";
 "menu_delete_messages" = "刪除訊息";
 "delete_contact" = "刪除聯絡人";
 "menu_delete_location" = "刪除這個地點？";
@@ -280,6 +279,7 @@
 "videochat_invitation_body" = "你被邀請至視訊電話，點擊%1$@以加入。";
 // get confirmations
 "ask_leave_group" = "確定要離開本群組？";
+"ask_delete_named_chat" = "你確定你要刪除\"%1$@\"？";
 "ask_delete_message" = "你確定要刪除這則訊息？";
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天室？";

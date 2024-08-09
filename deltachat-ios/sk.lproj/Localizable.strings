@@ -158,7 +158,6 @@
 "menu_add_attachment" = "Pridať prílohu";
 "menu_leave_group" = "Opustiť skupinu";
 "menu_delete_chat" = "Odstrániť konverzáciu";
-"ask_delete_named_chat" = "Naozaj chcete položku odstrániť  \"%1$@\" ?";
 "menu_delete_messages" = "Odstrániť správy";
 "delete_contact" = "Odstrániť kontakt";
 "menu_delete_location" = "Odstrániť toto miesto?";
@@ -251,6 +250,7 @@
 "videochat_invitation_body" = "Ste pozvaní na videohovor, kliknutím %1$@ sa pripojíte.";
 // get confirmations
 "ask_leave_group" = "Naozaj chcete opustiť túto skupinu?";
+"ask_delete_named_chat" = "Naozaj chcete položku odstrániť  \"%1$@\" ?";
 "ask_delete_message" = "Naozaj chcete odstrániť túto správu?";
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";

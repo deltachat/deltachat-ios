@@ -136,7 +136,6 @@
 "menu_add_attachment" = "Tilføj vedhæftning";
 "menu_leave_group" = "Forlad gruppe";
 "menu_delete_chat" = "Slet samtale";
-"ask_delete_named_chat" = "Er du sikker på at du vil slette \"%1$@\"?";
 "menu_delete_messages" = "Slet beskeder";
 "delete_contact" = "Slet kontakt";
 "menu_delete_location" = "Slet denne placering?";
@@ -218,6 +217,7 @@
 "videochat_invitation_body" = "Du er inviteret til en videochat, klik %1$@ for at tilslutte dig.";
 // get confirmations
 "ask_leave_group" = "Forlad denne gruppe?";
+"ask_delete_named_chat" = "Er du sikker på at du vil slette \"%1$@\"?";
 "ask_delete_message" = "Er du sikker på at du vil slette denne besked?";
 "ask_forward" = "Videresend beskeder til %1$@?";
 "ask_forward_multiple" = "Videresend beskeder til %1$d samtaler?  ";

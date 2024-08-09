@@ -182,7 +182,6 @@
 "menu_delete_chat" = "Vymaž chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vyčisti chat";
-"ask_delete_named_chat" = "Skutečně úplně vymazat \"%1$@\"?";
 "menu_delete_messages" = "Vymaž zprávy";
 "delete_contact" = "Vymaž kontakt";
 "menu_delete_location" = "Smazat tuto polohu?";
@@ -274,6 +273,7 @@
 "videochat_invitation_body" = "Jste vyzváni k video hovoru, připojte se stiskem %1$@";
 // get confirmations
 "ask_leave_group" = "Opravdu opustit tuto skupinu?";
+"ask_delete_named_chat" = "Skutečně úplně vymazat \"%1$@\"?";
 "ask_forward" = "Přepošli zprávy na adresu %1$@?";
 "ask_forward_multiple" = "Přepošli zprávy do %1$d chatů?";
 "ask_export_attachment" = "Uložit přílohu? Uložení příloh je zpřístupní ostatním aplikacím na tomto přístroji.\n\nPokračovat?";
