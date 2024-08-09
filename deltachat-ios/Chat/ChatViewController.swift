@@ -470,12 +470,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     }
                 }
 
-                if self.isLastRowScrolledToBottom() {
-                    self.scrollToBottom(animated: true)
-                }
-
+                let wasLastSectionScrolledToBottom = self.isLastRowScrolledToBottom()
                 self.refreshMessages()
                 self.updateTitle()
+                if wasLastSectionScrolledToBottom {
+                    self.scrollToBottom(animated: true)
+                }
+                self.updateScrollDownButtonVisibility()
                 self.markSeenMessagesInVisibleArea()
             }
         }
@@ -514,14 +515,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
             let chatId = ui["chat_id"] as? Int ?? 0
             if chatId == 0 || chatId == self.chatId {
-                let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
-                refreshMessages()
-                updateTitle()
+                let wasLastSectionScrolledToBottom = self.isLastRowScrolledToBottom()
+                self.refreshMessages()
+                self.updateTitle()
                 if wasLastSectionScrolledToBottom {
-                    scrollToBottom(animated: true)
+                    self.scrollToBottom(animated: true)
                 }
-                updateScrollDownButtonVisibility()
-                markSeenMessagesInVisibleArea()
+                self.updateScrollDownButtonVisibility()
+                self.markSeenMessagesInVisibleArea()
             }
         }
     }
@@ -977,13 +978,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     @objc
     private func refreshMessages() {
-        self.messageIds = dcContext.getChatMsgs(chatId: chatId)
+        messageIds = dcContext.getChatMsgs(chatId: chatId)
         let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
-        self.reloadData()
+        reloadData()
         if wasLastSectionScrolledToBottom {
-            self.scrollToBottom(animated: true)
+            scrollToBottom(animated: true)
         }
-        self.showEmptyStateView(self.messageIds.isEmpty)
+        showEmptyStateView(messageIds.isEmpty)
     }
 
     private func reloadData() {
@@ -1067,13 +1068,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
     
     private func scrollToBottom(animated: Bool, focusOnVoiceOver: Bool = false) {
-        if !messageIds.isEmpty {
-            let numberOfRows = self.tableView.numberOfRows(inSection: 0)
-            if numberOfRows > 0 {
-                self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
-                                 animated: animated,
-                                 focusWithVoiceOver: focusOnVoiceOver)
-            }
+        let numberOfRows = messageIds.count
+        if numberOfRows > 0 {
+            scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
+                        animated: animated,
+                        focusWithVoiceOver: focusOnVoiceOver)
         }
     }
 
