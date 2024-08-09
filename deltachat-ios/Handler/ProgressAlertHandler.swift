@@ -13,10 +13,10 @@ extension UIViewController: ProgressAlertHandlerDataSource {
 
 class ProgressAlertHandler {
 
-    let dcAccounts: DcAccounts
+    private let dcAccounts: DcAccounts
     weak var dataSource: ProgressAlertHandlerDataSource?
-    var onSuccess: (() -> Void)?
-    let checkForInternetConnectivity: Bool
+    private var onSuccess: (() -> Void)?
+    private let checkForInternetConnectivity: Bool
     private var progressAlertController: UIAlertController?
 
     /// Use this is you want to handle notifications yourself.
