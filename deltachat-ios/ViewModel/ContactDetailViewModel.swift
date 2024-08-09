@@ -39,6 +39,7 @@ class ContactDetailViewModel {
     let chatId: Int
     let isSavedMessages: Bool
     let isDeviceTalk: Bool
+    let isBot: Bool
     let greenCheckmark: Bool
     var lastSeen: Int64
     private var sharedChats: DcChatlist
@@ -61,6 +62,7 @@ class ContactDetailViewModel {
             isDeviceTalk = false
             greenCheckmark = dcContact.isVerified
         }
+        self.isBot = dcContact.isBot
         self.sharedChats = context.getChatlist(flags: 0, queryString: nil, queryId: contactId)
 
         sections.append(.chatOptions)

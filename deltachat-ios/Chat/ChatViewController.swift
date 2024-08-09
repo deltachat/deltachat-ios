@@ -939,8 +939,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 subtitle = String.localized("device_talk_subtitle")
             } else if dcChat.isSelfTalk {
                 subtitle = String.localized("chat_self_talk_subtitle")
-            } else if !dcChat.isProtected && chatContactIds.count >= 1 {
-                subtitle = dcContext.getContact(id: chatContactIds[0]).email
+            } else if chatContactIds.count >= 1 {
+                let dcContact = dcContext.getContact(id: chatContactIds[0])
+                if dcContact.isBot {
+                    subtitle = String.localized("bot")
+                } else if !dcChat.isProtected {
+                    subtitle = dcContact.email
+                } else {
+                    subtitle = nil
+                }
             } else {
                 subtitle = nil
             }

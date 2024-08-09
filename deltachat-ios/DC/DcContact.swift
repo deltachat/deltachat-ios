@@ -72,6 +72,10 @@ public class DcContact {
         return Int(dc_contact_get_verifier_id(contactPointer))
     }
 
+    public var isBot: Bool {
+        return dc_contact_is_bot(contactPointer) != 0
+    }
+
     public var isBlocked: Bool {
         return dc_contact_is_blocked(contactPointer) == 1
     }
