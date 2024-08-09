@@ -292,7 +292,7 @@ extension QrPageController: QrCodeReaderDelegate {
             }))
             present(alert, animated: true, completion: nil)
 
-        case DC_QR_BACKUP:
+        case DC_QR_BACKUP, DC_QR_BACKUP2:
             // alert is shown in WelcomeViewController
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             _ = dcAccounts.add()

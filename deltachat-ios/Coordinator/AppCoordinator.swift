@@ -236,7 +236,7 @@ class AppCoordinator: NSObject {
 
         if let accountCode {
             let qr = dcAccounts.getSelected().checkQR(qrCode: accountCode)
-            if qr.state == DC_QR_BACKUP {
+            if qr.state == DC_QR_BACKUP || qr.state == DC_QR_BACKUP2 {
                 viewControllers = [WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode)]
             } else {
                 viewControllers = [
