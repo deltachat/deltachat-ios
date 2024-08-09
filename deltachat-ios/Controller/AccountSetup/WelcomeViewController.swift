@@ -233,7 +233,7 @@ class WelcomeViewController: UIViewController {
 extension WelcomeViewController: QrCodeReaderDelegate {
     func handleQrCode(_ code: String) {
         let lot = dcContext.checkQR(qrCode: code)
-        if lot.state == DC_QR_BACKUP {
+        if lot.state == DC_QR_BACKUP || lot.state == DC_QR_BACKUP2 {
              confirmSetupNewDevice(qrCode: code)
         } else {
             qrErrorAlert()
