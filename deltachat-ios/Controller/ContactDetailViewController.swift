@@ -135,7 +135,11 @@ class ContactDetailViewController: UITableViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 title: String.localized("global_menu_edit_desktop"),
                 style: .plain, target: self, action: #selector(editButtonPressed))
-            self.title = String.localized("tab_contact")
+            if self.viewModel.isBot {
+                self.title = String.localized("bot")
+            } else {
+                self.title = String.localized("tab_contact")
+            }
         } else {
             self.title = String.localized("profile")
         }
