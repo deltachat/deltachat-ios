@@ -186,12 +186,15 @@
 "menu_delete_chat" = "删除聊天";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "清空聊天记录";
-"ask_delete_named_chat" = "您确定要删除“%1$@”吗？";
 "menu_delete_messages" = "删除消息";
 "delete_contact" = "删除联系人";
 "menu_delete_location" = "删除此位置？";
 "menu_message_details" = "消息详情";
 "menu_copy_to_clipboard" = "复制到剪贴板";
+"share_invite_link" = "分享邀请链接";
+"invite_friends" = "邀请好友";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "在 Delta Chat 上联系我：\n%1$@";
 "menu_copy_selection_to_clipboard" = "复制所选内容";
 "menu_copy_link_to_clipboard" = "复制链接";
 "menu_copy_text_to_clipboard" = "复制文本";
@@ -285,6 +288,7 @@
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
+"ask_delete_named_chat" = "您确定要删除“%1$@”吗？";
 "ask_delete_message" = "您确定要删除这条消息吗？";
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
@@ -819,6 +823,7 @@
 "chat_protection_broken_explanation" = "无法再确保端到端加密，可能的原因是 %1$@ 重新安装了 Delta Chat 或从其他设备发送了一则消息。\n\n你可以和联系人线下见面并再次扫描联系人的二维码重新建立端到端加密的通信。";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@要求端到端加密，而此聊天尚未建立端到端加密。轻按了解更多。";
 "invalid_unencrypted_explanation" = "要建立端到端加密，你可以亲自和联系人碰面并扫描联系人的二维码";
+"encryption_required_for_new_contact" = "端到端加密是必需的但 %1$@ 还没有设置它。\n\n你可以和这些人分享你的邀请链接或亲自会面扫描其二维码。";
 "learn_more" = "了解更多";
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%

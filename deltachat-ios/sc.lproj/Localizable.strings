@@ -120,7 +120,6 @@
 "menu_add_attachment" = "Annanghe un\'allegadu";
 "menu_leave_group" = "Lassa su grupu";
 "menu_delete_chat" = "Iscantzella sa tzarrada";
-"ask_delete_named_chat" = "Ses seguru de chèrrere iscantzellare \"%1$@\"?";
 "menu_delete_messages" = "Iscantzella sos messàgios";
 "menu_delete_location" = "Iscantzellare custa positzione?";
 "menu_message_details" = "Detàllios de su messàgiu";
@@ -185,6 +184,7 @@
 "videochat_invitation_body" = "Ses invitadu a una vìdeu-tzarrada. Incarca %1$@ pro bi pigare parte.";
 // get confirmations
 "ask_leave_group" = "Ses seguru de chèrrere lassare custu grupu?";
+"ask_delete_named_chat" = "Ses seguru de chèrrere iscantzellare \"%1$@\"?";
 "ask_forward" = "Inoltrare su messàgiu a %1$@?";
 "ask_forward_multiple" = "Inoltrare messàgios a %1$d tzarradas?";
 "ask_export_attachment" = "Esportare sos allegados? S\'esportatzione de sos allegados at a permìtere a cale si siat àtera aplicatzione in su dispositivu tuo de b\'atzèdere.\n\nSighire?";

@@ -165,7 +165,6 @@
 "menu_delete_chat" = "Hapus obrolan";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Hapus Obrolan";
-"ask_delete_named_chat" = "Apakah anda yakin ingin menghapus \"%1$@\"?";
 "menu_delete_messages" = "Hapus pesan";
 "delete_contact" = "Hapus kontak";
 "menu_delete_location" = "Hapus lokasi ini?";
@@ -250,6 +249,7 @@
 "videochat_invitation_body" = "Anda diundang ke obrolan video, klik %1$@ untuk bergabung.";
 // get confirmations
 "ask_leave_group" = "Apakah anda yakin untuk keluar dari grup ini?";
+"ask_delete_named_chat" = "Apakah anda yakin ingin menghapus \"%1$@\"?";
 "ask_forward" = "Teruskan pesan ke %1$@?";
 "ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di perangkat anda terakses.\n\nLanjut?";
 "ask_block_contact" = "Blokir kontak ini? Anda tak akan lagi menerima pesan dari kontak ini.";

@@ -185,7 +185,6 @@
 "menu_delete_chat" = "Poista keskustelu";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Tyhjennä keskustelu";
-"ask_delete_named_chat" = "Haluatko varmasti poistaa \"%1$@\"?";
 "menu_delete_messages" = "Poista viestit";
 "delete_contact" = "Poista yhteystieto";
 "menu_delete_location" = "Poista tämä sijainti?";
@@ -284,6 +283,7 @@
 "videochat_invitation_body" = "Sinut on kutsuttu videokeskusteluun, klikkaa %1$@ liittyäksesi.";
 // get confirmations
 "ask_leave_group" = "Haluatko varmasti poistua tästä ryhmästä?";
+"ask_delete_named_chat" = "Haluatko varmasti poistaa \"%1$@\"?";
 "ask_delete_message" = "Haluatko varmasti poistaa tämän viestin?";
 "ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
 "ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";

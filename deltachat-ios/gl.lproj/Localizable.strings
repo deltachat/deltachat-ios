@@ -164,7 +164,6 @@
 "menu_delete_chat" = "Eliminar conversa";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Limpar Chat";
-"ask_delete_named_chat" = "Tes a certeza de querer eliminar \"%1$@\"?";
 "menu_delete_messages" = "Eliminar mensaxes";
 "delete_contact" = "Eliminar contacto";
 "menu_delete_location" = "Eliminar esta localización?";
@@ -257,6 +256,7 @@
 "videochat_invitation_body" = "Convidáronte a un chat de vídeo, preme %1$@ para unirte.";
 // get confirmations
 "ask_leave_group" = "Seguro que desexa abandonar o grupo?";
+"ask_delete_named_chat" = "Tes a certeza de querer eliminar \"%1$@\"?";
 "ask_delete_message" = "Tes a certeza de querer eliminar esta mensaxe?";
 "ask_forward" = "Reenviar mensaxes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensaxes a %1$d conversas?";

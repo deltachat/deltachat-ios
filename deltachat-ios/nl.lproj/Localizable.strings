@@ -127,6 +127,7 @@
 "video" = "Video";
 "documents" = "Documenten";
 "contact" = "Contactpersoon";
+"bot" = "Bot";
 "camera" = "Camera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Vastleggen";
@@ -186,12 +187,15 @@
 "menu_delete_chat" = "Gesprek verwijderen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Ale berichten wissen";
-"ask_delete_named_chat" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
 "menu_delete_messages" = "Berichten verwijderen";
 "delete_contact" = "Contactpersoon verwijderen";
 "menu_delete_location" = "Wil je deze locatie verwijderen?";
 "menu_message_details" = "Berichtinformatie";
 "menu_copy_to_clipboard" = "Kopiëren naar klembord";
+"share_invite_link" = "Uitnodigingslink versturen";
+"invite_friends" = "Vrienden uitnodigen";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Neem contact met me op via Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Selectie kopiëren";
 "menu_copy_link_to_clipboard" = "Link kopiëren";
 "menu_copy_text_to_clipboard" = "Tekst kopiëren";
@@ -285,6 +289,7 @@
 "videochat_invitation_body" = "Je bent uitgenodigd voor een videogesprek. Druk op %1$@ om deel te nemen.";
 // get confirmations
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
+"ask_delete_named_chat" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
 "ask_delete_message" = "Weet je zeker dat je dit bericht wilt verwijderen?";
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
@@ -819,6 +824,7 @@
 "chat_protection_broken_explanation" = "Eind-tot-eindversleuteling kan niet meer worden gegarandeerd, omdat %1$@ Delta Chat opnieuw heeft geïnstalleerd of een bericht vanaf een ander apparaat heeft verstuurd.\n\nMaak een afspraak met hem/haar en scan de QR-code opnieuw om eind-tot-eindversleuteling weer in te schakelen.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ Voor %1$@ is eind-tot-eindversleuteling vereist, maar dit is nog niet ingesteld in het huidige gesprek. Druk voor meer informatie.";
 "invalid_unencrypted_explanation" = "Spreek met elkaar af en scan elkaars QR-code om eind-tot-eindversleuteling op te zetten.";
+"encryption_required_for_new_contact" = "Eind-tot-eindversleuteling is vereist, maar nog niet ingesteld op %1$@.\n\nJe kunt deze link alleen delen met personen die je kent of die je in het echt ontmoet en waarvan je de QR-code scant.";
 "learn_more" = "Meer informatie";
 "devicemsg_self_deleted" = "Je hebt het gesprek ‘Bewaarde berichten’ verwijderd.\n\nℹ️ Als je weer gebruik wilt maken van deze functie, begin dan een nieuw gesprek met jezelf.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%

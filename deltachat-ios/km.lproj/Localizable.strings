@@ -148,7 +148,6 @@
 "menu_add_attachment" = "បន្ថែមឯកសារភ្ជាប់";
 "menu_leave_group" = "ចាកចេញពីក្រុម";
 "menu_delete_chat" = "លុបសារសន្ទនា";
-"ask_delete_named_chat" = "តើអ្នកប្រាកដហើយថាចង់លុប \"%1$@\"?";
 "menu_delete_messages" = "លុបសារ";
 "delete_contact" = "លុបទំនាក់ទំនង";
 "menu_delete_location" = "លុបទីតាំងនេះ?";
@@ -235,6 +234,7 @@
 "videochat_invitation_body" = "អ្នកត្រូវបានអញ្ជើញដើម្បីសន្ទនាជាវីដេអូ។ ចុច %1$@ ដើម្បីចូលរួម។";
 // get confirmations
 "ask_leave_group" = "តើអ្នកប្រាកដហើយថាចង់ចាកចេញពីក្រុមនេះ?";
+"ask_delete_named_chat" = "តើអ្នកប្រាកដហើយថាចង់លុប \"%1$@\"?";
 "ask_delete_message" = "តើអ្នកប្រាកដថា ចង់លុបសារនេះ?";
 "ask_forward" = "បញ្ជូនសារទៅកាន់ %1$@?";
 "ask_forward_multiple" = "បញ្ជូនសារទាំងនេះទៅកាន់សន្ទនា %1$d?";

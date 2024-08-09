@@ -186,12 +186,15 @@
 "menu_delete_chat" = "Sohbeti Sil";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sohbeti Temizle";
-"ask_delete_named_chat" = "\"%1$@\" sohbetini silmek istediğinizden emin misiniz?";
 "menu_delete_messages" = "İletileri Sil";
 "delete_contact" = "Kişiyi Sil";
 "menu_delete_location" = "Bu Konumu Sil";
 "menu_message_details" = "İleti Bilgisi";
 "menu_copy_to_clipboard" = "Panoya Kopyala";
+"share_invite_link" = "Çağırma Bağlantısı Paylaş";
+"invite_friends" = "Arkadaşları Çağır";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Delta Chat üzerinden bana ulaşın:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Seçimi Kopyala";
 "menu_copy_link_to_clipboard" = "Bağlantıyı Kopyala";
 "menu_copy_text_to_clipboard" = "Metni Kopyala";
@@ -285,6 +288,7 @@
 "videochat_invitation_body" = "Bir video sohbetine çağrıldınız; katılmak için %1$@ öğesini tıklayın.";
 // get confirmations
 "ask_leave_group" = "Bu öbekten ayrılmak istediğinizden emin misiniz?";
+"ask_delete_named_chat" = "\"%1$@\" sohbetini silmek istediğinizden emin misiniz?";
 "ask_delete_message" = "Bu iletiyi silmek istediğinizden emin misiniz?";
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
@@ -819,6 +823,7 @@
 "chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvencelenemiyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
 "invalid_unencrypted_explanation" = "Uçtan uca şifrelemeyi kurmak için kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
+"encryption_required_for_new_contact" = "Uçtan uca şifreleme gereklidir ama %1$@ için henüz ayarlanmadı.\n\nÇağırma bağlantınızı onunla paylaşabilirsiniz ya da kişisel olarak tanışarak onun QR kodunu tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -1029,7 +1034,7 @@
 // deprecated
 "pref_push_ask_disable" = "Anında İletme Hizmeti kullanımı etkisizleştirilsin mi?\n\nBu, bildirimlerin gecikmesiyle sonuçlanabilir.";
 "pref_background_notifications" = "Arka Plan Bağlantısı Kullan";
-"pref_background_notifications_explain" = "Pil iyileştirmelerinin yoksayılmasını gerektirir, Anında İletme Hizmeti kullanım dışıysa kullanın";
+"pref_background_notifications_explain" = "Pil iyileştirmelerinin yoksayılmasını gerektirir, bildirimler zamanında gelmezse kullanın";
 "pref_reliable_service" = "Arka Plan Bağlantısını Zorla";
 "pref_reliable_service_explain" = "Kalıcı bir bildirime neden olur";
 "pref_background_notifications_rationale" = "E-posta sunucunuza bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yoksayın.\n\nDelta Chat, az kaynak kullanır ve pilinizi boşaltmamaya özen gösterir.";

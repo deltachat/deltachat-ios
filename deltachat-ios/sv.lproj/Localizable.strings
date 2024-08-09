@@ -139,7 +139,6 @@
 "menu_add_attachment" = "Lägg till bilaga";
 "menu_leave_group" = "Lämna grupp";
 "menu_delete_chat" = "Ta bort chatt";
-"ask_delete_named_chat" = "Är du säker på att du vill ta bort \"%1$@\"?";
 "menu_delete_messages" = "Ta bort meddelanden";
 "delete_contact" = "Ta bort kontakt";
 "menu_delete_location" = "Ta bort denna plats?";
@@ -226,6 +225,7 @@
 "videochat_invitation_body" = "Du är inbjuden till en videochatt, klicka på %1$@ för att ansluta.";
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
+"ask_delete_named_chat" = "Är du säker på att du vill ta bort \"%1$@\"?";
 "ask_delete_message" = "Är du säker på att du vill radera detta meddelande?";
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";

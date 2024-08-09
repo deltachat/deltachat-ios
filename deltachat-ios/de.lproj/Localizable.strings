@@ -127,6 +127,7 @@
 "video" = "Video";
 "documents" = "Dokumente";
 "contact" = "Kontakt";
+"bot" = "Bot";
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Aufnehmen";
@@ -186,7 +187,6 @@
 "menu_delete_chat" = "Chat löschen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Chat leeren";
-"ask_delete_named_chat" = "Sind Sie sicher, dass Sie \"%1$@\" löschen möchten?";
 "menu_delete_messages" = "Nachrichten löschen";
 "delete_contact" = "Kontakt löschen";
 "menu_delete_location" = "Diesen Standort löschen?";
@@ -289,6 +289,7 @@
 "videochat_invitation_body" = "Sie sind zu einem Videochat eingeladen, klicken Sie auf %1$@ , um teilzunehmen.";
 // get confirmations
 "ask_leave_group" = "Diese Gruppe verlassen?";
+"ask_delete_named_chat" = "Chat \"%1$@\" löschen? Gelöschte Chats werden nicht länger in der Chat-Liste angezeigt, die Nachrichten verbleiben auf dem Server.";
 "ask_delete_message" = "Möchten Sie diese Nachricht wirklich löschen?";
 "ask_forward" = "Nachricht weiterleiten an %1$@?";
 "ask_forward_multiple" = "Nachrichten an %1$d Chats weiterleiten?";
