@@ -4,9 +4,10 @@
 2024-08
 
 * Mute based on profiles (#2245)
+* Use more modern QR-codes for backups (#2263)
 * Add default reactions if there are none (yet) (#2241)
 * End search when tapping on "Chats" multiple times (#2239)
-* Small code improvements that help make development easier (#2230, #2234, #2236, #2250, #2251)
+* Small code improvements that help make development easier (#2230, #2234, #2236, #2250, #2251, #2253, #2249)
 * Reduce memory footprint (#2235)
 * search non-english messages case-insensitive
 * display attached contact's names in summaries and quotes
@@ -23,8 +24,8 @@
 * fix: avoid group creation on member removal messages
 * fix downloading partially downloaded messages
 * fix various networking bugs
-* Minor UI/UX-fixes (#2231, #2247)
-* update translations and local help (#2244, $2255)
+* Minor UI/UX-fixes (#2231, #2247, #2260)
+* update translations and local help (#2244, #2255)
 * update core to 1.142.2
 
 ## v1.46.6
