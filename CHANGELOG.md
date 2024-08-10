@@ -1,5 +1,12 @@
 # Delta Chat iOS Changelog
 
+## v1.46.9
+2024-08
+
+- Update translations
+- Minor UI/UX-fixes (#2260)
+- Support more modern QR-codes for backups
+
 ## v1.46.8
 2024-08
 
