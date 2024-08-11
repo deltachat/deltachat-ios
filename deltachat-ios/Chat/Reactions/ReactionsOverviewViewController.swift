@@ -1,12 +1,18 @@
 import UIKit
 import DcCore
 
+protocol ReactionsOverviewViewControllerDelegate: AnyObject {
+    func showContact(_ viewController: UIViewController, with contactId: Int)
+}
+
 class ReactionsOverviewViewController: UIViewController {
 
     private let tableView: UITableView
     private let reactions: DcReactions
     private let contactIds: [Int]
     private let context: DcContext
+
+    weak var delegate: ReactionsOverviewViewControllerDelegate?
 
     init(reactions: DcReactions, context: DcContext) {
 
@@ -24,6 +30,7 @@ class ReactionsOverviewViewController: UIViewController {
         setupConstraints()
 
         tableView.dataSource = self
+        tableView.delegate = self
 
         title = String.localized("reactions")
 
@@ -69,5 +76,18 @@ extension ReactionsOverviewViewController: UITableViewDataSource {
         }
 
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension ReactionsOverviewViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let contactId = contactIds[indexPath.row]
+
+        //TODO: Handle me
+
+        delegate?.showContact(self, with: contactId)
     }
 }
