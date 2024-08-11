@@ -2462,6 +2462,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         guard let reactions = dcContext.getMessageReactions(messageId: messageIds[indexPath.row]) else { return }
 
         let reactionsOverview = ReactionsOverviewViewController(reactions: reactions, context: dcContext)
+        reactionsOverview.delegate = self
         let navigationController = UINavigationController(rootViewController: reactionsOverview)
         if #available(iOS 15.0, *) {
             if let sheet = navigationController.sheetPresentationController {
@@ -2834,5 +2835,18 @@ extension ChatViewController: SendContactViewControllerDelegate {
         else { return }
 
         stageVCard(url: vcardURL)
+    }
+}
+
+// MARK: - ReactionsOverviewViewControllerDelegate
+
+extension ChatViewController: ReactionsOverviewViewControllerDelegate {
+    func showContact(_ viewController: UIViewController, with contactId: Int) {
+        // dismiss, but push contact-screen
+
+        viewController.dismiss(animated: true)
+
+        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
+        navigationController?.pushViewController(contactDetailController, animated: true)
     }
 }
