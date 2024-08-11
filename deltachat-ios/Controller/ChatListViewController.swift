@@ -742,18 +742,18 @@ class ChatListViewController: UITableViewController {
     }
 
     private func showDeleteMultipleChatConfirmationAlert() {
-        let selected = tableView.indexPathsForSelectedRows?.count ?? 0
-        if selected == 0 {
+        let selectedCount = tableView.indexPathsForSelectedRows?.count ?? 0
+        if selectedCount == 0 {
             return
         }
 
         let message: String
-        if selected == 1,
+        if selectedCount == 1,
            let chatIds = viewModel?.chatIdsFor(indexPaths: tableView.indexPathsForSelectedRows),
            let chatId = chatIds.first {
             message = String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name)
         } else {
-            message = String.localized(stringID: "ask_delete_chat", parameter: selected)
+            message = String.localized(stringID: "ask_delete_chat", parameter: selectedCount)
         }
 
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .safeActionSheet)
