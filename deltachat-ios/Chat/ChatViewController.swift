@@ -2850,8 +2850,6 @@ extension ChatViewController: SendContactViewControllerDelegate {
 
 extension ChatViewController: ReactionsOverviewViewControllerDelegate {
     func showContact(_ viewController: UIViewController, with contactId: Int) {
-        // dismiss, but push contact-screen
-
         viewController.dismiss(animated: true)
 
         let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
