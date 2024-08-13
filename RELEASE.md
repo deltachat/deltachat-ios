@@ -18,7 +18,7 @@ on the command-line, in a PR called "update-core-and-stuff-DATE":
    then commit
 
 the "update-core-and-stuff-DATE" PR can be merged without review
-(as everyrhing was already reviewed in their repos).
+(as everything was already reviewed in their repos).
 
 then, create a "bump-to-VERSION" PR:
 
