@@ -173,6 +173,7 @@ public class BaseMessageCell: UITableViewCell {
     let reactionsView: ReactionsView
 
     private var showSelectionBackground: Bool
+    private var timer: Timer?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
@@ -439,7 +440,15 @@ public class BaseMessageCell: UITableViewCell {
             } else {
                 tintColor = DcColors.incomingMessageSecondaryTextColor
             }
+
             bottomLabel.update(message: msg, tintColor: tintColor)
+            let timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+                guard let self else { return }
+
+                self.bottomLabel.dateLabel.text = msg.formattedSentDate()
+            }
+
+            self.timer = timer
         }
 
         if let quoteText = msg.quoteText {
@@ -586,6 +595,8 @@ public class BaseMessageCell: UITableViewCell {
         actionButton.isEnabled = true
         showSelectionBackground = false
         reactionsView.prepareForReuse()
+        timer?.invalidate()
+        timer = nil
     }
 
     @objc func reactionsViewTapped(_ sender: Any?) {

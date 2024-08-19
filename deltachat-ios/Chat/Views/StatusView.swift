@@ -4,7 +4,7 @@ import DcCore
 
 public class StatusView: UIView {
     private let contentStackView: UIStackView
-    private let dateLabel: UILabel
+    let dateLabel: UILabel
     private let padlockView: UIImageView
     private let locationView: UIImageView
     private let stateView: UIImageView
