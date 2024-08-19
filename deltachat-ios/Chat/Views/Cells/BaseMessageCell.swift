@@ -60,7 +60,7 @@ public class BaseMessageCell: UITableViewCell {
 
     public var showBottomLabelBackground: Bool {
         didSet {
-            bottomLabel.backgroundColor = showBottomLabelBackground ?
+            statusView.backgroundColor = showBottomLabelBackground ?
                 DcColors.systemMessageBackgroundColor :
                 UIColor(alpha: 0, red: 0, green: 0, blue: 0)
         }
@@ -158,7 +158,7 @@ public class BaseMessageCell: UITableViewCell {
         return button
     }()
 
-    let bottomLabel = StatusView()
+    let statusView = StatusView()
 
     lazy var messageBackgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
@@ -180,7 +180,7 @@ public class BaseMessageCell: UITableViewCell {
         reactionsView = ReactionsView()
         reactionsView.translatesAutoresizingMaskIntoConstraints = false
 
-        bottomLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusView.translatesAutoresizingMaskIntoConstraints = false
 
         showSelectionBackground = false
         showBottomLabelBackground = false
@@ -203,7 +203,7 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.addSubview(mainContentView)
         messageBackgroundContainer.addSubview(topLabel)
         messageBackgroundContainer.addSubview(actionButton)
-        messageBackgroundContainer.addSubview(bottomLabel)
+        messageBackgroundContainer.addSubview(statusView)
         contentView.addSubview(avatarView)
 
         contentView.addConstraints([
@@ -216,10 +216,10 @@ public class BaseMessageCell: UITableViewCell {
             topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
             actionButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
-            bottomLabel.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
-            bottomLabel.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
-            bottomLabel.constraintToBottomOf(actionButton, paddingTop: 8, priority: .defaultHigh),
-            bottomLabel.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6)
+            statusView.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
+            statusView.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
+            statusView.constraintToBottomOf(actionButton, paddingTop: 8, priority: .defaultHigh),
+            statusView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6)
         ])
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
@@ -441,11 +441,11 @@ public class BaseMessageCell: UITableViewCell {
                 tintColor = DcColors.incomingMessageSecondaryTextColor
             }
 
-            bottomLabel.update(message: msg, tintColor: tintColor)
+            statusView.update(message: msg, tintColor: tintColor)
             let timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
                 guard let self else { return }
 
-                self.bottomLabel.dateLabel.text = msg.formattedSentDate()
+                self.statusView.dateLabel.text = msg.formattedSentDate()
             }
 
             self.timer = timer
@@ -586,7 +586,7 @@ public class BaseMessageCell: UITableViewCell {
         topLabel.attributedText = nil
         avatarView.reset()
         messageBackgroundContainer.prepareForReuse()
-        bottomLabel.prepareForReuse()
+        statusView.prepareForReuse()
         baseDelegate = nil
         messageLabel.text = nil
         messageLabel.attributedText = nil
