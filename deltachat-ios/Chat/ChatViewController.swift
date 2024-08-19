@@ -101,8 +101,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return false
     }
 
-    private weak var timer: Timer?
-
     private lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
@@ -284,35 +282,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return UIApplication.shared.statusBarFrame.height + navigationBarHeight
     }
 
-    private func startTimer() {
-        stopTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-            // reload table
-            DispatchQueue.main.async { [weak self] in
-                guard let self,
-                      let appDelegate = UIApplication.shared.delegate as? AppDelegate
-                else { return }
-                
-                if appDelegate.appIsInForeground() {
-                    self.messageIds = self.dcContext.getChatMsgs(chatId: self.chatId)
-                    self.reloadData()
-                } else {
-                    logger.warning("startTimer() must not be executed in background")
-                }
-            }
-        }
-    }
-
     public func activateSearchOnAppear() {
         activateSearch = true
         navigationItem.searchController = self.searchController
-    }
-
-    private func stopTimer() {
-        if let timer = timer {
-            timer.invalidate()
-        }
-        timer = nil
     }
 
     private func configureEmptyStateView() {
@@ -568,10 +540,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     func handleUserVisibility(isVisible: Bool) {
         isVisibleToUser = isVisible
         if isVisible {
-            startTimer()
             markSeenMessagesInVisibleArea()
-        } else {
-            stopTimer()
         }
     }
 
