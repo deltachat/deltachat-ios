@@ -82,16 +82,24 @@ struct Utils {
     }
 
     public static func share(url: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
-        if let url = URL(string: url) {
-            let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-            activityVC.popoverPresentationController?.barButtonItem = sourceItem
-            parentViewController.present(activityVC, animated: true, completion: nil)
-        }
+        guard let url = URL(string: url) else { return }
+
+        Utils.share(url: url, parentViewController: parentViewController, sourceItem: sourceItem)
     }
 
     public static func share(text: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
-        let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
-        activityVC.popoverPresentationController?.barButtonItem = sourceItem // iPad crashes without a source
+        guard let data = text.data(using: .utf8) else { return }
+
+        let tempLogfileURL = FileManager.default.localDocumentsDir.appendingPathComponent("log.txt")
+        try? FileManager.default.removeItem(at: tempLogfileURL)
+        try? data.write(to: tempLogfileURL)
+        
+        Utils.share(url: tempLogfileURL, parentViewController: parentViewController, sourceItem: sourceItem)
+    }
+
+    public static func share(url: URL, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        activityVC.popoverPresentationController?.barButtonItem = sourceItem
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
 
@@ -100,5 +108,4 @@ struct Utils {
         activityVC.popoverPresentationController?.sourceView = sourceView // iPad crashes without a source
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
-
 }

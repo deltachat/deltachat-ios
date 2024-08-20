@@ -5,6 +5,8 @@ public class DatabaseHelper {
     /// The ID is created in the apple developer portal and can be changed there.
     static let applicationGroupIdentifier = "group.chat.delta.ios"
 
+    public init() {}
+
     public var sharedDbFile: String {
         guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: DatabaseHelper.applicationGroupIdentifier) else {
             return ""
@@ -14,12 +16,7 @@ public class DatabaseHelper {
     }
 
     var localDbFile: String {
-        return localDocumentsDir.appendingPathComponent("messenger.db").path
-    }
-
-    var localDocumentsDir: URL {
-        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
-        return URL(fileURLWithPath: paths[0], isDirectory: true)
+        return FileManager.default.localDocumentsDir.appendingPathComponent("messenger.db").path
     }
 
     public var unmanagedDatabaseLocation: String? {
@@ -31,7 +28,4 @@ public class DatabaseHelper {
         }
         return nil
     }
-
-    public init() {}
-
 }
