@@ -912,7 +912,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 let dcContact = dcContext.getContact(id: chatContactIds[0])
                 if dcContact.isBot {
                     subtitle = String.localized("bot")
-                } else if !dcChat.isProtected {
+                } else if dcChat.isProtected == false {
                     subtitle = dcContact.email
                 } else {
                     subtitle = nil
