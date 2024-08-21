@@ -90,7 +90,7 @@ struct Utils {
     public static func share(text: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
         guard let data = text.data(using: .utf8) else { return }
 
-        let tempLogfileURL = FileManager.default.localDocumentsDir.appendingPathComponent("log.txt")
+        let tempLogfileURL = FileManager.default.temporaryDirectory.appendingPathComponent("deltachat-log.txt")
         try? FileManager.default.removeItem(at: tempLogfileURL)
         try? data.write(to: tempLogfileURL)
         
