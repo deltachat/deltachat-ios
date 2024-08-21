@@ -94,4 +94,11 @@ struct Utils {
         activityVC.popoverPresentationController?.barButtonItem = sourceItem // iPad crashes without a source
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
+
+    public static func share(text: String, parentViewController: UIViewController, sourceView: UIView) {
+        let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = sourceView // iPad crashes without a source
+        parentViewController.present(activityVC, animated: true, completion: nil)
+    }
+
 }
