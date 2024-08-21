@@ -88,7 +88,7 @@ struct Utils {
     }
 
     public static func share(text: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
-        guard let data = text.data(using: .utf8) else { return }
+        guard let data = text.data(using: .unicode) else { return }
 
         let tempLogfileURL = FileManager.default.temporaryDirectory.appendingPathComponent("deltachat-log.txt")
         try? FileManager.default.removeItem(at: tempLogfileURL)
