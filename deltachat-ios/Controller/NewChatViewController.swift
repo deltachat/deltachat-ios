@@ -15,8 +15,9 @@ class NewChatViewController: UITableViewController {
     private let newOptions: [NewOption]
 
     private let sectionNew = 0
-    private let sectionContacts = 1
-    private let sectionsCount = 2
+    private let sectionInviteFriends = 1
+    private let sectionContacts = 2
+    private let sectionsCount = 3
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -100,6 +101,14 @@ class NewChatViewController: UITableViewController {
     }
 
     // MARK: - actions
+
+    private func inviteFriends(cell: UITableViewCell) {
+        guard let inviteLink = Utils.getInviteLink(context: dcContext, chatId: 0) else { return }
+
+        let invitationText = String.localized(stringID: "invite_friends_text", parameter: inviteLink)
+        Utils.share(text: invitationText, parentViewController: self, sourceView: cell)
+    }
+
     @objc func cancelButtonPressed() {
         dismiss(animated: true, completion: nil)
     }
@@ -112,6 +121,8 @@ class NewChatViewController: UITableViewController {
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sectionNew {
             return newOptions.count
+        } else if section == sectionInviteFriends {
+            return 1
         } else {
             return isFiltering ? filteredContactIds.count : contactIds.count
         }
@@ -119,7 +130,7 @@ class NewChatViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
-        if section == sectionNew {
+        if section == sectionNew || section == sectionInviteFriends {
             return UITableView.automaticDimension
         } else {
             return ContactCell.cellHeight
@@ -132,7 +143,7 @@ class NewChatViewController: UITableViewController {
         
         if section == sectionNew {
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No Action Cell") }
-            
+
             switch newOptions[row] {
             case .scanQRCode:
                 actionCell.actionTitle = String.localized("menu_new_contact")
@@ -143,8 +154,14 @@ class NewChatViewController: UITableViewController {
             case .newContact:
                 actionCell.actionTitle = String.localized("menu_new_classic_contact")
             }
-            
+
             return actionCell
+        } else if section == sectionInviteFriends {
+            guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No Action Cell") }
+
+            actionCell.actionTitle = String.localized("invite_friends")
+            return actionCell
+
         } else {
             guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else { fatalError("ContactCell expected") }
 
@@ -171,6 +188,8 @@ class NewChatViewController: UITableViewController {
             } else if newOption == .newContact {
                 showNewContactController()
             }
+        } else if section == sectionInviteFriends, let cell = tableView.cellForRow(at: indexPath) {
+            inviteFriends(cell: cell)
         } else {
             showChatAt(row: row)
         }
