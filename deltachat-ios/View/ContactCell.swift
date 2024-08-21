@@ -209,6 +209,12 @@ class ContactCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        subtitleLabel.isHidden = false
+    }
+
     private func setupSubviews() {
         let margin: CGFloat = 10
         isAccessibilityElement = true
@@ -401,16 +407,12 @@ class ContactCell: UITableViewCell {
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            
+
             if let chatId = contactData.chatId {
                 let chat = cellViewModel.dcContext.getChat(chatId: chatId)
                 if chat.isProtected {
                     subtitleLabel.isHidden = true
-                } else {
-                    subtitleLabel.isHidden = false
                 }
-            } else {
-                subtitleLabel.isHidden = false
             }
 
             if let profileImage = contact.profileImage {
