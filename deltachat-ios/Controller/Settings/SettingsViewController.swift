@@ -8,6 +8,12 @@ internal final class SettingsViewController: UITableViewController {
         let headerTitle: String?
         let footerTitle: String?
         let cells: [UITableViewCell]
+
+        init(headerTitle: String? = nil, footerTitle: String? = nil, cells: [UITableViewCell]) {
+            self.headerTitle = headerTitle
+            self.footerTitle = footerTitle
+            self.cells = cells
+        }
     }
 
     private enum CellTags: Int {
@@ -19,6 +25,7 @@ internal final class SettingsViewController: UITableViewController {
         case advanced
         case help
         case connectivity
+        case inviteFriends
     }
 
     private var dcContext: DcContext
@@ -38,7 +45,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.chatsAndMedia.rawValue
         cell.textLabel?.text = String.localized("pref_chats_and_media")
-        if #available(iOS 16.0, *) {
+        if #available(iOS 13.0, *) {
             cell.imageView?.image = UIImage(systemName: "message") // added in ios13
         }
         cell.accessoryType = .disclosureIndicator
@@ -56,7 +63,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.notifications.rawValue
         cell.textLabel?.text = String.localized("pref_notifications")
-        if #available(iOS 16.0, *) {
+        if #available(iOS 13.0, *) {
             cell.imageView?.image = UIImage(systemName: "bell") // added in ios13
         }
         cell.accessoryView = notificationSwitch
@@ -68,8 +75,8 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.addAnotherDevice.rawValue
         cell.textLabel?.text = String.localized("multidevice_title")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "macbook.and.iphone") // added in ios16
+        if #available(iOS 16.1, *) {
+            cell.imageView?.image = UIImage(systemName: "macbook.and.iphone") // added in ios16.1
         }
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -86,11 +93,22 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var inviteFriendsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.inviteFriends.rawValue
+        cell.textLabel?.text = String.localized("invite_friends")
+        if #available(iOS 13.0, *) {
+            cell.imageView?.image = UIImage(systemName: "heart") // added in ios13
+        }
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
     private lazy var helpCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.help.rawValue
         cell.textLabel?.text = String.localized("menu_help")
-        if #available(iOS 16.0, *) {
+        if #available(iOS 13.0, *) {
             cell.imageView?.image = UIImage(systemName: "questionmark.circle") // added in ios13
         }
         cell.accessoryType = .disclosureIndicator
@@ -101,7 +119,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.connectivity.rawValue
         cell.textLabel?.text = String.localized("connectivity")
-        if #available(iOS 16.0, *) {
+        if #available(iOS 13.0, *) {
             cell.imageView?.image = UIImage(systemName: "arrow.up.arrow.down") // added in ios13
         }
         cell.accessoryType = .disclosureIndicator
@@ -112,7 +130,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.tag = CellTags.selectBackground.rawValue
         cell.textLabel?.text = String.localized("pref_background")
-        if #available(iOS 16.0, *) {
+        if #available(iOS 13.0, *) {
             cell.imageView?.image = UIImage(systemName: "photo") // added in ios13
         }
         cell.accessoryType = .disclosureIndicator
@@ -126,21 +144,18 @@ internal final class SettingsViewController: UITableViewController {
         }
         let profileSection = SectionConfigs(
             headerTitle: String.localized("pref_profile_info_headline"),
-            footerTitle: nil,
-            cells: [profileCell]
+            cells: [self.profileCell]
         )
         let preferencesSection = SectionConfigs(
-            headerTitle: nil,
-            footerTitle: nil,
-            cells: [chatsAndMediaCell, notificationCell, selectBackgroundCell, addAnotherDeviceCell, connectivityCell, advancedCell]
+            cells: [self.chatsAndMediaCell, self.notificationCell, self.selectBackgroundCell, self.addAnotherDeviceCell, self.connectivityCell, self.advancedCell]
         )
+        let inviteFriendsSection = SectionConfigs(cells: [self.inviteFriendsCell])
         let helpSection = SectionConfigs(
-            headerTitle: nil,
             footerTitle: appNameAndVersion,
-            cells: [helpCell]
+            cells: [self.helpCell]
         )
 
-        return [profileSection, preferencesSection, helpSection]
+        return [profileSection, preferencesSection, inviteFriendsSection, helpSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -210,6 +225,7 @@ internal final class SettingsViewController: UITableViewController {
         case .help: showHelp()
         case .connectivity: showConnectivity()
         case .selectBackground: selectBackground()
+        case .inviteFriends: inviteFriends()
         }
     }
 
@@ -292,5 +308,12 @@ internal final class SettingsViewController: UITableViewController {
 
     private func selectBackground() {
         navigationController?.pushViewController(BackgroundOptionsViewController(dcContext: dcContext), animated: true)
+    }
+
+    private func inviteFriends() {
+        guard let inviteLink = Utils.getInviteLink(context: dcContext, chatId: 0) else { return }
+
+        let invitationText = String.localized(stringID: "invite_friends_text", parameter: inviteLink)
+        Utils.share(text: invitationText, parentViewController: self, sourceView: inviteFriendsCell)
     }
 }
