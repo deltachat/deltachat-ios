@@ -137,6 +137,11 @@ class TextFieldCell: UITableViewCell {
         textField.text = text
     }
 
+    func useFullWidth() {
+        title.isHidden = true
+        textField.textAlignment = .left
+    }
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory !=
             traitCollection.preferredContentSizeCategory {
