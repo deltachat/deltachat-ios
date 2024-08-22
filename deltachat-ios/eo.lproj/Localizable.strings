@@ -25,8 +25,6 @@
 "emoji" = "Emoji";
 "attachment" = "Aldonaĵo";
 "back" = "Reen";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Konfirmita";
 "close" = "Fermi";
 "forward" = "Plusendi";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -259,8 +257,6 @@
 "chat_unable_to_record_audio" = "Ne povas registri aŭdaĵon.";
 "chat_record_slide_to_cancel" = "Gliti por nuligi";
 "chat_record_explain" = "Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi";
-// deprecated
-"chat_no_chats_yet_hint" = "Vi povas babili kun aliaj uzantoj de Delta Chat kaj kun iu ajn retadreso.";
 "chat_all_archived" = "Ĉiuj babiloj enarĥivigitaj.\nPremu \"+\" por komenci novan babilon.";
 "chat_share_with_title" = "Kunhavigi kun";
 "chat_input_placeholder" = "Mesaĝo";
@@ -316,8 +312,6 @@
 "import_backup_title" = "Importi savkopion";
 // TLS certificate checks
 "accept_invalid_certificates" = "Akcepti nevalidajn atestilojn";
-// deprecated
-"used_settings" = "Uzitaj agordoj:";
 "delete_account" = "Forigi konton";
 "delete_account_ask" = "Ĉu vi certas, ke vi volas forigi ĉiujn datumojn de vi konto?";
 // share and forward messages

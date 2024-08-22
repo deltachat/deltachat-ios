@@ -29,8 +29,6 @@
 "emoji" = "Emoticona";
 "attachment" = "Adjunt";
 "back" = "Enrere";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Verificat";
 "close" = "Tanca";
 "close_window" = "Tanca la finestra";
 "forward" = "Reenvia";
@@ -305,8 +303,6 @@
 "chat_record_slide_to_cancel" = "Llisca per cancel·lar";
 "chat_record_explain" = "Mantingues premut per gravar un missatge de veu i deixa anar per enviar-lo";
 "chat_no_chats_yet_title" = "Safata d\'entrada buida.\nPrem \"+\" per començar un xat nou.";
-// deprecated
-"chat_no_chats_yet_hint" = "Pots xatejar amb altres usuaris de Delta Chat i amb qualsevol adreça de correu electrònic.";
 "chat_all_archived" = "Tots els xats s\'han arxivat.\nPrem \"+\" per començar-ne un de nou.";
 "chat_share_with_title" = "Comparteix amb";
 "chat_input_placeholder" = "Missatge";
@@ -521,10 +517,6 @@
 "pref_show_emails_accepted_contacts" = "Per a contactes acceptats";
 "pref_show_emails_all" = "Tot";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt és una especificació nova i oberta per al xifratge automàtic de correu electrònic d\'extrem a extrem.\n\nLa vostra configuració d\'extrem a extrem es crea automàticament segons calgui i es pot transferir entre dispositius amb els missatges de configuració Autocrypt.";
 "autocrypt_send_asm_title" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \"missatge de configuració Autocrypt\" comparteix de forma segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles amb Autocrypt.\n\nLa configuració es xifrarà amb un codi de configuració que es mostrarà aquí i que haureu d\'escriure a l’altre dispositiu.";
 "autocrypt_send_asm_button" = "Envia el missatge de configuració Autocrypt";

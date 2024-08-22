@@ -29,8 +29,6 @@
 "emoji" = "شکلک";
 "attachment" = "پیوست";
 "back" = "بازگشت";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "احراز هویت شده";
 "close" = "بستن";
 "close_window" = "بستن پنجره";
 "forward" = "هدایت";
@@ -315,8 +313,6 @@ https://meet.jit.si/$ROOM
 "chat_record_slide_to_cancel" = "برای لغو بکشید.";
 "chat_record_explain" = "برای ضبط پیام صوتی فشار داده و نگهدارید، برای ارسال رها کنید. ";
 "chat_no_chats_yet_title" = "گفتگویی وجود ندارد.\nبرای شروع گفتگو جدید دکمه «+» را فشار دهید.";
-// deprecated
-"chat_no_chats_yet_hint" = "می‌توانید با دیگر کاربران دلتاچت و هر نشانی رایانامه‌ای گپ بزنید.";
 "chat_all_archived" = "تمام گپ‌ها بایگانی شده‌اند. /n برای شروع گپ جدید، «+» را فشار دهید. ";
 "chat_share_with_title" = "اشتراک گذاری با";
 "chat_input_placeholder" = "پیام";
@@ -510,8 +506,6 @@ https://meet.jit.si/$ROOM
 "login_error_cannot_login" = "نتوانست به عنوان «%1$@» وارد شود. لطفاً صحت نشانی رایانامه و گذرواژه را بررسی کنید. ";
 // TLS certificate checks
 "accept_invalid_certificates" = "پذیرش گواهینامه‌های نامعتبر";
-// deprecated
-"used_settings" = "تنظیم‌های استفاده شده:";
 "switch_account" = "تغییر حساب کاربری";
 "add_account" = "افزودن حساب کاربری";
 "delete_account" = "حذف حساب کاربری";
@@ -691,15 +685,9 @@ https://meet.jit.si/$ROOM
 "autodel_after_1_hour" = "بعد از ۱ ساعت";
 "autodel_after_1_day" = "بعد از ۱  روز";
 "autodel_after_1_week" = "بعد از ۱ هفته";
-// deprecated
-"autodel_after_4_weeks" = "بعد از۴ هفته";
 "after_5_weeks" = "بعد از ۵ هفته";
 "autodel_after_1_year" = "بعد از ۱ سال";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "اتوکریپت";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "اتوکریپت  یک ویژگی جدید و باز برای رمزگذاری سرتاسر خودکار رایانامه است.\n\n تنظیم‌های رمزگذاری سرتاسر در هنگام نیاز به صورت خودکار ایجاد می‌شود و می‌توانید آن را  با پیام‌های تنظیم اتوکریپت بین دستگاه‌ها انتقال دهید. ";
 "autocrypt_send_asm_title" = "ارسال پیام برپاسازی اتوکریپت";
 "autocrypt_send_asm_explain_before" = "پیام برپاسازی اتوکریپت تنظیم‌های رمزگذاری سرتاسر شما را به شکلی امن با دیگر برنامه‌ها به اشتراک می‌گذارد.\n\n تنظیم‌ها با یک کد برپاسازی که در اینجا نمایش داده می‌شود رمزگذاری می‌شوند و باید در دستگاه دیگر تایپ شود. ";
 "autocrypt_send_asm_button" = "ارسال پیام برپاسازی اتوکریپت";
@@ -839,8 +827,6 @@ https://meet.jit.si/$ROOM
 "set_name_and_avatar_explain" = "اسمی انتخاب کنید که مخاطبینتان با آن شما را بشناسند. می توانید برای خود عکسی هم انتخاب کنید.";
 "please_enter_name" = "لطفا یک نام وارد کنید.";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه‌اندازی حساب جدید استفاده کرد. ";
-// deprecated
-"qraccount_use_on_new_install" = "کد کیوآر اسکن شده برای راه‌اندازی یک حساب جدید است. می‌توانید در حال تنظیم یک دلتاچت تازه نصب شده کیوآر را اسکن کنید.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "آیا به \"%1$@\" وارد شوید؟";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -950,10 +936,6 @@ GNU GPL ورژن ۳
 "export_backup_desktop" = "صادر کردن نسخه پشتیبان";
 "autocrypt_correct_desktop" = "برپاسازی اتوکریپت انتقال یافت.";
 "forget_login_confirmation_desktop" = "پاک کردن این حساب؟ همه‌چیز پاک می‌شود که شامل رمزگذاری سراسری، مخاطبین، گپ‌ها، پیام‌ها و رسانه‌ها می‌شود. این عملیات قابل بازگردانی نیست.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "رایانامه: %1$@
-فضا: %2$@
-شناسه حساب:‌%3$@";
 "message_detail_sent_desktop" = "ارسال شد";
 "message_detail_received_desktop" = "دریافت شد";
 "menu.view.developer.open.log.folder" = "پوشه گزارش را باز کن";
@@ -1011,8 +993,6 @@ GNU GPL ورژن ۳
 "shortcut_step1_tap_share_btn" = "روی دکمه اشتراک کلیک کنید";
 "shortcut_step2_tap_add_to_home_screen" = "برای افزودن برنامه به صفحه اصلی خود، «افزودن به صفحه اصلی» را انتخاب کنید.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
-// deprecated
-"pref_push_notifications" = "استفاده از خدمت Push";
 "pref_background_notifications" = "استفاده از اتصال پس‌زمینه";
 "pref_reliable_service" = "اجبار کردن اتصال پس‌زمینه";
 "pref_reliable_service_explain" = "اعلانی دائمی نشان می‌دهد";

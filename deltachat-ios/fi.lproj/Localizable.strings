@@ -29,8 +29,6 @@
 "emoji" = "Emoji";
 "attachment" = "Liite";
 "back" = "Takaisin";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Varmistettu";
 "close" = "Sulje";
 "close_window" = "Sulje ikkuna";
 "forward" = "Eteenpäin";
@@ -317,8 +315,6 @@
 "chat_record_slide_to_cancel" = "Pyyhkäise peruuttaaksesi";
 "chat_record_explain" = "Pidä painettuna nauhoittaaksesi ääniviestin, irrota lähettääksesi";
 "chat_no_chats_yet_title" = "Saapuneet-kansio on tyhjä\nPaina \"+\" aloittaaksesi uuden keskustelun.";
-// deprecated
-"chat_no_chats_yet_hint" = "Voit keskustella Delta Chat -käyttäjien kanssa tai minkä tahansa sähköpostiosoitteen kanssa.";
 "chat_all_archived" = "Kaikki keskustelut arkistoitu.\nPaina \"+\" aloittaaksesi uuden keskustelun.";
 "chat_share_with_title" = "Jaa";
 "chat_input_placeholder" = "Viesti";
@@ -469,8 +465,6 @@
 "manual_account_setup_option" = "Tavanomainen sähköpostikirjautuminen";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profiilisi";
-// deprecated
-"instant_onboarding_agree_default" = "Lue yksityisyydensuojaseloste";
 // The placeholder will be replaced by the default onboarding server
 "instant_onboarding_agree_default2" = "Yksityisyydensuojaseloste %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
@@ -530,8 +524,6 @@
 "login_error_cannot_login" = "Osoitteella \"%1$@\" kirjautuminen epäonnistui. Tarkistathan että sähköpostiosoite ja salasana ovat oikeinkirjoitettuja.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Hyväksy rikkinäiset varmenteet";
-// deprecated
-"used_settings" = "Käytetyt asetukset:";
 "switch_account" = "Vaihda profiilia";
 "add_account" = "Lisää profiili";
 "delete_account" = "Poista profiili";
@@ -715,15 +707,9 @@
 "autodel_after_1_hour" = "1 tunnin päästä";
 "autodel_after_1_day" = "1 päivän päästä";
 "autodel_after_1_week" = "1 viikon päästä";
-// deprecated
-"autodel_after_4_weeks" = "4 viikon päästä";
 "after_5_weeks" = "5 viikon päästä";
 "autodel_after_1_year" = "1 vuoden päästä";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt on uusi ja avoin spesifikaatio sähköpostien automaattiselle päästä-päähän-salaukselle.\n\nPäästä-päähän-salauksen asetukset luodaan automaattisesti tarpeen mukaan ja ne voidaan siirtää laitteiden välillä Autocrypt-asetusviestien avulla.";
 "autocrypt_send_asm_title" = "Lähetä Autocrypt -käyttöönottoviesti";
 "autocrypt_send_asm_explain_before" = "Autocrypt -käyttöönottoviesti jakaa turvallisesti päästä-päähän -salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa.\n\nMäärittely salataan tässä näytettävällä käyttöönottokoodilla, joka on syötettävä toisella laittella.";
 "autocrypt_send_asm_button" = "Lähetä Autocrypt -käyttöönottoviesti";
@@ -862,8 +848,6 @@
 "set_name_and_avatar_explain" = "Aseta nimi jonka yhteystietosi tunnistavat. Voit myös asettaa profiilikuvan.";
 "please_enter_name" = "Syötä nimi.";
 "qraccount_qr_code_cannot_be_used" = "Uutta tiliä ei voida luoda skannatulla QR-koodilla.";
-// deprecated
-"qraccount_use_on_new_install" = "Skannattu QR-koodi on käytössä uuden tilin luomiseksi. Voit skannata QR-koodin uuden Delta Chat -asennuksen yhteydessä.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Haluatko kirjautua osoitteella \"%1$@\"?";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -958,8 +942,6 @@
 "export_backup_desktop" = "Vie varmuuskopio";
 "autocrypt_correct_desktop" = "Autocrypt-asetukset siirretty.";
 "forget_login_confirmation_desktop" = "Poista tämä kirjautuminen? Kaikki tiedot poistetaan, mukaan lukien päästä-päähän-salauksen asetukset, yhteystiedot, keskustelut, viestit ja media. Tämä toiminto on peruuttamaton.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "Sähköposti: %1$@\nKoko: %2$@\nTilin tunniste: %3$@";
 "message_detail_sent_desktop" = "lähetetty";
 "message_detail_received_desktop" = "vastaanotettu";
 "menu.view.developer.open.log.folder" = "Avaa lokikansio";
@@ -1019,12 +1001,6 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Välitön toimitus";
-// deprecated
-"pref_push_notifications" = "Käytä push -palvelua";
-// deprecated
-"pref_push_notifications_explain" = "Luotettavat push -ilmoitukset chatmail -palvelimille";
-// deprecated
-"pref_push_ask_disable" = "Lopeta push -palvelun käyttö?\n\nSe saattaa hidastaa ilmoitusten toimitusta.";
 "pref_background_notifications" = "Käytä taustayhteyttä";
 "pref_background_notifications_explain" = "Vaatii akun optimoinnin käytöstä poistoa, käytä jos push -palvelu ei ole saatavilla";
 "pref_reliable_service" = "Pakota yhteys taustalla";

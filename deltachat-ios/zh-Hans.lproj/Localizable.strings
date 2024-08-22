@@ -29,8 +29,6 @@
 "emoji" = "Emoji";
 "attachment" = "附件";
 "back" = "返回";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "已验证";
 "close" = "关闭";
 "close_window" = "关闭窗口";
 "forward" = "转发";
@@ -44,17 +42,17 @@
 "unarchive" = "取消存档";
 "mute" = "静音";
 "ephemeral_messages" = "消息定时销毁";
-"ephemeral_messages_hint" = "对本聊天内使用 Delta Chat 的成员有效；不过，这些成员还是能够保存、复制和转发消息，以及使用其他的电子邮件客户端。";
+"ephemeral_messages_hint" = "适用于此聊天内使用 Delta Chat 的所有成员；这些成员仍然可以复制、保存和转发消息，或使用其他电子邮件客户端。";
 "save" = "保存";
 "chat" = "聊天";
 "media" = "媒体";
-"profile" = "概要";
+"profile" = "账号";
 "main_menu" = "主菜单";
 "start_chat" = "开始聊天";
 "show_full_message" = "显示完整消息…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "将所有标记为已读";
-"mark_as_read" = "标为已读";
+"mark_as_read" = "标记为已读";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "已读";
 // Placeholder text when something is loading
@@ -127,6 +125,7 @@
 "video" = "视频";
 "documents" = "文档";
 "contact" = "联系人";
+"bot" = "机器人";
 "camera" = "相机";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "捕获";
@@ -231,7 +230,7 @@
 "menu_edit_name" = "编辑名称";
 "menu_settings" = "设置";
 "menu_advanced" = "高级";
-"menu_view_profile" = "查看概要";
+"menu_view_profile" = "查看账号";
 "menu_zoom_in" = "放大";
 "menu_zoom_out" = "缩小";
 "menu_save_log" = "保存日志";
@@ -288,7 +287,7 @@
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
-"ask_delete_named_chat" = "您确定要删除“%1$@”吗？";
+"ask_delete_named_chat" = "删除聊天“%1$@”？它将不再显示在聊天列表中，其消息将保留在服务器上。";
 "ask_delete_message" = "您确定要删除这条消息吗？";
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
@@ -322,8 +321,6 @@
 "chat_record_slide_to_cancel" = "滑动来取消";
 "chat_record_explain" = "按住来录制语音消息，松开来发送";
 "chat_no_chats_yet_title" = "收件箱为空。\n按“+”来开始新聊天。";
-// deprecated
-"chat_no_chats_yet_hint" = "您可以与其他 Delta Chat 用户以及任意电子邮件地址聊天。";
 "chat_all_archived" = "所有聊天已存档。\n按“+”来开始新聊天。";
 "chat_share_with_title" = "分享给";
 "chat_input_placeholder" = "输入消息…";
@@ -420,21 +417,21 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "添加第二台设备";
 "multidevice_same_network_hint" = "让两台设备连接相同的 Wi-Fi 或网络";
-"multidevice_this_creates_a_qr_code" = "这会创建供第二台设备扫描、用于复制此账户的二维码。";
+"multidevice_this_creates_a_qr_code" = "这将创建第二台设备可以扫描用于复制此账号的二维码。";
 "multidevice_install_dc_on_other_device" = "在你的其他设备上安装 Delta Chat (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
-"multidevice_tap_scan_on_other_device" = "启动 Delta Chat 应用，点击“添加为第二台设备”并扫描显示的二维码";
+"multidevice_tap_scan_on_other_device" = "启动 Delta Chat，点击“我已有账号/添加为第二台设备”，扫描此处显示的二维码";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "扫描此处为 %1$@ 设置第二台设备";
 "multidevice_receiver_title" = "添加为第二台设备";
 "multidevice_open_settings_on_other_device" = "在第一台设备上，转到“设置/添加第二台设备”并扫描显示的二维码";
-"multidevice_receiver_scanning_ask" = "将账户从其他设备复制到此设备吗？";
+"multidevice_receiver_scanning_ask" = "是否将账号从其他设备复制到此设备？";
 "multidevice_abort" = "中止第二台设备的设置吗？";
 "multidevice_abort_will_invalidate_copied_qr" = "这会让复制到剪贴板的二维码失效。";
 "multidevice_experimental_hint" = "（实验性，需要 1.36 版本）";
-"multidevice_transfer_done_devicemsg" = "ℹ️ 账户已传输到你的第二台设备。";
+"multidevice_transfer_done_devicemsg" = "ℹ️ 账号已传输到您的第二台设备。";
 // Shown beside progress bar, stay short
-"preparing_account" = "准备账户中…";
+"preparing_account" = "正在准备账号…";
 // Shown beside progress bar, stay short
 "waiting_for_receiver" = "等待接收者…";
 // Shown beside progress bar, stay short
@@ -467,21 +464,19 @@
 "part_of_total_used" = "已使用 %1$@，共 %2$@";
 // welcome and login
 // Primary button on the welcome screen, allows to create an instant profile
-"onboarding_create_instant_account" = "让我们开始吧！";
+"onboarding_create_instant_account" = "创建新账号";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
-"onboarding_alternative_logins" = "我已经有登录凭据了";
+"onboarding_alternative_logins" = "我已有账号";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "传统电子邮件登录";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "个人资料";
-// deprecated
-"instant_onboarding_agree_default" = "阅读隐私政策";
 // The placeholder will be replaced by the default onboarding server
 "instant_onboarding_agree_default2" = "%1$@ 的隐私政策";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
 "instant_onboarding_agree_instance" = "关于 %1$@ 上的个人资料";
 // Confirmation button on the instant onboarding screen
-"instant_onboarding_create" = "同意 & 创建个人资料";
+"instant_onboarding_create" = "同意并创建账号";
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "使用其他服务器";
 "instant_onboarding_other_server" = "列出聊天邮件服务器";
@@ -497,9 +492,9 @@
 "scan_invitation_code" = "扫描邀请码";
 "login_title" = "登录";
 // for classic email, we use the classical term "Account"
-"login_header" = "登录您的电子邮件账户";
+"login_header" = "登录您的电子邮件账号";
 // for classic email, we use the classical term "Account"
-"login_explain" = "使用现有电子邮件帐户登录";
+"login_explain" = "使用现有电子邮件账号登录";
 "login_subheader" = "对于已知的电子邮件提供商，附加设置会被自动设置。有时 IMAP 需要在网页版设置里启用。 请咨询您的电子邮件提供商或朋友来寻求帮助。";
 "login_no_servers_hint" = "不存在 Delta Chat 服务器，您的数据保留于您的设备！";
 "login_inbox" = "收件箱";
@@ -535,15 +530,13 @@
 "login_error_cannot_login" = "无法作为“%1$@”登录。请检查电子邮件地址和密码是否正确。";
 // TLS certificate checks
 "accept_invalid_certificates" = "接受无效的证书";
-// deprecated
-"used_settings" = "已使用设置：";
-"switch_account" = "切换账户 ";
-"add_account" = "添加账户";
-"delete_account" = "删除账户";
-"delete_account_ask" = "您确定要删除您的账户数据吗？";
-"delete_account_explain_with_name" = "此设备上“%1$@”的所有帐户数据都将被删除，包括您的端到端加密设置、联系人、聊天、消息及媒体。 此操作无法撤消。";
-"unconfigured_account" = "未配置的账户";
-"unconfigured_account_hint" = "打开账户来配置它";
+"switch_account" = "切换账号";
+"add_account" = "添加账号";
+"delete_account" = "删除账号";
+"delete_account_ask" = "是否确定要删除您的账号数据？";
+"delete_account_explain_with_name" = "将会删除此设备上“%1$@”的所有账号数据，包括您的端到端加密设置、联系人、聊天、消息和媒体。此操作无法撤销。";
+"unconfigured_account" = "未配置的账号";
+"unconfigured_account_hint" = "打开账号来配置它";
 "try_connect_now" = "立即尝试连接";
 "sync_all" = "同步所有";
 // Translations: %1$s will be replaced by a more detailed error message
@@ -563,7 +556,7 @@
 "pref_blocked_contacts" = "已屏蔽的联系人";
 "blocked_empty_hint" = "被您屏蔽的联系人将显示于此。";
 // for classic email, we use the classical term "Account"
-"pref_password_and_account_settings" = "密码和账户";
+"pref_password_and_account_settings" = "密码和账号";
 "pref_who_can_see_profile_explain" = "在与其他用户交流时，您的个人资料图片和名称将与您的消息一起发送。";
 "pref_your_name" = "您的名称";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
@@ -625,7 +618,7 @@
 // the placeholder will be replaced by the name of the profile's email address
 "pref_backup_export_x" = "导出 %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
-"pref_backup_export_all" = "导出全部 %1$d 个账户";
+"pref_backup_export_all" = "导出全部 %1$d 个账号";
 "pref_backup_export_start_button" = "开始备份";
 "pref_backup_written_to_x" = "备份已成功写入到“%1$@”。";
 "pref_managekeys_menu_title" = "管理密钥";
@@ -644,7 +637,7 @@
 "pref_watch_sent_folder" = "监视已发送文件夹";
 "pref_send_copy_to_self" = "给自己发送副本";
 // for classic email, we use the classical term "Account"
-"pref_send_copy_to_self_explain" = "在多台设备上使用此账户时，这是必需的。";
+"pref_send_copy_to_self_explain" = "在多台设备上使用此账号时，这是必需的。";
 "pref_auto_folder_moves" = "自动移动至 DeltaChat 文件夹";
 "pref_auto_folder_moves_explain" = "移动聊天对话以免弄乱收件箱";
 "pref_only_fetch_mvbox_title" = "只从 DeltaChat 文件夹获取";
@@ -714,7 +707,7 @@
 "autodel_server_warn_multi_device" = "如果您启用一次删除，则无法在此配置文件中使用多个设备。";
 "autodel_confirm" = "我了解，将这些消息全部删除";
 // "At once" in the meaning of "Immediately", without any intervening time.
-"autodel_at_once" = "立刻";
+"autodel_at_once" = "下载后立即";
 "after_30_seconds" = "30 秒后";
 "after_1_minute" = "1 分钟后";
 "after_5_minutes" = "5 分钟后";
@@ -722,15 +715,9 @@
 "autodel_after_1_hour" = "1 小时后";
 "autodel_after_1_day" = "1 天后";
 "autodel_after_1_week" = "1 周后";
-// deprecated
-"autodel_after_4_weeks" = "4 周后";
 "after_5_weeks" = "5 周后";
 "autodel_after_1_year" = "1 年后";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt 是一种用于自动端到端电子邮件加密的全新开放规范。\n\n您的端到端设置会根据需要自动创建；之后您可以使用 Autocrypt 设置消息在设备间传输此设置。";
 "autocrypt_send_asm_title" = "发送 Autocrypt 设置消息";
 "autocrypt_send_asm_explain_before" = "Autocrypt 设置消息安全地共享您的端到端设置至其他兼容 Autocrypt 的应用程序。\n\n该设置将通过在此显示的、必须在另一台设备上输入的设置码进行加密。";
 "autocrypt_send_asm_button" = "发送 Autocrypt 设置消息";
@@ -866,16 +853,14 @@
 "qrshow_join_contact_hint" = "扫描此处来与 %1$@ 聊天。";
 "qrshow_join_contact_no_connection_toast" = "没有互联网连接，无法进行二维码设置。";
 "qraccount_ask_create_and_login" = "在“%1$@”创建新的电子邮件地址并登录？";
-"qraccount_ask_create_and_login_another" = "在“%1$@”创建新的电子邮件地址并登录？\n\n已存在的账户不会被删除。使用“切换账户”来在账户之间切换。";
+"qraccount_ask_create_and_login_another" = "在“%1$@”创建新账号并登录？\n\n不会删除您现有的账号。使用“切换账号”在账号之间切换。";
 "set_name_and_avatar_explain" = "设置一个你的联系人认得出的名字。你还可以设置头像图片";
 "please_enter_name" = "请输入名字";
-"qraccount_qr_code_cannot_be_used" = "无法使用扫描到的二维码建立新账户。";
-// deprecated
-"qraccount_use_on_new_install" = "扫描到的二维码是用于设置新帐户的。设置新的 Delta Chat 安装时，您可以扫描此二维码。";
+"qraccount_qr_code_cannot_be_used" = "扫描的二维码不能用于创建新账号。";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "登录 \"%1$@\"吗？";
 // the placeholder will be replaced by the e-mail address of the profile
-"qrlogin_ask_login_another" = "登录“%1$@“吗？\n\n你现有的账户不会被删除。使用“切换账户”来在不同账户间进行切换。";
+"qrlogin_ask_login_another" = "是否登录“%1$@”？\n\n不会删除您现有的账号。使用“切换账号”在账号之间切换。";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ 邀请你加入此群组。\n\n等待 %2$@ 的设备回复…";
 // placeholder will be replaced by the name of the inviter.
@@ -965,9 +950,7 @@
 "select_group_image_desktop" = "选择群组图像";
 "export_backup_desktop" = "导出备份";
 "autocrypt_correct_desktop" = "Autocrypt 设置已传输 。";
-"forget_login_confirmation_desktop" = "删除此登录？ 一切都将被删除，包括您的端到端设置、联系人、聊天、消息及媒体。 此操作无法撤消。";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "电子邮件：%1$@\n大小：%2$@\n账户 Id：%3$@";
+"forget_login_confirmation_desktop" = "删除此登录？所有内容都将会删除，包括您的端到端设置、联系人、聊天、消息和媒体。此操作无法撤销。";
 "message_detail_sent_desktop" = "发送于";
 "message_detail_received_desktop" = "接收于";
 "menu.view.developer.open.log.folder" = "打开日志文件夹";
@@ -1002,7 +985,7 @@
 "a11y_voice_message_hint_ios" = "录音后轻按两次发送。要丢弃录音，用两根手指左右滑动。";
 "a11y_connectivity_hint" = "轻按两次查看连接详情";
 "login_error_no_internet_connection" = "无互联网连接，登录失败。";
-"share_account_not_configured" = "账户未配置。";
+"share_account_not_configured" = "账号未配置。";
 "cannot_play_audio_file" = "无法播放音频文件。";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "要拍照、拍摄视频或扫描二维码，请打开系统设置并启用“相机”。";
@@ -1027,12 +1010,6 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "即时传送";
-// deprecated
-"pref_push_notifications" = "使用推送服务";
-// deprecated
-"pref_push_notifications_explain" = "Chatmail 服务器的可靠推送通知";
-// deprecated
-"pref_push_ask_disable" = "停用推送服务吗？\n\n这可能导致通知延迟。";
 "pref_background_notifications" = "使用后台连接";
 "pref_background_notifications_explain" = "需要忽略电池优化，请在推送服务不可用时使用它";
 "pref_reliable_service" = "强制后台连接";
@@ -1042,7 +1019,6 @@
 "perm_enable_bg_reminder_title" = "点击此处以在 Delta Chat 处于后台时接收消息。";
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
 // device messages for updates
-"update_1_44_android" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出回应\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n🔵 计算所有账户的未读消息并显示在标题中\n\n… 以及修复许多 bug … %1$@\n\n帮助改进应用：使用“设置/高级、发送统计数据”帮助开发者为实际使用而更好地优化。发送前你可以查看数据";
-"update_1_44_ios" = "变化：\n\n❤️ 耶！等待已久的功能来了：长按消息做出回应\n\n🫸 支持推送通知，不过需要提供商像 https://nine.testrun.org 一样支持该功能\n\n🔗 如果你无法扫描二维码，将它们分享为邀请链接\n\n… 以及修复许多 bug … %1$@";
 "update_1_46_android" = "新用户引导流程 🐣 以及更多信息：\n\n⚡️ 注册安全的快速聊天邮件服务器（https://delta.chat/chatmail）或使用传统的电子邮件服务器\n\n👉 为任何聊天邮件服务器推送通知\n\n👤 通过“附加联系人”安全地连接您的朋友\n\n🥰 使用任何表情符号进行回应\n\n📌 直接从搜索中固定聊天…以及更多信息，请访问 %1$@";
 "update_1_46_ios" = "新用户引导流程 🐣 以及更多信息：\n\n⚡️ 注册安全的快速聊天邮件服务器（https://delta.chat/chatmail）或使用传统的电子邮件服务器\n\n👉 为任何聊天邮件服务器推送通知\n\n👤 接收“附加联系人”安全地连接您的朋友\n\n🥰 更快选择消息回应 …更多信息，请访问 %1$@";
+"update_switch_profile_placement" = "ℹ️ “切换账号”选项已移动：点击主屏幕上角的个人资料图片以添加或切换账号 💡";

@@ -29,8 +29,6 @@
 "emoji" = "Smajlíky";
 "attachment" = "Příloha";
 "back" = "Zpět";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Ověřeno";
 "close" = "Zavřít";
 "close_window" = "Zavřít okno";
 "forward" = "Přeposlat";
@@ -302,8 +300,6 @@
 "chat_record_slide_to_cancel" = "Zrušit tahem";
 "chat_record_explain" = "K nahrání hlasové zprávy stiskni a drž mikrofon, uvolni pro odeslání.";
 "chat_no_chats_yet_title" = "Prázdná schránka.\nStiskem \"+\" založ nový chat.";
-// deprecated
-"chat_no_chats_yet_hint" = "Založ chat s jakýmkoli uživatelem Delta Chatu a s jakýmkoli e-mailem.";
 "chat_all_archived" = "Všechny chaty archivovány.\nStiskem \"+\" založ nový chat.";
 "chat_share_with_title" = "Sdílet s";
 "chat_input_placeholder" = "Zpráva";
@@ -400,8 +396,6 @@
 "login_error_cannot_login" = "Přihlášení jako \"%1$@\" selhalo. Zkontrolujte si prosím ještě jednou e-mail a heslo.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Přijmout neplatné certifikáty";
-// deprecated
-"used_settings" = "Použité nastavení";
 "switch_account" = "Přepni účet";
 "add_account" = "Přidej účet";
 "delete_account" = "Vymaž účet";
@@ -546,15 +540,9 @@
 "autodel_after_1_hour" = "Po 1 hodině";
 "autodel_after_1_day" = "Po 1 dni";
 "autodel_after_1_week" = "Po 1 týdnu";
-// deprecated
-"autodel_after_4_weeks" = "Po 4 týdnech";
 "after_5_weeks" = "Po 5 týdnech";
 "autodel_after_1_year" = "Po 1 roce";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt je nový, otevřený technický popis samočinného end-to-end šifrování.\n\nNastavení šifrování se vytváří samočinně dle potřeby a mužeš si ho přenášet mezi zařízeními zasláním zprávy s Nastavením Autocryptu.";
 "autocrypt_send_asm_title" = "Pošli Nastavení Autocryptu";
 "autocrypt_send_asm_explain_before" = "Pomocí Nastavení Autocryptu lze bezpečně sdílet nastavení šifrování této aplikace s jinou, která také používá Autocrypt.\n\nNastavení je zašifrované zobrazeným kódem, který musí být vložen i na druhém zařízení.";
 "autocrypt_send_asm_button" = "Pošli Nastavení Autocryptu";
@@ -660,8 +648,6 @@
 "qraccount_ask_create_and_login" = "Vytvořit nový e-mail na \"%1$@\" a připojit se k němu?";
 "qraccount_ask_create_and_login_another" = "Vytvořit nový e-mail na \"%1$@\" a připojit se k němu?\n\nTvůj původní ůčet nebude smazán. Použij \"Přepni účet\" k přepnutí na jiný účet.";
 "qraccount_qr_code_cannot_be_used" = "Sejmutý QR kód neumožňuje nastavení nového účtu.";
-// deprecated
-"qraccount_use_on_new_install" = "Sejmutý QR kód je k nastavení nového účtu. Tento QR kód můžeš použít když budeš provádět novou instalaci Delta Chatu.";
 "contact_verified" = "%1$@ ověřen.";
 "contact_not_verified" = "Nelze ověřit %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

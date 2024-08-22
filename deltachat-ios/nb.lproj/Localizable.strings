@@ -201,8 +201,6 @@
 "chat_record_slide_to_cancel" = "Dra for å avbryte";
 "chat_record_explain" = "Trykk og hold for å ta opp en melding, slipp for å sende";
 "chat_no_chats_yet_title" = "Tøm innboksen.\nTrykk \"+\" for å starte en ny chat.";
-// deprecated
-"chat_no_chats_yet_hint" = "Du kan chatte med andre Delta Chat-brukere og med hvilken som helst annen e-postadresse.";
 "chat_all_archived" = "Alle chatter er arkivert\nTrykk \"+\" for å starte en ny chat.";
 "chat_share_with_title" = "Del med";
 "chat_input_placeholder" = "Melding";
@@ -293,10 +291,6 @@
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Sludrebakgrunn";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt er en ny og åpen spesifikasjon for ende-til-ende-kryptert e-post.\n\nDitt ende-til-ende -oppsett blir opprettet automatisk ved bruk, og du kan overføre det mellom enheter med Autocrypt-oppsettsmeldinger.";
 "autocrypt_send_asm_title" = "Igangsett Autocrypt-nøkkeloverføring";
 "autocrypt_send_asm_explain_before" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
 "autocrypt_send_asm_button" = "Igangsett Autocrypt-nøkkeloverføring";

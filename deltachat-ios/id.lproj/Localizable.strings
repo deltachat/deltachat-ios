@@ -27,8 +27,6 @@
 "emoji" = "Emoji";
 "attachment" = "Lampiran";
 "back" = "Kembali";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Diverifikasi";
 "close" = "Tutup";
 "close_window" = "Tutup Jendela";
 "forward" = "Teruskan";
@@ -276,8 +274,6 @@
 "chat_record_slide_to_cancel" = "Geser untuk batalkan";
 "chat_record_explain" = "Ketuk dan tahan untuk merekam pesan suara, lepaskan untuk mengirim";
 "chat_no_chats_yet_title" = "Kosongkan inbox.\nTekan \"+\" untuk memulai obrolan baru.";
-// deprecated
-"chat_no_chats_yet_hint" = "Anda bisa ngobrol dengan pengguna Delta Chat lain maupun dengan siapa pun yang memiliki alamat surel.";
 "chat_all_archived" = "Semua obrolan terarsip.\nTekan \"+\" untuk mulai obrolan baru.";
 "chat_share_with_title" = "Bagi kepada";
 "chat_input_placeholder" = "Pesan";
@@ -353,8 +349,6 @@
 "login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Terima sertifikat yang tidak sah";
-// deprecated
-"used_settings" = "Setelan yang digunakan:";
 "switch_account" = "Alihkan akun";
 "add_account" = "Tambah akun";
 "delete_account" = "Hapus Akun";
@@ -469,15 +463,9 @@
 "autodel_after_1_hour" = "Setelah 1 jam";
 "autodel_after_1_day" = "Setelah 1 hari";
 "autodel_after_1_week" = "Setelah 1 minggu";
-// deprecated
-"autodel_after_4_weeks" = "Setelah 4 minggu";
 "after_5_weeks" = "Setelah 5 minggu";
 "autodel_after_1_year" = "Setelah 1 tahun";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt adalah spesifikasi baru dan terbuka untuk enkripsi otomatis dimana surel yang dikirim hanya akan terlihat oleh si penerima yang disebut dengan istilah end-to-end atau ujung ke ujung.\n\nPengaturan ujung ke ujung ini dibuat secara otomatis sesuai kebutuhan dan dapat Anda transfer antar perangkat berkat Autocrypt Setup Messages.";
 "autocrypt_send_asm_title" = "Kirim Pengaturan Pesan Autocrypt";
 "autocrypt_send_asm_explain_before" = "Pengaturan Pesan Autocrypt membagi pengaturan ujung ke ujung Anda secara aman dengan aplikasi Autocrypt-compliant lain.\n\nPengaturan ini akan dienkripsi oleh kode pengaturan yang ditampilkan disini dan harus diketik di perangkat lainnya.";
 "autocrypt_send_asm_button" = "Kirim Pengaturan Pesan Autocrypt";
@@ -540,8 +528,6 @@
 "qraccount_ask_create_and_login" = "Buat alamat email baru di \"%1$@\" dan login di sana?";
 "qraccount_ask_create_and_login_another" = "Buat alamat email baru di\"%1$@\" dan masuk ke sana?\n\nAkun yang sudah ada tidak akan di hapus. Gunakankan item \"Ganti akun\" untuk mengganti akun anda";
 "qraccount_qr_code_cannot_be_used" = "Kode QR yang dipindai tidak dapat digunakan untuk mengatur akun baru.";
-// deprecated
-"qraccount_use_on_new_install" = "Kode QR yang dipindai adalah untuk mengatur akun baru. Anda dapat memindai kode QR saat mengatur instalasi Delta Chat baru.";
 "contact_verified" = "%1$@diverifikasi.";
 "contact_not_verified" = "Tidak bisa memverifikasi %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

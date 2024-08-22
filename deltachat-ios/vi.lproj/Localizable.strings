@@ -29,8 +29,6 @@
 "emoji" = "Emoji";
 "attachment" = "Tệp đính kèm";
 "back" = "Quay lại";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Đã xác minh";
 "close" = "Đóng";
 "close_window" = "Đóng cửa sổ";
 "forward" = "Chuyển tiếp";
@@ -314,8 +312,6 @@
 "chat_record_slide_to_cancel" = "Trượt để hủy";
 "chat_record_explain" = "Nhấn và giữ để ghi tin nhắn thoại, thả ra để gửi";
 "chat_no_chats_yet_title" = "Hộp thư đến trống.\nNhấn \"+\" để bắt đầu cuộc trò chuyện mới.";
-// deprecated
-"chat_no_chats_yet_hint" = "Bạn có thể trò chuyện với những người dùng Delta Chat khác và với bất kỳ địa chỉ e-mail nào.";
 "chat_all_archived" = "Tất cả các cuộc trò chuyện đã được lưu trữ.\nNhấn \"+\" để bắt đầu cuộc trò chuyện mới.";
 "chat_share_with_title" = "Chia sẻ với";
 "chat_input_placeholder" = "Tin nhắn";
@@ -496,8 +492,6 @@
 "login_error_cannot_login" = "Không thể đăng nhập với tên \"%1$@\". Vui lòng kiểm tra xem địa chỉ e-mail và mật khẩu có đúng không.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Chấp nhận chứng chỉ không hợp lệ";
-// deprecated
-"used_settings" = "Thiết đặt đã sử dụng:";
 "switch_account" = "Chuyển đổi tài khoản";
 "add_account" = "Thêm tài khoản";
 "delete_account" = "Xóa tài khoản";
@@ -670,15 +664,9 @@
 "autodel_after_1_hour" = "Sau 1 giờ";
 "autodel_after_1_day" = "Sau 1 ngày";
 "autodel_after_1_week" = "Sau 1 tuần";
-// deprecated
-"autodel_after_4_weeks" = "Sau 4 tuần";
 "after_5_weeks" = "Sau 5 tuần";
 "autodel_after_1_year" = "Sau 1 năm";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt là một đặc tả mới và mở để mã hóa e-mail hai đầu tự động.\n\nThiết lập hai đầu của bạn được tạo tự động khi cần và bạn có thể chuyển nó giữa các thiết bị bằng Tin nhắn thiết lập Autocrypt.";
 "autocrypt_send_asm_title" = "Gửi tin nhắn thiết lập Autocrypt";
 "autocrypt_send_asm_explain_before" = "Thông báo thiết lập Autocrypt chia sẻ an toàn thiết lập end-to-end của bạn với các ứng dụng tương thích Autocrypt khác.\n\nThiết lập sẽ được mã hóa bằng mã thiết lập được hiển thị ở đây và phải được nhập trên thiết bị kia.";
 "autocrypt_send_asm_button" = "Gửi tin nhắn thiết lập Autocrypt";
@@ -812,8 +800,6 @@
 "qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
 "qraccount_ask_create_and_login_another" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 "qraccount_qr_code_cannot_be_used" = "Mã QR được quét không thể được sử dụng để thiết lập tài khoản mới.";
-// deprecated
-"qraccount_use_on_new_install" = "Mã QR được quét là để thiết lập một tài khoản mới. Bạn có thể quét mã QR khi thiết lập cài đặt Delta Chat mới.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Đăng nhập vào \"%1$@\"?";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -904,8 +890,6 @@
 "export_backup_desktop" = "Xuất bản sao lưu";
 "autocrypt_correct_desktop" = "Đã chuyển thiết lập Autocrypt.";
 "forget_login_confirmation_desktop" = "Xóa thông tin đăng nhập này? Mọi thứ sẽ bị xóa, bao gồm thiết lập đầu cuối, danh bạ, cuộc trò chuyện, tin nhắn và phương tiện của bạn. Hành động này không thể hoàn tác được.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "E-mail: %1$@\nKích thước: %2$@\nId tài khoản: %3$@";
 "message_detail_sent_desktop" = "đã gửi";
 "message_detail_received_desktop" = "đã nhận được";
 "menu.view.developer.open.log.folder" = "Mở thư mục nhật ký";

@@ -211,8 +211,6 @@
 "chat_record_slide_to_cancel" = "Iscurre pro annulare";
 "chat_record_explain" = "Incarca e mantene incarcadu pro registrare unu messàgiu vocale, lassa pro imbiare";
 "chat_no_chats_yet_title" = "Cartella de intrada bòida.\nIncarca \"+\" pro abèrrere una tzarrada noa.";
-// deprecated
-"chat_no_chats_yet_hint" = "Podes tzarrare cun àteros impreadores de Delta Chat e cun cale si siat indiritzu de posta eletrònica.";
 "chat_all_archived" = "Tzarradas archiviadas.\nIncarca \"+\" pro abèrrere una tzarrada noa.";
 "chat_share_with_title" = "Cumpartzi cun";
 "chat_input_placeholder" = "Messàgiu";
@@ -289,8 +287,6 @@
 "login_error_cannot_login" = "Impossìbile atzèdere comente \"%1$@\". pro paghere verìfica si s\'indiritzu de posta eletrònica e sa crae de intrada sunt curretos.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Atzetat tzertificados non vàlidos";
-// deprecated
-"used_settings" = "Impostatziones impreadas:";
 "switch_account" = "Càmbia contu";
 "add_account" = "Annanghe unu contu";
 "delete_account" = "Iscantzella su contu";
@@ -415,14 +411,8 @@
 "autodel_after_1_hour" = "A pustis de 1 ora";
 "autodel_after_1_day" = "A pustis de 1 die";
 "autodel_after_1_week" = "A pustis de 1 chida";
-// deprecated
-"autodel_after_4_weeks" = "A pustis de 4 chidas";
 "autodel_after_1_year" = "A pustis de 1 annu";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt est un ispetzìfica noa e aberta pro sa tzifradura automàtica a nodu terminale (end-to-end) de sas lìteras de posta eletrònica.\n\nS\'impostatzione a nodu terminale tua benit creada automaticamente icando sebit e la podes tramudare dae unu dispositivu a s\'àteru cun sos Messàgios de impostatzione de Autocrypt.";
 "autocrypt_send_asm_title" = "Imbia unu messàgiu de impostatzione de Autocrypt";
 "autocrypt_send_asm_explain_before" = "Unu \'Messàgiu de configuratzione Autocrypt\' cumpartzit sa configuratzione a nodu terminale (end-to-end) cun àteras aplicatziones cumpatìbiles cun Autocrypt.\n\nSa configuratzione ant a èssere tzifradas cun unu còdighe ammustradu inoghe chi depet èssere insertadu in s\'àteru dispositivu. ";
 "autocrypt_send_asm_button" = "Imbia unu messàgiu de impostatzione de Autocrypt";

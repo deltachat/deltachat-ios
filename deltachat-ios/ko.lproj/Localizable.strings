@@ -282,8 +282,6 @@
 "chat_record_slide_to_cancel" = "밀어서 취소";
 "chat_record_explain" = "꾹 눌러 음성 메시지를 녹음하고, 떼서 보내시오";
 "chat_no_chats_yet_title" = "받은 편지함을 비웁니다.\n새 채팅을 시작하려면 \"+\"를 누르시오.";
-// deprecated
-"chat_no_chats_yet_hint" = "다른 Delta Chat 사용자 그리고 어떤 이메일 주소라도 채팅할 수 있습니다.";
 "chat_all_archived" = "모든 대화가 보관되었습니다.\n새 채팅을 시작하려면 \"+\"를 누르시오.";
 "chat_share_with_title" = "공유 대상";
 "chat_input_placeholder" = "메시지";
@@ -420,8 +418,6 @@
 "import_backup_no_backup_found" = "백업을 찾을 수 없습니다.\n\n\"%1$@\"에 백업을 복사하고 다시 시도하십시오. 또는 \"메시징 시작\"을 눌러 일반 설정을 계속하십시오.";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "\"%1$@\"에 로그인 할 수 없음. 이메일 주소와 비밀번호가 맞는지 확인하시오.";
-// deprecated
-"used_settings" = "사용된 설정:";
 "switch_account" = "계정 전환";
 "add_account" = "계정 추가";
 "delete_account" = "계정 삭제";
@@ -574,15 +570,9 @@
 "autodel_after_1_hour" = "1시간 후";
 "autodel_after_1_day" = "1일 후";
 "autodel_after_1_week" = "1주 후";
-// deprecated
-"autodel_after_4_weeks" = "4주 후";
 "after_5_weeks" = "5주 후";
 "autodel_after_1_year" = "1년 후";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "자동암호화";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "자동 암호화는 자동 종단 간 전자 메일 암호화를 위한 새로운 공개 사양입니다.\n\n필요에 따라 종단 간 설정이 자동으로 생성되고 자동 암호화 설정 메시지를 사용하여 장치 간에 전송할 수 있습니다.";
 "autocrypt_send_asm_title" = "자동 암호화 설정된 메시지 전송";
 "autocrypt_send_asm_explain_before" = "자동 암호화 설치 메시지는 사용자의 설정을 다른 자동 암호화 호환 앱과 안전하게 공유합니다.\n\n설치는 여기에 표시된 설치 코드에 의해 암호화되며 다른 장치에 입력해야 합니다.";
 "autocrypt_send_asm_button" = "자동 암호화 설정된 메시지 전송";
@@ -702,8 +692,6 @@
 "qraccount_ask_create_and_login" = "\"%1$@\"에서 새 이메일 주소를 만들고 로그인하시겠습니까?";
 "qraccount_ask_create_and_login_another" = "\"%1$@\"에서 새 이메일 주소를 만들고 로그인하시겠습니까?\n\n기존 계정은 삭제되지 않습니다. 계정 전환 항목을 사용하여 계정 간을 전환합니다.";
 "qraccount_qr_code_cannot_be_used" = "스캔한 QR 코드를 사용하여 새 계정을 설정할 수 없습니다.";
-// deprecated
-"qraccount_use_on_new_install" = "스캔한 QR 코드는 새 계정을 설정하기 위한 것입니다. 새 델타 채팅 설치를 설정할 때 QR 코드를 스캔할 수 있습니다.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "\"%1$@\"에 로그인하시겠습니까?";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -784,8 +772,6 @@
 "export_backup_desktop" = "백업 내보내기";
 "autocrypt_correct_desktop" = "자동 암호화 설정이 전송되었습니다.";
 "forget_login_confirmation_desktop" = "이 로그인을 삭제하시겠습니까? 모든 설정, 연락처, 채팅, 메시지 및 미디어를 포함한 모든 것이 삭제됩니다. 이 작업은 취소할 수 없습니다.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "이메일: %1$@\n크기: %2$@\n계정 ID:%3$@";
 "message_detail_sent_desktop" = "보냄";
 "message_detail_received_desktop" = "받음";
 "menu.view.developer.open.log.folder" = "로그 폴더 열기";

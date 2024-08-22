@@ -246,8 +246,6 @@
 "chat_record_slide_to_cancel" = "Træk for at annullere";
 "chat_record_explain" = "Tryk og hold for at optage talebesked, slip for at sende.";
 "chat_no_chats_yet_title" = "Tom indbakke.\nTryk \"+\" for at starte ny samtale.";
-// deprecated
-"chat_no_chats_yet_hint" = "Du kan have samtaler med andre Delta Chat brugere og med enhver e-mailadresse.";
 "chat_all_archived" = "Alle samtaler er arkiveret.\nTryk \"+\" for at starte ny samtale.";
 "chat_share_with_title" = "Del med";
 "chat_input_placeholder" = "Besked";
@@ -350,8 +348,6 @@
 "login_error_cannot_login" = "Kan ikke logge ind som  \"%1$@\". Kontroller om e-mailadresse og adgangskode er korrekt.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptér ugyldige certifikater";
-// deprecated
-"used_settings" = "Benyttede indstillinger:";
 "switch_account" = "Skift konto";
 "add_account" = "Tilføj konto";
 "delete_account" = "Slet konto";
@@ -494,15 +490,9 @@
 "autodel_after_1_hour" = "Efter 1 time";
 "autodel_after_1_day" = "Efter 1 dag";
 "autodel_after_1_week" = "Efter 1 uge";
-// deprecated
-"autodel_after_4_weeks" = "Efter 4 uger";
 "after_5_weeks" = "Efter 5 uger";
 "autodel_after_1_year" = "Efter 1 år";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt er en ny åben specifikation for automatisk end-to-end e-mail kryptering.\n\nEnd-to-end opsætning bliver oprettet automatisk efter behov og kan overføres mellem enheder med Autocrypt opsætning beskeder.";
 "autocrypt_send_asm_title" = "Send Autocrypt opsætning besked";
 "autocrypt_send_asm_explain_before" = "En \"Autocrypt opsætning besked\" deler sikkert end-to-end opsætning med andre Autocrypt kompatible programmer.\n\nOpsætning er krypteret med en kode som er vist her og skal indtastes på den anden enhed.";
 "autocrypt_send_asm_button" = "Send autocrypt-opsætningsbesked";
@@ -605,8 +595,6 @@
 "qraccount_ask_create_and_login" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?";
 "qraccount_ask_create_and_login_another" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?\n\nDin eksisterende konto bliver ikke slettet. Brug \"Skift konto\" for at skifte imellem dine konti.";
 "qraccount_qr_code_cannot_be_used" = "Den skannede QR-kode kan ikke bruges til at opsætte en ny konto.";
-// deprecated
-"qraccount_use_on_new_install" = "Den skannede QR-kode er til at opsætte en ny konto. Du kan skanne QR-kode når du opsætter en ny Delta Chat installation.";
 "contact_verified" = "%1$@ bekræftet.";
 "contact_not_verified" = "Kan ikke bekræfte %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
