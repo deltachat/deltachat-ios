@@ -29,8 +29,6 @@
 "emoji" = "Emoji";
 "attachment" = "Allegato";
 "back" = "Indietro";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Verificato";
 "close" = "Chiudi";
 "close_window" = "Chiudi finestra";
 "forward" = "Inoltra";
@@ -230,6 +228,10 @@
 "select_chat" = "Seleziona Chat";
 "select_more" = "Seleziona di più";
 "menu_edit_name" = "Modifica Nome";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_explain" = "Imposta un soprannome che ti verrà mostrato al posto di \"%1$@\". Lasciare vuoto per utilizzare il nome scelto dal contatto.";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_placeholder" = "Soprannome per \"%1$@\"";
 "menu_settings" = "Impostazioni";
 "menu_advanced" = "Avanzate";
 "menu_view_profile" = "Vedi Profilo";
@@ -323,8 +325,6 @@
 "chat_record_slide_to_cancel" = "Scorri per annullare";
 "chat_record_explain" = "Tocca e mantieni per registrare un messaggio vocale, rilascia per inviare ";
 "chat_no_chats_yet_title" = "Casella vuota.\nPremi \"+\" per iniziare una chat.";
-// deprecated
-"chat_no_chats_yet_hint" = "Puoi chattare con altri utenti Delta Chat o con qualsiasi indirizzo email.";
 "chat_all_archived" = "Chat archiviate.\nPremi \"+\" per iniziare una nuova chat.";
 "chat_share_with_title" = "Condividi con";
 "chat_input_placeholder" = "Messaggio";
@@ -475,8 +475,6 @@
 "manual_account_setup_option" = "Accesso E-Mail Classico";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Il Tuo Profilo";
-// deprecated
-"instant_onboarding_agree_default" = "Leggi l\'Informativa sulla Riservatezza";
 // The placeholder will be replaced by the default onboarding server
 "instant_onboarding_agree_default2" = "Informativa sulla Riservatezza per %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
@@ -536,8 +534,6 @@
 "login_error_cannot_login" = "Impossibile accedere come \"%1$@\". Verifica che l\'indirizzo email e la password siano corretti.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accetta certificati non validi";
-// deprecated
-"used_settings" = "Impostazioni in uso:";
 "switch_account" = "Cambia Account";
 "add_account" = "Aggiungi Account";
 "delete_account" = "Elimina Account";
@@ -723,15 +719,9 @@
 "autodel_after_1_hour" = "Dopo 1 ora";
 "autodel_after_1_day" = "Dopo 1 giorno";
 "autodel_after_1_week" = "Dopo 1 settimana";
-// deprecated
-"autodel_after_4_weeks" = "Dopo 4 settimane";
 "after_5_weeks" = "Dopo 5 settimane";
 "autodel_after_1_year" = "Dopo 1 anno";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt è una nuova specifica aperta per la cifratura end-to-end delle email.\n\nLa tua configurazione end-to-end viene creata automaticamente quando necessario e puoi trasferirla tra dispositivi tramite i Messaggi di configurazione.";
 "autocrypt_send_asm_title" = "Messaggio di Configurazione Autocrypt ";
 "autocrypt_send_asm_explain_before" = "Un \'Messaggio di configurazione Autocrypt\' condivide in sicurezza le tue impostazioni end-to-end con altre app compatibili. Le impostazioni sono criptate con un codice mostrato qui che deve essere inserito nell\'altro dispositivo.";
 "autocrypt_send_asm_button" = "Invia Messaggio di Configurazione Autocrypt";
@@ -871,8 +861,6 @@
 "set_name_and_avatar_explain" = "Imposta un nome che i tuoi contatti riconosceranno. Puoi anche impostare un\'immagine del profilo.";
 "please_enter_name" = "Inserisci un nome.";
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo account.";
-// deprecated
-"qraccount_use_on_new_install" = "Il codice QR scansionato serve a creare un nuovo account. Puoi scansionare il codice quando configuri una nuova installazione di Delta Chat.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Accedere a \"%1$@\"?";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -967,8 +955,6 @@
 "export_backup_desktop" = "Esporta Backup";
 "autocrypt_correct_desktop" = "Configurazione di Autocrypt trasferita.";
 "forget_login_confirmation_desktop" = "Eliminare questo accesso? Tutto verrà eliminato, inclusa la configurazione end-to-end, i contatti, le chat, i messaggi e i media. Questa azione non può essere annullata.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nDimensione: %2$@\nProfilo Id: %3$@";
 "message_detail_sent_desktop" = "inviato";
 "message_detail_received_desktop" = "ricevuto";
 "menu.view.developer.open.log.folder" = "Apri Cartella dei Log";
@@ -1028,12 +1014,6 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Consegna Istantanea";
-// deprecated
-"pref_push_notifications" = "Utilizza Servizio Push";
-// deprecated
-"pref_push_notifications_explain" = "Notifiche Push Affidabili per Server-Chatmail";
-// deprecated
-"pref_push_ask_disable" = "Disabilitare Servizio Push?\n\nCiò potrebbe causare ritardi nelle notifiche.";
 "pref_background_notifications" = "Utilizza Connessione Background";
 "pref_background_notifications_explain" = "Richiede ignora ottimizzazioni della batteria, da utilizzare se il Servizio Push non è disponibile";
 "pref_reliable_service" = "Forza Connessione Background";
@@ -1043,7 +1023,6 @@
 "perm_enable_bg_reminder_title" = "Premi qui per ricevere i messaggi anche quando Delta Chat è in background.";
 "perm_enable_bg_already_done" = "Hai già autorizzato Delta Chat a ricevere messaggi in background.\n\nSe i messaggi non arrivano in background controlla le impostazioni di sistema.";
 // device messages for updates
-"update_1_44_android" = "Novità:\n\n❤️ Sì! Questo era atteso da tempo: tocca a lungo un messaggio per reagire\n\n🔗 Se non riesci a scansionare i codici QR, condividili come link di invito\n\n🔵 I messaggi non letti di tutti i profili vengono ora conteggiati e mostrati nel titolo\n\n… e TONNELLATE di correzioni bug … %1$@\n\nAiuta a migliorare l\'app: usa \"Impostazioni/Avanzate/Invia statistiche\" per aiutare gli sviluppatori a ottimizzare meglio per l\'utilizzo nel mondo reale. È possibile rivedere i dati prima dell\'invio";
-"update_1_44_ios" = "Novità:\n\n❤️ Sì! Questo era atteso da tempo: tocca a lungo un messaggio per reagire\n\n🫸 Notifiche PUSH se supportate dai provider come https://nine.testrun.org\n\n🔗 Se non riesci a scansionare i codici QR, condividili come link di invito\n\n... e TONNELLATE di correzioni bug ... %1$@";
 "update_1_46_android" = "Nuovo Inserimento 🐣 e Altro:\n\n⚡️ Iscriviti ai sicuri e veloci server chatmail (https://delta.chat/chatmail) o utilizza i classici server e-mail\n\n👉 Notifiche PUSH per qualsiasi server chatmail\n\n👤 Connettiti con i tuoi amici in modo sicuro tramite \"Allega contatti\"\n\n🥰 Reagisci con qualsiasi emoji\n\n📌 Appunta le chat direttamente dalla ricerca... e ALTRO su %1$@";
 "update_1_46_ios" = "Nuovo Inserimento 🐣 e Altro:\n\n⚡️ Iscriviti ai sicuri e veloci server chatmail (https://delta.chat/chatmail) o usa i classici server e-mail\n\n👉 Notifiche PUSH per qualsiasi server chatmail\n\n👤 Ricevi \"Contatti allegati\" e connettiti ai tuoi amici\n\n🥰 Selezione della reazione più rapida ... e ALTRO su %1$@";
+"update_switch_profile_placement" = "ℹ️ Opzione \"Cambia Profilo\" spostata: tocca l\'immagine del tuo profilo nell\'angolo superiore della schermata principale per aggiungere o cambiare profili 💡";

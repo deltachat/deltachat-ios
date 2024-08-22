@@ -182,8 +182,6 @@
 "chat_record_slide_to_cancel" = "Irristatu ezeztatzeko";
 "chat_record_explain" = "Sakatu eta mantendu ahots-mezu bat grabatzeko, askatu bidaltzeko.";
 "chat_no_chats_yet_title" = "Sarrera-ontzi hutsa.\nSakatu \"+\" txat berria hasteko.";
-// deprecated
-"chat_no_chats_yet_hint" = "Beste Delta Chat erabiltzaileekin txateatu dezakezu, edo edozein e-mail helbiderekin";
 "chat_all_archived" = "Txat guztiak artxibatuta.\nSakatu \"+\" txat berri bat hasteko.";
 "chat_share_with_title" = "Partekatu honekin";
 "chat_input_placeholder" = "Mezua";
@@ -253,8 +251,6 @@
 "login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Onartu ziurtagiri baliogabeak";
-// deprecated
-"used_settings" = "Erabilitako ezarpenak:";
 "switch_account" = "Aldatu kontua";
 "add_account" = "Gehitu kontua";
 "delete_account" = "Ezabatu kontua";
@@ -359,14 +355,8 @@
 "autodel_after_1_hour" = "Ordubete eta gero";
 "autodel_after_1_day" = "Egun bat eta gero";
 "autodel_after_1_week" = "Aste bat eta gero";
-// deprecated
-"autodel_after_4_weeks" = "4 aste eta gero";
 "autodel_after_1_year" = "Urtebete eta gero";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt e-maila muturretik muturrera zifratzeko espezifikazio berri eta ireki bat da.\n\nZure muturretik muturrerako ezarpena automatikoki sortzend a behar denean eta gailutik gailura eraman dezakezu Autocrypt ezarpen mezuekin.";
 "autocrypt_send_asm_title" = "Bidali Autocrypt ezarpen mezua";
 "autocrypt_send_asm_explain_before" = "\"Autocrypt ezarpen mezua\" batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "autocrypt_send_asm_button" = "Bidali Autocrypt ezarpen mezua";
@@ -426,8 +416,6 @@
 "qrshow_join_contact_no_connection_toast" = "Ez dago Internet konexiorik, ezin da QR kode bidezko ezarpena aplikatu";
 "qraccount_ask_create_and_login" = "Sortu kontu berria \"%1$@\" zerbitzarian eta saioa han hasi?";
 "qraccount_qr_code_cannot_be_used" = "Eskaneatutako QR kodea ezin da kontu berri bat ezartzeko erabili.";
-// deprecated
-"qraccount_use_on_new_install" = "Eskaneatutako QR kodea kontu berri bat ezartzeko da. QR kodea Delta Chat instalazio berri batean eskaneatu dezakezu.";
 "contact_verified" = "%1$@ egiaztatuta.";
 "contact_not_verified" = "Ezin da %1$@ egiaztatu";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"

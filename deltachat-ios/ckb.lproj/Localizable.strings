@@ -226,8 +226,6 @@
 "chat_record_slide_to_cancel" = "بیخشێنە بۆ وازهێنان";
 "chat_record_explain" = "کرتە بکە و دەست لەسەری ڕابگرە بۆ تۆمارکردنی پەیامێکی دەنگی، پاشان دەستبەردە بۆ هەناردنی.";
 "chat_no_chats_yet_title" = "هاتنگە بەتاڵە. \n \"+\" لێبدە بۆ دەستپێکی وتووێژێکی نوێ.";
-// deprecated
-"chat_no_chats_yet_hint" = "دەتوانیت لەگەڵ بەکارهێنەرانی دیکەی دێڵتاچات و هەروەها هەر ناونیشانێکی ئیمەیلدا وتووێژ بکەیت.";
 "chat_all_archived" = "هەموو وتووێژەکان ئەرشیڤ کران. \n بۆ دەستپێکردنی وتووێژێکی نوێ، \"+\" لێبدە.";
 "chat_share_with_title" = "هاوبەش کردن لەگەڵ";
 "chat_input_placeholder" = "بنووسە";
@@ -302,8 +300,6 @@
 "import_backup_no_backup_found" = "هیچ یەدەکێک نەدۆزرایەوە.\n\n یەدەکەکە کۆپی بکە بۆ\"%1$@\" و دیسان هەوڵبدەوە. یان بۆ بەردەوامبوون لەسەر پرۆسەی ئاسایی دامەزراندنەکە، دەستبنە بە \"دەستپێکی نامەنووسین\"دا .";
 // Translators: %1$s will be replaced by the e-mail address
 "login_error_cannot_login" = "\"%1$@\" ناتوانێت بچێتە ژوورەوە. سەرنج بدە بزانە ئیمەیل و تێپەڕوشەکە درووستە.";
-// deprecated
-"used_settings" = "ڕێکخستنە بەکارهێنراوەکان:";
 "switch_account" = "گۆڕینی هەژمار";
 "add_account" = "زیادکردنی هەژمار";
 "delete_account" = "سڕینەوەی هەژمار";
@@ -422,15 +418,9 @@
 "autodel_after_1_hour" = "پاش 1 کاتژمێر";
 "autodel_after_1_day" = "پاش 1 ڕۆژ";
 "autodel_after_1_week" = "پاش 1 حەوتە";
-// deprecated
-"autodel_after_4_weeks" = "پاش 4 حەوتە";
 "after_5_weeks" = "پاش 5 حەوتە";
 "autodel_after_1_year" = "پاش 1 ساڵ";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "ئۆتۆکریپت";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "ئۆتۆکریپت شێوازێکی نوێ و خۆڕاییە بۆ شفرەکردنی خۆکاری ئیمەیل بە چەشنی ئەمسەر-ئەوسەر.\n\n ڕێکخستنی ئەمسەر-ئەوسەرەکە، بە چەشنی پێویست، خۆکارانە درووست دەبێت و تۆ دەتوانیت لەنێوان ئامێرەکاندا، کە پەیامی ڕێکخستنی ئۆتۆکریپتیان هەیە، بیانگوازیتەوە.";
 "autocrypt_send_asm_title" = "هەناردنی پەیامی ڕێکخستنی ئۆتۆکریپت";
 "autocrypt_prefer_e2ee" = "هەڵبژاردنی شفرەکردنی ئەمسەر-ئەوسەر";
 "autocrypt_asm_subject" = "پەیامی ڕێکخستنی ئۆتۆکریپت";

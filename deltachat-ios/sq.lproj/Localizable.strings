@@ -29,8 +29,6 @@
 "emoji" = "Emoji";
 "attachment" = "Bashkëngjitje";
 "back" = "Mbrapsht";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Verifikuar";
 "close" = "Mbylle";
 "close_window" = "Mbylle Dritaren";
 "forward" = "Përpara";
@@ -320,8 +318,6 @@
 "chat_record_slide_to_cancel" = "Rrëshqiteni që të anulohet";
 "chat_record_explain" = "Prekeni dhe mbajeni të prekur që të incizoni një mesazh zanor; lëshojeni, që të dërgohet";
 "chat_no_chats_yet_title" = "Kuti mesazhesh e zbrazët.\nShtypni “+” që të nisni një fjalosje të re.";
-// deprecated
-"chat_no_chats_yet_hint" = "Mund të bisedoni me përdorues të tjerë të Delta Chat-it dhe me çfarëdo adrese email.";
 "chat_all_archived" = "Krejt fjalosjet janë të arkivuara.\nShtypni “+” që të nisni një bisedë të re.";
 "chat_share_with_title" = "Ndajeni me ";
 "chat_input_placeholder" = "Mesazh";
@@ -470,8 +466,6 @@
 "manual_account_setup_option" = "Hyrje Klasike Me Email";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profili Juaj";
-// deprecated
-"instant_onboarding_agree_default" = "Lexoni Rregullat e Privatësisë";
 // The placeholder will be replaced by the default onboarding server
 "instant_onboarding_agree_default2" = "Rregulla Privatësie për %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
@@ -531,8 +525,6 @@
 "login_error_cannot_login" = "S\’bëhet dot hyrja si “%1$@”. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
-// deprecated
-"used_settings" = "Rregullime të përdorura:";
 "switch_account" = "Ndërroni Llogari";
 "add_account" = "Shtoni Llogari";
 "delete_account" = "Fshije Llogarinë";
@@ -716,15 +708,9 @@
 "autodel_after_1_hour" = "Pas 1 ore";
 "autodel_after_1_day" = "Pas 1 dite";
 "autodel_after_1_week" = "Pas 1 jave";
-// deprecated
-"autodel_after_4_weeks" = "Pas 4 javësh";
 "after_5_weeks" = "Pas 5 javësh";
 "autodel_after_1_year" = "Pas 1 viti";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt-i është një protokoll i ri dhe i hapur për fshehtëzim automatik email-esh skaj-më-skaj.\n\nRregullimi skaj-më-skaj për ju krijohet vetvetiu kur duhet dhe mund ta shpërngulni nga një pajisje në tjetër përmes Mesazhesh Rregullimi Autocrypt-i.";
 "autocrypt_send_asm_title" = "Dërgo Mesazh Rregullimi Autocrypt-i";
 "autocrypt_send_asm_explain_before" = "Një “Mesazh Rregullimi Autocrypt-i“ ua jep, në mënyrë të parrezik, rregullimin tuaj për fshehtëzimin skaj-më-skaj pajisjeve të tjera që përdorin Autocrypt-in.\n\nRregullimi do të fshehtëzohet përmes një kodi rregullimi i cili shfaqet këtu dhe duhet dhënë te pajisja tjetër.";
 "autocrypt_send_asm_button" = "Dërgo Mesazh Rregullimi Autocrypt-i";
@@ -864,8 +850,6 @@
 "set_name_and_avatar_explain" = "Caktoni një emër, që kontaktet tuaj do ta njohin. Mundeni edhe të caktoni një emër profili.";
 "please_enter_name" = "Ju lutemi, jepni një emër.";
 "qraccount_qr_code_cannot_be_used" = "Kodi QR i skanuar s’mund të përdoret për të ujdisur një llogari të re.";
-// deprecated
-"qraccount_use_on_new_install" = "Kodi QR i skanuar është për ujdisje të një llogarie të re. Kodin QR mund ta skanoni kur ujdisni një instalim të ri të Delta Chat-it.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Të hyhet si “%1$@”?";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -960,8 +944,6 @@
 "export_backup_desktop" = "Eksportoni Kopjeruajtje";
 "autocrypt_correct_desktop" = "Ujdisja e Autocrypt-it u shpërngul.";
 "forget_login_confirmation_desktop" = "Të fshihet kjo hyrje? Do të fshihet gjithçka, përfshi rregullimin tuaj për skaj-më-skaj, kontaktet, fjalosjet, mesazhet dhe mediat. Ky veprim s\’mund të zhbëhet.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "Email: %1$@\nMadhësi: %2$@\nID  Llogarie: %3$@";
 "message_detail_sent_desktop" = "të dërguar";
 "message_detail_received_desktop" = "të marrë";
 "menu.view.developer.open.log.folder" = "Hap Dosje Regjistrash";
@@ -1019,10 +1001,6 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Dërgim i Menjëhershëm";
-// deprecated
-"pref_push_notifications" = "Përdor Shërbim Push";
-// deprecated
-"pref_push_ask_disable" = "Të çaktivizohet përdorimi i Shërbimit Push?\n\nKjo mund të sjellë njoftime të vonuara.";
 "pref_background_notifications" = "Përdor Lidhje Në Prapaskenë";
 "pref_background_notifications_explain" = "Lyp shpërfillje optimizimesh baterie, përdoreni nëse Shërbimi Push është jashtë funksionimi";
 "pref_reliable_service" = "Detyro Lidhje Në Prapaskenë";
@@ -1032,7 +1010,6 @@
 "perm_enable_bg_reminder_title" = "Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.";
 "perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
 // device messages for updates
-"update_1_44_android" = "Ç’ka të re:\n\n❤️ Po! Kjo ka kohë që pritej: Prekni gjatë mbi një mesazh, për të reaguar\n\n🔗 Nëse nuk skanoni dot kode QR, jepini si lidhje ftesë\n\n🔵 Tashmë mesazhet e palexuar të krejt llogarive numërohen dhe numri shfaqet te titulli\n\n… dhe TONELATA ndreqje të metash … %1$@\n\nNdihmoni të përmirësohet aplikacioni: Përdorni “Rregullime / Të thelluara / Dërgo statistika”, për të ndihmuar zhvilluesit ta bëjnë më optimal për përdorim të përditshëm. Para se të dërgohen, të dhënat mund t’i shqyrtoni";
-"update_1_44_ios" = "Ç’ka të re:\n\n❤️ Po! Kjo ka kohë që pritej: Prekni gjatë mbi një mesazh, për të reaguar\n\n🫸 Njoftime PUSH, nëse kjo mbulohet nga furnizuesit e shërbimeve internet, b.f., https://nine.testrun.org\n\n🔗 Nëse nuk skanoni dot kode QR, jepini si lidhje ftesë\n\n… dhe TONELATA ndreqje të metash … %1$@";
 "update_1_46_android" = "Hapa të Rinj Mirëseardhjeje 🐣 Etj.:\n\n⚡️ Regjistrohuni te shërbyes të siguruar, të shpejtë, chatmail-i (https://delta.chat/chatmail), ose përdorni shërbyes klasikë email-i\n\n👉 Njoftime PUSH për çfarëdo shërbyesi “chatmail”\n\n👤 Lidhuni me shokët tuaj në mënyrë të parrezik, përmes “Bashkëngjitni kontakte”\n\n🥰 Reagoni me çfarëdo emoxhi\n\n📌 Fiksoni fjalosje drejt e nga kërkimi … dhe PLOT të TJERA te %1$@";
 "update_1_46_ios" = "Hapa të Rinj Mirëseardhjeje 🐣 dhe të Tjera:\n\n⚡️ Regjistrohuni te shërbyes të siguruar, të shpejtë chatmail-i (https://delta.chat/chatmail), ose përdorni shërbyes klasikë email-i\n\n👉 Njoftime PUSH për çfarëdo shërbyesish “chatmail”\n\n👤 Merrni “Kontakte bashkëmgjitur” dhe lidhuni me shokët tuaj\n\n🥰 Përzgjedhje më e shpejtë reagimesh…ETJ, te %1$@";
+"update_switch_profile_placement" = "ℹ️ Mundësia “Ndërroni Profil” u hoq: Që të shtoni, ose ndërroni profile, prekni figurën e profilit tuaj në cepin e sipërm të skenës kryesore 💡";

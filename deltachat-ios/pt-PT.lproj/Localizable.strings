@@ -247,10 +247,6 @@
 "pref_show_emails_no" = "Não, apenas conversas";
 "pref_show_emails_all" = "Tudo";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Encriptação automática";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "A encriptação automática (autocrypt) é uma especificação nova e aberta para encriptação e-mail de ponta a ponta. \n\n A sua configuração de ponta a ponta é criada automaticamente conforme necessário e pode transferi-la entre dispositivos com mensagens de configuração de autocrypt.";
 "autocrypt_send_asm_title" = "Enviar mensagem com a definição da encriptação automática";
 "autocrypt_send_asm_explain_before" = "A \"Mensagem de Configuração Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis com Autocrypt. \n\nA configuração será encriptada por um código de configuração que é exibido aqui e deve ser digitado no outro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar mensagem com a definição da encriptação automática";

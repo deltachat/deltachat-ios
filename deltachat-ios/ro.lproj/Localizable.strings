@@ -291,8 +291,6 @@
 "chat_record_slide_to_cancel" = "Glisați pentru a anula";
 "chat_record_explain" = "Atingeți continuu pentru a înregistra un mesaj vocal, apoi eliberați-l pentru a-l trimite";
 "chat_no_chats_yet_title" = "Goliți inbox.\nPress \"+\" pentru a începe un nou chat.";
-// deprecated
-"chat_no_chats_yet_hint" = "Puteți discuta cu alți utilizatori Delta Chat și cu orice adresă de e-mail.";
 "chat_all_archived" = "Toate chat-urile sunt archived.\nPress \"+\" pentru a începe un nou chat.";
 "chat_share_with_title" = "Împărtășiți cu";
 "chat_input_placeholder" = "Mesaj";
@@ -462,8 +460,6 @@
 "login_error_cannot_login" = "Nu se poate autentifica ca \"%1$@\". Vă rugăm să verificați dacă adresa de e-mail și parola sunt corecte.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptarea certificatelor nevalabile";
-// deprecated
-"used_settings" = "Setări utilizate:";
 "switch_account" = "Schimbați contul";
 "add_account" = "Adăugați un cont";
 "delete_account" = "Ștergeți Contul";

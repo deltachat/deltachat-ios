@@ -249,8 +249,6 @@
 "chat_record_slide_to_cancel" = "スライドしてキャンセル";
 "chat_record_explain" = "長押しして録音して、離すと送ります。";
 "chat_no_chats_yet_title" = "受信箱が空です。\n＋でチャットを開始します。";
-// deprecated
-"chat_no_chats_yet_hint" = "あなたはDelta Chat利用者や普通のメールアドレスとチャットを出来ます｡";
 "chat_all_archived" = "すべてのチャットがアーカイブされました。\n＋でチャットを開始します。";
 "chat_share_with_title" = "共有";
 "chat_input_placeholder" = "メッセージ";
@@ -340,8 +338,6 @@
 "login_error_cannot_login" = "%1$@としてログインできません。メールアドレスとパスワードを確認してください。";
 // TLS certificate checks
 "accept_invalid_certificates" = "無効な証明書を受け入れます";
-// deprecated
-"used_settings" = "使用した設定：";
 "switch_account" = "アカウントを切り替え";
 "add_account" = "アカウントを追加";
 "delete_account" = "アカウントを削除";
@@ -476,15 +472,9 @@
 "autodel_after_1_hour" = "1時間";
 "autodel_after_1_day" = "1日後";
 "autodel_after_1_week" = "1週間後";
-// deprecated
-"autodel_after_4_weeks" = "4週間後";
 "after_5_weeks" = "5週間後";
 "autodel_after_1_year" = "1年後";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "自動暗号化";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "自動暗号化機能は新しくて開けた仕様での一対一のﾒｰﾙ暗号化を行います｡\n \n この一対一暗号化は自動暗号化設定用ﾒｯｾｰｼﾞを転送して設定します｡";
 "autocrypt_send_asm_title" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
 "autocrypt_send_asm_explain_before" = "｢自動暗号化設定用メッセージ｣は安全に一対一暗号化設定を対応するアプリケーションとの間に設定します｡\n \n 受信側は設定時に表示されるパスコードを入力する必要が有ります｡";
 "autocrypt_send_asm_button" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";

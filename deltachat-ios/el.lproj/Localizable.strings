@@ -283,8 +283,6 @@
 "chat_record_slide_to_cancel" = "Σύρε για ακύρωση";
 "chat_record_explain" = "Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα φωνητικό μήνυμα, άφησε το κουμπί για αποστολή";
 "chat_no_chats_yet_title" = "Αδειάστε τα εισερχόμενα.\nΠατήστε \"+\" για να ξεκινήσετε μια νέα συνομιλία.";
-// deprecated
-"chat_no_chats_yet_hint" = "Μπορείτε να συνομιλήσετε με άλλους χρήστες του Delta Chat και με οποιαδήποτε διεύθυνση e-mail.";
 "chat_all_archived" = "Όλες οι συνομιλίες αρχειοθετήθηκαν.\nΠατήστε \"+\" για να ξεκινήσετε μια νέα συνομιλία.";
 "chat_share_with_title" = "Μοιράσου με";
 "chat_input_placeholder" = "Μήνυμα";
@@ -427,8 +425,6 @@
 "login_error_cannot_login" = "Δεν είναι δυνατή η είσοδος ως \"%1$@\". Ελέγξτε εάν η διεύθυνση e-mail και ο κωδικός πρόσβασης είναι σωστά.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Αποδοχή μη έγκυρων πιστοποιητικών";
-// deprecated
-"used_settings" = "Χρησιμοποιούμενες ρυθμίσεις:";
 "switch_account" = "Αλλαγή λογαριασμού";
 "add_account" = "Προσθήκη Λογαριασμού";
 "delete_account" = "Διαγραφή Λογαριασμού";
@@ -591,15 +587,9 @@
 "autodel_after_1_hour" = "Μετά από 1 ώρα";
 "autodel_after_1_day" = "Μετά από 1 μέρα";
 "autodel_after_1_week" = "Μετά από 1 εβδομάδα";
-// deprecated
-"autodel_after_4_weeks" = "Μετά από 4 εβδομάδες";
 "after_5_weeks" = "Μετά από 5 εβδομάδες";
 "autodel_after_1_year" = "Μετά από 1 χρόνο";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Αυτόματη κρυπτογράφηση";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Η αυτόματη κρυπτογράφηση είναι μια νέα και ανοιχτή προδιαγραφή για αυτόματη κρυπτογράφηση ηλεκτρονικού ταχυδρομείου από άκρο σε άκρο.\n\nΗ ρύθμιση από άκρο σε άκρο δημιουργείται αυτόματα ανάλογα με τις ανάγκες και μπορείτε να τη μεταφέρετε μεταξύ συσκευών με τα Μηνύματα ρύθμισης αυτόματης κρυπτογράφησης.";
 "autocrypt_send_asm_title" = "Αποστολή μηνύματος ρύθμισης αυτόματης κρυπτογράφησης";
 "autocrypt_send_asm_explain_before" = "Ένα μήνυμα ρύθμισης αυτόματης κρυπτογράφησης κοινοποιεί με ασφάλεια τη ρύθμισή σας από άκρο σε άκρο με άλλες εφαρμογές συμβατές με την Αυτόματη κρυπτογράφηση.\n\nΗ ρύθμιση θα κρυπτογραφηθεί από έναν κωδικό ρύθμισης που εμφανίζεται εδώ και θα πρέπει να πληκτρολογηθεί στην άλλη συσκευή.";
 "autocrypt_send_asm_button" = "Αποστολή μηνύματος ρύθμισης αυτόματης κρυπτογράφησης";
@@ -723,8 +713,6 @@
 "qraccount_ask_create_and_login" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;";
 "qraccount_ask_create_and_login_another" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
 "qraccount_qr_code_cannot_be_used" = "Ο σαρωμένος κωδικός QR δεν μπορεί να χρησιμοποιηθεί για τη δημιουργία νέου λογαριασμού.";
-// deprecated
-"qraccount_use_on_new_install" = "Ο σαρωμένος κωδικός QR προορίζεται για τη δημιουργία νέου λογαριασμού. Μπορείτε να σαρώσετε τον κωδικό QR όταν ρυθμίζετε μια νέα εγκατάσταση Delta Chat.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Σύνδεση στο \"%1$@\";";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -807,8 +795,6 @@
 "export_backup_desktop" = "Εξαγωγή Αντιγράφων Ασφαλείας";
 "autocrypt_correct_desktop" = "Η ρύθμιση αυτόματης κρυπτογράφησης μεταφέρθηκε.";
 "forget_login_confirmation_desktop" = "Διαγραφή αυτής της σύνδεσης; Τα πάντα θα διαγραφούν, συμπεριλαμβανομένων των ρυθμίσεων από άκρο σε άκρο, επαφών, συνομιλιών, μηνυμάτων και πολυμέσων. Αυτή η πράξη δε μπορεί να αναιρεθεί.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nΜέγεθος: %2$@\n Αναγνωριστικό Λογαριασμού: %3$@";
 "message_detail_sent_desktop" = "Στάλθηκε";
 "message_detail_received_desktop" = "Παραλήφθηκε";
 "menu.view.developer.open.log.folder" = "Άνοιγμα του φακέλου καταγραφής";

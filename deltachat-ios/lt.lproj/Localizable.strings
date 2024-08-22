@@ -264,8 +264,6 @@
 "chat_new_group_hint" = "Rašykite pirmąją žinutę, taip leisdami kitiems atsakyti šioje grupėje..\n\n• Nieko tokio, jei ne visi dalyviai naudoja Delta Chat.\n\n• Pirmosios žinutės pristatymas gali šiek tiek užtrukti.";
 "chat_record_slide_to_cancel" = "Perbraukite, norėdami atsisakyti";
 "chat_record_explain" = "Bakstelėkite ir laikykite, norėdami įrašyti balso žinutę. Atleiskite, norėdami išsiųsti";
-// deprecated
-"chat_no_chats_yet_hint" = "Galite bendrauti su kitais Delta Chat naudotojais ir bet kuriais el. pašto adresais.";
 "chat_all_archived" = "Visi pokalbiai archyvuoti.\nPaspauskite „+“ norėdami pradėti naują pokalbį.";
 "chat_share_with_title" = "Bendrinti su";
 "chat_input_placeholder" = "Žinutė";
@@ -394,8 +392,6 @@
 "login_error_cannot_login" = "Nepavyksta prisijungti kaip \"%1$@\". Patikrinkite ar el. pašto adresas ir slaptažodis yra teisingi.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Priimti negaliojančius liudijimus";
-// deprecated
-"used_settings" = "Naudoti nustatymai:";
 "switch_account" = "Perjungti paskyrą";
 "add_account" = "Pridėti paskyrą";
 "delete_account" = "Ištrinti paskyrą";
@@ -542,15 +538,9 @@
 "autodel_after_1_hour" = "Po 1 valandos";
 "autodel_after_1_day" = "Po 1 dienos";
 "autodel_after_1_week" = "Po 1 savaitės";
-// deprecated
-"autodel_after_4_weeks" = "Po 4 savaičių";
 "after_5_weeks" = "Po 5 savaičių";
 "autodel_after_1_year" = "Po 1 metų";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "Autocrypt yra naujoji ir atviroji specifikacija automatiniam ištisiniam el. pašto šifravimui.\n\nPrireikus, jūsų ištisinė sąranka yra sukuriama automatiškai ir gali būti perduodama tarp įrenginių, naudojant Autocrypt sąrankos žinutes.";
 "autocrypt_send_asm_title" = "Siųsti Autocrypt sąrankos žinutę";
 "autocrypt_send_asm_explain_before" = "\"Autocrypt sąrankos žinutė\" saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis.\n\nSąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
@@ -645,8 +635,6 @@
 "qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
 "please_enter_name" = "Įrašykite vardą.";
 "qraccount_qr_code_cannot_be_used" = "Nuskenuotas QR kodas negali būti naudojamas naujos paskyros nustatymui.";
-// deprecated
-"qraccount_use_on_new_install" = "Nuskenuotas QR kodas yra skirtas naujos paskyros nustatymui. Galite nuskenuoti QR kodą tuomet, kai nustatote naują Delta Chat diegimą.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Prisijungti prie „%1$@“?";
 "contact_verified" = "%1$@ patvirtintas.";
@@ -717,8 +705,6 @@
 "export_backup_desktop" = "Eksportuoti atsarginę kopiją";
 "autocrypt_correct_desktop" = "Autocrypt sąranka sėkmingai perduota!";
 "forget_login_confirmation_desktop" = "Ištrinti šį prisijungimą? Viskas bus ištrinta, įskaitant jūsų ištisinę sąranką, adresatus, pokalbius, žinutes ir mediją. Šis veiksmas yra galutinis ir negalės būti panaikintas.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "El. paštas: %1$@\nDydis: %2$@\nPaskyros Id: %3$@";
 "message_detail_sent_desktop" = "išsiųsta";
 "message_detail_received_desktop" = "gauta";
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";

@@ -27,8 +27,6 @@
 "emoji" = "Emoji";
 "attachment" = "Anexo";
 "back" = "Voltar";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "Verificado";
 "close" = "Fechar";
 "forward" = "Encaminhar";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -297,8 +295,6 @@
 "chat_record_slide_to_cancel" = "Deslize para cancelar";
 "chat_record_explain" = "Toque e segure para gravar uma mensagem de voz e, depois, solte para enviar";
 "chat_no_chats_yet_title" = "Caixa vazia.\nPressione \"+\" para conversar com alguém.";
-// deprecated
-"chat_no_chats_yet_hint" = "Você pode conversar com usuários do Delta Chat e com qualquer e-mail.";
 "chat_all_archived" = "Apenas conversas arquivadas.\nPressione \"+\" para uma nova conversa.";
 "chat_share_with_title" = "Compartilhar com";
 "chat_input_placeholder" = "Mensagem";
@@ -472,8 +468,6 @@
 "login_error_cannot_login" = "Impossível acessar \"%1$@\". Por favor, verifique o e-mail e senha.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Aceitar certificados inválidos";
-// deprecated
-"used_settings" = "Configurações utilizadadas:";
 "switch_account" = "Mudar de conta";
 "add_account" = "Adicionar conta";
 "delete_account" = "Apagar conta";
@@ -636,15 +630,9 @@
 "autodel_after_1_hour" = "Após 1 hora";
 "autodel_after_1_day" = "Após 1 dia";
 "autodel_after_1_week" = "Após 1 semana";
-// deprecated
-"autodel_after_4_weeks" = "Após 4 semanas";
 "after_5_weeks" = "Após 5 semanas ";
 "autodel_after_1_year" = "Após 1 ano";
 // autocrypt
-// deprecated, used "Encryption" if a headline is needed
-"autocrypt" = "Autocrypt";
-// deprecated, the button "Send Autocrypt Setup Message" is enough
-"autocrypt_explain" = "A criptografia automática (Autocrypt) é um padrão novo e aberto para criptografia de e-mail de ponta a ponta. \n\n A sua configuração é feita automaticamente conforme necessário e pode ser compartilhada entre dispositivos diferentes com \"mensagens de configuração do Autocrypt\".";
 "autocrypt_send_asm_title" = "Enviar \"mensagem de configuração do Autocrypt\"?";
 "autocrypt_send_asm_explain_before" = "A \"mensagem de configuração do Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis. \n\nA configuração será criptografada por um código de configuração que será exibido aqui e deverá ser digitado no outro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar \"mensagem de configuração do Autocrypt\"?";
@@ -768,8 +756,6 @@
 "qraccount_ask_create_and_login" = "Criar novo endereço de e-mail em \"%1$@\" e entrar nele?";
 "qraccount_ask_create_and_login_another" = "Criar novo endereço de e-mail em \"%1$@\"  e entrar nele?\n\n nSua conta existente não será excluída. Use o item \"Trocar conta\" para alternar entre suas contas.";
 "qraccount_qr_code_cannot_be_used" = "O código QR lido não pode ser usado para configurar uma nova conta.";
-// deprecated
-"qraccount_use_on_new_install" = "O código QR digitalizado é para configurar uma nova conta. Você pode ler o código QR ao configurar uma nova instalação Delta Chat.";
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login" = "Conectar-se em \"%1$@\"?";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -854,8 +840,6 @@
 "export_backup_desktop" = "Exportar becape";
 "autocrypt_correct_desktop" = "Configuração Autocrypt completada!";
 "forget_login_confirmation_desktop" = "Apagar este login? Tudo será apagado, incluindo sua configuração de criptografia, contatos, conversas, mensagens e mídia. Esta ação é final e irreversível.";
-// deprecated
-"account_info_hover_tooltip_desktop2" = "E-Mail: %1$@\nTamanho: %2$@\nConta Id: %3$@";
 "message_detail_sent_desktop" = "enviado";
 "message_detail_received_desktop" = "recebido";
 "menu.view.developer.open.log.folder" = "Abrir pasta de relatórios";

@@ -27,8 +27,6 @@
 "emoji" = "êmuji";
 "attachment" = "zamima";
 "back" = "vorgaštên";
-// this string is deprecated; the new wording is "introduced by ..."
-"verified" = "taiď biďa";
 "close" = "bastên";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "zênu bêfêšn";
@@ -296,8 +294,6 @@
 "autodel_after_1_hour" = "ba\'ďê 1 sāat";
 "autodel_after_1_day" = "ba\'ďê 1 ru";
 "autodel_after_1_week" = "ba\'ďê 1 hafta";
-// deprecated
-"autodel_after_4_weeks" = "ba\'ďê 4 hafta";
 "after_5_weeks" = "ba\'ďê 5 hafta";
 "autodel_after_1_year" = "ba\'ďê 1 sāl";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
