@@ -19,6 +19,7 @@ class EditContactController: UITableViewController {
         nameCell.textField.text = dcContact.editedName
         nameCell.textField.enablesReturnKeyAutomatically = false
         nameCell.textField.returnKeyType = .done
+        nameCell.useFullWidth()
         nameCell.placeholder = String.localizedStringWithFormat(String.localized("edit_name_placeholder"), authNameOrAddr)
 
         title = String.localized("menu_edit_name")
