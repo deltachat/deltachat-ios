@@ -1,37 +1,64 @@
 import UIKit
 import DcCore
 
-class EditContactController: NewContactController {
+class EditContactController: UITableViewController {
+    let dcContext: DcContext
+    let dcContact: DcContact
+    let authNameOrAddr: String
+    let nameCell = TextFieldCell.makeNameCell()
+    let cells: [UITableViewCell]
 
     init(dcContext: DcContext, contactIdForUpdate: Int) {
-        super.init(dcContext: dcContext)
-        title = String.localized("edit_contact")
+        self.dcContext = dcContext
+        dcContact = dcContext.getContact(id: contactIdForUpdate)
+        authNameOrAddr = dcContact.authName.isEmpty ? dcContact.email : dcContact.authName
+        cells = [nameCell]
+        super.init(style: .grouped)
 
-        let contact = dcContext.getContact(id: contactIdForUpdate)
+        nameCell.textFieldDelegate = self
+        nameCell.textField.text = dcContact.editedName
+        nameCell.textField.enablesReturnKeyAutomatically = false
+        nameCell.textField.returnKeyType = .done
+        nameCell.placeholder = String.localizedStringWithFormat(String.localized("edit_name_placeholder"), authNameOrAddr)
 
-        nameCell.textField.text = contact.editedName
-        if !contact.authName.isEmpty { // else show string "Name" as set by super.init()
-            nameCell.placeholder = contact.authName
-        }
-        emailCell.textField.text = contact.email
-        emailCell.textField.isEnabled = false // only contact name can be edited
-        emailCell.contentView.alpha = 0.3
-
-        model.name = contact.editedName
-        model.email = contact.email
-
-        doneButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveContactButtonPressed))
-        doneButton?.isEnabled = contactIsValid()
-        navigationItem.rightBarButtonItem = doneButton
+        title = String.localized("menu_edit_name")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
     }
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc override func saveContactButtonPressed() {
-        _ = dcContext.createContact(name: model.name, email: model.email)
+    override func viewDidAppear(_: Bool) {
+        nameCell.textField.becomeFirstResponder()
+    }
+
+    @objc func saveButtonPressed() {
+        _ = dcContext.createContact(name: nameCell.textField.text ?? "", email: dcContact.email)
         navigationController?.popViewController(animated: true)
     }
 
+    @objc func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        return cells.count
+    }
+
+    override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return cells[indexPath.row]
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return String.localizedStringWithFormat(String.localized("edit_name_explain"), authNameOrAddr)
+    }
+}
+
+extension EditContactController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        saveButtonPressed()
+        return true
+    }
 }
