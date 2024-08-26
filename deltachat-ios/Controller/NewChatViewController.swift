@@ -15,8 +15,9 @@ class NewChatViewController: UITableViewController {
     private let newOptions: [NewOption]
 
     private let sectionNew = 0
-    private let sectionInviteFriends = 1
-    private let sectionContacts = 2
+    private let sectionContacts = 1
+    private let sectionInviteFriends = 2
+    
     private let sectionsCount = 3
 
     private lazy var searchController: UISearchController = {
