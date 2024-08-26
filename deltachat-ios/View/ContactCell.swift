@@ -407,13 +407,7 @@ class ContactCell: UITableViewCell {
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-
-            if let chatId = contactData.chatId {
-                let chat = cellViewModel.dcContext.getChat(chatId: chatId)
-                if chat.isProtected {
-                    subtitleLabel.isHidden = true
-                }
-            }
+            subtitleLabel.isHidden = contact.isVerified
 
             if let profileImage = contact.profileImage {
                 avatar.setImage(profileImage)
