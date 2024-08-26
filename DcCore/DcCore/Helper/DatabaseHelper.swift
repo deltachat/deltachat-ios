@@ -16,7 +16,12 @@ public class DatabaseHelper {
     }
 
     var localDbFile: String {
-        return FileManager.default.localDocumentsDir.appendingPathComponent("messenger.db").path
+        return localDocumentsDir.appendingPathComponent("messenger.db").path
+    }
+
+    var localDocumentsDir: URL {
+        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
+        return URL(fileURLWithPath: paths[0], isDirectory: true)
     }
 
     public var unmanagedDatabaseLocation: String? {

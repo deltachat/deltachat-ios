@@ -28,7 +28,6 @@
 		78072F172A040ED800EB7C98 /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78072F162A040ED800EB7C98 /* libdeltachat.a */; };
 		7871729629BA495200F110DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7871729529BA495200F110DC /* SystemConfiguration.framework */; };
 		B2F691252C0790140010D9B1 /* DcVcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F691242C0790140010D9B1 /* DcVcard.swift */; };
-		D8242BB82C74817B005FC48F /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8242BB72C74817B005FC48F /* FileManager+Extensions.swift */; };
 		D8BBF0032B57D8E5008C96FD /* DcAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0022B57D8E5008C96FD /* DcAccount.swift */; };
 		D8BBF0052B57D904008C96FD /* DcContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0042B57D904008C96FD /* DcContext.swift */; };
 		D8BBF0072B57D91B008C96FD /* DcEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0062B57D91B008C96FD /* DcEventEmitter.swift */; };
@@ -71,7 +70,6 @@
 		7827C88A2A0408A700B8470D /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/deltachat-core-rust/libdeltachat.a"; sourceTree = "<group>"; };
 		7871729529BA495200F110DC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		B2F691242C0790140010D9B1 /* DcVcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DcVcard.swift; sourceTree = "<group>"; };
-		D8242BB72C74817B005FC48F /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		D8BBF0022B57D8E5008C96FD /* DcAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcAccount.swift; sourceTree = "<group>"; };
 		D8BBF0042B57D904008C96FD /* DcContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcContext.swift; sourceTree = "<group>"; };
 		D8BBF0062B57D91B008C96FD /* DcEventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcEventEmitter.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 				304F5E40244F2F3200462538 /* UIImage+Extensions.swift */,
 				308198AA24866229003BE20D /* UserDefaults+Extensions.swift */,
 				3057028524C5C60000D84EFC /* UITableView+Extensions.swift */,
-				D8242BB72C74817B005FC48F /* FileManager+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,7 +300,6 @@
 				D8BBF0072B57D91B008C96FD /* DcEventEmitter.swift in Sources */,
 				D8BBF00F2B57D959008C96FD /* DcArray.swift in Sources */,
 				30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */,
-				D8242BB82C74817B005FC48F /* FileManager+Extensions.swift in Sources */,
 				30421962243E26C800516852 /* Logger.swift in Sources */,
 				30421986243F209E00516852 /* events.swift in Sources */,
 				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
