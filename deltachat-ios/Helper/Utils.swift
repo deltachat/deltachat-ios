@@ -88,7 +88,11 @@ struct Utils {
     }
 
     public static func share(text: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
-        guard let data = text.data(using: .unicode) else { return }
+        guard let textData = text.data(using: .utf8) else { return }
+
+        // UTF-8 byte order mark, commonly seen in text files. See [List Of file signatures](https://en.wikipedia.org/wiki/List_of_file_signatures)
+        var data = Data([0xEF, 0xBB, 0xBF])
+        data.append(textData)
 
         let tempLogfileURL = FileManager.default.temporaryDirectory.appendingPathComponent("deltachat-log.txt")
         try? FileManager.default.removeItem(at: tempLogfileURL)
