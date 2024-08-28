@@ -23,7 +23,6 @@ class ContactDetailViewModel {
     enum ChatAction {
         case archiveChat
         case showEncrInfo
-        case copyToClipboard
         case blockContact
         case clearChat
         case deleteChat
@@ -98,14 +97,13 @@ class ContactDetailViewModel {
             chatActions = [.archiveChat]
             if !isDeviceTalk && !isSavedMessages {
                 chatActions.append(.showEncrInfo)
-                chatActions.append(.copyToClipboard)
                 chatActions.append(.blockContact)
             }
             chatActions.append(.clearChat)
             chatActions.append(.deleteChat)
         } else {
             chatOptions.append(.startChat)
-            chatActions = [.showEncrInfo, .copyToClipboard, .blockContact]
+            chatActions = [.showEncrInfo, .blockContact]
         }
     }
 
