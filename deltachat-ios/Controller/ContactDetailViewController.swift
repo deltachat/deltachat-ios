@@ -40,13 +40,6 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var copyToClipboardCell: ActionCell = {
-        let cell = ActionCell()
-        cell.actionTitle = String.localized("menu_copy_to_clipboard")
-        cell.actionColor = UIColor.systemBlue
-        return cell
-    }()
-
     private lazy var blockContactCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
@@ -206,8 +199,6 @@ class ContactDetailViewController: UITableViewController {
                 return archiveChatCell
             case .showEncrInfo:
                 return showEncrInfoCell
-            case .copyToClipboard:
-                return copyToClipboardCell
             case .blockContact:
                 return blockContactCell
             case .clearChat:
@@ -341,9 +332,6 @@ class ContactDetailViewController: UITableViewController {
         case .showEncrInfo:
             tableView.deselectRow(at: indexPath, animated: false)
             showEncrInfoAlert()
-        case .copyToClipboard:
-            tableView.deselectRow(at: indexPath, animated: true)
-            UIPasteboard.general.string = viewModel.contact.email
         case .blockContact:
             tableView.deselectRow(at: indexPath, animated: false)
             toggleBlockContact()
