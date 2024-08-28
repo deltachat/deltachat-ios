@@ -147,7 +147,6 @@ class ContactDetailHeader: UIView {
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillEqually
         horizontalStackView.alignment = .center
-        horizontalStackView.constraintAlignLeadingToAnchor(verticalStackView.trailingAnchor).isActive = true
         horizontalStackView.constraintAlignTrailingToAnchor(trailingAnchor, paddingTrailing: margin).isActive = true
         horizontalStackView.constraintCenterYTo(self).isActive = true
         horizontalStackView.spacing = margin
