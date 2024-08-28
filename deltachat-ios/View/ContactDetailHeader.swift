@@ -23,6 +23,7 @@ class ContactDetailHeader: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
+        label.isUserInteractionEnabled = true
         label.textColor = DcColors.defaultTextColor
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         label.adjustsFontForContentSizeCategory = true
@@ -31,11 +32,19 @@ class ContactDetailHeader: UIView {
         return label
     }()
 
-    private lazy var titleLabelContainer: UIStackView = {
+    private(set) lazy var titleLabelContainer: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, greenCheckmark, spacerView])
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 4
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
+    private(set) lazy var labelsContainer: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabelContainer, subtitleLabel])
+        stackView.clipsToBounds = true
+        stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -59,12 +68,16 @@ class ContactDetailHeader: UIView {
         return imgView
     }()
 
+    // warum reagiert dieses label nich auf long press, was ist so besonders an dem?
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .subheadline)
-        label.textColor = UIColor(hexString: "848ba7")
         label.lineBreakMode = .byTruncatingTail
+        label.isUserInteractionEnabled = true
+        label.textColor = UIColor(hexString: "848ba7")
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         label.adjustsFontForContentSizeCategory = true
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -118,15 +131,13 @@ class ContactDetailHeader: UIView {
 
     private func setupSubviews() {
         let margin: CGFloat = 10
-        let verticalStackView = UIStackView(arrangedSubviews: [titleLabelContainer, subtitleLabel])
         let horizontalStackView = UIStackView(arrangedSubviews: [searchButton, muteButton])
 
         addSubview(avatar)
-        addSubview(verticalStackView)
+        addSubview(labelsContainer)
         addSubview(horizontalStackView)
 
         avatar.translatesAutoresizingMaskIntoConstraints = false
-        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
 
         addConstraints([
@@ -138,11 +149,9 @@ class ContactDetailHeader: UIView {
             greenCheckmark.widthAnchor.constraint(equalTo: greenCheckmark.heightAnchor),
         ])
 
-        verticalStackView.clipsToBounds = true
-        verticalStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
-        verticalStackView.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor, constant: -margin).isActive = true
-        verticalStackView.axis = .vertical
+        labelsContainer.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
+        labelsContainer.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
+        labelsContainer.trailingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor, constant: -margin).isActive = true
 
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillEqually
