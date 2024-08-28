@@ -12,6 +12,12 @@ class ContactDetailViewController: UITableViewController {
         headerCell.onMuteButtonTapped = toggleMuteChat
         headerCell.onSearchButtonTapped = showSearch
         headerCell.setRecentlySeen(viewModel.contact.wasSeenRecently)
+
+        if viewModel.isSavedMessages == false && viewModel.isDeviceTalk == false {
+            let copyContactGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ContactDetailViewController.showCopyToClipboard))
+            headerCell.labelsContainer.addGestureRecognizer(copyContactGestureRecognizer)
+        }
+
         return headerCell
     }()
 
@@ -323,6 +329,24 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: - actions
+
+    @objc private func showCopyToClipboard() {
+        UIMenuController.shared.menuItems = [
+            UIMenuItem(title: String.localized("menu_copy_to_clipboard"), action: #selector(ContactDetailViewController.copyToClipboard))
+        ]
+
+        if #available(iOS 13.0, *) {
+            UIMenuController.shared.showMenu(from: headerCell.titleLabelContainer, rect: headerCell.titleLabelContainer.frame)
+        } else {
+            UIMenuController.shared.setTargetRect(headerCell.titleLabelContainer.frame, in: headerCell)
+            UIMenuController.shared.setMenuVisible(true, animated: true)
+        }
+    }
+
+    @objc private func copyToClipboard() {
+        UIPasteboard.general.string = viewModel.contact.email
+    }
+
     private func handleChatAction(indexPath: IndexPath) {
         let action = viewModel.chatActionFor(row: indexPath.row)
         switch action {
