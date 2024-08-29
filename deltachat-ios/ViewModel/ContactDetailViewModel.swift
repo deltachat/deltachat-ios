@@ -91,6 +91,9 @@ class ContactDetailViewModel {
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
                 chatOptions.append(.startChat)
+            }
+
+            if isSavedMessages == false && isDeviceTalk == false {
                 chatOptions.append(.shareContact)
             }
 
