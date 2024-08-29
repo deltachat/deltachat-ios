@@ -11,6 +11,7 @@ class RelayHelper {
     var forwardText: String?
     var forwardFileData: Data?
     var forwardFileName: String?
+    var forwardVCardData: Data?
 
     var mailtoDraft: String = ""
     var mailtoAddress: String?
@@ -29,6 +30,11 @@ class RelayHelper {
 
 
     // forwarding messages
+
+    func setForwardVCard(dialogTitle: String, vcardData: Data) {
+        self.dialogTitle = dialogTitle
+        self.forwardVCardData = vcardData
+    }
 
     func setForwardMessage(dialogTitle: String, text: String?, fileData: Data?, fileName: String?) {
         finishRelaying()
@@ -53,7 +59,7 @@ class RelayHelper {
     }
 
     func isForwarding() -> Bool {
-        return forwardIds != nil || forwardText != nil || forwardFileData != nil
+        return forwardIds != nil || forwardText != nil || forwardFileData != nil || forwardVCardData != nil
     }
 
     func forwardIdsAndFinishRelaying(to chat: Int) {
@@ -69,6 +75,7 @@ class RelayHelper {
         forwardText = nil
         forwardFileData = nil
         forwardFileName = nil
+        forwardVCardData = nil
         mailtoDraft = ""
         mailtoAddress = nil
         askToChatWithMailto = true
