@@ -8,7 +8,6 @@ class ContactDetailViewModel {
     enum ProfileSections {
         case chatOptions
         case statusArea
-        case shareContact
         case sharedChats
         case chatActions
     }
@@ -18,6 +17,7 @@ class ContactDetailViewModel {
         case allMedia
         case locations
         case ephemeralMessages
+        case shareContact
         case startChat
     }
 
@@ -73,8 +73,6 @@ class ContactDetailViewModel {
             sections.append(.statusArea)
         }
 
-        sections.append(.shareContact)
-
         if sharedChats.length > 0 && !isSavedMessages && !isDeviceTalk {
             sections.append(.sharedChats)
         }
@@ -92,9 +90,8 @@ class ContactDetailViewModel {
         if chatId != 0 {
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
-            }
-            if !isDeviceTalk {
                 chatOptions.append(.startChat)
+                chatOptions.append(.shareContact)
             }
 
             chatActions = [.archiveChat]
@@ -145,7 +142,7 @@ class ContactDetailViewModel {
     func numberOfRowsInSection(_ section: Int) -> Int {
         switch sections[section] {
         case .chatOptions: return chatOptions.count
-        case .statusArea, .shareContact: return 1
+        case .statusArea: return 1
         case .sharedChats: return sharedChats.length
         case .chatActions: return chatActions.count
         }
@@ -180,10 +177,9 @@ class ContactDetailViewModel {
 
     func titleFor(section: Int) -> String? {
         switch sections[section] {
-        case .chatOptions, .shareContact: return nil
         case .statusArea: return (isSavedMessages || isDeviceTalk) ? nil : String.localized("pref_default_status_label")
         case .sharedChats: return String.localized("profile_shared_chats")
-        case .chatActions: return nil
+        case .chatOptions, .chatActions: return nil
         }
     }
 
@@ -197,8 +193,7 @@ class ContactDetailViewModel {
             } else {
                 return String.localizedStringWithFormat(String.localized("last_seen_at"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(lastSeen)))
             }
-
-        case .statusArea, .sharedChats, .chatActions, .shareContact: return nil
+        case .statusArea, .sharedChats, .chatActions: return nil
         }
     }
 

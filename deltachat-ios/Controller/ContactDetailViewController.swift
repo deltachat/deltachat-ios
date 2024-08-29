@@ -203,11 +203,11 @@ class ContactDetailViewController: UITableViewController {
                 return ephemeralMessagesCell
             case .startChat:
                 return startChatCell
+            case .shareContact:
+                return shareContactCell
             }
         case .statusArea:
             return statusCell
-        case .shareContact:
-            return shareContactCell
         case .chatActions:
             switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
@@ -238,8 +238,6 @@ class ContactDetailViewController: UITableViewController {
             handleChatOption(indexPath: indexPath)
         case .statusArea:
             break
-        case .shareContact:
-            shareContact()
         case .chatActions:
             handleChatAction(indexPath: indexPath)
         case .sharedChats:
@@ -405,6 +403,8 @@ class ContactDetailViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: false)
             let contactId = viewModel.contactId
             chatWith(contactId: contactId)
+        case .shareContact:
+            shareContact()
         }
     }
 
