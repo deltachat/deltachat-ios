@@ -307,6 +307,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if RelayHelper.shared.isForwarding() {
             if RelayHelper.shared.forwardIds != nil {
                 askToForwardMessage()
+            } else if let vcardData = RelayHelper.shared.forwardVCardData,
+                      let vcardURL = prepareVCardData(vcardData) {
+                stageVCard(url: vcardURL)
+                RelayHelper.shared.finishRelaying()
             } else if RelayHelper.shared.forwardFileData != nil || RelayHelper.shared.forwardText != nil {
                 if let text = RelayHelper.shared.forwardText {
                     messageInputBar.inputTextView.text = text
@@ -2803,15 +2807,22 @@ extension ChatViewController: ChatDropInteractionDelegate {
 
 extension ChatViewController: SendContactViewControllerDelegate {
     func contactSelected(_ viewController: SendContactViewController, contactId: Int) {
-        guard let vcardData = dcContext.makeVCard(contactIds: [contactId]),
-              let fileName = FileHelper.saveData(data: vcardData,
-                                                 name: UUID().uuidString,
-                                                 suffix: "vcf",
-                                                 directory: .cachesDirectory),
-              let vcardURL = URL(string: fileName)
-        else { return }
+        guard let vcardData = dcContext.makeVCard(contactIds: [contactId]), 
+                let vcardURL = prepareVCardData(vcardData) else { return }
 
         stageVCard(url: vcardURL)
+    }
+
+    private func prepareVCardData(_ vcardData: Data) -> URL? {
+        guard let fileName = FileHelper.saveData(data: vcardData,
+                                           name: UUID().uuidString,
+                                           suffix: "vcf",
+                                           directory: .cachesDirectory),
+              let vcardURL = URL(string: fileName) else {
+            return nil
+        }
+
+        return vcardURL
     }
 }
 
