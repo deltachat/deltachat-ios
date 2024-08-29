@@ -342,9 +342,10 @@ class ContactDetailViewController: UITableViewController {
 
     // MARK: - actions
     @objc private func shareContact() {
-        // compare to `forward`.
-        // 1. select chat you want to forward this contact to.
-        // 2. stage this very contacts vcard
+        guard let vcardData = viewModel.context.makeVCard(contactIds: [viewModel.contactId]) else { return }
+
+        RelayHelper.shared.setForwardVCard(dialogTitle: String.localized("forward_to"), vcardData: vcardData)
+        navigationController?.popToRootViewController(animated: true)
     }
 
     @objc private func showCopyToClipboard() {
