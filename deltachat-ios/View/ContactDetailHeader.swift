@@ -68,7 +68,6 @@ class ContactDetailHeader: UIView {
         return imgView
     }()
 
-    // warum reagiert dieses label nich auf long press, was ist so besonders an dem?
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
