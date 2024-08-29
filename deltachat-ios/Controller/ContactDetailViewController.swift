@@ -29,6 +29,13 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var shareContactCell: ActionCell = {
+        let cell = ActionCell()
+        cell.actionTitle = String.localized("menu_share")
+        cell.actionColor = UIColor.systemBlue
+        return cell
+    }()
+
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
@@ -199,6 +206,8 @@ class ContactDetailViewController: UITableViewController {
             }
         case .statusArea:
             return statusCell
+        case .shareContact:
+            return shareContactCell
         case .chatActions:
             switch viewModel.chatActionFor(row: row) {
             case .archiveChat:
@@ -229,12 +238,15 @@ class ContactDetailViewController: UITableViewController {
             handleChatOption(indexPath: indexPath)
         case .statusArea:
             break
+        case .shareContact:
+            shareContact()
         case .chatActions:
             handleChatAction(indexPath: indexPath)
         case .sharedChats:
             let chatId = viewModel.getSharedChatIdAt(indexPath: indexPath)
             showChat(chatId: chatId)
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -329,6 +341,11 @@ class ContactDetailViewController: UITableViewController {
     }
 
     // MARK: - actions
+    @objc private func shareContact() {
+        // compare to `forward`.
+        // 1. select chat you want to forward this contact to.
+        // 2. stage this very contacts vcard
+    }
 
     @objc private func showCopyToClipboard() {
         UIMenuController.shared.menuItems = [
