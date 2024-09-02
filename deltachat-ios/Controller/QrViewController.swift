@@ -6,8 +6,11 @@ import SDWebImageSVGKitPlugin
 class QrViewController: UIViewController {
 
     private let dcContext: DcContext
-    var onDismissed: (() -> Void)?
+
+    private let contentStackView: UIStackView
+
     private let qrContentView: UIImageView
+    private let shareLinkButton: UIButton
 
     private let moreButton: UIBarButtonItem
 
@@ -29,6 +32,16 @@ class QrViewController: UIViewController {
         qrContentView.contentMode = .scaleAspectFit
         qrContentView.translatesAutoresizingMaskIntoConstraints = false
 
+        shareLinkButton = UIButton(type: .system)
+        shareLinkButton.setTitle("Share Invite Link", for: .normal)
+        shareLinkButton.translatesAutoresizingMaskIntoConstraints = false
+
+        contentStackView = UIStackView(arrangedSubviews: [qrContentView, shareLinkButton])
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        contentStackView.axis = .vertical
+        contentStackView.alignment = .center
+        contentStackView.spacing = 16
+
         let moreButtonImage: UIImage?
         if #available(iOS 13.0, *) {
             moreButtonImage = UIImage(systemName: "ellipsis.circle")
@@ -46,12 +59,13 @@ class QrViewController: UIViewController {
         navigationItem.rightBarButtonItem = moreButton
         moreButton.action = #selector(QrViewController.showMoreOptions(_:))
         moreButton.target = self
+        shareLinkButton.addTarget(self, action: #selector(QrViewController.shareInviteLink(_:)), for: .touchUpInside)
+        shareLinkButton.setTitleColor(DcColors.primary, for: .normal)
 
         let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
         qrContentView.image = getQrImage(svg: svg)
-        qrContentView.backgroundColor = .yellow
 
-        view.addSubview(qrContentView)
+        view.addSubview(contentStackView)
 
         setupConstraints()
     }
@@ -60,8 +74,6 @@ class QrViewController: UIViewController {
 
     private func setupConstraints() {
 
-        // TODO: Calculate qrContentView.height based on width-constraint and image-ratio.
-        
         let qrImageRatio: CGFloat
         if let image = qrContentView.image {
             qrImageRatio = image.size.height / image.size.width
@@ -73,18 +85,15 @@ class QrViewController: UIViewController {
             qrContentView.widthAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75),
             qrContentView.widthAnchor.constraint(lessThanOrEqualToConstant: 260),
             qrContentView.heightAnchor.constraint(equalTo: qrContentView.widthAnchor, multiplier: qrImageRatio),
-            qrContentView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            qrContentView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+
+            contentStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            contentStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ]
 
         NSLayoutConstraint.activate(constraints)
     }
 
     // MARK: - lifecycle
-
-    override func viewDidDisappear(_ animated: Bool) {
-        onDismissed?()
-    }
 
     func getQrImage(svg: String?) -> UIImage? {
         guard let svg else { return nil }
@@ -94,7 +103,13 @@ class QrViewController: UIViewController {
         return image
     }
 
-    // MARK: - actions
+    // MARK: - Actions
+    @objc private func shareInviteLink(_ sender: UIButton) {
+        guard let inviteLink = Utils.getInviteLink(context: dcContext, chatId: chatId), let inviteLinkURL = URL(string: inviteLink) else { return }
+
+        Utils.share(url: inviteLinkURL, parentViewController: self, sourceView: sender)
+    }
+
 
     // Only relevant for GroupChatDetails, for QR-Code-Tab, this gets handled by QrPageController
     @objc private func showMoreOptions(_ sender: Any) {
