@@ -5,7 +5,7 @@ class QrPageController: UIPageViewController {
     private let dcContext: DcContext
     private let dcAccounts: DcAccounts
     var progressObserver: NSObjectProtocol?
-    var qrCodeReaderController: QrCodeReaderController?
+    let qrCodeReaderController: QrCodeReaderController
 
     private var selectedIndex: Int = 0
 
@@ -52,7 +52,11 @@ class QrPageController: UIPageViewController {
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
+
+        qrCodeReaderController = QrCodeReaderController(title: String.localized("qrscan_title"))
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
+
+        qrCodeReaderController.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -81,19 +85,14 @@ class QrPageController: UIPageViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        // QrCodeReaderController::viewWillAppear() is on called on section change, not on main-tab change
-        if let qrCodeReaderController = self.qrCodeReaderController {
-            qrCodeReaderController.startSession()
-        }
+        // QrCodeReaderController.viewWillAppear() is on called on section change, not on main-tab change
+        qrCodeReaderController.startSession()
         updateHintTextIfNeeded()    // needed in case user changes profile name
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        // QrCodeReaderController::viewWillDisappear() is on called on section change, not on main-tab change
-        if let qrCodeReaderController = self.qrCodeReaderController {
-            qrCodeReaderController.stopSession()
-        }
-
+        // QrCodeReaderController.viewWillDisappear() is on called on section change, not on main-tab change
+        qrCodeReaderController.stopSession()
         self.progressObserver = nil
     }
 
@@ -103,8 +102,6 @@ class QrPageController: UIPageViewController {
             let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
             setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
         } else {
-            let qrCodeReaderController = makeQRReader()
-            self.qrCodeReaderController = qrCodeReaderController
             setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
         }
     }
@@ -161,13 +158,6 @@ class QrPageController: UIPageViewController {
         handleQrCode(UIPasteboard.general.string ?? "")
     }
 
-    // MARK: - factory
-    private func makeQRReader() -> QrCodeReaderController {
-        let qrReader = QrCodeReaderController(title: String.localized("qrscan_title"))
-        qrReader.delegate = self
-        return qrReader
-    }
-
     // MARK: - update
     private func updateHintTextIfNeeded() {
         for case let qrViewController as QrViewController in self.viewControllers ?? [] {
@@ -197,15 +187,17 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if viewController is QrViewController {
             return nil
+        } else {
+            return QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
         }
-        return QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if viewController is QrViewController {
-            return makeQRReader()
+            return qrCodeReaderController
+        } else {
+            return nil
         }
-        return nil
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
