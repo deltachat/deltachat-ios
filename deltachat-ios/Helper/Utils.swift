@@ -2,9 +2,20 @@ import Foundation
 import UIKit
 import DcCore
 
-struct Utils {
-    private static let inviteDomain = "i.delta.chat"
 
+extension URL {
+    var isDeltaChatInvitation: Bool {
+        if let host, host == Utils.inviteDomain {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+struct Utils {
+    public static let inviteDomain = "i.delta.chat"
+
+    // MARK: - Email
     static func isEmail(url: URL) -> Bool {
         let mailScheme = "mailto"
         if let scheme = url.scheme {
@@ -42,12 +53,28 @@ struct Utils {
         return window?.safeAreaInsets.bottom ?? 0
     }
 
+    public static func makeDeltaChatInvitationQRCode(from url: URL) -> String? {
+        guard url.isDeltaChatInvitation else { return nil }
+
+        var urlString = url.absoluteString
+
+        guard let prefixRange = urlString.range(of: "https://\(inviteDomain)/#") else { return nil }
+
+        urlString.replaceSubrange(prefixRange, with: "OPENPGP4FPR:")
+        guard let firstAmpersandIndex = urlString.firstIndex(of: "&") else { return nil }
+        let plusOne = urlString.index(after: firstAmpersandIndex)
+        let ampersandRange = firstAmpersandIndex..<plusOne
+        urlString.replaceSubrange(ampersandRange, with: "#")
+
+        return urlString
+    }
+
     public static func getInviteLink(context: DcContext, chatId: Int) -> String? {
         // convert `OPENPGP4FPR:FPR#a=ADDR&n=NAME&...` to `https://i.delta.chat/#FPR&a=ADDR&n=NAME&...`
-        if var data = context.getSecurejoinQr(chatId: chatId), let range = data.range(of: "#") {
-            data.replaceSubrange(range, with: "&")
-            if let range = data.range(of: "OPENPGP4FPR:") {
-                data.replaceSubrange(range, with: "https://" + inviteDomain + "/#")
+        if var data = context.getSecurejoinQr(chatId: chatId), let hashRange = data.range(of: "#") {
+            data.replaceSubrange(hashRange, with: "&")
+            if let schemeRange = data.range(of: "OPENPGP4FPR:") {
+                data.replaceSubrange(schemeRange, with: "https://" + inviteDomain + "/#")
                 return data
             }
         }

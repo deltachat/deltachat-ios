@@ -2411,6 +2411,11 @@ extension ChatViewController: BaseMessageCellDelegate {
         if Utils.isEmail(url: url) {
             let email = Utils.getEmailFrom(url)
             self.askToChatWith(email: email)
+        } else if url.isDeltaChatInvitation,
+                  let qrCode = Utils.makeDeltaChatInvitationQRCode(from: url),
+                  let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                  let appCoordinator = appDelegate.appCoordinator {
+            appCoordinator.handleQRCode(qrCode)
         } else {
             UIApplication.shared.open(url)
         }
