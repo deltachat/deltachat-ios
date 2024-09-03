@@ -6,6 +6,7 @@ class QrPageController: UIPageViewController {
     private let dcAccounts: DcAccounts
     var progressObserver: NSObjectProtocol?
     let qrCodeReaderController: QrCodeReaderController
+    let qrViewController: QrViewController
 
     private var selectedIndex: Int = 0
 
@@ -53,10 +54,12 @@ class QrPageController: UIPageViewController {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
 
+        qrViewController = QrViewController(dcContext: dcContext)
         qrCodeReaderController = QrCodeReaderController(title: String.localized("qrscan_title"))
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
 
         qrCodeReaderController.delegate = self
+        qrViewController.qrCodeHint = self.qrCodeHint
     }
 
     required init?(coder: NSCoder) {
@@ -71,9 +74,8 @@ class QrPageController: UIPageViewController {
         navigationItem.titleView = qrSegmentControl
         navigationItem.rightBarButtonItem = moreButton
 
-        let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
         setViewControllers(
-            [qrController],
+            [qrViewController],
             direction: .forward,
             animated: true,
             completion: nil
@@ -99,8 +101,7 @@ class QrPageController: UIPageViewController {
     // MARK: - actions
     @objc private func qrSegmentControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            let qrController = QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
-            setViewControllers([qrController], direction: .reverse, animated: true, completion: nil)
+            setViewControllers([qrViewController], direction: .reverse, animated: true, completion: nil)
         } else {
             setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
         }
@@ -160,11 +161,9 @@ class QrPageController: UIPageViewController {
 
     // MARK: - update
     private func updateHintTextIfNeeded() {
-        for case let qrViewController as QrViewController in self.viewControllers ?? [] {
-            let newHint = qrCodeHint
-            if qrCodeHint != qrViewController.qrCodeHint {
-                qrViewController.qrCodeHint = newHint
-            }
+        let newHint = qrCodeHint
+        if newHint != qrViewController.qrCodeHint {
+            qrViewController.qrCodeHint = newHint
         }
     }
 
@@ -188,7 +187,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         if viewController is QrViewController {
             return nil
         } else {
-            return QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)
+            return qrViewController
         }
     }
 
