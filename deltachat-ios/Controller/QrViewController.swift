@@ -36,7 +36,7 @@ class QrViewController: UIViewController {
         qrContentView.translatesAutoresizingMaskIntoConstraints = false
 
         shareLinkButton = UIButton(type: .system)
-        shareLinkButton.setTitle("Share Invite Link", for: .normal)
+        shareLinkButton.setTitle(String.localized("share_invite_link"), for: .normal)
         shareLinkButton.translatesAutoresizingMaskIntoConstraints = false
 
         contentStackView = UIStackView(arrangedSubviews: [qrContentView, shareLinkButton, UIView()])
