@@ -8,11 +8,14 @@ class QrViewController: UIViewController {
     private let dcContext: DcContext
 
     private let contentStackView: UIStackView
-
+    private let contentScrollView: UIScrollView
     private let qrContentView: UIImageView
     private let shareLinkButton: UIButton
-
     private let moreButton: UIBarButtonItem
+
+    var verticalCenterConstraint: NSLayoutConstraint?
+    var contentTopAnchor: NSLayoutConstraint?
+    var contentBottomAnchor: NSLayoutConstraint?
 
     var qrCodeHint: String {
         willSet {
@@ -36,11 +39,15 @@ class QrViewController: UIViewController {
         shareLinkButton.setTitle("Share Invite Link", for: .normal)
         shareLinkButton.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [qrContentView, shareLinkButton])
+        contentStackView = UIStackView(arrangedSubviews: [qrContentView, shareLinkButton, UIView()])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
         contentStackView.spacing = 16
+
+        contentScrollView = UIScrollView()
+        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentScrollView.addSubview(contentStackView)
 
         let moreButtonImage: UIImage?
         if #available(iOS 13.0, *) {
@@ -65,7 +72,7 @@ class QrViewController: UIViewController {
         let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
         qrContentView.image = getQrImage(svg: svg)
 
-        view.addSubview(contentStackView)
+        view.addSubview(contentScrollView)
 
         setupConstraints()
     }
@@ -81,20 +88,51 @@ class QrViewController: UIViewController {
             qrImageRatio = 1
         }
 
+        verticalCenterConstraint = contentStackView.centerYAnchor.constraint(equalTo: contentScrollView.centerYAnchor)
+        contentTopAnchor = contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: 16)
+        contentBottomAnchor = contentScrollView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor, constant: 16)
+
         let constraints = [
             qrContentView.widthAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75),
             qrContentView.widthAnchor.constraint(lessThanOrEqualToConstant: 260),
             qrContentView.heightAnchor.constraint(equalTo: qrContentView.widthAnchor, multiplier: qrImageRatio),
 
-            contentStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            contentStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            contentScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            contentScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
+
+            contentStackView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor),
+            contentScrollView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor),
+
+            contentStackView.centerXAnchor.constraint(equalTo: contentScrollView.centerXAnchor),
         ]
 
+        traitCollectionDidChange(traitCollection)
         NSLayoutConstraint.activate(constraints)
     }
 
-    // MARK: - lifecycle
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        let orientation = UIApplication.shared.statusBarOrientation
 
+        switch orientation {
+        case .portrait, .portraitUpsideDown:
+            verticalCenterConstraint?.isActive = true
+            contentTopAnchor?.isActive = false
+            contentBottomAnchor?.isActive = false
+        case .landscapeLeft, .landscapeRight:
+            verticalCenterConstraint?.isActive = false
+            contentTopAnchor?.isActive = true
+            contentBottomAnchor?.isActive = true
+        case .unknown:
+            // do nothing
+            break
+        @unknown default:
+            break
+        }
+    }
+
+    // MARK: - lifecycle
     func getQrImage(svg: String?) -> UIImage? {
         guard let svg else { return nil }
 
@@ -109,7 +147,6 @@ class QrViewController: UIViewController {
 
         Utils.share(url: inviteLinkURL, parentViewController: self, sourceView: sender)
     }
-
 
     // Only relevant for GroupChatDetails, for QR-Code-Tab, this gets handled by QrPageController
     @objc private func showMoreOptions(_ sender: Any) {
