@@ -54,19 +54,22 @@ struct Utils {
     }
 
     public static func makeDeltaChatInvitationQRCode(from url: URL) -> String? {
-        guard url.isDeltaChatInvitation else { return nil }
+        guard url.isDeltaChatInvitation,
+              let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+              let fragment = components.fragment else { return nil }
+              
+        let fragments = fragment.split(separator: "&")
 
-        var urlString = url.absoluteString
+        guard let fingerprint = fragments.first else { return nil }
 
-        guard let prefixRange = urlString.range(of: "https://\(inviteDomain)/#") else { return nil }
+        var qrcodeString = "OPENPGP4FPR:"
+        qrcodeString.append(String(fingerprint))
+        qrcodeString.append("#")
 
-        urlString.replaceSubrange(prefixRange, with: "OPENPGP4FPR:")
-        guard let firstAmpersandIndex = urlString.firstIndex(of: "&") else { return nil }
-        let plusOne = urlString.index(after: firstAmpersandIndex)
-        let ampersandRange = firstAmpersandIndex..<plusOne
-        urlString.replaceSubrange(ampersandRange, with: "#")
+        let queryParams = fragments.dropFirst().joined(separator: "&")
+        qrcodeString.append(queryParams)
 
-        return urlString
+        return qrcodeString
     }
 
     public static func getInviteLink(context: DcContext, chatId: Int) -> String? {
