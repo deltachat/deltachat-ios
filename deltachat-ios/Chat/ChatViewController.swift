@@ -1725,8 +1725,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
-                self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil)
+                if self.draft.draftMsg != nil {
+                    draft.setAttachment(viewType: DC_MSG_STICKER, path: path)
+                }
+                self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil, quoteMessage: self.draft.quoteMessage)
+
                 FileHelper.deleteFile(atPath: path)
+                self.draft.clear()
+                DispatchQueue.main.async {
+                    self.draftArea.quotePreview.cancel()
+                }
             }
         }
     }
