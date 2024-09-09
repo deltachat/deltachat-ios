@@ -53,7 +53,7 @@ class ImageTextCell: BaseMessageCell {
         showBottomLabelBackground = !msg.hasHtml && hasEmptyText
         mainContentView.spacing = msg.text?.isEmpty ?? false ? 0 : 6
         topCompactView = msg.quoteText == nil ? true : false
-        isTransparent = msg.type == DC_MSG_STICKER
+        isTransparent = (msg.type == DC_MSG_STICKER && msg.quoteMessage == nil)
         topLabel.isHidden = msg.type == DC_MSG_STICKER
         contentImageIsPlaceholder = true
         tag = msg.id

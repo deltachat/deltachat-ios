@@ -1743,9 +1743,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let msg = draft.draftMsg ?? dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: filePath)
         msg.text = (message ?? "").isEmpty ? nil : message
-        if quoteMessage != nil {
-            msg.quoteMessage = quoteMessage
-        }
+        msg.quoteMessage = quoteMessage
+
         dcContext.sendMessage(chatId: self.chatId, message: msg)
     }
 
