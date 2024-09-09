@@ -1723,18 +1723,17 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
-            if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
-                if self.draft.draftMsg != nil {
-                    draft.setAttachment(viewType: DC_MSG_STICKER, path: path)
-                }
-                self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil, quoteMessage: self.draft.quoteMessage)
+            guard let self, let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) else { return }
+            
+            if self.draft.draftMsg != nil {
+                self.draft.setAttachment(viewType: DC_MSG_STICKER, path: path)
+            }
+            self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil, quoteMessage: self.draft.quoteMessage)
 
-                FileHelper.deleteFile(atPath: path)
-                self.draft.clear()
-                DispatchQueue.main.async {
-                    self.draftArea.quotePreview.cancel()
-                }
+            FileHelper.deleteFile(atPath: path)
+            self.draft.clear()
+            DispatchQueue.main.async {
+                self.draftArea.quotePreview.cancel()
             }
         }
     }
