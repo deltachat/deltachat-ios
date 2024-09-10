@@ -1,5 +1,23 @@
 # Delta Chat iOS Changelog
 
+## v1.46.10 (2024-09)
+
+- Add "Share invite link"-button to "QR Invite Code"-Screen (#2276)
+- Enhance "edit name" dialog (#2286)
+- Share contact from "contact profile" (#2273)
+- Share Log as file (#2205)
+- Tune down "copy to clipboard" on "contact profile" (#2274)
+- "Invite friends" from settings and "New Chat" (#2277)
+- Hide email in "New chat"-list for trusted contacts (#2272)
+- Hide option to add contacts manually when chatmail (#2283)
+- Fix a bug that the message-timestamp didn't update occasionally (#2270)
+- Show contact when tapping on their name in Reactions-overview (#2259)
+- Mark bots as ... bots (#2254)
+- Improve chat-deletion-confirmation (#2254)
+- Update core to 1.142.12
+- Improve security and QR-code generation
+- Update core dependencies and remove obsolete ones
+
 ## v1.46.9
 2024-08
 
