@@ -151,7 +151,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                               AVNumberOfChannelsKey: 1] as [String: Any]
         let globallyUniqueString = ProcessInfo.processInfo.globallyUniqueString
         recordingFilePath = NSTemporaryDirectory().appending(globallyUniqueString).appending(".m4a")
-        _ = try? audioRecorder = AVAudioRecorder.init(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
+        audioRecorder = try? AVAudioRecorder.init(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
         audioRecorder?.delegate = self
         audioRecorder?.isMeteringEnabled = true
     }
