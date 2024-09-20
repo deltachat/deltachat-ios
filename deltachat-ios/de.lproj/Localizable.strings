@@ -284,6 +284,7 @@
 "videochat_tap_to_open" = "Öffnen";
 "videochat_instance" = "Videochat-Instanz";
 "videochat_instance_placeholder" = "Videochat-Instanz";
+// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
 "videochat_instance_example" = "Beispiele: https://meet.jit.si/$ROOM oder basicwebrtc:https://your-server";
 "videochat_instance_explain_2" = "Wenn aktiv, können Sie einen Videochat aus jedem Chat starten. Videochats erfordern beidseitig eine kompatible App oder einen kompatiblen Browser.";
 "videochat_instance_from_qr" = "\"%1$@\" verwenden, um andere zu Videochats einzuladen?\n\nWenn Sie diese Einstellung vornehmen, können Sie von jedem Chat aus einen Videochat starten. Dies überschreibt, falls vorhanden, die bisherige Einstellung zu Videochats.";
@@ -513,6 +514,9 @@
 "login_smtp_port" = "SMTP-Port";
 "login_smtp_security" = "SMTP-Sicherheit";
 "login_auth_method" = "Autorisierungsmethode";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+"proxy_settings" = "Proxy";
+"proxy_use_proxy" = "Proxy verwenden";
 // the word "SOCKS5" here and in the following strings should not be translated in most cases
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "SOCKS5 verwenden";
@@ -885,6 +889,7 @@
 "confirm_replace_draft" = "%1$@ hat bereits einen Entwurft. Möchten Sie diesen ersetzen?";
 "mailto_link_could_not_be_decoded" = "Mailto-Link konnte nicht dekodiert werden: %1$@";
 // notifications
+// deprecated, use mark_as_read or mark_as_read_short
 "notify_dismiss" = "Verwerfen";
 "notify_reply_button" = "Antworten";
 "notify_new_message" = "Neue Nachricht";

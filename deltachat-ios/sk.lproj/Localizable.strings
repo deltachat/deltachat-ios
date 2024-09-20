@@ -243,7 +243,8 @@
 "videochat_tap_to_open" = "Otvoríte klepnutím";
 "videochat_instance" = "Inštancia videohovoru";
 "videochat_instance_placeholder" = "Vaša inštancia videohovoru";
-"videochat_instance_example" = "Príklady: https://meet.jit.si/$MIESTNOST alebo basicwebrtc:https://vas-server";
+// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
+"videochat_instance_example" = "Príklady: https://your-server.org/$ROOM";
 "videochat_instance_explain_2" = "Ak to zapnete, môžete začať video rozhovor z každej konverzácie. Vyžaduje kompatibilnú aplikáciu alebo prehliadač na oboch stranách.";
 "videochat_instance_from_qr" = "Použiť „%1$@“ na odoslanie pozvánky na videohovor?\n\nPo nastavení môžete začať videohovor z každej jednotlivej konverzácie. Toto nahradí predchádzajúce nastavenie pre videohovory, ak existujú.";
 "videochat_invitation" = "Pozvánka na videohovor";
@@ -727,6 +728,7 @@
 "confirm_replace_draft" = "%1$@ už má koncept správy, chcete ho nahradiť?";
 "mailto_link_could_not_be_decoded" = "prepojenie mailto sa nepodarilo dekódovať: %1$@";
 // notifications
+// deprecated, use mark_as_read or mark_as_read_short
 "notify_dismiss" = "Odmietnuť";
 "notify_reply_button" = "Odpovedať";
 "notify_new_message" = "Nová správa";
