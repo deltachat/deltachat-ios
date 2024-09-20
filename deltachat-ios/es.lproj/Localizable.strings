@@ -125,6 +125,7 @@
 "video" = "Video";
 "documents" = "Documentos";
 "contact" = "Contacto";
+"bot" = "Bot";
 "camera" = "Cámara";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capturar";
@@ -227,6 +228,10 @@
 "select_chat" = "Seleccionar chat";
 "select_more" = "Seleccionar más";
 "menu_edit_name" = "Editar nombre";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_explain" = "Establece un apodo que se te mostrará en lugar de \"%1$@\". Déjalo en blanco para utilizar el nombre elegido por el contacto.";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_placeholder" = "Apodo para \"%1$@\"";
 "menu_settings" = "Ajustes";
 "menu_advanced" = "Avanzado";
 "menu_view_profile" = "Ver perfil";
@@ -279,6 +284,7 @@
 "videochat_tap_to_open" = "Toca para abrir";
 "videochat_instance" = "Instancia de videollamada";
 "videochat_instance_placeholder" = "Tu instancia de videollamada";
+// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
 "videochat_instance_example" = "Ejemplo: https://tu-servidor.org/$ROOM";
 "videochat_instance_explain_2" = "Si el videochat está activado, puedes iniciar un videochat desde cada chat. Los chats de vídeo necesitan una aplicación o un navegador compatible en los dos lados.";
 "videochat_instance_from_qr" = "¿Usa \"%1$@\" para invitar a otros a la videollamada?\n\nUna vez configurado, puedes iniciar una videollamada desde el chat individual. Esto reemplaza la configuración previa de videollamadas. Si la hubiera.";
@@ -880,6 +886,7 @@
 "confirm_replace_draft" = "%1$@ ya tiene un mensaje borrador, ¿quieres reemplazarlo?";
 "mailto_link_could_not_be_decoded" = "El enlace mailto no se pudo decodificar: %1$@";
 // notifications
+// deprecated, use mark_as_read or mark_as_read_short
 "notify_dismiss" = "Descartar";
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Nuevo mensaje";
@@ -1020,3 +1027,4 @@
 // device messages for updates
 "update_1_46_android" = "Nueva pantalla de bienvenida 🐣 y más:\n\n⚡️ Regístrese en servidores de chatmail rápidos y seguros (https://delta.chat/chatmail) o use servidores de correo electrónico clásicos\n\n👉 Notificaciones PUSH para cualquier servidor de chatmail\n\n👤 Presenta un amigo a otro de forma segura usando \"Adjuntar Contacto\"\n\n🥰 Reacciona con cualquier emoji\n\n📌 Ancla chats directamente desde los resultados de la búsqueda... y MUCHO más en %1$@";
 "update_1_46_ios" = "Nueva pantalla inicial 🐣 y más:\n\n⚡️ Regístrese en servidores de chatmail rápidos y seguros (https://delta.chat/chatmail) o use servidores de correo electrónico clásicos\n\n👉 Notificaciones PUSH para cualquier servidor de chatmail\n\n👤 Reciba \"Contactos adjuntos\" y conéctese con sus amigos\n\n🥰 Selección de reacción más rápida... y MÁS en %1$@";
+"update_switch_profile_placement" = "ℹ️ Se movió la opción \"Cambiar perfil\": toca tu imagen de perfil en la esquina superior de la pantalla principal para agregar o cambiar perfiles 💡";

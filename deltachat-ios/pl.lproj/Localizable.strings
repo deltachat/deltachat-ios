@@ -228,6 +228,10 @@
 "select_chat" = "Zaznacz czat";
 "select_more" = "Zaznacz więcej";
 "menu_edit_name" = "Edytuj nazwę";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_explain" = "Ustaw nazwę, która będzie wyświetlana zamiast „%1$@”. Pozostaw puste pole, aby użyć wybranej nazwy kontaktu.";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_placeholder" = "Nazwa dla „%1$@”";
 "menu_settings" = "Ustawienia";
 "menu_advanced" = "Zaawansowane";
 "menu_view_profile" = "Pokaż profil";
@@ -280,6 +284,7 @@
 "videochat_tap_to_open" = "Dotknij, aby otworzyć";
 "videochat_instance" = "Instancja czatu wideo";
 "videochat_instance_placeholder" = "Twoja instancja czatu wideo";
+// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
 "videochat_instance_example" = "Przykład: https://meet.jit.si/$ROOM lub basicwebrtc:https://your-server";
 "videochat_instance_explain_2" = "Jeśli czat wideo jest włączony, możesz rozpocząć rozmowę wideo z każdego czatu indywidualnego. Czaty wideo wymagają kompatybilnej aplikacji lub kompatybilnej przeglądarki po obu stronach.";
 "videochat_instance_from_qr" = "Czy użyć „%1$@”, aby zaprosić innych do czatów wideo?\n\nPo ustawieniu możesz rozpocząć czat wideo z każdego czatu indywidualnego. Spowoduje to zastąpienie poprzedniego ustawienia czatów wideo, jeśli takie istnieją.";
@@ -509,6 +514,9 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Bezpieczeństwo SMTP";
 "login_auth_method" = "Metoda autoryzacji";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+"proxy_settings" = "Proxy";
+"proxy_use_proxy" = "Użyj proxy";
 // the word "SOCKS5" here and in the following strings should not be translated in most cases
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Użyj SOCKS5";
@@ -881,6 +889,7 @@
 "confirm_replace_draft" = "Na czacie %1$@ jest już wersja robocza wiadomości, czy chcesz ją zastąpić?";
 "mailto_link_could_not_be_decoded" = "link mailto nie mógł zostać odszyfrowany: %1$@";
 // notifications
+// deprecated, use mark_as_read or mark_as_read_short
 "notify_dismiss" = "Odrzuć";
 "notify_reply_button" = "Odpowiedz";
 "notify_new_message" = "Nowa wiadomość";

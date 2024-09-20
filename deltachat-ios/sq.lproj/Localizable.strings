@@ -225,6 +225,10 @@
 "select_chat" = "Përzgjidhni Fjalosje";
 "select_more" = "Përzgjidhni më tepër";
 "menu_edit_name" = "Përpunoni Emrin";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_explain" = "Caktoni një nofkë që do t’ju shfaqet në vend të “%1$@”. Që të përdoret emri i zgjedhur nga kontakti, lëreni të zbrazët.";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_placeholder" = "Nofkë për “%1$@”";
 "menu_settings" = "Rregullime";
 "menu_advanced" = "Të mëtejshme";
 "menu_view_profile" = "Shihini Profilin";
@@ -277,6 +281,7 @@
 "videochat_tap_to_open" = "Prekeni që të Hapet";
 "videochat_instance" = "Instancë Fjalosjeje me Video";
 "videochat_instance_placeholder" = "Instanca juaj e Fjalosjes me Video";
+// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
 "videochat_instance_example" = "Shembull: https://shërbyesi-juaj.org/$ROOM";
 "videochat_instance_explain_2" = "Nëse është aktivizuar, mund të nisni një fjalosje me video prej secilës fjalosje. Kjo lyp në të dy skajet një aplikacion të përputhshëm, ose një shfletues të përputhshëm.";
 "videochat_instance_from_qr" = "Të përdoret “%1$@” për të ftuar të tjerë në fjalosje me video?\n\nPasi të ujdiset kjo, mund të filloni një fjalosje me video që prej një fjalosjeje tek-për-tek. Kështu do të zëvendësohet rregullimi i mëparshëm për fjalosje video, në pastë.";
@@ -504,6 +509,9 @@
 "login_smtp_port" = "Portë SMTP";
 "login_smtp_security" = "Siguri SMTP";
 "login_auth_method" = "Metodë Autorizimi";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+"proxy_settings" = "Ndërmjetës";
+"proxy_use_proxy" = "Përdor Ndërmjetës";
 // the word "SOCKS5" here and in the following strings should not be translated in most cases
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Përdor SOCKS5";
@@ -874,6 +882,7 @@
 "confirm_replace_draft" = "%1$@ përmban tashmë një skicë mesazhi, doni të zëvendësohet?";
 "mailto_link_could_not_be_decoded" = "s’u shkodua dot lidhje mailto: %1$@";
 // notifications
+// deprecated, use mark_as_read or mark_as_read_short
 "notify_dismiss" = "Hidhe tej";
 "notify_reply_button" = "Përgjigjuni";
 "notify_new_message" = "Mesazh i ri";

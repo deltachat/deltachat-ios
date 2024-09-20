@@ -242,6 +242,7 @@
 "videochat_tap_to_open" = "열기 위해 탭하기";
 "videochat_instance" = "비디오 채팅 인스턴스";
 "videochat_instance_placeholder" = "당신의 비디오 채팅 인스턴스";
+// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
 "videochat_instance_example" = "예시: https://meet.jit.si/$ROOM 또는 basicwebrtc:https://your-server";
 "videochat_instance_explain_2" = "비디오 채팅을 사용할 수 있는 경우 각 채팅에서 비디오 채팅을 시작할 수 있습니다. 화상 채팅을 하려면 호환되는 앱 또는 호환 가능한 브라우저가 양쪽 끝에 필요합니다.";
 "videochat_instance_from_qr" = "\"%1$@\"를 사용하여 다른 사람을 화상 채팅에 초대하시겠습니까?\n\n설정되면 각 채팅에서 비디오 채팅을 시작할 수 있습니다. 이것은 비디오 채팅에 대한 이전 설정을 대체합니다.";
@@ -710,6 +711,7 @@
 "confirm_replace_draft" = "%1$@에 이미 임시 저장된 메시지가 있습니다. 바꾸시겠습니까?";
 "mailto_link_could_not_be_decoded" = "링크로 보내는 메일을 디코딩할 수 없습니다: %1$@";
 // notifications
+// deprecated, use mark_as_read or mark_as_read_short
 "notify_dismiss" = "무시하기";
 "notify_reply_button" = "답장하기";
 "notify_new_message" = "새 메시지";
