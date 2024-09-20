@@ -206,6 +206,9 @@ class ChatListViewController: UITableViewController {
 
     @objc private func handleMessagesNoticed(_ notification: Notification) {
         refreshInBg()
+        DispatchQueue.main.async { [weak self] in
+            self?.updateNextScreensBackButton()
+        }
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
@@ -229,12 +232,32 @@ class ChatListViewController: UITableViewController {
     @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
         DispatchQueue.main.async { [weak self] in
             self?.updateAccountButton()
+            self?.updateNextScreensBackButton()
         }
     }
 
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
-        navigationItem.backButtonTitle = isArchive ? String.localized("chat_archived_label") : String.localized("pref_chats")
+        updateNextScreensBackButton()
+    }
+
+    private func updateNextScreensBackButton() {
+        let numberOfUnreadMessages = DcAccounts.shared.getFreshMessageCount()
+
+        if isArchive {
+            navigationItem.backButtonTitle = String.localized("chat_archived_label")
+        } else if numberOfUnreadMessages > 0, #available(iOS 13, *) {
+            let symbolName: String
+            if numberOfUnreadMessages > 50 {
+                symbolName = "circle.fill"
+            } else {
+                symbolName = "\(numberOfUnreadMessages).circle.fill"
+            }
+
+            navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(systemName: symbolName), style: .plain, target: nil, action: nil)
+        } else { // if numberOfUnreadMessages == 0 or iOS 12
+            navigationItem.backButtonTitle = String.localized("pref_chats")
+        }
     }
 
     @objc
@@ -823,6 +846,7 @@ class ChatListViewController: UITableViewController {
         if searchController.isActive {
             searchController.searchBar.resignFirstResponder()
         }
+        updateNextScreensBackButton()
         let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
         navigationController?.pushViewController(chatVC, animated: animated)
     }
@@ -838,7 +862,7 @@ class ChatListViewController: UITableViewController {
     }
 }
 
-// MARK: - uisearchbardelegate
+// MARK: - UISearchBarDelegate
 extension ChatListViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         viewModel?.beginSearch()
@@ -860,6 +884,7 @@ extension ChatListViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - ContactCellDelegate
 extension ChatListViewController: ContactCellDelegate {
     func onLongTap(at indexPath: IndexPath) {
         if let searchActive = viewModel?.searchActive,
@@ -875,6 +900,7 @@ extension ChatListViewController: ContactCellDelegate {
     }
 }
 
+// MARK: - ChatListEditingBarDelegate
 extension ChatListViewController: ChatListEditingBarDelegate {
     func onPinButtonPressed() {
         viewModel?.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
