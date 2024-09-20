@@ -105,6 +105,7 @@ public class DcEventHandler {
             
             NotificationCenter.default.post(name: Event.messagesNoticed, object: nil, userInfo: [
                 "chat_id": Int(data1),
+                "account_id": accountId
             ])
 
         case DC_EVENT_CHAT_MODIFIED:
@@ -129,7 +130,11 @@ public class DcEventHandler {
 
         case DC_EVENT_INCOMING_MSG:
             
-            NotificationCenter.default.post(name: Event.incomingMessageOnAnyAccount, object: nil)
+            NotificationCenter.default.post(name: Event.incomingMessageOnAnyAccount, object: nil, userInfo: [
+                "chat_id": Int(data1),
+                "account_id": accountId
+            ])
+            
             if accountId != dcAccounts.getSelected().id {
                 return
             }
@@ -138,6 +143,7 @@ public class DcEventHandler {
             NotificationCenter.default.post(name: Event.incomingMessage, object: nil, userInfo: [
                 "message_id": Int(data2),
                 "chat_id": Int(data1),
+                "account_id": accountId
             ])
 
         case DC_EVENT_CONTACTS_CHANGED:

@@ -2784,3 +2784,15 @@ extension ChatViewController: ReactionsOverviewViewControllerDelegate {
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
 }
+
+// MARK: - ChatListViewControllerDataSource
+
+extension ChatViewController: BackButtonUpdateable {
+    func shouldUpdateBackButton(_ viewController: UIViewController, chatId: Int, accountId: Int) -> Bool {
+        if chatId == self.chatId && accountId == dcContext.id {
+            return false
+        } else {
+            return true
+        }
+    }
+}

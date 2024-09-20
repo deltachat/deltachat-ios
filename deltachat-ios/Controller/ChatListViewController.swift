@@ -1,12 +1,17 @@
 import UIKit
 import DcCore
 
+protocol BackButtonUpdateable: AnyObject {
+    func shouldUpdateBackButton(_ viewController: UIViewController, chatId: Int, accountId: Int) -> Bool
+}
+
 class ChatListViewController: UITableViewController {
     var viewModel: ChatListViewModel?
     let dcContext: DcContext
     internal let dcAccounts: DcAccounts
     var isArchive: Bool
     private var accountSwitchTransitioningDelegate: PartialScreenModalTransitioningDelegate!
+    weak var backButtonUpdateableDataSource: BackButtonUpdateable?
 
     private weak var timer: Timer?
 
@@ -230,9 +235,15 @@ class ChatListViewController: UITableViewController {
     }
 
     @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
+
+        guard let userInfo = notification.userInfo,
+              let chatId = userInfo["chat_id"] as? Int,
+              let accountId = userInfo["account_id"] as? Int
+        else { return }
+
         DispatchQueue.main.async { [weak self] in
             self?.updateAccountButton()
-            self?.updateNextScreensBackButton()
+            self?.updateNextScreensBackButton(accountId: accountId, chatId: chatId)
         }
     }
 
@@ -241,13 +252,20 @@ class ChatListViewController: UITableViewController {
         updateNextScreensBackButton()
     }
 
-    private func updateNextScreensBackButton() {
+    private func updateNextScreensBackButton(accountId: Int? = nil, chatId: Int? = nil) {
         let numberOfUnreadMessages = DcAccounts.shared.getFreshMessageCount()
 
         if isArchive {
             navigationItem.backBarButtonItem = nil
             navigationItem.backButtonTitle = String.localized("chat_archived_label")
         } else if numberOfUnreadMessages > 0, #available(iOS 13, *) {
+
+            if let backButtonUpdateableDataSource, let accountId, let chatId,
+               backButtonUpdateableDataSource.shouldUpdateBackButton(self, chatId: chatId, accountId: accountId) == false {
+                return
+            }
+
+            // we need chatId and everything
             let symbolName: String
             if numberOfUnreadMessages > 50 {
                 symbolName = "circle.fill"
@@ -848,9 +866,11 @@ class ChatListViewController: UITableViewController {
         if searchController.isActive {
             searchController.searchBar.resignFirstResponder()
         }
+        let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
+        backButtonUpdateableDataSource = chatViewController
         updateNextScreensBackButton()
-        let chatVC = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
-        navigationController?.pushViewController(chatVC, animated: animated)
+
+        navigationController?.pushViewController(chatViewController, animated: animated)
     }
 
     public func showArchive(animated: Bool) {
