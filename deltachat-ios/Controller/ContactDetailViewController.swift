@@ -534,8 +534,9 @@ class ContactDetailViewController: UITableViewController {
 
     // MARK: - coordinator
     private func showChat(chatId: Int) {
-        if let chatlistViewController = navigationController?.viewControllers[0] {
+        if let chatlistViewController = navigationController?.viewControllers[0] as? ChatListViewController {
             let chatViewController = ChatViewController(dcContext: viewModel.context, chatId: chatId)
+            chatlistViewController.backButtonUpdateableDataSource = chatViewController
             navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
         }
     }
