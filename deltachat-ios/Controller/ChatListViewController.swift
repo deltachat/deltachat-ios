@@ -245,6 +245,7 @@ class ChatListViewController: UITableViewController {
         let numberOfUnreadMessages = DcAccounts.shared.getFreshMessageCount()
 
         if isArchive {
+            navigationItem.backBarButtonItem = nil
             navigationItem.backButtonTitle = String.localized("chat_archived_label")
         } else if numberOfUnreadMessages > 0, #available(iOS 13, *) {
             let symbolName: String
@@ -256,6 +257,7 @@ class ChatListViewController: UITableViewController {
 
             navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(systemName: symbolName), style: .plain, target: nil, action: nil)
         } else { // if numberOfUnreadMessages == 0 or iOS 12
+            navigationItem.backBarButtonItem = nil
             navigationItem.backButtonTitle = String.localized("pref_chats")
         }
     }
