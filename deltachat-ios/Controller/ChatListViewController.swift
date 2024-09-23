@@ -265,7 +265,6 @@ class ChatListViewController: UITableViewController {
                 return
             }
 
-            // we need chatId and everything
             let symbolName: String
             if numberOfUnreadMessages > 50 {
                 symbolName = "circle.fill"
@@ -868,7 +867,7 @@ class ChatListViewController: UITableViewController {
         }
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
         backButtonUpdateableDataSource = chatViewController
-        updateNextScreensBackButton()
+        updateNextScreensBackButton(accountId: dcContext.id, chatId: chatId)
 
         navigationController?.pushViewController(chatViewController, animated: animated)
     }
