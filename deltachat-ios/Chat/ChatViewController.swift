@@ -2747,8 +2747,7 @@ extension ChatViewController: UITextViewDelegate {
 // MARK: - ChatInputTextViewPasteDelegate
 extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
-        let isSticker = image.size.equalTo(CGSize(width: 140, height: 140))
-
+        let isSticker = image.size.equalTo(CGSize(width: 140, height: 140)) || image.hasTransparentCorner()
         if isSticker {
             sendSticker(image)
         } else {
@@ -2787,7 +2786,12 @@ extension ChatViewController: WebxdcSelectorDelegate {
 // MARK: - ChatDropInteractionDelegate
 extension ChatViewController: ChatDropInteractionDelegate {
     func onImageDragAndDropped(image: UIImage) {
-        stageImage(image)
+        let isSticker = image.size.equalTo(CGSize(width: 140, height: 140)) || image.hasTransparentCorner()
+        if isSticker {
+            sendSticker(image)
+        } else {
+            stageImage(image)
+        }
     }
 
     func onVideoDragAndDropped(url: NSURL) {
