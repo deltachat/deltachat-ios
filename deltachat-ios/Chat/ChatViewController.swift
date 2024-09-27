@@ -2747,7 +2747,10 @@ extension ChatViewController: UITextViewDelegate {
 // MARK: - ChatInputTextViewPasteDelegate
 extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
-        let isSticker = image.size.equalTo(CGSize(width: 140, height: 140))
+
+        let preiOS18StickerSize = CGSize(width: 140, height: 140)
+        let iOS18StickerSize = CGSize(width: 160, height: 160)
+        let isSticker = image.size.equalTo(preiOS18StickerSize) || image.size.equalTo(iOS18StickerSize)
 
         if isSticker {
             sendSticker(image)
