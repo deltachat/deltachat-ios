@@ -55,7 +55,7 @@
       <li><a href="#how-can-i-ensure-message-end-to-end-encryption-and-deletion">How can I ensure message end-to-end encryption and deletion?</a></li>
       <li><a href="#pfs">Does Delta Chat support Perfect Forward Secrecy?</a></li>
       <li><a href="#is-end-to-end-encryption-of-delta-chat-as-safe-as-signal">Is end-to-end encryption of Delta Chat as safe as Signal?</a></li>
-      <li><a href="#我可以重复使用现有的私钥吗">我可以重复使用现有的私钥吗？</a></li>
+      <li><a href="#importkey">我可以重复使用现有的私钥吗？</a></li>
       <li><a href="#我无法将现有的-pgp-密钥导入-delta-chat">我无法将现有的 PGP 密钥导入 Delta Chat。</a></li>
       <li><a href="#security-audits">Was Delta Chat independently audited for security vulnerabilities?</a></li>
     </ul>
@@ -80,7 +80,6 @@
       <li><a href="#怎样在-delta-chat-中使用音频视频通话">怎样在 Delta Chat 中使用音频/视频通话？</a></li>
       <li><a href="#什么是广播列表怎样使用它们">什么是广播列表？怎样使用它们？</a></li>
       <li><a href="#如何与聊天伙伴分享位置">如何与聊天伙伴分享位置？</a></li>
-      <li><a href="#实验性的数据库加密到底保护了什么">实验性的数据库加密到底保护了什么？</a></li>
       <li><a href="#为什么我可以选择只监视-deltachat-文件夹">为什么我可以选择只监视 DeltaChat 文件夹？</a></li>
       <li><a href="#如何将我的账户迁移到一个不同的电子邮件地址">如何将我的账户迁移到一个不同的电子邮件地址？</a></li>
     </ul>
@@ -98,7 +97,7 @@
       <li><a href="#为什么我可以选择监视已发送文件夹">为什么我可以选择监视“已发送”文件夹？</a></li>
       <li><a href="#为什么我可以选择不监视-deltachat-文件夹">为什么我可以选择不监视 DeltaChat 文件夹？</a></li>
       <li><a href="#delta-chat-与-protonmail--tutanota--criptext-兼容吗">Delta Chat 与 Protonmail / Tutanota / Criptext 兼容吗？</a></li>
-      <li><a href="#如何删除我的账户">如何删除我的账户？</a></li>
+      <li><a href="#remove-account">如何删除我的账户？</a></li>
       <li><a href="#我对技术细节很感兴趣能告诉我更多吗">我对技术细节很感兴趣。能告诉我更多吗？</a></li>
       <li><a href="#delta-chat-的开发是如何被资助的">Delta Chat 的开发是如何被资助的?</a></li>
     </ul>
@@ -1118,10 +1117,10 @@ past encrypted messages.</p>
 <p>In any case, Delta Chat’s end-to-end encryption uses a <a href="#openpgp-secure">secure subset of OpenPGP</a>
 which has been <a href="https://delta.chat/assets/blog/2019-first-security-review.pdf">independently security-audited</a>.</p>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="我可以重复使用现有的私钥吗">
+      <p class="back"><a href="#top">^</a></p><h3 id="importkey">
         
         
-          我可以重复使用现有的私钥吗？ <a href="#我可以重复使用现有的私钥吗" class="anchor"></a>
+          我可以重复使用现有的私钥吗？ <a href="#importkey" class="anchor"></a>
         
         
       </h3>
@@ -1487,21 +1486,6 @@ right click on the map and describe a location, which is sent to the chat as
 a message, but also appears on the map.</li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="实验性的数据库加密到底保护了什么">
-        
-        
-          实验性的数据库加密到底保护了什么？ <a href="#实验性的数据库加密到底保护了什么" class="anchor"></a>
-        
-        
-      </h3>
-
-<ul>
-  <li>目前，数据库加密仍处于高度试验性状态。不要依靠它来提供保护。如果操作系统提供了加密，您还应当使用它。</li>
-  <li>数据库加密目前只加密了数据库的行与列，没有加密二进制数据块。这多少意味着您的消息是安全的，但您的附件不是。</li>
-  <li>对于 iOS 和 Android，加密密钥存储在系统钥匙串中。这意味着加密安全性和所运行在的操作系统安全性一样。</li>
-  <li>由于没有标准方法在不同平台上存储加密密钥，Delta Chat 桌面客户端尚未提供数据库加密。</li>
-</ul>
-    
       <p class="back"><a href="#top">^</a></p><h3 id="为什么我可以选择只监视-deltachat-文件夹">
         
         
@@ -1653,8 +1637,6 @@ blogpost</a>.</li>
 
 <p>与其他电子邮件程序（比如 Thunderbird、K9-Mail 或 Outlook）一样，本程序需要您的密码来允许您通过它发送邮件。当然，密码仅储存在您的设备上，并只会在登录时发送给您的电子邮件提供商（无论如何，您的提供商总是能够访问您的邮件）。</p>
 
-<p>如果您使用具有 OAuth2 支持的电子邮件提供商，例如 gmail.com 或 yandex.ru，则无需在设备上存储密码。在这种情况下，只有访问令牌被使用。</p>
-
 <p>由于 Delta Chat 是开源的，要验证您的凭据是否被安全地处理了，可以检查<a href="https://github.com/deltachat/deltachat-core-rust/blob/master/src/login_param.rs">源代码</a>。我们很高兴能收到使本应用对我们的所有用户更加安全的反馈。</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="哪些消息会在-delta-chat-中出现">
@@ -1767,22 +1749,38 @@ uses.</li>
 <a href="https://autocrypt.org/dev-status.html">Autocrypt-enabled e-mail app</a>.</li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="如何删除我的账户">
+      <p class="back"><a href="#top">^</a></p><h3 id="remove-account">
         
         
-          如何删除我的账户？ <a href="#如何删除我的账户" class="anchor"></a>
+          如何删除我的账户？ <a href="#remove-account" class="anchor"></a>
         
         
       </h3>
 
-<p>As you use an e-mail account for Delta Chat,
+<p>If you use a default chat profile
+you can simply uninstall the app.
+This will automatically trigger deletion of all associated account data on the chatmail server.
+For more info, please refer to <a href="https://nine.testrun.org/info.html#account-deletion">nine.testrun.org account-deletion</a> for the default onboarding server,
+or the respective page from your chosen <a href="https://delta.chat/zh_CN/chatmail">3rd party chatmail server</a>.</p>
+
+<p>If you have set up your chat profile on multiple devices
+you need to remove it from all devices.</p>
+
+<p>If you are using more than one account,
+but don’t want to get rid of all of them,
+you can remove it in the account switcher menu (on android and iOS),
+or in the sidebar with a right click (in the desktop client).</p>
+
+<p>Accounts on <a href="https://providers.delta.chat">classic e-mail providers</a>
+will not be deleted automatically;
 how you can delete your account depends on your e-mail provider.
-We don’t have any control over your e-mail account,
+We don’t have any control over e-mail accounts at those providers,
 so unfortunately we can’t help you with that.</p>
 
-<p>If you want to keep the account,
+<p>If you want to continue using a classic e-mail account with other apps,
 but uninstall Delta Chat,
-it is recommended to leave any group chat before uninstalling Delta Chat.</p>
+it is recommended to leave any group chat before uninstalling Delta Chat.
+Otherwise you might receive undecryptable messages from those group chats.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="我对技术细节很感兴趣能告诉我更多吗">
         
