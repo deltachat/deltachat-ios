@@ -502,7 +502,7 @@
 "login_smtp_port" = "SMTP порт";
 "login_smtp_security" = "Сигурност на SMTP връзката";
 "login_auth_method" = "Метод за оторизация";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Да се използва SOCKS5";
 "login_socks5_host" = "SOCKS5 хост";

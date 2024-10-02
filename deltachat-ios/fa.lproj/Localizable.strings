@@ -484,7 +484,7 @@ https://meet.jit.si/$ROOM
 "login_smtp_port" = "SMTP Port";
 "login_smtp_security" = "SMTP Security";
 "login_auth_method" = "Authorization Method";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "استفاده از SOCKS5";
 "login_socks5_host" = "SOCKS5 Host";

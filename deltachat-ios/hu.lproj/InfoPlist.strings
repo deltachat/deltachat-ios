@@ -1,5 +1,5 @@
 NSCameraUsageDescription = "A Delta Chat az eszköze kameráját használja fényképek és videók készítésére és küldésére, valamint QR-kódok beolvasására.";
-NSContactsUsageDescription = "A Delta Chat a névjegyek segítségével megjeleníti azon E-mail-címek listáját, amelyekkel cseveghet. A Delta Chatnek nincs központi kiszolgálója, a névjegyeit nem küldjük el sehova.";
+NSContactsUsageDescription = "A Delta Chat a névjegyek segítségével megjeleníti azon e-mail-címek listáját, amelyekkel cseveghet. A Delta Chatnek nincs központi kiszolgálója, a névjegyeit nem küldjük el sehova.";
 NSLocationAlwaysAndWhenInUseUsageDescription = "A Delta Chatnek engedélyre van szüksége ahhoz, hogy megoszthassa az ön tartózkodási helyszínét arra az időtartamra, ameddig engedélyezte a helyszínmegosztást.";
 NSLocationWhenInUseUsageDescription = "A Delta Chatnek engedélyre van szüksége ahhoz, hogy megoszthassa az ön tartózkodási helyszínét arra az időtartamra, ameddig engedélyezte a helyszínmegosztást.";
 NSMicrophoneUsageDescription = "A Delta Chat az eszköze mikrofonját használja a hangüzenetek és a hangos videók rögzítésére, valamint küldésére.";

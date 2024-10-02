@@ -472,7 +472,7 @@
 "login_smtp_port" = "Cổng SMTP";
 "login_smtp_security" = "Bảo mật SMTP";
 "login_auth_method" = "Phương thức ủy quyền";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Sử dụng SOCKS5";
 "login_socks5_host" = "Máy chủ SOCKS5";

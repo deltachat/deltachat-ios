@@ -428,7 +428,7 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Seguretat SMTP";
 "login_auth_method" = "Mètode d\'autorització";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_info_oauth2_title" = "Voleu continuar amb la configuració simplificada?";
 "login_info_oauth2_text" = "L’adreça d\'e-mail que heu introduït admet una configuració simplificada. (OAuth2).\n\nEn el pas següent, permeteu que Delta Chat actuï com a xat amb l\'aplicació de correu electrònic..\n\nNo hi ha servidors de Delta Chat, les vostres dades romanen al vostre dispositiu!";
