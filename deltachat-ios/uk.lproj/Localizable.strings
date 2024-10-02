@@ -54,7 +54,7 @@
 "mark_all_as_read" = "Позначити все як прочитане";
 "mark_as_read" = "Позначити як прочитане";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
-"mark_as_read_short" = "Прочитане";
+"mark_as_read_short" = "Позначити прочитаним";
 // Placeholder text when something is loading
 "loading" = "Завантаження...";
 "hide" = "Приховати";
@@ -514,7 +514,17 @@
 "login_smtp_port" = "SMTP-порт";
 "login_smtp_security" = "Налаштування безпеки SMTP";
 "login_auth_method" = "Метод авторизації";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+"proxy_settings" = "Проксі";
+"proxy_use_proxy" = "Використовувати проксі";
+"proxy_add" = "Додати проксі-сервер";
+"proxy_add_explain" = "Підтримувані типи проксі: HTTP(S), SOCKS5 і Shadowsocks.";
+"proxy_add_url_hint" = "Введіть URL проксі-сервера тут";
+"proxy_invalid" = "Невірний або непідтримуваний URL проксі-сервера";
+"proxy_list_header" = "Збережені проксі-сервери";
+"proxy_delete" = "Видалити проксі-сервер";
+"proxy_delete_explain" = "Ви дійсно хочете видалити \"%1$@\"?";
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Використовувати SOCKS5";
 "login_socks5_host" = "Хост SOCKS5";

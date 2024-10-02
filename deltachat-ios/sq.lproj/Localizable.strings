@@ -512,7 +512,14 @@
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
 "proxy_settings" = "Ndërmjetës";
 "proxy_use_proxy" = "Përdor Ndërmjetës";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"proxy_add" = "Shtoni Ndërmjetës";
+"proxy_add_explain" = "Lloje ndërmjetësish që mbulohen: HTTP(S), SOCKS5 dhe Shadowsocks.";
+"proxy_add_url_hint" = "Jepni këtu URL-në e ndërmjetësit";
+"proxy_invalid" = "URL ndërmjetësi e pavlefshme, ose që s’mbulohet";
+"proxy_list_header" = "Ndërmjetës të Ruajtur";
+"proxy_delete" = "Fshije Ndërmjetësin";
+"proxy_delete_explain" = "Jeni i sigurt se doni të fshihet “%1$@”?";
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Përdor SOCKS5";
 "login_socks5_host" = "Strehë SOCKS5";

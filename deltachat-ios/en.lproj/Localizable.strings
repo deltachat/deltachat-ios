@@ -517,7 +517,14 @@
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Use Proxy";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"proxy_add" = "Add Proxy";
+"proxy_add_explain" = "Supported proxy types: HTTP(S), SOCKS5 and Shadowsocks.";
+"proxy_add_url_hint" = "Enter proxy URL here";
+"proxy_invalid" = "Invalid or unsupported proxy URL";
+"proxy_list_header" = "Saved Proxies";
+"proxy_delete" = "Delete Proxy";
+"proxy_delete_explain" = "Are you sure you want to delete \"%1$@\"?";
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Use SOCKS5";
 "login_socks5_host" = "SOCKS5 Host";

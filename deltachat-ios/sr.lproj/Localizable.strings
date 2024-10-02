@@ -416,7 +416,7 @@
 "login_smtp_port" = "СМТП порт";
 "login_smtp_security" = "СМТП безбедност";
 "login_auth_method" = "Начин овлашћења";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Користи SOCKS5";
 "login_socks5_host" = "SOCKS5 сервер";

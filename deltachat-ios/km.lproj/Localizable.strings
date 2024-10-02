@@ -371,7 +371,7 @@
 "login_smtp_port" = "ច្រករបស SMTP";
 "login_smtp_security" = "សន្តិសុខ SMTP";
 "login_auth_method" = "ការចុះបញ្ជី";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "ប្រើ SOCKS5";
 "login_socks5_host" = "ម្ចាស់ SOCKS5";

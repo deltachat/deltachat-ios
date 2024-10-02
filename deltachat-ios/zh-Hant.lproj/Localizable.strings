@@ -429,7 +429,7 @@
 "login_smtp_port" = "SMTP 埠";
 "login_smtp_security" = "SMTP 安全";
 "login_auth_method" = "授權方式";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "使用 SOCKS5";
 "login_socks5_host" = "SOCKS5 主機";

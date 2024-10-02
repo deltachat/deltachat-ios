@@ -440,7 +440,7 @@
 "login_smtp_port" = "Portul SMTP ";
 "login_smtp_security" = "Securitate SMTP";
 "login_auth_method" = "Metoda de autorizare";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Utilizați SOCKS5";
 "login_socks5_host" = "Gazdă SOCKS5";

@@ -54,7 +54,7 @@
 "mark_all_as_read" = "Segna Tutti come Letti";
 "mark_as_read" = "Segna come Letto";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
-"mark_as_read_short" = "Leggi";
+"mark_as_read_short" = "Segna Letto";
 // Placeholder text when something is loading
 "loading" = "Caricamento in Corso…";
 "hide" = "Nascondi";
@@ -517,7 +517,14 @@
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Usa Proxy";
-// the word "SOCKS5" here and in the following strings should not be translated in most cases
+"proxy_add" = "Aggiungi Proxy";
+"proxy_add_explain" = "Tipi di proxy supportati: HTTP(S), SOCKS5 e Shadowsocks.";
+"proxy_add_url_hint" = "Inserisci qui l\'URL del proxy";
+"proxy_invalid" = "URL proxy non valido o non supportato";
+"proxy_list_header" = "Proxy Salvati";
+"proxy_delete" = "Elimina Proxy";
+"proxy_delete_explain" = "Sei sicuro di voler eliminare \"%1$@\"?";
+// deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Usa SOCKS5";
 "login_socks5_host" = "SOCKS5 Host";
