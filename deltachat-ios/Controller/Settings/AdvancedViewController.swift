@@ -398,6 +398,10 @@ internal final class AdvancedViewController: UITableViewController {
             self.present(alert, animated: true, completion: nil)
         }))
 
+        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
+            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#importkey"), animated: true)
+        }))
+
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
