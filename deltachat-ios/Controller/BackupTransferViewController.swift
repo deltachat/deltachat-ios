@@ -178,16 +178,9 @@ class BackupTransferViewController: UIViewController {
                     self.showLastErrorAlert("Error")
                 }
                 hideQrCode = true
-            } else if permille <= 350 {
-                statusLineText = nil
-            } else if permille <= 400 {
-                statusLineText = nil
-            } else if permille <= 450 {
-                statusLineText = String.localized("receiver_connected")
-                hideQrCode = true
             } else if permille < 1000 {
-                let percent = (permille-450)/5
-                statusLineText = String.localized("transferring") + " \(percent)%" // TODO: use a scrollbar, show precide percentage only for receiver
+                let percent: Int = permille/10
+                statusLineText = String.localized("transferring") + " \(percent)%"
                 hideQrCode = true
             } else if permille == 1000 {
                 self.transferState = TranferState.success
