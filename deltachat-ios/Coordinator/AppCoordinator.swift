@@ -195,7 +195,7 @@ class AppCoordinator: NSObject {
     }
 
     func handleDeltaChatInvitation(url: URL, from viewController: UIViewController) {
-        reallyHandleQRCode(url.absoluteString, from: viewController)
+        coordinate(qrCode: url.absoluteString, from: viewController)
     }
 
     func handleQRCode(_ code: String) {
@@ -215,13 +215,13 @@ class AppCoordinator: NSObject {
             if let navController = self.tabBarController.selectedViewController as? UINavigationController,
                let topViewController = navController.topViewController,
                let qrPageController = topViewController as? QrPageController {
-                reallyHandleQRCode(code, from: qrPageController)
+                coordinate(qrCode: code, from: qrPageController)
             }
         }
     }
-    
+
     /// Works for both i.delta.chat and QR-codes
-    func reallyHandleQRCode(_ code: String, from viewController: UIViewController) {
+    func coordinate(qrCode code: String, from viewController: UIViewController) {
         let dcContext = dcAccounts.getSelected()
 
         showChats()
