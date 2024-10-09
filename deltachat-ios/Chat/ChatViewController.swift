@@ -17,6 +17,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var wasInputBarFirstResponder = false
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
+    
+    /// time based workaround to not also open the link on long press
+    private var linkLongPressTS: Double = 0
 
     private lazy var isGroupChat: Bool = {
         return dcContext.getChat(chatId: chatId).isGroup
@@ -2074,7 +2077,19 @@ extension ChatViewController {
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
-
+        
+        print("url: 1")
+        // Check if the long tap is on a link (or other message text element with custom long tap behavior)
+        if let msgcell = tableView.cellForRow(at: indexPath) as? BaseMessageCell {
+            let label = msgcell.messageLabel.label
+            let localTouchLocation = tableView.convert(point, to: label)
+            let handled = label.handleGesture(localTouchLocation, longTap: true)
+            print("url: handled", handled)
+            if handled {
+                return nil
+            }
+        }
+        
         return UIContextMenuConfiguration(
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,
@@ -2405,6 +2420,14 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func urlTapped(url: URL, indexPath: IndexPath) {
+        /// this is somtimes also called on long pressing  by accident, this is a time based workround to not open the link when it was long pressed before
+        let secondsSinceLastLongPress = NSDate().timeIntervalSince1970 - self.linkLongPressTS
+        print("urlTapped: secondsSinceLastLongPress", secondsSinceLastLongPress, self.linkLongPressTS)
+        if secondsSinceLastLongPress < 1 {
+            print("timeSinceLastLongPress prevented opening")
+            return
+        }
+        
         if handleUIMenu() || handleSelection(indexPath: indexPath) {
             return
         }
@@ -2414,6 +2437,32 @@ extension ChatViewController: BaseMessageCellDelegate {
         } else {
             UIApplication.shared.open(url)
         }
+    }
+    
+    @objc func urlLongTapped(url: URL, indexPath: IndexPath) {
+        self.linkLongPressTS = NSDate().timeIntervalSince1970
+        print("urlLongTapped")
+        let isEmail = Utils.isEmail(url: url)
+        
+        let alert = UIAlertController(title: isEmail ? "Email" : "Link", message: url.absoluteString, preferredStyle: .actionSheet)
+        if isEmail {
+            let email = Utils.getEmailFrom(url)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+                self.askToChatWith(email: email)
+            }))
+        } else {
+            // TODO: translation string does not exist yet
+            alert.addAction(UIAlertAction(title: String.localized("menu_open_link"), style: .default, handler: { _ in
+                UIApplication.shared.open(url)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: String.localized(isEmail ? "menu_copy_email_to_clipboard" : "menu_copy_link_to_clipboard"), style: .default, handler: { _ in
+            UIPasteboard.general.string = url.absoluteString
+        }))
+        
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc func imageTapped(indexPath: IndexPath, previewError: Bool) {
