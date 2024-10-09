@@ -211,6 +211,6 @@ extension QrPageController: QrCodeReaderDelegate {
 
     func handleQrCode(_ code: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appCoordinator.reallyHandleQRCode(code, from: self)
+        appDelegate.appCoordinator.coordinate(qrCode: code, from: self)
     }
 }
