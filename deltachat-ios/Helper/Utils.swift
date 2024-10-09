@@ -2,9 +2,20 @@ import Foundation
 import UIKit
 import DcCore
 
-struct Utils {
-    private static let inviteDomain = "i.delta.chat"
 
+extension URL {
+    var isDeltaChatInvitation: Bool {
+        if let host, host == Utils.inviteDomain {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+struct Utils {
+    public static let inviteDomain = "i.delta.chat"
+
+    // MARK: - Email
     static func isEmail(url: URL) -> Bool {
         let mailScheme = "mailto"
         if let scheme = url.scheme {
@@ -44,10 +55,10 @@ struct Utils {
 
     public static func getInviteLink(context: DcContext, chatId: Int) -> String? {
         // convert `OPENPGP4FPR:FPR#a=ADDR&n=NAME&...` to `https://i.delta.chat/#FPR&a=ADDR&n=NAME&...`
-        if var data = context.getSecurejoinQr(chatId: chatId), let range = data.range(of: "#") {
-            data.replaceSubrange(range, with: "&")
-            if let range = data.range(of: "OPENPGP4FPR:") {
-                data.replaceSubrange(range, with: "https://" + inviteDomain + "/#")
+        if var data = context.getSecurejoinQr(chatId: chatId), let hashRange = data.range(of: "#") {
+            data.replaceSubrange(hashRange, with: "&")
+            if let schemeRange = data.range(of: "OPENPGP4FPR:") {
+                data.replaceSubrange(schemeRange, with: "https://" + inviteDomain + "/#")
                 return data
             }
         }
