@@ -194,6 +194,10 @@ class AppCoordinator: NSObject {
         return false
     }
 
+    func handleDeltaChatInvitation(url: URL) {
+        handleQRCode(url.absoluteString)
+    }
+
     func handleQRCode(_ code: String) {
         if code.lowercased().starts(with: "dcaccount:")
            || code.lowercased().starts(with: "dclogin:") {
