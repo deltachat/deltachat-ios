@@ -618,11 +618,9 @@ extension ContactDetailViewController: MultilineLabelCellDelegate {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
         } else if url.isDeltaChatInvitation,
-                  let qrCode = Utils.makeDeltaChatInvitationQRCode(from: url),
                   let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                   let appCoordinator = appDelegate.appCoordinator {
-
-            appCoordinator.handleQRCode(qrCode)
+            appCoordinator.handleDeltaChatInvitation(url: url)
         } else {
             UIApplication.shared.open(url)
         }
