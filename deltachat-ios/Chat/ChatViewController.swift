@@ -2202,7 +2202,11 @@ extension ChatViewController {
         guard let file = msg.file,
               let vcards = dcContext.parseVcard(path: file),
               let vcard = vcards.first else { return }
-        
+
+        let focusInputTextView = messageInputBar.inputTextView.isFirstResponder
+        shouldBecomeFirstResponder = false
+        messageInputBar.inputTextView.resignFirstResponder()
+
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), vcard.displayName), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             if let contactIds = self.dcContext.importVcard(path: file) {
@@ -2213,7 +2217,17 @@ extension ChatViewController {
                 }
             }
         }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.shouldBecomeFirstResponder = true
+                self?.becomeFirstResponder()
+                if focusInputTextView {
+                    self?.messageInputBar.inputTextView.becomeFirstResponder()
+                }
+            }
+        }
+
+        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
 
