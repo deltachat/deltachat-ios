@@ -352,8 +352,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         messageInputBar.scrollDownButton.isHidden = true
 
-        // being pushed
-        if isMovingToParent {
+        if isMovingToParent { // being pushed
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.tableView.contentInset.top = self.inputAccessoryView?.bounds.height ?? 0
                 if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
