@@ -131,6 +131,7 @@
 		30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB6F824D1C1000066C48D /* ChatViewController.swift */; };
 		30FDB71F24D8170E0066C48D /* TextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB71E24D8170E0066C48D /* TextMessageCell.swift */; };
 		30FDB72124D838240066C48D /* BaseMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB72024D838240066C48D /* BaseMessageCell.swift */; };
+		5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
@@ -432,6 +433,7 @@
 		30FDB6F824D1C1000066C48D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		30FDB71E24D8170E0066C48D /* TextMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageCell.swift; sourceTree = "<group>"; };
 		30FDB72024D838240066C48D /* BaseMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessageCell.swift; sourceTree = "<group>"; };
+		5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCellProtocol.swift; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -827,6 +829,7 @@
 			isa = PBXGroup;
 			children = (
 				30FDB71E24D8170E0066C48D /* TextMessageCell.swift */,
+				5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */,
 				30FDB72024D838240066C48D /* BaseMessageCell.swift */,
 				30E348E024F53772005C93D1 /* ImageTextCell.swift */,
 				30E348E424F6647D005C93D1 /* FileTextCell.swift */,
@@ -1633,6 +1636,7 @@
 				30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */,
 				305501742798CDE1008FD5CA /* WebxdcViewController.swift in Sources */,
 				3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */,
+				5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */,
 				AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */,
 				3052C60A253F082E007D13EA /* MessageLabelDelegate.swift in Sources */,
 				AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */,
