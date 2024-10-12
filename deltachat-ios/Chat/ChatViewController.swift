@@ -1250,7 +1250,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in self.shouldBecomeFirstResponder = true }))
 
         shouldBecomeFirstResponder = false
-//        messageInputBar.inputTextView.resignFirstResponder()
 
         self.present(alert, animated: true, completion: {
             // unfortunately, voiceMessageAction.accessibilityHint does not work,
