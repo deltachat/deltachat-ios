@@ -266,11 +266,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         keyboardManager?.on(event: .willHide) { [weak self] notification in
             guard let self, !self.messageIds.isEmpty else { return }
             UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
-                let bottomInset = self.inputAccessoryView?.frame.height ?? 0
-                // TODO: This can float messages to the top when they don't fill the screen but needs a bit more work because other parts of this file expect tableView.contentInset.top to be the keyboard inset, also the willset is called after this sometimes which undoes this
-//                let visibleHeight = self.tableView.bounds.height - self.tableView.safeAreaInsets.top - bottomInset
-//                let visiblePadding = max(0, visibleHeight - self.tableView.contentSize.height)
-                self.tableView.contentInset.top = bottomInset // + visiblePadding
+                self.tableView.contentInset.top = self.inputAccessoryView?.frame.height ?? 0
             }
         }
 
