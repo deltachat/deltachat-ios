@@ -1521,8 +1521,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 sheet.preferredCornerRadius = 20
             }
         }
-        let source = self.navigationController ?? self
-        source.present(navigationController, animated: true)
+
+        present(navigationController, animated: true)
     }
 
     private func locationStreamingButtonPressed(_ action: UIAlertAction) {
