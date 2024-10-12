@@ -1006,7 +1006,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func scrollToLastUnseenMessage(animated: Bool) {
         if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
-            // TODO: Test if this works now
             let indexPath = IndexPath(row: markerMessageIndex, section: 0)
             self.scrollToRow(at: indexPath, animated: animated)
         } else {
@@ -2469,8 +2468,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
-        draft.clear() // TODO: Fix
-        // FIXME: This lags the scrollview
+        draft.clear()
         draftArea.cancel()
     }
 
