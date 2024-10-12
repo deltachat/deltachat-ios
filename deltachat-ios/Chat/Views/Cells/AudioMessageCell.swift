@@ -9,7 +9,7 @@ public protocol AudioMessageCellDelegate: AnyObject {
 
 }
 
-public class AudioMessageCell: BaseMessageCell {
+public class AudioMessageCell: BaseMessageCell, ReusableCell {
 
     static let reuseIdentifier = "AudioMessageCell"
 

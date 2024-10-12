@@ -49,8 +49,7 @@ internal extension NSNotification {
     }
     
     var timeInterval: TimeInterval? {
-        guard let value = userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber else { return nil }
-        return TimeInterval(truncating: value)
+        userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
     }
     
     var animationCurve: UIView.AnimationCurve? {
@@ -60,19 +59,8 @@ internal extension NSNotification {
     }
     
     var animationOptions: UIView.AnimationOptions {
-        guard let curve = animationCurve else { return [] }
-        switch curve {
-        case .easeIn:
-            return .curveEaseIn
-        case .easeOut:
-            return .curveEaseOut
-        case .easeInOut:
-            return .curveEaseInOut
-        case .linear:
-            return .curveLinear
-        @unknown default:
-            return .curveLinear
-        }
+        guard let animationCurve = userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else { return .curveLinear }
+        return UIView.AnimationOptions(rawValue: animationCurve << 16)
     }
     
     var startFrame: CGRect? {

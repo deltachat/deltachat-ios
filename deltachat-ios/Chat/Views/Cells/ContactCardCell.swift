@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import SDWebImage
 
-public class ContactCardCell: BaseMessageCell {
+public class ContactCardCell: BaseMessageCell, ReusableCell {
 
     static let reuseIdentifier = "ContactCardCell"
 

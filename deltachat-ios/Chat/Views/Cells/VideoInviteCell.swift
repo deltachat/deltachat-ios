@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import DcCore
 
-public class VideoInviteCell: UITableViewCell {
+public class VideoInviteCell: UITableViewCell, ReusableCell {
 
     static let reuseIdentifier = "VideoInviteCell"
 

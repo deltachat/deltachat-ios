@@ -11,9 +11,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private var dcContext: DcContext
     private var messageIds: [Int] = []
-    private var isInitial = true
     private var isVisibleToUser: Bool = false
-    private var keepKeyboard: Bool = false
     private var wasInputBarFirstResponder = false
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
@@ -62,6 +60,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private lazy var backgroundContainer: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.transform = CGAffineTransform(scaleX: 1, y: -1)
         if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
             view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
                              placeholderImage: nil,
@@ -151,14 +150,21 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return dcContext.getChat(chatId: chatId)
     }()
 
-    private var customInputAccessoryView: UIView?
+    private var customInputAccessoryView: UIView? {
+        didSet { reloadInputViews() }
+    }
     override var inputAccessoryView: UIView? {
         get { customInputAccessoryView }
         set { customInputAccessoryView = newValue }
     }
     private var shouldBecomeFirstResponder: Bool = false
     override var canBecomeFirstResponder: Bool {
-        return shouldBecomeFirstResponder
+        if let presentedViewController {
+            // Should not show inputAccessoryView when anything other than searchController is presented
+            return presentedViewController is UISearchController && shouldBecomeFirstResponder
+        } else {
+            return shouldBecomeFirstResponder
+        }
     }
 
     private func getMyReactions(messageId: Int) -> [String] {
@@ -181,6 +187,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var emptyStateView: EmptyStateLabel = {
         let view =  EmptyStateLabel()
         view.isHidden = true
+        view.transform = CGAffineTransform(scaleX: 1, y: -1)
         return view
     }()
 
@@ -221,6 +228,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.keyboardDismissMode = .interactive
         tableView.allowsMultipleSelectionDuringEditing = true
 
+        // Transform the tableView to maintain scroll position from bottom when views are added
+        // this flips the default behavior of maintaining scroll position from the top of the
+        // scrollview when views are added to maintaining scroll position from the bottom
+        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        // Since the view is flipped, its safeArea will be flipped, luckily we can ignore it
+        tableView.contentInsetAdjustmentBehavior = .never
+
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         if #available(iOS 13.0, *) {
@@ -232,19 +246,31 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .didChangeFrame) { [weak self] _ in
+        keyboardManager?.on(event: .willShow) { [weak self] notification in
             guard let self else { return }
-            if self.isInitial {
-                self.isInitial = false
-                return
+            let globalTableViewFrame = self.tableView.convert(tableView.bounds, to: tableView.window)
+            let intersection = globalTableViewFrame.intersection(notification.endFrame)
+            let inset = intersection.height
+            // willShow is sometimes called when the keyboard is being hidden or when the kb was
+            // already shown due to interactive dismissal getting canceled.
+            guard self.tableView.contentInset.top != inset else { return }
+            UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
+                self.tableView.contentInset.top = inset
+                if self.tableView.contentOffset.y < 30 {
+                    // If user is less than 30 away from the bottom, we scroll
+                    // the bottom of the content to the top of the keyboard.
+                    self.tableView.contentOffset.y -= inset + self.tableView.contentOffset.y
+                }
             }
-            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil {
-                self.scrollToBottom()
-            }
-        }.on(event: .willChangeFrame) { [weak self] _ in
-            guard let self else { return }
-            if self.isLastRowVisible() && !self.tableView.isDragging && !self.tableView.isDecelerating && self.highlightedMsg == nil  && !self.isInitial {
-                self.scrollToBottom()
+        }
+        keyboardManager?.on(event: .willHide) { [weak self] notification in
+            UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
+                guard let self else { return }
+                let bottomInset = self.inputAccessoryView?.frame.height ?? 0
+                // TODO: This can float messages to the top when they don't fill the screen but needs a bit more work because other parts of this file expect tableView.contentInset.top to be the keyboard inset, also the willset is called after this sometimes which undoes this
+//                let visibleHeight = self.tableView.bounds.height - self.tableView.safeAreaInsets.top - bottomInset
+//                let visiblePadding = max(0, visibleHeight - self.tableView.contentSize.height)
+                self.tableView.contentInset.top = bottomInset //+ visiblePadding
             }
         }
 
@@ -272,14 +298,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         configureDraftArea(draft: draft, animated: false)
         tableView.dragInteractionEnabled = true
         tableView.dropDelegate = self
-    }
-
-    private func getTopInsetHeight() -> CGFloat {
-        let navigationBarHeight = navigationController?.navigationBar.bounds.height ?? 0
-        if let root = UIApplication.shared.keyWindow?.rootViewController {
-            return navigationBarHeight + root.view.safeAreaInsets.top
-        }
-        return UIApplication.shared.statusBarFrame.height + navigationBarHeight
     }
 
     public func activateSearchOnAppear() {
@@ -336,22 +354,26 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         }
 
+        messageInputBar.scrollDownButton.isHidden = true
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
-                self.scrollToMessage(msgId: msgId, animated: false)
-            } else if self.isInitial {
-                self.scrollToLastUnseenMessage()
+        // being pushed
+        if isMovingToParent {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView.contentInset.top = self.inputAccessoryView?.bounds.height ?? 0
+                if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+                    self.scrollToMessage(msgId: msgId, animated: false)
+                    self.highlightedMsg = nil
+                } else {
+                    self.scrollToLastUnseenMessage(animated: false)
+                }
             }
         }
-
-        messageInputBar.scrollDownButton.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
-
+        reloadInputViews()
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global().async { [weak self] in
@@ -383,6 +405,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         wasInputBarFirstResponder = false
         shouldBecomeFirstResponder = false
+    }
+
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        // Manually set the safe area because tableView is flipped
+        tableView.contentInset.bottom = tableView.safeAreaInsets.top
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -446,12 +474,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     }
                 }
 
-                let wasLastSectionScrolledToBottom = self.isLastRowScrolledToBottom()
                 self.refreshMessages()
                 self.updateTitle()
-                if wasLastSectionScrolledToBottom {
-                    self.scrollToBottom(animated: true)
-                }
                 self.updateScrollDownButtonVisibility()
                 self.markSeenMessagesInVisibleArea()
             }
@@ -485,18 +509,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
-        
+
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
 
             let chatId = ui["chat_id"] as? Int ?? 0
             if chatId == 0 || chatId == self.chatId {
-                let wasLastSectionScrolledToBottom = self.isLastRowScrolledToBottom()
                 self.refreshMessages()
                 self.updateTitle()
-                if wasLastSectionScrolledToBottom {
-                    self.scrollToBottom(animated: true)
-                }
                 self.updateScrollDownButtonVisibility()
                 self.markSeenMessagesInVisibleArea()
             }
@@ -504,23 +524,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let lastSectionVisibleBeforeTransition = self.isLastRowVisible(checkTopCellPostion: true, checkBottomCellPosition: true, allowPartialVisibility: true)
         coordinator.animate(
             alongsideTransition: { [weak self] _ in
-                guard let self else { return }
-                self.navigationItem.setRightBarButton(self.badgeItem, animated: true)
-                if lastSectionVisibleBeforeTransition {
-                    self.scrollToBottom(animated: false)
-                }
+                self?.navigationItem.setRightBarButton(self?.badgeItem, animated: true)
             },
-            completion: {[weak self] _ in
+            completion: { [weak self] _ in
                 guard let self else { return }
                 self.updateTitle()
-                if lastSectionVisibleBeforeTransition {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.reloadData()
-                        self?.scrollToBottom(animated: false)
-                    }
+                DispatchQueue.main.async {
+                    self.reloadData()
                 }
             }
         )
@@ -540,7 +552,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             draft.save(context: dcContext)
         }
     }
-    
+
     func handleUserVisibility(isVisible: Bool) {
         isVisibleToUser = isVisible
         if isVisible {
@@ -556,16 +568,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         _ = handleUIMenu()
 
+        func dequeueCell<T: UITableViewCell & ReusableCell>(ofType _: T.Type = T.self) -> T {
+            let cell = tableView.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath)
+            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
+            return cell as? T ?? { fatalError("WTF?! Wrong Cell, expected \(T.self)") }()
+        }
+
         let id = messageIds[indexPath.row]
         if id == DC_MSG_ID_DAYMARKER {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoMessageCell.reuseIdentifier, for: indexPath) as? InfoMessageCell else {
-                fatalError("WTF?! Wrong Cell, expected InfoMessageCell")
-            }
-
-            if messageIds.count > indexPath.row + 1 {
-                var nextMessageId = messageIds[indexPath.row + 1]
-                if nextMessageId == DC_MSG_ID_MARKER1 && messageIds.count > indexPath.row + 2 {
-                    nextMessageId = messageIds[indexPath.row + 2]
+            let cell = dequeueCell(ofType: InfoMessageCell.self)
+            if indexPath.row - 1 >= 0 {
+                var nextMessageId = messageIds[indexPath.row - 1]
+                if nextMessageId == DC_MSG_ID_MARKER1 && indexPath.row - 2 >= 0 {
+                    nextMessageId = messageIds[indexPath.row - 2]
                 }
 
                 let nextMessage = dcContext.getMessage(id: nextMessageId)
@@ -576,21 +591,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             return cell
         } else if id == DC_MSG_ID_MARKER1 {
             // unread messages marker
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoMessageCell.reuseIdentifier, for: indexPath) as? InfoMessageCell else {
-                fatalError("WTF?! Wrong Cell, expected InfoMessageCell")
-            }
-
-            let freshMsgsCount = self.messageIds.count - (indexPath.row + 1)
+            let cell = dequeueCell(ofType: InfoMessageCell.self)
+            let freshMsgsCount = indexPath.row
             cell.update(text: String.localized(stringID: "chat_n_new_messages", parameter: freshMsgsCount))
             return cell
         }
-        
+
         let message = dcContext.getMessage(id: id)
         if message.isInfo {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoMessageCell.reuseIdentifier, for: indexPath) as? InfoMessageCell else {
-                fatalError("WTF?! Wrong Cell, expected InfoMessageCell")
-            }
-
+            let cell = dequeueCell(ofType: InfoMessageCell.self)
             cell.showSelectionBackground(tableView.isEditing)
             if message.infoType == DC_INFO_WEBXDC_INFO_MESSAGE, let parent = message.parent {
                 cell.update(text: message.text, image: parent.getWebxdcPreviewImage())
@@ -603,53 +612,36 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let cell: BaseMessageCell
         switch message.type {
         case DC_MSG_VIDEOCHAT_INVITATION:
-            guard let videoInviteCell = tableView.dequeueReusableCell(withIdentifier: VideoInviteCell.reuseIdentifier, for: indexPath) as? VideoInviteCell
-            else { fatalError("VideoInviteCell expected") }
-
+            let videoInviteCell = dequeueCell(ofType: VideoInviteCell.self)
             videoInviteCell.showSelectionBackground(tableView.isEditing)
             videoInviteCell.update(dcContext: dcContext, msg: message)
             return videoInviteCell
 
         case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
-            guard let imageCell = tableView.dequeueReusableCell(withIdentifier: ImageTextCell.reuseIdentifier, for: indexPath) as? ImageTextCell else { fatalError("No ImageTextCell") }
-            cell = imageCell
+            cell = dequeueCell(ofType: ImageTextCell.self)
 
         case DC_MSG_FILE:
             if message.isSetupMessage {
-                guard let textCell = tableView.dequeueReusableCell(withIdentifier: TextMessageCell.reuseIdentifier, for: indexPath) as? TextMessageCell else { fatalError("No TextMessageCell") }
+                let textCell = dequeueCell(ofType: TextMessageCell.self)
                 message.text = String.localized("autocrypt_asm_click_body")
-
                 cell = textCell
             } else {
-                guard let fileCell = tableView.dequeueReusableCell(withIdentifier: FileTextCell.reuseIdentifier, for: indexPath) as? FileTextCell else { fatalError("No FileTextCell") }
-
-                cell = fileCell
+                cell = dequeueCell(ofType: FileTextCell.self)
             }
         case DC_MSG_WEBXDC:
-            guard let xdcCell = tableView.dequeueReusableCell(withIdentifier: WebxdcCell.reuseIdentifier, for: indexPath) as? WebxdcCell else { fatalError("No WebxdcCell") }
-
-            cell = xdcCell
+            cell = dequeueCell(ofType: WebxdcCell.self)
         case DC_MSG_AUDIO, DC_MSG_VOICE:
             if message.isUnsupportedMediaFile {
-                guard let fileCell = tableView.dequeueReusableCell(withIdentifier: FileTextCell.reuseIdentifier, for: indexPath) as? FileTextCell else { fatalError("No FileTextCell") }
-
-                cell = fileCell
+                cell = dequeueCell(ofType: FileTextCell.self)
             } else {
-                guard let audioMessageCell: AudioMessageCell = tableView.dequeueReusableCell(
-                    withIdentifier: AudioMessageCell.reuseIdentifier,
-                    for: indexPath) as? AudioMessageCell else { fatalError("No AudioMessageCell") }
-
+                let audioMessageCell = dequeueCell(ofType: AudioMessageCell.self)
                 audioController.update(audioMessageCell, with: message.id)
                 cell = audioMessageCell
             }
         case DC_MSG_VCARD:
-            guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCardCell.reuseIdentifier, for: indexPath) as? ContactCardCell else { fatalError("No ContactCardCell") }
-
-            cell = contactCell
+            cell = dequeueCell(ofType: ContactCardCell.self)
         default:
-            guard let textCell = tableView.dequeueReusableCell(withIdentifier: TextMessageCell.reuseIdentifier, for: indexPath) as? TextMessageCell else { fatalError("No TextMessageCell") }
-
-            cell = textCell
+            cell = dequeueCell(ofType: TextMessageCell.self)
         }
 
         var showAvatar = isGroupChat && !message.isFromCurrentSender
@@ -690,11 +682,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func updateScrollDownButtonVisibility() {
-        let scrollDownButtonHidden = contextMenuVisible || messageIds.isEmpty || isLastRowVisible(checkTopCellPostion: true,
-                                                                                                  checkBottomCellPosition: true,
-                                                                                                  allowPartialVisibility: true)
-        
-        messageInputBar.scrollDownButton.isHidden = scrollDownButtonHidden
+        messageInputBar.scrollDownButton.isHidden = contextMenuVisible || messageIds.isEmpty || isLastMessageVisible()
     }
 
     private func configureContactRequestBar() {
@@ -734,21 +722,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         draftArea.configure(draft: draft)
         if draft.isEditing {
             inputAccessoryView = editingBar
-            reloadInputViews()
         } else {
-            inputAccessoryView = messageInputBar
-            reloadInputViews()
             messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
             messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
+            inputAccessoryView = messageInputBar
         }
 
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-       return UISwipeActionsConfiguration(actions: [])
+        return UISwipeActionsConfiguration(actions: [])
     }
 
 
@@ -759,12 +745,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             return nil
         }
 
-        let action = UIContextualAction(style: .normal, title: nil,
-                                        handler: { [weak self] (_, _, completionHandler) in
-                                            self?.keepKeyboard = true
-                                            self?.replyToMessage(at: indexPath)
-                                            completionHandler(true)
-                                        })
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completionHandler) in
+            self?.replyToMessage(at: indexPath)
+            completionHandler(true)
+        }
+
         if #available(iOS 13.0, *) {
             action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?.sd_tintedImage(with: DcColors.defaultInverseColor)
             action.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.25)
@@ -798,12 +783,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     func markSeenMessagesInVisibleArea() {
         if isVisibleToUser,
            let indexPaths = tableView.indexPathsForVisibleRows {
-                let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
-                if !visibleMessagesIds.isEmpty {
-                    DispatchQueue.global().async { [weak self] in
-                        self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
-                    }
+            let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
+            if !visibleMessagesIds.isEmpty {
+                DispatchQueue.global().async { [weak self] in
+                    self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
                 }
+            }
         }
     }
 
@@ -829,7 +814,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             updateTitle()
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             handleEditingBar()
@@ -841,8 +826,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if message.isSetupMessage {
             didTapAsm(msg: message, orgText: "")
         } else if message.type == DC_MSG_FILE ||
-            message.type == DC_MSG_AUDIO ||
-            message.type == DC_MSG_VOICE {
+                    message.type == DC_MSG_AUDIO ||
+                    message.type == DC_MSG_VOICE {
             showMediaGalleryFor(message: message)
         } else if message.type == DC_MSG_VIDEOCHAT_INVITATION {
             if let url = NSURL(string: message.getVideoChatUrl()) {
@@ -868,11 +853,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
         _ = handleUIMenu()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
         if #available(iOS 12.0, *),
-            UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
+           UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
     }
@@ -893,7 +878,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func updateTitle() {
         titleView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         if tableView.isEditing {
             navigationItem.titleView = nil
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
@@ -956,14 +941,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }
 
-    @objc
+    private var refreshMessagesAfterEditing = false
     private func refreshMessages() {
-        messageIds = dcContext.getChatMsgs(chatId: chatId)
-        let wasLastSectionScrolledToBottom = isLastRowScrolledToBottom()
-        reloadData()
-        if wasLastSectionScrolledToBottom {
-            scrollToBottom(animated: true)
+        guard !tableView.isEditing else {
+            return refreshMessagesAfterEditing = true
         }
+        messageIds = dcContext.getChatMsgs(chatId: chatId).reversed()
+        reloadData()
         showEmptyStateView(messageIds.isEmpty)
     }
 
@@ -983,8 +967,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let index = msgIds.count - freshMsgsCount
             msgIds.insert(Int(DC_MSG_ID_MARKER1), at: index)
         }
-        self.messageIds = msgIds
-
+        self.messageIds = msgIds.reversed()
         self.showEmptyStateView(self.messageIds.isEmpty)
         self.reloadData()
     }
@@ -997,118 +980,105 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return dcChat.isGroup && !message.isFromCurrentSender
     }
 
-    private func isLastRowScrolledToBottom() -> Bool {
-        return isLastRowVisible(checkTopCellPostion: false, checkBottomCellPosition: true)
-    }
-
-    // verifies if the last message cell is visible
-    // - ommitting the parameters results in a simple check if the last message cell is preloaded. In that case it is not guaranteed that the cell is actually visible to the user and not covered e.g. by the messageInputBar
-    // - if set to true, checkTopCellPosition verifies if the top of the last message cell is visible to the user
-    // - if set to true, checkBottomCellPosition verifies if the bottom of the last message cell is visible to the user
-    // - if set to true, allowPartialVisiblity ensures that any part of the last message shown in the visible area results in a true return value.
-    // Using this flag large messages exceeding actual screen space are handled gracefully. This flag is only taken into account if checkTopCellPostion and checkBottomCellPosition are both set to true
-    private func isLastRowVisible(checkTopCellPostion: Bool = false, checkBottomCellPosition: Bool = false, allowPartialVisibility: Bool = false) -> Bool {
+    /// Verifies if the last message cell is fully visible
+    private func isLastMessageVisible(allowPartialVisibility: Bool = true) -> Bool {
         guard !messageIds.isEmpty else { return false }
-        let lastIndexPath = IndexPath(item: messageIds.count - 1, section: 0)
-        if !(checkTopCellPostion || checkBottomCellPosition) {
-            return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
-        }
-        guard let window = UIApplication.shared.keyWindow else {
-            return tableView.indexPathsForVisibleRows?.contains(lastIndexPath) ?? false
-        }
+        // 1 because messageIds is reversed and last message is DC_MSG_ID_LAST_SPECIAL
+        let lastIndexPath = IndexPath(item: 1, section: 0)
 
-        let rectOfCellInTableView = tableView.rectForRow(at: lastIndexPath)
-        // convert points to same coordination system
-        let inputBarTopInWindow = window.bounds.maxY - (messageInputBar.intrinsicContentSize.height + messageInputBar.keyboardHeight)
-        var cellTopInWindow = tableView.convert(CGPoint(x: 0, y: rectOfCellInTableView.minY), to: window)
-        cellTopInWindow.y = floor(cellTopInWindow.y)
-        var cellBottomInWindow = tableView.convert(CGPoint(x: 0, y: rectOfCellInTableView.maxY), to: window)
-        cellBottomInWindow.y = floor(cellBottomInWindow.y)
-        let tableViewTopInWindow = tableView.convert(CGPoint(x: 0, y: tableView.bounds.minY), to: window)
-        // check if top and bottom of the message are within the visible area
-        let isTopVisible = cellTopInWindow.y < inputBarTopInWindow && cellTopInWindow.y >= tableViewTopInWindow.y
-        let isBottomVisible = cellBottomInWindow.y <= inputBarTopInWindow && cellBottomInWindow.y >= tableViewTopInWindow.y
-        // check if the message is visible, but top and bottom of cell exceed visible area
-        let messageExceedsScreen = cellTopInWindow.y < tableViewTopInWindow.y && cellBottomInWindow.y > inputBarTopInWindow
-        if checkTopCellPostion && checkBottomCellPosition {
-            return allowPartialVisibility ?
-            isTopVisible || isBottomVisible || messageExceedsScreen :
-            isTopVisible && isBottomVisible
-        } else if checkTopCellPostion {
-            return isTopVisible
+        var cellRect = tableView.rectForRow(at: lastIndexPath)
+        cellRect.origin = tableView.convert(cellRect.origin, to: tableView.superview)
+
+        var visibleRect = tableView.frame
+        // Adjust for keyboard
+        visibleRect.size.height -= tableView.contentInset.top
+        // Adjust for navbar
+        visibleRect.origin.y += tableView.contentInset.bottom
+        visibleRect.size.height -= tableView.contentInset.bottom
+
+        if allowPartialVisibility {
+            return visibleRect.intersects(cellRect)
         } else {
-            // checkBottomCellPosition
-            return isBottomVisible
-        }
-
-    }
-    
-    private func scrollToBottom() {
-        scrollToBottom(animated: true)
-    }
-    
-    private func scrollToBottom(animated: Bool, focusOnVoiceOver: Bool = false) {
-        let numberOfRows = messageIds.count
-        if numberOfRows > 0 {
-            scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0),
-                        animated: animated,
-                        focusWithVoiceOver: focusOnVoiceOver)
+            return visibleRect.contains(cellRect)
         }
     }
 
-    private func scrollToLastUnseenMessage(animated: Bool = false) {
+    private func scrollToBottom(animated: Bool = true) {
+        // tableView is flipped so top is bottom
+        tableView.scrollToTop(animated: animated)
+    }
+
+    private func scrollToLastUnseenMessage(animated: Bool) {
         if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
+            // TODO: Test if this works now
             let indexPath = IndexPath(row: markerMessageIndex, section: 0)
             self.scrollToRow(at: indexPath, animated: animated)
         } else {
-            // scroll to bottom
-            let numberOfRows = self.tableView.numberOfRows(inSection: 0)
-            if numberOfRows > 0 {
-                self.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), animated: animated)
-            }
+            scrollToBottom(animated: animated)
         }
     }
 
-    private func scrollToMessage(msgId: Int, animated: Bool = true, scrollToText: Bool = false) {
+    /// Scroll to a message
+    ///
+    /// - Parameters:
+    ///     - msgId: The id of the message to scroll to
+    ///     - animated: Wether the scrolling should be animated
+    ///     - searchString: The text to scroll to inside the message
+    private func scrollToMessage(msgId: Int, animated: Bool = true, scrollToText searchString: String? = nil) {
         DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            guard let index = self.messageIds.firstIndex(of: msgId) else {
-                return
-            }
+            guard let self, let index = self.messageIds.firstIndex(of: msgId) else { return }
             let indexPath = IndexPath(row: index, section: 0)
 
-            if scrollToText && !UIAccessibility.isVoiceOverRunning {
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-                let cell = self.tableView.cellForRow(at: indexPath)
-                if let messageCell = cell as? BaseMessageCell {
-                    let textYPos = messageCell.getTextOffset(of: self.searchController.searchBar.text)
-                    let currentYPos = self.tableView.contentOffset.y
-                    let padding: CGFloat = 12
-                    self.tableView.setContentOffset(CGPoint(x: 0,
-                                                            y: textYPos +
-                                                                currentYPos -
-                                                                2 * UIFont.preferredFont(for: .body, weight: .regular).lineHeight -
-                                                                padding),
-                                                    animated: false)
-
-                    return
+            if let searchString, !UIAccessibility.isVoiceOverRunning {
+                let isVisible = self.tableView.indexPathsForVisibleRows?.contains(indexPath) == false
+                UIView.animate(withDuration: !isVisible && animated ? 0.3 : 0) {
+                    if isVisible {
+                        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+                    }
+                } completion: { [weak self] _ in
+                    guard let self else { return }
+                    if let messageCell = self.tableView.cellForRow(at: indexPath) as? BaseMessageCell {
+                        let textOffset = messageCell.getTextOffset(of: searchString)
+                        let textOrigin = messageCell.convert(
+                            CGPoint(x: 0, y: textOffset),
+                            to: self.tableView
+                        )
+                        let topInset = self.tableView.safeAreaInsets.top/2
+                        var bottomInset = 12.0
+                        if !self.messageInputBar.scrollDownButton.isHidden {
+                            bottomInset += 12 + self.messageInputBar.scrollDownButton.bounds.height
+                        }
+                        let textFrame = CGRect(origin: textOrigin, size: CGSize(width: 1, height: 0))
+                            .inset(by: .init(top: topInset, left: 0, bottom: bottomInset, right: 0))
+                        self.tableView.scrollRectToVisible(textFrame, animated: animated)
+                    }
                 }
+            } else {
+                self.scrollToRow(at: indexPath, animated: animated)
             }
-
-            self.scrollToRow(at: indexPath, animated: false)
         }
     }
 
     private func scrollToRow(at indexPath: IndexPath, animated: Bool, focusWithVoiceOver: Bool = true) {
         if UIAccessibility.isVoiceOverRunning && focusWithVoiceOver {
-            tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
             markSeenMessagesInVisibleArea()
             updateScrollDownButtonVisibility()
             forceVoiceOverFocussingCell(at: indexPath) { [weak self] in
-                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                self?.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
             }
         } else {
-            tableView.scrollToRow(at: indexPath, at: .middle, animated: animated)
+            UIView.animate(withDuration: animated ? 0.3 : 0) {
+                self.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+            } completion: { [weak self] _ in
+                guard let self else { return }
+                // If the cell does not fit on the screen, scroll to the top of it.
+                let cellHeight = self.tableView.cellForRow(at: indexPath)?.bounds.height
+                let viewHeight = self.tableView.bounds.height - self.tableView.contentInset.vertical
+                if let cellHeight, cellHeight > viewHeight {
+                    self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+                }
+            }
         }
     }
 
@@ -1173,7 +1143,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         messageInputBar.inputTextView.layer.masksToBounds = true
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
-        messageInputBar.inputTextView.delegate = self
         messageInputBar.inputTextView.imagePasteDelegate = self
         messageInputBar.onScrollDownButtonPressed = { [weak self] in
             self?.scrollToBottom()
@@ -1215,14 +1184,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     $0.setSize(CGSize(width: 40, height: 40), animated: false)
                     $0.accessibilityLabel = String.localized("menu_add_attachment")
                     $0.accessibilityTraits = .button
-            }.onSelected {
-                $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
-            }.onDeselected {
-                $0.tintColor = DcColors.primary
-            }.onTouchUpInside { [weak self] _ in
-                self?.messageInputBar.inputTextView.resignFirstResponder()
-                self?.clipperButtonPressed()
-            }
+                }.onSelected {
+                    $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
+                }.onDeselected {
+                    $0.tintColor = DcColors.primary
+                }.onTouchUpInside { [weak self] _ in
+                    self?.clipperButtonPressed()
+                }
         ]
 
         messageInputBar.setStackViewItems(leftItems, forStack: .left, animated: false)
@@ -1251,7 +1219,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     @objc private func clipperButtonPressed() {
-        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
         let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
         let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
@@ -1271,7 +1238,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let webxdcAction = UIAlertAction(title: String.localized("webxdc_apps"), style: .default, handler: webxdcButtonPressed(_:))
             alert.addAction(webxdcAction)
         }
-        
+
         alert.addAction(voiceMessageAction)
 
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
@@ -1288,7 +1255,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in self.shouldBecomeFirstResponder = true }))
 
         shouldBecomeFirstResponder = false
-        messageInputBar.inputTextView.resignFirstResponder()
+//        messageInputBar.inputTextView.resignFirstResponder()
 
         self.present(alert, animated: true, completion: {
             // unfortunately, voiceMessageAction.accessibilityHint does not work,
@@ -1309,7 +1276,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: cancelHandler ?? { _ in
             self.dismiss(animated: true, completion: nil)
-            }))
+        }))
         present(alert, animated: true, completion: nil)
     }
 
@@ -1348,13 +1315,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let title = String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { [weak self] _ in
-                            guard let self else { return }
-                            // remove message observers early to avoid careless calls to dcContext methods
-                            self.dcContext.deleteChat(chatId: self.chatId)
-                            self.navigationController?.popViewController(animated: true)
-                          })
+            guard let self else { return }
+            // remove message observers early to avoid careless calls to dcContext methods
+            self.dcContext.deleteChat(chatId: self.chatId)
+            self.navigationController?.popViewController(animated: true)
+        })
     }
-    
+
 
     private func askToChatWith(email: String) {
         let contactId = self.dcContext.createContact(name: "", email: email)
@@ -1366,9 +1333,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email),
                               actionTitle: String.localized("start_chat"),
                               actionHandler: { _ in
-                                self.dismiss(animated: true, completion: nil)
-                                let chatId = self.dcContext.createChatByContactId(contactId: contactId)
-                                self.showChat(chatId: chatId)})
+                self.dismiss(animated: true, completion: nil)
+                let chatId = self.dcContext.createChatByContactId(contactId: contactId)
+                self.showChat(chatId: chatId)})
         }
     }
 
@@ -1379,15 +1346,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func askToDeleteMessages(ids: [Int]) {
         let chat = dcContext.getChat(chatId: chatId)
         let title = chat.isDeviceTalk ?
-            String.localized(stringID: "ask_delete_messages_simple", parameter: ids.count) :
-            String.localized(stringID: "ask_delete_messages", parameter: ids.count)
+        String.localized(stringID: "ask_delete_messages_simple", parameter: ids.count) :
+        String.localized(stringID: "ask_delete_messages", parameter: ids.count)
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
-                            self.dcContext.deleteMessages(msgIds: ids)
-                            if self.tableView.isEditing {
-                                self.setEditing(isEditing: false)
-                            }
-                          })
+            self.dcContext.deleteMessages(msgIds: ids)
+            if self.tableView.isEditing {
+                self.setEditing(isEditing: false)
+            }
+        })
     }
 
     private func askToForwardMessage() {
@@ -1400,12 +1367,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 self?.confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
                                         actionTitle: String.localized("menu_forward"),
                                         actionHandler: { [weak self] _ in
-                                            guard let self else { return }
-                                            RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
-                                        },
+                    guard let self else { return }
+                    RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
+                },
                                         cancelHandler: { [weak self] _ in
-                                            self?.navigationController?.popViewController(animated: true)
-                                        })
+                    self?.navigationController?.popViewController(animated: true)
+                })
             }
         }
     }
@@ -1468,7 +1435,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             })
         }
     }
-    
+
     private func showCameraPermissionAlert() {
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: String.localized("perm_required_title"),
@@ -1476,7 +1443,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                                           preferredStyle: .alert)
             if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default, handler: { _ in
-                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)}))
+                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)}))
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil))
             }
             self?.present(alert, animated: true, completion: nil)
@@ -1561,8 +1528,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 sheet.preferredCornerRadius = 20
             }
         }
-
-        present(navigationController, animated: true)
+        let source = self.navigationController ?? self
+        source.present(navigationController, animated: true)
     }
 
     private func locationStreamingButtonPressed(_ action: UIAlertAction) {
@@ -1592,16 +1559,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let ok = UIAlertAction(title: String.localized("ok"),
                                style: .default,
                                handler: { _ in
-                                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                                    guard let self else { return }
-                                    let messageId = self.dcContext.sendVideoChatInvitation(chatId: self.chatId)
-                                    let inviteMessage = self.dcContext.getMessage(id: messageId)
-                                    if let url = NSURL(string: inviteMessage.getVideoChatUrl()) {
-                                        DispatchQueue.main.async {
-                                            UIApplication.shared.open(url as URL)
-                                        }
-                                    }
-                                }})
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                guard let self else { return }
+                let messageId = self.dcContext.sendVideoChatInvitation(chatId: self.chatId)
+                let inviteMessage = self.dcContext.getMessage(id: messageId)
+                if let url = NSURL(string: inviteMessage.getVideoChatUrl()) {
+                    DispatchQueue.main.async {
+                        UIApplication.shared.open(url as URL)
+                    }
+                }
+            }})
         alert.addAction(cancel)
         alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
@@ -1622,7 +1589,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let alert = UIAlertController(title: String.localized("location_denied"), message: String.localized("location_denied_explain_ios"), preferredStyle: .alert)
             if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default, handler: { _ in
-                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
                 }))
             }
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -1643,10 +1610,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func focusInputTextView() {
-        shouldBecomeFirstResponder = true
-        becomeFirstResponder()
-        messageInputBar.inputTextView.becomeFirstResponder()
-        if UIAccessibility.isVoiceOverRunning {
+        if !messageInputBar.inputTextView.isFirstResponder {
+            shouldBecomeFirstResponder = true
+            becomeFirstResponder()
+            messageInputBar.inputTextView.becomeFirstResponder()
+        } else if UIAccessibility.isVoiceOverRunning {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
                 UIAccessibility.post(notification: .layoutChanged, argument: self?.messageInputBar.inputTextView)
             })
@@ -1654,8 +1622,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func stageVCard(url: URL) {
-        keepKeyboard = true
-
         draft.setAttachment(viewType: DC_MSG_VCARD, path: url.relativePath)
         configureDraftArea(draft: draft)
         focusInputTextView()
@@ -1663,7 +1629,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func stageDocument(url: NSURL) {
-        keepKeyboard = true
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
@@ -1674,7 +1639,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func stageVideo(url: NSURL) {
-        keepKeyboard = true
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
@@ -1685,7 +1649,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func stageImage(url: NSURL) {
-        keepKeyboard = true
         DispatchQueue.global().async { [weak self] in
             if let image = ImageFormat.loadImageFrom(url: url as URL) {
                 self?.stageImage(image)
@@ -1724,7 +1687,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
             guard let self, let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) else { return }
-            
+
             if self.draft.draftMsg != nil {
                 self.draft.setAttachment(viewType: DC_MSG_STICKER, path: path)
             }
@@ -1801,7 +1764,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func reply(at indexPath: IndexPath) {
-        keepKeyboard = true
         replyToMessage(at: indexPath)
     }
 
@@ -1960,7 +1922,7 @@ extension ChatViewController {
         }
 
         let indexPath = IndexPath(row: index, section: 0)
-        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { 
+        guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else {
             debugPrint("booooom")
             return
         }
@@ -1983,22 +1945,17 @@ extension ChatViewController {
     private func targetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let messageId = configuration.identifier as? NSString else { return nil }
         guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
+        // Using superview because tableView is transformed
+        guard let superview = tableView.superview else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
-        let message = dcContext.getMessage(id: messageId.integerValue)
 
         guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
               let messageSnapshotView = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) else { return nil }
 
-        var centerPoint = cell.convert(cell.messageBackgroundContainer.frame.origin, to: tableView)
-        centerPoint.y += 0.5 * cell.messageBackgroundContainer.frame.height
-
-        if message.isFromCurrentSender {
-            centerPoint.x = cell.frame.width - 0.5 * messageSnapshotView.frame.width - 6 - view.safeAreaInsets.right
-        } else {
-            centerPoint.x = messageSnapshotView.center.x + cell.messageBackgroundContainer.frame.minX + view.safeAreaInsets.left
-        }
-
-        let previewTarget = UIPreviewTarget(container: tableView, center: centerPoint)
+        let messageFrame = cell.messageBackgroundContainer.frame
+        let messageCenter = CGPoint(x: messageFrame.midX, y: messageFrame.midY)
+        let messageCenterInSuper = cell.convert(messageCenter, to: superview)
+        let previewTarget = UIPreviewTarget(container: superview, center: messageCenterInSuper)
 
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
@@ -2202,7 +2159,7 @@ extension ChatViewController {
         guard let file = msg.file,
               let vcards = dcContext.parseVcard(path: file),
               let vcard = vcards.first else { return }
-        
+
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), vcard.displayName), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
             if let contactIds = self.dcContext.importVcard(path: file) {
@@ -2291,6 +2248,9 @@ extension ChatViewController {
         self.updateTitle()
         shouldBecomeFirstResponder = isEditing
         becomeFirstResponder()
+        if refreshMessagesAfterEditing && isEditing == false {
+            refreshMessages()
+        }
     }
 
     private func setDefaultBackgroundImage(view: UIImageView) {
@@ -2496,7 +2456,6 @@ extension ChatViewController: MediaPickerDelegate {
 // MARK: - MessageInputBarDelegate
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        keepKeyboard = true
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
         if let filePath = draft.attachment, let viewType = draft.viewType {
@@ -2514,7 +2473,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         }
         inputBar.inputTextView.text = String()
         inputBar.inputTextView.attributedText = nil
-        draft.clear()
+        draft.clear() // TODO: Fix
+        // FIXME: This lags the scrollview
         draftArea.cancel()
     }
 
@@ -2527,14 +2487,12 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 // MARK: - DraftPreviewDelegate
 extension ChatViewController: DraftPreviewDelegate {
     func onCancelQuote() {
-        keepKeyboard = true
         draft.setQuote(quotedMsg: nil)
         configureDraftArea(draft: draft)
         focusInputTextView()
     }
 
     func onCancelAttachment() {
-        keepKeyboard = true
         draft.clearAttachment()
         configureDraftArea(draft: draft)
         evaluateInputBar(draft: draft)
@@ -2604,7 +2562,7 @@ extension ChatViewController: ChatSearchDelegate {
         } else {
             searchResultIndex -= 1
         }
-        scrollToMessage(msgId: searchMessageIds[searchResultIndex], animated: true, scrollToText: true)
+        scrollToMessage(msgId: searchMessageIds[searchResultIndex], animated: true, scrollToText: searchController.searchBar.text)
         searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
         self.reloadData()
     }
@@ -2615,7 +2573,7 @@ extension ChatViewController: ChatSearchDelegate {
         } else {
             searchResultIndex += 1
         }
-        scrollToMessage(msgId: searchMessageIds[searchResultIndex], animated: true, scrollToText: true)
+        scrollToMessage(msgId: searchMessageIds[searchResultIndex], animated: true, scrollToText: searchController.searchBar.text)
         searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: searchResultIndex + 1)
         self.reloadData()
     }
@@ -2631,15 +2589,14 @@ extension ChatViewController: UISearchResultsUpdating {
                 guard let self else { return }
                 let resultIds = self.dcContext.searchMessages(chatId: self.chatId, searchText: searchText)
                 DispatchQueue.main.async { [weak self] in
-
-                guard let self else { return }
+                    guard let self else { return }
                     self.searchMessageIds = resultIds
                     self.searchResultIndex = self.searchMessageIds.isEmpty ? 0 : self.searchMessageIds.count - 1
                     self.searchAccessoryBar.isEnabled = !resultIds.isEmpty
                     self.searchAccessoryBar.updateSearchResult(sum: self.searchMessageIds.count, position: self.searchResultIndex + 1)
 
                     if let lastId = resultIds.last {
-                        self.scrollToMessage(msgId: lastId, animated: true, scrollToText: true)
+                        self.scrollToMessage(msgId: lastId, animated: true, scrollToText: searchText)
                     }
                     self.reloadData()
                 }
@@ -2695,7 +2652,7 @@ extension ChatViewController: ChatContactRequestDelegate {
         dcContext.blockChat(chatId: chatId)
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     func onDeleteRequest() {
         self.askToDeleteChat()
     }
@@ -2732,18 +2689,6 @@ extension ChatViewController: AudioControllerDelegate {
     }
 }
 
-// MARK: - UITextViewDelegate
-extension ChatViewController: UITextViewDelegate {
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        if keepKeyboard {
-            self.messageInputBar.inputTextView.becomeFirstResponder()
-            keepKeyboard = false
-            return false
-        }
-        return true
-    }
-}
-
 // MARK: - ChatInputTextViewPasteDelegate
 extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
@@ -2771,7 +2716,6 @@ extension ChatViewController: WebxdcSelectorDelegate {
     }
 
     func onWebxdcSelected(msgId: Int) {
-        keepKeyboard = true
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             let message = self.dcContext.getMessage(id: msgId)
@@ -2816,7 +2760,7 @@ extension ChatViewController: ChatDropInteractionDelegate {
 
 extension ChatViewController: SendContactViewControllerDelegate {
     func contactSelected(_ viewController: SendContactViewController, contactId: Int) {
-        guard let vcardData = dcContext.makeVCard(contactIds: [contactId]), 
+        guard let vcardData = dcContext.makeVCard(contactIds: [contactId]),
                 let vcardURL = prepareVCardData(vcardData) else { return }
 
         stageVCard(url: vcardURL)
@@ -2824,9 +2768,9 @@ extension ChatViewController: SendContactViewControllerDelegate {
 
     private func prepareVCardData(_ vcardData: Data) -> URL? {
         guard let fileName = FileHelper.saveData(data: vcardData,
-                                           name: UUID().uuidString,
-                                           suffix: "vcf",
-                                           directory: .cachesDirectory),
+                                                 name: UUID().uuidString,
+                                                 suffix: "vcf",
+                                                 directory: .cachesDirectory),
               let vcardURL = URL(string: fileName) else {
             return nil
         }

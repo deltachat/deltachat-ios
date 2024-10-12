@@ -738,6 +738,7 @@ open class InputBarAccessoryView: UIView {
     ///   - view: New view
     ///   - animated: If the layout should be animated
     open func setMiddleContentView(_ view: UIView?, animated: Bool) {
+        guard view !== middleContentView else { return }
         middleContentView?.removeFromSuperview()
         middleContentView = view
         guard let view = view else { return }
@@ -832,7 +833,8 @@ open class InputBarAccessoryView: UIView {
     ///   - newValue: New widthAnchor constant
     ///   - animated: If the layout should be animated
     open func setLeftStackViewWidthConstant(to newValue: CGFloat, animated: Bool) {
-        performLayout(animated) { 
+        guard leftStackViewWidthConstant != newValue else { return }
+        performLayout(animated) {
             self.leftStackViewWidthConstant = newValue
             self.layoutStackViews([.left])
             self.layoutContainerViewIfNeeded()
@@ -845,7 +847,8 @@ open class InputBarAccessoryView: UIView {
     ///   - newValue: New widthAnchor constant
     ///   - animated: If the layout should be animated
     open func setRightStackViewWidthConstant(to newValue: CGFloat, animated: Bool) {
-        performLayout(animated) { 
+        guard rightStackViewWidthConstant != newValue else { return }
+        performLayout(animated) {
             self.rightStackViewWidthConstant = newValue
             self.layoutStackViews([.right])
             self.layoutContainerViewIfNeeded()
@@ -858,6 +861,7 @@ open class InputBarAccessoryView: UIView {
     ///   - newValue: New boolean value
     ///   - animated: If the layout should be animated
     open func setShouldForceMaxTextViewHeight(to newValue: Bool, animated: Bool) {
+        guard shouldForceTextViewMaxHeight != newValue else { return }
         performLayout(animated) {
             self.shouldForceTextViewMaxHeight = newValue
             self.textViewHeightAnchor?.isActive = newValue
