@@ -247,7 +247,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
         keyboardManager?.on(event: .willShow) { [weak self] notification in
-            guard let self else { return }
+            guard let self, !self.messageIds.isEmpty else { return }
             let globalTableViewFrame = self.tableView.convert(tableView.bounds, to: tableView.window)
             let intersection = globalTableViewFrame.intersection(notification.endFrame)
             let inset = intersection.height
@@ -264,13 +264,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         }
         keyboardManager?.on(event: .willHide) { [weak self] notification in
+            guard let self, !self.messageIds.isEmpty else { return }
             UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
-                guard let self else { return }
                 let bottomInset = self.inputAccessoryView?.frame.height ?? 0
                 // TODO: This can float messages to the top when they don't fill the screen but needs a bit more work because other parts of this file expect tableView.contentInset.top to be the keyboard inset, also the willset is called after this sometimes which undoes this
 //                let visibleHeight = self.tableView.bounds.height - self.tableView.safeAreaInsets.top - bottomInset
 //                let visiblePadding = max(0, visibleHeight - self.tableView.contentSize.height)
-                self.tableView.contentInset.top = bottomInset //+ visiblePadding
+                self.tableView.contentInset.top = bottomInset // + visiblePadding
             }
         }
 
