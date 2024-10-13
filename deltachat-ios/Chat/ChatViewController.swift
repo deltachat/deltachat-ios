@@ -187,7 +187,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var emptyStateView: EmptyStateLabel = {
         let view =  EmptyStateLabel()
         view.isHidden = true
-        view.transform = CGAffineTransform(scaleX: 1, y: -1)
         return view
     }()
 
@@ -247,7 +246,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
         keyboardManager?.on(event: .willShow) { [weak self] notification in
-            guard let self, !self.messageIds.isEmpty else { return }
+            guard let self else { return }
             let globalTableViewFrame = self.tableView.convert(tableView.bounds, to: tableView.window)
             let intersection = globalTableViewFrame.intersection(notification.endFrame)
             let inset = intersection.height
@@ -264,7 +263,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         }
         keyboardManager?.on(event: .willHide) { [weak self] notification in
-            guard let self, !self.messageIds.isEmpty else { return }
+            guard let self else { return }
             UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
                 self.tableView.contentInset.top = self.inputAccessoryView?.frame.height ?? 0
             }
@@ -302,7 +301,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func configureEmptyStateView() {
-        emptyStateView.addCenteredTo(parentView: view)
+        emptyStateView.addCenteredTo(parentView: backgroundContainer, evadeKeyboard: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
