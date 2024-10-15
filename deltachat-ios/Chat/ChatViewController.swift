@@ -2330,6 +2330,8 @@ extension ChatViewController: BaseMessageCellDelegate {
             didTapAsm(msg: message, orgText: "")
         } else if message.type == DC_MSG_VCARD {
             didTapVcard(msg: message)
+        } else if message.type == DC_MSG_WEBXDC {
+            showWebxdcViewFor(message: message)
         }
     }
 
