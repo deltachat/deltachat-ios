@@ -106,6 +106,15 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
 
     // MARK: - setup + configuration
     private func setupSubviews() {
+        addWebView()
+        if allowSearch, #available(iOS 14.0, *) {
+            navigationItem.searchController = searchController
+        }
+        accessoryViewContainer.setLeftStackViewWidthConstant(to: 0, animated: false)
+        accessoryViewContainer.setRightStackViewWidthConstant(to: 0, animated: false)
+        accessoryViewContainer.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+    }
+    private func addWebView() {
         view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
@@ -114,13 +123,11 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         webView.scrollView.keyboardDismissMode = .interactive
         webView.scrollView.contentInset.bottom = 0
+    }
 
-        if allowSearch, #available(iOS 14.0, *) {
-            navigationItem.searchController = searchController
-        }
-        accessoryViewContainer.setLeftStackViewWidthConstant(to: 0, animated: false)
-        accessoryViewContainer.setRightStackViewWidthConstant(to: 0, animated: false)
-        accessoryViewContainer.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+    func cancelTouchesInWebView() {
+        webView.removeFromSuperview()
+        addWebView()
     }
 
     private func initSearch() {

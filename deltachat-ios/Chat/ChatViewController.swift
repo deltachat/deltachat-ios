@@ -190,6 +190,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return view
     }()
 
+    /// Cached webxdc vc to show if user clicked the same webxdc message
+    private var lastWebxdcViewController: WebxdcViewController?
+
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -414,6 +417,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             draft.save(context: dcContext)
             keyboardManager = nil
         }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        lastWebxdcViewController = nil
     }
 
     // MARK: - Notifications
@@ -2095,10 +2103,15 @@ extension ChatViewController: MCEmojiPickerDelegate {
 }
 
 extension ChatViewController {
-
     func showWebxdcViewFor(message: DcMsg) {
-        let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
-        navigationController?.pushViewController(webxdcViewController, animated: true)
+        if let lastWebxdcViewController, lastWebxdcViewController.messageId == message.id {
+            navigationController?.pushViewController(lastWebxdcViewController, animated: true)
+        } else {
+            let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
+            navigationController?.pushViewController(webxdcViewController, animated: true)
+            lastWebxdcViewController = webxdcViewController
+        }
+
     }
 
     func showMediaGalleryFor(message: DcMsg) {
