@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import SDWebImage
 
-public class FileTextCell: BaseMessageCell {
+public class FileTextCell: BaseMessageCell, ReusableCell {
 
     class var reuseIdentifier: String { "FileTextCell" }
 

@@ -2,7 +2,7 @@ import Foundation
 import DcCore
 import UIKit
 
-class TextMessageCell: BaseMessageCell {
+class TextMessageCell: BaseMessageCell, ReusableCell {
 
     static let reuseIdentifier = "TextMessageCell"
 

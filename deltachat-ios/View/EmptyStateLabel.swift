@@ -17,12 +17,19 @@ class EmptyStateLabel: PaddingTextView {
         translatesAutoresizingMaskIntoConstraints = false
     }
 
-    func addCenteredTo(parentView: UIView) {
+    func addCenteredTo(parentView: UIView, evadeKeyboard: Bool = false) {
         parentView.addSubview(self)
         leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: 40).isActive = true
         trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: -40).isActive = true
-        centerYAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        centerXAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        let safeArea = parentView.safeAreaLayoutGuide
+        centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
+        let centerYConstraint = centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
+        centerYConstraint.isActive = true
+        if #available(iOS 15.0, *), evadeKeyboard {
+            centerYConstraint.priority = .defaultHigh
+            bottomAnchor.constraint(lessThanOrEqualTo: parentView.keyboardLayoutGuide.topAnchor, constant: -40).isActive = true
+        }
+
     }
 
     required init?(coder: NSCoder) {

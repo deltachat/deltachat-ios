@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import SDWebImage
 
-class ImageTextCell: BaseMessageCell {
+class ImageTextCell: BaseMessageCell, ReusableCell {
 
     static let reuseIdentifier = "ImageTextCell"
 

@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class InfoMessageCell: UITableViewCell {
+class InfoMessageCell: UITableViewCell, ReusableCell {
 
     static let reuseIdentifier = "InfoMessageCell"
 
