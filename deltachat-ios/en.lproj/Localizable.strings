@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancel";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "or";
 "clear_search" = "Clear Search";
 "yes" = "Yes";
@@ -383,6 +383,8 @@
 "search_files" = "Search Files";
 "search_explain" = "Search for chats, contacts, and messages";
 "search_no_result_for_x" = "No results found for \"%1$@\"";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Unread";
 // create/edit groups, contact/group profile
 "group_name" = "Group Name";
 "group_avatar" = "Group Image";
@@ -437,9 +439,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profile transferred to your second device.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparing profile…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Waiting for receiver…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Receiver connected…";
 // Shown beside progress bar, stay short
 "transferring" = "Transferring…";
@@ -524,6 +526,7 @@
 "proxy_list_header" = "Saved Proxies";
 "proxy_delete" = "Delete Proxy";
 "proxy_delete_explain" = "Are you sure you want to delete \"%1$@\"?";
+"proxy_use_proxy_confirm" = "Do you want to use proxy \"%1$@\"?";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Use SOCKS5";
@@ -559,8 +562,10 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Forward to…";
-"share_multiple_attachments" = "Send %1$d files to the selected chat?\n\nThe files are sent unmodified in their original size (eg. images and videos are not re-encoded).";
-"share_multiple_attachments_multiple_chats" = "Send %1$d file(s) to %2$d chats?\n\nThe files are sent unmodified in their original size (eg. images and videos are not re-encoded).";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Send %1$d files to \"%2$@\"?";
+"ask_send_files_to_selected_chats" = "Send %1$d file(s) to %2$d chats?";
+"videos_sent_without_recoding" = "(Videos are sent as original, big files. To send videos as smaller files, attach them separately)";
 "share_text_multiple_chats" = "Send this text to %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Sharing aborted due to missing permissions.";
 // preferences

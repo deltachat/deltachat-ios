@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Avbryt";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "eller";
 "clear_search" = "Rensa sök";
 "yes" = "Ja";
@@ -433,9 +433,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profilen överförd till din andra enhet.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Förbereder profil...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Väntar på mottagare...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Mottagare ansluten...";
 // Shown beside progress bar, stay short
 "transferring" = "Överför...";
@@ -545,8 +545,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Vidarebefordra till...";
-"share_multiple_attachments" = "Vill du skicka %1$d filer till den valda chatten?\n\nFilerna skickas oförändrade i ursprunglig storlek, t.ex. bilder och videor kodas inte om.";
-"share_multiple_attachments_multiple_chats" = "Vill du skicka %1$d fil(er) till %2$d chattar?\n\nFilerna skickas oförändrade i ursprunglig storlek, t.ex. bilder och videor kodas inte om.";
+"ask_send_files_to_selected_chats" = "Vill du skicka %1$d fil(er) till %2$d chattar?";
 "share_text_multiple_chats" = "Vill du skicka denna text till %1$d chattar?\n\n\"%2$@\"";
 "share_abort" = "Delningen avbröts på grund av saknad behörighet.";
 // preferences

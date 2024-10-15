@@ -406,8 +406,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "បញ្ជូនទៅ…";
-"share_multiple_attachments" = "ផ្ញើ ឯកសារ %1$d  ទៅការសន្ទនាដែលបានជ្រើសរើស?\n\nឯកសារដែលបានផ្ញើហើយ មិនកែប្រែបានក្នុងទំហំដើមរបស់វា។ នេះ​មានន័យថា រូបភាព និងវីដេអូមិនត្រូវបានថតទុកទេ។";
-"share_multiple_attachments_multiple_chats" = "ផ្ញើឯកសារ %1$d ទៅ សន្ទនា %2$d?\n\nឯកសារដែលបានផ្ញើហើយ មិនកែប្រែបានក្នុងទំហំដើមរបស់វា។ នេះ​មានន័យថា រូបភាព និងវីដេអូមិនត្រូវបានថតទុកទេ។";
+"ask_send_files_to_selected_chats" = "ផ្ញើឯកសារ %1$d ទៅ សន្ទនា %2$d?";
 "share_text_multiple_chats" = "ផ្ញើអត្ថបទនេះទៅសន្ទនា %1$d?\n\n\"%2$@\"";
 "share_abort" = "ការខកខានចែករំលែក ដល់ពេលកំណត់បាត់បង់សិទ្ធ។";
 // preferences

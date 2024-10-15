@@ -178,6 +178,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Reencaminhar ...";
+"ask_send_files_to_selected_chats" = "Enviar %1$d arquivo(s) para %2$d conversas?";
 // preferences
 "pref_using_custom" = "Utilizando personalizado %1$@";
 "pref_using_default" = "Utilizando padrão: %1$@";

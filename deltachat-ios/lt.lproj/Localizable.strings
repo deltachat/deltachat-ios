@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "Gerai";
 "cancel" = "Atsisakyti";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "arba";
 "clear_search" = "Išvalyti paiešką";
 "yes" = "Taip";
@@ -353,6 +353,15 @@
 "last_msg_sent_successfully" = "Paskutinė žinutė sėkmingai išsiųsta.";
 // Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Žinutės";
+// welcome and login
+// Primary button on the welcome screen, allows to create an instant profile
+"onboarding_create_instant_account" = "Sukurti naują profilį";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
+"onboarding_alternative_logins" = "Aš jau turiu profilį";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Jūsų profilis";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Naudoti kitą serverį";
 "scan_invitation_code" = "Skenuoti pakvietimo kodą";
 "login_title" = "Prisijungti";
 // for classic email, we use the classical term "Account"
@@ -373,6 +382,16 @@
 "login_smtp_port" = "SMTP prievadas";
 "login_smtp_security" = "SMTP saugumas";
 "login_auth_method" = "Įgaliojimų suteikimo metodas";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+"proxy_settings" = "Įgaliotasis serveris";
+"proxy_use_proxy" = "Naudoti įgaliotąjį serverį";
+"proxy_add" = "Pridėti įgaliotąjį serverį";
+"proxy_add_url_hint" = "Čia įveskite įgaliotojo serverio URL";
+"proxy_invalid" = "Neteisingas arba nepalaikomas įgaliotojo serverio URL";
+"proxy_list_header" = "Įrašyti įgaliotieji serveriai";
+"proxy_delete" = "Ištrinti įgaliotąjį serverį";
+"proxy_delete_explain" = "Ar tikrai norite ištrinti „%1$@“?";
+"proxy_use_proxy_confirm" = "Ar norite naudoti įgaliotąjį serverį „%1$@“?";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Naudoti SOCKS5";
@@ -449,6 +468,8 @@
 "pref_incognito_keyboard_explain" = "Prašyti klaviatūros išjungti suasmenintą mokymąsi";
 "pref_read_receipts" = "Pranešimai apie skaitymą";
 "pref_read_receipts_explain" = "Jei pranešimai apie skaitymą yra išjungti, jūs negalėsite matyti pranešimų apie skaitymą iš kitų žmonių.";
+"pref_server" = "Serveris";
+"pref_encryption" = "Šifravimas";
 "pref_manage_keys" = "Tvarkyti raktus";
 "pref_use_system_emoji" = "Naudoti sistemos šypsniukus";
 "pref_use_system_emoji_explain" = "Išjungti Delta Chat įtaisytąjį šypsniukų palaikymą";

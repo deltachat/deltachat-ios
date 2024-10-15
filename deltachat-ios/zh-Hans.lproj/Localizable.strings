@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "确定";
 "cancel" = "取消";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "或";
 "clear_search" = "清除搜索";
 "yes" = "是";
@@ -383,6 +383,8 @@
 "search_files" = "搜索文件";
 "search_explain" = "搜索聊天、联系人和消息";
 "search_no_result_for_x" = "没有找到有关\"%1$@\"的结果";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "未读";
 // create/edit groups, contact/group profile
 "group_name" = "群组名称";
 "group_avatar" = "群组图像";
@@ -437,9 +439,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ 账号已传输到您的第二台设备。";
 // Shown beside progress bar, stay short
 "preparing_account" = "正在准备账号…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "等待接收者…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "接收者已连接…";
 // Shown beside progress bar, stay short
 "transferring" = "传输中…";
@@ -524,6 +526,7 @@
 "proxy_list_header" = "已保存的代理";
 "proxy_delete" = "删除代理";
 "proxy_delete_explain" = "你确定要删除 \"%1$@\"吗？";
+"proxy_use_proxy_confirm" = "你想使用代理“%1$@”吗？";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "使用 SOCKS5 代理";
@@ -559,8 +562,10 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "转发给…";
-"share_multiple_attachments" = "发送 %1$d 个文件到所选聊天？\n\n文件将以原样发送（例如：图像和视频不会被重新编码）。";
-"share_multiple_attachments_multiple_chats" = "发送 %1$d 个文件到 %2$d 个聊天？\n\n文件将以原样发送（例如：图像和视频不会被重新编码）。";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "发送 %1$d 个文件到“%2$@”？";
+"ask_send_files_to_selected_chats" = "发送 %1$d 个文件到 %2$d 个聊天？";
+"videos_sent_without_recoding" = "（视频以未经处理的大文件形式发送。要发送较小的视频文件，请分别附加它们）";
 "share_text_multiple_chats" = "发送这段文字到 %1$d 个聊天？\n\n\"%2$@“";
 "share_abort" = "由于缺少权限，分享中止。";
 // preferences

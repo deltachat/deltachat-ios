@@ -349,8 +349,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "転送";
-"share_multiple_attachments" = "%1$dをチャットに送りますか。\n\nファイルは圧縮されずに送られます。";
-"share_multiple_attachments_multiple_chats" = "%1$dつのファイルを%2$d個のチャットに送りますか。\n\nファイルは圧縮されずに送られます。";
+"ask_send_files_to_selected_chats" = "%1$dつのファイルを%2$d個のチャットに送りますか。";
 "share_text_multiple_chats" = "%2$@を%1$d個のチャットに送りますか。";
 "share_abort" = "権限エラー：共有が一時中断されました。";
 // preferences

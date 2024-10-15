@@ -451,8 +451,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Проследи за…";
-"share_multiple_attachments" = "Пошаљи %1$d фајлове у изабрано ћаскање?\n\nФајлови се шаљу неизмењене у оригиналној величини (нпр. слике и видео снимци се не кодирају поново).";
-"share_multiple_attachments_multiple_chats" = "Пошаљи %1$d фајл(ове) у %2$d ћаскања?\n\nДатотеке се шаљу неизмењене у оригиналној величини (нпр. слике и видео снимци се не кодирају поново).";
+"ask_send_files_to_selected_chats" = "Пошаљи %1$d фајл(ове) у %2$d ћаскања?";
 "share_text_multiple_chats" = "Пошаљи овај текст %1$dиз ћаскања?\n\n„%2$@“";
 "share_abort" = "Дељење прекинуто због неодговарајуће дозволе.";
 // preferences

@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "Oké";
 "cancel" = "Annuleren";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "of";
 "clear_search" = "Zoekopdracht wissen";
 "yes" = "Ja";
@@ -383,6 +383,8 @@
 "search_files" = "Bestanden doorzoeken";
 "search_explain" = "Zoek naar gesprekken, contactpersonen en berichten";
 "search_no_result_for_x" = "Er zijn geen resultaten voor “%1$@”";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Ongelezen";
 // create/edit groups, contact/group profile
 "group_name" = "Groepsnaam";
 "group_avatar" = "Groepsfoto";
@@ -437,9 +439,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Het account is overgezet naar je tweede apparaat.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Bezig met voorbereiden…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Bezig met wachten op ontvanger…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "De ontvanger is verbonden…";
 // Shown beside progress bar, stay short
 "transferring" = "Bezig met overdragen…";
@@ -524,6 +526,7 @@
 "proxy_list_header" = "Bewaarde proxy\'s";
 "proxy_delete" = "Proxy verwijderen";
 "proxy_delete_explain" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
+"proxy_use_proxy_confirm" = "Wil je gebruikmaken van de proxy ‘%1$@’?";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "SOCKS5 gebruiken";
@@ -559,8 +562,10 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Doorsturen naar…";
-"share_multiple_attachments" = "Wil je %1$d bestanden delen in het gekozen gesprek?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
-"share_multiple_attachments_multiple_chats" = "Wil je %1$d bestand(en) delen in %2$d gesprekken?\n\nDe bestanden worden ongewijzigd verstuurd in oorspronkelijke grootte.";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Wil je %1$d bestanden delen met %2$@?";
+"ask_send_files_to_selected_chats" = "Wil je %1$d bestand(en) delen in %2$d gesprekken?";
+"videos_sent_without_recoding" = "(Video\'s worden verstuurd in de oorspronkelijke grootte. Voeg bestanden los toe om te versturen als kleinere bestanden.)";
 "share_text_multiple_chats" = "Wil je deze tekst versturen naar %1$d gesprekken?\n\n“%2$@”";
 "share_abort" = "Het delen is afgebroken wegens ontbrekende rechten.";
 // preferences

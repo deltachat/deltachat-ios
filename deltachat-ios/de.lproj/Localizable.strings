@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Abbruch";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "oder";
 "clear_search" = "Suche löschen";
 "yes" = "Ja";
@@ -383,6 +383,8 @@
 "search_files" = "Dateien suchen";
 "search_explain" = "Suche nach Chats, Kontakten und Nachrichten";
 "search_no_result_for_x" = "Keine Ergebnisse für \"%1$@\" gefunden.";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Ungelesen";
 // create/edit groups, contact/group profile
 "group_name" = "Gruppenname";
 "group_avatar" = "Gruppenbild";
@@ -437,9 +439,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profil wurde auf Ihr Zweitgerät übertragen.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Profil vorbereiten…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Warte auf Empfänger…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Empfänger verbunden…";
 // Shown beside progress bar, stay short
 "transferring" = "Transfer…";
@@ -524,6 +526,7 @@
 "proxy_list_header" = "Proxies";
 "proxy_delete" = "Proxy löschen";
 "proxy_delete_explain" = "\"%1$@\" löschen?";
+"proxy_use_proxy_confirm" = "Proxy \"%1$@\" verwenden?";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "SOCKS5 verwenden";
@@ -559,8 +562,10 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Weiterleiten an ...";
-"share_multiple_attachments" = "%1$d Dateien an den ausgewählten Chat senden?\n\nDie Dateien werden unverändert in ihrer Originalgröße gesendet, z.B. werden Bilder und Videos nicht neu codiert.";
-"share_multiple_attachments_multiple_chats" = "%1$d Datei(en) an %2$d Chats senden?\n\nDie Dateien werden unverändert in ihrer Originalgröße gesendet, z.B. werden Bilder und Videos nicht neu codiert.";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "%1$d Dateien an \"%2$@\" senden?";
+"ask_send_files_to_selected_chats" = "%1$d Datei(en) an %2$d Chats senden?";
+"videos_sent_without_recoding" = "(Videos werden als große Originaldateien versandt. Um Videos als kleinere Dateien zu versenden, hängen Sie sie einzeln an)";
 "share_text_multiple_chats" = "Den folgenden Text an %1$d Chats senden?\n\n\"%2$@\"";
 "share_abort" = "Teilen aufgrund fehlender Berechtigungen abgebrochen.";
 // preferences

@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Anuloje";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "ose";
 "clear_search" = "Spastroje Kërkimin";
 "yes" = "Po";
@@ -378,6 +378,8 @@
 "search_files" = "Kërko në Kartela";
 "search_explain" = "Kërkoni për fjalosje, kontakte dhe mesazhe.";
 "search_no_result_for_x" = "S\’u gjetën përfundime për “%1$@”";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Të palexuar";
 // create/edit groups, contact/group profile
 "group_name" = "Emër Grupi";
 "group_avatar" = "Avatar Grupi";
@@ -432,9 +434,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Llogaria u shpërngul te pajisja juaj e dytë.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Po përgatitet llogaria…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Po pritet për marrës…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Marrësi u lidh…";
 // Shown beside progress bar, stay short
 "transferring" = "Po shpërngulet…";
@@ -519,6 +521,7 @@
 "proxy_list_header" = "Ndërmjetës të Ruajtur";
 "proxy_delete" = "Fshije Ndërmjetësin";
 "proxy_delete_explain" = "Jeni i sigurt se doni të fshihet “%1$@”?";
+"proxy_use_proxy_confirm" = "Doni të përdore ndërmjetësi “%1$@”?";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Përdor SOCKS5";
@@ -554,8 +557,10 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Përcilljani…";
-"share_multiple_attachments" = "Të dërgohen %1$d kartela te fjalosja e përzgjedhur?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale (p.sh., figurat dhe videot nuk rikodohen).";
-"share_multiple_attachments_multiple_chats" = "Doni të dërgohet %1$d kartelë(a) te %2$d fjalosje?\n\nKartelat dërgohen të pandryshuara, në madhësinë e tyre origjinale (p.sh., figura dhe video nuk rikodohen).";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Të dërgohen %1$d kartela te “%2$@”?";
+"ask_send_files_to_selected_chats" = "Doni të dërgohet %1$d kartelë(a) te %2$d fjalosje?";
+"videos_sent_without_recoding" = "(Videot dërgohen si kartelat origjinale, të mëdha. Që të dërgoni video si kartela më të vogla, bashkëngjitini veç e veç)";
 "share_text_multiple_chats" = "Të dërgohet ky tekst te %1$d fjalosje?\n\n“%2$@”";
 "share_abort" = "Ndarja me të tjerë dështoi ngaqë mungojnë leje.";
 // preferences

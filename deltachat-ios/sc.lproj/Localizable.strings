@@ -297,8 +297,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Inoltra a...";
-"share_multiple_attachments" = "Cheres imbiare %1$d documentos a sa tzarrada ischertada?\n\nSos documentos benint imbiados chene modìficas a sa mannària originale issoro, a es. sas immàgines e sos vìdeos non benint torrados a codificare.";
-"share_multiple_attachments_multiple_chats" = "Cheres imbiare %1$d documentu(os) a %2$d tzarradas?\n\nSos documentos benint imbiados chene modìficas a sa mannària originale issoro, a es. sas immàgines e sos vìdeos non benint torrados a codificare.";
+"ask_send_files_to_selected_chats" = "Cheres imbiare %1$d documentu(os) a %2$d tzarradas?";
 "share_text_multiple_chats" = "Cheres inviare custu testu a %1$d tzarradas?\n\n\"%2$@\"";
 "share_abort" = "Cumpartzidura annullada pro permissos chi mancant.";
 // preferences

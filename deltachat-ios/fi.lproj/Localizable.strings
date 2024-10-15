@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Peruuta";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "tai";
 "clear_search" = "Tyhjennä haku";
 "yes" = "Kyllä";
@@ -427,9 +427,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profiili siirretty toiselle laitteellesi.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Valmistellaan profiilia...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Odotetaan vastaanottajaa...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Vastaanottaja yhdistetty...";
 // Shown beside progress bar, stay short
 "transferring" = "Siirretään...";
@@ -539,8 +539,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Välitä...";
-"share_multiple_attachments" = "Lähetetäänkö %1$d tiedostoa valittuun keskusteluun?\n\nTiedostot lähetetään koskemattomina alkuperäisessä koossa (esim. kuvia tai videoita ei uudelleenenkoodata).";
-"share_multiple_attachments_multiple_chats" = "Lähetä %1$d tiedosto(a) %2$d keskusteluun?\n\nTiedostot lähetetään koskemattomina alkuperäisessä koossa (esim. kuvia ja videoita ei uudelleenenkoodata).";
+"ask_send_files_to_selected_chats" = "Lähetä %1$d tiedosto(a) %2$d keskusteluun?";
 "share_text_multiple_chats" = "Lähetä tämä teksti %1$d keskusteluun?\n\n\"%2$@\"";
 "share_abort" = "Jakaminen keskeytetty puuttuvien käyttöoikeuksien vuoksi.";
 // preferences

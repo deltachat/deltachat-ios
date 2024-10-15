@@ -440,8 +440,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Κοινοποίηση σε...";
-"share_multiple_attachments" = "Αποστολή %1$d αρχείων στην επιλεγμένη συνομιλία;\n\nΤα αρχεία αποστέλλονται χωρίς τροποποίηση στο αρχικό τους μέγεθος (π.χ. οι εικόνες και τα βίντεο δεν κωδικοποιούνται εκ νέου).";
-"share_multiple_attachments_multiple_chats" = "Αποστολή %1$d αρχείου(-ων) σε %2$d συνομιλίες;\n\nΤα αρχεία αποστέλλονται χωρίς τροποποίηση στο αρχικό τους μέγεθος (π.χ. οι εικόνες και τα βίντεο δεν κωδικοποιούνται εκ νέου).";
+"ask_send_files_to_selected_chats" = "Αποστολή %1$d αρχείου(-ων) σε %2$d συνομιλίες;";
 "share_text_multiple_chats" = "Αποστολή αυτού του κειμένου σε %1$d συνομιλίες;\n\n\"%2$@\"";
 "share_abort" = "Η κοινή χρήση ματαιώθηκε λόγω έλλειψης αδειών.";
 // preferences

@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "Souhlas";
 "cancel" = "Zrušit";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "nebo";
 "clear_search" = "Vyčistit vyhledávání";
 "yes" = "Ano";
@@ -407,8 +407,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Přeposlat komu ...";
-"share_multiple_attachments" = "Poslat %1$d soubory do zvoleného chatu?\n\nSoubory budou zachovány v původní velikosti. Obrázky a videa nebudou překódována.";
-"share_multiple_attachments_multiple_chats" = "Poslat %1$d soubor(y) do %2$d chatu?\n\nSoubory budou zachovány v původní velikosti. Obrázky a videa nebudou překódována.";
+"ask_send_files_to_selected_chats" = "Poslat %1$d soubor(y) do %2$d chatu?";
 "share_text_multiple_chats" = "Poslat tento text do %1$d chatů?\n\n\"%2$@\"";
 "share_abort" = "Sdílení přerušeno díky chybějícím oprávnění.";
 // preferences

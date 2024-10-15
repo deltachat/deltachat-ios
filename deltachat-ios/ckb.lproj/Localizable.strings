@@ -309,7 +309,6 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "هەناردن بۆ...";
-"share_multiple_attachments" = "%1$dپەڕگە دەنێریت بە ئەو وتووێژە؟n\n فایلەکان بەبێ دەستکاری و هەر بە قەبارەی خۆیانەوە دەنێردرێن. بۆنموونە، وێنە و ڤیدیۆکان دیسان شفرە ناکرێنەوە.";
 "share_text_multiple_chats" = "ئەم دەقە دەنێریت بۆ %1$d وتووێژ؟n\n\"%2$@\"";
 // preferences
 "pref_using_custom" = "بەکارهێنانی دڵخواز: %1$@";

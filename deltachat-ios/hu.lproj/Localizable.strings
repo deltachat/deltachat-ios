@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Mégse";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "vagy";
 "clear_search" = "Keresés kiürítése";
 "yes" = "Igen";
@@ -383,6 +383,8 @@
 "search_files" = "Fájlok keresése";
 "search_explain" = "Csevegések, névjegyek és üzenetek keresése";
 "search_no_result_for_x" = "Nincs a(z) „%1$@” keresésnek megfelelő találat.";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Olvasatlan";
 // create/edit groups, contact/group profile
 "group_name" = "Csoport neve";
 "group_avatar" = "Csoport képe";
@@ -437,9 +439,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ A profil átkerül a második eszközre.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Profil készítése...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Várakozás a vevőeszközre...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Vevőeszköz csatlakoztatva...";
 // Shown beside progress bar, stay short
 "transferring" = "Átvitel...";
@@ -517,6 +519,14 @@
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Proxy használata";
+"proxy_add" = "Proxy hozzáadása";
+"proxy_add_explain" = "Támogatott proxytípusok: HTTP(S), SOCKS5 és ShadowSOCKS";
+"proxy_add_url_hint" = "Írja be ide a proxy webcímét";
+"proxy_invalid" = "Érvénytelen vagy nem támogatott a proxy webcíme";
+"proxy_list_header" = "Mentett proxyk";
+"proxy_delete" = "Proxy törlése";
+"proxy_delete_explain" = "Biztosan törli a következőt: „%1$@”?";
+"proxy_use_proxy_confirm" = "Biztosan használni akarja a következő proxyt: „%1$@”?";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "SOCKS5 használata";
@@ -552,8 +562,10 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Továbbítás…";
-"share_multiple_attachments" = "%1$d fájl megosztása a kiválasztott csevegésben?\n\nA fájlok eredeti méretükben, változatlanul kerülnek elküldésre (pl. a képek és videók nem kerülnek újrakódolásra).";
-"share_multiple_attachments_multiple_chats" = "%1$d fájl megosztása a vele való csevegésben: %2$d?\n\nA fájlok eredeti méretükben, változatlanul kerülnek elküldésre (pl. a képek és videók nem kerülnek újrakódolásra).";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "%1$d fájl elküldése neki: „%2$@”?";
+"ask_send_files_to_selected_chats" = "%1$d fájl megosztása a vele való csevegésben: %2$d?";
+"videos_sent_without_recoding" = "(A videók eredeti, nagyméretű fájlként kerülnek elküldésre. Amennyiben azt szeretné, hogy a videók kisebb fájlként kerüljenek elküldésre, csatolja őket külön-külön)";
 "share_text_multiple_chats" = "Megosztja ezt a szöveget a vele való csevegésben: %1$d?\n\n„%2$@”";
 "share_abort" = "A megosztás megszakadt a hiányzó engedélyek miatt.";
 // preferences

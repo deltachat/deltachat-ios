@@ -2,7 +2,7 @@
 "app_name" = "دلتاچت";
 "ok" = "تأیید";
 "cancel" = "لغو";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "یا";
 "clear_search" = "پاک کردن جست‌وجو";
 "yes" = "بله";
@@ -419,9 +419,9 @@ https://meet.jit.si/$ROOM
 "multidevice_transfer_done_devicemsg" = "ℹ️ حساب به دستگاه دوم شما منتقل شد.";
 // Shown beside progress bar, stay short
 "preparing_account" = "در حال آماده سازی حساب…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "در انتظار گیرنده…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "گیرنده متصل شد…";
 // Shown beside progress bar, stay short
 "transferring" = "در حال انتقال…";
@@ -521,8 +521,7 @@ https://meet.jit.si/$ROOM
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "هدایت به...";
-"share_multiple_attachments" = "ارسال %1$dپرونده به گپ انتخاب شده؟ n/n/ پرونده‌ها بدون تغییر و در اندازهٔ اصلی ارسال می‌شوند (مثلاً تصاویر و ویدیوها فشرده نمی‌شوند).";
-"share_multiple_attachments_multiple_chats" = "ارسال  %1$dپرونده به %2$d گپ؟n/n/ پرونده‌(ها) بدون تغییر ارسال می‌شوند (مثلاً تصاویر و ویدیوها فشرده نمی‌شوند).";
+"ask_send_files_to_selected_chats" = "ارسال %1$dپرونده به %2$d گپ؟";
 "share_text_multiple_chats" = "ارسال این متن به %1$d گپ؟n/n/«%2$@»";
 "share_abort" = "اشتراک گذاری به دلیل نبود مجوز‌ها متوقف شد.";
 // preferences
