@@ -817,33 +817,31 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
-        if message.isSetupMessage {
+        switch (message.type, message.infoType) {
+        case (_, _) where message.isSetupMessage:
             didTapAsm(msg: message, orgText: "")
-        } else if message.type == DC_MSG_FILE ||
-                    message.type == DC_MSG_AUDIO ||
-                    message.type == DC_MSG_VOICE {
+        case (DC_MSG_FILE, _), (DC_MSG_AUDIO, _), (DC_MSG_VOICE, _):
             showMediaGalleryFor(message: message)
-        } else if message.type == DC_MSG_VIDEOCHAT_INVITATION {
+        case (DC_MSG_VIDEOCHAT_INVITATION, _):
             if let url = NSURL(string: message.getVideoChatUrl()) {
                 UIApplication.shared.open(url as URL)
             }
-        } else if message.type == DC_MSG_VCARD {
+        case (DC_MSG_VCARD, _):
             didTapVcard(msg: message)
-        } else if message.isInfo {
-            switch message.infoType {
-            case DC_INFO_WEBXDC_INFO_MESSAGE:
-                if let parent = message.parent {
-                    scrollToMessage(msgId: parent.id)
-                }
-            case DC_INFO_PROTECTION_ENABLED:
-                showProtectionEnabledDialog()
-            case DC_INFO_PROTECTION_DISABLED:
-                showProtectionBrokenDialog()
-            case DC_INFO_INVALID_UNENCRYPTED_MAIL:
-                showInvalidUnencryptedDialog()
-            default:
-                break
+        case (DC_MSG_WEBXDC, _):
+            showWebxdcViewFor(message: message)
+        case (_, DC_INFO_WEBXDC_INFO_MESSAGE):
+            if let parent = message.parent {
+                scrollToMessage(msgId: parent.id)
             }
+        case (_, DC_INFO_PROTECTION_ENABLED):
+            showProtectionEnabledDialog()
+        case (_, DC_INFO_PROTECTION_DISABLED):
+            showProtectionBrokenDialog()
+        case (_, DC_INFO_INVALID_UNENCRYPTED_MAIL):
+            showInvalidUnencryptedDialog()
+        default:
+            break
         }
         _ = handleUIMenu()
     }
@@ -1124,7 +1122,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
         messageInputBar.inputTextView.accessibilityLabel = String.localized("write_message_desktop")
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
-        messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
         messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
@@ -2377,9 +2374,7 @@ extension ChatViewController: BaseMessageCellDelegate {
             return
         }
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        if message.type == DC_MSG_WEBXDC {
-            showWebxdcViewFor(message: message)
-        } else if message.type != DC_MSG_STICKER {
+        if message.type != DC_MSG_STICKER {
             // prefer previewError over QLPreviewController.canPreview().
             // (the latter returns `true` for .webm - which is not wrong as _something_ is shown, even if the video cannot be played)
             if previewError && message.type == DC_MSG_VIDEO {
