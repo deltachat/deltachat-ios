@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "Tamam";
 "cancel" = "İptal";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "ya da";
 "clear_search" = "Aramayı Temizle";
 "yes" = "Evet";
@@ -383,6 +383,8 @@
 "search_files" = "Dosyalar Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
 "search_no_result_for_x" = "\"%1$@\" için sonuç bulunamadı";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Okunmayan";
 // create/edit groups, contact/group profile
 "group_name" = "Öbek Adı";
 "group_avatar" = "Öbek Görseli";
@@ -437,9 +439,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profil, ikinci aygıtınıza aktarıldı.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Profil hazırlanıyor…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Alıcı bekleniyor…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Alıcı bağlandı…";
 // Shown beside progress bar, stay short
 "transferring" = "Aktarılıyor…";
@@ -524,6 +526,7 @@
 "proxy_list_header" = "Kaydedilen Proxy\'ler";
 "proxy_delete" = "Proxy\'yi Sil";
 "proxy_delete_explain" = "\"%1$@\" proxy\'sini silmek istediğinizden emin misiniz?";
+"proxy_use_proxy_confirm" = "\"%1$@\" proxy\'sini kullanmak istiyor musunuz?";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "SOCKS5\'i Kullan";
@@ -559,8 +562,10 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "İlet…";
-"share_multiple_attachments" = "%1$d dosya seçilen sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir (ör. görseller ve videolar yeniden kodlanmaz).";
-"share_multiple_attachments_multiple_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?\n\nDosyalar, değiştirilmeden özgün boyutlarında gönderilir (ör. görseller ve videolar yeniden kodlanmaz).";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "%1$d dosya \"%2$@\" sohbetine gönderilsin mi?";
+"ask_send_files_to_selected_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?";
+"videos_sent_without_recoding" = "(Videolar özgün, büyük dosyalar olarak gönderilir. Videoları daha küçük dosyalar olarak göndermek için onları ayrı ayrı iliştirin)";
 "share_text_multiple_chats" = "Bu metin %1$d sohbete gönderilsin mi?\n\n\"%2$@\"";
 "share_abort" = "Eksik izinlerden dolayı paylaşımdan vazgeçildi.";
 // preferences

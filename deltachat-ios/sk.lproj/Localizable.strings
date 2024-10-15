@@ -438,8 +438,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Poslať ďalej ...";
-"share_multiple_attachments" = "Poslať %1$d súbory do vybranej konverzácie?\n\nSúbory sa odosielajú bez zmeny v pôvodnej veľkosti, napr. obrázky a videá nie sú prekódované.";
-"share_multiple_attachments_multiple_chats" = "Poslať %1$d súbor(y) do %2$d konverzácií?\n\nSúbory sa odosielajú neupravené v pôvodnej veľkosti, napr. obrázky a videá nie sú prekódované.";
+"ask_send_files_to_selected_chats" = "Poslať %1$d súbor(y) do %2$d konverzácií?";
 "share_text_multiple_chats" = "Odoslať tento text d %1$d konverzácií?\n\n \"%2$@\"";
 "share_abort" = "Zdieľanie bolo prerušené z dôvodu chýbajúcich povolení.";
 // preferences

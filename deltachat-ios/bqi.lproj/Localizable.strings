@@ -1,9 +1,11 @@
 // common strings without special context
-"app_name" = "Dêltā Čat";
-"ok" = "xā";
-"cancel" = "raď";
-"clear_search" = "roftênê pitiniďên";
-"yes" = "harêy";
+"app_name" = "دلتا چت";
+"ok" = "خا";
+"cancel" = "رڌ";
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "یا";
+"clear_search" = "روفتن پیتینیڌن";
+"yes" = "هری";
 "no" = "na";
 "select" = "pêsand";
 "on" = "rušên";

@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "確定";
 "cancel" = "取消";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "或";
 "clear_search" = "清除搜尋";
 "yes" = "是";

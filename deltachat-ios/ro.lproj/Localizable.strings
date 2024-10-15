@@ -390,9 +390,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Contul a fost transferat pe dispozitivul secundar.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Pregătirea contului...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "În așteptare pentru receptor...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Receptorul conectat...";
 // Shown beside progress bar, stay short
 "transferring" = "Transferul...";
@@ -475,8 +475,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Înainte spre...";
-"share_multiple_attachments" = "Trimiteți %1$d la chat-ul selectat?\n\nArhivele sunt trimise nemodificate în dimensiunea lor originală (de exemplu, imaginile și clipurile video nu sunt recodificate).";
-"share_multiple_attachments_multiple_chats" = "Trimiteți %1$d fișier(e) la %2$d chat?\n\nFilele sunt trimise nemodificate în dimensiunea lor originală (de exemplu, imaginile și videoclipurile nu sunt recodificate).";
+"ask_send_files_to_selected_chats" = "Trimiteți %1$d fișier(e) la %2$d chat?";
 "share_text_multiple_chats" = "Trimiteți acest text la %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Partajarea a fost întreruptă din cauza permisiunilor lipsă.";
 // preferences

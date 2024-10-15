@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Отказ";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "или";
 "clear_search" = "Изчистване на търсенето";
 "yes" = "Да";
@@ -425,9 +425,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Акаунтът е прехвърлен на второто Ви устройство.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Акаунтът се подготвя...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Изчаква се свързване от получателя...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Получателят е свързан...";
 // Shown beside progress bar, stay short
 "transferring" = "Прехвърляне...";
@@ -537,8 +537,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Препращане на…";
-"share_multiple_attachments" = "Да бъдат ли изпратени %1$d файла към избрания чат?\n\nФайловете се изпращат без промяна и в своя оригинален размер (напр. изображения и видеоклипове не се прекодират).";
-"share_multiple_attachments_multiple_chats" = "Да бъдат ли изпратени %1$d файл(а) към %2$d чата?\n\nФайловете се изпращат без промяна и в своя оригинален размер (напр. изображения и видеоклипове не се прекодират).";
+"ask_send_files_to_selected_chats" = "Да бъдат ли изпратени %1$d файл(а) към %2$d чата?";
 "share_text_multiple_chats" = "Да бъде ли изпратен този текст към %1$d чата?\n\n\"%2$@\"";
 "share_abort" = "Споделянето е прекъснато поради липсващи позволения.";
 // preferences

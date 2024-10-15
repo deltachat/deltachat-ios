@@ -2,7 +2,7 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancelar";
-// the word "or" to separate blocks in the user interface that are mutually exclusive
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "o";
 "clear_search" = "Borrar búsqueda";
 "yes" = "Sí";
@@ -437,9 +437,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Cuenta transferida a tu otro dispositivo.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparando cuenta…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Esperando por receptor…";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Receptor conectado…";
 // Shown beside progress bar, stay short
 "transferring" = "Transfiriendo…";
@@ -549,8 +549,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Reenviar a…";
-"share_multiple_attachments" = "¿Enviar %1$d archivos al chat seleccionado?\n\nLos archivos son enviados sin modificar en su tamaño original, ej. las imágenes y los videos no son codificados nuevamente.";
-"share_multiple_attachments_multiple_chats" = "¿Enviar %1$d archivo(s) a %2$d chats?\n\nLos archivos son enviados sin modificar en su tamaño original, ej. imágenes y videos no son codificados nuevamente.";
+"ask_send_files_to_selected_chats" = "¿Enviar %1$d archivo(s) a %2$d chats?";
 "share_text_multiple_chats" = "¿Enviar este texto  a %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Intercambio abortado debido a la falta de permisos.";
 // preferences

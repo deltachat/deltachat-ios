@@ -19,7 +19,7 @@
 			<key>many</key>
 			<string>%d минут</string>
 			<key>other</key>
-			<string>%d мин</string>
+			<string>%d минут</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -153,13 +153,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d выделено</string>
+			<string>%d выбрано</string>
 			<key>few</key>
-			<string>%d выделено</string>
+			<string>%d выбрано</string>
 			<key>many</key>
-			<string>%d выделено</string>
+			<string>%d выбрано</string>
 			<key>other</key>
-			<string>%d выделено</string>
+			<string>%d выбрано</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>
@@ -175,11 +175,11 @@
 			<key>one</key>
 			<string>Отправить следующий файл %s?</string>
 			<key>few</key>
-			<string>Отправить следующие %d файла %s?</string>
+			<string>Отправить следующие %d файла(ов) %s?</string>
 			<key>many</key>
-			<string>Отправить следующие %d файлов %s?</string>
+			<string>Отправить следующие %d файлы(ов) %s?</string>
 			<key>other</key>
-			<string>Отправить следующие %d файлы %s?</string>
+			<string>Отправить следующие %d файлы(ов) %s?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>
@@ -193,13 +193,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Удалить %d чат? Он больше не будет отображаться в списке чатов, его сообщения останутся на сервере.</string>
+			<string>Удалить %d чат? Он больше не будет виден в списке чатов, его сообщения останутся на сервере.</string>
 			<key>few</key>
-			<string>Удалить %d чата? Они больше не будут отображаться в списке чатов, их сообщения останутся на сервере.</string>
+			<string>Удалить %d чата? Они больше не будут видны в списке чатов, их сообщения останутся на сервере.</string>
 			<key>many</key>
-			<string>Удалить %d чатов? Они больше не будут отображаться в списке чатов, их сообщения останутся на сервере.</string>
+			<string>Удалить %d чатов? Они больше не будут видны в списке чатов, их сообщения останутся на сервере.</string>
 			<key>other</key>
-			<string>Удалить %d чатов? Они больше не будут отображаться в списке чатов, их сообщения останутся на сервере.</string>
+			<string>Удалить %d чатов? Они больше не будут видны в списке чатов, их сообщения останутся на сервере.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -213,13 +213,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Удалить %d сообщение здесь и на сервере?</string>
+			<string>Удалить %d сообщение локально и на сервере?</string>
 			<key>few</key>
-			<string>Удалить %d сообщения здесь и на сервере?</string>
+			<string>Удалить %d сообщения локально и на сервере?</string>
 			<key>many</key>
-			<string>Удалить %d сообщений здесь и на сервере?</string>
+			<string>Удалить %d сообщений локально и на сервере?</string>
 			<key>other</key>
-			<string>Удалить %d сообщений здесь и на сервере?</string>
+			<string>Удалить %d сообщений локально и на сервере?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
@@ -253,13 +253,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d чат заархивирован</string>
+			<string>Архивировано чатов: %d</string>
 			<key>few</key>
-			<string>%d чата заархивировано</string>
+			<string>Архивировано чатов: %d</string>
 			<key>many</key>
-			<string>%d чатов заархивировано</string>
+			<string>Архивировано чатов: %d</string>
 			<key>other</key>
-			<string>%d чатов заархивировано</string>
+			<string>Архивировано чатов: %d</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -273,13 +273,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d чат разархивирован</string>
+			<string>Разархивировано чатов: %d</string>
 			<key>few</key>
-			<string>%d чата разархивировано</string>
+			<string>Разархивировано чатов: %d</string>
 			<key>many</key>
-			<string>%d чатов разархивировано</string>
+			<string>Разархивировано чатов: %d</string>
 			<key>other</key>
-			<string>%d чатов разархивировано</string>
+			<string>Разархивировано чатов: %d</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

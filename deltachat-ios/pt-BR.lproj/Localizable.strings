@@ -398,9 +398,9 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Conta transferida para seu outro dispositivo.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparando a conta...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "waiting_for_receiver" = "Esperando pelo receptor...";
-// Shown beside progress bar, stay short
+// deprecated, shown beside progress bar, stay short
 "receiver_connected" = "Receptor conectado...";
 // Shown beside progress bar, stay short
 "transferring" = "Transferindo...";
@@ -483,8 +483,7 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Encaminhar para...";
-"share_multiple_attachments" = "Enviar %1$d arquivos para a conversa selecionada?\n\nOs arquivos são enviados sem modificações em seu tamanho original, ex. imagens e vídeos não são gravados.";
-"share_multiple_attachments_multiple_chats" = "Enviar %1$d arquivo(s) para %2$d conversas?\n\nOs arquivos são enviados sem modificações em seu tamanho original, ex. imagens e vídeos não são gravados.";
+"ask_send_files_to_selected_chats" = "Enviar %1$d arquivo(s) para %2$d conversas?";
 "share_text_multiple_chats" = "Enviar este texto para %1$d conversas?\n\n\"%2$@\"";
 "share_abort" = "Compartilhamento abortado devido a falta de permissões.";
 // preferences
