@@ -98,7 +98,7 @@ public class NotificationManager {
             if let ui = notification.userInfo,
                let chatId = ui["chat_id"] as? Int,
                let messageId = ui["message_id"] as? Int,
-               self.dcContext.isMuted() {
+               !self.dcContext.isMuted() {
 
                 let chat = self.dcContext.getChat(chatId: chatId)
 
