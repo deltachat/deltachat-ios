@@ -440,7 +440,7 @@ class ContactDetailViewController: UITableViewController {
     // MARK: alerts
 
     private func showClearChatConfirmationAlert() {
-        let msgIds = viewModel.context.getChatMsgs(chatId: viewModel.chatId)
+        let msgIds = viewModel.context.getChatMsgs(chatId: viewModel.chatId, flags: 0)
         if !msgIds.isEmpty {
             let alert = UIAlertController(
                 title: nil,

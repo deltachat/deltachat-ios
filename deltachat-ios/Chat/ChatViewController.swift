@@ -938,7 +938,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         guard !tableView.isEditing else {
             return refreshMessagesAfterEditing = true
         }
-        messageIds = dcContext.getChatMsgs(chatId: chatId).reversed()
+        messageIds = dcContext.getChatMsgs(chatId: chatId, flags: DC_GCM_ADDDAYMARKER).reversed()
         reloadData()
         showEmptyStateView(messageIds.isEmpty)
     }
@@ -953,7 +953,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func loadMessages() {
         // update message ids
-        var msgIds = dcContext.getChatMsgs(chatId: chatId)
+        var msgIds = dcContext.getChatMsgs(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
         let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
         if freshMsgsCount > 0 && msgIds.count >= freshMsgsCount {
             let index = msgIds.count - freshMsgsCount
