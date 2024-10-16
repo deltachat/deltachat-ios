@@ -669,7 +669,7 @@ extension GroupChatDetailViewController {
     }
 
     private func showClearChatConfirmationAlert() {
-        let msgIds = dcContext.getChatMsgs(chatId: chatId)
+        let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
         if !msgIds.isEmpty {
             let alert = UIAlertController(
                 title: nil,
