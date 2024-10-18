@@ -21,20 +21,27 @@ class AutodelOptionsViewController: UITableViewController {
         ]
     }()
 
-    private static let autodelServerOptions: [Options] = {
-        return [
-            Options(value: 0, descr: "never"),
-            Options(value: 1, descr: "autodel_at_once"),
-            Options(value: 60 * 60, descr: "autodel_after_1_hour"),
-            Options(value: 24 * 60 * 60, descr: "autodel_after_1_day"),
-            Options(value: 7 * 24 * 60 * 60, descr: "autodel_after_1_week"),
-            Options(value: 5 * 7 * 24 * 60 * 60, descr: "after_5_weeks"),
-            Options(value: 365 * 24 * 60 * 60, descr: "autodel_after_1_year"),
-        ]
-    }()
+    private static func autodelServerOptions(_ dcContext: DcContext) -> [Options] {
+        if dcContext.isChatmail {
+            return [
+                Options(value: 0, descr: "automatic"),
+                Options(value: 1, descr: "autodel_at_once"),
+            ]
+        } else {
+            return [
+                Options(value: 0, descr: "never"),
+                Options(value: 1, descr: "autodel_at_once"),
+                Options(value: 60 * 60, descr: "autodel_after_1_hour"),
+                Options(value: 24 * 60 * 60, descr: "autodel_after_1_day"),
+                Options(value: 7 * 24 * 60 * 60, descr: "autodel_after_1_week"),
+                Options(value: 5 * 7 * 24 * 60 * 60, descr: "after_5_weeks"),
+                Options(value: 365 * 24 * 60 * 60, descr: "autodel_after_1_year"),
+            ]
+        }
+    }
 
     private lazy var autodelOptions: [Options] = {
-        return fromServer ? AutodelOptionsViewController.autodelServerOptions : AutodelOptionsViewController.autodelDeviceOptions
+        return fromServer ? AutodelOptionsViewController.autodelServerOptions(dcContext) : AutodelOptionsViewController.autodelDeviceOptions
     }()
 
     var fromServer: Bool
@@ -80,7 +87,7 @@ class AutodelOptionsViewController: UITableViewController {
 
     static public func getSummary(_ dcContext: DcContext, fromServer: Bool) -> String {
         let val = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
-        let options = fromServer ? AutodelOptionsViewController.autodelServerOptions : AutodelOptionsViewController.autodelDeviceOptions
+        let options = fromServer ? AutodelOptionsViewController.autodelServerOptions(dcContext) : AutodelOptionsViewController.autodelDeviceOptions
         for option in options {
             if option.value == val {
                 return String.localized(option.descr)
