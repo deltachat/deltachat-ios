@@ -68,7 +68,7 @@ class ContactDetailHeader: UIView {
         return imgView
     }()
 
-    private lazy var subtitleLabel: UILabel = {
+    private lazy var subtitleLabel: PrivacySensitiveView<UILabel> = {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         label.isUserInteractionEnabled = true
@@ -77,7 +77,7 @@ class ContactDetailHeader: UIView {
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        return .init(content: label)
     }()
 
     private lazy var searchButton: UIButton = {
@@ -160,9 +160,10 @@ class ContactDetailHeader: UIView {
         horizontalStackView.spacing = margin
     }
 
-    func updateDetails(title: String?, subtitle: String?) {
+    func updateDetails(title: String?, subtitle: String?, isPrivacySensitive: Bool = false) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        subtitleLabel.isPrivacySensitive = isPrivacySensitive
     }
 
     func setImage(_ image: UIImage) {

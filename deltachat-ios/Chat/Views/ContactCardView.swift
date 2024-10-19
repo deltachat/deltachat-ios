@@ -38,13 +38,13 @@ public class ContactCardView: UIView {
         return label
     }()
 
-    private lazy var addressLabel: UILabel = {
+    private lazy var addressLabel: PrivacySensitiveView<UILabel> = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.font = UIFont.preferredFont(forTextStyle: .caption2)
         isAccessibilityElement = false
-        return label
+        return PrivacySensitiveView(content: label)
     }()
 
     public override init(frame: CGRect) {

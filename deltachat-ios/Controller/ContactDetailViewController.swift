@@ -304,8 +304,11 @@ class ContactDetailViewController: UITableViewController {
             headerCell.setGreenCheckmark(greenCheckmark: false)
             headerCell.showMuteButton(show: false)
         } else {
-            headerCell.updateDetails(title: viewModel.contact.displayName,
-                                     subtitle: viewModel.isDeviceTalk ? String.localized("device_talk_subtitle") : viewModel.contact.email)
+            headerCell.updateDetails(
+                title: viewModel.contact.displayName,
+                subtitle: viewModel.isDeviceTalk ? String.localized("device_talk_subtitle") : viewModel.contact.email,
+                isPrivacySensitive: !viewModel.isDeviceTalk
+            )
             if let img = viewModel.contact.profileImage {
                 headerCell.setImage(img)
             } else {
