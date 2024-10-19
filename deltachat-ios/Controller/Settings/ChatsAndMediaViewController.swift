@@ -1,7 +1,6 @@
 import UIKit
 import DcCore
 import Intents
-import LocalAuthentication
 
 internal final class ChatsAndMediaViewController: UITableViewController {
 
@@ -158,7 +157,10 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         case .mediaQuality: showMediaQuality()
         case .downloadOnDemand: showDownloadOnDemand()
         case .receiptConfirmation: break
-        case .exportBackup: authenticateAndCreateBackup()
+        case .exportBackup:
+            Utils.authenticateDeviceOwner(reason: String.localized("pref_backup_explain")) { [weak self] in
+                self?.createBackup()
+            }
         }
     }
 
@@ -171,27 +173,6 @@ internal final class ChatsAndMediaViewController: UITableViewController {
     }
 
     // MARK: - actions
-
-    private func authenticateAndCreateBackup() {
-        let localAuthenticationContext = LAContext()
-        var error: NSError?
-        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-            let reason = String.localized("pref_backup_explain")
-            localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { [weak self] success, error in
-                DispatchQueue.main.async {
-                    guard let self = self else { return }
-                    if success {
-                        self.createBackup()
-                    } else {
-                        logger.info("local authentication aborted: \(String(describing: error))")
-                    }
-                }
-            }
-        } else {
-            logger.info("local authentication unavailable: \(String(describing: error))")
-            createBackup()
-        }
-    }
 
     private func createBackup() {
         let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
