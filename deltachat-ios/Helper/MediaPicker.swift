@@ -94,23 +94,23 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         let documentPicker: UIDocumentPickerViewController
         if selectFolder {
             if #available(iOS 15.0, *) {
-                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.archive], asCopy: false)
+                documentPicker = .init(forOpeningContentTypes: [UTType.archive], asCopy: false)
             } else {
-                documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeArchive] as [String], in: .open)
+                documentPicker = .init(documentTypes: [kUTTypeArchive] as [String], in: .open)
             }
         } else {
             if #available(iOS 15.0, *) {
-                let types = [UTType.pdf, UTType.text, UTType.rtf, UTType.spreadsheet, UTType.vCard, UTType.zip, UTType.image, UTType.data]
-                documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
+                let types = [UTType.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data]
+                documentPicker = .init(forOpeningContentTypes: types, asCopy: true)
             } else {
                 let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage, kUTTypeData]
-                documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+                documentPicker = .init(documentTypes: types as [String], in: .import)
             }
         }
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
         documentPicker.modalPresentationStyle = .formSheet
-        navigationController?.present(documentPicker, animated: true, completion: nil)
+        navigationController?.present(documentPicker, animated: true)
     }
 
     private func presentPhotoVideoLibrary() {
@@ -134,7 +134,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
             imagePickerController.sourceType = .photoLibrary
             imagePickerController.mediaTypes = mediaTypes
             imagePickerController.allowsEditing = allowsCropping
-            navigationController?.present(imagePickerController, animated: true, completion: nil)
+            navigationController?.present(imagePickerController, animated: true)
         }
     }
 
