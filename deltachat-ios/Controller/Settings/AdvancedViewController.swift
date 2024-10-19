@@ -315,7 +315,12 @@ internal final class AdvancedViewController: UITableViewController {
 
         case .videoChat: showVideoChatInstance()
         case .viewLog: showLogViewController()
-        case .accountSettings: showAccountSettingsController()
+
+        case .accountSettings:
+            Utils.authenticateDeviceOwner(reason: String.localized("pref_password_and_account_settings")) { [weak self] in
+                self?.showAccountSettingsController()
+            }
+
         case .defaultTagValue: break
         }
     }
