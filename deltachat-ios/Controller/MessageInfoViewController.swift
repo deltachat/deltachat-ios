@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class MessageInfoViewController: UITableViewController {
+class MessageInfoViewController: UIViewController {
     var dcContext: DcContext
     var message: DcMsg
     private static let reuseIdentifier = "MessageInfoCell"
@@ -9,9 +9,7 @@ class MessageInfoViewController: UITableViewController {
     init(dcContext: DcContext, message: DcMsg) {
         self.dcContext = dcContext
         self.message = message
-        super.init(style: .grouped)
-
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: MessageInfoViewController.reuseIdentifier)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -21,25 +19,12 @@ class MessageInfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("menu_message_details")
-    }
 
-    // MARK: - Table view data source
-
-    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 // number of rows in section
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MessageInfoViewController.reuseIdentifier, for: indexPath)
-
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                cell.textLabel?.numberOfLines = 0
-                cell.textLabel?.lineBreakMode = .byWordWrapping
-                cell.textLabel?.text = dcContext.getMsgInfo(msgId: message.id)
-            }
-        }
-
-        return cell
+        let textView = UITextView(frame: view.frame)
+        textView.text = dcContext.getMsgInfo(msgId: message.id)
+        textView.isEditable = false
+        textView.font = .preferredFont(forTextStyle: .body)
+        view.addSubview(textView)
+        textView.fillSuperview()
     }
 }
