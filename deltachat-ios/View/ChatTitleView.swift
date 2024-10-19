@@ -32,12 +32,12 @@ class ChatTitleView: UIStackView {
         return stackView
     }()
 
-    private lazy var subtitleLabel: UILabel = {
+    private lazy var subtitleLabel: PrivacySensitiveView<UILabel> = {
         let subtitleLabel = UILabel()
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.textAlignment = .center
-        return subtitleLabel
+        return .init(content: subtitleLabel)
     }()
 
     init() {
@@ -54,7 +54,7 @@ class ChatTitleView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateTitleView(title: String, subtitle: String?, isVerified: Bool) {
+    func updateTitleView(title: String, subtitle: String?, subtitleIsPrivacySensitive: Bool, isVerified: Bool) {
         titleLabel.text = title
         titleLabel.textColor = DcColors.defaultTextColor
         verifiedView.isHidden = !isVerified
@@ -63,6 +63,7 @@ class ChatTitleView: UIStackView {
             subtitleLabel.text = subtitle
             subtitleLabel.textColor = DcColors.defaultTextColor.withAlphaComponent(0.95)
             subtitleLabel.isHidden = false
+            subtitleLabel.isPrivacySensitive = subtitleIsPrivacySensitive
         } else {
             subtitleLabel.isHidden = true
         }
