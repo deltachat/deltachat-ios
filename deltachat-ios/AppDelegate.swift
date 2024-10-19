@@ -189,7 +189,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         launchOptions = nil
         appFullyInitialized = true
     }
-    
+
+    static var isRunningUITests: Bool {
+        #if DEBUG
+        // TODO: Just swizzle the tintColor of UITextView and UITextField instead of doing it manually per field
+        return CommandLine.arguments.contains("--UITests")
+        #else
+        return false
+        #endif
+    }
+
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {

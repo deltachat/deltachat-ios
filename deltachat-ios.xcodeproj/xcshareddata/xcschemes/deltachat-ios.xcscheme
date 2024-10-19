@@ -20,6 +20,20 @@
                ReferencedContainer = "container:deltachat-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5FAA92DD2CBC0FB300FA8F68"
+               BuildableName = "deltachat-ios-uitests.xctest"
+               BlueprintName = "deltachat-ios-uitests"
+               ReferencedContainer = "container:deltachat-ios.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -27,6 +41,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Override time for consistent screenshots &#10;xcrun simctl status_bar booted override --time &quot;9:41&quot; --batteryState charged --batteryLevel 100 --cellularBars 4&#10;&#10;# https://stackoverflow.com/a/57268609/3393964&#10;# Disable hardware keyboard&#10;killall Simulator&#10;defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -36,16 +59,27 @@
             ReferencedContainer = "container:deltachat-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:deltachat-ios.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AE851A00227AECDE00ED86F0"
-               BuildableName = "deltachat-iosTests.xctest"
-               BlueprintName = "deltachat-iosTests"
+               BlueprintIdentifier = "5FAA92DD2CBC0FB300FA8F68"
+               BuildableName = "deltachat-ios-uitests.xctest"
+               BlueprintName = "deltachat-ios-uitests"
                ReferencedContainer = "container:deltachat-ios.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ChatTests/testCreateAccount()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
