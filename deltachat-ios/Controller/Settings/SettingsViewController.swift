@@ -1,6 +1,7 @@
 import UIKit
 import DcCore
 import Intents
+import LocalAuthentication
 
 internal final class SettingsViewController: UITableViewController {
 
@@ -288,7 +289,24 @@ internal final class SettingsViewController: UITableViewController {
             style: .default,
             handler: { [weak self] _ in
                 guard let self else { return }
-                self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+                let localAuthenticationContext = LAContext()
+                var error: NSError?
+                if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+                    let reason = String.localized("multidevice_this_creates_a_qr_code")
+                    localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { [weak self] success, error in
+                        DispatchQueue.main.async {
+                            guard let self = self else { return }
+                            if success {
+                                self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+                            } else {
+                                logger.info("local authentication aborted: \(String(describing: error))")
+                            }
+                        }
+                    }
+                } else {
+                    logger.info("local authentication unavailable: \(String(describing: error))")
+                    self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+                }
             }
         ))
         present(alert, animated: true)
