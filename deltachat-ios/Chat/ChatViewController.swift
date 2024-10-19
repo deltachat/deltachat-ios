@@ -5,6 +5,7 @@ import UIKit
 import AVFoundation
 import DcCore
 import SDWebImage
+import Combine
 
 class ChatViewController: UITableViewController, UITableViewDropDelegate {
     public let chatId: Int
@@ -12,7 +13,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var dcContext: DcContext
     private var messageIds: [Int] = []
     private var isVisibleToUser: Bool = false
-    private var wasInputBarFirstResponder = false
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
 
@@ -157,11 +157,18 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         get { customInputAccessoryView }
         set { customInputAccessoryView = newValue }
     }
+
+    /// Set this to false if you are doing something with the UI inside this view controller that
+    /// requires the inputAccessoryView to be hidden. Do not set this when navigating,
+    /// because UIKit should automatically return the firstResponder.
     private var shouldBecomeFirstResponder: Bool = false
     override var canBecomeFirstResponder: Bool {
-        if let presentedViewController {
+        if let presentedViewController, !presentedViewController.isBeingDismissed {
             // Should not show inputAccessoryView when anything other than searchController is presented
             return presentedViewController is UISearchController && shouldBecomeFirstResponder
+        } else if navigationController?.topViewController != self {
+            // Don't show inputAccessoryView when not top view controller
+            return false
         } else {
             return shouldBecomeFirstResponder
         }
@@ -189,6 +196,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         view.isHidden = true
         return view
     }()
+
+    private var _bag: [Any/*Cancellable*/] = []
+    @available(iOS 13.0, *) private var bag: [AnyCancellable] {
+        get { _bag.compactMap { $0 as? AnyCancellable } }
+        set { _bag = newValue }
+    }
 
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         self.dcContext = dcContext
@@ -233,6 +246,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         // Since the view is flipped, its safeArea will be flipped, luckily we can ignore it
         tableView.contentInsetAdjustmentBehavior = .never
+        if #available(iOS 13.0, *) {
+            tableView.automaticallyAdjustsScrollIndicatorInsets = false
+            tableView.publisher(for: \.contentInset)
+                .assign(to: \.scrollIndicatorInsets, on: tableView)
+                .store(in: &bag)
+        }
 
         navigationController?.setNavigationBarHidden(false, animated: false)
 
@@ -245,27 +264,27 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .willShow) { [weak self] notification in
-            guard let self else { return }
-            let globalTableViewFrame = self.tableView.convert(tableView.bounds, to: tableView.window)
+        keyboardManager?.on(event: .willShow) { [tableView = tableView!] notification in
+            // Using superview instead of window here because in iOS 13+ a modal can change
+            // the frame of the vc it is presented over which causes this calculation to be off.
+            let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
             let intersection = globalTableViewFrame.intersection(notification.endFrame)
             let inset = intersection.height
             // willShow is sometimes called when the keyboard is being hidden or when the kb was
             // already shown due to interactive dismissal getting canceled.
-            guard self.tableView.contentInset.top != inset else { return }
+            guard tableView.contentInset.top != inset else { return }
             UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
-                self.tableView.contentInset.top = inset
-                if self.tableView.contentOffset.y < 30 {
+                tableView.contentInset.top = inset
+                if tableView.contentOffset.y < 30 {
                     // If user is less than 30 away from the bottom, we scroll
                     // the bottom of the content to the top of the keyboard.
-                    self.tableView.contentOffset.y -= inset + self.tableView.contentOffset.y
+                    tableView.contentOffset.y -= inset + tableView.contentOffset.y
                 }
             }
         }
-        keyboardManager?.on(event: .willHide) { [weak self] notification in
-            guard let self else { return }
+        keyboardManager?.on(event: .willHide) { [tableView, inputAccessoryView] notification in
             UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
-                self.tableView.contentInset.top = self.inputAccessoryView?.frame.height ?? 0
+                tableView?.contentInset.top = inputAccessoryView?.frame.height ?? 0
             }
         }
 
@@ -341,17 +360,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if dcChat.canSend {
             shouldBecomeFirstResponder = true
-
-            if wasInputBarFirstResponder {
-                messageInputBar.inputTextView.becomeFirstResponder()
-            } else {
-                becomeFirstResponder()
-            }
         }
 
         messageInputBar.scrollDownButton.isHidden = true
 
         if isMovingToParent { // being pushed
+            becomeFirstResponder()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.tableView.contentInset.top = self.inputAccessoryView?.bounds.height ?? 0
                 if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
@@ -384,7 +398,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-        wasInputBarFirstResponder = messageInputBar.inputTextView.isFirstResponder
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -392,13 +405,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
         audioController.stopAnyOngoingPlaying()
-        messageInputBar.inputTextView.resignFirstResponder()
-        if !wasInputBarFirstResponder {
-            resignFirstResponder()
-        }
-
-        wasInputBarFirstResponder = false
-        shouldBecomeFirstResponder = false
     }
 
     override func viewSafeAreaInsetsDidChange() {
@@ -412,7 +418,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if parent == nil {
             // going back to previous screen
             draft.save(context: dcContext)
-            keyboardManager = nil
         }
     }
 
@@ -681,7 +686,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func configureContactRequestBar() {
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
-        shouldBecomeFirstResponder = true
 
         let bar: ChatContactRequestBar
         if dcChat.isProtectionBroken {
@@ -745,10 +749,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         if #available(iOS 13.0, *) {
-            action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?.sd_tintedImage(with: DcColors.defaultInverseColor)
+            action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?
+                .sd_tintedImage(with: DcColors.defaultInverseColor)?
+                .sd_flippedImage(withHorizontal: false, vertical: true)
             action.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.25)
         } else {
-            action.image = UIImage(named: "ic_reply_black")
+            action.image = UIImage(named: "ic_reply_black")?
+                .sd_flippedImage(withHorizontal: false, vertical: true)
             action.backgroundColor = .systemBlue
         }
         action.accessibilityElements = nil
@@ -1242,9 +1249,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         alert.addAction(sendContactAction)
 
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in self.shouldBecomeFirstResponder = true }))
-
-        shouldBecomeFirstResponder = false
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
 
         self.present(alert, animated: true, completion: {
             // unfortunately, voiceMessageAction.accessibilityHint does not work,
@@ -1481,17 +1486,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func webxdcButtonPressed(_ action: UIAlertAction) {
-        shouldBecomeFirstResponder = true
         showWebxdcSelector()
     }
 
     private func documentActionPressed(_ action: UIAlertAction) {
-        shouldBecomeFirstResponder = true
         showDocumentLibrary()
     }
 
     private func voiceMessageButtonPressed(_ action: UIAlertAction) {
-        shouldBecomeFirstResponder = true
         showVoiceMessageRecorder()
     }
 
@@ -1500,13 +1502,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        shouldBecomeFirstResponder = true
         showPhotoVideoLibrary(delegate: self)
     }
 
     private func showContactList(_ action: UIAlertAction) {
-        shouldBecomeFirstResponder = true
-
         let contactList = SendContactViewController(dcContext: dcContext)
         contactList.delegate = self
 
@@ -1522,7 +1521,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func locationStreamingButtonPressed(_ action: UIAlertAction) {
-        shouldBecomeFirstResponder = true
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         if isLocationStreaming {
             locationStreamingFor(seconds: 0)
@@ -1775,9 +1773,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func selectMore(at indexPath: IndexPath) {
-        messageInputBar.inputTextView.resignFirstResponder()
-        resignFirstResponder()
-
         setEditing(isEditing: true, selectedAtIndexPath: indexPath)
         if UIAccessibility.isVoiceOverRunning {
             forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
@@ -1901,6 +1896,9 @@ extension ChatViewController {
         cell.reactionsView.isHidden = true
         contextMenuVisible = true
 
+        shouldBecomeFirstResponder = false
+        messageInputBar.inputTextView.resignFirstResponder()
+
         updateScrollDownButtonVisibility()
     }
 
@@ -1919,6 +1917,9 @@ extension ChatViewController {
         cell.messageBackgroundContainer.isHidden = false
         cell.reactionsView.isHidden = false
         contextMenuVisible = false
+
+        shouldBecomeFirstResponder = true
+        becomeFirstResponder()
 
         updateScrollDownButtonVisibility()
     }
@@ -2235,8 +2236,6 @@ extension ChatViewController {
             _ = handleSelection(indexPath: indexPath)
         }
         self.updateTitle()
-        shouldBecomeFirstResponder = isEditing
-        becomeFirstResponder()
         if refreshMessagesAfterEditing && isEditing == false {
             refreshMessages()
         }
