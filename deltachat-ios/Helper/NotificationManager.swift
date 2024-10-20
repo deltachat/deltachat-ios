@@ -86,6 +86,8 @@ public class NotificationManager {
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
+    // TODO: handle DC_EVENT_INCOMING_REACTION
+
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
         let backgroundTask = UIApplication.shared.beginBackgroundTask {
             // we cannot easily stop the task,
