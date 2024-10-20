@@ -31,6 +31,7 @@ class NotificationService: UNNotificationServiceExtension {
         UserDefaults.setNseFetching(false)
 
         var messageCount = 0
+        var reactionCount = 0
         var uniqueChats: [String: String] = [:]
         while true {
             guard let event = eventEmitter.getNextEvent() else { break }
@@ -70,27 +71,34 @@ class NotificationService: UNNotificationServiceExtension {
                         bestAttemptContent.userInfo["message_id"] = msg.id
 
                         uniqueChats["\(dcContext.id)-\(chat.id)"] = bestAttemptContent.title
-                        messageCount += 1
+                        reactionCount += 1
                     }
                 }
             }
         }
 
-        if messageCount == 0 {
+        if (messageCount + reactionCount) == 0 {
             dcAccounts.closeDatabase()
             UserDefaults.pushToDebugArray(String(format: "OK0 %.3fs", Double(Date().timeIntervalSince1970) - nowTimestamp))
             contentHandler(silenceNotification())
         } else {
             bestAttemptContent.badge = dcAccounts.getFreshMessageCount() as NSNumber
             dcAccounts.closeDatabase()
-            if messageCount > 1 {
+            if (messageCount + reactionCount) > 1 {
                 bestAttemptContent.userInfo["message_id"] = nil
-                if uniqueChats.count == 1 {
-                    bestAttemptContent.body = String.localized(stringID: "n_messages", parameter: messageCount) // TODO: consider improving summary if there are messages+reactions
+
+                if messageCount > 0 && reactionCount > 0 {
+                    bestAttemptContent.body = String.localized(stringID: "n_messages", parameter: messageCount) 
+                                     + ", " + String.localized(stringID: "n_reactions", parameter: reactionCount)
+                } else if messageCount > 0 {
+                    bestAttemptContent.body = String.localized(stringID: "n_messages", parameter: messageCount)
                 } else {
-                    bestAttemptContent.userInfo["open_as_overview"] = true // leaving chat_id as is removes the notification when one of the chats is opened (does not matter which)
+                    bestAttemptContent.body = String.localized(stringID: "n_reactions", parameter: reactionCount)
+                }
+
+                if uniqueChats.count > 1 {
+                    bestAttemptContent.userInfo["open_as_overview"] = true // leaving chat_id removes the notification when one of the chats is opened
                     bestAttemptContent.title = uniqueChats.values.joined(separator: ", ")
-                    bestAttemptContent.body = String.localized(stringID: "n_messages_in_m_chats", parameter: messageCount, uniqueChats.count)
                 }
             }
             if #available(iOS 15.0, *) {
