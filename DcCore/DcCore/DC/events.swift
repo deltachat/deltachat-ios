@@ -7,6 +7,7 @@ public enum Event {
     public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
     public static let incomingMessage = Notification.Name(rawValue: "incomingMessage")
     public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "incomingMessageOnAnyAccount")
+    public static let incomingReaction = Notification.Name(rawValue: "incomingReaction")
     public static let messagesNoticed = Notification.Name(rawValue: "messagesNoticed")
 
     // Chats
@@ -143,6 +144,15 @@ public class DcEventHandler {
                 "message_id": Int(data2),
                 "chat_id": Int(data1),
                 "account_id": accountId
+            ])
+
+        case DC_EVENT_INCOMING_REACTION:
+            logger.info("📡[\(accountId)] incoming reaction")
+            NotificationCenter.default.post(name: Event.incomingReaction, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "contact_id": Int(data1),
+                "msg_id": Int(data2),
+                "reaction": event.data2String
             ])
 
         case DC_EVENT_CONTACTS_CHANGED:

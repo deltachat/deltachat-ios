@@ -13,6 +13,7 @@ public class NotificationManager {
         self.dcContext = dcAccounts.getSelected()
         
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingReaction(_:)), name: Event.incomingReaction, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
     }
 
@@ -120,6 +121,38 @@ public class NotificationManager {
             // this line should always be reached
             // and balances the call to `beginBackgroundTask` above.
             UIApplication.shared.endBackgroundTask(backgroundTask)
+        }
+    }
+
+    @objc private func handleIncomingReaction(_ notification: Notification) {
+        let backgroundTask = UIApplication.shared.beginBackgroundTask {
+            logger.info("incoming-reaction-task will end soon")
+        }
+
+        DispatchQueue.global().async { [weak self] in
+            guard let self, let ui = notification.userInfo else { return }
+            let eventContext = dcAccounts.get(id: ui["account_id"] as? Int ?? 0)
+            if !eventContext.isMuted() {
+                let msg = eventContext.getMessage(id: ui["msg_id"] as? Int ?? 0)
+                let chat = eventContext.getChat(chatId: msg.chatId)
+                if !chat.isMuted {
+                    let contact = eventContext.getContact(id: ui["contact_id"] as? Int ?? 0)
+                    let summary = (msg.summary(chars: 80) ?? "")
+                    let reaction = ui["reaction"] as? String ?? ""
+
+                    let content = UNMutableNotificationContent()
+                    content.title = chat.name
+                    content.body = String.localized(stringID: "reaction_by_other", parameter: contact.displayName, reaction, summary)
+                    content.userInfo["account_id"] = eventContext.id
+                    content.userInfo["chat_id"] = chat.id
+                    content.userInfo["message_id"] = msg.id
+
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                }
+            }
+
+            UIApplication.shared.endBackgroundTask(backgroundTask) // this line must be reached to balance call to `beginBackgroundTask` above
         }
     }
 }
