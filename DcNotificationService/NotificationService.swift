@@ -55,6 +55,28 @@ class NotificationService: UNNotificationServiceExtension {
                     uniqueChats["\(dcContext.id)-\(chat.id)"] = bestAttemptContent.title
                     messageCount += 1
                 }
+            } else if event.id == DC_EVENT_INCOMING_REACTION {
+                let dcContext = dcAccounts.get(id: event.accountId)
+                if !dcContext.isMuted() {
+                    let msg = dcContext.getMessage(id: event.data2Int)
+                    let chat = dcContext.getChat(chatId: msg.chatId)
+                    if !chat.isMuted {
+                        let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
+                        let summary = (msg.summary(chars: 80) ?? "")
+                        if chat.isGroup {
+                            bestAttemptContent.title = chat.name
+                        } else {
+                            bestAttemptContent.title = sender
+                        }
+                        bestAttemptContent.body = String.localized(stringID: "reaction_by_other", parameter: sender, event.data2String, summary)
+                        bestAttemptContent.userInfo["account_id"] = dcContext.id
+                        bestAttemptContent.userInfo["chat_id"] = chat.id
+                        bestAttemptContent.userInfo["message_id"] = msg.id
+
+                        uniqueChats["\(dcContext.id)-\(chat.id)"] = bestAttemptContent.title
+                        messageCount += 1
+                    }
+                }
             }
         }
 
@@ -68,7 +90,7 @@ class NotificationService: UNNotificationServiceExtension {
             if messageCount > 1 {
                 bestAttemptContent.userInfo["message_id"] = nil
                 if uniqueChats.count == 1 {
-                    bestAttemptContent.body = String.localized(stringID: "n_messages", parameter: messageCount)
+                    bestAttemptContent.body = String.localized(stringID: "n_messages", parameter: messageCount) // TODO: consider improving summary if there are messages+reactions
                 } else {
                     bestAttemptContent.userInfo["open_as_overview"] = true // leaving chat_id as is removes the notification when one of the chats is opened (does not matter which)
                     bestAttemptContent.title = uniqueChats.values.joined(separator: ", ")
