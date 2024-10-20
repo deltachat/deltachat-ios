@@ -61,13 +61,9 @@ class NotificationService: UNNotificationServiceExtension {
                     let msg = dcContext.getMessage(id: event.data2Int)
                     let chat = dcContext.getChat(chatId: msg.chatId)
                     if !chat.isMuted {
-                        let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
+                        let sender = msg.getSenderName(dcContext.getContact(id: event.data1Int))
                         let summary = (msg.summary(chars: 80) ?? "")
-                        if chat.isGroup {
-                            bestAttemptContent.title = chat.name
-                        } else {
-                            bestAttemptContent.title = sender
-                        }
+                        bestAttemptContent.title = chat.name
                         bestAttemptContent.body = String.localized(stringID: "reaction_by_other", parameter: sender, event.data2String, summary)
                         bestAttemptContent.userInfo["account_id"] = dcContext.id
                         bestAttemptContent.userInfo["chat_id"] = chat.id
