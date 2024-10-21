@@ -562,6 +562,8 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Przekaż do…";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Wysłać %1$d pliki do „%2$@”?";
 "ask_send_files_to_selected_chats" = "Wysłać %1$d pliki do %2$d czatów?";
 "videos_sent_without_recoding" = "(Filmy są wysyłane jako oryginalne, duże pliki. Aby wysłać filmy jako mniejsze pliki, dołącz je osobno)";
 "share_text_multiple_chats" = "Wysłać ten tekst do %1$d czatów?\n\n\"%2$@\"";
