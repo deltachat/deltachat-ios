@@ -184,7 +184,7 @@
 "menu_leave_group" = "Покинуть группу";
 "menu_delete_chat" = "Удалить чат";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
-"clear_chat" = "Очистить Чат";
+"clear_chat" = "Очистить чат";
 "menu_delete_messages" = "Удалить сообщения";
 "delete_contact" = "Удалить контакт";
 "menu_delete_location" = "Удалить местоположение?";
@@ -562,6 +562,8 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Переслать…";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Отправить %1$d файла(ов) в \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Отправить %1$d файл(ов) в %2$d чата(ов)?";
 "videos_sent_without_recoding" = "(Видеофайлы отправляются в исходном виде, без сжатия. Чтобы отправить видео в более компактном виде, прикрепите их отдельно)";
 "share_text_multiple_chats" = "Отправить текст в %1$d чата(ов)?\n\n\"%2$@\"";

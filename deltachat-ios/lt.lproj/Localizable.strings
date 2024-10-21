@@ -91,7 +91,7 @@
 "image" = "Paveikslas";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Atsakymas";
-"gif" = "Gif";
+"gif" = "GIF";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Lipdukas";
 "add_to_sticker_collection" = "Pridėti į lipdukų rinkinį";
@@ -110,6 +110,7 @@
 "switch_camera" = "Perjungti kamerą";
 "toggle_fullscreen" = "Perjungti viso ekrano veikseną";
 "location" = "Vieta";
+"locations" = "Vietos";
 "gallery" = "Galerija";
 "images_and_videos" = "Paveikslai ir vaizdo įrašai";
 "file" = "Failas";
@@ -137,6 +138,7 @@
 "slow" = "Lėtas";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Naujas adresatas";
+"menu_new_classic_contact" = "Pridėti adresatą rankiniu būdu";
 "menu_new_chat" = "Naujas pokalbis";
 "menu_new_group" = "Nauja grupė";
 "add_recipients" = "Pridėti gavėjus";
@@ -360,6 +362,8 @@
 "onboarding_alternative_logins" = "Aš jau turiu profilį";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Jūsų profilis";
+// The placeholder will be replaced by the default onboarding server
+"instant_onboarding_agree_default2" = "%1$@ privatumo politika";
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Naudoti kitą serverį";
 "scan_invitation_code" = "Skenuoti pakvietimo kodą";
@@ -399,7 +403,7 @@
 "login_socks5_port" = "SOCKS5 prievadas";
 "login_socks5_user" = "SOCKS5 naudotojas";
 "login_socks5_password" = "SOCKS5 slaptažodis";
-"login_info_oauth2_title" = "Tęsti, naudojant supaprastintą sąranką?";
+"login_info_oauth2_title" = "Tęsti naudojant supaprastintą sąranką?";
 "login_certificate_checks" = "Liudijimų patikrinimai";
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
 "login_error_server" = "Įveskite teisingą serverį / IP adresą";
