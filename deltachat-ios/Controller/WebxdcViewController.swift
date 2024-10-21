@@ -3,7 +3,7 @@ import WebKit
 import DcCore
 
 class WebxdcViewController: WebViewViewController {
-    
+
     enum WebxdcHandler: String {
         case log
         case sendStatusUpdate
@@ -17,6 +17,7 @@ class WebxdcViewController: WebViewViewController {
     var messageId: Int
     var webxdcName: String = ""
     var sourceCodeUrl: String?
+    private var isLoaded = false
     private var allowInternet: Bool = false
 
     private var shortcutManager: ShortcutManager?
@@ -300,12 +301,6 @@ class WebxdcViewController: WebViewViewController {
         refreshWebxdcInfo()
     }
 
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        let willBeRemoved = parent == nil
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = willBeRemoved
-    }
-
     func refreshWebxdcInfo() {
         let msg = dcContext.getMessage(id: messageId)
         let dict = msg.getWebxdcInfoDict()
@@ -385,20 +380,34 @@ class WebxdcViewController: WebViewViewController {
         }
         decisionHandler(.allow)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if allowInternet {
-            loadHtml()
-        } else {
-            loadRestrictedHtml()
+        if !isLoaded {
+            if allowInternet {
+                loadHtml()
+            } else {
+                loadRestrictedHtml()
+            }
+            isLoaded = true
+        }
+        navigationController?.interactivePopGestureRecognizer?.addTarget(self, action: #selector(handleEdgeGesture))
+        if #available(iOS 15.0, *) {
+            webView.setAllMediaPlaybackSuspended(false)
         }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        navigationController?.interactivePopGestureRecognizer?.removeTarget(self, action: nil)
         if #available(iOS 15.0, *) {
             webView.setAllMediaPlaybackSuspended(true)
+        }
+    }
+
+    @objc private func handleEdgeGesture(_ gesture: UIScreenEdgePanGestureRecognizer) {
+        if gesture.state == .began {
+            cancelTouchesInWebView()
         }
     }
 

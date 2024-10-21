@@ -197,6 +197,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return view
     }()
 
+    /// Cached webxdc vc to show if user clicked the same webxdc message
+    private var lastWebxdcViewController: WebxdcViewController?
+
     private var _bag: [Any/*Cancellable*/] = []
     @available(iOS 13.0, *) private var bag: [AnyCancellable] {
         get { _bag.compactMap { $0 as? AnyCancellable } }
@@ -419,6 +422,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             // going back to previous screen
             draft.save(context: dcContext)
         }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        lastWebxdcViewController = nil
     }
 
     // MARK: - Notifications
@@ -2093,10 +2101,15 @@ extension ChatViewController: MCEmojiPickerDelegate {
 }
 
 extension ChatViewController {
-
     func showWebxdcViewFor(message: DcMsg) {
-        let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
-        navigationController?.pushViewController(webxdcViewController, animated: true)
+        if let lastWebxdcViewController, lastWebxdcViewController.messageId == message.id {
+            navigationController?.pushViewController(lastWebxdcViewController, animated: true)
+        } else {
+            let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
+            navigationController?.pushViewController(webxdcViewController, animated: true)
+            lastWebxdcViewController = webxdcViewController
+        }
+
     }
 
     func showMediaGalleryFor(message: DcMsg) {
