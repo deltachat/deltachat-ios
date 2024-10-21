@@ -305,8 +305,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     // MARK: - coordinator
     private func showGroupChat(chatId: Int) {
-        if let chatlistViewController = navigationController?.viewControllers[0] {
+        if let chatlistViewController = navigationController?.viewControllers[0] as? ChatListViewController {
             let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
+            chatlistViewController.backButtonUpdateableDataSource = chatViewController
             navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
         }
     }
