@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 import DcCore
-
+import LocalAuthentication
 
 extension URL {
     var isDeltaChatInvitation: Bool {
@@ -128,5 +128,24 @@ struct Utils {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = sourceView // iPad crashes without a source
         parentViewController.present(activityVC, animated: true, completion: nil)
+    }
+
+    public static func authenticateDeviceOwner(reason: String, callback: @escaping () -> Void) {
+        let localAuthenticationContext = LAContext()
+        var error: NSError?
+        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            localAuthenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, error in
+                DispatchQueue.main.async {
+                    if success {
+                        callback()
+                    } else {
+                        logger.info("local authentication aborted: \(String(describing: error))")
+                    }
+                }
+            }
+        } else {
+            logger.info("local authentication unavailable: \(String(describing: error))")
+            callback()
+        }
     }
 }

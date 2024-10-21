@@ -287,8 +287,10 @@ internal final class SettingsViewController: UITableViewController {
             title: String.localized("perm_continue"),
             style: .default,
             handler: { [weak self] _ in
-                guard let self else { return }
-                self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+                Utils.authenticateDeviceOwner(reason: String.localized("multidevice_this_creates_a_qr_code")) { [weak self] in
+                    guard let self else { return }
+                    self.navigationController?.pushViewController(BackupTransferViewController(dcAccounts: self.dcAccounts), animated: true)
+                }
             }
         ))
         present(alert, animated: true)

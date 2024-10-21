@@ -157,7 +157,10 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         case .mediaQuality: showMediaQuality()
         case .downloadOnDemand: showDownloadOnDemand()
         case .receiptConfirmation: break
-        case .exportBackup: createBackup()
+        case .exportBackup:
+            Utils.authenticateDeviceOwner(reason: String.localized("pref_backup_explain")) { [weak self] in
+                self?.createBackup()
+            }
         }
     }
 

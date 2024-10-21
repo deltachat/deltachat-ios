@@ -307,10 +307,20 @@ internal final class AdvancedViewController: UITableViewController {
         switch cellTag {
         case .showEmails: showClassicMailController()
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
-        case .manageKeys: showManageKeysDialog()
+
+        case .manageKeys:
+            Utils.authenticateDeviceOwner(reason: String.localized("pref_manage_keys")) { [weak self] in
+                self?.showManageKeysDialog()
+            }
+
         case .videoChat: showVideoChatInstance()
         case .viewLog: showLogViewController()
-        case .accountSettings: showAccountSettingsController()
+
+        case .accountSettings:
+            Utils.authenticateDeviceOwner(reason: String.localized("pref_password_and_account_settings")) { [weak self] in
+                self?.showAccountSettingsController()
+            }
+
         case .defaultTagValue: break
         }
     }
