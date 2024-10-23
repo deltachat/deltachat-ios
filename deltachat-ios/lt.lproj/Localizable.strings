@@ -30,6 +30,7 @@
 "close" = "Užverti";
 "close_window" = "Užverti langą";
 "forward" = "Persiųsti";
+"create" = "Sukurti";
 "later" = "Vėliau";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Siųsti iš naujo";
@@ -336,6 +337,10 @@
 "multidevice_open_settings_on_other_device" = "Pirmajame įrenginyje pereikite į „Nustatymai / Pridėti antrąjį įrenginį“ ir nuskenuokite ten rodomą kodą";
 // Shown beside progress bar, stay short
 "preparing_account" = "Ruošiama paskyra…";
+// deprecated, shown beside progress bar, stay short
+"waiting_for_receiver" = "Laukiama gavėjo…";
+// deprecated, shown beside progress bar, stay short
+"receiver_connected" = "Gavėjas prisijungęs…";
 "troubleshooting" = "Nesklandumų šalinimas";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -390,6 +395,7 @@
 "proxy_settings" = "Įgaliotasis serveris";
 "proxy_use_proxy" = "Naudoti įgaliotąjį serverį";
 "proxy_add" = "Pridėti įgaliotąjį serverį";
+"proxy_add_explain" = "Palaikomi įgaliotųjų serverių tipai: HTTP(S), SOCKS5 ir Shadowsocks.";
 "proxy_add_url_hint" = "Čia įveskite įgaliotojo serverio URL";
 "proxy_invalid" = "Neteisingas arba nepalaikomas įgaliotojo serverio URL";
 "proxy_list_header" = "Įrašyti įgaliotieji serveriai";
