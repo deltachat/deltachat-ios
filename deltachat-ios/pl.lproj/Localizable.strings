@@ -5,6 +5,10 @@
 // deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "lub";
 "clear_search" = "Wyczyść wyszukiwanie";
+// a noun, used on a button, short for "show link"
+"link" = "Link";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Skanuj";
 "yes" = "Tak";
 "no" = "Nie";
 "select" = "Zaznacz";
@@ -191,6 +195,7 @@
 "menu_message_details" = "Szczegóły wiadomości";
 "menu_copy_to_clipboard" = "Kopiuj do schowka";
 "share_invite_link" = "Udostępnij link zaproszenia";
+"share_invite_link_explain" = "Każdy, kto ma ten link, może zobaczyć twój profil i rozpocząć z tobą czat. Udostępniaj go tylko osobom, którym ufasz.";
 "invite_friends" = "Zaproś znajomych";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Skontaktuj się ze mną przez Delta Chat:\n%1$@";

@@ -5,6 +5,10 @@
 // deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "ya da";
 "clear_search" = "Aramayı Temizle";
+// a noun, used on a button, short for "show link"
+"link" = "Bağlantı";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Tara";
 "yes" = "Evet";
 "no" = "Hayır";
 "select" = "Seç";
@@ -191,6 +195,7 @@
 "menu_message_details" = "İleti Bilgisi";
 "menu_copy_to_clipboard" = "Panoya Kopyala";
 "share_invite_link" = "Çağırma Bağlantısı Paylaş";
+"share_invite_link_explain" = "Herhangi birisi bu bağlantıyla profilinizi görüntüleyebilir ve sizinle bir sohbet başlatabilir. Onu yalnızca güvendiğiniz insanlarla paylaşın.";
 "invite_friends" = "Arkadaşları Çağır";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Delta Chat üzerinden bana ulaşın:\n%1$@";
