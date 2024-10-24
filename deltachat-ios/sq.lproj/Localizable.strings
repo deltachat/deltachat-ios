@@ -5,6 +5,10 @@
 // deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "ose";
 "clear_search" = "Spastroje Kërkimin";
+// a noun, used on a button, short for "show link"
+"link" = "Lidhje";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Skanoje";
 "yes" = "Po";
 "no" = "Jo";
 "select" = "Përzgjidhni";
@@ -189,6 +193,7 @@
 "menu_message_details" = "Hollësi Mesazhi";
 "menu_copy_to_clipboard" = "Kopjoje në të Papastër";
 "share_invite_link" = "Jepuni Lidhje Ftese";
+"share_invite_link_explain" = "Cilido me këtë lidhje mund të shohë profilin tuaj dhe të nisë një fjalosje me ju. Jepuani vetëm personave që u zini besë.";
 "invite_friends" = "Ftoni Shokë";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Lidhuni me mua në Delta Chat:\n%1$@";

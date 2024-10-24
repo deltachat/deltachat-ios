@@ -5,6 +5,10 @@
 // deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "o";
 "clear_search" = "Cancella Ricerca";
+// a noun, used on a button, short for "show link"
+"link" = "Collegamento";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Scansiona";
 "yes" = "Sì";
 "no" = "No";
 "select" = "Seleziona";
@@ -190,17 +194,18 @@
 "menu_delete_location" = "Elimino questa Posizione?";
 "menu_message_details" = "Dettagli Messaggio";
 "menu_copy_to_clipboard" = "Copia negli Appunti";
-"share_invite_link" = "Condividi Link d\'Invito";
+"share_invite_link" = "Condividi Collegamento D\'Invito";
+"share_invite_link_explain" = "Chiunque abbia questo collegamento può visualizzare il tuo profilo e iniziare una chat con te. Condividilo solo con persone di cui ti fidi.";
 "invite_friends" = "Invita Gli Amici";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Contattami su Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Copia Selezione";
-"menu_copy_link_to_clipboard" = "Copia Link";
+"menu_copy_link_to_clipboard" = "Copia Collegamento";
 "menu_copy_text_to_clipboard" = "Copia Testo";
 "menu_copy_image_to_clipboard" = "Copia l\'Immagine";
 "menu_copy_email_to_clipboard" = "Copia E-Mail";
 "paste_from_clipboard" = "Incolla dagli Appunti";
-"ask_copy_unopenable_link_to_clipboard" = "Il link \"%1$d\" non può essere aperto nel browser web. Vuoi invece copiare il collegamento negli appunti?";
+"ask_copy_unopenable_link_to_clipboard" = "Il collegamento \"%1$d\" non può essere aperto nel browser web. Vuoi invece copiare il collegamento negli appunti?";
 "menu_forward" = "Inoltra Messaggio";
 "menu_reply" = "Rispondi al Messaggio";
 "menu_mute" = "Silenzia Notifiche";
@@ -308,7 +313,7 @@
 "ask_remove_members" = "Rimuovere %1$@ dal gruppo?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_broadcast" = "Rimuovere %1$@ dalla lista di trasmissione?";
-"open_url_confirmation" = "Vuoi aprire questo link?";
+"open_url_confirmation" = "Vuoi aprire questo collegamento?";
 // contact list
 "contacts_title" = "Contatti";
 "contacts_enter_name_or_email" = "Inserisci nome o indirizzo e-mail";
@@ -372,11 +377,11 @@
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Non chiedere di nuovo per %1$@";
-"puny_code_warning_header" = "Rilevato link sospetto";
+"puny_code_warning_header" = "Rilevato collegamento sospetto";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Sei sicuro di voler visitare %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "Hai seguito un link che potrebbe rappresentare in modo errato i caratteri utilizzando caratteri dall\'aspetto simile ad alfabeti diversi. Se si segue il link con l\'etichetta %1$@ si arriva a %2$@ che è normale per i caratteri non latini. Se non ti aspettavi tali caratteri, questo collegamento potrebbe essere dannoso";
+"puny_code_warning_description" = "Hai seguito un collegamento che potrebbe rappresentare in modo errato i caratteri utilizzando caratteri dall\'aspetto simile ad alfabeti diversi. Se si segue il collegamento con l\'etichetta %1$@ si arriva a %2$@ che è normale per i caratteri non latini. Se non ti aspettavi tali caratteri, questo collegamento potrebbe essere dannoso";
 // search
 "search" = "Cerca";
 "search_in_chat" = "Cerca in Chat";
@@ -830,7 +835,7 @@
 "chat_protection_broken_explanation" = "La crittografia end-to-end non può più essere garantita, probabilmente perché %1$@ ha reinstallato Delta Chat o inviato un messaggio da un altro dispositivo.\n\nPuoi incontrarlo di persona e scansionare nuovamente il suo Codice QR per ristabilire la crittografia end-to-end garantita.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ richiede la crittografia end-to-end che non è ancora configurata per questa chat. Tocca per saperne di più.";
 "invalid_unencrypted_explanation" = "Per stabilire la crittografia end-to-end, potresti incontrare i contatti di persona e scansionare il loro codice QR per presentarli.";
-"encryption_required_for_new_contact" = "È richiesta la crittografia end-to-end, ma non è ancora configurata per %1$@.\n\nPuoi condividere con loro il link d\'invito o incontrarli di persona e scansionare il loro Codice QR.";
+"encryption_required_for_new_contact" = "È richiesta la crittografia end-to-end, ma non è ancora configurata per %1$@.\n\nPuoi condividere con loro il collegamento d\'invito o incontrarli di persona e scansionare il loro Codice QR.";
 "learn_more" = "Per Saperne di Più";
 "devicemsg_self_deleted" = "Hai eliminato la chat \"Messaggi salvati\".\n\nℹ️ Per utilizzare nuovamente la funzione \"Messaggi salvati\", crea una nuova chat con te stesso.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -899,7 +904,7 @@
 "mailto_dialog_header_select_chat" = "Seleziona la chat a cui inviare il messaggio";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ha già una bozza di messaggio, vuoi sostituirla?";
-"mailto_link_could_not_be_decoded" = "Il link mailto non può essere decodificato: %1$@";
+"mailto_link_could_not_be_decoded" = "Il collegamento mailto non può essere decodificato: %1$@";
 // notifications
 // deprecated, use mark_as_read or mark_as_read_short
 "notify_dismiss" = "Ignora";
