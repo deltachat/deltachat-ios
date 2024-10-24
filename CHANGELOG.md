@@ -14,9 +14,8 @@
 - Show contact when tapping on their name in Reactions-overview (#2259)
 - Mark bots as ... bots (#2254)
 - Improve chat-deletion-confirmation (#2254)
-- Update core to 1.142.12
 - Improve security and QR-code generation
-- Update core dependencies and remove obsolete ones
+- Update core to 1.142.12
 
 ## v1.46.9
 2024-08
@@ -24,6 +23,7 @@
 - Update translations
 - Minor UI/UX-fixes (#2260)
 - Support more modern QR-codes for backups
+* using core 1.142.2
 
 ## v1.46.8
 2024-08
