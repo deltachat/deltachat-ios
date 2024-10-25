@@ -52,9 +52,12 @@ in Xcode:
       select the most recent,
       then "Distribute App / App Store Connect", use defaults, "Distribute"
 
+   This will already push the version to the **Internal Testflight** group
+   with selected, named testers.
+
 on https://appstoreconnect.apple.com :
 
-7. for a **Testflight release**, open "My Apps / Delta Chat / TestFlight / iOS"
+7. for an **Open Testflight** release, open "My Apps / Delta Chat / TestFlight / iOS"
    a) status becomes "Ready to Submit" automatically after some minutes
    b) select "open-testing-group" on the left, scroll down to "Builds" section
    c) click "+" and select the version made "Ready to submit" above
