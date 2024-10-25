@@ -3,6 +3,13 @@
 ## v1.48.1
 2024-10
 
+* do not miss new messages when being inside a chat, the "Back" button now has an "unread" badge
+* no more useless scrolling and jumping when opening a chat and during chatting. solid!
+* open "Invite Links" (i.delta.chat) direclty inside the app
+* check device owner (Passcode, Fingerprint, FaceID) on "Add Second Device", "Export" and "Password & Account"
+* simplifiy "Delete From Server" options for chatmail
+* allow to copy text from "Message Info"
+* add "Learn More" button to "Manage keys"
 * save traffic by supporting "IMAP COMPRESS"
 * automatic reconfiguration, e.g. switching to implicit TLS if STARTTLS port stops working
 * parallelize IMAP and SMTP connection attempts
@@ -25,6 +32,9 @@
 * improve logging for failed QR code scans, AEAP, Autocrypt and sending errors
 * show more context for the "Cannot establish guaranteed..." info message
 * show original file name in "Message Info"
+* fix PUSH notifications not working during the frist 30 seconds after putting app to background
+* fix: show correct number of messages affected by "Clear Chat"
+* fix: recognize stickers sent from the keyboard as such also on iOS 18
 * fix: Sort received outgoing message down if it's fresher than all non fresh messages
 * fix: shorten message text in locally sent messages too
 * fix: Set http I/O timeout to 1 minute rather than whole request timeout
