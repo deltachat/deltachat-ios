@@ -13,7 +13,6 @@ public class NotificationManager {
         self.dcContext = dcAccounts.getSelected()
         
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
     }
 
@@ -83,9 +82,7 @@ public class NotificationManager {
 
     @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
         NotificationManager.updateBadgeCounters()
-    }
 
-    @objc private func handleIncomingMessage(_ notification: Notification) {
         // make sure to balance each call to `beginBackgroundTask` with `endBackgroundTask`
         let backgroundTask = UIApplication.shared.beginBackgroundTask {
             // we cannot easily stop the task,
@@ -94,22 +91,22 @@ public class NotificationManager {
         }
 
         DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
-            if let ui = notification.userInfo,
-               let chatId = ui["chat_id"] as? Int,
+            guard let self, let ui = notification.userInfo, let accountId = ui["account_id"] as? Int else { return }
+            let eventContext = dcAccounts.get(id: accountId)
+            if let chatId = ui["chat_id"] as? Int,
                let messageId = ui["message_id"] as? Int,
-               !self.dcContext.isMuted() {
+               !eventContext.isMuted() {
 
-                let chat = self.dcContext.getChat(chatId: chatId)
+                let chat = eventContext.getChat(chatId: chatId)
 
                 if !chat.isMuted {
-                    let msg = self.dcContext.getMessage(id: messageId)
-                    let fromContact = self.dcContext.getContact(id: msg.fromContactId)
+                    let msg = eventContext.getMessage(id: messageId)
+                    let fromContact = eventContext.getContact(id: msg.fromContactId)
                     let sender = msg.getSenderName(fromContact)
                     let content = UNMutableNotificationContent()
                     content.title = chat.isGroup ? chat.name : sender
                     content.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
-                    content.userInfo["account_id"] = self.dcContext.id
+                    content.userInfo["account_id"] = eventContext.id
                     content.userInfo["chat_id"] = chat.id
                     content.userInfo["message_id"] = msg.id
                     content.sound = .default
