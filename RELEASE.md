@@ -9,27 +9,35 @@ on the command-line, in a PR called "update-core-and-stuff-DATE":
    ./scripts/clean-core.sh                # helps on weird issues, do also "Build / Clean"
    ```
 
-2. update translations:
-   `./scripts/tx-pull-translations.sh`
-   then commit
-
-3. update local help:
-   `./scripts/create-local-help.sh`
-   then commit
+2. update translations and local help:
+   ```
+   ./scripts/tx-pull-translations.sh
+   ./scripts/create-local-help.sh
+   ```
 
 the "update-core-and-stuff-DATE" PR can be merged without review
 (as everything was already reviewed in their repos).
 
 then, create a "bump-to-VERSION" PR:
 
-4. a) update CHANGELOG.md
-      from https://github.com/deltachat/deltachat-core-rust/blob/main/CHANGELOG.md
-      and https://github.com/deltachat/deltachat-ios/pulls?q=is%3Apr+is%3Aclosed+sort%3Aupdated-desc
-   b) add used core version to end of CHANGELOG.md entry as
-      "update to core 1.2.3" or "using core 1.2.3"
-   c) on major changes,
-      add a device message to ChatListController::viewDidLoad()
-      or remove the old one
+3. a) update CHANGELOG.md
+      from <https://github.com/deltachat/deltachat-core-rust/blob/main/CHANGELOG.md>
+      and <https://github.com/deltachat/deltachat-ios/pulls?q=is%3Apr+is%3Aclosed+sort%3Aupdated-desc>.
+      do not just copy and avoid technical terms.
+      the changelog is for the end user and shall show impacts form that angle.
+   b) update changelog date as `YYYY-MM`
+   c) add used core version to end of changelog entry
+      as `update to core 1.2.3` or `using core 1.2.3`
+
+   in case previous entries of the changelog refer to betas or to not officially released versions,
+   the entries can be summarized.
+   this makes it easier for the end user to follow changes by showing major changes atop.
+
+4. on major changes, add a device message to `ChatListController::viewDidLoad()`
+   or remove the old one.
+   do not repeat the CHANGELOG here: write what really is the UX outcome
+   in a few lines of easy speak without technical terms.
+   often, one can peek at Android here :)
 
 in Xcode:
 
