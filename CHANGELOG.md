@@ -1,6 +1,50 @@
 # Delta Chat iOS Changelog
 
-## v1.46.10 (2024-09)
+## v1.48.1
+2024-10
+
+* save traffic by supporting "IMAP COMPRESS"
+* automatic reconfiguration, e.g. switching to implicit TLS if STARTTLS port stops working
+* parallelize IMAP and SMTP connection attempts
+* improve DNS caching
+* always use preloaded DNS results
+* prioritize cached results if DNS resolver returns many results
+* always move auto-generated messages to DeltaChat folder
+* ignore invalid securejoin messages silently
+* delete messages from a chatmail server immediately by default
+* make resending pending messages possible
+* don't SMTP-send messages to self-chat if BccSelf is disabled
+* HTTP(S) tunneling
+* don't put displayname into From/To/Sender if it equals to address
+* hide sync messages from INBOX (use IMAP APPEND command to upload sync messages)
+* more verbose SMTP connection establishment errors
+* log unexpected message state when resending fails
+* smoother backup and "Add Second Device" progress bars
+* assign messages to ad-hoc group with matching name and members
+* use stricter TLS checks for HTTPS downloads (eg. Autoconfig)
+* improve logging for failed QR code scans, AEAP, Autocrypt and sending errors
+* show more context for the "Cannot establish guaranteed..." info message
+* show original file name in "Message Info"
+* fix: Sort received outgoing message down if it's fresher than all non fresh messages
+* fix: shorten message text in locally sent messages too
+* fix: Set http I/O timeout to 1 minute rather than whole request timeout
+* fix: don't sync QR code token before populating the group
+* fix: do not get stuck if the message to download does not exist anymore
+* fix: do not attempt to reference info messages
+* fix: do not get stuck if there is an error transferring backup
+* fix: make it possible to cancel ongoing backup transfer
+* fix: reset quota when entering a new address
+* fix: better detection of file extensions
+* fix: "database locked" errors
+* fix: never initialize realtime channels if realtime is disabled
+* fix reception of realtime channels
+* fix: normalize proxy URLs
+* fix connections getting stuck in "Updating..." sometimes
+* update translations and local help
+* update to core 1.148.4
+
+## v1.46.10
+2024-09
 
 - Add "Share invite link"-button to "QR Invite Code"-Screen (#2276)
 - Enhance "edit name" dialog (#2286)
@@ -15,7 +59,11 @@
 - Mark bots as ... bots (#2254)
 - Improve chat-deletion-confirmation (#2254)
 - Improve security and QR-code generation
-- Update core to 1.142.12
+- fix encryption compatibility with old Delta Chat clients
+- fix moving outgoing auto-generated messages to the "DeltaChat" folder
+- fix: try to create "INBOX.DeltaChat" if "DeltaChat" is not possible for some provider
+- fix receiving messages with "DeltaChat" folder cannot be selected
+- Update to core 1.142.12
 
 ## v1.46.9
 2024-08
@@ -50,7 +98,7 @@
 * fix various networking bugs
 * Minor UI/UX-fixes (#2231, #2247)
 * update translations and local help (#2244, $2255)
-* update core to 1.142.2
+* update to core 1.142.2
 
 ## v1.46.6
 2024-07
