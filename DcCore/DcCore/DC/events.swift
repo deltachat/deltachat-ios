@@ -131,6 +131,7 @@ public class DcEventHandler {
         case DC_EVENT_INCOMING_MSG:
             
             NotificationCenter.default.post(name: Event.incomingMessageOnAnyAccount, object: nil, userInfo: [
+                "message_id": Int(data2),
                 "chat_id": Int(data1),
                 "account_id": accountId
             ])
