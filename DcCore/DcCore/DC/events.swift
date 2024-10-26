@@ -41,12 +41,10 @@ public class DcEventHandler {
         let data2 = event.data2Int
         let accountId = event.accountId
 
-        if event.id >= DC_EVENT_ERROR && event.id <= 499 {
-            logger.error("[\(accountId)] \(event.data2String)")
-            return
-        }
-
         switch event.id {
+
+        case DC_EVENT_ERROR, DC_EVENT_ERROR_SELF_NOT_IN_GROUP:
+            logger.error("[\(accountId)] \(event.data2String)")
 
         case DC_EVENT_INFO:
             logger.info("[\(accountId)] \(event.data2String)")
