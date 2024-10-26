@@ -954,6 +954,15 @@ extension ChatListViewController: ChatListEditingBarDelegate {
 
     func onMorePressed() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        if viewModel?.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) ?? false {
+            alert.addAction(UIAlertAction(title: String.localized("menu_mute"), style: .default) { [weak self] _ in
+                guard let self else { return }
+            })
+        } else {
+            alert.addAction(UIAlertAction(title: String.localized("menu_unmute"), style: .default) { [weak self] _ in
+                guard let self else { return }
+            })
+        }
         alert.addAction(UIAlertAction(title: String.localized("menu_select_all"), style: .default) { [weak self] _ in
             guard let self else { return }
             selectAll()

@@ -279,6 +279,16 @@ class ChatListViewModel: NSObject {
         return false
     }
 
+    func hasAnyUnmutedChatSelected(in indexPaths: [IndexPath]?) -> Bool {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            if !dcContext.getChat(chatId: chatId).isMuted {
+                return true
+            }
+        }
+        return false
+    }
+
     func hasOnlyPinnedChatsSelected(in indexPaths: [IndexPath]?) -> Bool {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         return hasOnlyPinnedChatsSelected(chatIds: chatIds)
