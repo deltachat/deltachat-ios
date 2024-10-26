@@ -158,14 +158,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         set { customInputAccessoryView = newValue }
     }
 
-    /// Set this to false if you are doing something with the UI inside this view controller that
-    /// requires the inputAccessoryView to be hidden. Do not set this when navigating,
-    /// because UIKit should automatically return the firstResponder.
-    private var shouldBecomeFirstResponder: Bool = false
     override var canBecomeFirstResponder: Bool {
-        if let presentedViewController, !presentedViewController.isBeingDismissed {
-            // Should not show inputAccessoryView when anything other than searchController is presented
-            return presentedViewController is UISearchController && shouldBecomeFirstResponder
+        if let p = presentedViewController, !p.isBeingDismissed, !(p is UISearchController) {
+            // Don't show inputAccessoryView when anything other than searchController is presented
+            return false
         } else if navigationController?.topViewController != self {
             // Don't show inputAccessoryView when not top view controller
             return false
@@ -173,7 +169,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             // Don't show inputAccessoryView when context menu is visible
             return false
         } else {
-            return shouldBecomeFirstResponder
+            return dcChat.canSend || tableView.isEditing || presentedViewController is UISearchController
         }
     }
 
@@ -308,7 +304,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func configureUIForWriting() {
-        shouldBecomeFirstResponder = true
         configureMessageInputBar()
         draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
         messageInputBar.inputTextView.text = draft.text
@@ -359,10 +354,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         } else if RelayHelper.shared.isMailtoHandling() {
             messageInputBar.inputTextView.text = RelayHelper.shared.mailtoDraft
             RelayHelper.shared.finishRelaying()
-        }
-
-        if dcChat.canSend {
-            shouldBecomeFirstResponder = true
         }
 
         messageInputBar.scrollDownButton.isHidden = true
@@ -723,6 +714,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         draftArea.configure(draft: draft)
         if draft.isEditing {
             inputAccessoryView = editingBar
+            messageInputBar.inputTextView.resignFirstResponder()
         } else {
             messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
             messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
@@ -1601,7 +1593,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func focusInputTextView() {
         if !messageInputBar.inputTextView.isFirstResponder {
-            shouldBecomeFirstResponder = true
             becomeFirstResponder()
             messageInputBar.inputTextView.becomeFirstResponder()
         } else if UIAccessibility.isVoiceOverRunning {
@@ -1840,7 +1831,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         UIMenuController.shared.update()
-        shouldBecomeFirstResponder = true
         becomeFirstResponder()
     }
 
@@ -2235,6 +2225,14 @@ extension ChatViewController {
         self.updateTitle()
         if refreshMessagesAfterEditing && isEditing == false {
             refreshMessages()
+        }
+        if isEditing && canBecomeFirstResponder {
+            // Needed in case ChatViewController was never first responder
+            becomeFirstResponder()
+        } else if !isEditing && !canBecomeFirstResponder {
+            // Needed in case ChatViewController should not be first responder anymore
+            // so the keyboard is hidden and the tableView contentInset is recalculated
+            resignFirstResponder()
         }
     }
 
