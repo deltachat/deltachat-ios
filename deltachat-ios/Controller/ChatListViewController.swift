@@ -454,13 +454,11 @@ class ChatListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if tableView.isEditing,
-           let viewModel = viewModel {
-            editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+        if tableView.isEditing {
             if tableView.indexPathsForSelectedRows == nil {
                 setLongTapEditing(false)
             } else {
-                updateTitle()
+                updateTitleAndEditingBar()
             }
         }
     }
@@ -471,8 +469,7 @@ class ChatListViewController: UITableViewController {
             return
         }
         if tableView.isEditing {
-            editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
-            updateTitle()
+            updateTitleAndEditingBar()
             return
         }
 
@@ -559,13 +556,26 @@ class ChatListViewController: UITableViewController {
         if editing {
             tableView.selectRow(at: initialIndexPath, animated: true, scrollPosition: .none)
             addEditingView()
-            if let viewModel = viewModel {
-                editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
-            }
+            updateTitleAndEditingBar()
         } else {
             removeEditingView()
+            updateTitle()
         }
-        updateTitle()
+    }
+
+    private func selectAll() {
+        if !tableView.isEditing {
+            return
+        }
+
+        for section in 0..<tableView.numberOfSections {
+            let numberOfRows = tableView.numberOfRows(inSection: section)
+            for row in 0..<numberOfRows {
+                tableView.selectRow(at: IndexPath(row: row, section: section), animated: false, scrollPosition: .none)
+            }
+        }
+
+        updateTitleAndEditingBar()
     }
 
     private func addEditingView() {
@@ -636,6 +646,11 @@ class ChatListViewController: UITableViewController {
     }
 
     // MARK: updates
+    private func updateTitleAndEditingBar() {
+        editingBar.showUnpinning = viewModel?.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+        updateTitle()
+    }
+
     private func updateTitle() {
         titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
         if RelayHelper.shared.isForwarding() {
@@ -941,6 +956,7 @@ extension ChatListViewController: ChatListEditingBarDelegate {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_select_all"), style: .default) { [weak self] _ in
             guard let self else { return }
+            selectAll()
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
