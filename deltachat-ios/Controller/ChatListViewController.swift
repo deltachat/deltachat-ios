@@ -936,4 +936,13 @@ extension ChatListViewController: ChatListEditingBarDelegate {
         viewModel?.archiveChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
         setLongTapEditing(false)
     }
+
+    func onMorePressed() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("menu_select_all"), style: .default) { [weak self] _ in
+            guard let self else { return }
+        })
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }

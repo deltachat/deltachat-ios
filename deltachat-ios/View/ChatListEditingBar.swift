@@ -4,6 +4,7 @@ public protocol ChatListEditingBarDelegate: AnyObject {
     func onPinButtonPressed()
     func onDeleteButtonPressed()
     func onArchiveButtonPressed()
+    func onMorePressed()
 }
 
 class ChatListEditingBar: UIView {
@@ -39,7 +40,7 @@ class ChatListEditingBar: UIView {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [pinButton, archiveButton, deleteButton])
+        let view = UIStackView(arrangedSubviews: [pinButton, archiveButton, deleteButton, moreButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .fill
@@ -57,6 +58,10 @@ class ChatListEditingBar: UIView {
 
     private lazy var pinButton: UIButton = {
         return createUIButton(imageName: "pin", imageDescription: String.localized("pin"))
+    }()
+
+    private lazy var moreButton: UIButton = {
+        return createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("pin"))
     }()
 
     public override init(frame: CGRect) {
@@ -110,6 +115,8 @@ class ChatListEditingBar: UIView {
         let archiveBtnGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(archiveButtonPressed))
         archiveBtnGestureRecognizer.numberOfTapsRequired = 1
         archiveButton.addGestureRecognizer(archiveBtnGestureRecognizer)
+
+        moreButton.addTarget(self, action: #selector(ChatListEditingBar.onMorePressed), for: .touchUpInside)
     }
 
     @objc func pinButtonPressed() {
@@ -124,4 +131,7 @@ class ChatListEditingBar: UIView {
         delegate?.onArchiveButtonPressed()
     }
 
+    @objc func onMorePressed() {
+        delegate?.onMorePressed()
+    }
 }
