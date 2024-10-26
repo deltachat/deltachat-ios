@@ -169,6 +169,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         } else if navigationController?.topViewController != self {
             // Don't show inputAccessoryView when not top view controller
             return false
+        } else if contextMenuVisible || UIMenuController.shared.isMenuVisible {
+            // Don't show inputAccessoryView when context menu is visible
+            return false
         } else {
             return shouldBecomeFirstResponder
         }
@@ -1896,9 +1899,6 @@ extension ChatViewController {
         cell.reactionsView.isHidden = true
         contextMenuVisible = true
 
-        shouldBecomeFirstResponder = false
-        messageInputBar.inputTextView.resignFirstResponder()
-
         updateScrollDownButtonVisibility()
     }
 
@@ -1917,9 +1917,6 @@ extension ChatViewController {
         cell.messageBackgroundContainer.isHidden = false
         cell.reactionsView.isHidden = false
         contextMenuVisible = false
-
-        shouldBecomeFirstResponder = true
-        becomeFirstResponder()
 
         updateScrollDownButtonVisibility()
     }
