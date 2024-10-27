@@ -234,6 +234,13 @@ class ChatListViewModel: NSObject {
         }
     }
 
+    func setMuteDurations(in indexPaths: [IndexPath]?, duration: Int) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+        }
+    }
+
     func markUnreadSelectedChats(in indexPaths: [IndexPath]?) {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         for chatId in chatIds {
@@ -273,6 +280,16 @@ class ChatListViewModel: NSObject {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         for chatId in chatIds {
             if dcContext.getUnreadMessages(chatId: chatId) > 0 {
+                return true
+            }
+        }
+        return false
+    }
+
+    func hasAnyUnmutedChatSelected(in indexPaths: [IndexPath]?) -> Bool {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            if !dcContext.getChat(chatId: chatId).isMuted {
                 return true
             }
         }

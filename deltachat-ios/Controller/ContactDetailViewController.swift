@@ -423,7 +423,12 @@ class ContactDetailViewController: UITableViewController {
             headerCell.setMuted(isMuted: viewModel.chatIsMuted)
             self.navigationController?.popViewController(animated: true)
         } else {
-            showMuteAlert()
+            MuteDialog.show(viewController: self) { [weak self] duration in
+                guard let self else { return }
+                viewModel.context.setChatMuteDuration(chatId: viewModel.chatId, duration: duration)
+                headerCell.setMuted(isMuted: viewModel.chatIsMuted)
+                navigationController?.popViewController(animated: true)
+            }
         }
     }
 
@@ -482,29 +487,6 @@ class ContactDetailViewController: UITableViewController {
     private func showEphemeralMessagesController() {
         let ephemeralMessagesController = EphemeralMessagesViewController(dcContext: viewModel.context, chatId: viewModel.chatId)
         navigationController?.pushViewController(ephemeralMessagesController, animated: true)
-    }
-
-    private func showMuteAlert() {
-        let alert = UIAlertController(title: String.localized("mute"), message: nil, preferredStyle: .safeActionSheet)
-        let forever = -1
-        addDurationSelectionAction(to: alert, key: "mute_for_one_hour", duration: Time.oneHour)
-        addDurationSelectionAction(to: alert, key: "mute_for_two_hours", duration: Time.twoHours)
-        addDurationSelectionAction(to: alert, key: "mute_for_one_day", duration: Time.oneDay)
-        addDurationSelectionAction(to: alert, key: "mute_for_seven_days", duration: Time.oneWeek)
-        addDurationSelectionAction(to: alert, key: "mute_forever", duration: forever)
-
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
-        let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
-            self.viewModel.context.setChatMuteDuration(chatId: self.viewModel.chatId, duration: duration)
-            self.headerCell.setMuted(isMuted: self.viewModel.chatIsMuted)
-            self.navigationController?.popViewController(animated: true)
-        })
-        alert.addAction(action)
     }
 
     private func toggleBlockContact() {

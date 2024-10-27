@@ -207,6 +207,7 @@
 		B29BE2FC2BAB93EC002DBF1F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
 		B2B730BC2B98B1FB006C5EF9 /* DcCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; };
 		B2C42570265C325C00B95377 /* MultilineLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C4256F265C325C00B95377 /* MultilineLabelCell.swift */; };
+		B2CDA6322CCDB3080024763F /* MuteDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CDA6312CCDB3080024763F /* MuteDialog.swift */; };
 		B2D0E4952B93A4B200791949 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D0E4942B93A4B200791949 /* NotificationService.swift */; };
 		B2D0E4992B93A4B200791949 /* DcNotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B2D0E4922B93A4B200791949 /* DcNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B2D255972BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D255962BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift */; };
@@ -585,6 +586,7 @@
 		B2B9BC1126245F2200F35832 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2B9BC1226245F2200F35832 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = cs; path = cs.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B2C4256F265C325C00B95377 /* MultilineLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultilineLabelCell.swift; sourceTree = "<group>"; };
+		B2CDA6312CCDB3080024763F /* MuteDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDialog.swift; sourceTree = "<group>"; };
 		B2D0E4922B93A4B200791949 /* DcNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DcNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D0E4942B93A4B200791949 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B2D0E4962B93A4B200791949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1037,6 +1039,7 @@
 				3011E8042787365D00214221 /* KeychainManager.swift */,
 				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
 				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
+				B2CDA6312CCDB3080024763F /* MuteDialog.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1659,6 +1662,7 @@
 				3080A00F277DDA4C00E74565 /* InputBarAccessoryView.swift in Sources */,
 				AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */,
 				302D5454268B84CB00A8B271 /* VideoChatInstanceViewController.swift in Sources */,
+				B2CDA6322CCDB3080024763F /* MuteDialog.swift in Sources */,
 				3080A014277DDABA00E74565 /* KeyboardManager.swift in Sources */,
 				AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */,
 				AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */,
