@@ -457,7 +457,7 @@ class ChatListViewController: UITableViewController {
         if tableView.isEditing,
            let viewModel = viewModel {
             editingBar.showUnpinning = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
-            if tableView.indexPathsForSelectedRows == nil {
+            if tableView.indexPathsForSelectedRows == nil && !isDuringMultipleSelectionInteraction {
                 setLongTapEditing(false)
             } else {
                 updateTitle()
@@ -551,6 +551,21 @@ class ChatListViewController: UITableViewController {
         } else {
             guard let chatList = viewModel.chatList else { return false }
             return chatList.getChatId(index: indexPath.row) != DC_CHAT_ID_ARCHIVED_LINK
+        }
+    }
+
+    private var isDuringMultipleSelectionInteraction = false
+    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        isDuringMultipleSelectionInteraction = true
+        setLongTapEditing(true)
+    }
+    override func tableViewDidEndMultipleSelectionInteraction(_ tableView: UITableView) {
+        isDuringMultipleSelectionInteraction = false
+        if tableView.indexPathsForSelectedRows == nil {
+            setLongTapEditing(false)
         }
     }
 
