@@ -455,7 +455,7 @@ class ChatListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
-            if tableView.indexPathsForSelectedRows == nil {
+            if tableView.indexPathsForSelectedRows == nil && !isDuringMultipleSelectionInteraction {
                 setLongTapEditing(false)
             } else {
                 updateTitleAndEditingBar()
@@ -548,6 +548,21 @@ class ChatListViewController: UITableViewController {
         } else {
             guard let chatList = viewModel.chatList else { return false }
             return chatList.getChatId(index: indexPath.row) != DC_CHAT_ID_ARCHIVED_LINK
+        }
+    }
+
+    private var isDuringMultipleSelectionInteraction = false
+    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        isDuringMultipleSelectionInteraction = true
+        setLongTapEditing(true)
+    }
+    override func tableViewDidEndMultipleSelectionInteraction(_ tableView: UITableView) {
+        isDuringMultipleSelectionInteraction = false
+        if tableView.indexPathsForSelectedRows == nil {
+            setLongTapEditing(false)
         }
     }
 
