@@ -234,6 +234,13 @@ class ChatListViewModel: NSObject {
         }
     }
 
+    func setMuteDurations(in indexPaths: [IndexPath]?, duration: Int) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+        }
+    }
+
     func markUnreadSelectedChats(in indexPaths: [IndexPath]?) {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         for chatId in chatIds {

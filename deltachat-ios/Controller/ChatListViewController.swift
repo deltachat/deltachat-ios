@@ -957,10 +957,17 @@ extension ChatListViewController: ChatListEditingBarDelegate {
         if viewModel?.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) ?? false {
             alert.addAction(UIAlertAction(title: String.localized("menu_mute"), style: .default) { [weak self] _ in
                 guard let self else { return }
+                MuteDialog.show(viewController: self) { [weak self] duration in
+                    guard let self else { return }
+                    viewModel?.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: duration)
+                    setLongTapEditing(false)
+                }
             })
         } else {
             alert.addAction(UIAlertAction(title: String.localized("menu_unmute"), style: .default) { [weak self] _ in
                 guard let self else { return }
+                viewModel?.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: 0)
+                setLongTapEditing(false)
             })
         }
         alert.addAction(UIAlertAction(title: String.localized("menu_select_all"), style: .default) { [weak self] _ in
