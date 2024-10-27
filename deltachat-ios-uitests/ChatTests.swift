@@ -78,11 +78,22 @@ final class ChatTests: XCTestCase {
         app.buttons["Voice Message"].tap()
         let notificationsAlert = app.alerts["“Delta Chat” Would Like to Access the Microphone"]
         if notificationsAlert.exists {
-            notificationsAlert.buttons["Allow"].tap()
+            notificationsAlert.buttons["OK"].tap()
         }
         XCTAssert(app.navigationBars["00:03"].waitForExistence(timeout: 5))
         app.buttons["Send"].tap()
+        XCTAssert(app.keyboards.firstMatch.exists)
         screenshot(app, named: "Sent Voice message")
+
+        app.cells[containing: "Hey!"].press(forDuration: 1)
+        app.buttons["More Options"].tap()
+        app.buttons["Copy Text"].tap()
+        // keyboard is dismissed rn, but maybe it shouldn't be?
+        XCTAssertFalse(app.keyboards.firstMatch.exists)
+        app.textViews["Write a message"].press(forDuration: 2)
+        app.menuItems["Paste"].tap()
+        XCTAssertEqual(app.textViews["Write a message"].value as? String, "Hey!")
+
 
         // TODO: Make current date cell say "Today" so this test works tomorrow too
     }
