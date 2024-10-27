@@ -326,7 +326,12 @@ class GroupChatDetailViewController: UIViewController {
             groupHeader.setMuted(isMuted: false)
             navigationController?.popViewController(animated: true)
         } else {
-            showMuteAlert()
+            MuteDialog.show(viewController: self) { [weak self] duration in
+                guard let self else { return }
+                dcContext.setChatMuteDuration(chatId: self.chatId, duration: duration)
+                groupHeader.setMuted(isMuted: true)
+                navigationController?.popViewController(animated: true)
+            }
         }
     }
 
@@ -644,29 +649,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
 
 // MARK: - alerts
 extension GroupChatDetailViewController {
-
-    private func showMuteAlert() {
-        let alert = UIAlertController(title: String.localized("mute"), message: nil, preferredStyle: .safeActionSheet)
-        let forever = -1
-        addDurationSelectionAction(to: alert, key: "mute_for_one_hour", duration: Time.oneHour)
-        addDurationSelectionAction(to: alert, key: "mute_for_two_hours", duration: Time.twoHours)
-        addDurationSelectionAction(to: alert, key: "mute_for_one_day", duration: Time.oneDay)
-        addDurationSelectionAction(to: alert, key: "mute_for_seven_days", duration: Time.oneWeek)
-        addDurationSelectionAction(to: alert, key: "mute_forever", duration: forever)
-
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
-        let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
-            self.dcContext.setChatMuteDuration(chatId: self.chatId, duration: duration)
-            self.groupHeader.setMuted(isMuted: true)
-            self.navigationController?.popViewController(animated: true)
-        })
-        alert.addAction(action)
-    }
 
     private func showClearChatConfirmationAlert() {
         let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
