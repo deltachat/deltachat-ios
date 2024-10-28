@@ -504,7 +504,8 @@ class ChatListViewController: UITableViewController {
         let chat = dcContext.getChat(chatId: chatId)
 
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
-        let pinAction = UIContextualAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _, completionHandler in
+        let pinTitle = String.localized(pinned ? "unpin" : "pin")
+        let pinAction = UIContextualAction(style: .destructive, title: pinTitle) { [weak self] _, _, completionHandler in
             self?.viewModel?.pinChatToggle(chatId: chat.id)
             self?.setEditing(false, animated: true)
             completionHandler(true)
@@ -536,10 +537,10 @@ class ChatListViewController: UITableViewController {
             return nil
         }
         let chat = dcContext.getChat(chatId: chatId)
-        let archived = chat.isArchived
-        let archiveActionTitle: String = String.localized(archived ? "unarchive" : "archive")
 
-        let archiveAction = UIContextualAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _, completionHandler in
+        let archived = chat.isArchived
+        let archiveTitle: String = String.localized(archived ? "unarchive" : "archive")
+        let archiveAction = UIContextualAction(style: .destructive, title: archiveTitle) { [weak self] _, _, completionHandler in
             self?.viewModel?.archiveChatToggle(chatId: chatId)
             self?.setEditing(false, animated: true)
             completionHandler(true)
@@ -549,7 +550,8 @@ class ChatListViewController: UITableViewController {
             archiveAction.image = UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down")
         }
 
-        let muteAction = UIContextualAction(style: .normal, title: String.localized(chat.isMuted ? "menu_unmute" : "mute")) { [weak self] _, _, completionHandler in
+        let muteTitle = String.localized(chat.isMuted ? "menu_unmute" : "mute")
+        let muteAction = UIContextualAction(style: .normal, title: muteTitle) { [weak self] _, _, completionHandler in
             guard let self else { return }
             if chat.isMuted {
                 dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
