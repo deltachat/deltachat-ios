@@ -535,13 +535,11 @@ class ChatListViewController: UITableViewController {
             guard let self else { return }
             if chat.isMuted {
                 dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
-                setEditing(false, animated: true) // hack as handleMultiSelectionTitle() checks isEditing that is also true for swipe-editing
                 completionHandler(true)
             } else {
                 MuteDialog.show(viewController: self) { [weak self] duration in
                     guard let self else { return }
                     dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-                    setEditing(false, animated: true)
                     completionHandler(true)
                 }
             }
@@ -649,7 +647,13 @@ class ChatListViewController: UITableViewController {
             view.isHidden = false
         }
     }
-    
+
+    /// Check if the view is in row-selection mode.
+    /// isEditing alone is not sufficient as also true during swipe-edit.
+    private func hasEditingView() -> Bool {
+        return tableView.isEditing && editingConstraints != nil
+    }
+
     private func updateAccountButton() {
         let unreadMessages = dcAccounts.getFreshMessageCount(skipCurrent: true)
         accountButtonAvatar.setUnreadMessageCount(unreadMessages)
@@ -722,7 +726,7 @@ class ChatListViewController: UITableViewController {
     }
 
     func handleMultiSelectionTitle() -> Bool {
-        if !tableView.isEditing {
+        if !hasEditingView() {
             return false
         }
         titleView.accessibilityHint = nil
