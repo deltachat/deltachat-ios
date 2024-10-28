@@ -510,6 +510,9 @@ class ChatListViewController: UITableViewController {
             completionHandler(true)
         }
         pinAction.backgroundColor = UIColor.systemGreen
+        if #available(iOS 13.0, *) {
+            pinAction.image = UIImage(systemName: pinned ? "pin.slash" : "pin")
+        }
 
         return UISwipeActionsConfiguration(actions: [pinAction])
     }
@@ -530,6 +533,9 @@ class ChatListViewController: UITableViewController {
             completionHandler(true)
         }
         archiveAction.backgroundColor = UIColor.lightGray
+        if #available(iOS 13.0, *) {
+            archiveAction.image = UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down")
+        }
 
         let muteAction = UIContextualAction(style: .normal, title: String.localized(chat.isMuted ? "menu_unmute" : "mute")) { [weak self] _, _, completionHandler in
             guard let self else { return }
@@ -545,6 +551,9 @@ class ChatListViewController: UITableViewController {
             }
         }
         muteAction.backgroundColor = UIColor.systemOrange
+        if #available(iOS 13.0, *) {
+            muteAction.image = UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash")
+        }
 
         if viewModel.isMessageSearchResult(indexPath: indexPath) {
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction])
@@ -554,6 +563,9 @@ class ChatListViewController: UITableViewController {
                 completionHandler(true)
             }
             deleteAction.backgroundColor = UIColor.systemRed
+            if #available(iOS 13.0, *) {
+                deleteAction.image = UIImage(systemName: "trash")
+            }
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction, deleteAction])
         }
     }
