@@ -31,7 +31,7 @@
 * use stricter TLS checks for HTTPS downloads (eg. Autoconfig)
 * improve logging for failed QR code scans, AEAP, Autocrypt and sending errors
 * show more context for the "Cannot establish guaranteed..." info message
-* show original file name in "Message Info"
+* show file name in "Message Info"
 * fix PUSH notifications not working during the frist 30 seconds after putting app to background
 * fix: show correct number of messages affected by "Clear Chat"
 * fix: recognize stickers sent from the keyboard as such also on iOS 18
