@@ -495,43 +495,40 @@ class ChatListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard let viewModel = viewModel else { return [] }
-
-        guard let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else {
-            return []
-        }
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let viewModel, let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else { return nil }
 
         if chatId==DC_CHAT_ID_ARCHIVED_LINK {
-            return []
-            // returning nil may result in a default delete action,
-            // see https://forums.developer.apple.com/thread/115030
+            return nil
         }
         let chat = dcContext.getChat(chatId: chatId)
         let archived = chat.isArchived
         let archiveActionTitle: String = String.localized(archived ? "unarchive" : "archive")
 
-        let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _ in
+        let archiveAction = UIContextualAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _, completionHandler in
             self?.viewModel?.archiveChatToggle(chatId: chatId)
             self?.setEditing(false, animated: true)
+            completionHandler(true)
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
-        let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _ in
+        let pinAction = UIContextualAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _, completionHandler in
             self?.viewModel?.pinChatToggle(chatId: chat.id)
             self?.setEditing(false, animated: true)
+            completionHandler(true)
         }
         pinAction.backgroundColor = UIColor.systemGreen
 
         if viewModel.isMessageSearchResult(indexPath: indexPath) {
-            return [archiveAction, pinAction]
+            return UISwipeActionsConfiguration(actions: [archiveAction, pinAction])
         } else {
-            let deleteAction = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [weak self] _, _ in
+            let deleteAction = UIContextualAction(style: .normal, title: String.localized("delete")) { [weak self] _, _, completionHandler in
                 self?.showDeleteChatConfirmationAlert(chatId: chatId)
+                completionHandler(true)
             }
             deleteAction.backgroundColor = UIColor.systemRed
-            return [archiveAction, pinAction, deleteAction]
+            return UISwipeActionsConfiguration(actions: [archiveAction, pinAction, deleteAction])
         }
     }
 
