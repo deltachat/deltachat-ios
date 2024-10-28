@@ -512,7 +512,7 @@ class ChatListViewController: UITableViewController {
         }
         pinAction.backgroundColor = UIColor.systemGreen
         if #available(iOS 13.0, *) {
-            pinAction.image = UIImage(systemName: pinned ? "pin.slash" : "pin")
+            pinAction.image = Utils.makeImageWithText(image: UIImage(systemName: pinned ? "pin.slash" : "pin"), text: pinTitle)
         }
 
         if dcContext.getUnreadMessages(chatId: chatId) > 0 {
@@ -521,6 +521,9 @@ class ChatListViewController: UITableViewController {
                 completionHandler(true)
             }
             markReadAction.backgroundColor = UIColor.systemBlue
+            if #available(iOS 13.0, *) {
+                markReadAction.image = Utils.makeImageWithText(image: UIImage(systemName: "checkmark.message"), text: String.localized("mark_as_read_short"))
+            }
 
             return UISwipeActionsConfiguration(actions: [markReadAction, pinAction])
         } else {
@@ -547,7 +550,7 @@ class ChatListViewController: UITableViewController {
         }
         archiveAction.backgroundColor = UIColor.lightGray
         if #available(iOS 13.0, *) {
-            archiveAction.image = UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down")
+            archiveAction.image = Utils.makeImageWithText(image: UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down"), text: archiveTitle)
         }
 
         let muteTitle = String.localized(chat.isMuted ? "menu_unmute" : "mute")
@@ -566,7 +569,7 @@ class ChatListViewController: UITableViewController {
         }
         muteAction.backgroundColor = UIColor.systemOrange
         if #available(iOS 13.0, *) {
-            muteAction.image = UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash")
+            muteAction.image = Utils.makeImageWithText(image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"), text: muteTitle)
         }
 
         if viewModel.isMessageSearchResult(indexPath: indexPath) {
@@ -579,7 +582,7 @@ class ChatListViewController: UITableViewController {
             }
             deleteAction.backgroundColor = UIColor.systemRed
             if #available(iOS 13.0, *) {
-                deleteAction.image = UIImage(systemName: "trash")
+                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
             }
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction, deleteAction])
         }
