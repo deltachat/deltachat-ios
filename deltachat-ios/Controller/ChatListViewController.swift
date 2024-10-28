@@ -559,8 +559,9 @@ class ChatListViewController: UITableViewController {
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction])
         } else {
             let deleteAction = UIContextualAction(style: .normal, title: String.localized("delete")) { [weak self] _, _, completionHandler in
-                self?.showDeleteChatConfirmationAlert(chatId: chatId)
-                completionHandler(true)
+                self?.showDeleteChatConfirmationAlert(chatId: chatId) {
+                    completionHandler(true)
+                }
             }
             deleteAction.backgroundColor = UIColor.systemRed
             if #available(iOS 13.0, *) {
@@ -841,7 +842,7 @@ class ChatListViewController: UITableViewController {
     }
 
     // MARK: - alerts
-    private func showDeleteChatConfirmationAlert(chatId: Int) {
+    private func showDeleteChatConfirmationAlert(chatId: Int, callback: (() -> Void)? = nil) {
         let alert = UIAlertController(
             title: nil,
             message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name),
@@ -849,6 +850,7 @@ class ChatListViewController: UITableViewController {
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
             self.deleteChat(chatId: chatId, animated: true)
+            callback?()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
