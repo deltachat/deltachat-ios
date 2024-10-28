@@ -526,8 +526,6 @@
 "proxy_use_proxy" = "Использовать прокси";
 "proxy_add" = "Добавить прокси";
 "proxy_add_explain" = "Поддерживаемые типы прокси: HTTP(S), SOCKS5 и Shadowsocks.";
-"proxy_add_url_hint" = "Введите URL прокси";
-"proxy_invalid" = "Некорректный или неподдерживаемый URL прокси";
 "proxy_list_header" = "Сохранённые прокси";
 "proxy_delete" = "Удалить прокси";
 "proxy_delete_explain" = "Вы уверены, что хотите удалить \"%1$@\"?";

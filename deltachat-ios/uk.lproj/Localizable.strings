@@ -5,6 +5,10 @@
 // deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "або";
 "clear_search" = "Очистити пошук";
+// a noun, used on a button, short for "show link"
+"link" = "Посилання";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Сканувати";
 "yes" = "Так";
 "no" = "Ні";
 "select" = "Обрати";
@@ -191,6 +195,7 @@
 "menu_message_details" = "Інформація про повідомлення";
 "menu_copy_to_clipboard" = "Копіювати в буфер обміну";
 "share_invite_link" = "Поділитися посиланням на запрошення";
+"share_invite_link_explain" = "Будь-хто за цим посиланням може переглянути ваш профіль і почати з вами чат. Діліться ним лише з людьми, яким ви довіряєте.";
 "invite_friends" = "Запросити друзів";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Зв\'яжіться зі мною в Delta Chat:\n%1$@";
@@ -521,8 +526,6 @@
 "proxy_use_proxy" = "Використовувати проксі";
 "proxy_add" = "Додати проксі-сервер";
 "proxy_add_explain" = "Підтримувані типи проксі: HTTP(S), SOCKS5 і Shadowsocks.";
-"proxy_add_url_hint" = "Введіть URL проксі-сервера тут";
-"proxy_invalid" = "Невірний або непідтримуваний URL проксі-сервера";
 "proxy_list_header" = "Збережені проксі-сервери";
 "proxy_delete" = "Видалити проксі-сервер";
 "proxy_delete_explain" = "Ви дійсно хочете видалити \"%1$@\"?";
@@ -562,6 +565,8 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Переслати...";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Надіслати %1$d файли до \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Надіслати %1$d файл (файлів) у %2$d чати?";
 "videos_sent_without_recoding" = "(Відео надсилаються у вигляді оригінальних великих файлів. Щоб надіслати відео у вигляді менших файлів, прикріпіть їх окремо)";
 "share_text_multiple_chats" = "Надіслати цей текст у %1$d чати?\n\n\"%2$@\"";

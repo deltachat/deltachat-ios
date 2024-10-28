@@ -396,8 +396,6 @@
 "proxy_use_proxy" = "Naudoti įgaliotąjį serverį";
 "proxy_add" = "Pridėti įgaliotąjį serverį";
 "proxy_add_explain" = "Palaikomi įgaliotųjų serverių tipai: HTTP(S), SOCKS5 ir Shadowsocks.";
-"proxy_add_url_hint" = "Čia įveskite įgaliotojo serverio URL";
-"proxy_invalid" = "Neteisingas arba nepalaikomas įgaliotojo serverio URL";
 "proxy_list_header" = "Įrašyti įgaliotieji serveriai";
 "proxy_delete" = "Ištrinti įgaliotąjį serverį";
 "proxy_delete_explain" = "Ar tikrai norite ištrinti „%1$@“?";

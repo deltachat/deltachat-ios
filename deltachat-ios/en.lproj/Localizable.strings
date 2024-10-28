@@ -526,12 +526,14 @@
 "proxy_use_proxy" = "Use Proxy";
 "proxy_add" = "Add Proxy";
 "proxy_add_explain" = "Supported proxy types: HTTP(S), SOCKS5 and Shadowsocks.";
-"proxy_add_url_hint" = "Enter proxy URL here";
-"proxy_invalid" = "Invalid or unsupported proxy URL";
+"proxy_add_url_hint" = "Enter proxy link here";
+"proxy_invalid" = "Invalid or unsupported proxy";
 "proxy_list_header" = "Saved Proxies";
 "proxy_delete" = "Delete Proxy";
 "proxy_delete_explain" = "Are you sure you want to delete \"%1$@\"?";
 "proxy_use_proxy_confirm" = "Do you want to use proxy \"%1$@\"?";
+"proxy_share_explain" = "Your friends can add this proxy by scanning the QR code.";
+"proxy_share_link" = "Share Link";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Use SOCKS5";
@@ -555,6 +557,9 @@
 "accept_invalid_certificates" = "Accept invalid certificates";
 "switch_account" = "Switch Profile";
 "add_account" = "Add Profile";
+"profile_tag" = "Private Tag";
+"profile_tag_hint" = "eg. Work, Family";
+"profile_tag_explain" = "Tag that is visible only for you; helping you to differ between your profiles.";
 "delete_account" = "Delete Profile";
 "delete_account_ask" = "Are you sure you want to delete your profile data?";
 "delete_account_explain_with_name" = "All profile data of \"%1$@\" on this device will be deleted, including your end-to-end encryption setup, contacts, chats, messages and media. This action cannot be undone.";
