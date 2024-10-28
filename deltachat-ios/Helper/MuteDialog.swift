@@ -11,7 +11,7 @@ struct MuteDialog {
             ("mute_forever", forever),
         ]
 
-        let alert = UIAlertController(title: String.localized("mute"), message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized("menu_mute"), message: nil, preferredStyle: .safeActionSheet)
         for (name, duration) in options {
             alert.addAction(UIAlertAction(title: String.localized(name), style: .default, handler: { _ in
                 callback(duration)
