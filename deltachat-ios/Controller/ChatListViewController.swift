@@ -514,7 +514,19 @@ class ChatListViewController: UITableViewController {
             pinAction.image = UIImage(systemName: pinned ? "pin.slash" : "pin")
         }
 
-        return UISwipeActionsConfiguration(actions: [pinAction])
+        if dcContext.getUnreadMessages(chatId: chatId) > 0 {
+            let markReadAction = UIContextualAction(style: .destructive, title: String.localized("mark_as_read_short")) { [weak self] _, _, completionHandler in
+                self?.dcContext.marknoticedChat(chatId: chatId)
+                completionHandler(true)
+            }
+            markReadAction.backgroundColor = UIColor.systemBlue
+
+            return UISwipeActionsConfiguration(actions: [markReadAction, pinAction])
+        } else {
+            let actions = UISwipeActionsConfiguration(actions: [pinAction])
+            actions.performsFirstActionWithFullSwipe = false
+            return actions
+        }
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
