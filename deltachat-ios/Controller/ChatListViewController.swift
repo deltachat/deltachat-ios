@@ -531,15 +531,32 @@ class ChatListViewController: UITableViewController {
         }
         archiveAction.backgroundColor = UIColor.lightGray
 
+        let muteAction = UIContextualAction(style: .normal, title: String.localized(chat.isMuted ? "menu_unmute" : "mute")) { [weak self] _, _, completionHandler in
+            guard let self else { return }
+            if chat.isMuted {
+                dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
+                setEditing(false, animated: true) // hack as handleMultiSelectionTitle() checks isEditing that is also true for swipe-editing
+                completionHandler(true)
+            } else {
+                MuteDialog.show(viewController: self) { [weak self] duration in
+                    guard let self else { return }
+                    dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+                    setEditing(false, animated: true)
+                    completionHandler(true)
+                }
+            }
+        }
+        muteAction.backgroundColor = UIColor.systemOrange
+
         if viewModel.isMessageSearchResult(indexPath: indexPath) {
-            return UISwipeActionsConfiguration(actions: [archiveAction])
+            return UISwipeActionsConfiguration(actions: [archiveAction, muteAction])
         } else {
             let deleteAction = UIContextualAction(style: .normal, title: String.localized("delete")) { [weak self] _, _, completionHandler in
                 self?.showDeleteChatConfirmationAlert(chatId: chatId)
                 completionHandler(true)
             }
             deleteAction.backgroundColor = UIColor.systemRed
-            return UISwipeActionsConfiguration(actions: [archiveAction, deleteAction])
+            return UISwipeActionsConfiguration(actions: [archiveAction, muteAction, deleteAction])
         }
     }
 
