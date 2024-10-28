@@ -494,8 +494,6 @@
 "proxy_use_proxy" = "Utiliser le proxy";
 "proxy_add" = "Ajouter un proxy";
 "proxy_add_explain" = "Types de proxy supportés: HTTP(S), SOCKS5 et Shadowsocks.";
-"proxy_add_url_hint" = "Entrez l\'URL du proxy ici";
-"proxy_invalid" = "URL invalide ou non supportée";
 "proxy_list_header" = "Sauver les proxy";
 "proxy_delete" = "Effacer le proxy";
 // deprecated

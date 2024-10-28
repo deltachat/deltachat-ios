@@ -526,12 +526,14 @@
 "proxy_use_proxy" = "Usa Proxy";
 "proxy_add" = "Aggiungi Proxy";
 "proxy_add_explain" = "Tipi di proxy supportati: HTTP(S), SOCKS5 e Shadowsocks.";
-"proxy_add_url_hint" = "Inserisci qui l\'URL del proxy";
-"proxy_invalid" = "URL proxy non valido o non supportato";
+"proxy_add_url_hint" = "Inserisci qui il collegamento proxy";
+"proxy_invalid" = "Proxy non valido o non supportato";
 "proxy_list_header" = "Proxy Salvati";
 "proxy_delete" = "Elimina Proxy";
 "proxy_delete_explain" = "Sei sicuro di voler eliminare \"%1$@\"?";
 "proxy_use_proxy_confirm" = "Vuoi usare il proxy \"%1$@\"?";
+"proxy_share_explain" = "I tuoi amici possono aggiungere questo proxy scansionando il Codice QR.";
+"proxy_share_link" = "Condividi Collegamento";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Usa SOCKS5";
@@ -555,6 +557,9 @@
 "accept_invalid_certificates" = "Accetta certificati non validi";
 "switch_account" = "Cambia Account";
 "add_account" = "Aggiungi Account";
+"profile_tag" = "Etichetta Privata";
+"profile_tag_hint" = "es. Lavoro, Famiglia";
+"profile_tag_explain" = "Etichetta visibile solo a te, che ti aiuta a distinguere i tuoi profili.";
 "delete_account" = "Elimina Account";
 "delete_account_ask" = "Sei certo di voler eliminare i dati dell\'account?";
 "delete_account_explain_with_name" = "Verranno eliminati tutti i dati dell\'account di \"%1$@\" su questo dispositivo, inclusa la configurazione della crittografia end-to-end, contatti, chat, messaggi e contenuti multimediali. Questa azione non può essere annullata.";

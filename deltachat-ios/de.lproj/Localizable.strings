@@ -526,8 +526,6 @@
 "proxy_use_proxy" = "Proxy verwenden";
 "proxy_add" = "Proxy hinzufügen";
 "proxy_add_explain" = "Unterstützte Typen: HTTP(S), SOCKS5 und Shadowsocks.";
-"proxy_add_url_hint" = "Proxy URL hier eingeben";
-"proxy_invalid" = "Ungültige oder nicht unterstützte Proxy-URL";
 "proxy_list_header" = "Proxies";
 "proxy_delete" = "Proxy löschen";
 "proxy_delete_explain" = "\"%1$@\" löschen?";

@@ -526,12 +526,14 @@
 "proxy_use_proxy" = "Proxy gebruiken";
 "proxy_add" = "Proxy toevoegen";
 "proxy_add_explain" = "Ondersteunde proxytypes: http(s), socks5 en shadowsocks.";
-"proxy_add_url_hint" = "Voer een proxy-url in";
-"proxy_invalid" = "Ongeldige of niet-ondersteunde proxy-url";
+"proxy_add_url_hint" = "Voer een proxylink in";
+"proxy_invalid" = "Ongeldige of niet-ondersteunde proxy";
 "proxy_list_header" = "Bewaarde proxy\'s";
 "proxy_delete" = "Proxy verwijderen";
 "proxy_delete_explain" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
 "proxy_use_proxy_confirm" = "Wil je gebruikmaken van de proxy ‘%1$@’?";
+"proxy_share_explain" = "Je kunt vrienden toevoegen aan deze proxy door de QR-code te scannen.";
+"proxy_share_link" = "Link delen";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "SOCKS5 gebruiken";
@@ -555,6 +557,9 @@
 "accept_invalid_certificates" = "Ongeldige certificaten accepteren";
 "switch_account" = "Ander account kiezen";
 "add_account" = "Account toevoegen";
+"profile_tag" = "Privélabel";
+"profile_tag_hint" = "bijv. werk, familie";
+"profile_tag_explain" = "Een label dat alleen jij kan zien, om profielen van elkaar te onderscheiden.";
 "delete_account" = "Account verwijderen";
 "delete_account_ask" = "Weet je zeker dat je je accountgegevens wilt verwijderen?";
 "delete_account_explain_with_name" = "Alle gegevens van ‘%1$@’ worden verwijderd: de eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";

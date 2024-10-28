@@ -526,12 +526,14 @@
 "proxy_use_proxy" = "使用代理";
 "proxy_add" = "添加代理";
 "proxy_add_explain" = "支持的代理类型：HTTP(S)、SOCKS5 和 Shadowsocks.";
-"proxy_add_url_hint" = "在此输入代理 URL";
-"proxy_invalid" = "无效或不受支持的代理 URL";
+"proxy_add_url_hint" = "在此输入代理链接";
+"proxy_invalid" = "无效或不受支持的代理";
 "proxy_list_header" = "已保存的代理";
 "proxy_delete" = "删除代理";
 "proxy_delete_explain" = "你确定要删除 \"%1$@\"吗？";
 "proxy_use_proxy_confirm" = "你想使用代理“%1$@”吗？";
+"proxy_share_explain" = "你的好友可以扫描二维码添加此代理";
+"proxy_share_link" = "分享链接";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "使用 SOCKS5 代理";
@@ -555,6 +557,9 @@
 "accept_invalid_certificates" = "接受无效的证书";
 "switch_account" = "切换账号";
 "add_account" = "添加账号";
+"profile_tag" = "私密标签";
+"profile_tag_hint" = "如工作、家庭";
+"profile_tag_explain" = "仅对你可见的标签；帮助你区分不同的配置文件";
 "delete_account" = "删除账号";
 "delete_account_ask" = "是否确定要删除您的账号数据？";
 "delete_account_explain_with_name" = "将会删除此设备上“%1$@”的所有账号数据，包括您的端到端加密设置、联系人、聊天、消息和媒体。此操作无法撤销。";

@@ -523,12 +523,14 @@
 "proxy_use_proxy" = "Përdor Ndërmjetës";
 "proxy_add" = "Shtoni Ndërmjetës";
 "proxy_add_explain" = "Lloje ndërmjetësish që mbulohen: HTTP(S), SOCKS5 dhe Shadowsocks.";
-"proxy_add_url_hint" = "Jepni këtu URL-në e ndërmjetësit";
-"proxy_invalid" = "URL ndërmjetësi e pavlefshme, ose që s’mbulohet";
+"proxy_add_url_hint" = "Jepni këtu lidhjen e ndërmjetësit";
+"proxy_invalid" = "Ndërmjetës i pavlefshëm, ose që s’mbulohet";
 "proxy_list_header" = "Ndërmjetës të Ruajtur";
 "proxy_delete" = "Fshije Ndërmjetësin";
 "proxy_delete_explain" = "Jeni i sigurt se doni të fshihet “%1$@”?";
 "proxy_use_proxy_confirm" = "Doni të përdore ndërmjetësi “%1$@”?";
+"proxy_share_explain" = "Shokët tuaj mund ta shtojnë këtë ndërmjetës përmes skanimit të kodit QR.";
+"proxy_share_link" = "Jepeni Lidhjen";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Përdor SOCKS5";
@@ -552,6 +554,9 @@
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
 "switch_account" = "Ndërroni Llogari";
 "add_account" = "Shtoni Llogari";
+"profile_tag" = "Etiketë Private";
+"profile_tag_hint" = "p.sh., Pune, Familjeje";
+"profile_tag_explain" = "Ajo etiketë është e dukshme vetëm për ju; për t’ju ndihmuar ju të bëni dallimin mes profileve tuaja.";
 "delete_account" = "Fshije Llogarinë";
 "delete_account_ask" = "Jeni i sigurt se doni të fshihen të dhënat e llogarisë tuaj?";
 "delete_account_explain_with_name" = "Krejt të dhënat e llogarisë për “%1$@” në këtë pajisje do të fshihen, përfshi ato të ujdisjes tuaj për fshehtëzim skaj-më-skaj, kontakte, fjalosje, mesazhe dhe media. Ky veprim s’mund të zhbëhet.";

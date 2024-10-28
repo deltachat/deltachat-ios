@@ -5,6 +5,10 @@
 // deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "vagy";
 "clear_search" = "Keresés kiürítése";
+// a noun, used on a button, short for "show link"
+"link" = "Hivatkozás";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Beolvasás";
 "yes" = "Igen";
 "no" = "Nem";
 "select" = "Kiválasztás";
@@ -191,6 +195,7 @@
 "menu_message_details" = "Üzenet részletei";
 "menu_copy_to_clipboard" = "Vágólapra másolás";
 "share_invite_link" = "Meghívó-hivatkozás megosztása";
+"share_invite_link_explain" = "Ezen a hivatkozáson keresztül bárki megtekintheti az Ön profilját, és csevegést kezdeményezhet Önnel. Csak olyan emberekkel ossza meg, akikben megbízik.";
 "invite_friends" = "Ismerősök meghívása";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Lépjen kapcsolatba velem a Delta Chaten:\n%1$@";
@@ -521,8 +526,6 @@
 "proxy_use_proxy" = "Proxy használata";
 "proxy_add" = "Proxy hozzáadása";
 "proxy_add_explain" = "Támogatott proxytípusok: HTTP(S), SOCKS5 és ShadowSOCKS";
-"proxy_add_url_hint" = "Adja meg a proxy webcímét";
-"proxy_invalid" = "Érvénytelen vagy nem támogatott a proxy webcíme";
 "proxy_list_header" = "Mentett proxyk";
 "proxy_delete" = "Proxy törlése";
 "proxy_delete_explain" = "Biztosan törli a következőt: „%1$@”?";
