@@ -235,13 +235,16 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if sections[indexPath.section] == .members, groupContactIds[indexPath.row] != DC_CONTACT_ID_SELF {
-            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completionHandler in
+            let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 self.removeGroupContactFromList(at: indexPath)
                 completionHandler(true)
             }
+            deleteAction.accessibilityLabel = String.localized("remove_desktop")
             if #available(iOS 13.0, *) {
                 deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("remove_desktop"))
+            } else {
+                deleteAction.title = String.localized("remove_desktop")
             }
             return UISwipeActionsConfiguration(actions: [deleteAction])
         } else {

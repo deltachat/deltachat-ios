@@ -53,6 +53,11 @@ struct Utils {
         return window?.safeAreaInsets.bottom ?? 0
     }
 
+    // Puts text below the given image and returns as a new image.
+    // The result is ready to be used with `UIContextualAction.image` -
+    // which shows the title otherwise only for large heightForRowAt (>= 91 in experiments).
+    // If you add an text to an image that way, set `UIContextualAction.title` to `nil` to be safe for cornercases - or if apple changes things -
+    // otherwise, one would see the title twice *drunk* :)
     @available(iOS 13.0, *)
     static func makeImageWithText(image: UIImage?, text: String) -> UIImage? {
         guard let image = image?.withTintColor(UIColor.white) else { return nil }
