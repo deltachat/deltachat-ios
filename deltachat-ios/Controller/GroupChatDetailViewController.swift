@@ -599,34 +599,26 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         return false
     }
 
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if !chat.canSend {
-            return nil
-        }
-        let row = indexPath.row
-        let sectionType = sections[indexPath.section]
-        if sectionType == .members &&
-            !isMemberManagementRow(row: row) &&
-            getGroupMemberIdFor(row) != DC_CONTACT_ID_SELF {
-            // action set for members except for current user
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getGroupMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
+            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completionHandler in
                 guard let self else { return }
-                let contact = self.getGroupMember(at: row)
-                let title = String.localizedStringWithFormat(String.localized(self.chat.isBroadcast ?
-                                     "ask_remove_from_broadcast" :
-                                        "ask_remove_members"), contact.nameNAddr)
+                let contact = self.getGroupMember(at: indexPath.row)
+                let title = String.localizedStringWithFormat(String.localized(self.chat.isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), contact.nameNAddr)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { _ in
-                    let success = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: contact.id)
-                    if success {
+                    if self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: contact.id) {
                         self.removeGroupMemberFromTableAt(indexPath)
                     }
+                    completionHandler(true)
                 }))
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-            delete.backgroundColor = UIColor.systemRed
-            return [delete]
+            if #available(iOS 13.0, *) {
+                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("remove_desktop"))
+            }
+            return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         return nil
     }
