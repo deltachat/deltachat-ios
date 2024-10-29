@@ -53,6 +53,27 @@ struct Utils {
         return window?.safeAreaInsets.bottom ?? 0
     }
 
+    @available(iOS 13.0, *)
+    static func makeImageWithText(image: UIImage?, text: String) -> UIImage? {
+        guard let image = image?.withTintColor(UIColor.white) else { return nil }
+
+        let spacing: CGFloat = 4
+        let textAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.white]
+
+        let textSize = text.size(withAttributes: textAttributes)
+        let width = max(image.size.width, textSize.width)
+        let height = image.size.height + spacing + textSize.height
+
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: width, height: height))
+        return renderer.image { _ in
+            let imageOrigin = CGPoint(x: (renderer.format.bounds.width - image.size.width) / 2, y: 0)
+            image.draw(at: imageOrigin)
+
+            let textOrigin = CGPoint(x: (renderer.format.bounds.width - textSize.width) / 2, y: image.size.height + spacing)
+            text.draw(at: textOrigin, withAttributes: textAttributes)
+        }
+    }
+
     public static func getInviteLink(context: DcContext, chatId: Int) -> String? {
         // convert `OPENPGP4FPR:FPR#a=ADDR&n=NAME&...` to `https://i.delta.chat/#FPR&a=ADDR&n=NAME&...`
         if var data = context.getSecurejoinQr(chatId: chatId), let hashRange = data.range(of: "#") {

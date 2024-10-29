@@ -495,43 +495,96 @@ class ChatListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard let viewModel = viewModel else { return [] }
-
-        guard let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else {
-            return []
-        }
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let viewModel, let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else { return nil }
 
         if chatId==DC_CHAT_ID_ARCHIVED_LINK {
-            return []
-            // returning nil may result in a default delete action,
-            // see https://forums.developer.apple.com/thread/115030
+            return nil
         }
         let chat = dcContext.getChat(chatId: chatId)
-        let archived = chat.isArchived
-        let archiveActionTitle: String = String.localized(archived ? "unarchive" : "archive")
-
-        let archiveAction = UITableViewRowAction(style: .destructive, title: archiveActionTitle) { [weak self] _, _ in
-            self?.viewModel?.archiveChatToggle(chatId: chatId)
-            self?.setEditing(false, animated: true)
-        }
-        archiveAction.backgroundColor = UIColor.lightGray
 
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
-        let pinAction = UITableViewRowAction(style: .destructive, title: String.localized(pinned ? "unpin" : "pin")) { [weak self] _, _ in
+        let pinTitle = String.localized(pinned ? "unpin" : "pin")
+        let pinAction = UIContextualAction(style: .destructive, title: pinTitle) { [weak self] _, _, completionHandler in
             self?.viewModel?.pinChatToggle(chatId: chat.id)
             self?.setEditing(false, animated: true)
+            completionHandler(true)
         }
         pinAction.backgroundColor = UIColor.systemGreen
+        if #available(iOS 13.0, *) {
+            pinAction.image = Utils.makeImageWithText(image: UIImage(systemName: pinned ? "pin.slash" : "pin"), text: pinTitle)
+        }
+
+        if dcContext.getUnreadMessages(chatId: chatId) > 0 {
+            let markReadAction = UIContextualAction(style: .destructive, title: String.localized("mark_as_read_short")) { [weak self] _, _, completionHandler in
+                self?.dcContext.marknoticedChat(chatId: chatId)
+                completionHandler(true)
+            }
+            markReadAction.backgroundColor = UIColor.systemBlue
+            if #available(iOS 13.0, *) {
+                markReadAction.image = Utils.makeImageWithText(image: UIImage(systemName: "checkmark.message"), text: String.localized("mark_as_read_short"))
+            }
+
+            return UISwipeActionsConfiguration(actions: [markReadAction, pinAction])
+        } else {
+            let actions = UISwipeActionsConfiguration(actions: [pinAction])
+            actions.performsFirstActionWithFullSwipe = false
+            return actions
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let viewModel, let chatId = viewModel.chatIdFor(section: indexPath.section, row: indexPath.row) else { return nil }
+
+        if chatId==DC_CHAT_ID_ARCHIVED_LINK {
+            return nil
+        }
+        let chat = dcContext.getChat(chatId: chatId)
+
+        let archived = chat.isArchived
+        let archiveTitle: String = String.localized(archived ? "unarchive" : "archive")
+        let archiveAction = UIContextualAction(style: .destructive, title: archiveTitle) { [weak self] _, _, completionHandler in
+            self?.viewModel?.archiveChatToggle(chatId: chatId)
+            self?.setEditing(false, animated: true)
+            completionHandler(true)
+        }
+        archiveAction.backgroundColor = UIColor.lightGray
+        if #available(iOS 13.0, *) {
+            archiveAction.image = Utils.makeImageWithText(image: UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down"), text: archiveTitle)
+        }
+
+        let muteTitle = String.localized(chat.isMuted ? "menu_unmute" : "mute")
+        let muteAction = UIContextualAction(style: .normal, title: muteTitle) { [weak self] _, _, completionHandler in
+            guard let self else { return }
+            if chat.isMuted {
+                dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
+                completionHandler(true)
+            } else {
+                MuteDialog.show(viewController: self) { [weak self] duration in
+                    guard let self else { return }
+                    dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+                    completionHandler(true)
+                }
+            }
+        }
+        muteAction.backgroundColor = UIColor.systemOrange
+        if #available(iOS 13.0, *) {
+            muteAction.image = Utils.makeImageWithText(image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"), text: muteTitle)
+        }
 
         if viewModel.isMessageSearchResult(indexPath: indexPath) {
-            return [archiveAction, pinAction]
+            return UISwipeActionsConfiguration(actions: [archiveAction, muteAction])
         } else {
-            let deleteAction = UITableViewRowAction(style: .normal, title: String.localized("delete")) { [weak self] _, _ in
-                self?.showDeleteChatConfirmationAlert(chatId: chatId)
+            let deleteAction = UIContextualAction(style: .normal, title: String.localized("delete")) { [weak self] _, _, completionHandler in
+                self?.showDeleteChatConfirmationAlert(chatId: chatId) {
+                    completionHandler(true)
+                }
             }
             deleteAction.backgroundColor = UIColor.systemRed
-            return [archiveAction, pinAction, deleteAction]
+            if #available(iOS 13.0, *) {
+                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
+            }
+            return UISwipeActionsConfiguration(actions: [archiveAction, muteAction, deleteAction])
         }
     }
 
@@ -624,7 +677,13 @@ class ChatListViewController: UITableViewController {
             view.isHidden = false
         }
     }
-    
+
+    /// Check if the view is in row-selection mode.
+    /// isEditing alone is not sufficient as also true during swipe-edit.
+    private func hasEditingView() -> Bool {
+        return tableView.isEditing && editingConstraints != nil
+    }
+
     private func updateAccountButton() {
         let unreadMessages = dcAccounts.getFreshMessageCount(skipCurrent: true)
         accountButtonAvatar.setUnreadMessageCount(unreadMessages)
@@ -697,7 +756,7 @@ class ChatListViewController: UITableViewController {
     }
 
     func handleMultiSelectionTitle() -> Bool {
-        if !tableView.isEditing {
+        if !hasEditingView() {
             return false
         }
         titleView.accessibilityHint = nil
@@ -800,7 +859,7 @@ class ChatListViewController: UITableViewController {
     }
 
     // MARK: - alerts
-    private func showDeleteChatConfirmationAlert(chatId: Int) {
+    private func showDeleteChatConfirmationAlert(chatId: Int, callback: (() -> Void)? = nil) {
         let alert = UIAlertController(
             title: nil,
             message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name),
@@ -808,6 +867,7 @@ class ChatListViewController: UITableViewController {
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
             self.deleteChat(chatId: chatId, animated: true)
+            callback?()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
