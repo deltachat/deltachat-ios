@@ -753,7 +753,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 .sd_flippedImage(withHorizontal: false, vertical: true)
             action.backgroundColor = .systemBlue
         }
-        action.accessibilityElements = nil
+        action.accessibilityLabel = String.localized("notify_reply_button")
         let configuration = UISwipeActionsConfiguration(actions: [action])
 
         return configuration
