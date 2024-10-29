@@ -631,21 +631,6 @@ class ChatListViewController: UITableViewController {
         }
     }
 
-    private func selectAll() {
-        if !tableView.isEditing {
-            return
-        }
-
-        for section in 0..<tableView.numberOfSections {
-            let numberOfRows = tableView.numberOfRows(inSection: section)
-            for row in 0..<numberOfRows {
-                tableView.selectRow(at: IndexPath(row: row, section: section), animated: false, scrollPosition: .none)
-            }
-        }
-
-        updateTitleAndEditingBar()
-    }
-
     private func addEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
               let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
@@ -1045,10 +1030,6 @@ extension ChatListViewController: ChatListEditingBarDelegate {
                 setLongTapEditing(false)
             })
         }
-        alert.addAction(UIAlertAction(title: String.localized("menu_select_all"), style: .default) { [weak self] _ in
-            guard let self else { return }
-            selectAll()
-        })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
