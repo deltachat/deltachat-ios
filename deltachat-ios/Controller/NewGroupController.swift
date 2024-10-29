@@ -233,15 +233,17 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        // swipe to delete
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if sections[indexPath.section] == .members, groupContactIds[indexPath.row] != DC_CONTACT_ID_SELF {
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, indexPath in
+            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 self.removeGroupContactFromList(at: indexPath)
+                completionHandler(true)
             }
-            delete.backgroundColor = UIColor.systemRed
-            return [delete]
+            if #available(iOS 13.0, *) {
+                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("remove_desktop"))
+            }
+            return UISwipeActionsConfiguration(actions: [deleteAction])
         } else {
             return nil
         }
