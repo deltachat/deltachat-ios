@@ -197,11 +197,11 @@ class NewChatViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: false)
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if indexPath.section == sectionContacts {
             let contactId = contactIdByRow(indexPath.row)
 
-            let edit = UITableViewRowAction(style: .normal, title: String.localized("info")) { [weak self] _, _ in
+            let profileAction = UIContextualAction(style: .normal, title: String.localized("profile")) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 if self.searchController.isActive {
                     self.searchController.dismiss(animated: false) {
@@ -210,18 +210,26 @@ class NewChatViewController: UITableViewController {
                 } else {
                     self.showContactDetail(contactId: contactId)
                 }
+                completionHandler(true)
+            }
+            profileAction.backgroundColor = UIColor.systemBlue
+            if #available(iOS 13.0, *) {
+                profileAction.image = Utils.makeImageWithText(image: UIImage(systemName: "person.crop.circle"), text: String.localized("profile"))
             }
 
-            let delete = UITableViewRowAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _ in
+            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _, completionHandler in
                 guard let self else { return }
-                let contactId = self.contactIdByRow(indexPath.row)
-                self.askToDeleteContact(contactId: contactId, indexPath: indexPath)
+                self.askToDeleteContact(contactId: contactIdByRow(indexPath.row), indexPath: indexPath) {
+                    completionHandler(true)
+                }
+            }
+            if #available(iOS 13.0, *) {
+                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
             }
 
-            edit.backgroundColor = DcColors.primary
-            return [edit, delete]
+            return UISwipeActionsConfiguration(actions: [profileAction, deleteAction])
         } else {
-            return []
+            return nil
         }
     }
 
@@ -340,7 +348,7 @@ extension NewChatViewController: ContactListDelegate {
 
 // MARK: - alerts
 extension NewChatViewController {
-    private func askToDeleteContact(contactId: Int, indexPath: IndexPath) {
+    private func askToDeleteContact(contactId: Int, indexPath: IndexPath, callback: (() -> Void)? = nil) {
         let contact = dcContext.getContact(id: contactId)
         let alert = UIAlertController(
             title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.nameNAddr),
@@ -349,6 +357,7 @@ extension NewChatViewController {
         )
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             self?.deleteContact(contactId: contactId, indexPath: indexPath)
+            callback?()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
