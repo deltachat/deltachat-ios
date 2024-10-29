@@ -4,7 +4,7 @@ public protocol ChatListEditingBarDelegate: AnyObject {
     func onPinButtonPressed()
     func onDeleteButtonPressed()
     func onArchiveButtonPressed()
-    func onMorePressed()
+    func onMutePressed()
 }
 
 class ChatListEditingBar: UIView {
@@ -29,6 +29,15 @@ class ChatListEditingBar: UIView {
         }
     }
 
+    var showMute: Bool? {
+        didSet {
+            guard let showMute = showMute else { return }
+            let imageName = showMute ? "speaker.slash" : "speaker.wave.2"
+            let description = showMute ? String.localized("mute") :  String.localized("menu_unmute")
+            configureButtonLayout(muteButton, imageName: imageName, imageDescription: description)
+        }
+    }
+
     private lazy var blurView: UIVisualEffectView = {
         var blurEffect = UIBlurEffect(style: .light)
         if #available(iOS 13, *) {
@@ -40,7 +49,7 @@ class ChatListEditingBar: UIView {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [pinButton, archiveButton, deleteButton, moreButton])
+        let view = UIStackView(arrangedSubviews: [pinButton, archiveButton, deleteButton, muteButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .fill
@@ -60,8 +69,8 @@ class ChatListEditingBar: UIView {
         return createUIButton(imageName: "pin", imageDescription: String.localized("pin"))
     }()
 
-    private lazy var moreButton: UIButton = {
-        return createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("pin"))
+    private lazy var muteButton: UIButton = {
+        return createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("mute"))
     }()
 
     public override init(frame: CGRect) {
@@ -116,7 +125,7 @@ class ChatListEditingBar: UIView {
         archiveBtnGestureRecognizer.numberOfTapsRequired = 1
         archiveButton.addGestureRecognizer(archiveBtnGestureRecognizer)
 
-        moreButton.addTarget(self, action: #selector(ChatListEditingBar.onMorePressed), for: .touchUpInside)
+        muteButton.addTarget(self, action: #selector(ChatListEditingBar.onMutePressed), for: .touchUpInside)
     }
 
     @objc func pinButtonPressed() {
@@ -131,7 +140,7 @@ class ChatListEditingBar: UIView {
         delegate?.onArchiveButtonPressed()
     }
 
-    @objc func onMorePressed() {
-        delegate?.onMorePressed()
+    @objc func onMutePressed() {
+        delegate?.onMutePressed()
     }
 }

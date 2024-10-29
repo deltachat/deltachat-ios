@@ -707,6 +707,7 @@ class ChatListViewController: UITableViewController {
     // MARK: updates
     private func updateTitleAndEditingBar() {
         editingBar.showUnpinning = viewModel?.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
+        editingBar.showMute = viewModel?.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows)
         updateTitle()
     }
 
@@ -1012,25 +1013,16 @@ extension ChatListViewController: ChatListEditingBarDelegate {
         setLongTapEditing(false)
     }
 
-    func onMorePressed() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+    func onMutePressed() {
         if viewModel?.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) ?? false {
-            alert.addAction(UIAlertAction(title: String.localized("menu_mute"), style: .default) { [weak self] _ in
+            MuteDialog.show(viewController: self) { [weak self] duration in
                 guard let self else { return }
-                MuteDialog.show(viewController: self) { [weak self] duration in
-                    guard let self else { return }
-                    viewModel?.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: duration)
-                    setLongTapEditing(false)
-                }
-            })
-        } else {
-            alert.addAction(UIAlertAction(title: String.localized("menu_unmute"), style: .default) { [weak self] _ in
-                guard let self else { return }
-                viewModel?.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: 0)
+                viewModel?.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: duration)
                 setLongTapEditing(false)
-            })
+            }
+        } else {
+            viewModel?.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: 0)
+            setLongTapEditing(false)
         }
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }
