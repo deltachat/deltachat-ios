@@ -348,7 +348,7 @@ extension NewChatViewController: ContactListDelegate {
 
 // MARK: - alerts
 extension NewChatViewController {
-    private func askToDeleteContact(contactId: Int, indexPath: IndexPath, callback: (() -> Void)? = nil) {
+    private func askToDeleteContact(contactId: Int, indexPath: IndexPath, didDelete: (() -> Void)? = nil) {
         let contact = dcContext.getContact(id: contactId)
         let alert = UIAlertController(
             title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.nameNAddr),
@@ -357,7 +357,7 @@ extension NewChatViewController {
         )
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             self?.deleteContact(contactId: contactId, indexPath: indexPath)
-            callback?()
+            didDelete?()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)

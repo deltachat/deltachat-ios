@@ -845,7 +845,7 @@ class ChatListViewController: UITableViewController {
     }
 
     // MARK: - alerts
-    private func showDeleteChatConfirmationAlert(chatId: Int, callback: (() -> Void)? = nil) {
+    private func showDeleteChatConfirmationAlert(chatId: Int, didDelete: (() -> Void)? = nil) {
         let alert = UIAlertController(
             title: nil,
             message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name),
@@ -853,7 +853,7 @@ class ChatListViewController: UITableViewController {
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
             self.deleteChat(chatId: chatId, animated: true)
-            callback?()
+            didDelete?()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
