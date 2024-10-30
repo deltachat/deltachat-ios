@@ -201,19 +201,11 @@ internal final class AdvancedViewController: UITableViewController {
 
     lazy var realtimeChannelsCell: SwitchCell = {
         return SwitchCell(
-            textLabel: "Realtime Channels",
+            textLabel: String.localized("enable_realtime"),
             on: dcContext.getConfigBool("webxdc_realtime_enabled"),
-            action: { cell in
-                self.dcContext.setConfigBool("webxdc_realtime_enabled", cell.isOn)
-                if cell.isOn {
-                    let alert = UIAlertController(title: "Thanks for trying out the experimental feature 🧪 \"Realtime Channels\"",
-                        message: "\"Realtime Channels\" allow to create direct connections between devices.\n\n"
-                               + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
-                        preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                    self.navigationController?.present(alert, animated: true, completion: nil)
-                }
-        })
+            action: { [weak self] cell in
+                self?.dcContext.setConfigBool("webxdc_realtime_enabled", cell.isOn)
+            })
     }()
 
     private lazy var viewLogCell: UITableViewCell = {
@@ -227,12 +219,12 @@ internal final class AdvancedViewController: UITableViewController {
     private lazy var sections: [SectionConfigs] = {
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
-            footerTitle: nil,
-            cells: [showEmailsCell, viewLogCell])
+            footerTitle: String.localized("enable_realtime_explain"),
+            cells: [viewLogCell, showEmailsCell, realtimeChannelsCell])
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
-            cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell, realtimeChannelsCell])
+            cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell])
 
         if dcContext.isChatmail {
             let encryptionSection = SectionConfigs(
