@@ -81,7 +81,7 @@ class ChatListEditingBar: UIView {
             button.setTitle(imageDescription, for: .normal)
             button.setTitleColor(tintColor, for: .normal)
         }
-        button.accessibilityLabel = description
+        button.accessibilityLabel = imageDescription
     }
 
     private func configureSubviews() {
