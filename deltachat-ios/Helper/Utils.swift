@@ -62,10 +62,18 @@ struct Utils {
     static func makeImageWithText(image: UIImage?, text: String) -> UIImage? {
         guard let image = image?.withTintColor(UIColor.white) else { return nil }
 
+        let maxLen = 11
+        let shortText: String
+        if text.count > maxLen {
+            shortText = text.substring(0, maxLen - 1).trimmingCharacters(in: .whitespacesAndNewlines) + "…"
+        } else {
+            shortText = text
+        }
+
         let spacing: CGFloat = 4
         let textAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.white]
 
-        let textSize = text.size(withAttributes: textAttributes)
+        let textSize = shortText.size(withAttributes: textAttributes)
         let width = max(image.size.width, textSize.width)
         let height = image.size.height + spacing + textSize.height
 
@@ -75,7 +83,7 @@ struct Utils {
             image.draw(at: imageOrigin)
 
             let textOrigin = CGPoint(x: (renderer.format.bounds.width - textSize.width) / 2, y: image.size.height + spacing)
-            text.draw(at: textOrigin, withAttributes: textAttributes)
+            shortText.draw(at: textOrigin, withAttributes: textAttributes)
         }
     }
 
