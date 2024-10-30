@@ -34,6 +34,7 @@ class ChatListEditingBar: UIView {
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .fill
+        view.spacing = 12
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -90,8 +91,8 @@ class ChatListEditingBar: UIView {
         blurView.fillSuperview()
         addConstraints([
             mainContentView.constraintAlignTopTo(self),
-            mainContentView.constraintAlignLeadingTo(self),
-            mainContentView.constraintAlignTrailingTo(self),
+            mainContentView.constraintAlignLeadingTo(self, paddingLeading: 12),
+            mainContentView.constraintAlignTrailingTo(self, paddingTrailing: 12),
             mainContentView.constraintAlignBottomTo(self, paddingBottom: Utils.getSafeBottomLayoutInset())
         ])
 
