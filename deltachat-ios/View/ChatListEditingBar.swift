@@ -1,7 +1,6 @@
 import UIKit
 
 public protocol ChatListEditingBarDelegate: AnyObject {
-    func onPinButtonPressed()
     func onDeleteButtonPressed()
     func onArchiveButtonPressed()
     func onMorePressed()
@@ -10,15 +9,6 @@ public protocol ChatListEditingBarDelegate: AnyObject {
 class ChatListEditingBar: UIView {
 
     weak var delegate: ChatListEditingBarDelegate?
-
-    var showUnpinning: Bool? {
-        didSet {
-            guard let showUnpinning = showUnpinning else { return }
-            let imageName = showUnpinning ? "pin.slash" : "pin"
-            let description = showUnpinning ? String.localized("unpin") :  String.localized("pin")
-            configureButtonLayout(pinButton, imageName: imageName, imageDescription: description)
-        }
-    }
 
     var showArchive: Bool? {
         didSet {
@@ -40,7 +30,7 @@ class ChatListEditingBar: UIView {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [pinButton, archiveButton, deleteButton, moreButton])
+        let view = UIStackView(arrangedSubviews: [archiveButton, deleteButton, moreButton])
         view.axis = .horizontal
         view.distribution = .fillEqually
         view.alignment = .fill
@@ -56,12 +46,8 @@ class ChatListEditingBar: UIView {
         return createUIButton(imageName: "tray.and.arrow.down", imageDescription: String.localized("archive"))
     }()
 
-    private lazy var pinButton: UIButton = {
-        return createUIButton(imageName: "pin", imageDescription: String.localized("pin"))
-    }()
-
     private lazy var moreButton: UIButton = {
-        return createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("pin"))
+        return createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("menu_more_options"))
     }()
 
     public override init(frame: CGRect) {
@@ -104,10 +90,6 @@ class ChatListEditingBar: UIView {
             mainContentView.constraintAlignBottomTo(self, paddingBottom: Utils.getSafeBottomLayoutInset())
         ])
 
-        let pinBtnGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pinButtonPressed))
-        pinBtnGestureRecognizer.numberOfTapsRequired = 1
-        pinButton.addGestureRecognizer(pinBtnGestureRecognizer)
-
         let deleteBtnGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(deleteButtonPressed))
         deleteBtnGestureRecognizer.numberOfTapsRequired = 1
         deleteButton.addGestureRecognizer(deleteBtnGestureRecognizer)
@@ -117,10 +99,6 @@ class ChatListEditingBar: UIView {
         archiveButton.addGestureRecognizer(archiveBtnGestureRecognizer)
 
         moreButton.addTarget(self, action: #selector(ChatListEditingBar.onMorePressed), for: .touchUpInside)
-    }
-
-    @objc func pinButtonPressed() {
-        delegate?.onPinButtonPressed()
     }
 
     @objc func deleteButtonPressed() {

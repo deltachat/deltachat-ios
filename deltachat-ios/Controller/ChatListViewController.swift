@@ -721,7 +721,6 @@ class ChatListViewController: UITableViewController {
 
     // MARK: updates
     private func updateTitleAndEditingBar() {
-        editingBar.showUnpinning = viewModel?.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
         updateTitle()
     }
 
@@ -1013,11 +1012,6 @@ extension ChatListViewController: ContactCellDelegate {
 
 // MARK: - ChatListEditingBarDelegate
 extension ChatListViewController: ChatListEditingBarDelegate {
-    func onPinButtonPressed() {
-        viewModel?.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
-        setLongTapEditing(false)
-    }
-
     func onDeleteButtonPressed() {
         showDeleteMultipleChatConfirmationAlert()
     }
@@ -1029,6 +1023,15 @@ extension ChatListViewController: ChatListEditingBarDelegate {
 
     func onMorePressed() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+
+        let onlyPinndedSelected = viewModel?.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows) ?? false
+        let pinTitle = String.localized(onlyPinndedSelected ? "unpin" : "pin")
+        alert.addAction(UIAlertAction(title: pinTitle, style: .default) { [weak self] _ in
+            guard let self else { return }
+            viewModel?.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
+            setLongTapEditing(false)
+        })
+
         if viewModel?.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) ?? false {
             alert.addAction(UIAlertAction(title: String.localized("menu_mute"), style: .default) { [weak self] _ in
                 guard let self else { return }
@@ -1045,6 +1048,7 @@ extension ChatListViewController: ChatListEditingBarDelegate {
                 setLongTapEditing(false)
             })
         }
+
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
