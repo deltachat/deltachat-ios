@@ -169,7 +169,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             // Don't show inputAccessoryView when context menu is visible
             return false
         } else {
-            return dcChat.canSend || tableView.isEditing || presentedViewController is UISearchController
+            return dcChat.canSend || dcChat.isHalfBlocked || tableView.isEditing || presentedViewController is UISearchController
         }
     }
 
