@@ -75,7 +75,7 @@ class ChatListEditingBar: UIView {
             if showImageAndText {
                 button.setTitle(imageDescription, for: .normal)
                 button.setTitleColor(tintColor, for: .normal)
-                button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+                button.fixImageAndTitleSpacing()
             }
         } else {
             button.setTitle(imageDescription, for: .normal)

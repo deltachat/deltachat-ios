@@ -114,6 +114,23 @@ extension UILabel {
     }
 }
 
+extension UIButton {
+    func fixImageAndTitleSpacing() {
+        let spacing = 6.0
+        let insetAmount = spacing / 2
+        let isRTL = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
+        if isRTL {
+           imageEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
+           titleEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
+           contentEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: -insetAmount)
+        } else {
+           imageEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
+           titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
+           contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: insetAmount)
+        }
+    }
+}
+
 extension NSData {
     func sha1() -> String {
          var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
