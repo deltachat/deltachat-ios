@@ -47,7 +47,7 @@ class ChatListEditingBar: UIView {
     }()
 
     private lazy var moreButton: UIButton = {
-        return createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("menu_more_options"))
+        return createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("menu_more_options"), showImageAndText: false)
     }()
 
     public override init(frame: CGRect) {
@@ -59,19 +59,24 @@ class ChatListEditingBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createUIButton(imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue) -> UIButton {
+    private func createUIButton(imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue, showImageAndText: Bool = true) -> UIButton {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled = true
         button.imageView?.contentMode = .scaleAspectFit
-        configureButtonLayout(button, imageName: imageName, imageDescription: imageDescription, tintColor: tintColor)
+        configureButtonLayout(button, imageName: imageName, imageDescription: imageDescription, tintColor: tintColor, showImageAndText: showImageAndText)
         return button
     }
     
-    private func configureButtonLayout(_ button: UIButton, imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue) {
+    private func configureButtonLayout(_ button: UIButton, imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue, showImageAndText: Bool = true) {
         if #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: imageName), for: .normal)
             button.tintColor = tintColor
+            if showImageAndText {
+                button.setTitle(imageDescription, for: .normal)
+                button.setTitleColor(tintColor, for: .normal)
+                button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+            }
         } else {
             button.setTitle(imageDescription, for: .normal)
             button.setTitleColor(tintColor, for: .normal)
