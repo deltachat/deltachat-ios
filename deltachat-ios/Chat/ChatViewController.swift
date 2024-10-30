@@ -1233,7 +1233,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
 
-        if dcContext.hasWebxdc(chatId: 0) {
+        if dcContext.hasWebxdc() {
             let webxdcAction = UIAlertAction(title: String.localized("webxdc_apps"), style: .default, handler: webxdcButtonPressed(_:))
             alert.addAction(webxdcAction)
         }

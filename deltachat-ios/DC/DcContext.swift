@@ -203,9 +203,9 @@ public class DcContext {
         return messageIds
     }
 
-    public func hasWebxdc(chatId: Int) -> Bool {
+    public func hasWebxdc() -> Bool {
         if !anyWebxdcSeen {
-            anyWebxdcSeen = !getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).isEmpty
+            anyWebxdcSeen = !getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).isEmpty
         }
         return anyWebxdcSeen
     }
