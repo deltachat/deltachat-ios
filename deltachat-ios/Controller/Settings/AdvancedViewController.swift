@@ -217,10 +217,18 @@ internal final class AdvancedViewController: UITableViewController {
     }()
 
     private lazy var sections: [SectionConfigs] = {
-        let viewLogSection = SectionConfigs(
-            headerTitle: nil,
-            footerTitle: String.localized("enable_realtime_explain"),
-            cells: [viewLogCell, showEmailsCell, realtimeChannelsCell])
+        let viewLogSection: SectionConfigs
+        if dcContext.hasWebxdc() {
+            viewLogSection = SectionConfigs(
+                headerTitle: nil,
+                footerTitle: String.localized("enable_realtime_explain"),
+                cells: [viewLogCell, showEmailsCell, realtimeChannelsCell])
+        } else {
+            viewLogSection = SectionConfigs(
+                headerTitle: nil,
+                footerTitle: nil,
+                cells: [viewLogCell, showEmailsCell])
+        }
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
