@@ -32,7 +32,7 @@ class ChatListEditingBar: UIView {
     private lazy var mainContentView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [archiveButton, deleteButton, moreButton])
         view.axis = .horizontal
-        view.distribution = .fillEqually
+        view.distribution = .fillProportionally
         view.alignment = .fill
         view.spacing = 12
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +48,9 @@ class ChatListEditingBar: UIView {
     }()
 
     private lazy var moreButton: UIButton = {
-        return createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("menu_more_options"), showImageAndText: false)
+        let button = createUIButton(imageName: "ellipsis.circle", imageDescription: String.localized("menu_more_options"), showImageAndText: false)
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return button
     }()
 
     public override init(frame: CGRect) {
