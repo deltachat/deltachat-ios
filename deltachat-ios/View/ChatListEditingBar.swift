@@ -65,6 +65,7 @@ class ChatListEditingBar: UIView {
     private func createUIButton(imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue, showImageAndText: Bool = true) -> UIButton {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         configureButtonLayout(button, imageName: imageName, imageDescription: imageDescription, tintColor: tintColor, showImageAndText: showImageAndText)
         return button
     }
