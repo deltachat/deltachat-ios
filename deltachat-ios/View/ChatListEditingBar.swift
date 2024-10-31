@@ -13,9 +13,8 @@ class ChatListEditingBar: UIView {
     var showArchive: Bool? {
         didSet {
             guard let showArchive = showArchive else { return }
-            let imageName = showArchive ? "tray.and.arrow.down" : "tray.and.arrow.up"
             let description = showArchive ? String.localized("archive") : String.localized("unarchive")
-            configureButtonLayout(archiveButton, imageName: imageName, imageDescription: description)
+            configureButtonLayout(archiveButton, imageName: nil, imageDescription: description)
         }
     }
 
@@ -30,9 +29,9 @@ class ChatListEditingBar: UIView {
     }()
 
     private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [archiveButton, deleteButton, moreButton])
+        let view = UIStackView(arrangedSubviews: [archiveButton, UIView(), deleteButton, moreButton])
         view.axis = .horizontal
-        view.distribution = .fillEqually
+        view.distribution = .fill
         view.alignment = .fill
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -43,7 +42,7 @@ class ChatListEditingBar: UIView {
     }()
 
     private lazy var archiveButton: UIButton = {
-        return createUIButton(imageName: "tray.and.arrow.down", imageDescription: String.localized("archive"))
+        return createUIButton(imageName: nil, imageDescription: String.localized("archive"))
     }()
 
     private lazy var moreButton: UIButton = {
@@ -59,24 +58,25 @@ class ChatListEditingBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createUIButton(imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue) -> UIButton {
+    private func createUIButton(imageName: String?, imageDescription: String, tintColor: UIColor = .systemBlue) -> UIButton {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.isUserInteractionEnabled = true
-        button.imageView?.contentMode = .scaleAspectFit
         configureButtonLayout(button, imageName: imageName, imageDescription: imageDescription, tintColor: tintColor)
         return button
     }
     
-    private func configureButtonLayout(_ button: UIButton, imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue) {
-        if #available(iOS 13.0, *) {
+    private func configureButtonLayout(_ button: UIButton, imageName: String?, imageDescription: String, tintColor: UIColor = .systemBlue) {
+        if let imageName, #available(iOS 13.0, *) {
             button.setImage(UIImage(systemName: imageName), for: .normal)
             button.tintColor = tintColor
+            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         } else {
             button.setTitle(imageDescription, for: .normal)
             button.setTitleColor(tintColor, for: .normal)
+            button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         }
-        button.accessibilityLabel = description
+        button.accessibilityLabel = imageDescription
     }
 
     private func configureSubviews() {
@@ -85,8 +85,8 @@ class ChatListEditingBar: UIView {
         blurView.fillSuperview()
         addConstraints([
             mainContentView.constraintAlignTopTo(self),
-            mainContentView.constraintAlignLeadingTo(self),
-            mainContentView.constraintAlignTrailingTo(self),
+            mainContentView.constraintAlignLeadingTo(self, paddingLeading: 8),
+            mainContentView.constraintAlignTrailingTo(self, paddingTrailing: 8),
             mainContentView.constraintAlignBottomTo(self, paddingBottom: Utils.getSafeBottomLayoutInset())
         ])
 
