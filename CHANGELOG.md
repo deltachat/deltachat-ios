@@ -3,7 +3,17 @@
 ## v1.48.3 Testflight
 2024-11
 
+* select multiple chats or messages with two-finger pan gestures
+* improve chatlist swipe gestures: trailing to mute/archive/delete - leading to pin/mark-read
+* show images beside swipe gesture buttons
+* allow to mute or unmute multiple selected chats at the same time
+* cleanup chatlist's multi-select action bar
 * show root SMTP connection failure in connectivity view
+* fix memory leak when opening some view controller
+* fix: don't ask for image access when opening gallery because it is not needed
+* fix: when entering message-multi-select-mode via "Long tap / More Options", leave search mode
+* fix sometimes missing input field or action bar
+* fix: show multi-account notification also in the first 30 seconds when the app goes to background
 * fix warning about wrong password
 * fix app getting stale when receiving a PUSH notifications takes longer
 * fix app getting stale on network changes
