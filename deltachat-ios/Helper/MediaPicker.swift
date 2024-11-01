@@ -72,22 +72,12 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showPhotoVideoLibrary() {
-        if PHPhotoLibrary.authorizationStatus() != .authorized {
-            PHPhotoLibrary.requestAuthorization { status in
-                DispatchQueue.main.async { [weak self] in
-                    switch status {
-                    case  .denied, .notDetermined, .restricted:
-                        print("denied")
-                    case .authorized, .limited:
-                        self?.presentPhotoVideoLibrary()
-                    @unknown default:
-                        assertionFailure("")
-                    }
-                }
-            }
-        } else {
-            presentPhotoVideoLibrary()
-        }
+        let mediaTypes = [
+            kUTTypeMovie as String,
+            kUTTypeVideo as String,
+            kUTTypeImage as String
+        ]
+        showPhotoLibrary(allowsCropping: false, mediaTypes: mediaTypes)
     }
 
     func showDocumentLibrary(selectFolder: Bool = false) {
@@ -111,15 +101,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         documentPicker.allowsMultipleSelection = false
         documentPicker.modalPresentationStyle = .formSheet
         navigationController?.present(documentPicker, animated: true)
-    }
-
-    private func presentPhotoVideoLibrary() {
-        let mediaTypes = [
-            kUTTypeMovie as String,
-            kUTTypeVideo as String,
-            kUTTypeImage as String
-        ]
-        showPhotoLibrary(allowsCropping: false, mediaTypes: mediaTypes)
     }
 
     func showPhotoGallery() {
