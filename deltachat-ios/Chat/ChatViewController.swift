@@ -575,9 +575,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 if nextMessageId == DC_MSG_ID_MARKER1 && indexPath.row - 2 >= 0 {
                     nextMessageId = messageIds[indexPath.row - 2]
                 }
-
                 let nextMessage = dcContext.getMessage(id: nextMessageId)
-                cell.update(text: DateUtils.getDateString(date: nextMessage.sentDate), weight: .bold)
+                let dateString = DateUtils.getDateString(date: nextMessage.sentDate, relativeToCurrentDate: true)
+                cell.update(text: dateString, weight: .bold)
             } else {
                 cell.update(text: "ErrDaymarker")
             }

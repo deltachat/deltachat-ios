@@ -23,10 +23,15 @@ public class DateUtils {
         formatter.locale = .current
         return formatter
     }
-    
-    public static func getDateString(date: Date) -> String {
+
+    /// Returns a string representation of the given date.
+    /// - Parameters:
+    ///   - date: The date to be formatted.
+    ///   - relativeToCurrentDate: If true, the string will be relative to the current date. Eg. "Today", "Yesterday", "Tomorrow".
+    public static func getDateString(date: Date, relativeToCurrentDate: Bool = false) -> String {
         let formatter = getLocalDateFormatter()
         formatter.dateStyle = .full
+        formatter.doesRelativeDateFormatting = relativeToCurrentDate
         return formatter.string(from: date)
     }
 
