@@ -1,6 +1,18 @@
 # Delta Chat iOS Changelog
 
-## v1.48.1
+## v1.48.3 Testflight
+2024-11
+
+* show root SMTP connection failure in connectivity view
+* fix warning about wrong password
+* fix app getting stale when receiving a PUSH notifications takes longer
+* fix app getting stale on network changes
+* fix: skip IDLE if we got unsolicited FETCH
+* update translations and local help
+* update to core 1.148.6
+
+
+## v1.48.1 Testflight
 2024-10
 
 * do not miss new messages when being inside a chat, the "Back" button now has an "unread" badge
