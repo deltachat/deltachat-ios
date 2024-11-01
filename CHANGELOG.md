@@ -75,35 +75,38 @@
 * update translations and local help
 * update to core 1.148.4
 
+
 ## v1.46.10
 2024-09
 
-- Add "Share invite link"-button to "QR Invite Code"-Screen (#2276)
-- Enhance "edit name" dialog (#2286)
-- Share contact from "contact profile" (#2273)
-- Share Log as file (#2205)
-- Tune down "copy to clipboard" on "contact profile" (#2274)
-- "Invite friends" from settings and "New Chat" (#2277)
-- Hide email in "New chat"-list for trusted contacts (#2272)
-- Hide option to add contacts manually when chatmail (#2283)
-- Fix a bug that the message-timestamp didn't update occasionally (#2270)
-- Show contact when tapping on their name in Reactions-overview (#2259)
-- Mark bots as ... bots (#2254)
-- Improve chat-deletion-confirmation (#2254)
-- Improve security and QR-code generation
-- fix encryption compatibility with old Delta Chat clients
-- fix moving outgoing auto-generated messages to the "DeltaChat" folder
-- fix: try to create "INBOX.DeltaChat" if "DeltaChat" is not possible for some provider
-- fix receiving messages with "DeltaChat" folder cannot be selected
-- Update to core 1.142.12
+* Add "Share invite link"-button to "QR Invite Code"-Screen (#2276)
+* Enhance "edit name" dialog (#2286)
+* Share contact from "contact profile" (#2273)
+* Share Log as file (#2205)
+* Tune down "copy to clipboard" on "contact profile" (#2274)
+* "Invite friends" from settings and "New Chat" (#2277)
+* Hide email in "New chat"-list for trusted contacts (#2272)
+* Hide option to add contacts manually when chatmail (#2283)
+* Fix a bug that the message-timestamp didn't update occasionally (#2270)
+* Show contact when tapping on their name in Reactions-overview (#2259)
+* Mark bots as ... bots (#2254)
+* Improve chat-deletion-confirmation (#2254)
+* Improve security and QR-code generation
+* fix encryption compatibility with old Delta Chat clients
+* fix moving outgoing auto-generated messages to the "DeltaChat" folder
+* fix: try to create "INBOX.DeltaChat" if "DeltaChat" is not possible for some provider
+* fix receiving messages with "DeltaChat" folder cannot be selected
+* Update to core 1.142.12
+
 
 ## v1.46.9
 2024-08
 
-- Update translations
-- Minor UI/UX-fixes (#2260)
-- Support more modern QR-codes for backups
+* Update translations
+* Minor UI/UX-fixes (#2260)
+* Support more modern QR-codes for backups
 * using core 1.142.2
+
 
 ## v1.46.8
 2024-08
@@ -131,6 +134,7 @@
 * Minor UI/UX-fixes (#2231, #2247)
 * update translations and local help (#2244, $2255)
 * update to core 1.142.2
+
 
 ## v1.46.6
 2024-07
