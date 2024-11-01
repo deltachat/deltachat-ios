@@ -85,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // /migrating global notifications
 
         self.launchOptions = launchOptions
+        TestUtil.didFinishLaunching(with: launchOptions)
         continueDidFinishLaunchingWithOptions()
         return true
     }
@@ -188,15 +189,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         launchOptions = nil
         appFullyInitialized = true
-    }
-
-    static var isRunningUITests: Bool {
-        #if DEBUG
-        // TODO: Just swizzle the tintColor of UITextView and UITextField instead of doing it manually per field
-        return CommandLine.arguments.contains("--UITests")
-        #else
-        return false
-        #endif
     }
 
     func application(_ application: UIApplication,

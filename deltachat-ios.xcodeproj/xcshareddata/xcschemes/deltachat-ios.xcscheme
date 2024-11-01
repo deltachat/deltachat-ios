@@ -46,10 +46,19 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "# Override time for consistent screenshots &#10;xcrun simctl status_bar booted override --time &quot;9:41&quot; --batteryState charged --batteryLevel 100 --cellularBars 4&#10;&#10;# https://stackoverflow.com/a/57268609/3393964&#10;# Disable hardware keyboard&#10;killall Simulator&#10;defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false&#10;">
+               scriptText = "# https://stackoverflow.com/a/57268609/3393964&#10;# Disable hardware keyboard&#10;killall Simulator&#10;defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false&#10;">
             </ActionContent>
          </ExecutionAction>
       </PreActions>
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Since Rosetta simulators are buggy af, we kill them after running tests&#10;# so you don&apos;t have to manually close the simulator if you want to run the&#10;# app after running tests.&#10;killall Simulator&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"

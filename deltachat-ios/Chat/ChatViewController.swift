@@ -1127,7 +1127,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func configureMessageInputBar() {
         messageInputBar.delegate = self
-        messageInputBar.inputTextView.tintColor = AppDelegate.isRunningUITests ? .clear : DcColors.primary
+        messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
         messageInputBar.inputTextView.accessibilityLabel = String.localized("write_message_desktop")
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
