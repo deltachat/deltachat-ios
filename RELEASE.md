@@ -25,6 +25,7 @@ then, create a "bump-to-VERSION" PR:
       and <https://github.com/deltachat/deltachat-ios/pulls?q=is%3Apr+is%3Aclosed+sort%3Aupdated-desc>.
       do not just copy and avoid technical terms.
       the changelog is for the end user and shall show impacts form that angle.
+      for consistency, use existing formatting style.
    b) update changelog date as `YYYY-MM`
    c) add used core version to end of changelog entry
       as `update to core 1.2.3` or `using core 1.2.3`
