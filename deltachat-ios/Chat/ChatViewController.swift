@@ -887,6 +887,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             self.navigationItem.setLeftBarButton(cancelButton, animated: true)
         } else {
             let subtitle: String?
+            var subtitleIsPrivacySensitive = false
             let chatContactIds = dcChat.getContactIds(dcContext)
             if dcChat.isMailinglist {
                 subtitle = String.localized("mailing_list")
@@ -904,6 +905,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     subtitle = String.localized("bot")
                 } else if dcChat.isProtected == false {
                     subtitle = dcContact.email
+                    subtitleIsPrivacySensitive = true
                 } else {
                     subtitle = nil
                 }
@@ -911,7 +913,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 subtitle = nil
             }
 
-            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected)
+            titleView.updateTitleView(
+                title: dcChat.name,
+                subtitle: subtitle,
+                subtitleIsPrivacySensitive: subtitleIsPrivacySensitive,
+                isVerified: dcChat.isProtected
+            )
             titleView.layoutIfNeeded()
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
