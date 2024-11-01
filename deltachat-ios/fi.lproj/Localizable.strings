@@ -349,8 +349,6 @@
 "send_file_to" = "Lähetä \"%1$@\" kohteeseen...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Lähetä viesti kohteeseen...";
-"enable_realtime" = "Reaaliaikaiset Webxdc -kanavat";
-"enable_realtime_explain" = "Ota Webxdc:n reaaliaikaiset ohjelmointirajapinnat käyttöön niin voit luoda suoria yhteyksiä laitteiden välillä.";
 // map
 "filter_map_on_time" = "Näytä sijainnit aikajanalla";
 "show_location_traces" = "Näytä jäljet";

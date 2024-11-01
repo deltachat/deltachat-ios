@@ -2,7 +2,13 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancelar";
+// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
+"or_separator" = "ou";
 "clear_search" = "Limpar busca";
+// a noun, used on a button, short for "show link"
+"link" = "Link";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Scan";
 "yes" = "Sim";
 "no" = "Não";
 "select" = "Selecionar";
@@ -28,7 +34,9 @@
 "attachment" = "Anexo";
 "back" = "Voltar";
 "close" = "Fechar";
+"close_window" = "Fechar Janela";
 "forward" = "Encaminhar";
+"create" = "Criar";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Re-enviar";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".

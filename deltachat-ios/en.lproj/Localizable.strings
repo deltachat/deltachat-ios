@@ -364,8 +364,8 @@
 "send_file_to" = "Send \"%1$@\" to…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Send Message to…";
-"enable_realtime" = "Realtime Webxdc Channels";
-"enable_realtime_explain" = "Enable Webxdc realtime APIs to create direct connections between devices.";
+"enable_realtime" = "Real-Time Apps";
+"enable_realtime_explain" = "Enable real-time connections for apps shared in chats. If enabled, chat partners may be able to discover your IP address when you start an app.";
 // map
 "filter_map_on_time" = "Show locations in time frame";
 "show_location_traces" = "Show traces";

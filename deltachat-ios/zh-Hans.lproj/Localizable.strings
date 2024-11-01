@@ -364,8 +364,8 @@
 "send_file_to" = "发送“%1$@\"到...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "发送消息到...";
-"enable_realtime" = "实时 Webxdc 频道";
-"enable_realtime_explain" = "启用 Webxdc 实时 API 来创建设备间的直接连接";
+"enable_realtime" = "实时应用";
+"enable_realtime_explain" = "为聊天中共享的应用启用实时连接。如果启用，聊天伙伴可能能够在您启动应用时发现您的 IP 地址。";
 // map
 "filter_map_on_time" = "显示时间范围内的位置";
 "show_location_traces" = "显示轨迹";

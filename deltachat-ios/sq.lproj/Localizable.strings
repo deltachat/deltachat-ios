@@ -362,7 +362,6 @@
 "send_file_to" = "Dërgoni “%1$@” për …";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Dërgoni Mesazh për…";
-"enable_realtime_explain" = "Aktivizoni API të atypëratyshme Webxdc, që të krijoni lidhje të drejtpërdrejta mes pajisjesh.";
 // map
 "filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
 "show_location_traces" = "Shfaq gjurmë";

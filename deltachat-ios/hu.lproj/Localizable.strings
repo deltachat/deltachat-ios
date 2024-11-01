@@ -364,8 +364,6 @@
 "send_file_to" = "„%1$@” küldése…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Üzenet küldése…";
-"enable_realtime" = "Valósidejű Webxdc-csatornák";
-"enable_realtime_explain" = "A Webxdc valós idejű API-k engedélyezése az eszközök közötti közvetlen kapcsolatok létrehozásához.";
 // map
 "filter_map_on_time" = "Helyszínek megjelenítése időkeretben";
 "show_location_traces" = "Nyomvonalak megjelenítése";
@@ -526,10 +524,14 @@
 "proxy_use_proxy" = "Proxy használata";
 "proxy_add" = "Proxy hozzáadása";
 "proxy_add_explain" = "Támogatott proxytípusok: HTTP(S), SOCKS5 és ShadowSOCKS";
+"proxy_add_url_hint" = "Adja meg a proxy hivatkozását";
+"proxy_invalid" = "Érvénytelen vagy nem támogatott proxy";
 "proxy_list_header" = "Mentett proxyk";
 "proxy_delete" = "Proxy törlése";
 "proxy_delete_explain" = "Biztosan törli a következőt: „%1$@”?";
 "proxy_use_proxy_confirm" = "Biztosan használni akarja a következő proxyt: „%1$@”?";
+"proxy_share_explain" = "Az ismerősei a QR-kód beolvasásával hozzáadhatják ezt a proxyt.";
+"proxy_share_link" = "Hivatkozás megosztása";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "SOCKS5 használata";
@@ -553,6 +555,9 @@
 "accept_invalid_certificates" = "Érvénytelen tanúsítványok elfogadása";
 "switch_account" = "Profilváltás";
 "add_account" = "Profil hozzáadása";
+"profile_tag" = "Privát címke";
+"profile_tag_hint" = "Például: „Munka”, „Család”";
+"profile_tag_explain" = "A címke csak az Ön számára jelenik meg; segít megkülönböztetni a profiljait.";
 "delete_account" = "Profil törlése";
 "delete_account_ask" = "Biztosan törölni szeretné a profiladatait?";
 "delete_account_explain_with_name" = "A(z) „%1$@” nevű profilhoz tartozó mindet adat ezen az eszközön törölve lesz,  beleértve a végpontok közötti titkosítás beállításait, a névjegyeket, a csevegéseket, az üzeneteket és a médiát. Ez a művelet nem vonható vissza. ";

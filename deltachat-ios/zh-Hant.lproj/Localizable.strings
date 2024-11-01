@@ -335,8 +335,6 @@
 "send_file_to" = "傳送「%1$@」至…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "傳送訊息至…";
-"enable_realtime" = "即時 Webxdc 頻道";
-"enable_realtime_explain" = "啟用 Webxdc 即時 API 以在裝置之間建立直接連線。";
 // map
 "filter_map_on_time" = "顯示指定時間內的所在地";
 "show_location_traces" = "顯示移動足跡";
