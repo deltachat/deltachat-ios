@@ -885,6 +885,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
             navigationItem.title = String.localized(stringID: "n_selected", parameter: cnt)
             self.navigationItem.setLeftBarButton(cancelButton, animated: true)
+            self.navigationItem.setRightBarButton(nil, animated: true)
         } else {
             let subtitle: String?
             let chatContactIds = dcChat.getContactIds(dcContext)
@@ -910,36 +911,36 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else {
                 subtitle = nil
             }
-
+            
             titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected)
             titleView.layoutIfNeeded()
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
+            
+            if let image = dcChat.profileImage {
+                initialsBadge.setImage(image)
+            } else {
+                initialsBadge.setName(dcChat.name)
+                initialsBadge.setColor(dcChat.color)
+            }
+            
+            let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
+            initialsBadge.setRecentlySeen(recentlySeen)
+            
+            var rightBarButtonItems = [badgeItem]
+            if dcChat.isSendingLocations {
+                rightBarButtonItems.append(locationStreamingItem)
+            }
+            if dcChat.isMuted {
+                rightBarButtonItems.append(muteItem)
+            }
+            
+            if dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0 {
+                rightBarButtonItems.append(ephemeralMessageItem)
+            }
+            
+            navigationItem.rightBarButtonItems = rightBarButtonItems
         }
-
-        if let image = dcChat.profileImage {
-            initialsBadge.setImage(image)
-        } else {
-            initialsBadge.setName(dcChat.name)
-            initialsBadge.setColor(dcChat.color)
-        }
-
-        let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
-        initialsBadge.setRecentlySeen(recentlySeen)
-
-        var rightBarButtonItems = [badgeItem]
-        if dcChat.isSendingLocations {
-            rightBarButtonItems.append(locationStreamingItem)
-        }
-        if dcChat.isMuted {
-            rightBarButtonItems.append(muteItem)
-        }
-
-        if dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0 {
-            rightBarButtonItems.append(ephemeralMessageItem)
-        }
-
-        navigationItem.rightBarButtonItems = rightBarButtonItems
     }
 
     private var refreshMessagesAfterEditing = false
