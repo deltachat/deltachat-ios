@@ -233,12 +233,12 @@ class WebxdcViewController: WebViewViewController {
         let preferences = WKPreferences()
         let contentController = WKUserContentController()
         
-        contentController.add(self, name: WebxdcHandler.sendStatusUpdate.rawValue)
-        contentController.add(self, name: WebxdcHandler.log.rawValue)
-        contentController.add(self, name: WebxdcHandler.sendToChat.rawValue)
-        contentController.add(self, name: WebxdcHandler.sendRealtimeAdvertisement.rawValue)
-        contentController.add(self, name: WebxdcHandler.sendRealtimeData.rawValue)
-        contentController.add(self, name: WebxdcHandler.leaveRealtime.rawValue)
+        contentController.add(weak: self, name: WebxdcHandler.sendStatusUpdate.rawValue)
+        contentController.add(weak: self, name: WebxdcHandler.log.rawValue)
+        contentController.add(weak: self, name: WebxdcHandler.sendToChat.rawValue)
+        contentController.add(weak: self, name: WebxdcHandler.sendRealtimeAdvertisement.rawValue)
+        contentController.add(weak: self, name: WebxdcHandler.sendRealtimeData.rawValue)
+        contentController.add(weak: self, name: WebxdcHandler.leaveRealtime.rawValue)
 
         let scriptSource = """
             window.RTCPeerConnection = ()=>{};
@@ -252,8 +252,8 @@ class WebxdcViewController: WebViewViewController {
         contentController.addUserScript(script)
 
         config.userContentController = contentController
-        config.setURLSchemeHandler(self, forURLScheme: INTERNALSCHEMA)
-        
+        config.setURLSchemeHandler(weak: self, forURLScheme: INTERNALSCHEMA)
+
         config.mediaTypesRequiringUserActionForPlayback = []
         config.allowsInlineMediaPlayback = true
 
@@ -406,11 +406,7 @@ class WebxdcViewController: WebViewViewController {
         WKContentRuleListStore.default().compileContentRuleList(
             forIdentifier: "WebxdcContentBlockingRules",
             encodedContentRuleList: blockRules) { (contentRuleList, error) in
-                
-                guard let contentRuleList = contentRuleList, error == nil else {
-                    return
-                }
-                
+                guard let contentRuleList, error == nil else { return }
                 let configuration = self.webView.configuration
                 configuration.userContentController.add(contentRuleList)
                 self.loadHtml()
@@ -589,5 +585,47 @@ extension WebxdcViewController: WKURLSchemeHandler {
     }
     
     func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
+    }
+}
+
+// MARK: Memory Leak Prevention
+
+extension WKUserContentController {
+    func add(weak scriptMessageHandler: any WKScriptMessageHandler, name: String) {
+        add(WeakScriptMessageHandler(scriptMessageHandler), name: name)
+    }
+
+    private class WeakScriptMessageHandler: NSObject, WKScriptMessageHandler {
+        weak var scriptMessageHandler: WKScriptMessageHandler?
+
+        init(_ scriptMessageHandler: WKScriptMessageHandler) {
+            self.scriptMessageHandler = scriptMessageHandler
+        }
+
+        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            scriptMessageHandler?.userContentController(userContentController, didReceive: message)
+        }
+    }
+}
+
+extension WKWebViewConfiguration {
+    func setURLSchemeHandler(weak urlSchemeHandler: (any WKURLSchemeHandler), forURLScheme urlScheme: String) {
+        setURLSchemeHandler(WeakURLSchemeHandler(urlSchemeHandler), forURLScheme: urlScheme)
+    }
+
+    private class WeakURLSchemeHandler: NSObject, WKURLSchemeHandler {
+        weak var urlSchemeHandler: WKURLSchemeHandler?
+
+        init(_ urlSchemeHandler: WKURLSchemeHandler) {
+            self.urlSchemeHandler = urlSchemeHandler
+        }
+
+        func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
+            urlSchemeHandler?.webView(webView, start: urlSchemeTask)
+        }
+
+        func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
+            urlSchemeHandler?.webView(webView, stop: urlSchemeTask)
+        }
     }
 }
