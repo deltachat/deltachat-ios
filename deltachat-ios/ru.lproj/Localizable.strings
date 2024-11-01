@@ -364,8 +364,6 @@
 "send_file_to" = "Отправить \"%1$@\" …";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Отправить сообщение…";
-"enable_realtime" = "Каналы Webxdc в реальном времени";
-"enable_realtime_explain" = "Активировать Webxdc API реального времени для создания прямого подключения между устройствами.";
 // map
 "filter_map_on_time" = "Показать местоположения с интервалом времени";
 "show_location_traces" = "Показывать маршруты";
@@ -526,10 +524,14 @@
 "proxy_use_proxy" = "Использовать прокси";
 "proxy_add" = "Добавить прокси";
 "proxy_add_explain" = "Поддерживаемые типы прокси: HTTP(S), SOCKS5 и Shadowsocks.";
+"proxy_add_url_hint" = "Введите ссылку на прокси";
+"proxy_invalid" = "Недопустимый или неподдерживаемый прокси";
 "proxy_list_header" = "Сохранённые прокси";
 "proxy_delete" = "Удалить прокси";
 "proxy_delete_explain" = "Вы уверены, что хотите удалить \"%1$@\"?";
 "proxy_use_proxy_confirm" = "Вы хотите использовать прокси \"%1$@\"?";
+"proxy_share_explain" = "Ваши друзья могут добавить этот прокси, отсканировав QR-код.";
+"proxy_share_link" = "Поделиться ссылкой";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Использовать SOCKS5";
@@ -553,6 +555,9 @@
 "accept_invalid_certificates" = "Принимать недействительные сертификаты";
 "switch_account" = "Сменить профиль";
 "add_account" = "Добавить профиль";
+"profile_tag" = "Личный тег";
+"profile_tag_hint" = "Например: Работа, Семья";
+"profile_tag_explain" = "Тег, видимый только вам, помогает различать ваши профили.";
 "delete_account" = "Удалить профиль";
 "delete_account_ask" = "Вы уверены, что хотите удалить данные своего профиля?";
 "delete_account_explain_with_name" = "Все данные профиля \"%1$@\" на этом устройстве будут безвозвратно удалены, включая настройки сквозного шифрования, контакты, чаты, сообщения и медиафайлы. Это действие не может быть отменено.";

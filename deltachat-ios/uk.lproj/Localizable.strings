@@ -364,8 +364,6 @@
 "send_file_to" = "Надіслати \"%1$@\" до…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Надіслати повідомлення до...";
-"enable_realtime" = "Канали Webxdc в реальному часі";
-"enable_realtime_explain" = "Увімкніть API реального часу Webxdc для створення прямих з\'єднань між пристроями.";
 // map
 "filter_map_on_time" = "Показати місця у часовому проміжку";
 "show_location_traces" = "Показати треки";
