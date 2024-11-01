@@ -268,7 +268,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
             let intersection = globalTableViewFrame.intersection(notification.endFrame)
-            let inset = intersection.height
+            let inset = max(intersection.height, tableView.safeAreaInsets.bottom)
             // willShow is sometimes called when the keyboard is being hidden or when the kb was
             // already shown due to interactive dismissal getting canceled.
             guard tableView.contentInset.top != inset else { return }
@@ -281,9 +281,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 }
             }
         }
-        keyboardManager?.on(event: .willHide) { [tableView, inputAccessoryView] notification in
+        keyboardManager?.on(event: .willHide) { [tableView = tableView!, inputAccessoryView] notification in
             UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
-                tableView?.contentInset.top = inputAccessoryView?.frame.height ?? 0
+                tableView.contentInset.top = max(inputAccessoryView?.frame.height ?? 0, tableView.safeAreaInsets.bottom)
             }
         }
 
@@ -361,7 +361,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if isMovingToParent { // being pushed
             becomeFirstResponder()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView.contentInset.top = self.inputAccessoryView?.bounds.height ?? 0
+                self.tableView.contentInset.top = max(self.inputAccessoryView?.frame.height ?? 0, self.tableView.safeAreaInsets.bottom)
                 if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
                     self.scrollToMessage(msgId: msgId, animated: false)
                     self.highlightedMsg = nil
