@@ -217,6 +217,7 @@ class ContactCell: UITableViewCell {
 
     private func setupSubviews() {
         let margin: CGFloat = 10
+        selectedBackgroundView = UIView()
         isAccessibilityElement = true
 
         avatar.translatesAutoresizingMaskIntoConstraints = false
@@ -351,6 +352,15 @@ class ContactCell: UITableViewCell {
     func setColor(_ color: UIColor) {
         avatar.setColor(color)
     }
+
+    public override func setSelected(_ selected: Bool, animated: Bool) {
+         super.setSelected(selected, animated: animated)
+         if selected {
+             selectedBackgroundView?.backgroundColor = DcColors.selectBackground
+         } else {
+             selectedBackgroundView?.backgroundColor = .clear
+         }
+     }
 
     // use this update-method to update cell in cellForRowAt whenever it is possible - other set-methods will be set private in progress
     func updateCell(cellViewModel: AvatarCellViewModel) {
