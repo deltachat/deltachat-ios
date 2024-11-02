@@ -627,33 +627,9 @@
 		E23C80FA36453692862D4A90 /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		5FA285D82CD60E5100712725 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				TestUtil/TestUtil.swift,
-				TestUtil/UITestAccount.swift,
-				TestUtil/UITestCursor.swift,
-				TestUtil/UITestKeyboard.swift,
-				TestUtil/UITestSafeArea.swift,
-			);
-			target = 5FAA92DD2CBC0FB300FA8F68 /* deltachat-ios-uitests */;
-		};
-		5FC319A22CD5338A00EF7F06 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				TestUtil/TestUtil.swift,
-				TestUtil/UITestAccount.swift,
-				TestUtil/UITestCursor.swift,
-				TestUtil/UITestKeyboard.swift,
-				TestUtil/UITestSafeArea.swift,
-			);
-			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		5FAA92DF2CBC0FB400FA8F68 /* deltachat-ios-uitests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (5FC319A22CD5338A00EF7F06 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 5FA285D82CD60E5100712725 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "deltachat-ios-uitests"; sourceTree = "<group>"; };
+		5FA2860A2CD62F2500712725 /* TestUtil */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TestUtil; sourceTree = "<group>"; };
+		5FAA92DF2CBC0FB400FA8F68 /* deltachat-ios-uitests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "deltachat-ios-uitests"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -945,6 +921,7 @@
 				AE851AC0227C693B00ED86F0 /* Controller */,
 				AE851ACB227C7A5000ED86F0 /* Handler */,
 				7A9FB15B1FB07364001FEA36 /* libraries */,
+				5FA2860A2CD62F2500712725 /* TestUtil */,
 				78C7036A21D46752005D4525 /* deltachat-ios.entitlements */,
 				7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */,
 				7A9FB14C1FB061E2001FEA36 /* LaunchScreen.storyboard */,
@@ -1289,6 +1266,9 @@
 			dependencies = (
 				30E8F2192447285600CE2C90 /* PBXTargetDependency */,
 				B2D0E4982B93A4B200791949 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5FA2860A2CD62F2500712725 /* TestUtil */,
 			);
 			name = "deltachat-ios";
 			productName = "deltachat-ios";
