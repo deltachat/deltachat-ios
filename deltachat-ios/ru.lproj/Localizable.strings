@@ -364,6 +364,8 @@
 "send_file_to" = "Отправить \"%1$@\" …";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Отправить сообщение…";
+"enable_realtime" = "Приложения реального времени";
+"enable_realtime_explain" = "Включить соединения в реальном времени для приложений, которыми вы делитесь в чатах. Если этот параметр включен, собеседники по чату смогут узнать ваш IP-адрес при запуске приложения.";
 // map
 "filter_map_on_time" = "Показать местоположения с интервалом времени";
 "show_location_traces" = "Показывать маршруты";

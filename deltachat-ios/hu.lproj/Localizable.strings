@@ -234,7 +234,7 @@
 "select_more" = "Több kiválasztása";
 "menu_edit_name" = "Név szerkesztése";
 // The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
-"edit_name_explain" = "Állítson be egy becenevet a(z) „%1$@” nevű ismerősének. Hagyja üresen a partnere által választott név megjelenítéséhez.";
+"edit_name_explain" = "Állítson be egy becenevet a(z) „%1$@” nevű ismerősének. Hagyja üresen az ismerőse által választott név megjelenítéséhez.";
 // The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
 "edit_name_placeholder" = "Becenév megadása „%1$@“ számára";
 "menu_settings" = "Beállítások";
@@ -364,6 +364,8 @@
 "send_file_to" = "„%1$@” küldése…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Üzenet küldése…";
+"enable_realtime" = "Valós idejű alkalmazások";
+"enable_realtime_explain" = "Valós idejű kapcsolatok engedélyezése a csevegésekben megosztott alkalmazásokhoz. Ha engedélyezve van, az ismerősei képesek lehetnek felfedezni az Ön IP-címét, amikor elindít egy alkalmazást.";
 // map
 "filter_map_on_time" = "Helyszínek megjelenítése időkeretben";
 "show_location_traces" = "Nyomvonalak megjelenítése";
