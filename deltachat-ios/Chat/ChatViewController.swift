@@ -747,12 +747,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?
                 .sd_tintedImage(with: DcColors.defaultInverseColor)?
                 .sd_flippedImage(withHorizontal: false, vertical: true)
-            action.backgroundColor = DcColors.chatBackgroundColor.withAlphaComponent(0.25)
         } else {
             action.image = UIImage(named: "ic_reply_black")?
                 .sd_flippedImage(withHorizontal: false, vertical: true)
-            action.backgroundColor = .systemBlue
         }
+        action.backgroundColor = .systemGray.withAlphaComponent(0.0) // nil or .clear do not result in transparence
         action.accessibilityLabel = String.localized("notify_reply_button")
         let configuration = UISwipeActionsConfiguration(actions: [action])
 
