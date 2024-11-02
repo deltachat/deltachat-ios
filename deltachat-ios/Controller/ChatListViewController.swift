@@ -619,9 +619,14 @@ class ChatListViewController: UITableViewController {
         }
     }
 
+    private func canMultiSelect() -> Bool {
+        guard let viewModel else { return false }
+        return !viewModel.searchActive && !RelayHelper.shared.isForwarding()
+    }
+
     private var isDuringMultipleSelectionInteraction = false
     override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-        true
+        return canMultiSelect()
     }
     override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
         isDuringMultipleSelectionInteraction = true
@@ -997,10 +1002,7 @@ extension ChatListViewController: UISearchBarDelegate {
 // MARK: - ContactCellDelegate
 extension ChatListViewController: ContactCellDelegate {
     func onLongTap(at indexPath: IndexPath) {
-        if let searchActive = viewModel?.searchActive,
-           !searchActive,
-           !RelayHelper.shared.isForwarding(),
-           !tableView.isEditing {
+        if canMultiSelect() && !tableView.isEditing {
             guard let chatList = viewModel?.chatList else { return }
             if chatList.getChatId(index: indexPath.row) != Int(DC_CHAT_ID_ARCHIVED_LINK) {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
