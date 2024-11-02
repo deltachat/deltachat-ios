@@ -1,4 +1,3 @@
-// TODO: Just swizzle the tintColor of UITextView and UITextField instead of doing it manually per field
 #if DEBUG
 import UIKit
 
@@ -10,7 +9,7 @@ extension TestUtil {
     }
 }
 
-// MARK: Prevent the cursor tintColor changes when testing
+// MARK: Prevent cursor tintColor changes when testing
 
 extension UITextView {
     open override var tintColor: UIColor! {

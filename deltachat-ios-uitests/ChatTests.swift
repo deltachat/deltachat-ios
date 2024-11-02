@@ -2,11 +2,10 @@ import XCTest
 import SnapshotTesting
 
 // TODO: Should create a test that generates screenshots for README and App Store
+// TODO: Maybe split up the test into multiple tests
 
 final class ChatTests: XCTestCase {
     var bundleIdentifier: String = "chat.delta.amzd"
-    /// The number of screenshots taken in this test. Used in the name of the screenshots to sort them chronologically.
-    var numberOfScreenshots = 0
 
     override func setUp() {
         continueAfterFailure = false
@@ -54,6 +53,7 @@ final class ChatTests: XCTestCase {
         app.textViews[.localized("write_message_desktop")].typeText("Hey!")
         app.buttons[.localized("menu_send")].tap()
         XCTAssert(app.cells[containing: .localized("a11y_delivery_status_delivered")].waitForExistence(timeout: 5))
+        XCTAssert(app.keyboards.firstMatch.exists)
         screenshot(app, named: "Sent Message")
 
         // React with emoji
@@ -99,10 +99,20 @@ final class ChatTests: XCTestCase {
         XCTAssert(app.keyboards.firstMatch.exists)
         screenshot(app, named: "Sent Voice message")
 
+        // Test Share Sheet
+        app.cells[containing: .localized("voice_message")].press(forDuration: 1)
+        // Note: The context menu here sometimes causes a long "waiting for idle" time
+        app.buttons[.localized("menu_more_options")].tap()
+        app.buttons[.localized("menu_more_options")].tap()
+        app.buttons[.localized("menu_share")].tap()
+        XCTAssert(app.textViews[.localized("write_message_desktop")].waitForNonExistence(timeout: 2))
+        app.buttons[.localized("close")].tap()
+        // keyboard is dismissed rn, but maybe it shouldn't be?
+        XCTAssert(app.textViews[.localized("write_message_desktop")].waitForExistence(timeout: 2))
+
         // Check More Options menu and copy text
         app.cells[containing: "Hey!"].press(forDuration: 1)
         app.buttons[.localized("menu_more_options")].tap()
-        // Note: The context menu here sometimes causes a long "waiting for idle" time
         app.buttons[.localized("menu_copy_text_to_clipboard")].tap()
         // keyboard is dismissed rn, but maybe it shouldn't be?
         XCTAssertFalse(app.keyboards.firstMatch.exists)
@@ -112,7 +122,7 @@ final class ChatTests: XCTestCase {
         app.buttons[.localized("menu_send")].tap()
 
         // Test File Picker Search Field
-        // Note: File Picker is broken in iOS 18 simulators
+        // Note: File Picker is broken in iOS 18 simulators using Rosetta
         if #unavailable(iOS 18) {
             app.buttons[.localized("menu_add_attachment")].tap()
             app.buttons[.localized("files")].tap()
@@ -125,7 +135,7 @@ final class ChatTests: XCTestCase {
         }
 
         // Send Photo
-        // Note: Image Picker is broken in iOS 18 simulators
+        // Note: Image Picker is broken in iOS 18 simulators using Rosetta
         // Note: Sadly simulators pre-iOS 18 do not have the search field so we should test this on a real device
         // wether the first responder is returned after using search field in the image picker.
         if #unavailable(iOS 18) {
@@ -141,9 +151,6 @@ final class ChatTests: XCTestCase {
             app.buttons[.localized("menu_send")].tap()
             screenshot(app, named: "Sent Photo")
         }
-
-        // Test Share Sheet
-
     }
 
     override func tearDown() {
@@ -152,12 +159,18 @@ final class ChatTests: XCTestCase {
         // which is not that big of a deal because it is only on simulators but would like to fix it
         //        app.terminate()
     }
-}
 
-extension ChatTests {
+    // MARK: - Helpers
+
+    /// The number of screenshots taken in this test. Used in the name of the screenshots to sort them chronologically.
+    var numberOfScreenshots = 0
+    lazy var navigationBarY = app.navigationBars.firstMatch.frame.minY
+    lazy var bottomSafeAreaInset = app.frame.maxY - app.otherElements["safeAreaProvider"].frame.maxY
+
     func screenshot(
         _ app: XCUIApplication,
         named name: String,
+        crop: Bool = true,
         record recording: Bool? = nil,
         timeout: TimeInterval = 5,
         fileID: StaticString = #fileID,
@@ -173,17 +186,21 @@ extension ChatTests {
         sleep(1)
 
         // Crop out the status bar and the home indicator
-        // The home indicator color is not deterministic and can change between runs (on iOS 18)
-        // TODO: If we want to make screenshots for the App Store we should not crop
-        let cgImage = app.screenshot().image.cgImage!
-        let safeAreaTopPercentage = TestUtil.safeAreaInsets.top / app.frame.height
-        let safeAreaBottomPercentage = TestUtil.safeAreaInsets.bottom / app.frame.height
-        let cropTop = CGFloat(cgImage.height) * safeAreaTopPercentage
-        let cropBottom = CGFloat(cgImage.height) * safeAreaBottomPercentage
-        let cropFrame = CGRect(x: 0.0, y: cropTop, width: CGFloat(cgImage.width), height: CGFloat(cgImage.height)-cropTop-cropBottom)
-        let croppedCGImage = cgImage.cropping(to: cropFrame)
-        let image = UIImage(cgImage: croppedCGImage!)
-        
+        // Needed because the home indicator color is not deterministic and can change between runs (on iOS 18)
+        // and the status bar can have different content depending on the state of the device (`xcrun simctl status_bar` does not work on rosetta simulators)
+        let image: UIImage = crop ? {
+            let cgImage = app.screenshot().image.cgImage!
+            // Using navigationBarY instead of safeAreaProvider.minY because the safe area is
+            // bigger than the navigation bar on iPhone 16 (iOS 18)
+            let cropTopPercentage = navigationBarY / app.frame.height
+            let cropTop = CGFloat(cgImage.height) * cropTopPercentage
+            let cropBottomPercentage = bottomSafeAreaInset / app.frame.height
+            let cropBottom = CGFloat(cgImage.height) * cropBottomPercentage
+            let cropFrame = CGRect(x: 0.0, y: cropTop, width: CGFloat(cgImage.width), height: CGFloat(cgImage.height)-cropTop-cropBottom)
+            let croppedCGImage = cgImage.cropping(to: cropFrame)!
+            return UIImage(cgImage: croppedCGImage)
+        }() : app.screenshot().image
+
         assertSnapshot(
             of: image,
             as: .image,

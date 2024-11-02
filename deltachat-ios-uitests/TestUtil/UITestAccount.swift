@@ -43,6 +43,9 @@ extension TestUtil {
         account.deleteMessages(msgIds: oldMessages)
         account.setDraft(chatId: Int(DC_CONTACT_ID_SELF), message: nil)
 
+        // TODO: Create a contact request for the test account so we can test the contact request UI
+        // This is currently not possible because core doesn't expose the necessary functions
+
         // Delete the test account when the app terminates
         deleteTestAccount = AppTerminationListener {
             if dcAccounts.getAll().count > 1, dcAccounts.getSelected().addr == uitestMail {
