@@ -1768,6 +1768,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         replyPrivatelyToMessage(at: indexPath)
     }
 
+    private func cancelSearch() {
+        if searchController.isActive {
+            searchController.isActive = false
+            configureDraftArea(draft: draft)
+            becomeFirstResponder()
+            navigationItem.searchController = nil
+            reloadData()
+        }
+    }
+
     @objc private func selectMore(_ sender: Any) {
         guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
               let indexPath = menuItem.indexPath else { return }
@@ -1776,6 +1786,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func selectMore(at indexPath: IndexPath) {
+        cancelSearch()
         setEditing(isEditing: true, selectedAtIndexPath: indexPath)
         if UIAccessibility.isVoiceOverRunning {
             forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
@@ -2614,11 +2625,7 @@ extension ChatViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchController.isActive = false
-        configureDraftArea(draft: draft)
-        becomeFirstResponder()
-        navigationItem.searchController = nil
-        reloadData()
+        cancelSearch()
     }
 }
 
