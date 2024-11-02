@@ -133,6 +133,8 @@
 		30FDB72124D838240066C48D /* BaseMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB72024D838240066C48D /* BaseMessageCell.swift */; };
 		5F153E9A2CC38BAA00871ABE /* GiveBackMyFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F153E992CC38BAA00871ABE /* GiveBackMyFirstResponder.swift */; };
 		5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */; };
+		5F7CDFF42CCE99080026B35F /* OpenWebXDCAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDFF32CCE99080026B35F /* OpenWebXDCAppIntent.swift */; };
+		5FA2866C2CD64E6000712725 /* AddWebxdcToHomescreenTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2866B2CD64E4500712725 /* AddWebxdcToHomescreenTipView.swift */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
@@ -437,6 +439,8 @@
 		30FDB72024D838240066C48D /* BaseMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessageCell.swift; sourceTree = "<group>"; };
 		5F153E992CC38BAA00871ABE /* GiveBackMyFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveBackMyFirstResponder.swift; sourceTree = "<group>"; };
 		5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCellProtocol.swift; sourceTree = "<group>"; };
+		5F7CDFF32CCE99080026B35F /* OpenWebXDCAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWebXDCAppIntent.swift; sourceTree = "<group>"; };
+		5FA2866B2CD64E4500712725 /* AddWebxdcToHomescreenTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWebxdcToHomescreenTipView.swift; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -847,6 +851,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		5F7CDFF22CCE987F0026B35F /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				5F7CDFF32CCE99080026B35F /* OpenWebXDCAppIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
 		7A9FB1371FB061E2001FEA36 = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +892,7 @@
 		7A9FB1421FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXGroup;
 			children = (
+				5F7CDFF22CCE987F0026B35F /* Intents */,
 				AE57C07E2552BBC0003CFE70 /* Model */,
 				304219D7244072E600516852 /* DC */,
 				AE1988AA23EB3C7600B4CD5F /* Assets */,
@@ -1038,6 +1051,7 @@
 				21D6C9392606190600D0755A /* NotificationManager.swift */,
 				3011E8042787365D00214221 /* KeychainManager.swift */,
 				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
+				5FA2866B2CD64E4500712725 /* AddWebxdcToHomescreenTipView.swift */,
 				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
 				B2CDA6312CCDB3080024763F /* MuteDialog.swift */,
 			);
@@ -1578,6 +1592,7 @@
 				302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */,
 				303492AD2577CAC300A523D0 /* FileView.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
+				5FA2866C2CD64E6000712725 /* AddWebxdcToHomescreenTipView.swift in Sources */,
 				AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */,
 				B20462E62440C99600367A57 /* AutodelOptionsViewController.swift in Sources */,
 				3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */,
@@ -1610,6 +1625,7 @@
 				305702A124C6453700D84EFC /* TypeAlias.swift in Sources */,
 				AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */,
 				D84738D22BBC1C2C00ECD52B /* LegacyMenuItem.swift in Sources */,
+				5F7CDFF42CCE99080026B35F /* OpenWebXDCAppIntent.swift in Sources */,
 				AE0D26FD1FB1FE88002FAFCE /* ChatListViewController.swift in Sources */,
 				30C7D5EC28F47E620078D24C /* InitialsBadge.swift in Sources */,
 				D8CDEFE02C087CDA00146773 /* ContactCardCell.swift in Sources */,

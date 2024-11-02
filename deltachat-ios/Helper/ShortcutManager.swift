@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import UIKit
 import SafariServices
 import Swifter
@@ -68,58 +69,64 @@ public class ShortcutManager {
         return image
     }()
 
-    func showShortcutLandingPage() {
+    func showShortcutLandingPage(over viewController: UIViewController) {
         let message = dcContext.getMessage(id: messageId)
         if message.type != DC_MSG_WEBXDC {
             return
         }
 
-        let deepLink = "chat.delta.deeplink://webxdc?accountId=\(dcContext.id)&chatId=\(message.chatId)&msgId=\(message.id)"
-        guard let deepLinkUrl = URL(string: deepLink) else {
-            return
-        }
-
-        let infoDict = message.getWebxdcInfoDict()
-        let iconData = scaledDownLogo?.pngData() ?? nil
-        let document = infoDict["document"] as? String ?? ""
-        let webxdcName = infoDict["name"] as? String ?? "ErrName" // name should not be empty
-        let iconTitle = document.isEmpty ? webxdcName : document
-
-        let iconBase64 = iconData?.base64EncodedString() ?? ""
-        let html = htmlFor(title: iconTitle,
-                           urlToRedirect: deepLinkUrl,
-                           iconBase64: iconBase64)
-        guard let base64 = html.data(using: .utf8)?.base64EncodedString() else {
-            return
-        }
-        server["/s"] = { _ in
-            var headers = ["Location": "data:text/html;base64,\(base64)"]
-            headers["Cache-Control"] = "no-store"
-            return .raw(301, "Moved Permanently", headers, nil)
-        }
-
-        var attempts = 0
-        var tryToReconnect = true
-        while tryToReconnect && attempts < 5 {
-            do {
-                localPort = defaultPort + UInt16(Int.random(in: 1...100))
-                try server.start(localPort)
-                tryToReconnect = false
-            } catch SocketError.bindFailed(let errorString) {
-                attempts += 1
-                tryToReconnect = true
-                logger.error(errorString)
-            } catch {
-                tryToReconnect = false
-                logger.error("\(String(describing: error))")
+        if #available(iOS 16, *) {
+            let chat = dcContext.getChat(chatId: message.chatId)
+            let vc = UIHostingController(rootView: AddWebxdcToHomescreenTipView(accountId: dcContext.id, chat: chat, msg: message))
+            viewController.present(vc, animated: true)
+        } else {
+            let deepLink = "chat.delta.deeplink://webxdc?accountId=\(dcContext.id)&chatId=\(message.chatId)&msgId=\(message.id)"
+            guard let deepLinkUrl = URL(string: deepLink) else {
+                return
             }
-        }
 
-        guard let shortcutUrl = URL(string: "http://localhost:\(localPort)/s") else {
-            return
-        }
+            let infoDict = message.getWebxdcInfoDict()
+            let iconData = scaledDownLogo?.pngData() ?? nil
+            let document = infoDict["document"] as? String ?? ""
+            let webxdcName = infoDict["name"] as? String ?? "ErrName" // name should not be empty
+            let iconTitle = document.isEmpty ? webxdcName : document
 
-        UIApplication.shared.open(shortcutUrl)
+            let iconBase64 = iconData?.base64EncodedString() ?? ""
+            let html = htmlFor(title: iconTitle,
+                               urlToRedirect: deepLinkUrl,
+                               iconBase64: iconBase64)
+            guard let base64 = html.data(using: .utf8)?.base64EncodedString() else {
+                return
+            }
+            server["/s"] = { _ in
+                var headers = ["Location": "data:text/html;base64,\(base64)"]
+                headers["Cache-Control"] = "no-store"
+                return .raw(301, "Moved Permanently", headers, nil)
+            }
+
+            var attempts = 0
+            var tryToReconnect = true
+            while tryToReconnect && attempts < 5 {
+                do {
+                    localPort = defaultPort + UInt16(Int.random(in: 1...100))
+                    try server.start(localPort)
+                    tryToReconnect = false
+                } catch SocketError.bindFailed(let errorString) {
+                    attempts += 1
+                    tryToReconnect = true
+                    logger.error(errorString)
+                } catch {
+                    tryToReconnect = false
+                    logger.error("\(String(describing: error))")
+                }
+            }
+
+            guard let shortcutUrl = URL(string: "http://localhost:\(localPort)/s") else {
+                return
+            }
+
+            UIApplication.shared.open(shortcutUrl)
+        }
     }
 
     private func htmlFor(title: String, urlToRedirect: URL, iconBase64: String) -> String {
