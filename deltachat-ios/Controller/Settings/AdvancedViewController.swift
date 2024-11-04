@@ -19,6 +19,7 @@ internal final class AdvancedViewController: UITableViewController {
         case videoChat
         case viewLog
         case accountSettings
+        case proxySettings
     }
 
     private var dcContext: DcContext
@@ -72,6 +73,14 @@ internal final class AdvancedViewController: UITableViewController {
         cell.textLabel?.text = String.localized("pref_password_and_account_settings")
         cell.accessoryType = .disclosureIndicator
         cell.tag = CellTags.accountSettings.rawValue
+        return cell
+    }()
+
+    private lazy var proxySettingsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("proxy_settings")
+        cell.accessoryType = .disclosureIndicator
+        cell.tag = CellTags.proxySettings.rawValue
         return cell
     }()
 
@@ -242,7 +251,7 @@ internal final class AdvancedViewController: UITableViewController {
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: nil,
-                cells: [accountSettingsCell])
+                cells: [accountSettingsCell, proxySettingsCell])
             return [viewLogSection, experimentalSection, encryptionSection, serverSection]
         } else {
             let appAccessSection = SectionConfigs(
@@ -256,7 +265,7 @@ internal final class AdvancedViewController: UITableViewController {
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
-                cells: [accountSettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
+                cells: [accountSettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell, proxySettingsCell])
             return [viewLogSection, experimentalSection, appAccessSection, encryptionSection, serverSection]
         }
     }()
@@ -320,6 +329,9 @@ internal final class AdvancedViewController: UITableViewController {
             Utils.authenticateDeviceOwner(reason: String.localized("pref_password_and_account_settings")) { [weak self] in
                 self?.showAccountSettingsController()
             }
+        case .proxySettings:
+            //TODO: Show ProxySettingsViewController
+            break
 
         case .defaultTagValue: break
         }
