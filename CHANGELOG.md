@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- fix: show forward-icon on iOS 15 and older
+
+
 ## v1.48.3
 2024-11
 
