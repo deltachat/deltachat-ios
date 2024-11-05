@@ -165,6 +165,11 @@ struct Utils {
     }
 
     public static func authenticateDeviceOwner(reason: String, callback: @escaping () -> Void) {
+
+#if DEBUG
+        return callback()
+#endif
+
         let localAuthenticationContext = LAContext()
         var error: NSError?
         if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {

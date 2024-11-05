@@ -4,6 +4,7 @@ class SwitchCell: UITableViewCell {
 
     var uiSwitch: UISwitch
     var action: ((SwitchCell) -> Void)?
+    static let reuseIdentifier = "SwitchCell"
 
     var isOn: Bool {
         return uiSwitch.isOn

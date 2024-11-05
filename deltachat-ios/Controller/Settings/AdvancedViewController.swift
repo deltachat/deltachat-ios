@@ -330,9 +330,9 @@ internal final class AdvancedViewController: UITableViewController {
                 self?.showAccountSettingsController()
             }
         case .proxySettings:
-            //TODO: Show ProxySettingsViewController
-            break
-
+            Utils.authenticateDeviceOwner(reason: String.localized("proxy_settings")) { [weak self] in
+                self?.showProxySettings()
+            }
         case .defaultTagValue: break
         }
     }
@@ -395,6 +395,11 @@ internal final class AdvancedViewController: UITableViewController {
     private func showAccountSettingsController() {
         let controller = AccountSetupController(dcAccounts: dcAccounts, editView: true)
         navigationController?.pushViewController(controller, animated: true)
+    }
+
+    private func showProxySettings() {
+        let proxySettingsController = ProxySettingsViewController(dcContext: dcContext)
+        navigationController?.pushViewController(proxySettingsController, animated: true)
     }
 
     private func showManageKeysDialog() {
