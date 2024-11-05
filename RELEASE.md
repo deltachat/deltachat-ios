@@ -24,7 +24,7 @@ then, create a "bump-to-VERSION" PR:
    a) add title `## v1.2.3` or `## v1.2.3 Testflight`  
    b) redact lines from `## Unreleased` there  
    c) add core version to end of changelog entry as `- update to core 1.2.3` or `- using core 1.2.3`  
-   c) encorperate <https://github.com/deltachat/deltachat-core-rust/blob/main/CHANGELOG.md>
+   c) incorporate <https://github.com/deltachat/deltachat-core-rust/blob/main/CHANGELOG.md>
       and redact too technical terms, so that the end user can understand it
 
    in case previous entries of the changelog refer to not officially released versions,
