@@ -1,37 +1,15 @@
 # Delta Chat iOS Changelog
 
-## v1.48.3 Testflight
+## v1.48.3
 2024-11
-
-- select multiple chats or messages with two-finger pan gestures
-- improve chatlist swipe gestures: trailing to mute/archive/delete - leading to pin/mark-read
-- show images beside swipe gesture buttons
-- allow to mute or unmute multiple selected chats at the same time
-- cleanup chatlist's multi-select action bar
-- show root SMTP connection failure in connectivity view
-- fix memory leak when opening some view controller
-- fix: don't ask for image access when opening gallery because it is not needed
-- fix: when entering message-multi-select-mode via "Long tap / More Options", leave search mode
-- fix sometimes missing input field or action bar
-- fix: show multi-account notification also in the first 30 seconds when the app goes to background
-- fix warning about wrong password
-- fix app getting stale when receiving a PUSH notifications takes longer
-- fix app getting stale on network changes
-- fix: skip IDLE if we got unsolicited FETCH
-- update translations and local help
-- update to core 1.148.6
-
-
-## v1.48.1 Testflight
-2024-10
 
 - do not miss new messages when being inside a chat, the "Back" button now has an "unread" badge
 - no more useless scrolling and jumping when opening a chat and during chatting. solid!
+- select multiple chats or messages with two-finger pan gestures
+- improve chatlist swipe gestures: trailing to mute/archive/delete - leading to pin/mark-read
+- allow to mute or unmute multiple selected chats at the same time
 - open "Invite Links" (i.delta.chat) direclty inside the app
 - check device owner (Passcode, Fingerprint, FaceID) on "Add Second Device", "Export" and "Password & Account"
-- simplifiy "Delete From Server" options for chatmail
-- allow to copy text from "Message Info"
-- add "Learn More" button to "Manage keys"
 - save traffic by supporting "IMAP COMPRESS"
 - automatic reconfiguration, e.g. switching to implicit TLS if STARTTLS port stops working
 - parallelize IMAP and SMTP connection attempts
@@ -53,7 +31,22 @@
 - use stricter TLS checks for HTTPS downloads (eg. Autoconfig)
 - improve logging for failed QR code scans, AEAP, Autocrypt and sending errors
 - show more context for the "Cannot establish guaranteed..." info message
+- show images beside swipe gesture buttons
+- simplifiy "Delete From Server" options for chatmail
+- allow to copy text from "Message Info"
 - show file name in "Message Info"
+- add "Learn More" button to "Manage keys"
+- cleanup chatlist's multi-select action bar
+- show root SMTP connection failure in connectivity view
+- fix memory leak when opening some view controller
+- fix: don't ask for image access when opening gallery because it is not needed
+- fix: when entering message-multi-select-mode via "Long tap / More Options", leave search mode
+- fix sometimes missing input field or action bar
+- fix: show multi-account notification also in the first 30 seconds when the app goes to background
+- fix warning about wrong password
+- fix app getting stale when receiving a PUSH notifications takes longer
+- fix app getting stale on network changes
+- fix: skip IDLE if we got unsolicited FETCH
 - fix PUSH notifications not working during the frist 30 seconds after putting app to background
 - fix: show correct number of messages affected by "Clear Chat"
 - fix: recognize stickers sent from the keyboard as such also on iOS 18
@@ -73,7 +66,7 @@
 - fix: normalize proxy URLs
 - fix connections getting stuck in "Updating..." sometimes
 - update translations and local help
-- update to core 1.148.4
+- update to core 1.148.6
 
 
 ## v1.46.10
