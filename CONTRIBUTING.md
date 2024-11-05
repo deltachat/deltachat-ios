@@ -61,9 +61,9 @@ Otherwise fork the repository and create a branch in your fork.
 Please add a meaningful description to your PR
 so that reviewers get an idea about what the modifications are supposed to do.
 
-A meaningful PR title is helpful for [updating `CHANGELOG.md` on releases](./RELEASE.md)
-(CHANGELOG.md is updated manually
-to only add things that are at least roughly understandable by the end user)
+If the PR is about end-user-related enhancements or fixes,
+add an understandable, not too technical,
+line atop of [`CHANGELOG.md`](./CHANGELOG.md) under the title `## Unreleased`
 
 If the changes affect the user interface,
 screenshots are very helpful,
