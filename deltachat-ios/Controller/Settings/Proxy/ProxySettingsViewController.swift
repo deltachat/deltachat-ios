@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 enum ProxySettingsSection: Int {
-    case enableProxies = 1
+    case enableProxies = 0
     case proxies
     case add
 
@@ -18,28 +18,35 @@ enum ProxySettingsSection: Int {
     }
 }
 
-enum ProxySettingsItem {
-    case enable
-    case entry(DcLot) // dcContext.checkQr(proxyUrl); DcLot? URL?
-    case add
-}
-
 class ProxySettingsViewController: UIViewController {
 
     let dcContext: DcContext
-    let tableView: UITableView
     let proxies: [String]
+    var selectedProxy: String?
+
+    let tableView: UITableView
+    let addProxyCell: ActionCell
+    let toggleProxyCell: SwitchCell
 
     init(dcContext: DcContext) {
 
         self.dcContext = dcContext
         self.proxies = dcContext.getProxies()
+
+
         tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         tableView.register(SwitchCell.self, forCellReuseIdentifier: SwitchCell.reuseIdentifier)
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         tableView.register(ProxyTableViewCell.self, forCellReuseIdentifier: ProxyTableViewCell.reuseIdentifier)
+
+        addProxyCell = ActionCell()
+        addProxyCell.actionTitle = String.localized("proxy_add")
+
+        toggleProxyCell = SwitchCell(textLabel: String.localized("proxy_use_proxy"), on: dcContext.isProxyEnabled, action: { cell in
+            dcContext.isProxyEnabled = cell.uiSwitch.isOn
+        })
 
         super.init(nibName: nil, bundle: nil)
 
@@ -74,27 +81,19 @@ class ProxySettingsViewController: UIViewController {
     private func deleteProxy(at indexPath: IndexPath) {
         // TODO: Delete Proxy, if proxy was selected: Deselect proxy
     }
-
-    private func enableProxies() {
-        // TODO: Enable Proxies in general
-    }
-
-    private func disableProxies() {
-        // TODO: Enable Proxies in general
-    }
 }
 
 extension ProxySettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        if proxies.isEmpty == false {
-            return 3
-        } else {
+        if proxies.isEmpty {
             return 2
+        } else {
+            return 3
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if proxies.isEmpty == false {
+        if proxies.isEmpty {
             if section == ProxySettingsSection.enableProxies.rawValue {
                 return 1
             } else /* if section == ProxySettingsSection.add.rawValue */ {
@@ -110,22 +109,22 @@ extension ProxySettingsViewController: UITableViewDataSource {
             }
         }
     }
-    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if proxies.isEmpty == false {
+
+        if proxies.isEmpty {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
-                // SwitchCell with enable/disable
+                return toggleProxyCell
             } else /* if indexPath.section == ProxySettingsSection.add.rawValue */ {
-                // ActionCell with add
+                return addProxyCell
             }
         } else {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
-                // SwitchCell with enable/disable
+                return toggleProxyCell
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
                 // ProxyCell with proxies[indexPath.row]
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
-                // ActionCell with add
+                return addProxyCell
             }
         }
         return UITableViewCell()
@@ -134,19 +133,19 @@ extension ProxySettingsViewController: UITableViewDataSource {
 
 extension ProxySettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if proxies.isEmpty == false {
+        if proxies.isEmpty {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
-                // enable/disable proxy and toggle switch
+                toggleProxyCell.uiSwitch.isOn.toggle()
             } else /* if indexPath.section == ProxySettingsSection.add.rawValue */ {
-                // open dialog to add a new proxy
+                addProxy()
             }
         } else {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
-                // enable/disable proxy and toggle switch
+                toggleProxyCell.uiSwitch.isOn.toggle()
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
                 // select proxy
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
-                // open dialog to add a new proxy
+                addProxy()
             }
         }
 
