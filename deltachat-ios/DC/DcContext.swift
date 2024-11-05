@@ -741,4 +741,23 @@ public class DcContext {
     public var isChatmail: Bool {
         return getConfigInt("is_chatmail") == 1
     }
+
+    public var isProxyEnabled: Bool {
+        get { return getConfigBool("proxy_enabled") }
+        set { setConfigBool("proxy_enabled", newValue) }
+    }
+
+    public func getProxies() -> [String] {
+        guard let proxyURLStrings = getConfig("proxy_url"),
+              let proxies = proxyURLStrings.split(separator: "\n") as? [String]
+        else { return [] }
+
+        return proxies
+    }
+
+    public func setProxies(proxyURLs: [String]) {
+        let allProxies = proxyURLs.joined(separator: "\n")
+
+        setConfig("proxy_url", allProxies)
+    }
 }
