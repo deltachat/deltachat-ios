@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -615,6 +615,10 @@
 		E23C80FA36453692862D4A90 /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D8F809C52CD93EA1002CAAC2 /* Proxy */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Proxy; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		30E8F20D2447285600CE2C90 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -1097,6 +1101,7 @@
 		B28D25882913CE8600B9067F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				D8F809C52CD93EA1002CAAC2 /* Proxy */,
 				78E45E3921D3CFBC00D4B15E /* SettingsViewController.swift */,
 				B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */,
 				B2172F3B29C125F2002C289E /* AdvancedViewController.swift */,
@@ -1214,6 +1219,9 @@
 			dependencies = (
 				30E8F2192447285600CE2C90 /* PBXTargetDependency */,
 				B2D0E4982B93A4B200791949 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D8F809C52CD93EA1002CAAC2 /* Proxy */,
 			);
 			name = "deltachat-ios";
 			productName = "deltachat-ios";
