@@ -748,10 +748,9 @@ public class DcContext {
     }
 
     public func getProxies() -> [String] {
-        guard let proxyURLStrings = getConfig("proxy_url"),
-              let proxies = proxyURLStrings.split(separator: "\n") as? [String]
-        else { return [] }
+        guard let proxyURLStrings = getConfig("proxy_url") else { return [] }
 
+        let proxies = proxyURLStrings.components(separatedBy: "\n")
         return proxies
     }
 
