@@ -21,18 +21,23 @@ enum ProxySettingsSection: Int {
 class ProxySettingsViewController: UIViewController {
 
     let dcContext: DcContext
-    let proxies: [String]
+    let dcAccounts: DcAccounts
+    
+    var proxies: [String]
     var selectedProxy: String?
 
     let tableView: UITableView
     let addProxyCell: ActionCell
     let toggleProxyCell: SwitchCell
 
-    init(dcContext: DcContext) {
+    var addProxyAlert: UIAlertController?
+
+    init(dcContext: DcContext, dcAccounts: DcAccounts) {
 
         self.dcContext = dcContext
+        self.dcAccounts = dcAccounts
         self.proxies = dcContext.getProxies()
-
+        self.selectedProxy = proxies.first
 
         tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +55,7 @@ class ProxySettingsViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
+        title = String.localized("proxy_settings")
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -71,17 +77,58 @@ class ProxySettingsViewController: UIViewController {
     }
 
     private func selectProxy(at indexPath: IndexPath) {
-        // TODO: set selected proxy
+        // TODO: add alert
+        let selectedProxyURL = proxies[indexPath.row]
+        if dcContext.setConfigFromQR(qrCode: selectedProxyURL) {
+            self.selectedProxy = selectedProxyURL
+            tableView.reloadData()
+            dcAccounts.stopIo()
+            dcAccounts.startIo()
+        }
     }
 
     private func addProxy() {
-        // TODO: Show alert with Textfield (alternative: Dedicated Controller?) to add a new proxy-URL, reloadList afterwards
+        let alertController = UIAlertController(
+            title: String.localized("proxy_add"),
+            message: String.localized("proxy_add_explain"),
+            preferredStyle: .alert
+        )
+
+        let addProxyAction = UIAlertAction(title: String.localized("proxy_use_proxy"), style: .default) { [weak self] _ in
+            guard let self,
+                  let proxyUrlTextfield = self.addProxyAlert?.textFields?.first,
+                  let proxyURL = proxyUrlTextfield.text else { return }
+
+            let parsedProxy = self.dcContext.checkQR(qrCode: proxyURL)
+            if parsedProxy.state == DC_QR_PROXY, self.dcContext.setConfigFromQR(qrCode: proxyURL) {
+                self.proxies.insert(proxyURL, at: self.proxies.startIndex)
+                self.dcContext.setProxies(proxyURLs: self.proxies)
+
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
+                // show another alert with "proxy_invalid"
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
+        alertController.addAction(addProxyAction)
+        alertController.addAction(cancelAction)
+        alertController.addTextField { textfield in
+            textfield.placeholder = String.localized("proxy_add_url_hint")
+        }
+
+        present(alertController, animated: true)
+        self.addProxyAlert = alertController
     }
 
     private func deleteProxy(at indexPath: IndexPath) {
         // TODO: Delete Proxy, if proxy was selected: Deselect proxy
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension ProxySettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -122,14 +169,27 @@ extension ProxySettingsViewController: UITableViewDataSource {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
                 return toggleProxyCell
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ProxyTableViewCell.reuseIdentifier, for: indexPath) as? ProxyTableViewCell else { fatalError() }
+
+                let proxy = proxies[indexPath.row]
+                cell.textLabel?.text = proxy
+
+                if let selectedProxy, selectedProxy == proxy {
+                    cell.accessoryType = .checkmark
+                } else {
+                    cell.accessoryType = .none
+                }
+
+                return cell
                 // ProxyCell with proxies[indexPath.row]
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
                 return addProxyCell
             }
         }
-        return UITableViewCell()
     }
 }
+
+// MARK: - UITableViewDelegate
 
 extension ProxySettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -143,7 +203,7 @@ extension ProxySettingsViewController: UITableViewDelegate {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
                 toggleProxyCell.uiSwitch.isOn.toggle()
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
-                // select proxy
+                selectProxy(at: indexPath)
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
                 addProxy()
             }
