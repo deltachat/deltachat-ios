@@ -67,6 +67,11 @@ public class DcAccounts {
         dc_accounts_stop_io(accountsPointer)
     }
 
+    public func restartIO() {
+        stopIo()
+        startIo()
+    }
+
     public func backgroundFetch(timeout: UInt64) -> Bool {
         return dc_accounts_background_fetch(accountsPointer, timeout) == 1
     }

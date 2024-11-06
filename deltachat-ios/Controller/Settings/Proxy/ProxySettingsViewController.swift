@@ -82,8 +82,7 @@ class ProxySettingsViewController: UIViewController {
         if dcContext.setConfigFromQR(qrCode: selectedProxyURL) {
             self.selectedProxy = selectedProxyURL
             tableView.reloadData()
-            dcAccounts.stopIo()
-            dcAccounts.startIo()
+            dcAccounts.restartIO()
         }
     }
 
@@ -161,12 +160,14 @@ extension ProxySettingsViewController: UITableViewDataSource {
 
         if proxies.isEmpty {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
+                toggleProxyCell.uiSwitch.isOn = dcContext.isProxyEnabled
                 return toggleProxyCell
             } else /* if indexPath.section == ProxySettingsSection.add.rawValue */ {
                 return addProxyCell
             }
         } else {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
+                toggleProxyCell.uiSwitch.isOn = dcContext.isProxyEnabled
                 return toggleProxyCell
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ProxyTableViewCell.reuseIdentifier, for: indexPath) as? ProxyTableViewCell else { fatalError() }
@@ -181,7 +182,6 @@ extension ProxySettingsViewController: UITableViewDataSource {
                 }
 
                 return cell
-                // ProxyCell with proxies[indexPath.row]
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
                 return addProxyCell
             }
@@ -211,4 +211,27 @@ extension ProxySettingsViewController: UITableViewDelegate {
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard
+            proxies.isEmpty == false,
+            indexPath.section == ProxySettingsSection.proxies.rawValue
+        else { return nil }
+
+        let deleteAction = UIContextualAction(style: .destructive, title: String.localized("proxy_delete")) { [weak self] _, _, completion in
+            self?.deleteProxy(at: indexPath)
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                completion(true)
+            }
+        }
+        deleteAction.backgroundColor = .red
+        deleteAction.image = UIImage(named: "ic_trash")
+
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = true
+
+        return configuration
+    }
+
 }
