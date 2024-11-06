@@ -398,7 +398,7 @@ internal final class AdvancedViewController: UITableViewController {
     }
 
     private func showProxySettings() {
-        let proxySettingsController = ProxySettingsViewController(dcContext: dcContext)
+        let proxySettingsController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
         navigationController?.pushViewController(proxySettingsController, animated: true)
     }
 
