@@ -18,7 +18,7 @@ enum ProxySettingsSection: Int {
     }
 }
 
-class ProxySettingsViewController: UIViewController {
+class ProxySettingsViewController: UITableViewController {
 
     let dcContext: DcContext
     let dcAccounts: DcAccounts
@@ -26,7 +26,6 @@ class ProxySettingsViewController: UIViewController {
     var proxies: [String]
     var selectedProxy: String?
 
-    let tableView: UITableView
     let addProxyCell: ActionCell
     let toggleProxyCell: SwitchCell
 
@@ -39,51 +38,51 @@ class ProxySettingsViewController: UIViewController {
         self.proxies = dcContext.getProxies()
         self.selectedProxy = proxies.first
 
-        tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        addProxyCell = ActionCell()
+        addProxyCell.actionTitle = String.localized("proxy_add")
+        toggleProxyCell = SwitchCell(textLabel: String.localized("proxy_use_proxy"), on: dcContext.isProxyEnabled)
+
+        super.init(style: .grouped)
 
         tableView.register(SwitchCell.self, forCellReuseIdentifier: SwitchCell.reuseIdentifier)
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         tableView.register(ProxyTableViewCell.self, forCellReuseIdentifier: ProxyTableViewCell.reuseIdentifier)
 
-        addProxyCell = ActionCell()
-        addProxyCell.actionTitle = String.localized("proxy_add")
+        toggleProxyCell.uiSwitch.isEnabled = (proxies.isEmpty == false)
+        toggleProxyCell.action = { [weak self] cell in
+            guard let self, self.proxies.isEmpty == false else { return }
 
-        toggleProxyCell = SwitchCell(textLabel: String.localized("proxy_use_proxy"), on: dcContext.isProxyEnabled, action: { cell in
             dcContext.isProxyEnabled = cell.uiSwitch.isOn
-        })
-
-        super.init(nibName: nil, bundle: nil)
+        }
 
         title = String.localized("proxy_settings")
-        tableView.delegate = self
-        tableView.dataSource = self
-
-        view.addSubview(tableView)
-        setupConstraints()
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    private func setupConstraints() {
-        let constraints = [
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: tableView.bottomAnchor),
-        ]
-
-        NSLayoutConstraint.activate(constraints)
-    }
-
     private func selectProxy(at indexPath: IndexPath) {
-        // TODO: add alert
         let selectedProxyURL = proxies[indexPath.row]
-        if dcContext.setConfigFromQR(qrCode: selectedProxyURL) {
-            self.selectedProxy = selectedProxyURL
-            tableView.reloadData()
-            dcAccounts.restartIO()
+
+        let selectAlert = UIAlertController(
+            title: String.localized("proxy_use_proxy"),
+            message: String.localized(stringID: "proxy_use_proxy_confirm", parameter: selectedProxyURL),
+            preferredStyle: .alert
+        )
+
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
+        let selectAction = UIAlertAction(title: String.localized("proxy_use_proxy"), style: .default) { [weak self] _ in
+
+            guard let self else { return }
+            if self.dcContext.setConfigFromQR(qrCode: selectedProxyURL) {
+                self.selectedProxy = selectedProxyURL
+                self.tableView.reloadData()
+                self.dcAccounts.restartIO()
+            }
         }
+        selectAlert.addAction(cancelAction)
+        selectAlert.addAction(selectAction)
+
+        present(selectAlert, animated: true)
     }
 
     private func addProxy() {
@@ -104,6 +103,7 @@ class ProxySettingsViewController: UIViewController {
                 self.dcContext.setProxies(proxyURLs: self.proxies)
 
                 DispatchQueue.main.async {
+                    self.toggleProxyCell.uiSwitch.isEnabled = (self.proxies.isEmpty == false)
                     self.tableView.reloadData()
                 }
             } else {
@@ -138,8 +138,8 @@ class ProxySettingsViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 
-extension ProxySettingsViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension ProxySettingsViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         if proxies.isEmpty {
             return 2
         } else {
@@ -147,7 +147,7 @@ extension ProxySettingsViewController: UITableViewDataSource {
         }
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if proxies.isEmpty {
             if section == ProxySettingsSection.enableProxies.rawValue {
                 return 1
@@ -165,7 +165,7 @@ extension ProxySettingsViewController: UITableViewDataSource {
         }
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if proxies.isEmpty {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
@@ -200,11 +200,11 @@ extension ProxySettingsViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension ProxySettingsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension ProxySettingsViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if proxies.isEmpty {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
-                toggleProxyCell.uiSwitch.isOn.toggle()
+                // do nothing as there are no proxies that could be used
             } else /* if indexPath.section == ProxySettingsSection.add.rawValue */ {
                 addProxy()
             }
@@ -221,7 +221,7 @@ extension ProxySettingsViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard
             proxies.isEmpty == false,
             indexPath.section == ProxySettingsSection.proxies.rawValue
@@ -234,12 +234,10 @@ extension ProxySettingsViewController: UITableViewDelegate {
             }
         }
         deleteAction.backgroundColor = .red
-        deleteAction.image = UIImage(named: "ic_trash")
 
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = true
 
         return configuration
     }
-
 }
