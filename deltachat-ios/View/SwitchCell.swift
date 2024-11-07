@@ -10,7 +10,7 @@ class SwitchCell: UITableViewCell {
         return uiSwitch.isOn
     }
 
-    init(textLabel: String, on: Bool, action: ((SwitchCell) -> Void)?) {
+    init(textLabel: String, on: Bool, action: ((SwitchCell) -> Void)? = nil) {
         self.uiSwitch = UISwitch()
         self.action = action
         super.init(style: .value1, reuseIdentifier: nil)
