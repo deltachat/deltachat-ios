@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -224,6 +224,8 @@
 		D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */; };
 		D8CDEFE02C087CDA00146773 /* ContactCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */; };
 		D8CDEFE22C087D1000146773 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFE12C087D1000146773 /* ContactCardView.swift */; };
+		D8CF2DDC2CDD110F001C2352 /* ProxySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */; };
+		D8CF2DDD2CDD110F001C2352 /* ProxyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF2DDA2CDD110F001C2352 /* ProxyTableViewCell.swift */; };
 		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
 		D8FB04002B4F0CF100A355F8 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */; };
 /* End PBXBuildFile section */
@@ -609,15 +611,13 @@
 		D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardPreview.swift; sourceTree = "<group>"; };
 		D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardCell.swift; sourceTree = "<group>"; };
 		D8CDEFE12C087D1000146773 /* ContactCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardView.swift; sourceTree = "<group>"; };
+		D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxySettingsViewController.swift; sourceTree = "<group>"; };
+		D8CF2DDA2CDD110F001C2352 /* ProxyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyTableViewCell.swift; sourceTree = "<group>"; };
 		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		DFBB6227B203C9B6FB5F4321 /* Pods-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.debug.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
 		E23C80FA36453692862D4A90 /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		D8F809C52CD93EA1002CAAC2 /* Proxy */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Proxy; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		30E8F20D2447285600CE2C90 /* Frameworks */ = {
@@ -1101,7 +1101,7 @@
 		B28D25882913CE8600B9067F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D8F809C52CD93EA1002CAAC2 /* Proxy */,
+				D8CF2DDB2CDD110F001C2352 /* Proxy */,
 				78E45E3921D3CFBC00D4B15E /* SettingsViewController.swift */,
 				B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */,
 				B2172F3B29C125F2002C289E /* AdvancedViewController.swift */,
@@ -1170,6 +1170,15 @@
 			path = "Send Contact";
 			sourceTree = "<group>";
 		};
+		D8CF2DDB2CDD110F001C2352 /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */,
+				D8CF2DDA2CDD110F001C2352 /* ProxyTableViewCell.swift */,
+			);
+			path = Proxy;
+			sourceTree = "<group>";
+		};
 		D8FB03FE2B4F0CE500A355F8 /* Reactions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1219,9 +1228,6 @@
 			dependencies = (
 				30E8F2192447285600CE2C90 /* PBXTargetDependency */,
 				B2D0E4982B93A4B200791949 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				D8F809C52CD93EA1002CAAC2 /* Proxy */,
 			);
 			name = "deltachat-ios";
 			productName = "deltachat-ios";
@@ -1713,6 +1719,8 @@
 				AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */,
 				3011E8052787365D00214221 /* KeychainManager.swift in Sources */,
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
+				D8CF2DDC2CDD110F001C2352 /* ProxySettingsViewController.swift in Sources */,
+				D8CF2DDD2CDD110F001C2352 /* ProxyTableViewCell.swift in Sources */,
 				AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */,
 				AECEF03E244F2D55006C90DA /* QrPageController.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
