@@ -62,10 +62,11 @@ class ProxySettingsViewController: UITableViewController {
 
     private func selectProxy(at indexPath: IndexPath) {
         let selectedProxyURL = proxies[indexPath.row]
+        let host = dcContext.checkQR(qrCode: selectedProxyURL).text1 ?? ""
 
         let selectAlert = UIAlertController(
             title: String.localized("proxy_use_proxy"),
-            message: String.localized(stringID: "proxy_use_proxy_confirm", parameter: selectedProxyURL),
+            message: String.localized(stringID: "proxy_use_proxy_confirm", parameter: host),
             preferredStyle: .alert
         )
 
@@ -124,8 +125,9 @@ class ProxySettingsViewController: UITableViewController {
 
     private func deleteProxy(at indexPath: IndexPath) {
         let proxyToRemove = proxies[indexPath.row]
+        let host = dcContext.checkQR(qrCode: proxyToRemove).text1 ?? ""
 
-        let deleteAlert = UIAlertController(title: String.localized("proxy_delete"), message: String.localized(stringID: "proxy_delete_explain", parameter: proxyToRemove), preferredStyle: .alert)
+        let deleteAlert = UIAlertController(title: String.localized("proxy_delete"), message: String.localized(stringID: "proxy_delete_explain", parameter: host), preferredStyle: .alert)
 
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
         let deleteAction = UIAlertAction(title: String.localized("proxy_delete"), style: .destructive) { [weak self] _ in
@@ -194,10 +196,10 @@ extension ProxySettingsViewController {
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ProxyTableViewCell.reuseIdentifier, for: indexPath) as? ProxyTableViewCell else { fatalError() }
 
-                let proxy = proxies[indexPath.row]
-                cell.textLabel?.text = proxy
+                let proxyUrl = proxies[indexPath.row]
+                cell.configure(with: proxyUrl, dcContext: dcContext)
 
-                if let selectedProxy, selectedProxy == proxy {
+                if let selectedProxy, selectedProxy == proxyUrl {
                     cell.accessoryType = .checkmark
                 } else {
                     cell.accessoryType = .none
