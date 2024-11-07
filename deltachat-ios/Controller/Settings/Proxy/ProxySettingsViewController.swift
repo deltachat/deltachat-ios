@@ -125,14 +125,27 @@ class ProxySettingsViewController: UITableViewController {
     private func deleteProxy(at indexPath: IndexPath) {
         let proxyToRemove = proxies[indexPath.row]
 
-        if let selectedProxy, proxyToRemove == selectedProxy {
-            dcContext.isProxyEnabled = false
+        let deleteAlert = UIAlertController(title: String.localized("proxy_delete"), message: String.localized(stringID: "proxy_delete_explain", parameter: proxyToRemove), preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
+        let deleteAction = UIAlertAction(title: String.localized("proxy_delete"), style: .destructive) { [weak self] _ in
+            guard let self else { return }
+
+            if let selectedProxy = self.selectedProxy, proxyToRemove == selectedProxy {
+                self.dcContext.isProxyEnabled = false
+            }
+
+            self.proxies.remove(at: indexPath.row)
+            self.dcContext.setProxies(proxyURLs: proxies)
+            DispatchQueue.main.async {
+                self.toggleProxyCell.uiSwitch.isEnabled = (self.proxies.isEmpty == false)
+                self.tableView.reloadData()
+            }
         }
 
-        proxies.remove(at: indexPath.row)
-        toggleProxyCell.uiSwitch.isEnabled = (proxies.isEmpty == false)
-        dcContext.setProxies(proxyURLs: proxies)
-        tableView.reloadData()
+        deleteAlert.addAction(cancelAction)
+        deleteAlert.addAction(deleteAction)
+        present(deleteAlert, animated: true)
     }
 }
 
