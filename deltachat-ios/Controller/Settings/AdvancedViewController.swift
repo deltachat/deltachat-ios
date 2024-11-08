@@ -330,9 +330,7 @@ internal final class AdvancedViewController: UITableViewController {
                 self?.showAccountSettingsController()
             }
         case .proxySettings:
-            Utils.authenticateDeviceOwner(reason: String.localized("proxy_settings")) { [weak self] in
-                self?.showProxySettings()
-            }
+            showProxySettings()
         case .defaultTagValue: break
         }
     }
