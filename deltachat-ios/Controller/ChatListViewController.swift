@@ -40,6 +40,12 @@ class ChatListViewController: UITableViewController {
         return button
     }()
 
+    private lazy var proxyShieldButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(named: "shield.fill"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
+        button.tintColor = DcColors.primary
+        return button
+    }()
+
     private lazy var cancelButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
         return button
@@ -390,6 +396,11 @@ class ChatListViewController: UITableViewController {
         }
     }
 
+    @objc func showProxySettings() {
+        let proxySettingsViewController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
+        navigationController?.pushViewController(proxySettingsViewController, animated: true)
+    }
+
     // MARK: - UITableViewDelegate + UITableViewDatasource
 
     
@@ -706,7 +717,15 @@ class ChatListViewController: UITableViewController {
             accountButtonAvatar.setImage(image)
         }
     }
-    
+
+    private func updateProxyButton() {
+        if dcContext.isProxyEnabled {
+            proxyShieldButton.image = UIImage(named: "shield.fill")
+        } else {
+            proxyShieldButton.image = UIImage(named: "shield.slash")
+        }
+    }
+
     @objc private func accountButtonTapped() {
         let viewController = AccountSwitchViewController(dcAccounts: dcAccounts)
         let accountSwitchNavigationController = UINavigationController(rootViewController: viewController)
@@ -749,7 +768,14 @@ class ChatListViewController: UITableViewController {
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(accountButton, animated: false)
                 updateAccountButton()
-                navigationItem.setRightBarButton(newButton, animated: true)
+
+                if dcContext.getProxies().isEmpty {
+                    navigationItem.setRightBarButton(newButton, animated: true)
+                } else {
+                    updateProxyButton()
+                    navigationItem.setRightBarButtonItems([newButton, proxyShieldButton], animated: true)
+                }
+
                 if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
                     titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
                 }
