@@ -11,7 +11,7 @@ enum ProxySettingsSection: Int {
         case .enableProxies:
             return nil
         case .proxies:
-            return "Proxies"
+            return String.localized("proxy_list_header")
         case .add:
             return nil
         }
@@ -210,6 +210,18 @@ extension ProxySettingsViewController {
                 return addProxyCell
             }
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard proxies.isEmpty == false else { return nil }
+
+
+        if section == ProxySettingsSection.proxies.rawValue {
+            return ProxySettingsSection.proxies.title
+        } else {
+            return nil
+        }
+
     }
 }
 
