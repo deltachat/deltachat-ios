@@ -108,7 +108,12 @@ class ProxySettingsViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
             } else {
-                // show another alert with "proxy_invalid"
+                let errorAlert = UIAlertController(title: String.localized("error"), message: String.localized("proxy_invalid"), preferredStyle: .alert)
+
+                let okAction = UIAlertAction(title: String.localized("ok"), style: .default)
+                errorAlert.addAction(okAction)
+
+                self.present(errorAlert, animated: true)
             }
         }
 
