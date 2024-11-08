@@ -27,7 +27,7 @@ class SwitchCell: UITableViewCell {
     }
 
     @objc
-    private func didToggleSwitch(_ sender: UISwitch) {
+    func didToggleSwitch(_ sender: UISwitch) {
         action?(self)
     }
 }
