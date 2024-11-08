@@ -52,7 +52,8 @@ class ProxySettingsViewController: UITableViewController {
         toggleProxyCell.action = { [weak self] cell in
             guard let self, self.proxies.isEmpty == false else { return }
 
-            dcContext.isProxyEnabled = cell.uiSwitch.isOn
+            self.dcContext.isProxyEnabled = cell.uiSwitch.isOn
+            self.dcAccounts.restartIO()
         }
 
         title = String.localized("proxy_settings")
@@ -243,6 +244,7 @@ extension ProxySettingsViewController {
         } else {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
                 toggleProxyCell.uiSwitch.isOn.toggle()
+                toggleProxyCell.didToggleSwitch(toggleProxyCell.uiSwitch)
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
                 selectProxy(at: indexPath)
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
