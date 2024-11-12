@@ -64,18 +64,20 @@ public class DcAccounts {
             // Wait for NSE-fetch to terminate before starting main-IO (both keep state unsynced, running at the same time would mess things up).
             // The other way round, NSE is not started when main-IO is running.
             let start = CFAbsoluteTimeGetCurrent()
+            startOrReschedule()
             func startOrReschedule() {
-                logger.info("➡️ wait for NSE to terminate")
-                if UserDefaults.nseFetching && CFAbsoluteTimeGetCurrent() - start < 30.0 { // NSE runs max 25 seconds
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        startOrReschedule()
+                if UserDefaults.mainIoRunning {
+                    logger.info("➡️ wait for NSE to terminate")
+                    if UserDefaults.nseFetching && (CFAbsoluteTimeGetCurrent() - start) < 30.0 { // NSE runs max 25 seconds
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            startOrReschedule()
+                        }
+                    } else {
+                        dc_accounts_start_io(accountsPointer)
+                        UserDefaults.setNseFetching(false) // reset as NSE may have terminated unexpectedly. this also terminate other startIo() waiting loops
                     }
-                } else {
-                    dc_accounts_start_io(accountsPointer)
-                    UserDefaults.setNseFetching(false) // reset as NSE may have terminated unexpectedly. this also terminate other startIo() waiting loops
                 }
             }
-            startOrReschedule()
         } else {
             dc_accounts_start_io(accountsPointer)
         }
