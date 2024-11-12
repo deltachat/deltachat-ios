@@ -55,17 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         logger.info("➡️ didFinishLaunchingWithOptions")
         UserDefaults.standard.populateDefaultEmojis()
-
-        // The NSE ("Notification Service Extension") must not run at the same time as the app.
-        // The other way round, the NSE is not started with the app running.
         UserDefaults.setMainIoRunning()
-        var pollSeconds = 0
-        while UserDefaults.nseFetching && pollSeconds < 30 {
-            logger.info("➡️ wait for NSE to terminate")
-            usleep(1_000_000)
-            pollSeconds += 1
-        }
-        UserDefaults.setNseFetching(false) // NSE terminated unexpectedly, do not always wait 30 seconds
 
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
