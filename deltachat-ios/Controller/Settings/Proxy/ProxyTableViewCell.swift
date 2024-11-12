@@ -2,24 +2,75 @@ import UIKit
 import DcCore
 
 class ProxyTableViewCell: UITableViewCell {
+
     static let reuseIdentifier = "ProxyTableViewCell"
 
-    // make it look like the Android-version
+    let hostLabel: UILabel
+    let protocolLabel: UILabel
+    let connectionLabel: UILabel
+
+    private let contentStackView: UIStackView
+    private let subtitleStackView: UIStackView
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        hostLabel = UILabel()
+        protocolLabel = UILabel()
 
-        textLabel?.numberOfLines = 0
+        let detailsColor: UIColor
+        if #available(iOS 13.0, *) {
+            detailsColor = .secondaryLabel
+        } else {
+            detailsColor = .darkGray
+        }
+        protocolLabel.textColor = detailsColor
+        protocolLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+
+        connectionLabel = UILabel()
+        connectionLabel.textColor = detailsColor
+        connectionLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+
+        subtitleStackView = UIStackView(
+            arrangedSubviews: [
+                connectionLabel,
+                UIView.borderedView(around: protocolLabel, borderWidth: 1, borderColor: detailsColor, cornerRadius: 2, padding: NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)),
+                UIView()
+            ]
+        )
+        subtitleStackView.translatesAutoresizingMaskIntoConstraints = false
+        subtitleStackView.spacing = 4
+
+        contentStackView = UIStackView(arrangedSubviews: [hostLabel, subtitleStackView])
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        contentStackView.axis = .vertical
+        contentStackView.spacing = 6
+
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        contentView.addSubview(contentStackView)
+
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    private func setupConstraints() {
+        let constraints = [
+            contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            contentView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 8),
+            contentView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor, constant: 8),
+        ]
+
+        NSLayoutConstraint.activate(constraints)
+    }
 
     func configure(with proxyUrlString: String, dcContext: DcContext) {
         let parsed = dcContext.checkQR(qrCode: proxyUrlString)
 
         let host = parsed.text1
         let proxyProtocol = proxyUrlString.components(separatedBy: ":").first
-        textLabel?.text = host
-        detailTextLabel?.text = proxyProtocol
+        hostLabel.text = host
+        protocolLabel.text = proxyProtocol
+        //TODO: Add connectivity
     }
 }
