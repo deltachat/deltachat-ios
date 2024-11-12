@@ -31,8 +31,8 @@ class ProxyTableViewCell: UITableViewCell {
 
         subtitleStackView = UIStackView(
             arrangedSubviews: [
-                connectionLabel,
                 UIView.borderedView(around: protocolLabel, borderWidth: 1, borderColor: detailsColor, cornerRadius: 2, padding: NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)),
+                connectionLabel,
                 UIView()
             ]
         )
@@ -64,13 +64,20 @@ class ProxyTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(constraints)
     }
 
-    func configure(with proxyUrlString: String, dcContext: DcContext) {
+    func configure(with proxyUrlString: String, dcContext: DcContext, connectionStateText: String?) {
         let parsed = dcContext.checkQR(qrCode: proxyUrlString)
 
         let host = parsed.text1
         let proxyProtocol = proxyUrlString.components(separatedBy: ":").first
+
         hostLabel.text = host
         protocolLabel.text = proxyProtocol
-        //TODO: Add connectivity
+
+        if let connectionStateText {
+            connectionLabel.text = connectionStateText
+            connectionLabel.isHidden = false
+        } else {
+            connectionLabel.isHidden = true
+        }
     }
 }

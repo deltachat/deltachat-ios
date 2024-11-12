@@ -57,9 +57,14 @@ class ProxySettingsViewController: UITableViewController {
         }
 
         title = String.localized("proxy_settings")
+
+        NotificationCenter.default.addObserver(self, selector: #selector(ProxySettingsViewController.handleConnectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
+
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    //MARK: - Actions
 
     private func selectProxy(at indexPath: IndexPath) {
         let selectedProxyURL = proxies[indexPath.row]
@@ -155,6 +160,16 @@ class ProxySettingsViewController: UITableViewController {
         deleteAlert.addAction(deleteAction)
         present(deleteAlert, animated: true)
     }
+
+    // MARK: - Notifications
+
+    @objc private func handleConnectivityChanged(_ notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+
+            self.tableView.reloadData()
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -203,13 +218,22 @@ extension ProxySettingsViewController {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ProxyTableViewCell.reuseIdentifier, for: indexPath) as? ProxyTableViewCell else { fatalError() }
 
                 let proxyUrl = proxies[indexPath.row]
-                cell.configure(with: proxyUrl, dcContext: dcContext)
+
+                let connectionStateText: String?
 
                 if let selectedProxy, selectedProxy == proxyUrl {
                     cell.accessoryType = .checkmark
+                    if dcContext.isProxyEnabled {
+                        connectionStateText = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("connectivity_connected"))
+                    } else {
+                        connectionStateText = String.localized("connectivity_not_connected")
+                    }
                 } else {
                     cell.accessoryType = .none
+                    connectionStateText = nil
                 }
+
+                cell.configure(with: proxyUrl, dcContext: dcContext, connectionStateText: connectionStateText)
 
                 return cell
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
