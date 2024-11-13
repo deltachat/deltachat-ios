@@ -92,6 +92,7 @@ class ProxySettingsViewController: UITableViewController {
                 self.proxies.insert(proxyURL, at: self.proxies.startIndex)
                 self.selectedProxy = proxyURL
                 self.dcContext.setProxies(proxyURLs: self.proxies)
+                self.dcAccounts.restartIO()
 
                 DispatchQueue.main.async {
                     self.toggleProxyCell.uiSwitch.isEnabled = (self.proxies.isEmpty == false)
