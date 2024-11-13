@@ -68,10 +68,10 @@ class ProxySettingsViewController: UITableViewController {
 
     private func selectProxy(at indexPath: IndexPath) {
         let selectedProxyURL = proxies[indexPath.row]
-        if self.dcContext.setConfigFromQR(qrCode: selectedProxyURL) {
-            self.selectedProxy = selectedProxyURL
-            self.tableView.reloadData()
-            self.dcAccounts.restartIO()
+        if dcContext.setConfigFromQR(qrCode: selectedProxyURL) {
+            selectedProxy = selectedProxyURL
+            tableView.reloadData()
+            dcAccounts.restartIO()
         }
     }
 
@@ -90,6 +90,7 @@ class ProxySettingsViewController: UITableViewController {
             let parsedProxy = self.dcContext.checkQR(qrCode: proxyURL)
             if parsedProxy.state == DC_QR_PROXY, self.dcContext.setConfigFromQR(qrCode: proxyURL) {
                 self.proxies.insert(proxyURL, at: self.proxies.startIndex)
+                self.selectedProxy = proxyURL
                 self.dcContext.setProxies(proxyURLs: self.proxies)
 
                 DispatchQueue.main.async {
