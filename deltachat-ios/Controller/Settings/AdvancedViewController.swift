@@ -77,7 +77,7 @@ internal final class AdvancedViewController: UITableViewController {
     }()
 
     private lazy var proxySettingsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("proxy_settings")
         cell.accessoryType = .disclosureIndicator
         cell.tag = CellTags.proxySettings.rawValue
@@ -462,6 +462,7 @@ internal final class AdvancedViewController: UITableViewController {
     private func updateCells() {
         showEmailsCell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
         videoChatInstanceCell.detailTextLabel?.text = VideoChatInstanceViewController.getValString(val: dcContext.getConfig("webrtc_instance") ?? "")
+        proxySettingsCell.detailTextLabel?.text = dcContext.isProxyEnabled ? String.localized("on") : nil
     }
 
     // MARK: - coordinator
