@@ -269,7 +269,7 @@ extension ProxySettingsViewController {
             indexPath.section == ProxySettingsSection.proxies.rawValue
         else { return nil }
 
-        let deleteAction = UIContextualAction(style: .destructive, title: String.localized("proxy_delete")) { [weak self] _, _, completion in
+        let deleteAction = UIContextualAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _, completion in
             DispatchQueue.main.async {
                 self?.deleteProxy(at: indexPath)
                 completion(true)
