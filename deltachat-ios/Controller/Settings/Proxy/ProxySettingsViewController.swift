@@ -269,13 +269,20 @@ extension ProxySettingsViewController {
             indexPath.section == ProxySettingsSection.proxies.rawValue
         else { return nil }
 
-        let deleteAction = UIContextualAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _, completion in
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
             DispatchQueue.main.async {
                 self?.deleteProxy(at: indexPath)
                 completion(true)
             }
         }
         deleteAction.backgroundColor = .systemRed
+        deleteAction.accessibilityLabel = String.localized("delete")
+        if #available(iOS 13.0, *) {
+            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
+        } else {
+            deleteAction.title = String.localized("delete")
+        }
+
 
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = true
