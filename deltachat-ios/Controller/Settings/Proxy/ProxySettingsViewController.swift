@@ -64,32 +64,15 @@ class ProxySettingsViewController: UITableViewController {
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    //MARK: - Actions
+    // MARK: - Actions
 
     private func selectProxy(at indexPath: IndexPath) {
         let selectedProxyURL = proxies[indexPath.row]
-        let host = dcContext.checkQR(qrCode: selectedProxyURL).text1 ?? ""
-
-        let selectAlert = UIAlertController(
-            title: String.localized("proxy_use_proxy"),
-            message: String.localized(stringID: "proxy_use_proxy_confirm", parameter: host),
-            preferredStyle: .alert
-        )
-
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
-        let selectAction = UIAlertAction(title: String.localized("proxy_use_proxy"), style: .default) { [weak self] _ in
-
-            guard let self else { return }
-            if self.dcContext.setConfigFromQR(qrCode: selectedProxyURL) {
-                self.selectedProxy = selectedProxyURL
-                self.tableView.reloadData()
-                self.dcAccounts.restartIO()
-            }
+        if self.dcContext.setConfigFromQR(qrCode: selectedProxyURL) {
+            self.selectedProxy = selectedProxyURL
+            self.tableView.reloadData()
+            self.dcAccounts.restartIO()
         }
-        selectAlert.addAction(cancelAction)
-        selectAlert.addAction(selectAction)
-
-        present(selectAlert, animated: true)
     }
 
     private func addProxy() {
@@ -244,7 +227,6 @@ extension ProxySettingsViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard proxies.isEmpty == false else { return nil }
-
 
         if section == ProxySettingsSection.proxies.rawValue {
             return ProxySettingsSection.proxies.title
