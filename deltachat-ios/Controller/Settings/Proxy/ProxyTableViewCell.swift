@@ -56,7 +56,7 @@ class ProxyTableViewCell: UITableViewCell {
     private func setupConstraints() {
         let constraints = [
             contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             contentView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 8),
             contentView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor, constant: 8),
         ]
