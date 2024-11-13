@@ -41,7 +41,14 @@ class ChatListViewController: UITableViewController {
     }()
 
     private lazy var proxyShieldButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(named: "shield.fill"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
+
+        let button: UIBarButtonItem
+
+        if #available(iOS 13, *) {
+            button = UIBarButtonItem(image: UIImage(systemName: "shield.fill"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
+        } else {
+            button = UIBarButtonItem(title: String.localized("proxy_settings"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
+        }
         button.tintColor = DcColors.primary
         return button
     }()
@@ -719,10 +726,12 @@ class ChatListViewController: UITableViewController {
     }
 
     private func updateProxyButton() {
+        guard #available(iOS 13, *) else { return }
+
         if dcContext.isProxyEnabled {
-            proxyShieldButton.image = UIImage(named: "shield.fill")
+            proxyShieldButton.image = UIImage(systemName: "shield.fill")
         } else {
-            proxyShieldButton.image = UIImage(named: "shield.slash")
+            proxyShieldButton.image = UIImage(systemName: "shield.slash")
         }
     }
 
