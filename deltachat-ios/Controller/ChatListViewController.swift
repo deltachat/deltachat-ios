@@ -765,6 +765,7 @@ class ChatListViewController: UITableViewController {
             if !isArchive {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
             }
+            navigationItem.setRightBarButtonItems([newButton], animated: true)
         } else if isArchive {
             titleView.text = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
