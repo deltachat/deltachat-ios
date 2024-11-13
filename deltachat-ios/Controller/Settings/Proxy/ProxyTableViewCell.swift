@@ -31,7 +31,7 @@ class ProxyTableViewCell: UITableViewCell {
 
         subtitleStackView = UIStackView(
             arrangedSubviews: [
-                UIView.borderedView(around: protocolLabel, borderWidth: 1, borderColor: detailsColor, cornerRadius: 2, padding: NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)),
+                UIView.borderedView(around: protocolLabel, borderWidth: 1, borderColor: detailsColor, cornerRadius: 2, padding: NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)),
                 connectionLabel,
                 UIView()
             ]
