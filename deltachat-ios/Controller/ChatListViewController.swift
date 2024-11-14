@@ -45,7 +45,7 @@ class ChatListViewController: UITableViewController {
         let button: UIBarButtonItem
 
         if #available(iOS 13, *) {
-            button = UIBarButtonItem(image: UIImage(systemName: "shield.fill"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
+            button = UIBarButtonItem(image: UIImage(systemName: "shield"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
         } else {
             button = UIBarButtonItem(title: String.localized("proxy_settings"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
         }
