@@ -3,6 +3,7 @@
 ## Unreleased
 
 - offer to open http-links detected as proxy also in the browser (#6237)
+- Show notifications for reactions on own messages (#2331)
 
 
 ## v1.48.4
