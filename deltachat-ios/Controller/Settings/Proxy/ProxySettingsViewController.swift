@@ -89,10 +89,9 @@ class ProxySettingsViewController: UITableViewController {
 
             let parsedProxy = self.dcContext.checkQR(qrCode: proxyURL)
             if parsedProxy.state == DC_QR_PROXY, self.dcContext.setConfigFromQR(qrCode: proxyURL) {
-                self.proxies.insert(proxyURL, at: self.proxies.startIndex)
-                self.selectedProxy = proxyURL
-                self.dcContext.setProxies(proxyURLs: self.proxies)
                 self.dcAccounts.restartIO()
+                self.proxies = dcContext.getProxies()
+                self.selectedProxy = proxies.first
 
                 DispatchQueue.main.async {
                     self.toggleProxyCell.uiSwitch.isEnabled = (self.proxies.isEmpty == false)
