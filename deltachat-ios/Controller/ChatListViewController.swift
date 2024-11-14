@@ -729,7 +729,7 @@ class ChatListViewController: UITableViewController {
         guard #available(iOS 13, *) else { return }
 
         if dcContext.isProxyEnabled {
-            proxyShieldButton.image = UIImage(systemName: "shield.fill")
+            proxyShieldButton.image = UIImage(systemName: "shield")
         } else {
             proxyShieldButton.image = UIImage(systemName: "shield.slash")
         }
