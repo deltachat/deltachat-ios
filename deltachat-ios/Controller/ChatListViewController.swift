@@ -762,10 +762,13 @@ class ChatListViewController: UITableViewController {
         if RelayHelper.shared.isForwarding() {
             // multi-select is not allowed during forwarding
             titleView.text = RelayHelper.shared.dialogTitle
-            if !isArchive {
+            if isArchive {
+                navigationItem.setRightBarButtonItems(nil, animated: true)
+            } else {
                 navigationItem.setLeftBarButton(cancelButton, animated: true)
+                navigationItem.setRightBarButtonItems([newButton], animated: true)
             }
-            navigationItem.setRightBarButtonItems([newButton], animated: true)
+
         } else if isArchive {
             titleView.text = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
