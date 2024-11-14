@@ -15,6 +15,14 @@ extension URL {
 struct Utils {
     public static let inviteDomain = "i.delta.chat"
 
+    // MARK: - Proxy
+
+    static func isProxy(url proxyURL: URL, dcContext: DcContext) -> Bool {
+        let parsedProxy = dcContext.checkQR(qrCode: proxyURL.absoluteString)
+
+        return parsedProxy.state == DC_QR_PROXY
+    }
+
     // MARK: - Email
     static func isEmail(url: URL) -> Bool {
         let mailScheme = "mailto"
