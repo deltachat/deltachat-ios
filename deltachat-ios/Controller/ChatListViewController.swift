@@ -45,7 +45,7 @@ class ChatListViewController: UITableViewController {
         let button: UIBarButtonItem
 
         if #available(iOS 13, *) {
-            button = UIBarButtonItem(image: UIImage(systemName: "shield"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
+            button = UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
         } else {
             button = UIBarButtonItem(title: String.localized("proxy_settings"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
         }
@@ -729,9 +729,9 @@ class ChatListViewController: UITableViewController {
         guard #available(iOS 13, *) else { return }
 
         if dcContext.isProxyEnabled {
-            proxyShieldButton.image = UIImage(systemName: "shield")
+            proxyShieldButton.image = UIImage(systemName: "checkmark.shield")
         } else {
-            proxyShieldButton.image = UIImage(systemName: "shield.slash")
+            proxyShieldButton.image = UIImage(systemName: "shield")
         }
     }
 
