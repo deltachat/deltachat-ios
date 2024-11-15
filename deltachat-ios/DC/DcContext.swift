@@ -282,6 +282,14 @@ public class DcContext {
         return dc_may_be_valid_addr(email) != 0
     }
 
+    public func createQRSVG(for payload: String) -> String? {
+        guard let cString = dc_create_qr_svg(payload) else { return nil }
+
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public func getSecurejoinQrSVG(chatId: Int) -> String? {
         if let cString = dc_get_securejoin_qr_svg(self.contextPointer, UInt32(chatId)) {
             let swiftString = String(cString: cString)
@@ -291,7 +299,7 @@ public class DcContext {
         return nil
     }
 
-    public func joinSecurejoin (qrCode: String) -> Int {
+    public func joinSecurejoin(qrCode: String) -> Int {
         return Int(dc_join_securejoin(contextPointer, qrCode))
     }
 
