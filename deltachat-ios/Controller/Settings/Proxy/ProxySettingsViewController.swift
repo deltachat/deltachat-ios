@@ -149,7 +149,15 @@ class ProxySettingsViewController: UITableViewController {
         let proxyToShare = proxies[indexPath.row]
         let shareProxyViewController = ShareProxyViewController(dcContext: dcContext, proxyUrlString: proxyToShare)
 
-        show(UINavigationController(rootViewController: shareProxyViewController), sender: self)
+        let navigationController = UINavigationController(rootViewController: shareProxyViewController)
+        if #available(iOS 15.0, *), let sheet = navigationController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.preferredCornerRadius = 20
+
+            present(navigationController, animated: true)
+        } else {
+            show(navigationController, sender: self)
+        }
     }
 
     // MARK: - Notifications
