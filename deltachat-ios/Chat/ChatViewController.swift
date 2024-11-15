@@ -2381,8 +2381,10 @@ extension ChatViewController: BaseMessageCellDelegate {
         if Utils.isEmail(url: url) {
             let email = Utils.getEmailFrom(url)
             self.askToChatWith(email: email)
-        } else if Utils.isProxy(url: url, dcContext: dcContext) {
-            selectProxy(url: url.absoluteString)
+        } else if Utils.isProxy(url: url, dcContext: dcContext),
+                  let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                  let appCoordinator = appDelegate.appCoordinator {
+            appCoordinator.handleProxySelection(on: self, dcContext: dcContext, proxyURL: url.absoluteString)
         } else if url.isDeltaChatInvitation,
                   let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                   let appCoordinator = appDelegate.appCoordinator {
@@ -2392,30 +2394,6 @@ extension ChatViewController: BaseMessageCellDelegate {
         }
     }
 
-    private func selectProxy(url proxyURL: String) {
-        let host = dcContext.checkQR(qrCode: proxyURL).text1 ?? ""
-        let dcAccounts = DcAccounts.shared
-
-        let selectAlert = UIAlertController(
-            title: String.localized("proxy_use_proxy"),
-            message: String.localized(stringID: "proxy_use_proxy_confirm", parameter: host),
-            preferredStyle: .alert
-        )
-
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
-        let selectAction = UIAlertAction(title: String.localized("proxy_use_proxy"), style: .default) { [weak self] _ in
-
-            guard let self else { return }
-            if self.dcContext.setConfigFromQR(qrCode: proxyURL) {
-                dcAccounts.restartIO()
-            }
-        }
-
-        selectAlert.addAction(cancelAction)
-        selectAlert.addAction(selectAction)
-
-        present(selectAlert, animated: true)
-    }
 
     @objc func imageTapped(indexPath: IndexPath, previewError: Bool) {
         if handleUIMenu() || handleSelection(indexPath: indexPath) {

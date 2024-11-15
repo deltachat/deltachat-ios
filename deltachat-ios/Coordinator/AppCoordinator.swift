@@ -199,6 +199,30 @@ class AppCoordinator: NSObject {
         coordinate(qrCode: url.absoluteString, from: viewController)
     }
 
+    func handleProxySelection(on viewController: UIViewController, dcContext: DcContext, proxyURL: String) {
+        let host = dcContext.checkQR(qrCode: proxyURL).text1 ?? ""
+
+        let selectAlert = UIAlertController(
+            title: String.localized("proxy_use_proxy"),
+            message: String.localized(stringID: "proxy_use_proxy_confirm", parameter: host),
+            preferredStyle: .alert
+        )
+
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
+        let selectAction = UIAlertAction(title: String.localized("proxy_use_proxy"), style: .default) { [weak self] _ in
+
+            guard let self else { return }
+            if dcContext.setConfigFromQR(qrCode: proxyURL) {
+                dcAccounts.restartIO()
+            }
+        }
+
+        selectAlert.addAction(cancelAction)
+        selectAlert.addAction(selectAction)
+
+        viewController.present(selectAlert, animated: true)
+    }
+
     func handleQRCode(_ code: String) {
         if code.lowercased().starts(with: "dcaccount:")
            || code.lowercased().starts(with: "dclogin:") {
