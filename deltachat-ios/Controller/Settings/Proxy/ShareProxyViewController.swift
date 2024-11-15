@@ -8,6 +8,7 @@ class ShareProxyViewController: UIViewController {
     private let contentStackView: UIStackView
     private let contentScrollView: UIScrollView
     private let qrContentView: UIImageView
+    private let explanationLabel: UILabel
     private let shareLinkButton: UIButton
 
     private let proxyUrlString: String
@@ -28,7 +29,12 @@ class ShareProxyViewController: UIViewController {
         shareLinkButton.setTitle(String.localized("proxy_share_link"), for: .normal)
         shareLinkButton.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [qrContentView, shareLinkButton, UIView()])
+        explanationLabel = UILabel()
+        explanationLabel.translatesAutoresizingMaskIntoConstraints = false
+        explanationLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        explanationLabel.text = String.localized("proxy_share_explain")
+
+        contentStackView = UIStackView(arrangedSubviews: [qrContentView, explanationLabel, shareLinkButton, UIView()])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
