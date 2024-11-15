@@ -222,6 +222,7 @@
 		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
 		D8C19DCE2C1B456700B32F6D /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */; };
 		D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */; };
+		D8C1B0DD2CE7421C00C233A7 /* ShareProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0DC2CE7421C00C233A7 /* ShareProxyViewController.swift */; };
 		D8CDEFE02C087CDA00146773 /* ContactCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */; };
 		D8CDEFE22C087D1000146773 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFE12C087D1000146773 /* ContactCardView.swift */; };
 		D8CF2DDC2CDD110F001C2352 /* ProxySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */; };
@@ -609,6 +610,7 @@
 		D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantOnboardingView.swift; sourceTree = "<group>"; };
 		D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendContactViewController.swift; sourceTree = "<group>"; };
 		D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardPreview.swift; sourceTree = "<group>"; };
+		D8C1B0DC2CE7421C00C233A7 /* ShareProxyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareProxyViewController.swift; sourceTree = "<group>"; };
 		D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardCell.swift; sourceTree = "<group>"; };
 		D8CDEFE12C087D1000146773 /* ContactCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardView.swift; sourceTree = "<group>"; };
 		D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxySettingsViewController.swift; sourceTree = "<group>"; };
@@ -1175,6 +1177,7 @@
 			children = (
 				D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */,
 				D8CF2DDA2CDD110F001C2352 /* ProxyTableViewCell.swift */,
+				D8C1B0DC2CE7421C00C233A7 /* ShareProxyViewController.swift */,
 			);
 			path = Proxy;
 			sourceTree = "<group>";
@@ -1658,6 +1661,7 @@
 				305501742798CDE1008FD5CA /* WebxdcViewController.swift in Sources */,
 				3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */,
 				5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */,
+				D8C1B0DD2CE7421C00C233A7 /* ShareProxyViewController.swift in Sources */,
 				AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */,
 				3052C60A253F082E007D13EA /* MessageLabelDelegate.swift in Sources */,
 				AE0AA9562478191900D42A7F /* GridCollectionViewFlowLayout.swift in Sources */,
