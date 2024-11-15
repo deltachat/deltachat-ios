@@ -145,6 +145,13 @@ class ProxySettingsViewController: UITableViewController {
         present(deleteAlert, animated: true)
     }
 
+    private func shareProxy(at indexPath: IndexPath) {
+        let proxyToShare = proxies[indexPath.row]
+        let shareProxyViewController = ShareProxyViewController(dcContext: dcContext, proxyUrlString: proxyToShare)
+
+        show(UINavigationController(rootViewController: shareProxyViewController), sender: self)
+    }
+
     // MARK: - Notifications
 
     @objc private func handleConnectivityChanged(_ notification: Notification) {
@@ -262,6 +269,33 @@ extension ProxySettingsViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard
+            proxies.isEmpty == false,
+            indexPath.section == ProxySettingsSection.proxies.rawValue
+        else { return nil }
+
+        let shareAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+            DispatchQueue.main.async {
+                self?.shareProxy(at: indexPath)
+                completion(true)
+            }
+        }
+        shareAction.backgroundColor = .systemGreen
+        shareAction.accessibilityLabel = String.localized("proxy_share_link")
+        if #available(iOS 13.0, *) {
+            shareAction.image = Utils.makeImageWithText(image: UIImage(systemName: "square.and.arrow.up"), text: String.localized("proxy_share_link"))
+        } else {
+            shareAction.title = String.localized("proxy_share_link")
+        }
+
+        let configuration = UISwipeActionsConfiguration(actions: [shareAction])
+        configuration.performsFirstActionWithFullSwipe = true
+
+        return configuration
+
+    }
+
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard
             proxies.isEmpty == false,
@@ -281,7 +315,6 @@ extension ProxySettingsViewController {
         } else {
             deleteAction.title = String.localized("delete")
         }
-
 
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = true
