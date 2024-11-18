@@ -19,6 +19,30 @@ class InstantOnboardingViewController: UIViewController {
 
     private var providerHostURL: URL
     private var qrCodeData: String?
+    private lazy var menuButton: UIBarButtonItem = {
+        let image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: "ellipsis.circle")
+        } else {
+            image = UIImage(named: "ic_more")
+        }
+
+        let menuButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(InstantOnboardingViewController.showMenu(_:)))
+        menuButton.tintColor = DcColors.primary
+        return menuButton
+    }()
+
+    private lazy var proxyShieldButton: UIBarButtonItem = {
+        let button: UIBarButtonItem
+
+        if #available(iOS 13, *) {
+            button = UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(InstantOnboardingViewController.showProxySettings(_:)))
+        } else {
+            button = UIBarButtonItem(title: String.localized("proxy_settings"), style: .plain, target: self, action: #selector(InstantOnboardingViewController.showProxySettings(_:)))
+        }
+        button.tintColor = DcColors.primary
+        return button
+    }()
 
     var progressAlertHandler: ProgressAlertHandler?
 
@@ -61,6 +85,10 @@ class InstantOnboardingViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.connectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
+
+        navigationItem.setRightBarButtonItems([menuButton], animated: true)
+        updateProxyButton()
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -93,6 +121,12 @@ class InstantOnboardingViewController: UIViewController {
         contentView?.nameTextField.becomeFirstResponder()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        updateMenuButtons()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -106,6 +140,12 @@ class InstantOnboardingViewController: UIViewController {
               let text = textField.text else { return }
 
         contentView?.validateTextfield(text: text)
+    }
+
+    @objc func connectivityChanged(_ notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            self?.updateMenuButtons()
+        }
     }
 
     // MARK: - actions
@@ -191,6 +231,46 @@ class InstantOnboardingViewController: UIViewController {
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true)
+    }
+
+    @objc private func showMenu(_ sender: Any) {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+
+        let showProxySettings = UIAlertAction(title: String.localized("proxy_settings"), style: .default) { [weak self] _ in
+            self?.showProxySettings(sender)
+        }
+
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
+
+        sheet.addAction(showProxySettings)
+        sheet.addAction(cancelAction)
+
+        present(sheet, animated: true)
+    }
+
+    @objc private func showProxySettings(_ sender: Any) {
+        let proxySettingsController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
+        navigationController?.pushViewController(proxySettingsController, animated: true)
+    }
+
+    private func updateMenuButtons() {
+        if dcContext.getProxies().isEmpty {
+            navigationItem.setRightBarButtonItems([menuButton], animated: true)
+        } else {
+            navigationItem.setRightBarButtonItems([proxyShieldButton], animated: true)
+        }
+
+        updateProxyButton()
+    }
+
+    private func updateProxyButton() {
+        guard #available(iOS 13, *) else { return }
+
+        if dcContext.isProxyEnabled {
+            proxyShieldButton.image = UIImage(systemName: "checkmark.shield")
+        } else {
+            proxyShieldButton.image = UIImage(systemName: "shield")
+        }
     }
 
     // MARK: - Notifications
