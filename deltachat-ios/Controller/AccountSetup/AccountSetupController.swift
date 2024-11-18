@@ -23,6 +23,7 @@ class AccountSetupController: UITableViewController {
     private let tagSmtpSecurityCell = 11
     private let tagCertCheckCell = 12
     private let tagViewLogCell = 15
+    private let tagProxyCell = 16
 
     private let tagTextFieldEmail = 100
     private let tagTextFieldPassword = 200
@@ -53,6 +54,7 @@ class AccountSetupController: UITableViewController {
         smtpServerCell,
         smtpPortCell,
         certCheckCell,
+        proxyCell,
         viewLogCell
     ]
     private let editView: Bool
@@ -239,6 +241,14 @@ class AccountSetupController: UITableViewController {
 
     lazy var certValue: Int = dcContext.certificateChecks
 
+    lazy var proxyCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.text = String.localized("proxy_settings")
+        cell.tag = tagProxyCell
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
     lazy var viewLogCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("pref_view_log")
@@ -296,6 +306,11 @@ class AccountSetupController: UITableViewController {
         super.viewWillAppear(animated)
         initSelectionCells()
         handleLoginButton()
+        updateCells()
+    }
+
+    private func updateCells() {
+        proxyCell.detailTextLabel?.text = dcContext.isProxyEnabled ? String.localized("on") : nil
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -365,6 +380,8 @@ class AccountSetupController: UITableViewController {
         case tagViewLogCell:
             tableView.deselectRow(at: indexPath, animated: false)
             showLogViewController()
+        case tagProxyCell:
+            showProxySettings()
         default:
             break
         }
@@ -586,6 +603,11 @@ class AccountSetupController: UITableViewController {
     }
 
     // MARK: - coordinator
+
+    private func showProxySettings() {
+        let proxySettingsController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
+        navigationController?.pushViewController(proxySettingsController, animated: true)
+    }
 
     private func showLogViewController() {
         let controller = LogViewController(dcContext: dcContext)
