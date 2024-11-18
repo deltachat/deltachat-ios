@@ -260,7 +260,7 @@ extension InstantOnboardingViewController: MediaPickerDelegate {
 
 // MARK: - QrCodeReaderDelegate
 extension InstantOnboardingViewController: QrCodeReaderDelegate {
-    func handleQrCode(_ viewController: UIViewController, qrCode: String) {
+    func handleQrCode(_ qrCode: String) {
         // update with new code
         let parsedQrCode = dcContext.checkQR(qrCode: qrCode)
         if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT,
