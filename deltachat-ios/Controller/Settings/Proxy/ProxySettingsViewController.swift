@@ -166,6 +166,9 @@ class ProxySettingsViewController: UITableViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
 
+            let proxies = dcContext.getProxies()
+            self.proxies = proxies
+            self.selectedProxy = proxies.first
             self.tableView.reloadData()
         }
     }
