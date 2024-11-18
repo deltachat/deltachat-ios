@@ -292,9 +292,9 @@ extension ProxySettingsViewController {
         shareAction.backgroundColor = .systemGreen
         shareAction.accessibilityLabel = String.localized("proxy_share_link")
         if #available(iOS 13.0, *) {
-            shareAction.image = Utils.makeImageWithText(image: UIImage(systemName: "square.and.arrow.up"), text: String.localized("proxy_share_link"))
+            shareAction.image = Utils.makeImageWithText(image: UIImage(systemName: "square.and.arrow.up"), text: String.localized("menu_share"))
         } else {
-            shareAction.title = String.localized("proxy_share_link")
+            shareAction.title = String.localized("menu_share")
         }
 
         let configuration = UISwipeActionsConfiguration(actions: [shareAction])
