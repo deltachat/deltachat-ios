@@ -773,7 +773,7 @@ class ChatListViewController: UITableViewController {
             titleView.text = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(nil, animated: true)
-                navigationItem.setRightBarButton(markReadButton, animated: true)
+                navigationItem.setRightBarButtonItems([markReadButton], animated: true)
             }
             updateMarkReadButton()
         } else {
@@ -783,7 +783,7 @@ class ChatListViewController: UITableViewController {
                 updateAccountButton()
 
                 if dcContext.getProxies().isEmpty {
-                    navigationItem.setRightBarButton(newButton, animated: true)
+                    navigationItem.setRightBarButtonItems([newButton], animated: true)
                 } else {
                     updateProxyButton()
                     navigationItem.setRightBarButtonItems([newButton, proxyShieldButton], animated: true)
@@ -806,7 +806,7 @@ class ChatListViewController: UITableViewController {
         let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
         titleView.text = String.localized(stringID: "n_selected", parameter: cnt)
         navigationItem.setLeftBarButton(cancelButton, animated: true)
-        navigationItem.setRightBarButton(markReadButton, animated: true)
+        navigationItem.setRightBarButtonItems([markReadButton], animated: true)
         updateMarkReadButton()
         return true
     }
