@@ -383,7 +383,8 @@ class AppCoordinator: NSObject {
                 _ = dcContext.setConfigFromQR(qrCode: code)
             }))
             viewController.present(alert, animated: true)
-
+        case DC_QR_PROXY:
+            handleProxySelection(on: viewController, dcContext: dcContext, proxyURL: code)
         default:
             var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
             if state == DC_QR_ERROR {
