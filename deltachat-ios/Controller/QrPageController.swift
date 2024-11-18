@@ -156,7 +156,7 @@ class QrPageController: UIPageViewController {
     }
 
     @objc func pasteFromClipboard(_ action: UIAlertAction) {
-        handleQrCode(UIPasteboard.general.string ?? "")
+        handleQrCode(self, qrCode: UIPasteboard.general.string ?? "")
     }
 
     // MARK: - update
@@ -208,9 +208,8 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
 
 // MARK: - QRCodeDelegate
 extension QrPageController: QrCodeReaderDelegate {
-
-    func handleQrCode(_ code: String) {
+    func handleQrCode(_ viewController: UIViewController, qrCode: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appCoordinator.coordinate(qrCode: code, from: self)
+        appDelegate.appCoordinator.coordinate(qrCode: qrCode, from: self)
     }
 }
