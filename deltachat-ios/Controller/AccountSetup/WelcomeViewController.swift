@@ -77,7 +77,7 @@ class WelcomeViewController: UIViewController {
             navigationItem.leftBarButtonItem = cancelButton
         }
         if let accountCode {
-            handleQrCode(self, qrCode: accountCode)
+            handleQrCode(accountCode)
         }
     }
 
@@ -227,7 +227,7 @@ class WelcomeViewController: UIViewController {
 
 // MARK: - QrCodeReaderDelegate
 extension WelcomeViewController: QrCodeReaderDelegate {
-    func handleQrCode(_ viewController: UIViewController, qrCode: String) {
+    func handleQrCode(_ qrCode: String) {
         let lot = dcContext.checkQR(qrCode: qrCode)
         if lot.state == DC_QR_BACKUP || lot.state == DC_QR_BACKUP2 {
             confirmSetupNewDevice(qrCode: qrCode)
