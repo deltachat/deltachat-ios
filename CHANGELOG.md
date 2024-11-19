@@ -3,7 +3,7 @@
 ## Unreleased
 
 - fix: show forward-icon on iOS 15 and older
-- Add an option to use Proxy-servers (#2382)
+- Add an option to use Proxy-servers (#2382, #2390)
 - Show on Chatlist if there are Proxy-servers (#2383)
 - Detect Proxy-servers in Chat-messages (#2389)
 - Share Proxy-servers with your friends, family and allies (#2394)
