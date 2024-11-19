@@ -623,7 +623,7 @@
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Tanulás letiltásának kérése a billentyűzettől";
 "pref_read_receipts" = "Olvasási visszaigazolások";
-"pref_read_receipts_explain" = "Ha az olvasási visszaigazolások le vannak tiltva, ön sem fogja látni mások olvasási visszaigazolásait.";
+"pref_read_receipts_explain" = "Ha az olvasási visszaigazolások le vannak tiltva, így Ön sem fogja látni mások olvasási visszaigazolásait.";
 "pref_server" = "Kiszolgáló";
 "pref_encryption" = "Titkosítás";
 "pref_manage_keys" = "Privát kulcsok kezelése";
@@ -665,7 +665,7 @@
 "pref_imap_folder_handling" = "IMAP-mappák kezelése";
 "pref_imap_folder_warn_disable_defaults" = "Ha megváltoztatja ezt a beállítást, győződjön meg arról, hogy a kiszolgálója és a többi kliense is ennek megfelelően van beállítva.\n\nMáskülönben előfordulhat, hogy a dolgok egyáltalán nem fognak működni.";
 "pref_watch_sent_folder" = "Elküldött üzenetek mappájának figyelése";
-"pref_send_copy_to_self" = "Másolat küldése önmagának";
+"pref_send_copy_to_self" = "Másolat küldése Önmagának";
 // for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Szükséges, ha ezt a fiókot több eszközön is használja.";
 "pref_auto_folder_moves" = "Automatikus áthelyezés a DeltaChat mappába";
@@ -675,7 +675,7 @@
 "pref_show_emails" = "Klasszikus e-mailek megjelenítése";
 "pref_show_emails_no" = "Nem, csak csevegések";
 "pref_show_emails_accepted_contacts" = "Elfogadott ismerősök számára";
-"pref_show_emails_all" = "Mind";
+"pref_show_emails_all" = "Összes";
 "pref_experimental_features" = "Kísérleti funkciók";
 "pref_on_demand_location_streaming" = "On-Demand folyamatos helyszín megosztás";
 "pref_developer_mode" = "Fejlesztői mód";

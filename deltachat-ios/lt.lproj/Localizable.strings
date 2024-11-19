@@ -54,6 +54,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Nuotoliniai paveikslai gali būti naudojami, kad būtumėte sekami.\n\nŠis nustatymas taip pat leidžia šriftų įkėlimą ir kitą turinį. Netgi, jeigu jis yra išjungtas, gali būti, kad vis tiek matysite įterptus paveikslus ar paveikslus iš podėlio.\n\nĮkelti nuotolinius paveikslus?";
 "always" = "Visada";
+"always_load_remote_images" = "Visada įkelti nuotolinius paveikslus";
 "once" = "Vieną kartą";
 "show_warning" = "Rodyti įspėjimą";
 "show_password" = "Rodyti slaptažodį";
@@ -422,6 +423,7 @@
 "accept_invalid_certificates" = "Priimti negaliojančius liudijimus";
 "switch_account" = "Perjungti paskyrą";
 "add_account" = "Pridėti paskyrą";
+"profile_tag" = "Privati žymė";
 "delete_account" = "Ištrinti paskyrą";
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
 "delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";
