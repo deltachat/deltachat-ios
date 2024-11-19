@@ -7,6 +7,7 @@
 - Show on Chatlist if there are Proxy-servers (#2383)
 - Detect Proxy-servers in Chat-messages (#2389)
 - Share Proxy-servers with your friends, family and allies (#2394)
+- fix: no startup delay when processing PUSH notifications in parallel, just show "Updating..." in title bar
 
 ## v1.48.3
 2024-11

@@ -127,6 +127,8 @@ public struct DcUtils {
             return String.localized("connectivity_updating")
         } else if connectivity >= DC_CONNECTIVITY_CONNECTING {
           return String.localized("connectivity_connecting")
+        } else if UserDefaults.nseFetching {
+          return String.localized("connectivity_updating")
         } else {
           return String.localized("connectivity_not_connected")
         }

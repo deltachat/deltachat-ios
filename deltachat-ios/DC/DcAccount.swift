@@ -60,7 +60,29 @@ public class DcAccounts {
     }
 
     public func startIo() {
-        dc_accounts_start_io(accountsPointer)
+        if UserDefaults.nseFetching {
+            // Wait for NSE-fetch to terminate before starting main-IO (both keep state unsynced, running at the same time would mess things up).
+            // The other way round, NSE is not started when main-IO is running.
+            let start = CFAbsoluteTimeGetCurrent()
+            NotificationCenter.default.post(name: Event.connectivityChanged, object: nil) // additional events needed as state changed outside mainapp
+            startOrReschedule()
+            func startOrReschedule() {
+                if UserDefaults.mainIoRunning {
+                    logger.info("➡️ wait for NSE to terminate")
+                    if UserDefaults.nseFetching && (CFAbsoluteTimeGetCurrent() - start) < 30.0 { // NSE runs max 25 seconds
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            startOrReschedule()
+                        }
+                    } else {
+                        dc_accounts_start_io(accountsPointer)
+                        UserDefaults.setNseFetching(false) // reset as NSE may have terminated unexpectedly. this also terminate other startIo() waiting loops
+                        NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
+                    }
+                }
+            }
+        } else {
+            dc_accounts_start_io(accountsPointer)
+        }
     }
 
     public func stopIo() {
