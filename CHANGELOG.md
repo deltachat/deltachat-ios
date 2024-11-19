@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.48.4
 
 - fix: show forward-icon on iOS 15 and older
 - Add an option to use Proxy-servers (#2382, #2390)
