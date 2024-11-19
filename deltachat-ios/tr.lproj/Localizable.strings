@@ -364,6 +364,8 @@
 "send_file_to" = "\"%1$@\" dosyasını gönder…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "İletiyi gönder…";
+"enable_realtime" = "Gerçek Zamanlı Uygulamalar";
+"enable_realtime_explain" = "Sohbetlerde paylaşılan uygulamalar için gerçek zamanlı bağlantıları etkinleştirin. Etkinleştirilirse, bir uygulama başlattığınızda sohbet ortakları IP adresinizi bulabilir.";
 // map
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
 "show_location_traces" = "İzleri göster";
@@ -524,10 +526,14 @@
 "proxy_use_proxy" = "Proxy Kullan";
 "proxy_add" = "Proxy Ekle";
 "proxy_add_explain" = "Desteklenen proxy türleri: HTTP(S), SOCKS5 ve Shadowsocks.";
+"proxy_add_url_hint" = "Buraya proxy bağlantısı girin";
+"proxy_invalid" = "Geçersiz ya da desteklenmeyen proxy";
 "proxy_list_header" = "Kaydedilen Proxy\'ler";
 "proxy_delete" = "Proxy\'yi Sil";
 "proxy_delete_explain" = "\"%1$@\" proxy\'sini silmek istediğinizden emin misiniz?";
 "proxy_use_proxy_confirm" = "\"%1$@\" proxy\'sini kullanmak istiyor musunuz?";
+"proxy_share_explain" = "Arkadaşlarınız, QR kodunu tarayarak bu proxy\'yi ekleyebilir.";
+"proxy_share_link" = "Bağlantı Paylaş";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "SOCKS5\'i Kullan";
@@ -551,6 +557,9 @@
 "accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
 "switch_account" = "Profili Değiştir";
 "add_account" = "Profil Ekle";
+"profile_tag" = "Özel Etiket";
+"profile_tag_hint" = "ör. İş, Aile";
+"profile_tag_explain" = "Yalnızca sizin için görünür etiket; profilleriniz arasında farklılığa yardımcı olur.";
 "delete_account" = "Profili Sil";
 "delete_account_ask" = "Profil verilerinizi silmek istediğinizden emin misiniz?";
 "delete_account_explain_with_name" = "Uçtan uca şifreleme ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak \"%1$@\" profilinin bu aygıttaki verilerinin tümü silinecek. Bu eylem geri alınamaz.";

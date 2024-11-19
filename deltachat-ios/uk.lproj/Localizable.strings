@@ -364,6 +364,8 @@
 "send_file_to" = "Надіслати \"%1$@\" до…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Надіслати повідомлення до...";
+"enable_realtime" = "Додатки реального часу";
+"enable_realtime_explain" = "Увімкнути з\'єднання в режимі реального часу для застосунків, якими діляться в чатах. Якщо ввімкнено, співрозмовники можуть отримати доступ до вашої IP-адреси, коли ви запускаєте застосунок.";
 // map
 "filter_map_on_time" = "Показати місця у часовому проміжку";
 "show_location_traces" = "Показати треки";
@@ -524,10 +526,14 @@
 "proxy_use_proxy" = "Використовувати проксі";
 "proxy_add" = "Додати проксі-сервер";
 "proxy_add_explain" = "Підтримувані типи проксі: HTTP(S), SOCKS5 і Shadowsocks.";
+"proxy_add_url_hint" = "Введіть посилання на проксі-сервер тут";
+"proxy_invalid" = "Недійсний або непідтримуваний проксі-сервер";
 "proxy_list_header" = "Збережені проксі-сервери";
 "proxy_delete" = "Видалити проксі-сервер";
 "proxy_delete_explain" = "Ви дійсно хочете видалити \"%1$@\"?";
 "proxy_use_proxy_confirm" = "Ви хочете використовувати проксі \"%1$@\"?";
+"proxy_share_explain" = "Ваші друзі можуть додати цей проксі, відсканувавши QR-код.";
+"proxy_share_link" = "Поділитися посиланням";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Використовувати SOCKS5";
@@ -551,6 +557,9 @@
 "accept_invalid_certificates" = "Приймати недійсні сертифікати";
 "switch_account" = "Перемкнути обліковий запис";
 "add_account" = "Додати обліковий запис";
+"profile_tag" = "Особистий тег";
+"profile_tag_hint" = "наприклад \"Робота\", \"Сім\'я\"";
+"profile_tag_explain" = "Тег, видимий тільки для вас; допомагає розрізняти ваші профілі.";
 "delete_account" = "Видалити обліковий запис";
 "delete_account_ask" = "Ви впевнені, що хочете видалити дані вашого облікового запису?";
 "delete_account_explain_with_name" = "Дані облікового запису \"%1$@\" на цьому пристрої будуть видалені, включаючи налаштування наскрізного шифрування, контакти, чати, повідомлення та медіа. Ця дія не може бути скасована.";
