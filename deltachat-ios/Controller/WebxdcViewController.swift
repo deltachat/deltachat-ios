@@ -291,6 +291,7 @@ class WebxdcViewController: WebViewViewController {
     }
     
     deinit {
+        logger.info("⬅️ leave realtime by deinit")
         dcContext.leaveWebxdcRealtime(messageId: messageId)
     }
 
@@ -516,6 +517,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
             }
 
         case .sendRealtimeAdvertisement:
+            logger.info("➡️ send realtime advertisement")
             dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
 
         case .sendRealtimeData:
@@ -524,6 +526,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
             }
 
         case .leaveRealtime:
+            logger.info("⬅️ leave realtime by xdc request")
             dcContext.leaveWebxdcRealtime(messageId: messageId)
         }
     }
