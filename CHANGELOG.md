@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- offer to open http-links detected as proxy also in the browser (#6237)
+
+
 ## v1.48.4
 
 - fix: show forward-icon on iOS 15 and older

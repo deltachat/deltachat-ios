@@ -219,6 +219,13 @@ class AppCoordinator: NSObject {
 
         selectAlert.addAction(cancelAction)
         selectAlert.addAction(selectAction)
+        if proxyURL.starts(with: "http") {
+            selectAlert.addAction(UIAlertAction(title: String.localized("open"), style: .default) { _ in
+                if let url = URL(string: proxyURL) {
+                    UIApplication.shared.open(url)
+                }
+            })
+        }
 
         viewController.present(selectAlert, animated: true)
     }
