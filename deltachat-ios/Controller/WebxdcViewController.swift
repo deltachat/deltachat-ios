@@ -15,6 +15,7 @@ class WebxdcViewController: WebViewViewController {
     let INTERNALSCHEMA = "webxdc"
     
     var messageId: Int
+    var href: String?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
     var selfAddr: String = ""
@@ -273,8 +274,9 @@ class WebxdcViewController: WebViewViewController {
     }
     
     
-    init(dcContext: DcContext, messageId: Int) {
+    init(dcContext: DcContext, messageId: Int, href: String? = nil) {
         self.messageId = messageId
+        self.href = href
         self.shortcutManager = ShortcutManager(dcContext: dcContext, messageId: messageId)
         super.init(dcContext: dcContext)
 
@@ -422,7 +424,18 @@ class WebxdcViewController: WebViewViewController {
     private func loadHtml() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self else { return }
-            let url = URL(string: "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/index.html")
+
+            let file = if let href {
+                if href.starts(with: "#") {
+                    "index.html" + href
+                } else {
+                    href
+                }
+            } else {
+                "index.html"
+            }
+
+            let url = URL(string: "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/" + file)
             let urlRequest = URLRequest(url: url!)
             DispatchQueue.main.async {
                 self.webView.load(urlRequest)

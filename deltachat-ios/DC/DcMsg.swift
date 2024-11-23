@@ -188,6 +188,13 @@ public class DcMsg {
         return dict["name"] as? String ?? "ErrName"
     }
 
+    public func getWebxdcHref() -> String? {
+        guard let cString = dc_msg_get_webxdc_href(messagePointer) else { return nil }
+        let swiftString = String(cString: cString)
+        dc_str_unref(cString)
+        return swiftString
+    }
+
     public var messageHeight: CGFloat {
         return CGFloat(dc_msg_get_height(messagePointer))
     }
