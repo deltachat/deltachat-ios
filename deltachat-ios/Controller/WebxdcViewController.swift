@@ -17,6 +17,7 @@ class WebxdcViewController: WebViewViewController {
     var messageId: Int
     var webxdcName: String = ""
     var sourceCodeUrl: String?
+    var selfAddr: String = ""
     private var allowInternet: Bool = false
 
     private var shortcutManager: ShortcutManager?
@@ -57,7 +58,7 @@ class WebxdcViewController: WebViewViewController {
     """
     
     lazy var webxdcbridge: String = {
-        let addr = dcContext.addr?
+        let addr = selfAddr
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let displayname = (dcContext.displayname ?? dcContext.addr)?
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -284,6 +285,7 @@ class WebxdcViewController: WebViewViewController {
                                                object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcStatusUpdate(_:)), name: Event.webxdcStatusUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcRealtimeDataReceived(_:)), name: Event.webxdcRealtimeDataReceived, object: nil)
+        refreshWebxdcInfo()
     }
     
     required init?(coder: NSCoder) {
@@ -298,7 +300,6 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
-        refreshWebxdcInfo()
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -320,6 +321,10 @@ class WebxdcViewController: WebViewViewController {
         if let sourceCode = dict["source_code_url"] as? String,
            !sourceCode.isEmpty {
             sourceCodeUrl = sourceCode
+        }
+
+        if let addr = dict["self_addr"] as? String {
+            selfAddr = addr
         }
     }
 
