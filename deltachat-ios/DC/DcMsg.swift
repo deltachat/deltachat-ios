@@ -168,6 +168,26 @@ public class DcMsg {
         return swiftString
     }
 
+    public func getWebxdcInfoDict() -> [String: AnyObject] {
+        let jsonString = self.getWebxdcInfoJson()
+        if let data: Data = jsonString.data(using: .utf8),
+           let infoDict = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: AnyObject] {
+               return infoDict
+           }
+        return [:]
+    }
+
+    // returns webxdc app name for an webxdc-info-messages or webxdc-instances
+    public func getWebxdcAppName() -> String {
+        let msg = if self.isInfo, let parent = self.parent {
+            parent
+        } else {
+            self
+        }
+        let dict = msg.getWebxdcInfoDict()
+        return dict["name"] as? String ?? "ErrName"
+    }
+
     public var messageHeight: CGFloat {
         return CGFloat(dc_msg_get_height(messagePointer))
     }

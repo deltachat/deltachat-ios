@@ -74,6 +74,22 @@ class NotificationService: UNNotificationServiceExtension {
                         reactionCount += 1
                     }
                 }
+            } else if event.id == DC_EVENT_INCOMING_WEBXDC_NOTIFY {
+                let dcContext = dcAccounts.get(id: event.accountId)
+                if !dcContext.isMuted() {
+                    let msg = dcContext.getMessage(id: event.data2Int)
+                    let chat = dcContext.getChat(chatId: msg.chatId)
+                    if !chat.isMuted {
+                        bestAttemptContent.title = chat.name
+                        bestAttemptContent.body = msg.getWebxdcAppName() + ": " + event.data2String
+                        bestAttemptContent.userInfo["account_id"] = dcContext.id
+                        bestAttemptContent.userInfo["chat_id"] = chat.id
+                        bestAttemptContent.userInfo["message_id"] = msg.id
+
+                        uniqueChats["\(dcContext.id)-\(chat.id)"] = bestAttemptContent.title
+                        messageCount += 1
+                    }
+                }
             }
         }
 

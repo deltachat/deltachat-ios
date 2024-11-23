@@ -8,6 +8,7 @@ public enum Event {
     public static let incomingMessage = Notification.Name(rawValue: "incomingMessage")
     public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "incomingMessageOnAnyAccount")
     public static let incomingReaction = Notification.Name(rawValue: "incomingReaction")
+    public static let incomingWebxdcNotify = Notification.Name(rawValue: "incomingWebxdcNotify")
     public static let messagesNoticed = Notification.Name(rawValue: "messagesNoticed")
 
     // Chats
@@ -153,6 +154,15 @@ public class DcEventHandler {
                 "contact_id": Int(data1),
                 "msg_id": Int(data2),
                 "reaction": event.data2String
+            ])
+
+        case DC_EVENT_INCOMING_WEBXDC_NOTIFY:
+            logger.info("📡[\(accountId)] incoming webxdc notify")
+            NotificationCenter.default.post(name: Event.incomingWebxdcNotify, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "contact_id": Int(data1),
+                "msg_id": Int(data2),
+                "text": event.data2String
             ])
 
         case DC_EVENT_CONTACTS_CHANGED:
