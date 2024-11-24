@@ -67,8 +67,8 @@ public class DcContext {
         dc_download_full_msg(contextPointer, Int32(id))
     }
 
-    public func sendWebxdcStatusUpdate(msgId: Int, payload: String, description: String) -> Bool {
-        return dc_send_webxdc_status_update(contextPointer, UInt32(msgId), payload, description) == 1
+    public func sendWebxdcStatusUpdate(msgId: Int, payload: String) -> Bool {
+        return dc_send_webxdc_status_update(contextPointer, UInt32(msgId), payload, nil) == 1
     }
 
     public func getWebxdcStatusUpdates(msgId: Int, lastKnownSerial: Int) -> String {
