@@ -144,13 +144,8 @@ class WebxdcViewController: WebViewViewController {
               return Promise.resolve([]);
             },
         
-            sendUpdate: (payload, descr) => {
-                // only one parameter is allowed, we we create a new parameter object here
-                var parameter = {
-                    payload: payload,
-                    descr: descr
-                };
-                webkit.messageHandlers.sendStatusUpdate.postMessage(parameter);
+            sendUpdate: (payload) => {
+                webkit.messageHandlers.sendStatusUpdate.postMessage(payload);
             },
 
             sendToChat: async (message) => {
@@ -481,15 +476,13 @@ extension WebxdcViewController: WKScriptMessageHandler {
             logger.info("webxdc log msg: " + msg)
 
         case .sendStatusUpdate:
-            guard let dict = message.body as? [String: AnyObject],
-                  let payloadDict = dict["payload"] as?  [String: AnyObject],
+            guard let payloadDict = message.body as? [String: AnyObject],
                   let payloadJson = try? JSONSerialization.data(withJSONObject: payloadDict, options: []),
-                  let payloadString = String(data: payloadJson, encoding: .utf8),
-                  let description = dict["descr"] as? String else {
+                  let payloadString = String(data: payloadJson, encoding: .utf8) else {
                       logger.error("Failed to parse status update parameters \(message.body)")
                       return
                   }
-            _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString, description: description)
+            _ = dcContext.sendWebxdcStatusUpdate(msgId: messageId, payload: payloadString)
 
         case .sendToChat:
             if let dict = message.body as? [String: AnyObject] {
