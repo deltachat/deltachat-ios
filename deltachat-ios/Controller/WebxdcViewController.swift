@@ -426,11 +426,7 @@ class WebxdcViewController: WebViewViewController {
             guard let self else { return }
 
             let file = if let href {
-                if href.starts(with: "#") {
-                    "index.html" + href
-                } else {
-                    href
-                }
+                href
             } else {
                 "index.html"
             }
