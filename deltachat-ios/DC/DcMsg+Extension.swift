@@ -12,15 +12,6 @@ extension DcMsg {
         return "\(size) \(units[digitGroups])"
     }
 
-    public func getWebxdcInfoDict() -> [String: AnyObject] {
-        let jsonString = self.getWebxdcInfoJson()
-        if let data: Data = jsonString.data(using: .utf8),
-           let infoDict = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: AnyObject] {
-               return infoDict
-           }
-        return [:]
-    }
-
     public func getWebxdcPreviewImage() -> UIImage? {
         let dict = self.getWebxdcInfoDict()
         if let iconfilePath = dict["icon"] as? String {

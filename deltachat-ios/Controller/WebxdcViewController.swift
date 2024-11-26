@@ -15,8 +15,12 @@ class WebxdcViewController: WebViewViewController {
     let INTERNALSCHEMA = "webxdc"
     
     var messageId: Int
+    var href: String?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
+    var selfAddr: String = ""
+    var sendUpdateInterval: Int = 0
+    var sendUpdateMaxSize: Int = 0
     private var allowInternet: Bool = false
 
     private var shortcutManager: ShortcutManager?
@@ -57,7 +61,7 @@ class WebxdcViewController: WebViewViewController {
     """
     
     lazy var webxdcbridge: String = {
-        let addr = dcContext.addr?
+        let addr = selfAddr
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let displayname = (dcContext.displayname ?? dcContext.addr)?
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -127,7 +131,11 @@ class WebxdcViewController: WebViewViewController {
             selfAddr: decodeURI("\((addr ?? "unknown"))"),
         
             selfName: decodeURI("\((displayname ?? "unknown"))"),
-        
+
+            sendUpdateInterval: \(sendUpdateInterval),
+
+            sendUpdateMaxSize: \(sendUpdateMaxSize),
+
             joinRealtimeChannel: () => {
               realtimeChannel = createRealtimeChannel();
               webkit.messageHandlers.sendRealtimeAdvertisement.postMessage("");
@@ -267,8 +275,9 @@ class WebxdcViewController: WebViewViewController {
     }
     
     
-    init(dcContext: DcContext, messageId: Int) {
+    init(dcContext: DcContext, messageId: Int, href: String? = nil) {
         self.messageId = messageId
+        self.href = href
         self.shortcutManager = ShortcutManager(dcContext: dcContext, messageId: messageId)
         super.init(dcContext: dcContext)
 
@@ -279,6 +288,7 @@ class WebxdcViewController: WebViewViewController {
                                                object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcStatusUpdate(_:)), name: Event.webxdcStatusUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcRealtimeDataReceived(_:)), name: Event.webxdcRealtimeDataReceived, object: nil)
+        refreshWebxdcInfo()
     }
     
     required init?(coder: NSCoder) {
@@ -293,7 +303,6 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
-        refreshWebxdcInfo()
     }
 
     override func willMove(toParent parent: UIViewController?) {
@@ -308,6 +317,9 @@ class WebxdcViewController: WebViewViewController {
 
         let document = dict["document"] as? String ?? ""
         webxdcName = dict["name"] as? String ?? "ErrName" // name should not be empty
+        selfAddr = dict["self_addr"] as? String ?? "ErrAddr"
+        sendUpdateInterval = dict["send_update_interval"] as? Int ?? 0
+        sendUpdateMaxSize = dict["send_update_max_size"] as? Int ?? 0
         let chatName = dcContext.getChat(chatId: msg.chatId).name
         self.allowInternet = dict["internet_access"] as? Bool ?? false
 
@@ -412,8 +424,10 @@ class WebxdcViewController: WebViewViewController {
     private func loadHtml() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self else { return }
-            let url = URL(string: "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/index.html")
-            let urlRequest = URLRequest(url: url!)
+
+            let base = "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/"
+            let url = URL(string: base + (href ?? "index.html"))
+            let urlRequest = URLRequest(url: url ?? URL(string: base + "index.html")!)
             DispatchQueue.main.async {
                 self.webView.load(urlRequest)
             }

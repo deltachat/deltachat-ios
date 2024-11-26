@@ -833,7 +833,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             showWebxdcViewFor(message: message)
         case (_, DC_INFO_WEBXDC_INFO_MESSAGE):
             if let parent = message.parent {
-                scrollToMessage(msgId: parent.id)
+                showWebxdcViewFor(message: parent, href: message.getWebxdcHref())
             }
         case (_, DC_INFO_PROTECTION_ENABLED):
             showProtectionEnabledDialog()
@@ -2106,8 +2106,8 @@ extension ChatViewController: MCEmojiPickerDelegate {
 
 extension ChatViewController {
 
-    func showWebxdcViewFor(message: DcMsg) {
-        let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
+    func showWebxdcViewFor(message: DcMsg, href: String? = nil) {
+        let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id, href: href)
         navigationController?.pushViewController(webxdcViewController, animated: true)
     }
 
