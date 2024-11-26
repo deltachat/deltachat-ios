@@ -19,6 +19,8 @@ class WebxdcViewController: WebViewViewController {
     var webxdcName: String = ""
     var sourceCodeUrl: String?
     var selfAddr: String = ""
+    var sendUpdateInterval: Int = 0
+    var sendUpdateMaxSize: Int = 0
     private var allowInternet: Bool = false
 
     private var shortcutManager: ShortcutManager?
@@ -129,7 +131,11 @@ class WebxdcViewController: WebViewViewController {
             selfAddr: decodeURI("\((addr ?? "unknown"))"),
         
             selfName: decodeURI("\((displayname ?? "unknown"))"),
-        
+
+            sendUpdateInterval: \(sendUpdateInterval),
+
+            sendUpdateMaxSize: \(sendUpdateMaxSize),
+
             joinRealtimeChannel: () => {
               realtimeChannel = createRealtimeChannel();
               webkit.messageHandlers.sendRealtimeAdvertisement.postMessage("");
@@ -316,6 +322,9 @@ class WebxdcViewController: WebViewViewController {
 
         let document = dict["document"] as? String ?? ""
         webxdcName = dict["name"] as? String ?? "ErrName" // name should not be empty
+        selfAddr = dict["self_addr"] as? String ?? "ErrAddr"
+        sendUpdateInterval = dict["send_update_interval"] as? Int ?? 0
+        sendUpdateMaxSize = dict["send_update_max_size"] as? Int ?? 0
         let chatName = dcContext.getChat(chatId: msg.chatId).name
         self.allowInternet = dict["internet_access"] as? Bool ?? false
 
@@ -323,10 +332,6 @@ class WebxdcViewController: WebViewViewController {
         if let sourceCode = dict["source_code_url"] as? String,
            !sourceCode.isEmpty {
             sourceCodeUrl = sourceCode
-        }
-
-        if let addr = dict["self_addr"] as? String {
-            selfAddr = addr
         }
     }
 
