@@ -425,13 +425,7 @@ class WebxdcViewController: WebViewViewController {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self else { return }
 
-            let file = if let href {
-                href
-            } else {
-                "index.html"
-            }
-
-            let url = URL(string: "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/" + file)
+            let url = URL(string: "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/" + (href ?? "index.html"))
             let urlRequest = URLRequest(url: url!)
             DispatchQueue.main.async {
                 self.webView.load(urlRequest)
