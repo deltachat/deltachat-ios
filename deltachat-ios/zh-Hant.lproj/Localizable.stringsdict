@@ -41,7 +41,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d個對話</string>
+			<string>%d個聊天</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -69,7 +69,21 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d個訊息</string>
+			<string>%d條訊息</string>
+		</dict>
+	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d 個回應</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -97,7 +111,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d位對象</string>
+			<string>%d位接收者</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>
