@@ -1,0 +1,7 @@
+NSCameraUsageDescription = "Delta Chat 使用您的相機拍攝和傳送照片和影片，以及掃描QR碼。";
+NSContactsUsageDescription = "Delta Chat 使用您的聯絡人來顯示您可以寫入的電子郵件位址清單。Delta Chat 沒有伺服器，您的聯絡人不會發送到任何地方。";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat 需要存取權才能在您啟用位置共用的時間範圍內共用您的位置。";
+NSLocationWhenInUseUsageDescription = "Delta Chat 需要存取權才能在您啟用位置共用的時間範圍內共用您的位置。";
+NSMicrophoneUsageDescription = "Delta Chat 使用您的麥克風錄製和發送音訊和帶聲音的視頻。";
+NSPhotoLibraryUsageDescription = "Delta Chat 將讓您從圖庫中選擇要傳送的照片。";
+NSPhotoLibraryAddUsageDescription = "Delta Chat 希望將圖像保存到您的照片庫。";
