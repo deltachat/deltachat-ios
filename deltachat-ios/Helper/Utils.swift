@@ -96,15 +96,7 @@ struct Utils {
     }
 
     public static func getInviteLink(context: DcContext, chatId: Int) -> String? {
-        // convert `OPENPGP4FPR:FPR#a=ADDR&n=NAME&...` to `https://i.delta.chat/#FPR&a=ADDR&n=NAME&...`
-        if var data = context.getSecurejoinQr(chatId: chatId), let hashRange = data.range(of: "#") {
-            data.replaceSubrange(hashRange, with: "&")
-            if let schemeRange = data.range(of: "OPENPGP4FPR:") {
-                data.replaceSubrange(schemeRange, with: "https://" + inviteDomain + "/#")
-                return data
-            }
-        }
-        return nil
+        return context.getSecurejoinQr(chatId: chatId)
     }
 
     public static func share(message: DcMsg, parentViewController: UIViewController, sourceView: UIView? = nil, sourceItem: UIBarButtonItem? = nil) {
