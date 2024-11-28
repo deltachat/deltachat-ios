@@ -33,8 +33,8 @@ struct Provider: TimelineProvider {
 
         let limit: Int
         switch context.family {
-        case .systemSmall: limit = 2
-        case .systemMedium: limit = 4
+        case .systemSmall: limit = 4
+        case .systemMedium: limit = 8
         default: limit = 8
         }
 
@@ -103,8 +103,8 @@ struct MostRecentWebXDCWidgetEntryView: View {
         if entry.apps.isEmpty {
             Text("No apps (yet)")
         } else {
-            // TODO: Use Grid!
-            VStack(alignment: .leading) {
+            let rows = [GridItem(.fixed(56)), GridItem(.fixed(56))]
+            LazyHGrid(rows: rows) {
                 ForEach(entry.apps) { app in
                     WebXDCAppView(app: app)
                 }
