@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -226,6 +226,9 @@
 		D8C19DCE2C1B456700B32F6D /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */; };
 		D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */; };
 		D8C1B0DD2CE7421C00C233A7 /* ShareProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0DC2CE7421C00C233A7 /* ShareProxyViewController.swift */; };
+		D8C7B68A2CF86F91003A6AD1 /* DcCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; };
+		D8C7B68B2CF86F91003A6AD1 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8C7B6982CF87F5E003A6AD1 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		D8CDEFE02C087CDA00146773 /* ContactCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */; };
 		D8CDEFE22C087D1000146773 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFE12C087D1000146773 /* ContactCardView.swift */; };
 		D8CF2DDC2CDD110F001C2352 /* ProxySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */; };
@@ -281,6 +284,17 @@
 				30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8C7B68C2CF86F91003A6AD1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D8C7B68B2CF86F91003A6AD1 /* DcCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -679,6 +693,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8C7B68A2CF86F91003A6AD1 /* DcCore.framework in Frameworks */,
 				D878C4FF2CF72AA0009AF551 /* SwiftUI.framework in Frameworks */,
 				D878C4FD2CF72AA0009AF551 /* WidgetKit.framework in Frameworks */,
 			);
@@ -1303,6 +1318,7 @@
 				D878C4F72CF72AA0009AF551 /* Sources */,
 				D878C4F82CF72AA0009AF551 /* Frameworks */,
 				D878C4F92CF72AA0009AF551 /* Resources */,
+				D8C7B68C2CF86F91003A6AD1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1818,6 +1834,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8C7B6982CF87F5E003A6AD1 /* DcMsg+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2444,6 +2461,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2482,6 +2500,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
