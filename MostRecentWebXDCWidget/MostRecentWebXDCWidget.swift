@@ -13,7 +13,6 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        var entries: [UsedWebXDCEntry] = []
         let dcAccounts = DcAccounts.shared
         dcAccounts.openDatabase(writeable: false)
         for accountId in dcAccounts.getAll() {
@@ -31,27 +30,38 @@ struct Provider: TimelineProvider {
         let dcContext = dcAccounts.getSelected()
         let chatId = 0
         let ignore = Int32(0)
-        let messageIds: [Int] = Array(dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: ignore, messageType3: ignore).reversed().prefix(upTo: 3))
+
+        let limit: Int
+        switch context.family {
+        case .systemSmall: limit = 2
+        case .systemMedium: limit = 4
+        default: limit = 8
+        }
+
+        let messageIds: [Int] = Array(dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: ignore, messageType3: ignore).reversed().prefix(limit))
 
         let apps = messageIds.compactMap {
             dcContext.getMessage(id: $0)
         }.compactMap { msg in
             let name = msg.getWebxdcAppName()
             let image = msg.getWebxdcPreviewImage()
+            let accountId = dcContext.id
+            let chatId = msg.chatId
 
-            return UsedWebXDCEntry.WebXDCApp(id: msg.id, image: image, title: name)
+            return WebXDCApp(
+                accountId: accountId,
+                chatId: chatId,
+                messageId: msg.id,
+                image: image,
+                title: name
+            )
         }
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            // Get the four most recent entries
-            let entry = UsedWebXDCEntry(date: entryDate, apps: apps)
-            entries.append(entry)
-        }
+        let entry = UsedWebXDCEntry(date: currentDate, apps: apps)
+        let nextDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: [entry], policy: .after(nextDate))
         completion(timeline)
     }
 }
@@ -59,13 +69,30 @@ struct Provider: TimelineProvider {
 struct UsedWebXDCEntry: TimelineEntry {
 
     let date: Date
-    fileprivate let apps: [WebXDCApp]
+    let apps: [WebXDCApp]
+}
 
-    fileprivate struct WebXDCApp: Hashable, Identifiable {
-        var id: Int
+struct WebXDCApp: Hashable, Identifiable {
+    var id: Int { messageId }
 
-        let image: UIImage?
-        let title: String
+    let accountId: Int
+    let chatId: Int
+    let messageId: Int
+
+    let image: UIImage?
+    let title: String
+
+    var url: URL {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "chat.delta.deeplink"
+        urlComponents.host = "webxdc"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "msgId", value: "\(messageId)"),
+            URLQueryItem(name: "chatId", value: "\(chatId)"),
+            URLQueryItem(name: "accountId", value: "\(accountId)"),
+        ]
+
+        return urlComponents.url!
     }
 }
 
@@ -76,30 +103,36 @@ struct MostRecentWebXDCWidgetEntryView: View {
         if entry.apps.isEmpty {
             Text("No apps (yet)")
         } else {
+            // TODO: Use Grid!
             VStack(alignment: .leading) {
                 ForEach(entry.apps) { app in
-
-                    Button {
-                        print("open...")
-                        // TODO: Open deeplink with chatId and messageId etc.
-                    } label: {
-                        HStack {
-                            if let image = app.image {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .frame(width: 32, height: 32)
-                                    .cornerRadius(4)
-                            }
-                            Text(app.title)
-                        }
-                    }
-                    .buttonStyle(.plain)
+                    WebXDCAppView(app: app)
                 }
             }
         }
     }
 }
 
+struct WebXDCAppView: View {
+    var app: WebXDCApp
+
+    var body: some View {
+        Link(destination: app.url) {
+            if let image = app.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .frame(width: 56, height: 56)
+                    .cornerRadius(12)
+            } else {
+                Color(.systemBackground)
+                    .frame(width: 56, height: 56)
+                    .cornerRadius(12)
+            }
+        }
+    }
+}
+
+// TODO: Localization
 struct MostRecentWebXDCWidget: Widget {
     let kind: String = "MostRecentWebXDCWidget"
 
@@ -114,6 +147,7 @@ struct MostRecentWebXDCWidget: Widget {
                     .background()
             }
         }
+        .supportedFamilies([.systemSmall, .systemMedium]) 
         .configurationDisplayName("Most Recent WebXDC-apps")
         .description("Shows the n moth recent WebXDC-apps")
     }
