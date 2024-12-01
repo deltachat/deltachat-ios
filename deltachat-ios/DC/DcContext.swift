@@ -61,6 +61,14 @@ public class DcContext {
 
     public func sendMessage(chatId: Int, message: DcMsg) {
         dc_send_msg(contextPointer, UInt32(chatId), message.messagePointer)
+        if CommandLine.arguments.contains("--UITests") {
+            // TODO: FIX
+            // FIXME: I think this is a bug but sendMessage does not publish the DC_EVENT_MSGS_CHANGED event in UITests. Probably because the message is not actually sent due to it not being a real, functioning account?
+            NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
+                "message_id": message.id,
+                "chat_id": chatId,
+            ])
+        }
     }
 
     public func downloadFullMessage(id: Int) {
