@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -219,10 +219,17 @@
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
 		D85DF9782C4A96CB00A01408 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DF9772C4A96CB00A01408 /* UserDefaults+Extensions.swift */; };
 		D85DF9802C5250E200A01408 /* ProgressAlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */; };
+		D878C4FD2CF72AA0009AF551 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */; };
+		D878C4FF2CF72AA0009AF551 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */; };
+		D878C50C2CF72AA1009AF551 /* DcWebxdcWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D87C64672D01E4EF004472D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
 		D8C19DCE2C1B456700B32F6D /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */; };
 		D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */; };
 		D8C1B0DD2CE7421C00C233A7 /* ShareProxyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1B0DC2CE7421C00C233A7 /* ShareProxyViewController.swift */; };
+		D8C7B68A2CF86F91003A6AD1 /* DcCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; };
+		D8C7B68B2CF86F91003A6AD1 /* DcCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 304219D1243F588500516852 /* DcCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8C7B6982CF87F5E003A6AD1 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		D8CDEFE02C087CDA00146773 /* ContactCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */; };
 		D8CDEFE22C087D1000146773 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFE12C087D1000146773 /* ContactCardView.swift */; };
 		D8CF2DDC2CDD110F001C2352 /* ProxySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */; };
@@ -246,6 +253,13 @@
 			remoteGlobalIDString = B2D0E4912B93A4B200791949;
 			remoteInfo = DcNotificationService;
 		};
+		D878C50A2CF72AA1009AF551 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D878C4FA2CF72AA0009AF551;
+			remoteInfo = MostRecentWebXDCWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -267,9 +281,21 @@
 			dstSubfolderSpec = 13;
 			files = (
 				B2D0E4992B93A4B200791949 /* DcNotificationService.appex in Embed Foundation Extensions */,
+				D878C50C2CF72AA1009AF551 /* DcWebxdcWidget.appex in Embed Foundation Extensions */,
 				30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8C7B68C2CF86F91003A6AD1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D8C7B68B2CF86F91003A6AD1 /* DcCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -607,6 +633,9 @@
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
 		D85DF9772C4A96CB00A01408 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAlertHandler.swift; sourceTree = "<group>"; };
+		D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DcWebxdcWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantOnboardingView.swift; sourceTree = "<group>"; };
 		D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendContactViewController.swift; sourceTree = "<group>"; };
 		D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardPreview.swift; sourceTree = "<group>"; };
@@ -620,6 +649,20 @@
 		DFBB6227B203C9B6FB5F4321 /* Pods-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.debug.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
 		E23C80FA36453692862D4A90 /* Pods_deltachat_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D878C50F2CF72AA1009AF551 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D878C4FA2CF72AA0009AF551 /* DcWebxdcWidget */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D878C5002CF72AA0009AF551 /* DcWebxdcWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D878C50F2CF72AA1009AF551 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = DcWebxdcWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		30E8F20D2447285600CE2C90 /* Frameworks */ = {
@@ -644,6 +687,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2B730BC2B98B1FB006C5EF9 /* DcCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D878C4F82CF72AA0009AF551 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8C7B68A2CF86F91003A6AD1 /* DcCore.framework in Frameworks */,
+				D878C4FF2CF72AA0009AF551 /* SwiftUI.framework in Frameworks */,
+				D878C4FD2CF72AA0009AF551 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,6 +917,7 @@
 				7A9FB1421FB061E2001FEA36 /* deltachat-ios */,
 				30E8F2112447285600CE2C90 /* DcShare */,
 				B2D0E4932B93A4B200791949 /* DcNotificationService */,
+				D878C5002CF72AA0009AF551 /* DcWebxdcWidget */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
 				AFE4D4B4B038293E63BC1537 /* Pods */,
@@ -879,6 +933,7 @@
 				7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */,
 				30E8F2102447285600CE2C90 /* Delta Chat.appex */,
 				B2D0E4922B93A4B200791949 /* DcNotificationService.appex */,
+				D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -923,6 +978,8 @@
 				A6A81736FBF0A4844C6D619F /* Pods_DcShare.framework */,
 				12E18F2336264C265BB756C2 /* Pods_deltachat_ios.framework */,
 				E23C80FA36453692862D4A90 /* Pods_deltachat_iosTests.framework */,
+				D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */,
+				D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1231,6 +1288,7 @@
 			dependencies = (
 				30E8F2192447285600CE2C90 /* PBXTargetDependency */,
 				B2D0E4982B93A4B200791949 /* PBXTargetDependency */,
+				D878C50B2CF72AA1009AF551 /* PBXTargetDependency */,
 			);
 			name = "deltachat-ios";
 			productName = "deltachat-ios";
@@ -1254,6 +1312,29 @@
 			productReference = B2D0E4922B93A4B200791949 /* DcNotificationService.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		D878C4FA2CF72AA0009AF551 /* DcWebxdcWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D878C5102CF72AA1009AF551 /* Build configuration list for PBXNativeTarget "DcWebxdcWidget" */;
+			buildPhases = (
+				D878C4F72CF72AA0009AF551 /* Sources */,
+				D878C4F82CF72AA0009AF551 /* Frameworks */,
+				D878C4F92CF72AA0009AF551 /* Resources */,
+				D8C7B68C2CF86F91003A6AD1 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D878C5002CF72AA0009AF551 /* DcWebxdcWidget */,
+			);
+			name = DcWebxdcWidget;
+			packageProductDependencies = (
+			);
+			productName = MostRecentWebXDCWidgetExtension;
+			productReference = D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1261,7 +1342,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "merlinux GmbH";
 				TargetAttributes = {
@@ -1291,6 +1372,9 @@
 					};
 					B2D0E4912B93A4B200791949 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					D878C4FA2CF72AA0009AF551 = {
+						CreatedOnToolsVersion = 16.1;
 					};
 				};
 			};
@@ -1354,6 +1438,7 @@
 				7A9FB13F1FB061E2001FEA36 /* deltachat-ios */,
 				30E8F20F2447285600CE2C90 /* DcShare */,
 				B2D0E4912B93A4B200791949 /* DcNotificationService */,
+				D878C4FA2CF72AA0009AF551 /* DcWebxdcWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -1394,6 +1479,14 @@
 				B2636B5E2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */,
 				B29BE2FB2BAB93EC002DBF1F /* Localizable.strings in Resources */,
 				B29BE2FC2BAB93EC002DBF1F /* Localizable.stringsdict in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D878C4F92CF72AA0009AF551 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D87C64672D01E4EF004472D6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1739,6 +1832,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D878C4F72CF72AA0009AF551 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8C7B6982CF87F5E003A6AD1 /* DcMsg+Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1751,6 +1852,11 @@
 			isa = PBXTargetDependency;
 			target = B2D0E4912B93A4B200791949 /* DcNotificationService */;
 			targetProxy = B2D0E4972B93A4B200791949 /* PBXContainerItemProxy */;
+		};
+		D878C50B2CF72AA1009AF551 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D878C4FA2CF72AA0009AF551 /* DcWebxdcWidget */;
+			targetProxy = D878C50A2CF72AA1009AF551 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2349,6 +2455,82 @@
 			};
 			name = Release;
 		};
+		D878C50D2CF72AA1009AF551 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DcWebxdcWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DcWebxdcWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcWebxdcWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D878C50E2CF72AA1009AF551 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = "deltachat-ios/deltachat-ios.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DcWebxdcWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DcWebxdcWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcWebxdcWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2384,6 +2566,15 @@
 			buildConfigurations = (
 				B2D0E49A2B93A4B200791949 /* Debug */,
 				B2D0E49B2B93A4B200791949 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D878C5102CF72AA1009AF551 /* Build configuration list for PBXNativeTarget "DcWebxdcWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D878C50D2CF72AA1009AF551 /* Debug */,
+				D878C50E2CF72AA1009AF551 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
