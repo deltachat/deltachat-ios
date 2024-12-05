@@ -222,6 +222,7 @@
 		D878C4FD2CF72AA0009AF551 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */; };
 		D878C4FF2CF72AA0009AF551 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */; };
 		D878C50C2CF72AA1009AF551 /* MostRecentWebXDCWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D878C4FB2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D87C64672D01E4EF004472D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
 		D8C19DCE2C1B456700B32F6D /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */; };
 		D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */; };
@@ -1485,6 +1486,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D87C64672D01E4EF004472D6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
