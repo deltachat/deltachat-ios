@@ -3,7 +3,7 @@ import SwiftUI
 import DcCore
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> UsedWebXDCEntry {
+    func placeholder(in context: Context) -> UsedWebxdcEntry {
         let limit: Int
         switch context.family {
         case .systemSmall:
@@ -15,20 +15,20 @@ struct Provider: TimelineProvider {
         }
 
         let apps = [
-            WebXDCApp(accountId: 0, chatId: 0, messageId: 0, image: UIImage(named: "checklist"), title: "checklist"),
-            WebXDCApp(accountId: 0, chatId: 0, messageId: 1, image: UIImage(named: "hello"), title: "hello"),
-            WebXDCApp(accountId: 0, chatId: 0, messageId: 6, image: UIImage(named: "packabunchas"), title: "packabunchas"),
-            WebXDCApp(accountId: 0, chatId: 0, messageId: 3, image: UIImage(named: "webxdc"), title: "webxdc"),
-            WebXDCApp(accountId: 0, chatId: 0, messageId: 2, image: UIImage(named: "pixel"), title: "pixel"),
-            WebXDCApp(accountId: 0, chatId: 0, messageId: 4, image: UIImage(named: "checklist"), title: "checklist"),
-            WebXDCApp(accountId: 0, chatId: 0, messageId: 5, image: UIImage(named: "hello"), title: "hello"),
-            WebXDCApp(accountId: 0, chatId: 0, messageId: 7, image: UIImage(named: "webxdc"), title: "webxdc"),
+            WebxdcApp(accountId: 0, chatId: 0, messageId: 0, image: UIImage(named: "checklist"), title: "checklist"),
+            WebxdcApp(accountId: 0, chatId: 0, messageId: 1, image: UIImage(named: "hello"), title: "hello"),
+            WebxdcApp(accountId: 0, chatId: 0, messageId: 6, image: UIImage(named: "packabunchas"), title: "packabunchas"),
+            WebxdcApp(accountId: 0, chatId: 0, messageId: 3, image: UIImage(named: "webxdc"), title: "webxdc"),
+            WebxdcApp(accountId: 0, chatId: 0, messageId: 2, image: UIImage(named: "pixel"), title: "pixel"),
+            WebxdcApp(accountId: 0, chatId: 0, messageId: 4, image: UIImage(named: "checklist"), title: "checklist"),
+            WebxdcApp(accountId: 0, chatId: 0, messageId: 5, image: UIImage(named: "hello"), title: "hello"),
+            WebxdcApp(accountId: 0, chatId: 0, messageId: 7, image: UIImage(named: "webxdc"), title: "webxdc"),
         ]
 
-        return UsedWebXDCEntry(date: Date(), apps: Array(apps.prefix(limit)))
+        return UsedWebxdcEntry(date: Date(), apps: Array(apps.prefix(limit)))
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (UsedWebXDCEntry) -> Void) {
+    func getSnapshot(in context: Context, completion: @escaping (UsedWebxdcEntry) -> Void) {
         let entry = placeholder(in: context)
         completion(entry)
     }
@@ -72,7 +72,7 @@ struct Provider: TimelineProvider {
             let accountId = dcContext.id
             let chatId = msg.chatId
 
-            return WebXDCApp(
+            return WebxdcApp(
                 accountId: accountId,
                 chatId: chatId,
                 messageId: msg.id,
@@ -82,7 +82,7 @@ struct Provider: TimelineProvider {
         }
 
         let currentDate = Date()
-        let entry = UsedWebXDCEntry(date: currentDate, apps: apps)
+        let entry = UsedWebxdcEntry(date: currentDate, apps: apps)
         let nextDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
 
         let timeline = Timeline(entries: [entry], policy: .after(nextDate))
@@ -90,13 +90,13 @@ struct Provider: TimelineProvider {
     }
 }
 
-struct UsedWebXDCEntry: TimelineEntry {
+struct UsedWebxdcEntry: TimelineEntry {
 
     let date: Date
-    let apps: [WebXDCApp]
+    let apps: [WebxdcApp]
 }
 
-struct WebXDCApp: Hashable, Identifiable {
+struct WebxdcApp: Hashable, Identifiable {
     var id: Int { messageId }
 
     let accountId: Int
@@ -120,7 +120,7 @@ struct WebXDCApp: Hashable, Identifiable {
     }
 }
 
-struct MostRecentWebXDCWidgetEntryView: View {
+struct DcWebxdcWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
@@ -138,7 +138,7 @@ struct MostRecentWebXDCWidgetEntryView: View {
 }
 
 struct WebXDCAppView: View {
-    var app: WebXDCApp
+    var app: WebxdcApp
 
     var body: some View {
         Link(destination: app.url) {
@@ -156,16 +156,16 @@ struct WebXDCAppView: View {
     }
 }
 
-struct MostRecentWebXDCWidget: Widget {
-    let kind: String = "MostRecentWebXDCWidget"
+struct DcWebxdcWidget: Widget {
+    let kind: String = "DcWebxdcWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
-                MostRecentWebXDCWidgetEntryView(entry: entry)
+                DcWebxdcWidgetEntryView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
             } else {
-                MostRecentWebXDCWidgetEntryView(entry: entry)
+                DcWebxdcWidgetEntryView(entry: entry)
                     .padding()
                     .background()
             }
