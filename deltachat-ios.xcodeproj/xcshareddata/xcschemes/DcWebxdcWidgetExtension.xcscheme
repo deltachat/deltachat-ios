@@ -17,8 +17,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D878C4FA2CF72AA0009AF551"
-               BuildableName = "MostRecentWebXDCWidgetExtension.appex"
-               BlueprintName = "MostRecentWebXDCWidgetExtension"
+               BuildableName = "DcWebxdcWidget.appex"
+               BlueprintName = "DcWebxdcWidget"
                ReferencedContainer = "container:deltachat-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D878C4FA2CF72AA0009AF551"
-            BuildableName = "MostRecentWebXDCWidgetExtension.appex"
-            BlueprintName = "MostRecentWebXDCWidgetExtension"
+            BuildableName = "DcWebxdcWidget.appex"
+            BlueprintName = "DcWebxdcWidget"
             ReferencedContainer = "container:deltachat-ios.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
