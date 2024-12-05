@@ -4,7 +4,7 @@
 
 - offer to open http-links detected as proxy also in the browser (#6237)
 - Show notifications for reactions on own messages (#2331)
-- Dark mode and adaptive app icon (#2425)
+- Icons for Dark-mode and tint colors (#2425)
 
 
 ## v1.48.4
