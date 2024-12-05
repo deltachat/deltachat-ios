@@ -221,7 +221,7 @@
 		D85DF9802C5250E200A01408 /* ProgressAlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */; };
 		D878C4FD2CF72AA0009AF551 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */; };
 		D878C4FF2CF72AA0009AF551 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */; };
-		D878C50C2CF72AA1009AF551 /* MostRecentWebXDCWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D878C4FB2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D878C50C2CF72AA1009AF551 /* DcWebxdcWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D87C64672D01E4EF004472D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
 		D8C19DCE2C1B456700B32F6D /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */; };
@@ -281,7 +281,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				B2D0E4992B93A4B200791949 /* DcNotificationService.appex in Embed Foundation Extensions */,
-				D878C50C2CF72AA1009AF551 /* MostRecentWebXDCWidgetExtension.appex in Embed Foundation Extensions */,
+				D878C50C2CF72AA1009AF551 /* DcWebxdcWidget.appex in Embed Foundation Extensions */,
 				30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -633,7 +633,7 @@
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
 		D85DF9772C4A96CB00A01408 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAlertHandler.swift; sourceTree = "<group>"; };
-		D878C4FB2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MostRecentWebXDCWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DcWebxdcWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantOnboardingView.swift; sourceTree = "<group>"; };
@@ -656,12 +656,12 @@
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = D878C4FA2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension */;
+			target = D878C4FA2CF72AA0009AF551 /* DcWebxdcWidget */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D878C5002CF72AA0009AF551 /* MostRecentWebXDCWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D878C50F2CF72AA1009AF551 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = MostRecentWebXDCWidget; sourceTree = "<group>"; };
+		D878C5002CF72AA0009AF551 /* DcWebxdcWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D878C50F2CF72AA1009AF551 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = DcWebxdcWidget; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -917,7 +917,7 @@
 				7A9FB1421FB061E2001FEA36 /* deltachat-ios */,
 				30E8F2112447285600CE2C90 /* DcShare */,
 				B2D0E4932B93A4B200791949 /* DcNotificationService */,
-				D878C5002CF72AA0009AF551 /* MostRecentWebXDCWidget */,
+				D878C5002CF72AA0009AF551 /* DcWebxdcWidget */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
 				AFE4D4B4B038293E63BC1537 /* Pods */,
@@ -933,7 +933,7 @@
 				7A9FB1401FB061E2001FEA36 /* deltachat-ios.app */,
 				30E8F2102447285600CE2C90 /* Delta Chat.appex */,
 				B2D0E4922B93A4B200791949 /* DcNotificationService.appex */,
-				D878C4FB2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension.appex */,
+				D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1312,9 +1312,9 @@
 			productReference = B2D0E4922B93A4B200791949 /* DcNotificationService.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		D878C4FA2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension */ = {
+		D878C4FA2CF72AA0009AF551 /* DcWebxdcWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D878C5102CF72AA1009AF551 /* Build configuration list for PBXNativeTarget "MostRecentWebXDCWidgetExtension" */;
+			buildConfigurationList = D878C5102CF72AA1009AF551 /* Build configuration list for PBXNativeTarget "DcWebxdcWidget" */;
 			buildPhases = (
 				D878C4F72CF72AA0009AF551 /* Sources */,
 				D878C4F82CF72AA0009AF551 /* Frameworks */,
@@ -1326,13 +1326,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				D878C5002CF72AA0009AF551 /* MostRecentWebXDCWidget */,
+				D878C5002CF72AA0009AF551 /* DcWebxdcWidget */,
 			);
-			name = MostRecentWebXDCWidgetExtension;
+			name = DcWebxdcWidget;
 			packageProductDependencies = (
 			);
 			productName = MostRecentWebXDCWidgetExtension;
-			productReference = D878C4FB2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension.appex */;
+			productReference = D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -1438,7 +1438,7 @@
 				7A9FB13F1FB061E2001FEA36 /* deltachat-ios */,
 				30E8F20F2447285600CE2C90 /* DcShare */,
 				B2D0E4912B93A4B200791949 /* DcNotificationService */,
-				D878C4FA2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension */,
+				D878C4FA2CF72AA0009AF551 /* DcWebxdcWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -1855,7 +1855,7 @@
 		};
 		D878C50B2CF72AA1009AF551 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D878C4FA2CF72AA0009AF551 /* MostRecentWebXDCWidgetExtension */;
+			target = D878C4FA2CF72AA0009AF551 /* DcWebxdcWidget */;
 			targetProxy = D878C50A2CF72AA1009AF551 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2471,8 +2471,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MostRecentWebXDCWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MostRecentWebXDCWidget;
+				INFOPLIST_FILE = DcWebxdcWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DcWebxdcWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2484,7 +2484,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.MostRecentWebXDCWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcWebxdcWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -2510,8 +2510,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MostRecentWebXDCWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MostRecentWebXDCWidget;
+				INFOPLIST_FILE = DcWebxdcWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DcWebxdcWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2522,7 +2522,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.MostRecentWebXDCWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcWebxdcWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2570,7 +2570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D878C5102CF72AA1009AF551 /* Build configuration list for PBXNativeTarget "MostRecentWebXDCWidgetExtension" */ = {
+		D878C5102CF72AA1009AF551 /* Build configuration list for PBXNativeTarget "DcWebxdcWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D878C50D2CF72AA1009AF551 /* Debug */,
