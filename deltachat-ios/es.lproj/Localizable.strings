@@ -5,6 +5,10 @@
 // deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "o";
 "clear_search" = "Borrar búsqueda";
+// a noun, used on a button, short for "show link"
+"link" = "Enlace";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Escanear";
 "yes" = "Sí";
 "no" = "No";
 "select" = "Seleccionar";
@@ -191,6 +195,7 @@
 "menu_message_details" = "Detalles del mensaje";
 "menu_copy_to_clipboard" = "Copiar al portapapeles";
 "share_invite_link" = "Compartir enlace de invitación";
+"share_invite_link_explain" = "Cualquier persona que tenga este enlace podrá ver tu perfil y comenzar a chatear contigo. Compártelo solo con personas en las que confíes.";
 "invite_friends" = "Invitar amigos";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Contáctame en Delta Chat:\n%1$@";
@@ -359,6 +364,8 @@
 "send_file_to" = "Enviar \"%1$@\" a…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Enviar mensaje a…";
+"enable_realtime" = "Aplicaciones en tiempo real";
+"enable_realtime_explain" = "Habilite las conexiones en tiempo real para las aplicaciones compartidas en los chats. Si esta opción está habilitada, los participantes del chat podrán descubrir su dirección IP cuando inicie una aplicación.";
 // map
 "filter_map_on_time" = "Mostrar ubicaciones en el marco de tiempo";
 "show_location_traces" = "Mostrar trazas";
@@ -381,6 +388,8 @@
 "search_files" = "Buscar archivos";
 "search_explain" = "Buscar chats, contactos, y mensajes";
 "search_no_result_for_x" = "No se encontraron resultados para \"%1$@\"";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "No leído";
 // create/edit groups, contact/group profile
 "group_name" = "Nombre del grupo";
 "group_avatar" = "Imagen del grupo";
@@ -512,6 +521,19 @@
 "login_smtp_port" = "Puerto SMTP";
 "login_smtp_security" = "Seguridad SMTP";
 "login_auth_method" = "Método de autorización";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+"proxy_settings" = "Proxy";
+"proxy_use_proxy" = "Usar proxy";
+"proxy_add" = "Añadir proxy";
+"proxy_add_explain" = "Tipos de proxy admitidos: HTTP(S), SOCKS5 y Shadowsocks.";
+"proxy_add_url_hint" = "Introduzca el enlace del proxy aquí";
+"proxy_invalid" = "Proxy no válido o no compatible";
+"proxy_list_header" = "Proxies guardados";
+"proxy_delete" = "Eliminar proxy";
+"proxy_delete_explain" = "¿Seguro que quieres eliminar \"%1$@\"?";
+"proxy_use_proxy_confirm" = "¿Quieres utilizar el proxy \"%1$@\"?";
+"proxy_share_explain" = "Tus amigos pueden agregar este proxy escaneando el código QR.";
+"proxy_share_link" = "Compartir enlace";
 // deprecated
 "login_socks5" = "SOCKS5";
 "login_socks5_use_socks5" = "Usar SOCKS5";
@@ -535,6 +557,9 @@
 "accept_invalid_certificates" = "Aceptar certificados no válidos";
 "switch_account" = "Cambiar cuenta";
 "add_account" = "Agregar cuenta";
+"profile_tag" = "Etiqueta privada";
+"profile_tag_hint" = "ej. Trabajo, Familia";
+"profile_tag_explain" = "Etiqueta que es visible sólo para ti; útil para diferenciar tus perfiles.";
 "delete_account" = "Eliminar cuenta";
 "delete_account_ask" = "¿Estás seguro de que quieres eliminar los datos de tu cuenta?";
 "delete_account_explain_with_name" = "Todos los datos de la cuenta de \"%1$@\" este dispositivo serán eliminados. Incluyendo la configuración de encriptado punto a punto, contactos, chats, mensajes y multimedia. Esta acción no puede ser deshecha.";
@@ -547,6 +572,8 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Reenviar a…";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "¿Enviar %1$d archivos a \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "¿Enviar %1$d archivo(s) a %2$d chats?";
 "share_text_multiple_chats" = "¿Enviar este texto  a %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Intercambio abortado debido a la falta de permisos.";
