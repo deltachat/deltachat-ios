@@ -21,7 +21,7 @@ the "update-core-and-stuff-DATE" PR can be merged without review
 then, create a "bump-to-VERSION" PR:
 
 3. update CHANGELOG.md:  
-   a) add title `## v1.2.3` or `## v1.2.3 Testflight`  
+   a) add title `## v1.2.3` or `## v1.2.3 Testflight`, add date as `YYYY-MM`
    b) redact lines from `## Unreleased` there  
    c) add core version to end of changelog entry as `- update to core 1.2.3` or `- using core 1.2.3`  
    c) incorporate <https://github.com/deltachat/deltachat-core-rust/blob/main/CHANGELOG.md>
@@ -31,7 +31,7 @@ then, create a "bump-to-VERSION" PR:
    the entries should be summarized.
    this makes it easier for the end user to follow changes by showing major changes atop.
 
-4. on major changes, add a device message to `ChatListController::viewDidLoad()`
+4. on major changes, add a device message to `ChatListViewController::viewDidLoad()`
    or remove the old one.
    do not repeat the CHANGELOG here: write what really is the UX outcome
    in a few lines of easy speak without technical terms.
