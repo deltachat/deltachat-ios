@@ -4,11 +4,32 @@ import DcCore
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> UsedWebXDCEntry {
-        UsedWebXDCEntry(date: Date(), apps: [])
+        let limit: Int
+        switch context.family {
+        case .systemSmall:
+            limit = 4
+        case .systemMedium:
+            limit = 7
+        default:
+            limit = 7
+        }
+
+        let apps = [
+            WebXDCApp(accountId: 0, chatId: 0, messageId: 0, image: UIImage(named: "checklist"), title: "checklist"),
+            WebXDCApp(accountId: 0, chatId: 0, messageId: 1, image: UIImage(named: "hello"), title: "hello"),
+            WebXDCApp(accountId: 0, chatId: 0, messageId: 6, image: UIImage(named: "packabunchas"), title: "packabunchas"),
+            WebXDCApp(accountId: 0, chatId: 0, messageId: 3, image: UIImage(named: "webxdc"), title: "webxdc"),
+            WebXDCApp(accountId: 0, chatId: 0, messageId: 2, image: UIImage(named: "pixel"), title: "pixel"),
+            WebXDCApp(accountId: 0, chatId: 0, messageId: 4, image: UIImage(named: "checklist"), title: "checklist"),
+            WebXDCApp(accountId: 0, chatId: 0, messageId: 5, image: UIImage(named: "hello"), title: "hello"),
+            WebXDCApp(accountId: 0, chatId: 0, messageId: 7, image: UIImage(named: "webxdc"), title: "webxdc"),
+        ]
+
+        return UsedWebXDCEntry(date: Date(), apps: Array(apps.prefix(limit)))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (UsedWebXDCEntry) -> Void) {
-        let entry = UsedWebXDCEntry(date: Date(), apps: [])
+        let entry = placeholder(in: context)
         completion(entry)
     }
 
@@ -106,7 +127,7 @@ struct MostRecentWebXDCWidgetEntryView: View {
             let rows = [GridItem(.fixed(56)), GridItem(.fixed(56))]
             LazyHGrid(rows: rows) {
                 ForEach(entry.apps) { app in
-                    WebXDCAppView(app: app)
+                    WebXDCAppView(app: app).accessibilityLabel(Text(app.title))
                 }
             }
         }
