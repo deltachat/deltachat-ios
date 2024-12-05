@@ -5,6 +5,5 @@ import SwiftUI
 struct MostRecentWebXDCWidgetBundle: WidgetBundle {
     var body: some Widget {
         MostRecentWebXDCWidget()
-        MostRecentWebXDCWidgetControl()
     }
 }
