@@ -34,6 +34,9 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        /// ----------------------------------
+        /// **DO NOT** START dcAccounts.startIo() IN WIDGET
+        /// ----------------------------------
         let dcAccounts = DcAccounts.shared
         dcAccounts.openDatabase(writeable: false)
         for accountId in dcAccounts.getAll() {
@@ -122,7 +125,7 @@ struct MostRecentWebXDCWidgetEntryView: View {
 
     var body: some View {
         if entry.apps.isEmpty {
-            Text("No apps (yet)")
+            Text(String.localized("widget_no_apps"))
         } else {
             let rows = [GridItem(.fixed(56)), GridItem(.fixed(56))]
             LazyHGrid(rows: rows) {
@@ -153,7 +156,6 @@ struct WebXDCAppView: View {
     }
 }
 
-// TODO: Localization
 struct MostRecentWebXDCWidget: Widget {
     let kind: String = "MostRecentWebXDCWidget"
 
@@ -169,7 +171,7 @@ struct MostRecentWebXDCWidget: Widget {
             }
         }
         .supportedFamilies([.systemSmall, .systemMedium]) 
-        .configurationDisplayName("Most Recent WebXDC-apps")
-        .description("Shows the n moth recent WebXDC-apps")
+        .configurationDisplayName(String.localized("widget_most_recent_apps_title"))
+        .description(String.localized("widget_most_recent_apps_description"))
     }
 }
