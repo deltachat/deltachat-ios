@@ -1,20 +1,44 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.50.1
+2024-12
 
-- offer to open http-links detected as proxy also in the browser (#6237)
 - Show notifications for reactions on own messages (#2331)
 - Icons for Dark-mode and tint colors (#2425)
+- offer to open http-links detected as proxy also in the browser (#6237)
+- Improve compatibility with classic email clients in the outgoing messages
+- Use Rustls for connections with strict TLS
+- Mark Saved Messages chat as protected
+- Allow the user to replace maps integration
+- QR codes for adding contacts and joining groups provide help when opened in a normal browser
+- Encrypt notification tokens
+- Webxdc can now trigger notifications
+- Webxdc can now deep-link to internal sections when you click their info-messages in chat
+- Use privacy-preserving webxdc addresses
+- fix: Trim whitespace from scanned QR codes
+- fix quotes: Line-before-quote may be up to 120 character long instead of 80
+- fix: Prevent accidental wrong-password-notifications
+- fix: Remove footers from "Show Full Message..."
+- fix: Only add "member added/removed" messages if they actually do that
+- fix: Update state of message when fully downloading it
+- fix: send message: Do not fail if the message does not exist anymore
+- fix: Do not percent-encode dot when passing to autoconfig server (so, fix handling of some servers)
+- fix displaynames not being updated when intially scanned by a QR code
+- update to core 1.151.5
 
 
 ## v1.48.4
+2024-11
 
-- fix: show forward-icon on iOS 15 and older
 - Add an option to use Proxy-servers (#2382, #2390)
 - Show on Chatlist if there are Proxy-servers (#2383)
 - Detect Proxy-servers in Chat-messages (#2389)
 - Share Proxy-servers with your friends, family and allies (#2394)
+- Scan Proxy-QR-Codes (#2404)
 - fix: no startup delay when processing PUSH notifications in parallel, just show "Updating..." in title bar
+- fix: show forward-icon on iOS 15 and older
+- using core 1.148.6
+
 
 ## v1.48.3
 2024-11
