@@ -195,6 +195,7 @@
 		B20462E42440A4A600367A57 /* AutodelOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E32440A4A600367A57 /* AutodelOverviewViewController.swift */; };
 		B20462E62440C99600367A57 /* AutodelOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20462E52440C99600367A57 /* AutodelOptionsViewController.swift */; };
 		B206C2AB2B7B8088003ACBE6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B206C2AA2B7B8088003ACBE6 /* MapViewController.swift */; };
+		B20A907B2D05112800F44463 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A907A2D05112700F44463 /* NotificationsViewController.swift */; };
 		B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */; };
 		B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2172F3B29C125F2002C289E /* AdvancedViewController.swift */; };
 		B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B259D64229B771D5008FB706 /* BackupTransferViewController.swift */; };
@@ -548,6 +549,7 @@
 		B209B2042B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B209B2052B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B209B2062B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = vi; path = vi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		B20A907A2D05112700F44463 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailOptionsViewController.swift; sourceTree = "<group>"; };
 		B2172F3B29C125F2002C289E /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
 		B2537DD625E2F92F0010D739 /* ckb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ckb; path = ckb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1178,6 +1180,7 @@
 				D8CF2DDB2CDD110F001C2352 /* Proxy */,
 				78E45E3921D3CFBC00D4B15E /* SettingsViewController.swift */,
 				B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */,
+				B20A907A2D05112700F44463 /* NotificationsViewController.swift */,
 				B2172F3B29C125F2002C289E /* AdvancedViewController.swift */,
 				AEE6EC472283045D00EDC689 /* SelfProfileViewController.swift */,
 				B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */,
@@ -1779,6 +1782,7 @@
 				70B8882E2091B8550074812E /* ContactCell.swift in Sources */,
 				305961CD2346125100C80F33 /* UIEdgeInsets+Extensions.swift in Sources */,
 				30EF7324252FF15F00E2C54A /* MessageLabel.swift in Sources */,
+				B20A907B2D05112800F44463 /* NotificationsViewController.swift in Sources */,
 				30C0D49D237C4908008E2A0E /* CertificateCheckController.swift in Sources */,
 				3080A034277DE30100E74565 /* NSNotification+Extensions.swift in Sources */,
 				3080A01B277DDB8A00E74565 /* InputPlugin.swift in Sources */,
