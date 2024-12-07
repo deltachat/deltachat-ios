@@ -52,22 +52,14 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var notificationSwitch: UISwitch = {
-        let switchControl = UISwitch()
-        switchControl.isOn = !dcContext.isMuted()
-        switchControl.addTarget(self, action: #selector(handleNotificationToggle(_:)), for: .valueChanged)
-        return switchControl
-    }()
-
     private lazy var notificationCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.notifications.rawValue
         cell.textLabel?.text = String.localized("pref_notifications")
         if #available(iOS 16.0, *) {
             cell.imageView?.image = UIImage(systemName: "bell")
         }
-        cell.accessoryView = notificationSwitch
-        cell.selectionStyle = .none
+        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
@@ -220,7 +212,7 @@ internal final class SettingsViewController: UITableViewController {
         case .profile: showEditSettingsController()
         case .chatsAndMedia: showChatsAndMedia()
         case .addAnotherDevice: showBackupProviderViewController()
-        case .notifications: break
+        case .notifications: showNotificationsViewController()
         case .advanced: showAdvanced()
         case .help: showHelp()
         case .connectivity: showConnectivity()
@@ -248,26 +240,12 @@ internal final class SettingsViewController: UITableViewController {
         }
     }
 
-    // MARK: - actions
-    @objc private func handleNotificationToggle(_ sender: UISwitch) {
-        dcContext.setMuted(!sender.isOn)
-        if sender.isOn {
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.registerForNotifications()
-            }
-        } else {
-            NotificationManager.removeAllNotifications()
-        }
-        
-        NotificationManager.updateBadgeCounters()
-        NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
-    }
-
     // MARK: - updates
     private func updateCells() {
         profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
         connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: dcContext,
                                                                                connectedString: String.localized("connectivity_connected"))
+        notificationCell.detailTextLabel?.text = String.localized(dcContext.isMuted() ? "off" : "on")
     }
 
     // MARK: - coordinator
@@ -278,6 +256,10 @@ internal final class SettingsViewController: UITableViewController {
 
     private func showChatsAndMedia() {
         navigationController?.pushViewController(ChatsAndMediaViewController(dcAccounts: dcAccounts), animated: true)
+    }
+
+    private func showNotificationsViewController() {
+        navigationController?.pushViewController(NotificationsViewController(dcAccounts: dcAccounts), animated: true)
     }
 
     private func showBackupProviderViewController() {
