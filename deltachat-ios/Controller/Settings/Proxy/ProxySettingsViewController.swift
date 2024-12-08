@@ -64,6 +64,14 @@ class ProxySettingsViewController: UITableViewController {
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let proxies = dcContext.getProxies()
+        self.proxies = proxies
+        self.selectedProxy = proxies.first
+    }
+
     // MARK: - Actions
 
     private func selectProxy(at indexPath: IndexPath) {
@@ -134,6 +142,7 @@ class ProxySettingsViewController: UITableViewController {
 
             self.proxies.remove(at: indexPath.row)
             self.dcContext.setProxies(proxyURLs: proxies)
+            self.dcAccounts.restartIO()
             DispatchQueue.main.async {
                 self.toggleProxyCell.uiSwitch.isEnabled = (self.proxies.isEmpty == false)
                 self.tableView.reloadData()
@@ -164,12 +173,7 @@ class ProxySettingsViewController: UITableViewController {
 
     @objc private func handleConnectivityChanged(_ notification: Notification) {
         DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-
-            let proxies = dcContext.getProxies()
-            self.proxies = proxies
-            self.selectedProxy = proxies.first
-            self.tableView.reloadData()
+            self?.tableView.reloadData()
         }
     }
 }
