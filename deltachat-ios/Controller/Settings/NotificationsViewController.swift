@@ -34,6 +34,7 @@ internal final class NotificationsViewController: UITableViewController {
                     NotificationManager.removeAllNotifications()
                 }
 
+                updateCells()
                 NotificationManager.updateBadgeCounters()
                 NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
         })
@@ -42,7 +43,7 @@ internal final class NotificationsViewController: UITableViewController {
     private lazy var mentionsCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("pref_mention_notifications"),
-            on: dcContext.isMentionsEnabled(),
+            on: false, // set in updateCells()
             action: { [weak self] cell in
                 self?.dcContext.setMentionsEnabled(cell.isOn)
         })
@@ -75,6 +76,11 @@ internal final class NotificationsViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateCells()
+    }
+
     // MARK: - UITableViewDelegate + UITableViewDatasource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -94,5 +100,10 @@ internal final class NotificationsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return sections[section].footerTitle
+    }
+
+    private func updateCells() {
+        mentionsCell.uiSwitch.isEnabled = !dcContext.isMuted()
+        mentionsCell.uiSwitch.isOn = !dcContext.isMuted() && dcContext.isMentionsEnabled()
     }
 }
