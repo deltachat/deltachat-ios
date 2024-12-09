@@ -222,6 +222,7 @@
 "pref_app_access" = "Acesso à App";
 "pref_chats" = "chats";
 "pref_in_chat_sounds" = "Sons na chat";
+// deprecated
 "pref_message_text_size" = "Tamanho do texto das mensagens";
 "pref_view_log" = "Ver o log";
 "pref_other" = "Outro";

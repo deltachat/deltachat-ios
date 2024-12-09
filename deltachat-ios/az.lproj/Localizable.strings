@@ -275,6 +275,7 @@
 "pref_app_access" = "Daxil oldu";
 "pref_chats" = "Çatlar";
 "pref_in_chat_sounds" = "Çatda olan səslər";
+// deprecated
 "pref_message_text_size" = "Mətnin ölçüsü";
 "pref_view_log" = "Log-a bax";
 "pref_saved_log" = "Loqi Yükləmələr qovluğuna saxlanıldı";

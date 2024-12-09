@@ -602,6 +602,8 @@
 "pref_screen_security_explain" = "Request to block screenshots in the recents list and inside the app";
 "pref_screen_security_please_restart_hint" = "To apply the screen security setting please restart the app.";
 "pref_notifications" = "Notifications";
+"pref_mention_notifications" = "Mentions";
+"pref_mention_notifications_explain" = "In muted groups, notify messages directed to you, like replies or reactions";
 "pref_notifications_show" = "Show";
 "pref_notifications_priority" = "Priority";
 "pref_notifications_explain" = "Enable system notifications for new messages";
@@ -636,6 +638,7 @@
 "pref_app_access" = "App Access";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "In-Chat Sounds";
+// deprecated
 "pref_message_text_size" = "Message Font Size";
 "pref_view_log" = "View Log";
 "pref_saved_log" = "Saved the log to \"Downloads\" folder";
@@ -1050,7 +1053,7 @@
 "perm_enable_bg_reminder_title" = "Tap here to receive messages while Delta Chat is in the background.";
 "perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 // device messages for updates
-"update_1_46_android" = "New Onboarding 🐣 and More:\n\n⚡️ Sign up to secure fast chatmail servers (https://delta.chat/chatmail) or use classic e-mail servers\n\n👉 PUSH notifications for any chatmail server\n\n👤 Connect your friends securely via \"Attach contacts\"\n\n🥰 React with any emoji\n\n📌 Pin chats directly from search … and MORE at %1$@";
+"update_1_50_android" = "What\'s new?\n\n❤️‍🔥 New emojis picker with more emoji\n\n🎮 Enhanced in-chat apps: Get notifications and open supporting apps in context, i.e. open an added calendar entry directly\n\n👍 Get notified about reactions to your messages\n\n... 🛠️ FIXES and EVEN MORE at %1$@";
 "update_1_46_ios" = "New Onboarding 🐣 and More:\n\n⚡️ Sign up to secure fast chatmail servers (https://delta.chat/chatmail) or use classic e-mail servers\n\n👉 PUSH notifications for any chatmail server\n\n👤 Receive \"Attached contacts\" and connect to your friends\n\n🥰 Faster reaction selection … and MORE at %1$@";
 "update_switch_profile_placement" = "ℹ️ \"Switch Profile\" option moved: Tap your profile image in the upper corner of the main screen to add or switch profiles 💡";
 // iOS specific untranslated strings

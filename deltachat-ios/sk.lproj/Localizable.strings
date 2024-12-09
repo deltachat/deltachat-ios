@@ -493,6 +493,7 @@
 "pref_app_access" = "Prístup k aplikácii";
 "pref_chats" = "Konverzácie";
 "pref_in_chat_sounds" = "Zvuky v konverzáciách";
+// deprecated
 "pref_message_text_size" = "Veľkosť písma správy";
 "pref_view_log" = "Prezrieť záznam";
 "pref_saved_log" = "Denník bol uložený do priečinka „Súbory na stiahnutie“";

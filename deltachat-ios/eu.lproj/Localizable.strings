@@ -307,6 +307,7 @@
 "pref_app_access" = "Aplikazio sarbidea";
 "pref_chats" = "Txatak";
 "pref_in_chat_sounds" = "Txat bitarteko soinuak";
+// deprecated
 "pref_message_text_size" = "Mezuen letra tamaina";
 "pref_view_log" = "Ikusi egunkaria";
 "pref_saved_log" = "Egunkaria deskargen karpetan gorde da";

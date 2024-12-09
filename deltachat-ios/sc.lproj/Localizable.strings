@@ -351,6 +351,7 @@
 "pref_app_access" = "Atzessu a s\'aplicatzione";
 "pref_chats" = "Tzarradas";
 "pref_in_chat_sounds" = "Sonos in sa tzarrada";
+// deprecated
 "pref_message_text_size" = "Mannària de sos caràteres in sos messàgios";
 "pref_view_log" = "Pòmpia su registru";
 "pref_saved_log" = "Registru sarvadu in sa cartella \"Iscarrigamentos\"";

@@ -461,6 +461,7 @@
 "pref_app_access" = "ចូលដំណើរការកម្មវិធី";
 "pref_chats" = "សន្ទនា";
 "pref_in_chat_sounds" = "សម្លេងនៅក្នុងសន្ទនា";
+// deprecated
 "pref_message_text_size" = "ទំហំអក្សរសារ";
 "pref_view_log" = "មើលកំណត់ហេតុ";
 "pref_saved_log" = "បានរក្សាទុក កំណត់ហេតុទៅថតឯកសារ \"ទាញយក\"";

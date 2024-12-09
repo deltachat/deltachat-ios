@@ -486,6 +486,7 @@
 "pref_app_access" = "Prieiga prie programėlės";
 "pref_chats" = "Pokalbiai";
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
+// deprecated
 "pref_message_text_size" = "Žinučių šrifto dydis";
 "pref_view_log" = "Rodyti žurnalą";
 "pref_saved_log" = "Žurnalas įrašytas į „Atsiuntimų“ aplanką";

@@ -173,6 +173,7 @@
 "pref_app_access" = "Pristup aplikaciji";
 "pref_chats" = "Razgovori";
 "pref_in_chat_sounds" = "Zvuk unutar razgovora";
+// deprecated
 "pref_message_text_size" = "Veličina fonta poruke";
 "pref_other" = "Ostalo";
 "pref_backup" = "Sigurnosna kopija";

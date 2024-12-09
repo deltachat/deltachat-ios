@@ -502,6 +502,7 @@
 "pref_app_access" = "Acceso a app";
 "pref_chats" = "Conversas";
 "pref_in_chat_sounds" = "Sons na conversa";
+// deprecated
 "pref_message_text_size" = "Tamaño da letra na mensaxe";
 "pref_view_log" = "Ver rexistro";
 "pref_saved_log" = "Gardouse o rexistro no cartafol \"Descargas\"";

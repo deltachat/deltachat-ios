@@ -358,6 +358,7 @@
 "pref_app_access" = "ڕێگەپێدان";
 "pref_chats" = "وتووێژەکان";
 "pref_in_chat_sounds" = "دەنگەکانی نێو-وتووێژی";
+// deprecated
 "pref_message_text_size" = "قەبارەی فۆنتی پەیامەکان";
 "pref_other" = "کەسانی دی";
 "pref_backup" = "یەدەک";

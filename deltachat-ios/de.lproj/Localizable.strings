@@ -602,6 +602,8 @@
 "pref_screen_security_explain" = "Aufforderung zum Sperren von Screenshots in der kürzlich erstellten Liste und in der App";
 "pref_screen_security_please_restart_hint" = "Um die Bildschirmsicherheitseinstellungen anzuwenden, bitte App neu starten.";
 "pref_notifications" = "Benachrichtigungen";
+"pref_mention_notifications" = "Erwähnungen";
+"pref_mention_notifications_explain" = "In stummgeschalteten Gruppen, über an Sie gerichtete Nachrichten, wie Antworten oder Reaktionen, benachrichtigen";
 "pref_notifications_show" = "Anzeigen";
 "pref_notifications_priority" = "Priorität";
 "pref_notifications_explain" = "System-Benachrichtigungen bei neuen Nachrichten aktivieren";
@@ -636,6 +638,7 @@
 "pref_app_access" = "App-Zugriff";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "In-Chat-Klänge";
+// deprecated
 "pref_message_text_size" = "Schriftgröße";
 "pref_view_log" = "Protokoll anzeigen";
 "pref_saved_log" = "Die Logdatei wurde im Downloads Ordner gespeichert.";
@@ -1050,6 +1053,6 @@
 "perm_enable_bg_reminder_title" = "Tippen Sie hier, um Nachrichten zu empfangen, während Delta Chat im Hintergrund läuft.";
 "perm_enable_bg_already_done" = "Sie haben Delta Chat bereits erlaubt, Nachrichten im Hintergrund zu empfangen.\n\nFalls keine Nachrichten eingehen, überprüfen Sie bitte auch Ihre Systemeinstellungen.";
 // device messages for updates
-"update_1_46_android" = "Neuer Startbildschirm 🐣 und mehr:\n\n⚡️ Melden Sie sich bei sicheren, schnellen Chatmail-Servern (https://delta.chat/chatmail) an oder nutzen Sie klassische E-Mail-Server\n\n👉 PUSH-Benachrichtigungen auf allen Chatmail-Server\n\n👤 Bringen Sie Ihre Freunde über „Kontakte anhängen“ sicher in Kontakt\n\n🥰 Mit beliebigen Emojis reagieren\n\n📌 Pinnen von Chats direkt aus der Suche ... und MEHR auf %1$@";
+"update_1_50_android" = "Was ist neu?\n\n❤️‍🔥 Neuer Emoji-icker mit mehr Emojis\n\n🎮 In-Chat-App Verbesserungen: Benachrichtigungen erhalten und Apps im Kontext öffnen, z.B. einen hinzugefügten Kalendereintrag direkt anzeigen\n\n👍 Lassen Sie sich über Reaktionen auf Ihre Nachrichten benachrichtigen\n\n... 🛠️ FIXES und NOCH MEHR unter %1$@";
 "update_1_46_ios" = "Neuer Startbildschirm 🐣 und mehr:\n\n⚡️ Melden Sie sich bei sicheren, schnellen Chatmail-Servern (https://delta.chat/chatmail) an oder nutzen Sie klassische E-Mail-Server\n\n👉 PUSH-Benachrichtigungen auf allen Chatmail-Server\n\n👤 Empfangen Sie „Angehängte Kontakte“ von Ihren Freunden\n\n🥰 Direktere Auswahl von Reaktionen ... und MEHR auf %1$@";
 "update_switch_profile_placement" = "ℹ️ \"Profil wechseln\" verschoben: Tippen Sie auf Ihr Profilbild in der oberen Ecke des Hauptbildschirms, um Profile hinzuzufügen oder zu wechseln 💡.";

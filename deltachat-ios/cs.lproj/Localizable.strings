@@ -463,6 +463,7 @@
 "pref_app_access" = "Přístup aplikace";
 "pref_chats" = "Chaty";
 "pref_in_chat_sounds" = "Zvuky v rámci chatu";
+// deprecated
 "pref_message_text_size" = "Velikost písma zprávy";
 "pref_view_log" = "Zobrazit záznam běhu";
 "pref_saved_log" = "Záznam běhu uložen do složky \"Downloads\"";
