@@ -564,6 +564,7 @@
 "pref_app_access" = "Quyền truy cập ứng dụng";
 "pref_chats" = "Trò chuyện";
 "pref_in_chat_sounds" = "Âm thanh trong cuộc trò chuyện";
+// deprecated
 "pref_message_text_size" = "Kích thước phông chữ tin nhắn";
 "pref_view_log" = "Xem nhật ký";
 "pref_saved_log" = "Đã lưu nhật ký vào thư mục \"Tải xuống\"";

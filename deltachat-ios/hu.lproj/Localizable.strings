@@ -636,6 +636,7 @@
 "pref_app_access" = "Alkalmazás-hozzáférés";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
+// deprecated
 "pref_message_text_size" = "Üzenetek betűmérete";
 "pref_view_log" = "Naplófájl megtekintése";
 "pref_saved_log" = "A naplófájl elmentve a „Letöltések” mappába";
@@ -1049,8 +1050,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Koppintson ide az üzenetek fogadásához, miközben a Delta Chat a háttérben fut.";
 "perm_enable_bg_already_done" = "Már engedélyezve van a Delta Chat számára, hogy a háttérben üzeneteket fogadjon.\n\nHa az üzenetek még mindig nem érkeznek meg a háttérben, ellenőrizze a rendszerbeállításokat is.";
-// device messages for updates
-"update_1_46_android" = "Új szolgáltatások 🐣 és további tudnivalók:\n\n⚡️ Regisztráljon biztonságos, gyors chatmail-kiszolgálókra (https://delta.chat/chatmail) vagy használja a klasszikus e-mail-kiszolgálókat\n\n👉 PUSH értesítések bármely chatmail-kiszolgálóra\n\n👤 Kapcsolja össze ismerőseit biztonságosan a „Névjegyek csatolásával”\n\n🥰 Reagáljon bármilyen hangulatjellel\n\n📌 Tűzze ki a csevegéseket közvetlenül a keresésből … tudjon meg többet itt: %1$@";
 "update_1_46_ios" = "Új szolgáltatások 🐣 és további tudnivalók:\n\n⚡️ Regisztráljon biztonságos, gyors chatmail-kiszolgálókra (https://delta.chat/chatmail) vagy használja a klasszikus e-mail-kiszolgálókat\n\n👉 PUSH értesítések bármely chatmail-kiszolgálóra\n\n👤 Fogadjon „Csatolt névjegyeket\" és csatlakozzon az ismerőseihez\n\n🥰 Gyorsabb üzenetreakció kiválasztás … tudjon meg többet itt: %1$@";
 "update_switch_profile_placement" = "ℹ️ A „Profilváltás” beállítás át lett helyezve:
 Érintse meg a főképernyő felső sarkában lévő profilképet a profilok hozzáadásához vagy váltásához 💡";

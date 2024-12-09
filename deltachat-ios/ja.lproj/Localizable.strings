@@ -404,6 +404,7 @@
 "pref_app_access" = "アプリのアクセス";
 "pref_chats" = "チャット";
 "pref_in_chat_sounds" = "着信音";
+// deprecated
 "pref_message_text_size" = "文字の大きさ";
 "pref_view_log" = "ログの表示";
 "pref_saved_log" = "ログはダウンロードフォルダに保存されました。";

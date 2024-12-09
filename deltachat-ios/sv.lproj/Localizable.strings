@@ -604,6 +604,7 @@
 "pref_app_access" = "Programåtkomst";
 "pref_chats" = "Chattar";
 "pref_in_chat_sounds" = "Ljud i konversationer";
+// deprecated
 "pref_message_text_size" = "Teckenstorlek för meddelanden";
 "pref_view_log" = "Visa logg";
 "pref_saved_log" = "Sparade loggen i mappen \"Nedladdningar\"";
@@ -1017,7 +1018,5 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
 "perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";
-// device messages for updates
-"update_1_46_android" = "Ny onboarding 🐣 och mer:\n\n⚡️ Registrera dig för säkra snabba chatmailservrar (https://delta.chat/chatmail) eller använd klassiska e-postservrar\n\n👉 PUSH-meddelanden för alla chatmailservrar\n\n👤 Anslut dina vänner säkert via \"Bifoga kontakter\"\n\n🥰 Reagera med alla emoji\n\n📌 Fäst chattar direkt från sök ... och MER på %1$@";
 "update_1_46_ios" = "Ny Onboarding 🐣 och mer:\n\n⚡️ Registrera dig för säkra snabba chatmailservrar (https://delta.chat/chatmail) eller använd klassiska e-postservrar\n\n👉 PUSH-meddelanden för alla chatmailservrar\n\n👤 Ta emot \"bifogade kontakter\" och anslut till dina vänner\n\n🥰 Snabbare reaktionsval ... och MER på %1$@";
 "update_switch_profile_placement" = "ℹ️ Alternativet \"Byt profil\" har flyttats: Tryck på din profilbild i det övre hörnet av huvudskärmen för att lägga till eller byta profil 💡";

@@ -602,6 +602,8 @@
 "pref_screen_security_explain" = "请求系统在最近任务列表中和本应用内阻止截屏";
 "pref_screen_security_please_restart_hint" = "要应用屏幕安全设置，请重新启动本应用。";
 "pref_notifications" = "通知";
+"pref_mention_notifications" = "提及";
+"pref_mention_notifications_explain" = "在静音群中，通知直接与你相关的消息，比如回复或回应";
 "pref_notifications_show" = "显示";
 "pref_notifications_priority" = "优先级";
 "pref_notifications_explain" = "为新消息启用系统通知";
@@ -636,6 +638,7 @@
 "pref_app_access" = "应用程序访问";
 "pref_chats" = "聊天";
 "pref_in_chat_sounds" = "聊天音";
+// deprecated
 "pref_message_text_size" = "消息字体大小";
 "pref_view_log" = "查看日志";
 "pref_saved_log" = "已将日志保存至“下载”文件夹";
@@ -1050,6 +1053,6 @@
 "perm_enable_bg_reminder_title" = "点击此处以在 Delta Chat 处于后台时接收消息。";
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
 // device messages for updates
-"update_1_46_android" = "新用户引导流程 🐣 以及更多信息：\n\n⚡️ 注册安全的快速聊天邮件服务器（https://delta.chat/chatmail）或使用传统的电子邮件服务器\n\n👉 为任何聊天邮件服务器推送通知\n\n👤 通过“附加联系人”安全地连接您的朋友\n\n🥰 使用任何表情符号进行回应\n\n📌 直接从搜索中固定聊天…以及更多信息，请访问 %1$@";
+"update_1_50_android" = "有什么新功能？\n\n❤️‍🔥 新的表情符号选择器，包含更多表情符号\n\n🎮 增强的聊天应用：获取通知并在上下文中打开支持应用，即直接打开添加的日历条目\n\n👍 收到有关对您的消息的回应的通知\n\n…🛠️ %1$@ 上的修复和更多内容";
 "update_1_46_ios" = "新用户引导流程 🐣 以及更多信息：\n\n⚡️ 注册安全的快速聊天邮件服务器（https://delta.chat/chatmail）或使用传统的电子邮件服务器\n\n👉 为任何聊天邮件服务器推送通知\n\n👤 接收“附加联系人”安全地连接您的朋友\n\n🥰 更快选择消息回应 …更多信息，请访问 %1$@";
 "update_switch_profile_placement" = "ℹ️ “切换账号”选项已移动：点击主屏幕上角的个人资料图片以添加或切换账号 💡";

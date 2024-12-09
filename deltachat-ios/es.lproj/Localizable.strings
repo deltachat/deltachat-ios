@@ -575,6 +575,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "¿Enviar %1$d archivos a \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "¿Enviar %1$d archivo(s) a %2$d chats?";
+"videos_sent_without_recoding" = "(Los videos se enviarán en su tamaño original. Para enviar videos como archivos más pequeños, adjúntelos por separado)";
 "share_text_multiple_chats" = "¿Enviar este texto  a %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Intercambio abortado debido a la falta de permisos.";
 // preferences
@@ -635,6 +636,7 @@
 "pref_app_access" = "Acceso a la aplicación";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Sonidos en el chat";
+// deprecated
 "pref_message_text_size" = "Tamaño de texto del mensaje";
 "pref_view_log" = "Ver log";
 "pref_saved_log" = "El log fue guardado en la carpeta de Descargas";
@@ -1049,6 +1051,6 @@
 "perm_enable_bg_reminder_title" = "Toque aquí para recibir mensajes mientras Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
 // device messages for updates
-"update_1_46_android" = "Nueva pantalla de bienvenida 🐣 y más:\n\n⚡️ Regístrese en servidores de chatmail rápidos y seguros (https://delta.chat/chatmail) o use servidores de correo electrónico clásicos\n\n👉 Notificaciones PUSH para cualquier servidor de chatmail\n\n👤 Presenta un amigo a otro de forma segura usando \"Adjuntar Contacto\"\n\n🥰 Reacciona con cualquier emoji\n\n📌 Ancla chats directamente desde los resultados de la búsqueda... y MUCHO más en %1$@";
+"update_1_50_android" = "¿Qué hay de nuevo?\n\n❤️‍🔥 Nuevo selector de emojis con más emojis\n\n🎮 Aplicaciones de chat mejoradas: recibe notificaciones y abre aplicaciones en contexto, por ejemplo, abre una entrada de calendario agregada directamente\n\n👍 Recibe notificaciones sobre las reacciones a tus mensajes\n\n... 🛠️ CORRECCIONES y AÚN MÁS en %1$@";
 "update_1_46_ios" = "Nueva pantalla inicial 🐣 y más:\n\n⚡️ Regístrese en servidores de chatmail rápidos y seguros (https://delta.chat/chatmail) o use servidores de correo electrónico clásicos\n\n👉 Notificaciones PUSH para cualquier servidor de chatmail\n\n👤 Reciba \"Contactos adjuntos\" y conéctese con sus amigos\n\n🥰 Selección de reacción más rápida... y MÁS en %1$@";
 "update_switch_profile_placement" = "ℹ️ Se movió la opción \"Cambiar perfil\": toca tu imagen de perfil en la esquina superior de la pantalla principal para agregar o cambiar perfiles 💡";

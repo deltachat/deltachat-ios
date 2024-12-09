@@ -546,6 +546,7 @@
 "pref_app_access" = "Acesso do aplicativo";
 "pref_chats" = "Conversas";
 "pref_in_chat_sounds" = "Sons da conversa";
+// deprecated
 "pref_message_text_size" = "Tamanho da fonte de mensagens";
 "pref_view_log" = "Ver relatório";
 "pref_saved_log" = "Registro salvo na pasta de \"Downloads\"";

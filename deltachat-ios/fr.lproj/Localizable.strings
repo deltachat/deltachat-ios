@@ -588,6 +588,7 @@
 "pref_app_access" = "Accès à l\'application";
 "pref_chats" = "Discussions";
 "pref_in_chat_sounds" = "Sons de messages entrants";
+// deprecated
 "pref_message_text_size" = "Taille de police des messages";
 "pref_view_log" = "Voir le journal";
 "pref_saved_log" = "Journal enregistré dans le dossier \"Téléchargements\"";

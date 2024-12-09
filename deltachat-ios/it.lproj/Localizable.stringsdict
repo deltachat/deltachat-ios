@@ -177,9 +177,9 @@
 			<key>one</key>
 			<string>Invia il seguente file a %s?</string>
 			<key>many</key>
-			<string>Inviare i seguenti %d files a %s?</string>
+			<string>Invia i seguenti %d files a %s?</string>
 			<key>other</key>
-			<string>Inviare i seguenti %d files a %s?</string>
+			<string>Invia i seguenti %d files a %s?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>
@@ -193,11 +193,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Eliminare %d chat? Non verrà più mostrata nella lista delle chat, ma i messaggi rimarranno sul server.</string>
+			<string>Eliminare %d chat? Essa non verrà più mostrata nella lista delle chat; i suoi messaggi rimarranno sul server.</string>
 			<key>many</key>
-			<string>Eliminare %d chat? Non verranno più mostrate nella lista delle chat, ma i messaggi rimarranno sul server.</string>
+			<string>Eliminare %d chats? Esse non verranno più mostrate nella lista delle chat; i loro messaggi rimarranno sul server.</string>
 			<key>other</key>
-			<string>Eliminare %d chat? Non verranno più mostrate nella lista delle chat, ma i messaggi rimarranno sul server.</string>
+			<string>Eliminare %d chats? Esse non verranno più mostrate nella lista delle chat; i loro messaggi rimarranno sul server.</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -229,7 +229,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Eliminare %d messaggi?</string>
+			<string>Eliminare %d messaggio?</string>
 			<key>many</key>
 			<string>Eliminare %d messaggi?</string>
 			<key>other</key>
@@ -249,9 +249,9 @@
 			<key>one</key>
 			<string>%d chat archiviata</string>
 			<key>many</key>
-			<string>%d chat archiviate</string>
+			<string>%d chats archiviate</string>
 			<key>other</key>
-			<string>%d chat archiviate</string>
+			<string>%d chats archiviate</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -267,9 +267,9 @@
 			<key>one</key>
 			<string>%d chat ripristinata</string>
 			<key>many</key>
-			<string>%d chat ripristinate</string>
+			<string>%d chats ripristinate</string>
 			<key>other</key>
-			<string>%d chat ripristinate</string>
+			<string>%d chats ripristinate</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

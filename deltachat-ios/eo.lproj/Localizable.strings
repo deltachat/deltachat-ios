@@ -355,6 +355,7 @@
 "pref_app_access" = "Aliro al aplikaĵo";
 "pref_chats" = "Interparoloj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
+// deprecated
 "pref_message_text_size" = "Mesaĝa tipargrando";
 "pref_view_log" = "Vidi protokolon";
 "pref_saved_log" = "Konservis protokolon al la elŝuta dosierujo";

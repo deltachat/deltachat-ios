@@ -489,6 +489,7 @@
 "pref_app_access" = "Accés a l\'aplicació";
 "pref_chats" = "Xats";
 "pref_in_chat_sounds" = "Sons d\'entrada";
+// deprecated
 "pref_message_text_size" = "Mida de la font del missatge";
 "pref_view_log" = "Veure el registre";
 "pref_other" = "Altres";

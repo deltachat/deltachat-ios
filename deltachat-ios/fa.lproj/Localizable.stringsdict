@@ -82,6 +82,22 @@
 			<string>%d پیام</string>
 		</dict>
 	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%dواکنش</string>
+			<key>other</key>
+			<string>%dواکنش</string>
+		</dict>
+	</dict>
 	<key>n_members</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

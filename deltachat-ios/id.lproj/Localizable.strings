@@ -407,6 +407,7 @@
 "pref_app_access" = "Akes Aplikasi";
 "pref_chats" = "Obrolan";
 "pref_in_chat_sounds" = "Suara dalam obrolan";
+// deprecated
 "pref_message_text_size" = "Ukuran huruf pesan";
 "pref_view_log" = "Lihat catatan";
 "pref_saved_log" = "Menyimpan log ke folder \"Unduhan\"";

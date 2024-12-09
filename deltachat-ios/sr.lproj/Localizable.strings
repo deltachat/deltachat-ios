@@ -506,6 +506,7 @@
 "pref_app_access" = "Приступ апликацији";
 "pref_chats" = "Ћаскања";
 "pref_in_chat_sounds" = "Звуци ћаскања";
+// deprecated
 "pref_message_text_size" = "Величина слова поруке";
 "pref_view_log" = "Погледај дневник";
 "pref_saved_log" = "Дневник је снимљен у „Downloads“ директоријум";

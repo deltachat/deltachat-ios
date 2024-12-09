@@ -598,6 +598,7 @@
 "pref_app_access" = "Sovelluksen pääsy";
 "pref_chats" = "Keskustelut";
 "pref_in_chat_sounds" = "Keskustelunaikaiset äänet";
+// deprecated
 "pref_message_text_size" = "Viestin fonttikoko";
 "pref_view_log" = "Näytä loki";
 "pref_saved_log" = "Tallenna loki \"Lataukset\" -kansioon";

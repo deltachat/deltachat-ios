@@ -279,6 +279,7 @@
 "pref_app_access" = "Programtilgang";
 "pref_chats" = "Sludringer";
 "pref_in_chat_sounds" = "Merknader i programmet";
+// deprecated
 "pref_message_text_size" = "Skriftstørrelse i meldinger";
 "pref_view_log" = "Vis logg";
 "pref_log_header" = "Logg";
