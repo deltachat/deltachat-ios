@@ -11,7 +11,7 @@ internal final class NotificationsViewController: UITableViewController {
     }
 
     private enum CellTags: Int {
-        case notifications
+        case systemSettings
     }
 
     private var dcContext: DcContext
@@ -49,13 +49,26 @@ internal final class NotificationsViewController: UITableViewController {
         })
     }()
 
+    private lazy var systemSettingsCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.systemSettings.rawValue
+        cell.textLabel?.text = String.localized("system_settings")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
     private lazy var sections: [SectionConfigs] = {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_mention_notifications_explain"),
             cells: [notificationsCell, mentionsCell]
         )
-        return [preferencesSection]
+        let systemSettingsSection = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: String.localized("system_settings_notify_explain_ios"),
+            cells: [systemSettingsCell]
+        )
+        return [preferencesSection, systemSettingsSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -100,6 +113,26 @@ internal final class NotificationsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return sections[section].footerTitle
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath), let cellTag = CellTags(rawValue: cell.tag) else { safe_fatalError(); return }
+        tableView.deselectRow(at: indexPath, animated: false)
+
+        switch cellTag {
+        case .systemSettings:
+            let urlString = if #available(iOS 16, *) {
+                UIApplication.openNotificationSettingsURLString
+            } else if #available(iOS 15.4, *) {
+                UIApplicationOpenNotificationSettingsURLString
+            } else {
+                UIApplication.openSettingsURLString
+            }
+
+            if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
     }
 
     private func updateCells() {

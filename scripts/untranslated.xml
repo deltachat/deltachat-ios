@@ -15,4 +15,6 @@
     <string name="ios_widget_apps_description">Shortcuts to In-Chat Utilities and Games</string>
     <string name="ios_remove_from_home_screen">Remove from Homescreen</string>
     <string name="ios_add_to_home_screen">Add to Homescreen</string>
+    <string name="system_settings">System Settings</string>
+    <string name="system_settings_notify_explain_ios">Edit sound, type, badges and more</string>
 </resources>
