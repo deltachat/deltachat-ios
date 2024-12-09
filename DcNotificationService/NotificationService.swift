@@ -61,7 +61,7 @@ class NotificationService: UNNotificationServiceExtension {
                 if !dcContext.isMuted() {
                     let msg = dcContext.getMessage(id: event.data2Int)
                     let chat = dcContext.getChat(chatId: msg.chatId)
-                    if !chat.isMuted {
+                    if !chat.isMuted || dcContext.isMentionsEnabled() {
                         let sender = dcContext.getContact(id: event.data1Int).displayName
                         let summary = (msg.summary(chars: 80) ?? "")
                         bestAttemptContent.title = chat.name
@@ -76,7 +76,7 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             } else if event.id == DC_EVENT_INCOMING_WEBXDC_NOTIFY {
                 let dcContext = dcAccounts.get(id: event.accountId)
-                if !dcContext.isMuted() {
+                if !dcContext.isMuted() || dcContext.isMentionsEnabled() {
                     let msg = dcContext.getMessage(id: event.data2Int)
                     let chat = dcContext.getChat(chatId: msg.chatId)
                     if !chat.isMuted {
