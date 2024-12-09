@@ -1,5 +1,9 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Show a Webxdc-app in chat (#2413) 
+
 ## v1.50.1
 2024-12
 
