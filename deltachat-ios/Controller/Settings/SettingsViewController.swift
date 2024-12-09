@@ -245,6 +245,7 @@ internal final class SettingsViewController: UITableViewController {
         profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
         connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: dcContext,
                                                                                connectedString: String.localized("connectivity_connected"))
+        notificationCell.detailTextLabel?.text = String.localized(dcContext.isMuted() ? "off" : "on")
     }
 
     // MARK: - coordinator
