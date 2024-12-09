@@ -39,11 +39,20 @@ internal final class NotificationsViewController: UITableViewController {
         })
     }()
 
+    private lazy var mentionsCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_mention_notifications"),
+            on: dcContext.isMentionsEnabled(),
+            action: { [weak self] cell in
+                self?.dcContext.setMentionsEnabled(cell.isOn)
+        })
+    }()
+
     private lazy var sections: [SectionConfigs] = {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
-            footerTitle: nil,
-            cells: [notificationsCell]
+            footerTitle: String.localized("pref_mention_notifications_explain"),
+            cells: [notificationsCell, mentionsCell]
         )
         return [preferencesSection]
     }()
