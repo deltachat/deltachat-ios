@@ -457,6 +457,17 @@ class WebxdcViewController: WebViewViewController {
         let shareAction = UIAlertAction(title: String.localized("menu_share"), style: .default, handler: shareWebxdc(_:))
         alert.addAction(shareAction)
 
+        let showInChatAction = UIAlertAction(title: String.localized("show_in_chat"), style: .default) { [weak self] _ in
+            guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let message = dcContext.getMessage(id: self.messageId)
+            let chatId = message.chatId
+
+            DispatchQueue.main.async {
+                appDelegate.appCoordinator.showChat(chatId: chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
+            }
+        }
+        alert.addAction(showInChatAction)
+
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
