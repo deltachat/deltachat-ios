@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Show a Webxdc-app in chat (#2413) 
+- Don't change order of proxies when selecting a new one (#2414)
 
 ## v1.50.1
 2024-12
