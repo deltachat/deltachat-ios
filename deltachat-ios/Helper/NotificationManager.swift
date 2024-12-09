@@ -136,7 +136,7 @@ public class NotificationManager {
             if !eventContext.isMuted() {
                 let msg = eventContext.getMessage(id: ui["msg_id"] as? Int ?? 0)
                 let chat = eventContext.getChat(chatId: msg.chatId)
-                if !chat.isMuted {
+                if !chat.isMuted || (chat.isGroup && eventContext.isMentionsEnabled) {
                     let contact = eventContext.getContact(id: ui["contact_id"] as? Int ?? 0)
                     let summary = (msg.summary(chars: 80) ?? "")
                     let reaction = ui["reaction"] as? String ?? ""
@@ -168,7 +168,7 @@ public class NotificationManager {
             if !eventContext.isMuted() {
                 let msg = eventContext.getMessage(id: ui["msg_id"] as? Int ?? 0)
                 let chat = eventContext.getChat(chatId: msg.chatId)
-                if !chat.isMuted {
+                if !chat.isMuted || (chat.isGroup && eventContext.isMentionsEnabled) {
                     let content = UNMutableNotificationContent()
                     content.title = chat.name
                     content.body = msg.getWebxdcAppName() + ": " + (ui["text"] as? String ?? "")
