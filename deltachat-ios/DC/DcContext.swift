@@ -542,6 +542,14 @@ public class DcContext {
         setConfigBool("is_muted", muted)
     }
 
+    public func isMentionsEnabled() -> Bool {
+        return !getConfigBool("ui.mute_mentions_if_muted")
+    }
+
+    public func setMentionsEnabled(_ enabled: Bool) {
+        setConfigBool("ui.mute_mentions_if_muted", !enabled)
+    }
+
     public func getUnreadMessages(chatId: Int) -> Int {
         return Int(dc_get_fresh_msg_cnt(contextPointer, UInt32(chatId)))
     }
