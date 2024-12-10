@@ -75,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // /migrating global notifications
 
         self.launchOptions = launchOptions
+        TestUtil.didFinishLaunching(with: launchOptions)
         continueDidFinishLaunchingWithOptions()
         return true
     }
@@ -179,7 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         launchOptions = nil
         appFullyInitialized = true
     }
-    
+
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
