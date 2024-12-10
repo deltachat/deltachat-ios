@@ -19,7 +19,7 @@ struct OpenWebXDCAppShortcuts: AppShortcutsProvider {
 @available(iOS 16, *)
 struct OpenWebXDCAppIntent: AppIntent {
     @MainActor
-    static var title: LocalizedStringResource = "Open webxcd app"
+    static var title: LocalizedStringResource = "Open webxdc app"
 
     @Parameter(title: "webxdc app", requestValueDialog: IntentDialog("Which webxdc app would you like to open?"))
     var webxdcApp: WebXDCAppEntity
