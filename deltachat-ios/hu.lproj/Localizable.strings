@@ -602,6 +602,8 @@
 "pref_screen_security_explain" = "Képernyőképek készítésének megakadályozása a futó alkalmazások listájában és az alkalmazáson belül";
 "pref_screen_security_please_restart_hint" = "A képernyő biztonsági beállításának alkalmazásához indítsa újra az alkalmazást.";
 "pref_notifications" = "Értesítések";
+"pref_mention_notifications" = "Megemlítések";
+"pref_mention_notifications_explain" = "A némított csoportokban csak az Önnek címzett üzenetek, (például válaszok vagy reakciók) esetén küld értesítést.";
 "pref_notifications_show" = "Megjelenítés";
 "pref_notifications_priority" = "Prioritás";
 "pref_notifications_explain" = "Rendszerértesítések engedélyezése az új üzenetekről";
@@ -1050,6 +1052,8 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Koppintson ide az üzenetek fogadásához, miközben a Delta Chat a háttérben fut.";
 "perm_enable_bg_already_done" = "Már engedélyezve van a Delta Chat számára, hogy a háttérben üzeneteket fogadjon.\n\nHa az üzenetek még mindig nem érkeznek meg a háttérben, ellenőrizze a rendszerbeállításokat is.";
+// device messages for updates
+"update_1_50_android" = "Mik az újdonságok?\n\n❤️‍🔥 Új hangulatjel-választó még több hangulatjellel\n\n🎮 Továbbfejlesztett, a csevegésben használható alkalmazások: Értesítéseket kaphat és megnyithatja az azokat támogató alkalmazásokban, azaz közvetlenül megnyithat egy hozzáadott naptárbejegyzést\n\n👍 Értesítést kaphat az üzeneteire adott reakciókról\n\n… 🛠️ Egyéb javítások, tudjon meg többet itt: %1$@";
 "update_1_46_ios" = "Új szolgáltatások 🐣 és további tudnivalók:\n\n⚡️ Regisztráljon biztonságos, gyors chatmail-kiszolgálókra (https://delta.chat/chatmail) vagy használja a klasszikus e-mail-kiszolgálókat\n\n👉 PUSH értesítések bármely chatmail-kiszolgálóra\n\n👤 Fogadjon „Csatolt névjegyeket\" és csatlakozzon az ismerőseihez\n\n🥰 Gyorsabb üzenetreakció kiválasztás … tudjon meg többet itt: %1$@";
 "update_switch_profile_placement" = "ℹ️ A „Profilváltás” beállítás át lett helyezve:
 Érintse meg a főképernyő felső sarkában lévő profilképet a profilok hozzáadásához vagy váltásához 💡";
