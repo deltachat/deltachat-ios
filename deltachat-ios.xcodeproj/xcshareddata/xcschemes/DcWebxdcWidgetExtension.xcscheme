@@ -85,7 +85,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "_XCWidgetKind"
-            value = "MostRecentWebXDCWidget"
+            value = "DcWebxdcWidget"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
