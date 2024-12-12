@@ -1,9 +1,17 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.50.3
 
-- Show a Webxdc-app in chat (#2413) 
 - Don't change order of proxies when selecting a new one (#2414)
+- Add info messages about implicit membership changes if group member list is recreate
+- Show a Webxdc-app in chat (#2413)
+- Fix encrypted messages failures on some accounts (ignore garbage at the end of keys)
+- Fix: Don't add "Failed to send message to ..." info messages to group chats
+- Fix: Add self-addition message to chat when recreating member list
+- Fix not showing "Notifications: Connected" even though PUSH is available (do not subscribe to heartbeat if already subscribed to PUSH)
+- Fix "Show Full Message" being empty sometimes (if multiple text parts are cut)
+- Update to core 1.152.0
+
 
 ## v1.50.1
 2024-12
