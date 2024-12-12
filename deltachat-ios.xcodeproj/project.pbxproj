@@ -223,6 +223,12 @@
 		D878C4FF2CF72AA0009AF551 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */; };
 		D878C50C2CF72AA1009AF551 /* DcWebxdcWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D87C64672D01E4EF004472D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
+		D89C456D2D0AF6A8005B1491 /* WidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456C2D0AF6A8005B1491 /* WidgetEntry.swift */; };
+		D89C456F2D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456E2D0AF7A5005B1491 /* DcContext+Extension.swift */; };
+		D89C45702D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456E2D0AF7A5005B1491 /* DcContext+Extension.swift */; };
+		D89C45712D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456E2D0AF7A5005B1491 /* DcContext+Extension.swift */; };
+		D89C45722D0B0166005B1491 /* WidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456C2D0AF6A8005B1491 /* WidgetEntry.swift */; };
+		D89C45732D0B0166005B1491 /* WidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456C2D0AF6A8005B1491 /* WidgetEntry.swift */; };
 		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
 		D8C19DCE2C1B456700B32F6D /* SendContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */; };
 		D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */; };
@@ -636,6 +642,8 @@
 		D878C4FB2CF72AA0009AF551 /* DcWebxdcWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DcWebxdcWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D89C456C2D0AF6A8005B1491 /* WidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetEntry.swift; sourceTree = "<group>"; };
+		D89C456E2D0AF7A5005B1491 /* DcContext+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcContext+Extension.swift"; sourceTree = "<group>"; };
 		D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantOnboardingView.swift; sourceTree = "<group>"; };
 		D8C19DCD2C1B456700B32F6D /* SendContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendContactViewController.swift; sourceTree = "<group>"; };
 		D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardPreview.swift; sourceTree = "<group>"; };
@@ -707,6 +715,7 @@
 			isa = PBXGroup;
 			children = (
 				304219D82440734A00516852 /* DcMsg+Extension.swift */,
+				D89C456E2D0AF7A5005B1491 /* DcContext+Extension.swift */,
 			);
 			path = DC;
 			sourceTree = "<group>";
@@ -1018,6 +1027,7 @@
 			isa = PBXGroup;
 			children = (
 				AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */,
+				D89C456C2D0AF6A8005B1491 /* WidgetEntry.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1617,6 +1627,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D89C45712D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */,
 				30C7D5F128F4808C0078D24C /* MessageCounter.swift in Sources */,
 				30C7D5F028F47F4F0078D24C /* InitialsBadge.swift in Sources */,
 				3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */,
@@ -1630,6 +1641,7 @@
 				309D14DA28F482D300F7BA29 /* NSAttributedString+Extensions.swift in Sources */,
 				30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */,
 				30B2BD02278F1C1900889AA4 /* KeychainManager.swift in Sources */,
+				D89C45722D0B0166005B1491 /* WidgetEntry.swift in Sources */,
 				30152C9A25A5D92200377714 /* DetectorType.swift in Sources */,
 				30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */,
 				3067AAC72667F3FE00525036 /* ImageFormat.swift in Sources */,
@@ -1673,6 +1685,7 @@
 				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
 				30734326249A280B00BF9AD1 /* MediaQualityViewController.swift in Sources */,
 				3080A01C277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift in Sources */,
+				D89C456D2D0AF6A8005B1491 /* WidgetEntry.swift in Sources */,
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
 				3080A013277DDABA00E74565 /* KeyboardNotification.swift in Sources */,
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
@@ -1694,6 +1707,7 @@
 				30F4E2942859213400ACA0D8 /* ChatListEditingBar.swift in Sources */,
 				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
+				D89C456F2D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */,
 				30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */,
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
@@ -1836,6 +1850,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D89C45732D0B0166005B1491 /* WidgetEntry.swift in Sources */,
+				D89C45702D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */,
 				D8C7B6982CF87F5E003A6AD1 /* DcMsg+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
