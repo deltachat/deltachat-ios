@@ -225,8 +225,42 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
             previewProvider: nil,
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
-                let menu = UIMenu(children: [
+
+                var children: [UIMenuElement] = [
                     UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0) }),
+                ]
+
+                if #available(iOS 15, *),
+                   type1 == DC_MSG_WEBXDC {
+
+                    let messageId = self.fileMessageIds[indexPath.row]
+                    let appsInWidgetsMessageIds = self.dcContext.shownWidgets().compactMap { $0.messageId }
+                    let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
+                    
+                    if isOnHomescreen {
+                        children.append(
+                            UIAction.menuAction(
+                                localizationKey: "remove_from_homescreen",
+                                systemImageName: "square.and.arrow.up",
+                                indexPath: indexPath,
+                                action: { _ in
+                                    self.removeFromHomescreen(messageId: messageId)
+                                })
+                        )
+                    } else {
+                        children.append(
+                            UIAction.menuAction(
+                                localizationKey: "add_to_home_screen",
+                                systemImageName: "square.and.arrow.up",
+                                indexPath: indexPath,
+                                action: { _ in
+                                    self.addToHomescreen(messageId: messageId)
+                                })
+                        )
+                    }
+                }
+
+                children.append(contentsOf: [
                     UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareAttachment(of: $0) }),
                     UIMenu(
                         options: [.displayInline],
@@ -235,6 +269,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                         ]
                     )
                 ])
+                let menu = UIMenu(children: children)
 
                 return menu
             }
@@ -287,6 +322,22 @@ extension FilesViewController {
             let msgId = fileMessageIds[indexPath.row]
             Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: cell.contentView)
         }
+    }
+
+    func addToHomescreen(messageId: Int) {
+        let entry = WidgetEntry(accountId: dcContext.id, messageId: messageId)
+        var entries = dcContext.shownWidgets()
+        entries.insert(entry, at: entries.startIndex)
+
+        dcContext.storeShownWidgets(entries)
+    }
+
+    func removeFromHomescreen(messageId: Int) {
+        let entry = WidgetEntry(accountId: dcContext.id, messageId: messageId)
+        var entries = dcContext.shownWidgets()
+        entries.removeAll { $0 == entry }
+
+        dcContext.storeShownWidgets(entries)
     }
 }
 
