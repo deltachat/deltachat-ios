@@ -1,6 +1,7 @@
 import UIKit
 import DcCore
 import LinkPresentation
+import WidgetKit
 
 class FilesViewController: UIViewController {
 
@@ -330,6 +331,9 @@ extension FilesViewController {
         entries.insert(entry, at: entries.startIndex)
 
         dcContext.storeShownWidgets(entries)
+        if #available(iOS 15.0, *) {
+            WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
+        }
     }
 
     func removeFromHomescreen(messageId: Int) {
@@ -338,6 +342,9 @@ extension FilesViewController {
         entries.removeAll { $0 == entry }
 
         dcContext.storeShownWidgets(entries)
+        if #available(iOS 15.0, *) {
+            WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
+        }
     }
 }
 
