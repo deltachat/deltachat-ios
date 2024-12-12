@@ -51,11 +51,9 @@ struct Provider: TimelineProvider {
         default: limit = 8
         }
 
-        let messageIds: [Int] = Array(dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: ignore, messageType3: ignore).reversed().prefix(limit))
-
-        let apps = messageIds.compactMap {
-            dcContext.getMessage(id: $0)
-        }.compactMap { msg in
+        let entries = dcContext.shownWidgets()
+        let apps = entries.compactMap { entry in
+            let msg = dcContext.getMessage(id: entry.messageId)
             let name = msg.getWebxdcAppName()
             let image = msg.getWebxdcPreviewImage()
             let accountId = dcContext.id
