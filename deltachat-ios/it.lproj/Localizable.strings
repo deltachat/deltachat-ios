@@ -918,7 +918,7 @@
 "notify_dismiss" = "Ignora";
 "notify_reply_button" = "Rispondi";
 "notify_new_message" = "Nuovo messaggio";
-"notify_background_connection_enabled" = "Connessione in sottofondo abilitata";
+"notify_background_connection_enabled" = "Connessione in secondo piano abilitata";
 "notify_priority_high" = "Alta";
 "notify_priority_max" = "Massima";
 "notify_name_and_message" = "Nome e messaggio";
@@ -1030,7 +1030,7 @@
 // iOS notification settings
 "disabled_in_dc" = "Disabilitato in Delta Chat";
 "disabled_in_system_settings" = "Disabilitato nelle impostazioni di sistema";
-"bg_app_refresh_disabled" = "\"Aggiornamento App Sottofondo\" disabilitato nelle impostazioni di sistema";
+"bg_app_refresh_disabled" = "\"Aggiornamento App Secondo Piano\" disabilitato nelle impostazioni di sistema";
 // iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
 "delayed" = "Ritardato";
 "notifications_avg_minutes" = "In media ogni %1$d minuti";
@@ -1044,14 +1044,14 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Consegna Istantanea";
-"pref_background_notifications" = "Utilizza Connessione Sottofondo";
+"pref_background_notifications" = "Utilizza Connessione Secondo Piano";
 "pref_background_notifications_explain" = "Richiede di ignorare le ottimizzazioni della batteria, da utilizzare se le notifiche non arrivano in tempo";
-"pref_reliable_service" = "Forza Connessione Sottofondo";
+"pref_reliable_service" = "Forza Connessione Secondo Piano";
 "pref_reliable_service_explain" = "Provoca una notifica permanente";
-"pref_background_notifications_rationale" = "Per mantenere la connessione al tuo server e-mail e ricevere messaggi in sottofondo, ignora le ottimizzazioni della batteria nel passaggio successivo.\n\nDelta Chat utilizza poche risorse e fa attenzione a non consumare la tua batteria.";
+"pref_background_notifications_rationale" = "Per mantenere la connessione al tuo server e-mail e ricevere messaggi in secondo piano, ignora le ottimizzazioni della batteria nel passaggio successivo.\n\nDelta Chat utilizza poche risorse e fa attenzione a non consumare la tua batteria.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"perm_enable_bg_reminder_title" = "Tocca qui per ricevere messaggi mentre Delta Chat è in sottofondo.";
-"perm_enable_bg_already_done" = "Hai già autorizzato Delta Chat a ricevere messaggi in sottofondo.\n\nSe i messaggi non arrivano in sottofondo, per piacere controlla anche le impostazioni di sistema.";
+"perm_enable_bg_reminder_title" = "Tocca qui per ricevere messaggi mentre Delta Chat è in secondo piano.";
+"perm_enable_bg_already_done" = "Hai già autorizzato Delta Chat a ricevere messaggi in secondo piano.\n\nSe i messaggi non arrivano in secondo piano, per piacere controlla anche le impostazioni di sistema.";
 // device messages for updates
 "update_1_50_android" = "Novità?\n\n❤️‍🔥 Nuovo selettore di emoji con più emoji\n\n🎮 App in chat migliorate: ricevi notifiche e apri le app supportate nel contesto, es. apri una voce del calendario cliccando direttamente sul messaggio\n\n👍 Ricevi notifiche sulle reazioni ai tuoi messaggi...\n\n🛠️ CORREZIONI e ANCORA DI PIÙ su %1$@";
 "update_1_46_ios" = "Nuovo Inserimento 🐣 e Altro:\n\n⚡️ Iscriviti ai sicuri e veloci server chatmail (https://delta.chat/chatmail) o usa i classici server e-mail\n\n👉 Notifiche PUSH per qualsiasi server chatmail\n\n👤 Ricevi \"Contatti allegati\" e connettiti ai tuoi amici\n\n🥰 Selezione della reazione più rapida ... e ALTRO su %1$@";
