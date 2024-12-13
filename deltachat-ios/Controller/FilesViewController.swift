@@ -242,7 +242,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                         children.append(
                             UIAction.menuAction(
                                 localizationKey: "remove_from_homescreen",
-                                systemImageName: "square.and.arrow.up",
+                                systemImageName: "rectangle.on.rectangle.slash",
                                 indexPath: indexPath,
                                 action: { _ in
                                     self.removeFromHomescreen(messageId: messageId)
@@ -252,7 +252,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                         children.append(
                             UIAction.menuAction(
                                 localizationKey: "add_to_home_screen",
-                                systemImageName: "square.and.arrow.up",
+                                systemImageName: "plus.rectangle.on.rectangle",
                                 indexPath: indexPath,
                                 action: { _ in
                                     self.addToHomescreen(messageId: messageId)
@@ -325,26 +325,24 @@ extension FilesViewController {
         }
     }
 
+    @available(iOS 15, *)
     func addToHomescreen(messageId: Int) {
         let entry = WidgetEntry(accountId: dcContext.id, messageId: messageId)
         var entries = dcContext.shownWidgets()
         entries.insert(entry, at: entries.startIndex)
 
         dcContext.storeShownWidgets(entries)
-        if #available(iOS 15.0, *) {
-            WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
-        }
+        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 
+    @available(iOS 15, *)
     func removeFromHomescreen(messageId: Int) {
         let entry = WidgetEntry(accountId: dcContext.id, messageId: messageId)
         var entries = dcContext.shownWidgets()
         entries.removeAll { $0 == entry }
 
         dcContext.storeShownWidgets(entries)
-        if #available(iOS 15.0, *) {
-            WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
-        }
+        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 }
 
