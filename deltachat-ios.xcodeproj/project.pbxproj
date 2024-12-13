@@ -226,7 +226,6 @@
 		D89C456D2D0AF6A8005B1491 /* WidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456C2D0AF6A8005B1491 /* WidgetEntry.swift */; };
 		D89C456F2D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456E2D0AF7A5005B1491 /* DcContext+Extension.swift */; };
 		D89C45702D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456E2D0AF7A5005B1491 /* DcContext+Extension.swift */; };
-		D89C45712D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456E2D0AF7A5005B1491 /* DcContext+Extension.swift */; };
 		D89C45722D0B0166005B1491 /* WidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456C2D0AF6A8005B1491 /* WidgetEntry.swift */; };
 		D89C45732D0B0166005B1491 /* WidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89C456C2D0AF6A8005B1491 /* WidgetEntry.swift */; };
 		D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0729F2BED0FD8001A4C7C /* InstantOnboardingView.swift */; };
@@ -1627,7 +1626,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D89C45712D0AF7A5005B1491 /* DcContext+Extension.swift in Sources */,
 				30C7D5F128F4808C0078D24C /* MessageCounter.swift in Sources */,
 				30C7D5F028F47F4F0078D24C /* InitialsBadge.swift in Sources */,
 				3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */,

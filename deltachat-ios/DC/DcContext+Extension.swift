@@ -1,6 +1,8 @@
 import Foundation
 import DcCore
+import WidgetKit
 
+@available(iOS 15, *)
 extension DcContext {
     private static let key = "ui.ios.selected_apps_for_widget"
     func shownWidgets() -> [WidgetEntry] {
@@ -20,5 +22,23 @@ extension DcContext {
         else { return }
 
         setConfig(Self.key, jsonString)
+    }
+
+    func addWebxdcToHomescreenWidget(messageId: Int) {
+        let entry = WidgetEntry(accountId: self.id, messageId: messageId)
+        var entries = shownWidgets()
+        entries.insert(entry, at: entries.startIndex)
+
+        storeShownWidgets(entries)
+        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
+    }
+
+    func removeWebxdcFromHomescreen(messageId: Int) {
+        let entry = WidgetEntry(accountId: self.id, messageId: messageId)
+        var entries = shownWidgets()
+        entries.removeAll { $0 == entry }
+
+        storeShownWidgets(entries)
+        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 }
