@@ -41,8 +41,6 @@ struct Provider: TimelineProvider {
         let dcAccounts = DcAccounts.shared
         dcAccounts.openDatabase(writeable: false)
         let dcContext = dcAccounts.getSelected()
-        let chatId = 0
-        let ignore = Int32(0)
 
         let limit: Int
         switch context.family {
@@ -51,7 +49,7 @@ struct Provider: TimelineProvider {
         default: limit = 8
         }
 
-        let entries = dcContext.shownWidgets()
+        let entries = dcContext.shownWidgets().prefix(limit)
         let apps = entries.compactMap { entry in
             let msg = dcContext.getMessage(id: entry.messageId)
             let name = msg.getWebxdcAppName()
