@@ -1,5 +1,9 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Don't show message-input when forwarding (#2435)
+
 ## v1.50.3
 
 - Don't change order of proxies when selecting a new one (#2414)
