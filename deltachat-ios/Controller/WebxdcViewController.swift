@@ -442,19 +442,43 @@ class WebxdcViewController: WebViewViewController {
         let alert = UIAlertController(title: webxdcName + " – " + String.localized("webxdc_app"),
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
-        if #available(iOS 16, *) {
-            logger.info("cannot add shortcut as passing data: urls to local server was disabled by apple on on iOS 16")
+        if #available(iOS 15, *) {
+            let appsInWidgetsMessageIds = self.dcContext.shownWidgets().compactMap { $0.messageId }
+            let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
+
+
+            let homescreenAction: UIAlertAction
+            if isOnHomescreen {
+                homescreenAction = UIAlertAction(title: String.localized("remove_from_homescreen"), style: .default) { [weak self] _ in
+                    guard let self else { return }
+
+                    self.dcContext.removeWebxdcFromHomescreen(messageId: self.messageId)
+                }
+            } else {
+                homescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default) { [weak self] _ in
+                    guard let self else { return }
+
+                    self.dcContext.addWebxdcToHomescreenWidget(messageId: self.messageId)
+                }
+            }
+            alert.addAction(homescreenAction)
         } else {
-            let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default, handler: addToHomeScreen(_:))
+            let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default) { [weak self] _ in
+                self?.addToHomeScreen()
+            }
             alert.addAction(addToHomescreenAction)
         }
 
         if sourceCodeUrl != nil {
-            let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default, handler: openUrl(_:))
+            let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default) { [weak self] _ in
+                self?.openUrl()
+            }
             alert.addAction(sourceCodeAction)
         }
 
-        let shareAction = UIAlertAction(title: String.localized("menu_share"), style: .default, handler: shareWebxdc(_:))
+        let shareAction = UIAlertAction(title: String.localized("menu_share"), style: .default) { [weak self] _ in
+            self?.shareWebxdc()
+        }
         alert.addAction(shareAction)
 
         let showInChatAction = UIAlertAction(title: String.localized("show_in_chat"), style: .default) { [weak self] _ in
@@ -473,18 +497,18 @@ class WebxdcViewController: WebViewViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    private func addToHomeScreen(_ action: UIAlertAction) {
+    private func addToHomeScreen() {
         shortcutManager?.showShortcutLandingPage()
     }
 
-    private func openUrl(_ action: UIAlertAction) {
-        if let sourceCodeUrl = sourceCodeUrl,
+    private func openUrl() {
+        if let sourceCodeUrl,
            let url = URL(string: sourceCodeUrl) {
             UIApplication.shared.open(url)
         }
     }
 
-    private func shareWebxdc(_ action: UIAlertAction) {
+    private func shareWebxdc() {
         Utils.share(message: dcContext.getMessage(id: messageId), parentViewController: self, sourceItem: moreButton)
     }
 }
