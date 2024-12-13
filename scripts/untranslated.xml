@@ -10,4 +10,9 @@
     <string name="widget_no_apps">In-Chat Utilities or Games will be shown here</string>
     <string name="widget_most_recent_apps_title">Shortcuts</string>
     <string name="widget_most_recent_apps_description">Shows the most recent In-Chat Utilities and Games</string>
+    <string name="ios_widget_no_apps">In-Chat Utilities or Games will be shown here</string>
+    <string name="ios_widget_apps_title">Shortcuts</string>
+    <string name="ios_widget_apps_description">Shortcuts to In-Chat Utilities and Games</string>
+    <string name="ios_remove_from_home_screen">Remove from Homescreen</string>
+    <string name="ios_add_to_home_screen">Add to Homescreen</string>
 </resources>

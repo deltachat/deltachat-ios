@@ -156,7 +156,7 @@ struct DcWebxdcWidget: Widget {
             }
         }
         .supportedFamilies([.systemSmall, .systemMedium]) 
-        .configurationDisplayName(String.localized("widget_most_recent_apps_title"))
-        .description(String.localized("widget_most_recent_apps_description"))
+        .configurationDisplayName(String.localized("ios_widget_apps_title"))
+        .description(String.localized("ios_widget_apps_description"))
     }
 }

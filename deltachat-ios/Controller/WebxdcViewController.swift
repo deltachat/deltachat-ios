@@ -449,13 +449,13 @@ class WebxdcViewController: WebViewViewController {
 
             let homescreenAction: UIAlertAction
             if isOnHomescreen {
-                homescreenAction = UIAlertAction(title: String.localized("remove_from_homescreen"), style: .default) { [weak self] _ in
+                homescreenAction = UIAlertAction(title: String.localized("ios_remove_from_home_screen"), style: .default) { [weak self] _ in
                     guard let self else { return }
 
                     self.dcContext.removeWebxdcFromHomescreen(messageId: self.messageId)
                 }
             } else {
-                homescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default) { [weak self] _ in
+                homescreenAction = UIAlertAction(title: String.localized("ios_add_to_home_screen"), style: .default) { [weak self] _ in
                     guard let self else { return }
 
                     self.dcContext.addWebxdcToHomescreenWidget(messageId: self.messageId)
