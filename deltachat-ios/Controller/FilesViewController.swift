@@ -245,8 +245,8 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                                 systemImageName: "rectangle.on.rectangle.slash",
                                 indexPath: indexPath,
                                 action: { _ in
-                                    self.removeFromHomescreen(messageId: messageId)
-                                })
+                                    self.dcContext.removeWebxdcFromHomescreen(messageId: messageId)
+                                    })
                         )
                     } else {
                         children.append(
@@ -255,7 +255,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                                 systemImageName: "plus.rectangle.on.rectangle",
                                 indexPath: indexPath,
                                 action: { _ in
-                                    self.addToHomescreen(messageId: messageId)
+                                    self.dcContext.addWebxdcToHomescreenWidget(messageId: messageId)
                                 })
                         )
                     }
@@ -323,26 +323,6 @@ extension FilesViewController {
             let msgId = fileMessageIds[indexPath.row]
             Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: cell.contentView)
         }
-    }
-
-    @available(iOS 15, *)
-    func addToHomescreen(messageId: Int) {
-        let entry = WidgetEntry(accountId: dcContext.id, messageId: messageId)
-        var entries = dcContext.shownWidgets()
-        entries.insert(entry, at: entries.startIndex)
-
-        dcContext.storeShownWidgets(entries)
-        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
-    }
-
-    @available(iOS 15, *)
-    func removeFromHomescreen(messageId: Int) {
-        let entry = WidgetEntry(accountId: dcContext.id, messageId: messageId)
-        var entries = dcContext.shownWidgets()
-        entries.removeAll { $0 == entry }
-
-        dcContext.storeShownWidgets(entries)
-        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 }
 
