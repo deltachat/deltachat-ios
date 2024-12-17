@@ -1063,6 +1063,6 @@
 "backup_successful_explain_ios" = "You can find the backup in the \"Delta Chat\" folder using the \"Files\" app.\n\nMove the backup out of this folder to keep it when deleting Delta Chat.";
 "location_denied" = "Location access denied";
 "location_denied_explain_ios" = "In the system settings, enable \"Privacy/Location Services\" and set \"Delta Chat/Location\" to \"Always\" and \"Precise\".";
-"widget_no_apps" = "No apps.";
-"widget_most_recent_apps_title" = "Recent Webxdc-apps";
-"widget_most_recent_apps_description" = "Shows the most recent Webxdc-apps.";
+"widget_no_apps" = "In-Chat Utilities or Games will be shown here";
+"widget_most_recent_apps_title" = "Shortcuts";
+"widget_most_recent_apps_description" = "Shows the most recent In-Chat Utilities and Games";
