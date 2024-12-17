@@ -140,7 +140,7 @@ internal final class AdvancedViewController: UITableViewController {
             action: { cell in
                 if cell.isOn {
                     switch CNContactStore.authorizationStatus(for: .contacts) {
-                    case .authorized:
+                    case .authorized, .limited:
                         self.dcContext.setConfigBool("ui.ios.show_system_contacts", true)
                     case .restricted, .notDetermined:
                         CNContactStore().requestAccess(for: .contacts) { [weak self] granted, _ in
