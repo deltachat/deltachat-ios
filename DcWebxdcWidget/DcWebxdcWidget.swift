@@ -35,22 +35,11 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         /// ----------------------------------
-        /// **DO NOT** START dcAccounts.startIo() IN WIDGET
+        /// **DO NOT** start dcAccounts.startIo() in widget.
+        /// This works only for one process, and widgets may run concurrently to the main app in their own process.
         /// ----------------------------------
         let dcAccounts = DcAccounts.shared
         dcAccounts.openDatabase(writeable: false)
-        for accountId in dcAccounts.getAll() {
-            let dcContext = dcAccounts.get(id: accountId)
-            if dcContext.isOpen() == false {
-                do {
-                    let secret = try KeychainManager.getAccountSecret(accountID: accountId)
-                    _ = dcContext.open(passphrase: secret)
-                } catch {
-                    debugPrint("Couldn't open \(error.localizedDescription)")
-                }
-            }
-        }
-
         let dcContext = dcAccounts.getSelected()
         let chatId = 0
         let ignore = Int32(0)

@@ -548,7 +548,7 @@
 "login_error_server" = "Per piacere inserisci un server / indirizzo IP valido";
 "login_error_port" = "Per piacere inserisci una porta valida (1-65535)";
 "login_error_required_fields" = "Per piacere inserisci un indirizzo e-mail e una password validi";
-"import_backup_title" = "Ripristina dal Backup";
+"import_backup_title" = "Ripristina da Backup";
 "import_backup_ask" = "Backup trovato in \"%1$@\".\n\nVuoi importarlo e usare tutti i dati e le impostazioni salvate?";
 "import_backup_no_backup_found" = "Nessun backup trovato\n\nCopia il backup in \"%1$@\" e riprova ancora. Altimenti premi \"Inizia a messaggiare\" per procedere con le impostazioni normali.";
 // Translators: %1$s will be replaced by the e-mail address
