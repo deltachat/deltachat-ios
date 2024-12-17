@@ -452,55 +452,65 @@ open class MessageLabel: UILabel {
 
     }
 
-    internal func detectGesture(_ touchLocation: CGPoint) -> (DetectorType, NewMessageTextCheckingType)? {
-          guard let index = stringIndex(at: touchLocation) else { return nil }
+    internal func detectLink(_ touchLocation: CGPoint) -> (DetectorType, NewMessageTextCheckingType)? {
+        guard let index = stringIndex(at: touchLocation) else { return nil }
 
-          for (detectorType, ranges) in rangesForDetectors {
-              for (range, value) in ranges {
-                  if range.contains(index) {
-                      return (detectorType, value)
-                  }
-              }
-          }
-          return nil
-    }
-
-    open func handleGesture(_ touchLocation: CGPoint) -> Bool {
-        if let (detectorType, value) = detectGesture(touchLocation) {
-            handleGesture(for: detectorType, value: value)
-            return true
+        for (detectorType, ranges) in rangesForDetectors {
+            for (range, value) in ranges {
+                if range.contains(index) {
+                    return (detectorType, value)
+                }
+            }
         }
-        return false
+
+        return nil
     }
 
-    /// swiftlint:disable cyclomatic_complexity
-    private func handleGesture(for detectorType: DetectorType, value: NewMessageTextCheckingType) {
+    internal func getCopyableLinkText(_ touchLocation: CGPoint) -> String? {
+        guard let (detectorType, value) = detectLink(touchLocation) else { return nil }
+
+        switch value {
+        case let .link(url):
+            guard let url = url else { return nil }
+            return url.absoluteString
+        case let .phoneNumber(phoneNumber):
+            return phoneNumber
+        case let .custom(pattern, match):
+            return match
+        case .addressComponents, .date, .transitInfoComponents:
+            return nil
+        }
+    }
+
+    internal func handleGesture(_ touchLocation: CGPoint) -> Bool {
+        guard let (detectorType, value) = detectLink(touchLocation) else { return false }
+
         switch value {
         case let .addressComponents(addressComponents):
             var transformedAddressComponents = [String: String]()
-            guard let addressComponents = addressComponents else { return }
+            guard let addressComponents = addressComponents else { return false }
             addressComponents.forEach { (key, value) in
                 transformedAddressComponents[key.rawValue] = value
             }
             handleAddress(transformedAddressComponents)
         case let .phoneNumber(phoneNumber):
-            guard let phoneNumber = phoneNumber else { return }
+            guard let phoneNumber = phoneNumber else { return false }
             handlePhoneNumber(phoneNumber)
         case let .date(date):
-            guard let date = date else { return }
+            guard let date = date else { return false }
             handleDate(date)
         case let .link(url):
-            guard let url = url else { return }
+            guard let url = url else { return false }
             handleURL(url)
         case let .transitInfoComponents(transitInformation):
             var transformedTransitInformation = [String: String]()
-            guard let transitInformation = transitInformation else { return }
+            guard let transitInformation = transitInformation else { return false }
             transitInformation.forEach { (key, value) in
                 transformedTransitInformation[key.rawValue] = value
             }
             handleTransitInformation(transformedTransitInformation)
         case let .custom(pattern, match):
-            guard let match = match else { return }
+            guard let match = match else { return false }
             switch detectorType {
             case .hashtag:
                 handleHashtag(match)
@@ -512,6 +522,8 @@ open class MessageLabel: UILabel {
                 handleCustom(pattern, match: match)
             }
         }
+
+        return true
     }
 
     private func handleAddress(_ addressComponents: [String: String]) {

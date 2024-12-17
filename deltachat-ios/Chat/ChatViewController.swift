@@ -2021,20 +2021,20 @@ extension ChatViewController {
         menuElements.append(action)
     }
 
+    private func isLinkTapped(indexPath: IndexPath, point: CGPoint) -> String? {
+        if let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell {
+            let label = cell.messageLabel.label
+            let localTouchLocation = tableView.convert(point, to: label)
+            return label.getCopyableLinkText(localTouchLocation)
+        }
+        return nil
+    }
+
     // context menu for iOS 13+
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
-        }
-
-        // Check if the long tap is on a link (or other message text element with custom long tap behavior)
-        if let msgcell = tableView.cellForRow(at: indexPath) as? BaseMessageCell {
-            let label = msgcell.messageLabel.label
-            let localTouchLocation = tableView.convert(point, to: label)
-            if let (detectorType, value) = label.detectGesture(localTouchLocation) {
-                print("url: \(detectorType) -- \(value) -- ")
-            }
         }
 
         return UIContextMenuConfiguration(
@@ -2076,7 +2076,13 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", image: image, indexPath: indexPath, action: { self.forward(at: $0 ) })
                 )
 
-                if let text = message.text, !text.isEmpty {
+                if let link = isLinkTapped(indexPath: indexPath, point: point) {
+                    children.append(
+                        UIAction.menuAction(localizationKey: "menu_copy_link_to_clipboard", systemImageName: "link", indexPath: indexPath, action: { _ in
+                            UIPasteboard.general.string = link
+                        })
+                    )
+                } else if let text = message.text, !text.isEmpty {
                     let copyTitle = message.file == nil ? "global_menu_edit_copy_desktop" : "menu_copy_text_to_clipboard"
                     children.append(
                         UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copyToClipboard(at: $0 ) })
