@@ -2028,6 +2028,15 @@ extension ChatViewController {
             return nil
         }
 
+        // Check if the long tap is on a link (or other message text element with custom long tap behavior)
+        if let msgcell = tableView.cellForRow(at: indexPath) as? BaseMessageCell {
+            let label = msgcell.messageLabel.label
+            let localTouchLocation = tableView.convert(point, to: label)
+            if let (detectorType, value) = label.detectGesture(localTouchLocation) {
+                print("url: \(detectorType) -- \(value) -- ")
+            }
+        }
+
         return UIContextMenuConfiguration(
             identifier: NSString(string: "\(messageId)"),
             previewProvider: nil,

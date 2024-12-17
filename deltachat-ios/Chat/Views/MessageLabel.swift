@@ -452,17 +452,23 @@ open class MessageLabel: UILabel {
 
     }
 
-  open func handleGesture(_ touchLocation: CGPoint) -> Bool {
+    internal func detectGesture(_ touchLocation: CGPoint) -> (DetectorType, NewMessageTextCheckingType)? {
+          guard let index = stringIndex(at: touchLocation) else { return nil }
 
-        guard let index = stringIndex(at: touchLocation) else { return false }
+          for (detectorType, ranges) in rangesForDetectors {
+              for (range, value) in ranges {
+                  if range.contains(index) {
+                      return (detectorType, value)
+                  }
+              }
+          }
+          return nil
+    }
 
-        for (detectorType, ranges) in rangesForDetectors {
-            for (range, value) in ranges {
-                if range.contains(index) {
-                    handleGesture(for: detectorType, value: value)
-                    return true
-                }
-            }
+    open func handleGesture(_ touchLocation: CGPoint) -> Bool {
+        if let (detectorType, value) = detectGesture(touchLocation) {
+            handleGesture(for: detectorType, value: value)
+            return true
         }
         return false
     }
