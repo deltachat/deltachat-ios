@@ -504,7 +504,7 @@ open class MessageLabel: UILabel {
             handleURL(url)
         case let .transitInfoComponents(transitInformation):
             var transformedTransitInformation = [String: String]()
-            guard let transitInformation = transitInformation else { return false }
+            guard let transitInformation else { return false }
             transitInformation.forEach { (key, value) in
                 transformedTransitInformation[key.rawValue] = value
             }
