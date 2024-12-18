@@ -488,7 +488,7 @@ open class MessageLabel: UILabel {
         switch value {
         case let .addressComponents(addressComponents):
             var transformedAddressComponents = [String: String]()
-            guard let addressComponents = addressComponents else { return false }
+            guard let addressComponents else { return false }
             addressComponents.forEach { (key, value) in
                 transformedAddressComponents[key.rawValue] = value
             }
