@@ -4,6 +4,7 @@
 
 - Don't show message-input when forwarding (#2435)
 - Long-tap links for copying to clipboard (#2445)
+- Hide address in titles: protect against over-the-shoulder-attacks, improve screenshot privacy, clear UX (#2447)
 
 
 ## v1.50.3
