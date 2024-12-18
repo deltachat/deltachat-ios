@@ -494,7 +494,7 @@ open class MessageLabel: UILabel {
             }
             handleAddress(transformedAddressComponents)
         case let .phoneNumber(phoneNumber):
-            guard let phoneNumber = phoneNumber else { return false }
+            guard let phoneNumber else { return false }
             handlePhoneNumber(phoneNumber)
         case let .date(date):
             guard let date = date else { return false }
