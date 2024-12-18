@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d dîqa</string>
+			<string>%d دؽقه</string>
 			<key>other</key>
-			<string>%d dîqa</string>
+			<string>%d دؽقه</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d sāat</string>
+			<string>%d ساعت</string>
 			<key>other</key>
-			<string>%d sāat</string>
+			<string>%d ساعت</string>
 		</dict>
 	</dict>
 	<key>n_chats</key>
@@ -45,9 +45,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d čat</string>
+			<string>%d چت</string>
 			<key>other</key>
-			<string>%d čat</string>
+			<string>%d چت</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d homdang</string>
+			<string>%d هومدنگ</string>
 			<key>other</key>
-			<string>%d homdang</string>
+			<string>%d هومدنگ</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -77,9 +77,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d payom</string>
+			<string>%d پیوم</string>
 			<key>other</key>
-			<string>%d payom</string>
+			<string>%d پیوم</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -93,9 +93,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d mėntor</string>
+			<string>%d منتور</string>
 			<key>other</key>
-			<string>%d mėntor</string>
+			<string>%d منتور</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>
@@ -109,9 +109,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d tā pêsand vâbi</string>
+			<string>%d تا پسند وابی</string>
 			<key>other</key>
-			<string>%d tā pêsand vâbi</string>
+			<string>%d تا پسند وابی</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
@@ -127,7 +127,7 @@
 			<key>one</key>
 			<string>êxuy %d payom pāk bu?</string>
 			<key>other</key>
-			<string>êxuy %d payom pāk bu?</string>
+			<string>اخۊی %d پیوم پاک بۊ؟</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
@@ -141,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d payomê nu</string>
+			<string>%d پیوم نۊ</string>
 			<key>other</key>
-			<string>%d payomê nu</string>
+			<string>%d پیوم نۊ</string>
 		</dict>
 	</dict>
 </dict>

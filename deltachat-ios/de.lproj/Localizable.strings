@@ -558,7 +558,7 @@
 "switch_account" = "Profil wechseln";
 "add_account" = "Profil hinzufügen";
 "profile_tag" = "Private Bezeichnung";
-"profile_tag_hint" = "Familie, Arbeit, Freunde";
+"profile_tag_hint" = "z.B. Familie, Arbeit, Freunde";
 "profile_tag_explain" = "Die Bezeichnung ist nur für Sie sichtbar um zwischen Profilen zu unterscheiden.";
 "delete_account" = "Profil löschen";
 "delete_account_ask" = "Möchten Sie das Profil und alle Daten wirklich von diesem Gerät löschen?";

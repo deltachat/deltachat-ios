@@ -2,7 +2,9 @@
 
 ## Unreleased
 
+- Access your most recent Webxdc-apps from the Homescreen using our shiny new widget (#2406)
 - Don't show message-input when forwarding (#2435)
+- Long-tap links for copying to clipboard (#2445)
 
 ## v1.50.3
 
