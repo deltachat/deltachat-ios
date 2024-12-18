@@ -500,7 +500,7 @@ open class MessageLabel: UILabel {
             guard let date else { return false }
             handleDate(date)
         case let .link(url):
-            guard let url = url else { return false }
+            guard let url else { return false }
             handleURL(url)
         case let .transitInfoComponents(transitInformation):
             var transformedTransitInformation = [String: String]()
