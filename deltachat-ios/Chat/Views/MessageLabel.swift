@@ -471,7 +471,7 @@ open class MessageLabel: UILabel {
 
         switch value {
         case let .link(url):
-            guard let url = url else { return nil }
+            guard let url else { return nil }
             return url.absoluteString
         case let .phoneNumber(phoneNumber):
             return phoneNumber
