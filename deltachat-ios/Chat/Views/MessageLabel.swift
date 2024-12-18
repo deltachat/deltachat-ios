@@ -467,7 +467,7 @@ open class MessageLabel: UILabel {
     }
 
     internal func getCopyableLinkText(_ touchLocation: CGPoint) -> String? {
-        guard let (detectorType, value) = detectLink(touchLocation) else { return nil }
+        guard let (_, value) = detectLink(touchLocation) else { return nil }
 
         switch value {
         case let .link(url):
@@ -475,7 +475,7 @@ open class MessageLabel: UILabel {
             return url.absoluteString
         case let .phoneNumber(phoneNumber):
             return phoneNumber
-        case let .custom(pattern, match):
+        case let .custom(_, match):
             return match
         case .addressComponents, .date, .transitInfoComponents:
             return nil
