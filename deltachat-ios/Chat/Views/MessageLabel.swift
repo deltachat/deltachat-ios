@@ -497,7 +497,7 @@ open class MessageLabel: UILabel {
             guard let phoneNumber else { return false }
             handlePhoneNumber(phoneNumber)
         case let .date(date):
-            guard let date = date else { return false }
+            guard let date else { return false }
             handleDate(date)
         case let .link(url):
             guard let url = url else { return false }
