@@ -510,7 +510,7 @@ open class MessageLabel: UILabel {
             }
             handleTransitInformation(transformedTransitInformation)
         case let .custom(pattern, match):
-            guard let match = match else { return false }
+            guard let match else { return false }
             switch detectorType {
             case .hashtag:
                 handleHashtag(match)
