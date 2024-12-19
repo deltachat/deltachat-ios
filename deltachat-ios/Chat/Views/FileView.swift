@@ -1,5 +1,7 @@
 import UIKit
 import DcCore
+import PassKit
+
 public class FileView: UIView {
 
     private var imageWidthConstraint: NSLayoutConstraint?
@@ -32,6 +34,34 @@ public class FileView: UIView {
         let image = UIImage(named: "ic_attach_file_36pt")
         return image!
     }()
+    
+    private func deviceSupportsAddingPass() -> Bool {
+        guard PKPassLibrary.isPassLibraryAvailable() else {
+            logger.warning("Pass Library is not available.")
+            return false
+        }
+        return PKAddPassesViewController.canAddPasses()
+    }
+    
+    private var walletPass: PKPass?
+    
+    private lazy var addToWalletButton: UIButton = {
+        let addToWalletButton = PKAddPassButton(addPassButtonStyle: .black)
+        addToWalletButton.addTarget(self, action: #selector(addToWalletAction), for: .touchDown)
+        return addToWalletButton
+    }()
+    
+    @IBAction func addToWalletAction() {
+        if let pass = walletPass {
+            guard let addPassesViewController = PKAddPassesViewController(pass: pass) else {
+                logger.error("Error creating PKAddPassesViewController")
+                return
+            }
+            self.window?.rootViewController?.present(addPassesViewController, animated: true)
+        } else {
+            logger.error("no wallet pass available")
+        }
+    }
 
     private lazy var fileStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fileImageView, fileMetadataStackView])
@@ -100,6 +130,49 @@ public class FileView: UIView {
            configureWebxdc(message: message)
         } else if message.type == DC_MSG_FILE || message.isUnsupportedMediaFile {
             configureFile(message: message)
+            if let fileURL = message.fileURL {
+                if fileURL.pathExtension == "pkpass" {
+                    do {
+                        let passData = try Data(contentsOf: fileURL)
+                        let pass = try PKPass(data: passData)
+                        self.walletPass = pass
+                        
+                        fileTitle.text = pass.localizedName
+                        fileSubtitle.text = pass.localizedDescription
+                        fileSubtitle.numberOfLines = 2
+                        
+                        // Make sure text is visible in both dark and light mode
+                        // TODO: ideally we would either have a different design where text is not overlayed on item, or make text color dependent on color of icon (though be aware that icon could have both dark and light areas)
+                        fileTitle.textColor = .white
+                        fileSubtitle.textColor = .white
+                        fileTitle.shadowColor = .black
+                        fileSubtitle.shadowColor = .black
+                                                
+                        let backgroundImageView = UIImageView(frame: self.bounds)
+                        // somehow we only get low res icon (iMessage shows a high res image)
+                        // IDEA: find out how to get high res image
+                        backgroundImageView.image = pass.icon
+                        backgroundImageView.contentMode = .scaleAspectFill
+                        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+                        self.insertSubview(backgroundImageView, at: 0)
+                        NSLayoutConstraint.activate([
+                            backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor),
+                            backgroundImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                            backgroundImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                            backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+                        ])
+                        
+                        self.clipsToBounds = true
+                        self.layer.cornerRadius = 10.0
+                        
+                        fileImageView.isHidden = true
+
+                        fileMetadataStackView.addArrangedSubview(addToWalletButton)
+                    } catch {
+                        print("Error loading pass: \(error.localizedDescription)")
+                    }
+                }
+            }
         } else {
             logger.error("Configuring message failed")
         }
