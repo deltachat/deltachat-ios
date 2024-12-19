@@ -2,9 +2,9 @@ import Foundation
 
 struct WidgetEntry: Codable, Equatable {
     let accountId: Int
-    let type: WidgetEntryType
+    let type: Type
 
-    enum WidgetEntryType: Codable, Hashable {
+    enum `Type`: Codable, Hashable {
         case chat(chatId: Int)
         case app(messageId: Int)
     }

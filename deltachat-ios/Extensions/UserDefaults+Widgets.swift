@@ -4,7 +4,7 @@ import WidgetKit
 
 @available(iOS 15, *)
 extension UserDefaults {
-    
+
     private static let key = "ui.ios.selected_apps_for_widget"
 
     func getAllWidgetEntries() -> [WidgetEntry] {
@@ -18,10 +18,40 @@ extension UserDefaults {
         }
     }
 
-    func storeWidgetEntries(_ widgets: [WidgetEntry]) {
+    func getChatWidgetEntries() -> [WidgetEntry] {
+        let allEntries = getAllWidgetEntries()
+
+        let chatEntries = allEntries
+            .filter {
+                switch $0.type {
+                case .app: return false
+                case .chat: return true
+                }
+            }
+
+        return chatEntries
+    }
+
+    func getAppWidgetEntries() -> [WidgetEntry] {
+        let allEntries = getAllWidgetEntries()
+
+        let appEntries = allEntries
+            .filter {
+                switch $0.type {
+                case .app: return true
+                case .chat: return false
+                }
+            }
+
+        return appEntries
+    }
+
+
+    private func storeWidgetEntries(_ widgets: [WidgetEntry]) {
         guard let jsonData = try? JSONEncoder().encode(widgets) else { return }
 
         setValue(jsonData, forKey: Self.key)
+        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 
     func addWebxdcToHomescreenWidget(accountId: Int, messageId: Int) {
@@ -30,7 +60,6 @@ extension UserDefaults {
         entries.insert(entry, at: entries.startIndex)
 
         storeWidgetEntries(entries)
-        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 
     func removeWebxdcFromHomescreen(accountId: Int, messageId: Int) {
@@ -39,7 +68,6 @@ extension UserDefaults {
         entries.removeAll { $0 == entry }
 
         storeWidgetEntries(entries)
-        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 
     func addChatToHomescreenWidget(accountId: Int, chatId: Int) {
@@ -48,7 +76,6 @@ extension UserDefaults {
         entries.insert(entry, at: entries.startIndex)
 
         storeWidgetEntries(entries)
-        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 
     func removeChatFromHomescreenWidget(accountId: Int, chatId: Int) {
@@ -57,6 +84,5 @@ extension UserDefaults {
         entries.removeAll { $0 == entry }
 
         storeWidgetEntries(entries)
-        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
     }
 }
