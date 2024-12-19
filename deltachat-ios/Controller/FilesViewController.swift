@@ -132,8 +132,8 @@ class FilesViewController: UIViewController {
     private func askToDeleteItem(at indexPath: IndexPath) {
         let chat = dcContext.getChat(chatId: chatId)
         let title = chat.isDeviceTalk ?
-            String.localized(stringID: "ask_delete_messages_simple", parameter: 1) :
-            String.localized(stringID: "ask_delete_messages", parameter: 1)
+        String.localized(stringID: "ask_delete_messages_simple", parameter: 1) :
+        String.localized(stringID: "ask_delete_messages", parameter: 1)
         let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
         let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             self?.deleteItem(at: indexPath)
@@ -225,7 +225,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
             identifier: nil,
             previewProvider: nil,
             actionProvider: { [weak self] _ in
-                guard let self else { return nil }
+                guard let self, let userDefaults = UserDefaults.shared else { return nil }
 
                 var children: [UIMenuElement] = [
                     UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0) }),
@@ -235,9 +235,10 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                    type1 == DC_MSG_WEBXDC {
 
                     let messageId = self.fileMessageIds[indexPath.row]
-                    let appsInWidgetsMessageIds = self.dcContext.shownWidgets().compactMap { $0.messageId }
+                    let accountId = self.dcContext.id
+                    let appsInWidgetsMessageIds = userDefaults.getAllWidgetEntries().compactMap { $0.messageId }
                     let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
-                    
+
                     if isOnHomescreen {
                         children.append(
                             UIAction.menuAction(
@@ -245,8 +246,8 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                                 systemImageName: "rectangle.on.rectangle.slash",
                                 indexPath: indexPath,
                                 action: { _ in
-                                    self.dcContext.removeWebxdcFromHomescreen(messageId: messageId)
-                                    })
+                                    userDefaults.removeWebxdcFromHomescreen(accountId: accountId, messageId: messageId)
+                                })
                         )
                     } else {
                         children.append(
@@ -255,7 +256,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                                 systemImageName: "plus.rectangle.on.rectangle",
                                 indexPath: indexPath,
                                 action: { _ in
-                                    self.dcContext.addWebxdcToHomescreenWidget(messageId: messageId)
+                                    userDefaults.addWebxdcToHomescreenWidget(accountId: accountId, messageId: messageId)
                                 })
                         )
                     }

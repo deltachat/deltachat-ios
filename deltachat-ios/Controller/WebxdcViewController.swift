@@ -442,23 +442,23 @@ class WebxdcViewController: WebViewViewController {
         let alert = UIAlertController(title: webxdcName + " – " + String.localized("webxdc_app"),
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
-        if #available(iOS 15, *) {
-            let appsInWidgetsMessageIds = self.dcContext.shownWidgets().compactMap { $0.messageId }
+        if #available(iOS 15, *), let userDefaults = UserDefaults.shared {
+            let appsInWidgetsMessageIds = userDefaults.getAllWidgetEntries().compactMap { $0.messageId }
             let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
-
+            let accountId = dcContext.id
 
             let homescreenAction: UIAlertAction
             if isOnHomescreen {
                 homescreenAction = UIAlertAction(title: String.localized("ios_remove_from_home_screen"), style: .default) { [weak self] _ in
                     guard let self else { return }
 
-                    self.dcContext.removeWebxdcFromHomescreen(messageId: self.messageId)
+                    userDefaults.removeWebxdcFromHomescreen(accountId: accountId, messageId: messageId)
                 }
             } else {
                 homescreenAction = UIAlertAction(title: String.localized("ios_add_to_home_screen"), style: .default) { [weak self] _ in
                     guard let self else { return }
 
-                    self.dcContext.addWebxdcToHomescreenWidget(messageId: self.messageId)
+                    userDefaults.addWebxdcToHomescreenWidget(accountId: accountId, messageId: messageId)
                 }
             }
             alert.addAction(homescreenAction)

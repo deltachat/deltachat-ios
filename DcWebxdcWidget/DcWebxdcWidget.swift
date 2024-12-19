@@ -40,7 +40,6 @@ struct Provider: TimelineProvider {
         /// ----------------------------------
         let dcAccounts = DcAccounts.shared
         dcAccounts.openDatabase(writeable: false)
-        let dcContext = dcAccounts.getSelected()
 
         let limit: Int
         switch context.family {
@@ -48,24 +47,27 @@ struct Provider: TimelineProvider {
         case .systemMedium: limit = 8
         default: limit = 8
         }
-
-        let entries = dcContext.shownWidgets().prefix(limit)
-        let apps = entries.compactMap { entry in
-            let msg = dcContext.getMessage(id: entry.messageId)
-            let name = msg.getWebxdcAppName()
-            let image = msg.getWebxdcPreviewImage()
-            let accountId = entry.accountId
-            let chatId = msg.chatId
-
-            return WebxdcApp(
-                accountId: accountId,
-                chatId: chatId,
-                messageId: msg.id,
-                image: image,
-                title: name
-            )
-        }
-
+        
+        let entries = UserDefaults.shared?.getAllWidgetEntries() ?? []
+        let apps = entries
+            .prefix(limit)
+            .compactMap { entry in
+                let dcContext = dcAccounts.get(id: entry.accountId)
+                let msg = dcContext.getMessage(id: entry.messageId)
+                let name = msg.getWebxdcAppName()
+                let image = msg.getWebxdcPreviewImage()
+                let accountId = entry.accountId
+                let chatId = msg.chatId
+                
+                return WebxdcApp(
+                    accountId: accountId,
+                    chatId: chatId,
+                    messageId: msg.id,
+                    image: image,
+                    title: name
+                )
+            }
+        
         let currentDate = Date()
         let entry = UsedWebxdcEntry(date: currentDate, apps: apps)
         let nextDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
