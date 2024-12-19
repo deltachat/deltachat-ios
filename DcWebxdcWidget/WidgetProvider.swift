@@ -124,7 +124,7 @@ struct ChatShortcut: Identifiable, Hashable {
     var url: URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = "chat.delta.deeplink"
-        urlComponents.host = "webxdc"
+        urlComponents.host = "chat"
         urlComponents.queryItems = [
             URLQueryItem(name: "chatId", value: "\(chatId)"),
             URLQueryItem(name: "accountId", value: "\(accountId)"),
