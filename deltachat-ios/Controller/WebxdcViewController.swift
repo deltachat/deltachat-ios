@@ -444,28 +444,28 @@ class WebxdcViewController: WebViewViewController {
                                       preferredStyle: .safeActionSheet)
         if #available(iOS 15, *), let userDefaults = UserDefaults.shared {
             let appsInWidgetsMessageIds = userDefaults
-                .getAllWidgetEntries()
+                .getAppWidgetEntries()
                 .compactMap { entry in
                     switch entry.type {
                     case .app(let messageId): return messageId
                     case .chat: return nil
                     }
                 }
-
+            
             let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
             let accountId = dcContext.id
-
+            
             let homescreenAction: UIAlertAction
             if isOnHomescreen {
                 homescreenAction = UIAlertAction(title: String.localized("ios_remove_from_home_screen"), style: .default) { [weak self] _ in
                     guard let self else { return }
-
+                    
                     userDefaults.removeWebxdcFromHomescreen(accountId: accountId, messageId: messageId)
                 }
             } else {
                 homescreenAction = UIAlertAction(title: String.localized("ios_add_to_home_screen"), style: .default) { [weak self] _ in
                     guard let self else { return }
-
+                    
                     userDefaults.addWebxdcToHomescreenWidget(accountId: accountId, messageId: messageId)
                 }
             }
