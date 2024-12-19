@@ -237,7 +237,8 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                     let messageId = self.fileMessageIds[indexPath.row]
                     let accountId = self.dcContext.id
                     let appsInWidgetsMessageIds = userDefaults
-                        .getAllWidgetEntries()
+                        .getAppWidgetEntries()
+                        .filter { $0.accountId == accountId }
                         .compactMap { entry in
                             switch entry.type {
                             case .app(let messageId): return messageId

@@ -173,7 +173,7 @@ class ChatListViewModel: NSObject {
     }
 
     func chatIdsFor(indexPaths: [IndexPath]?) -> [Int] {
-        guard let indexPaths = indexPaths else { return [] }
+        guard let indexPaths else { return [] }
         var chatIds: [Int] = []
         for indexPath in indexPaths {
             guard let chatId = chatIdFor(section: indexPath.section, row: indexPath.row) else {
