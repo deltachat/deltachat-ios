@@ -54,7 +54,7 @@ struct Provider: TimelineProvider {
             let msg = dcContext.getMessage(id: entry.messageId)
             let name = msg.getWebxdcAppName()
             let image = msg.getWebxdcPreviewImage()
-            let accountId = dcContext.id
+            let accountId = entry.accountId
             let chatId = msg.chatId
 
             return WebxdcApp(
