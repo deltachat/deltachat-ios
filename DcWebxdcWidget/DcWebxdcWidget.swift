@@ -14,18 +14,18 @@ struct Provider: TimelineProvider {
             limit = 7
         }
 
-        let apps = [
-            WebxdcApp(accountId: 0, chatId: 0, messageId: 0, image: UIImage(named: "checklist"), title: "checklist"),
-            WebxdcApp(accountId: 0, chatId: 0, messageId: 1, image: UIImage(named: "hello"), title: "hello"),
-            WebxdcApp(accountId: 0, chatId: 0, messageId: 6, image: UIImage(named: "packabunchas"), title: "packabunchas"),
-            WebxdcApp(accountId: 0, chatId: 0, messageId: 3, image: UIImage(named: "webxdc"), title: "webxdc"),
-            WebxdcApp(accountId: 0, chatId: 0, messageId: 2, image: UIImage(named: "pixel"), title: "pixel"),
-            WebxdcApp(accountId: 0, chatId: 0, messageId: 4, image: UIImage(named: "checklist"), title: "checklist"),
-            WebxdcApp(accountId: 0, chatId: 0, messageId: 5, image: UIImage(named: "hello"), title: "hello"),
-            WebxdcApp(accountId: 0, chatId: 0, messageId: 7, image: UIImage(named: "webxdc"), title: "webxdc"),
+        let shortcuts: [Shortcut] = [
+            .app(WebxdcApp(accountId: 0, chatId: 0, messageId: 0, image: UIImage(named: "checklist"), title: "checklist")),
+            .app(WebxdcApp(accountId: 0, chatId: 0, messageId: 1, image: UIImage(named: "hello"), title: "hello")),
+            .app(WebxdcApp(accountId: 0, chatId: 0, messageId: 6, image: UIImage(named: "packabunchas"), title: "packabunchas")),
+            .app(WebxdcApp(accountId: 0, chatId: 0, messageId: 3, image: UIImage(named: "webxdc"), title: "webxdc")),
+            .app(WebxdcApp(accountId: 0, chatId: 0, messageId: 2, image: UIImage(named: "pixel"), title: "pixel")),
+            .app(WebxdcApp(accountId: 0, chatId: 0, messageId: 4, image: UIImage(named: "checklist"), title: "checklist")),
+            .app(WebxdcApp(accountId: 0, chatId: 0, messageId: 5, image: UIImage(named: "hello"), title: "hello")),
+            .app(WebxdcApp(accountId: 0, chatId: 0, messageId: 7, image: UIImage(named: "webxdc"), title: "webxdc")),
         ]
 
-        return UsedWebxdcEntry(date: Date(), apps: Array(apps.prefix(limit)))
+        return UsedWebxdcEntry(date: Date(), shortcuts: Array(shortcuts.prefix(limit)))
     }
 
     func getSnapshot(in context: Context, completion: @escaping (UsedWebxdcEntry) -> Void) {
@@ -49,27 +49,44 @@ struct Provider: TimelineProvider {
         }
         
         let entries = UserDefaults.shared?.getAllWidgetEntries() ?? []
-        let apps = entries
+        let apps: [Shortcut] = entries
             .prefix(limit)
             .compactMap { entry in
                 let dcContext = dcAccounts.get(id: entry.accountId)
-                let msg = dcContext.getMessage(id: entry.messageId)
-                let name = msg.getWebxdcAppName()
-                let image = msg.getWebxdcPreviewImage()
                 let accountId = entry.accountId
-                let chatId = msg.chatId
-                
-                return WebxdcApp(
-                    accountId: accountId,
-                    chatId: chatId,
-                    messageId: msg.id,
-                    image: image,
-                    title: name
-                )
+
+                switch entry.type {
+                case .app(let messageId):
+                    let msg = dcContext.getMessage(id: messageId)
+                    let name = msg.getWebxdcAppName()
+                    let image = msg.getWebxdcPreviewImage()
+
+                    let chatId = msg.chatId
+
+                    return .app(WebxdcApp(
+                        accountId: accountId,
+                        chatId: chatId,
+                        messageId: msg.id,
+                        image: image,
+                        title: name
+                    ))
+
+                case .chat(let chatId):
+                    let chat = dcContext.getChat(chatId: chatId)
+                    let title = chat.name
+                    let image = chat.profileImage
+
+                    return .chat(WidgetChat(
+                        accountId: entry.accountId,
+                        chatId: chatId,
+                        title: title,
+                        image: image
+                    ))
+                }
             }
         
         let currentDate = Date()
-        let entry = UsedWebxdcEntry(date: currentDate, apps: apps)
+        let entry = UsedWebxdcEntry(date: currentDate, shortcuts: apps)
         let nextDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
 
         let timeline = Timeline(entries: [entry], policy: .after(nextDate))
@@ -78,13 +95,47 @@ struct Provider: TimelineProvider {
 }
 
 struct UsedWebxdcEntry: TimelineEntry {
-
     let date: Date
-    let apps: [WebxdcApp]
+    let shortcuts: [Shortcut]
 }
 
-struct WebxdcApp: Hashable, Identifiable {
-    var id: Int { messageId }
+enum Shortcut: Identifiable {
+    var id: String {
+        switch self {
+        case .app(let webxdcApp):
+            return webxdcApp.id
+        case .chat(let widgetChat):
+            return widgetChat.id
+        }
+    }
+
+    case app(WebxdcApp)
+    case chat(WidgetChat)
+}
+
+struct WidgetChat: Identifiable, Hashable {
+    var id: String { "chat-\(chatId)" }
+
+    let accountId: Int
+    let chatId: Int
+    let title: String
+    let image: UIImage?
+
+    var url: URL {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "chat.delta.deeplink"
+        urlComponents.host = "webxdc"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "chatId", value: "\(chatId)"),
+            URLQueryItem(name: "accountId", value: "\(accountId)"),
+        ]
+
+        return urlComponents.url!
+    }
+}
+
+struct WebxdcApp: Identifiable, Hashable {
+    var id: String { "app-\(messageId)" }
 
     let accountId: Int
     let chatId: Int
@@ -111,25 +162,50 @@ struct DcWebxdcWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        if entry.apps.isEmpty {
+        if entry.shortcuts.isEmpty {
             Text(String.localized("ios_widget_no_apps"))
         } else {
             let rows = [GridItem(.fixed(56)), GridItem(.fixed(56))]
             LazyHGrid(rows: rows) {
-                ForEach(entry.apps) { app in
-                    WebXDCAppView(app: app).accessibilityLabel(Text(app.title))
+                ForEach(entry.shortcuts) { shortcut in
+                    switch shortcut {
+                    case .app(let app):
+                        AppShortcutView(app: app)
+                    case .chat(let chat):
+                        ChatShortcutView(chat: chat)
+                    }
                 }
             }
         }
     }
 }
 
-struct WebXDCAppView: View {
+struct AppShortcutView: View {
     var app: WebxdcApp
 
     var body: some View {
         Link(destination: app.url) {
             if let image = app.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .frame(width: 56, height: 56)
+                    .cornerRadius(12)
+            } else {
+                Color(.systemBackground)
+                    .frame(width: 56, height: 56)
+                    .cornerRadius(12)
+            }
+        }
+    }
+}
+
+struct ChatShortcutView: View {
+    var chat: WidgetChat
+
+    var body: some View {
+        Link(destination: chat.url) {
+            if let image = chat.image {
+                // Use Circle as mask
                 Image(uiImage: image)
                     .resizable()
                     .frame(width: 56, height: 56)

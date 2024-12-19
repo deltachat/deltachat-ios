@@ -443,7 +443,15 @@ class WebxdcViewController: WebViewViewController {
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
         if #available(iOS 15, *), let userDefaults = UserDefaults.shared {
-            let appsInWidgetsMessageIds = userDefaults.getAllWidgetEntries().compactMap { $0.messageId }
+            let appsInWidgetsMessageIds = userDefaults
+                .getAllWidgetEntries()
+                .compactMap { entry in
+                    switch entry.type {
+                    case .app(let messageId): return messageId
+                    case .chat: return nil
+                    }
+                }
+
             let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
             let accountId = dcContext.id
 
