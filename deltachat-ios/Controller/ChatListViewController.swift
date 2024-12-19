@@ -1063,29 +1063,62 @@ extension ChatListViewController: ChatListEditingBarDelegate {
     }
 
     func onMorePressed() {
+        guard let userDefaults = UserDefaults.shared, let viewModel else { return }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+        let chatIds = viewModel.chatIdsFor(indexPaths: tableView.indexPathsForSelectedRows)
 
-        let onlyPinndedSelected = viewModel?.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows) ?? false
+        if #available(iOS 15, *),
+           chatIds.count == 1,
+           let chatId = chatIds.first {
+
+            let allHomescreenChatsIds: [Int] = userDefaults
+                .getChatWidgetEntries()
+                .filter { $0.accountId == dcContext.id }
+                .compactMap { entry in
+                    switch entry.type {
+                    case .app: return nil
+                    case .chat(let chatId): return chatId
+                    }
+                }
+
+            let chatPresentInHomescreenWidget = allHomescreenChatsIds.contains(chatId)
+            let action: UIAlertAction
+            if chatPresentInHomescreenWidget {
+                action = UIAlertAction(title: String.localized("ios_remove_from_home_screen"), style: .default) { [weak self] _ in
+                    guard let self else { return }
+                    userDefaults.removeChatFromHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
+                }
+            } else {
+                action = UIAlertAction(title: String.localized("ios_add_to_home_screen"), style: .default) { [weak self] _ in
+                    guard let self else { return }
+
+                    userDefaults.addChatToHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
+                }
+            }
+            alert.addAction(action)
+        }
+
+        let onlyPinndedSelected = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
         let pinTitle = String.localized(onlyPinndedSelected ? "unpin" : "pin")
         alert.addAction(UIAlertAction(title: pinTitle, style: .default) { [weak self] _ in
             guard let self else { return }
-            viewModel?.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
+            viewModel.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
             setLongTapEditing(false)
         })
 
-        if viewModel?.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) ?? false {
+        if viewModel.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) {
             alert.addAction(UIAlertAction(title: String.localized("menu_mute"), style: .default) { [weak self] _ in
                 guard let self else { return }
                 MuteDialog.show(viewController: self) { [weak self] duration in
                     guard let self else { return }
-                    viewModel?.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: duration)
+                    viewModel.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: duration)
                     setLongTapEditing(false)
                 }
             })
         } else {
             alert.addAction(UIAlertAction(title: String.localized("menu_unmute"), style: .default) { [weak self] _ in
                 guard let self else { return }
-                viewModel?.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: 0)
+                viewModel.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: 0)
                 setLongTapEditing(false)
             })
         }

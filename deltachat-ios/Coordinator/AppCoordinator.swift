@@ -70,10 +70,10 @@ class AppCoordinator: NSObject {
         let nav = UINavigationController(rootViewController: root)
         let settingsImage: UIImage?
         if #available(iOS 13.0, *) {
-             settingsImage = UIImage(systemName: "gear")
-         } else {
-             settingsImage = UIImage(named: "settings")
-         }
+            settingsImage = UIImage(systemName: "gear")
+        } else {
+            settingsImage = UIImage(named: "settings")
+        }
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
         return nav
     }
@@ -136,6 +136,17 @@ class AppCoordinator: NSObject {
     }
 
     func handleDeepLinkURL(_ url: URL) -> Bool {
+        if url.absoluteString.starts(with: "chat.delta.deeplink://webxdc?") {
+            return handleWebxdcDeeplink(url: url)
+        } else if url.absoluteString.starts(with: "chat.delta.deeplink://chat?") {
+            return handleOpenChatDeeplink(url: url)
+        } else {
+            return false
+        }
+    }
+
+    private func handleWebxdcDeeplink(url: URL) -> Bool {
+
         guard let parameters = url.queryParameters else {
             logger.error("Missing parameters in URL \(url)")
             return false
@@ -176,6 +187,37 @@ class AppCoordinator: NSObject {
             return true
         }
         return false
+    }
+
+    private func handleOpenChatDeeplink(url: URL) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let parameters = url.queryParameters,
+              let accountIdString = parameters["accountId"],
+              let accountId = Int(accountIdString),
+              let chatIdString = parameters["chatId"],
+              let chatId = Int(chatIdString) else {
+            logger.error("Missing parameters in URL \(url)")
+            return false
+        }
+
+        if dcAccounts.getSelected().id != accountId {
+            if !dcAccounts.select(id: accountId) {
+                return false
+            }
+            appDelegate.reloadDcContext()
+        } else {
+            // check if chat is already opened
+            if let navController = self.tabBarController.selectedViewController as? UINavigationController,
+               let topViewController = navController.topViewController,
+               let chatViewController = topViewController as? ChatViewController,
+               chatViewController.chatId == chatId {
+                // do nothing, the app shows the correct view
+                return true
+            }
+        }
+
+        showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
+        return true
     }
 
     func handleMailtoURL(_ url: URL) -> Bool {
