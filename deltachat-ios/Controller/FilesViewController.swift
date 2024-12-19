@@ -236,7 +236,14 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
 
                     let messageId = self.fileMessageIds[indexPath.row]
                     let accountId = self.dcContext.id
-                    let appsInWidgetsMessageIds = userDefaults.getAllWidgetEntries().compactMap { $0.messageId }
+                    let appsInWidgetsMessageIds = userDefaults
+                        .getAllWidgetEntries()
+                        .compactMap { entry in
+                            switch entry.type {
+                            case .app(let messageId): return messageId
+                            case .chat: return nil
+                            }
+                        }
                     let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
 
                     if isOnHomescreen {
