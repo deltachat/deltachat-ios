@@ -112,7 +112,7 @@ struct DcWebxdcWidgetEntryView: View {
 
     var body: some View {
         if entry.apps.isEmpty {
-            Text(String.localized("widget_no_apps"))
+            Text(String.localized("ios_widget_no_apps"))
         } else {
             let rows = [GridItem(.fixed(56)), GridItem(.fixed(56))]
             LazyHGrid(rows: rows) {
