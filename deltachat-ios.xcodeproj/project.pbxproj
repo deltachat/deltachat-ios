@@ -115,7 +115,6 @@
 		30DED713292EE4280040835D /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DED712292EE4280040835D /* LogViewController.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
 		30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E424F6647D005C93D1 /* FileTextCell.swift */; };
-		30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E83EFC289BF32C0035614C /* ShortcutManager.swift */; };
 		30E8F2132447285600CE2C90 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2122447285600CE2C90 /* ShareViewController.swift */; };
 		30E8F2162447285600CE2C90 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30E8F2142447285600CE2C90 /* MainInterface.storyboard */; };
 		30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 30E8F2102447285600CE2C90 /* Delta Chat.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -453,7 +452,6 @@
 		30DED712292EE4280040835D /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
 		30E348E424F6647D005C93D1 /* FileTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTextCell.swift; sourceTree = "<group>"; };
-		30E83EFC289BF32C0035614C /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
 		30E8F2102447285600CE2C90 /* Delta Chat.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Delta Chat.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E8F2122447285600CE2C90 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		30E8F2152447285600CE2C90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -1109,7 +1107,6 @@
 				AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */,
 				21D6C9392606190600D0755A /* NotificationManager.swift */,
 				3011E8042787365D00214221 /* KeychainManager.swift */,
-				30E83EFC289BF32C0035614C /* ShortcutManager.swift */,
 				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
 				B2CDA6312CCDB3080024763F /* MuteDialog.swift */,
 			);
@@ -1761,7 +1758,6 @@
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
 				30C7D5EE28F47E620078D24C /* MessageCounter.swift in Sources */,
-				30E83EFD289BF32C0035614C /* ShortcutManager.swift in Sources */,
 				305501742798CDE1008FD5CA /* WebxdcViewController.swift in Sources */,
 				3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */,
 				5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */,
