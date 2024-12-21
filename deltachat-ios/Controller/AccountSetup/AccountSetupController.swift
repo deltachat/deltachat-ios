@@ -550,9 +550,10 @@ class AccountSetupController: UITableViewController {
         // used when login hud successfully went through
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         appDelegate.registerForNotifications()
+        appDelegate.prepopulateWidget()
 
         initSelectionCells()
-        if let onLoginSuccess = self.onLoginSuccess {
+        if let onLoginSuccess {
             onLoginSuccess()
         } else {
             navigationController?.popViewController(animated: true)
