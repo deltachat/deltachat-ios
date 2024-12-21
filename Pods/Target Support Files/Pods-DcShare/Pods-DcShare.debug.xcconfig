@@ -5,6 +5,7 @@ HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/S
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks' '@executable_path/../../Frameworks'
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers" -isystem "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework/Headers" -isystem "${PODS_CONFIGURATION_BUILD_DIR}/libwebp/libwebp.framework/Headers" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/libwebp"
 OTHER_LDFLAGS = $(inherited) -framework "CoreGraphics" -framework "ImageIO" -framework "SDWebImage" -framework "SDWebImageWebPCoder" -framework "libwebp"
+OTHER_MODULE_VERIFIER_FLAGS = $(inherited) "-F${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" "-F${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder" "-F${PODS_CONFIGURATION_BUILD_DIR}/libwebp"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

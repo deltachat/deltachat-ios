@@ -28,7 +28,6 @@ PODS:
     - SDWebImage/Core (~> 5.17)
   - SVGKit (3.0.0):
     - CocoaLumberjack (~> 3.0)
-  - Swifter (1.5.0)
   - SwiftFormat/CLI (0.52.11)
   - SwiftLint (0.54.0)
 
@@ -40,7 +39,6 @@ DEPENDENCIES:
   - SDWebImageSVGKitPlugin
   - SDWebImageWebPCoder
   - SVGKit
-  - Swifter (from `https://github.com/httpswift/swifter.git`, branch `stable`)
   - SwiftFormat/CLI
   - SwiftLint
 
@@ -61,17 +59,11 @@ EXTERNAL SOURCES:
   MCEmojiPicker:
     :branch: main
     :git: https://github.com/deltachat/MCEmojiPicker
-  Swifter:
-    :branch: stable
-    :git: https://github.com/httpswift/swifter.git
 
 CHECKOUT OPTIONS:
   MCEmojiPicker:
     :commit: d9eb480883c0a46b8813b9fe1f4e00d4df1ad071
     :git: https://github.com/deltachat/MCEmojiPicker
-  Swifter:
-    :commit: 1e4f51c92d7ca486242d8bf0722b99de2c3531aa
-    :git: https://github.com/httpswift/swifter.git
 
 SPEC CHECKSUMS:
   CocoaLumberjack: f8d89a516e7710fdb2e9b8f1560b16ec6040eef0
@@ -83,10 +75,9 @@ SPEC CHECKSUMS:
   SDWebImageSVGKitPlugin: 7542dd07c344ec3415ded0461a1161a6f087e0c9
   SDWebImageWebPCoder: 633b813fca24f1de5e076bcd7f720c038b23892b
   SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
-  Swifter: aa3514bbb8df8980c118f7bb1b80f2da24e39c2b
   SwiftFormat: 2ca3d0b75754193f0f3ba532291f25ae08dd1e42
   SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
 
-PODFILE CHECKSUM: 890a32e752f554d57e4aacafab11aa175db79c1c
+PODFILE CHECKSUM: 68422360320087b0cc5cd7b1b9597388ed182745
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.16.2
