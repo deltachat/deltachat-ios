@@ -231,7 +231,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                     UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0) }),
                 ]
 
-                if #available(iOS 15, *),
+                if #available(iOS 15.0, *),
                    type1 == DC_MSG_WEBXDC {
 
                     let messageId = self.fileMessageIds[indexPath.row]

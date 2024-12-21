@@ -171,6 +171,16 @@ public class DcContext {
         return Int(dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
+    public func getDeviceTalkChat() -> DcChat {
+        let deviceTalkChatId = getChatIdByContactId(contactId: Int(DC_CONTACT_ID_DEVICE))
+        return getChat(chatId: deviceTalkChatId)
+    }
+
+    public func getSelfTalkChat() -> DcChat {
+        let selfTalkChatId = getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+        return getChat(chatId: selfTalkChatId)
+    }
+
     public func getChatIdByContactIdOld(_ contactId: Int) -> Int? {
         // deprecated function, use getChatIdByContactId() and check for != 0 as for all other places IDs are used
         let chatId = dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId))

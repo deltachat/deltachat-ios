@@ -5,10 +5,10 @@ import WidgetKit
 @available(iOS 15, *)
 extension UserDefaults {
 
-    private static let key = "ui.ios.selected_apps_for_widget"
+    private static let shortcutsKey = "ui.ios.selected_apps_for_widget"
 
     func getAllWidgetEntries() -> [WidgetEntry] {
-        guard let jsonData = data(forKey: Self.key) else { return [] }
+        guard let jsonData = data(forKey: Self.shortcutsKey) else { return [] }
 
         do {
             let widgets = try JSONDecoder().decode([WidgetEntry].self, from: jsonData)
@@ -49,7 +49,7 @@ extension UserDefaults {
     private func storeWidgetEntries(_ widgets: [WidgetEntry]) {
         guard let jsonData = try? JSONEncoder().encode(widgets) else { return }
 
-        setValue(jsonData, forKey: Self.key)
+        setValue(jsonData, forKey: Self.shortcutsKey)
         WidgetCenter.shared.reloadTimelines(ofKind: "DcWidget")
     }
 
@@ -83,5 +83,25 @@ extension UserDefaults {
         entries.removeAll { $0 == entry }
 
         storeWidgetEntries(entries)
+    }
+}
+
+// MARK: - Prepopulation
+
+@available(iOS 15, *)
+extension UserDefaults {
+    private static let widgetPrepopulatedKey = "ui.ios.widget_prepopulated"
+
+    public func prepopulateWidget() {
+        guard bool(forKey: Self.widgetPrepopulatedKey) == false else { return }
+
+        let context = DcAccounts.shared.getSelected()
+        let selfTalkChatId = context.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+        let deviceTalkChatId = context.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_DEVICE))
+
+        addChatToHomescreenWidget(accountId: context.id, chatId: deviceTalkChatId)
+        addChatToHomescreenWidget(accountId: context.id, chatId: selfTalkChatId)
+
+        set(true, forKey: Self.widgetPrepopulatedKey)
     }
 }
