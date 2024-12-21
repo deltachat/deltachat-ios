@@ -119,7 +119,8 @@ class AppCoordinator: NSObject {
         showTab(index: chatsTab)
         if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
            let chatListViewController = rootController.viewControllers.first as? ChatListViewController {
-            if let msgId = msgId, openHighlightedMsg {
+            chatListViewController.setLongTapEditing(false)
+            if let msgId, openHighlightedMsg {
                 let dcContext = dcAccounts.getSelected()
                 let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: msgId)
                 chatListViewController.backButtonUpdateableDataSource = chatViewController
