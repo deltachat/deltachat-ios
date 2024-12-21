@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-- Access your favorite Webxdc-apps from the Homescreen using our shiny new widget (#2406)
-- Add and remove apps to that widget (#2426)
+- Access your favorite apps and chats from the Homescreen using our shiny new widget (#2406, #2449)
+- Add and remove apps and chats to that widget (#2426, #2449)
 - Don't show message-input when forwarding (#2435)
 - Long-tap links for copying to clipboard (#2445)
 - Hide address in titles: protect against over-the-shoulder-attacks, improve screenshot privacy, clear UX (#2447)
