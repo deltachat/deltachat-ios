@@ -23,8 +23,6 @@ class WebxdcViewController: WebViewViewController {
     var sendUpdateMaxSize: Int = 0
     private var allowInternet: Bool = false
 
-    private var shortcutManager: ShortcutManager?
-
     private lazy var moreButton: UIBarButtonItem = {
         let image: UIImage?
         if #available(iOS 13.0, *) {
@@ -278,7 +276,6 @@ class WebxdcViewController: WebViewViewController {
     init(dcContext: DcContext, messageId: Int, href: String? = nil) {
         self.messageId = messageId
         self.href = href
-        self.shortcutManager = ShortcutManager(dcContext: dcContext, messageId: messageId)
         super.init(dcContext: dcContext)
 
         NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
@@ -470,11 +467,6 @@ class WebxdcViewController: WebViewViewController {
                 }
             }
             alert.addAction(homescreenAction)
-        } else {
-            let addToHomescreenAction = UIAlertAction(title: String.localized("add_to_home_screen"), style: .default) { [weak self] _ in
-                self?.addToHomeScreen()
-            }
-            alert.addAction(addToHomescreenAction)
         }
 
         if sourceCodeUrl != nil {
@@ -503,10 +495,6 @@ class WebxdcViewController: WebViewViewController {
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
-    }
-
-    private func addToHomeScreen() {
-        shortcutManager?.showShortcutLandingPage()
     }
 
     private func openUrl() {
