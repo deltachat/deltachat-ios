@@ -22,6 +22,7 @@ class ContactDetailViewModel {
     }
 
     enum ChatAction {
+        case addToHomescreen
         case archiveChat
         case showEncrInfo
         case blockContact
@@ -87,6 +88,10 @@ class ContactDetailViewModel {
             chatOptions.append(.locations)
         }
 
+        if #available(iOS 15, *) {
+            chatActions = [.addToHomescreen]
+        }
+
         if chatId != 0 {
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
@@ -97,7 +102,7 @@ class ContactDetailViewModel {
                 chatOptions.append(.shareContact)
             }
 
-            chatActions = [.archiveChat]
+            chatActions.append(.archiveChat)
             if !isDeviceTalk && !isSavedMessages {
                 chatActions.append(.showEncrInfo)
                 chatActions.append(.blockContact)
@@ -106,7 +111,8 @@ class ContactDetailViewModel {
             chatActions.append(.deleteChat)
         } else {
             chatOptions.append(.startChat)
-            chatActions = [.showEncrInfo, .blockContact]
+            chatActions.append(.showEncrInfo)
+            chatActions.append(.blockContact)
         }
     }
 
@@ -220,5 +226,26 @@ class ContactDetailViewModel {
 
     public func unblockContact() {
         context.unblockContact(id: contact.id)
+    }
+
+    @available(iOS 15, *)
+    func toggleChatInHomescreenWidget() -> Bool {
+        guard let userDefaults = UserDefaults.shared else { return false }
+        let allHomescreenChatsIds: [Int] = userDefaults
+            .getChatWidgetEntries()
+            .compactMap { entry in
+                switch entry.type {
+                case .app: return nil
+                case .chat(let chatId): return chatId
+                }
+            }
+
+        if allHomescreenChatsIds.contains(chatId) {
+            userDefaults.removeChatFromHomescreenWidget(accountId: context.id, chatId: chatId)
+            return false
+        } else {
+            userDefaults.addChatToHomescreenWidget(accountId: context.id, chatId: chatId)
+            return true
+        }
     }
 }
