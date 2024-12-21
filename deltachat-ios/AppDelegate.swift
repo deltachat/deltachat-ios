@@ -119,6 +119,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
            fatalError("Could not initialize a new account.")
         }
 
+        if #available(iOS 15.0, *) {
+            UserDefaults.shared?.prepopulateWidget()
+        }
+
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else {
             fatalError("window was nil in app delegate")
@@ -138,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setStockTranslations()
         dcAccounts.startIo()
 
-        if let reachability = reachability {
+        if let reachability {
             reachability.whenReachable = { reachability in
                 // maybeNetwork() shall not be called in ui thread;
                 // Reachability::reachabilityChanged uses DispatchQueue.main.async only
