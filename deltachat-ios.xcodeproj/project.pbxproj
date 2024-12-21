@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -656,7 +656,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		D81A6A002D16EDB10023749C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		D81A6A002D16EDB10023749C /* Exceptions for "DcWidget" folder in "DcWidget" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -666,7 +666,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D878C5002CF72AA0009AF551 /* DcWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D81A6A002D16EDB10023749C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = DcWidget; sourceTree = "<group>"; };
+		D878C5002CF72AA0009AF551 /* DcWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D81A6A002D16EDB10023749C /* Exceptions for "DcWidget" folder in "DcWidget" target */,
+			);
+			path = DcWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1385,7 +1392,6 @@
 				};
 			};
 			buildConfigurationList = 7A9FB13B1FB061E2001FEA36 /* Build configuration list for PBXProject "deltachat-ios" */;
-			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1437,6 +1443,7 @@
 				vi,
 			);
 			mainGroup = 7A9FB1371FB061E2001FEA36;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 7A9FB1411FB061E2001FEA36 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
