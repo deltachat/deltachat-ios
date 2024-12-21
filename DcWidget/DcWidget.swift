@@ -2,7 +2,7 @@ import WidgetKit
 import SwiftUI
 import DcCore
 
-struct DcWebxdcWidgetEntryView: View {
+struct DcShortcutWidgetView: View {
     var entry: Provider.Entry
 
     var body: some View {
@@ -63,16 +63,16 @@ struct ChatShortcutView: View {
     }
 }
 
-struct DcWebxdcWidget: Widget {
-    let kind: String = "DcWebxdcWidget"
+struct DcWidget: Widget {
+    let kind: String = "DcWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
-                DcWebxdcWidgetEntryView(entry: entry)
+                DcShortcutWidgetView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
             } else {
-                DcWebxdcWidgetEntryView(entry: entry)
+                DcShortcutWidgetView(entry: entry)
                     .padding()
                     .background()
             }

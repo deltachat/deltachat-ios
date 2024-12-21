@@ -46,12 +46,11 @@ extension UserDefaults {
         return appEntries
     }
 
-
     private func storeWidgetEntries(_ widgets: [WidgetEntry]) {
         guard let jsonData = try? JSONEncoder().encode(widgets) else { return }
 
         setValue(jsonData, forKey: Self.key)
-        WidgetCenter.shared.reloadTimelines(ofKind: "DcWebxdcWidget")
+        WidgetCenter.shared.reloadTimelines(ofKind: "DcWidget")
     }
 
     func addWebxdcToHomescreenWidget(accountId: Int, messageId: Int) {
