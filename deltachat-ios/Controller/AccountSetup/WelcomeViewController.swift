@@ -138,6 +138,7 @@ class WelcomeViewController: UIViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         appDelegate.registerForNotifications()
         appDelegate.reloadDcContext()
+        appDelegate.prepopulateWidget()
     }
 
     @objc private func cancelAccountCreation() {

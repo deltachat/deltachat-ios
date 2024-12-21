@@ -119,10 +119,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
            fatalError("Could not initialize a new account.")
         }
 
-        if #available(iOS 15.0, *) {
-            UserDefaults.shared?.prepopulateWidget()
-        }
-
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else {
             fatalError("window was nil in app delegate")
@@ -152,6 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     self.dcAccounts.maybeNetwork()
                     if self.notifyToken == nil && self.dcAccounts.getSelected().isConfigured() {
                         self.registerForNotifications()
+                        self.prepopulateWidget()
                     }
                 }
             }
@@ -178,6 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         if dcAccounts.getSelected().isConfigured() {
             registerForNotifications()
+            prepopulateWidget()
         }
 
         launchOptions = nil
@@ -379,6 +377,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 }
             }
+        }
+    }
+
+    public func prepopulateWidget() {
+        if #available(iOS 15.0, *) {
+            UserDefaults.shared?.prepopulateWidget()
         }
     }
 
