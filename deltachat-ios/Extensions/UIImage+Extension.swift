@@ -43,27 +43,6 @@ extension UIImage {
         guard let cgImage = image?.cgImage else { return nil }
         self.init(cgImage: cgImage)
     }
-
-    public func generateSplash(backgroundColor: UIColor, isPortrait: Bool) -> UIImage? {
-        let rect: CGRect
-        if isPortrait {
-            rect = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width,
-                                                          height: UIScreen.main.bounds.height))
-        } else {
-            rect = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.height,
-                                                          height: UIScreen.main.bounds.width))
-        }
-
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-        backgroundColor.setFill()
-        UIRectFill(rect)
-        let horizontalPadding = (rect.width - self.size.width) / 2
-        let verticalPadding = (rect.height - self.size.height) / 2 + UIApplication.shared.statusBarFrame.height
-        self.draw(in: CGRect(horizontalPadding, verticalPadding, self.size.width, self.size.height))
-        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return finalImage
-    }
 }
 
 extension UIImage {
