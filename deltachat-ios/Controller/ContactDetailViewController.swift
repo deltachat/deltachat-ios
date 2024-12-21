@@ -29,6 +29,35 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var homescreenWidgetCell: ActionCell = {
+        let cell = ActionCell()
+
+        let chatIdsOnHomescreen: [Int]
+
+        if #available(iOS 15, *) {
+            chatIdsOnHomescreen = UserDefaults.shared!
+                .getChatWidgetEntries()
+                .filter { $0.accountId == viewModel.context.id }
+                .compactMap { entry in
+                    switch entry.type {
+                    case .app: return nil
+                    case .chat(let chatId): return chatId
+                    }
+                }
+        } else {
+            chatIdsOnHomescreen = []
+        }
+
+        let isOnHomescreen = chatIdsOnHomescreen.contains(viewModel.chatId)
+        if isOnHomescreen {
+            cell.actionTitle = String.localized("ios_remove_from_home_screen")
+        } else {
+            cell.actionTitle = String.localized("ios_add_to_home_screen")
+        }
+        cell.actionColor = UIColor.systemBlue
+        return cell
+    }()
+
     private lazy var shareContactCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("menu_share")
@@ -220,6 +249,9 @@ class ContactDetailViewController: UITableViewController {
                 return clearChatCell
             case .deleteChat:
                 return deleteChatCell
+            case .addToHomescreen:
+                // only relevant for iOS 15
+                return homescreenWidgetCell
             }
         case .sharedChats:
             if let cell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
@@ -381,6 +413,10 @@ class ContactDetailViewController: UITableViewController {
         case .deleteChat:
             tableView.deselectRow(at: indexPath, animated: false)
             showDeleteChatConfirmationAlert()
+        case .addToHomescreen:
+            // only relevant for iOS 15
+            tableView.deselectRow(at: indexPath, animated: true)
+            toggleChatInHomescreenWidget()
         }
     }
 
@@ -429,6 +465,17 @@ class ContactDetailViewController: UITableViewController {
                 headerCell.setMuted(isMuted: viewModel.chatIsMuted)
                 navigationController?.popViewController(animated: true)
             }
+        }
+    }
+
+    private func toggleChatInHomescreenWidget() {
+        guard #available(iOS 15, *) else { return }
+
+        let onHomescreen = viewModel.toggleChatInHomescreenWidget()
+        if onHomescreen {
+            homescreenWidgetCell.actionTitle = String.localized("ios_remove_from_home_screen")
+        } else {
+            homescreenWidgetCell.actionTitle =  String.localized("ios_add_to_home_screen")
         }
     }
 
