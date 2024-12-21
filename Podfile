@@ -5,7 +5,6 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'deltachat-ios' do
-  pod 'Swifter', :git => 'https://github.com/httpswift/swifter.git', :branch => 'stable'
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
   # pod 'openssl-ios-bitcode'
