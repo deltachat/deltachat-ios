@@ -84,6 +84,7 @@ struct Provider: TimelineProvider {
                     ))
                 }
             }
+        dcAccounts.closeDatabase()
 
         let currentDate = Date()
         let entry = UsedWebxdcEntry(date: currentDate, shortcuts: shortcuts)

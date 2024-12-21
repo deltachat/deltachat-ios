@@ -17,8 +17,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D878C4FA2CF72AA0009AF551"
-               BuildableName = "DcWebxdcWidget.appex"
-               BlueprintName = "DcWebxdcWidget"
+               BuildableName = "DcWidget.appex"
+               BlueprintName = "DcWidget"
                ReferencedContainer = "container:deltachat-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D878C4FA2CF72AA0009AF551"
-            BuildableName = "DcWebxdcWidget.appex"
-            BlueprintName = "DcWebxdcWidget"
+            BuildableName = "DcWidget.appex"
+            BlueprintName = "DcWidget"
             ReferencedContainer = "container:deltachat-ios.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
@@ -85,7 +85,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "_XCWidgetKind"
-            value = "DcWebxdcWidget"
+            value = "DcWidget"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

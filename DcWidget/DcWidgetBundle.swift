@@ -2,8 +2,8 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct DcWebxdcWidgetBundle: WidgetBundle {
+struct DcWidgetBundle: WidgetBundle {
     var body: some Widget {
-        DcWebxdcWidget()
+        DcWidget()
     }
 }
