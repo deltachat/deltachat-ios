@@ -88,11 +88,9 @@ class ContactDetailViewModel {
             chatOptions.append(.locations)
         }
 
-        if #available(iOS 15, *) {
-            chatActions = [.addToHomescreen]
-        }
-
-        if chatId != 0 {
+        var chatActions: [ChatAction]
+        let chatExists = chatId != 0
+        if chatExists {
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
                 chatOptions.append(.startChat)
@@ -102,7 +100,10 @@ class ContactDetailViewModel {
                 chatOptions.append(.shareContact)
             }
 
-            chatActions.append(.archiveChat)
+            chatActions = [.archiveChat]
+            if #available(iOS 15, *) {
+                chatActions.append(.addToHomescreen)
+            }
             if !isDeviceTalk && !isSavedMessages {
                 chatActions.append(.showEncrInfo)
                 chatActions.append(.blockContact)
@@ -111,9 +112,10 @@ class ContactDetailViewModel {
             chatActions.append(.deleteChat)
         } else {
             chatOptions.append(.startChat)
-            chatActions.append(.showEncrInfo)
-            chatActions.append(.blockContact)
+            chatActions = [.showEncrInfo, .blockContact]
         }
+
+        self.chatActions = chatActions
     }
 
     func typeFor(section: Int) -> ContactDetailViewModel.ProfileSections {
