@@ -302,8 +302,13 @@ static id<SDImageLoader> _defaultImageLoader;
     if (shouldQueryCache) {
         // transformed cache key
         NSString *key = [self cacheKeyForURL:url context:context];
+        // to avoid the SDImageCache's sync logic use the mismatched cache key
+        // we should strip the `thumbnail` related context
+        SDWebImageMutableContext *mutableContext = [context mutableCopy];
+        mutableContext[SDWebImageContextImageThumbnailPixelSize] = nil;
+        mutableContext[SDWebImageContextImagePreserveAspectRatio] = nil;
         @weakify(operation);
-        operation.cacheOperation = [imageCache queryImageForKey:key options:options context:context cacheType:queryCacheType completion:^(UIImage * _Nullable cachedImage, NSData * _Nullable cachedData, SDImageCacheType cacheType) {
+        operation.cacheOperation = [imageCache queryImageForKey:key options:options context:mutableContext cacheType:queryCacheType completion:^(UIImage * _Nullable cachedImage, NSData * _Nullable cachedData, SDImageCacheType cacheType) {
             @strongify(operation);
             if (!operation || operation.isCancelled) {
                 // Image combined operation cancelled by user
@@ -505,6 +510,16 @@ static id<SDImageLoader> _defaultImageLoader;
             // Case that transformer on thumbnail, which this time need full pixel image
             UIImage *transformedImage = [transformer transformedImageWithImage:cacheImage forKey:key];
             if (transformedImage) {
+                // We need keep some metadata from the full size image when needed
+                // Because most of our transformer does not care about these information
+                BOOL preserveImageMetadata = YES;
+                if ([transformer respondsToSelector:@selector(preserveImageMetadata)]) {
+                    preserveImageMetadata = transformer.preserveImageMetadata;
+                }
+                if (preserveImageMetadata) {
+                    SDImageCopyAssociatedObject(cacheImage, transformedImage);
+                }
+                // Mark the transformed
                 transformedImage.sd_isTransformed = YES;
                 [self callStoreOriginCacheProcessForOperation:operation url:url options:options context:context originalImage:originalImage cacheImage:transformedImage originalData:originalData cacheData:nil cacheType:cacheType finished:finished completed:completedBlock];
             } else {
