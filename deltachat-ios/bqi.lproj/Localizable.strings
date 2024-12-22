@@ -220,13 +220,13 @@
 "chat_record_slide_to_cancel" = "سی رڌ کردن بکشس.";
 "chat_share_with_title" = "یک رسۊوی وا";
 "chat_input_placeholder" = "پیوم";
-"chat_request_label" = "darxāst";
+"chat_request_label" = "درخاست";
 "chat_no_messages" = "پیومؽ نؽ.";
 "chat_self_talk_subtitle" = "پیومایی ک سی خوم فشنام.";
-"saved_messages" = "payomā zaft biďa";
+"saved_messages" = "پیوما زفت بیڌه";
 // Should match "Saved" from "Saved messages"
-"saved" = "zaft vâbi";
-"save_as" = "zaft vê onvān";
+"saved" = "زفت وابی";
+"save_as" = "زفت و عونوان";
 "retry_send" = "ز نۊ سی فشناڌن پیوم تقلا کوݩ";
 // mailing lists
 "mailing_list" = "نومگه پوستی";
