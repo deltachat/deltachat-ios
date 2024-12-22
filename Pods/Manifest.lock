@@ -1,7 +1,7 @@
 PODS:
-  - CocoaLumberjack (3.8.2):
-    - CocoaLumberjack/Core (= 3.8.2)
-  - CocoaLumberjack/Core (3.8.2)
+  - CocoaLumberjack (3.8.5):
+    - CocoaLumberjack/Core (= 3.8.5)
+  - CocoaLumberjack/Core (3.8.5)
   - libwebp (1.3.2):
     - libwebp/demux (= 1.3.2)
     - libwebp/mux (= 1.3.2)
@@ -15,21 +15,21 @@ PODS:
   - libwebp/webp (1.3.2):
     - libwebp/sharpyuv
   - MCEmojiPicker (1.2.3)
-  - ReachabilitySwift (5.0.0)
+  - ReachabilitySwift (5.2.4)
   - SCSiriWaveformView (1.1.2)
-  - SDWebImage (5.18.8):
-    - SDWebImage/Core (= 5.18.8)
-  - SDWebImage/Core (5.18.8)
+  - SDWebImage (5.20.0):
+    - SDWebImage/Core (= 5.20.0)
+  - SDWebImage/Core (5.20.0)
   - SDWebImageSVGKitPlugin (1.4.0):
     - SDWebImage/Core (~> 5.10)
     - SVGKit (~> 3.0)
-  - SDWebImageWebPCoder (0.14.2):
+  - SDWebImageWebPCoder (0.14.6):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
   - SVGKit (3.0.0):
     - CocoaLumberjack (~> 3.0)
-  - SwiftFormat/CLI (0.52.11)
-  - SwiftLint (0.54.0)
+  - SwiftFormat/CLI (0.55.3)
+  - SwiftLint (0.57.1)
 
 DEPENDENCIES:
   - MCEmojiPicker (from `https://github.com/deltachat/MCEmojiPicker`, branch `main`)
@@ -66,18 +66,18 @@ CHECKOUT OPTIONS:
     :git: https://github.com/deltachat/MCEmojiPicker
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: f8d89a516e7710fdb2e9b8f1560b16ec6040eef0
+  CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   MCEmojiPicker: d24f72731881c05143870eefff52f586d493b982
-  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
   SCSiriWaveformView: 016392911fb442c17d6dbad68e666edb13193c02
-  SDWebImage: a81bbb3ba4ea5f810f4069c68727cb118467a04a
+  SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
   SDWebImageSVGKitPlugin: 7542dd07c344ec3415ded0461a1161a6f087e0c9
-  SDWebImageWebPCoder: 633b813fca24f1de5e076bcd7f720c038b23892b
+  SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
-  SwiftFormat: 2ca3d0b75754193f0f3ba532291f25ae08dd1e42
-  SwiftLint: c1de071d9d08c8aba837545f6254315bc900e211
+  SwiftFormat: 2f3558ca02842dcd3fd970360d2d4054bd21624a
+  SwiftLint: 92196976e597b9afec5dbe374810103e6c1d9d7c
 
-PODFILE CHECKSUM: 68422360320087b0cc5cd7b1b9597388ed182745
+PODFILE CHECKSUM: 2da95f11b974320ff49308be31714c4fd2efb4ac
 
 COCOAPODS: 1.16.2
