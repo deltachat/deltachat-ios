@@ -28,11 +28,7 @@ public class ChatEditingBar: UIView {
 
     public lazy var moreButton: UIButton = {
         let view = UIButton()
-        if #available(iOS 13.0, *) {
-            view.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        } else {
-            view.setImage(UIImage(named: "ic_more"), for: .normal)
-        }
+        view.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
         view.tintColor = .systemBlue
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
@@ -43,13 +39,8 @@ public class ChatEditingBar: UIView {
 
     private lazy var copyButton: UIButton = {
         let view = UIButton()
-        if #available(iOS 13.0, *) {
-            view.setImage(UIImage(systemName: "doc.on.doc"), for: .normal)
-            view.tintColor = .systemBlue
-        } else {
-            view.setTitle(String.localized("copy"), for: .normal)
-            view.setTitleColor(.systemBlue, for: .normal)
-        }
+        view.setImage(UIImage(systemName: "doc.on.doc"), for: .normal)
+        view.tintColor = .systemBlue
         view.setTitleColor(.systemBlue, for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.imageView?.contentMode = .scaleAspectFit
@@ -60,14 +51,8 @@ public class ChatEditingBar: UIView {
 
     public lazy var deleteButton: UIButton = {
         let view = UIButton()
-
-        if #available(iOS 13.0, *) {
-            view.setImage(UIImage(systemName: "trash"), for: .normal)
-            view.tintColor = .systemRed
-        } else {
-            view.setTitle(String.localized("delete"), for: .normal)
-            view.setTitleColor(.systemRed, for: .normal)
-        }
+        view.setImage(UIImage(systemName: "trash"), for: .normal)
+        view.tintColor = .systemRed
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         view.imageView?.contentMode = .scaleAspectFit
@@ -103,11 +88,7 @@ public class ChatEditingBar: UIView {
         isEnabled = false
         super.init(frame: frame)
         self.setupSubviews()
-        if #available(iOS 13.0, *) {
-            backgroundColor = .systemBackground
-        } else {
-            backgroundColor = .white
-        }
+        backgroundColor = .systemBackground
     }
 
     required init(coder: NSCoder) {

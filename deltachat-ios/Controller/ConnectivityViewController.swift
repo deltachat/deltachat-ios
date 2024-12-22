@@ -4,7 +4,7 @@ import Network
 
 class ConnectivityViewController: WebViewViewController {
 
-    private var connectivityMonitor: AnyObject?
+    private var connectivityMonitor: NWPathMonitor?
     private var isLowDataMode: Bool = false
 
     override init(dcContext: DcContext) {
@@ -31,17 +31,15 @@ class ConnectivityViewController: WebViewViewController {
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
 
-        if #available(iOS 13.0, *) {
-            let monitor = NWPathMonitor()
-            monitor.pathUpdateHandler = { [weak self] path in
-                guard let self else { return }
-                self.isLowDataMode = path.isConstrained
-                self.loadHtml()
-            }
-            isLowDataMode = monitor.currentPath.isConstrained
-            monitor.start(queue: DispatchQueue.global())
-            self.connectivityMonitor = monitor
+        let connectivityMonitor = NWPathMonitor()
+        connectivityMonitor.pathUpdateHandler = { [weak self] path in
+            guard let self else { return }
+            self.isLowDataMode = path.isConstrained
+            self.loadHtml()
         }
+        isLowDataMode = connectivityMonitor.currentPath.isConstrained
+        connectivityMonitor.start(queue: DispatchQueue.global())
+        self.connectivityMonitor = connectivityMonitor
     }
     
     // called everytime the view will appear
@@ -52,9 +50,7 @@ class ConnectivityViewController: WebViewViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if #available(iOS 13.0, *) {
-            (connectivityMonitor as? NWPathMonitor)?.cancel()
-        }
+        (connectivityMonitor as? NWPathMonitor)?.cancel()
     }
 
     // this method needs to be run from a background thread

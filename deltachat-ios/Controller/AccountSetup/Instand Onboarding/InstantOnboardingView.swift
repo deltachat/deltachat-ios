@@ -84,12 +84,8 @@ class InstantOnboardingView: UIView {
 
         super.init(frame: .zero)
 
-        if #available(iOS 13.0, *) {
-            backgroundColor = .systemBackground
-            nameTextField.backgroundColor = .secondarySystemBackground
-        } else {
-            backgroundColor = .systemGray
-        }
+        backgroundColor = .systemBackground
+        nameTextField.backgroundColor = .secondarySystemBackground
 
         addSubview(contentScrollView)
 

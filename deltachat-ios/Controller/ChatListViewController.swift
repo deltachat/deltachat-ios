@@ -41,14 +41,7 @@ class ChatListViewController: UITableViewController {
     }()
 
     private lazy var proxyShieldButton: UIBarButtonItem = {
-
-        let button: UIBarButtonItem
-
-        if #available(iOS 13, *) {
-            button = UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
-        } else {
-            button = UIBarButtonItem(title: String.localized("proxy_settings"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
-        }
+        let button = UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
         button.tintColor = DcColors.primary
         return button
     }()
@@ -111,18 +104,16 @@ class ChatListViewController: UITableViewController {
                 self.handleChatListUpdate()
             }
         }
-        if #available(iOS 13.0, *) {
-            // use the same background color as for cells and esp. the first archive-link cell
-            // to make things appear less outstanding.
-            //
-            // TODO: this initally also sets the color of the "navigation area",
-            // however, when opening+closing a chat, it is a blurry grey.
-            // the inconsistency seems to be releated to the line
-            //   navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-            // in ChatViewController.swift - removing this, the color is preserved at the cost of more flickering ...
-            // this needs more love :)
-            self.view.backgroundColor = UIColor.systemBackground
-        }
+        // use the same background color as for cells and esp. the first archive-link cell
+        // to make things appear less outstanding.
+        //
+        // TODO: this initally also sets the color of the "navigation area",
+        // however, when opening+closing a chat, it is a blurry grey.
+        // the inconsistency seems to be releated to the line
+        //   navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        // in ChatViewController.swift - removing this, the color is preserved at the cost of more flickering ...
+        // this needs more love :)
+        self.view.backgroundColor = UIColor.systemBackground
 
         NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
@@ -271,7 +262,7 @@ class ChatListViewController: UITableViewController {
         if isArchive {
             navigationItem.backBarButtonItem = nil
             navigationItem.backButtonTitle = String.localized("chat_archived_label")
-        } else if numberOfUnreadMessages > 0, #available(iOS 13, *) {
+        } else if numberOfUnreadMessages > 0 {
 
             if let backButtonUpdateableDataSource, let accountId, let chatId,
                backButtonUpdateableDataSource.shouldUpdateBackButton(self, chatId: chatId, accountId: accountId) == false {
@@ -286,7 +277,7 @@ class ChatListViewController: UITableViewController {
             }
 
             navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(systemName: symbolName), style: .plain, target: nil, action: nil)
-        } else { // if numberOfUnreadMessages == 0 or iOS 12
+        } else { // if numberOfUnreadMessages == 0
             navigationItem.backBarButtonItem = nil
             navigationItem.backButtonTitle = String.localized("pref_chats")
         }
@@ -530,11 +521,7 @@ class ChatListViewController: UITableViewController {
         }
         pinAction.accessibilityLabel = pinTitle
         pinAction.backgroundColor = UIColor.systemGreen
-        if #available(iOS 13.0, *) {
-            pinAction.image = Utils.makeImageWithText(image: UIImage(systemName: pinned ? "pin.slash" : "pin"), text: pinTitle)
-        } else {
-            pinAction.title = pinTitle
-        }
+        pinAction.image = Utils.makeImageWithText(image: UIImage(systemName: pinned ? "pin.slash" : "pin"), text: pinTitle)
 
         if dcContext.getUnreadMessages(chatId: chatId) > 0 {
             let markReadAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
@@ -543,11 +530,7 @@ class ChatListViewController: UITableViewController {
             }
             markReadAction.accessibilityLabel = String.localized("mark_as_read_short")
             markReadAction.backgroundColor = UIColor.systemBlue
-            if #available(iOS 13.0, *) {
-                markReadAction.image = Utils.makeImageWithText(image: UIImage(systemName: "checkmark.message"), text: String.localized("mark_as_read_short"))
-            } else {
-                markReadAction.title = String.localized("mark_as_read_short")
-            }
+            markReadAction.image = Utils.makeImageWithText(image: UIImage(systemName: "checkmark.message"), text: String.localized("mark_as_read_short"))
 
             return UISwipeActionsConfiguration(actions: [markReadAction, pinAction])
         } else {
@@ -574,11 +557,7 @@ class ChatListViewController: UITableViewController {
         }
         archiveAction.accessibilityLabel = archiveTitle
         archiveAction.backgroundColor = UIColor.lightGray
-        if #available(iOS 13.0, *) {
-            archiveAction.image = Utils.makeImageWithText(image: UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down"), text: archiveTitle)
-        } else {
-            archiveAction.title = archiveTitle
-        }
+        archiveAction.image = Utils.makeImageWithText(image: UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down"), text: archiveTitle)
 
         let muteTitle = String.localized(chat.isMuted ? "menu_unmute" : "mute")
         let muteAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completionHandler in
@@ -596,11 +575,7 @@ class ChatListViewController: UITableViewController {
         }
         muteAction.accessibilityLabel = muteTitle
         muteAction.backgroundColor = UIColor.systemOrange
-        if #available(iOS 13.0, *) {
-            muteAction.image = Utils.makeImageWithText(image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"), text: muteTitle)
-        } else {
-            muteAction.title = muteTitle
-        }
+        muteAction.image = Utils.makeImageWithText(image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"), text: muteTitle)
 
         if viewModel.isMessageSearchResult(indexPath: indexPath) {
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction])
@@ -612,11 +587,7 @@ class ChatListViewController: UITableViewController {
             }
             deleteAction.accessibilityLabel = String.localized("delete")
             deleteAction.backgroundColor = UIColor.systemRed
-            if #available(iOS 13.0, *) {
-                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
-            } else {
-                deleteAction.title = String.localized("delete")
-            }
+            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction, deleteAction])
         }
     }
@@ -726,8 +697,6 @@ class ChatListViewController: UITableViewController {
     }
 
     private func updateProxyButton() {
-        guard #available(iOS 13, *) else { return }
-
         if dcContext.isProxyEnabled {
             proxyShieldButton.image = UIImage(systemName: "checkmark.shield")
         } else {

@@ -241,11 +241,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 completionHandler(true)
             }
             deleteAction.accessibilityLabel = String.localized("remove_desktop")
-            if #available(iOS 13.0, *) {
-                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("remove_desktop"))
-            } else {
-                deleteAction.title = String.localized("remove_desktop")
-            }
+            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("remove_desktop"))
             return UISwipeActionsConfiguration(actions: [deleteAction])
         } else {
             return nil

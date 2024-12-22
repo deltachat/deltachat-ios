@@ -197,7 +197,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }()
 
     private var _bag: [Any/*Cancellable*/] = []
-    @available(iOS 13.0, *) private var bag: [AnyCancellable] {
+    private var bag: [AnyCancellable] {
         get { _bag.compactMap { $0 as? AnyCancellable } }
         set { _bag = newValue }
     }
@@ -245,18 +245,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         // Since the view is flipped, its safeArea will be flipped, luckily we can ignore it
         tableView.contentInsetAdjustmentBehavior = .never
-        if #available(iOS 13.0, *) {
-            tableView.automaticallyAdjustsScrollIndicatorInsets = false
-            tableView.publisher(for: \.contentInset)
-                .assign(to: \.scrollIndicatorInsets, on: tableView)
-                .store(in: &bag)
-        }
+        tableView.automaticallyAdjustsScrollIndicatorInsets = false
+        tableView.publisher(for: \.contentInset)
+            .assign(to: \.scrollIndicatorInsets, on: tableView)
+            .store(in: &bag)
 
         navigationController?.setNavigationBarHidden(false, animated: false)
-
-        if #available(iOS 13.0, *) {
-            navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-        }
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
         navigationItem.backButtonTitle = String.localized("chat")
         definesPresentationContext = true
@@ -744,14 +739,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             completionHandler(true)
         }
 
-        if #available(iOS 13.0, *) {
-            action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?
-                .sd_tintedImage(with: DcColors.defaultInverseColor)?
-                .sd_flippedImage(withHorizontal: false, vertical: true)
-        } else {
-            action.image = UIImage(named: "ic_reply_black")?
-                .sd_flippedImage(withHorizontal: false, vertical: true)
-        }
+        action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?
+            .sd_tintedImage(with: DcColors.defaultInverseColor)?
+            .sd_flippedImage(withHorizontal: false, vertical: true)
+
         action.backgroundColor = .systemGray.withAlphaComponent(0.0) // nil or .clear do not result in transparence
         action.accessibilityLabel = String.localized("notify_reply_button")
         let configuration = UISwipeActionsConfiguration(actions: [action])
@@ -858,8 +849,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
-        if #available(iOS 12.0, *),
-           UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
+        if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
     }
@@ -1812,6 +1802,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     // MARK: - UIMenuItems (< iOS 13)
+    @available(*, deprecated, message: "")
     private func contextMenu(for indexPath: IndexPath) -> [LegacyMenuItem] {
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
@@ -1836,11 +1827,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return menu
     }
 
+    @available(*, deprecated, message: "")
     private func prepareContextMenu(isHidden: Bool, indexPath: IndexPath) {
-
-        if #available(iOS 13.0, *) {
-            return
-        }
 
         guard let rect = tableView.cellForRow(at: indexPath)?.frame else { return }
         UIMenuController.shared.setTargetRect(rect, in: tableView)
@@ -1891,14 +1879,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return self.dropInteraction.dropInteraction(performDrop: coordinator.session)
     }
 
-
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let id = messageIds[indexPath.row]
         return id != DC_MSG_ID_DAYMARKER && id != DC_MSG_ID_MARKER1
     }
 }
 
-@available(iOS 13.0, *)
 extension ChatViewController {
 
     override func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
@@ -2281,11 +2267,7 @@ extension ChatViewController {
     }
 
     private func setDefaultBackgroundImage(view: UIImageView) {
-        if #available(iOS 12.0, *) {
-            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
-        } else {
-            view.image = UIImage(named: "background_light")
-        }
+        view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
     }
 
     private func copyToClipboard(ids: [Int]) {
@@ -2545,7 +2527,7 @@ extension ChatViewController: DraftPreviewDelegate {
                 showWebxdcViewFor(message: draftMessage)
             } else {
                 let previewController = PreviewController(dcContext: dcContext, type: .single(attachmentURL))
-                if #available(iOS 13.0, *), draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
+                if draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
                     previewController.setEditing(true, animated: true)
                     previewController.delegate = self
                 }
@@ -2696,7 +2678,6 @@ extension ChatViewController: ChatContactRequestDelegate {
 
 // MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
-    @available(iOS 13.0, *)
     func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {
         return .updateContents
     }
@@ -2792,7 +2773,7 @@ extension ChatViewController: ChatDropInteractionDelegate {
 extension ChatViewController: SendContactViewControllerDelegate {
     func contactSelected(_ viewController: SendContactViewController, contactId: Int) {
         guard let vcardData = dcContext.makeVCard(contactIds: [contactId]),
-                let vcardURL = prepareVCardData(vcardData) else { return }
+              let vcardURL = prepareVCardData(vcardData) else { return }
 
         stageVCard(url: vcardURL)
     }

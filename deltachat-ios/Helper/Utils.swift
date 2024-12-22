@@ -52,12 +52,7 @@ struct Utils {
     }
 
     public static func getSafeBottomLayoutInset() -> CGFloat {
-        if #available(iOS 13.0, *) {
-            let window = UIApplication.shared.windows.first
-            return window?.safeAreaInsets.bottom ?? 0
-        }
-        // iOS 11 and 12
-        let window = UIApplication.shared.keyWindow
+        let window = UIApplication.shared.windows.first
         return window?.safeAreaInsets.bottom ?? 0
     }
 
@@ -66,7 +61,6 @@ struct Utils {
     // which shows the title otherwise only for large heightForRowAt (>= 91 in experiments).
     // If you add an text to an image that way, set `UIContextualAction.title` to `nil` to be safe for cornercases - or if apple changes things -
     // otherwise, one would see the title twice *drunk* :)
-    @available(iOS 13.0, *)
     static func makeImageWithText(image: UIImage?, text: String) -> UIImage? {
         guard let image = image?.withTintColor(UIColor.white) else { return nil }
 
