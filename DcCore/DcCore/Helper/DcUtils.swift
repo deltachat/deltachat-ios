@@ -15,35 +15,33 @@ public struct DcUtils {
     }
 
     public static func donateSendMessageIntent(context: DcContext, chatId: Int, chatAvatar: UIImage?) {
-        if #available(iOS 13.0, *) {
-            let chat = context.getChat(chatId: chatId)
-            let groupName = INSpeakableString(spokenPhrase: chat.name)
-
-            let sendMessageIntent = INSendMessageIntent(recipients: nil,
-                                                        content: nil,
-                                                        speakableGroupName: groupName,
-                                                        conversationIdentifier: "\(context.id).\(chatId)",
-                                                        serviceName: nil,
-                                                        sender: nil)
-
-            // Add the user's avatar to the intent.
-            if let imageData = chat.profileImage?.pngData() {
-                let image = INImage(imageData: imageData)
-                sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
-            } else if let imageData = chatAvatar?.pngData() {
-                let image = INImage(imageData: imageData)
-                sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
-            }
-
-            // Donate the intent.
-            let interaction = INInteraction(intent: sendMessageIntent, response: nil)
-            interaction.groupIdentifier = "\(context.id)"
-            interaction.donate(completion: { error in
-                if error != nil {
-                    logger.error(error.debugDescription)
-                }
-            })
+        let chat = context.getChat(chatId: chatId)
+        let groupName = INSpeakableString(spokenPhrase: chat.name)
+        
+        let sendMessageIntent = INSendMessageIntent(recipients: nil,
+                                                    content: nil,
+                                                    speakableGroupName: groupName,
+                                                    conversationIdentifier: "\(context.id).\(chatId)",
+                                                    serviceName: nil,
+                                                    sender: nil)
+        
+        // Add the user's avatar to the intent.
+        if let imageData = chat.profileImage?.pngData() {
+            let image = INImage(imageData: imageData)
+            sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
+        } else if let imageData = chatAvatar?.pngData() {
+            let image = INImage(imageData: imageData)
+            sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
         }
+        
+        // Donate the intent.
+        let interaction = INInteraction(intent: sendMessageIntent, response: nil)
+        interaction.groupIdentifier = "\(context.id)"
+        interaction.donate(completion: { error in
+            if error != nil {
+                logger.error(error.debugDescription)
+            }
+        })
     }
 
     static func copyAndFreeArray(inputArray: OpaquePointer?) -> [Int] {

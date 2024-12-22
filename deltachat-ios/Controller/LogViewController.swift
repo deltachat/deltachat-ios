@@ -9,12 +9,7 @@ public class LogViewController: UIViewController {
     private var bottomConstraint: NSLayoutConstraint?
 
     private lazy var shareButton: UIBarButtonItem = {
-        let button: UIBarButtonItem
-        if #available(iOS 13.0, *) {
-            button = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonPressed))
-        } else {
-            button = UIBarButtonItem(title: String.localized("menu_share"), style: .plain, target: self, action: #selector(shareButtonPressed))
-        }
+        let button = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonPressed))
         button.accessibilityLabel = String.localized("menu_share")
         button.isEnabled = false
         return button

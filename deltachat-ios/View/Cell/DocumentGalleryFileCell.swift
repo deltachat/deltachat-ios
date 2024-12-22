@@ -126,28 +126,4 @@ class DocumentGalleryFileCell: UITableViewCell {
             fileImageView.image = controller.icons.first ?? placeholder
         }
     }
-
-    // needed for iOS 12 context menu
-    @objc func itemDelete(_ sender: Any) {
-        self.performAction(#selector(DocumentGalleryFileCell.itemDelete(_:)), with: sender)
-    }
-
-    @objc func showInChat(_ sender: Any) {
-        self.performAction(#selector(DocumentGalleryFileCell.showInChat(_:)), with: sender)
-    }
-
-    @objc func share(_ sender: Any) {
-        self.performAction(#selector(DocumentGalleryFileCell.share(_:)), with: sender)
-    }
-
-    func performAction(_ action: Selector, with sender: Any?) {
-        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
-            tableView.delegate?.tableView?(
-                tableView,
-                performAction: action,
-                forRowAt: indexPath,
-                withSender: sender
-            )
-        }
-    }
 }

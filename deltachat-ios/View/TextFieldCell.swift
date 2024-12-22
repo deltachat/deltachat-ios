@@ -227,7 +227,7 @@ extension TextFieldCell: UITextFieldDelegate {
     }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if #available(iOS 13.0, *), let delegate = textFieldDelegate {
+        if let delegate = textFieldDelegate {
             delegate.textFieldDidChangeSelection?(textField)
         }
     }

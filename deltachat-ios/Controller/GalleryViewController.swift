@@ -265,13 +265,8 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         ]
     }
 
-    // context menu for iOS 13
+    @available(*, deprecated)
     private func prepareContextMenu(indexPath: IndexPath) {
-
-        if #available(iOS 13.0, *) {
-            return
-        }
-
         UIMenuController.shared.menuItems = contextMenu(for: indexPath)
         UIMenuController.shared.update()
     }
@@ -290,8 +285,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         // Intentionally does nothing.
     }
 
-    // context menu for iOS 13+
-    @available(iOS 13, *)
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
             return nil

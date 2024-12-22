@@ -27,8 +27,6 @@ static CGImageSourceRef (*SDCGImageGetImageSource)(CGImageRef);
 
 // Specify File Size for lossy format encoding, like JPEG
 static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestinationRequestedFileSize";
-// Avoid ImageIO translate JFIF orientation to EXIF orientation which cause bug because returned CGImage already apply the orientation transform
-static NSString * kSDCGImageSourceSkipMetadata = @"kCGImageSourceSkipMetadata";
 
 // This strip the un-wanted CGImageProperty, like the internal CGImageSourceRef in iOS 15+
 // However, CGImageCreateCopy still keep those CGImageProperty, not suit for our use case
@@ -46,6 +44,10 @@ static CGImageRef __nullable SDCGImageCreateMutableCopy(CGImageRef cg_nullable i
     CGColorRenderingIntent intent = CGImageGetRenderingIntent(image);
     CGImageRef newImage = CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent);
     return newImage;
+}
+
+static inline BOOL SDCGImageIs8Bit(CGImageRef cg_nullable image) {
+    return CGImageGetBitsPerComponent(image) == 8;
 }
 
 static inline CGImageRef __nullable SDCGImageCreateCopy(CGImageRef cg_nullable image) {
@@ -209,6 +211,7 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
     // See: #3605 FB13322459
     // ImageIO on iOS 17 (17.0~17.2), there is one serious problem on ImageIO PNG plugin. The decode result for indexed color PNG use the wrong CGImageAlphaInfo
     // The returned CGImageAlphaInfo is alpha last, but the actual bitmap data is premultiplied alpha last, which cause many runtime render bug.
+    // The bug only exists on 8-bits indexed color, not about 16-bits
     // So, we do a hack workaround:
     // 1. Decode a indexed color PNG in runtime
     // 2. If the bitmap is premultiplied alpha, then assume it's buggy
@@ -229,7 +232,8 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
         NSCParameterAssert(source);
         CGImageRef cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil);
         NSCParameterAssert(cgImage);
-        uint8_t r, g, b, a = 0;
+        uint8_t r, g, b, a;
+        r = g = b = a = 0;
         BOOL success = SDLoadOnePixelBitmapBuffer(cgImage, &r, &g, &b, &a);
         if (!success) {
             isBuggy = NO; // Impossible...
@@ -238,10 +242,8 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
                 // Correct value
                 isBuggy = NO;
             } else {
-#if DEBUG
-                NSLog(@"Detected the current OS's ImageIO PNG Decoder is buggy on indexed color PNG. Perform workaround solution...");
+                SD_LOG("%@", @"Detected the current OS's ImageIO PNG Decoder is buggy on indexed color PNG. Perform workaround solution...");
                 isBuggy = YES;
-#endif
             }
         }
         CFRelease(source);
@@ -436,12 +438,13 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
         }
     }
     // Parse the image properties
-    NSDictionary *properties = (__bridge_transfer NSDictionary *)CGImageSourceCopyPropertiesAtIndex(source, index, (__bridge CFDictionaryRef)@{kSDCGImageSourceSkipMetadata : @(YES)});
+    NSDictionary *properties = (__bridge_transfer NSDictionary *)CGImageSourceCopyPropertiesAtIndex(source, index, NULL);
     CGFloat pixelWidth = [properties[(__bridge NSString *)kCGImagePropertyPixelWidth] doubleValue];
     CGFloat pixelHeight = [properties[(__bridge NSString *)kCGImagePropertyPixelHeight] doubleValue];
-    CGImagePropertyOrientation exifOrientation = (CGImagePropertyOrientation)[properties[(__bridge NSString *)kCGImagePropertyOrientation] unsignedIntegerValue];
-    if (!exifOrientation) {
-        exifOrientation = kCGImagePropertyOrientationUp;
+    CGImagePropertyOrientation exifOrientation = kCGImagePropertyOrientationUp;
+    NSNumber *exifOrientationValue = properties[(__bridge NSString *)kCGImagePropertyOrientation];
+    if (exifOrientationValue != NULL) {
+        exifOrientation = [exifOrientationValue unsignedIntValue];
     }
 
     NSMutableDictionary *decodingOptions;
@@ -475,7 +478,6 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
     if (!imageRef) {
         return nil;
     }
-    BOOL isDecoded = NO;
     // Thumbnail image post-process
     if (!createFullImage) {
         if (preserveAspectRatio) {
@@ -487,19 +489,19 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
             if (scaledImageRef) {
                 CGImageRelease(imageRef);
                 imageRef = scaledImageRef;
-                isDecoded = YES;
             }
         }
     }
     // Check whether output CGImage is decoded
+    BOOL isLazy = [SDImageCoderHelper CGImageIsLazy:imageRef];
     if (!lazyDecode) {
-        if (!isDecoded) {
-            // Use CoreGraphics to trigger immediately decode
+        if (isLazy) {
+            // Use CoreGraphics to trigger immediately decode to drop lazy CGImage
             CGImageRef decodedImageRef = [SDImageCoderHelper CGImageCreateDecoded:imageRef];
             if (decodedImageRef) {
                 CGImageRelease(imageRef);
                 imageRef = decodedImageRef;
-                isDecoded = YES;
+                isLazy = NO;
             }
         }
     } else if (animatedImage) {
@@ -528,7 +530,7 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
     // :)
     CFStringRef uttype = CGImageSourceGetType(source);
     SDImageFormat imageFormat = [NSData sd_imageFormatFromUTType:uttype];
-    if (imageFormat == SDImageFormatPNG && SDImageIOPNGPluginBuggyNeedWorkaround()) {
+    if (imageFormat == SDImageFormatPNG && SDCGImageIs8Bit(imageRef) && SDImageIOPNGPluginBuggyNeedWorkaround()) {
         CGImageRef newImageRef = SDImageIOPNGPluginBuggyCreateWorkaround(imageRef);
         CGImageRelease(imageRef);
         imageRef = newImageRef;
@@ -541,7 +543,7 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
     UIImage *image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:exifOrientation];
 #endif
     CGImageRelease(imageRef);
-    image.sd_isDecoded = isDecoded;
+    image.sd_isDecoded = !isLazy;
     
     return image;
 }
@@ -828,11 +830,11 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
     }
     
     NSMutableData *imageData = [NSMutableData data];
-    CFStringRef imageUTType = [NSData sd_UTTypeFromImageFormat:format];
+    NSString *imageUTType = self.class.imageUTType;
     
     // Create an image destination. Animated Image does not support EXIF image orientation TODO
     // The `CGImageDestinationCreateWithData` will log a warning when count is 0, use 1 instead.
-    CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, imageUTType, frames.count ?: 1, NULL);
+    CGImageDestinationRef imageDestination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, (__bridge CFStringRef)imageUTType, frames.count ?: 1, NULL);
     if (!imageDestination) {
         // Handle failure.
         return nil;
@@ -843,7 +845,9 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
 #else
     CGImagePropertyOrientation exifOrientation = kCGImagePropertyOrientationUp;
 #endif
-    properties[(__bridge NSString *)kCGImagePropertyOrientation] = @(exifOrientation);
+    if (exifOrientation != kCGImagePropertyOrientationUp) {
+        properties[(__bridge NSString *)kCGImagePropertyOrientation] = @(exifOrientation);
+    }
     // Encoding Options
     double compressionQuality = 1;
     if (options[SDImageCoderEncodeCompressionQuality]) {
@@ -917,6 +921,11 @@ static BOOL SDImageIOPNGPluginBuggyNeedWorkaround(void) {
     }
     
     CFRelease(imageDestination);
+    
+    // In some beta version, ImageIO `CGImageDestinationFinalize` returns success, but the data buffer is 0 bytes length.
+    if (imageData.length == 0) {
+        return nil;
+    }
     
     return [imageData copy];
 }

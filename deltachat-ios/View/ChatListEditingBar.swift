@@ -20,11 +20,7 @@ class ChatListEditingBar: UIView {
     }
 
     private lazy var blurView: UIVisualEffectView = {
-        var blurEffect = UIBlurEffect(style: .light)
-        if #available(iOS 13, *) {
-            blurEffect = UIBlurEffect(style: .systemMaterial)
-        }
-        let view = UIVisualEffectView(effect: blurEffect)
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -67,24 +63,18 @@ class ChatListEditingBar: UIView {
     }
     
     private func configureButtonLayout(_ button: UIButton, imageName: String, imageDescription: String, tintColor: UIColor = .systemBlue, showImageAndText: Bool = false) {
-        if #available(iOS 13.0, *) {
-            button.setImage(UIImage(systemName: imageName), for: .normal)
-            button.tintColor = tintColor
-            if showImageAndText {
-                button.setTitle(imageDescription, for: .normal)
-                button.setTitleColor(tintColor, for: .normal)
-                button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-                button.fixImageAndTitleSpacing()
-            }
-            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        } else {
+        button.setImage(UIImage(systemName: imageName), for: .normal)
+        button.tintColor = tintColor
+        if showImageAndText {
             button.setTitle(imageDescription, for: .normal)
             button.setTitleColor(tintColor, for: .normal)
             button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+            button.fixImageAndTitleSpacing()
         }
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         button.accessibilityLabel = imageDescription
     }
-
+    
     private func configureSubviews() {
         self.addSubview(blurView)
         self.addSubview(mainContentView)

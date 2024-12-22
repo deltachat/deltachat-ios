@@ -5,12 +5,7 @@ import DcCore
 class FullMessageViewController: WebViewViewController {
 
     var loadButton: UIBarButtonItem {
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "ellipsis.circle")
-        } else {
-            image = UIImage(named: "ic_more")
-        }
+        let image = UIImage(systemName: "ellipsis.circle")
         let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showLoadOptions))
         button.accessibilityLabel = String.localized("load_remote_content")
         return button

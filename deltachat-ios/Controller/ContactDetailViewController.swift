@@ -39,9 +39,7 @@ class ContactDetailViewController: UITableViewController {
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
-        if #available(iOS 13.0, *) {
-            cell.imageView?.image = UIImage(named: "ephemeral_timer")?.withTintColor(UIColor.systemBlue)
-        }
+        cell.imageView?.image = UIImage(named: "ephemeral_timer")?.withTintColor(UIColor.systemBlue)
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -90,9 +88,7 @@ class ContactDetailViewController: UITableViewController {
     private lazy var allMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("media")
-        if #available(iOS 13.0, *) {
-            cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
-        }
+        cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -104,9 +100,7 @@ class ContactDetailViewController: UITableViewController {
     private lazy var locationsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("locations")
-        if #available(iOS 13.0, *) {
-            cell.imageView?.image = UIImage(systemName: "map") // added in ios13
-        }
+        cell.imageView?.image = UIImage(systemName: "map") // added in ios13
         cell.accessoryType = .disclosureIndicator
         if viewModel.chatId == 0 {
             cell.isUserInteractionEnabled = false
@@ -350,13 +344,8 @@ class ContactDetailViewController: UITableViewController {
         UIMenuController.shared.menuItems = [
             UIMenuItem(title: String.localized("menu_copy_to_clipboard"), action: #selector(ContactDetailViewController.copyToClipboard))
         ]
-
-        if #available(iOS 13.0, *) {
-            UIMenuController.shared.showMenu(from: headerCell.titleLabelContainer, rect: headerCell.titleLabelContainer.frame)
-        } else {
-            UIMenuController.shared.setTargetRect(headerCell.titleLabelContainer.frame, in: headerCell)
-            UIMenuController.shared.setMenuVisible(true, animated: true)
-        }
+        
+        UIMenuController.shared.showMenu(from: headerCell.titleLabelContainer, rect: headerCell.titleLabelContainer.frame)
     }
 
     @objc private func copyToClipboard() {

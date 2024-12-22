@@ -16,12 +16,7 @@ class ProxyTableViewCell: UITableViewCell {
         hostLabel = UILabel()
         protocolLabel = UILabel()
 
-        let detailsColor: UIColor
-        if #available(iOS 13.0, *) {
-            detailsColor = .secondaryLabel
-        } else {
-            detailsColor = .darkGray
-        }
+        let detailsColor = UIColor.secondaryLabel
         protocolLabel.textColor = detailsColor
         protocolLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
 

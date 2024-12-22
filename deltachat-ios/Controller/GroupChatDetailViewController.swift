@@ -79,9 +79,7 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
-        if #available(iOS 13.0, *) {
-            cell.imageView?.image = UIImage(named: "ephemeral_timer")?.withTintColor(UIColor.systemBlue)
-        }
+        cell.imageView?.image = UIImage(named: "ephemeral_timer")?.withTintColor(UIColor.systemBlue)
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -131,9 +129,7 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var allMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("media")
-        if #available(iOS 13.0, *) {
-            cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
-        }
+        cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -141,9 +137,7 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var locationsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("locations")
-        if #available(iOS 13.0, *) {
-            cell.imageView?.image = UIImage(systemName: "map") // added in ios13
-        }
+        cell.imageView?.image = UIImage(systemName: "map") // added in ios13
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -616,11 +610,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 self.present(alert, animated: true, completion: nil)
             }
             deleteAction.accessibilityLabel = String.localized("remove_desktop")
-            if #available(iOS 13.0, *) {
-                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("remove_desktop"))
-            } else {
-                deleteAction.title = String.localized("remove_desktop")
-            }
+            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("remove_desktop"))
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         return nil

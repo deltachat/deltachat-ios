@@ -144,11 +144,7 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
     }
 
     private func setDefault(_ imageView: UIImageView) {
-        if #available(iOS 12.0, *) {
-            imageView.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
-        } else {
-            imageView.image = UIImage(named: "background_light")
-        }
+        imageView.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
     }
 
     // MARK: MediaPickerDelegate

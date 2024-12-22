@@ -46,11 +46,7 @@ class ShareProxyViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        if #available(iOS 13, *) {
-            view.backgroundColor = .secondarySystemBackground
-        } else {
-            view.backgroundColor = DcColors.defaultBackgroundColor
-        }
+        view.backgroundColor = .secondarySystemBackground
 
         shareLinkButton.addTarget(self, action: #selector(ShareProxyViewController.shareInviteLink(_:)), for: .touchUpInside)
         shareLinkButton.setTitleColor(DcColors.primary, for: .normal)

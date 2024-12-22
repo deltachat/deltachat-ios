@@ -48,11 +48,7 @@ class AllMediaViewController: UIPageViewController {
     }()
 
     private lazy var mapButton: UIBarButtonItem = {
-        if #available(iOS 13.0, *) {
-            return UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(showMap))
-        } else {
-            return UIBarButtonItem(title: String.localized("tab_map"), style: .plain, target: self, action: #selector(showMap))
-        }
+        return UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(showMap))
     }()
 
     init(dcContext: DcContext, chatId: Int = 0) {
@@ -81,9 +77,7 @@ class AllMediaViewController: UIPageViewController {
             completion: nil
         )
 
-        if #available(iOS 13, *) {
-            self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
-        }
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
     }
 
     override func viewWillAppear(_ animated: Bool) {
