@@ -52,11 +52,9 @@ class ShareViewController: SLComposeServiceViewController {
         super.viewDidLoad()
         setupNavigationBar()
         // workaround for iOS13 bug
-        if #available(iOS 13.0, *) {
-            _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main) { (_) in
-                if let layoutContainerView = self.view.subviews.last {
-                    layoutContainerView.frame.size.height += 10
-                }
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main) { (_) in
+            if let layoutContainerView = self.view.subviews.last {
+                layoutContainerView.frame.size.height += 10
             }
         }
         placeholder = String.localized("chat_input_placeholder")

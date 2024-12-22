@@ -20,26 +20,14 @@ class InstantOnboardingViewController: UIViewController {
     private var providerHostURL: URL
     private var qrCodeData: String?
     private lazy var menuButton: UIBarButtonItem = {
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "ellipsis.circle")
-        } else {
-            image = UIImage(named: "ic_more")
-        }
-
+        let image = UIImage(systemName: "ellipsis.circle")
         let menuButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(InstantOnboardingViewController.showMenu(_:)))
         menuButton.tintColor = DcColors.primary
         return menuButton
     }()
 
     private lazy var proxyShieldButton: UIBarButtonItem = {
-        let button: UIBarButtonItem
-
-        if #available(iOS 13, *) {
-            button = UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(InstantOnboardingViewController.showProxySettings(_:)))
-        } else {
-            button = UIBarButtonItem(title: String.localized("proxy_settings"), style: .plain, target: self, action: #selector(InstantOnboardingViewController.showProxySettings(_:)))
-        }
+        let button = UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(InstantOnboardingViewController.showProxySettings(_:)))
         button.tintColor = DcColors.primary
         return button
     }()
@@ -264,8 +252,6 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     private func updateProxyButton() {
-        guard #available(iOS 13, *) else { return }
-
         if dcContext.isProxyEnabled {
             proxyShieldButton.image = UIImage(systemName: "checkmark.shield")
         } else {

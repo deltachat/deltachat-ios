@@ -123,11 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         guard let window = window else {
             fatalError("window was nil in app delegate")
         }
-        if #available(iOS 13.0, *) {
-            window.backgroundColor = UIColor.systemBackground
-        } else {
-            window.backgroundColor = UIColor.white
-        }
+        window.backgroundColor = UIColor.systemBackground
 
         installEventHandler()
         relayHelper = RelayHelper.setup(dcAccounts.getSelected())

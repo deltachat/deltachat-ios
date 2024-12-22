@@ -197,11 +197,8 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
         ]
     }
 
+    @available(*, deprecated)
     private func prepareContextMenu(indexPath: IndexPath) {
-        if #available(iOS 13.0, *) {
-            return
-        }
-
         UIMenuController.shared.menuItems = contextMenu(for: indexPath)
         UIMenuController.shared.update()
     }
@@ -221,8 +218,6 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
         // Intentionally left blank
     }
 
-    // context menu for iOS 13+
-    @available(iOS 13, *)
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(
             identifier: nil,
@@ -358,11 +353,10 @@ class WebxdcItemSource: NSObject, UIActivityItemSource {
         return url
     }
 
-    @available(iOS 13.0, *)
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
         let metadata = LPLinkMetadata()
         metadata.title = title
-        if let previewImage = previewImage {
+        if let previewImage {
             metadata.iconProvider = NSItemProvider(object: previewImage)
         }
         metadata.originalURL = url

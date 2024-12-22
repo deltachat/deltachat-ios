@@ -58,11 +58,7 @@ open class InputBarAccessoryView: UIView {
      A UIVisualEffectView that adds a blur effect to make the view appear transparent.
     */
     open lazy var blurView: UIVisualEffectView = {
-        var blurEffect = UIBlurEffect(style: .light)
-        if #available(iOS 13, *) {
-            blurEffect = UIBlurEffect(style: .systemMaterial)
-        }
-        let view = UIVisualEffectView(effect: blurEffect)
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -134,13 +130,7 @@ open class InputBarAccessoryView: UIView {
         return view
     }()
 
-    private static let defaultBackgroundColor: UIColor = {
-        if #available(iOS 13, *) {
-            return .systemBackground
-        } else {
-            return .white
-        }
-    }()
+    private static let defaultBackgroundColor = UIColor.systemBackground
     
     /// The InputTextView a user can input a message in
     open lazy var inputTextView: ChatInputTextView = {

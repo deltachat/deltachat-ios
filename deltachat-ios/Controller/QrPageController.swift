@@ -41,12 +41,7 @@ class QrPageController: UIPageViewController {
     }()
 
     private lazy var moreButton: UIBarButtonItem = {
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "ellipsis.circle")
-        } else {
-            image = UIImage(named: "ic_more")
-        }
+        let image = UIImage(systemName: "ellipsis.circle")
         return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showMoreOptions))
     }()
 
@@ -81,9 +76,7 @@ class QrPageController: UIPageViewController {
             completion: nil
         )
 
-        if #available(iOS 13, *) {
-            self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
-        }
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
     }
 
     override func viewWillAppear(_ animated: Bool) {

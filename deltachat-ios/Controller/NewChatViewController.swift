@@ -214,11 +214,7 @@ class NewChatViewController: UITableViewController {
             }
             profileAction.accessibilityLabel = String.localized("profile")
             profileAction.backgroundColor = UIColor.systemBlue
-            if #available(iOS 13.0, *) {
-                profileAction.image = Utils.makeImageWithText(image: UIImage(systemName: "person.crop.circle"), text: String.localized("profile"))
-            } else {
-                profileAction.title = String.localized("profile")
-            }
+            profileAction.image = Utils.makeImageWithText(image: UIImage(systemName: "person.crop.circle"), text: String.localized("profile"))
 
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
@@ -227,11 +223,7 @@ class NewChatViewController: UITableViewController {
                 }
             }
             deleteAction.accessibilityLabel = String.localized("delete")
-            if #available(iOS 13.0, *) {
-                deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
-            } else {
-                deleteAction.title = String.localized("delete")
-            }
+            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
 
             return UISwipeActionsConfiguration(actions: [profileAction, deleteAction])
         } else {

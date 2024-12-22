@@ -1,5 +1,6 @@
 import UIKit
 
+@available(*, deprecated)
 class LegacyMenuItem: UIMenuItem {
     var indexPath: IndexPath?
 
@@ -10,8 +11,6 @@ class LegacyMenuItem: UIMenuItem {
     }
 }
 
-
-@available(iOS 13.0, *)
 extension UIAction {
     static func menuAction(localizationKey: String, attributes: UIAction.Attributes = [], systemImageName: String, indexPath: IndexPath, action: @escaping (IndexPath) -> Void) -> UIAction {
         return menuAction(localizationKey: localizationKey, attributes: attributes, image: UIImage(systemName: systemImageName), indexPath: indexPath, action: action)

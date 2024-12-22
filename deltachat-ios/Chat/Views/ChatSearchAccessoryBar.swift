@@ -25,13 +25,8 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
 
     private lazy var upButton: UIButton = {
         let view = UIButton()
-
-        if #available(iOS 13.0, *) {
-            view.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-            view.tintColor = .systemBlue
-        } else {
-            view.setImage(UIImage(named: "ic_chevron_up")?.sd_tintedImage(with: .systemBlue), for: .normal)
-        }
+        view.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+        view.tintColor = .systemBlue
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         view.imageView?.contentMode = .scaleAspectFit
@@ -40,13 +35,8 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
 
     private lazy var downButton: UIButton = {
         let view = UIButton()
+        view.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         view.tintColor = .systemBlue
-        if #available(iOS 13.0, *) {
-            view.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-            view.tintColor = .systemBlue
-        } else {
-            view.setImage(UIImage(named: "ic_chevron_down")?.sd_tintedImage(with: .systemBlue), for: .normal)
-        }
         view.translatesAutoresizingMaskIntoConstraints = false
         view.imageView?.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true

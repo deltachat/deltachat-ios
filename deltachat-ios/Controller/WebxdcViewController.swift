@@ -24,12 +24,7 @@ class WebxdcViewController: WebViewViewController {
     private var allowInternet: Bool = false
 
     private lazy var moreButton: UIBarButtonItem = {
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "ellipsis.circle")
-        } else {
-            image = UIImage(named: "ic_more")
-        }
+        let image = UIImage(systemName: "ellipsis.circle")
         return UIBarButtonItem(image: image,
                                style: .plain,
                                target: self,
@@ -257,10 +252,7 @@ class WebxdcViewController: WebViewViewController {
 
         config.mediaTypesRequiringUserActionForPlayback = []
         config.allowsInlineMediaPlayback = true
-
-        if #available(iOS 13.0, *) {
-            preferences.isFraudulentWebsiteWarningEnabled = true
-        }
+        preferences.isFraudulentWebsiteWarningEnabled = true
         
         if #available(iOS 14.0, *) {
             config.defaultWebpagePreferences.allowsContentJavaScript = true
