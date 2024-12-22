@@ -24,6 +24,7 @@ class GroupChatDetailViewController: UIViewController {
         case clearChat
         case deleteChat
         case copyToClipboard
+        case addToHomescreen
     }
 
     private var chatOptions: [ChatOption]
@@ -145,6 +146,35 @@ class GroupChatDetailViewController: UIViewController {
             cell.imageView?.image = UIImage(systemName: "map") // added in ios13
         }
         cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
+    private lazy var homescreenWidgetCell: ActionCell = {
+        let cell = ActionCell()
+
+        let chatIdsOnHomescreen: [Int]
+
+        if #available(iOS 15, *) {
+            chatIdsOnHomescreen = UserDefaults.shared!
+                .getChatWidgetEntries()
+                .filter { $0.accountId == dcContext.id }
+                .compactMap { entry in
+                    switch entry.type {
+                    case .app: return nil
+                    case .chat(let chatId): return chatId
+                    }
+                }
+        } else {
+            chatIdsOnHomescreen = []
+        }
+
+        let isOnHomescreen = chatIdsOnHomescreen.contains(chatId)
+        if isOnHomescreen {
+            cell.actionTitle = String.localized("ios_remove_from_home_screen")
+        } else {
+            cell.actionTitle = String.localized("ios_add_to_home_screen")
+        }
+        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
@@ -271,20 +301,20 @@ class GroupChatDetailViewController: UIViewController {
 
         if chat.isMailinglist {
             self.memberManagementRows = 0
-            self.chatActions = [.archiveChat, .copyToClipboard, .clearChat, .deleteChat]
+            self.chatActions = [.archiveChat, .addToHomescreen, .copyToClipboard, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else if chat.isBroadcast {
             self.memberManagementRows = 1
-            self.chatActions = [.archiveChat, .cloneChat, .clearChat, .deleteChat]
+            self.chatActions = [.archiveChat, .addToHomescreen, .cloneChat, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: false)
         } else if chat.canSend {
             self.chatOptions.append(.ephemeralMessages)
             self.memberManagementRows = 2
-            self.chatActions = [.archiveChat, .cloneChat, .leaveGroup, .clearChat, .deleteChat]
+            self.chatActions = [.archiveChat, .addToHomescreen, .cloneChat, .leaveGroup, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         } else {
             self.memberManagementRows = 0
-            self.chatActions = [.archiveChat, .clearChat, .deleteChat]
+            self.chatActions = [.archiveChat, .addToHomescreen, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         }
     }
@@ -316,6 +346,34 @@ class GroupChatDetailViewController: UIViewController {
     }
 
     // MARK: - actions
+    private func toggleChatInHomescreenWidget() {
+        guard #available(iOS 15, *),
+                let userDefaults = UserDefaults.shared else { return }
+        let allHomescreenChatsIds: [Int] = userDefaults
+            .getChatWidgetEntries()
+            .compactMap { entry in
+                switch entry.type {
+                case .app: return nil
+                case .chat(let chatId): return chatId
+                }
+            }
+
+        let onHomescreen: Bool
+        if allHomescreenChatsIds.contains(chatId) {
+            userDefaults.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
+            onHomescreen = false
+        } else {
+            userDefaults.addChatToHomescreenWidget(accountId: dcContext.id, chatId: chatId)
+            onHomescreen = true
+        }
+
+        if onHomescreen {
+            homescreenWidgetCell.actionTitle = String.localized("ios_remove_from_home_screen")
+        } else {
+            homescreenWidgetCell.actionTitle =  String.localized("ios_add_to_home_screen")
+        }
+    }
+
     @objc func editButtonPressed() {
         showGroupChatEdit(chat: chat)
     }
@@ -519,6 +577,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 return deleteChatCell
             case .copyToClipboard:
                 return copyToClipboardCell
+            case .addToHomescreen:
+                // relevant only for iOS 15+
+                return homescreenWidgetCell
             }
         }
     }
@@ -572,7 +633,9 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             case .copyToClipboard:
                 tableView.deselectRow(at: indexPath, animated: false)
                 UIPasteboard.general.string = chat.getMailinglistAddr()
-
+            case .addToHomescreen:
+                tableView.deselectRow(at: indexPath, animated: true)
+                toggleChatInHomescreenWidget()
             }
         }
     }
