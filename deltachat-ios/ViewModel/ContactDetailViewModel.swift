@@ -22,6 +22,7 @@ class ContactDetailViewModel {
     }
 
     enum ChatAction {
+        case addToHomescreen
         case archiveChat
         case showEncrInfo
         case blockContact
@@ -87,7 +88,9 @@ class ContactDetailViewModel {
             chatOptions.append(.locations)
         }
 
-        if chatId != 0 {
+        var chatActions: [ChatAction]
+        let chatExists = chatId != 0
+        if chatExists {
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
                 chatOptions.append(.startChat)
@@ -98,6 +101,9 @@ class ContactDetailViewModel {
             }
 
             chatActions = [.archiveChat]
+            if #available(iOS 15, *) {
+                chatActions.append(.addToHomescreen)
+            }
             if !isDeviceTalk && !isSavedMessages {
                 chatActions.append(.showEncrInfo)
                 chatActions.append(.blockContact)
@@ -108,6 +114,8 @@ class ContactDetailViewModel {
             chatOptions.append(.startChat)
             chatActions = [.showEncrInfo, .blockContact]
         }
+
+        self.chatActions = chatActions
     }
 
     func typeFor(section: Int) -> ContactDetailViewModel.ProfileSections {
@@ -220,5 +228,26 @@ class ContactDetailViewModel {
 
     public func unblockContact() {
         context.unblockContact(id: contact.id)
+    }
+
+    @available(iOS 15, *)
+    func toggleChatInHomescreenWidget() -> Bool {
+        guard let userDefaults = UserDefaults.shared else { return false }
+        let allHomescreenChatsIds: [Int] = userDefaults
+            .getChatWidgetEntries()
+            .compactMap { entry in
+                switch entry.type {
+                case .app: return nil
+                case .chat(let chatId): return chatId
+                }
+            }
+
+        if allHomescreenChatsIds.contains(chatId) {
+            userDefaults.removeChatFromHomescreenWidget(accountId: context.id, chatId: chatId)
+            return false
+        } else {
+            userDefaults.addChatToHomescreenWidget(accountId: context.id, chatId: chatId)
+            return true
+        }
     }
 }
