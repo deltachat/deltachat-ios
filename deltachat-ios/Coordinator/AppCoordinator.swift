@@ -40,11 +40,7 @@ class AppCoordinator: NSObject {
         let root = QrPageController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let qrCodeTabImage: UIImage?
-        if #available(iOS 13.0, *) {
-            qrCodeTabImage = UIImage(systemName: "qrcode")
-        } else {
-            qrCodeTabImage = UIImage(named: "qr_code")
-        }
+        qrCodeTabImage = UIImage(systemName: "qrcode")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: qrCodeTabImage, tag: qrTab)
         return nav
     }
@@ -69,11 +65,7 @@ class AppCoordinator: NSObject {
         let root = SettingsViewController(dcAccounts: dcAccounts)
         let nav = UINavigationController(rootViewController: root)
         let settingsImage: UIImage?
-        if #available(iOS 13.0, *) {
-            settingsImage = UIImage(systemName: "gear")
-        } else {
-            settingsImage = UIImage(named: "settings")
-        }
+        settingsImage = UIImage(systemName: "gear")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
         return nav
     }

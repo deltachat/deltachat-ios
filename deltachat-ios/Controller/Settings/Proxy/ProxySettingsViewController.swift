@@ -298,11 +298,7 @@ extension ProxySettingsViewController {
         }
         shareAction.backgroundColor = .systemGreen
         shareAction.accessibilityLabel = String.localized("proxy_share_link")
-        if #available(iOS 13.0, *) {
-            shareAction.image = Utils.makeImageWithText(image: UIImage(systemName: "square.and.arrow.up"), text: String.localized("menu_share"))
-        } else {
-            shareAction.title = String.localized("menu_share")
-        }
+        shareAction.image = Utils.makeImageWithText(image: UIImage(systemName: "square.and.arrow.up"), text: String.localized("menu_share"))
 
         let configuration = UISwipeActionsConfiguration(actions: [shareAction])
         configuration.performsFirstActionWithFullSwipe = true
@@ -325,11 +321,7 @@ extension ProxySettingsViewController {
         }
         deleteAction.backgroundColor = .systemRed
         deleteAction.accessibilityLabel = String.localized("delete")
-        if #available(iOS 13.0, *) {
-            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
-        } else {
-            deleteAction.title = String.localized("delete")
-        }
+        deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
 
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = true

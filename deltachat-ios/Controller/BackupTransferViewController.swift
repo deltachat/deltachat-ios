@@ -24,12 +24,7 @@ class BackupTransferViewController: UIViewController {
     }
 
     private lazy var moreButton: UIBarButtonItem = {
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "ellipsis.circle")
-        } else {
-            image = UIImage(named: "ic_more")
-        }
+        let image = UIImage(systemName: "ellipsis.circle")
         return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonPressed))
     }()
 
@@ -41,9 +36,7 @@ class BackupTransferViewController: UIViewController {
 
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let progress = UIActivityIndicatorView(style: .gray)
-        if #available(iOS 13.0, *) {
-            progress.style = .large
-        }
+        progress.style = .large
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()

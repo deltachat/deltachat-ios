@@ -33,13 +33,7 @@ class SendingController: UIViewController {
     }()
 
     private var activityIndicator: UIActivityIndicatorView = {
-        let view: UIActivityIndicatorView
-        if #available(iOS 13, *) {
-             view = UIActivityIndicatorView(style: .large)
-        } else {
-            view = UIActivityIndicatorView(style: .whiteLarge)
-            view.color = UIColor.gray
-        }
+        let view = UIActivityIndicatorView(style: .large)
         view.startAnimating()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

@@ -49,13 +49,7 @@ class QrViewController: UIViewController {
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         contentScrollView.addSubview(contentStackView)
 
-        let moreButtonImage: UIImage?
-        if #available(iOS 13.0, *) {
-            moreButtonImage = UIImage(systemName: "ellipsis.circle")
-        } else {
-            moreButtonImage = UIImage(named: "ic_more")
-        }
-
+        let moreButtonImage = UIImage(systemName: "ellipsis.circle")
         moreButton = UIBarButtonItem(image: moreButtonImage, style: .plain, target: nil, action: nil)
 
         super.init(nibName: nil, bundle: nil)

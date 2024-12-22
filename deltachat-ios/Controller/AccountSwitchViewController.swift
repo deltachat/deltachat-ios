@@ -44,11 +44,7 @@ class AccountSwitchViewController: UITableViewController {
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         showAccountDeletion = false
-        if #available(iOS 13.0, *) {
-            super.init(style: .insetGrouped)
-        } else {
-            super.init(style: .grouped)
-        }
+        super.init(style: .insetGrouped)
         setupSubviews()
     }
 
@@ -365,13 +361,7 @@ class AccountCell: UITableViewCell {
     }
 
     private func showDeleteIndicator() {
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "trash")
-        } else {
-            image = UIImage(named: "ic_trash")
-        }
-        stateIndicator.image = image
+        stateIndicator.image = UIImage(systemName: "trash")
         stateIndicator.tintColor = .systemRed
         stateIndicator.accessibilityLabel = String.localized("delete")
         stateIndicator.isHidden = false
@@ -379,13 +369,7 @@ class AccountCell: UITableViewCell {
     }
 
     private func showSelectedIndicator() {
-        let image: UIImage?
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: "checkmark")
-        } else {
-            image = UIImage(named: "ic_checkmark")
-        }
-        stateIndicator.image = image
+        stateIndicator.image = UIImage(systemName: "checkmark")
         stateIndicator.tintColor = .systemBlue
         stateIndicator.accessibilityLabel = ""
         stateIndicator.isHidden = false
