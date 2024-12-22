@@ -491,7 +491,7 @@
 "instant_onboarding_create" = "Einverstanden & Profil erstellen";
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Anderen Server verwenden";
-"instant_onboarding_other_server" = "Chatmail-Servers anzeigen";
+"instant_onboarding_other_server" = "Chatmail-Server anzeigen";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Erstelle ein Profil, um der Gruppe \"%1$@\" beizutreten.";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
