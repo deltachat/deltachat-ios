@@ -175,7 +175,7 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
      * By default, we will decode the image in the background during cache query and download from the network. This can help to improve performance because when rendering image on the screen, it need to be firstly decoded. But this happen on the main queue by Core Animation.
      * However, this process may increase the memory usage as well. If you are experiencing an issue due to excessive memory consumption, This flag can prevent decode the image.
      * @note 5.14.0 introduce `SDImageCoderDecodeUseLazyDecoding`, use that for better control from codec, instead of post-processing. Which acts the similar like this option but works for SDAnimatedImage as well (this one does not)
-     * @deprecated Deprecated in v5.17.0, if you don't want force-decode, pass [.imageForceDecodePolicy] = [SDImageForceDecodePolicy.never] in context option
+     * @deprecated Deprecated in v5.17.0, if you don't want force-decode, pass [.imageForceDecodePolicy] = SDImageForceDecodePolicy.never.rawValue in context option
      */
     SDWebImageAvoidDecodeImage API_DEPRECATED("Use SDWebImageContextImageForceDecodePolicy instead", macos(10.10, 10.10), ios(8.0, 8.0), tvos(9.0, 9.0), watchos(2.0, 2.0)) = 1 << 18,
     
@@ -218,6 +218,15 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
      * @note This options is UI level options, has no usage on ImageManager or other components.
      */
     SDWebImageAvoidAutoCancelImage = 1 << 24,
+    
+    /**
+     * By defaults, for `SDWebImageTransition`, we just submit to UI transition and inmeediatelly callback the final `completedBlock` (`SDExternalCompletionBlock/SDInternalCompletionBlock`).
+     * This may cause un-wanted behavior if you do another transition inside `completedBlock`, because the previous transition is still runnning and un-cancellable, which mass-up the UI status.
+     * For this case, you can pass this option, we will delay the final callback, until your transition end. So when you inside `completedBlock`, no any transition is running on image view and safe to submit new transition.
+     * @note Currently we do not support `pausable/cancellable` transition. But possible in the future by using the https://developer.apple.com/documentation/uikit/uiviewpropertyanimator.
+     * @note If you have complicated transition animation, just use `SDWebImageManager` and do UI state management by yourself, do not use the top-level API (`sd_setImageWithURL:`)
+     */
+    SDWebImageWaitTransition = 1 << 25,
 };
 
 
