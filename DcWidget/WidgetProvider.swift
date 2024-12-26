@@ -16,13 +16,12 @@ struct Provider: TimelineProvider {
 
         let shortcuts: [Shortcut] = [
             .app(AppShortcut(accountId: 0, chatId: 0, messageId: 0, image: UIImage(named: "checklist"), title: "checklist")),
-            .app(AppShortcut(accountId: 0, chatId: 0, messageId: 1, image: UIImage(named: "hello"), title: "hello")),
-            .app(AppShortcut(accountId: 0, chatId: 0, messageId: 6, image: UIImage(named: "packabunchas"), title: "packabunchas")),
-            .app(AppShortcut(accountId: 0, chatId: 0, messageId: 3, image: UIImage(named: "webxdc"), title: "webxdc")),
-            .app(AppShortcut(accountId: 0, chatId: 0, messageId: 2, image: UIImage(named: "pixel"), title: "pixel")),
-            .app(AppShortcut(accountId: 0, chatId: 0, messageId: 4, image: UIImage(named: "checklist"), title: "checklist")),
-            .app(AppShortcut(accountId: 0, chatId: 0, messageId: 5, image: UIImage(named: "hello"), title: "hello")),
-            .app(AppShortcut(accountId: 0, chatId: 0, messageId: 7, image: UIImage(named: "webxdc"), title: "webxdc")),
+            .app(AppShortcut(accountId: 0, chatId: 1, messageId: 1, image: UIImage(named: "hello"), title: "hello")),
+            .app(AppShortcut(accountId: 0, chatId: 2, messageId: 2, image: UIImage(named: "packabunchas"), title: "packabunchas")),
+            .chat(ChatShortcut(accountId: 0, chatId: 3, title: "Messages to self", image: UIImage(named: "saved-messages"))),
+            .app(AppShortcut(accountId: 0, chatId: 4, messageId: 4, image: UIImage(named: "pixel"), title: "pixel")),
+            .app(AppShortcut(accountId: 0, chatId: 5, messageId: 5, image: UIImage(named: "webxdc"), title: "webxdc")),
+            .chat(ChatShortcut(accountId: 0, chatId: 6, title: "Broadcast", image: UIImage(named: "broadcast"))),
         ]
 
         return UsedWebxdcEntry(date: Date(), shortcuts: Array(shortcuts.prefix(limit)))
