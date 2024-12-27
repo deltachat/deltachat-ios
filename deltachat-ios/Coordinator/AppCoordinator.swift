@@ -217,7 +217,12 @@ class AppCoordinator: NSObject {
             }
         }
 
-        showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
+        let chat = dcAccounts.getSelected().getChat(chatId: chatId)
+        if chat.isValid {
+            showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
+        } else {
+            showChats()
+        }
         return true
     }
 
