@@ -122,12 +122,6 @@ class FilesViewController: UIViewController {
     }
 
     // MARK: - actions
-    @objc private func askToDeleteItem(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        askToDeleteItem(at: indexPath)
-    }
 
     private func askToDeleteItem(at indexPath: IndexPath) {
         let chat = dcContext.getChat(chatId: chatId)
@@ -187,37 +181,6 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     // MARK: - context menu
-    // context menu for iOS 11, 12
-
-    private func contextMenu(for indexPath: IndexPath) -> [LegacyMenuItem] {
-        return [
-            LegacyMenuItem(title: String.localized("show_in_chat"), action: #selector(FilesViewController.redirectToMessage(_:)), indexPath: indexPath),
-            LegacyMenuItem(title: String.localized("menu_share"), action: #selector(FilesViewController.shareAttachment(_:)), indexPath: indexPath),
-            LegacyMenuItem(title: String.localized("delete"), action: #selector(FilesViewController.askToDeleteItem(_:)), indexPath: indexPath)
-        ]
-    }
-
-    @available(*, deprecated)
-    private func prepareContextMenu(indexPath: IndexPath) {
-        UIMenuController.shared.menuItems = contextMenu(for: indexPath)
-        UIMenuController.shared.update()
-    }
-
-
-    func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        prepareContextMenu(indexPath: indexPath)
-        return true
-    }
-
-    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        let actionIsPartOfMenu = contextMenu(for: indexPath).compactMap { $0.action }.first { $0 == action } != nil
-        return actionIsPartOfMenu
-    }
-
-    func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
-        // Intentionally left blank
-    }
-
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(
             identifier: nil,
@@ -302,13 +265,6 @@ extension FilesViewController {
         navigationController?.pushViewController(previewController, animated: true)
     }
 
-    @objc private func redirectToMessage(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        redirectToMessage(of: indexPath)
-    }
-
     func redirectToMessage(of indexPath: IndexPath) {
         let msgId = fileMessageIds[indexPath.row]
         let chatId = dcContext.getMessage(id: msgId).chatId
@@ -316,13 +272,6 @@ extension FilesViewController {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.appCoordinator.showChat(chatId: chatId, msgId: msgId, animated: false, clearViewControllerStack: true)
         }
-    }
-
-    @objc private func shareAttachment(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        shareAttachment(of: indexPath)
     }
 
     func shareAttachment(of indexPath: IndexPath) {
