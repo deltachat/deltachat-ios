@@ -47,11 +47,15 @@ struct ChatShortcutView: View {
     var body: some View {
         Link(destination: chat.url) {
             if let image = chat.image {
-                // Use Circle as mask
                 Image(uiImage: image)
                     .fullColor()
-            } else {
-                Color(.systemBackground)
+            } else if let colorImage = UIImage(color: chat.color) {
+                ZStack {
+                    Image(uiImage: colorImage)
+                    Text(chat.title.first?.uppercased() ?? "🫶")
+                        .foregroundStyle(.white)
+                        .font(.system(size: 34))
+                }
             }
         }
         .frame(width: 56, height: 56)

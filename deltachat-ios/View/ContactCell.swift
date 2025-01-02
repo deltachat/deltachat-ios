@@ -437,12 +437,12 @@ class ContactCell: UITableViewCell {
             }
             avatar.setRecentlySeen(false)
             setStatusIndicators(unreadCount: 0,
-            status: 0,
-            visibility: 0,
-            isLocationStreaming: false,
-            isContactRequest: false,
-            isArchiveLink: false,
-            isVerified: false)
+                                status: 0,
+                                visibility: 0,
+                                isLocationStreaming: false,
+                                isContactRequest: false,
+                                isArchiveLink: false,
+                                isVerified: false)
         }
 
         accessibilityLabel = (titleLabel.text != nil ? ((titleLabel.text ?? "")+"\n") : "")

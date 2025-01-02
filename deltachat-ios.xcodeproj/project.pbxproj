@@ -215,6 +215,7 @@
 		D8083AD02D14384F005DCB7D /* UserDefaults+Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8083ACF2D14384F005DCB7D /* UserDefaults+Widgets.swift */; };
 		D8083AD12D143868005DCB7D /* UserDefaults+Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8083ACF2D14384F005DCB7D /* UserDefaults+Widgets.swift */; };
 		D80F62792B59D1CC00877059 /* DefaultReactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80F62782B59D1CC00877059 /* DefaultReactions.swift */; };
+		D82AD20F2D26B087009D6026 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
 		D84738D22BBC1C2C00ECD52B /* LegacyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84738D12BBC1C2C00ECD52B /* LegacyMenuItem.swift */; };
 		D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */; };
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
@@ -1829,6 +1830,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D89C45732D0B0166005B1491 /* WidgetEntry.swift in Sources */,
+				D82AD20F2D26B087009D6026 /* UIImage+Extension.swift in Sources */,
 				D8083AD12D143868005DCB7D /* UserDefaults+Widgets.swift in Sources */,
 				D8C7B6982CF87F5E003A6AD1 /* DcMsg+Extension.swift in Sources */,
 			);

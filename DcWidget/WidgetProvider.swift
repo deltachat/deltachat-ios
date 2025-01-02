@@ -18,10 +18,10 @@ struct Provider: TimelineProvider {
             .app(AppShortcut(accountId: 0, chatId: 0, messageId: 0, image: UIImage(named: "checklist"), title: "checklist")),
             .app(AppShortcut(accountId: 0, chatId: 1, messageId: 1, image: UIImage(named: "hello"), title: "hello")),
             .app(AppShortcut(accountId: 0, chatId: 2, messageId: 2, image: UIImage(named: "packabunchas"), title: "packabunchas")),
-            .chat(ChatShortcut(accountId: 0, chatId: 3, title: "Messages to self", image: UIImage(named: "saved-messages"))),
+            .chat(ChatShortcut(accountId: 0, chatId: 3, title: "Messages to self", image: UIImage(named: "saved-messages"), color: .green)),
             .app(AppShortcut(accountId: 0, chatId: 4, messageId: 4, image: UIImage(named: "pixel"), title: "pixel")),
             .app(AppShortcut(accountId: 0, chatId: 5, messageId: 5, image: UIImage(named: "webxdc"), title: "webxdc")),
-            .chat(ChatShortcut(accountId: 0, chatId: 6, title: "Broadcast", image: UIImage(named: "broadcast"))),
+            .chat(ChatShortcut(accountId: 0, chatId: 6, title: "Broadcast", image: UIImage(named: "broadcast"), color: .red)),
         ]
 
         return UsedWebxdcEntry(date: Date(), shortcuts: Array(shortcuts.prefix(limit)))
@@ -74,12 +74,14 @@ struct Provider: TimelineProvider {
                     let chat = dcContext.getChat(chatId: chatId)
                     let title = chat.name
                     let image = chat.profileImage
+                    let color = chat.color
 
                     return .chat(ChatShortcut(
                         accountId: entry.accountId,
                         chatId: chatId,
                         title: title,
-                        image: image
+                        image: image,
+                        color: color
                     ))
                 }
             }
@@ -120,6 +122,7 @@ struct ChatShortcut: Identifiable, Hashable {
     let chatId: Int
     let title: String
     let image: UIImage?
+    let color: UIColor
 
     var url: URL {
         var urlComponents = URLComponents()
