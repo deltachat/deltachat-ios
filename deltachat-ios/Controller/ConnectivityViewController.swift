@@ -50,7 +50,7 @@ class ConnectivityViewController: WebViewViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        (connectivityMonitor as? NWPathMonitor)?.cancel()
+        connectivityMonitor?.cancel()
     }
 
     // this method needs to be run from a background thread
