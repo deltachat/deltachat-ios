@@ -178,7 +178,6 @@ extension WebxdcSelector: UICollectionViewDataSource, UICollectionViewDelegate {
             item = galleryItem
         }
         webxdcGridCell.update(item: item)
-        UIMenuController.shared.setMenuVisible(false, animated: true)
         return webxdcGridCell
     }
 

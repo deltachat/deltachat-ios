@@ -43,7 +43,7 @@ open class InputBarSendButton: InputBarButtonItem {
     }
 
     private let activityView: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .gray)
+        let view = UIActivityIndicatorView(style: .medium)
         view.isUserInteractionEnabled = false
         view.isHidden = true
         return view

@@ -195,7 +195,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
             item = galleryItem
         }
         galleryCell.update(item: item)
-        UIMenuController.shared.setMenuVisible(false, animated: true)
         return galleryCell
     }
 
@@ -205,7 +204,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         navigationController?.pushViewController(previewController, animated: true)
 
         collectionView.deselectItem(at: indexPath, animated: true)
-        UIMenuController.shared.setMenuVisible(false, animated: true)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

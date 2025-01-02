@@ -35,7 +35,7 @@ class BackupTransferViewController: UIViewController {
     private let contentScrollView: UIScrollView
 
     private lazy var activityIndicator: UIActivityIndicatorView = {
-        let progress = UIActivityIndicatorView(style: .gray)
+        let progress = UIActivityIndicatorView(style: .medium)
         progress.style = .large
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
