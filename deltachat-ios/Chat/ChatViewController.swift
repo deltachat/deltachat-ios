@@ -1350,6 +1350,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
             self.dcContext.deleteMessages(msgIds: ids)
+            if #available(iOS 15.0, *) {
+                ids.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
+            }
             if self.tableView.isEditing {
                 self.setEditing(isEditing: false)
             }

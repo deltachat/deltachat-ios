@@ -658,6 +658,9 @@ extension GroupChatDetailViewController {
             )
             alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
                 self.dcContext.deleteMessages(msgIds: msgIds)
+                if #available(iOS 15.0, *) {
+                    msgIds.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
+                }
                 self.navigationController?.popViewController(animated: true)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
