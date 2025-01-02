@@ -183,11 +183,13 @@ class AppCoordinator: NSObject {
 
         let dcContext = dcAccounts.getSelected()
         let dcMsg = dcContext.getMessage(id: messageId)
-        if dcMsg.type == DC_MSG_WEBXDC {
+        if dcMsg.isValid, dcMsg.type == DC_MSG_WEBXDC {
             showChat(chatId: chatId, msgId: messageId, openHighlightedMsg: true, animated: false, clearViewControllerStack: true)
             return true
+        } else {
+            showChats()
+            return false
         }
-        return false
     }
 
     private func handleOpenChatDeeplink(url: URL) -> Bool {

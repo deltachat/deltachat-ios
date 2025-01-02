@@ -31,6 +31,10 @@ public class DcMsg {
         return dc_msg_is_forwarded(messagePointer) != 0
     }
 
+    public var isValid: Bool {
+        return messagePointer != nil
+    }
+
     public var messageId: String {
         return "\(id)"
     }
