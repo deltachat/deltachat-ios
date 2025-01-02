@@ -165,7 +165,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         } else if navigationController?.topViewController != self {
             // Don't show inputAccessoryView when not top view controller
             return false
-        } else if contextMenuVisible || UIMenuController.shared.isMenuVisible {
+        } else if contextMenuVisible {
             // Don't show inputAccessoryView when context menu is visible
             return false
         } else {
@@ -555,8 +555,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        _ = handleUIMenu()
-
         func dequeueCell<T: UITableViewCell & ReusableCell>(ofType _: T.Type = T.self) -> T {
             let cell = tableView.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath)
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -780,7 +778,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return tableView.cellForRow(at: indexPath) as? SelectableCell != nil
+        return tableView.cellForRow(at: indexPath) is SelectableCell
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -836,7 +834,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         default:
             break
         }
-        _ = handleUIMenu()
     }
 
     override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
@@ -1711,13 +1708,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     // MARK: - Actions
 
-    @objc private func info(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        info(at: indexPath)
-    }
-
     private func info(at indexPath: IndexPath) {
         let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
         let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
@@ -1726,24 +1716,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    @objc private func forward(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        forward(at: indexPath)
-    }
-
     private func forward(at indexPath: IndexPath) {
         let msg = dcContext.getMessage(id: messageIds[indexPath.row])
         RelayHelper.shared.setForwardMessage(messageId: msg.id)
         navigationController?.popViewController(animated: true)
-    }
-
-    @objc private func reply(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        reply(at: indexPath)
     }
 
     private func reply(at indexPath: IndexPath) {
@@ -1752,13 +1728,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func copyToClipboard(at indexPath: IndexPath) {
         copyToClipboard(ids: [self.messageIds[indexPath.row]])
-    }
-
-    @objc private func replyPrivately(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        replyPrivatelyToMessage(at: indexPath)
     }
 
     private func cancelSearch() {
@@ -1771,13 +1740,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    @objc private func selectMore(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        selectMore(at: indexPath)
-    }
-
     private func selectMore(at indexPath: IndexPath) {
         cancelSearch()
         setEditing(isEditing: true, selectedAtIndexPath: indexPath)
@@ -1785,84 +1747,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
         }
     }
-
-    @objc private func react(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        reactionMessageId = self.messageIds[indexPath.row]
-
-        let pickerViewController = MCEmojiPickerViewController()
-        pickerViewController.navigationItem.title = String.localized("react")
-        pickerViewController.delegate = self
-
-        let navigationController = UINavigationController(rootViewController: pickerViewController)
-        present(navigationController, animated: true)
-
-    }
-
-    // MARK: - UIMenuItems (< iOS 13)
-    @available(*, deprecated, message: "")
-    private func contextMenu(for indexPath: IndexPath) -> [LegacyMenuItem] {
-        let messageId = messageIds[indexPath.row]
-        let message = dcContext.getMessage(id: messageId)
-
-        var menu: [LegacyMenuItem] = []
-
-        if canReply(to: message) {
-            menu.append(LegacyMenuItem(title: String.localized("react"), action: #selector(ChatViewController.react(_:)), indexPath: indexPath))
-            menu.append(LegacyMenuItem(title: String.localized("notify_reply_button"), action: #selector(ChatViewController.reply(_:)), indexPath: indexPath))
-        }
-
-        if canReplyPrivately(to: message) {
-            menu.append(LegacyMenuItem(title: String.localized("reply_privately"), action: #selector(ChatViewController.replyPrivately(_:)), indexPath: indexPath))
-        }
-
-        menu.append(contentsOf: [
-            LegacyMenuItem(title: String.localized("forward"), action: #selector(ChatViewController.forward(_:)), indexPath: indexPath),
-            LegacyMenuItem(title: String.localized("info"), action: #selector(ChatViewController.info(_:)), indexPath: indexPath),
-            LegacyMenuItem(title: String.localized("menu_more_options"), action: #selector(ChatViewController.selectMore(_:)), indexPath: indexPath)
-        ])
-
-        return menu
-    }
-
-    @available(*, deprecated, message: "")
-    private func prepareContextMenu(isHidden: Bool, indexPath: IndexPath) {
-
-        guard let rect = tableView.cellForRow(at: indexPath)?.frame else { return }
-        UIMenuController.shared.setTargetRect(rect, in: tableView)
-
-        if isHidden {
-            UIMenuController.shared.menuItems = nil
-            UIMenuController.shared.isMenuVisible = false
-        } else {
-            UIMenuController.shared.menuItems = contextMenu(for: indexPath)
-            UIMenuController.shared.isMenuVisible = true
-        }
-
-        UIMenuController.shared.update()
-        becomeFirstResponder()
-    }
-
-    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        let messageId = messageIds[indexPath.row]
-        let isHidden = messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER
-        prepareContextMenu(isHidden: isHidden, indexPath: indexPath)
-        return !isHidden
-    }
-
-    override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        let actionIsPartOfMenu = contextMenu(for: indexPath).compactMap { $0.action }.first { $0 == action } != nil
-
-        return (tableView.isEditing == false) && actionIsPartOfMenu
-    }
-
-    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
-        // handle standard actions here, but custom actions never trigger this. it still needs to be present for the menu to display, though.
-        // Does intentionally nothing.
-    }
-
 
     @objc(tableView:canHandleDropSession:)
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
@@ -2181,14 +2065,6 @@ extension ChatViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    func handleUIMenu() -> Bool {
-        if UIMenuController.shared.isMenuVisible {
-            UIMenuController.shared.setMenuVisible(false, animated: true)
-            return true
-        }
-        return false
-    }
-
     func handleSelection(indexPath: IndexPath) -> Bool {
         if tableView.isEditing {
             if tableView.indexPathsForSelectedRows?.contains(indexPath) ?? false {
@@ -2313,9 +2189,8 @@ extension ChatViewController {
 extension ChatViewController: BaseMessageCellDelegate {
 
     @objc func actionButtonTapped(indexPath: IndexPath) {
-        if handleUIMenu() || handleSelection(indexPath: indexPath) {
-            return
-        }
+        if handleSelection(indexPath: indexPath) { return }
+
         let msg = dcContext.getMessage(id: messageIds[indexPath.row])
         if msg.downloadState != DC_DOWNLOAD_DONE {
             dcContext.downloadFullMessage(id: msg.id)
@@ -2329,7 +2204,7 @@ extension ChatViewController: BaseMessageCellDelegate {
 
     @objc func quoteTapped(indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
-        _ = handleUIMenu()
+
         let msg = dcContext.getMessage(id: messageIds[indexPath.row])
         if let quoteMsg = msg.quoteMessage {
             if self.chatId == quoteMsg.chatId {
@@ -2341,9 +2216,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func textTapped(indexPath: IndexPath) {
-        if handleUIMenu() || handleSelection(indexPath: indexPath) {
-            return
-        }
+        if handleSelection(indexPath: indexPath) { return }
 
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
         if message.isSetupMessage {
@@ -2356,9 +2229,8 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func phoneNumberTapped(number: String, indexPath: IndexPath) {
-        if handleUIMenu() || handleSelection(indexPath: indexPath) {
-            return
-        }
+        if handleSelection(indexPath: indexPath) { return }
+
         let sanitizedNumber = number.filter("0123456789".contains)
         if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {
             UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
@@ -2366,9 +2238,8 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func commandTapped(command: String, indexPath: IndexPath) {
-        if handleUIMenu() || handleSelection(indexPath: indexPath) {
-            return
-        }
+        if handleSelection(indexPath: indexPath) { return }
+
         if let text = messageInputBar.inputTextView.text, !text.isEmpty {
             return
         }
@@ -2376,9 +2247,8 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func urlTapped(url: URL, indexPath: IndexPath) {
-        if handleUIMenu() || handleSelection(indexPath: indexPath) {
-            return
-        }
+        if handleSelection(indexPath: indexPath) { return }
+
         if Utils.isEmail(url: url) {
             let email = Utils.getEmailFrom(url)
             self.askToChatWith(email: email)
@@ -2397,9 +2267,8 @@ extension ChatViewController: BaseMessageCellDelegate {
 
 
     @objc func imageTapped(indexPath: IndexPath, previewError: Bool) {
-        if handleUIMenu() || handleSelection(indexPath: indexPath) {
-            return
-        }
+        if handleSelection(indexPath: indexPath) { return }
+
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
         if message.type != DC_MSG_STICKER {
             // prefer previewError over QLPreviewController.canPreview().
