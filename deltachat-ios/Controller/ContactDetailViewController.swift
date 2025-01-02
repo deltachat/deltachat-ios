@@ -501,6 +501,9 @@ class ContactDetailViewController: UITableViewController {
             )
             alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
                 self.viewModel.context.deleteMessages(msgIds: msgIds)
+                if #available(iOS 15.0, *) {
+                    msgIds.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.viewModel.context.id, messageId: $0) }
+                }
                 self.navigationController?.popViewController(animated: true)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
