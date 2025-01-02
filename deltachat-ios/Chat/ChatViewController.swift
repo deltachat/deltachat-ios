@@ -1314,6 +1314,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             guard let self else { return }
             // remove message observers early to avoid careless calls to dcContext methods
             self.dcContext.deleteChat(chatId: self.chatId)
+            if #available(iOS 15.0, *) {
+                UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
+            }
             self.navigationController?.popViewController(animated: true)
         })
     }

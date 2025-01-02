@@ -617,6 +617,9 @@ class ContactDetailViewController: UITableViewController {
             return
         }
         viewModel.context.deleteChat(chatId: viewModel.chatId)
+        if #available(iOS 15.0, *) {
+            UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: viewModel.context.id, chatId: viewModel.chatId)
+        }
         NotificationManager.removeNotificationsForChat(dcContext: viewModel.context, chatId: viewModel.chatId)
         INInteraction.delete(with: ["\(viewModel.context.id).\(viewModel.chatId)"])
 
