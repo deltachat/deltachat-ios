@@ -222,19 +222,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     // MARK: - Actions
-    @objc private func askToDeleteItem(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        askToDeleteItem(at: indexPath)
-    }
-
-    @objc private func redirectToMessage(_ sender: Any) {
-        guard let menuItem = UIMenuController.shared.menuItems?.first as? LegacyMenuItem,
-              let indexPath = menuItem.indexPath else { return }
-
-        redirectToMessage(of: indexPath)
-    }
 
     private func askToDeleteItem(at indexPath: IndexPath) {
         let chat = dcContext.getChat(chatId: chatId)
@@ -261,32 +248,6 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     // MARK: - Context menu
-    private func contextMenu(for indexPath: IndexPath) -> [LegacyMenuItem] {
-        return [
-            LegacyMenuItem(title: String.localized("delete"), action: #selector(GalleryViewController.askToDeleteItem(_:)), indexPath: indexPath),
-            LegacyMenuItem(title: String.localized("show_in_chat"), action: #selector(GalleryViewController.redirectToMessage(_:)), indexPath: indexPath)
-        ]
-    }
-
-    @available(*, deprecated)
-    private func prepareContextMenu(indexPath: IndexPath) {
-        UIMenuController.shared.menuItems = contextMenu(for: indexPath)
-        UIMenuController.shared.update()
-    }
-
-    func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        prepareContextMenu(indexPath: indexPath)
-        return true
-    }
-
-    func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        let actionIsPartOfMenu = contextMenu(for: indexPath).compactMap { $0.action }.first { $0 == action } != nil
-        return actionIsPartOfMenu
-    }
-
-    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-        // Intentionally does nothing.
-    }
 
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard let galleryCell = collectionView.cellForItem(at: indexPath) as? GalleryCell, let item = galleryCell.item else {
