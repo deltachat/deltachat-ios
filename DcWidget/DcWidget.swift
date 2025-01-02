@@ -31,15 +31,13 @@ struct AppShortcutView: View {
         Link(destination: app.url) {
             if let image = app.image {
                 Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 56, height: 56)
-                    .cornerRadius(12)
+                    .fullColor()
             } else {
                 Color(.systemBackground)
-                    .frame(width: 56, height: 56)
-                    .cornerRadius(12)
             }
         }
+        .frame(width: 56, height: 56)
+        .cornerRadius(12)
     }
 }
 
@@ -51,15 +49,14 @@ struct ChatShortcutView: View {
             if let image = chat.image {
                 // Use Circle as mask
                 Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 56, height: 56)
-                    .clipShape(Circle())
+                    .fullColor()
             } else {
                 Color(.systemBackground)
-                    .frame(width: 56, height: 56)
-                    .clipShape(Circle())
             }
         }
+        .frame(width: 56, height: 56)
+        .clipShape(Circle())
+
     }
 }
 
@@ -77,8 +74,19 @@ struct DcWidget: Widget {
                     .background()
             }
         }
-        .supportedFamilies([.systemSmall, .systemMedium]) 
+        .supportedFamilies([.systemSmall, .systemMedium])
         .configurationDisplayName(String.localized("ios_widget_apps_title"))
         .description(String.localized("ios_widget_apps_description"))
+    }
+}
+
+extension Image {
+    @ViewBuilder func fullColor() -> some View {
+        if #available(iOS 18, *) {
+            self.resizable()
+                .widgetAccentedRenderingMode(.fullColor)
+        } else {
+            self.resizable()
+        }
     }
 }
