@@ -424,6 +424,9 @@ class GroupChatDetailViewController: UIViewController {
     private func deleteChat() {
         dcContext.deleteChat(chatId: chatId)
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
+        if #available(iOS 15.0, *) {
+            UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
+        }
         INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
         navigationController?.popViewControllers(viewsToPop: 2, animated: true)
     }
