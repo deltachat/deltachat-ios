@@ -51,7 +51,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         } else {
             self.editRows = [.name, .avatar]
         }
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         self.avatarSelectionCell.hintLabel.text = String.localized(useGroupWording ? "group_avatar" : "image")
         self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
         title = String.localized(useGroupWording ? "menu_edit_group" : "global_menu_edit_desktop")

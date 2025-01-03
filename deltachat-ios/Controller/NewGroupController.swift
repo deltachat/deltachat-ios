@@ -77,7 +77,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             templateChat = nil
         }
         self.groupContactIds = Array(contactIdsForGroup)
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
     }
 
     required init?(coder _: NSCoder) {
