@@ -17,7 +17,7 @@ class MediaQualityViewController: UITableViewController {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         self.options = [Int(DC_MEDIA_QUALITY_BALANCED), Int(DC_MEDIA_QUALITY_WORSE)]
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         self.title = String.localized("pref_outgoing_media_quality")
         hidesBottomBarWhenPushed = true
     }

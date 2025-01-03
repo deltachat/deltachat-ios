@@ -17,7 +17,7 @@ class EmailOptionsViewController: UITableViewController {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         self.options = [Int(DC_SHOW_EMAILS_OFF), Int(DC_SHOW_EMAILS_ACCEPTED_CONTACTS), Int(DC_SHOW_EMAILS_ALL)]
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         self.title = String.localized("pref_show_emails")
         hidesBottomBarWhenPushed = true
     }

@@ -45,7 +45,7 @@ class AutodelOverviewViewController: UITableViewController {
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         self.title = String.localized("delete_old_messages")
         hidesBottomBarWhenPushed = true
     }

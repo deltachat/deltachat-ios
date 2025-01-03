@@ -161,7 +161,7 @@ internal final class SettingsViewController: UITableViewController {
     init(dcAccounts: DcAccounts) {
         self.dcContext = dcAccounts.getSelected()
         self.dcAccounts = dcAccounts
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
 
         // set connectivity changed observer before we acutally init `connectivityCell.detailTextLabel` in `updateCells()`,
         // otherwise, we may miss events and the label is not correct.
