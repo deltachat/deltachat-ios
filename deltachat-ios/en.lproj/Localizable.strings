@@ -1073,3 +1073,5 @@
 "ios_widget_apps_description" = "Shortcuts to In-Chat Utilities and Games";
 "ios_remove_from_home_screen" = "Remove from Homescreen";
 "ios_add_to_home_screen" = "Add to Homescreen";
+"system_settings" = "System Settings";
+"system_settings_notify_explain_ios" = "Edit sound, type, badges and more";

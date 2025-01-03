@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add option to toggle mention notifications as replies or reactions in groups
+- Access system notification settings directly from the new notification settings
 - Access your favorite apps and chats from the Homescreen using our shiny new widget (#2406, #2449)
 - Add and remove apps and chats to that widget (#2426, #2449)
 - Don't show message-input when forwarding (#2435)
