@@ -280,7 +280,7 @@ class AccountSetupController: UITableViewController {
         self.imapSecurityValue = AccountSetupSecurityValue(initValue: dcContext.getConfigInt("mail_security"))
         self.smtpSecurityValue = AccountSetupSecurityValue(initValue: dcContext.getConfigInt("send_security"))
 
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
     }
 

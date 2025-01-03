@@ -21,7 +21,7 @@ class SecuritySettingsController: UITableViewController {
 
     init(initValue: Int, title: String) {
         selectedIndex = options.firstIndex(of: Int32(initValue)) ?? 0
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         self.title = title
     }
 

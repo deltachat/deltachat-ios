@@ -25,7 +25,7 @@ class CertificateCheckController: UITableViewController {
         for (index, value) in options.enumerated() where currentValue == value {
             selectedIndex = index
         }
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         self.title = sectionTitle
     }
 
