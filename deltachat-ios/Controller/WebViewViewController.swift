@@ -128,16 +128,16 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
             logger.error("internal search js not found")
             return
         }
-        do {
-            let data: Data = try Data(contentsOf: path)
-            let jsCode = String(data: data, encoding: .utf8)
-            // inject the search code
-            webView.evaluateJavaScript(jsCode, completionHandler: { _, error in
-                logger.error("\(String(describing: error))")
-            })
-        } catch {
-            logger.error("could not load javascript: \(error)")
+
+        guard let data = try? Data(contentsOf: path),
+              let jsCode = String(data: data, encoding: .utf8) else {
+            logger.error("could not load javascript")
+            return
         }
+        // inject the search code
+        webView.evaluateJavaScript(jsCode, completionHandler: { _, error in
+            logger.error("\(String(describing: error))")
+        })
     }
 
     private func find(text: String) {
