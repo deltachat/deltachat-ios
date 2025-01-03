@@ -293,6 +293,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 // MARK: - grid layout + updates
 private extension GalleryViewController {
     func reloadCollectionViewLayout() {
+        guard let orientation = UIApplication.shared.orientation else { return }
 
         // columns specification
         let phonePortrait = 3
@@ -300,7 +301,6 @@ private extension GalleryViewController {
         let padPortrait = 5
         let padLandscape = 8
 
-        let orientation = UIApplication.shared.statusBarOrientation
         let deviceType = UIDevice.current.userInterfaceIdiom
 
         let gridDisplay: GridDisplay

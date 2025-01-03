@@ -417,7 +417,8 @@ open class InputBarAccessoryView: UIView {
             self.delegate?.inputBar(self, didAdaptToKeyboard: self.keyboardHeight)
         }).on(event: .didShow, do: { [weak self] _ in
             guard let self else { return }
-            if UIApplication.shared.statusBarOrientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone {
+            if let orientation = UIApplication.shared.orientation,
+                orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone {
                 self.orientationDidChange()
             }
         })
@@ -639,7 +640,7 @@ open class InputBarAccessoryView: UIView {
     ///
     /// - Returns: Max Height
     open func calculateMaxTextViewHeight() -> CGFloat {
-        if UIApplication.shared.statusBarOrientation.isPortrait || UIDevice.current.userInterfaceIdiom == .pad {
+        if let orientation = UIApplication.shared.orientation, orientation.isPortrait || UIDevice.current.userInterfaceIdiom == .pad {
             let divisor: CGFloat = 3
             var subtract: CGFloat = 0
             subtract += hasDraft ? 90 : 0

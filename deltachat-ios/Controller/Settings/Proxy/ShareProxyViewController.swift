@@ -97,7 +97,7 @@ class ShareProxyViewController: UIViewController {
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        let orientation = UIApplication.shared.statusBarOrientation
+        guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else { return }
 
         switch orientation {
         case .portrait, .portraitUpsideDown:

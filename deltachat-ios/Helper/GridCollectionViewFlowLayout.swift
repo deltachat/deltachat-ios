@@ -26,6 +26,7 @@ extension GridDisplay: Equatable {
 }
 
 // MARK: - GridCollectionViewFlowLayout
+// FIXME: Replace with `UICollectionViewCompositionalLayout`?
 class GridCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     var display: GridDisplay = .list {
