@@ -107,7 +107,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Delta Chat uses Face ID to protect backup creation or settings up a second device.</string>
+	<string>Delta Chat uses Face ID to protect your local profile, backup creation and second device setup.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>
