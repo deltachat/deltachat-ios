@@ -74,7 +74,7 @@ internal final class NotificationsViewController: UITableViewController {
     init(dcAccounts: DcAccounts) {
         self.dcContext = dcAccounts.getSelected()
         self.dcAccounts = dcAccounts
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
     }
 
