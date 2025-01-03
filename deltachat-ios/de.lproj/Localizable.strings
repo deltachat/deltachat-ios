@@ -145,6 +145,8 @@
 "webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps";
+"webxdc_store_url" = "App-Picker-URL";
+"webxdc_store_url_explain" = "Wenn gesetzt, wird diese URL als App-Picker anstelle der Voreinstellung verwendet.";
 "unknown" = "Unbekannt";
 "green" = "Grün";
 "red" = "Rot";

@@ -5,6 +5,10 @@
 // deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
 "or_separator" = "o";
 "clear_search" = "Neteja la cerca";
+// a noun, used on a button, short for "show link"
+"link" = "Enllaç";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Escaneja";
 "yes" = "Si";
 "no" = "No";
 "select" = "Trieu";
@@ -52,6 +56,7 @@
 "show_full_message" = "Mostra el missatge sencer...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marca-ho tot com a llegit";
+"mark_as_read" = "Marca com a llegit";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Llegit";
 // Placeholder text when something is loading
@@ -452,6 +457,8 @@
 "pref_profile_info_headline" = "Informació del vostre perfil";
 "pref_profile_photo" = "Fotografia de perfil";
 "pref_blocked_contacts" = "Contactes bloquejats";
+// for classic email, we use the classical term "Account"
+"pref_password_and_account_settings" = "Contrasenya i compte";
 "pref_who_can_see_profile_explain" = "La vostra imatge de perfil i el vostre nom es mostraran en els missatges que envieu als altres usuaris. La informació que ja s\'hagi enviat no es pot eliminar ni esborrar.";
 "pref_your_name" = "El vostre nom";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
@@ -483,6 +490,7 @@
 "pref_incognito_keyboard_explain" = "Sol·licita al teclat que deshabiliti l\'aprenentatge personalitzat";
 "pref_read_receipts" = "Confirmació de lectura";
 "pref_read_receipts_explain" = "Si desactiveu la confirmació de lectura dels vostres missatges, tampoc no rebreu la dels altres usuaris.";
+"pref_server" = "Servidor";
 "pref_manage_keys" = "Gestioneu les claus";
 "pref_use_system_emoji" = "Useu emojis de sistema";
 "pref_use_system_emoji_explain" = "Deshabilita el suport de sèrie per emoticones a Delta Chat";
@@ -518,6 +526,7 @@
 "pref_show_emails_no" = "No, només xats";
 "pref_show_emails_accepted_contacts" = "Per a contactes acceptats";
 "pref_show_emails_all" = "Tot";
+"send_stats_to_devs" = "Envia estadístiques als desenvolupadors del Delta Chat";
 // autocrypt
 "autocrypt_send_asm_title" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \"missatge de configuració Autocrypt\" comparteix de forma segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles amb Autocrypt.\n\nLa configuració es xifrarà amb un codi de configuració que es mostrarà aquí i que haureu d\'escriure a l’altre dispositiu.";
