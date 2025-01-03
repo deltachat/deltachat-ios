@@ -48,7 +48,7 @@ class AppCoordinator: NSObject {
     private func createAllMediaNavigationController() -> UINavigationController {
         let root = AllMediaViewController(dcContext: dcAccounts.getSelected())
         let nav = UINavigationController(rootViewController: root)
-        let allMediaTabImage = UIImage(named: "photo.on.rectangle")
+        let allMediaTabImage = UIImage(systemName: "photo.on.rectangle")
         nav.tabBarItem = UITabBarItem(title: String.localized("menu_all_media"), image: allMediaTabImage, tag: allMediaTab)
         return nav
     }
