@@ -1348,7 +1348,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = "merlinux GmbH";
 				TargetAttributes = {
 					30E8F20F2447285600CE2C90 = {
@@ -2246,7 +2246,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0EEC8C8D7C6F411BA7A449DE /* Pods-deltachat-ios.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -2316,7 +2315,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B1D823B040BA95BD9B39A31 /* Pods-deltachat-ios.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
