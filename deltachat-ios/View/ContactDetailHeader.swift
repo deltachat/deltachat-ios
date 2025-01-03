@@ -129,7 +129,8 @@ class ContactDetailHeader: UIView {
     }
 
     private func setupSubviews() {
-        let margin: CGFloat = 10
+        let lrMargin: CGFloat = 16
+        let spacing: CGFloat = 10
         let horizontalStackView = UIStackView(arrangedSubviews: [searchButton, muteButton])
 
         addSubview(avatar)
@@ -142,22 +143,22 @@ class ContactDetailHeader: UIView {
         addConstraints([
             avatar.constraintWidthTo(badgeSize),
             avatar.constraintHeightTo(badgeSize),
-            avatar.constraintAlignLeadingTo(self, paddingLeading: badgeSize / 4),
+            avatar.constraintAlignLeadingTo(self, paddingLeading: lrMargin),
             avatar.constraintCenterYTo(self),
             greenCheckmark.constraintHeightTo(titleLabel.font.pointSize * 0.9),
             greenCheckmark.widthAnchor.constraint(equalTo: greenCheckmark.heightAnchor),
         ])
 
-        labelsContainer.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
+        labelsContainer.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: spacing).isActive = true
         labelsContainer.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
-        labelsContainer.trailingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor, constant: -margin).isActive = true
+        labelsContainer.trailingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor, constant: -spacing).isActive = true
 
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillEqually
         horizontalStackView.alignment = .center
-        horizontalStackView.constraintAlignTrailingToAnchor(trailingAnchor, paddingTrailing: margin).isActive = true
+        horizontalStackView.constraintAlignTrailingToAnchor(trailingAnchor, paddingTrailing: lrMargin).isActive = true
         horizontalStackView.constraintCenterYTo(self).isActive = true
-        horizontalStackView.spacing = margin
+        horizontalStackView.spacing = spacing
     }
 
     func updateDetails(title: String?, subtitle: String?) {
