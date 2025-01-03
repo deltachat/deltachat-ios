@@ -671,9 +671,9 @@
 "pref_send_copy_to_self" = "Invia Copia a Me";
 // for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Richiesto quando si utilizza questo profilo su più dispositivi.";
-"pref_auto_folder_moves" = "Sposta automaticamente nella Cartella DeltaChat";
+"pref_auto_folder_moves" = "Sposta nella Cartella DeltaChat";
 "pref_auto_folder_moves_explain" = "Le conversazioni chat vengono spostate per evitare di ingombrare la Posta in arrivo";
-"pref_only_fetch_mvbox_title" = "Recupera solo dalla Cartella DeltaChat";
+"pref_only_fetch_mvbox_title" = "Recupera dalla Cartella DeltaChat";
 "pref_only_fetch_mvbox_explain" = "Ignora altre cartelle. Richiede che il tuo server sposti i messaggi delle chat nella cartella DeltaChat.";
 "pref_show_emails" = "Mostra E-mail Classiche";
 "pref_show_emails_no" = "No, solo chat";
@@ -737,7 +737,7 @@
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Questo include e-mail, media e \"Messaggi salvati\" in tutte le cartelle del server. Non utilizzare questa funzione se desideri mantenere i dati sul server o se stai utilizzando altri client e-mail oltre a Delta Chat.";
 "autodel_server_warn_multi_device_title" = "Attiva l\'eliminazione immediata";
-"autodel_server_warn_multi_device" = "Se abiliti l\'eliminazione immediata non potrai utilizzare più dispositivi su questo profilo.";
+"autodel_server_warn_multi_device" = "Se abiliti l\'eliminazione immediata non potrai utilizzare questo profilo su più dispositivi.";
 "autodel_confirm" = "Ho capito, elimina tutti questi messaggi";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Subito dopo Scaricato";
