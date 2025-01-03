@@ -247,7 +247,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.automaticallyAdjustsScrollIndicatorInsets = false
         tableView.publisher(for: \.contentInset)
-            .assign(to: \.scrollIndicatorInsets, on: tableView)
+            .assign(to: \.verticalScrollIndicatorInsets, on: tableView)
             .store(in: &bag)
 
         navigationController?.setNavigationBarHidden(false, animated: false)

@@ -1,5 +1,5 @@
 import UIKit
-import WebKit
+@preconcurrency import WebKit
 import DcCore
 
 class WebViewViewController: UIViewController, WKNavigationDelegate {
@@ -130,7 +130,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         }
         do {
             let data: Data = try Data(contentsOf: path)
-            let jsCode: String = String(decoding: data, as: UTF8.self)
+            let jsCode = String(data: data, encoding: .utf8)
             // inject the search code
             webView.evaluateJavaScript(jsCode, completionHandler: { _, error in
                 logger.error("\(String(describing: error))")
