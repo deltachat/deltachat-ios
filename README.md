@@ -96,5 +96,5 @@ If you want to import/export a backup this is the location you want to put it (i
 
 # LICENSE
 
-Copyright 2018-2024 merlinux Gmbh,
+Copyright © Delta Chat contributors,
 for licensing see LICENSE.md 
