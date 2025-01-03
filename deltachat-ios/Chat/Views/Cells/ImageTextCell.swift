@@ -138,13 +138,14 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
     }
 
     private func setAspectRatio(width: CGFloat, height: CGFloat) {
+        guard let orientation = UIApplication.shared.orientation else { return }
+
         if height == 0 || width == 0 {
             return
         }
         var width = width
         var height = height
 
-        let orientation = UIApplication.shared.statusBarOrientation
         self.imageHeightConstraint?.isActive = false
         self.imageWidthConstraint?.isActive = false
         var scaleType = ContentMode.scaleAspectFill

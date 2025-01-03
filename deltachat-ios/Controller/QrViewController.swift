@@ -107,7 +107,7 @@ class QrViewController: UIViewController {
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        let orientation = UIApplication.shared.statusBarOrientation
+        guard let orientation = UIApplication.shared.orientation else { return }
 
         switch orientation {
         case .portrait, .portraitUpsideDown:
