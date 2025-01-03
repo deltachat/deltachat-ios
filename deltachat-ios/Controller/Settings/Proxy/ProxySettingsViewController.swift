@@ -42,7 +42,7 @@ class ProxySettingsViewController: UITableViewController {
         addProxyCell.actionTitle = String.localized("proxy_add")
         toggleProxyCell = SwitchCell(textLabel: String.localized("proxy_use_proxy"), on: dcContext.isProxyEnabled)
 
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
 
         tableView.register(SwitchCell.self, forCellReuseIdentifier: SwitchCell.reuseIdentifier)
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
