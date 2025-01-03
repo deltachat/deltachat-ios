@@ -31,7 +31,7 @@ class EphemeralMessagesViewController: UITableViewController {
     init(dcContext: DcContext, chatId: Int) {
         self.dcContext = dcContext
         self.chatId = chatId
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
 
         // select option close to the timespan (that may no be available as an option eg. in case option have changed)
         self.currentIndex = 0

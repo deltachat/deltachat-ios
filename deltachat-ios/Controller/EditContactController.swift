@@ -13,7 +13,7 @@ class EditContactController: UITableViewController {
         dcContact = dcContext.getContact(id: contactIdForUpdate)
         authNameOrAddr = dcContact.authName.isEmpty ? dcContact.email : dcContact.authName
         cells = [nameCell]
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
 
         nameCell.textFieldDelegate = self
         nameCell.textField.text = dcContact.editedName

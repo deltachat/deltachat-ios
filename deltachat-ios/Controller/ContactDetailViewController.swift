@@ -146,7 +146,7 @@ class ContactDetailViewController: UITableViewController {
 
     init(dcContext: DcContext, contactId: Int) {
         self.viewModel = ContactDetailViewModel(dcContext: dcContext, contactId: contactId)
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
 
         NotificationCenter.default.addObserver(self, selector: #selector(ContactDetailViewController.handleContactsChanged(_:)), name: Event.contactsChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ContactDetailViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
