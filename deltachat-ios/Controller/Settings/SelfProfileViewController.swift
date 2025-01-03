@@ -49,7 +49,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
     }
 

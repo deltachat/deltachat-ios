@@ -62,7 +62,7 @@ class VideoChatInstanceViewController: UITableViewController {
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         self.updateSelected(selectedCustom: false)
         self.title = String.localized("videochat_instance")
         hidesBottomBarWhenPushed = true

@@ -70,7 +70,7 @@ class AutodelOptionsViewController: UITableViewController {
         self.dcContext = dcContext
         self.fromServer = fromServer
         self.currVal = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         self.title = String.localized("delete_old_messages")
         hidesBottomBarWhenPushed = true
     }
