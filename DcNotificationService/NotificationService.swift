@@ -30,6 +30,7 @@ class NotificationService: UNNotificationServiceExtension {
             // Order of importance because we might crash very soon
             contentHandler(bestAttemptContent)
             exitedDueToCriticalMemory = true
+            UserDefaults.setNseFetching(for: 3)
             UserDefaults.pushToDebugArray("ERR5")
         }
         memoryPressureSource.activate()
