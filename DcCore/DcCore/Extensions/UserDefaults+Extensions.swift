@@ -27,19 +27,20 @@ public extension UserDefaults {
 
         if until > Date().addingTimeInterval(30) {
             // user changed their system clock so we reset nse fetching date
-            setNseFetching(until: Date().addingTimeInterval(30))
+            setNseFetching(for: 30)
         }
 
         return until > Date()
     }
 
-    /// Set the time until which the Notification Service Extension could be fetching. Call with nil or Date() when NSE fetching is done.
-    ///
-    /// Note: Do not call with date further than 30 seconds into the future. NSE fetching should not take more than 30 seconds.
-    static func setNseFetching(until: Date?) {
-        precondition(until == nil || until! <= Date().addingTimeInterval(30),
-                     "Don't set NSE fetching for more than 30 seconds")
-        shared?.set(until?.timeIntervalSince1970, forKey: nseFetchingKey)
+    /// Set the amount of seconds for which the Notification Service Extension could be fetching. Call setNseFetchingDone when done.
+    static func setNseFetching(for seconds: Double) {
+        assert(0...30 ~= seconds, "Don't set NSE fetching for more than 30 seconds")
+        shared?.set(Date().timeIntervalSince1970 + seconds, forKey: nseFetchingKey)
+    }
+
+    static func setNseFetchingDone() {
+        shared?.set(nil, forKey: nseFetchingKey)
     }
 
     static func pushToDebugArray(_ value: String) {

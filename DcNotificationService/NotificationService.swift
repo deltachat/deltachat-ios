@@ -14,7 +14,7 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(silenceNotification())
             return
         }
-        UserDefaults.setNseFetching(until: Date().addingTimeInterval(26))
+        UserDefaults.setNseFetching(for: 26)
 
         // as we're mixing in notifications from accounts without PUSH and we cannot add multiple notifications,
         // it is best to move everything to the same thread - and set just no threadIdentifier
@@ -36,13 +36,13 @@ class NotificationService: UNNotificationServiceExtension {
 
         guard dcAccounts.backgroundFetch(timeout: 25) && !exitedDueToCriticalMemory else {
             UserDefaults.pushToDebugArray("ERR3")
-            UserDefaults.setNseFetching(until: nil)
+            UserDefaults.setNseFetchingDone()
             if !exitedDueToCriticalMemory {
                 contentHandler(bestAttemptContent)
             }
             return
         }
-        UserDefaults.setNseFetching(until: nil)
+        UserDefaults.setNseFetchingDone()
 
         var messageCount = 0
         var reactionCount = 0
@@ -147,7 +147,7 @@ class NotificationService: UNNotificationServiceExtension {
         // For Delta Chat, it is just fine to do nothing - assume eg. bad network or mail servers not reachable,
         // then a "You have new messages" is the best that can be done.
         UserDefaults.pushToDebugArray("ERR4")
-        UserDefaults.setNseFetching(until: nil)
+        UserDefaults.setNseFetchingDone()
     }
 
     private func silenceNotification() -> UNMutableNotificationContent {
