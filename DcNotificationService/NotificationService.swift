@@ -14,7 +14,7 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(silenceNotification())
             return
         }
-        UserDefaults.setNseFetching()
+        UserDefaults.setNseFetching(until: Date().addingTimeInterval(26))
 
         // as we're mixing in notifications from accounts without PUSH and we cannot add multiple notifications,
         // it is best to move everything to the same thread - and set just no threadIdentifier
@@ -22,13 +22,29 @@ class NotificationService: UNNotificationServiceExtension {
         dcAccounts.openDatabase(writeable: false)
         let eventEmitter = dcAccounts.getEventEmitter()
 
-        if !dcAccounts.backgroundFetch(timeout: 25) {
-            UserDefaults.pushToDebugArray("ERR3")
-            UserDefaults.setNseFetching(false)
+        // Send the bestAttempt notification when memory is critical because the process will be killed
+        // by the system soon and any notification is better than nothing.
+        var exitedDueToCriticalMemory = false
+        let memoryPressureSource = DispatchSource.makeMemoryPressureSource(eventMask: .critical)
+        memoryPressureSource.setEventHandler {
+            // Order of importance because we might crash very soon
+            // TODO: Could notify with "received message too big to decrypt in background"
             contentHandler(bestAttemptContent)
+            UserDefaults.setNseFetching(until: Date().addingTimeInterval(3))
+            exitedDueToCriticalMemory = true
+            UserDefaults.pushToDebugArray("ERR5")
+        }
+        memoryPressureSource.activate()
+
+        guard dcAccounts.backgroundFetch(timeout: 25) && !exitedDueToCriticalMemory else {
+            UserDefaults.pushToDebugArray("ERR3")
+            UserDefaults.setNseFetching(until: nil)
+            if !exitedDueToCriticalMemory {
+                contentHandler(bestAttemptContent)
+            }
             return
         }
-        UserDefaults.setNseFetching(false)
+        UserDefaults.setNseFetching(until: nil)
 
         var messageCount = 0
         var reactionCount = 0
@@ -133,7 +149,7 @@ class NotificationService: UNNotificationServiceExtension {
         // For Delta Chat, it is just fine to do nothing - assume eg. bad network or mail servers not reachable,
         // then a "You have new messages" is the best that can be done.
         UserDefaults.pushToDebugArray("ERR4")
-        UserDefaults.setNseFetching(false)
+        UserDefaults.setNseFetching(until: nil)
     }
 
     private func silenceNotification() -> UNMutableNotificationContent {
