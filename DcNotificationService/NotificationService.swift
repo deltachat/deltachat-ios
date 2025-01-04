@@ -30,7 +30,6 @@ class NotificationService: UNNotificationServiceExtension {
             // Order of importance because we might crash very soon
             // TODO: Could notify with "received message too big to decrypt in background"
             contentHandler(bestAttemptContent)
-            UserDefaults.setNseFetching(until: Date().addingTimeInterval(3))
             exitedDueToCriticalMemory = true
             UserDefaults.pushToDebugArray("ERR5")
         }
