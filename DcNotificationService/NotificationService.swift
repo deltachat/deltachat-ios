@@ -28,7 +28,6 @@ class NotificationService: UNNotificationServiceExtension {
         let memoryPressureSource = DispatchSource.makeMemoryPressureSource(eventMask: .critical)
         memoryPressureSource.setEventHandler {
             // Order of importance because we might crash very soon
-            // TODO: Could notify with "received message too big to decrypt in background"
             contentHandler(bestAttemptContent)
             exitedDueToCriticalMemory = true
             UserDefaults.pushToDebugArray("ERR5")
