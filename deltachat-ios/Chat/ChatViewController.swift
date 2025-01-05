@@ -2629,9 +2629,15 @@ extension ChatViewController: QLPreviewControllerDelegate {
             previewControllerTargetSnapshot = snapshot
             return snapshot
         } else if let msgId = item.messageId, let row = messageIds.firstIndex(of: msgId) {
-            if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? BaseMessageCell,
+            previewControllerTargetHiddenOriginal?.layer.opacity = 1
+            previewControllerTargetSnapshot?.removeFromSuperview()
+            // Scroll to the message that will be dismissed
+            let indexPath = IndexPath(row: row, section: 0)
+            if tableView.indexPathsForVisibleRows?.contains(indexPath) == false {
+                tableView.scrollToRow(at: indexPath, at: .none, animated: false)
+            }
+            if let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
                let snapshot = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) {
-                previewControllerTargetHiddenOriginal?.layer.opacity = 1
                 if cell is ImageTextCell { // hide cell while transitioning
                     cell.layer.opacity = 0
                 }
@@ -2639,7 +2645,6 @@ extension ChatViewController: QLPreviewControllerDelegate {
                 snapshot.clipsToBounds = true
                 snapshot.frame = cell.messageBackgroundContainer.globalFrame
                 tableView.superview?.addSubview(snapshot)
-                previewControllerTargetSnapshot?.removeFromSuperview()
                 previewControllerTargetSnapshot = snapshot
                 previewControllerTargetHiddenOriginal = cell
                 return snapshot
