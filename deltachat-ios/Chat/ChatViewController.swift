@@ -276,11 +276,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 }
             }
         }
-        keyboardManager?.on(event: .willHide) { [tableView = tableView!, inputAccessoryView] notification in
-            UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
-                tableView.contentInset.top = max(inputAccessoryView?.frame.height ?? 0, tableView.safeAreaInsets.bottom)
-            }
-        }
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
