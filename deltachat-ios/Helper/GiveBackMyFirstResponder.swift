@@ -31,15 +31,17 @@ extension UIViewController {
         }
     }
 
-    /// In iOS 16 and below the UIImagePickerController does not give back the first responder when search was used.
+    /// In iOS 16 and below and iOS 18 the UIImagePickerController does not give back the first responder when search was used.
     /// This function fixes that by making the previous first responder, first responder again when the image picker is dismissed.
     public func present(_ imagePicker: UIImagePickerController, animated: Bool, completion: (() -> Void)? = nil) {
         if #available(iOS 17, *) {
-            present(imagePicker as UIViewController, animated: animated, completion: completion)
-        } else {
-            let vc = GiveBackMyFirstResponder(culprit: imagePicker)
-            present(vc, animated: animated, completion: completion)
+            if #unavailable(iOS 18) {
+                return present(imagePicker as UIViewController, animated: animated, completion: completion)
+            }
         }
+
+        let vc = GiveBackMyFirstResponder(culprit: imagePicker)
+        present(vc, animated: animated, completion: completion)
     }
 }
 
@@ -92,7 +94,6 @@ private class FirstResponderReturningViewController: UIViewController {
         }
     }
 }
-
 
 extension UIResponder {
     /// Note: Do not replace this with the `UIApplication.shared.sendAction(_, to: nil, from: nil, for: nil)` method
