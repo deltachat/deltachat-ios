@@ -31,15 +31,17 @@ extension UIViewController {
         }
     }
 
-    /// In iOS 16 and below the UIImagePickerController does not give back the first responder when search was used.
+    /// In iOS 16 and below and iOS 18 the UIImagePickerController does not give back the first responder when search was used.
     /// This function fixes that by making the previous first responder, first responder again when the image picker is dismissed.
     public func present(_ imagePicker: UIImagePickerController, animated: Bool, completion: (() -> Void)? = nil) {
         if #available(iOS 17, *) {
-            present(imagePicker as UIViewController, animated: animated, completion: completion)
-        } else {
-            let vc = GiveBackMyFirstResponder(culprit: imagePicker)
-            present(vc, animated: animated, completion: completion)
+            if #unavailable(iOS 18) {
+                return present(imagePicker as UIViewController, animated: animated, completion: completion)
+            }
         }
+
+        let vc = GiveBackMyFirstResponder(culprit: imagePicker)
+        present(vc, animated: animated, completion: completion)
     }
 }
 
@@ -65,74 +67,55 @@ private class GiveBackMyFirstResponder<VC: UIViewController>: FirstResponderRetu
 }
 
 private class FirstResponderReturningViewController: UIViewController {
-    private var lastResponder: UIResponder?
+    private var lastResponders: [UIResponder] = {
+        var lastResponders: [UIResponder] = []
+        while let next = UIResponder.currentFirstResponder, next.resignFirstResponder() {
+            lastResponders.append(next)
+        }
+        return lastResponders
+    }()
 
-    override func viewDidLoad() {
-        lastResponder = UIResponder.currentFirstResponder
-        super.viewDidLoad()
+    override var isBeingDismissed: Bool {
+        parent?.isBeingDismissed ?? super.isBeingDismissed || super.isBeingDismissed
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if isBeingDismissed, let lastResponder, let newFirstResponder = UIResponder.currentFirstResponder {
-            if newFirstResponder != lastResponder {
-                // Resigning here makes the animation smoother when we make lastResponder first responder again
-                newFirstResponder.resignFirstResponder()
-            }
+        if isBeingDismissed, !lastResponders.isEmpty, let newFirstResponder = UIResponder.currentFirstResponder {
+            // Resigning here makes the animation smoother when we make lastResponders first responder again
+            newFirstResponder.resignFirstResponder()
         }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if isBeingDismissed, let lastResponder, !lastResponder.isFirstResponder {
-            // I don't think this is perfect and it's definitely not how UIKit does it but it works.
-
-            // - if the lastResponder failed to become first responder, and
-            //   the next responder is not first responder
-            // - try to make the next responder first responder
-            // - if that fails try the next one
-            // - if it succeeds try again from the start
-            // This shouldn't get in a loop because if it finds a responder that
-            // can become first responder it will only loop over the responders
-            // up to the one that became first responder and if it doesn't find
-            // any (more) it will set next to nil which will exit the loop.
-            //
-            // This is needed because lastResponder might not be on the screen (eg because
-            // it is in an inputAccessoryView in which case the responder which owns the
-            // inputAccessoryView needs to become first responder first)
-            //
-            // Note that UIResponder.canBecomeFirstResponder is not used because it
-            // returns true in cases where becomeFirstResponder can still fail (eg the
-            // case mentioned previously).
-            var next = lastResponder.next
-            while !lastResponder.becomeFirstResponder(),
-                    let iterator = next, !iterator.isFirstResponder {
-                // Failed to make lastResponder first responder so try the next one which
-                // can cause the lastResponder to become available.
-                if iterator.becomeFirstResponder() {
-                    // next became first responder so try again
-                    next = lastResponder.next
-                } else {
-                    next = next?.next
-                }
-            }
+        if isBeingDismissed, !lastResponders.isEmpty {
+            lastResponders.reversed().forEach { $0.becomeFirstResponder() }
         }
     }
 }
 
 extension UIResponder {
-    /// Finds the current first responder and returns it.
-    ///
-    /// If this gets rejected see https://stackoverflow.com/a/50472291/3393964 for alternatives.
+    /// Note: Do not replace this with the `UIApplication.shared.sendAction(_, to: nil, from: nil, for: nil)` method
+    /// because that does not work reliably in all cases. eg, when you initialise a UIImagePickerController on iOS 16 it returns nil even if your textfield is still first responder.
     static var currentFirstResponder: UIResponder? {
-        _currentFirstResponder = nil
-        UIApplication.shared.sendAction(#selector(UIResponder.findFirstResponder(_:)), to: nil, from: nil, for: nil)
-        return _currentFirstResponder
+        for window in UIApplication.shared.windows {
+            if let firstResponder = window.previousFirstResponder {
+                return firstResponder
+            }
+        }
+        return nil
     }
+}
 
-    private static weak var _currentFirstResponder: UIResponder?
+extension UIResponder {
+    var nextFirstResponder: UIResponder? {
+        return isFirstResponder ? self : next?.nextFirstResponder
+    }
+}
 
-    @objc func findFirstResponder(_ sender: Any) {
-        UIResponder._currentFirstResponder = self
+extension UIView {
+    var previousFirstResponder: UIResponder? {
+        return nextFirstResponder ?? subviews.compactMap { $0.previousFirstResponder }.first
     }
 }
