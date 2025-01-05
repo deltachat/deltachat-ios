@@ -20,12 +20,27 @@ public extension UserDefaults {
         shared?.setValue(value, forKey: mainIoRunningKey)
     }
 
+    /// Check if we are currently fetching using the Notification Service Extension. Never returns true for more than 30 seconds.
     static var nseFetching: Bool {
-        return shared?.bool(forKey: nseFetchingKey) ?? false
+        guard let shared else { return false }
+        let until = Date(timeIntervalSince1970: shared.double(forKey: nseFetchingKey))
+
+        if until > Date().addingTimeInterval(30) {
+            // user changed their system clock so we reset nse fetching date
+            setNseFetching(for: 30)
+        }
+
+        return until > Date()
     }
 
-    static func setNseFetching(_ value: Bool = true) {
-        shared?.setValue(value, forKey: nseFetchingKey)
+    /// Set the amount of seconds for which the Notification Service Extension could be fetching. Call setNseFetchingDone when done.
+    static func setNseFetching(for seconds: Double) {
+        assert(0...30 ~= seconds, "Don't set NSE fetching for more than 30 seconds")
+        shared?.set(Date().timeIntervalSince1970 + seconds, forKey: nseFetchingKey)
+    }
+
+    static func setNseFetchingDone() {
+        shared?.set(nil, forKey: nseFetchingKey)
     }
 
     static func pushToDebugArray(_ value: String) {
@@ -35,7 +50,7 @@ public extension UserDefaults {
         if values != nil, let values = values as? [String] {
             slidingValues = values.suffix(512)
         }
-        slidingValues.append(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(Date().timeIntervalSince1970)) + "|" + value)
+        slidingValues.append(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Date().timeIntervalSince1970) + "|" + value)
         shared.set(slidingValues, forKey: debugArrayKey)
     }
 }
