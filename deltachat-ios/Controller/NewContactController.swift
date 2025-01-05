@@ -35,7 +35,7 @@ class NewContactController: UITableViewController {
         self.dcContext = dcContext
         cells = [emailCell, nameCell]
         prefilledSeachResult = searchResult
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
         emailCell.textFieldDelegate = self
         nameCell.textFieldDelegate = self
 
