@@ -202,8 +202,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         set { _bag = newValue }
     }
 
-    private var previewControllerTargetSnapshots: [UIView] = []
-    private var previewControllerTargetHiddenOriginals: [UIView] = []
+    private var previewControllerTargetSnapshot: UIView?
+    private var previewControllerTargetHiddenOriginal: UIView?
 
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         self.dcContext = dcContext
@@ -2625,11 +2625,13 @@ extension ChatViewController: QLPreviewControllerDelegate {
             // pop back in from, when firstResponder is returned.
             snapshot.frame.origin.y = (tableView.superview ?? tableView).frame.maxY
             tableView.superview?.addSubview(snapshot)
-            previewControllerTargetSnapshots.append(snapshot)
+            previewControllerTargetSnapshot?.removeFromSuperview()
+            previewControllerTargetSnapshot = snapshot
             return snapshot
         } else if let msgId = item.messageId, let row = messageIds.firstIndex(of: msgId) {
             if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? BaseMessageCell,
                let snapshot = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) {
+                previewControllerTargetHiddenOriginal?.layer.opacity = 1
                 if cell is ImageTextCell { // hide cell while transitioning
                     cell.layer.opacity = 0
                 }
@@ -2637,9 +2639,9 @@ extension ChatViewController: QLPreviewControllerDelegate {
                 snapshot.clipsToBounds = true
                 snapshot.frame = cell.messageBackgroundContainer.globalFrame
                 tableView.superview?.addSubview(snapshot)
-                previewControllerTargetSnapshots.append(snapshot)
-                // TODO: Unhide others?
-                previewControllerTargetHiddenOriginals.append(cell)
+                previewControllerTargetSnapshot?.removeFromSuperview()
+                previewControllerTargetSnapshot = snapshot
+                previewControllerTargetHiddenOriginal = cell
                 return snapshot
             }
         }
@@ -2647,10 +2649,10 @@ extension ChatViewController: QLPreviewControllerDelegate {
     }
 
     func previewControllerDidDismiss(_ controller: QLPreviewController) {
-        previewControllerTargetSnapshots.forEach { $0.removeFromSuperview() }
-        previewControllerTargetSnapshots = []
-        previewControllerTargetHiddenOriginals.forEach { $0.layer.opacity = 1 }
-        previewControllerTargetHiddenOriginals = []
+        previewControllerTargetSnapshot?.removeFromSuperview()
+        previewControllerTargetSnapshot = nil
+        previewControllerTargetHiddenOriginal?.layer.opacity = 1
+        previewControllerTargetHiddenOriginal = nil
     }
 
     private func isDraftPreviewItem(_ item: QLPreviewItem) -> Bool {
