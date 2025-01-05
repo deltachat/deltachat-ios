@@ -261,8 +261,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .willShow) { [tableView = tableView!] notification in
         var shouldDebounceWillShow = false
+        var willShowDebounceTimer: Timer?
+        keyboardManager?.on(event: .didHide) { [weak self] _ in
+            // Debounce when input accessory view was completely hidden because when it comes
+            // back there is a chance that we first need to make ChatViewController firstResponder,
+            // and then the text field. This would cause two scroll view inset updates.
+            shouldDebounceWillShow = shouldDebounceWillShow || !(self?.canBecomeFirstResponder ?? true)
         }
         keyboardManager?.on(event: .willShow) { [weak self, tableView = tableView!] notification in
             // Don't react to first responder changes in presented view controllers
@@ -270,6 +275,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             willShowDebounceTimer?.invalidate()
             if shouldDebounceWillShow {
                 willShowDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    animateTableViewInset(notification: notification, tableView: tableView)
+                }
+            } else {
+                animateTableViewInset(notification: notification, tableView: tableView)
+            }
         }
         func animateTableViewInset(notification: KeyboardNotification, tableView: UITableView) {
             shouldDebounceWillShow = false
