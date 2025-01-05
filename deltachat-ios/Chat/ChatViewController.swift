@@ -202,6 +202,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         set { _bag = newValue }
     }
 
+    private var previewControllerTargetSnapshots: [UIView] = []
+    private var previewControllerTargetHiddenOriginals: [UIView] = []
+
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -259,6 +262,18 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
         keyboardManager?.on(event: .willShow) { [tableView = tableView!] notification in
+        var shouldDebounceWillShow = false
+        }
+        keyboardManager?.on(event: .willShow) { [weak self, tableView = tableView!] notification in
+            // Don't react to first responder changes in presented view controllers
+            guard self?.canBecomeFirstResponder == true else { return }
+            willShowDebounceTimer?.invalidate()
+            if shouldDebounceWillShow {
+                willShowDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+        }
+        func animateTableViewInset(notification: KeyboardNotification, tableView: UITableView) {
+            shouldDebounceWillShow = false
+            willShowDebounceTimer = nil
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
@@ -1995,8 +2010,9 @@ extension ChatViewController {
     func showMediaGalleryFor(message: DcMsg) {
         let msgIds = dcContext.getChatMedia(chatId: chatId, messageType: Int32(message.type), messageType2: 0, messageType3: 0)
         let index = msgIds.firstIndex(of: message.id) ?? 0
-
-        navigationController?.pushViewController(PreviewController(dcContext: dcContext, type: .multi(msgIds, index)), animated: true)
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds: msgIds, index: index))
+        previewController.delegate = self
+        present(previewController, animated: true)
     }
 
     private func didTapAsm(msg: DcMsg, orgText: String) {
@@ -2402,7 +2418,7 @@ extension ChatViewController: DraftPreviewDelegate {
                     previewController.setEditing(true, animated: true)
                     previewController.delegate = self
                 }
-                navigationController?.pushViewController(previewController, animated: true)
+                present(previewController, animated: true)
             }
         }
     }
@@ -2566,15 +2582,71 @@ extension ChatViewController: ChatContactRequestDelegate {
 // MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
     func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {
-        return .updateContents
+        if isDraftPreviewItem(previewItem) {
+            return .updateContents
+        } else {
+            return .disabled
+        }
     }
 
     func previewController(_ controller: QLPreviewController, didUpdateContentsOf previewItem: QLPreviewItem) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.draftArea.reload(draft: self.draft)
+        if isDraftPreviewItem(previewItem) {
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.draftArea.reload(draft: self.draft)
+            }
         }
     }
+
+    /// Since iOS 16 we can't just return a frame anymore so we return a view.
+    /// Since tableView is flipped we add a snapshot to the superview which we later remove.
+    func previewController(_ controller: QLPreviewController, transitionViewFor item: any QLPreviewItem) -> UIView? {
+        guard let item = item as? PreviewItem else { return nil }
+
+        if isDraftPreviewItem(item) {
+            let snapshot = UIImageView(image: draftArea.mediaPreview.contentImageView.image)
+            snapshot.layer.opacity = 0
+            snapshot.frame = draftArea.mediaPreview.contentImageView.convert(
+                draftArea.mediaPreview.contentImageView.frame,
+                to: draftArea.mainContentView
+            )
+            // Place the snapshot below the tableView, outside of the screen so the
+            // preview controller animates towards where the inputAccessoryView will
+            // pop back in from, when firstResponder is returned.
+            snapshot.frame.origin.y = (tableView.superview ?? tableView).frame.maxY
+            tableView.superview?.addSubview(snapshot)
+            previewControllerTargetSnapshots.append(snapshot)
+            return snapshot
+        } else if let msgId = item.messageId, let row = messageIds.firstIndex(of: msgId) {
+            if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? BaseMessageCell,
+               let snapshot = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) {
+                if cell is ImageTextCell { // hide cell while transitioning
+                    cell.layer.opacity = 0
+                }
+                snapshot.layer.opacity = 0
+                snapshot.clipsToBounds = true
+                snapshot.frame = cell.messageBackgroundContainer.globalFrame
+                tableView.superview?.addSubview(snapshot)
+                previewControllerTargetSnapshots.append(snapshot)
+                // TODO: Unhide others?
+                previewControllerTargetHiddenOriginals.append(cell)
+                return snapshot
+            }
+        }
+        return nil
+    }
+
+    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+        previewControllerTargetSnapshots.forEach { $0.removeFromSuperview() }
+        previewControllerTargetSnapshots = []
+        previewControllerTargetHiddenOriginals.forEach { $0.layer.opacity = 1 }
+        previewControllerTargetHiddenOriginals = []
+    }
+
+    private func isDraftPreviewItem(_ item: QLPreviewItem) -> Bool {
+        item.previewItemURL?.path == draft.attachment && item.previewItemURL != nil
+    }
+
 }
 
 // MARK: - AudioControllerDelegate
