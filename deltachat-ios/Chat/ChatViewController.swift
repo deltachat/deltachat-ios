@@ -200,6 +200,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         set { _bag = newValue }
     }
 
+    private var previewControllerTargetSnapshot: UIView?
+    private var previewControllerTargetHiddenOriginal: UIView?
+
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -234,7 +237,29 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .willShow) { [tableView] notification in
+        var shouldDebounceWillShow = false
+        var willShowDebounceTimer: Timer?
+        keyboardManager?.on(event: .didHide) { [weak self] _ in
+            // Debounce when input accessory view was completely hidden because when it comes
+            // back there is a chance that we first need to make ChatViewController firstResponder,
+            // and then the text field. This would cause two scroll view inset updates.
+            shouldDebounceWillShow = shouldDebounceWillShow || !(self?.canBecomeFirstResponder ?? true)
+        }
+        keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
+            // Don't react to first responder changes in presented view controllers
+            guard self?.canBecomeFirstResponder == true else { return }
+            willShowDebounceTimer?.invalidate()
+            if shouldDebounceWillShow {
+                willShowDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    animateTableViewInset(notification: notification, tableView: tableView)
+                }
+            } else {
+                animateTableViewInset(notification: notification, tableView: tableView)
+            }
+        }
+        func animateTableViewInset(notification: KeyboardNotification, tableView: UITableView) {
+            shouldDebounceWillShow = false
+            willShowDebounceTimer = nil
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
@@ -2068,8 +2093,16 @@ extension ChatViewController {
     func showMediaGalleryFor(message: DcMsg) {
         let msgIds = dcContext.getChatMedia(chatId: chatId, messageType: Int32(message.type), messageType2: 0, messageType3: 0)
         let index = msgIds.firstIndex(of: message.id) ?? 0
-
-        navigationController?.pushViewController(PreviewController(dcContext: dcContext, type: .multi(msgIds, index)), animated: true)
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds: msgIds, index: index))
+        previewController.delegate = self
+        if #available(iOS 18, *) {
+            // Pushing instead of presenting on iOS 18 makes sure it shows navigation
+            // and toolbar by default. On iOS 18 this still enables the swipe down to dismiss
+            // gesture and it still animates using previewController(_:transitionViewFor:)
+            navigationController?.pushViewController(previewController, animated: true)
+        } else {
+            present(previewController, animated: true)
+        }
     }
 
     func didTapVcard(msg: DcMsg) {
@@ -2581,7 +2614,7 @@ extension ChatViewController: DraftPreviewDelegate {
                     previewController.setEditing(true, animated: true)
                     previewController.delegate = self
                 }
-                navigationController?.pushViewController(previewController, animated: true)
+                present(previewController, animated: true)
             }
         }
     }
@@ -2739,15 +2772,77 @@ extension ChatViewController: ChatContactRequestDelegate {
 // MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
     func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {
-        return .updateContents
+        if isDraftPreviewItem(previewItem) {
+            return .updateContents
+        } else {
+            return .disabled
+        }
     }
 
     func previewController(_ controller: QLPreviewController, didUpdateContentsOf previewItem: QLPreviewItem) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.draftArea.reload(draft: self.draft)
+        if isDraftPreviewItem(previewItem) {
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.draftArea.reload(draft: self.draft)
+            }
         }
     }
+
+    /// Since iOS 16 we can't just return a frame anymore so we return a view.
+    /// Since tableView is flipped we add a snapshot to the superview which we later remove.
+    func previewController(_ controller: QLPreviewController, transitionViewFor item: any QLPreviewItem) -> UIView? {
+        guard let item = item as? PreviewItem else { return nil }
+
+        if isDraftPreviewItem(item) {
+            let snapshot = UIImageView(image: draftArea.mediaPreview.contentImageView.image)
+            snapshot.layer.opacity = 0
+            snapshot.frame = draftArea.mediaPreview.contentImageView.convert(
+                draftArea.mediaPreview.contentImageView.frame,
+                to: draftArea.mainContentView
+            )
+            // Place the snapshot below the tableView, outside of the screen so the
+            // preview controller animates towards where the inputAccessoryView will
+            // pop back in from, when firstResponder is returned.
+            snapshot.frame.origin.y = (tableView.superview ?? tableView).frame.maxY
+            tableView.superview?.addSubview(snapshot)
+            previewControllerTargetSnapshot?.removeFromSuperview()
+            previewControllerTargetSnapshot = snapshot
+            return snapshot
+        } else if let msgId = item.messageId, let row = messageIds.firstIndex(of: msgId) {
+            previewControllerTargetHiddenOriginal?.layer.opacity = 1
+            previewControllerTargetSnapshot?.removeFromSuperview()
+            // Scroll to the message that will be dismissed
+            let indexPath = IndexPath(row: row, section: 0)
+            if tableView.indexPathsForVisibleRows?.contains(indexPath) == false {
+                tableView.scrollToRow(at: indexPath, at: .none, animated: false)
+            }
+            if let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
+               let snapshot = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: true) {
+                if cell is ImageTextCell { // hide cell while transitioning
+                    cell.layer.opacity = 0
+                }
+                snapshot.clipsToBounds = true
+                snapshot.frame = cell.convert(cell.messageBackgroundContainer.frame, to: tableView.superview)
+                tableView.superview?.addSubview(snapshot)
+                previewControllerTargetSnapshot = snapshot
+                previewControllerTargetHiddenOriginal = cell
+                return snapshot
+            }
+        }
+        return nil
+    }
+
+    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+        previewControllerTargetSnapshot?.removeFromSuperview()
+        previewControllerTargetSnapshot = nil
+        previewControllerTargetHiddenOriginal?.layer.opacity = 1
+        previewControllerTargetHiddenOriginal = nil
+    }
+
+    private func isDraftPreviewItem(_ item: QLPreviewItem) -> Bool {
+        item.previewItemURL?.path == draft.attachment && item.previewItemURL != nil
+    }
+
 }
 
 // MARK: - AudioControllerDelegate

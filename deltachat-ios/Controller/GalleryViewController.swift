@@ -199,7 +199,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let previewController = PreviewController(dcContext: dcContext, type: .multi(mediaMessageIds, indexPath.row))
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds: mediaMessageIds, index: indexPath.row))
         previewController.delegate = self
         navigationController?.pushViewController(previewController, animated: true)
 
