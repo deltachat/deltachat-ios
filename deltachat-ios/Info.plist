@@ -74,6 +74,8 @@
 	<string>Delta Chat wants to save images to your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Delta Chat will let you choose which photos from your library to send.</string>
+	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
+	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>INSendMessageIntent</string>
