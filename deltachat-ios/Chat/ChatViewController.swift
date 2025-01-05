@@ -2637,7 +2637,7 @@ extension ChatViewController: QLPreviewControllerDelegate {
                 tableView.scrollToRow(at: indexPath, at: .none, animated: false)
             }
             if let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
-               let snapshot = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: false) {
+               let snapshot = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: true) {
                 if cell is ImageTextCell { // hide cell while transitioning
                     cell.layer.opacity = 0
                 }
