@@ -211,7 +211,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                     if isOnHomescreen {
                         children.append(
                             UIAction.menuAction(
-                                localizationKey: "ios_remove_from_home_screen",
+                                localizationKey: "remove_from_widget",
                                 systemImageName: "rectangle.on.rectangle.slash",
                                 indexPath: indexPath,
                                 action: { _ in
@@ -221,7 +221,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                     } else {
                         children.append(
                             UIAction.menuAction(
-                                localizationKey: "ios_add_to_home_screen",
+                                localizationKey: "add_to_widget",
                                 systemImageName: "plus.rectangle.on.rectangle",
                                 indexPath: indexPath,
                                 action: { _ in

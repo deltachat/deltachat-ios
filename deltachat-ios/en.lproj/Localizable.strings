@@ -1067,5 +1067,5 @@
 "location_denied_explain_ios" = "In the system settings, enable \"Privacy/Location Services\" and set \"Delta Chat/Location\" to \"Always\" and \"Precise\".";
 "ios_widget_apps_title" = "Shortcuts";
 "ios_widget_apps_description" = "Use Delta Chat's \"Add To Widget\" to add items";
-"ios_remove_from_home_screen" = "Remove from Widget";
-"ios_add_to_home_screen" = "Add to Widget";
+"remove_from_widget" = "Remove from Widget";
+"add_to_widget" = "Add to Widget";

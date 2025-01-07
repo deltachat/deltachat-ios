@@ -164,9 +164,9 @@ class GroupChatDetailViewController: UIViewController {
 
         let isOnHomescreen = chatIdsOnHomescreen.contains(chatId)
         if isOnHomescreen {
-            cell.actionTitle = String.localized("ios_remove_from_home_screen")
+            cell.actionTitle = String.localized("remove_from_widget")
         } else {
-            cell.actionTitle = String.localized("ios_add_to_home_screen")
+            cell.actionTitle = String.localized("add_to_widget")
         }
         cell.actionColor = UIColor.systemBlue
         return cell
@@ -362,9 +362,9 @@ class GroupChatDetailViewController: UIViewController {
         }
 
         if onHomescreen {
-            homescreenWidgetCell.actionTitle = String.localized("ios_remove_from_home_screen")
+            homescreenWidgetCell.actionTitle = String.localized("remove_from_widget")
         } else {
-            homescreenWidgetCell.actionTitle =  String.localized("ios_add_to_home_screen")
+            homescreenWidgetCell.actionTitle =  String.localized("add_to_widget")
         }
     }
 
