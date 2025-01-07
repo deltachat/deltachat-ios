@@ -54,22 +54,24 @@ class NotificationService: UNNotificationServiceExtension {
             if event.id == DC_EVENT_INCOMING_MSG {
                 let dcContext = dcAccounts.get(id: event.accountId)
                 let chat = dcContext.getChat(chatId: event.data1Int)
-                if !dcContext.isMuted() && !chat.isMuted {
+                if !dcContext.isMuted() {
                     let msg = dcContext.getMessage(id: event.data2Int)
-                    let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
-                    if chat.isGroup {
-                        bestAttemptContent.title = chat.name
-                        bestAttemptContent.body = "\(sender): " + (msg.summary(chars: 80) ?? "")
-                    } else {
-                        bestAttemptContent.title = sender
-                        bestAttemptContent.body = msg.summary(chars: 80) ?? ""
-                    }
-                    bestAttemptContent.userInfo["account_id"] = dcContext.id
-                    bestAttemptContent.userInfo["chat_id"] = chat.id
-                    bestAttemptContent.userInfo["message_id"] = msg.id
+                    if !chat.isMuted || (chat.isGroup && msg.isReplyToSelf && dcContext.isMentionsEnabled) {
+                        let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
+                        if chat.isGroup {
+                            bestAttemptContent.title = chat.name
+                            bestAttemptContent.body = "\(sender): " + (msg.summary(chars: 80) ?? "")
+                        } else {
+                            bestAttemptContent.title = sender
+                            bestAttemptContent.body = msg.summary(chars: 80) ?? ""
+                        }
+                        bestAttemptContent.userInfo["account_id"] = dcContext.id
+                        bestAttemptContent.userInfo["chat_id"] = chat.id
+                        bestAttemptContent.userInfo["message_id"] = msg.id
 
-                    uniqueChats["\(dcContext.id)-\(chat.id)"] = bestAttemptContent.title
-                    messageCount += 1
+                        uniqueChats["\(dcContext.id)-\(chat.id)"] = bestAttemptContent.title
+                        messageCount += 1
+                    }
                 }
             } else if event.id == DC_EVENT_INCOMING_REACTION {
                 let dcContext = dcAccounts.get(id: event.accountId)

@@ -111,6 +111,14 @@ public class DcMsg {
         }
     }
 
+    public var isReplyToSelf: Bool {
+        if let quoteMessage {
+            return quoteMessage.isFromCurrentSender
+        } else {
+            return false
+        }
+    }
+
     public var parent: DcMsg? {
         guard let msgpointer = dc_msg_get_parent(messagePointer) else { return nil }
         return DcMsg(pointer: msgpointer)
