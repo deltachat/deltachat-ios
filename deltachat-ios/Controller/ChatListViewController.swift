@@ -1053,13 +1053,13 @@ extension ChatListViewController: ChatListEditingBarDelegate {
             let chatPresentInHomescreenWidget = allHomescreenChatsIds.contains(chatId)
             let action: UIAlertAction
             if chatPresentInHomescreenWidget {
-                action = UIAlertAction(title: String.localized("ios_remove_from_home_screen"), style: .default) { [weak self] _ in
+                action = UIAlertAction(title: String.localized("remove_from_widget"), style: .default) { [weak self] _ in
                     guard let self else { return }
                     userDefaults.removeChatFromHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
                     setLongTapEditing(false)
                 }
             } else {
-                action = UIAlertAction(title: String.localized("ios_add_to_home_screen"), style: .default) { [weak self] _ in
+                action = UIAlertAction(title: String.localized("add_to_widget"), style: .default) { [weak self] _ in
                     guard let self else { return }
                     userDefaults.addChatToHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
                     setLongTapEditing(false)

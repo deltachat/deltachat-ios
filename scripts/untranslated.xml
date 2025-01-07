@@ -9,6 +9,6 @@
     <string name="location_denied_explain_ios">In the system settings, enable \"Privacy/Location Services\" and set \"Delta Chat/Location\" to \"Always\" and \"Precise\".</string>
     <string name="ios_widget_apps_title">Shortcuts</string>
     <string name="ios_widget_apps_description">Use Delta Chat's \"Add To Widget\" to add items</string>
-    <string name="ios_remove_from_home_screen">Remove from Widget</string>
-    <string name="ios_add_to_home_screen">Add to Widget</string>
+    <string name="remove_from_widget">Remove from Widget</string>
+    <string name="add_to_widget">Add to Widget</string>
 </resources>
