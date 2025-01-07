@@ -16,7 +16,7 @@
 "off" = "Kikapcsolva";
 "def" = "Alapértelmezett";
 "default_value" = "Alapértelmezett (%1$@)";
-"default_value_as_above" = "Alapértelmezett (ugyanaz, mint fent)";
+"default_value_as_above" = "Alapértelmezett (ugyanaz, mint fentebb)";
 "custom" = "Egyéni";
 "none" = "Egyik sem";
 "automatic" = "Automatikus";
@@ -145,6 +145,8 @@
 "webxdc_app" = "Alkalmazás";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Alkalmazások";
+"webxdc_store_url" = "Alkalmazás-választó-webcím";
+"webxdc_store_url_explain" = "Ha be van állítva, akkor a webcím lesz használva mint alkalmazás-választó az alapértelmezett helyett";
 "unknown" = "Ismeretlen";
 "green" = "Zöld";
 "red" = "Piros";

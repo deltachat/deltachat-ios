@@ -145,6 +145,8 @@
 "webxdc_app" = "Uygulama";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Uygulamalar";
+"webxdc_store_url" = "Uygulama Seçici URL\'si";
+"webxdc_store_url_explain" = "Ayarlanırsa URL, varsayılan birinin yerine Uygulama Seçici olarak kullanılacak";
 "unknown" = "Bilinmeyen";
 "green" = "Yeşil";
 "red" = "Kırmızı";

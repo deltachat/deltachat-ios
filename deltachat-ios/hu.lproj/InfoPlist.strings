@@ -5,3 +5,4 @@ NSLocationWhenInUseUsageDescription = "A Delta Chatnek engedélyre van szükség
 NSMicrophoneUsageDescription = "A Delta Chat az eszköze mikrofonját használja a hangüzenetek és a hangos videók rögzítésére, valamint küldésére.";
 NSPhotoLibraryUsageDescription = "A Delta Chat segítségével kiválaszthatja, hogy mely fényképeket szeretné elküldeni a könyvtárából.";
 NSPhotoLibraryAddUsageDescription = "A Delta Chat el akarja menteni a képeket az eszköze fotótárába.";
+NSFaceIDUsageDescription = "A Delta Chat használhatja az arcfelimerést az Ön helyi profiljának biztonsági mentésének létrehozásához és a második eszköz biztonságos beállításához.";

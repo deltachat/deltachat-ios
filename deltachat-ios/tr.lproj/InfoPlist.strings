@@ -5,3 +5,4 @@ NSLocationWhenInUseUsageDescription = "Konum paylaşımını etkinleştirdiğini
 NSMicrophoneUsageDescription = "Delta Chat, sesli iletiler ve sesli videolar kaydetmek ve göndermek için mikrofonunuzu kullanır.";
 NSPhotoLibraryUsageDescription = "Delta Chat, kitaplığınızdan hangi fotoğrafların gönderileceğini seçmenize izin verir.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat, görselleri fotoğraf kitaplığınıza kaydetmek istiyor.";
+NSFaceIDUsageDescription = "Delta Chat; yerel profilinizi korumak, yedek oluşturmak ve ikinci aygıt ayarlaması için Face ID\'yi kullanabilir.";

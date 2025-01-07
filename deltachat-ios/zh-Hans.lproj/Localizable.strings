@@ -145,6 +145,8 @@
 "webxdc_app" = "私人应用";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "私人应用";
+"webxdc_store_url" = "\"应用选择器“ URL";
+"webxdc_store_url_explain" = "设置后，该 URL 而不是默认的 URL 将被用作“应用选择器”";
 "unknown" = "未知";
 "green" = "绿色";
 "red" = "红色";
