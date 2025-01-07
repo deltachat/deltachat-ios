@@ -5,3 +5,4 @@ NSLocationWhenInUseUsageDescription = "Që të mund t’u tregojë të tjerëve 
 NSMicrophoneUsageDescription = "Delta Chat-i përdor mikrofonin tuaj për të incizuar dhe dërguar mesazhe zanorë dhe video me zë.";
 NSPhotoLibraryUsageDescription = "Delta Chat-i do t’ju lejojë të zgjidhni cilat foto të dërgohen nga fototeka juaj.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat dëshiron të ruajë figura në fototekën tuaj.";
+NSFaceIDUsageDescription = "Delta Chat mund të përdorë Face ID që të mbrojë profilin tuaj vendor, krijim kopjeruajtjesh dhe ujdisje pajisjeje të dytë.";

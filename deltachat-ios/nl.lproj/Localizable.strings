@@ -145,6 +145,8 @@
 "webxdc_app" = "Privé-app";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Privé-apps";
+"webxdc_store_url" = "Appkiezer-url";
+"webxdc_store_url_explain" = "Stel in om apps te kiezen vanaf een url in plaats van de standaard appkiezer";
 "unknown" = "Onbekend";
 "green" = "Groen";
 "red" = "Rood";

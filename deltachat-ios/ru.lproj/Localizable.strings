@@ -145,6 +145,8 @@
 "webxdc_app" = "Приложение";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Приложения";
+"webxdc_store_url" = "URL селектора приложений";
+"webxdc_store_url_explain" = "Если установлено, URL будет использоваться в качестве селектора приложений вместо стандартного";
 "unknown" = "Неизвестно";
 "green" = "Зелёный";
 "red" = "Красный";
