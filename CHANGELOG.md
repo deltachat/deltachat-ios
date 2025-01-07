@@ -8,6 +8,8 @@
 - Long-tap links for copying to clipboard (#2445)
 - Hide address in titles: protect against over-the-shoulder-attacks, improve screenshot privacy, clear UX (#2447)
 - minimum system version is iOS 13 now
+- Update core to 1.153.0
+
 
 ## v1.50.3
 
