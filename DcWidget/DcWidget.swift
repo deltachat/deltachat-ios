@@ -7,7 +7,7 @@ struct DcShortcutWidgetView: View {
 
     var body: some View {
         if entry.shortcuts.isEmpty {
-            Text(String.localized("ios_widget_no_apps"))
+            Text(String.localized("ios_widget_apps_description"))
         } else {
             let rows = [GridItem(.fixed(56)), GridItem(.fixed(56))]
             LazyHGrid(rows: rows) {
