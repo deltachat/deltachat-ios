@@ -100,9 +100,9 @@ public class NotificationManager {
                !eventContext.isMuted() {
 
                 let chat = eventContext.getChat(chatId: chatId)
+                let msg = eventContext.getMessage(id: messageId)
 
-                if !chat.isMuted {
-                    let msg = eventContext.getMessage(id: messageId)
+                if !chat.isMuted || (chat.isGroup && msg.isReplyToSelf && eventContext.isMentionsEnabled) {
                     let fromContact = eventContext.getContact(id: msg.fromContactId)
                     let sender = msg.getSenderName(fromContact)
                     let content = UNMutableNotificationContent()
