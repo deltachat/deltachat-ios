@@ -1056,12 +1056,13 @@ extension ChatListViewController: ChatListEditingBarDelegate {
                 action = UIAlertAction(title: String.localized("ios_remove_from_home_screen"), style: .default) { [weak self] _ in
                     guard let self else { return }
                     userDefaults.removeChatFromHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
+                    setLongTapEditing(false)
                 }
             } else {
                 action = UIAlertAction(title: String.localized("ios_add_to_home_screen"), style: .default) { [weak self] _ in
                     guard let self else { return }
-
                     userDefaults.addChatToHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
+                    setLongTapEditing(false)
                 }
             }
             alert.addAction(action)
