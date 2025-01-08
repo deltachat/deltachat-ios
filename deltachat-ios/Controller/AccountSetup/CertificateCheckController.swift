@@ -7,7 +7,7 @@ protocol CertificateCheckDelegate: AnyObject {
 
 class CertificateCheckController: UITableViewController {
 
-    private let options = [Int(DC_CERTCK_AUTO), Int(DC_CERTCK_STRICT), Int(DC_CERTCK_ACCEPT_INVALID_CERTIFICATES)]
+    private let options = [Int(DC_CERTCK_AUTO), Int(DC_CERTCK_STRICT), Int(DC_CERTCK_ACCEPT_INVALID)]
     private var currentValue: Int
     private var selectedIndex: Int?
     weak var delegate: CertificateCheckDelegate?
@@ -79,7 +79,7 @@ class CertificateCheckController: UITableViewController {
                 return String.localized("automatic")
             case Int(DC_CERTCK_STRICT):
                 return String.localized("strict")
-            case Int(DC_CERTCK_ACCEPT_INVALID_CERTIFICATES):
+            case Int(DC_CERTCK_ACCEPT_INVALID):
                 return String.localized("accept_invalid_certificates")
             default:
                 return "Undefined"
