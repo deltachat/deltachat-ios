@@ -28,6 +28,7 @@ These are the steps needed for renewal:
 
 - create `certificates/YEAR-push-renew-NUMBER/password.txt` containing nothing but a suffciently secure password
 - double click downloaded `aps.cer` file, this opens again the app "KeyChain Access"
+  (if that is not working, open "KeyChain Access", select "login" keychain and then "File / Import Item" and select `aps.cer`)
 - select "Certificates" and then expand the new item (the new one is usally the one expiration date most far in the future)
 - select **both**, "certificate" and "private key" (but not "public key")
 - right click, "Export 2 items"
