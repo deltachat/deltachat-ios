@@ -701,10 +701,13 @@ public class DcContext {
 
     public var certificateChecks: Int {
         get {
-            if let str = getConfig("imap_certificate_checks") {
-                return Int(str) ?? 0
-            } else {
-                return 0
+            switch Int32(getConfigInt("imap_certificate_checks")) {
+            case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
+                return Int(DC_CERTCK_ACCEPT_INVALID)
+            case DC_CERTCK_STRICT:
+                return Int(DC_CERTCK_STRICT)
+            default:
+                return Int(DC_CERTCK_AUTO)
             }
         }
         set {
