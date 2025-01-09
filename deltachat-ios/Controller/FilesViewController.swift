@@ -192,45 +192,6 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                     UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0) }),
                 ]
 
-                if #available(iOS 15.0, *),
-                   type1 == DC_MSG_WEBXDC {
-
-                    let messageId = self.fileMessageIds[indexPath.row]
-                    let accountId = self.dcContext.id
-                    let appsInWidgetsMessageIds = userDefaults
-                        .getAppWidgetEntries()
-                        .filter { $0.accountId == accountId }
-                        .compactMap { entry in
-                            switch entry.type {
-                            case .app(let messageId): return messageId
-                            case .chat: return nil
-                            }
-                        }
-                    let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
-
-                    if isOnHomescreen {
-                        children.append(
-                            UIAction.menuAction(
-                                localizationKey: "remove_from_widget",
-                                systemImageName: "rectangle.on.rectangle.slash",
-                                indexPath: indexPath,
-                                action: { _ in
-                                    userDefaults.removeWebxdcFromHomescreen(accountId: accountId, messageId: messageId)
-                                })
-                        )
-                    } else {
-                        children.append(
-                            UIAction.menuAction(
-                                localizationKey: "add_to_widget",
-                                systemImageName: "plus.rectangle.on.rectangle",
-                                indexPath: indexPath,
-                                action: { _ in
-                                    userDefaults.addWebxdcToHomescreenWidget(accountId: accountId, messageId: messageId)
-                                })
-                        )
-                    }
-                }
-
                 children.append(contentsOf: [
                     UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareAttachment(of: $0) }),
                     UIMenu(
