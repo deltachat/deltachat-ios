@@ -11,7 +11,14 @@
 - Long-tap links for copying to clipboard (#2445)
 - Hide address in titles: protect against over-the-shoulder-attacks, improve screenshot privacy, clear UX (#2447)
 - Prevent automatic limited access alert (#2480)
-- Much smooter, motion reduced message list when using attach or other options (#2481)
+- Much smoother, motion reduced message list when using attach or other options (#2481)
+- mark holiday notice messages as bot-generated
+- prefer to encrypt even if peers have their preference to "no preference"
+- start ephemeral messages timers when the chat is archived or noticed"
+- Fix: Never change Sticker to Image if file has non-image extension
+- Fix crashes when scanning some shadowsocks proxy QR codes
+- Fix: Don't consider punctuation and control chars as part of file extension
+- Fix: don't mark contacts as bot when receiving location-only and sync messages
 - Fix: No notification and 30 sec stale app when NSE crashed in background from running out of memory (#2477)
 - Fix: Disappearing message input field after cancelled gallery selection (#2392)
 - Fix: Don't show message-input when forwarding (#2435)
