@@ -1216,9 +1216,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let galleryImage = if #available(iOS 16, *) { "photo.stack" } else { "photo" }
         actions.append(action(localized: "gallery", systemImage: galleryImage, handler: showPhotoVideoLibrary))
         actions.append(action(localized: "files", systemImage: "folder", handler: showDocumentLibrary))
-        if dcContext.hasWebxdc() {
-            actions.append(action(localized: "webxdc_apps", systemImage: "square.grid.2x2", handler: showWebxdcSelector))
-        }
+        actions.append(action(localized: "webxdc_apps", systemImage: "square.grid.2x2", handler: showWebxdcSelector))
         actions.append(action(localized: "voice_message", systemImage: "mic", handler: showVoiceMessageRecorder))
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
             let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
@@ -1252,6 +1250,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let documentAction = action(localized: "files", handler: showDocumentLibrary)
         let voiceMessageAction = action(localized: "voice_message", handler: showVoiceMessageRecorder)
         let sendContactAction = action(localized: "contact", handler: showContactList)
+        let appPickerAction = action(localized: "webxdc_apps", handler: showAppPicker)
+
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         let locationStreamingAction = action(
             localized: isLocationStreaming ? "stop_sharing_location" : "location",
@@ -1261,6 +1261,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
+        alert.addAction(appPickerAction)
         alert.addAction(documentAction)
 
         let webxdcAction = action(localized: "webxdc_apps", handler: showWebxdcSelector)
@@ -1526,6 +1527,20 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
+    }
+
+    private func showAppPicker() {
+        let appPicker = AppPickerViewController()
+
+        let navigationController = UINavigationController(rootViewController: appPicker)
+        if #available(iOS 15.0, *) {
+            if let sheet = navigationController.sheetPresentationController {
+                sheet.detents = [.large()]
+                sheet.preferredCornerRadius = 20
+            }
+        }
+
+        present(navigationController, animated: true)
     }
 
     private func showContactList() {
@@ -2747,4 +2762,10 @@ extension ChatViewController: BackButtonUpdateable {
             return true
         }
     }
+}
+
+// MARK: - AppPickerViewControllerDelegate
+
+extension ChatViewController: AppPickerViewControllerDelegate {
+    
 }
