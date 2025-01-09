@@ -13,18 +13,12 @@ protocol MediaPickerDelegate: AnyObject {
 }
 
 extension MediaPickerDelegate {
-    func onImageSelected(image: UIImage) {
-    }
-    func onImageSelected(url: NSURL) {
-    }
-    func onVideoSelected(url: NSURL) {
-    }
-    func onVoiceMessageRecorded(url: NSURL) {
-    }
-    func onVoiceMessageRecorderClosed() {
-    }
-    func onDocumentSelected(url: NSURL) {
-    }
+    func onImageSelected(image: UIImage) { }
+    func onImageSelected(url: NSURL) { }
+    func onVideoSelected(url: NSURL) { }
+    func onVoiceMessageRecorded(url: NSURL) { }
+    func onVoiceMessageRecorderClosed() { }
+    func onDocumentSelected(url: NSURL) { }
 }
 
 class MediaPicker: NSObject, UINavigationControllerDelegate {
