@@ -34,7 +34,7 @@ class ContactDetailViewController: UITableViewController {
 
         let chatIdsOnHomescreen: [Int]
 
-        if #available(iOS 15, *) {
+        if #available(iOS 17, *) {
             chatIdsOnHomescreen = UserDefaults.shared!
                 .getChatWidgetEntries()
                 .filter { $0.accountId == viewModel.context.id }
@@ -458,7 +458,7 @@ class ContactDetailViewController: UITableViewController {
     }
 
     private func toggleChatInHomescreenWidget() {
-        guard #available(iOS 15, *) else { return }
+        guard #available(iOS 17, *) else { return }
 
         let onHomescreen = viewModel.toggleChatInHomescreenWidget()
         if onHomescreen {
@@ -490,7 +490,7 @@ class ContactDetailViewController: UITableViewController {
             )
             alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
                 self.viewModel.context.deleteMessages(msgIds: msgIds)
-                if #available(iOS 15.0, *) {
+                if #available(iOS 17.0, *) {
                     msgIds.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.viewModel.context.id, messageId: $0) }
                 }
                 self.navigationController?.popViewController(animated: true)
@@ -609,7 +609,7 @@ class ContactDetailViewController: UITableViewController {
             return
         }
         viewModel.context.deleteChat(chatId: viewModel.chatId)
-        if #available(iOS 15.0, *) {
+        if #available(iOS 17.0, *) {
             UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: viewModel.context.id, chatId: viewModel.chatId)
         }
         NotificationManager.removeNotificationsForChat(dcContext: viewModel.context, chatId: viewModel.chatId)

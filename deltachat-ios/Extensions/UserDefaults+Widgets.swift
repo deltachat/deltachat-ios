@@ -2,7 +2,7 @@ import Foundation
 import DcCore
 import WidgetKit
 
-@available(iOS 15, *)
+@available(iOS 17, *)
 extension UserDefaults {
 
     private static let shortcutsKey = "ui.ios.selected_apps_for_widget"
@@ -88,7 +88,7 @@ extension UserDefaults {
 
 // MARK: - Prepopulation
 
-@available(iOS 15, *)
+@available(iOS 17, *)
 extension UserDefaults {
     private static let widgetPrepopulatedKey = "ui.ios.widget_prepopulated"
 

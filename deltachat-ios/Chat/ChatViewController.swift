@@ -1296,7 +1296,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             guard let self else { return }
             // remove message observers early to avoid careless calls to dcContext methods
             self.dcContext.deleteChat(chatId: self.chatId)
-            if #available(iOS 15.0, *) {
+            if #available(iOS 17.0, *) {
                 UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
             }
             self.navigationController?.popViewController(animated: true)
@@ -1332,7 +1332,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { _ in
             self.dcContext.deleteMessages(msgIds: ids)
-            if #available(iOS 15.0, *) {
+            if #available(iOS 17.0, *) {
                 ids.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
             }
             if self.tableView.isEditing {

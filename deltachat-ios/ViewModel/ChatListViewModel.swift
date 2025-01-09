@@ -251,7 +251,7 @@ class ChatListViewModel: NSObject {
 
     func deleteChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
-        if #available(iOS 15.0, *) {
+        if #available(iOS 17.0, *) {
             UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
         }
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)

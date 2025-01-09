@@ -1036,7 +1036,7 @@ extension ChatListViewController: ChatListEditingBarDelegate {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
         let chatIds = viewModel.chatIdsFor(indexPaths: tableView.indexPathsForSelectedRows)
 
-        if #available(iOS 15.0, *),
+        if #available(iOS 17.0, *),
            chatIds.count == 1,
            let chatId = chatIds.first {
 
