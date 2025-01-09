@@ -1038,6 +1038,9 @@
 "notifications_avg_minutes" = "Im Mittel alle %1$d Minuten";
 "notifications_avg_hours" = "Im Mittel alle %1$d Stunden";
 "last_check_at" = "Überprüft um %1$@";
+"system_settings" = "Systemeinstellungen";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Töne, Vorschau, Stil und mehr bearbeiten";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Empfangene oder gesendete Apps werden hier angezeigt. Unter \"Dateien\" können Sie auf heruntergeladene Apps zugreifen.";
 // iOS shortcut widget
