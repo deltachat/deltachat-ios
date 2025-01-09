@@ -583,7 +583,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
             case .copyToClipboard:
                 return copyToClipboardCell
             case .addToHomescreen:
-                // relevant only for iOS 15+
                 return homescreenWidgetCell
             }
         }

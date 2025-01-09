@@ -101,7 +101,7 @@ class ContactDetailViewModel {
             }
 
             chatActions = [.archiveChat]
-            if #available(iOS 15, *) {
+            if #available(iOS 17, *) {
                 chatActions.append(.addToHomescreen)
             }
             if !isDeviceTalk && !isSavedMessages {
