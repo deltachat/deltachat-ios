@@ -431,7 +431,7 @@ class WebxdcViewController: WebViewViewController {
         let alert = UIAlertController(title: webxdcName + " – " + String.localized("webxdc_app"),
                                       message: nil,
                                       preferredStyle: .safeActionSheet)
-        if #available(iOS 15.0, *), let userDefaults = UserDefaults.shared {
+        if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
             let appsInWidgetsMessageIds = userDefaults
                 .getAppWidgetEntries()
                 .compactMap { entry in

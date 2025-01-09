@@ -377,7 +377,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     public func prepopulateWidget() {
-        if #available(iOS 15.0, *) {
+        if #available(iOS 17.0, *) {
             UserDefaults.shared?.prepopulateWidget()
         }
     }

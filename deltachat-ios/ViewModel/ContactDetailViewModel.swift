@@ -230,7 +230,7 @@ class ContactDetailViewModel {
         context.unblockContact(id: contact.id)
     }
 
-    @available(iOS 15, *)
+    @available(iOS 17, *)
     func toggleChatInHomescreenWidget() -> Bool {
         guard let userDefaults = UserDefaults.shared else { return false }
         let allHomescreenChatsIds: [Int] = userDefaults

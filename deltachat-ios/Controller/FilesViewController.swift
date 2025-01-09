@@ -141,7 +141,7 @@ class FilesViewController: UIViewController {
     private func deleteItem(at indexPath: IndexPath) {
         let msgId = fileMessageIds.remove(at: indexPath.row)
         self.dcContext.deleteMessage(msgId: msgId)
-        if #available(iOS 15.0, *) {
+        if #available(iOS 17.0, *) {
             UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: msgId)
         }
         self.tableView.deleteRows(at: [indexPath], with: .automatic)

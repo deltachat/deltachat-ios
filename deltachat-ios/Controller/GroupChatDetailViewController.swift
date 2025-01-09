@@ -148,7 +148,7 @@ class GroupChatDetailViewController: UIViewController {
 
         let chatIdsOnHomescreen: [Int]
 
-        if #available(iOS 15, *) {
+        if #available(iOS 17, *) {
             chatIdsOnHomescreen = UserDefaults.shared!
                 .getChatWidgetEntries()
                 .filter { $0.accountId == dcContext.id }
@@ -349,7 +349,7 @@ class GroupChatDetailViewController: UIViewController {
 
     // MARK: - actions
     private func toggleChatInHomescreenWidget() {
-        guard #available(iOS 15, *),
+        guard #available(iOS 17, *),
                 let userDefaults = UserDefaults.shared else { return }
         let allHomescreenChatsIds: [Int] = userDefaults
             .getChatWidgetEntries()
@@ -484,7 +484,7 @@ class GroupChatDetailViewController: UIViewController {
     private func deleteChat() {
         dcContext.deleteChat(chatId: chatId)
         NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
-        if #available(iOS 15.0, *) {
+        if #available(iOS 17.0, *) {
             UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
         }
         INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
@@ -719,7 +719,7 @@ extension GroupChatDetailViewController {
             )
             alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
                 self.dcContext.deleteMessages(msgIds: msgIds)
-                if #available(iOS 15.0, *) {
+                if #available(iOS 17.0, *) {
                     msgIds.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
                 }
                 self.navigationController?.popViewController(animated: true)
