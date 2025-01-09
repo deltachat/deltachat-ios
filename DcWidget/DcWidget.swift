@@ -49,7 +49,7 @@ struct ChatShortcutView: View {
             if let image = chat.image {
                 Image(uiImage: image)
                     .fullColor()
-            } else if let colorImage = UIImage(color: chat.color) {
+            } else if let colorImage = UIImage(color: chat.color, size: CGSize(width: 56, height: 56)) {
                 ZStack {
                     Image(uiImage: colorImage)
                     Text(chat.title.first?.uppercased() ?? "🫶")
@@ -60,7 +60,6 @@ struct ChatShortcutView: View {
         }
         .frame(width: 56, height: 56)
         .clipShape(Circle())
-
     }
 }
 
