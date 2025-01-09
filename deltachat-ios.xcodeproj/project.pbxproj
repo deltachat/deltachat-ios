@@ -2470,7 +2470,7 @@
 				INFOPLIST_FILE = DcWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DcWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2509,7 +2509,7 @@
 				INFOPLIST_FILE = DcWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DcWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
