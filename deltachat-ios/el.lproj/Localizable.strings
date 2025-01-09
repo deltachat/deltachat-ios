@@ -850,9 +850,6 @@
 "last_check_at" = "Έλεγχος στις %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Οι ιδιωτικές εφαρμογές που λαμβάνονται ή αποστέλλονται σε οποιαδήποτε συνομιλία θα εμφανίζονται εδώ. Το \"Αρχεία\" εμφανίζει ιδιωτικές εφαρμογές που μόλις κατεβάσατε.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "Κάντε κλικ στο κουμπί κοινής χρήσης";
-"shortcut_step2_tap_add_to_home_screen" = "Επιλέξτε \"Προσθήκη στην αρχική οθόνη\" για να προσθέσετε την εφαρμογή στην αρχική σας οθόνη.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Για να διατηρήσετε τη σύνδεση με τον διακομιστή e-mail σας και να λαμβάνετε μηνύματα στο παρασκήνιο, αγνοήστε τις βελτιστοποιήσεις μπαταρίας στο επόμενο βήμα.\n\nΤο Delta Chat χρησιμοποιεί λίγους πόρους και φροντίζει να μην εξαντλήσει την μπαταρία σας.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

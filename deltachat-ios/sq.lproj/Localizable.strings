@@ -1032,9 +1032,6 @@
 "last_check_at" = "Kontrolluar më %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Këtu do të duken aplikacione private të dërguar apo të marrë në cilëndo fjalosje. “Kartela” shfaq aplikacione private të saposhkarkuara.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "Klikoni butonin për ndarje";
-"shortcut_step2_tap_add_to_home_screen" = "Që ta shtoni aplikacionin te skena juaj e kreut, përzgjidhni “Shtoje te Skena e Kreut”.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Dërgim i Menjëhershëm";

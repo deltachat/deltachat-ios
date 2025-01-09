@@ -145,6 +145,8 @@
 "webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps";
+"webxdc_store_url" = "URL Selettore App";
+"webxdc_store_url_explain" = "Se impostato, l\'URL verrà utilizzato come Selettore App anziché quello predefinito";
 "unknown" = "Sconosciuto";
 "green" = "Verde";
 "red" = "Rosso";
@@ -1038,9 +1040,6 @@
 "last_check_at" = "Controllato a %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Le app ricevute o inviate in qualsiasi chat verranno mostrate qui. \"Files\" mostra le app appena scaricate.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "Clic sul pulsante condividi";
-"shortcut_step2_tap_add_to_home_screen" = "Seleziona \"Aggiungi alla Schermata Iniziale\" per aggiungere l\'app alla tua schermata iniziale.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Consegna Istantanea";

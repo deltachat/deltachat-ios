@@ -820,9 +820,6 @@
 "last_check_at" = "%1$@에 확인됨";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "채팅에서 보내거나 받은 개인 앱들이 여기에 나타납니다. \"파일\"에서 방금 다운로드 받은 개인 앱들을 보여줍니다.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "공유 버튼을 누르시오";
-"shortcut_step2_tap_add_to_home_screen" = "홈 화면에 앱을 추가하려면 \"홈 화면에 추가\"를 선택합니다.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "이메일 서버에 대한 연결을 유지하고 백그라운드에서 메시지를 수신하려면 다음 단계에서 배터리 최적화를 무시하십시오.\n\nDelta Chat은 리소스를 거의 사용하지 않으며 배터리가 소모되지 않도록 주의합니다.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

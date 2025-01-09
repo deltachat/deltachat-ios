@@ -1040,9 +1040,15 @@
 "last_check_at" = "Überprüft um %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Empfangene oder gesendete Apps werden hier angezeigt. Unter \"Dateien\" können Sie auf heruntergeladene Apps zugreifen.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "\"Teilen\" anklicken";
-"shortcut_step2_tap_add_to_home_screen" = "\"Zum Home-Bildschirm\" auswählen, um die App zum Startbildschirm hinzuzufügen";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Shortcuts";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Delta Chat\'s \"Zum Widget hinzufügen\" fügt Chats hinzu";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Aus Widget entfernen";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Zum Widget hinzufügen";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Sofortige Benachrichtigungen";

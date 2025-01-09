@@ -975,9 +975,6 @@
 "last_check_at" = "Dernièrement vu à %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Les applications envoyées ou reçues dans une discussion apparaissent ici. « Fichiers » affiche les applis que vous venez de télécharger.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "Cliquer sur le bouton « Partager ».";
-"shortcut_step2_tap_add_to_home_screen" = "Sélectionner « Ajouter à l\'écran d\'accueil » pour ajouter l\'appli à votre écran d\'accueil.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Envoi Immédiat";
