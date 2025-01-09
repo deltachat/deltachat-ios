@@ -1,15 +1,23 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.50.4
 
-- Add option to toggle mention notifications as replies or reactions in groups
-- Access system notification settings directly from the new notification settings
-- Access your favorite apps and chats from the Homescreen using our shiny new widget (#2406, #2449)
+- Access your favorite apps and chats from the Homescreen using our shiny new widget (requires iOS 17) (#2406, #2449)
 - Add and remove apps and chats to that widget (#2426, #2449)
-- Don't show message-input when forwarding (#2435)
+- In favour to the new widget, the old "Add to Homescreen" option, that stopped working on most recent OS, got removed (#2456)
+- More modern look for the settings pages (#2474)
+- Add option to toggle notifications for mentions (as replies or reactions) in groups (#2434)
+- Access system notification settings directly from the new notification settings (#2434)
 - Long-tap links for copying to clipboard (#2445)
 - Hide address in titles: protect against over-the-shoulder-attacks, improve screenshot privacy, clear UX (#2447)
-- minimum system version is iOS 13 now
+- Prevent automatic limited access alert (#2480)
+- Much smooter, motion reduced message list when using attach or other options (#2481)
+- Fix: No notification and 30 sec stale app when NSE crashed in background from running out of memory (#2477)
+- Fix: Disappearing message input field after cancelled gallery selection (#2392)
+- Fix: Don't show message-input when forwarding (#2435)
+- Fix: Don't change navigation-bar-appearance when visiting wallpape settings (#2496)
+- minimum system version is iOS 13 now (#2459)
+- Update translations and local help
 - Update core to 1.153.0
 
 
