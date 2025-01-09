@@ -89,6 +89,7 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
+        view.backgroundColor = .systemGroupedBackground
         hidesBottomBarWhenPushed = true
     }
 
@@ -117,14 +118,8 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
             backgroundContainer.constraintAlignBottomTo(view),
             backgroundContainer.constraintAlignLeadingTo(view),
             backgroundContainer.constraintAlignTrailingTo(view),
-            backgroundContainer.constraintAlignTopTo(view)
+            backgroundContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
-
-        if #available(iOS 15, *) {
-            self.navigationController?.navigationBar.isTranslucent = true
-            self.navigationController?.toolbar.isTranslucent = true
-            self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
-        }
      }
 
     override func viewDidLayoutSubviews() {
