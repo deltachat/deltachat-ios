@@ -1038,6 +1038,9 @@
 "notifications_avg_minutes" = "On average every %1$d minutes";
 "notifications_avg_hours" = "On average every %1$d hours";
 "last_check_at" = "Checked at %1$@";
+"system_settings" = "System Settings";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Edit type, badges, preview and more";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Apps received or sent in any chat will appear here. \"Files\" shows apps just downloaded.";
 // iOS shortcut widget
