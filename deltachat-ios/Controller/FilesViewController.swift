@@ -186,7 +186,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
             identifier: nil,
             previewProvider: nil,
             actionProvider: { [weak self] _ in
-                guard let self, let userDefaults = UserDefaults.shared else { return nil }
+                guard let self else { return nil }
 
                 var children: [UIMenuElement] = [
                     UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0) }),
