@@ -52,7 +52,7 @@ struct ChatShortcutView: View {
             } else if let colorImage = UIImage(color: chat.color, size: CGSize(width: 56, height: 56)) {
                 ZStack {
                     Image(uiImage: colorImage)
-                    Text(chat.title.first?.uppercased() ?? "🫶")
+                    Text(DcUtils.getInitials(inputName: chat.title))
                         .foregroundStyle(.white)
                         .font(.system(size: 34))
                 }
