@@ -293,24 +293,32 @@ class GroupChatDetailViewController: UIViewController {
             self.chatOptions.append(.locations)
         }
 
+        self.chatActions = [.archiveChat]
+        if #available(iOS 17.0, *) {
+            self.chatActions.append(.addToHomescreen)
+        }
+
         if chat.isMailinglist {
             self.memberManagementRows = 0
-            self.chatActions = [.archiveChat, .addToHomescreen, .copyToClipboard, .clearChat, .deleteChat]
+            self.chatActions.append(.copyToClipboard)
             self.groupHeader.showMuteButton(show: true)
         } else if chat.isBroadcast {
             self.memberManagementRows = 1
-            self.chatActions = [.archiveChat, .addToHomescreen, .cloneChat, .clearChat, .deleteChat]
+            self.chatActions.append(.cloneChat)
             self.groupHeader.showMuteButton(show: false)
         } else if chat.canSend {
             self.chatOptions.append(.ephemeralMessages)
             self.memberManagementRows = 2
-            self.chatActions = [.archiveChat, .addToHomescreen, .cloneChat, .leaveGroup, .clearChat, .deleteChat]
+            self.chatActions.append(.cloneChat)
+            self.chatActions.append(.leaveGroup)
             self.groupHeader.showMuteButton(show: true)
         } else {
             self.memberManagementRows = 0
-            self.chatActions = [.archiveChat, .addToHomescreen, .clearChat, .deleteChat]
             self.groupHeader.showMuteButton(show: true)
         }
+
+        self.chatActions.append(.clearChat)
+        self.chatActions.append(.deleteChat)
     }
 
     private func updateHeader() {
