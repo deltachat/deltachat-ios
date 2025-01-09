@@ -89,9 +89,8 @@ struct Provider: TimelineProvider {
 
         let currentDate = Date()
         let entry = UsedWebxdcEntry(date: currentDate, shortcuts: shortcuts)
-        let nextDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
 
-        let timeline = Timeline(entries: [entry], policy: .after(nextDate))
+        let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
     }
 }
