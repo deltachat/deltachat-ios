@@ -780,7 +780,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let tableViewCell = tableView.cellForRow(at: indexPath)
         if let selectableCell = tableViewCell as? SelectableCell,
            !(tableView.isEditing &&
-             tableViewCell as? InfoMessageCell != nil &&
+             tableViewCell is InfoMessageCell &&
              messageIds[indexPath.row] <= DC_MSG_ID_LAST_SPECIAL) {
             selectableCell.showSelectionBackground(tableView.isEditing)
             return indexPath
