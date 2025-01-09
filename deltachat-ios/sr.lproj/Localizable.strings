@@ -863,9 +863,6 @@
 "last_check_at" = "Проверено у %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Приватне апликације примљене или послате у било ком ћаскању ће се појавити овде. „Фајлови“ приказује приватне апликације које су управо преузете.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "Кликните на дугме за дељење";
-"shortcut_step2_tap_add_to_home_screen" = "Изаберите „Додај на почетни екран“ да бисте апликацију додали на почетни екран.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Да би сте одржавали везу са вашим сервером за е-пошту и да би сте примали поруке у позадини, игноришите оптимизације ефикасности батерије у следећем кораку.\n\nDelta Chat не користи много енергије и води рачуна да вам не испразни батерију.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

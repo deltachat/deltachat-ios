@@ -1040,9 +1040,6 @@
 "last_check_at" = "检查于 %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "任何聊天中接收或发送的私人应用都会出现在这里。“文件”显示刚下载的私人应用。";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "点击分享按钮";
-"shortcut_step2_tap_add_to_home_screen" = "选择“添加到主屏幕”来将应用添加到主屏幕。";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "即时传送";

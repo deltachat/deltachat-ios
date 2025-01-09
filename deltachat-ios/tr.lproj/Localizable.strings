@@ -1040,9 +1040,6 @@
 "last_check_at" = "Denetleme %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Herhangi bir sohbette alınan ya da gönderilen uygulamalar burada görünecek. \"Dosyalar\", yalnızca indirilen uygulamaları gösterir.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "Paylaş düğmesini tıklayın";
-"shortcut_step2_tap_add_to_home_screen" = "Uygulamayı ana ekranınıza eklemek için \"Ana Ekrana Ekle\"yi seçin.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Anında Teslimat";

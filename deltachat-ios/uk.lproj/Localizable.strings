@@ -145,6 +145,8 @@
 "webxdc_app" = "Застосунок";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Застосунки";
+"webxdc_store_url" = "URL-адреса для вибору додатків";
+"webxdc_store_url_explain" = "Якщо встановлено, URL-адреса буде використовуватися для вибору додатків, а не за замовчуванням";
 "unknown" = "Невідомо";
 "green" = "Зелений";
 "red" = "Червоний";
@@ -602,6 +604,8 @@
 "pref_screen_security_explain" = "Запит на блокування скріншотів у списку останніх і всередині програми";
 "pref_screen_security_please_restart_hint" = "Для застосування налаштувань безпеки екрану перезавантажте додаток.";
 "pref_notifications" = "Сповіщення";
+"pref_mention_notifications" = "Згадки";
+"pref_mention_notifications_explain" = "У приглушених групах сповіщати про повідомлення, адресовані вам, наприклад, відповіді або реакції";
 "pref_notifications_show" = "Показати";
 "pref_notifications_priority" = "Пріоритет";
 "pref_notifications_explain" = "Увімкнути системні сповіщення для нових повідомлень";
@@ -1036,9 +1040,6 @@
 "last_check_at" = "Перевірено о %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Додатки, отримані або надіслані у цьому чаті, будуть відображатися тут. \"Файли\" відображають щойно завантажені додатки.";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "Натисніть кнопку \"Поділитися\"";
-"shortcut_step2_tap_add_to_home_screen" = "Виберіть \"Додати на головний екран\", щоб додати застосунок на головний екран.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Миттєва доставка";

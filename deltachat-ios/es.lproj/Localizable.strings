@@ -1036,9 +1036,6 @@
 "last_check_at" = "Comprobado en %1$@";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Aplicaciones privadas recibidas o enviadas en cualquier chat aparecerán aquí. \"Archivos\" muestra aplicaciones privadas descargadas. ";
-// iOS webxdc shortcut page
-"shortcut_step1_tap_share_btn" = "Presiona el botón de compartir";
-"shortcut_step2_tap_add_to_home_screen" = "Selecciona \"Añadir a la pantalla principal\" para añadir la aplicación a tu pantaña principal.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Entrega inmediata";
