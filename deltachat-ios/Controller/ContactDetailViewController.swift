@@ -244,7 +244,6 @@ class ContactDetailViewController: UITableViewController {
             case .deleteChat:
                 return deleteChatCell
             case .addToHomescreen:
-                // only relevant for iOS 15
                 return homescreenWidgetCell
             }
         case .sharedChats:
@@ -403,7 +402,6 @@ class ContactDetailViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: false)
             showDeleteChatConfirmationAlert()
         case .addToHomescreen:
-            // only relevant for iOS 15
             tableView.deselectRow(at: indexPath, animated: true)
             toggleChatInHomescreenWidget()
         }
