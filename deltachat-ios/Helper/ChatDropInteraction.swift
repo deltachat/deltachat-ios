@@ -53,18 +53,24 @@ public class ChatDropInteraction {
     }
 
     private func loadImageObjects(session: UIDropSession) {
-        session.loadObjects(ofClass: UIImage.self) { [weak self] imageItems in
-            if let images = imageItems as? [UIImage], !images.isEmpty {
-                self?.delegate?.onImageDragAndDropped(image: images[0])
+        if session.canLoadObjects(ofClass: UIImage.self) {
+            session.loadObjects(ofClass: UIImage.self) { [weak self] imageItems in
+                if let images = imageItems as? [UIImage], !images.isEmpty {
+                    self?.delegate?.onImageDragAndDropped(image: images[0])
+                }
+            }
+        } else if let droppedItem = session.items.first {
+            // Some images (eg webP) can't be loaded into UIImage by UIDropSession.
+            // See `UIImage.readableTypeIdentifiersForItemProvider` for ones that can.
+            droppedItem.itemProvider.loadDataRepresentation(forTypeIdentifier: kUTTypeImage as String) { [weak self] data, _ in
+                guard let self, let image = UIImage.sd_image(with: data) else { return }
+                self.delegate?.onImageDragAndDropped(image: image)
             }
         }
     }
 
     private func loadFileObjects(session: UIDropSession, isVideo: Bool = false) {
-        if session.items.isEmpty {
-            return
-        }
-        let item: UIDragItem = session.items[0]
+        guard let item = session.items.first else { return }
         item.itemProvider.loadFileRepresentation(forTypeIdentifier: kUTTypeItem as String) { [weak self] (url, error) in
             guard let url = url else {
                 if let error = error {
