@@ -300,6 +300,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         configureDraftArea(draft: draft, animated: false)
         tableView.dragInteractionEnabled = true
         tableView.dropDelegate = self
+        tableView.dragDelegate = self
     }
 
     public func activateSearchOnAppear() {
@@ -1985,6 +1986,27 @@ extension ChatViewController: MCEmojiPickerDelegate {
                 dcContext.sendReaction(messageId: reactionMessageId, reaction: emoji)
             }
         }
+    }
+}
+
+extension ChatViewController: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: any UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard !tableView.isEditing else { return [] }
+        let messageId = messageIds[indexPath.row]
+        let message = dcContext.getMessage(id: messageId)
+
+        if let image = message.image {
+            let dragItem = UIDragItem(itemProvider: .init(object: image))
+            dragItem.previewProvider = {
+                let view = UIImageView(image: image)
+                view.frame.size = CGSize(width: 100, height: 100)
+                view.contentMode = .scaleAspectFill
+                return UIDragPreview(view: view)
+            }
+            return [dragItem]
+        }
+
+        return []
     }
 }
 
