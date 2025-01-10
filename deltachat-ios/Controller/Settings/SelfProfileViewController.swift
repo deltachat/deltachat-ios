@@ -10,7 +10,6 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private let dcContext: DcContext
-    private let dcAccounts: DcAccounts
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -47,7 +46,6 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }()
 
     init(dcAccounts: DcAccounts) {
-        self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
         super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
