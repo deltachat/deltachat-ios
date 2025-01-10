@@ -60,12 +60,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
         super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
 
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(textDidChangeNotification),
-            name: UITextField.textDidChangeNotification,
-            object: nameCell.textField
-        )
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextField.textDidChangeNotification, object: nameCell.textField)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -110,7 +105,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     // MARK: - Notifications
-    @objc func textDidChangeNotification(notification: Notification) {
+    @objc func textDidChange(notification: Notification) {
         validateFields()
     }
 
