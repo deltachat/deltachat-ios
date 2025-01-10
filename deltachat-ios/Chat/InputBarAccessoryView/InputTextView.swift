@@ -232,7 +232,7 @@ open class InputTextView: UITextView {
     
     open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         
-        if action == NSSelectorFromString("paste:") && UIPasteboard.general.hasImages {
+        if action == NSSelectorFromString("paste:") && UIPasteboard.general.hasImagesExtended {
             return isImagePasteEnabled
         }
         return super.canPerformAction(action, withSender: sender)
@@ -240,7 +240,7 @@ open class InputTextView: UITextView {
     
     open override func paste(_ sender: Any?) {
         
-        guard isImagePasteEnabled, let image = UIPasteboard.general.image else {
+        guard isImagePasteEnabled, let image = UIPasteboard.general.imageExtended else {
             return super.paste(sender)
         }
         for plugin in inputBarAccessoryView?.inputPlugins ?? [] {

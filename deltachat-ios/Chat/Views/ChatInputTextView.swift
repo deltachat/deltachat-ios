@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 import MobileCoreServices
-import UniformTypeIdentifiers
 
 public class ChatInputTextView: InputTextView {
 
@@ -16,14 +15,14 @@ public class ChatInputTextView: InputTextView {
 
     // MARK: - Image Paste Support
     open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == NSSelectorFromString("paste:") && UIPasteboard.general.hasImages {
+        if action == NSSelectorFromString("paste:") && UIPasteboard.general.hasImagesExtended {
             return true
         }
         return super.canPerformAction(action, withSender: sender)
     }
 
     open override func paste(_ sender: Any?) {
-        guard let image = UIPasteboard.general.image else {
+        guard let image = UIPasteboard.general.imageExtended else {
             return super.paste(sender)
         }
         imagePasteDelegate?.onImagePasted(image: image)
