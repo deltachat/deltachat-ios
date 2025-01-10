@@ -1531,6 +1531,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func showAppPicker() {
         let appPicker = AppPickerViewController()
+        appPicker.delegate = self
         if #available(iOS 15.0, *) {
             if let sheet = appPicker.sheetPresentationController {
                 sheet.detents = [.large()]
@@ -2765,5 +2766,11 @@ extension ChatViewController: BackButtonUpdateable {
 // MARK: - AppPickerViewControllerDelegate
 
 extension ChatViewController: AppPickerViewControllerDelegate {
-    // stage message
+    func pickedAnDownloadedApp(_ viewController: AppPickerViewController, fileURL url: URL) {
+        draft.setAttachment(viewType: DC_MSG_WEBXDC, path: url.relativePath)
+        configureDraftArea(draft: draft)
+        focusInputTextView()
+        FileHelper.deleteFile(atPath: url.relativePath)
+        viewController.dismiss(animated: true)
+    }
 }
