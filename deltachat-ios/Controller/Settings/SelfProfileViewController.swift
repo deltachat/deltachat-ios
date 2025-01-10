@@ -27,6 +27,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     private lazy var avatarSelectionCell: AvatarSelectionCell = {
         return AvatarSelectionCell(image: dcContext.getSelfAvatarImage())
     }()
+    private var avatarChanged: (UIImage?)?
 
     private lazy var nameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
@@ -95,6 +96,13 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     @objc func doneButtonPressed() {
         dcContext.selfstatus = statusCell.getText()
         dcContext.displayname = nameCell.getText()
+        if let avatarChanged {
+            if let newAvatar = avatarChanged {
+                AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: newAvatar)
+            } else {
+                dcContext.selfavatar = nil
+            }
+        }
         navigationController?.popViewController(animated: true)
     }
 
@@ -107,15 +115,15 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
-        dcContext.selfavatar = nil
-        updateAvatarCell()
+        avatarChanged = (nil)
+        self.avatarSelectionCell.setAvatar(image: nil)
     }
 
     private func onAvatarTapped() {
         let alert = UIAlertController(title: String.localized("pref_profile_photo"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
         alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
-        if dcContext.getSelfAvatarImage() != nil {
+        if avatarSelectionCell.isAvatarSet() {
             alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteProfileIconPressed(_:)))
         }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -124,12 +132,8 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     func onImageSelected(image: UIImage) {
-        AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
-        updateAvatarCell()
-    }
-
-    private func updateAvatarCell() {
-        self.avatarSelectionCell.setAvatar(image: dcContext.getSelfAvatarImage())
+        avatarChanged = (image)
+        self.avatarSelectionCell.setAvatar(image: image)
     }
 
 }
