@@ -2,7 +2,7 @@ import UIKit
 import WebKit
 
 protocol AppPickerViewControllerDelegate: AnyObject {
-
+    func pickedAnDownloadedApp(_ viewController: AppPickerViewController, fileURL: URL)
 }
 
 class AppPickerViewController: UIViewController {
@@ -42,10 +42,29 @@ class AppPickerViewController: UIViewController {
 
 extension AppPickerViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping @MainActor (WKNavigationActionPolicy) -> Void) {
-        decisionHandler(.allow)
+        guard let url = navigationAction.request.url else {
+            return decisionHandler(.cancel)
+        }
 
         // if url ends with .xdc -> download and store in core and call delegate
-        // else if host = webxdc -> allow
-        // else -> open in browser and .deny
+        if url.pathExtension == "xdc" {
+            // TODO: Add loading indicator
+            Task {
+                guard let (data, _) = try? await URLSession.shared.data(from: url),
+                      let filepath = FileHelper.saveData(data: data, name: url.lastPathComponent)
+                else { return decisionHandler(.cancel) }
+
+                let fileURL = NSURL(fileURLWithPath: filepath)
+                delegate?.pickedAnDownloadedApp(self, fileURL: fileURL as URL)
+                decisionHandler(.cancel)
+            }
+        } else if url.host == "webxdc.org" {
+            decisionHandler(.allow)
+        } else if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.cancel)
+        }
     }
 }
