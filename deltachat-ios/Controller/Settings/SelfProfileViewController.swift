@@ -27,7 +27,8 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     private lazy var avatarSelectionCell: AvatarSelectionCell = {
         return AvatarSelectionCell(image: dcContext.getSelfAvatarImage())
     }()
-    private var avatarChanged: (UIImage?)?
+    private var changeAvatar: UIImage?
+    private var deleteAvatar: Bool = false
 
     private lazy var nameCell: TextFieldCell = {
         let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
@@ -96,12 +97,10 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     @objc func doneButtonPressed() {
         dcContext.selfstatus = statusCell.getText()
         dcContext.displayname = nameCell.getText()
-        if let avatarChanged {
-            if let newAvatar = avatarChanged {
-                AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: newAvatar)
-            } else {
-                dcContext.selfavatar = nil
-            }
+        if let changeAvatar {
+            AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: changeAvatar)
+        } else if deleteAvatar {
+            dcContext.selfavatar = nil
         }
         navigationController?.popViewController(animated: true)
     }
@@ -115,8 +114,9 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
-        avatarChanged = (nil)
-        self.avatarSelectionCell.setAvatar(image: nil)
+        changeAvatar = nil
+        deleteAvatar = true
+        avatarSelectionCell.setAvatar(image: nil)
     }
 
     private func onAvatarTapped() {
@@ -132,10 +132,10 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     func onImageSelected(image: UIImage) {
-        avatarChanged = (image)
-        self.avatarSelectionCell.setAvatar(image: image)
+        changeAvatar = image
+        deleteAvatar = false
+        avatarSelectionCell.setAvatar(image: image)
     }
-
 }
 
 
