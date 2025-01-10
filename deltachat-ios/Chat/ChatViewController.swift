@@ -1531,16 +1531,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func showAppPicker() {
         let appPicker = AppPickerViewController()
-
-        let navigationController = UINavigationController(rootViewController: appPicker)
         if #available(iOS 15.0, *) {
-            if let sheet = navigationController.sheetPresentationController {
+            if let sheet = appPicker.sheetPresentationController {
                 sheet.detents = [.large()]
                 sheet.preferredCornerRadius = 20
             }
         }
 
-        present(navigationController, animated: true)
+        present(appPicker, animated: true)
     }
 
     private func showContactList() {
@@ -2767,5 +2765,5 @@ extension ChatViewController: BackButtonUpdateable {
 // MARK: - AppPickerViewControllerDelegate
 
 extension ChatViewController: AppPickerViewControllerDelegate {
-    
+    // stage message
 }
