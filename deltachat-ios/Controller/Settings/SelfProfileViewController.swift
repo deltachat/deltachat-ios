@@ -10,7 +10,14 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private let dcContext: DcContext
-    private let dcAccounts: DcAccounts
+
+    lazy var doneButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+    }()
+
+    lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+    }()
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -28,9 +35,11 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     private lazy var avatarSelectionCell: AvatarSelectionCell = {
         return AvatarSelectionCell(image: dcContext.getSelfAvatarImage())
     }()
+    private var changeAvatar: UIImage?
+    private var deleteAvatar: Bool = false
 
     private lazy var nameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
+        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("please_enter_name"))
         cell.setText(text: dcContext.displayname)
         cell.textFieldDelegate = self
         cell.textField.returnKeyType = .default
@@ -47,10 +56,11 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }()
 
     init(dcAccounts: DcAccounts) {
-        self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
         super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
+
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextField.textDidChangeNotification, object: nameCell.textField)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -64,11 +74,13 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
             self?.onAvatarTapped()
         }
         tableView.rowHeight = UITableView.automaticDimension
+        navigationItem.rightBarButtonItem = doneButton
+        navigationItem.leftBarButtonItem = cancelButton
+        validateFields()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        dcContext.selfstatus = statusCell.getText()
-        dcContext.displayname = nameCell.getText()
+    func validateFields() {
+        doneButton.isEnabled = !(nameCell.textField.text?.isEmpty ?? true)
     }
 
     // MARK: - Table view data source
@@ -92,7 +104,27 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
         return sections[section].footerTitle
     }
 
+    // MARK: - Notifications
+    @objc func textDidChange(notification: Notification) {
+        validateFields()
+    }
+
     // MARK: - actions
+    @objc func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc func doneButtonPressed() {
+        dcContext.selfstatus = statusCell.getText()
+        dcContext.displayname = nameCell.getText()
+        if let changeAvatar {
+            AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: changeAvatar)
+        } else if deleteAvatar {
+            dcContext.selfavatar = nil
+        }
+        navigationController?.popViewController(animated: true)
+    }
+
     private func galleryButtonPressed(_ action: UIAlertAction) {
         mediaPicker?.showPhotoGallery()
     }
@@ -102,15 +134,16 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func deleteProfileIconPressed(_ action: UIAlertAction) {
-        dcContext.selfavatar = nil
-        updateAvatarCell()
+        changeAvatar = nil
+        deleteAvatar = true
+        avatarSelectionCell.setAvatar(image: nil)
     }
 
     private func onAvatarTapped() {
         let alert = UIAlertController(title: String.localized("pref_profile_photo"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
         alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
-        if dcContext.getSelfAvatarImage() != nil {
+        if avatarSelectionCell.isAvatarSet() {
             alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteProfileIconPressed(_:)))
         }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -119,14 +152,10 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     func onImageSelected(image: UIImage) {
-        AvatarHelper.saveSelfAvatarImage(dcContext: dcContext, image: image)
-        updateAvatarCell()
+        changeAvatar = image
+        deleteAvatar = false
+        avatarSelectionCell.setAvatar(image: image)
     }
-
-    private func updateAvatarCell() {
-        self.avatarSelectionCell.setAvatar(image: dcContext.getSelfAvatarImage())
-    }
-
 }
 
 
