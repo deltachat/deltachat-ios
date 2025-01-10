@@ -11,6 +11,14 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
 
     private let dcContext: DcContext
 
+    lazy var doneButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+    }()
+
+    lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+    }()
+
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
         mediaPicker.delegate = self
@@ -31,7 +39,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     private var deleteAvatar: Bool = false
 
     private lazy var nameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("pref_your_name"))
+        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("please_enter_name"))
         cell.setText(text: dcContext.displayname)
         cell.textFieldDelegate = self
         cell.textField.returnKeyType = .default
@@ -51,6 +59,13 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
         self.dcContext = dcAccounts.getSelected()
         super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(SelfProfileViewController.textDidChangeNotification(notification:)),
+            name: UITextField.textDidChangeNotification,
+            object: nameCell.textField
+        )
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -64,8 +79,13 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
             self?.onAvatarTapped()
         }
         tableView.rowHeight = UITableView.automaticDimension
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+        navigationItem.rightBarButtonItem = doneButton
+        navigationItem.leftBarButtonItem = cancelButton
+        validateFields()
+    }
+
+    func validateFields() {
+        doneButton.isEnabled = !(nameCell.textField.text?.isEmpty ?? true)
     }
 
     // MARK: - Table view data source
@@ -87,6 +107,11 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         return sections[section].footerTitle
+    }
+
+    // MARK: - Notifications
+    @objc func textDidChangeNotification(notification: Notification) {
+        validateFields()
     }
 
     // MARK: - actions
