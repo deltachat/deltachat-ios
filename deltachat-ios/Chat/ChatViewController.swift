@@ -1962,7 +1962,7 @@ extension ChatViewController {
                 }
                 if message.image != nil {
                     children.append(
-                        UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo", indexPath: indexPath, action: copyImageToClipboard)
+                        UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo.on.rectangle", indexPath: indexPath, action: copyImageToClipboard)
                     )
                 }
 
