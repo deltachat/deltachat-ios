@@ -311,6 +311,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         emptyStateView.addCenteredTo(parentView: backgroundContainer, evadeKeyboard: true)
     }
 
+    var isInitialViewWillAppear = true
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // this will be removed in viewWillDisappear
@@ -349,7 +350,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         messageInputBar.scrollDownButton.isHidden = true
 
-        if isMovingToParent { // being pushed
+        if isInitialViewWillAppear {
             becomeFirstResponder()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.tableView.contentInset.top = max(self.inputAccessoryView?.frame.height ?? 0, self.tableView.safeAreaInsets.bottom)
@@ -361,6 +362,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 }
             }
         }
+        isInitialViewWillAppear = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
