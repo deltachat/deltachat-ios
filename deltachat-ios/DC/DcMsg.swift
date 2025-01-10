@@ -129,7 +129,7 @@ public class DcMsg {
     }
 
     public var fileURL: URL? {
-        if let file = self.file {
+        if let file {
             return URL(fileURLWithPath: file, isDirectory: false)
         }
         return nil
