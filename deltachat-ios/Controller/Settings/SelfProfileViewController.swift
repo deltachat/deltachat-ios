@@ -64,11 +64,8 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
             self?.onAvatarTapped()
         }
         tableView.rowHeight = UITableView.automaticDimension
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        dcContext.selfstatus = statusCell.getText()
-        dcContext.displayname = nameCell.getText()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
     }
 
     // MARK: - Table view data source
@@ -93,6 +90,16 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     // MARK: - actions
+    @objc func cancelButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc func doneButtonPressed() {
+        dcContext.selfstatus = statusCell.getText()
+        dcContext.displayname = nameCell.getText()
+        navigationController?.popViewController(animated: true)
+    }
+
     private func galleryButtonPressed(_ action: UIAlertAction) {
         mediaPicker?.showPhotoGallery()
     }
