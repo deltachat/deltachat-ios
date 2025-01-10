@@ -1721,8 +1721,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         replyToMessage(at: indexPath)
     }
 
-    private func copyToClipboard(at indexPath: IndexPath) {
-        copyToClipboard(ids: [self.messageIds[indexPath.row]])
+    private func copyTextToClipboard(at indexPath: IndexPath) {
+        copyTextToClipboard(ids: [self.messageIds[indexPath.row]])
+    }
+    private func copyImageToClipboard(at indexPath: IndexPath) {
+        copyImagesToClipboard(ids: [self.messageIds[indexPath.row]])
     }
 
     private func cancelSearch() {
@@ -1942,7 +1945,7 @@ extension ChatViewController {
                     image = UIImage(named: "ic_forward_white_36pt")
                 }
                 children.append(
-                    UIAction.menuAction(localizationKey: "forward", image: image, indexPath: indexPath, action: { self.forward(at: $0 ) })
+                    UIAction.menuAction(localizationKey: "forward", image: image, indexPath: indexPath, action: forward)
                 )
 
                 if let link = isLinkTapped(indexPath: indexPath, point: point) {
@@ -1954,14 +1957,19 @@ extension ChatViewController {
                 } else if let text = message.text, !text.isEmpty {
                     let copyTitle = message.file == nil ? "global_menu_edit_copy_desktop" : "menu_copy_text_to_clipboard"
                     children.append(
-                        UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", indexPath: indexPath, action: { self.copyToClipboard(at: $0 ) })
+                        UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", indexPath: indexPath, action: copyTextToClipboard)
+                    )
+                }
+                if message.image != nil {
+                    children.append(
+                        UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo", indexPath: indexPath, action: copyImageToClipboard)
                     )
                 }
 
                 children.append(contentsOf: [
-                    UIAction.menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: { self.info(at: $0 ) }),
+                    UIAction.menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: info),
                     UIMenu(options: [.displayInline], children: [
-                        UIAction.menuAction(localizationKey: "menu_more_options", systemImageName: "checkmark.circle", indexPath: indexPath, action: { self.selectMore(at: $0 ) }),
+                        UIAction.menuAction(localizationKey: "menu_more_options", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore),
                     ])
                 ])
 
@@ -2141,7 +2149,7 @@ extension ChatViewController {
         view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
     }
 
-    private func copyToClipboard(ids: [Int]) {
+    private func copyTextToClipboard(ids: [Int]) {
         var stringsToCopy = ""
         if ids.count > 1 {
             let sortedIds = ids.sorted()
@@ -2177,6 +2185,12 @@ extension ChatViewController {
             }
         }
         UIPasteboard.general.string = stringsToCopy
+    }
+
+    func copyImagesToClipboard(ids: [Int]) {
+        let images = ids.map(dcContext.getMessage).compactMap(\.image)
+        guard !images.isEmpty else { return }
+        UIPasteboard.general.images = images
     }
 }
 
@@ -2429,7 +2443,7 @@ extension ChatViewController: ChatEditingDelegate {
     func onCopyPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
             let ids = rows.compactMap { messageIds[$0.row] }
-            copyToClipboard(ids: ids)
+            copyTextToClipboard(ids: ids)
             setEditing(isEditing: false)
         }
     }
