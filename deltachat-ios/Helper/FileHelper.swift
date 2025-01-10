@@ -39,17 +39,17 @@ public class FileHelper {
         }
 
         // add file name to path
-        if let name = name {
-            if let suffix = suffix {
+        if let name {
+            if let suffix {
                 path = subdirectoryURL.appendingPathComponent("\(name).\(suffix)")
             } else {
                 path = subdirectoryURL.appendingPathComponent(name)
             }
-        } else if let suffix = suffix {
+        } else if let suffix {
             let timestamp = Double(Date().timeIntervalSince1970)
             path = subdirectoryURL.appendingPathComponent("\(timestamp).\(suffix)")
         }
-        guard let path = path else { return nil }
+        guard let path else { return nil }
 
         // write data
         do {
