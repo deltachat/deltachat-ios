@@ -62,7 +62,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
 
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(SelfProfileViewController.textDidChangeNotification(notification:)),
+            selector: #selector(textDidChangeNotification),
             name: UITextField.textDidChangeNotification,
             object: nameCell.textField
         )
