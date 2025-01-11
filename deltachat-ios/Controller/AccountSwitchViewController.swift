@@ -128,6 +128,19 @@ class AccountSwitchViewController: UITableViewController {
     }
 
     func setProfileTag(at indexPath: IndexPath) {
+        let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
+
+        let alert = UIAlertController(title: String.localized("profile_tag"), message: String.localized("profile_tag_explain"), preferredStyle: .alert)
+        alert.addTextField { textfield in
+            textfield.text = dcContext.getConfig("private_tag")
+            textfield.placeholder = String.localized("profile_tag_hint")
+        }
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { [weak self] _ in
+            guard let self, let textfield = alert.textFields?.first else { return }
+            dcContext.setConfig("private_tag", textfield.text)
+        })
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true)
     }
 
     func selectAccount(previousAccountId: Int, accountId: Int, cell: UITableViewCell) {
