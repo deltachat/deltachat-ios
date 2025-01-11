@@ -109,7 +109,7 @@ class AccountSwitchViewController: UITableViewController {
         }
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { [weak self] _ in
             guard let self, let textfield = alert.textFields?.first else { return }
-            dcContext.setConfig("private_tag", textfield.text)
+            dcContext.setConfig("private_tag", textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines))
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true)
