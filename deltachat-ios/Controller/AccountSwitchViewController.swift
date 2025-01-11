@@ -13,10 +13,7 @@ class AccountSwitchViewController: UITableViewController {
     }()
 
     private lazy var doneButton: UIBarButtonItem = {
-        let btn = UIBarButtonItem(barButtonSystemItem: .done,
-                                  target: self,
-                                  action: #selector(doneAction))
-        return btn
+        return UIBarButtonItem(title: String.localized("done"), style: .plain, target: self, action: #selector(doneAction))
     }()
 
     private lazy var addAccountCell: ActionCell = {
