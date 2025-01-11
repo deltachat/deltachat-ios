@@ -79,6 +79,9 @@ class AccountSwitchViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard indexPath.section == accountSection else { return nil }
+        let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
+        let muteTitle = dcContext.isMuted() ? "menu_unmute" : "menu_mute"
+        let muteImage = dcContext.isMuted() ? "speaker.wave.2" : "speaker.slash"
 
         return UIContextMenuConfiguration(
             identifier: nil,
@@ -86,6 +89,7 @@ class AccountSwitchViewController: UITableViewController {
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
                 let children: [UIMenuElement] = [
+                    UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, indexPath: indexPath, action: { self.toggleMute(at: $0) }),
                     UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", indexPath: indexPath, action: { self.setProfileTag(at: $0) }),
                     UIMenu(
                         options: [.displayInline],
@@ -97,6 +101,12 @@ class AccountSwitchViewController: UITableViewController {
                 return UIMenu(children: children)
             }
         )
+    }
+
+    func toggleMute(at indexPath: IndexPath) {
+        let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
+        dcContext.setMuted(!dcContext.isMuted())
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
 
     func setProfileTag(at indexPath: IndexPath) {
