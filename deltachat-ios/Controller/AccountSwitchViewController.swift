@@ -243,13 +243,6 @@ class AccountCell: UITableViewCell {
     private var selectedAccount: Int?
     private var accountId: Int?
 
-    private lazy var stateIndicator: UIImageView = {
-        let view: UIImageView = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
-
     private lazy var mutedIndicator: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -291,7 +284,6 @@ class AccountCell: UITableViewCell {
         contentView.addSubview(accountAvatar)
         contentView.addSubview(mutedIndicator)
         contentView.addSubview(accountName)
-        contentView.addSubview(stateIndicator)
         let margins = contentView.layoutMarginsGuide
         contentView.addConstraints([
             accountAvatar.constraintCenterYTo(contentView),
@@ -302,13 +294,7 @@ class AccountCell: UITableViewCell {
             accountName.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
             accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
             accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
-            stateIndicator.constraintCenterYTo(contentView),
-            stateIndicator.constraintToTrailingOf(accountName),
-            stateIndicator.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 0),
-            stateIndicator.constraintHeightTo(24),
-            stateIndicator.constraintWidthTo(24)
         ])
-        stateIndicator.isHidden = true
     }
 
     func updateCell(selectedAccount: Int, dcContext: DcContext) {
@@ -336,14 +322,7 @@ class AccountCell: UITableViewCell {
             accountName.accessibilityLabel = title
         }
 
-        if selectedAccount == accountId {
-            stateIndicator.image = UIImage(systemName: "checkmark")
-            stateIndicator.tintColor = .systemBlue
-            stateIndicator.isHidden = false
-        } else {
-            stateIndicator.image = nil
-            stateIndicator.isHidden = true
-        }
+        accessoryType = selectedAccount == accountId ? .checkmark : .none
     }
 
     override func prepareForReuse() {
@@ -351,6 +330,5 @@ class AccountCell: UITableViewCell {
         accountAvatar.reset()
         accountName.text = nil
         accountId = -1
-        stateIndicator.image = nil
     }
 }
