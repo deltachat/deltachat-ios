@@ -107,8 +107,8 @@ class AccountSwitchViewController: UITableViewController {
             textfield.text = dcContext.getConfig("private_tag")
             textfield.placeholder = String.localized("profile_tag_hint")
         }
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { [weak self] _ in
-            guard let self, let textfield = alert.textFields?.first else { return }
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { _ in
+            guard let textfield = alert.textFields?.first else { return }
             dcContext.setConfig("private_tag", textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines))
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
@@ -236,7 +236,6 @@ class AccountCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
-        label.textColor = DcColors.defaultTextColor
         return label
     }()
 
