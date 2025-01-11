@@ -287,7 +287,7 @@ class AccountCell: UITableViewCell {
             labelStackView.constraintAlignTopToAnchor(margins.topAnchor),
             labelStackView.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
             labelStackView.constraintAlignBottomToAnchor(margins.bottomAnchor),
-            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
+            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultHigh),
         ])
     }
 
