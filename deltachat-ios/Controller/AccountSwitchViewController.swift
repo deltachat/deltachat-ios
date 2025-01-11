@@ -77,32 +77,6 @@ class AccountSwitchViewController: UITableViewController {
         return addAccountCell
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == addSection {
-            let guide = self.view.safeAreaLayoutGuide
-            let controllerHeight = guide.layoutFrame.size.height
-            let contentHeight = CGFloat(accountIds.count + 1) * AccountCell.cellHeight + (view.safeAreaInsets.vertical / 2)
-            let diff = controllerHeight - contentHeight
-            if diff > 12 {
-                return diff
-            }
-            return 12
-        }
-        return CGFloat.leastNormalMagnitude
-    }
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.leastNormalMagnitude
-    }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return  UIView()
-    }
-
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return  UIView()
-    }
-
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard indexPath.section == accountSection else { return nil }
 
