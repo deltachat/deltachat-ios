@@ -45,7 +45,6 @@ class AccountSwitchViewController: UITableViewController {
         title = String.localized("switch_account")
         tableView.register(AccountCell.self, forCellReuseIdentifier: AccountCell.reuseIdentifier)
         tableView.rowHeight = AccountCell.cellHeight
-        tableView.separatorStyle = .singleLine
         tableView.delegate = self
     }
 
