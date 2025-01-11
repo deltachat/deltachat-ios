@@ -1269,6 +1269,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if canShare() {
             alert.addAction(UIAlertAction(title: String.localized("menu_share"), style: .default, handler: onShareActionPressed(_:)))
         }
+        if canInfo() {
+            alert.addAction(UIAlertAction(title: String.localized("info"), style: .default, handler: onInfoActionPressed(_:)))
+        }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
@@ -1288,6 +1291,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: self.view)
                 setEditing(isEditing: false)
             }
+        }
+    }
+
+    private func onInfoActionPressed(_ action: UIAlertAction) {
+        if let rows = tableView.indexPathsForSelectedRows, let firstRow = rows.first {
+            info(at: firstRow)
         }
     }
 
@@ -1970,7 +1979,6 @@ extension ChatViewController {
                 }
 
                 children.append(contentsOf: [
-                    UIAction.menuAction(localizationKey: "info", systemImageName: "info", indexPath: indexPath, action: info),
                     UIMenu(options: [.displayInline], children: [
                         UIAction.menuAction(localizationKey: "menu_more_options", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore),
                     ])
@@ -2144,8 +2152,12 @@ extension ChatViewController {
         return false
     }
 
+    private func canInfo() -> Bool {
+        return tableView.indexPathsForSelectedRows?.count == 1
+    }
+
     private func evaluateMoreButton() {
-        editingBar.moreButton.isEnabled = canShare() || canResend()
+        editingBar.moreButton.isEnabled = canShare() || canResend() || canInfo()
     }
 
     func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
