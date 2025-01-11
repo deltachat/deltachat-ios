@@ -239,6 +239,22 @@ class AccountCell: UITableViewCell {
         return label
     }()
 
+    private lazy var tagLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        return label
+    }()
+
+    lazy var labelStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [accountName, tagLabel])
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .leading
+        stackView.spacing = 4
+        return stackView
+    }()
+
     private lazy var backgroundContainer: BackgroundContainer = {
         let container = BackgroundContainer()
         container.image = UIImage(color: DcColors.accountSwitchBackgroundColor)
@@ -260,17 +276,17 @@ class AccountCell: UITableViewCell {
     private func setupSubviews() {
         contentView.addSubview(accountAvatar)
         contentView.addSubview(mutedIndicator)
-        contentView.addSubview(accountName)
+        contentView.addSubview(labelStackView)
         let margins = contentView.layoutMarginsGuide
         contentView.addConstraints([
             accountAvatar.constraintCenterYTo(contentView),
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
             mutedIndicator.constraintCenterYTo(contentView),
             mutedIndicator.constraintToTrailingOf(accountAvatar, paddingLeading: 12),
-            accountName.constraintAlignTopToAnchor(margins.topAnchor),
-            accountName.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
-            accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
-            accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
+            labelStackView.constraintAlignTopToAnchor(margins.topAnchor),
+            labelStackView.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
+            labelStackView.constraintAlignBottomToAnchor(margins.bottomAnchor),
+            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
         ])
     }
 
@@ -297,6 +313,13 @@ class AccountCell: UITableViewCell {
             accountName.accessibilityLabel = "\(title): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
         } else {
             accountName.accessibilityLabel = title
+        }
+
+        if let label = dcContext.getConfig("private_tag") {
+            tagLabel.text = label
+            tagLabel.isHidden = false
+        } else {
+            tagLabel.isHidden = true
         }
 
         accessoryType = selectedAccount == accountId ? .checkmark : .none
