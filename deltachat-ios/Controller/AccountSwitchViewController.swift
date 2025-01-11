@@ -77,6 +77,14 @@ class AccountSwitchViewController: UITableViewController {
         return addAccountCell
     }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return  UIView()
+    }
+
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard indexPath.section == accountSection else { return nil }
         let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
