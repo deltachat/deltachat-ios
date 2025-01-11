@@ -2022,7 +2022,14 @@ extension ChatViewController {
         let index = msgIds.firstIndex(of: message.id) ?? 0
         let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds: msgIds, index: index))
         previewController.delegate = self
-        present(previewController, animated: true)
+        if #available(iOS 18, *) {
+            // Pushing instead of presenting on iOS 18 makes sure it shows navigation
+            // and toolbar by default. On iOS 18 this still enables the swipe down to dismiss
+            // gesture and it still animates using previewController(_:transitionViewFor:)
+            navigationController?.pushViewController(previewController, animated: true)
+        } else {
+            present(previewController, animated: true)
+        }
     }
 
     private func didTapAsm(msg: DcMsg, orgText: String) {
