@@ -126,6 +126,35 @@ class AccountSwitchViewController: UITableViewController {
         return  UIView()
     }
 
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard indexPath.section == accountSection else { return nil }
+
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { [weak self] _ in
+                guard let self else { return nil }
+                let children: [UIMenuElement] = [
+                    UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", indexPath: indexPath, action: { self.setProfileTag(at: $0) }),
+                    UIMenu(
+                        options: [.displayInline],
+                        children: [
+                            UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteAccount(at: $0) })
+                        ]
+                    )
+                ]
+                return UIMenu(children: children)
+            }
+        )
+    }
+
+    func setProfileTag(at indexPath: IndexPath) {
+    }
+
+    func deleteAccount(at indexPath: IndexPath) {
+        deleteAccount(accountId: accountIds[indexPath.row])
+    }
+
     func selectAccount(previousAccountId: Int, accountId: Int, cell: UITableViewCell) {
         if previousAccountId == accountId {
             dismiss(animated: true)

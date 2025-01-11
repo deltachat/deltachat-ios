@@ -1914,7 +1914,6 @@ extension ChatViewController {
         return nil
     }
 
-    // context menu for iOS 13+
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
