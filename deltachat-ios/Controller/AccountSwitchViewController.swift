@@ -7,24 +7,9 @@ class AccountSwitchViewController: UITableViewController {
     private let dcAccounts: DcAccounts
     private let accountSection = 0
     private let addSection = 1
-    private var showAccountDeletion: Bool = false
 
     private lazy var accountIds: [Int] = {
         return dcAccounts.getAll()
-    }()
-
-    private lazy var editButton: UIBarButtonItem = {
-        let btn = UIBarButtonItem(barButtonSystemItem: .edit,
-                                  target: self,
-                                  action: #selector(editAction))
-        return btn
-    }()
-
-    private lazy var cancelEditButton: UIBarButtonItem = {
-        let btn = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                  target: self,
-                                  action: #selector(cancelEditAction))
-        return btn
     }()
 
     private lazy var doneButton: UIBarButtonItem = {
@@ -43,7 +28,6 @@ class AccountSwitchViewController: UITableViewController {
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
-        showAccountDeletion = false
         super.init(style: .insetGrouped)
         setupSubviews()
     }
@@ -54,7 +38,6 @@ class AccountSwitchViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.setLeftBarButton(editButton, animated: false)
         navigationItem.setRightBarButton(doneButton, animated: false)
     }
 
@@ -93,7 +76,6 @@ class AccountSwitchViewController: UITableViewController {
 
             let selectedAccountId = dcAccounts.getSelected().id
             cell.updateCell(selectedAccount: selectedAccountId,
-                            showAccountDeletion: showAccountDeletion,
                             dcContext: dcAccounts.get(id: accountIds[indexPath.row]))
             return cell
         }
@@ -151,10 +133,6 @@ class AccountSwitchViewController: UITableViewController {
     func setProfileTag(at indexPath: IndexPath) {
     }
 
-    func deleteAccount(at indexPath: IndexPath) {
-        deleteAccount(accountId: accountIds[indexPath.row])
-    }
-
     func selectAccount(previousAccountId: Int, accountId: Int, cell: UITableViewCell) {
         if previousAccountId == accountId {
             dismiss(animated: true)
@@ -180,8 +158,9 @@ class AccountSwitchViewController: UITableViewController {
         }
     }
 
-    func deleteAccount(accountId: Int) {
+    func deleteAccount(at indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let accountId = accountIds[indexPath.row]
 
         let prefs = UserDefaults.standard
         let confirm1 = UIAlertController(title: String.localized("delete_account_ask"), message: nil, preferredStyle: .safeActionSheet)
@@ -227,32 +206,12 @@ class AccountSwitchViewController: UITableViewController {
         switch indexPath.section {
         case accountSection:
             let accountId = accountIds[indexPath.row]
-            if showAccountDeletion {
-                deleteAccount(accountId: accountId)
-            } else {
-                selectAccount(previousAccountId: selectedAccountId, accountId: accountId, cell: cell)
-            }
+            selectAccount(previousAccountId: selectedAccountId, accountId: accountId, cell: cell)
         case addSection:
             addAccount(previousAccountId: selectedAccountId)
         default:
             safe_fatalError("no such tableView section expected")
         }
-    }
-
-    @objc private func editAction() {
-        title = String.localized("delete_account")
-        navigationItem.setLeftBarButton(nil, animated: true)
-        navigationItem.setRightBarButton(cancelEditButton, animated: true)
-        showAccountDeletion = true
-        tableView.reloadData()
-    }
-
-    @objc private func cancelEditAction() {
-        title = String.localized("switch_account")
-        navigationItem.setLeftBarButton(editButton, animated: false)
-        navigationItem.setRightBarButton(doneButton, animated: false)
-        showAccountDeletion = false
-        tableView.reloadData()
     }
 
     @objc private func doneAction() {
@@ -352,7 +311,7 @@ class AccountCell: UITableViewCell {
         stateIndicator.isHidden = true
     }
 
-    func updateCell(selectedAccount: Int, showAccountDeletion: Bool, dcContext: DcContext) {
+    func updateCell(selectedAccount: Int, dcContext: DcContext) {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
@@ -377,31 +336,14 @@ class AccountCell: UITableViewCell {
             accountName.accessibilityLabel = title
         }
 
-        if showAccountDeletion {
-            showDeleteIndicator()
+        if selectedAccount == accountId {
+            stateIndicator.image = UIImage(systemName: "checkmark")
+            stateIndicator.tintColor = .systemBlue
+            stateIndicator.isHidden = false
         } else {
-            if selectedAccount == accountId {
-                showSelectedIndicator()
-            } else {
-                stateIndicator.image = nil
-                stateIndicator.isHidden = true
-            }
+            stateIndicator.image = nil
+            stateIndicator.isHidden = true
         }
-    }
-
-    private func showDeleteIndicator() {
-        stateIndicator.image = UIImage(systemName: "trash")
-        stateIndicator.tintColor = .systemRed
-        stateIndicator.accessibilityLabel = String.localized("delete")
-        stateIndicator.isHidden = false
-
-    }
-
-    private func showSelectedIndicator() {
-        stateIndicator.image = UIImage(systemName: "checkmark")
-        stateIndicator.tintColor = .systemBlue
-        stateIndicator.accessibilityLabel = ""
-        stateIndicator.isHidden = false
     }
 
     override func prepareForReuse() {
