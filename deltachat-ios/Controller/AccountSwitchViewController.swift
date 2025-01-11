@@ -107,9 +107,10 @@ class AccountSwitchViewController: UITableViewController {
             textfield.text = dcContext.getConfig("private_tag")
             textfield.placeholder = String.localized("profile_tag_hint")
         }
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { _ in
-            guard let textfield = alert.textFields?.first else { return }
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { [weak self] _ in
+            guard let self, let textfield = alert.textFields?.first else { return }
             dcContext.setConfig("private_tag", textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines))
+            tableView.reloadData()
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true)
