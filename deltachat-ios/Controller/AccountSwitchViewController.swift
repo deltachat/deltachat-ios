@@ -239,10 +239,6 @@ class AccountCell: UITableViewCell {
         return 54
     }
 
-    private var isLargeText: Bool {
-        return UIFont.preferredFont(forTextStyle: .body).pointSize > 36
-    }
-
     private lazy var accountAvatar: InitialsBadge = {
         let avatar = InitialsBadge(size: 37)
         avatar.isAccessibilityElement = false
