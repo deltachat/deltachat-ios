@@ -12,8 +12,8 @@ class AccountSwitchViewController: UITableViewController {
         return dcAccounts.getAll()
     }()
 
-    private lazy var doneButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: String.localized("done"), style: .plain, target: self, action: #selector(doneAction))
+    private lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
     }()
 
     private lazy var addAccountCell: ActionCell = {
@@ -35,7 +35,7 @@ class AccountSwitchViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.setRightBarButton(doneButton, animated: false)
+        navigationItem.setLeftBarButton(cancelButton, animated: false)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -224,7 +224,7 @@ class AccountSwitchViewController: UITableViewController {
         }
     }
 
-    @objc private func doneAction() {
+    @objc private func cancelAction() {
         dismiss(animated: true)
     }
 }
