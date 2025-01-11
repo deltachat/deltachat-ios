@@ -2641,9 +2641,8 @@ extension ChatViewController: QLPreviewControllerDelegate {
                 if cell is ImageTextCell { // hide cell while transitioning
                     cell.layer.opacity = 0
                 }
-                snapshot.layer.opacity = 0
                 snapshot.clipsToBounds = true
-                snapshot.frame = cell.messageBackgroundContainer.globalFrame
+                snapshot.frame = cell.convert(cell.messageBackgroundContainer.frame, to: tableView.superview)
                 tableView.superview?.addSubview(snapshot)
                 previewControllerTargetSnapshot = snapshot
                 previewControllerTargetHiddenOriginal = cell
