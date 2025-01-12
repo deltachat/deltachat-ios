@@ -8,6 +8,7 @@
 - "Message Info" is moved to messages' context menu at "More Options / ..." (#2510)
 - Allow cancelling profile edits, force a name when editing profile (#2506)
 - Fix scrolling issue when cancelling a screen (#2504)
+- Fix layout of 'No contacts found' message (#2517)
 
 
 ## v1.50.4
