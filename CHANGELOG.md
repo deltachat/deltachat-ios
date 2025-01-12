@@ -6,6 +6,8 @@
 - Paste .webp images via drag'n'drop (#2507)
 - Add "Copy Image" to messages' conext menu
 - "Message Info" is moved to messages' context menu at "More Options / ..." (#2510)
+- To easier differ between multiple profiles, set a "Private Tag" (long tap profile switcher) (#2511)
+- In profile switcher's context menu, you have quick access to "Mute Notifications" for a profile (#2511)
 - Allow cancelling profile edits, force a name when editing profile (#2506)
 - Fix scrolling issue when cancelling a screen (#2504)
 - Fix layout of 'No contacts found' message (#2517)
