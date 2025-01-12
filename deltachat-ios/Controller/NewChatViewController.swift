@@ -33,6 +33,7 @@ class NewChatViewController: UITableViewController {
         label.isHidden = true
         label.backgroundColor = nil
         label.textColor = DcColors.defaultTextColor
+        label.paddingBottom = 64
         return label
     }()
 
