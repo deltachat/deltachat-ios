@@ -11,6 +11,7 @@
 
 
 ## v1.50.4
+2025-01
 
 - Access your favorite apps and chats from the Homescreen using our shiny new widget (requires iOS 17) (#2406, #2449)
 - Add and remove apps and chats to that widget (#2426, #2449)
@@ -39,6 +40,7 @@
 
 
 ## v1.50.3
+2024-12
 
 - Don't change order of proxies when selecting a new one (#2414)
 - Add info messages about implicit membership changes if group member list is recreate
