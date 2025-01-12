@@ -404,8 +404,6 @@
 "pref_app_access" = "アプリのアクセス";
 "pref_chats" = "チャット";
 "pref_in_chat_sounds" = "着信音";
-// deprecated
-"pref_message_text_size" = "文字の大きさ";
 "pref_view_log" = "ログの表示";
 "pref_saved_log" = "ログはダウンロードフォルダに保存されました。";
 "pref_save_log_failed" = "ログの保存に失敗しました";
@@ -565,6 +563,7 @@
 "contact_not_verified" = "%1$@を確認できません。";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "設定が%1$@に変わりました。";
+// notifications
 "notify_reply_button" = "返信";
 "notify_new_message" = "新規メッセージ";
 "notify_priority_high" = "高";

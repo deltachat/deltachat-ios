@@ -2,8 +2,6 @@
 "app_name" = "دلتا چت";
 "ok" = "خا";
 "cancel" = "رڌ";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "یا";
 "clear_search" = "روفتن پیتینیڌن";
 "yes" = "هری";
 "no" = "ن";
@@ -268,8 +266,6 @@
 "pref_notifications_show" = "نشۉ داڌن";
 "pref_language" = "زۉݩ";
 "pref_chats" = "گوفت ۉ لوفتا";
-// deprecated
-"pref_message_text_size" = "هندا هؽلا پیوم";
 "pref_log_header" = "گوزارش";
 "pref_background_btn_gallery" = "پسند ز شؽوات مال";
 "pref_show_emails_all" = "پوی";
@@ -306,6 +302,7 @@
 "contact_verified" = "%1$@ تاییڌ وابی.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "تاییڌ وابیڌه و دس %1$@";
+// notifications
 "notify_reply_button" = "ولوم";
 "notify_new_message" = "پیوم نۊ";
 "notify_name_and_message" = "نوم وو پیوم";

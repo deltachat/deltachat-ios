@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "Gerai";
 "cancel" = "Atsisakyti";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "arba";
 "clear_search" = "Išvalyti paiešką";
 "yes" = "Taip";
 "no" = "Ne";
@@ -338,10 +336,6 @@
 "multidevice_open_settings_on_other_device" = "Pirmajame įrenginyje pereikite į „Nustatymai / Pridėti antrąjį įrenginį“ ir nuskenuokite ten rodomą kodą";
 // Shown beside progress bar, stay short
 "preparing_account" = "Ruošiama paskyra…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Laukiama gavėjo…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Gavėjas prisijungęs…";
 "troubleshooting" = "Nesklandumų šalinimas";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -486,8 +480,6 @@
 "pref_app_access" = "Prieiga prie programėlės";
 "pref_chats" = "Pokalbiai";
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
-// deprecated
-"pref_message_text_size" = "Žinučių šrifto dydis";
 "pref_view_log" = "Rodyti žurnalą";
 "pref_saved_log" = "Žurnalas įrašytas į „Atsiuntimų“ aplanką";
 "pref_save_log_failed" = "Nepavyko įrašyti žurnalo";
@@ -678,8 +670,6 @@
 "mailto_dialog_header_select_chat" = "Pasirinkite pokalbį, į kurį siųsti žinutę";
 "mailto_link_could_not_be_decoded" = "nepavyko dekoduoti mailto nuorodos: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Atmesti";
 "notify_reply_button" = "Atsakyti";
 "notify_new_message" = "Nauja žinutė";
 "notify_background_connection_enabled" = "Foninis ryšys įjungtas";

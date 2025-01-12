@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancelar";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "ou";
 "clear_search" = "Limpar busca";
 // a noun, used on a button, short for "show link"
 "link" = "Link";
@@ -406,10 +404,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Conta transferida para seu outro dispositivo.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparando a conta...";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Esperando pelo receptor...";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Receptor conectado...";
 // Shown beside progress bar, stay short
 "transferring" = "Transferindo...";
 "troubleshooting" = "Solução de problemas";
@@ -546,8 +540,6 @@
 "pref_app_access" = "Acesso do aplicativo";
 "pref_chats" = "Conversas";
 "pref_in_chat_sounds" = "Sons da conversa";
-// deprecated
-"pref_message_text_size" = "Tamanho da fonte de mensagens";
 "pref_view_log" = "Ver relatório";
 "pref_saved_log" = "Registro salvo na pasta de \"Downloads\"";
 "pref_save_log_failed" = "Falha ao salvar registro";
@@ -785,8 +777,6 @@
 "confirm_replace_draft" = "%1$@ já tem um rascunho de mensagem, deseja substituí-lo?";
 "mailto_link_could_not_be_decoded" = "link mailto não pôde ser decodificado: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Descartar";
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Nova mensagem";
 "notify_background_connection_enabled" = "Conexão de fundo habilitada";

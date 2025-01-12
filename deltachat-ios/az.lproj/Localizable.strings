@@ -275,8 +275,6 @@
 "pref_app_access" = "Daxil oldu";
 "pref_chats" = "Çatlar";
 "pref_in_chat_sounds" = "Çatda olan səslər";
-// deprecated
-"pref_message_text_size" = "Mətnin ölçüsü";
 "pref_view_log" = "Log-a bax";
 "pref_saved_log" = "Loqi Yükləmələr qovluğuna saxlanıldı";
 "pref_save_log_failed" = "Loqu saxlaya bilmədi";
@@ -369,6 +367,7 @@
 "contact_not_verified" = "%1$@Doğrula bilmir";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@üçün quraşdırma dəyişdirildi";
+// notifications
 "notify_reply_button" = "Cavab ver";
 "notify_new_message" = "Yeni mesaj";
 "notify_background_connection_enabled" = "Arxa fon əlaqəsi aktivdir";

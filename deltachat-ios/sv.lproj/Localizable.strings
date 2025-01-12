@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Avbryt";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "eller";
 "clear_search" = "Rensa sök";
 "yes" = "Ja";
 "no" = "Nej";
@@ -431,10 +429,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profilen överförd till din andra enhet.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Förbereder profil...";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Väntar på mottagare...";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Mottagare ansluten...";
 // Shown beside progress bar, stay short
 "transferring" = "Överför...";
 "troubleshooting" = "Felsökning";
@@ -604,8 +598,6 @@
 "pref_app_access" = "Programåtkomst";
 "pref_chats" = "Chattar";
 "pref_in_chat_sounds" = "Ljud i konversationer";
-// deprecated
-"pref_message_text_size" = "Teckenstorlek för meddelanden";
 "pref_view_log" = "Visa logg";
 "pref_saved_log" = "Sparade loggen i mappen \"Nedladdningar\"";
 "pref_save_log_failed" = "Kunde inte spara loggen";
@@ -880,8 +872,6 @@
 "confirm_replace_draft" = "%1$@ redan har ett utkast till meddelande, vill du ersätta det?";
 "mailto_link_could_not_be_decoded" = "mailto-länken kunde inte avkodas: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Avvisa";
 "notify_reply_button" = "Svara";
 "notify_new_message" = "Nytt meddelande";
 "notify_background_connection_enabled" = "Bakgrundsanslutning aktiverad";

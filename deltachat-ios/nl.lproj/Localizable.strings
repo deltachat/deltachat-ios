@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "Oké";
 "cancel" = "Annuleren";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "of";
 "clear_search" = "Zoekopdracht wissen";
 // a noun, used on a button, short for "show link"
 "link" = "Link";
@@ -446,10 +444,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Het account is overgezet naar je tweede apparaat.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Bezig met voorbereiden…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Bezig met wachten op ontvanger…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "De ontvanger is verbonden…";
 // Shown beside progress bar, stay short
 "transferring" = "Bezig met overdragen…";
 "troubleshooting" = "Probleemoplossing";
@@ -640,8 +634,6 @@
 "pref_app_access" = "Apptoegang";
 "pref_chats" = "Gesprekken";
 "pref_in_chat_sounds" = "Gespreksgeluiden";
-// deprecated
-"pref_message_text_size" = "Tekstgrootte van berichten";
 "pref_view_log" = "Logboek bekijken";
 "pref_saved_log" = "Het logboek is opgeslagen in de downloadmap";
 "pref_save_log_failed" = "Kan logboek niet opslaan";
@@ -916,8 +908,6 @@
 "confirm_replace_draft" = "%1$@ bevat al een concept. Wil je dit vervangen?";
 "mailto_link_could_not_be_decoded" = "De mailto-link kan niet worden ontcijferd: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Verwerpen";
 "notify_reply_button" = "Beantwoorden";
 "notify_new_message" = "Nieuw bericht";
 "notify_background_connection_enabled" = "Achtergrondverbinding ingeschakeld";
@@ -1038,8 +1028,20 @@
 "notifications_avg_minutes" = "Gemiddeld elke %1$d minuten";
 "notifications_avg_hours" = "Gemiddeld elke %1$d uur";
 "last_check_at" = "Gecontroleerd om %1$@";
+"system_settings" = "Systeeminstellingen";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Pas het type, emblemen, de voorvertoning en meer aan";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Privéapps die je verstuurt of ontvangt worden hier getoond. Bij de bestanden zie je de zojuist gedownloade apps.";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Opdrachten";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Gebruik Delta Chats ‘Tonen op widget’ om items toe te voegen";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Niet tonen op widget";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Tonen op widget";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Onmiddellijke bezorging";

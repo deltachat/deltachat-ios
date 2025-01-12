@@ -180,8 +180,6 @@
 "pref_app_access" = "பயன்பாடு அணுகல்";
 "pref_chats" = "அரட்டைகள்";
 "pref_in_chat_sounds" = "௨ள்ளார்ந்த செயலி அறிவிப்புகள்";
-// deprecated
-"pref_message_text_size" = "சேதிகளின் எழுத்துரு அளவு";
 "pref_other" = "மற்றவை";
 "pref_backup" = "காப்பு நகல்";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
@@ -189,6 +187,7 @@
 "autocrypt_continue_transfer_please_enter_code" = "மற்ற சாதனத்தில் காணப்படும் அமைப்பு குறியீடை தயவு செய்து உள்ளீடவும்";
 "autocrypt_continue_transfer_retry" = "மீண்டும் முயற்சி செய்யவும்";
 "qrscan_fingerprint_label" = "கைரேகைகள்";
+// notifications
 "notify_reply_button" = "மறுமொழி";
 "notify_new_message" = "புதிய செய்தி";
 "notify_priority_high" = "உயர்";

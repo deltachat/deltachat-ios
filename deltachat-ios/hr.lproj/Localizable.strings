@@ -173,8 +173,6 @@
 "pref_app_access" = "Pristup aplikaciji";
 "pref_chats" = "Razgovori";
 "pref_in_chat_sounds" = "Zvuk unutar razgovora";
-// deprecated
-"pref_message_text_size" = "Veličina fonta poruke";
 "pref_other" = "Ostalo";
 "pref_backup" = "Sigurnosna kopija";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
@@ -186,6 +184,7 @@
 // qr code stuff
 "qr_code" = "QR kod";
 "qrscan_fingerprint_label" = "Otisak prsta";
+// notifications
 "notify_reply_button" = "Odgovori";
 "notify_new_message" = "Nova poruka";
 "notify_priority_high" = "Visoko";

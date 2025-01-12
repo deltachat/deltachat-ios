@@ -2,8 +2,6 @@
 "app_name" = "德爾塔聊";
 "ok" = "確定";
 "cancel" = "取消";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "或";
 "clear_search" = "清除搜尋";
 // a noun, used on a button, short for "show link"
 "link" = "連結";
@@ -444,10 +442,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️已將賬戶傳輸到您的第二台裝置。";
 // Shown beside progress bar, stay short
 "preparing_account" = "準備個人檔案中…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "等待接收者...";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "接收器已連線...";
 // Shown beside progress bar, stay short
 "transferring" = "轉移中…";
 "troubleshooting" = "故障排除";
@@ -636,8 +630,6 @@
 "pref_app_access" = "App 存取";
 "pref_chats" = "對話";
 "pref_in_chat_sounds" = "對話內的音效";
-// deprecated
-"pref_message_text_size" = "訊息的字型大小";
 "pref_view_log" = "觀看系統紀錄";
 "pref_saved_log" = "已將日誌保存到 「下載」 資料夾";
 "pref_save_log_failed" = "保存日誌失敗";
@@ -912,8 +904,6 @@
 "confirm_replace_draft" = "%1$@已有草稿消息，是否要替換它？";
 "mailto_link_could_not_be_decoded" = "mailto 連結無法解碼：%1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "忽視";
 "notify_reply_button" = "回覆";
 "notify_new_message" = "新訊息";
 "notify_background_connection_enabled" = "已啟用後台連接";

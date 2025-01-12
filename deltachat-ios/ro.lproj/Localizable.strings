@@ -390,10 +390,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Contul a fost transferat pe dispozitivul secundar.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Pregătirea contului...";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "În așteptare pentru receptor...";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Receptorul conectat...";
 // Shown beside progress bar, stay short
 "transferring" = "Transferul...";
 "troubleshooting" = "Depanare";

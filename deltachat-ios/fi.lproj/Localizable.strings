@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Peruuta";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "tai";
 "clear_search" = "Tyhjennä haku";
 "yes" = "Kyllä";
 "no" = "Ei";
@@ -425,10 +423,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profiili siirretty toiselle laitteellesi.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Valmistellaan profiilia...";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Odotetaan vastaanottajaa...";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Vastaanottaja yhdistetty...";
 // Shown beside progress bar, stay short
 "transferring" = "Siirretään...";
 "troubleshooting" = "Vianetsintä";
@@ -598,8 +592,6 @@
 "pref_app_access" = "Sovelluksen pääsy";
 "pref_chats" = "Keskustelut";
 "pref_in_chat_sounds" = "Keskustelunaikaiset äänet";
-// deprecated
-"pref_message_text_size" = "Viestin fonttikoko";
 "pref_view_log" = "Näytä loki";
 "pref_saved_log" = "Tallenna loki \"Lataukset\" -kansioon";
 "pref_save_log_failed" = "Lokin tallennus epäonnistui";
@@ -871,8 +863,6 @@
 "confirm_replace_draft" = "Keskustelussa %1$@ on jo luonnos. Haluatko korvata sen?";
 "mailto_link_could_not_be_decoded" = "mailto-linkkiä ei voitu selvittää: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Hylkää";
 "notify_reply_button" = "Vastaa";
 "notify_new_message" = "Uusi viesti";
 "notify_background_connection_enabled" = "Yhteys käynnissä taustalla";

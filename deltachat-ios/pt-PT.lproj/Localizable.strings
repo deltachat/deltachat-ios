@@ -222,8 +222,6 @@
 "pref_app_access" = "Acesso à App";
 "pref_chats" = "chats";
 "pref_in_chat_sounds" = "Sons na chat";
-// deprecated
-"pref_message_text_size" = "Tamanho do texto das mensagens";
 "pref_view_log" = "Ver o log";
 "pref_other" = "Outro";
 "pref_backup" = "Backup";
@@ -307,6 +305,7 @@
 "contact_not_verified" = "Não é possível verificar %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuração alterada para %1$@";
+// notifications
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Mensagem nova";
 "notify_background_connection_enabled" = "Conexão em segundo plano ativada";

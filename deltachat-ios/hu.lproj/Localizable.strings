@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Mégse";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "vagy";
 "clear_search" = "Keresés kiürítése";
 // a noun, used on a button, short for "show link"
 "link" = "Hivatkozás";
@@ -446,10 +444,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ A profil átkerül az Ön második eszközére.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Profil készítése…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Várakozás a vevőeszközre…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Vevőeszköz kapcsolódott…";
 // Shown beside progress bar, stay short
 "transferring" = "Átvitel…";
 "troubleshooting" = "Hibaelhárítás";
@@ -640,8 +634,6 @@
 "pref_app_access" = "Alkalmazás-hozzáférés";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
-// deprecated
-"pref_message_text_size" = "Üzenetek betűmérete";
 "pref_view_log" = "Naplófájl megtekintése";
 "pref_saved_log" = "A naplófájl elmentve a „Letöltések” mappába";
 "pref_save_log_failed" = "Nem sikerült elmenteni a naplófájlt";
@@ -916,8 +908,6 @@
 "confirm_replace_draft" = "Már létezik egy piszkozat a következő szöveggel: %1$@, biztosan le akarja cserélni?";
 "mailto_link_could_not_be_decoded" = "Nem sikerült dekódolni a mailto-hivatkozást: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Elvetés";
 "notify_reply_button" = "Válasz";
 "notify_new_message" = "Új üzenet";
 "notify_background_connection_enabled" = "Háttérkapcsolat engedélyezve";

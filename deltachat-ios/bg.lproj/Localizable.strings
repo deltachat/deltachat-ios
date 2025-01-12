@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Отказ";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "или";
 "clear_search" = "Изчистване на търсенето";
 "yes" = "Да";
 "no" = "Не";
@@ -425,10 +423,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Акаунтът е прехвърлен на второто Ви устройство.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Акаунтът се подготвя...";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Изчаква се свързване от получателя...";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Получателят е свързан...";
 // Shown beside progress bar, stay short
 "transferring" = "Прехвърляне...";
 "troubleshooting" = "Отстраняване на проблеми";
@@ -598,8 +592,6 @@
 "pref_app_access" = "Достъп до приложението";
 "pref_chats" = "Чатове";
 "pref_in_chat_sounds" = "Звуци в чата";
-// deprecated
-"pref_message_text_size" = "Размер на шрифта на съобщението";
 "pref_view_log" = "Разглеждане на дневника";
 "pref_saved_log" = "Дневникът е записан в папката \"Свалени\"";
 "pref_save_log_failed" = "Неуспешен запис на дневника";
@@ -871,8 +863,6 @@
 "confirm_replace_draft" = "%1$@ вече има съобщение чернова, искате ли да го замените?";
 "mailto_link_could_not_be_decoded" = "Неуспешно декодиране на mailto връзка: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Затваряне";
 "notify_reply_button" = "Отговор";
 "notify_new_message" = "Ново съобщение";
 "notify_background_connection_enabled" = "Връзката във фонов режим е разрешена";

@@ -415,8 +415,6 @@
 "pref_app_access" = "Programadgang";
 "pref_chats" = "Samtaler";
 "pref_in_chat_sounds" = "In-chat-lyde";
-// deprecated
-"pref_message_text_size" = "Besked tekststørrelse";
 "pref_view_log" = "Visningslog";
 "pref_saved_log" = "Gem loggen til \"Downloads\" mappen";
 "pref_save_log_failed" = "Forsøg på at gemme loggen mislykkedes";
@@ -600,6 +598,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Ændret opsætning for %1$@";
 "copy_qr_data_success" = "Kopieret QR url til udklipsholder";
+// notifications
 "notify_reply_button" = "Svar";
 "notify_new_message" = "Ny besked";
 "notify_background_connection_enabled" = "Baggrundsforbindelse aktiveret";

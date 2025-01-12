@@ -502,8 +502,6 @@
 "pref_app_access" = "Acceso a app";
 "pref_chats" = "Conversas";
 "pref_in_chat_sounds" = "Sons na conversa";
-// deprecated
-"pref_message_text_size" = "Tamaño da letra na mensaxe";
 "pref_view_log" = "Ver rexistro";
 "pref_saved_log" = "Gardouse o rexistro no cartafol \"Descargas\"";
 "pref_save_log_failed" = "Non se puido gardar o rexistro";
@@ -708,8 +706,6 @@
 "confirm_replace_draft" = "%1$@ xa ten un borrador, queres susbstituílo?";
 "mailto_link_could_not_be_decoded" = "a ligazón mailto non se puido descodificar: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Desbotar";
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Nova mensaxe";
 "notify_background_connection_enabled" = "Conexión en segundo plano establecida";

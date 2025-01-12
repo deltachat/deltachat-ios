@@ -279,8 +279,6 @@
 "pref_app_access" = "Programtilgang";
 "pref_chats" = "Sludringer";
 "pref_in_chat_sounds" = "Merknader i programmet";
-// deprecated
-"pref_message_text_size" = "Skriftstørrelse i meldinger";
 "pref_view_log" = "Vis logg";
 "pref_log_header" = "Logg";
 "pref_other" = "Annet";
@@ -347,6 +345,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Skann dette for å bekrefte en kontakt med %1$@.";
 "contact_verified" = "%1$@ bekreftet.";
+// notifications
 "notify_reply_button" = "Svar";
 "notify_new_message" = "Ny meldin";
 "notify_priority_high" = "Høy";

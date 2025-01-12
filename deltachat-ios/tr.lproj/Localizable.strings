@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "Tamam";
 "cancel" = "İptal";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "ya da";
 "clear_search" = "Aramayı Temizle";
 // a noun, used on a button, short for "show link"
 "link" = "Bağlantı";
@@ -446,10 +444,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profil, ikinci aygıtınıza aktarıldı.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Profil hazırlanıyor…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Alıcı bekleniyor…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Alıcı bağlandı…";
 // Shown beside progress bar, stay short
 "transferring" = "Aktarılıyor…";
 "troubleshooting" = "Sorun Giderme";
@@ -640,8 +634,6 @@
 "pref_app_access" = "Uygulama Erişimi";
 "pref_chats" = "Sohbetler";
 "pref_in_chat_sounds" = "Sohbet İçi Sesler";
-// deprecated
-"pref_message_text_size" = "İleti Yazı Tipi Boyutu";
 "pref_view_log" = "Günlüğü Görüntüle";
 "pref_saved_log" = "Günlüğü \"İndirilenler\" klasörüne kaydet";
 "pref_save_log_failed" = "Günlüğü kaydetme başarısız";
@@ -916,8 +908,6 @@
 "confirm_replace_draft" = "%1$@ zaten bir taslak ileti; onu değiştirmek istiyor musunuz?";
 "mailto_link_could_not_be_decoded" = "mailto bağlantısının kodu çözülemedi: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Kapat";
 "notify_reply_button" = "Yanıtla";
 "notify_new_message" = "Yeni ileti";
 "notify_background_connection_enabled" = "Arka plan bağlantısı etkinleştirildi";
@@ -1038,8 +1028,20 @@
 "notifications_avg_minutes" = "Ortalama olarak her %1$d dakikada bir";
 "notifications_avg_hours" = "Ortalama olarak her %1$d saatte bir";
 "last_check_at" = "Denetleme %1$@";
+"system_settings" = "Sistem Ayarları";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Türü, rozetleri, önizlemeyi ve daha fazlasını düzenle";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Herhangi bir sohbette alınan ya da gönderilen uygulamalar burada görünecek. \"Dosyalar\", yalnızca indirilen uygulamaları gösterir.";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Kısayollar";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Öğeleri eklemek için Delta Chat\'in \"Widget\'a Ekle\" öğesini kullanın";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Widget\'tan Kaldır";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Widget\'a Ekle";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Anında Teslimat";

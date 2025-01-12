@@ -307,8 +307,6 @@
 "pref_app_access" = "Aplikazio sarbidea";
 "pref_chats" = "Txatak";
 "pref_in_chat_sounds" = "Txat bitarteko soinuak";
-// deprecated
-"pref_message_text_size" = "Mezuen letra tamaina";
 "pref_view_log" = "Ikusi egunkaria";
 "pref_saved_log" = "Egunkaria deskargen karpetan gorde da";
 "pref_save_log_failed" = "Huts egin du egunkaria gordetzean";
@@ -421,6 +419,7 @@
 "contact_not_verified" = "Ezin da %1$@ egiaztatu";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Aldatu %1$@(r)en ezarpena";
+// notifications
 "notify_reply_button" = "Erantzun";
 "notify_new_message" = "Mezu berria";
 "notify_background_connection_enabled" = "Bigarren planoko konexioa gaituta";

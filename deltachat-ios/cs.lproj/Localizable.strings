@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "Souhlas";
 "cancel" = "Zrušit";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "nebo";
 "clear_search" = "Vyčistit vyhledávání";
 "yes" = "Ano";
 "no" = "Ne";
@@ -463,8 +461,6 @@
 "pref_app_access" = "Přístup aplikace";
 "pref_chats" = "Chaty";
 "pref_in_chat_sounds" = "Zvuky v rámci chatu";
-// deprecated
-"pref_message_text_size" = "Velikost písma zprávy";
 "pref_view_log" = "Zobrazit záznam běhu";
 "pref_saved_log" = "Záznam běhu uložen do složky \"Downloads\"";
 "pref_save_log_failed" = "Uložení záznamu běhu selhalo";
@@ -654,6 +650,7 @@
 "contact_setup_changed" = "Změněné nastavení pro %1$@.";
 "copy_qr_data_success" = "URL z QR kódu zkopírováno do mezipaměti";
 "mailto_dialog_header_select_chat" = "Vyberte chat, kterému chcete zprávu odeslat ";
+// notifications
 "notify_reply_button" = "Odpověď";
 "notify_new_message" = "Nová zpráva";
 "notify_background_connection_enabled" = "Spojení na pozadí je zapnuto";
