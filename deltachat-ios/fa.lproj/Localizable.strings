@@ -2,8 +2,6 @@
 "app_name" = "دلتاچت";
 "ok" = "تأیید";
 "cancel" = "لغو";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "یا";
 "clear_search" = "پاک کردن جست‌وجو";
 // a noun, used on a button, short for "show link"
 "link" = "پیوند";
@@ -450,10 +448,6 @@ https://meet.jit.si/$ROOM
 "multidevice_transfer_done_devicemsg" = "ℹ️ حساب به دستگاه دوم شما منتقل شد.";
 // Shown beside progress bar, stay short
 "preparing_account" = "در حال آماده سازی حساب…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "در انتظار گیرنده…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "گیرنده متصل شد…";
 // Shown beside progress bar, stay short
 "transferring" = "در حال انتقال…";
 "troubleshooting" = "عیب‌یابی";
@@ -643,8 +637,6 @@ https://meet.jit.si/$ROOM
 "pref_app_access" = "دسترسی نرم‌افزار";
 "pref_chats" = "گپ‌ها";
 "pref_in_chat_sounds" = "صداهای درون‌گپی";
-// deprecated
-"pref_message_text_size" = "اندازه نوشته‌های پیام";
 "pref_view_log" = "نمایش گزارش";
 "pref_saved_log" = "گزارش را در پوشه\"دانلودها\" ذخیره کن ";
 "pref_save_log_failed" = "ذخیره گزارش ناموفق بود";
@@ -919,8 +911,6 @@ https://meet.jit.si/$ROOM
 "confirm_replace_draft" = "%1$@ هم‌اکنون هم یک پیام پیش‌نویس دارد؛ آیا می‌خواهید آن را جایگزین کنید؟";
 "mailto_link_could_not_be_decoded" = "امکان کدگشایی پیوند mailto وجود ندارد: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "صرف نظر";
 "notify_reply_button" = "پاسخ";
 "notify_new_message" = "پیام جدید";
 "notify_background_connection_enabled" = "اتصال‌ها پیش زمینه فعال شد";

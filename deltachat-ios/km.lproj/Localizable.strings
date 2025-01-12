@@ -461,8 +461,6 @@
 "pref_app_access" = "ចូលដំណើរការកម្មវិធី";
 "pref_chats" = "សន្ទនា";
 "pref_in_chat_sounds" = "សម្លេងនៅក្នុងសន្ទនា";
-// deprecated
-"pref_message_text_size" = "ទំហំអក្សរសារ";
 "pref_view_log" = "មើលកំណត់ហេតុ";
 "pref_saved_log" = "បានរក្សាទុក កំណត់ហេតុទៅថតឯកសារ \"ទាញយក\"";
 "pref_save_log_failed" = "បានបរាជ័យក្នុងការរក្សាទុកកំណត់ហេតុ";
@@ -673,6 +671,7 @@
 "copy_qr_data_success" = "បានចម្លង QR-url ទៅក្តារខ្ទាស់";
 "mailto_dialog_header_select_chat" = "ជ្រើសរើសការជជែក ដើម្បីផ្ញើសារទៅកាន់";
 "mailto_link_could_not_be_decoded" = "សំបុត្រទៅតំណភ្ជាប់ មិនអាចឌិកូដទេ: %1$@";
+// notifications
 "notify_reply_button" = "ឆ្លើយតប";
 "notify_new_message" = "សារថ្មី";
 "notify_background_connection_enabled" = "តំណភ្ជាប់ផ្ទៃខាងក្រោយបានបើក";

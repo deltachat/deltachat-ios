@@ -358,8 +358,6 @@
 "pref_app_access" = "ڕێگەپێدان";
 "pref_chats" = "وتووێژەکان";
 "pref_in_chat_sounds" = "دەنگەکانی نێو-وتووێژی";
-// deprecated
-"pref_message_text_size" = "قەبارەی فۆنتی پەیامەکان";
 "pref_other" = "کەسانی دی";
 "pref_backup" = "یەدەک";
 "pref_backup_explain" = "یەدەک گرتن لە وتووێژەکان و دانانی لەسەر بیرگەی دەرەکی";
@@ -460,6 +458,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "ڕێکخستن بۆ %1$@ گۆڕا.";
 "copy_qr_data_success" = "ناونیشانی وێبی QRەکە ڕوونووس کرا.";
+// notifications
 "notify_reply_button" = "وەڵام دانەوە";
 "notify_new_message" = "پەیامی نوێ";
 "notify_background_connection_enabled" = "پەیوەندی پشتخان چالاک کرا";

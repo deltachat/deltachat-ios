@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancel·la";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "o";
 "clear_search" = "Neteja la cerca";
 // a noun, used on a button, short for "show link"
 "link" = "Enllaç";
@@ -497,8 +495,6 @@
 "pref_app_access" = "Accés a l\'aplicació";
 "pref_chats" = "Xats";
 "pref_in_chat_sounds" = "Sons d\'entrada";
-// deprecated
-"pref_message_text_size" = "Mida de la font del missatge";
 "pref_view_log" = "Veure el registre";
 "pref_other" = "Altres";
 "pref_backup" = "Còpia de seguretat";
@@ -586,6 +582,7 @@
 "contact_not_verified" = "No es pot verificar%1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuració canviada per %1$@";
+// notifications
 "notify_reply_button" = "Respondre";
 "notify_new_message" = "Missatge nou";
 "notify_background_connection_enabled" = "Connexió habilitada en segon pla";

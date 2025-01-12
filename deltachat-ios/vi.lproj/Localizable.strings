@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Hủy";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "hoặc";
 "clear_search" = "Dọn dẹp tìm kiếm";
 "yes" = "Có";
 "no" = "Không";
@@ -422,10 +420,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Tài khoản đã được chuyển sang thiết bị thứ hai của bạn.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Đang chuẩn bị tài khoản…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Đang chờ người nhận…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Đã kết nối bộ thu…";
 // Shown beside progress bar, stay short
 "transferring" = "Đang chuyển…";
 "troubleshooting" = "Khắc phục sự cố";
@@ -564,8 +558,6 @@
 "pref_app_access" = "Quyền truy cập ứng dụng";
 "pref_chats" = "Trò chuyện";
 "pref_in_chat_sounds" = "Âm thanh trong cuộc trò chuyện";
-// deprecated
-"pref_message_text_size" = "Kích thước phông chữ tin nhắn";
 "pref_view_log" = "Xem nhật ký";
 "pref_saved_log" = "Đã lưu nhật ký vào thư mục \"Tải xuống\"";
 "pref_save_log_failed" = "Không lưu được nhật ký";
@@ -823,8 +815,6 @@
 "confirm_replace_draft" = "%1$@ đã có tin nhắn nháp, bạn có muốn thay thế nó không?";
 "mailto_link_could_not_be_decoded" = "không thể giải mã được liên kết mailto: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Loại bỏ";
 "notify_reply_button" = "Trả lời";
 "notify_new_message" = "Tin nhắn mới";
 "notify_background_connection_enabled" = "Đã bật kết nối nền";

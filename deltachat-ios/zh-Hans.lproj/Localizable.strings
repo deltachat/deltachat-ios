@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "确定";
 "cancel" = "取消";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "或";
 "clear_search" = "清除搜索";
 // a noun, used on a button, short for "show link"
 "link" = "链接";
@@ -446,10 +444,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ 账号已传输到您的第二台设备。";
 // Shown beside progress bar, stay short
 "preparing_account" = "正在准备账号…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "等待接收者…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "接收者已连接…";
 // Shown beside progress bar, stay short
 "transferring" = "传输中…";
 "troubleshooting" = "故障排除";
@@ -640,8 +634,6 @@
 "pref_app_access" = "应用程序访问";
 "pref_chats" = "聊天";
 "pref_in_chat_sounds" = "聊天音";
-// deprecated
-"pref_message_text_size" = "消息字体大小";
 "pref_view_log" = "查看日志";
 "pref_saved_log" = "已将日志保存至“下载”文件夹";
 "pref_save_log_failed" = "保存日志失败";
@@ -916,8 +908,6 @@
 "confirm_replace_draft" = "%1$@ 已经有一条草稿信息，要替换它吗？";
 "mailto_link_could_not_be_decoded" = "无法解码 mailto 链接：%1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "不予理会";
 "notify_reply_button" = "回复";
 "notify_new_message" = "新消息";
 "notify_background_connection_enabled" = "已启用后台连接";
@@ -1038,8 +1028,20 @@
 "notifications_avg_minutes" = "平均每 %1$d 分钟";
 "notifications_avg_hours" = "平均每 %1$d 小时";
 "last_check_at" = "检查于 %1$@";
+"system_settings" = "系统设置";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "编辑类型、徽章、预览等";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "任何聊天中接收或发送的私人应用都会出现在这里。“文件”显示刚下载的私人应用。";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "快捷方式";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "使用 Delta Chat 的“添加到微件”添加项目";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "从微件中移除";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "添加到微件";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "即时传送";

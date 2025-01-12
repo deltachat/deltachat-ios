@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Отмена";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "или";
 "clear_search" = "Очистить поиск";
 // a noun, used on a button, short for "show link"
 "link" = "Ссылка";
@@ -446,10 +444,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Профиль перенесен на ваше второе устройство.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Подготовка профиля...";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Ожидаем получателя...";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Получатель подключён...";
 // Shown beside progress bar, stay short
 "transferring" = "Передача...";
 "troubleshooting" = "Устранение неполадок";
@@ -640,8 +634,6 @@
 "pref_app_access" = "Доступ приложения";
 "pref_chats" = "Чаты";
 "pref_in_chat_sounds" = "Звуки в чате";
-// deprecated
-"pref_message_text_size" = "Размер шрифта сообщения";
 "pref_view_log" = "Открыть журнал";
 "pref_saved_log" = "Журнал сохранён в папку \"Загрузки\"";
 "pref_save_log_failed" = "Не удалось сохранить журнал";
@@ -916,8 +908,6 @@
 "confirm_replace_draft" = "%1$@ уже имеет черновик, вы хотите его заменить?";
 "mailto_link_could_not_be_decoded" = "ссылка mailto не может быть обработана: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Отклонить";
 "notify_reply_button" = "Ответить";
 "notify_new_message" = "Новое сообщение";
 "notify_background_connection_enabled" = "Соединение в фоновом режиме включено";
@@ -1038,8 +1028,20 @@
 "notifications_avg_minutes" = "В среднем каждые %1$d минут(ы)";
 "notifications_avg_hours" = "В среднем каждые %1$d часа(ов)";
 "last_check_at" = "Проверено в %1$@";
+"system_settings" = "Настройки системы";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Редактировать тип, значки, предпросмотр и другое";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Здесь можно просмотреть приложения, полученные или отправленные в любом чате. \"Файлы\" показывает только загруженные приложения.";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Ярлыки";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Используйте \"Добавить в виджет\" Delta Chat, чтобы добавить элементы";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Удалить из виджета";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Добавить в виджет";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Мгновенная доставка";

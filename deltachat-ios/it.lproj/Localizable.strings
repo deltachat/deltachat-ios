@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Annulla";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "o";
 "clear_search" = "Cancella Ricerca";
 // a noun, used on a button, short for "show link"
 "link" = "Collegamento";
@@ -446,10 +444,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profilo trasferito sul tuo secondo dispositivo.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparazione profilo…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "In attesa del ricevente...";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Ricevente connesso…";
 // Shown beside progress bar, stay short
 "transferring" = "Trasferimento…";
 "troubleshooting" = "Risoluzione dei problemi";
@@ -640,8 +634,6 @@
 "pref_app_access" = "Accesso App";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Suoni In-Chat";
-// deprecated
-"pref_message_text_size" = "Dimensione Font Messaggi";
 "pref_view_log" = "Vedi Registro";
 "pref_saved_log" = "Registro salvato nella cartella \"Downloads\"";
 "pref_save_log_failed" = "Salvataggio registro non riuscito";
@@ -916,8 +908,6 @@
 "confirm_replace_draft" = "%1$@ ha già una bozza di messaggio, vuoi sostituirla?";
 "mailto_link_could_not_be_decoded" = "Il collegamento mailto non può essere decodificato: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Ignora";
 "notify_reply_button" = "Rispondi";
 "notify_new_message" = "Nuovo messaggio";
 "notify_background_connection_enabled" = "Connessione in secondo piano abilitata";
@@ -938,7 +928,7 @@
 "perm_explain_access_to_mic_denied" = "Per inviare messaggi audio, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Microfono\".";
 "perm_explain_access_to_storage_denied" = "Per ricevere o inviare files, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".";
 "perm_explain_access_to_location_denied" = "Per allegare una posizione, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";
-"perm_explain_access_to_notifications_denied" = "Per ricevere le notifiche, vai su \"Impostazioni Sistema / App / Delta Chat\" e attiva \"Notifiche\".";
+"perm_explain_access_to_notifications_denied" = "Per ricevere le notifiche, vai su \"Impostazioni di Sistema / App / Delta Chat\" e attiva \"Notifiche\".";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Disegna ovunque per sfocare";
 "ImageEditorHud_add_text" = "Aggiungi Testo";
@@ -1038,8 +1028,20 @@
 "notifications_avg_minutes" = "In media ogni %1$d minuti";
 "notifications_avg_hours" = "In media ogni %1$d ore";
 "last_check_at" = "Controllato a %1$@";
+"system_settings" = "Impostazioni di Sistema";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Modifica tipo, distintivi, anteprima e altro";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Le app ricevute o inviate in qualsiasi chat verranno mostrate qui. \"Files\" mostra le app appena scaricate.";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Scorciatoie";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Utilizza \"Aggiungi al Widget\" di Delta Chat per aggiungere elementi";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Rimuovi dal Widget";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Aggiungi al Widget";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Consegna Istantanea";

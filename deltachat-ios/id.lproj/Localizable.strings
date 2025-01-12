@@ -407,8 +407,6 @@
 "pref_app_access" = "Akes Aplikasi";
 "pref_chats" = "Obrolan";
 "pref_in_chat_sounds" = "Suara dalam obrolan";
-// deprecated
-"pref_message_text_size" = "Ukuran huruf pesan";
 "pref_view_log" = "Lihat catatan";
 "pref_saved_log" = "Menyimpan log ke folder \"Unduhan\"";
 "pref_save_log_failed" = "Gagal menyimpan log";
@@ -535,6 +533,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Ubah pengaturan untuk %1$@.";
 "copy_qr_data_success" = "Salin QR url ke papan klip";
+// notifications
 "notify_reply_button" = "Balasan";
 "notify_new_message" = "Pesan baru";
 "notify_background_connection_enabled" = "Koneksi latar diaktifkan";

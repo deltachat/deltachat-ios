@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Anuluj";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "lub";
 "clear_search" = "Wyczyść wyszukiwanie";
 // a noun, used on a button, short for "show link"
 "link" = "Link";
@@ -446,10 +444,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Konto przeniesione na twoje kolejne urządzenie.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Przygotowywanie konta…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Oczekiwanie na odbiorcę…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Odbiorca połączony…";
 // Shown beside progress bar, stay short
 "transferring" = "Przenoszenie…";
 "troubleshooting" = "Rozwiązywanie problemów";
@@ -640,8 +634,6 @@
 "pref_app_access" = "Dostęp do aplikacji";
 "pref_chats" = "Czaty";
 "pref_in_chat_sounds" = "Dźwięki w czacie";
-// deprecated
-"pref_message_text_size" = "Rozmiar czcionki w wiadomości";
 "pref_view_log" = "Wyświetl dziennik";
 "pref_saved_log" = "Zapisano dziennik w folderze Pobrane";
 "pref_save_log_failed" = "Nie udało się zapisać dziennika";
@@ -916,8 +908,6 @@
 "confirm_replace_draft" = "Na czacie %1$@ jest już wersja robocza wiadomości, czy chcesz ją zastąpić?";
 "mailto_link_could_not_be_decoded" = "link mailto nie mógł zostać odszyfrowany: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Odrzuć";
 "notify_reply_button" = "Odpowiedz";
 "notify_new_message" = "Nowa wiadomość";
 "notify_background_connection_enabled" = "Połączenie w tle włączone";
@@ -1038,8 +1028,20 @@
 "notifications_avg_minutes" = "Średnio co %1$d min.";
 "notifications_avg_hours" = "Średnio co %1$d godz.";
 "last_check_at" = "Sprawdzono o %1$@";
+"system_settings" = "Ustawienia systemowe";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Edytuj typ, plakietki, podgląd i więcej";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Tutaj pojawią się prywatne aplikacje otrzymane lub wysłane w dowolnym czacie. „Pliki” pokazuje właśnie pobrane prywatne aplikacje.";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Skróty";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Użyj „Dodaj do widżetu” w Delta Chat, aby dodać elementy";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Usuń z widżetu";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Dodaj do widżetu";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Natychmiastowe dostarczenie";

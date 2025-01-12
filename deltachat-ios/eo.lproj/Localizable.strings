@@ -355,8 +355,6 @@
 "pref_app_access" = "Aliro al aplikaĵo";
 "pref_chats" = "Interparoloj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
-// deprecated
-"pref_message_text_size" = "Mesaĝa tipargrando";
 "pref_view_log" = "Vidi protokolon";
 "pref_saved_log" = "Konservis protokolon al la elŝuta dosierujo";
 "pref_save_log_failed" = "Malsukcesis konservi protokolon";
@@ -379,6 +377,7 @@
 "pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";
 "autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
+// notifications
 "notify_reply_button" = "Respondi";
 "notify_new_message" = "Nova mesaĝo";
 "notify_priority_high" = "Alta";

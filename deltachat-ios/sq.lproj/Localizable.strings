@@ -2,8 +2,6 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Anuloje";
-// deprecated, the word "or" to separate blocks in the user interface that are mutually exclusive
-"or_separator" = "ose";
 "clear_search" = "Spastroje Kërkimin";
 // a noun, used on a button, short for "show link"
 "link" = "Lidhje";
@@ -442,10 +440,6 @@
 "multidevice_transfer_done_devicemsg" = "ℹ️ Llogaria u shpërngul te pajisja juaj e dytë.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Po përgatitet llogaria…";
-// deprecated, shown beside progress bar, stay short
-"waiting_for_receiver" = "Po pritet për marrës…";
-// deprecated, shown beside progress bar, stay short
-"receiver_connected" = "Marrësi u lidh…";
 // Shown beside progress bar, stay short
 "transferring" = "Po shpërngulet…";
 "troubleshooting" = "Diagnostikim";
@@ -635,8 +629,6 @@
 "pref_show_system_contacts_explain" = "Ofro krijim fjalosjesh me kontakte prej libri adresash. Disa shërbime lypin ujdisje fshehtëzimi skaj-më-skaj së pari.";
 "pref_chats" = "Fjalosje";
 "pref_in_chat_sounds" = "Tinguj Brenda Fjalosjeje";
-// deprecated
-"pref_message_text_size" = "Madhësi Shkronjash Mesazhi";
 "pref_view_log" = "Shihni Regjistrin";
 "pref_saved_log" = "Regjistri u ruajt te dosja “Shkarkime”";
 "pref_save_log_failed" = "Dështoi ruajtja e regjistrit";
@@ -910,8 +902,6 @@
 "confirm_replace_draft" = "%1$@ përmban tashmë një skicë mesazhi, doni të zëvendësohet?";
 "mailto_link_could_not_be_decoded" = "s’u shkodua dot lidhje mailto: %1$@";
 // notifications
-// deprecated, use mark_as_read or mark_as_read_short
-"notify_dismiss" = "Hidhe tej";
 "notify_reply_button" = "Përgjigjuni";
 "notify_new_message" = "Mesazh i ri";
 "notify_background_connection_enabled" = "U vendos lidhje në prapaskenë";
@@ -1030,8 +1020,20 @@
 "notifications_avg_minutes" = "Mesatarisht çdo %1$d minuta";
 "notifications_avg_hours" = "Mesatarisht %1$d orë";
 "last_check_at" = "Kontrolluar më %1$@";
+"system_settings" = "Rregullime Sistemi";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Përpunoni lloje, stema, bëni paraparje, etj";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "Këtu do të duken aplikacione private të dërguar apo të marrë në cilëndo fjalosje. “Kartela” shfaq aplikacione private të saposhkarkuara.";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Shkurtore";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Që të shtoni objekte, përdorni “Shtoje në Widget” të Delta Chat-it";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Hiqe prej Widget-i";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Shtoje në Widget";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Dërgim i Menjëhershëm";
@@ -1043,5 +1045,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.";
 "perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
+// device messages for updates
+"update_1_50_android" = "Ç’ka të re?\n\n❤️‍🔥 Zgjedhës i ri emoji-sh, me më shumë të tillë\n\n🎮 Zgjerim aplikacionesh brenda fjalosjesh: Merrni njoftim dhe hapni aplikacionet përkatës sipas kontekstit, p.sh., hapni drejtpërdrejt një zë të saposhtuar kalendari\n\n👍 Merrni njoftim mbi reagime te mesazhet tuaj\n\n… 🛠️ NDREQJE DHE MË TEPËR te %1$@";
 "update_1_46_ios" = "Hapa të Rinj Mirëseardhjeje 🐣 dhe të Tjera:\n\n⚡️ Regjistrohuni te shërbyes të siguruar, të shpejtë chatmail-i (https://delta.chat/chatmail), ose përdorni shërbyes klasikë email-i\n\n👉 Njoftime PUSH për çfarëdo shërbyesish “chatmail”\n\n👤 Merrni “Kontakte bashkëmgjitur” dhe lidhuni me shokët tuaj\n\n🥰 Përzgjedhje më e shpejtë reagimesh…ETJ, te %1$@";
 "update_switch_profile_placement" = "ℹ️ Mundësia “Ndërroni Profil” u hoq: Që të shtoni, ose ndërroni profile, prekni figurën e profilit tuaj në cepin e sipërm të skenës kryesore 💡";
