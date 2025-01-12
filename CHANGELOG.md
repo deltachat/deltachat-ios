@@ -1,5 +1,15 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Drag images from a chat and drop it to another chat or even to another app (use a second finger for navigating!) (#2509)
+- Paste .webp images via drag'n'drop (#2507)
+- Add "Copy Image" to messages' conext menu
+- "Message Info" is moved to messages' context menu at "More Options / ..." (#2510)
+- Allow cancelling profile edits, force a name when editing profile (#2506)
+- Fix scrolling issue when cancelling a screen (#2504)
+
+
 ## v1.50.4
 
 - Access your favorite apps and chats from the Homescreen using our shiny new widget (requires iOS 17) (#2406, #2449)
