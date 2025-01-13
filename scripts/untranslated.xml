@@ -7,4 +7,5 @@
     <string name="backup_successful_explain_ios">You can find the backup in the \"Delta Chat\" folder using the \"Files\" app.\n\nMove the backup out of this folder to keep it when deleting Delta Chat.</string>
     <string name="location_denied">Location access denied</string>
     <string name="location_denied_explain_ios">In the system settings, enable \"Privacy/Location Services\" and set \"Delta Chat/Location\" to \"Always\" and \"Precise\".</string>
+	<string name="move_to_top">Move to Top</string>
 </resources>
