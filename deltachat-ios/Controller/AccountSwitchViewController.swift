@@ -9,7 +9,7 @@ class AccountSwitchViewController: UITableViewController {
     private let addSection = 1
 
     private lazy var accountIds: [Int] = {
-        return dcAccounts.getAll()
+        return dcAccounts.getAllSorted()
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
@@ -99,6 +99,7 @@ class AccountSwitchViewController: UITableViewController {
                 let children: [UIMenuElement] = [
                     UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, indexPath: indexPath, action: { self.toggleMute(at: $0) }),
                     UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", indexPath: indexPath, action: { self.setProfileTag(at: $0) }),
+                    UIAction.menuAction(localizationKey: "move_to_top", systemImageName: "arrow.up", indexPath: indexPath, action: { self.moveToTop(at: $0) }),
                     UIMenu(
                         options: [.displayInline],
                         children: [
@@ -132,6 +133,13 @@ class AccountSwitchViewController: UITableViewController {
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true)
+    }
+
+    func moveToTop(at indexPath: IndexPath) {
+        let accountId = accountIds[indexPath.row]
+        dcAccounts.moveToTop(id: accountId)
+        accountIds = dcAccounts.getAllSorted()
+        tableView.reloadData()
     }
 
     func selectAccount(previousAccountId: Int, accountId: Int, cell: UITableViewCell) {
