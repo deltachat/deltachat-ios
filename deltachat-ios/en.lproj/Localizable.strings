@@ -556,6 +556,8 @@
 "profile_tag" = "Private Tag";
 "profile_tag_hint" = "eg. Work, Family";
 "profile_tag_explain" = "Tag that is visible only for you; helping you to differ between your profiles.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Move to Top";
 "delete_account" = "Delete Profile";
 "delete_account_ask" = "Are you sure you want to delete your profile data?";
 "delete_account_explain_with_name" = "All profile data of \"%1$@\" on this device will be deleted, including your end-to-end encryption setup, contacts, chats, messages and media. This action cannot be undone.";
