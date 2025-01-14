@@ -329,7 +329,10 @@ extension ProxySettingsViewController {
     }
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        guard indexPath.section == ProxySettingsSection.proxies.rawValue else { return nil }
+        guard
+            proxies.isEmpty == false,
+            indexPath.section == ProxySettingsSection.proxies.rawValue
+        else { return nil }
 
         return UIContextMenuConfiguration(
             identifier: nil,
