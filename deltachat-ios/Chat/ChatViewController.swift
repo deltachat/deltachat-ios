@@ -1689,6 +1689,21 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         replyToMessage(at: indexPath)
     }
 
+    private func toggleSave(at indexPath: IndexPath) {
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        if dcChat.isSelfTalk {
+            if message.originalMessageId != 0 {
+                dcContext.deleteMessage(msgId: message.id)
+            } else {
+                askToDeleteMessage(id: message.id)
+            }
+        } else if message.savedMessageId != 0 {
+            dcContext.deleteMessage(msgId: message.savedMessageId)
+        } else {
+            dcContext.forwardMessage(with: messageIds[indexPath.row], to: dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF)))
+        }
+    }
+
     private func copyTextToClipboard(at indexPath: IndexPath) {
         copyTextToClipboard(ids: [self.messageIds[indexPath.row]])
     }
@@ -1914,6 +1929,16 @@ extension ChatViewController {
                 children.append(
                     UIAction.menuAction(localizationKey: "forward", image: image, indexPath: indexPath, action: forward)
                 )
+
+                if dcChat.isSelfTalk || message.savedMessageId != 0 {
+                    children.append(
+                        UIAction.menuAction(localizationKey: "unsave", systemImageName: "star.slash", indexPath: indexPath, action: { self.toggleSave(at: $0 ) })
+                    )
+                } else {
+                    children.append(
+                        UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "star", indexPath: indexPath, action: { self.toggleSave(at: $0 ) })
+                    )
+                }
 
                 if let link = isLinkTapped(indexPath: indexPath, point: point) {
                     children.append(

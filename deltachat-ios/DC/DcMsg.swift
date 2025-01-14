@@ -48,6 +48,14 @@ public class DcMsg {
         return Int(dc_msg_get_from_id(messagePointer))
     }
 
+    public var originalMessageId: Int {
+        return Int(dc_msg_get_original_msg_id(messagePointer))
+    }
+
+    public var savedMessageId: Int {
+        return Int(dc_msg_get_saved_msg_id(messagePointer))
+    }
+
     public var isFromCurrentSender: Bool {
         return fromContactId == DC_CONTACT_ID_SELF
     }

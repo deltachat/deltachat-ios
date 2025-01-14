@@ -71,6 +71,10 @@ public class StatusView: UIView {
         dateLabel.text = message.formattedSentDate()
         dateLabel.textColor = tintColor
 
+        if message.savedMessageId != 0 || message.originalMessageId != 0 {
+            dateLabel.text = "★ " + (dateLabel.text ?? "")
+        }
+
         if message.showPadlock() {
             padlockView.image = UIImage(named: "ic_lock")?.maskWithColor(color: tintColor)
             padlockView.isHidden = false
