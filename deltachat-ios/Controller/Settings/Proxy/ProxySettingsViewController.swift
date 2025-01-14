@@ -328,4 +328,26 @@ extension ProxySettingsViewController {
 
         return configuration
     }
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard indexPath.section == ProxySettingsSection.proxies.rawValue else { return nil }
+
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { [weak self] _ in
+                guard let self else { return nil }
+                let children: [UIMenuElement] = [
+                    UIAction.menuAction(localizationKey: "proxy_share_link", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareProxy(at: $0) }),
+                    UIMenu(
+                        options: [.displayInline],
+                        children: [
+                            UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteProxy(at: $0) })
+                        ]
+                    )
+                ]
+                return UIMenu(children: children)
+            }
+        )
+    }
 }
