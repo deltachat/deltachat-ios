@@ -272,8 +272,7 @@ extension ProxySettingsViewController {
             }
         } else {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
-                toggleProxyCell.uiSwitch.isOn.toggle()
-                toggleProxyCell.didToggleSwitch(toggleProxyCell.uiSwitch)
+                // enabling/disabling requires using the switch, as usual internally and also by the system and most other apps
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
                 selectProxy(at: indexPath)
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
