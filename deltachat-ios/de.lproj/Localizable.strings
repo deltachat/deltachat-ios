@@ -556,6 +556,8 @@
 "profile_tag" = "Private Bezeichnung";
 "profile_tag_hint" = "z.B. Familie, Arbeit, Freunde";
 "profile_tag_explain" = "Die Bezeichnung ist nur für Sie sichtbar um zwischen Profilen zu unterscheiden.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Nach oben";
 "delete_account" = "Profil löschen";
 "delete_account_ask" = "Möchten Sie das Profil und alle Daten wirklich von diesem Gerät löschen?";
 "delete_account_explain_with_name" = "Alle Daten des Profils \"%1$@\" werden von diesem Gerät gelöscht, dies schließt Ihre Ende-zu-Ende Autocrypt-Einstellungen, Kontakte, Chats, Nachrichten und Medien mit ein. Diese Aktion kann nicht rückgängig gemacht werden.";

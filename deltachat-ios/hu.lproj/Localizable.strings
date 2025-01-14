@@ -231,7 +231,7 @@
 "privacy_policy" = "Adatvédelmi irányelvek";
 "menu_select_all" = "Összes kiválasztása";
 "select_chat" = "Csevegés kiválasztása";
-"select_more" = "Több kiválasztása";
+"select_more" = "Továbbiak kiválasztása";
 "menu_edit_name" = "Név szerkesztése";
 // The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
 "edit_name_explain" = "Állítson be egy becenevet a(z) „%1$@” nevű ismerősének. Hagyja üresen az ismerőse által választott név megjelenítéséhez.";
@@ -376,7 +376,7 @@
 "chat_audit_log_description" = "Csak a rendszer- és információs üzeneteket jeleníti meg; hasznos a legutóbbi csevegési műveletek megtalálásához anélkül, hogy sok üzenetet görgetne át.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Ne kérdezzen rá újra erre: %1$@";
+"open_external_url_trust_domain" = "Ne kérdezzen rá újra a következőre: %1$@";
 "puny_code_warning_header" = "Gyanús hivatkozás észlelve";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Biztosan meglátogatja a következőt: %1$@?";
@@ -422,9 +422,9 @@
 "square_grid" = "Négyzetrács";
 "send_message" = "Üzenet küldése";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
-"aeap_addr_changed" = "%1$@ megváltoztatta a címét erről: %2$@, erre: %3$@ ";
+"aeap_addr_changed" = "%1$@ megváltoztatta a címét következőről: %2$@, erre: %3$@ ";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
-"aeap_explanation" = "Ön megváltoztatta a saját e-mail-címét erről: %1$@ erre: %2$@.\n\nHa most üzenetet küld egy hitelesített csoportba, az ottani ismerősei automatikusan lecserélik az Ön régi címét az új címére.\n\nEzért nagyon ajánlott beállítani, hogy a régi e-mail szolgáltatója továbbítsa-e az összes e-mailt e-mail-címére. Ellenkező esetben lemaradhat azoknak az ismerőseinek az üzeneteiről, akik még nem kapták meg az új címét.";
+"aeap_explanation" = "Ön megváltoztatta a saját e-mail-címét a következőről: %1$@ erre: %2$@.\n\nHa most üzenetet küld egy hitelesített csoportba, az ottani ismerősei automatikusan lecserélik az Ön régi címét az új címére.\n\nEzért nagyon ajánlott beállítani, hogy a régi e-mail szolgáltatója továbbítsa-e az összes e-mailt e-mail-címére. Ellenkező esetben lemaradhat azoknak az ismerőseinek az üzeneteiről, akik még nem kapták meg az új címét.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Második eszköz hozzáadása";
@@ -717,9 +717,9 @@
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Reakció";
 // %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
-"reaction_by_you" = "Ön ezzel reagált: %1$@, erre: „%2$@”";
+"reaction_by_you" = "Ön a következővel reagált: %1$@, erre: „%2$@”";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
-"reaction_by_other" = "%1$@ ezzel reagált: %2$@, erre: „%3$@”";
+"reaction_by_other" = "%1$@ a következővel reagált: %2$@, erre: „%3$@”";
 // automatically delete message
 "delete_old_messages" = "Régi üzenetek törlése";
 "autodel_device_title" = "Üzenetek törlése az eszközről a letöltést követően";
@@ -768,9 +768,9 @@
 "systemmsg_subject_for_new_contact" = "Üzenet tőle: %1$@";
 "systemmsg_failed_sending_to" = "Nem sikerült elküldeni az üzenetet „%1$@” számára.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
-"group_name_changed_by_you" = "Ön megváltoztatta a csoport nevét erről: „%1$@”, erre: „%2$@”.";
+"group_name_changed_by_you" = "Ön megváltoztatta a csoport nevét a következőről: „%1$@”, erre: „%2$@”.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
-"group_name_changed_by_other" = "%3$@ megváltoztatta a csoport nevét erről: „%1$@”, erre: „%2$@”.";
+"group_name_changed_by_other" = "%3$@ megváltoztatta a csoport nevét a következőről: „%1$@”, erre: „%2$@”.";
 "group_image_changed_by_you" = "Ön megváltoztatta a csoport profilképét.";
 // %1$s will be replaced by name and address of the contact who did the action
 "group_image_changed_by_other" = "%1$@ megváltoztatta a csoport profilképét.";
@@ -1028,8 +1028,20 @@
 "notifications_avg_minutes" = "Átlagosan %1$d percenként";
 "notifications_avg_hours" = "Átlagosan %1$d óránként";
 "last_check_at" = "Ellenőrizve ekkor: %1$@";
+"system_settings" = "Rendszer-beállítások";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Típus-, kitűzők-, előnézet- és egyebek szerkesztése";
 // iOS webxdc selector
 "webxdc_selector_empty_hint" = "A bármelyik csevegésben kapott vagy küldött alkalmazások itt fognak megjelenni. A „Fájlok” az éppen letöltött alkalmazásokat jeleníti meg.";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Parancsikonok";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Használja a Delta Chat „Hozzáadás modulhoz” funkcióját az elemek hozzáadásához";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Eltávolítás a modulból";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Hozzáadás modulhoz";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Azonnali kézbesítés";
