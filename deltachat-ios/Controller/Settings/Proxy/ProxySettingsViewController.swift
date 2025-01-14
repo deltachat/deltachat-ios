@@ -297,7 +297,6 @@ extension ProxySettingsViewController {
             }
         }
         shareAction.backgroundColor = .systemGreen
-        shareAction.accessibilityLabel = String.localized("proxy_share_link")
         shareAction.image = Utils.makeImageWithText(image: UIImage(systemName: "square.and.arrow.up"), text: String.localized("menu_share"))
 
         let configuration = UISwipeActionsConfiguration(actions: [shareAction])
@@ -338,7 +337,7 @@ extension ProxySettingsViewController {
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
                 let children: [UIMenuElement] = [
-                    UIAction.menuAction(localizationKey: "proxy_share_link", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareProxy(at: $0) }),
+                    UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareProxy(at: $0) }),
                     UIMenu(
                         options: [.displayInline],
                         children: [
