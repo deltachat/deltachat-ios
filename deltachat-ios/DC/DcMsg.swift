@@ -48,6 +48,10 @@ public class DcMsg {
         return Int(dc_msg_get_from_id(messagePointer))
     }
 
+    public var originalChatId: Int {
+        return Int(dc_msg_get_original_chat_id(messagePointer))
+    }
+
     public var originalMessageId: Int {
         return Int(dc_msg_get_original_msg_id(messagePointer))
     }

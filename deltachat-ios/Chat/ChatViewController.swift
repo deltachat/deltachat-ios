@@ -2227,6 +2227,19 @@ extension ChatViewController: BaseMessageCellDelegate {
         }
     }
 
+    @objc func gotoOriginal(indexPath: IndexPath) {
+        if handleSelection(indexPath: indexPath) { return }
+
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let savedMessage = dcContext.getMessage(id: messageIds[indexPath.row])
+
+        let originalChatId = savedMessage.originalChatId
+        if originalChatId != 0 {
+            let originalMessageId: Int? = savedMessage.originalMessageId == 0 ? nil : savedMessage.originalMessageId
+            appDelegate.appCoordinator.showChat(chatId: originalChatId, msgId: originalMessageId, animated: true, clearViewControllerStack: true)
+        }
+    }
+
     @objc func quoteTapped(indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
 
