@@ -9,10 +9,13 @@ public class BaseMessageCell: UITableViewCell {
     private var trailingConstraint: NSLayoutConstraint?
     private var trailingConstraintEditingMode: NSLayoutConstraint?
     private var leadingConstraintGroup: NSLayoutConstraint?
+    private var gotoOriginalLeftConstraint: NSLayoutConstraint?
+
     // horizontal message constraints for sent messages
     private var leadingConstraintCurrentSender: NSLayoutConstraint?
     private var leadingConstraintCurrentSenderEditingMode: NSLayoutConstraint?
     private var trailingConstraintCurrentSender: NSLayoutConstraint?
+    private var gotoOriginalRightConstraint: NSLayoutConstraint?
 
     private var mainContentBelowTopLabelConstraint: NSLayoutConstraint?
     private var mainContentUnderTopLabelConstraint: NSLayoutConstraint?
@@ -158,6 +161,24 @@ public class BaseMessageCell: UITableViewCell {
         return button
     }()
 
+    private let gotoOriginalWidth = CGFloat(32)
+    lazy var gotoOriginalButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.constraintHeightTo(gotoOriginalWidth),
+            button.constraintWidthTo(gotoOriginalWidth)
+        ])
+        button.addTarget(self, action: #selector(onGotoOriginal), for: .touchUpInside)
+        button.backgroundColor = DcColors.gotoButtonBackgroundColor
+        button.setImage(UIImage(systemName: "chevron.right")?.sd_tintedImage(with: DcColors.gotoButtonFontColor), for: .normal)
+        button.layer.cornerRadius = gotoOriginalWidth / 2
+        button.layer.masksToBounds = true
+        button.accessibilityLabel = String.localized("show_in_chat")
+
+        return button
+    }()
+
     let statusView = StatusView()
 
     lazy var messageBackgroundContainer: BackgroundContainer = {
@@ -205,6 +226,7 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.addSubview(actionButton)
         messageBackgroundContainer.addSubview(statusView)
         contentView.addSubview(avatarView)
+        contentView.addSubview(gotoOriginalButton)
 
         contentView.addConstraints([
             avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 2),
@@ -219,8 +241,14 @@ public class BaseMessageCell: UITableViewCell {
             statusView.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
             statusView.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
             statusView.constraintToBottomOf(actionButton, paddingTop: 8, priority: .defaultHigh),
-            statusView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6)
+            statusView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6),
+            gotoOriginalButton.constraintCenterYTo(messageBackgroundContainer),
         ])
+
+        gotoOriginalLeftConstraint = gotoOriginalButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: -(gotoOriginalWidth+8))
+        gotoOriginalLeftConstraint?.isActive = false
+        gotoOriginalRightConstraint = gotoOriginalButton.constraintToTrailingOf(contentView, paddingLeading: -(gotoOriginalWidth+8))
+        gotoOriginalRightConstraint?.isActive = false
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
         bottomConstraint = messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3)
@@ -288,6 +316,12 @@ public class BaseMessageCell: UITableViewCell {
     @objc func onAvatarTapped() {
         if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
             baseDelegate?.avatarTapped(indexPath: indexPath)
+        }
+    }
+
+    @objc func onGotoOriginal() {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.gotoOriginal(indexPath: indexPath)
         }
     }
 
@@ -360,6 +394,8 @@ public class BaseMessageCell: UITableViewCell {
             leadingConstraintCurrentSender?.isActive = !isEditing
             leadingConstraintCurrentSenderEditingMode?.isActive = isEditing
             trailingConstraintCurrentSender?.isActive = true
+            gotoOriginalLeftConstraint?.isActive = true
+            gotoOriginalRightConstraint?.isActive = false
         } else {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") :
                 showName ? msg.getSenderName(fromContact, markOverride: true) : nil
@@ -388,6 +424,8 @@ public class BaseMessageCell: UITableViewCell {
             }
             trailingConstraint?.isActive = !isEditing
             trailingConstraintEditingMode?.isActive = isEditing
+            gotoOriginalLeftConstraint?.isActive = false
+            gotoOriginalRightConstraint?.isActive = true
         }
 
         if showAvatar {
@@ -400,6 +438,8 @@ public class BaseMessageCell: UITableViewCell {
         } else {
             avatarView.isHidden = true
         }
+
+        gotoOriginalButton.isHidden = msg.originalChatId == 0
 
         let downloadState = msg.downloadState
         let hasHtml = msg.hasHtml
@@ -657,5 +697,6 @@ public protocol BaseMessageCellDelegate: AnyObject {
     func textTapped(indexPath: IndexPath)
     func quoteTapped(indexPath: IndexPath)
     func actionButtonTapped(indexPath: IndexPath)
+    func gotoOriginal(indexPath: IndexPath)
     func reactionsTapped(indexPath: IndexPath)
 }
