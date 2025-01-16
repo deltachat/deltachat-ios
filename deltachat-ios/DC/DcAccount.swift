@@ -55,10 +55,9 @@ public class DcAccounts {
     }
 
     public func moveToTop(id: Int) {
-        var maxOrder = 0
-        getAll().forEach {
-            maxOrder = max(maxOrder, get(id: $0).getConfigInt("ui.ios.account_order"))
-        }
+        let maxOrder = getAll()
+            .compactMap { get(id: $0).getConfigInt("ui.ios.account_order") }
+            .max() ?? 0
         get(id: id).setConfigInt("ui.ios.account_order", maxOrder + 1)
     }
 
