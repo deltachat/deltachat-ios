@@ -468,6 +468,10 @@ public class DcContext {
         dc_forward_msgs(contextPointer, msgIds.compactMap { UInt32($0) }, Int32(msgIds.count), UInt32(chat))
     }
 
+    public func saveMessages(with msgIds: [Int]) {
+        dc_save_msgs(contextPointer, msgIds.compactMap { UInt32($0) }, Int32(msgIds.count))
+    }
+
     public func sendTextInChat(id: Int, message: String) {
         dc_send_text_msg(contextPointer, UInt32(id), message)
     }

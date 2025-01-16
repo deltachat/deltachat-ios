@@ -1700,7 +1700,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         } else if message.savedMessageId != 0 {
             dcContext.deleteMessage(msgId: message.savedMessageId)
         } else {
-            dcContext.forwardMessage(with: messageIds[indexPath.row], to: dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF)))
+            dcContext.saveMessages(with: [messageIds[indexPath.row]])
         }
     }
 
