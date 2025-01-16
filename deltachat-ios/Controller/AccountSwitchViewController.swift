@@ -278,7 +278,6 @@ class AccountCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .leading
-        stackView.spacing = 4
         return stackView
     }()
 
