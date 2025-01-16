@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add option to "Save" a message to the messages' context menu (#2527)
+- Saved messages are marked by a little star (#2527)
+- In the "Saved Messages" chat, messages are shown in context and have an option to go to the original (#2527)
 - New group consistency algorithm (#2564)
 - The app now requires less storage deduplicating newly received/sent files (#2564)
 - Show 'unconnected' and 'updating' states in account switcher (#2553)
