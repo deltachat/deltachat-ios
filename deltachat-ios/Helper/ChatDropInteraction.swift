@@ -14,6 +14,7 @@ public class ChatDropInteraction {
                 UTType.video.identifier,
                 UTType.movie.identifier,
                 UTType.text.identifier,
+                UTType.url.identifier,
                 UTType.item.identifier])
         }
         return session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
@@ -21,6 +22,7 @@ public class ChatDropInteraction {
             kUTTypeText as String,
             kUTTypeMovie as String,
             kUTTypeVideo as String,
+            kUTTypeURL as String,
             kUTTypeItem as String])
     }
 
@@ -34,6 +36,8 @@ public class ChatDropInteraction {
                loadImageObjects(session: session)
             } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.movie.identifier, UTType.video.identifier]) {
                 loadFileObjects(session: session, isVideo: true)
+            } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.url.identifier]) {
+                loadTextObjects(session: session)
             } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.item.identifier]) {
                 loadFileObjects(session: session)
             } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.text.identifier]) {
@@ -44,6 +48,8 @@ public class ChatDropInteraction {
                loadImageObjects(session: session)
             } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeMovie as String, kUTTypeVideo as String]) {
                 loadFileObjects(session: session, isVideo: true)
+            } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeURL as String]) {
+                loadTextObjects(session: session)
             } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeItem as String]) {
                 loadFileObjects(session: session)
             } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeText as String]) {
