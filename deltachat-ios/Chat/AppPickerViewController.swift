@@ -20,8 +20,9 @@ class AppPickerViewController: UIViewController {
 
         webView.navigationDelegate = self
         view.addSubview(webView)
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .systemBackground
         setupConstraints()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(AppPickerViewController.close(_:)))
 
         title = String.localized("webxdc_apps")
     }
@@ -30,13 +31,19 @@ class AppPickerViewController: UIViewController {
 
     private func setupConstraints() {
         let constraints = [
-            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: webView.trailingAnchor),
             view.bottomAnchor.constraint(equalTo: webView.bottomAnchor),
         ]
 
         NSLayoutConstraint.activate(constraints)
+    }
+
+    // MARK: - Actions
+
+    @objc func close(_ sender: Any) {
+        dismiss(animated: true)
     }
 }
 

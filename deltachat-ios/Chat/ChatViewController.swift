@@ -1515,14 +1515,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func showAppPicker() {
         let appPicker = AppPickerViewController()
         appPicker.delegate = self
-        if #available(iOS 15.0, *) {
-            if let sheet = appPicker.sheetPresentationController {
-                sheet.detents = [.large()]
-                sheet.preferredCornerRadius = 20
-            }
+        let navigationController = UINavigationController(rootViewController: appPicker)
+        navigationController.navigationBar.standardAppearance.backgroundEffect = UIBlurEffect(style: .extraLight)
+        navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
+
+        if #available(iOS 15.0, *), let sheet = navigationController.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.preferredCornerRadius = 20
         }
 
-        present(appPicker, animated: true)
+        present(navigationController, animated: true)
     }
 
     private func showContactList() {
