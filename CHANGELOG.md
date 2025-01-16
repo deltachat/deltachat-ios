@@ -2,9 +2,10 @@
 
 ## Unreleased
 
+- More modern attach menu (#2522)
 - Drag images from a chat and drop it to another chat or even to another app (use a second finger for navigating!) (#2509)
 - Paste .webp images via drag'n'drop (#2507)
-- Add "Copy Image" to messages' conext menu
+- Add "Copy Image" to messages' conext menu (#2508)
 - Long-tap a proxy to share or delete (#2521)
 - "Message Info" is moved to messages' context menu at "More Options / ..." (#2510)
 - Allow cancelling profile edits, force a name when editing profile (#2506)
