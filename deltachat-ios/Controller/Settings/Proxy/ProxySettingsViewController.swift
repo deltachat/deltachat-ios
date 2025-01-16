@@ -272,8 +272,7 @@ extension ProxySettingsViewController {
             }
         } else {
             if indexPath.section == ProxySettingsSection.enableProxies.rawValue {
-                toggleProxyCell.uiSwitch.isOn.toggle()
-                toggleProxyCell.didToggleSwitch(toggleProxyCell.uiSwitch)
+                // enabling/disabling requires using the switch, as usual internally and also by the system and most other apps
             } else if indexPath.section == ProxySettingsSection.proxies.rawValue {
                 selectProxy(at: indexPath)
             } else /*if indexPath.section == ProxySettingsSection.add.rawValue*/ {
@@ -297,7 +296,6 @@ extension ProxySettingsViewController {
             }
         }
         shareAction.backgroundColor = .systemGreen
-        shareAction.accessibilityLabel = String.localized("proxy_share_link")
         shareAction.image = Utils.makeImageWithText(image: UIImage(systemName: "square.and.arrow.up"), text: String.localized("menu_share"))
 
         let configuration = UISwipeActionsConfiguration(actions: [shareAction])
@@ -327,5 +325,30 @@ extension ProxySettingsViewController {
         configuration.performsFirstActionWithFullSwipe = true
 
         return configuration
+    }
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard
+            proxies.isEmpty == false,
+            indexPath.section == ProxySettingsSection.proxies.rawValue
+        else { return nil }
+
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { [weak self] _ in
+                guard let self else { return nil }
+                let children: [UIMenuElement] = [
+                    UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareProxy(at: $0) }),
+                    UIMenu(
+                        options: [.displayInline],
+                        children: [
+                            UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteProxy(at: $0) })
+                        ]
+                    )
+                ]
+                return UIMenu(children: children)
+            }
+        )
     }
 }
