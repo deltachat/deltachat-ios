@@ -45,6 +45,22 @@ public class DcAccounts {
         return DcUtils.copyAndFreeArray(inputArray: cAccounts)
     }
 
+    public func getAllSorted() -> [Int] {
+        return getAll().sorted { a, b in
+            // no need to check for equality as sorted() is guaranteed to be stable;
+            // meaning it preserves the relative order of elements that compare as equal here
+            let orderA = get(id: a).getConfigInt("ui.ios.account_order"), orderB = get(id: b).getConfigInt("ui.ios.account_order")
+            return orderA > orderB
+        }
+    }
+
+    public func moveToTop(id: Int) {
+        let maxOrder = getAll()
+            .compactMap { get(id: $0).getConfigInt("ui.ios.account_order") }
+            .max() ?? 0
+        get(id: id).setConfigInt("ui.ios.account_order", maxOrder + 1)
+    }
+
     public func getSelected() -> DcContext {
         let cPtr = dc_accounts_get_selected_account(accountsPointer)
         return DcContext(contextPointer: cPtr)
