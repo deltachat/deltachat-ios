@@ -1518,6 +1518,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let navigationController = UINavigationController(rootViewController: appPicker)
         navigationController.navigationBar.standardAppearance.backgroundEffect = UIBlurEffect(style: .extraLight)
         navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
+        navigationController.isModalInPresentation = true
 
         if #available(iOS 15.0, *), let sheet = navigationController.sheetPresentationController {
             sheet.detents = [.large()]
@@ -2730,6 +2731,5 @@ extension ChatViewController: AppPickerViewControllerDelegate {
         configureDraftArea(draft: draft)
         focusInputTextView()
         FileHelper.deleteFile(atPath: url.relativePath)
-        viewController.dismiss(animated: true)
     }
 }

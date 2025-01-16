@@ -10,6 +10,7 @@ class AppPickerViewController: UIViewController {
     // Context
     weak var delegate: AppPickerViewControllerDelegate?
     let webView: WKWebView
+    var defaultCloseButton: UIBarButtonItem?
 
     init(url: URL = URL(string: "https://webxdc.org/apps/")!) {
         webView = WKWebView(frame: .zero)
@@ -22,9 +23,11 @@ class AppPickerViewController: UIViewController {
         view.addSubview(webView)
         view.backgroundColor = .systemBackground
         setupConstraints()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(AppPickerViewController.close(_:)))
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(AppPickerViewController.close(_:)))
 
         title = String.localized("webxdc_apps")
+        navigationItem.leftBarButtonItem = closeButton
+        self.defaultCloseButton = closeButton
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -55,14 +58,32 @@ extension AppPickerViewController: WKNavigationDelegate {
 
         // if url ends with .xdc -> download and store in core and call delegate
         if url.pathExtension == "xdc" {
-            // TODO: Add loading indicator
-            Task {
+            Task { [weak self] in
+                guard let self else { return }
+                // show spinner instead of close-button
+                await MainActor.run {
+                    let activityIndicator = UIActivityIndicatorView(style: .medium)
+                    activityIndicator.startAnimating()
+                    self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+                }
+                
                 guard let (data, _) = try? await URLSession.shared.data(from: url),
                       let filepath = FileHelper.saveData(data: data, name: url.lastPathComponent)
-                else { return decisionHandler(.cancel) }
+                else {
+                    await MainActor.run { self.navigationItem.leftBarButtonItem = self.defaultCloseButton }
+                    return decisionHandler(.cancel)
+                }
+
+                if #available(iOS 16.0, *) {
+                    try await Task.sleep(for: .seconds(5))
+                }
 
                 let fileURL = NSURL(fileURLWithPath: filepath)
                 delegate?.pickedAnDownloadedApp(self, fileURL: fileURL as URL)
+                await MainActor.run {
+                    self.dismiss(animated: true)
+                }
+
                 decisionHandler(.cancel)
             }
         } else if url.host == "webxdc.org" {
