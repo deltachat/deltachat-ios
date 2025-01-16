@@ -1213,15 +1213,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
         var actions = [UIMenuElement]()
         actions.append(action(localized: "camera", systemImage: "camera", handler: showCameraViewController))
-        actions.append(action(localized: "gallery", systemImage: "photo.stack", handler: showPhotoVideoLibrary))
+        let galleryImage = if #available(iOS 16, *) { "photo.stack" } else { "photo" }
+        actions.append(action(localized: "gallery", systemImage: galleryImage, handler: showPhotoVideoLibrary))
         actions.append(action(localized: "files", systemImage: "folder", handler: showDocumentLibrary))
         if dcContext.hasWebxdc() {
             actions.append(action(localized: "webxdc_apps", systemImage: "app", handler: showWebxdcSelector))
         }
         actions.append(action(localized: "voice_message", systemImage: "waveform", handler: showVoiceMessageRecorder))
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
-            // person.crop.square.badge.video
-            actions.append(action(localized: "videochat", systemImage: "video.bubble", handler: videoChatButtonPressed))
+            let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
+            actions.append(action(localized: "videochat", systemImage: videoChatImage, handler: videoChatButtonPressed))
         }
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
