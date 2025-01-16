@@ -1216,7 +1216,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let galleryImage = if #available(iOS 16, *) { "photo.stack" } else { "photo" }
         actions.append(action(localized: "gallery", systemImage: galleryImage, handler: showPhotoVideoLibrary))
         actions.append(action(localized: "files", systemImage: "folder", handler: showDocumentLibrary))
-        actions.append(action(localized: "webxdc_apps", systemImage: "square.grid.2x2", handler: showWebxdcSelector))
+        actions.append(action(localized: "webxdc_apps", systemImage: "square.grid.2x2", handler: showAppPicker))
         actions.append(action(localized: "voice_message", systemImage: "mic", handler: showVoiceMessageRecorder))
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
             let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
@@ -1263,9 +1263,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         alert.addAction(galleryAction)
         alert.addAction(appPickerAction)
         alert.addAction(documentAction)
-
-        let webxdcAction = action(localized: "webxdc_apps", handler: showWebxdcSelector)
-        alert.addAction(webxdcAction)
         alert.addAction(voiceMessageAction)
 
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
@@ -1433,20 +1430,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.appCoordinator.showChat(chatId: chatId, msgId: messageId, animated: animated, clearViewControllerStack: true)
         }
-    }
-
-    private func showWebxdcSelector() {
-        let webxdcSelector = WebxdcSelector(context: dcContext)
-        webxdcSelector.delegate = self
-        let webxdcSelectorNavigationController = UINavigationController(rootViewController: webxdcSelector)
-        if #available(iOS 15.0, *) {
-            if let sheet = webxdcSelectorNavigationController.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.preferredCornerRadius = 20
-            }
-        }
-
-        self.present(webxdcSelectorNavigationController, animated: true)
     }
 
     private func showDocumentLibrary() {
@@ -2662,32 +2645,6 @@ extension ChatViewController: ChatInputTextViewPasteDelegate {
             sendSticker(image)
         } else {
             stageImage(image)
-        }
-    }
-}
-
-
-extension ChatViewController: WebxdcSelectorDelegate {
-    func onWebxdcFromFilesSelected(url: NSURL) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.becomeFirstResponder()
-            self.onDocumentSelected(url: url)
-        }
-    }
-
-    func onWebxdcSelected(msgId: Int) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            let message = self.dcContext.getMessage(id: msgId)
-            if let filename = message.fileURL {
-                let nsdata = NSData(contentsOf: filename)
-                guard let data = nsdata as? Data else { return }
-                let url = FileHelper.saveData(data: data, suffix: "xdc", directory: .cachesDirectory)
-                self.draft.setAttachment(viewType: DC_MSG_WEBXDC, path: url)
-                self.configureDraftArea(draft: self.draft)
-                self.focusInputTextView()
-            }
         }
     }
 }
