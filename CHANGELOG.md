@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Append dropped URLs to text field instead of attaching as file (#2523)
 - Drag images from a chat and drop it to another chat or even to another app (use a second finger for navigating!) (#2509)
 - Paste .webp images via drag'n'drop (#2507)
 - Add "Copy Image" to messages' conext menu
