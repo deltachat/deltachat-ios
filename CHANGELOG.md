@@ -15,6 +15,7 @@
 - Allow cancelling profile edits, force a name when editing profile (#2506)
 - Fix scrolling issue when cancelling a screen (#2504)
 - Fix layout of 'No contacts found' message (#2517)
+- Fix position of 'Attach Contact's 'Cancel' button (#2532)
 - Don't hide the Apps-tab anymore (#2526)
 - Use the new App-picker to share apps (#2450)
 
