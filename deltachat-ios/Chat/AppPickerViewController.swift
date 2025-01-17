@@ -6,8 +6,6 @@ protocol AppPickerViewControllerDelegate: AnyObject {
 }
 
 class AppPickerViewController: UIViewController {
-    // Web view
-    // Context
     weak var delegate: AppPickerViewControllerDelegate?
     let webView: WKWebView
     var defaultCloseButton: UIBarButtonItem?
@@ -29,7 +27,7 @@ class AppPickerViewController: UIViewController {
         view.addSubview(downloadingView)
         view.backgroundColor = .systemBackground
         setupConstraints()
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(AppPickerViewController.close(_:)))
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(AppPickerViewController.close(_:)))
 
         title = String.localized("webxdc_apps")
         navigationItem.leftBarButtonItem = closeButton
