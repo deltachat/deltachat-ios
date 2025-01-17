@@ -7,43 +7,23 @@ class AccountSwitchViewController: UITableViewController {
     private let dcAccounts: DcAccounts
     private let accountSection = 0
     private let addSection = 1
-    private var showAccountDeletion: Bool = false
 
     private lazy var accountIds: [Int] = {
-        return dcAccounts.getAll()
+        return dcAccounts.getAllSorted()
     }()
 
-    private lazy var editButton: UIBarButtonItem = {
-        let btn = UIBarButtonItem(barButtonSystemItem: .edit,
-                                  target: self,
-                                  action: #selector(editAction))
-        return btn
-    }()
-
-    private lazy var cancelEditButton: UIBarButtonItem = {
-        let btn = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                  target: self,
-                                  action: #selector(cancelEditAction))
-        return btn
-    }()
-
-    private lazy var doneButton: UIBarButtonItem = {
-        let btn = UIBarButtonItem(barButtonSystemItem: .done,
-                                  target: self,
-                                  action: #selector(doneAction))
-        return btn
+    private lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
     }()
 
     private lazy var addAccountCell: ActionCell = {
         let cell = ActionCell()
         cell.actionTitle = String.localized("add_account")
-        cell.backgroundColor = .clear
         return cell
     }()
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
-        showAccountDeletion = false
         super.init(style: .insetGrouped)
         setupSubviews()
     }
@@ -54,8 +34,7 @@ class AccountSwitchViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.setLeftBarButton(editButton, animated: false)
-        navigationItem.setRightBarButton(doneButton, animated: false)
+        navigationItem.setLeftBarButton(cancelButton, animated: false)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -66,7 +45,6 @@ class AccountSwitchViewController: UITableViewController {
         title = String.localized("switch_account")
         tableView.register(AccountCell.self, forCellReuseIdentifier: AccountCell.reuseIdentifier)
         tableView.rowHeight = AccountCell.cellHeight
-        tableView.separatorStyle = .singleLine
         tableView.delegate = self
     }
 
@@ -93,7 +71,6 @@ class AccountSwitchViewController: UITableViewController {
 
             let selectedAccountId = dcAccounts.getSelected().id
             cell.updateCell(selectedAccount: selectedAccountId,
-                            showAccountDeletion: showAccountDeletion,
                             dcContext: dcAccounts.get(id: accountIds[indexPath.row]))
             return cell
         }
@@ -101,29 +78,68 @@ class AccountSwitchViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == addSection {
-            let guide = self.view.safeAreaLayoutGuide
-            let controllerHeight = guide.layoutFrame.size.height
-            let contentHeight = CGFloat(accountIds.count + 1) * AccountCell.cellHeight + (view.safeAreaInsets.vertical / 2)
-            let diff = controllerHeight - contentHeight
-            if diff > 12 {
-                return diff
-            }
-            return 12
-        }
-        return CGFloat.leastNormalMagnitude
-    }
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.leastNormalMagnitude
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return  UIView()
     }
 
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return  UIView()
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard indexPath.section == accountSection else { return nil }
+        let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
+        let muteTitle = dcContext.isMuted() ? "menu_unmute" : "menu_mute"
+        let muteImage = dcContext.isMuted() ? "speaker.wave.2" : "speaker.slash"
+
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil,
+            actionProvider: { [weak self] _ in
+                guard let self else { return nil }
+                let children: [UIMenuElement] = [
+                    UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, indexPath: indexPath, action: { self.toggleMute(at: $0) }),
+                    UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", indexPath: indexPath, action: { self.setProfileTag(at: $0) }),
+                    UIAction.menuAction(localizationKey: "move_to_top", systemImageName: "arrow.up", indexPath: indexPath, action: { self.moveToTop(at: $0) }),
+                    UIMenu(
+                        options: [.displayInline],
+                        children: [
+                            UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteAccount(at: $0) })
+                        ]
+                    )
+                ]
+                return UIMenu(children: children)
+            }
+        )
+    }
+
+    func toggleMute(at indexPath: IndexPath) {
+        let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
+        dcContext.setMuted(!dcContext.isMuted())
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+
+    func setProfileTag(at indexPath: IndexPath) {
+        let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
+
+        let alert = UIAlertController(title: String.localized("profile_tag"), message: String.localized("profile_tag_explain"), preferredStyle: .alert)
+        alert.addTextField { textfield in
+            textfield.text = dcContext.getConfig("private_tag")
+            textfield.placeholder = String.localized("profile_tag_hint")
+        }
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { [weak self] _ in
+            guard let self, let textfield = alert.textFields?.first else { return }
+            dcContext.setConfig("private_tag", textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines))
+            tableView.reloadData()
+        })
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true)
+    }
+
+    func moveToTop(at indexPath: IndexPath) {
+        let accountId = accountIds[indexPath.row]
+        dcAccounts.moveToTop(id: accountId)
+        accountIds = dcAccounts.getAllSorted()
+        tableView.reloadData()
     }
 
     func selectAccount(previousAccountId: Int, accountId: Int, cell: UITableViewCell) {
@@ -151,8 +167,9 @@ class AccountSwitchViewController: UITableViewController {
         }
     }
 
-    func deleteAccount(accountId: Int) {
+    func deleteAccount(at indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let accountId = accountIds[indexPath.row]
 
         let prefs = UserDefaults.standard
         let confirm1 = UIAlertController(title: String.localized("delete_account_ask"), message: nil, preferredStyle: .safeActionSheet)
@@ -198,11 +215,7 @@ class AccountSwitchViewController: UITableViewController {
         switch indexPath.section {
         case accountSection:
             let accountId = accountIds[indexPath.row]
-            if showAccountDeletion {
-                deleteAccount(accountId: accountId)
-            } else {
-                selectAccount(previousAccountId: selectedAccountId, accountId: accountId, cell: cell)
-            }
+            selectAccount(previousAccountId: selectedAccountId, accountId: accountId, cell: cell)
         case addSection:
             addAccount(previousAccountId: selectedAccountId)
         default:
@@ -210,23 +223,7 @@ class AccountSwitchViewController: UITableViewController {
         }
     }
 
-    @objc private func editAction() {
-        title = String.localized("delete_account")
-        navigationItem.setLeftBarButton(nil, animated: true)
-        navigationItem.setRightBarButton(cancelEditButton, animated: true)
-        showAccountDeletion = true
-        tableView.reloadData()
-    }
-
-    @objc private func cancelEditAction() {
-        title = String.localized("switch_account")
-        navigationItem.setLeftBarButton(editButton, animated: false)
-        navigationItem.setRightBarButton(doneButton, animated: false)
-        showAccountDeletion = false
-        tableView.reloadData()
-    }
-
-    @objc private func doneAction() {
+    @objc private func cancelAction() {
         dismiss(animated: true)
     }
 }
@@ -242,10 +239,6 @@ class AccountCell: UITableViewCell {
         return 54
     }
 
-    private var isLargeText: Bool {
-        return UIFont.preferredFont(forTextStyle: .body).pointSize > 36
-    }
-
     private lazy var accountAvatar: InitialsBadge = {
         let avatar = InitialsBadge(size: 37)
         avatar.isAccessibilityElement = false
@@ -254,13 +247,6 @@ class AccountCell: UITableViewCell {
 
     private var selectedAccount: Int?
     private var accountId: Int?
-
-    private lazy var stateIndicator: UIImageView = {
-        let view: UIImageView = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
 
     private lazy var mutedIndicator: UIImageView = {
         let view = UIImageView()
@@ -277,8 +263,22 @@ class AccountCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(for: .body, weight: .bold)
-        label.textColor = DcColors.defaultTextColor
         return label
+    }()
+
+    private lazy var tagLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .subheadline)
+        return label
+    }()
+
+    lazy var labelStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [accountName, tagLabel])
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .leading
+        return stackView
     }()
 
     private lazy var backgroundContainer: BackgroundContainer = {
@@ -302,28 +302,21 @@ class AccountCell: UITableViewCell {
     private func setupSubviews() {
         contentView.addSubview(accountAvatar)
         contentView.addSubview(mutedIndicator)
-        contentView.addSubview(accountName)
-        contentView.addSubview(stateIndicator)
+        contentView.addSubview(labelStackView)
         let margins = contentView.layoutMarginsGuide
         contentView.addConstraints([
             accountAvatar.constraintCenterYTo(contentView),
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
             mutedIndicator.constraintCenterYTo(contentView),
             mutedIndicator.constraintToTrailingOf(accountAvatar, paddingLeading: 12),
-            accountName.constraintAlignTopToAnchor(margins.topAnchor),
-            accountName.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
-            accountName.constraintAlignBottomToAnchor(margins.bottomAnchor),
-            accountName.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultLow),
-            stateIndicator.constraintCenterYTo(contentView),
-            stateIndicator.constraintToTrailingOf(accountName),
-            stateIndicator.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 0),
-            stateIndicator.constraintHeightTo(24),
-            stateIndicator.constraintWidthTo(24)
+            labelStackView.constraintAlignTopToAnchor(margins.topAnchor),
+            labelStackView.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
+            labelStackView.constraintAlignBottomToAnchor(margins.bottomAnchor),
+            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultHigh),
         ])
-        stateIndicator.isHidden = true
     }
 
-    func updateCell(selectedAccount: Int, showAccountDeletion: Bool, dcContext: DcContext) {
+    func updateCell(selectedAccount: Int, dcContext: DcContext) {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
@@ -348,31 +341,14 @@ class AccountCell: UITableViewCell {
             accountName.accessibilityLabel = title
         }
 
-        if showAccountDeletion {
-            showDeleteIndicator()
+        if let label = dcContext.getConfig("private_tag") {
+            tagLabel.text = label
+            tagLabel.isHidden = false
         } else {
-            if selectedAccount == accountId {
-                showSelectedIndicator()
-            } else {
-                stateIndicator.image = nil
-                stateIndicator.isHidden = true
-            }
+            tagLabel.isHidden = true
         }
-    }
 
-    private func showDeleteIndicator() {
-        stateIndicator.image = UIImage(systemName: "trash")
-        stateIndicator.tintColor = .systemRed
-        stateIndicator.accessibilityLabel = String.localized("delete")
-        stateIndicator.isHidden = false
-
-    }
-
-    private func showSelectedIndicator() {
-        stateIndicator.image = UIImage(systemName: "checkmark")
-        stateIndicator.tintColor = .systemBlue
-        stateIndicator.accessibilityLabel = ""
-        stateIndicator.isHidden = false
+        accessoryType = selectedAccount == accountId ? .checkmark : .none
     }
 
     override func prepareForReuse() {
@@ -380,6 +356,5 @@ class AccountCell: UITableViewCell {
         accountAvatar.reset()
         accountName.text = nil
         accountId = -1
-        stateIndicator.image = nil
     }
 }

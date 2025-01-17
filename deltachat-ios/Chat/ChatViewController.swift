@@ -1263,11 +1263,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
 
-        if dcContext.hasWebxdc() {
-            let webxdcAction = action(localized: "webxdc_apps", handler: showWebxdcSelector)
-            alert.addAction(webxdcAction)
-        }
-
+        let webxdcAction = action(localized: "webxdc_apps", handler: showWebxdcSelector)
+        alert.addAction(webxdcAction)
         alert.addAction(voiceMessageAction)
 
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
@@ -1939,7 +1936,6 @@ extension ChatViewController {
         return nil
     }
 
-    // context menu for iOS 13+
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
