@@ -1932,7 +1932,7 @@ extension ChatViewController {
 
                 if dcChat.isSelfTalk || message.savedMessageId != 0 {
                     children.append(
-                        UIAction.menuAction(localizationKey: "unsave", systemImageName: "star.slash", indexPath: indexPath, action: { self.toggleSave(at: $0 ) })
+                        UIAction.menuAction(localizationKey: "unsave", systemImageName: "star.slash", indexPath: indexPath, action: toggleSave)
                     )
                 } else {
                     children.append(
