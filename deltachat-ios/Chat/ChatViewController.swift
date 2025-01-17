@@ -1168,6 +1168,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     $0.setSize(CGSize(width: 40, height: 40), animated: false)
                     $0.accessibilityLabel = String.localized("menu_add_attachment")
                     $0.accessibilityTraits = .button
+                    if #available(iOS 14.0, *) {
+                        $0.showsMenuAsPrimaryAction = true
+                        $0.menu = clipperButtonMenu()
+                    }
                 }.onSelected {
                     $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
                 }.onDeselected {
@@ -1202,28 +1206,69 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
+    @available(iOS 14, *)
+    private func clipperButtonMenu() -> UIMenu {
+        func action(localized: String, systemImage: String, attributes: UIMenuElement.Attributes = [], handler: @escaping () -> Void) -> UIAction {
+            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
+        }
+        var actions = [UIMenuElement]()
+        actions.append(action(localized: "camera", systemImage: "camera", handler: showCameraViewController))
+        let galleryImage = if #available(iOS 16, *) { "photo.stack" } else { "photo" }
+        actions.append(action(localized: "gallery", systemImage: galleryImage, handler: showPhotoVideoLibrary))
+        actions.append(action(localized: "files", systemImage: "folder", handler: showDocumentLibrary))
+        if dcContext.hasWebxdc() {
+            actions.append(action(localized: "webxdc_apps", systemImage: "square.grid.2x2", handler: showWebxdcSelector))
+        }
+        actions.append(action(localized: "voice_message", systemImage: "mic", handler: showVoiceMessageRecorder))
+        if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
+            let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
+            actions.append(action(localized: "videochat", systemImage: videoChatImage, handler: videoChatButtonPressed))
+        }
+        if UserDefaults.standard.bool(forKey: "location_streaming") {
+            let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
+            actions.append(action(
+                localized: isLocationStreaming ? "stop_sharing_location" : "location",
+                systemImage: isLocationStreaming ? "location.slash" : "location",
+                attributes: isLocationStreaming ? .destructive : [],
+                handler: locationStreamingButtonPressed
+            ))
+        }
+        actions.append(action(localized: "contact", systemImage: "person.crop.circle", handler: showContactList))
+
+        // Actions in this menu are reversed order vs iOS 13 because they are ordered
+        // by importance starting closest to the button
+        return UIMenu(children: actions)
+    }
+
+    /// On iOS 13 we still use the action sheet but iOS 14+ has a UIMenu
     @objc private func clipperButtonPressed() {
+        guard #unavailable(iOS 14) else { return }
+        func action(localized: String, style: UIAlertAction.Style = .default, handler: @escaping () -> Void) -> UIAlertAction {
+            UIAlertAction(title: String.localized(localized), style: style, handler: { _ in handler() })
+        }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-        let galleryAction = PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
-        let cameraAction = PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
-        let documentAction = UIAlertAction(title: String.localized("files"), style: .default, handler: documentActionPressed(_:))
-        let voiceMessageAction = UIAlertAction(title: String.localized("voice_message"), style: .default, handler: voiceMessageButtonPressed(_:))
-        let sendContactAction = UIAlertAction(title: String.localized("contact"), style: .default, handler: showContactList(_:))
+        let galleryAction = action(localized: "gallery", handler: showPhotoVideoLibrary)
+        let cameraAction = action(localized: "camera", handler: showCameraViewController)
+        let documentAction = action(localized: "files", handler: showDocumentLibrary)
+        let voiceMessageAction = action(localized: "voice_message", handler: showVoiceMessageRecorder)
+        let sendContactAction = action(localized: "contact", handler: showContactList)
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
-        let locationStreamingAction = UIAlertAction(title: isLocationStreaming ? String.localized("stop_sharing_location") : String.localized("location"),
-                                                    style: isLocationStreaming ? .destructive : .default,
-                                                    handler: locationStreamingButtonPressed(_:))
+        let locationStreamingAction = action(
+            localized: isLocationStreaming ? "stop_sharing_location" : "location",
+            style: isLocationStreaming ? .destructive : .default,
+            handler: locationStreamingButtonPressed
+        )
 
         alert.addAction(cameraAction)
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
 
-        let webxdcAction = UIAlertAction(title: String.localized("webxdc_apps"), style: .default, handler: webxdcButtonPressed(_:))
+        let webxdcAction = action(localized: "webxdc_apps", handler: showWebxdcSelector)
         alert.addAction(webxdcAction)
         alert.addAction(voiceMessageAction)
 
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
-            let videoChatInvitation = UIAlertAction(title: String.localized("videochat"), style: .default, handler: videoChatButtonPressed(_:))
+            let videoChatInvitation = action(localized: "videochat", handler: videoChatButtonPressed)
             alert.addAction(videoChatInvitation)
         }
 
@@ -1442,7 +1487,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func showPhotoVideoLibrary(delegate: MediaPickerDelegate) {
+    private func showPhotoVideoLibrary() {
         mediaPicker?.showPhotoVideoLibrary()
     }
 
@@ -1483,27 +1528,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         navigationController?.present(alert, animated: true, completion: nil)
     }
 
-    private func webxdcButtonPressed(_ action: UIAlertAction) {
-        showWebxdcSelector()
-    }
-
-    private func documentActionPressed(_ action: UIAlertAction) {
-        showDocumentLibrary()
-    }
-
-    private func voiceMessageButtonPressed(_ action: UIAlertAction) {
-        showVoiceMessageRecorder()
-    }
-
-    private func cameraButtonPressed(_ action: UIAlertAction) {
-        showCameraViewController()
-    }
-
-    private func galleryButtonPressed(_ action: UIAlertAction) {
-        showPhotoVideoLibrary(delegate: self)
-    }
-
-    private func showContactList(_ action: UIAlertAction) {
+    private func showContactList() {
         let contactList = SendContactViewController(dcContext: dcContext)
         contactList.delegate = self
 
@@ -1518,7 +1543,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         present(navigationController, animated: true)
     }
 
-    private func locationStreamingButtonPressed(_ action: UIAlertAction) {
+    private func locationStreamingButtonPressed() {
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         if isLocationStreaming {
             locationStreamingFor(seconds: 0)
@@ -1534,7 +1559,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func videoChatButtonPressed(_ action: UIAlertAction) {
+    private func videoChatButtonPressed() {
         let chat = dcContext.getChat(chatId: chatId)
 
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("videochat_invite_user_to_videochat"), chat.name),
