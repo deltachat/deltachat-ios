@@ -1,12 +1,12 @@
 import UIKit
 import WebKit
 
-protocol AppPickerViewControllerDelegate: AnyObject {
-    func pickedAnDownloadedApp(_ viewController: AppPickerViewController, fileURL: URL)
+protocol WebxdcStoreViewControllerDelegate: AnyObject {
+    func pickedAnDownloadedApp(_ viewController: WebxdcStoreViewController, fileURL: URL)
 }
 
-class AppPickerViewController: UIViewController {
-    weak var delegate: AppPickerViewControllerDelegate?
+class WebxdcStoreViewController: UIViewController {
+    weak var delegate: WebxdcStoreViewControllerDelegate?
     let webView: WKWebView
     var defaultCloseButton: UIBarButtonItem?
     let downloadingView: DownloadingView
@@ -27,7 +27,7 @@ class AppPickerViewController: UIViewController {
         view.addSubview(downloadingView)
         view.backgroundColor = .systemBackground
         setupConstraints()
-        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(AppPickerViewController.close(_:)))
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(WebxdcStoreViewController.close(_:)))
 
         title = String.localized("webxdc_apps")
         navigationItem.leftBarButtonItem = closeButton
@@ -74,7 +74,7 @@ class AppPickerViewController: UIViewController {
     }
 }
 
-extension AppPickerViewController: WKNavigationDelegate {
+extension WebxdcStoreViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping @MainActor (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url else {
             return decisionHandler(.cancel)

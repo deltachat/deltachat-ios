@@ -223,7 +223,7 @@
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
 		D85DF9782C4A96CB00A01408 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DF9772C4A96CB00A01408 /* UserDefaults+Extensions.swift */; };
 		D85DF9802C5250E200A01408 /* ProgressAlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */; };
-		D86DF20C2D30318B00141B3E /* AppPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DF20B2D30318B00141B3E /* AppPickerViewController.swift */; };
+		D86DF20C2D30318B00141B3E /* WebxdcStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DF20B2D30318B00141B3E /* WebxdcStoreViewController.swift */; };
 		D878C4FD2CF72AA0009AF551 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */; };
 		D878C4FF2CF72AA0009AF551 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */; };
 		D878C50C2CF72AA1009AF551 /* DcWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D878C4FB2CF72AA0009AF551 /* DcWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -631,7 +631,7 @@
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
 		D85DF9772C4A96CB00A01408 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAlertHandler.swift; sourceTree = "<group>"; };
-		D86DF20B2D30318B00141B3E /* AppPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPickerViewController.swift; sourceTree = "<group>"; };
+		D86DF20B2D30318B00141B3E /* WebxdcStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebxdcStoreViewController.swift; sourceTree = "<group>"; };
 		D878C4FB2CF72AA0009AF551 /* DcWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DcWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D878C4FC2CF72AA0009AF551 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D878C4FE2CF72AA0009AF551 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -865,7 +865,7 @@
 				3080A00D277DDA1400E74565 /* InputBarAccessoryView */,
 				30FDB6B524D193DD0066C48D /* Views */,
 				303492942565AABC00A523D0 /* DraftModel.swift */,
-				D86DF20B2D30318B00141B3E /* AppPickerViewController.swift */,
+				D83226FC2D3AC91100C239C5 /* Apps */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1202,6 +1202,14 @@
 				D80F62782B59D1CC00877059 /* DefaultReactions.swift */,
 			);
 			path = "Send Reaction";
+			sourceTree = "<group>";
+		};
+		D83226FC2D3AC91100C239C5 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				D86DF20B2D30318B00141B3E /* WebxdcStoreViewController.swift */,
+			);
+			path = Apps;
 			sourceTree = "<group>";
 		};
 		D84AED252B566BF700D753F6 /* Reactions */ = {
@@ -1675,7 +1683,7 @@
 				30F4E2942859213400ACA0D8 /* ChatListEditingBar.swift in Sources */,
 				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
-				D86DF20C2D30318B00141B3E /* AppPickerViewController.swift in Sources */,
+				D86DF20C2D30318B00141B3E /* WebxdcStoreViewController.swift in Sources */,
 				30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */,
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,

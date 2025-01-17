@@ -1458,7 +1458,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func showAppPicker() {
-        let appPicker = AppPickerViewController()
+        let appPicker = WebxdcStoreViewController()
         appPicker.delegate = self
         let navigationController = UINavigationController(rootViewController: appPicker)
         navigationController.isModalInPresentation = true
@@ -2665,8 +2665,8 @@ extension ChatViewController: BackButtonUpdateable {
 
 // MARK: - AppPickerViewControllerDelegate
 
-extension ChatViewController: AppPickerViewControllerDelegate {
-    func pickedAnDownloadedApp(_ viewController: AppPickerViewController, fileURL url: URL) {
+extension ChatViewController: WebxdcStoreViewControllerDelegate {
+    func pickedAnDownloadedApp(_ viewController: WebxdcStoreViewController, fileURL url: URL) {
         draft.setAttachment(viewType: DC_MSG_WEBXDC, path: url.relativePath)
         configureDraftArea(draft: draft)
         focusInputTextView()
