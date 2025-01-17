@@ -16,6 +16,7 @@
 - Fix scrolling issue when cancelling a screen (#2504)
 - Fix layout of 'No contacts found' message (#2517)
 - Don't hide the Apps-tab anymore (#2526)
+- Use the new App-picker to share apps (#2450)
 
 ## v1.50.4
 2025-01
