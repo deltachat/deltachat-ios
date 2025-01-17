@@ -14,30 +14,23 @@ class AllMediaViewController: UIPageViewController {
     private let chatId: Int
     private var prevIndex: Int = 0
 
-    private func getPages() -> [Page] {
-        let webxdcReallyInUse = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).count
-                                    >= (chatId == 0 ? 5 : 1)
-        pages.append(Page(
+    private let pages: [Page] = [
+        Page(
             headerTitle: String.localized("files"),
-            type1: DC_MSG_FILE, type2: webxdcReallyInUse ? 0 : DC_MSG_WEBXDC, type3: 0
-        ))
-        if webxdcReallyInUse {
-            pages.append(Page(
-                headerTitle: String.localized("webxdc_apps"),
-                type1: DC_MSG_WEBXDC, type2: 0, type3: 0
-            ))
-        }
-        pages.append(Page(
+            type1: DC_MSG_FILE, type2: 0, type3: 0
+        ),
+        Page(
+            headerTitle: String.localized("webxdc_apps"),
+            type1: DC_MSG_WEBXDC, type2: 0, type3: 0
+        ),
+        Page(
             headerTitle: String.localized("audio"),
             type1: DC_MSG_AUDIO, type2: DC_MSG_VOICE, type3: 0
-        ))
-        pages.append(Page(
+        ),
+        Page(
             headerTitle: String.localized("gallery"),
             type1: DC_MSG_IMAGE, type2: DC_MSG_GIF, type3: DC_MSG_VIDEO
-        ))
-        return pages
-    }
-    private var pages: [Page] = []
+        )]
 
     private lazy var segmentControl: UISegmentedControl = {
         let control = UISegmentedControl(items: pages.map({$0.headerTitle}))
@@ -55,7 +48,6 @@ class AllMediaViewController: UIPageViewController {
         self.dcContext = dcContext
         self.chatId = chatId
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
-        self.pages = self.getPages()
     }
 
     required init?(coder: NSCoder) {
