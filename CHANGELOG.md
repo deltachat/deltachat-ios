@@ -1,8 +1,11 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.50.5
+2025-01
 
 - More modern attach menu (#2522)
+- Attach mini apps using the App-picker from the attach menu (#2450)
+- Show the apps-tab unconditionally (#2526)
 - Append dropped URLs to text field instead of attaching as file (#2523)
 - Drag images from a chat and drop it to another chat or even to another app (use a second finger for navigating!) (#2509)
 - Paste .webp images via drag'n'drop (#2507)
@@ -16,8 +19,7 @@
 - Fix scrolling issue when cancelling a screen (#2504)
 - Fix layout of 'No contacts found' message (#2517)
 - Fix position of 'Attach Contact's 'Cancel' button (#2532)
-- Don't hide the Apps-tab anymore (#2526)
-- Use the new App-picker to share apps (#2450)
+
 
 ## v1.50.4
 2025-01
