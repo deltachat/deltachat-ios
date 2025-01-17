@@ -556,6 +556,8 @@
 "profile_tag" = "Özel Etiket";
 "profile_tag_hint" = "ör. İş, Aile";
 "profile_tag_explain" = "Yalnızca sizin için görünür etiket; profilleriniz arasında farklılığa yardımcı olur.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "En Üste Taşı";
 "delete_account" = "Profili Sil";
 "delete_account_ask" = "Profil verilerinizi silmek istediğinizden emin misiniz?";
 "delete_account_explain_with_name" = "Uçtan uca şifreleme ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak \"%1$@\" profilinin bu aygıttaki verilerinin tümü silinecek. Bu eylem geri alınamaz.";
@@ -954,7 +956,7 @@
 "global_menu_edit_copy_desktop" = "Kopyala";
 "global_menu_edit_paste_desktop" = "Yapıştır";
 "global_menu_view_desktop" = "Görünüm";
-"global_menu_view_floatontop_desktop" = "Üstte Yüzdür";
+"global_menu_view_floatontop_desktop" = "En Üstte Yüzdür";
 "global_menu_view_developer_desktop" = "Geliştirici";
 "global_menu_view_developer_tools_desktop" = "Geliştirici Araçları";
 "global_menu_help_desktop" = "Yardım";

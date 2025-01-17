@@ -552,6 +552,8 @@
 "profile_tag" = "Etiketë Private";
 "profile_tag_hint" = "p.sh., Pune, Familjeje";
 "profile_tag_explain" = "Ajo etiketë është e dukshme vetëm për ju; për t’ju ndihmuar ju të bëni dallimin mes profileve tuaja.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Shpjere Në Krye";
 "delete_account" = "Fshije Llogarinë";
 "delete_account_ask" = "Jeni i sigurt se doni të fshihen të dhënat e llogarisë tuaj?";
 "delete_account_explain_with_name" = "Krejt të dhënat e llogarisë për “%1$@” në këtë pajisje do të fshihen, përfshi ato të ujdisjes tuaj për fshehtëzim skaj-më-skaj, kontakte, fjalosje, mesazhe dhe media. Ky veprim s’mund të zhbëhet.";

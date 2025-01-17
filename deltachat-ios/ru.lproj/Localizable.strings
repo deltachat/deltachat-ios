@@ -556,6 +556,8 @@
 "profile_tag" = "Личный тег";
 "profile_tag_hint" = "Например: Работа, Семья";
 "profile_tag_explain" = "Тег, видимый только вам, помогает различать ваши профили.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Переместить вверх";
 "delete_account" = "Удалить профиль";
 "delete_account_ask" = "Вы уверены, что хотите удалить данные своего профиля?";
 "delete_account_explain_with_name" = "Все данные профиля \"%1$@\" на этом устройстве будут безвозвратно удалены, включая настройки сквозного шифрования, контакты, чаты, сообщения и медиафайлы. Это действие не может быть отменено.";

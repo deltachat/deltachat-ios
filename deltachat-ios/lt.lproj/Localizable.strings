@@ -549,6 +549,8 @@
 "emoji_flags" = "Vėliavos";
 // Reactions
 "reactions" = "Reakcijos";
+// Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
+"react" = "Reaguoti";
 // automatically delete message
 "delete_old_messages" = "Ištrinti senas žinutes";
 "autodel_device_title" = "Ištrinti žinutes iš įrenginio";
@@ -585,6 +587,10 @@
 // deprecated
 "systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \"%1$@\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Jūs pakeitėte grupės pavadinimą iš „%1$@“ į „%2$@“.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "%3$@ pakeitė grupės pavadinimą iš „%1$@“ į „%2$@“.";
 // "left" in the meaning of "exited"
 "group_left_by_you" = "Jūs išėjote iš grupės.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group

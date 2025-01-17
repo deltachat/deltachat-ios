@@ -35,6 +35,7 @@
 "close_window" = "Fenster schließen";
 "forward" = "Weiterleiten";
 "create" = "Erstellen";
+"reset" = "Zurücksetzen";
 "later" = "Später";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Erneut senden";
@@ -43,6 +44,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Dearchivieren";
 "mute" = "Stumm";
+"muted" = "Stumm";
 "ephemeral_messages" = "Verschwindende Nachrichten";
 "ephemeral_messages_hint" = "Gilt für alle Gruppenmitglieder, die Delta Chat verwenden. Nachrichten können kopiert, gespeichert und weitergeleitet werden oder es können andere E-Mail-Clients verwendet werden.";
 "save" = "Speichern";
@@ -145,6 +147,12 @@
 "webxdc_apps" = "Apps";
 "webxdc_store_url" = "App-Picker-URL";
 "webxdc_store_url_explain" = "Wenn gesetzt, wird diese URL als App-Picker anstelle der Voreinstellung verwendet.";
+"home" = "Start";
+"games" = "Spiele";
+"tools" = "Tools";
+"app_size" = "Größe";
+"app_date_published" = "Veröffentlicht";
+"add_to_chat" = "Zum Chat hinzufügen";
 "unknown" = "Unbekannt";
 "green" = "Grün";
 "red" = "Rot";
@@ -619,6 +627,7 @@
 "pref_appearance" = "Darstellung";
 "pref_theme" = "Design";
 "pref_language" = "Sprache";
+"pref_use_system_ui_font" = "Systemschrift verwenden";
 "pref_incognito_keyboard" = "Inkognito-Tastatur";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Deaktivierung des personalisierten Lernens der Tastatur anfordern.";
