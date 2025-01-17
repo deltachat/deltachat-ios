@@ -1218,11 +1218,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         alert.addAction(galleryAction)
         alert.addAction(documentAction)
 
-        if dcContext.hasWebxdc() {
-            let webxdcAction = UIAlertAction(title: String.localized("webxdc_apps"), style: .default, handler: webxdcButtonPressed(_:))
-            alert.addAction(webxdcAction)
-        }
-
+        let webxdcAction = UIAlertAction(title: String.localized("webxdc_apps"), style: .default, handler: webxdcButtonPressed(_:))
+        alert.addAction(webxdcAction)
         alert.addAction(voiceMessageAction)
 
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {

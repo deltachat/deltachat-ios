@@ -8,7 +8,6 @@ public class DcContext {
     private var encryptedDatabases: [Int: Bool] = [:]
 
     var contextPointer: OpaquePointer?
-    private var anyWebxdcSeen: Bool = false
 
     public init(contextPointer: OpaquePointer?) {
         self.contextPointer = contextPointer
@@ -211,13 +210,6 @@ public class DcContext {
 
         let messageIds: [Int] =  DcUtils.copyAndFreeArray(inputArray: messagesPointer)
         return messageIds
-    }
-
-    public func hasWebxdc() -> Bool {
-        if !anyWebxdcSeen {
-            anyWebxdcSeen = !getChatMedia(chatId: 0, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0).isEmpty
-        }
-        return anyWebxdcSeen
     }
 
     public func getAllMediaCount(chatId: Int) -> String {
