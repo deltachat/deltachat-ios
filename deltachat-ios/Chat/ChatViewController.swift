@@ -1217,9 +1217,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         actions.append(action(localized: "gallery", systemImage: galleryImage, handler: showPhotoVideoLibrary))
         actions.append(action(localized: "files", systemImage: "folder", handler: showDocumentLibrary))
         if dcContext.hasWebxdc() {
-            actions.append(action(localized: "webxdc_apps", systemImage: "app", handler: showWebxdcSelector))
+            actions.append(action(localized: "webxdc_apps", systemImage: "square.grid.2x2", handler: showWebxdcSelector))
         }
-        actions.append(action(localized: "voice_message", systemImage: "waveform", handler: showVoiceMessageRecorder))
+        actions.append(action(localized: "voice_message", systemImage: "mic", handler: showVoiceMessageRecorder))
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
             let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
             actions.append(action(localized: "videochat", systemImage: videoChatImage, handler: videoChatButtonPressed))
