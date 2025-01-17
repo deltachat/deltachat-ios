@@ -14,7 +14,7 @@
 - Allow cancelling profile edits, force a name when editing profile (#2506)
 - Fix scrolling issue when cancelling a screen (#2504)
 - Fix layout of 'No contacts found' message (#2517)
-
+- Don't hide the Apps-tab anymore (#2526)
 
 ## v1.50.4
 2025-01
