@@ -128,8 +128,10 @@ class DownloadingView: UIView {
         activityIndicator.color = .label
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
-        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
         blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.layer.cornerRadius = 10
+        blurView.layer.masksToBounds = true
 
         super.init(frame: .zero)
 
@@ -140,10 +142,10 @@ class DownloadingView: UIView {
             activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
 
-            blurView.topAnchor.constraint(equalTo: topAnchor),
-            blurView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            trailingAnchor.constraint(equalTo: blurView.trailingAnchor),
-            bottomAnchor.constraint(equalTo: blurView.bottomAnchor),
+            activityIndicator.topAnchor.constraint(equalTo: blurView.topAnchor, constant: 20),
+            activityIndicator.leadingAnchor.constraint(equalTo: blurView.leadingAnchor, constant: 20),
+            blurView.trailingAnchor.constraint(equalTo: activityIndicator.trailingAnchor, constant: 20),
+            blurView.bottomAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 20),
         ])
     }
     
