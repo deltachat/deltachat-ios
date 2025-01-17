@@ -100,10 +100,6 @@ extension AppPickerViewController: WKNavigationDelegate {
                     return decisionHandler(.cancel)
                 }
 
-                if #available(iOS 16.0, *) {
-                    try await Task.sleep(for: .seconds(2))
-                }
-
                 let fileURL = NSURL(fileURLWithPath: filepath)
                 delegate?.pickedAnDownloadedApp(self, fileURL: fileURL as URL)
                 await MainActor.run {
@@ -129,7 +125,7 @@ class DownloadingView: UIView {
 
     init() {
         activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .white
+        activityIndicator.color = .label
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
         blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
