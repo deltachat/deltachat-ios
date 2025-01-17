@@ -556,6 +556,8 @@
 "profile_tag" = "Privélabel";
 "profile_tag_hint" = "bijv. werk, familie";
 "profile_tag_explain" = "Een label dat alleen jij kan zien, om profielen van elkaar te onderscheiden.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Bovenaan tonen";
 "delete_account" = "Account verwijderen";
 "delete_account_ask" = "Weet je zeker dat je je accountgegevens wilt verwijderen?";
 "delete_account_explain_with_name" = "Alle gegevens van ‘%1$@’ worden verwijderd: de eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie kan niet ongedaan worden gemaakt.";

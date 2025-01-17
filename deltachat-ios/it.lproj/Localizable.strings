@@ -556,6 +556,8 @@
 "profile_tag" = "Etichetta Privata";
 "profile_tag_hint" = "es. Lavoro, Famiglia";
 "profile_tag_explain" = "Etichetta che è visibile solo a te; ti aiuta a distinguere i tuoi profili.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Sposta in Alto";
 "delete_account" = "Elimina Profilo";
 "delete_account_ask" = "Sei certo di voler eliminare i dati del tuo profilo?";
 "delete_account_explain_with_name" = "Tutti i dati del profilo di \"%1$@\" su questo dispositivo verranno eliminati, inclusa la configurazione della crittografia end-to-end, i contatti, le chat, i messaggi e i contenuti multimediali. Questa azione non può essere annullata.";

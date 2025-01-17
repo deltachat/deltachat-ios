@@ -556,6 +556,8 @@
 "profile_tag" = "私密标签";
 "profile_tag_hint" = "如工作、家庭";
 "profile_tag_explain" = "仅对你可见的标签；帮助你区分不同的配置文件";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "移到顶部";
 "delete_account" = "删除账号";
 "delete_account_ask" = "是否确定要删除您的账号数据？";
 "delete_account_explain_with_name" = "将会删除此设备上“%1$@”的所有账号数据，包括您的端到端加密设置、联系人、聊天、消息和媒体。此操作无法撤销。";
