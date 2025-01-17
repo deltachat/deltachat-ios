@@ -1936,7 +1936,7 @@ extension ChatViewController {
                     )
                 } else {
                     children.append(
-                        UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "star", indexPath: indexPath, action: { self.toggleSave(at: $0 ) })
+                        UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "star", indexPath: indexPath, action: toggleSave)
                     )
                 }
 
