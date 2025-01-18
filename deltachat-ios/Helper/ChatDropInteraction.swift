@@ -64,7 +64,7 @@ public class ChatDropInteraction {
         // If webP is provided and eg JPEG (or another type that is supported by loadObject),
         // always pick webP because it might have transparancy unlike JPEG.
         if #available(iOS 14, *), droppedItem.itemProvider.hasItemConformingToTypeIdentifier(UTType.webP.identifier) {
-            droppedItem.itemProvider.loadDataRepresentation(forTypeIdentifier: kUTTypeImage as String) { [weak self] webPData, _ in
+            droppedItem.itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.webP.identifier) { [weak self] webPData, _ in
                 guard let self, let image = UIImage.sd_image(withWebPData: webPData) else { return }
                 self.delegate?.onImageDragAndDropped(image: image)
             }
