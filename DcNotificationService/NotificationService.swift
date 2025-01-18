@@ -19,9 +19,6 @@ class NotificationService: UNNotificationServiceExtension {
         }
         UserDefaults.setNseFetching(for: 26)
 
-        // as we're mixing in notifications from accounts without PUSH and we cannot add multiple notifications,
-        // it is best to move everything to the same thread - and set just no threadIdentifier
-
         dcAccounts.openDatabase(writeable: false)
         let eventEmitter = dcAccounts.getEventEmitter()
 
