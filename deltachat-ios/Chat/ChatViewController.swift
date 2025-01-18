@@ -1696,6 +1696,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
+            // TODO: Remove this when core is fixed https://github.com/deltachat/deltachat-core-rust/issues/6447
+            let image = image.scaleDownImage(toMax: 300) ?? image
+
             guard let self, let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) else { return }
 
             if self.draft.draftMsg != nil {
