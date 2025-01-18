@@ -69,12 +69,12 @@ public class ChatDropInteraction {
                 self.delegate?.onImageDragAndDropped(image: image)
             }
         } else if droppedItem.itemProvider.canLoadObject(ofClass: UIImage.self) {
-            droppedItem.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] imageItem, error in
+            droppedItem.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] imageItem, _ in
                 guard let image = imageItem as? UIImage else { return }
                 self?.delegate?.onImageDragAndDropped(image: image)
             }
         } else {
-            // Some images (eg webP) can't be loaded into UIImage by UIDropSession so we fall back on SD.
+            // Some images (like webP) can't be loaded into UIImage by UIDropSession so we fall back on SD.
             // See `UIImage.readableTypeIdentifiersForItemProvider` for ones that can.
             droppedItem.itemProvider.loadDataRepresentation(forTypeIdentifier: kUTTypeImage as String) { [weak self] data, _ in
                 guard let self, let image = UIImage.sd_image(with: data) else { return }
