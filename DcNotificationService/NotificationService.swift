@@ -9,7 +9,7 @@ class NotificationService: UNNotificationServiceExtension {
         func newNotificationContent() -> UNMutableNotificationContent {
             bestAttemptContent.mutableCopy() as? UNMutableNotificationContent ?? .init()
         }
-        let nowTimestamp = Double(Date().timeIntervalSince1970)
+        let nowTimestamp = Date().timeIntervalSince1970
         UserDefaults.pushToDebugArray("🤜")
 
         if UserDefaults.mainIoRunning {
@@ -123,10 +123,10 @@ class NotificationService: UNNotificationServiceExtension {
         notifications.last?.badge = dcAccounts.getFreshMessageCount() as NSNumber
         dcAccounts.closeDatabase()
         if notifications.isEmpty {
-            UserDefaults.pushToDebugArray(String(format: "OK3 %.3fs", Double(Date().timeIntervalSince1970) - nowTimestamp))
+            UserDefaults.pushToDebugArray(String(format: "OK3 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
         } else {
             UserDefaults.shared?.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend) // force UI updates in case app was suspended
-            UserDefaults.pushToDebugArray(String(format: "OK2 %.3fs", Double(Date().timeIntervalSince1970) - nowTimestamp))
+            UserDefaults.pushToDebugArray(String(format: "OK2 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
         }
         contentHandler(notifications.last ?? silenceNotification())
     }
