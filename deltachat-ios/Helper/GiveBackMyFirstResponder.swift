@@ -26,21 +26,18 @@ extension UIViewController {
         // give back the first responder when search was used
         if #available(iOS 16, *) {
             documentPicker.returnFirstRespondersOnDismiss()
-            present(documentPicker as UIViewController, animated: animated, completion: completion)
-        } else {
-            present(documentPicker as UIViewController, animated: animated, completion: completion)
         }
+        present(documentPicker as UIViewController, animated: animated, completion: completion)
     }
 
     /// In iOS 16 and below and iOS 18 the UIImagePickerController does not give back the first responder when search was used.
     /// This function fixes that by making the previous first responder, first responder again when the image picker is dismissed.
     public func present(_ imagePicker: UIImagePickerController, animated: Bool, completion: (() -> Void)? = nil) {
-        if #available(iOS 17, *) {
-            if #unavailable(iOS 18) {
-                return present(imagePicker as UIViewController, animated: animated, completion: completion)
-            }
+        if #unavailable(iOS 17) { // pre iOS 17
+            imagePicker.returnFirstRespondersOnDismiss()
+        } else if #available(iOS 18, *) { // iOS 18 and up
+            imagePicker.returnFirstRespondersOnDismiss()
         }
-        imagePicker.returnFirstRespondersOnDismiss()
         present(imagePicker as UIViewController, animated: animated, completion: completion)
     }
 }
@@ -57,6 +54,7 @@ extension UIViewController {
 
     fileprivate var lastResponders: [UIResponder] {
         get { objc_getAssociatedObject(self, &lastRespondersKey) as? [UIResponder] ?? [] }
+        /// Filter for self because that could create a reference cycle
         set { objc_setAssociatedObject(self, &lastRespondersKey, newValue.filter { $0 !== self }, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
     }
 
