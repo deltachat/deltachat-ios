@@ -2233,10 +2233,10 @@ extension ChatViewController: BaseMessageCellDelegate {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let savedMessage = dcContext.getMessage(id: messageIds[indexPath.row])
 
-        let originalChatId = savedMessage.originalChatId
-        if originalChatId != 0 {
-            let originalMessageId: Int? = savedMessage.originalMessageId == 0 ? nil : savedMessage.originalMessageId
-            appDelegate.appCoordinator.showChat(chatId: originalChatId, msgId: originalMessageId, animated: true, clearViewControllerStack: true)
+        let originalMessageId = savedMessage.originalMessageId
+        if originalMessageId != 0 {
+            let originalMessage = dcContext.getMessage(id: originalMessageId)
+            appDelegate.appCoordinator.showChat(chatId: originalMessage.chatId, msgId: originalMessageId, animated: true, clearViewControllerStack: true)
         }
     }
 

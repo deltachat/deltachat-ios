@@ -439,7 +439,7 @@ public class BaseMessageCell: UITableViewCell {
             avatarView.isHidden = true
         }
 
-        gotoOriginalButton.isHidden = msg.originalChatId == 0
+        gotoOriginalButton.isHidden = msg.originalMessageId == 0
 
         let downloadState = msg.downloadState
         let hasHtml = msg.hasHtml
