@@ -120,7 +120,10 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             }
         }
-        notifications.last?.badge = dcAccounts.getFreshMessageCount() as NSNumber
+        // We send the last notification if available (so pre iOS 13.3 doesn't get a sound)
+        // This notification updates the badge number
+        let lastOrSilentNotification = notifications.last ?? silentNotification()
+        lastOrSilentNotification.badge = dcAccounts.getFreshMessageCount() as NSNumber
         dcAccounts.closeDatabase()
         if notifications.isEmpty {
             UserDefaults.pushToDebugArray(String(format: "OK3 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
@@ -128,7 +131,7 @@ class NotificationService: UNNotificationServiceExtension {
             UserDefaults.shared?.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend) // force UI updates in case app was suspended
             UserDefaults.pushToDebugArray(String(format: "OK2 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
         }
-        contentHandler(notifications.last ?? silenceNotification())
+        contentHandler(lastOrSilentNotification)
     }
 
     override func serviceExtensionTimeWillExpire() {
@@ -141,7 +144,7 @@ class NotificationService: UNNotificationServiceExtension {
         UserDefaults.setNseFetchingDone()
     }
 
-    private func silenceNotification() -> UNMutableNotificationContent {
+    private func silentNotification() -> UNMutableNotificationContent {
         if #available(iOS 13.3, *) {
             // do not show anything; requires `com.apple.developer.usernotifications.filtering` entitlement
             return UNMutableNotificationContent()
