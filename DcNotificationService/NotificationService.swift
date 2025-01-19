@@ -14,7 +14,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         if UserDefaults.mainIoRunning {
             UserDefaults.pushToDebugArray("ABORT4")
-            contentHandler(silenceNotification())
+            contentHandler(silentNotification())
             return
         }
         UserDefaults.setNseFetching(for: 26)
