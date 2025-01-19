@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 /// https://gist.github.com/Amzd/223979ef5a06d98ef17d2d78dbd96e22
 extension UIViewController {
@@ -24,8 +25,8 @@ extension UIViewController {
         // In iOS 17 and iOS 16 the UIDocumentPickerViewController does not
         // give back the first responder when search was used
         if #available(iOS 16, *) {
-            let vc = GiveBackMyFirstResponder(culprit: documentPicker)
-            present(vc, animated: animated, completion: completion)
+            documentPicker.returnFirstRespondersOnDismiss()
+            present(documentPicker as UIViewController, animated: animated, completion: completion)
         } else {
             present(documentPicker as UIViewController, animated: animated, completion: completion)
         }
@@ -39,65 +40,62 @@ extension UIViewController {
                 return present(imagePicker as UIViewController, animated: animated, completion: completion)
             }
         }
-
-        let vc = GiveBackMyFirstResponder(culprit: imagePicker)
-        present(vc, animated: animated, completion: completion)
+        imagePicker.returnFirstRespondersOnDismiss()
+        present(imagePicker as UIViewController, animated: animated, completion: completion)
     }
 }
 
-private class GiveBackMyFirstResponder<VC: UIViewController>: FirstResponderReturningViewController {
-    @MainActor var culprit: VC
-
-    @MainActor init(culprit: VC) {
-        self.culprit = culprit
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    @MainActor required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addChild(culprit)
-        culprit.view.frame = view.frame
-        view.addSubview(culprit.view)
-        culprit.didMove(toParent: self)
-    }
-}
-
-private class FirstResponderReturningViewController: UIViewController {
-    private var lastResponders: [UIResponder] = {
-        var lastResponders: [UIResponder] = []
+private var lastRespondersKey: UInt8 = 0
+extension UIViewController {
+    /// Resigns first responders when called and returns first responders when this view is dismissed. Call before presenting.
+    fileprivate func returnFirstRespondersOnDismiss() {
+        Self.swizzleOnce()
         while let next = UIResponder.currentFirstResponder, next.resignFirstResponder() {
-            lastResponders.append(next)
+            self.lastResponders.append(next)
         }
-        return lastResponders
-    }()
-
-    override var isBeingDismissed: Bool {
-        parent?.isBeingDismissed ?? super.isBeingDismissed || super.isBeingDismissed
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if isBeingDismissed, !lastResponders.isEmpty, let newFirstResponder = UIResponder.currentFirstResponder {
+    fileprivate var lastResponders: [UIResponder] {
+        get { objc_getAssociatedObject(self, &lastRespondersKey) as? [UIResponder] ?? [] }
+        set { objc_setAssociatedObject(self, &lastRespondersKey, newValue.filter { $0 !== self }, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
+    }
+
+    private var selfOrParentIsBeingDismissed: Bool {
+        parent?.isBeingDismissed ?? isBeingDismissed || isBeingDismissed
+    }
+
+    @objc fileprivate func _viewWillDisappear(_ animated: Bool) {
+        _viewWillDisappear(animated)
+        if selfOrParentIsBeingDismissed, !lastResponders.isEmpty, let newFirstResponder = UIResponder.currentFirstResponder {
             // Resigning here makes the animation smoother when we make lastResponders first responder again
             newFirstResponder.resignFirstResponder()
         }
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        if isBeingDismissed, !lastResponders.isEmpty {
+    @objc fileprivate func _viewDidDisappear(_ animated: Bool) {
+        _viewDidDisappear(animated)
+        if selfOrParentIsBeingDismissed, !lastResponders.isEmpty {
             lastResponders.reversed().forEach { $0.becomeFirstResponder() }
+            lastResponders = []
         }
     }
+
+    fileprivate static func swizzleOnce() { return _swizzle }
+    private static var _swizzle: Void = {
+        if let originalWillMethod = class_getInstanceMethod(UIViewController.self, #selector(viewWillDisappear)),
+           let swizzledWillMethod = class_getInstanceMethod(UIViewController.self, #selector(_viewWillDisappear)) {
+            method_exchangeImplementations(originalWillMethod, swizzledWillMethod)
+        }
+        if let originalDidMethod = class_getInstanceMethod(UIViewController.self, #selector(viewDidDisappear)),
+           let swizzledDidMethod = class_getInstanceMethod(UIViewController.self, #selector(_viewDidDisappear)) {
+            method_exchangeImplementations(originalDidMethod, swizzledDidMethod)
+        }
+    }()
 }
 
 extension UIResponder {
     /// Note: Do not replace this with the `UIApplication.shared.sendAction(_, to: nil, from: nil, for: nil)` method
-    /// because that does not work reliably in all cases. eg, when you initialise a UIImagePickerController on iOS 16 it returns nil even if your textfield is still first responder.
+    /// because that does not work reliably in all cases. eg, when you initialise a UIImagePickerController on iOS 16 `sendAction` returns nil even if your textfield is still first responder.
     static var currentFirstResponder: UIResponder? {
         for window in UIApplication.shared.windows {
             if let firstResponder = window.previousFirstResponder {
