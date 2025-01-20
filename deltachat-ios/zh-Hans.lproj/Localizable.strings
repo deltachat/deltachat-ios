@@ -35,6 +35,7 @@
 "close_window" = "关闭窗口";
 "forward" = "转发";
 "create" = "创建";
+"reset" = "重置";
 "later" = "稍后";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "重新发送";
@@ -43,6 +44,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "取消存档";
 "mute" = "静音";
+"muted" = "已静音";
 "ephemeral_messages" = "消息定时销毁";
 "ephemeral_messages_hint" = "适用于此聊天内使用 Delta Chat 的所有成员；这些成员仍然可以复制、保存和转发消息，或使用其他电子邮件客户端。";
 "save" = "保存";
@@ -145,6 +147,12 @@
 "webxdc_apps" = "私人应用";
 "webxdc_store_url" = "\"应用选择器“ URL";
 "webxdc_store_url_explain" = "设置后，该 URL 而不是默认的 URL 将被用作“应用选择器”";
+"home" = "首页";
+"games" = "游戏";
+"tools" = "工具";
+"app_size" = "尺寸";
+"app_date_published" = "已发布";
+"add_to_chat" = "添加到聊天";
 "unknown" = "未知";
 "green" = "绿色";
 "red" = "红色";
@@ -619,6 +627,7 @@
 "pref_appearance" = "外观";
 "pref_theme" = "主题";
 "pref_language" = "语言";
+"pref_use_system_ui_font" = "使用系统字体";
 "pref_incognito_keyboard" = "无痕键盘";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "请求输入法禁用个性化学习";

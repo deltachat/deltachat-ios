@@ -35,6 +35,7 @@
 "close_window" = "Venster sluiten";
 "forward" = "Doorsturen";
 "create" = "Aanmaken";
+"reset" = "Standaardwaarden";
 "later" = "Later";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Opnieuw versturen";
@@ -43,6 +44,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "De-archiveren";
 "mute" = "Negeren";
+"muted" = "Genegeerd";
 "ephemeral_messages" = "Verdwijnende berichten";
 "ephemeral_messages_hint" = "Deze instellingen zijn van toepassing op alle deelnemers die Delta Chat gebruiken. Ze kunnen echter wél berichten kopiëren, opslaan of doorsturen middels andere e-mailapps.";
 "save" = "Opslaan";
@@ -145,6 +147,12 @@
 "webxdc_apps" = "Privé-apps";
 "webxdc_store_url" = "Appkiezer-url";
 "webxdc_store_url_explain" = "Stel in om apps te kiezen vanaf een url in plaats van de standaard appkiezer";
+"home" = "Overzicht";
+"games" = "Games";
+"tools" = "Hulpmiddelen";
+"app_size" = "Grootte";
+"app_date_published" = "Publicatiedatum";
+"add_to_chat" = "Toevoegen aan gesprek";
 "unknown" = "Onbekend";
 "green" = "Groen";
 "red" = "Rood";
@@ -619,6 +627,7 @@
 "pref_appearance" = "Uiterlijk";
 "pref_theme" = "Thema";
 "pref_language" = "Taal";
+"pref_use_system_ui_font" = "Systeemlettertype gebruiken";
 "pref_incognito_keyboard" = "Privétoetsenbord";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Verzoek het toetsenbord om geen persoonlijke woorden op te nemen";
