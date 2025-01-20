@@ -45,9 +45,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.chatsAndMedia.rawValue
         cell.textLabel?.text = String.localized("pref_chats_and_media")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "message")
-        }
+        cell.imageView?.image = UIImage(systemName: "message")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -56,9 +54,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.notifications.rawValue
         cell.textLabel?.text = String.localized("pref_notifications")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "bell")
-        }
+        cell.imageView?.image = UIImage(systemName: "bell")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -67,9 +63,8 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.addAnotherDevice.rawValue
         cell.textLabel?.text = String.localized("multidevice_title")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "ipad.and.iphone")
-        }
+        let imageName = if #available(iOS 15, *) { "ipad.and.iphone" } else { "rectangle.on.rectangle" }
+        cell.imageView?.image = UIImage(systemName: imageName)
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -78,9 +73,8 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.advanced.rawValue
         cell.textLabel?.text = String.localized("menu_advanced")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "chevron.left.forwardslash.chevron.right")
-        }
+        let imageName = if #available(iOS 15, *) { "chevron.left.forwardslash.chevron.right" } else { "chevron.left.slash.chevron.right" }
+        cell.imageView?.image = UIImage(systemName: imageName)
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -89,9 +83,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.inviteFriends.rawValue
         cell.textLabel?.text = String.localized("invite_friends")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "heart")
-        }
+        cell.imageView?.image = UIImage(systemName: "heart")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -100,9 +92,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.help.rawValue
         cell.textLabel?.text = String.localized("menu_help")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "questionmark.circle")
-        }
+        cell.imageView?.image = UIImage(systemName: "questionmark.circle")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -111,9 +101,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.connectivity.rawValue
         cell.textLabel?.text = String.localized("connectivity")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "arrow.up.arrow.down")
-        }
+        cell.imageView?.image = UIImage(systemName: "arrow.up.arrow.down")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -122,9 +110,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.tag = CellTags.selectBackground.rawValue
         cell.textLabel?.text = String.localized("pref_background")
-        if #available(iOS 16.0, *) {
-            cell.imageView?.image = UIImage(systemName: "photo")
-        }
+        cell.imageView?.image = UIImage(systemName: "photo")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
