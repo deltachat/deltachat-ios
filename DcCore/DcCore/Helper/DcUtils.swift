@@ -19,12 +19,14 @@ public struct DcUtils {
         let groupName = INSpeakableString(spokenPhrase: chat.name)
         
         let sendMessageIntent = INSendMessageIntent(recipients: nil,
+                                                    outgoingMessageType: .outgoingMessageText,
                                                     content: nil,
                                                     speakableGroupName: groupName,
                                                     conversationIdentifier: "\(context.id).\(chatId)",
                                                     serviceName: nil,
-                                                    sender: nil)
-        
+                                                    sender: nil,
+                                                    attachments: nil)
+
         // Add the user's avatar to the intent.
         if let imageData = chat.profileImage?.pngData() {
             let image = INImage(imageData: imageData)
