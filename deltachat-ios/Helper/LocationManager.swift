@@ -31,12 +31,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
     func shareLocation(chatId: Int, duration: Int) -> Bool {
         if duration > 0 {
-            var authStatus: CLAuthorizationStatus
-            if #available(iOS 14.0, *) {
-                authStatus = locationManager.authorizationStatus
-            } else {
-                authStatus = CLLocationManager.authorizationStatus()
-            }
+            let authStatus = locationManager.authorizationStatus
             switch authStatus {
             case .notDetermined:
                 // keep chatId and duration for user's authorization decision

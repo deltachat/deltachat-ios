@@ -254,11 +254,8 @@ class WebxdcViewController: WebViewViewController {
         config.allowsInlineMediaPlayback = true
         preferences.isFraudulentWebsiteWarningEnabled = true
         
-        if #available(iOS 14.0, *) {
-            config.defaultWebpagePreferences.allowsContentJavaScript = true
-        } else {
-            preferences.javaScriptEnabled = true
-        }
+        config.defaultWebpagePreferences.allowsContentJavaScript = true
+
         preferences.javaScriptCanOpenWindowsAutomatically = false
         config.preferences = preferences
         return config

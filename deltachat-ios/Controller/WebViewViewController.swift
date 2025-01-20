@@ -50,13 +50,10 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     var dcContext: DcContext
 
     open var configuration: WKWebViewConfiguration {
-        let preferences = WKPreferences()
         let config = WKWebViewConfiguration()
-        if #available(iOS 14.0, *) {
-            config.defaultWebpagePreferences.allowsContentJavaScript = false
-        } else {
-            preferences.javaScriptEnabled = false
-        }
+        let preferences = WKPreferences()
+
+        config.defaultWebpagePreferences.allowsContentJavaScript = false
         config.preferences = preferences
         return config
     }
@@ -115,7 +112,7 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         webView.scrollView.keyboardDismissMode = .interactive
         webView.scrollView.contentInset.bottom = 0
 
-        if allowSearch, #available(iOS 14.0, *) {
+        if allowSearch {
             navigationItem.searchController = searchController
         }
         accessoryViewContainer.setLeftStackViewWidthConstant(to: 0, animated: false)
