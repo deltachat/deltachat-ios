@@ -35,6 +35,7 @@
 "close_window" = "Pencereyi Kapat";
 "forward" = "İlet";
 "create" = "Oluştur";
+"reset" = "Sıfırla";
 "later" = "Daha Sonra";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Yeniden Gönder";
@@ -43,6 +44,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Arşivleme";
 "mute" = "Sessize Al";
+"muted" = "Sessize alındı";
 "ephemeral_messages" = "Kaybolan İletiler";
 "ephemeral_messages_hint" = "Bu sohbetin tüm üyelerine onlar Delta Chat\'i kullanıyorsa uygulanır; onlar hâlâ iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
 "save" = "Kaydet";
@@ -145,6 +147,12 @@
 "webxdc_apps" = "Uygulamalar";
 "webxdc_store_url" = "Uygulama Seçici URL\'si";
 "webxdc_store_url_explain" = "Ayarlanırsa URL, varsayılan birinin yerine Uygulama Seçici olarak kullanılacak";
+"home" = "Ana Sayfa";
+"games" = "Oyunlar";
+"tools" = "Araçlar";
+"app_size" = "Boyut";
+"app_date_published" = "Yayımlanma";
+"add_to_chat" = "Sohbete Ekle";
 "unknown" = "Bilinmeyen";
 "green" = "Yeşil";
 "red" = "Kırmızı";
@@ -619,6 +627,7 @@
 "pref_appearance" = "Görünüm";
 "pref_theme" = "Tema";
 "pref_language" = "Dil";
+"pref_use_system_ui_font" = "Sistem Yazı Tipini Kullan";
 "pref_incognito_keyboard" = "Gizli Klavye";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Kişiselleştirilen öğrenmeyi etkisizleştirmek için klavye iste";

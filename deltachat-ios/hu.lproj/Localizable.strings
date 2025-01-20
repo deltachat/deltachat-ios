@@ -35,6 +35,7 @@
 "close_window" = "Ablak bezárása";
 "forward" = "Továbbítás";
 "create" = "Létrehozás";
+"reset" = "Visszaállítás";
 "later" = "Később";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Újraküldés";
@@ -43,6 +44,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Archiválás visszavonása";
 "mute" = "Némítás";
+"muted" = "Némított";
 "ephemeral_messages" = "Eltűnő üzenetek";
 "ephemeral_messages_hint" = "A csevegés összes tagjára vonatkozik, ha a Delta Chatet használják; az üzeneteket továbbra is másolhatják, menthetik és továbbíthatják, vagy más e-mail klienseket használhatnak.";
 "save" = "Mentés";
@@ -145,6 +147,12 @@
 "webxdc_apps" = "Alkalmazások";
 "webxdc_store_url" = "Alkalmazás-választó-webcím";
 "webxdc_store_url_explain" = "Ha be van állítva, akkor a webcím lesz használva mint alkalmazás-választó az alapértelmezett helyett";
+"home" = "Főoldal";
+"games" = "Játékok";
+"tools" = "Eszközök";
+"app_size" = "Méret";
+"app_date_published" = "Közzétéve";
+"add_to_chat" = "Hozzáadás csevegéshez";
 "unknown" = "Ismeretlen";
 "green" = "Zöld";
 "red" = "Piros";
@@ -619,6 +627,7 @@
 "pref_appearance" = "Megjelenés";
 "pref_theme" = "Téma";
 "pref_language" = "Nyelv";
+"pref_use_system_ui_font" = "Rendszer betűtípusának használata";
 "pref_incognito_keyboard" = "Inkognitó-billentyűzet";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Tanulás letiltásának kérése a billentyűzettől";

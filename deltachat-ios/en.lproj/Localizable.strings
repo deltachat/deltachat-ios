@@ -983,6 +983,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Remove";
 "save_desktop" = "Save";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Unsave";
 "name_desktop" = "Name";
 "select_group_image_desktop" = "Select Group Image";
 "export_backup_desktop" = "Export Backup";

@@ -143,6 +143,10 @@
 "webxdc_apps" = "Aplikacione";
 "webxdc_store_url" = "URL Marrësi Aplikacioni";
 "webxdc_store_url_explain" = "Në u ujdistë, URL-ja do të përdoret si Marrës Aplikacioni, në vend të atij parazgjedhje";
+"games" = "Lojëra";
+"tools" = "Mjete";
+"app_size" = "Madhësi";
+"add_to_chat" = "Shtoje te Fjalosje";
 "unknown" = "E panjohur";
 "green" = "E gjelbër";
 "red" = "E kuqe";
@@ -615,6 +619,7 @@
 "pref_appearance" = "Dukje";
 "pref_theme" = "Temë";
 "pref_language" = "Gjuhë";
+"pref_use_system_ui_font" = "Përdor Shkronja Sistemi";
 "pref_incognito_keyboard" = "Tastierë Incognito";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Kërkoji tastierës të çaktivizojë nxënie të personalizuar";
