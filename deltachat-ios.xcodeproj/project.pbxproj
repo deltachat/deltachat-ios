@@ -2042,7 +2042,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
 				);
 				INFOPLIST_FILE = DcShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2086,7 +2086,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
 				);
 				INFOPLIST_FILE = DcShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2167,7 +2167,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.50.5;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2226,7 +2226,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.50.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -2255,7 +2255,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2324,7 +2324,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2390,7 +2390,7 @@
 				INFOPLIST_FILE = DcNotificationService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DcNotificationService;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2425,7 +2425,7 @@
 				INFOPLIST_FILE = DcNotificationService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DcNotificationService;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

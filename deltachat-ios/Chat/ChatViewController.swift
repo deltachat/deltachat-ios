@@ -1168,16 +1168,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     $0.setSize(CGSize(width: 40, height: 40), animated: false)
                     $0.accessibilityLabel = String.localized("menu_add_attachment")
                     $0.accessibilityTraits = .button
-                    if #available(iOS 14.0, *) {
-                        $0.showsMenuAsPrimaryAction = true
-                        $0.menu = clipperButtonMenu()
-                    }
+                    $0.showsMenuAsPrimaryAction = true
+                    $0.menu = clipperButtonMenu()
                 }.onSelected {
                     $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
                 }.onDeselected {
                     $0.tintColor = DcColors.primary
-                }.onTouchUpInside { [weak self] _ in
-                    self?.clipperButtonPressed()
                 }
         ]
 
@@ -1206,7 +1202,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    @available(iOS 14, *)
     private func clipperButtonMenu() -> UIMenu {
         func action(localized: String, systemImage: String, attributes: UIMenuElement.Attributes = [], handler: @escaping () -> Void) -> UIAction {
             UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
@@ -1236,57 +1231,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         // Actions in this menu are reversed order vs iOS 13 because they are ordered
         // by importance starting closest to the button
         return UIMenu(children: actions)
-    }
-
-    /// On iOS 13 we still use the action sheet but iOS 14+ has a UIMenu
-    @objc private func clipperButtonPressed() {
-        guard #unavailable(iOS 14) else { return }
-        func action(localized: String, style: UIAlertAction.Style = .default, handler: @escaping () -> Void) -> UIAlertAction {
-            UIAlertAction(title: String.localized(localized), style: style, handler: { _ in handler() })
-        }
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-        let galleryAction = action(localized: "gallery", handler: showPhotoVideoLibrary)
-        let cameraAction = action(localized: "camera", handler: showCameraViewController)
-        let documentAction = action(localized: "files", handler: showDocumentLibrary)
-        let voiceMessageAction = action(localized: "voice_message", handler: showVoiceMessageRecorder)
-        let sendContactAction = action(localized: "contact", handler: showContactList)
-        let appPickerAction = action(localized: "webxdc_apps", handler: showAppPicker)
-
-        let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
-        let locationStreamingAction = action(
-            localized: isLocationStreaming ? "stop_sharing_location" : "location",
-            style: isLocationStreaming ? .destructive : .default,
-            handler: locationStreamingButtonPressed
-        )
-
-        alert.addAction(cameraAction)
-        alert.addAction(galleryAction)
-        alert.addAction(appPickerAction)
-        alert.addAction(documentAction)
-        alert.addAction(voiceMessageAction)
-
-        if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
-            let videoChatInvitation = action(localized: "videochat", handler: videoChatButtonPressed)
-            alert.addAction(videoChatInvitation)
-        }
-
-        if UserDefaults.standard.bool(forKey: "location_streaming") {
-            alert.addAction(locationStreamingAction)
-        }
-
-        alert.addAction(sendContactAction)
-
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-
-        self.present(alert, animated: true, completion: {
-            // unfortunately, voiceMessageAction.accessibilityHint does not work,
-            // but this hack does the trick
-            if UIAccessibility.isVoiceOverRunning {
-                if let view = voiceMessageAction.value(forKey: "__representer") as? UIView {
-                    view.accessibilityHint = String.localized("a11y_voice_message_hint_ios")
-                }
-            }
-        })
     }
 
     private func confirmationAlert(title: String, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {

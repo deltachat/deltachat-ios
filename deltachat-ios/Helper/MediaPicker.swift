@@ -77,19 +77,10 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     func showDocumentLibrary(selectFolder: Bool = false) {
         let documentPicker: UIDocumentPickerViewController
         if selectFolder {
-            if #available(iOS 15.0, *) {
-                documentPicker = .init(forOpeningContentTypes: [UTType.archive], asCopy: false)
-            } else {
-                documentPicker = .init(documentTypes: [kUTTypeArchive] as [String], in: .open)
-            }
+            documentPicker = .init(forOpeningContentTypes: [UTType.archive], asCopy: false)
         } else {
-            if #available(iOS 15.0, *) {
-                let types = [UTType.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data]
-                documentPicker = .init(forOpeningContentTypes: types, asCopy: true)
-            } else {
-                let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet, kUTTypeVCard, kUTTypeZipArchive, kUTTypeImage, kUTTypeData]
-                documentPicker = .init(documentTypes: types as [String], in: .import)
-            }
+            let types = [UTType.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data]
+            documentPicker = .init(forOpeningContentTypes: types, asCopy: true)
         }
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false

@@ -8,22 +8,13 @@ public class ChatDropInteraction {
     public weak var delegate: ChatDropInteractionDelegate?
 
     public func dropInteraction(canHandle session: UIDropSession) -> Bool {
-        if #available(iOS 14.0, *) {
-            return  session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
-                UTType.image.identifier,
-                UTType.video.identifier,
-                UTType.movie.identifier,
-                UTType.text.identifier,
-                UTType.url.identifier,
-                UTType.item.identifier])
-        }
-        return session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
-            kUTTypeImage as String,
-            kUTTypeText as String,
-            kUTTypeMovie as String,
-            kUTTypeVideo as String,
-            kUTTypeURL as String,
-            kUTTypeItem as String])
+        return  session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
+            UTType.image.identifier,
+            UTType.video.identifier,
+            UTType.movie.identifier,
+            UTType.text.identifier,
+            UTType.url.identifier,
+            UTType.item.identifier])
     }
 
     public func dropInteraction(sessionDidUpdate session: UIDropSession) -> UIDropProposal {
