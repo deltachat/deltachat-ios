@@ -33,7 +33,7 @@ public class ChatDropInteraction {
     public func dropInteraction(performDrop session: UIDropSession) {
         if #available(iOS 15.0, *) {
             if session.hasItemsConforming(toTypeIdentifiers: [UTType.image.identifier]) {
-               loadImageObjects(session: session)
+                loadImageObjects(session: session)
             } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.movie.identifier, UTType.video.identifier]) {
                 loadFileObjects(session: session, isVideo: true)
             } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.url.identifier]) {
@@ -45,7 +45,7 @@ public class ChatDropInteraction {
             }
         } else {
             if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String]) {
-               loadImageObjects(session: session)
+                loadImageObjects(session: session)
             } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeMovie as String, kUTTypeVideo as String]) {
                 loadFileObjects(session: session, isVideo: true)
             } else if session.hasItemsConforming(toTypeIdentifiers: [kUTTypeURL as String]) {
@@ -59,14 +59,22 @@ public class ChatDropInteraction {
     }
 
     private func loadImageObjects(session: UIDropSession) {
-        if session.canLoadObjects(ofClass: UIImage.self) {
-            session.loadObjects(ofClass: UIImage.self) { [weak self] imageItems in
-                if let images = imageItems as? [UIImage], !images.isEmpty {
-                    self?.delegate?.onImageDragAndDropped(image: images[0])
-                }
+        guard let droppedItem = session.items.first else { return }
+
+        // If webP is provided and eg JPEG (or another type that is supported by loadObject),
+        // always pick webP because it might have transparancy unlike JPEG.
+        if #available(iOS 14, *), droppedItem.itemProvider.hasItemConformingToTypeIdentifier(UTType.webP.identifier) {
+            droppedItem.itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.webP.identifier) { [weak self] webPData, _ in
+                guard let self, let image = UIImage.sd_image(withWebPData: webPData) else { return }
+                self.delegate?.onImageDragAndDropped(image: image)
             }
-        } else if let droppedItem = session.items.first {
-            // Some images (eg webP) can't be loaded into UIImage by UIDropSession.
+        } else if droppedItem.itemProvider.canLoadObject(ofClass: UIImage.self) {
+            droppedItem.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] imageItem, _ in
+                guard let image = imageItem as? UIImage else { return }
+                self?.delegate?.onImageDragAndDropped(image: image)
+            }
+        } else {
+            // Some images (like webP) can't be loaded into UIImage by UIDropSession so we fall back on SD.
             // See `UIImage.readableTypeIdentifiersForItemProvider` for ones that can.
             droppedItem.itemProvider.loadDataRepresentation(forTypeIdentifier: kUTTypeImage as String) { [weak self] data, _ in
                 guard let self, let image = UIImage.sd_image(with: data) else { return }

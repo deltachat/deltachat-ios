@@ -1666,6 +1666,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func stageImage(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
+            guard !image.hasStickerLikeProperties else {
+                return self.sendSticker(image)
+            }
             if let pathInCachesDir = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 DispatchQueue.main.async {
                     if pathInCachesDir.suffix(4).contains(".gif") {
@@ -1693,6 +1696,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
+            // stickers may be huge when drag'n'dropped from photo-recognition, scale down to a reasonable size
+            let image = image.scaleDownImage(toMax: 300) ?? image
+
             guard let self, let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) else { return }
 
             if self.draft.draftMsg != nil {
@@ -2637,16 +2643,7 @@ extension ChatViewController: AudioControllerDelegate {
 // MARK: - ChatInputTextViewPasteDelegate
 extension ChatViewController: ChatInputTextViewPasteDelegate {
     func onImagePasted(image: UIImage) {
-
-        let preiOS18StickerSize = CGSize(width: 140, height: 140)
-        let iOS18StickerSize = CGSize(width: 160, height: 160)
-        let isSticker = image.size.equalTo(preiOS18StickerSize) || image.size.equalTo(iOS18StickerSize)
-
-        if isSticker {
-            sendSticker(image)
-        } else {
-            stageImage(image)
-        }
+        stageImage(image)
     }
 }
 
