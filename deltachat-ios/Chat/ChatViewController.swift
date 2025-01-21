@@ -1458,8 +1458,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func showAppPicker() {
-        let appPicker = WebxdcStoreViewController()
-        appPicker.delegate = self
+        let appPicker = AppPickerViewController()
+        appPicker.storeViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: appPicker)
         navigationController.isModalInPresentation = true
 

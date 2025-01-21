@@ -2,36 +2,26 @@ import UIKit
 import WebKit
 
 protocol WebxdcStoreViewControllerDelegate: AnyObject {
+    func downloadStarted(_ viewController: WebxdcStoreViewController)
+    func downloadEnded(_ viewController: WebxdcStoreViewController)
     func pickedAnDownloadedApp(_ viewController: WebxdcStoreViewController, fileURL: URL)
 }
 
 class WebxdcStoreViewController: UIViewController {
     weak var delegate: WebxdcStoreViewControllerDelegate?
     let webView: WKWebView
-    var defaultCloseButton: UIBarButtonItem?
-    let downloadingView: DownloadingView
 
     init(url: URL = URL(string: "https://webxdc.org/apps/")!) {
         webView = WKWebView(frame: .zero)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.load(URLRequest(url: url))
 
-        downloadingView = DownloadingView()
-        downloadingView.translatesAutoresizingMaskIntoConstraints = false
-        downloadingView.isHidden = true
-
         super.init(nibName: nil, bundle: nil)
 
         webView.navigationDelegate = self
         view.addSubview(webView)
-        view.addSubview(downloadingView)
         view.backgroundColor = .systemBackground
         setupConstraints()
-        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(WebxdcStoreViewController.close(_:)))
-
-        title = String.localized("webxdc_apps")
-        navigationItem.leftBarButtonItem = closeButton
-        self.defaultCloseButton = closeButton
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -42,35 +32,9 @@ class WebxdcStoreViewController: UIViewController {
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: webView.trailingAnchor),
             view.bottomAnchor.constraint(equalTo: webView.bottomAnchor),
-
-            downloadingView.topAnchor.constraint(equalTo: view.topAnchor),
-            downloadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: downloadingView.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: downloadingView.bottomAnchor),
         ]
 
         NSLayoutConstraint.activate(constraints)
-    }
-
-    // MARK: - Actions
-
-    @objc func close(_ sender: Any) {
-        dismiss(animated: true)
-    }
-
-    @objc func showLoading() {
-        title = String.localized("Downloading...")
-        downloadingView.isHidden = false
-        downloadingView.activityIndicator.startAnimating()
-        downloadingView.activityIndicator.hidesWhenStopped = true
-        navigationItem.leftBarButtonItem = nil
-    }
-
-    @objc func hideLoading() {
-        title = String.localized("webxdc_apps")
-        downloadingView.isHidden = true
-        downloadingView.activityIndicator.stopAnimating()
-        navigationItem.leftBarButtonItem = defaultCloseButton
     }
 }
 
@@ -85,25 +49,17 @@ extension WebxdcStoreViewController: WKNavigationDelegate {
             Task { [weak self] in
                 guard let self else { return }
                 // show spinner instead of close-button
-                await MainActor.run {
-                    self.showLoading()
-                }
-                
+                delegate?.downloadStarted(self)
+
                 guard let (data, _) = try? await URLSession.shared.data(from: url),
                       let filepath = FileHelper.saveData(data: data, name: url.lastPathComponent)
                 else {
-                    await MainActor.run {
-                        self.hideLoading()
-                    }
+                    delegate?.downloadEnded(self)
                     return decisionHandler(.cancel)
                 }
 
                 let fileURL = NSURL(fileURLWithPath: filepath)
                 delegate?.pickedAnDownloadedApp(self, fileURL: fileURL as URL)
-                await MainActor.run {
-                    self.dismiss(animated: true)
-                }
-
                 decisionHandler(.cancel)
             }
         } else if url.host == "webxdc.org" {

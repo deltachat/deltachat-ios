@@ -218,6 +218,8 @@
 		D80F62792B59D1CC00877059 /* DefaultReactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80F62782B59D1CC00877059 /* DefaultReactions.swift */; };
 		D82AD20F2D26B087009D6026 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */; };
 		D82AD24D2D27E47A009D6026 /* UIApplication+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82AD24C2D27E47A009D6026 /* UIApplication+Orientation.swift */; };
+		D83227002D3AC9BF00C239C5 /* AppPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83226FF2D3AC9BF00C239C5 /* AppPickerViewController.swift */; };
+		D83227022D3AC9F300C239C5 /* RecentWebxdcAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83227012D3AC9F300C239C5 /* RecentWebxdcAppsViewController.swift */; };
 		D84738D22BBC1C2C00ECD52B /* UIAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84738D12BBC1C2C00ECD52B /* UIAction+Extension.swift */; };
 		D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */; };
 		D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */; };
@@ -626,6 +628,8 @@
 		D8083ACF2D14384F005DCB7D /* UserDefaults+Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Widgets.swift"; sourceTree = "<group>"; };
 		D80F62782B59D1CC00877059 /* DefaultReactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultReactions.swift; sourceTree = "<group>"; };
 		D82AD24C2D27E47A009D6026 /* UIApplication+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Orientation.swift"; sourceTree = "<group>"; };
+		D83226FF2D3AC9BF00C239C5 /* AppPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPickerViewController.swift; sourceTree = "<group>"; };
+		D83227012D3AC9F300C239C5 /* RecentWebxdcAppsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebxdcAppsViewController.swift; sourceTree = "<group>"; };
 		D84738D12BBC1C2C00ECD52B /* UIAction+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAction+Extension.swift"; sourceTree = "<group>"; };
 		D84AED232B55E8EB00D753F6 /* ReactionsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewViewController.swift; sourceTree = "<group>"; };
 		D84AED262B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsOverviewTableViewCell.swift; sourceTree = "<group>"; };
@@ -1207,7 +1211,9 @@
 		D83226FC2D3AC91100C239C5 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				D83226FF2D3AC9BF00C239C5 /* AppPickerViewController.swift */,
 				D86DF20B2D30318B00141B3E /* WebxdcStoreViewController.swift */,
+				D83227012D3AC9F300C239C5 /* RecentWebxdcAppsViewController.swift */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -1641,6 +1647,7 @@
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
 				B2D255972BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift in Sources */,
 				303492B32577E40700A523D0 /* DocumentPreview.swift in Sources */,
+				D83227022D3AC9F300C239C5 /* RecentWebxdcAppsViewController.swift in Sources */,
 				3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */,
 				3080A01D277DDB8A00E74565 /* InputItem.swift in Sources */,
 				AED62BCE247687E6009E220D /* LocationStreamingIndicator.swift in Sources */,
@@ -1789,6 +1796,7 @@
 				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */,
 				AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */,
+				D83227002D3AC9BF00C239C5 /* AppPickerViewController.swift in Sources */,
 				3080A028277DE12D00E74565 /* InputBarSendButton.swift in Sources */,
 				AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */,
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
