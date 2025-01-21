@@ -8,7 +8,7 @@ public class ChatDropInteraction {
     public weak var delegate: ChatDropInteractionDelegate?
 
     public func dropInteraction(canHandle session: UIDropSession) -> Bool {
-        return  session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
+        session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
             UTType.image.identifier,
             UTType.video.identifier,
             UTType.movie.identifier,
