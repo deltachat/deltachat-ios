@@ -19,6 +19,7 @@ public class LogViewController: UIViewController {
         let textView = UITextView()
         textView.contentInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.keyboardDismissMode = .onDrag
         return textView
     }()
 
