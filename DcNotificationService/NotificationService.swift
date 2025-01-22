@@ -52,67 +52,29 @@ class NotificationService: UNNotificationServiceExtension {
             if event.id == DC_EVENT_INCOMING_MSG {
                 let dcContext = dcAccounts.get(id: event.accountId)
                 let chat = dcContext.getChat(chatId: event.data1Int)
-                if !dcContext.isMuted() {
-                    let msg = dcContext.getMessage(id: event.data2Int)
-                    if !chat.isMuted || (chat.isGroup && msg.isReplyToSelf && dcContext.isMentionsEnabled) {
-                        let sender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
-                        let notification = newNotificationContent()
-                        if chat.isGroup {
-                            notification.title = chat.name
-                            notification.body = "\(sender): " + (msg.summary(chars: 80) ?? "")
-                        } else {
-                            notification.title = sender
-                            notification.body = msg.summary(chars: 80) ?? ""
-                        }
-                        notification.userInfo["account_id"] = dcContext.id
-                        notification.userInfo["chat_id"] = chat.id
-                        notification.userInfo["message_id"] = msg.id
-                        notification.threadIdentifier = "\(dcContext.id)-\(chat.id)"
-                        notification.setRelevanceScore(for: chat)
-                        notifications.append(notification)
-                    }
+                let msg = dcContext.getMessage(id: event.data2Int)
+                if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: dcContext) {
+                    notifications.append(content)
                 }
             } else if event.id == DC_EVENT_INCOMING_REACTION {
                 let dcContext = dcAccounts.get(id: event.accountId)
-                if !dcContext.isMuted() {
-                    let msg = dcContext.getMessage(id: event.data2Int)
-                    let chat = dcContext.getChat(chatId: msg.chatId)
-                    if !chat.isMuted || (chat.isGroup && dcContext.isMentionsEnabled) {
-                        let sender = dcContext.getContact(id: event.data1Int).displayName
-                        let summary = (msg.summary(chars: 80) ?? "")
-                        let notification = newNotificationContent()
-                        notification.title = chat.name
-                        notification.body = String.localized(stringID: "reaction_by_other", parameter: sender, event.data2String, summary)
-                        notification.userInfo["account_id"] = dcContext.id
-                        notification.userInfo["chat_id"] = chat.id
-                        notification.userInfo["message_id"] = msg.id
-                        notification.threadIdentifier = "\(dcContext.id)-\(chat.id)"
-                        notification.setRelevanceScore(for: chat)
-                        notifications.append(notification)
-                    }
+                let msg = dcContext.getMessage(id: event.data2Int)
+                let chat = dcContext.getChat(chatId: msg.chatId)
+                if let content = UNMutableNotificationContent(forReaction: event.data2String, from: event.data1Int, msg: msg, chat: chat, context: dcContext) {
+                    notifications.append(content)
                 }
             } else if event.id == DC_EVENT_INCOMING_WEBXDC_NOTIFY {
                 let dcContext = dcAccounts.get(id: event.accountId)
-                if !dcContext.isMuted() {
-                    let msg = dcContext.getMessage(id: event.data2Int)
-                    let chat = dcContext.getChat(chatId: msg.chatId)
-                    if !chat.isMuted || (chat.isGroup && dcContext.isMentionsEnabled) {
-                        let notification = newNotificationContent()
-                        notification.title = chat.name
-                        notification.body = msg.getWebxdcAppName() + ": " + event.data2String
-                        notification.userInfo["account_id"] = dcContext.id
-                        notification.userInfo["chat_id"] = chat.id
-                        notification.userInfo["message_id"] = msg.id
-                        notification.threadIdentifier = "\(dcContext.id)-\(chat.id)"
-                        notification.setRelevanceScore(for: chat)
-                        notifications.append(notification)
-                    }
+                let msg = dcContext.getMessage(id: event.data2Int)
+                let chat = dcContext.getChat(chatId: msg.chatId)
+                if let content = UNMutableNotificationContent(forWebxdcNotification: event.data2String, msg: msg, chat: chat, context: dcContext) {
+                    notifications.append(content)
                 }
             }
         }
 
-        // Queue all but the last notification. The last notification will be sent through the callback closure.
-        for notification in notifications.dropLast() {
+        // Queue all notifications
+        for notification in notifications {
             let req = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: nil)
             UNUserNotificationCenter.current().add(req) { error in
                 if error != nil {
@@ -120,10 +82,10 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             }
         }
-        // We send the last notification if available (so pre iOS 13.3 doesn't get a sound)
-        // This notification updates the badge number
-        let lastOrSilentNotification = notifications.last ?? silentNotification()
-        lastOrSilentNotification.badge = dcAccounts.getFreshMessageCount() as NSNumber
+
+        // This silent notification updates the badge number
+        let silentNotification = silentNotification()
+        silentNotification.badge = dcAccounts.getFreshMessageCount() as NSNumber
         dcAccounts.closeDatabase()
         if notifications.isEmpty {
             UserDefaults.pushToDebugArray(String(format: "OK3 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
@@ -131,7 +93,7 @@ class NotificationService: UNNotificationServiceExtension {
             UserDefaults.shared?.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend) // force UI updates in case app was suspended
             UserDefaults.pushToDebugArray(String(format: "OK2 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
         }
-        contentHandler(lastOrSilentNotification)
+        contentHandler(silentNotification)
     }
 
     override func serviceExtensionTimeWillExpire() {
@@ -144,29 +106,8 @@ class NotificationService: UNNotificationServiceExtension {
         UserDefaults.setNseFetchingDone()
     }
 
+    /// Do not show anything; requires `com.apple.developer.usernotifications.filtering` entitlement
     private func silentNotification() -> UNMutableNotificationContent {
-        if #available(iOS 13.3, *) {
-            // do not show anything; requires `com.apple.developer.usernotifications.filtering` entitlement
-            return UNMutableNotificationContent()
-        } else {
-            // do not play a sound at least
-            let content = UNMutableNotificationContent()
-            content.sound = nil
-            content.title = String.localized("new_messages")
-            content.body = String.localized("videochat_tap_to_open")
-            return content
-        }
-    }
-}
-
-private extension UNMutableNotificationContent {
-    func setRelevanceScore(for chat: DcChat) {
-        guard #available(iOS 15, *) else { return }
-        relevanceScore = switch true {
-        case _ where chat.visibility == DC_CHAT_VISIBILITY_PINNED: 0.9
-        case _ where chat.isMuted: 0.0
-        case _ where chat.isGroup: 0.3
-        default: 0.5
-        }
+        UNMutableNotificationContent()
     }
 }
