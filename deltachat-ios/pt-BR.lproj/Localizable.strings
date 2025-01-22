@@ -821,7 +821,9 @@
 "global_menu_view_developer_desktop" = "Desenvolvedor";
 "global_menu_view_developer_tools_desktop" = "Ferramentas de desenvolvedor";
 "global_menu_help_desktop" = "Ajuda";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Aprenda mais sobre o Delta Chat";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Contribua no GitHub";
 "global_menu_help_report_desktop" = "Relatar um erro";
 "global_menu_help_about_desktop" = "Sobre o Delta Chat";

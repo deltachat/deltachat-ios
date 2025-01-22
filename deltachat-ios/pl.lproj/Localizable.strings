@@ -35,6 +35,7 @@
 "close_window" = "Zamknij okno";
 "forward" = "Przekaż";
 "create" = "Utwórz";
+"reset" = "Zresetuj";
 "later" = "Później";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Wyślij ponownie";
@@ -43,6 +44,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Przywróć z archiwum";
 "mute" = "Wyłącz powiadomienia";
+"muted" = "Wyciszony";
 "ephemeral_messages" = "Znikające wiadomości";
 "ephemeral_messages_hint" = "Te ustawienia dotyczą wszystkich uczestników korzystających z Delta Chat. Mogą jednak kopiować, zapisywać i przekazywać wiadomości lub korzystać z innych klientów poczty e-mail.";
 "save" = "Zapisz";
@@ -145,6 +147,12 @@
 "webxdc_apps" = "Prywatne aplikacje";
 "webxdc_store_url" = "Adres URL selektora aplikacji";
 "webxdc_store_url_explain" = "Jeśli ustawiony, adres URL będzie używany jako selektor aplikacji zamiast domyślnego";
+"home" = "Główna";
+"games" = "Gry";
+"tools" = "Narzędzia";
+"app_size" = "Rozmiar";
+"app_date_published" = "Opublikowany";
+"add_to_chat" = "Dodaj do czatu";
 "unknown" = "Nieznany";
 "green" = "Zielony";
 "red" = "Czerwony";
@@ -619,6 +627,7 @@
 "pref_appearance" = "Wygląd";
 "pref_theme" = "Motyw";
 "pref_language" = "Język";
+"pref_use_system_ui_font" = "Użyj czcionki systemowej";
 "pref_incognito_keyboard" = "Klawiatura incognito";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Poproś klawiaturę o wyłączenie spersonalizowanej nauki";
@@ -839,6 +848,7 @@
 "chat_protection_broken_explanation" = "Nie można już zagwarantować szyfrowania end-to-end, prawdopodobnie z powodu ponownej instalacji Delta Chat przez %1$@ lub wysłania wiadomości z innego urządzenia.\n\nMożesz spotkać się z tą osobą osobiście i ponownie zeskanować jej kod QR, aby przywrócić gwarantowane szyfrowanie end-to-end.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ wymaga szyfrowania end-to-end, które nie zostało jeszcze skonfigurowane dla tego czatu. Dotknij, aby dowiedzieć się więcej.";
 "invalid_unencrypted_explanation" = "Aby ustanowić szyfrowanie end-to-end, możesz spotkać się z kontaktami osobiście i zeskanować ich kod QR, żeby ich wprowadzić.";
+// deprecated
 "encryption_required_for_new_contact" = "Wymagane jest szyfrowanie end-to-end, ale nie zostało ono jeszcze skonfigurowane dla %1$@.\n\nMożesz udostępnić im swój link zaproszenia lub spotkać się osobiście i zeskanować ich kod QR.";
 "learn_more" = "Czytaj więcej";
 "devicemsg_self_deleted" = "Usunięto czat „Zapisane wiadomości”.\n\nℹ️ Aby ponownie użyć funkcji „Zapisane wiadomości”, utwórz nowy czat ze sobą.";
@@ -960,7 +970,9 @@
 "global_menu_view_developer_desktop" = "Programista";
 "global_menu_view_developer_tools_desktop" = "Narzędzia Programisty";
 "global_menu_help_desktop" = "Pomoc";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Dowiedz się więcej o Delta Chat";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Przyczyń się do rozwoju na GitHub";
 "global_menu_help_report_desktop" = "Zgłoś problem";
 "global_menu_help_about_desktop" = "O Delta Chat";

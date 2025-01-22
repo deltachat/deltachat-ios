@@ -848,6 +848,7 @@
 "chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvencelenemiyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
 "invalid_unencrypted_explanation" = "Uçtan uca şifrelemeyi kurmak için kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
+// deprecated
 "encryption_required_for_new_contact" = "Uçtan uca şifreleme gereklidir ama %1$@ için henüz ayarlanmadı.\n\nÇağırma bağlantınızı onunla paylaşabilirsiniz ya da kişisel olarak tanışarak onun QR kodunu tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
@@ -969,7 +970,9 @@
 "global_menu_view_developer_desktop" = "Geliştirici";
 "global_menu_view_developer_tools_desktop" = "Geliştirici Araçları";
 "global_menu_help_desktop" = "Yardım";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Delta Chat hakkında daha fazlasını öğrenin";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "GitHub\'da katkıda bulunun";
 "global_menu_help_report_desktop" = "Bir Sorun Raporla";
 "global_menu_help_about_desktop" = "Delta Chat hakkında";

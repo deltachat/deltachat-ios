@@ -848,6 +848,7 @@
 "chat_protection_broken_explanation" = "End-to-end encryption cannot be guaranteed anymore, likely because %1$@ reinstalled Delta Chat or sent a message from another device.\n\nYou may meet them in person and scan their QR code again to reestablish guaranteed end-to-end encryption.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requires end-to-end encryption which is not setup for this chat yet. Tap to learn more.";
 "invalid_unencrypted_explanation" = "To establish end-to-end-encryption, you may meet contacts in person and scan their QR Code to introduce them.";
+// deprecated
 "encryption_required_for_new_contact" = "End-to-end encryption is required but it is not setup for %1$@ yet.\n\nYou may share your invite link with them or meet in person and scan their QR Code.";
 "learn_more" = "Learn More";
 "devicemsg_self_deleted" = "You deleted the \"Saved messages\" chat.\n\nℹ️ To use the \"Saved messages\" feature again, create a new chat with yourself.";
@@ -969,8 +970,12 @@
 "global_menu_view_developer_desktop" = "Developer";
 "global_menu_view_developer_tools_desktop" = "Developer Tools";
 "global_menu_help_desktop" = "Help";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Learn more about Delta Chat";
+"delta_chat_homepage" = "Delta Chat Homepage";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Contribute on GitHub";
+"contribute" = "Contribute";
 "global_menu_help_report_desktop" = "Report an Issue";
 "global_menu_help_about_desktop" = "About Delta Chat";
 "global_menu_file_open_desktop" = "Open Delta Chat";

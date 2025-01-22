@@ -848,6 +848,7 @@
 "chat_protection_broken_explanation" = "无法再确保端到端加密，可能的原因是 %1$@ 重新安装了 Delta Chat 或从其他设备发送了一则消息。\n\n你可以和联系人线下见面并再次扫描联系人的二维码重新建立端到端加密的通信。";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@要求端到端加密，而此聊天尚未建立端到端加密。轻按了解更多。";
 "invalid_unencrypted_explanation" = "要建立端到端加密，你可以亲自和联系人碰面并扫描联系人的二维码";
+// deprecated
 "encryption_required_for_new_contact" = "端到端加密是必需的但 %1$@ 还没有设置它。\n\n你可以和这些人分享你的邀请链接或亲自会面扫描其二维码。";
 "learn_more" = "了解更多";
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
@@ -969,7 +970,9 @@
 "global_menu_view_developer_desktop" = "开发者";
 "global_menu_view_developer_tools_desktop" = "开发者工具";
 "global_menu_help_desktop" = "帮助";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "了解有关 Delta Chat 的更多信息";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "在 GitHub 上做贡献";
 "global_menu_help_report_desktop" = "报告一个问题";
 "global_menu_help_about_desktop" = "关于 Delta Chat";
@@ -983,6 +986,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "移除";
 "save_desktop" = "保存";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "取消保存";
 "name_desktop" = "名称";
 "select_group_image_desktop" = "选择群组图像";
 "export_backup_desktop" = "导出备份";

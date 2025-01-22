@@ -596,7 +596,9 @@
 "global_menu_view_developer_desktop" = "開発者";
 "global_menu_view_developer_tools_desktop" = "開発者ツール";
 "global_menu_help_desktop" = "ヘルプ";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "DeltaChatについて詳しく知る";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "GitHubで貢献する";
 "global_menu_help_report_desktop" = "問題を報告する";
 "global_menu_help_about_desktop" = "Delta Chatについて";

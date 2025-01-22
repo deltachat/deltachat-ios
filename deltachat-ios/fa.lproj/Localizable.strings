@@ -834,6 +834,7 @@ https://meet.jit.si/$ROOM
 "chat_protection_enabled_explanation" = "رمزنگاری سراسری پیام‌های این گفتگو اکنون تضمین می‌شود. رمزنگاری سراسری باعث می‌شود پیام‌هایتان بین شما و مخاطبین شما محرمانه بماند. حتی ارائه‌دهنده رایانامه شما هم نمی‌تواند آن‌ها را بخواند.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ پیامی را از دستگاه دیگری ارسال کرد. برای اطلاعات بیشتر ضربه بزنید.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ به رمزنگاری سراسری نیاز دارد که هنوز برای این گپ پیکره‌بندی نشده است. برای یادگیری بیش‌تر این‌جا بزنید.";
+// deprecated
 "encryption_required_for_new_contact" = "رمزنگاری سراسری لازم است اما برای %1$@ هنوز پیکره‌بندی نشده است.\n\nمی‌توانید پیوند دعوت خود را به مخاطبتان بدهید یا این‌که به صورت حضوری کد QR مخاطب را اسکن کنید.";
 "learn_more" = "بیشتر بدانید";
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
@@ -977,7 +978,9 @@ GNU GPL ورژن ۳
 "global_menu_view_developer_desktop" = "برنامه‌نویس";
 "global_menu_view_developer_tools_desktop" = "ابزار برنامه نویس";
 "global_menu_help_desktop" = "کمک";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "یادگیری بیشتر درمورد دلتاچت";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "کمک به گیت‌هاب";
 "global_menu_help_report_desktop" = "گزارش یک مشکل";
 "global_menu_help_about_desktop" = "درباره دلتاچت";

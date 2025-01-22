@@ -753,7 +753,9 @@
 "global_menu_view_developer_desktop" = "개발자";
 "global_menu_view_developer_tools_desktop" = "개발자 도구";
 "global_menu_help_desktop" = "도움말";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Delta Chat에 대해 더 알아보기";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "GitHub에 기여";
 "global_menu_help_report_desktop" = "문제 보고";
 "global_menu_help_about_desktop" = "Delta Chat에 대해";
