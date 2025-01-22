@@ -848,6 +848,7 @@
 "chat_protection_broken_explanation" = "Eind-tot-eindversleuteling kan niet meer worden gegarandeerd, omdat %1$@ Delta Chat opnieuw heeft geïnstalleerd of een bericht vanaf een ander apparaat heeft verstuurd.\n\nMaak een afspraak met hem/haar en scan de QR-code opnieuw om eind-tot-eindversleuteling weer in te schakelen.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ Voor %1$@ is eind-tot-eindversleuteling vereist, maar dit is nog niet ingesteld in het huidige gesprek. Druk voor meer informatie.";
 "invalid_unencrypted_explanation" = "Spreek met elkaar af en scan elkaars QR-code om eind-tot-eindversleuteling op te zetten.";
+// deprecated
 "encryption_required_for_new_contact" = "Eind-tot-eindversleuteling is vereist, maar nog niet ingesteld op %1$@.\n\nJe kunt deze link alleen delen met personen die je kent of die je in het echt ontmoet en waarvan je de QR-code scant.";
 "learn_more" = "Meer informatie";
 "devicemsg_self_deleted" = "Je hebt het gesprek ‘Bewaarde berichten’ verwijderd.\n\nℹ️ Als je weer gebruik wilt maken van deze functie, begin dan een nieuw gesprek met jezelf.";
@@ -969,7 +970,9 @@
 "global_menu_view_developer_desktop" = "Ontwikkelaar";
 "global_menu_view_developer_tools_desktop" = "Ontwikkelaarshulpmiddelen";
 "global_menu_help_desktop" = "Hulp";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Meer informatie over Delta Chat";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Draag bij op GitHub";
 "global_menu_help_report_desktop" = "Meld een probleem";
 "global_menu_help_about_desktop" = "Over Delta Chat";
@@ -983,6 +986,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Verwijderen";
 "save_desktop" = "Opslaan";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Niet meer bewaren";
 "name_desktop" = "Naam";
 "select_group_image_desktop" = "Kies een groepsafbeelding";
 "export_backup_desktop" = "Reservekopie exporteren";

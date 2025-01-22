@@ -848,6 +848,7 @@
 "chat_protection_broken_explanation" = "Сквозное шифрование больше не может быть гарантировано, вероятно, потому что %1$@ переустановил Delta Chat или отправил сообщение с другого устройства.\n\nВы можете встретиться с ним лично и отсканировать QR-код снова чтобы восстановить гарантированное сквозное шифрование.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ требуется сквозное шифрование, которое ещё не настроено для данного чата. Нажмите, чтобы узнать больше.";
 "invalid_unencrypted_explanation" = "Чтобы установить сквозное шифрование, вы можете встретиться с контактами лично и отсканировать их QR-код, чтобы подтвердить их личность.";
+// deprecated
 "encryption_required_for_new_contact" = "Требуется сквозное шифрование, но оно для %1$@ еще не настроено.\n\nВы можете поделиться ссылкой-приглашением или встретиться лично, и отсканировать QR-код.";
 "learn_more" = "Узнать больше";
 "devicemsg_self_deleted" = "Вы удалили чат \"Сохраненные сообщения\".\n\nℹ️ Чтобы снова использовать функцию \"Сохраненные сообщения\", создайте новый чат с самим собой.";
@@ -969,7 +970,9 @@
 "global_menu_view_developer_desktop" = "Разработчик";
 "global_menu_view_developer_tools_desktop" = "Инструменты разработчика";
 "global_menu_help_desktop" = "Справка";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Узнать больше о Delta Chat";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Присоединиться к разработке на GitHub";
 "global_menu_help_report_desktop" = "Сообщить о проблеме";
 "global_menu_help_about_desktop" = "О Delta Chat";
@@ -983,6 +986,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Удалить";
 "save_desktop" = "Сохранить";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Не сохранять";
 "name_desktop" = "Имя";
 "select_group_image_desktop" = "Выбрать изображение группы";
 "export_backup_desktop" = "Экспорт резервной копии";

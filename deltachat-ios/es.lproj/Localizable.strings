@@ -833,6 +833,7 @@
 "chat_protection_broken_explanation" = "El cifrado de extremo a extremo ya no se puede garantizar, probablemente porque %1$@ reinstaló Delta Chat o envió un mensaje desde otro dispositivo.\n\nPueden encontrarse en persona y escanear su código QR nuevamente para restablecer el cifrado de extremo a extremo garantizado.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requiere cifrado de extremo a extremo que aún no está configurado para este chat. Toca para obtener más información.";
 "invalid_unencrypted_explanation" = "Para establecer un cifrado de extremo a extremo, puede reunirse con los contactos en persona y escanear su código QR.";
+// deprecated
 "encryption_required_for_new_contact" = "Se requiere cifrado de extremo a extremo, pero aún no está disponible para %1$@.\n\nPuede compartir su enlace de invitación o reunirse en persona y escanear su código QR.";
 "learn_more" = "Aprender más";
 "devicemsg_self_deleted" = "Eliminaste los chats de los \"Mensajes guardados\". \n\nℹ️ Para volver a usar los\"Mensajes guardados\", debes crear un chat contigo mismo.";
@@ -954,7 +955,9 @@
 "global_menu_view_developer_desktop" = "Programador";
 "global_menu_view_developer_tools_desktop" = "Herramientas del Programador";
 "global_menu_help_desktop" = "Ayuda";
+// deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Aprender más sobre Delta Chat";
+// deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Contribuir en GitHub";
 "global_menu_help_report_desktop" = "Reportar un problema";
 "global_menu_help_about_desktop" = "Sobre Delta Chat";
