@@ -18,7 +18,7 @@ class HelpViewController: WebViewViewController {
 
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis.circle")
-        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonPressed))
+        return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
 
     override func viewDidLoad() {
@@ -66,29 +66,29 @@ class HelpViewController: WebViewViewController {
         }
     }
 
-    @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("global_menu_help_learn_desktop"), style: .default, handler: { _ in
-            if let url = URL(string: "https://delta.chat") {
-                UIApplication.shared.open(url)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("privacy_policy"), style: .default, handler: { _ in
-            if let url = URL(string: "https://delta.chat/gdpr") {
-                UIApplication.shared.open(url)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("global_menu_help_contribute_desktop"), style: .default, handler: { _ in
-            if let url = URL(string: "https://github.com/deltachat/deltachat-ios") {
-                UIApplication.shared.open(url)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("global_menu_help_report_desktop"), style: .default, handler: { _ in
-            if let url = URL(string: "https://github.com/deltachat/deltachat-ios/issues") {
-                UIApplication.shared.open(url)
-            }
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    private func moreButtonMenu() -> UIMenu {
+        let actions = [
+            UIAction(title: String.localized("delta_chat_homepage"), image: UIImage(systemName: "globe")) { _ in
+                if let url = URL(string: "https://delta.chat") {
+                    UIApplication.shared.open(url)
+                }
+            },
+            UIAction(title: String.localized("privacy_policy"), image: UIImage(systemName: "hand.raised")) { _ in
+                if let url = URL(string: "https://delta.chat/gdpr") {
+                    UIApplication.shared.open(url)
+                }
+            },
+            UIAction(title: String.localized("contribute"), image: UIImage(systemName: "wrench.and.screwdriver")) { _ in
+                if let url = URL(string: "https://delta.chat/contribute") {
+                    UIApplication.shared.open(url)
+                }
+            },
+            UIAction(title: String.localized("global_menu_help_report_desktop"), image: UIImage(systemName: "ant")) { _ in
+                if let url = URL(string: "https://github.com/deltachat/deltachat-ios/issues") {
+                    UIApplication.shared.open(url)
+                }
+            },
+        ]
+        return UIMenu(children: actions)
     }
 }
