@@ -4,6 +4,7 @@
 
 - Detect Stickers when dropped, pasted or picked from Gallery (#2535)
 - Fix: In 'View Log', hide keyboard when scrolling down (#2541)
+- Fix: Experimental location sharing now ends at the specified interval even if you don't move (#2537)
 
 
 ## v1.50.5
