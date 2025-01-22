@@ -22,7 +22,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.activityType = CLActivityType.fitness
         super.init()
         locationManager.delegate = self
-
+        NotificationCenter.default.addObserver(self, selector: #selector(handleMessagesChanged), name: Event.messagesChanged, object: nil)
     }
 
     public func reloadDcContext() {
@@ -64,6 +64,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
 
+    /// There is currently no location disabled notification so we listen to all message changes.
+    @objc private func handleMessagesChanged(_ notification: Notification) {
+        if !dcContext.isSendingLocationsToChat(chatId: 0) {
+            locationManager.stopUpdatingLocation()
+        }
+    }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else {
             return
@@ -85,9 +92,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if let error = error as? CLError, error.code == .denied {
             logger.warning("LOCATION MANAGER: didFailWithError: \(error.localizedDescription)")
-           // Location updates are not authorized.
-           disableLocationStreamingInAllChats()
-           return
+            // Location updates are not authorized.
+            disableLocationStreamingInAllChats()
         }
     }
 
@@ -156,12 +162,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         return newLocation.distance(from: lastLocation) > 30
     }
 
-    /**
-        Locations can be cached by iOS, timestamp comparison checks if the location has been tracked within the last 5 minutes
-     */
+    /// Locations can be cached by iOS, timestamp comparison checks if the location has been tracked within the last 5 minutes
     func isNewLocationOutdated(newLocation: CLLocation) -> Bool {
         let timeDelta = DateUtils.getRelativeTimeInSeconds(timeStamp: Double(newLocation.timestamp.timeIntervalSince1970))
         return timeDelta > Double(Time.fiveMinutes)
     }
-    
 }
