@@ -1203,34 +1203,35 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func clipperButtonMenu() -> UIMenu {
-        func action(localized: String, systemImage: String, attributes: UIMenuElement.Attributes = [], handler: @escaping () -> Void) -> UIAction {
-            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
-        }
-        var actions = [UIMenuElement]()
-        actions.append(action(localized: "camera", systemImage: "camera", handler: showCameraViewController))
-        let galleryImage = if #available(iOS 16, *) { "photo.stack" } else { "photo" }
-        actions.append(action(localized: "gallery", systemImage: galleryImage, handler: showPhotoVideoLibrary))
-        actions.append(action(localized: "files", systemImage: "folder", handler: showDocumentLibrary))
-        actions.append(action(localized: "webxdc_apps", systemImage: "square.grid.2x2", handler: showAppPicker))
-        actions.append(action(localized: "voice_message", systemImage: "mic", handler: showVoiceMessageRecorder))
-        if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
-            let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
-            actions.append(action(localized: "videochat", systemImage: videoChatImage, handler: videoChatButtonPressed))
-        }
-        if UserDefaults.standard.bool(forKey: "location_streaming") {
-            let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
-            actions.append(action(
-                localized: isLocationStreaming ? "stop_sharing_location" : "location",
-                systemImage: isLocationStreaming ? "location.slash" : "location",
-                attributes: isLocationStreaming ? .destructive : [],
-                handler: locationStreamingButtonPressed
-            ))
-        }
-        actions.append(action(localized: "contact", systemImage: "person.crop.circle", handler: showContactList))
+        return UIMenu(children: [
+            UIDeferredMenuElement({ [weak self] completion in
+                guard let self else { return }
 
-        // Actions in this menu are reversed order vs iOS 13 because they are ordered
-        // by importance starting closest to the button
-        return UIMenu(children: actions)
+                var actions = [UIMenuElement]()
+                func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
+                    UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
+                }
+
+                actions.append(action("camera", "camera", showCameraViewController))
+                let galleryImage = if #available(iOS 16, *) { "photo.stack" } else { "photo" }
+                actions.append(action("gallery", galleryImage, showPhotoVideoLibrary))
+                actions.append(action("files", "folder", self.showDocumentLibrary))
+                actions.append(action("webxdc_apps", "square.grid.2x2", showAppPicker))
+                actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
+                if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
+                    let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
+                    actions.append(action("videochat", videoChatImage, videoChatButtonPressed))
+                }
+                if UserDefaults.standard.bool(forKey: "location_streaming") {
+                    let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
+                    actions.append(action(isLocationStreaming ? "stop_sharing_location" : "location", isLocationStreaming ? "location.slash" : "location",
+                                          attributes: isLocationStreaming ? .destructive : [], locationStreamingButtonPressed))
+                }
+                actions.append(action("contact", "person.crop.circle", showContactList))
+
+                completion([UIMenu(options: .displayInline, children: actions)])
+            })
+        ])
     }
 
     private func confirmationAlert(title: String, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {
