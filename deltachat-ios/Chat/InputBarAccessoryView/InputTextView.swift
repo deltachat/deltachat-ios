@@ -122,6 +122,7 @@ open class InputTextView: UITextView {
         didSet {
             // When .zero a rendering issue can occur
             if scrollIndicatorInsets == .zero {
+                // simulator crashs here occasionally
                 scrollIndicatorInsets = UIEdgeInsets(top: .leastNonzeroMagnitude,
                                                      left: .leastNonzeroMagnitude,
                                                      bottom: .leastNonzeroMagnitude,
