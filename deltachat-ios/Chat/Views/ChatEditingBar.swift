@@ -6,7 +6,7 @@ public protocol ChatEditingDelegate: AnyObject {
     func onForwardPressed()
     func onCancelPressed()
     func onCopyPressed()
-    func onMorePressed()
+    func onMorePressed() -> UIMenu
 }
 
 public class ChatEditingBar: UIView {
@@ -110,17 +110,19 @@ public class ChatEditingBar: UIView {
         ])
 
         copyButton.addTarget(self, action: #selector(ChatEditingBar.onCopyPressed), for: .touchUpInside)
-        moreButton.addTarget(self, action: #selector(ChatEditingBar.onMorePressed), for: .touchUpInside)
         forwardButton.addTarget(self, action: #selector(ChatEditingBar.onForwardPressed), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(ChatEditingBar.onDeletePressed), for: .touchUpInside)
+
+        moreButton.showsMenuAsPrimaryAction = true
+        moreButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
+        moreButton.addAction(UIAction { [weak self] _ in
+            guard let self else { return }
+            moreButton.menu = delegate?.onMorePressed()
+        }, for: .menuActionTriggered)
     }
 
     @objc func onCopyPressed() {
         delegate?.onCopyPressed()
-    }
-
-    @objc func onMorePressed() {
-        delegate?.onMorePressed()
     }
 
     @objc func onForwardPressed() {

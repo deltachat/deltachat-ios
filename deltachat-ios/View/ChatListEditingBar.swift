@@ -100,7 +100,6 @@ class ChatListEditingBar: UIView {
             guard let self else { return }
             moreButton.menu = delegate?.onMorePressed()
         }, for: .menuActionTriggered)
-
     }
 
     @objc func deleteButtonPressed() {
