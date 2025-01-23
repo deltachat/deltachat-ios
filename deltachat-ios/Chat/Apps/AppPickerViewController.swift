@@ -5,12 +5,28 @@ protocol AppPickerViewControllerDelegate: AnyObject {
     func pickedApp(_ viewController: AppPickerViewController, fileURL: URL)
 }
 
+
 /// Container ViewController for WebxdcStoreViewController and RecentWebxdcAppsViewController
 class AppPickerViewController: UIViewController {
+
+    enum Tab: Int, CaseIterable {
+        case store = 0
+        case myApps = 1
+
+        var title: String {
+            switch self {
+            case .myApps:
+                String.localized("My apps")
+            case .store:
+                String.localized("Store")
+            }
+        }
+    }
+
     var defaultCloseButton: UIBarButtonItem?
     let downloadingView: DownloadingView
 
-    // TODO: let segmentedControl: UISegmentedControl
+    let segmentedControl: UISegmentedControl
     private let pageViewController: UIPageViewController
     let storeViewController: WebxdcStoreViewController
     let myAppsViewController: RecentWebxdcAppsViewController
@@ -22,6 +38,9 @@ class AppPickerViewController: UIViewController {
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.setViewControllers([storeViewController], direction: .forward, animated: false)
 
+        segmentedControl = UISegmentedControl(items: Tab.allCases.map { $0.title })
+        segmentedControl.selectedSegmentIndex = Tab.store.rawValue
+
         downloadingView = DownloadingView()
         downloadingView.translatesAutoresizingMaskIntoConstraints = false
         downloadingView.isHidden = true
@@ -30,16 +49,17 @@ class AppPickerViewController: UIViewController {
 
         storeViewController.delegate = self
         myAppsViewController.delegate = self
-        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(AppPickerViewController.close(_:)))
 
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
         view.addSubview(downloadingView)
-        pageViewController.dataSource = self
         view.backgroundColor = .systemBackground
 
-        title = String.localized("webxdc_apps")
+        segmentedControl.addTarget(self, action: #selector(AppPickerViewController.segmentedControlValueChanged(_:)), for: .valueChanged)
+        navigationItem.titleView = segmentedControl
+
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(AppPickerViewController.close(_:)))
         navigationItem.leftBarButtonItem = closeButton
         self.defaultCloseButton = closeButton
 
@@ -68,6 +88,7 @@ class AppPickerViewController: UIViewController {
 
     @objc func showLoading() {
         title = String.localized("Downloading...")
+        navigationItem.titleView = nil
         downloadingView.isHidden = false
         downloadingView.activityIndicator.startAnimating()
         downloadingView.activityIndicator.hidesWhenStopped = true
@@ -75,13 +96,23 @@ class AppPickerViewController: UIViewController {
     }
 
     @objc func hideLoading() {
-        title = String.localized("webxdc_apps")
+        navigationItem.titleView = segmentedControl
         downloadingView.isHidden = true
         downloadingView.activityIndicator.stopAnimating()
         navigationItem.leftBarButtonItem = defaultCloseButton
     }
-}
 
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        guard let tab = Tab(rawValue: sender.selectedSegmentIndex) else { return }
+
+        switch tab {
+        case .store:
+            pageViewController.setViewControllers([storeViewController], direction: .reverse, animated: true)
+        case .myApps:
+            pageViewController.setViewControllers([myAppsViewController], direction: .forward, animated: true)
+        }
+    }
+}
 
 extension AppPickerViewController: WebxdcStoreViewControllerDelegate {
     func downloadStarted(_ viewController: WebxdcStoreViewController) {
@@ -99,24 +130,6 @@ extension AppPickerViewController: WebxdcStoreViewControllerDelegate {
     func pickedAnDownloadedApp(_ viewController: WebxdcStoreViewController, fileURL: URL) {
         delegate?.pickedApp(self, fileURL: fileURL)
         dismiss(animated: true)
-    }
-}
-
-extension AppPickerViewController: UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if viewController == myAppsViewController {
-            return storeViewController
-        } else {
-            return nil
-        }
-    }
-
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if viewController == storeViewController {
-            return myAppsViewController
-        } else {
-            return nil
-        }
     }
 }
 
