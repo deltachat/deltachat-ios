@@ -13,7 +13,6 @@ class AppPickerViewController: UIViewController {
     let storeViewController: WebxdcStoreViewController
     weak var delegate: AppPickerViewControllerDelegate?
 
-
     init() {
         storeViewController = WebxdcStoreViewController()
 
@@ -24,7 +23,7 @@ class AppPickerViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         storeViewController.delegate = self
-        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(WebxdcStoreViewController.close(_:)))
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(AppPickerViewController.close(_:)))
 
         addChild(storeViewController)
         view.addSubview(storeViewController.view)
@@ -34,6 +33,8 @@ class AppPickerViewController: UIViewController {
         title = String.localized("webxdc_apps")
         navigationItem.leftBarButtonItem = closeButton
         self.defaultCloseButton = closeButton
+
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -75,14 +76,14 @@ class AppPickerViewController: UIViewController {
 
 extension AppPickerViewController: WebxdcStoreViewControllerDelegate {
     func downloadStarted(_ viewController: WebxdcStoreViewController) {
-        MainActor.run { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             self?.showLoading()
         }
     }
     
     func downloadEnded(_ viewController: WebxdcStoreViewController) {
-        MainActor.run { [weak self] in
-            self?.showLoading()
+        DispatchQueue.main.async { [weak self] in
+            self?.hideLoading()
         }
     }
     
