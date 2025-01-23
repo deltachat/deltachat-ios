@@ -243,6 +243,7 @@
 		D8CDEFE22C087D1000146773 /* ContactCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDEFE12C087D1000146773 /* ContactCardView.swift */; };
 		D8CF2DDC2CDD110F001C2352 /* ProxySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */; };
 		D8CF2DDD2CDD110F001C2352 /* ProxyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CF2DDA2CDD110F001C2352 /* ProxyTableViewCell.swift */; };
+		D8E426D82D423FCF0078C735 /* DownloadingActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E426D72D423FCF0078C735 /* DownloadingActivityView.swift */; };
 		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
 		D8FB04002B4F0CF100A355F8 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */; };
 /* End PBXBuildFile section */
@@ -648,6 +649,7 @@
 		D8CDEFE12C087D1000146773 /* ContactCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardView.swift; sourceTree = "<group>"; };
 		D8CF2DD92CDD110F001C2352 /* ProxySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxySettingsViewController.swift; sourceTree = "<group>"; };
 		D8CF2DDA2CDD110F001C2352 /* ProxyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyTableViewCell.swift; sourceTree = "<group>"; };
+		D8E426D72D423FCF0078C735 /* DownloadingActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingActivityView.swift; sourceTree = "<group>"; };
 		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		FCEAC85C8C41D57193C24E9A /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1214,6 +1216,7 @@
 				D83226FF2D3AC9BF00C239C5 /* AppPickerViewController.swift */,
 				D86DF20B2D30318B00141B3E /* WebxdcStoreViewController.swift */,
 				D83227012D3AC9F300C239C5 /* RecentWebxdcAppsViewController.swift */,
+				D8E426D72D423FCF0078C735 /* DownloadingActivityView.swift */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -1771,6 +1774,7 @@
 				302D5454268B84CB00A8B271 /* VideoChatInstanceViewController.swift in Sources */,
 				B2CDA6322CCDB3080024763F /* MuteDialog.swift in Sources */,
 				3080A014277DDABA00E74565 /* KeyboardManager.swift in Sources */,
+				D8E426D82D423FCF0078C735 /* DownloadingActivityView.swift in Sources */,
 				AEFBE22F23FEF23D0045327A /* ProviderInfoCell.swift in Sources */,
 				AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */,
 				30F8817624DA97DA0023780E /* BackgroundContainer.swift in Sources */,
