@@ -21,7 +21,7 @@ class QrCodeReaderController: UIViewController {
 
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis.circle")
-        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonPressed))
+        return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
 
     private lazy var infoLabel: UILabel = {
@@ -196,13 +196,13 @@ class QrCodeReaderController: UIViewController {
         captureSession.stopRunning()
     }
 
-    @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("troubleshooting"), style: .default, handler: { _ in
-            self.navigationController?.pushViewController(HelpViewController(dcContext: DcAccounts.shared.getSelected(), fragment: "#multiclient"), animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    private func moreButtonMenu() -> UIMenu {
+        let actions = [
+            UIAction(title: String.localized("troubleshooting"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
+                self?.navigationController?.pushViewController(HelpViewController(dcContext: DcAccounts.shared.getSelected(), fragment: "#multiclient"), animated: true)
+            },
+        ]
+        return UIMenu(children: actions)
     }
 }
 
