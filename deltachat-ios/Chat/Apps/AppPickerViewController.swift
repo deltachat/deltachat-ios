@@ -16,9 +16,9 @@ class AppPickerViewController: UIViewController {
         var title: String {
             switch self {
             case .myApps:
-                String.localized("My apps")
+                String.localized("app_picker_my_apps")
             case .store:
-                String.localized("Store")
+                String.localized("app_picker_store")
             }
         }
     }
