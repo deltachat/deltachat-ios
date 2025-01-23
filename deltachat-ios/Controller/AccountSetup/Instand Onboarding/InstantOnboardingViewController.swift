@@ -21,15 +21,12 @@ class InstantOnboardingViewController: UIViewController {
     private var qrCodeData: String?
     private lazy var menuButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis.circle")
-        let menuButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(InstantOnboardingViewController.showMenu(_:)))
-        menuButton.tintColor = DcColors.primary
-        return menuButton
+        return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
 
     private lazy var proxyShieldButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(InstantOnboardingViewController.showProxySettings(_:)))
-        button.tintColor = DcColors.primary
-        return button
+        let image = UIImage(systemName: "checkmark.shield")
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showProxySettings))
     }()
 
     var progressAlertHandler: ProgressAlertHandler?
@@ -223,22 +220,16 @@ class InstantOnboardingViewController: UIViewController {
         present(alertController, animated: true)
     }
 
-    @objc private func showMenu(_ sender: Any) {
-        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-
-        let showProxySettings = UIAlertAction(title: String.localized("proxy_settings"), style: .default) { [weak self] _ in
-            self?.showProxySettings(sender)
-        }
-
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
-
-        sheet.addAction(showProxySettings)
-        sheet.addAction(cancelAction)
-
-        present(sheet, animated: true)
+    private func moreButtonMenu() -> UIMenu {
+        let actions = [
+            UIAction(title: String.localized("proxy_use_proxy"), image: UIImage(systemName: "shield")) { [weak self] _ in
+                self?.showProxySettings()
+            },
+        ]
+        return UIMenu(children: actions)
     }
 
-    @objc private func showProxySettings(_ sender: Any) {
+    @objc private func showProxySettings() {
         let proxySettingsController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
         navigationController?.pushViewController(proxySettingsController, animated: true)
     }
