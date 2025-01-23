@@ -3,7 +3,7 @@ import UIKit
 public protocol ChatListEditingBarDelegate: AnyObject {
     func onDeleteButtonPressed()
     func onArchiveButtonPressed()
-    func onMorePressed()
+    func onMorePressed() -> UIMenu
 }
 
 class ChatListEditingBar: UIView {
@@ -94,7 +94,13 @@ class ChatListEditingBar: UIView {
         archiveBtnGestureRecognizer.numberOfTapsRequired = 1
         archiveButton.addGestureRecognizer(archiveBtnGestureRecognizer)
 
-        moreButton.addTarget(self, action: #selector(ChatListEditingBar.onMorePressed), for: .touchUpInside)
+        moreButton.showsMenuAsPrimaryAction = true
+        moreButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
+        moreButton.addAction(UIAction { [weak self] _ in
+            guard let self else { return }
+            moreButton.menu = delegate?.onMorePressed()
+        }, for: .menuActionTriggered)
+
     }
 
     @objc func deleteButtonPressed() {
@@ -103,9 +109,5 @@ class ChatListEditingBar: UIView {
 
     @objc func archiveButtonPressed() {
         delegate?.onArchiveButtonPressed()
-    }
-
-    @objc func onMorePressed() {
-        delegate?.onMorePressed()
     }
 }

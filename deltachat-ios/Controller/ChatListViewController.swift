@@ -1031,10 +1031,10 @@ extension ChatListViewController: ChatListEditingBarDelegate {
         setLongTapEditing(false)
     }
 
-    func onMorePressed() {
-        guard let userDefaults = UserDefaults.shared, let viewModel else { return }
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
+    func onMorePressed() -> UIMenu {
+        guard let userDefaults = UserDefaults.shared, let viewModel else { return UIMenu() }
         let chatIds = viewModel.chatIdsFor(indexPaths: tableView.indexPathsForSelectedRows)
+        var actions = [UIMenuElement]()
 
         if #available(iOS 17.0, *),
            chatIds.count == 1,
@@ -1051,33 +1051,34 @@ extension ChatListViewController: ChatListEditingBarDelegate {
                 }
 
             let chatPresentInHomescreenWidget = allHomescreenChatsIds.contains(chatId)
-            let action: UIAlertAction
+            let action: UIAction
             if chatPresentInHomescreenWidget {
-                action = UIAlertAction(title: String.localized("remove_from_widget"), style: .default) { [weak self] _ in
+                action = UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [weak self] _ in
                     guard let self else { return }
                     userDefaults.removeChatFromHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
                     setLongTapEditing(false)
                 }
             } else {
-                action = UIAlertAction(title: String.localized("add_to_widget"), style: .default) { [weak self] _ in
+                action = UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [weak self] _ in
                     guard let self else { return }
                     userDefaults.addChatToHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
                     setLongTapEditing(false)
                 }
             }
-            alert.addAction(action)
+            actions.append(action)
         }
 
         let onlyPinndedSelected = viewModel.hasOnlyPinnedChatsSelected(in: tableView.indexPathsForSelectedRows)
         let pinTitle = String.localized(onlyPinndedSelected ? "unpin" : "pin")
-        alert.addAction(UIAlertAction(title: pinTitle, style: .default) { [weak self] _ in
+        let pinImage = UIImage(systemName: onlyPinndedSelected ? "pin.slash" : "pin")
+        actions.append(UIAction(title: pinTitle, image: pinImage) { [weak self] _ in
             guard let self else { return }
             viewModel.pinChatsToggle(indexPaths: tableView.indexPathsForSelectedRows)
             setLongTapEditing(false)
         })
 
         if viewModel.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) {
-            alert.addAction(UIAlertAction(title: String.localized("menu_mute"), style: .default) { [weak self] _ in
+            actions.append(UIAction(title: String.localized("menu_mute"), image: UIImage(systemName: "speaker.slash")) { [weak self] _ in
                 guard let self else { return }
                 MuteDialog.show(viewController: self) { [weak self] duration in
                     guard let self else { return }
@@ -1086,14 +1087,13 @@ extension ChatListViewController: ChatListEditingBarDelegate {
                 }
             })
         } else {
-            alert.addAction(UIAlertAction(title: String.localized("menu_unmute"), style: .default) { [weak self] _ in
+            actions.append(UIAction(title: String.localized("menu_unmute"), image: UIImage(systemName: "speaker.wave.2")) { [weak self] _ in
                 guard let self else { return }
                 viewModel.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: 0)
                 setLongTapEditing(false)
             })
         }
 
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        return UIMenu(children: actions)
     }
 }
