@@ -1246,22 +1246,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         present(alert, animated: true, completion: nil)
     }
 
-    private func showMoreMenu() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-        if canResend() {
-            alert.addAction(UIAlertAction(title: String.localized("resend"), style: .default, handler: onResendActionPressed(_:)))
-        }
-        if canShare() {
-            alert.addAction(UIAlertAction(title: String.localized("menu_share"), style: .default, handler: onShareActionPressed(_:)))
-        }
-        if canInfo() {
-            alert.addAction(UIAlertAction(title: String.localized("info"), style: .default, handler: onInfoActionPressed(_:)))
-        }
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func onResendActionPressed(_ action: UIAlertAction) {
+    private func onResendActionPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
             let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
             dcContext.resendMessages(msgIds: selectedMsgIds)
@@ -1269,7 +1254,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func onShareActionPressed(_ action: UIAlertAction) {
+    private func onShareActionPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
             let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
             if let msgId = selectedMsgIds.first {
@@ -1279,7 +1264,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func onInfoActionPressed(_ action: UIAlertAction) {
+    private func onInfoActionPressed() {
         if let rows = tableView.indexPathsForSelectedRows, let firstRow = rows.first {
             info(at: firstRow)
         }
@@ -2430,8 +2415,24 @@ extension ChatViewController: ChatEditingDelegate {
         }
     }
 
-    func onMorePressed() {
-        showMoreMenu()
+    func onMorePressed() -> UIMenu {
+        var actions = [UIMenuElement]()
+        if canResend() {
+            actions.append(UIAction(title: String.localized("resend"), image: UIImage(systemName: "paperplane")) { [weak self] _ in
+                self?.onResendActionPressed()
+            })
+        }
+        if canShare() {
+            actions.append(UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
+                self?.onShareActionPressed()
+            })
+        }
+        if canInfo() {
+            actions.append(UIAction(title: String.localized("info"), image: UIImage(systemName: "info.circle")) { [weak self] _ in
+                self?.onInfoActionPressed()
+            })
+        }
+        return UIMenu(children: actions)
     }
 
     func onForwardPressed() {
