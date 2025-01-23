@@ -23,11 +23,6 @@ class BackupTransferViewController: UIViewController {
         return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
     }
 
-    private lazy var moreButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "ellipsis.circle")
-        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(moreButtonPressed))
-    }()
-
     private let statusLine: UILabel
     private let experimentalLine: UILabel
     private let qrContentView: UIImageView
@@ -100,7 +95,7 @@ class BackupTransferViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = moreButton
+        updateMenuItems()
 
         triggerLocalNetworkPrivacyAlert()
 
@@ -124,6 +119,7 @@ class BackupTransferViewController: UIViewController {
                 self.statusLine.text = "➊ " + String.localized("multidevice_same_network_hint")
                                  + "\n\n➋ " + String.localized("multidevice_install_dc_on_other_device")
                                  + "\n\n➌ " + String.localized("multidevice_tap_scan_on_other_device")
+                self.updateMenuItems()
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self else { return }
                     self.dcBackupProvider?.wait()
@@ -190,6 +186,7 @@ class BackupTransferViewController: UIViewController {
                 self.statusLine.textAlignment = .center
                 experimentalLine.isHidden = true
                 self.qrContentView.isHidden = true
+                updateMenuItems()
             }
         }
     }
@@ -264,20 +261,26 @@ class BackupTransferViewController: UIViewController {
         }
     }
 
-    @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("troubleshooting"), style: .default, handler: { _ in
-            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#multiclient"), animated: true)
-        }))
-        if !self.qrContentView.isHidden {
-            alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: { [weak self] _ in
+    private func updateMenuItems() {
+        let menu = moreButtonMenu()
+        let button =  UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: menu)
+        navigationItem.rightBarButtonItem = button
+    }
+
+    private func moreButtonMenu() -> UIMenu {
+        var actions = [UIMenuElement]()
+        if !qrContentView.isHidden {
+            actions.append(UIAction(title: String.localized("menu_copy_to_clipboard"), image: UIImage(systemName: "document.on.document")) { [weak self] _ in
                 guard let self else { return }
-                self.warnAboutCopiedQrCodeOnAbort = true
-                UIPasteboard.general.string = self.dcBackupProvider?.getQr()
-            }))
+                warnAboutCopiedQrCodeOnAbort = true
+                UIPasteboard.general.string = dcBackupProvider?.getQr()
+            })
         }
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        actions.append(UIAction(title: String.localized("troubleshooting"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
+            guard let self else { return }
+            navigationController?.pushViewController(HelpViewController(dcContext: dcContext, fragment: "#multiclient"), animated: true)
+        })
+        return UIMenu(children: actions)
     }
 }
 
