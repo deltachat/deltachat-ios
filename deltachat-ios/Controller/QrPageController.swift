@@ -40,11 +40,6 @@ class QrPageController: UIPageViewController {
         return control
     }()
 
-    private lazy var moreButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "ellipsis.circle")
-        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showMoreOptions))
-    }()
-
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
@@ -67,7 +62,7 @@ class QrPageController: UIPageViewController {
         dataSource = self
         delegate = self
         navigationItem.titleView = qrSegmentControl
-        navigationItem.rightBarButtonItem = moreButton
+        updateMenuItems()
 
         setViewControllers(
             [qrViewController],
@@ -98,43 +93,59 @@ class QrPageController: UIPageViewController {
         } else {
             setViewControllers([qrCodeReaderController], direction: .forward, animated: true, completion: nil)
         }
+        updateMenuItems()
     }
 
-    @objc private func showMoreOptions() {
-        let alert = UIAlertController(title: String.localized("qr_code"), message: nil, preferredStyle: .safeActionSheet)
+    private func updateMenuItems() {
+        let menu = moreButtonMenu()
+        let button =  UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: menu)
+        navigationItem.rightBarButtonItem = button
+    }
+
+    private func moreButtonMenu() -> UIMenu {
+        var actions = [UIMenuElement]()
         if qrSegmentControl.selectedSegmentIndex == 0 {
-            alert.addAction(UIAlertAction(title: String.localized("menu_share"), style: .default, handler: share(_:)))
-            alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: copyToClipboard(_:)))
-            alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .default, handler: withdrawQrCode(_:)))
-        }
-        alert.addAction(UIAlertAction(title: String.localized("paste_from_clipboard"), style: .default, handler: pasteFromClipboard(_:)))
-
-        if dcContext.isChatmail == false {
-            let addContactManuallyAction = UIAlertAction(title: String.localized("menu_new_classic_contact"), style: .default, handler: { [weak self] _ in
-                guard let self else { return }
-
-                let newContactController = NewContactController(dcContext: self.dcContext)
-                self.navigationController?.pushViewController(newContactController, animated: true)
+            actions.append(UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
+                self?.share()
             })
-
-            alert.addAction(addContactManuallyAction)
+            actions.append(UIAction(title: String.localized("menu_copy_to_clipboard"), image: UIImage(systemName: "document.on.document")) { [weak self] _ in
+                self?.copyToClipboard()
+            })
         }
-
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-        self.present(alert, animated: true, completion: nil)
+        actions.append(UIAction(title: String.localized("paste_from_clipboard"), image: UIImage(systemName: "doc.on.clipboard")) { [weak self] _ in
+            self?.pasteFromClipboard()
+        })
+        if dcContext.isChatmail == false {
+            actions.append(UIAction(title: String.localized("menu_new_classic_contact"), image: UIImage(systemName: "pencil")) { [weak self] _ in
+                guard let self else { return }
+                self.navigationController?.pushViewController(NewContactController(dcContext: self.dcContext), animated: true)
+            })
+        }
+        if qrSegmentControl.selectedSegmentIndex == 0 {
+            actions.append(UIMenu(options: [.displayInline],
+                children: [
+                    UIAction(title: String.localized("withdraw_qr_code"), image: UIImage(systemName: "trash"), attributes: [.destructive]) { [weak self] _ in
+                        self?.withdrawQrCode()
+                    },
+                ]
+            ))
+        }
+        return UIMenu(children: actions)
     }
 
-    @objc func share(_ action: UIAlertAction) {
+    func share() {
         if let inviteLink = Utils.getInviteLink(context: dcContext, chatId: 0) {
-            Utils.share(url: inviteLink, parentViewController: self, sourceItem: moreButton)
+            if let sourceItem = navigationItem.rightBarButtonItem {
+                Utils.share(url: inviteLink, parentViewController: self, sourceItem: sourceItem)
+            }
         }
     }
 
-    @objc func copyToClipboard(_ action: UIAlertAction) {
+    func copyToClipboard() {
         UIPasteboard.general.string = Utils.getInviteLink(context: dcContext, chatId: 0)
     }
 
-    @objc func withdrawQrCode(_ action: UIAlertAction) {
+    func withdrawQrCode() {
         let alert = UIAlertController(title: String.localized("withdraw_verifycontact_explain"), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
         alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
@@ -148,7 +159,7 @@ class QrPageController: UIPageViewController {
         present(alert, animated: true)
     }
 
-    @objc func pasteFromClipboard(_ action: UIAlertAction) {
+    func pasteFromClipboard() {
         handleQrCode(UIPasteboard.general.string ?? "")
     }
 
@@ -186,6 +197,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
         } else {
             qrSegmentControl.selectedSegmentIndex = 1
         }
+        updateMenuItems()
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -195,6 +207,7 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
             } else {
                 qrSegmentControl.selectedSegmentIndex = 1
             }
+            updateMenuItems()
         }
     }
 }
