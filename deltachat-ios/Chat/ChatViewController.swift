@@ -1229,7 +1229,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 }
                 actions.append(action("contact", "person.crop.circle", showContactList))
 
-                completion([UIMenu(options: .displayInline, children: actions)])
+                completion(actions)
             })
         ])
     }
