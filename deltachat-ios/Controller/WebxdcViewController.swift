@@ -25,10 +25,7 @@ class WebxdcViewController: WebViewViewController {
 
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis.circle")
-        return UIBarButtonItem(image: image,
-                               style: .plain,
-                               target: self,
-                               action: #selector(moreButtonPressed))
+        return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
     
     // Block just everything, except of webxdc urls
@@ -424,66 +421,63 @@ class WebxdcViewController: WebViewViewController {
         webView.evaluateJavaScript("window.__webxdcUpdate()", completionHandler: nil)
     }
 
-    @objc private func moreButtonPressed() {
-        let alert = UIAlertController(title: webxdcName + " – " + String.localized("webxdc_app"),
-                                      message: nil,
-                                      preferredStyle: .safeActionSheet)
-        if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
-            let appsInWidgetsMessageIds = userDefaults
-                .getAppWidgetEntries()
-                .compactMap { entry in
+    private func moreButtonMenu() -> UIMenu {
+        func actions() -> [UIMenuElement] {
+            var actions = [UIMenuElement]()
+            if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
+                let appsInWidgetsMessageIds = userDefaults.getAppWidgetEntries().compactMap { entry in
                     switch entry.type {
                     case .app(let messageId): return messageId
                     case .chat: return nil
                     }
                 }
-            
-            let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
-            let accountId = dcContext.id
-            
-            let homescreenAction: UIAlertAction
-            if isOnHomescreen {
-                homescreenAction = UIAlertAction(title: String.localized("remove_from_widget"), style: .default) { [weak self] _ in
-                    guard let self else { return }
-                    
-                    userDefaults.removeWebxdcFromHomescreen(accountId: accountId, messageId: messageId)
-                }
-            } else {
-                homescreenAction = UIAlertAction(title: String.localized("add_to_widget"), style: .default) { [weak self] _ in
-                    guard let self else { return }
-                    
-                    userDefaults.addWebxdcToHomescreenWidget(accountId: accountId, messageId: messageId)
+                let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
+                if isOnHomescreen {
+                    actions.append(UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [weak self] _ in
+                        guard let self else { return }
+                        userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
+                    })
+                } else {
+                    actions.append(UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [weak self] _ in
+                        guard let self else { return }
+                        userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
+                    })
                 }
             }
-            alert.addAction(homescreenAction)
-        }
-
-        if sourceCodeUrl != nil {
-            let sourceCodeAction = UIAlertAction(title: String.localized("source_code"), style: .default) { [weak self] _ in
-                self?.openUrl()
+            actions.append(UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [weak self] _ in
+                guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                let message = dcContext.getMessage(id: self.messageId)
+                DispatchQueue.main.async {
+                    appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
+                }
+            })
+            actions.append(UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
+                self?.shareWebxdc()
+            })
+            if sourceCodeUrl != nil {
+                actions.append(UIMenu(options: [.displayInline],
+                    children: [
+                        UIAction(title: String.localized("source_code"), image: UIImage(systemName: "globe")) { [weak self] _ in
+                            self?.openUrl()
+                        },
+                    ]
+                ))
             }
-            alert.addAction(sourceCodeAction)
+            return actions
         }
 
-        let shareAction = UIAlertAction(title: String.localized("menu_share"), style: .default) { [weak self] _ in
-            self?.shareWebxdc()
+        if #available(iOS 15.0, *) {
+            // uncached() allows us to update the menu easily; needed for widget state.
+            // UIDeferredMenuElement speeds up opening as complex checks are delayed until the menu is used.
+            return UIMenu(children: [
+                UIDeferredMenuElement.uncached({ completion in
+                    completion(actions())
+                })
+            ])
+        } else {
+            // prior to iOS 15, uncached() is not supported - but fortunately not needed as widgets are unsupported as well.
+            return UIMenu(children: actions())
         }
-        alert.addAction(shareAction)
-
-        let showInChatAction = UIAlertAction(title: String.localized("show_in_chat"), style: .default) { [weak self] _ in
-            guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-            let message = dcContext.getMessage(id: self.messageId)
-            let chatId = message.chatId
-
-            DispatchQueue.main.async {
-                appDelegate.appCoordinator.showChat(chatId: chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
-            }
-        }
-        alert.addAction(showInChatAction)
-
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
     }
 
     private func openUrl() {
@@ -494,7 +488,7 @@ class WebxdcViewController: WebViewViewController {
     }
 
     private func shareWebxdc() {
-        Utils.share(message: dcContext.getMessage(id: messageId), parentViewController: self, sourceItem: moreButton)
+        Utils.share(message: dcContext.getMessage(id: messageId), parentViewController: self, sourceItem: navigationItem.rightBarButtonItem)
     }
 }
 
