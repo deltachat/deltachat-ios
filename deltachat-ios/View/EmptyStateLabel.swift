@@ -3,13 +3,14 @@ import DcCore
 
 class EmptyStateLabel: PaddingTextView {
 
-    override init() {
+    init(text: String? = nil) {
         super.init()
         backgroundColor = DcColors.systemMessageBackgroundColor
         label.textColor = DcColors.systemMessageFontColor
         layer.cornerRadius = 16
         label.clipsToBounds = true
         label.textAlignment = .center
+        label.text = text
         paddingTop = 15
         paddingBottom = 15
         paddingLeading = 15

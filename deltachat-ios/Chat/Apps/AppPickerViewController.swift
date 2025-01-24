@@ -87,7 +87,7 @@ class AppPickerViewController: UIViewController {
     // MARK: - Actions
 
     @objc func showLoading() {
-        title = String.localized("Downloading...")
+        title = String.localized("app_picker_downloading")
         navigationItem.titleView = nil
         downloadingView.isHidden = false
         downloadingView.activityIndicator.startAnimating()
@@ -133,8 +133,8 @@ extension AppPickerViewController: WebxdcStoreViewControllerDelegate {
     }
 }
 
-extension AppPickerViewController: WebxdcSelectorDelegate {
-    func onWebxdcFromFilesSelected(url: URL) {
+extension AppPickerViewController: RecentWebxdcAppsViewControllerDelegate {
+    func webxdcFileSelected(_ viewController: RecentWebxdcAppsViewController, url: URL) {
         // we need do duplicate/copy the file to `caches` due to ... core-reasons
         guard let data = try? Data(contentsOf: url),
               let path = FileHelper.saveData(data: data,
